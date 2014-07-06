@@ -5,10 +5,10 @@ Opencart Overclocked - Basic Edition
 
 
 General:
+
 The objective of this Overclocked Edition is to make Opencart faster, richer, leaner and even more user friendly. 
 To do so, every line of code inside every file has been checked, adjusted and corrected when necessary. 
-Scripts have been updated or replaced by newer, better or faster versions. 
-Some extra features have been added.
+Scripts have been updated or replaced by newer, better or faster versions. Some extra features have been added.
 
 Coding Rules:
 - Controller, Language and Model files with a clean, standardised PHP code.
