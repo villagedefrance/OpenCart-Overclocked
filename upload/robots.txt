@@ -1,0 +1,39 @@
+User-agent: *
+
+# Directories
+Disallow: /admin/
+Disallow: /download/
+Disallow: /image/
+Disallow: /system/
+
+# Files
+Disallow: /php.ini
+Disallow: /config.php
+Disallow: /address.php
+Disallow: /account.php
+Disallow: /cart.php
+Disallow: /checkout.php
+Disallow: /history.php
+Disallow: /manual.php
+Disallow: /payment_address.php
+Disallow: /shipping_address.php
+Disallow: /order.php
+Disallow: /transaction.php
+Disallow: /wishlist.php
+Disallow: /reward.php
+Disallow: /voucher.php
+Disallow: /success.php
+Disallow: /pagination.php
+Disallow: /password.php
+Disallow: /search.php
+Disallow: /edit.php
+
+# Sitemap
+
+# This file is to prevent the crawling and indexing of certain parts
+# of your site by web crawlers and spiders run by sites like Yahoo!
+# and Google. By telling these "robots" where not to go on your site,
+# you save bandwidth and server resources.
+
+# For more information about the robots.txt standard, see:
+# http://www.robotstxt.org/wc/robots.html

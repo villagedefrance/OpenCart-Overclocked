@@ -1,0 +1,37 @@
+/* LOCKED */
+.tree-image .locked li a { color: gray; }
+/* DOTS */
+.tree-image ul {
+	margin: 0;
+	padding: 0;
+	direction: ltr;
+}
+.tree-image li {
+	float: left;
+	clear: none;
+	border: 1px solid #444;
+	width: 150px;
+	height: 150px;
+	text-align: center;
+}
+.tree-image li ins img {
+	clear: both;
+	border: 1px solid #F00;
+}
+.tree-image li ins {
+	clear: both;
+	border: 1px solid #00F;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	float: left;
+	width: auto;
+	height: auto;
+}
+.tree-image li a {
+	display: inline-block;
+	border: 1px solid #0F0;
+}
+/* NO DOTS */
+.tree-image .no_dots, .tree-image .no_dots ul { }
+.tree-image .no_dots li.leaf { }

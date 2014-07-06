@@ -1,0 +1,149 @@
+/*------------------------
+// Overclocked Edition		
+//------------------------
+*/
+
+/* Page Styles */
+#filemanager_menu {
+	clear: both;
+	background: #333;
+	position: relative;
+	height: 33px;
+	min-width: 900px;
+	border: 1px solid #333;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+	padding: 0px 30px;
+}
+#filemanager_menu a {
+	color: #FFF;
+}
+#filemanager_menu a:hover {
+	color: #000;
+}
+#column-left {
+	background: #FFF;
+	border: 1px solid #CCC;
+	border-top: none;
+	float: left;
+	width: 25%;
+	height: 400px;
+	overflow: auto;
+	padding-top: 5px;
+	margin-bottom: 20px;
+}
+#column-right {
+	background: #FFF;
+	border: 1px solid #CCC;
+	border-top:none;
+	float: right;
+	width: 73%;
+	height: 400px;
+	overflow: auto;
+	text-align: center;
+	margin-bottom: 20px;
+	padding-top: 5px;
+}
+#column-right div {
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 55px;
+}
+#column-right a {
+	display: inline-block;
+	text-align: center;
+	border: 1px solid #EEE;
+	cursor: pointer;
+	margin: 5px;
+	padding: 5px;
+}
+#column-right a.selected {
+	border: 1px solid #7DA2CE;
+	background: #EBF4FD;
+}
+#column-right input {
+	display: none;
+}
+#dialog {
+	display: none;
+}
+/* Buttons */
+.filemanager_button {
+	display: block;
+	float: left;
+	padding: 8px 5px 8px 25px;
+	margin-right: 5px;
+	background-position: 5px 6px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.filemanager_button:hover {
+	background-color: #EEE;
+}
+/* Images */
+.thumb {
+	padding: 5px;
+	width: 105px;
+	height: 105px;
+	background: #F7F7F7;
+	border: 1px solid #CCC;
+	cursor: pointer;
+	cursor: move;
+	position: relative;
+}
+#updateImage a {
+	width: 130px;
+	height: 16px;
+	color: #FBFBFB;
+	text-align: center;
+	line-height: 16px;
+	font-size: 115%;
+	font-weight: bold;
+	margin: auto;
+	margin-top: 3px;
+	padding: 5px;
+	border: 1px solid #DDD;
+	background: background: #5C9CCC; 
+	background-position: 0px -50px;
+}
+#updateImage a:hover {
+	background-position: 0px 0px;
+	background-color: #EEE;
+}
+/* Tools */
+#toolset .btn {
+	float: left;
+	font-size: 10px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+.fileName {
+	display: block;
+}
+.fileSize {
+	clear: both;
+	display: block;
+}
+#visualFeedback {
+	width: 400px;
+	position: fixed;
+	right: 41px;
+	top: 134px;
+	border: 1px solid #888;
+	z-index: 99;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+	display: none;
+}
+#visualFeedback span {
+	font-size: 12px;
+	color: #FCFCFC;
+	font-weight: bold;
+	padding: 8px;
+	display: block;
+}

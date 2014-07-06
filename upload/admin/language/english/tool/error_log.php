@@ -1,0 +1,12 @@
+<?php 
+//------------------------
+// Overclocked Edition		
+//------------------------
+
+// Heading
+$_['heading_title'] 	= 'Error Log';
+
+// Text
+$_['text_success']  	= 'Success: You have successfully cleared your <b>Error Log</b> !';
+
+?>

@@ -1,0 +1,143 @@
+/*------------------------
+// Overclocked Edition		
+//------------------------
+*/
+
+/* Box Styles */
+body {
+	padding: 0;
+	margin: 0;
+	background: #F7F7F7;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+img {
+	border: 0;
+}
+#container {
+	padding: 0px 10px;
+	height: 350px;
+	overflow: hidden;
+}
+#menu {
+	clear: both;
+	height: 29px;
+	margin-bottom: 3px;
+}
+#column-left {
+	background: #FFF;
+	border: 1px solid #CCC;
+	float: left;
+	width: 26%;
+	height: 280px;
+	overflow: auto;
+}
+#column-right {
+	background: #FFF;
+	border: 1px solid #CCC;
+	float: right;
+	width: 72%;
+	height: 280px;
+	overflow: auto;
+	text-align: center;
+}
+#column-right div {
+	text-align: left;
+	padding: 5px;
+}
+#column-right a {
+	display: inline-block;
+	text-align: center;
+	border: 1px solid #EEE;
+	cursor: pointer;
+	margin: 5px;
+	padding: 5px;
+}
+#column-right a.selected {
+	border: 1px solid #7DA2CE;
+	background: #EBF4FD;
+}
+#column-right input {
+	display: none;
+}
+#dialog {
+	display: none;
+}
+/* Buttons */
+.button {
+	display: block;
+	float: left;
+	padding: 8px 5px 8px 25px;
+	margin-right: 5px;
+	background-position: 5px 6px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: #EEE;
+}
+/* Images */
+.thumb {
+	padding: 5px;
+	width: 90px;
+	height: 90px;
+	background: #F7F7F7;
+	border: 1px solid #CCC;
+	cursor: pointer;
+	cursor: move;
+	position: relative;
+}
+#updateImage a {
+	width: 130px;
+	height: 16px;
+	color: #FBFBFB;
+	text-align: center;
+	line-height: 16px;
+	font-size: 115%;
+	font-weight: bold;
+	margin: auto;
+	margin-top: 3px;
+	padding: 5px;
+	border: 1px solid #DDD;
+	background: background: #5C9CCC; 
+	background-position: 0px -50px;
+}
+#updateImage a:hover { 
+	background-position: 0px 0px;
+	background-color: #EEE;
+}
+/* Tools */
+#toolset .btn {
+	float: left;
+	font-size: 10px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+.fileName { 
+	display: block;
+}
+.fileSize { 
+	clear: both; 
+	display: block; 
+}
+#visualFeedback {
+	width: 270px;
+	position: fixed;
+	right: 10px;
+	top: 0px;
+	border: 1px solid #888;
+	z-index: 99;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+	display: none;
+}
+#visualFeedback span {
+	font-size: 12px;
+	color: #FCFCFC;
+	font-weight: bold;
+	padding: 6px;
+	display: block;
+}

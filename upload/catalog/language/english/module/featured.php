@@ -1,0 +1,19 @@
+<?php 
+//------------------------
+// Overclocked Edition		
+//------------------------
+
+// Heading 
+$_['heading_title']	= 'Featured';
+
+// Text
+$_['text_model']	= 'Code:';
+$_['text_reward']	= 'Reward Points:';
+$_['text_points']  	= 'Price in Points:';
+$_['text_reviews']	= '(%s)';
+
+// Button
+$_['button_view']	= 'View Product';
+$_['button_cart']	= 'Add to Cart';
+
+?>
