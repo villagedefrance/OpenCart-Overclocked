@@ -1,29 +1,25 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class Template {
+	public $data = array();
 
-class Template { 
-	public $data = array(); 
+	public function fetch($filename) {
+		$file = DIR_TEMPLATE . $filename;
 
-	public function fetch($filename) { 
-		$file = DIR_TEMPLATE . $filename; 
+		if (file_exists($file)) {
+			extract($this->data);
 
-		if (file_exists($file)) { 
-			extract($this->data); 
+			ob_start();
 
-			ob_start(); 
+			include($file);
 
-			include($file); 
+			$content = ob_get_clean();
 
-			$content = ob_get_clean(); 
+			return $content;
 
-			return $content; 
-
-		} else { 
-			trigger_error('Error: Could not load template ' . $file . '!'); 
-			exit();	
-		} 
-	} 
-} 
+		} else {
+			trigger_error('Error: Could not load template ' . $file . '!');
+			exit();
+		}
+	}
+}
 ?>
