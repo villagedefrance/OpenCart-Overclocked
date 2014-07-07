@@ -4,4 +4,5 @@
 <a onclick="window.open('http://forum.opencart.com');" title="Support Forums">Support Forums</a>
 <br /> Copyright © 2014 OpenCart - All rights reserved</div>
 </div>
-</body></html>
+</body>
+</html>

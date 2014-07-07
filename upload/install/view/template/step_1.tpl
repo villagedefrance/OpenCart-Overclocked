@@ -1,12 +1,12 @@
 <?php echo $header; ?>
 <h1>Step 1 - License</h1>
 <div id="column-right">
-	<ul>
-		<li><b>License</b></li>
-		<li>Pre-Installation</li>
-		<li>Configuration</li>
-		<li>Finished</li>
-	</ul>
+  <ul>
+    <li><b>License</b></li>
+    <li>Pre-Installation</li>
+    <li>Configuration</li>
+    <li>Finished</li>
+  </ul>
 </div>
 <div id="content">
 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
@@ -562,24 +562,24 @@
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
 </pre>
-      <p>The hypothetical commands `show w' and `show c' should show the appropriate
-        parts of the General Public License.  Of course, your program's commands
-        might be different; for a GUI interface, you would use an &ldquo;about box&rdquo;.</p>
-      <p>You should also get your employer (if you work as a programmer) or school,
-        if any, to sign a &ldquo;copyright disclaimer&rdquo; for the program, if necessary.
-        For more information on this, and how to apply and follow the GNU GPL, see
-        &lt;http://www.gnu.org/licenses/&gt;.</p>
-      <p>The GNU General Public License does not permit incorporating your program
-        into proprietary programs.  If your program is a subroutine library, you
-        may consider it more useful to permit linking proprietary applications with
-        the library.  If this is what you want to do, use the GNU Lesser General
-        Public License instead of this License.  But first, please read
-        &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.</p>
-	</div>
+    <p>The hypothetical commands `show w' and `show c' should show the appropriate
+      parts of the General Public License.  Of course, your program's commands
+      might be different; for a GUI interface, you would use an &ldquo;about box&rdquo;.</p>
+    <p>You should also get your employer (if you work as a programmer) or school,
+      if any, to sign a &ldquo;copyright disclaimer&rdquo; for the program, if necessary.
+      For more information on this, and how to apply and follow the GNU GPL, see
+      &lt;http://www.gnu.org/licenses/&gt;.</p>
+    <p>The GNU General Public License does not permit incorporating your program
+      into proprietary programs.  If your program is a subroutine library, you
+      may consider it more useful to permit linking proprietary applications with
+      the library.  If this is what you want to do, use the GNU Lesser General
+      Public License instead of this License.  But first, please read
+      &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.</p>
+    </div>
 	<div class="buttons">
-		<div class="right">
-			<input type="submit" value="Continue" class="button" />
-		</div>
+      <div class="right">
+        <input type="submit" value="Continue" class="button" />
+      </div>
 	</div>
 </form>
 </div>

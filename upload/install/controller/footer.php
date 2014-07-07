@@ -1,14 +1,10 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerFooter extends Controller {
 
-class ControllerFooter extends Controller { 
+	public function index() {
+		$this->template = 'footer.tpl';
 
-	public function index() { 
-		$this->template = 'footer.tpl'; 
-
-		$this->render(); 
-	} 
-} 
+		$this->render();
+	}
+}
 ?>

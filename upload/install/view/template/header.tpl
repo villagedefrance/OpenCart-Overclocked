@@ -18,5 +18,5 @@ Cufon.replace('h2, #header a', {fontFamily: 'Verdana', hover: true});
 <body>
 <div id="container">
 <div id="header">
-	<div id="logo"><img src="view/image/logo.png" alt="OpenCart" title="OpenCart" /></div>
+  <div id="logo"><img src="view/image/logo.png" alt="OpenCart" title="OpenCart" /></div>
 </div>
