@@ -1,11 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-// + Image Manager Page
-// + Database Page
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']              		= 'Administration';
 
@@ -17,7 +10,7 @@ $_['text_backup']                		= 'Backup / Restore';
 $_['text_banner']                  	= 'Banners';
 $_['text_catalog']					= 'Catalog';
 $_['text_category']                	= 'Categories';
-$_['text_confirm']			     	= 'Delete/Uninstall cannot be undone! Are you sure you want to do this ?';
+$_['text_confirm']			     		= 'Delete/Uninstall cannot be undone! Are you sure you want to do this ?';
 $_['text_country']                	= 'Countries';
 $_['text_coupon']                		= 'Coupons';
 $_['text_currency']              	 	= 'Currencies';
@@ -100,17 +93,15 @@ $_['text_openbay_amazonus']   	= 'Amazon (US)';
 $_['text_openbay_play']          	= 'Play.com (EU)';
 $_['text_openbay_settings']      	= 'Settings';
 $_['text_openbay_links']         	= 'Item links';
-$_['text_openbay_report_price'] 	= 'Pricing report';
+$_['text_openbay_report_price']	= 'Pricing report';
 $_['text_openbay_order_import']	= 'Order import';
 
 $_['text_paypal_manage']        	= 'PayPal';
 $_['text_paypal_search']          	= 'Search';
 
-// Overclock Edition
-$_['text_filemanager'] 			= 'Image Manager';
+$_['text_filemanager'] 				= 'Image Manager';
 $_['text_hosting'] 					= 'Server';
 $_['text_configuration'] 			= 'Configuration';
-$_['text_database'] 				= 'Database';
-$_['text_features'] 				= 'Features';
-
+$_['text_database'] 					= 'Database';
+$_['text_features'] 					= 'Features';
 ?>

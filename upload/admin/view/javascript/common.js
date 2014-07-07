@@ -1,7 +1,3 @@
-//------------------------
-// Overclocked Edition		
-//------------------------
-
 function getURLVar(key) {
 	var value = [];
 	var query = String(document.location).split('?');
