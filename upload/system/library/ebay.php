@@ -1,43 +1,39 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+final class Ebay {
+	private $registry;
+	private $url    = 'https://uk.openbaypro.com/';
+	private $noLog  = array('notification/getPublicNotifications/','setup/getEbayCategories/','item/getItemAllList/', 'account/validate/', 'item/getItemListLimited/');
 
-final class Ebay { 
-	private $registry; 
-	private $url = 'https://uk.openbaypro.com/'; 
-	private $noLog = array('notification/getPublicNotifications/','setup/getEbayCategories/','item/getItemAllList/', 'account/validate/', 'item/getItemListLimited/'); 
+	public function __construct($registry) {
+		$this->registry = $registry;
+		$this->token = $this->config->get('openbaypro_token');
+		$this->secret = $this->config->get('openbaypro_secret');
+		$this->logging = $this->config->get('openbaypro_logging');
+		$this->tax = $this->config->get('tax');
+		$this->server = 1;
+		$this->lasterror = '';
+		$this->lastmsg = '';
 
-	public function __construct($registry) { 
-		$this->registry = $registry; 
-		$this->token = $this->config->get('openbaypro_token'); 
-		$this->secret = $this->config->get('openbaypro_secret'); 
-		$this->logging = $this->config->get('openbaypro_logging'); 
-		$this->tax = $this->config->get('tax'); 
-		$this->server = 1; 
-		$this->lasterror = ''; 
-		$this->lastmsg = ''; 
+		$this->load->library('log');
+		$this->logger = new Log('ebaylog.log');
+	}
 
-		$this->load->library('log'); 
-		$this->logger = new Log('ebaylog.log'); 
-	} 
+	public function __get($name) {
+		return $this->registry->get($name);
+	}
 
-	public function __get($name) { 
-		return $this->registry->get($name); 
-	} 
-
-	public function log($data, $write = true) { 
-		if ($this->logging == 1) { 
-			if (function_exists('getmypid')) { 
-				$pId = getmypid(); 
-				$data = $pId.' - '.$data; 
+	public function log($data, $write = true) {
+		if($this->logging == 1) {
+			if(function_exists('getmypid')) {
+				$pId = getmypid();
+				$data = $pId.' - '.$data;
 			}
 
-			if ($write == true) { 
-				$this->logger->write($data); 
-			} 
-		} 
-	} 
+			if($write == true) {
+				$this->logger->write($data);
+			}
+		}
+	}
 
 	public function call($call, array $post = null, array $options = array(), $content_type = 'json', $statusOverride = false) {
 		if($this->config->get('openbay_status') == 1 || $statusOverride == true) {

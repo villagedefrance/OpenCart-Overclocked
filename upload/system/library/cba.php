@@ -217,7 +217,6 @@ class CBA {
 				if (isset($xml->Error->Code) && (string)$xml->Error->Code == 'RequestThrottled') {
 					$xml = false;
 				}
-
 			} else {
 				$xml = false;
 			}
@@ -329,7 +328,6 @@ class CBA {
 		$url_params['PurchaseContractId'] = $parameters['contract_id'];
 
 		$i = 1;
-
 		foreach ($parameters['products'] as $product) {
 			$url_params['PurchaseItems.PurchaseItem.' . $i . '.MerchantId'] = $this->getMerchantId();
 			$url_params['PurchaseItems.PurchaseItem.' . $i . '.MerchantItemId'] = $product['model'];
