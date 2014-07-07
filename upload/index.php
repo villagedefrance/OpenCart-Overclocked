@@ -1,12 +1,7 @@
 <?php
-//------------------------
-// Overclocked Edition		
-//------------------------
-
 // Version
-define('VERSION', '1.5.6.4 - Overclocked');
-define('EDITION', 'Basic Edition');
-define('BUILD', '1.1.0');
+define('VERSION', '1.6.0');
+define('EDITION', 'Overclocked');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -244,4 +239,5 @@ $controller->dispatch($action, new Action('error/not_found'));
 
 // Output
 $response->output();
+
 ?>
