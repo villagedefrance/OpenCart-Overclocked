@@ -8,7 +8,7 @@ $_['text_off']	       			= 'Off';
 
 $_['text_system_core']  	= 'Opencart Version:';
 $_['text_version']  			= '%s';
-$_['text_system_name']  	= 'Overclocked Edition:';
+$_['text_system_name']  	= 'Revision:';
 $_['text_revision']  			= '%s';
 $_['text_theme']				= 'Active Template:';
 

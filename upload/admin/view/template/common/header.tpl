@@ -208,7 +208,6 @@ $(document).ready(function() {
               <?php if ($db_sql) { ?>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
               <?php } ?>
-              <li><a href="<?php echo $features; ?>"><?php echo $text_features; ?></a></li>
             </ul>
           </li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>

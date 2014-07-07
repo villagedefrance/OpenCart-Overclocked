@@ -126,7 +126,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_hosting'] = $this->language->get('text_hosting');
 		$this->data['text_configuration'] = $this->language->get('text_configuration');
 		$this->data['text_database'] = $this->language->get('text_database');
-		$this->data['text_features'] = $this->language->get('text_features');
 
 		// Header
 		if (!$this->user->isLogged() || !isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
@@ -234,7 +233,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['filemanager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['configuration'] = $this->url->link('tool/datasystem', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['database'] = $this->url->link('tool/database', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['features'] = $this->url->link('tool/features', 'token=' . $this->session->data['token'], 'SSL');
 
 			// Check DB Driver
 			if (DB_DRIVER == 'mysql' || DB_DRIVER == 'mysqli') {
