@@ -1,47 +1,42 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class Cache {
+	public function get($key) {
+		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
 
-class Cache { 
+		if ($files) {
+			$file_handle = fopen($files[0], 'r');
+			flock($file_handle, LOCK_SH);
+			$data = fread($file_handle, filesize($files[0]));
+			flock($file_handle, LOCK_UN);
+			fclose($file_handle);
 
-	public function get($key) { 
-		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*'); 
+			return unserialize($data);
+		}
 
-		if ($files) { 
-			$file_handle = fopen($files[0], 'r'); 
-			flock($file_handle, LOCK_SH); 
-			$data = fread($file_handle, filesize($files[0])); 
-			flock($file_handle, LOCK_UN); 
-			fclose($file_handle); 
+		return false;
+	}
 
-			return unserialize($data); 
-		} 
+	public function set($key, $value) {
+		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + 3600);
 
-		return false; 
-	} 
+		$file_handle = fopen($file, 'w');
+		flock($file_handle, LOCK_EX);
+		fwrite($file_handle, serialize($value));
+		fflush($file_handle);
+		flock($file_handle, LOCK_UN);
+		fclose($file_handle);
+	}
 
-	public function set($key, $value) { 
-		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + 3600); 
+	public function delete($key) {
+		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
 
-		$file_handle = fopen($file, 'w'); 
-		flock($file_handle, LOCK_EX); 
-		fwrite($file_handle, serialize($value)); 
-		fflush($file_handle); 
-		flock($file_handle, LOCK_UN); 
-		fclose($file_handle); 
-	} 
-
-	public function delete($key) { 
-		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*'); 
-
-		if ($files) { 
-			foreach ($files as $file) { 
-				if (file_exists($file)) { 
-					unlink($file); 
-				} 
-			} 
-		} 
-	} 
-} 
+		if ($files) {
+			foreach ($files as $file) {
+				if (file_exists($file)) {
+					unlink($file);
+				}
+			}
+		}
+	}
+}
 ?>

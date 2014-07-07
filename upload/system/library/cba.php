@@ -1,34 +1,30 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class CBA {
+	private $access_key;
+	private $secret_key;
+	private $merchant_id;
+	private $contract_id;
+	private $mode;
 
-class CBA { 
-	private $access_key; 
-	private $secret_key; 
-	private $merchant_id; 
-	private $contract_id; 
-	private $mode; 
+	public function __construct($merchant_id, $access_key, $secret_key) {
+		$this->setMerchantId($merchant_id);
+		$this->setAccessKey($access_key);
+		$this->setSecretKey($secret_key);
+	}
 
-	public function __construct($merchant_id, $access_key, $secret_key) { 
-		$this->setMerchantId($merchant_id); 
-		$this->setAccessKey($access_key); 
-		$this->setSecretKey($secret_key); 
-	} 
+	public function scheduleReports() {
+		$args = $this->getCommonParameters();
+		$args['Merchant'] = $this->getMerchantId();
+		$args['Action'] = 'ManageReportSchedule';
+		$args['Version'] = '2009-01-01';
+		$args['ReportType'] = '_GET_ORDERS_DATA_';
+		$args['Schedule'] = '_15_MINUTES_';
 
-	public function scheduleReports() { 
-		$args = $this->getCommonParameters(); 
-		$args['Merchant'] = $this->getMerchantId(); 
-		$args['Action'] = 'ManageReportSchedule'; 
-		$args['Version'] = '2009-01-01'; 
-		$args['ReportType'] = '_GET_ORDERS_DATA_'; 
-		$args['Schedule'] = '_15_MINUTES_'; 
+		$this->getMwsResponse('POST', '/', array(), $args);
+	}
 
-		$this->getMwsResponse('POST', '/', array(), $args); 
-	} 
-
-	public function processFeedResponses($settings, $db) { 
-		$qry = $db->query("SELECT `submission_id` FROM `" . DB_PREFIX . "order_amazon_report` WHERE `status` = 'processing'"); 
+	public function processFeedResponses($settings, $db) {
+		$qry = $db->query("SELECT `submission_id` FROM `" . DB_PREFIX . "order_amazon_report` WHERE `status` = 'processing'");
 
 		$submission_ids = array();
 
@@ -221,6 +217,7 @@ class CBA {
 				if (isset($xml->Error->Code) && (string)$xml->Error->Code == 'RequestThrottled') {
 					$xml = false;
 				}
+
 			} else {
 				$xml = false;
 			}
@@ -332,6 +329,7 @@ class CBA {
 		$url_params['PurchaseContractId'] = $parameters['contract_id'];
 
 		$i = 1;
+
 		foreach ($parameters['products'] as $product) {
 			$url_params['PurchaseItems.PurchaseItem.' . $i . '.MerchantId'] = $this->getMerchantId();
 			$url_params['PurchaseItems.PurchaseItem.' . $i . '.MerchantItemId'] = $product['model'];
