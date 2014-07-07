@@ -1,7 +1,7 @@
 <?php
 // Version
 define('VERSION', '1.6.0');
-define('EDITION', 'Overclocked');
+define('REVISION', '001');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -165,5 +165,4 @@ $controller->dispatch($action, new Action('error/not_found'));
 
 // Output
 $response->output();
-
 ?>

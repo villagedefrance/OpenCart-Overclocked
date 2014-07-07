@@ -9,7 +9,7 @@ $_['text_off']	       			= 'Off';
 $_['text_system_core']  	= 'Opencart Version:';
 $_['text_version']  			= '%s';
 $_['text_system_name']  	= 'Overclocked Edition:';
-$_['text_edition']  			= '%s';
+$_['text_revision']  			= '%s';
 $_['text_theme']				= 'Active Template:';
 
 $_['text_storeinfo']   		= 'Store Information';
@@ -40,5 +40,4 @@ $_['text_mbstring_note'] 	= '<span class="help">mbstring is required only when i
 
 // Error
 $_['error_permission']		= 'Warning: You do not have permission to modify <b>Configuration</b> !';
-
 ?>

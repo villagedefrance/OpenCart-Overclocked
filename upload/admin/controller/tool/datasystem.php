@@ -30,7 +30,7 @@ class ControllerToolDatasystem extends Controller {
 		$this->data['text_system_core'] = $this->language->get('text_system_core');
 		$this->data['text_version'] = sprintf($this->language->get('text_version'), VERSION);
 		$this->data['text_system_name'] = $this->language->get('text_system_name');
-		$this->data['text_edition'] = sprintf($this->language->get('text_edition'), EDITION);
+		$this->data['text_revision'] = sprintf($this->language->get('text_revision'), REVISION);
 		$this->data['text_theme'] = $this->language->get('text_theme');
 		$this->data['text_storeinfo'] = $this->language->get('text_storeinfo');
 		$this->data['text_serverinfo'] = $this->language->get('text_serverinfo');
@@ -105,5 +105,4 @@ class ControllerToolDatasystem extends Controller {
 		}
 	}
 }
-
 ?>

@@ -18,7 +18,7 @@
       </tr>
       <tr>
         <td><?php echo $text_system_name; ?></td>
-        <td><?php echo $text_edition; ?></td>
+        <td><?php echo $text_revision; ?></td>
       </tr>
       <tr>
         <td><?php echo $text_theme; ?></td>

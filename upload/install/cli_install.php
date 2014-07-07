@@ -356,5 +356,4 @@ case "usage":
 default:
 	echo usage();
 }
-
 ?>

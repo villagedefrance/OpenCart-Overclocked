@@ -1,8 +1,4 @@
 <?php
-//------------------------
-// Overclocked Edition		
-//------------------------
-
 // Error Reporting
 error_reporting(E_ALL);
 
