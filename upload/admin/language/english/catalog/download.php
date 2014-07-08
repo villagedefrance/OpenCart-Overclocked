@@ -8,6 +8,7 @@ $_['text_upload']      		= 'Your file was successfully uploaded!';
 
 // Column
 $_['column_name']      		= 'Download Name';
+$_['column_filesize']  		= 'File Size';
 $_['column_remaining'] 		= 'Total Downloads Allowed';
 $_['column_action']    		= 'Action';
 
