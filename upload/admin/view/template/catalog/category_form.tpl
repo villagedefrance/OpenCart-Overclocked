@@ -316,10 +316,10 @@ function image_upload(field, thumb) {
 <script type="text/javascript"><!--
 var formblock;
 var forminput;
- 
+
 formblock = document.getElementById('store_ids');
 forminput = formblock.getElementsByTagName('input');
- 
+
 function select_all(name, value) {
 	for (i = 0; i < forminput.length; i++) {
 		var regex = new RegExp(name, "i");
