@@ -12,6 +12,7 @@ $_['text_percent']       		= 'Percentage';
 $_['text_amount']        	= 'Fixed Amount';
 
 // Column
+$_['column_image']      		= 'Image';
 $_['column_name']        	= 'Manufacturer Name';
 $_['column_sort_order']		= 'Sort Order';
 $_['column_action']      	= 'Action';
