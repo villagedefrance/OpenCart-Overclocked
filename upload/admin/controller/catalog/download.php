@@ -201,15 +201,15 @@ class ControllerCatalogDownload extends Controller {
 				'href' => $this->url->link('catalog/download/update', 'token=' . $this->session->data['token'] . '&download_id=' . $result['download_id'] . $url, 'SSL')
 			);
 
-			$file = DIR_DOWNLOAD . $result['filename']; 
+			$file = DIR_DOWNLOAD . $result['filename'];
 
-			$size = filesize($file); 
+			$size = filesize($file);
 
-			$i = 0; 
+			$i = 0;
 
-			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB'); 
+			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
 
-			while (($size / 1024) > 1) { $size = $size / 1024; $i++; } 
+			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
 
 			$this->data['downloads'][] = array(
 				'download_id' 	=> $result['download_id'],
