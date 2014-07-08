@@ -1,168 +1,164 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerCommonFileManagerFull extends Controller {
+	private $error = array();
+	private $_name = 'filemanager_full';
 
-class ControllerCommonFileManagerFull extends Controller { 
-	private $error = array(); 
-	private $_name = 'filemanager_full'; 
+	public function index() {
+		$this->language->load('common/' . $this->_name);
 
-	public function index() { 
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->language->load('common/' . $this->_name); 
-
-		$this->document->setTitle($this->language->get('heading_title')); 
-
-  		$this->data['breadcrumbs'] = array(); 
+  		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('text_home'),
 			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => false
-   		); 
+   		);
 
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('heading_title'),
 			'href'      => $this->url->link('common/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => ' :: '
-   		); 
+   		);
 
-		$this->data['heading_title'] = $this->language->get('heading_title'); 
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['entry_folder'] = $this->language->get('entry_folder'); 
-		$this->data['entry_move'] = $this->language->get('entry_move'); 
-		$this->data['entry_copy'] = $this->language->get('entry_copy'); 
-		$this->data['entry_rename'] = $this->language->get('entry_rename'); 
+		$this->data['entry_folder'] = $this->language->get('entry_folder');
+		$this->data['entry_move'] = $this->language->get('entry_move');
+		$this->data['entry_copy'] = $this->language->get('entry_copy');
+		$this->data['entry_rename'] = $this->language->get('entry_rename');
 
-		$this->data['button_folder'] = $this->language->get('button_folder'); 
-		$this->data['button_delete'] = $this->language->get('button_delete'); 
-		$this->data['button_move'] = $this->language->get('button_move'); 
-		$this->data['button_copy'] = $this->language->get('button_copy'); 
-		$this->data['button_rename'] = $this->language->get('button_rename'); 
-		$this->data['button_upload'] = $this->language->get('button_upload'); 
-		$this->data['button_refresh'] = $this->language->get('button_refresh'); 
-		$this->data['button_submit'] = $this->language->get('button_submit'); 
-		$this->data['button_expand'] = $this->language->get('button_expand'); 
-		$this->data['button_collapse'] = $this->language->get('button_collapse'); 
-		$this->data['button_view_text'] = $this->language->get('button_view_text'); 
-		$this->data['button_view_list'] = $this->language->get('button_view_list'); 
-		$this->data['button_view_thumb'] = $this->language->get('button_view_thumb'); 
+		$this->data['button_folder'] = $this->language->get('button_folder');
+		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_move'] = $this->language->get('button_move');
+		$this->data['button_copy'] = $this->language->get('button_copy');
+		$this->data['button_rename'] = $this->language->get('button_rename');
+		$this->data['button_upload'] = $this->language->get('button_upload');
+		$this->data['button_uploads'] = $this->language->get('button_uploads');
+		$this->data['button_refresh'] = $this->language->get('button_refresh');
+		$this->data['button_submit'] = $this->language->get('button_submit');
+		$this->data['button_expand'] = $this->language->get('button_expand');
+		$this->data['button_collapse'] = $this->language->get('button_collapse');
+		$this->data['button_view_text'] = $this->language->get('button_view_text');
+		$this->data['button_view_list'] = $this->language->get('button_view_list');
+		$this->data['button_view_thumb'] = $this->language->get('button_view_thumb');
 
-		$this->data['text_loading'] = $this->language->get('text_loading'); 
-		$this->data['text_file_found'] = $this->language->get('text_file_found'); 
-		$this->data['text_no_file_found']	= $this->language->get('text_no_file_found'); 
-		$this->data['text_confirm'] = $this->language->get('text_confirm'); 
-		$this->data['text_folder_delete'] = $this->language->get('text_folder_delete'); 
-		$this->data['text_folder_action'] = $this->language->get('text_folder_action'); 
-		$this->data['text_folder_content'] = $this->language->get('text_folder_content'); 
-		$this->data['text_file_delete'] = $this->language->get('text_file_delete'); 
-		$this->data['text_file_action'] = $this->language->get('text_file_action'); 
-		$this->data['text_no_image']	= $this->language->get('text_no_image'); 
-		$this->data['text_select_image'] = $this->language->get('text_select_image'); 
-		$this->data['text_update_image'] = $this->language->get('text_update_image'); 
-		$this->data['text_yes_execute']= $this->language->get('text_yes_execute'); 
-		$this->data['text_yes_delete'] = $this->language->get('text_yes_delete'); 
-		$this->data['text_no_cancel'] = $this->language->get('text_no_cancel'); 
-		$this->data['text_upload_plus'] = $this->language->get('text_upload_plus'); 
-		$this->data['text_no_selection'] = $this->language->get('text_no_selection'); 
-		$this->data['text_allowed'] = $this->language->get('text_allowed'); 
+		$this->data['text_loading'] = $this->language->get('text_loading');
+		$this->data['text_file_found'] = $this->language->get('text_file_found');
+		$this->data['text_no_file_found']	= $this->language->get('text_no_file_found');
+		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_folder_delete'] = $this->language->get('text_folder_delete');
+		$this->data['text_folder_action'] = $this->language->get('text_folder_action');
+		$this->data['text_folder_content'] = $this->language->get('text_folder_content');
+		$this->data['text_file_delete'] = $this->language->get('text_file_delete');
+		$this->data['text_file_action'] = $this->language->get('text_file_action');
+		$this->data['text_no_image']	= $this->language->get('text_no_image');
+		$this->data['text_select_image'] = $this->language->get('text_select_image');
+		$this->data['text_update_image'] = $this->language->get('text_update_image');
+		$this->data['text_yes_execute']= $this->language->get('text_yes_execute');
+		$this->data['text_yes_delete'] = $this->language->get('text_yes_delete');
+		$this->data['text_no_cancel'] = $this->language->get('text_no_cancel');
+		$this->data['text_upload_plus'] = $this->language->get('text_upload_plus');
+		$this->data['text_no_selection'] = $this->language->get('text_no_selection');
+		$this->data['text_allowed'] = $this->language->get('text_allowed');
 
-		$this->data['error_directory'] = $this->language->get('error_directory'); 
+		$this->data['error_directory'] = $this->language->get('error_directory');
 
-		$this->data['token'] = $this->session->data['token']; 
+		$this->data['token'] = $this->session->data['token'];
 
-		$this->data['directory'] = HTTP_CATALOG . 'image/data/'; 
+		$this->data['directory'] = HTTP_CATALOG . 'image/data/';
 
-		$this->load->model('tool/image'); 
+		$this->load->model('tool/image');
 
-		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100); 
+		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
-		if (isset($this->request->get['field'])) { 
-			$this->data['field'] = $this->request->get['field']; 
-		} else { 
-			$this->data['field'] = ''; 
-		} 
+		if (isset($this->request->get['field'])) {
+			$this->data['field'] = $this->request->get['field'];
+		} else {
+			$this->data['field'] = '';
+		}
 
-		if (isset($this->request->get['CKEditorFuncNum'])) { 
-			$this->data['fckeditor'] = $this->request->get['CKEditorFuncNum']; 
-		} else { 
-			$this->data['fckeditor'] = false; 
-		} 
+		if (isset($this->request->get['CKEditorFuncNum'])) {
+			$this->data['fckeditor'] = $this->request->get['CKEditorFuncNum'];
+		} else {
+			$this->data['fckeditor'] = false;
+		}
 
-		$this->template = 'common/' . $this->_name . '.tpl'; 
+		$this->template = 'common/' . $this->_name . '.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
-		); 
+		);
 
-		$this->response->setOutput($this->render()); 
-	} 
+		$this->response->setOutput($this->render());
+	}
 
-	public function image() { 
-		$this->load->model('tool/image'); 
+	public function image() {
+		$this->load->model('tool/image');
 
-		if (isset($this->request->get['image'])) { 
-			$this->response->setOutput($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100)); 
-		} 
-	} 
+		if (isset($this->request->get['image'])) {
+			$this->response->setOutput($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100));
+		}
+	}
 
-	public function directory() { 
-		$json = array(); 
+	public function directory() {
+		$json = array();
 
-		if (isset($this->request->post['directory'])) { 
-			$directories = glob(rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']), '/') . '/*', GLOB_ONLYDIR); 
+		if (isset($this->request->post['directory'])) {
+			$directories = glob(rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']), '/') . '/*', GLOB_ONLYDIR);
 
-			if ($directories) { 
-				$i = 0; 
+			if ($directories) {
+				$i = 0;
 
-				foreach ($directories as $directory) { 
-					$json[$i]['data'] = basename($directory); 
-					$json[$i]['attributes']['directory'] = utf8_substr($directory, strlen(DIR_IMAGE . 'data/')); 
+				foreach ($directories as $directory) {
+					$json[$i]['data'] = basename($directory);
+					$json[$i]['attributes']['directory'] = utf8_substr($directory, strlen(DIR_IMAGE . 'data/'));
 
-					$children = glob(rtrim($directory, '/') . '/*', GLOB_ONLYDIR); 
+					$children = glob(rtrim($directory, '/') . '/*', GLOB_ONLYDIR);
 
-					if ($children) { 
-						$json[$i]['children'] = ' '; 
-					} 
+					if ($children) {
+						$json[$i]['children'] = ' ';
+					}
 
-					$i++; 
-				} 
-			} 
-		} 
+					$i++;
+				}
+			}
+		}
 
-		$this->response->setOutput(json_encode($json)); 	
-	} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-	public function files() { 
-		$json = array(); 
+	public function files() {
+		$json = array();
 
-		if (!empty($this->request->post['directory'])) { 
-			$directory = DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']); 
-		} else { 
-			$directory = DIR_IMAGE . 'data/'; 
-		} 
+		if (!empty($this->request->post['directory'])) {
+			$directory = DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']);
+		} else {
+			$directory = DIR_IMAGE . 'data/';
+		}
 
 		$allowed = array(
 			'.jpg',
 			'.jpeg',
 			'.png',
 			'.gif'
-		); 
+		);
 
-		$files = glob(rtrim($directory, '/') . '/*'); 
+		$files = glob(rtrim($directory, '/') . '/*');
 
-		if ($files) { 
-			foreach ($files as $file) { 
-				if (is_file($file)) { 
-					$ext = strrchr($file, '.'); 
-				} else { 
-					$ext = ''; 
-				} 
+		if ($files) {
+			foreach ($files as $file) {
+				if (is_file($file)) {
+					$ext = strrchr($file, '.');
+				} else {
+					$ext = '';
+				}
 
-				if (in_array(strtolower($ext), $allowed)) { 
-					$size = filesize($file); 
+				if (in_array(strtolower($ext), $allowed)) {
+					$size = filesize($file);
 
-					$i = 0; 
+					$i = 0;
 
 					$suffix = array(
 						'B',
@@ -174,327 +170,318 @@ class ControllerCommonFileManagerFull extends Controller {
 						'EB',
 						'ZB',
 						'YB'
-					); 
+					);
 
-					while (($size / 1024) > 1) { 
-						$size = $size / 1024; 
-						$i++; 
-					} 
+					while (($size / 1024) > 1) {
+						$size = $size / 1024;
+						$i++;
+					}
 
 					$json[] = array(
 						'filename' 	=> basename($file),
-						'file'     	=> utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')),
-						'size'     	=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i]
-					); 
-				} 
-			} 
-		} 
+						'file'     		=> utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')),
+						'size'     		=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i]
+					);
+				}
+			}
+		}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-	public function create() { 
+	public function create() {
+		$this->language->load('common/' . $this->_name);
 
-		$this->language->load('common/' . $this->_name); 
+		$json = array();
 
-		$json = array(); 
+		if (isset($this->request->post['directory'])) {
+			if (isset($this->request->post['name']) || $this->request->post['name']) {
+				$directory = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']), '/');
 
-		if (isset($this->request->post['directory'])) { 
-			if (isset($this->request->post['name']) || $this->request->post['name']) { 
-				$directory = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']), '/'); 
+				if (!is_dir($directory)) {
+					$json['error'] = $this->language->get('error_directory');
+				}
 
-				if (!is_dir($directory)) { 
-					$json['error'] = $this->language->get('error_directory'); 
-				} 
+				if (file_exists($directory . '/' . str_replace('../', '', $this->request->post['name']))) {
+					$json['error'] = $this->language->get('error_exists');
+				}
 
-				if (file_exists($directory . '/' . str_replace('../', '', $this->request->post['name']))) { 
-					$json['error'] = $this->language->get('error_exists'); 
-				} 
+			} else {
+				$json['error'] = $this->language->get('error_name');
+			}
 
-			} else { 
-				$json['error'] = $this->language->get('error_name'); 
-			} 
+		} else {
+			$json['error'] = $this->language->get('error_directory');
+		}
 
-		} else { 
-			$json['error'] = $this->language->get('error_directory'); 
-		} 
+		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+      		$json['error'] = $this->language->get('error_permission');
+		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) { 
-      		$json['error'] = $this->language->get('error_permission'); 
-		} 
+		if (!isset($json['error'])) {
+			mkdir($directory . '/' . str_replace('../', '', $this->request->post['name']), 0777);
 
-		if (!isset($json['error'])) { 
-			mkdir($directory . '/' . str_replace('../', '', $this->request->post['name']), 0777); 
+			$json['success'] = $this->language->get('text_create');
+		}
 
-			$json['success'] = $this->language->get('text_create'); 
-		} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+	public function delete() {
+		$this->language->load('common/' . $this->_name);
 
-	public function delete() { 
+		$json = array();
 
-		$this->language->load('common/' . $this->_name); 
+		if (isset($this->request->post['path'])) {
+			$path = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/');
 
-		$json = array(); 
+			if (!file_exists($path)) {
+				$json['error'] = $this->language->get('error_select');
+			}
 
-		if (isset($this->request->post['path'])) { 
-			$path = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/'); 
+			if ($path == rtrim(DIR_IMAGE . 'data/', '/')) {
+				$json['error'] = $this->language->get('error_delete');
+			}
 
-			if (!file_exists($path)) { 
-				$json['error'] = $this->language->get('error_select'); 
-			} 
+		} else {
+			$json['error'] = $this->language->get('error_select');
+		}
 
-			if ($path == rtrim(DIR_IMAGE . 'data/', '/')) { 
-				$json['error'] = $this->language->get('error_delete'); 
-			} 
+		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+      		$json['error'] = $this->language->get('error_permission');
+		}
 
-		} else { 
-			$json['error'] = $this->language->get('error_select'); 
-		} 
+		if (!isset($json['error'])) {
+			if (is_file($path)) {
+				unlink($path);
+			} elseif (is_dir($path)) {
+				$this->recursiveDelete($path);
+			}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) { 
-      		$json['error'] = $this->language->get('error_permission'); 
-		} 
+			$json['success'] = $this->language->get('text_delete');
+		}
 
-		if (!isset($json['error'])) { 
-			if (is_file($path)) { 
-				unlink($path); 
-			} elseif (is_dir($path)) { 
-				$this->recursiveDelete($path); 
-			} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-			$json['success'] = $this->language->get('text_delete'); 
-		} 
+	protected function recursiveDelete($directory) {
+		if (is_dir($directory)) {
+			$handle = opendir($directory);
+		}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+		if (!$handle) {
+			return false;
+		}
 
-	protected function recursiveDelete($directory) { 
+		while (false !== ($file = readdir($handle))) {
+			if ($file != '.' && $file != '..') {
+				if (!is_dir($directory . '/' . $file)) {
+					unlink($directory . '/' . $file);
+				} else {
+					$this->recursiveDelete($directory . '/' . $file);
+				}
+			}
+		}
 
-		if (is_dir($directory)) { 
-			$handle = opendir($directory); 
-		} 
+		closedir($handle);
 
-		if (!$handle) { 
-			return false; 
-		} 
+		rmdir($directory);
 
-		while (false !== ($file = readdir($handle))) { 
-			if ($file != '.' && $file != '..') { 
-				if (!is_dir($directory . '/' . $file)) { 
-					unlink($directory . '/' . $file); 
-				} else { 
-					$this->recursiveDelete($directory . '/' . $file); 
-				} 
-			} 
-		} 
+		return true;
+	}
 
-		closedir($handle); 
+	public function move() {
+		$this->language->load('common/' . $this->_name);
 
-		rmdir($directory); 
+		$json = array();
 
-		return true; 
-	} 
+		if (isset($this->request->post['from']) && isset($this->request->post['to'])) {
+			$from = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['from'], ENT_QUOTES, 'UTF-8')), '/');
 
-	public function move() { 
+			if (!file_exists($from)) {
+				$json['error'] = $this->language->get('error_missing');
+			}
 
-		$this->language->load('common/' . $this->_name); 
+			if ($from == DIR_IMAGE . 'data') {
+				$json['error'] = $this->language->get('error_default');
+			}
 
-		$json = array(); 
+			$to = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['to'], ENT_QUOTES, 'UTF-8')), '/');
 
-		if (isset($this->request->post['from']) && isset($this->request->post['to'])) { 
-			$from = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['from'], ENT_QUOTES, 'UTF-8')), '/'); 
+			if (!file_exists($to)) {
+				$json['error'] = $this->language->get('error_move');
+			}
 
-			if (!file_exists($from)) { 
-				$json['error'] = $this->language->get('error_missing'); 
-			} 
+			if (file_exists($to . '/' . basename($from))) {
+				$json['error'] = $this->language->get('error_exists');
+			}
 
-			if ($from == DIR_IMAGE . 'data') { 
-				$json['error'] = $this->language->get('error_default'); 
-			} 
+		} else {
+			$json['error'] = $this->language->get('error_directory');
+		}
 
-			$to = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['to'], ENT_QUOTES, 'UTF-8')), '/'); 
+		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+      		$json['error'] = $this->language->get('error_permission');
+		}
 
-			if (!file_exists($to)) { 
-				$json['error'] = $this->language->get('error_move'); 
-			} 
+		if (!isset($json['error'])) {
+			rename($from, $to . '/' . basename($from));
 
-			if (file_exists($to . '/' . basename($from))) { 
-				$json['error'] = $this->language->get('error_exists'); 
-			} 
+			$json['success'] = $this->language->get('text_move');
+		}
 
-		} else { 
-			$json['error'] = $this->language->get('error_directory'); 
-		} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) { 
-      		$json['error'] = $this->language->get('error_permission'); 
-		} 
+	public function copy() {
+		$this->language->load('common/' . $this->_name);
 
-		if (!isset($json['error'])) { 
-			rename($from, $to . '/' . basename($from)); 
+		$json = array();
 
-			$json['success'] = $this->language->get('text_move'); 
-		} 
+		if (isset($this->request->post['path']) && isset($this->request->post['name'])) {
+			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 255)) {
+				$json['error'] = $this->language->get('error_filename');
+			}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+			$old_name = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/');
 
-	public function copy() { 
+			if (!file_exists($old_name) || $old_name == DIR_IMAGE . 'data') {
+				$json['error'] = $this->language->get('error_copy');
+			}
 
-		$this->language->load('common/' . $this->_name); 
+			if (is_file($old_name)) {
+				$ext = strrchr($old_name, '.');
+			} else {
+				$ext = '';
+			}
 
-		$json = array(); 
+			$new_name = dirname($old_name) . '/' . str_replace('../', '', html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8') . $ext);
 
-		if (isset($this->request->post['path']) && isset($this->request->post['name'])) { 
-			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 255)) { 
-				$json['error'] = $this->language->get('error_filename'); 
-			} 
+			if (file_exists($new_name)) {
+				$json['error'] = $this->language->get('error_exists');
+			}
 
-			$old_name = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/'); 
+		} else {
+			$json['error'] = $this->language->get('error_select');
+		}
 
-			if (!file_exists($old_name) || $old_name == DIR_IMAGE . 'data') { 
-				$json['error'] = $this->language->get('error_copy'); 
-			} 
+		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+      		$json['error'] = $this->language->get('error_permission');
+		}
 
-			if (is_file($old_name)) { 
-				$ext = strrchr($old_name, '.'); 
-			} else { 
-				$ext = ''; 
-			} 
+		if (!isset($json['error'])) {
+			if (is_file($old_name)) {
+				copy($old_name, $new_name);
+			} else {
+				$this->recursiveCopy($old_name, $new_name);
+			}
 
-			$new_name = dirname($old_name) . '/' . str_replace('../', '', html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8') . $ext); 
+			$json['success'] = $this->language->get('text_copy');
+		}
 
-			if (file_exists($new_name)) { 
-				$json['error'] = $this->language->get('error_exists'); 
-			} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-		} else { 
-			$json['error'] = $this->language->get('error_select'); 
-		} 
+	function recursiveCopy($source, $destination) {
+		$directory = opendir($source);
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) { 
-      		$json['error'] = $this->language->get('error_permission'); 
-		} 
+		@mkdir($destination);
 
-		if (!isset($json['error'])) { 
-			if (is_file($old_name)) { 
-				copy($old_name, $new_name); 
-			} else { 
-				$this->recursiveCopy($old_name, $new_name); 
-			} 
+		while (false !== ($file = readdir($directory))) {
+			if (($file != '.') && ($file != '..')) {
+				if (is_dir($source . '/' . $file)) {
+					$this->recursiveCopy($source . '/' . $file, $destination . '/' . $file);
+				} else {
+					copy($source . '/' . $file, $destination . '/' . $file);
+				}
+			}
+		}
 
-			$json['success'] = $this->language->get('text_copy'); 
-		} 
+		closedir($directory);
+	}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+	public function folders() {
+		$this->response->setOutput($this->recursiveFolders(DIR_IMAGE . 'data/'));
+	}
 
-	function recursiveCopy($source, $destination) { 
+	protected function recursiveFolders($directory) {
+		$output = '';
 
-		$directory = opendir($source); 
+		$output .= '<option value="' . utf8_substr($directory, strlen(DIR_IMAGE . 'data/')) . '">' . utf8_substr($directory, strlen(DIR_IMAGE . 'data/')) . '</option>';
 
-		@mkdir($destination); 
+		$directories = glob(rtrim(str_replace('../', '', $directory), '/') . '/*', GLOB_ONLYDIR);
 
-		while (false !== ($file = readdir($directory))) { 
-			if (($file != '.') && ($file != '..')) { 
-				if (is_dir($source . '/' . $file)) { 
-					$this->recursiveCopy($source . '/' . $file, $destination . '/' . $file); 
-				} else { 
-					copy($source . '/' . $file, $destination . '/' . $file); 
-				} 
-			} 
-		} 
+		foreach ($directories  as $directory) {
+			$output .= $this->recursiveFolders($directory);
+		}
 
-		closedir($directory);  
-	} 
+		return $output;
+	}
 
-	public function folders() { 
-		$this->response->setOutput($this->recursiveFolders(DIR_IMAGE . 'data/')); 
-	} 
+	public function rename() {
+		$this->language->load('common/' . $this->_name);
 
-	protected function recursiveFolders($directory) { 
-		$output = ''; 
+		$json = array();
 
-		$output .= '<option value="' . utf8_substr($directory, strlen(DIR_IMAGE . 'data/')) . '">' . utf8_substr($directory, strlen(DIR_IMAGE . 'data/')) . '</option>'; 
+		if (isset($this->request->post['path']) && isset($this->request->post['name'])) {
+			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 255)) {
+				$json['error'] = $this->language->get('error_filename');
+			}
 
-		$directories = glob(rtrim(str_replace('../', '', $directory), '/') . '/*', GLOB_ONLYDIR); 
+			$old_name = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/');
 
-		foreach ($directories  as $directory) { 
-			$output .= $this->recursiveFolders($directory); 
-		} 
+			if (!file_exists($old_name) || $old_name == DIR_IMAGE . 'data') {
+				$json['error'] = $this->language->get('error_rename');
+			}
 
-		return $output; 
-	} 
+			if (is_file($old_name)) {
+				$ext = strrchr($old_name, '.');
+			} else {
+				$ext = '';
+			}
 
-	public function rename() { 
+			$new_name = dirname($old_name) . '/' . str_replace('../', '', html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8') . $ext);
 
-		$this->language->load('common/' . $this->_name); 
+			if (file_exists($new_name)) {
+				$json['error'] = $this->language->get('error_exists');
+			}
+		}
 
-		$json = array(); 
+		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+      		$json['error'] = $this->language->get('error_permission');
+		}
 
-		if (isset($this->request->post['path']) && isset($this->request->post['name'])) { 
-			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 255)) { 
-				$json['error'] = $this->language->get('error_filename'); 
-			} 
+		if (!isset($json['error'])) {
+			rename($old_name, $new_name);
 
-			$old_name = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', html_entity_decode($this->request->post['path'], ENT_QUOTES, 'UTF-8')), '/'); 
+			$json['success'] = $this->language->get('text_rename');
+		}
 
-			if (!file_exists($old_name) || $old_name == DIR_IMAGE . 'data') { 
-				$json['error'] = $this->language->get('error_rename'); 
-			} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-			if (is_file($old_name)) { 
-				$ext = strrchr($old_name, '.'); 
-			} else { 
-				$ext = ''; 
-			} 
+	public function upload() {
+		$this->language->load('common/' . $this->_name);
 
-			$new_name = dirname($old_name) . '/' . str_replace('../', '', html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8') . $ext); 
+		$json = array();
 
-			if (file_exists($new_name)) { 
-				$json['error'] = $this->language->get('error_exists'); 
-			} 
-		} 
+		if (isset($this->request->post['directory'])) {
+			if (isset($this->request->files['image']) && $this->request->files['image']['tmp_name']) {
+				$filename = basename(html_entity_decode($this->request->files['image']['name'], ENT_QUOTES, 'UTF-8'));
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) { 
-      		$json['error'] = $this->language->get('error_permission'); 
-		} 
+				if ((strlen($filename) < 3) || (strlen($filename) > 255)) {
+					$json['error'] = $this->language->get('error_filename');
+				}
 
-		if (!isset($json['error'])) { 
-			rename($old_name, $new_name); 
+				$directory = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']), '/');
 
-			$json['success'] = $this->language->get('text_rename'); 
-		} 
+				if (!is_dir($directory)) {
+					$json['error'] = $this->language->get('error_directory');
+				}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
-
-	public function upload() { 
-
-		$this->language->load('common/' . $this->_name); 
-
-		$json = array(); 
-
-		if (isset($this->request->post['directory'])) { 
-			if (isset($this->request->files['image']) && $this->request->files['image']['tmp_name']) { 
-
-				$filename = basename(html_entity_decode($this->request->files['image']['name'], ENT_QUOTES, 'UTF-8')); 
-
-				if ((strlen($filename) < 3) || (strlen($filename) > 255)) { 
-					$json['error'] = $this->language->get('error_filename'); 
-				} 
-
-				$directory = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->post['directory']), '/'); 
-
-				if (!is_dir($directory)) { 
-					$json['error'] = $this->language->get('error_directory'); 
-				} 
-
-				if ($this->request->files['image']['size'] > 1024000) { 
-					$json['error'] = $this->language->get('error_file_size'); 
-				} 
+				if ($this->request->files['image']['size'] > 4096000) {
+					$json['error'] = $this->language->get('error_file_size');
+				}
 
 				$allowed = array(
 					'image/jpeg',
@@ -503,11 +490,11 @@ class ControllerCommonFileManagerFull extends Controller {
 					'image/x-png',
 					'image/gif',
 					'application/x-shockwave-flash'
-				); 
+				);
 
-				if (!in_array($this->request->files['image']['type'], $allowed)) { 
-					$json['error'] = $this->language->get('error_file_type'); 
-				} 
+				if (!in_array($this->request->files['image']['type'], $allowed)) {
+					$json['error'] = $this->language->get('error_file_type');
+				}
 
 				$allowed = array(
 					'.jpg',
@@ -516,128 +503,132 @@ class ControllerCommonFileManagerFull extends Controller {
 					'.png',
 					'.swf',
 					'.flv'
-				); 
+				);
 
-				if (!in_array(strtolower(strrchr($filename, '.')), $allowed)) { 
-					$json['error'] = $this->language->get('error_file_type'); 
-				} 
+				if (!in_array(strtolower(strrchr($filename, '.')), $allowed)) {
+					$json['error'] = $this->language->get('error_file_type');
+				}
 
 				// Accept ALL files
-				if ($this->request->files['image']['error'] != UPLOAD_ERR_OK) { 
-					$json['error'] = 'error_upload_' . $this->request->files['image']['error']; 
-				} 
+				if ($this->request->files['image']['error'] != UPLOAD_ERR_OK) {
+					$json['error'] = 'error_upload_' . $this->request->files['image']['error'];
+				}
 
-			} else { 
-				$json['error'] = $this->language->get('error_file'); 
-			} 
+			} else {
+				$json['error'] = $this->language->get('error_file');
+			}
 
-		} else { 
-			$json['error'] = $this->language->get('error_directory'); 
-		} 
+		} else {
+			$json['error'] = $this->language->get('error_directory');
+		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) { 
-      		$json['error'] = $this->language->get('error_permission'); 
-		} 
+		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+      		$json['error'] = $this->language->get('error_permission');
+		}
 
-		if (!isset($json['error'])) { 
-			if (@move_uploaded_file($this->request->files['image']['tmp_name'], $directory . '/' . $filename)) { 
-				$json['success'] = $this->language->get('text_uploaded'); 
-			} else { 
-				$json['error'] = $this->language->get('error_uploaded'); 
-			} 
-		} 
+		if (!isset($json['error'])) {
+			if (@move_uploaded_file($this->request->files['image']['tmp_name'], $directory . '/' . $filename)) {
+				$json['success'] = $this->language->get('text_uploaded');
+			} else {
+				$json['error'] = $this->language->get('error_uploaded');
+			}
+		}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+		$this->response->setOutput(json_encode($json));
+	}
 
 	// ---------------- Multiple Upload -------------------
 
-	public function multi() { 
-		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); 
-		header("Cache-Control: no-store, no-cache, must-revalidate"); 
-		header("Cache-Control: post-check=0, pre-check=0", false); 
-		header("Pragma: no-cache"); 
+	public function multi() {
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+		header("Cache-Control: no-store, no-cache, must-revalidate");
+		header("Cache-Control: post-check=0, pre-check=0", false);
+		header("Pragma: no-cache");
 
-		$targetDir = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->get['directory']), '/'); 
+		$targetDir = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->get['directory']), '/');
 
-		@set_time_limit(5 * 60); 
+		@set_time_limit(5 * 60);
 
-		$chunk = isset($_REQUEST["chunk"]) ? $_REQUEST["chunk"] : 0; 
-		$chunks = isset($_REQUEST["chunks"]) ? $_REQUEST["chunks"] : 0; 
-		$fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : ''; 
+		$chunk = isset($_REQUEST["chunk"]) ? $_REQUEST["chunk"] : 0;
+		$chunks = isset($_REQUEST["chunks"]) ? $_REQUEST["chunks"] : 0;
+		$fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : '';
 
 		$fileName = preg_replace('/[^\w\._]+/', '', $fileName);
 
 		if ($chunks < 2 && file_exists($targetDir . DIRECTORY_SEPARATOR . $fileName)) {
-			$ext = strrpos($fileName, '.'); 
-			$fileName_a = substr($fileName, 0, $ext); 
-			$fileName_b = substr($fileName, $ext); 
+			$ext = strrpos($fileName, '.');
+			$fileName_a = substr($fileName, 0, $ext);
+			$fileName_b = substr($fileName, $ext);
 
 			$count = 1;
-			while (file_exists($targetDir . DIRECTORY_SEPARATOR . $fileName_a . '_' . $count . $fileName_b))
-				$count++; 
 
-			$fileName = $fileName_a . '_' . $count . $fileName_b; 
-		} 
+			while (file_exists($targetDir . DIRECTORY_SEPARATOR . $fileName_a . '_' . $count . $fileName_b))
+				$count++;
+
+			$fileName = $fileName_a . '_' . $count . $fileName_b;
+		}
 
 		if (!file_exists($targetDir)) {
-			@mkdir($targetDir); 
+			@mkdir($targetDir);
 		}
 
-		if (isset($_SERVER["HTTP_CONTENT_TYPE"])) { 
-			$contentType = $_SERVER["HTTP_CONTENT_TYPE"]; 
+		if (isset($_SERVER["HTTP_CONTENT_TYPE"])) {
+			$contentType = $_SERVER["HTTP_CONTENT_TYPE"];
 		}
 
-		if (isset($_SERVER["CONTENT_TYPE"])) { 
-			$contentType = $_SERVER["CONTENT_TYPE"]; 
-		} 
+		if (isset($_SERVER["CONTENT_TYPE"])) {
+			$contentType = $_SERVER["CONTENT_TYPE"];
+		}
 
-		if (strpos($contentType, "multipart") !== false) { 
-			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) { 
-				$out = fopen($targetDir . DIRECTORY_SEPARATOR . $fileName, $chunk == 0 ? "wb" : "ab"); 
+		if (strpos($contentType, "multipart") !== false) {
+			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) {
+				$out = fopen($targetDir . DIRECTORY_SEPARATOR . $fileName, $chunk == 0 ? "wb" : "ab");
 
-				if ($out) { 
-					$in = fopen($_FILES['file']['tmp_name'], "rb"); 
+				if ($out) {
+					$in = fopen($_FILES['file']['tmp_name'], "rb");
 
-					if ($in) { 
+					if ($in) {
 						while ($buff = fread($in, 4096))
-							fwrite($out, $buff); 
-					} else { 
-						die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}'); 
-					} 
-					fclose($in); 
-					fclose($out); 
-					@unlink($_FILES['file']['tmp_name']); 
+							fwrite($out, $buff);
+					} else {
+						die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
+					}
 
-				} else { 
-					die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}'); 
-				} 
+					fclose($in);
+					fclose($out);
 
-			} else { 
-				die('{"jsonrpc" : "2.0", "error" : {"code": 103, "message": "Failed to move uploaded file."}, "id" : "id"}'); 
-			} 
+					@unlink($_FILES['file']['tmp_name']);
 
-		} else { 
-			$out = fopen($targetDir . DIRECTORY_SEPARATOR . $fileName, $chunk == 0 ? "wb" : "ab"); 
+				} else {
+					die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}');
+				}
 
-			if ($out) { 
-				$in = fopen("php://input", "rb"); 
+			} else {
+				die('{"jsonrpc" : "2.0", "error" : {"code": 103, "message": "Failed to move uploaded file."}, "id" : "id"}');
+			}
 
-				if ($in) { 
+		} else {
+			$out = fopen($targetDir . DIRECTORY_SEPARATOR . $fileName, $chunk == 0 ? "wb" : "ab");
+
+			if ($out) {
+				$in = fopen("php://input", "rb");
+
+				if ($in) {
 					while ($buff = fread($in, 4096))
-						fwrite($out, $buff); 
-				} else { 
-					die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}'); 
-				} 
-				fclose($in); 
-				fclose($out); 
+						fwrite($out, $buff);
+				} else {
+					die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
+				}
 
-			} else { 
-				die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}'); 
-			} 
-		} 
+				fclose($in);
+				fclose($out);
 
-		die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}'); 
-	} 
-} 
+			} else {
+				die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}');
+			}
+		}
+
+		die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+	}
+}
 ?>

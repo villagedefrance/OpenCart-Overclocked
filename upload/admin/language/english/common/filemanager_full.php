@@ -62,6 +62,7 @@ $_['button_move']      		= 'Move';
 $_['button_copy']      		= 'Copy';
 $_['button_rename']    		= 'Rename';
 $_['button_upload']    		= 'Upload';
+$_['button_uploads']    		= 'Uploads';
 $_['button_refresh']   		= 'Refresh';
 $_['button_expand']    		= 'Expand Tree';
 $_['button_collapse']    	= 'Collapse Tree';

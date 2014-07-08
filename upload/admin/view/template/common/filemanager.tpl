@@ -6,6 +6,7 @@
 <base href="<?php echo $base; ?>" />
 
 <link rel="stylesheet" type="text/css" href="view/stylesheet/filemanager.css" />
+<link rel="stylesheet" type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" />
 
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.11.1.min.js"></script>
@@ -15,30 +16,33 @@
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/plugins/jquery.tree.cookie.js"></script>
+<script type="text/javascript" src="view/javascript/plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
 
 </head>
 <body>
 <div id="container">
-	<div id="menu">
-		<a id="create" class="button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
-		<a id="delete" class="button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
-		<a id="move" class="button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
-		<a id="copy" class="button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
-		<a id="rename" class="button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
-		<a id="upload" class="button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-		<a id="refresh" class="button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
-	</div>
-	<div id="column-left"></div>
-	<div id="column-right"></div>
-	<div id="toolset">
-		<button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
-		<button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
-		<button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
-		<button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
-		<button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
-	</div>
-	<span style="float:right; font-size:12px; margin-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
+  <div id="menu">
+    <a id="create" class="button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
+    <a id="delete" class="button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
+    <a id="move" class="button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
+    <a id="copy" class="button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
+    <a id="rename" class="button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
+    <a id="upload" class="button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
+    <a id="uploadmulti" class="button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_uploads; ?>+</a>
+    <a id="refresh" class="button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+  </div>
+  <div id="column-left"></div>
+  <div id="column-right"></div>
+  <div id="toolset">
+    <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
+    <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
+    <button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
+    <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
+    <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
+  </div>
+  <span style="float:right; font-size:12px; margin-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
 	
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -784,6 +788,78 @@ $(document).ready(function() {
 
 		tree.refresh(tree.selected);
 	});
+
+	// ----------------------- Multi Upload ------------------------
+
+	var dr;
+	var tree = $.tree.reference('#column-left a');
+
+	$('#column-left a').live('click', function() {
+		window.dr = $(tree.selected).attr('directory');
+	});
+
+	$('#uploadmulti').click(function() {
+		html  = '<div id="uploadMulti" title="<?php echo $text_upload_plus; ?>">';
+		html += '<div id="uploader"></div>';
+		html += '</div>';
+
+		$('#column-left').prepend(html);
+
+		$('#uploadMulti').dialog({
+			height: '355',
+			width: '760',
+			modal: true,
+			resizable: false,
+			create: function(event, ui) {
+				var tree = $.tree.focused();
+
+				$("#uploader").plupload({
+					runtimes: 'flash,html5',
+					url: 'index.php?route=common/filemanager/multi&token=<?php echo $token; ?>&directory=' + window.dr,
+					max_file_size: '4mb',
+					chunk_size: '1mb',
+					unique_names: false,
+					resize: { height:600, width:800, quality:90 },
+					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,gif,png,pdf,zip,flv,swf" } ],
+					flash_swf_url: 'view/javascript/plupload/js/plupload.flash.swf',
+					silverlight_xap_url: 'view/javascript/plupload/js/plupload.silverlight.xap'
+				});
+
+				$('form').submit(function(e) {
+					var uploader = $('#uploader').plupload('getUploader');
+					var tree = $.tree.reference('#column-left a');
+
+					if (uploader.files.length > 0) {
+						uploader.bind('StateChanged', function() {
+							if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+								$('form')[0].submit();
+							}
+						});
+
+						uploader.start();
+
+					} else {
+						alert('<?php echo $text_no_selection; ?>');
+
+						return false;
+					}
+				});
+			},
+
+			close: function(event, ui) {
+				var uploader = $('#uploader').plupload('getUploader');
+				var tree = $.tree.reference('#column-left a');
+
+				if (tree.selected) {
+					tree.refresh(tree.selected);
+				} else {
+					tree.refresh();
+				}
+
+				$('#uploadMulti').remove();
+			}
+		})
+	})
 });
 //--></script>
 </body>

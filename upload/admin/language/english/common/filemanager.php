@@ -1,9 +1,9 @@
 <?php
 // Heading
 $_['heading_title']    		= 'Image Manager';
-
+ 
 // Text
-$_['text_uploaded']   		= 'Success: Your file has been uploaded!';
+$_['text_uploaded']  		= 'Success: Your file has been uploaded!';
 $_['text_file_delete'] 		= 'File has been deleted!';
 $_['text_create']      		= 'Success: Directory created!';
 $_['text_delete']      		= 'Success: Your file or directory has been deleted!';
@@ -33,6 +33,9 @@ $_['text_update_image']	= 'Update image';
 $_['text_yes_execute']		= 'Ok';
 $_['text_yes_delete']		= 'Yes, Delete';
 $_['text_no_cancel']			= 'Cancel';
+$_['text_upload_plus']		= 'Multiple File Uploads';
+$_['text_no_selection']		= 'You must add at least one file.';
+$_['text_allowed']			= 'Allowed files';
 
 // Error
 $_['error_select']     		= 'Warning: Please select a directory or file!';
@@ -55,11 +58,12 @@ $_['error_permission'] 		= 'Warning: Permission Denied!';
 // Button
 $_['button_folder']    		= 'New Folder';
 $_['button_delete']    		= 'Delete';
-$_['button_move']  			= 'Move';
-$_['button_copy']  			= 'Copy';
-$_['button_rename']			= 'Rename';
-$_['button_upload']  		= 'Upload';
-$_['button_refresh']			= 'Refresh';
+$_['button_move']      		= 'Move';
+$_['button_copy']      		= 'Copy';
+$_['button_rename']    		= 'Rename';
+$_['button_upload']    		= 'Upload';
+$_['button_uploads']    		= 'Uploads';
+$_['button_refresh']   		= 'Refresh';
 $_['button_expand']    		= 'Expand Tree';
 $_['button_collapse']    	= 'Collapse Tree';
 $_['button_view_text']  	= 'Text View';

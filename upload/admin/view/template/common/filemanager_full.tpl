@@ -14,38 +14,38 @@
 <script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
 <div id="content">
-	<div class="breadcrumb">
-		<?php foreach ($breadcrumbs as $breadcrumb) { ?>
-			<?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-		<?php } ?>
-	</div>
-	<div class="box">
-		<div class="heading">
-			<h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
-		</div>
-		<div class="content">
-			<div id="filemanager_menu">
-				<a id="create" class="filemanager_button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
-				<a id="delete" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
-				<a id="move" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
-				<a id="copy" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
-				<a id="rename" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
-				<a id="upload" class="filemanager_button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-				<a id="uploadmulti" class="filemanager_button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?>+</a>
-				<a id="refresh" class="filemanager_button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
-			</div>
-			<div id="column-left"></div>
-			<div id="column-right"></div>
-			<div id="toolset">
-				<button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
-				<button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
-				<button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
-				<button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
-				<button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
-			</div>
-			<span style="float:right; font-size:12px; padding-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
-		</div>
-	</div>
+  <div class="breadcrumb">
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+  <?php } ?>
+  </div>
+  <div class="box">
+    <div class="heading">
+      <h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
+    </div>
+    <div class="content">
+      <div id="filemanager_menu">
+        <a id="create" class="filemanager_button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
+        <a id="delete" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
+        <a id="move" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
+        <a id="copy" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
+        <a id="rename" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
+        <a id="upload" class="filemanager_button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
+        <a id="uploadmulti" class="filemanager_button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_uploads; ?>+</a>
+        <a id="refresh" class="filemanager_button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+      </div>
+      <div id="column-left"></div>
+        <div id="column-right"></div>
+        <div id="toolset">
+          <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
+          <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
+          <button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
+          <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
+          <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
+        </div>
+        <span style="float:right; font-size:12px; padding-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
+      </div>
+    </div>
 	
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -819,7 +819,7 @@ $(document).ready(function() {
 				$("#uploader").plupload({
 					runtimes: 'flash,html5',
 					url: 'index.php?route=common/filemanager_full/multi&token=<?php echo $token; ?>&directory=' + window.dr,
-					max_file_size: '3mb',
+					max_file_size: '4mb',
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { height:600, width:800, quality:90 },
