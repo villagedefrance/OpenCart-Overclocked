@@ -81,7 +81,7 @@
       </tr>
       <tr>
         <td><?php echo $entry_store; ?></td>
-        <td><div class="scrollbox">
+        <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px;">
           <?php $class = 'even'; ?>
           <div class="<?php echo $class; ?>">
             <?php if (in_array(0, $category_store)) { ?>
@@ -104,7 +104,9 @@
               <?php } ?>
             </div>
           <?php } ?>
-        </div></td>
+        </div>
+		<a onclick="select_all('category_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('category_store', '0');"><?php echo $text_unselect_all; ?></a>
+		</td>
       </tr>
       <tr>
         <td><?php echo $entry_keyword; ?></td>
@@ -309,6 +311,27 @@ function image_upload(field, thumb) {
 		modal: false
 	});
 };
+//--></script>
+
+<script type="text/javascript"><!--
+var formblock;
+var forminput;
+ 
+formblock = document.getElementById('store_ids');
+forminput = formblock.getElementsByTagName('input');
+ 
+function select_all(name, value) {
+	for (i = 0; i < forminput.length; i++) {
+		var regex = new RegExp(name, "i");
+		if (regex.test(forminput[i].getAttribute('name'))) {
+			if (value == '1') {
+				forminput[i].checked = true;
+			} else {
+				forminput[i].checked = false;
+			}
+		}
+	}
+}
 //--></script>
 
 <script type="text/javascript"><!--
