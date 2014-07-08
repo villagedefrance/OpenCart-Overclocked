@@ -124,6 +124,7 @@ class ControllerCommonHeader extends Controller {
 
 		$this->data['text_filemanager'] = $this->language->get('text_filemanager');
 		$this->data['text_hosting'] = $this->language->get('text_hosting');
+		$this->data['text_cachemanager'] = $this->language->get('text_cachemanager');
 		$this->data['text_configuration'] = $this->language->get('text_configuration');
 		$this->data['text_database'] = $this->language->get('text_database');
 
@@ -231,6 +232,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['paypal_express_search'] = $this->url->link('payment/pp_express/search', 'token=' . $this->session->data['token'], 'SSL');
 
 			$this->data['filemanager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['cachemanager'] = $this->url->link('tool/cachemanager', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['configuration'] = $this->url->link('tool/datasystem', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['database'] = $this->url->link('tool/database', 'token=' . $this->session->data['token'], 'SSL');
 

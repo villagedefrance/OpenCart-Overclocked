@@ -101,6 +101,7 @@ $_['text_paypal_search']          	= 'Search';
 
 $_['text_filemanager'] 				= 'Image Manager';
 $_['text_hosting'] 					= 'Server';
+$_['text_cachemanager']			= 'Cache Manager';
 $_['text_configuration'] 			= 'Configuration';
 $_['text_database'] 					= 'Database';
 ?>

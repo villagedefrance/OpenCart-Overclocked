@@ -204,6 +204,7 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_hosting; ?></a>
             <ul>
+			  <li><a href="<?php echo $cachemanager; ?>"><?php echo $text_cachemanager; ?></a></li>
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <?php if ($db_sql) { ?>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
