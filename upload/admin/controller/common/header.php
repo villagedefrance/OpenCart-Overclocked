@@ -248,7 +248,7 @@ class ControllerCommonHeader extends Controller {
 
 			$this->load->model('setting/store');
 
-			$results = $this->model_setting_store->getStores();
+			$results = $this->model_setting_store->getAllStores();
 
 			foreach ($results as $result) {
 				$this->data['stores'][] = array(
