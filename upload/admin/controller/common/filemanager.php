@@ -49,6 +49,9 @@ class ControllerCommonFileManager extends Controller {
 		$this->data['text_yes_execute']= $this->language->get('text_yes_execute');
 		$this->data['text_yes_delete'] = $this->language->get('text_yes_delete');
 		$this->data['text_no_cancel'] = $this->language->get('text_no_cancel');
+		$this->data['text_upload_plus'] = $this->language->get('text_upload_plus');
+		$this->data['text_no_selection'] = $this->language->get('text_no_selection');
+		$this->data['text_allowed'] = $this->language->get('text_allowed');
 
 		$this->data['error_directory'] = $this->language->get('error_directory');
 
