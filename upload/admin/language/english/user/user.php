@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']     		= 'User';
 
@@ -38,5 +34,4 @@ $_['error_confirm']    		= 'Password and password confirmation do not match!';
 $_['error_firstname'] 		= 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']   		= 'Last Name must be between 1 and 32 characters!';
 $_['error_captcha']    		= 'Verification code does not match the image!';
-
 ?>

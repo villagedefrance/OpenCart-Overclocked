@@ -18,8 +18,8 @@ $_['text_help_engine'] 			= 'Convert your database tables to InnoDB or MyISAM En
 
 
 // Success Engine
-$_['text_success_innodb']  	= 'Success: Engine Conversion completed successfully !';
-$_['text_success_myisam']  	= 'Success: Engine Conversion completed successfully !';
+$_['text_success_innodb']  	= 'Success: Engine Conversion to InnoDB completed successfully !';
+$_['text_success_myisam']  	= 'Success: Engine Conversion to MyISAM completed successfully !';
 
 // Button
 $_['button_optimize']      		= 'Optimize';
