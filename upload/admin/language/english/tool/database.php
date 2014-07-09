@@ -13,20 +13,19 @@ $_['text_help_repair'] 			= 'Repair your database tables to fix errors.';
 $_['text_success_repair']   	= 'Success: Database repair completed successfully !';
 
 // InnoDB
-$_['text_innodb']         			= 'Convert Tables to InnoDB';
-$_['text_help_innodb'] 			= 'Convert your database tables to InnoDB Engine.';
-$_['text_success_innodb']  	= 'Success: Engine Conversion completed successfully !';
+$_['text_engine']         			= 'Convert Tables Engine';
+$_['text_help_engine'] 			= 'Convert your database tables to InnoDB or MyISAM Engine.';
 
-// MyISAM
-$_['text_myisam']         		= 'Convert Tables to MyISAM';
-$_['text_help_myisam'] 			= 'Convert your database tables to MyISAM Engine.';
+
+// Success Engine
+$_['text_success_innodb']  	= 'Success: Engine Conversion completed successfully !';
 $_['text_success_myisam']  	= 'Success: Engine Conversion completed successfully !';
 
 // Button
 $_['button_optimize']      		= 'Optimize';
 $_['button_repair']      			= 'Repair';
-$_['button_innodb']      		= 'Convert to InnoDB';
-$_['button_myisam']      		= 'Convert to MyISAM';
+$_['button_innodb']      		= 'InnoDB';
+$_['button_myisam']      		= 'MyISAM';
 $_['button_refresh']				= 'Refresh';
 
 // Error

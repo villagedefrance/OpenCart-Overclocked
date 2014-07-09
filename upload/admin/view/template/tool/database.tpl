@@ -49,23 +49,15 @@
             </td>
           </tr>
         </table>
-		<h2><?php echo $text_innodb; ?></h2>
+		<h2><?php echo $text_engine; ?></h2>
         <table class="form">
           <tr style="text-align:left;">
-            <td width="20%"><b><?php echo $text_innodb; ?></b></td>
-            <td width="55%"><?php echo $text_help_innodb; ?></td>
+            <td width="20%"><b><?php echo $text_engine; ?></b></td>
+            <td width="55%"><?php echo $text_help_engine; ?></td>
             <td width="25%">
               <a onclick="Innodb();" class="button-form"><?php echo $button_innodb; ?></a>
-            </td>
-          </tr>
-        </table>
-        <h2><?php echo $text_myisam; ?></h2>
-        <table class="form">
-          <tr style="text-align:left;">
-            <td width="20%"><b><?php echo $text_myisam; ?></b></td>
-            <td width="55%"><?php echo $text_help_myisam; ?></td>
-            <td width="25%">
-              <a onclick="Myisam();" class="button-form"><?php echo $button_myisam; ?></a>
+			  &nbsp;
+			  <a onclick="Myisam();" class="button-form"><?php echo $button_myisam; ?></a>
             </td>
           </tr>
         </table>
@@ -80,10 +72,6 @@ function Optimize() {document.database.buttonForm.value='optimize'; $('#form').s
 function Repair() {document.database.buttonForm.value='repair'; $('#form').submit();}
 function Innodb() {document.database.buttonForm.value='innodb'; $('#form').submit();}
 function Myisam() {document.database.buttonForm.value='myisam'; $('#form').submit();}
-//--></script>
-
-<script type="text/javascript"><!--
-$(function() {$('#tabs a').tabs();});
 //--></script>
 
 <?php echo $footer; ?>

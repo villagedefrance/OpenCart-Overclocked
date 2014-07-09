@@ -258,8 +258,8 @@ $(document).ready(function() {
       <li id="store" class="right"><a onclick="window.open('<?php echo $store; ?>');" title=""><?php echo $text_front; ?></a>
       <?php if ($stores) { ?>
         <ul>
-        <?php foreach ($stores as $stores) { ?>
-          <li><a onclick="window.open('<?php echo $stores['href']; ?>');" title=""><?php echo $stores['name']; ?></a></li>
+        <?php foreach ($stores as $store) { ?>
+          <li><a onclick="window.open('<?php echo $store['href']; ?>');" title=""><?php echo $store['name']; ?></a></li>
         <?php } ?>
         </ul>
       <?php } ?>
