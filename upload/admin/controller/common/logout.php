@@ -1,17 +1,12 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerCommonLogout extends Controller {
 
-class ControllerCommonLogout extends Controller { 
+	public function index() {
+		$this->user->logout();
 
-	public function index() { 
+		unset($this->session->data['token']);
 
-		$this->user->logout(); 
-
-		unset($this->session->data['token']); 
-
-		$this->redirect($this->url->link('common/login', '', 'SSL')); 
-	} 
-} 
+		$this->redirect($this->url->link('common/login', '', 'SSL'));
+	}
+}
 ?>

@@ -1,14 +1,10 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ModelSaleFraud extends Model {
 
-class ModelSaleFraud extends Model { 
+	public function getFraud($order_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_fraud` WHERE order_id = '" . (int)$order_id . "'");
 
-	public function getFraud($order_id) { 
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_fraud` WHERE order_id = '" . (int)$order_id . "'"); 
-
-		return $query->row; 
-	} 
-} 
+		return $query->row;
+	}
+}
 ?>
