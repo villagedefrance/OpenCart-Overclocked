@@ -1,6 +1,5 @@
-/**
- * tabs.js - Overclocked Edition	
- */
+/* tabs.js - Overclocked */
+
 $.fn.tabs = function() {
 	var selector = this;
 

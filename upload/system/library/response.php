@@ -65,6 +65,18 @@ class Response {
 				}
 			}
 
+			// Page loading time
+			$time = microtime();
+			$time = explode(' ', $time);
+			$time = $time[1] + $time[0];
+			$finish = $time;
+
+			$start = explode(' ', $GLOBALS['start']);
+			$start = $start[1] + $start[0];
+			$total_time = round(($finish - $start), 4);
+
+			$output = str_replace('</body>', '<div style="clear:left; padding:10px 30px;">Generated in ' . $total_time . ' seconds.</div></body>', $output);
+
 			echo $output;
 		}
 	}
