@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Response {
 	private $headers = array();
 	private $level = 0;
@@ -10,7 +10,7 @@ class Response {
 
 	public function redirect($url) {
 		header('Location: ' . $url);
-		exit;
+		exit; 
 	}
 
 	public function setCompression($level) {
@@ -81,4 +81,5 @@ class Response {
 		}
 	}
 }
+
 ?>

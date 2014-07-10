@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCommonHeader extends Controller {
 
 	protected function index() {
@@ -248,7 +248,7 @@ class ControllerCommonHeader extends Controller {
 
 			$this->load->model('setting/store');
 
-			$results = $this->model_setting_store->getAllStores();
+			$results = $this->model_setting_store->getStores();
 
 			foreach ($results as $result) {
 				$this->data['stores'][] = array(
@@ -263,4 +263,5 @@ class ControllerCommonHeader extends Controller {
 		$this->render();
 	}
 }
+
 ?>

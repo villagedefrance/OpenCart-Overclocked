@@ -1,4 +1,4 @@
-<?php
+<?php 
 function vat_validation($prefix, $number) {
 	$iso_code_2_data = array(
 		'AT' => 'AT', //Austria
@@ -50,4 +50,5 @@ function vat_validation($prefix, $number) {
 		return 'unknown';
 	}
 }
+
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerUpgrade extends Controller {
 	private $error = array();
 
@@ -58,4 +58,5 @@ class ControllerUpgrade extends Controller {
 		}
 	}
 }
+
 ?>

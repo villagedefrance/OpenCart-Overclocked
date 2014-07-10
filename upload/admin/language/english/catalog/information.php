@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Heading
 $_['heading_title']     			= 'Information';
 
@@ -32,4 +32,5 @@ $_['error_account']     			= 'Warning: This information page cannot be deleted a
 $_['error_checkout']    			= 'Warning: This information page cannot be deleted as it is currently assigned as the store checkout terms!';
 $_['error_affiliate']   				= 'Warning: This information page cannot be deleted as it is currently assigned as the store affiliate terms!';
 $_['error_store']       			= 'Warning: This information page cannot be deleted as its currently used by %s stores!';
+
 ?>

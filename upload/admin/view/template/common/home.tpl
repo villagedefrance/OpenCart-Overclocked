@@ -193,7 +193,7 @@
           </thead>
           <tbody>
           <?php if ($reviews) { ?>
-          <?php foreach ($reviews as $review) { ?>
+            <?php foreach ($reviews as $review) { ?>
             <tr>
               <td class="left"><?php echo $review['name']; ?></td>
               <td class="left"><?php echo $review['author']; ?></td>
@@ -204,7 +204,7 @@
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>
             </tr>
-          <?php } ?>
+            <?php } ?>
           <?php } else { ?>
             <tr>
               <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
@@ -250,7 +250,7 @@
         </table>
         </div>
         <?php } ?>
-        </div>
+      </div>
     </div>
   </div>
 </div>

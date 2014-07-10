@@ -1,4 +1,4 @@
-<?php
+<?php 
 final class MSSQL {
 	private $link;
 
@@ -77,4 +77,5 @@ final class MSSQL {
 		mssql_close($this->link);
 	}
 }
+
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelCatalogAttributeGroup extends Model {
 
 	public function addAttributeGroup($data) {
@@ -90,4 +90,5 @@ class ModelCatalogAttributeGroup extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

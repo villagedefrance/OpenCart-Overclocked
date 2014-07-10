@@ -1,4 +1,4 @@
-<?php
+<?php 
 final class DBMySQL {
 	private $link;
 
@@ -78,4 +78,5 @@ final class DBMySQL {
 		}
 	}
 }
+
 ?>

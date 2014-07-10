@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCommonLogin extends Controller {
 	private $error = array();
 
@@ -111,4 +111,5 @@ class ControllerCommonLogin extends Controller {
 		}
 	}
 }
+
 ?>

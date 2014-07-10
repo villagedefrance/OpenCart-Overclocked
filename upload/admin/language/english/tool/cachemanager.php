@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Heading
 $_['heading_title']  		= 'Cache Manager';
 
@@ -16,4 +16,5 @@ $_['button_clean']  		= 'Clean Expired Cache';
 
 // Error
 $_['error_permission'] 	= 'Warning: You do not have permission to modify <b>Cache Manager</b> !';
+
 ?>

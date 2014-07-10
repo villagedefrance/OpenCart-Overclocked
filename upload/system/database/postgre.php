@@ -1,4 +1,4 @@
-<?php
+<?php 
 final class Postgre {
 	private $link;
 
@@ -67,4 +67,5 @@ final class Postgre {
 		pg_close($this->link);
 	}
 }
+
 ?>

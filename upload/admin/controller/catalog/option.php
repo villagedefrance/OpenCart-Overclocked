@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCatalogOption extends Controller {
 	private $error = array();
 
@@ -579,4 +579,5 @@ class ControllerCatalogOption extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
+
 ?>

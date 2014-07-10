@@ -1,6 +1,6 @@
-<?php
+<?php 
 // Heading
-$_['heading_title']           		= 'Database Tool';
+$_['heading_title']           		= 'Database Tools';
 
 // Optimize
 $_['text_optimize']         		= 'Optimize Database';
@@ -29,5 +29,6 @@ $_['button_myisam']      		= 'MyISAM';
 $_['button_refresh']				= 'Refresh';
 
 // Error
-$_['error_permission']     		= 'Warning: You do not have permission to modify <b>Database Tool</b> !';
+$_['error_permission']     		= 'Warning: You do not have permission to modify <b>Database Tools</b> !';
+
 ?>

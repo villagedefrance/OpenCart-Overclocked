@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerToolCacheManager extends Controller {
 
 	public function index() {
@@ -146,4 +146,5 @@ class ControllerToolCacheManager extends Controller {
 		}
 	}
 }
+
 ?>

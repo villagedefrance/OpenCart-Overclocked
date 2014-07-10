@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCatalogInformation extends Controller {
 	private $error = array();
 
@@ -506,4 +506,5 @@ class ControllerCatalogInformation extends Controller {
 		}
 	}
 }
+
 ?>

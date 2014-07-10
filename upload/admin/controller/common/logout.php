@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCommonLogout extends Controller {
 
 	public function index() {
@@ -9,4 +9,5 @@ class ControllerCommonLogout extends Controller {
 		$this->redirect($this->url->link('common/login', '', 'SSL'));
 	}
 }
+
 ?>

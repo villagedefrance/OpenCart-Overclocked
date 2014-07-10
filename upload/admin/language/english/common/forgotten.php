@@ -1,4 +1,4 @@
-<?php
+<?php 
 // header
 $_['heading_title']   		= 'Forgot Your Password ?';
 
@@ -17,4 +17,5 @@ $_['entry_confirm']   	= 'Confirm:';
 $_['error_email']     		= 'Warning: The E-Mail Address was not found in our records, please try again!';
 $_['error_password']  	= 'Password must be between 3 and 20 characters!';
 $_['error_confirm']   		= 'Password and password confirmation do not match!';
+
 ?>

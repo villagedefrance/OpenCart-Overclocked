@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelToolDatabase extends Model {
 
 	public function getTables() {
@@ -65,4 +65,5 @@ class ModelToolDatabase extends Model {
 		}
 	}
 }
+
 ?>

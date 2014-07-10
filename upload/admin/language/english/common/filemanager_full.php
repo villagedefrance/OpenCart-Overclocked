@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Heading
 $_['heading_title']    		= 'Image Manager';
  
@@ -69,4 +69,5 @@ $_['button_collapse']    	= 'Collapse Tree';
 $_['button_view_text']  	= 'Text View';
 $_['button_view_list']  		= 'List View';
 $_['button_view_thumb']	= 'Thumb View';
+
 ?>

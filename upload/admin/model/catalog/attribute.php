@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelCatalogAttribute extends Model {
 
 	public function addAttribute($data) {
@@ -151,4 +151,5 @@ class ModelCatalogAttribute extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

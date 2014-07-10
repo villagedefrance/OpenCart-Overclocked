@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelCatalogDownload extends Model {
 
 	public function addDownload($data) {
@@ -102,4 +102,5 @@ class ModelCatalogDownload extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

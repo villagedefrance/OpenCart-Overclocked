@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Language {
 	private $default = 'english';
 	private $directory;
@@ -42,4 +42,5 @@ class Language {
 		}
 	}
 }
+
 ?>

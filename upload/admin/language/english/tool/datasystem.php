@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Heading
 $_['heading_title']    		= 'Configuration';
 
@@ -40,4 +40,5 @@ $_['text_mbstring_note'] 	= '<span class="help">mbstring is required only when i
 
 // Error
 $_['error_permission']		= 'Warning: You do not have permission to modify <b>Configuration</b> !';
+
 ?>

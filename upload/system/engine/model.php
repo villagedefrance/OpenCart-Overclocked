@@ -1,4 +1,4 @@
-<?php
+<?php 
 abstract class Model {
 	protected $registry;
 
@@ -14,4 +14,5 @@ abstract class Model {
 		$this->registry->set($key, $value);
 	}
 }
+
 ?>

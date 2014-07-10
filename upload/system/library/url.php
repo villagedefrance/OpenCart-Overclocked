@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Url {
 	private $url;
 	private $ssl;
@@ -33,4 +33,5 @@ class Url {
 		return $url;
 	}
 }
+
 ?>

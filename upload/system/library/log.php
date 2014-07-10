@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Log {
 	private $filename;
 
@@ -16,4 +16,5 @@ class Log {
 		fclose($handle);
 	}
 }
+
 ?>

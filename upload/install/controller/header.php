@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerHeader extends Controller {
 
 	public function index() {
@@ -15,4 +15,5 @@ class ControllerHeader extends Controller {
 		$this->render();
 	}
 }
+
 ?>

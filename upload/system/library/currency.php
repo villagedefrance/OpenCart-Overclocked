@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Currency {
 	private $code;
 	private $currencies = array();
@@ -172,4 +172,5 @@ class Currency {
 		return isset($this->currencies[$currency]);
 	}
 }
+
 ?>

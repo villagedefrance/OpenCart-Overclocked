@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelCatalogFilter extends Model {
 
 	public function addFilter($data) {
@@ -179,4 +179,5 @@ class ModelCatalogFilter extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

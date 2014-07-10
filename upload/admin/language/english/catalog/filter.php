@@ -1,4 +1,4 @@
-<?php
+<?php 
 // Heading
 $_['heading_title']     		= 'Filters';
 
@@ -19,4 +19,5 @@ $_['entry_sort_order']  		= 'Sort Order:';
 $_['error_permission']  		= 'Warning: You do not have permission to modify <b>Filters</b> !';
 $_['error_group']       		= 'Filter Group Name must be between 1 and 64 characters!';
 $_['error_name']        		= 'Filter Name must be between 1 and 64 characters!';
+
 ?>

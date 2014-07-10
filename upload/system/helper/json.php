@@ -1,4 +1,4 @@
-<?php
+<?php 
 if (!function_exists('json_encode')) {
 	function json_encode($data) {
 		switch (gettype($data)) {
@@ -132,4 +132,5 @@ if (!function_exists('json_decode')) {
 		return $return;
 	}
 }
+
 ?>

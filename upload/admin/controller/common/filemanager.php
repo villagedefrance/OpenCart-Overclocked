@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCommonFileManager extends Controller {
 	private $error = array();
 	private $_name = 'filemanager';
@@ -617,4 +617,5 @@ class ControllerCommonFileManager extends Controller {
 		die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
 	}
 }
+
 ?>

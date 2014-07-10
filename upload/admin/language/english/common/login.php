@@ -1,4 +1,4 @@
-<?php
+<?php 
 // header
 $_['heading_title']  		= 'Administration';
 
@@ -17,4 +17,5 @@ $_['button_login']   		= 'Login';
 // Error
 $_['error_login']    		= 'No match for Username and/or Password.';
 $_['error_token']   		= 'Invalid token session. Please login again.';
+
 ?>

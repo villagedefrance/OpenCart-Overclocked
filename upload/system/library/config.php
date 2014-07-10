@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Config {
 	private $data = array();
 
@@ -30,4 +30,5 @@ class Config {
 		}
 	}
 }
+
 ?>

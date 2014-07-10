@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelToolBackup extends Model {
 
 	public function restore($sql) {
@@ -80,4 +80,5 @@ class ModelToolBackup extends Model {
 		return $output;
 	}
 }
+
 ?>

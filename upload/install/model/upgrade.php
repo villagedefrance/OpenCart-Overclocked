@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelUpgrade extends Model {
 	// Upgrade script to upgrade opencart to the latest version.
 	// Oldest version supported is 1.3.2
@@ -385,4 +385,5 @@ class ModelUpgrade extends Model {
 		}
 	}
 }
+
 ?>

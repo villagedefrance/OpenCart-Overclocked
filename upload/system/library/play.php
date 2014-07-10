@@ -1,4 +1,4 @@
-<?php
+<?php 
 final class Play {
 	/**
 	* The play module has been removed.
@@ -8,4 +8,5 @@ final class Play {
 
 	}
 }
+
 ?>

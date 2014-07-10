@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerCatalogFilter extends Controller {
 	private $error = array();
 
@@ -464,4 +464,5 @@ class ControllerCatalogFilter extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
+
 ?>

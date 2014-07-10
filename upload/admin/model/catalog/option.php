@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelCatalogOption extends Model {
 
 	public function addOption($data) {
@@ -176,4 +176,5 @@ class ModelCatalogOption extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

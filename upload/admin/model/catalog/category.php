@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelCatalogCategory extends Model {
 
 	public function addCategory($data) {
@@ -312,4 +312,5 @@ class ModelCatalogCategory extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

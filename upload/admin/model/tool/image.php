@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ModelToolImage extends Model {
 
 	public function resize($filename, $width, $height) {
@@ -41,4 +41,5 @@ class ModelToolImage extends Model {
 		}
 	}
 }
+
 ?>

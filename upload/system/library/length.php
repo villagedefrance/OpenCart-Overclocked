@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Length {
 	private $lengths = array();
 
@@ -54,4 +54,5 @@ class Length {
 		}
 	}
 }
+
 ?>

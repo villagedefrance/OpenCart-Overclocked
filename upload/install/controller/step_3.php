@@ -1,4 +1,4 @@
-<?php
+<?php 
 class ControllerStep3 extends Controller {
 	private $error = array();
 
@@ -279,4 +279,5 @@ class ControllerStep3 extends Controller {
 		}
 	}
 }
+
 ?>
