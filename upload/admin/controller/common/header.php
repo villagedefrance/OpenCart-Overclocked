@@ -236,13 +236,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['configuration'] = $this->url->link('tool/datasystem', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['database'] = $this->url->link('tool/database', 'token=' . $this->session->data['token'], 'SSL');
 
-			// Check DB Driver
-			if (DB_DRIVER == 'mysql' || DB_DRIVER == 'mysqli') {
-				$this->data['db_sql'] = true;
-			} else {
-				$this->data['db_sql'] = false;
-			}
-
 			// Store
 			$this->data['stores'] = array();
 
