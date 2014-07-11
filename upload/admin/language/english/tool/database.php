@@ -13,7 +13,7 @@ $_['text_help_repair'] 			= 'Repair your database tables to fix errors.';
 $_['text_success_repair']   	= 'Success: Database repair completed successfully !';
 
 // InnoDB
-$_['text_engine']         			= 'Convert Tables Engine';
+$_['text_engine']         			= 'Convert Table Engine';
 $_['text_help_engine'] 			= 'Convert your database tables to InnoDB or MyISAM Engine.';
 
 
