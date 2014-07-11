@@ -454,7 +454,7 @@ class Cart {
 		foreach ($this->getProducts() as $product) {
 			if ($product['shipping']) {
 				$shipping = true;
-				break;
+				break; 
 			}
 		}
 
@@ -467,7 +467,7 @@ class Cart {
 		foreach ($this->getProducts() as $product) {
 			if ($product['download']) {
 				$download = true;
-				break;
+				break; 
 			}
 		}
 

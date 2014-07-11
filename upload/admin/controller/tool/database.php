@@ -16,16 +16,16 @@ class ControllerToolDatabase extends Controller {
 			switch($button) {
 				case "optimize":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/optimize', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				break; 
 				case "repair":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/repair', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				break; 
 				case "innodb":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/innodb', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				break; 
 				case "myisam":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/myisam', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				break; 
 			}
 		}
 

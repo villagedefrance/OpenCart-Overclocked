@@ -344,7 +344,7 @@ class ControllerCommonHome extends Controller {
 
 				$data['xaxis'][] = array($i, date('H', mktime($i, 0, 0, date('n'), date('j'), date('Y'))));
 			}
-			break;
+			break; 
 			case 'week':
 			$date_start = strtotime('-' . date('w') . ' days');
 
@@ -369,7 +369,7 @@ class ControllerCommonHome extends Controller {
 
 				$data['xaxis'][] = array($i, date('D', strtotime($date)));
 			}
-			break;
+			break; 
 			default:
 			case 'month':
 			for ($i = 1; $i <= date('t'); $i++) {
@@ -393,7 +393,7 @@ class ControllerCommonHome extends Controller {
 
 				$data['xaxis'][] = array($i, date('j', strtotime($date)));
 			}
-			break;
+			break; 
 			case 'year':
 			for ($i = 1; $i <= 12; $i++) {
 				$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id >= '" . (int)$this->config->get('config_complete_status_id') . "' AND YEAR(date_added) = '" . date('Y') . "' AND MONTH(date_added) = '" . $i . "' GROUP BY MONTH(date_added)");
@@ -414,7 +414,7 @@ class ControllerCommonHome extends Controller {
 
 				$data['xaxis'][] = array($i, date('M', mktime(0, 0, 0, $i, 1, date('Y'))));
 			}
-			break;
+			break; 
 		}
 
 		$this->response->setOutput(json_encode($data));

@@ -164,7 +164,7 @@ class Mail {
 
 				while ($line = fgets($handle, 515)) {
 					if (substr($line, 3, 1) == ' ') {
-						break;
+						break; 
 					}
 				}
 
@@ -175,7 +175,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -194,7 +194,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -211,7 +211,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -228,7 +228,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -245,7 +245,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -263,7 +263,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -285,7 +285,7 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break;
+						break; 
 					}
 				}
 
@@ -303,7 +303,7 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break;
+							break; 
 						}
 					}
 
@@ -322,7 +322,7 @@ class Mail {
 							$reply .= $line;
 
 							if (substr($line, 3, 1) == ' ') {
-								break;
+								break; 
 							}
 						}
 
@@ -341,7 +341,7 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break;
+						break; 
 					}
 				}
 
@@ -376,7 +376,7 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break;
+						break; 
 					}
 				}
 
@@ -393,7 +393,7 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break;
+						break; 
 					}
 				}
 

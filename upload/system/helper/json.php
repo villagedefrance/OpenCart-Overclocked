@@ -23,7 +23,6 @@ if (!function_exists('json_encode')) {
 					# Single byte;
 					if ($c1 < 128) {
 						$json .= ($c1 > 31) ? $char : sprintf("\\u%04x", $c1);
-
 						continue;
 					}
 
@@ -32,7 +31,6 @@ if (!function_exists('json_encode')) {
 
 					if (($c1 & 32) === 0) {
 						$json .= sprintf("\\u%04x", ($c1 - 192) * 64 + $c2 - 128);
-
 						continue;
 					}
 
@@ -41,7 +39,6 @@ if (!function_exists('json_encode')) {
 
 					if (($c1 & 16) === 0) {
 						$json .= sprintf("\\u%04x", (($c1 - 224) <<12) + (($c2 - 128) << 6) + ($c3 - 128));
-
 						continue;
 					}
 

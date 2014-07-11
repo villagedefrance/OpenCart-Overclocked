@@ -20,7 +20,7 @@ final class Front {
 
 			if ($result) {
 				$action = $result;
-				break;
+				break; 
 			}
 		}
 

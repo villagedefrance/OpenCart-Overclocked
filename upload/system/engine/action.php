@@ -23,7 +23,7 @@ final class Action {
 				$this->file = DIR_APPLICATION . 'controller/' . str_replace(array('../', '..\\', '..'), '', $path) . '.php';
 				$this->class = 'Controller' . preg_replace('/[^a-zA-Z0-9]/', '', $path);
 				array_shift($parts);
-				break;
+				break; 
 			}
 		}
 
