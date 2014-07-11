@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerToolDatabase extends Controller {
 	private $error = array();
 	private $_name = 'database';
@@ -204,5 +204,4 @@ class ControllerToolDatabase extends Controller {
 		}
 	}
 }
-
 ?>

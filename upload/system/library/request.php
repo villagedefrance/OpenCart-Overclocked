@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Request {
 	public $get = array();
 	public $post = array();
@@ -35,5 +35,4 @@ class Request {
 		return $data;
 	}
 }
-
 ?>

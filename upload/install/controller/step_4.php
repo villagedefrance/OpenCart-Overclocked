@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerStep4 extends Controller {
 	public function index() {
 		$this->template = 'step_4.tpl';
@@ -10,5 +10,4 @@ class ControllerStep4 extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelCatalogManufacturer extends Model {
 
 	public function addManufacturer($data) {
@@ -135,5 +135,4 @@ class ModelCatalogManufacturer extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

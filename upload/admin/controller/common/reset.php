@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerCommonReset extends Controller {
 	private $error = array();
 
@@ -117,5 +117,4 @@ class ControllerCommonReset extends Controller {
 		}
 	}
 }
-
 ?>

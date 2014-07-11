@@ -1,4 +1,4 @@
-<?php 
+<?php
 final class Action {
 	protected $file;
 	protected $class;
@@ -56,5 +56,4 @@ final class Action {
 		return $this->args;
 	}
 }
-
 ?>

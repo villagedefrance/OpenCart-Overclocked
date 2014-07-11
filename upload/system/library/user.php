@@ -1,4 +1,4 @@
-<?php 
+<?php
 class User {
 	private $user_id;
 	private $username;
@@ -88,5 +88,4 @@ class User {
 		return $this->username;
 	}
 }
-
 ?>

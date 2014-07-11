@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Document {
 	private $title;
 	private $description;
@@ -62,5 +62,4 @@ class Document {
 		return $this->scripts;
 	}
 }
-
 ?>

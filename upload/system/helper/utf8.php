@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (extension_loaded('mbstring')) {
 	mb_internal_encoding('UTF-8');
 
@@ -590,5 +590,4 @@ if (extension_loaded('mbstring')) {
 		return $string;
 	}
 }
-
 ?>

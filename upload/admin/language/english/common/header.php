@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Heading
 $_['heading_title']              		= 'Administration';
 
@@ -104,5 +104,4 @@ $_['text_hosting'] 					= 'Server';
 $_['text_cachemanager']			= 'Cache Manager';
 $_['text_configuration'] 			= 'Configuration';
 $_['text_database'] 					= 'Database';
-
 ?>

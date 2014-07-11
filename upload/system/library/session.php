@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Session {
 	public $data = array();
 
@@ -20,5 +20,4 @@ class Session {
 		return session_id();
 	}
 }
-
 ?>

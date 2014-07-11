@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerCommonFooter extends Controller {
 
 	protected function index() {
@@ -15,5 +15,4 @@ class ControllerCommonFooter extends Controller {
 		$this->render();
 	}
 }
-
 ?>

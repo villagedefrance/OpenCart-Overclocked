@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Cart {
 	private $config;
 	private $db;
@@ -474,5 +474,4 @@ class Cart {
 		return $download;
 	}
 }
-
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Image {
 	private $file;
 	private $image;
@@ -197,5 +197,4 @@ class Image {
 		return array($r, $g, $b);
 	}
 }
-
 ?>

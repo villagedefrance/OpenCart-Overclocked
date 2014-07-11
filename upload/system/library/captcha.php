@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Captcha {
 	protected $code;
 	protected $width = 35;
@@ -88,5 +88,4 @@ class Captcha {
 		imagedestroy($image);
 	}
 }
-
 ?>

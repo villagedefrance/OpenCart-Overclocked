@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Cache {
 	public function get($key) {
 		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
@@ -39,5 +39,4 @@ class Cache {
 		}
 	}
 }
-
 ?>

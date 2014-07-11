@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelCatalogInformation extends Model {
 
 	public function addInformation($data) {
@@ -197,5 +197,4 @@ class ModelCatalogInformation extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

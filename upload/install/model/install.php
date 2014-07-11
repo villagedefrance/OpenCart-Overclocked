@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelInstall extends Model {
 
 	public function database($data) {
@@ -52,5 +52,4 @@ class ModelInstall extends Model {
 		}
 	}
 }
-
 ?>

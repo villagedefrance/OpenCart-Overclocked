@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerCatalogAttributeGroup extends Controller {
 	private $error = array();
 
@@ -412,5 +412,4 @@ class ControllerCatalogAttributeGroup extends Controller {
 		}
 	}
 }
-
 ?>

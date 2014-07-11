@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Heading
 $_['heading_title'] 				= 'Profiles';
 
@@ -42,5 +42,4 @@ $_['entry_trial_frequency'] 	= 'Trial frequency:';
 $_['error_warning'] 				= 'Warning: Please check the form carefully for errors!';
 $_['error_permission'] 			= 'Warning: You do not have permission to modify <b>Profiles</b> !';
 $_['error_name'] 					= 'Profile Name must be greater than 3 and less than 255 characters!';
-
 ?>

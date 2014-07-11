@@ -1,4 +1,4 @@
-<?php 
+<?php
 class DB {
 	private $driver;
 
@@ -13,7 +13,7 @@ class DB {
 			$this->driver = new $class($hostname, $username, $password, $database);
 
 		} else {
-			exit('Error: Could not load database driver type ' . $driver . '!'); 
+			exit('Error: Could not load database driver type ' . $driver . '!');
 		}
 	}
 
@@ -33,5 +33,4 @@ class DB {
 		return $this->driver->getLastId();
 	}
 }
-
 ?>

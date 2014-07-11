@@ -1,4 +1,4 @@
-<?php 
+<?php
 final class Encryption {
 	private $key;
 	private $iv;
@@ -16,5 +16,4 @@ final class Encryption {
 		return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $this->key, base64_decode(strtr($value, '-_,', '+/=')), MCRYPT_MODE_ECB, $this->iv));
 	}
 }
-
 ?>

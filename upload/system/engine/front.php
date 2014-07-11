@@ -1,4 +1,4 @@
-<?php 
+<?php
 final class Front {
 	protected $registry;
 	protected $pre_action = array();
@@ -51,5 +51,4 @@ final class Front {
 		return $action;
 	}
 }
-
 ?>

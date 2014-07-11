@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelUserUserGroup extends Model {
 
 	public function addUserGroup($data) {
@@ -79,5 +79,4 @@ class ModelUserUserGroup extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

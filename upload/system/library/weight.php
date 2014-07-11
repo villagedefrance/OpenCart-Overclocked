@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Weight {
 	private $weights = array();
 
@@ -54,5 +54,4 @@ class Weight {
 		}
 	}
 }
-
 ?>

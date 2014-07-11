@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelSettingSetting extends Model {
 
 	public function getSetting($group, $store_id = 0) {
@@ -41,5 +41,4 @@ class ModelSettingSetting extends Model {
 		}
 	}
 }
-
 ?>

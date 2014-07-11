@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelUserUser extends Model {
 
 	public function addUser($data) {
@@ -110,5 +110,4 @@ class ModelUserUser extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

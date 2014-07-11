@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerStep1 extends Controller {
 
 	public function index() {
@@ -17,5 +17,4 @@ class ControllerStep1 extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-
 ?>

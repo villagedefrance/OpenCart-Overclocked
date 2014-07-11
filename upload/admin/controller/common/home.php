@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerCommonHome extends Controller {
 
 	public function index() {
@@ -61,83 +61,6 @@ class ControllerCommonHome extends Controller {
 		);
 
 		$this->data['token'] = $this->session->data['token'];
-
-		// Check install directory exists
-		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
-			$this->data['error_install'] = $this->language->get('error_install');
-		} else {
-			$this->data['error_install'] = '';
-		}
-
-		// Check image directory is writable
-		$file = DIR_IMAGE . 'test';
-		$handle = fopen($file, 'a+');
-		fwrite($handle, '');
-		fclose($handle);
-
-		if (!file_exists($file)) {
-			$this->data['error_image'] = sprintf($this->language->get('error_image'), DIR_IMAGE);
-		} else {
-			$this->data['error_image'] = '';
-
-			unlink($file);
-		}
-
-		// Check image cache directory is writable
-		$file = DIR_IMAGE . 'cache/test';
-		$handle = fopen($file, 'a+');
-		fwrite($handle, '');
-		fclose($handle);
-
-		if (!file_exists($file)) {
-			$this->data['error_image_cache'] = sprintf($this->language->get('error_image_cache'), DIR_IMAGE . 'cache/');
-		} else {
-			$this->data['error_image_cache'] = '';
-
-			unlink($file);
-		}
-
-		// Check cache directory is writable
-		$file = DIR_CACHE . 'test';
-		$handle = fopen($file, 'a+');
-		fwrite($handle, '');
-		fclose($handle);
-
-		if (!file_exists($file)) {
-			$this->data['error_cache'] = sprintf($this->language->get('error_image_cache'), DIR_CACHE);
-		} else {
-			$this->data['error_cache'] = '';
-
-			unlink($file);
-		}
-
-		// Check download directory is writable
-		$file = DIR_DOWNLOAD . 'test';
-		$handle = fopen($file, 'a+');
-		fwrite($handle, '');
-		fclose($handle);
-
-		if (!file_exists($file)) {
-			$this->data['error_download'] = sprintf($this->language->get('error_download'), DIR_DOWNLOAD);
-		} else {
-			$this->data['error_download'] = '';
-
-			unlink($file);
-		}
-
-		// Check logs directory is writable
-		$file = DIR_LOGS . 'test';
-		$handle = fopen($file, 'a+');
-		fwrite($handle, '');
-		fclose($handle);
-
-		if (!file_exists($file)) {
-			$this->data['error_logs'] = sprintf($this->language->get('error_logs'), DIR_LOGS);
-		} else {
-			$this->data['error_logs'] = '';
-
-			unlink($file);
-		}
 
 		$this->load->model('sale/order');
 
@@ -287,6 +210,83 @@ class ControllerCommonHome extends Controller {
 				'selected'     	=> isset($this->request->post['selected']) && in_array($affiliate_result['affiliate_id'], $this->request->post['selected']),
 				'action'       	=> $action
 			);
+		}
+
+		// Check install directory exists
+		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
+			$this->data['error_install'] = $this->language->get('error_install');
+		} else {
+			$this->data['error_install'] = '';
+		}
+
+		// Check image directory is writable
+		$file = DIR_IMAGE . 'test';
+		$handle = fopen($file, 'a+');
+		fwrite($handle, '');
+		fclose($handle);
+
+		if (!file_exists($file)) {
+			$this->data['error_image'] = sprintf($this->language->get('error_image'), DIR_IMAGE);
+		} else {
+			$this->data['error_image'] = '';
+
+			unlink($file);
+		}
+
+		// Check image cache directory is writable
+		$file = DIR_IMAGE . 'cache/test';
+		$handle = fopen($file, 'a+');
+		fwrite($handle, '');
+		fclose($handle);
+
+		if (!file_exists($file)) {
+			$this->data['error_image_cache'] = sprintf($this->language->get('error_image_cache'), DIR_IMAGE . 'cache/');
+		} else {
+			$this->data['error_image_cache'] = '';
+
+			unlink($file);
+		}
+
+		// Check cache directory is writable
+		$file = DIR_CACHE . 'test';
+		$handle = fopen($file, 'a+');
+		fwrite($handle, '');
+		fclose($handle);
+
+		if (!file_exists($file)) {
+			$this->data['error_cache'] = sprintf($this->language->get('error_image_cache'), DIR_CACHE);
+		} else {
+			$this->data['error_cache'] = '';
+
+			unlink($file);
+		}
+
+		// Check download directory is writable
+		$file = DIR_DOWNLOAD . 'test';
+		$handle = fopen($file, 'a+');
+		fwrite($handle, '');
+		fclose($handle);
+
+		if (!file_exists($file)) {
+			$this->data['error_download'] = sprintf($this->language->get('error_download'), DIR_DOWNLOAD);
+		} else {
+			$this->data['error_download'] = '';
+
+			unlink($file);
+		}
+
+		// Check logs directory is writable
+		$file = DIR_LOGS . 'test';
+		$handle = fopen($file, 'a+');
+		fwrite($handle, '');
+		fclose($handle);
+
+		if (!file_exists($file)) {
+			$this->data['error_logs'] = sprintf($this->language->get('error_logs'), DIR_LOGS);
+		} else {
+			$this->data['error_logs'] = '';
+
+			unlink($file);
 		}
 
 		// Currency auto-update
@@ -504,5 +504,4 @@ class ControllerCommonHome extends Controller {
 		}
 	}
 }
-
 ?>

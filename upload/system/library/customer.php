@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Customer {
 	private $customer_id;
 	private $firstname;
@@ -167,5 +167,4 @@ class Customer {
 		return $query->row['total'];
 	}
 }
-
 ?>

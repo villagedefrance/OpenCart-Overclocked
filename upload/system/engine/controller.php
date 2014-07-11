@@ -1,4 +1,4 @@
-<?php 
+<?php
 abstract class Controller {
 	protected $registry;
 	protected $id;
@@ -27,7 +27,7 @@ abstract class Controller {
 	protected function redirect($url, $status = 302) {
 		header('Status: ' . $status);
 		header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url));
-		exit(); 
+		exit();
 	}
 
 	protected function getChild($child, $args = array()) {
@@ -44,7 +44,7 @@ abstract class Controller {
 
 		} else {
 			trigger_error('Error: Could not load controller ' . $child . '!');
-			exit(); 
+			exit();
 		}
 	}
 
@@ -88,9 +88,8 @@ abstract class Controller {
 
 		} else {
 			trigger_error('Error: Could not load template ' . DIR_TEMPLATE . $this->template . '!');
-			exit(); 
+			exit();
 		}
 	}
 }
-
 ?>

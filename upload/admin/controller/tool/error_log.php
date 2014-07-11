@@ -1,70 +1,75 @@
 <?php 
-class ControllerToolErrorLog extends Controller {
-	private $error = array();
+//------------------------
+// Overclocked Edition		
+//------------------------
 
-	public function index() {
-		$this->language->load('tool/error_log');
+class ControllerToolErrorLog extends Controller { 
+	private $error = array(); 
 
-		$this->document->setTitle($this->language->get('heading_title'));
+	public function index() {	
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->language->load('tool/error_log'); 
 
-		$this->data['button_clear'] = $this->language->get('button_clear');
+		$this->document->setTitle($this->language->get('heading_title')); 
 
-		if (isset($this->session->data['success'])) {
-			$this->data['success'] = $this->session->data['success'];
+		$this->data['heading_title'] = $this->language->get('heading_title'); 
 
-			unset($this->session->data['success']);
-		} else {
-			$this->data['success'] = '';
-		}
+		$this->data['button_clear'] = $this->language->get('button_clear'); 
 
-		$this->data['breadcrumbs'] = array();
+		if (isset($this->session->data['success'])) { 
+			$this->data['success'] = $this->session->data['success']; 
+
+			unset($this->session->data['success']); 
+		} else { 
+			$this->data['success'] = ''; 
+		} 
+
+		$this->data['breadcrumbs'] = array(); 
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
 			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
-		);
+		); 
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
 			'href'      => $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
-		);
+		); 
 
-		$this->data['clear'] = $this->url->link('tool/error_log/clear', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['clear'] = $this->url->link('tool/error_log/clear', 'token=' . $this->session->data['token'], 'SSL'); 
 
-		$file = DIR_LOGS . $this->config->get('config_error_filename');
+		$file = DIR_LOGS . $this->config->get('config_error_filename'); 
 
-		if (file_exists($file)) {
-			$this->data['log'] = file_get_contents($file, FILE_USE_INCLUDE_PATH, null);
-		} else {
-			$this->data['log'] = '';
-		}
+		if (file_exists($file)) { 
+			$this->data['log'] = file_get_contents($file, FILE_USE_INCLUDE_PATH, null); 
+		} else { 
+			$this->data['log'] = ''; 
+		} 
 
-		$this->template = 'tool/error_log.tpl';
+		$this->template = 'tool/error_log.tpl'; 
 		$this->children = array(
 			'common/header',
 			'common/footer'
-		);
+		); 
 
-		$this->response->setOutput($this->render());
-	}
+		$this->response->setOutput($this->render()); 
+	} 
 
-	public function clear() {
-		$this->language->load('tool/error_log');
+	public function clear() { 
 
-		$file = DIR_LOGS . $this->config->get('config_error_filename');
+		$this->language->load('tool/error_log'); 
 
-		$handle = fopen($file, 'w+');
+		$file = DIR_LOGS . $this->config->get('config_error_filename'); 
 
-		fclose($handle);
+		$handle = fopen($file, 'w+');  
 
-		$this->session->data['success'] = $this->language->get('text_success');
+		fclose($handle); 
 
-		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));
-	}
-}
+		$this->session->data['success'] = $this->language->get('text_success'); 
 
+		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL')); 
+	} 
+} 
 ?>

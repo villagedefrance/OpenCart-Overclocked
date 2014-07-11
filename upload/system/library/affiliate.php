@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Affiliate {
 	private $affiliate_id;
 	private $firstname;
@@ -106,5 +106,4 @@ class Affiliate {
 		return $this->code;
 	}
 }
-
 ?>

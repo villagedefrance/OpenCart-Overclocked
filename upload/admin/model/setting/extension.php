@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ModelSettingExtension extends Model {
 
 	public function getInstalled($type) {
@@ -45,5 +45,4 @@ class ModelSettingExtension extends Model {
 		}
 	}
 }
-
 ?>

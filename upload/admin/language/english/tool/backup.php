@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Heading
 $_['heading_title']    	= 'Backup / Restore';
 
@@ -14,5 +14,4 @@ $_['entry_backup'] 		= 'Backup:';
 $_['error_permission']	= 'Warning: You do not have permission to modify <b>Backup / Restore</b> !';
 $_['error_backup']   		= 'Warning: You must select at least one table to backup!';
 $_['error_empty']   		= 'Warning: The file you uploaded was empty!';
-
 ?>

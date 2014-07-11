@@ -1,4 +1,4 @@
-<?php 
+<?php
 final class Tax {
 	private $shipping_address;
 	private $payment_address;
@@ -160,5 +160,4 @@ final class Tax {
 		return isset($this->taxes[$tax_class_id]);
 	}
 }
-
 ?>
