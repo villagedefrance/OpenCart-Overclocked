@@ -45,7 +45,7 @@ final class MSSQL {
 
 		} else {
 			trigger_error('Error: ' . mssql_get_last_message($this->link) . '<br />' . $sql);
-			exit();
+			exit(); 
 		}
 	}
 

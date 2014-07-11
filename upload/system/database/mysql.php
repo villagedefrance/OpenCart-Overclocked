@@ -49,7 +49,7 @@ final class DBMySQL {
 
 			} else {
 				trigger_error('Error: ' . mysql_error($this->link) . '<br />Error No: ' . mysql_errno($this->link) . '<br />' . $sql);
-				exit();
+				exit(); 
 			}
 		}
 	}

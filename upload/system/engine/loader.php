@@ -21,7 +21,7 @@ final class Loader {
 			include_once($file);
 		} else {
 			trigger_error('Error: Could not load library ' . $library . '!');
-			exit();
+			exit(); 
 		}
 	}
 
@@ -32,7 +32,7 @@ final class Loader {
 			include_once($file);
 		} else {
 			trigger_error('Error: Could not load helper ' . $helper . '!');
-			exit();
+			exit(); 
 		}
 	}
 
@@ -45,7 +45,7 @@ final class Loader {
 			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
 		} else {
 			trigger_error('Error: Could not load model ' . $model . '!');
-			exit();
+			exit(); 
 		}
 	}
 
@@ -58,7 +58,7 @@ final class Loader {
 			$this->registry->set(str_replace('/', '_', $driver), new $class($hostname, $username, $password, $database));
 		} else {
 			trigger_error('Error: Could not load database ' . $driver . '!');
-			exit();
+			exit(); 
 		}
 	}
 

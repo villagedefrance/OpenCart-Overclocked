@@ -45,7 +45,7 @@ final class Postgre {
 
 		} else {
 			trigger_error('Error: ' . pg_result_error($this->link) . '<br />' . $sql);
-			exit();
+			exit(); 
 		}
 	}
 
