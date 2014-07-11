@@ -55,9 +55,11 @@
             <td width="20%"><b><?php echo $text_engine; ?></b></td>
             <td width="55%"><?php echo $text_help_engine; ?></td>
             <td width="25%">
+			<?php if (!$engine) { ?>
               <a onclick="Innodb();" class="button-form"><?php echo $button_innodb; ?></a>
-			  &nbsp;
+			<?php } else { ?>
 			  <a onclick="Myisam();" class="button-form"><?php echo $button_myisam; ?></a>
+			<?php } ?>
             </td>
           </tr>
         </table>

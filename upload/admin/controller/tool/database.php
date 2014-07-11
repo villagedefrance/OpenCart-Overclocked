@@ -67,6 +67,15 @@ class ControllerToolDatabase extends Controller {
 		$this->load->model('tool/database');
 
 		$this->data['tables'] = $this->model_tool_database->getTables();
+		$engines = $this->model_tool_database->getEngines();
+
+		foreach ($engines as $engine) {
+			if ($engine == 'InnoDB') {
+				$this->data['engine'] = true;
+			} else {
+				$this->data['engine'] = false;
+			}
+		}
 
 		$this->data['text_optimize'] = $this->language->get('text_optimize');
 		$this->data['text_repair'] = $this->language->get('text_repair');

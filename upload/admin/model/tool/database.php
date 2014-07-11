@@ -41,6 +41,18 @@ class ModelToolDatabase extends Model {
 		}
 	}
 
+	public function getEngines() {
+		$engines = array();
+
+		$query = $this->db->query("SHOW TABLE STATUS FROM `" . DB_DATABASE . "`");
+
+		foreach ($query->rows as $result) {
+			$engines = array('engine' => $result['Engine']);
+
+			return $engines;
+		}
+	}
+
 	public function engineInnoDB() {
 		$query = $this->db->query("SHOW TABLES FROM `" . DB_DATABASE . "`");
 
