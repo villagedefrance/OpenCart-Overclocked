@@ -53,14 +53,13 @@
         <table class="form">
           <tr style="text-align:left;">
             <td width="20%"><b><?php echo $text_engine; ?></b></td>
-            <td width="55%"><?php echo $text_help_engine; ?></td>
-            <td width="25%">
-			<?php if (!$engine) { ?>
-              <a onclick="Innodb();" class="button-form"><?php echo $button_innodb; ?></a>
-			<?php } else { ?>
-			  <a onclick="Myisam();" class="button-form"><?php echo $button_myisam; ?></a>
-			<?php } ?>
-            </td>
+		  <?php if (!$engine) { ?>
+			<td width="55%"><?php echo $text_help_myisam; ?></td>
+			<td width="25%"><a onclick="Innodb();" class="button-form"><?php echo $button_innodb; ?></a></td>
+		  <?php } else { ?>
+			<td width="55%"><?php echo $text_help_innodb; ?></td>
+			<td width="25%"><a onclick="Myisam();" class="button-form"><?php echo $button_myisam; ?></a></td>
+		  <?php } ?>
           </tr>
         </table>
         <input type="hidden" name="buttonForm" value="" />

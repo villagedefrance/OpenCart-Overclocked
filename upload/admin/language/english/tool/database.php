@@ -14,8 +14,8 @@ $_['text_success_repair']   	= 'Success: Database repair completed successfully 
 
 // InnoDB
 $_['text_engine']         			= 'Convert Table Engine';
-$_['text_help_engine'] 			= 'Convert your database tables to InnoDB or MyISAM Engine.';
-
+$_['text_help_innodb'] 			= '<b>InnoDB</b>. Convert your database tables to MyISAM Engine.';
+$_['text_help_myisam'] 			= '<b>MyISAM</b>. Convert your database tables to InnoDB Engine.';
 
 // Success Engine
 $_['text_success_innodb']  	= 'Success: Engine Conversion to InnoDB completed successfully !';

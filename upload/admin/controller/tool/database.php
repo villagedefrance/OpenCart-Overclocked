@@ -83,7 +83,8 @@ class ControllerToolDatabase extends Controller {
 
 		$this->data['text_help_optimize'] = $this->language->get('text_help_optimize');
 		$this->data['text_help_repair'] = $this->language->get('text_help_repair');
-		$this->data['text_help_engine'] = $this->language->get('text_help_engine');
+		$this->data['text_help_innodb'] = $this->language->get('text_help_innodb');
+		$this->data['text_help_myisam'] = $this->language->get('text_help_myisam');
 
 		$this->data['button_optimize'] = $this->language->get('button_optimize');
 		$this->data['button_repair'] = $this->language->get('button_repair');
