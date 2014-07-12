@@ -1,16 +1,11 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-class ModelOpenbayAmazonusPatch extends Model { 
-
-	public function runPatch($manual = true) { 
+<?php
+class ModelOpenbayAmazonusPatch extends Model {
+	public function runPatch($manual = true) {
 		$this->load->model('setting/setting');
 
 		$settings = $this->model_setting_setting->getSetting('openbay_amazonus');
 
-		if ($settings) { 
+		if($settings) {
 			$this->db->query("
 				CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product_search` (
 					`product_id` int(11) NOT NULL,
@@ -18,7 +13,7 @@ class ModelOpenbayAmazonusPatch extends Model {
 					`matches` int(11) DEFAULT NULL,
 					`data` text,
 					PRIMARY KEY (`product_id`)
-				) DEFAULT COLLATE=utf8_general_ci;"); 
+				) DEFAULT COLLATE=utf8_general_ci;");
 
 			$this->db->query("
 				CREATE TABLE IF NOT EXISTS`" . DB_PREFIX . "amazonus_listing_report` (
@@ -28,10 +23,10 @@ class ModelOpenbayAmazonusPatch extends Model {
 					`price` decimal(10,4) NOT NULL,
 					PRIMARY KEY (`sku`)
 				) DEFAULT COLLATE=utf8_general_ci;
-			"); 
-		} 
+			");
+		}
 
-		return true; 
-	} 
-} 
+		return true;
+	}
+}
 ?>

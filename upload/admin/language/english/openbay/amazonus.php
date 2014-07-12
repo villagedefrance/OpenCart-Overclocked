@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 //Heading
 $_['heading_title'] = 'Amazon (US)';
 $_['lang_heading_title'] = 'OpenBay Pro for Amazon US';
@@ -63,5 +59,4 @@ $_['subscription_text'] = 'Subscription';
 $_['link_items_text'] = 'Link Items';
 $_['listing_text'] = 'Listings';
 $_['orders_text'] = 'Orders';
-
 ?>

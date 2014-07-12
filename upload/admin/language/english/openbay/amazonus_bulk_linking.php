@@ -1,7 +1,5 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+
 $_['heading_title'] = 'Bulk Linking';
 
 $_['button_return'] = 'Return';

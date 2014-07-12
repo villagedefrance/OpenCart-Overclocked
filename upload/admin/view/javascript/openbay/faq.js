@@ -32,7 +32,7 @@ function getFaq(){
                 htmlInj += '<h4>'+data.title+'</h4>';
                 htmlInj += '<p>'+data.message+'</p>';
                 htmlInj += '<p class="buttons">';
-                htmlInj += '<a class="button" style="float:right;" href="'+data.link+'" target="_BLANK"><span>'+data.faqbtn+'</span></a>';
+                    htmlInj += '<a class="button" style="float:right;" href="'+data.link+'" target="_BLANK"><span>'+data.faqbtn+'</span></a>';
                 htmlInj += '</p>';
                 htmlInj += '</div>';
 

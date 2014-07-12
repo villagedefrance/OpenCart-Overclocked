@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 //Headings
 $_['lang_title'] = 'New Amazon listing';
 $_['lang_openbay'] = 'OpenBay Pro';
@@ -182,5 +178,7 @@ $_['error_not_searched'] = 'Search for matching items before you try to list. It
 $_['text_product_sent'] = 'Product was successfully sent to Amazon.';
 $_['text_product_not_sent'] = 'Product was not sent to Amazon. Reason: %s';
 $_['text_links_removed'] = 'Amazon product links deleted';
+
+
 
 ?>

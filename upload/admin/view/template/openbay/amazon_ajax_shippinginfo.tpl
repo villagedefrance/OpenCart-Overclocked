@@ -1,30 +1,30 @@
 <div id="openbayInfo">
-	<div class="attention mTop15"><?php echo $lang_ajax_amazoneu_shipped; ?></div>
-	<table class="form">
-	<tbody>
-		<tr>
-			<td><?php echo $lang_ajax_courier; ?>:</td>
-			<td>
-				<select name="courier_id" id="courier_id" class="openbayData">
-				<option></option>
-				<?php foreach($couriers as $courier){ ?>
-					<option <?php if((!$order_info['courier_other'] && $order_info['courier_id'] == $courier) || (!$order_info['courier_other'] && empty($order_info['courier_id']) && $courier_default == $courier)) echo "selected"; ?>><?php echo $courier; ?></option>
-				<?php } ?>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td><?php echo $lang_ajax_courier_other; ?>:</td>
-			<td><input class="openbayData" id="courier_other" type="text" name="courier_other" value="<?php if ($order_info['courier_other']) { echo $order_info['courier_id']; } ?>"></td>
-		</tr>
-		<tr>
-			<td><?php echo $lang_ajax_tracking; ?>:</td>
-			<td><input class="openbayData" id="tracking_no" type="text" name="tracking_no" value="<?php if (isset($order_info['tracking_no'])) { echo $order_info['tracking_no']; } ?>"></td>
-		</tr>
-	</tbody>
-	</table>
+  <div class="attention mTop15"><?php echo $lang_ajax_amazoneu_shipped; ?></div>
+  <table class="form">
+    <tbody>
+      <tr>
+        <td><?php echo $lang_ajax_courier; ?>:</td>
+        <td>
+          <select name="courier_id" id="courier_id" class="openbayData">
+            <option></option>
+            <?php foreach($couriers as $courier){ ?>
+              <option <?php if((!$order_info['courier_other'] && $order_info['courier_id'] == $courier) || (!$order_info['courier_other'] && empty($order_info['courier_id']) && $courier_default == $courier)) echo "selected"; ?>><?php echo $courier; ?></option>
+            <?php } ?>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><?php echo $lang_ajax_courier_other; ?>:</td>
+        <td><input class="openbayData" id="courier_other" type="text" name="courier_other" value="<?php if($order_info['courier_other']){ echo $order_info['courier_id']; } ?>"></td>
+      </tr>
+      <tr>
+        <td><?php echo $lang_ajax_tracking; ?>:</td>
+        <td><input class="openbayData" id="tracking_no" type="text" name="tracking_no" value="<?php if(isset($order_info['tracking_no'])){ echo $order_info['tracking_no']; } ?>"></td>
+      </tr>
+    </tbody>
+  </table>
 
-	<input type="hidden" name="orderChannel" value="Amazon EU" id="orderChannel" />
+  <input type="hidden" name="orderChannel" value="Amazon EU" id="orderChannel" />
 </div>
 
 <script type="text/javascript">

@@ -97,7 +97,7 @@
                   <td class="left"></td>
                   <td class="right">
                     <?php foreach ($order['action'] as $action) { ?>
-					<a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                    [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
                     <?php } ?>
                   </td>
                 </tr>
@@ -173,7 +173,7 @@
         delay: 0,
         source: function(request, response) {
             $.ajax({
-                url: 'index.php?route=sale/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+                url: 'index.php?route=sale/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
                 dataType: 'json',
                 success: function(json) {
                     response($.map(json, function(item) {

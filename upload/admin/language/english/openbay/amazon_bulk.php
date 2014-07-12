@@ -1,7 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
 
 $_['heading_title'] = 'OpenBay Pro for Amazon | Bulk Listing';
 

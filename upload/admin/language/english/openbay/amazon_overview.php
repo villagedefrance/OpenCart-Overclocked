@@ -1,7 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
 
 $_['lang_title'] = 'OpenBay Pro for Amazon';
 $_['lang_heading'] = 'Amazon Overview';
@@ -15,5 +12,4 @@ $_['lang_heading_register'] = 'Register';
 $_['lang_heading_stock_updates'] = 'Stock updates';
 $_['lang_heading_saved_listings'] = 'Saved listings';
 $_['lang_heading_bulk_linking'] = 'Bulk Linking';
-
 ?>

@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Text
 $_['text_filter'] = 'Filter results';
 $_['text_title'] = 'Title';
@@ -38,5 +34,3 @@ $_['text_status_amazonus_notlisted'] = 'Amazon US not listed';
 $_['text_status_amazonus_failed'] = 'Amazon US failed';
 $_['text_status_amazonus_linked'] = 'Amazon US linked';
 $_['text_status_amazonus_notlinked'] = 'Amazon US not linked';
-
-?>

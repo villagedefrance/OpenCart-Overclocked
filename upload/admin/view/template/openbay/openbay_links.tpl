@@ -12,7 +12,7 @@
     <tr>
       <td class="left"><?php echo $market['name']; ?></td>
       <td class="center">
-        <img style="display:inline; position:relative; top:3px;" src="view/image/<?php if($market['status'] == 1){echo'success';}else{echo'delete';} ?>.png" alt="" />
+        <img style="display:inline; position:relative; top:3px;" src="view/image/<?php if($market['status'] == 1){echo'success';}else{echo'delete';} ?>.png"/>
       </td>
       <td class="right">
         <?php if($market['href'] != ''){ ?>

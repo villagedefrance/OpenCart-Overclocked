@@ -67,6 +67,8 @@ class ControllerToolDatabase extends Controller {
 		$this->load->model('tool/database');
 
 		$this->data['tables'] = $this->model_tool_database->getTables();
+
+		// Engines
 		$engines = $this->model_tool_database->getEngines();
 
 		foreach ($engines as $engine) {

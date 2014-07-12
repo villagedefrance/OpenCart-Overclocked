@@ -1,11 +1,7 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-class ModelOpenbayVersion extends Model { 
-	public function getVersion() { 
-		return (int)2334; 
-	} 
-} 
+<?php
+class ModelOpenbayVersion extends Model {
+	public function getVersion() {
+		return (int)2334;
+	}
+}
 ?>
