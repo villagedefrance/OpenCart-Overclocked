@@ -1,12 +1,12 @@
 OpenCart-Overclocked
 ====================
 
-Opencart Overclocked - Basic Edition
+Opencart v1.6.0 - Non Official Version
 
 
 General:
 
-The objective of this Overclocked Edition is to make Opencart faster, richer, leaner and even more user friendly. 
+The objective of this Overclocked Version is to make Opencart faster, richer, leaner and even more user friendly. 
 To do so, every line of code inside every file has been checked, adjusted and corrected when necessary. 
 Scripts have been updated or replaced by newer, better or faster versions. Some extra features have been added.
 
@@ -24,6 +24,7 @@ Additions:
 - Added SQL table "product_tag" to record product tags.
 - Added new Date Format in language files: "date_format_time".
 - Added standard "robots.txt".
+- ...
 
 Modifications Admin:
 - Added "Save and Continue" (Apply) to all essential Forms.
@@ -41,13 +42,14 @@ Modifications Admin:
 - Added Opencart favicon for Admin.
 - New CSS Admin menu to replace obsolete Superfish.
 - Replaced table list links with buttons.
-- Image upload limit changed from 300kb to 1mb.
+- Image upload limit changed from 300kb to 4mb.
 - Updated jQuery Flot from 0.7 to 0.8.2, minified.
 - Php files uploads re-instated in Downloads.
 - Removed jQuery folder Superfish (superfish.js) and files.
 - Removed redundant jQuery folder Menu (menu.js) and files.
 - Removed redundant "measurement_class_form.tpl" and "measurement_class_list.tpl".
 - Changed Dashboard layout for "Overview" and "Statistics" to 40/60 instead of 50/50.
+- ...
 
 Modifications Catalog:
 - Added new styles for Information list modules, and account pages.
@@ -60,17 +62,23 @@ Modifications Catalog:
 - Updated AddThis script on product pages, to 300 instead of 250.
 - Extended Site Map page.
 - Improved Captcha.
+- ...
 
 Modules:
 - All modules have new features.
 - All modules have "Save and Continue" feature.
 - Module eBay Display reworked, added language definitions.
 - Added a Tag Cloud module, random or by number of tags, multi-store, compatible with search.
+- ...
 
 Bug Fixes:
 - Complete rework of Profile/Recurring Profile !
 - All updates up to v1.5.6.4 applied.
 - Fixed many more bugs and typos.
+- ...
+
+TODO:
+I am currently modifying all files again, to be strictly in accordance with the Opencart Coding Rules.
 
 
 -------------------------------------------
