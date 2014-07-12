@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']                	= 'Settings';
 
@@ -21,7 +17,7 @@ $_['text_payment']             		= 'Payment Address';
 
 // Column
 $_['column_name']             		= 'Store Name';
-$_['column_url']	               	= 'Store URL';
+$_['column_url']	               		= 'Store URL';
 $_['column_action']                	= 'Action';
 
 // Entry
@@ -78,7 +74,7 @@ $_['error_email']                  		= 'E-Mail Address does not appear to be val
 $_['error_telephone']              	= 'Telephone must be between 3 and 32 characters!';
 $_['error_url']                    		= 'Store URL required!';
 $_['error_title']                  		= 'Title must be between 3 and 32 characters!';
-$_['error_limit']       	       		= 'Limit required!';
+$_['error_limit']       	       			= 'Limit required!';
 $_['error_customer_group_display'] = 'You must include the default customer group if you are going to use this feature!';
 $_['error_image_thumb']        	= 'Product Image Thumb Size dimensions required!';
 $_['error_image_popup']        	= 'Product Image Popup Size dimensions required!';
@@ -90,6 +86,5 @@ $_['error_image_compare']      	= 'Compare Image Size dimensions required!';
 $_['error_image_wishlist']      		= 'Wish List Image Size dimensions required!';
 $_['error_image_cart']         		= 'Cart Image Size dimensions required!';
 $_['error_default']            		= 'Warning: You can not delete your default store!';
-$_['error_store']              		= 'Warning: This Store cannot be deleted as it is currently assigned to %s orders!';
-
+$_['error_store']              			= 'Warning: This Store cannot be deleted as it is currently assigned to %s orders!';
 ?>

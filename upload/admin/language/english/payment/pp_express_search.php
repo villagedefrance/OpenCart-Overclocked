@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Headings
 $_['heading_title']                 	= 'Search Transactions';
 $_['text_pp_express']             	= 'PayPal Express Checkout';
@@ -79,5 +75,4 @@ $_['text_searching']              	= 'Searching';
 $_['text_name']                    	= 'Name';
 $_['text_buyer_info']             	= 'Buyer information';
 $_['text_view']                  		= 'View';
-
 ?>

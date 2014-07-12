@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']             		= 'Web Payment Software';
 
@@ -11,7 +7,7 @@ $_['text_payment']              		= 'Payment';
 $_['text_success']              		= 'Success: You have modified <b>Payment Web Payment Software</b> account details !';
 $_['text_web_payment_software'] = '<a href="http://www.web-payment-software.com/" target="_blank"><img src="view/image/payment/wps-logo.jpg" alt="Web Payment Software" title="Web Payment Software" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_test']                 		= 'Test';
-$_['text_live']                 		= 'Live';
+$_['text_live']                 			= 'Live';
 $_['text_authorization']        		= 'Authorization';
 $_['text_capture']              		= 'Capture';
 
@@ -30,5 +26,4 @@ $_['entry_sort_order']          		= 'Sort Order:';
 $_['error_permission']          		= 'Warning: You do not have permission to modify <b>Payment Web Payment Software</b> !';
 $_['error_login']               		= 'Login ID Required!';
 $_['error_key']                 		= 'Transaction Key Required!';
-
 ?>

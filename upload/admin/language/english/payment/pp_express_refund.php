@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']             	= 'Refund Transaction';
 
@@ -18,10 +14,9 @@ $_['btn_refund']                	= 'Issue refund';
 $_['entry_transaction_id']  	= 'Transaction ID';
 $_['entry_full_refund']         	= 'Full refund';
 $_['entry_amount']           	= 'Amount';
-$_['entry_message']        	= 'Message';
+$_['entry_message']        		= 'Message';
 
 // Error
-$_['error_partial_amt']       	= 'You must enter a partial refund amount';
-$_['error_data']                	= 'Data missing from request';
-
+$_['error_partial_amt']       	= 'You must enter a partial refund amount!';
+$_['error_data']                	= 'Data missing from request!';
 ?>

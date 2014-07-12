@@ -1,15 +1,11 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']             	= 'Affiliate';
 
 // Text
 $_['text_success']              	= 'Success: You have modified <b>Affiliates</b> !';
 $_['text_approved']      		= 'You have approved %s accounts!';
-$_['text_wait']                	= 'Please Wait!';
+$_['text_wait']                		= 'Please Wait!';
 $_['text_balance']              	= 'Balance:';
 $_['text_cheque']               	= 'Cheque';
 $_['text_paypal']               	= 'PayPal';
@@ -21,10 +17,10 @@ $_['column_email']          		= 'E-Mail';
 $_['column_code']          		= 'Tracking Code';
 $_['column_balance']      		= 'Balance';
 $_['column_status']       		= 'Status';
-$_['column_approved']     	= 'Approved';
-$_['column_date_added']  	= 'Date Added';
-$_['column_description']   	= 'Description';
-$_['column_amount']        	= 'Amount';
+$_['column_approved']     		= 'Approved';
+$_['column_date_added']  		= 'Date Added';
+$_['column_description']   		= 'Description';
+$_['column_amount']       	 	= 'Amount';
 $_['column_action']             	= 'Action';
 
 // Entry
@@ -38,9 +34,9 @@ $_['entry_password']      		= 'Password:';
 $_['entry_confirm']             	= 'Confirm:';
 $_['entry_company']       		= 'Company:';
 $_['entry_website']             	= 'Website:';
-$_['entry_address_1']      	= 'Address 1:';
+$_['entry_address_1']      		= 'Address 1:';
 $_['entry_address_2']     		= 'Address 2:';
-$_['entry_city']          		= 'City:';
+$_['entry_city']          			= 'City:';
 $_['entry_postcode']      		= 'Postcode:';
 $_['entry_country']        		= 'Country:';
 $_['entry_zone']          		= 'Region / State:';
@@ -56,7 +52,7 @@ $_['entry_bank_swift_code']     		= 'SWIFT Code:';
 $_['entry_bank_account_name']		= 'Account Name:';
 $_['entry_bank_account_number'] 	= 'Account Number:';
 $_['entry_amount']          		= 'Amount:';
-$_['entry_description']         		= 'Description:';
+$_['entry_description']			= 'Description:';
 
 // Error
 $_['error_permission']          	= 'Warning: You do not have permission to modify <b>Affiliates</b> !';
@@ -73,5 +69,4 @@ $_['error_postcode']            	= 'Postcode must be between 2 and 10 characters
 $_['error_country']             	= 'Please select a country!';
 $_['error_zone']                	= 'Please select a region / state!';
 $_['error_code']                	= 'Tracking Code required!';
-
 ?>

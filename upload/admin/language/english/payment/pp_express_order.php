@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Text
 $_['text_payment_info']         	= 'Payment information';
 $_['text_capture_status']       	= 'Capture status';
@@ -32,11 +28,10 @@ $_['btn_void']                  		= 'Void';
 $_['btn_capture']               		= 'Capture';
 
 // Messages
-$_['success_transaction_resent']	= 'Transaction was successfully resent';
+$_['success_transaction_resent'] = 'Transaction was successfully resent';
 
 // Errors
-$_['error_capture_amt']         	= 'Enter an amount to capture';
-$_['error_timeout']             		= 'Request timed out';
-$_['error_transaction_missing'] 	= 'Transaction could not be found';
-
+$_['error_capture_amt']         	= 'Enter an amount to capture!';
+$_['error_timeout']             		= 'Request timed out!';
+$_['error_transaction_missing'] 	= 'Transaction could not be found!';
 ?>

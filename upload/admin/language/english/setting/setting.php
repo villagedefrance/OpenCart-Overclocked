@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']                	= 'Settings';
 
@@ -86,7 +82,7 @@ $_['entry_image_related']      	= 'Related Product Image Size:';
 $_['entry_image_compare']    	= 'Compare Image Size:';
 $_['entry_image_wishlist']   		= 'Wish List Image Size:';
 $_['entry_image_cart']        		= 'Cart Image Size:';
-$_['entry_ftp_host']        		= 'FTP Host:';
+$_['entry_ftp_host']        			= 'FTP Host:';
 $_['entry_ftp_port']          		= 'FTP Port:';
 $_['entry_ftp_username']    		= 'FTP Username:';
 $_['entry_ftp_password']     		= 'FTP Password:';
@@ -131,7 +127,7 @@ $_['error_address']                	= 'Store Address must be between 10 and 256 
 $_['error_email']                  		= 'E-Mail Address does not appear to be valid!';
 $_['error_telephone']              	= 'Telephone must be between 3 and 32 characters!';
 $_['error_title']                  		= 'Title must be between 3 and 32 characters!';
-$_['error_limit']       	       		= 'Limit required!';
+$_['error_limit']       	       			= 'Limit required!';
 $_['error_customer_group_display'] = 'You must include the default customer group if you are going to use this feature!';
 $_['error_voucher_min']            	= 'Minimum voucher amount required!';
 $_['error_voucher_max']         	= 'Maximum voucher amount required!';
@@ -150,5 +146,4 @@ $_['error_ftp_username']         	= 'FTP Username required!';
 $_['error_ftp_password']        	= 'FTP Password required!';
 $_['error_error_filename']     		= 'Error Log Filename required!';
 $_['error_encryption']         		= 'Encryption must be between 3 and 32 characters!';
-
 ?>

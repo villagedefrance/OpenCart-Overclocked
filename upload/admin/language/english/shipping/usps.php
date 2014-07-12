@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']         		= 'United States Postal Service';
 
@@ -31,14 +27,14 @@ $_['text_domestic_23']      	= 'Express Mail Sunday/Holiday';
 $_['text_domestic_25']      	= 'Express Mail Flat-Rate Envelope Sunday/Holiday';
 $_['text_domestic_27']      	= 'Express Mail Flat-Rate Envelope Hold For Pickup';
 $_['text_domestic_28']      	= 'Priority Mail Small Flat-Rate Box';
-$_['text_international_1']  	= 'Express Mail International';
-$_['text_international_2']  	= 'Priority Mail International';
-$_['text_international_4']  	= 'Global Express Guaranteed (Document and Non-document)';
-$_['text_international_5']  	= 'Global Express Guaranteed Document used';
-$_['text_international_6']  	= 'Global Express Guaranteed Non-Document Rectangular shape';
-$_['text_international_7']  	= 'Global Express Guaranteed Non-Document Non-Rectangular';
-$_['text_international_8']  	= 'Priority Mail Flat Rate Envelope';
-$_['text_international_9']  	= 'Priority Mail Flat Rate Box';
+$_['text_international_1']  		= 'Express Mail International';
+$_['text_international_2']  		= 'Priority Mail International';
+$_['text_international_4']  		= 'Global Express Guaranteed (Document and Non-document)';
+$_['text_international_5']  		= 'Global Express Guaranteed Document used';
+$_['text_international_6']  		= 'Global Express Guaranteed Non-Document Rectangular shape';
+$_['text_international_7']  		= 'Global Express Guaranteed Non-Document Non-Rectangular';
+$_['text_international_8']  		= 'Priority Mail Flat Rate Envelope';
+$_['text_international_9']  		= 'Priority Mail Flat Rate Box';
 $_['text_international_10'] 	= 'Express Mail International Flat Rate Envelope';
 $_['text_international_11'] 	= 'Priority Mail Flat Rate Large Box';
 $_['text_international_12'] 	= 'Global Express Guaranteed Envelope';
@@ -49,35 +45,34 @@ $_['text_international_16'] 	= 'Priority Mail Flat Rate Small Box';
 $_['text_international_21'] 	= 'Postcards';
 $_['text_regular']          		= 'Regular';
 $_['text_large']            		= 'Large';
-$_['text_rectangular']      	= 'Rectangular';
+$_['text_rectangular']      		= 'Rectangular';
 $_['text_non_rectangular']  	= 'Non Rectangular';
 $_['text_variable']        		= 'Variable';
 
 // Entry
 $_['entry_user_id']         		= 'User ID:';
 $_['entry_postcode']        	= 'Zip Code:';
-$_['entry_domestic']        	= 'Domestic Services:';
-$_['entry_international']   	= 'International Services:';
+$_['entry_domestic']        		= 'Domestic Services:';
+$_['entry_international']   		= 'International Services:';
 $_['entry_size']            		= 'Size:';
-$_['entry_container']       	= 'Container:';
+$_['entry_container']       		= 'Container:';
 $_['entry_machinable']      	= 'Machinable:';
-$_['entry_dimension']       	= 'Dimensions (L x W x H):<br/><span class="help">Average package dimensions for shipping package. Product dimensions are not used for shipping at this time.</span>';
+$_['entry_dimension']       		= 'Dimensions (L x W x H):<br/><span class="help">Average package dimensions for shipping package. Product dimensions are not used for shipping at this time.</span>';
 $_['entry_display_time']    	= 'Display Delivery Time:<br /><span class="help">Do you want to display the shipping time? (e.g. Ships within 3 to 5 days)</span>';
 $_['entry_display_weight']  	= 'Display Delivery Weight:<br /><span class="help">Do you want to display the shipping weight? (e.g. Delivery Weight : 2.7674 Kg\'s)</span>';
 $_['entry_weight_class']    	= 'Weight Class:<br /><span class="help">Must be set to Pound.</span>';
 $_['entry_tax']             		= 'Tax Class:';
 $_['entry_geo_zone']        	= 'Geo Zone:';
 $_['entry_status']          		= 'Status:';
-$_['entry_sort_order']      	= 'Sort Order:';
+$_['entry_sort_order']      		= 'Sort Order:';
 $_['entry_debug']      			= 'Debug Mode:<br /><span class="help">Saves send/recv data to the system log</span>';
 
 // Error
 $_['error_permission']      		= 'Warning: You do not have permission to modify <b>United States Postal Service</b> !';
 $_['error_user_id']         		= 'User ID Required!';
-$_['error_postcode']        	= 'Zip Code Required!';
-$_['error_width']        		= 'Width Required!';
-$_['error_length']        		= 'Length Required!';
-$_['error_height']        		= 'Height Required!';
+$_['error_postcode']        		= 'Zip Code Required!';
+$_['error_width']        			= 'Width Required!';
+$_['error_length']        			= 'Length Required!';
+$_['error_height']        			= 'Height Required!';
 $_['error_girth']        			= 'Girth Required!';
-
 ?>
