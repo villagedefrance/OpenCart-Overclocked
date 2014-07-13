@@ -20,6 +20,9 @@ $_['text_shipping']                	= 'Shipping Address';
 $_['text_payment']                 	= 'Payment Address';
 $_['text_mail']                    		= 'Mail';
 $_['text_smtp']                    	= 'SMTP';
+$_['text_settime'] 					= 'Server:';
+$_['text_dbtime'] 					= 'Store:';
+$_['text_phptime'] 					= 'Local:';
 
 // Entry
 $_['entry_name']                   	= 'Store Name:';
@@ -34,6 +37,7 @@ $_['entry_layout']                 	= 'Default Layout:';
 $_['entry_template']               	= 'Template:';
 $_['entry_country']                	= 'Country:';
 $_['entry_zone']                   	= 'Region / State:';
+$_['entry_timezone']         		= 'Time Zone:';
 $_['entry_language']               	= 'Language:';
 $_['entry_admin_language']    	= 'Administration Language:';
 $_['entry_currency']            		= 'Currency:<br /><span class="help">Change the default currency. Clear your browser cache to see the change and reset your existing cookie.</span>';
