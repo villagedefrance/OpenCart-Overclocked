@@ -35,8 +35,9 @@ Modifications Admin:
 - Added Full Page Image Manager, with remember last position and multi-uploads.
 - Added NEW "opencart" custom theme to "jstree.js", for both Image Managers.
 - Added Configuration Page: displays the hosting server settings.
-- Added Database Page: optimize and repair database tables (MySQL / MySQLi).
-- Added Features Page: to compare versions.
+- Added Database Page: optimize, repair tables and convert storage engine.
+- Added Cache Manager Page.
+- Added Meta-description and Meta-keyword to Information pages.
 - Added AddThis Publisher ID in setting form.
 - Added Category List Images.
 - Added Opencart favicon for Admin.
@@ -74,6 +75,7 @@ Modules:
 Bug Fixes:
 - Complete rework of Profile/Recurring Profile !
 - All updates up to v1.5.6.4 applied.
+- Some fixes from V2.0 have been applied.
 - Fixed many more bugs and typos.
 - ...
 
