@@ -93,18 +93,18 @@
         <div class="dashboard-heading"><?php echo $text_latest; ?></div>
         <div class="dashboard-content">
         <div id="latest_tabs" class="htabs">
-          <a href="#tab-latest-order"><?php echo $tab_order; ?></a>
+          <a href="#tab-order"><?php echo $tab_order; ?></a>
           <?php if ($customers) { ?>
-            <a href="#tab-latest-customer"><?php echo $tab_customer; ?></a>
+            <a href="#tab-customer"><?php echo $tab_customer; ?></a>
           <?php } ?>
           <?php if ($reviews) { ?>
-            <a href="#tab-latest-review"><?php echo $tab_review; ?></a>
+            <a href="#tab-review"><?php echo $tab_review; ?></a>
           <?php } ?>
           <?php if ($affiliates) { ?>
-            <a href="#tab-latest-affiliate"><?php echo $tab_affiliate; ?></a>
+            <a href="#tab-affiliate"><?php echo $tab_affiliate; ?></a>
           <?php } ?>
         </div>
-        <div id="tab-latest-order" class="htabs-content">
+        <div id="tab-order" class="htabs-content">
           <table class="list">
           <thead>
             <tr>
@@ -139,7 +139,7 @@
           </table>
         </div>
         <?php if ($customers) { ?>
-        <div id="tab-latest-customer" class="htabs-content">
+        <div id="tab-customer" class="htabs-content">
         <table class="list">
           <thead>
             <tr>
@@ -179,7 +179,7 @@
         </div>
         <?php } ?>
         <?php if ($reviews) { ?>
-        <div id="tab-latest-review" class="htabs-content">
+        <div id="tab-review" class="htabs-content">
         <table class="list">
           <thead>
             <tr>
@@ -215,7 +215,7 @@
         </div>
         <?php } ?>
         <?php if ($affiliates) { ?>
-        <div id="tab-latest-affiliate" class="htabs-content">
+        <div id="tab-affiliate" class="htabs-content">
         <table class="list">
           <thead>
             <tr>

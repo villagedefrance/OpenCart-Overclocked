@@ -139,21 +139,6 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_timezone; ?>
-              <span class="help"><?php echo $text_settime; ?> <?php echo $set_time; ?><br /><?php echo $text_dbtime; ?> <?php echo $php_time; ?><br /><?php echo $text_phptime; ?> <?php echo $db_time; ?></span>
-			</td>
-            <td><select name="config_timezone">
-			<?php foreach ($timezones as $timezone) { ?>
-              <?php if ($timezone == $config_timezone) { ?>
-                <option value="<?php echo $timezone; ?>" selected="selected"><?php echo $timezone; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $timezone; ?>"><?php echo $timezone; ?></option>
-              <?php } ?>
-            <?php } ?>
-            </select>
-			</td>
-          </tr>
-          <tr>
             <td><?php echo $entry_language; ?></td>
             <td><select name="config_language">
             <?php foreach ($languages as $language) { ?>
@@ -227,6 +212,21 @@
             <?php } ?>
             </select></td>
           </tr>
+		  <tr>
+            <td><?php echo $entry_timezone; ?>
+              <span class="help"><?php echo $text_settime; ?> <?php echo $set_time; ?><br /><?php echo $text_dbtime; ?> <?php echo $php_time; ?><br /><?php echo $text_phptime; ?> <?php echo $db_time; ?></span>
+			</td>
+            <td><select name="config_timezone">
+			<?php foreach ($timezones as $timezone) { ?>
+              <?php if ($timezone == $config_timezone) { ?>
+                <option value="<?php echo $timezone; ?>" selected="selected"><?php echo $timezone; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $timezone; ?>"><?php echo $timezone; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select>
+			</td>
+          </tr>
         </table>
       </div>
       <div id="tab-option">
@@ -290,7 +290,7 @@
               <input type="radio" name="config_download" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
-          </tr>          
+          </tr>
         </table>
         <h2><?php echo $text_voucher; ?></h2>
         <table class="form">
@@ -797,250 +797,250 @@
             <?php } ?>
             </select></td>
           </tr>
-			<tr>
-				<td><?php echo $entry_mail_parameter; ?></td>
-				<td><input type="text" name="config_mail_parameter" value="<?php echo $config_mail_parameter; ?>" size="30" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_smtp_host; ?></td>
-				<td><input type="text" name="config_smtp_host" value="<?php echo $config_smtp_host; ?>" size="30" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_smtp_username; ?></td>
-				<td><input type="text" name="config_smtp_username" value="<?php echo $config_smtp_username; ?>" size="30" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_smtp_password; ?></td>
-				<td><input type="text" name="config_smtp_password" value="<?php echo $config_smtp_password; ?>" size="30" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_smtp_port; ?></td>
-				<td><input type="text" name="config_smtp_port" value="<?php echo $config_smtp_port; ?>" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_smtp_timeout; ?></td>
-				<td><input type="text" name="config_smtp_timeout" value="<?php echo $config_smtp_timeout; ?>" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_alert_mail; ?></td>
-				<td><?php if ($config_alert_mail) { ?>
-					<input type="radio" name="config_alert_mail" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_alert_mail" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_alert_mail" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_alert_mail" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_account_mail; ?></td>
-				<td><?php if ($config_account_mail) { ?>
-					<input type="radio" name="config_account_mail" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_account_mail" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_account_mail" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_account_mail" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_alert_emails; ?></td>
-				<td><textarea name="config_alert_emails" cols="40" rows="5"><?php echo $config_alert_emails; ?></textarea></td>
-			</tr>
-          </table>
-	</div>
-	<div id="tab-fraud">
-          <table class="form">
-			<tr>
-				<td><?php echo $entry_fraud_detection; ?></td>
-				<td><?php if ($config_fraud_detection) { ?>
-					<input type="radio" name="config_fraud_detection" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_fraud_detection" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_fraud_detection" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_fraud_detection" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_fraud_key; ?></td>
-				<td><input type="text" name="config_fraud_key" value="<?php echo $config_fraud_key; ?>" size="50" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_fraud_score; ?></td>
-				<td><input type="text" name="config_fraud_score" value="<?php echo $config_fraud_score; ?>" size="10" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_fraud_status; ?></td>
-				<td><select name="config_fraud_status_id">
-				<?php foreach ($order_statuses as $order_status) { ?>
-					<?php if ($order_status['order_status_id'] == $config_fraud_status_id) { ?>
-						<option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-					<?php } else { ?>
-						<option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-					<?php } ?>
-				<?php } ?>
-				</select></td>
-			</tr>
-          </table>
-	</div>
-	<div id="tab-server">
-          <table class="form">
-			<tr>
-				<td><?php echo $entry_secure; ?></td>
-				<td><?php if ($config_secure) { ?>
-					<input type="radio" name="config_secure" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_secure" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_secure" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_secure" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_shared; ?></td>
-				<td><?php if ($config_shared) { ?>
-					<input type="radio" name="config_shared" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_shared" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_shared" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_shared" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_robots; ?></td>
-				<td><textarea name="config_robots" cols="40" rows="5"><?php echo $config_robots; ?></textarea></td>
-			</tr>                    
-			<tr>
-				<td><?php echo $entry_seo_url; ?></td>
-				<td><?php if ($config_seo_url) { ?>
-					<input type="radio" name="config_seo_url" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_seo_url" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_seo_url" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_seo_url" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_file_extension_allowed; ?></td>
-				<td><textarea name="config_file_extension_allowed" cols="40" rows="5"><?php echo $config_file_extension_allowed; ?></textarea></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_file_mime_allowed; ?></td>
-				<td><textarea name="config_file_mime_allowed" cols="60" rows="5"><?php echo $config_file_mime_allowed; ?></textarea></td>
-			</tr>              
-			<tr>
-				<td><?php echo $entry_maintenance; ?></td>
-				<td><?php if ($config_maintenance) { ?>
-					<input type="radio" name="config_maintenance" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_maintenance" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_maintenance" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_maintenance" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_password; ?></td>
-				<td><?php if ($config_password) { ?>
-					<input type="radio" name="config_password" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_password" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_password" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_password" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>            
-			<tr>
-				<td><?php echo $entry_encryption; ?></td>
-				<td><input type="text" name="config_encryption" value="<?php echo $config_encryption; ?>" size="40" />
-				<?php if ($error_encryption) { ?>
-					<span class="error"><?php echo $error_encryption; ?></span>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_compression; ?></td>
-				<td><input type="text" name="config_compression" value="<?php echo $config_compression; ?>" size="3" /></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_error_display; ?></td>
-				<td><?php if ($config_error_display) { ?>
-					<input type="radio" name="config_error_display" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_error_display" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_error_display" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_error_display" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_error_log; ?></td>
-				<td><?php if ($config_error_log) { ?>
-					<input type="radio" name="config_error_log" value="1" checked="checked" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_error_log" value="0" />
-					<?php echo $text_no; ?>
-				<?php } else { ?>
-					<input type="radio" name="config_error_log" value="1" />
-					<?php echo $text_yes; ?>
-					<input type="radio" name="config_error_log" value="0" checked="checked" />
-					<?php echo $text_no; ?>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><span class="required">*</span> <?php echo $entry_error_filename; ?></td>
-				<td><input type="text" name="config_error_filename" value="<?php echo $config_error_filename; ?>" />
-				<?php if ($error_error_filename) { ?>
-					<span class="error"><?php echo $error_error_filename; ?></span>
-				<?php } ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $entry_addthis; ?></td>
-				<td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
-			<tr>
-			<tr>
-				<td><?php echo $entry_google_analytics; ?></td>
-				<td><textarea name="config_google_analytics" cols="40" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
-			</tr>
-          </table>
-	</div>
-	</form>
-	</div>
-	</div>
+          <tr>
+            <td><?php echo $entry_mail_parameter; ?></td>
+            <td><input type="text" name="config_mail_parameter" value="<?php echo $config_mail_parameter; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_smtp_host; ?></td>
+            <td><input type="text" name="config_smtp_host" value="<?php echo $config_smtp_host; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_smtp_username; ?></td>
+            <td><input type="text" name="config_smtp_username" value="<?php echo $config_smtp_username; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_smtp_password; ?></td>
+            <td><input type="text" name="config_smtp_password" value="<?php echo $config_smtp_password; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_smtp_port; ?></td>
+            <td><input type="text" name="config_smtp_port" value="<?php echo $config_smtp_port; ?>" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_smtp_timeout; ?></td>
+            <td><input type="text" name="config_smtp_timeout" value="<?php echo $config_smtp_timeout; ?>" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_alert_mail; ?></td>
+            <td><?php if ($config_alert_mail) { ?>
+              <input type="radio" name="config_alert_mail" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_alert_mail" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_alert_mail" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_alert_mail" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_account_mail; ?></td>
+            <td><?php if ($config_account_mail) { ?>
+              <input type="radio" name="config_account_mail" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_account_mail" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_account_mail" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_account_mail" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_alert_emails; ?></td>
+            <td><textarea name="config_alert_emails" cols="40" rows="5"><?php echo $config_alert_emails; ?></textarea></td>
+          </tr>
+        </table>
+      </div>
+      <div id="tab-fraud">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_fraud_detection; ?></td>
+            <td><?php if ($config_fraud_detection) { ?>
+              <input type="radio" name="config_fraud_detection" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_fraud_detection" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_fraud_detection" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_fraud_detection" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_fraud_key; ?></td>
+            <td><input type="text" name="config_fraud_key" value="<?php echo $config_fraud_key; ?>" size="50" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_fraud_score; ?></td>
+            <td><input type="text" name="config_fraud_score" value="<?php echo $config_fraud_score; ?>" size="10" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_fraud_status; ?></td>
+            <td><select name="config_fraud_status_id">
+              <?php foreach ($order_statuses as $order_status) { ?>
+                <?php if ($order_status['order_status_id'] == $config_fraud_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
+      </div>
+      <div id="tab-server">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_secure; ?></td>
+            <td><?php if ($config_secure) { ?>
+              <input type="radio" name="config_secure" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_secure" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_secure" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_secure" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_shared; ?></td>
+            <td><?php if ($config_shared) { ?>
+              <input type="radio" name="config_shared" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_shared" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_shared" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_shared" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_robots; ?></td>
+            <td><textarea name="config_robots" cols="40" rows="5"><?php echo $config_robots; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_seo_url; ?></td>
+            <td><?php if ($config_seo_url) { ?>
+              <input type="radio" name="config_seo_url" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_seo_url" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_seo_url" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_seo_url" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_file_extension_allowed; ?></td>
+            <td><textarea name="config_file_extension_allowed" cols="40" rows="5"><?php echo $config_file_extension_allowed; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_file_mime_allowed; ?></td>
+            <td><textarea name="config_file_mime_allowed" cols="60" rows="5"><?php echo $config_file_mime_allowed; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_maintenance; ?></td>
+            <td><?php if ($config_maintenance) { ?>
+              <input type="radio" name="config_maintenance" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_maintenance" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_maintenance" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_maintenance" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_password; ?></td>
+            <td><?php if ($config_password) { ?>
+              <input type="radio" name="config_password" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_password" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_password" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_password" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_encryption; ?></td>
+            <td><input type="text" name="config_encryption" value="<?php echo $config_encryption; ?>" size="40" />
+            <?php if ($error_encryption) { ?>
+              <span class="error"><?php echo $error_encryption; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_compression; ?></td>
+            <td><input type="text" name="config_compression" value="<?php echo $config_compression; ?>" size="3" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_error_display; ?></td>
+            <td><?php if ($config_error_display) { ?>
+              <input type="radio" name="config_error_display" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_error_display" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_error_display" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_error_display" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_error_log; ?></td>
+            <td><?php if ($config_error_log) { ?>
+              <input type="radio" name="config_error_log" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_error_log" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_error_log" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_error_log" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_error_filename; ?></td>
+            <td><input type="text" name="config_error_filename" value="<?php echo $config_error_filename; ?>" />
+            <?php if ($error_error_filename) { ?>
+              <span class="error"><?php echo $error_error_filename; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_addthis; ?></td>
+            <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_google_analytics; ?></td>
+            <td><textarea name="config_google_analytics" cols="40" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
+          </tr>
+        </table>
+      </div>
+    </form>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript"><!--
 $('#template').load('index.php?route=setting/setting/template&token=<?php echo $token; ?>&template=' + encodeURIComponent($('select[name=\'config_template\']').attr('value')));
-//--></script> 
+//--></script>
 
 <script type="text/javascript"><!--
 $('select[name=\'config_country_id\']').bind('change', function() {
@@ -1086,7 +1086,7 @@ $('select[name=\'config_country_id\']').bind('change', function() {
 });
 
 $('select[name=\'config_country_id\']').trigger('change');
-//--></script> 
+//--></script>
 
 <script type="text/javascript"><!--
 function image_upload(field, thumb) {
@@ -1114,10 +1114,10 @@ function image_upload(field, thumb) {
 		modal: false
 	});
 };
-//--></script> 
+//--></script>
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
-//--></script> 
+//--></script>
 
 <?php echo $footer; ?>

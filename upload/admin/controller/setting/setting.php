@@ -75,13 +75,13 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_template'] = $this->language->get('entry_template');
 		$this->data['entry_country'] = $this->language->get('entry_country');
 		$this->data['entry_zone'] = $this->language->get('entry_zone');
-		$this->data['entry_timezone'] = $this->language->get('entry_timezone');
 		$this->data['entry_language'] = $this->language->get('entry_language');
 		$this->data['entry_admin_language'] = $this->language->get('entry_admin_language');
 		$this->data['entry_currency'] = $this->language->get('entry_currency');
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
+		$this->data['entry_timezone'] = $this->language->get('entry_timezone');
 		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
@@ -441,24 +441,6 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_zone_id'] = $this->config->get('config_zone_id');
 		}
-
-		if (isset($this->request->post['config_timezone'])) {
-			$this->data['config_timezone'] = $this->request->post['config_timezone'];
-		} else {
-			$this->data['config_timezone'] = $this->config->get('config_timezone');
-		}
-
-		$this->data['timezones'] = array();
-
-		$timezones = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-
-		foreach ($timezones as $timezone) {
-			$this->data['timezones'][] = $timezone;
-		}
-
-		$this->data['set_time'] = ini_get('date.timezone');
-		$this->data['db_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
-		$this->data['php_time'] = date('Y-m-d H:i:s');
 		
 		if (isset($this->request->post['config_language'])) {
 			$this->data['config_language'] = $this->request->post['config_language'];
@@ -511,6 +493,24 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
+
+		if (isset($this->request->post['config_timezone'])) {
+			$this->data['config_timezone'] = $this->request->post['config_timezone'];
+		} else {
+			$this->data['config_timezone'] = $this->config->get('config_timezone');
+		}
+
+		$this->data['timezones'] = array();
+
+		$timezones = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+
+		foreach ($timezones as $timezone) {
+			$this->data['timezones'][] = $timezone;
+		}
+
+		$this->data['set_time'] = ini_get('date.timezone');
+		$this->data['db_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
+		$this->data['php_time'] = date('Y-m-d H:i:s');
 
 		if (isset($this->request->post['config_catalog_limit'])) {
 			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
