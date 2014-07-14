@@ -212,20 +212,17 @@
             <?php } ?>
             </select></td>
           </tr>
-		  <tr>
-            <td><?php echo $entry_timezone; ?>
-              <span class="help"><?php echo $text_settime; ?> <?php echo $set_time; ?><br /><?php echo $text_dbtime; ?> <?php echo $php_time; ?><br /><?php echo $text_phptime; ?> <?php echo $db_time; ?></span>
-			</td>
-            <td><select name="config_timezone">
-			<?php foreach ($timezones as $timezone) { ?>
-              <?php if ($timezone == $config_timezone) { ?>
-                <option value="<?php echo $timezone; ?>" selected="selected"><?php echo $timezone; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $timezone; ?>"><?php echo $timezone; ?></option>
-              <?php } ?>
-            <?php } ?>
-            </select>
-			</td>
+		  <tr style="background:#FCFCFC;">
+            <td><?php echo $text_timezone; ?></td>
+            <td><?php echo $server_zone; ?></td>
+          </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $text_phptime; ?></td>
+            <td><?php echo $server_time; ?></td>
+          </tr>
+		  <tr style="background:#FCFCFC;">
+            <td><?php echo $text_dbtime; ?></td>
+            <td><?php echo $database_time; ?></td>
           </tr>
         </table>
       </div>

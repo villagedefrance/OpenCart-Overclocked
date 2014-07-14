@@ -70,21 +70,6 @@ if (!$store_query->num_rows) {
 	$config->set('config_ssl', HTTPS_SERVER);
 }
 
-// Timezone
-$query = $db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' AND `key`= 'config_timezone'");
-
-if ($query->rows) {
-	foreach ($query->rows as $timezone) {
-		if (!empty($timezone['value'])) {
-			date_default_timezone_set($timezone['value']);
-		} else {
-			date_default_timezone_set('UTC');
-		}
-	}
-} else {
-	date_default_timezone_set('UTC');
-}
-
 // Url
 $url = new Url($config->get('config_url'), $config->get('config_secure') ? $config->get('config_ssl') : $config->get('config_url'));
 $registry->set('url', $url);

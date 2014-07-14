@@ -49,21 +49,6 @@ foreach ($query->rows as $setting) {
 	}
 }
 
-// Timezone
-$query = $db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' AND `key`= 'config_timezone'");
-
-if ($query->rows) {
-	foreach ($query->rows as $timezone) {
-		if (!empty($timezone['value'])) {
-			date_default_timezone_set($timezone['value']);
-		} else {
-			date_default_timezone_set('UTC');
-		}
-	}
-} else {
-	date_default_timezone_set('UTC');
-}
-
 // Url
 $url = new Url(HTTP_SERVER, $config->get('config_secure') ? HTTPS_SERVER : HTTP_SERVER);
 $registry->set('url', $url);

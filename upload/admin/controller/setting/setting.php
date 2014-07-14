@@ -49,7 +49,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_mail'] = $this->language->get('text_mail');
 		$this->data['text_smtp'] = $this->language->get('text_smtp');
-		$this->data['text_settime'] = $this->language->get('text_settime');
+		$this->data['text_timezone'] = $this->language->get('text_timezone');
 		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
 		$this->data['text_phptime'] = $this->language->get('text_phptime');
 
@@ -81,7 +81,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
-		$this->data['entry_timezone'] = $this->language->get('entry_timezone');
 		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
@@ -494,23 +493,9 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
 
-		if (isset($this->request->post['config_timezone'])) {
-			$this->data['config_timezone'] = $this->request->post['config_timezone'];
-		} else {
-			$this->data['config_timezone'] = $this->config->get('config_timezone');
-		}
-
-		$this->data['timezones'] = array();
-
-		$timezones = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-
-		foreach ($timezones as $timezone) {
-			$this->data['timezones'][] = $timezone;
-		}
-
-		$this->data['set_time'] = ini_get('date.timezone');
-		$this->data['db_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
-		$this->data['php_time'] = date('Y-m-d H:i:s');
+		$this->data['server_zone'] = ini_get('date.timezone');
+		$this->data['server_time'] = date('Y-m-d H:i:s');
+		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
 
 		if (isset($this->request->post['config_catalog_limit'])) {
 			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
