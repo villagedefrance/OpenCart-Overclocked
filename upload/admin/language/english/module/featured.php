@@ -18,7 +18,7 @@ $_['tab_options'] 					= 'Options';
 
 // Entry
 $_['entry_theme']   				= 'Theme CSS:';
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. Option "Theme CSS" must be set to Yes.</span>';
+$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
 
 $_['entry_product']       		= 'Add Products';
 

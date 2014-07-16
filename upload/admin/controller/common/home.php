@@ -176,6 +176,7 @@ class ControllerCommonHome extends Controller {
 			);
 		}
 
+		// Currency auto-update
 		if ($this->config->get('config_currency_auto')) {
 			$this->load->model('localisation/currency');
 

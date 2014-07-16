@@ -13,7 +13,7 @@ $_['text_column_left']    		= 'Column Left';
 $_['text_column_right']   		= 'Column Right';
 
 // Entry
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. Option "Theme CSS" must be set to Yes.</span>';
+$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
 $_['entry_description']   		= 'Welcome Message:';
 $_['entry_theme']   				= 'Theme CSS:';
 $_['entry_default']   			= 'Show Default Heading:<br /><span class="help">Select Yes to display the default welcome heading.</span>';

@@ -17,7 +17,7 @@ $_['text_limit']       				= 'Number of Tags:';
 
 // Entry
 $_['entry_theme']   				= 'Theme CSS:';
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. Option "Theme CSS" must be set to Yes.</span>';
+$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
 
 $_['entry_random']        		= 'Random:';
 $_['entry_limit']					= 'Limit:';

@@ -14,7 +14,7 @@ $_['text_column_right']  		= 'Column Right';
 
 // Entry
 $_['entry_theme']   				= 'Theme CSS:';
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. Option "Theme CSS" must be set to Yes.</span>';
+$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
 
 $_['entry_viewproduct'] 		= 'Show View Product Button:';
 $_['entry_addproduct'] 			= 'Show Add to Cart Button:';
