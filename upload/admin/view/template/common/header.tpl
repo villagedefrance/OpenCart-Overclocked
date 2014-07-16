@@ -202,7 +202,7 @@ $(document).ready(function() {
               <li><a href="<?php echo $weight_class; ?>"><?php echo $text_weight_class; ?></a></li>
             </ul>
           </li>
-          <li><a class="arrow"><?php echo $text_hosting; ?></a>
+          <li><a class="arrow"><?php echo $text_server; ?></a>
             <ul>
 			  <li><a href="<?php echo $cachemanager; ?>"><?php echo $text_cachemanager; ?></a></li>
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>

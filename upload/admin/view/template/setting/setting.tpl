@@ -212,18 +212,6 @@
             <?php } ?>
             </select></td>
           </tr>
-		  <tr style="background:#FCFCFC;">
-            <td><?php echo $text_timezone; ?></td>
-            <td><?php echo $server_zone; ?></td>
-          </tr>
-          <tr style="background:#FCFCFC;">
-            <td><?php echo $text_phptime; ?></td>
-            <td><?php echo $server_time; ?></td>
-          </tr>
-		  <tr style="background:#FCFCFC;">
-            <td><?php echo $text_dbtime; ?></td>
-            <td><?php echo $database_time; ?></td>
-          </tr>
         </table>
       </div>
       <div id="tab-option">

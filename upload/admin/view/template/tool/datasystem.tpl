@@ -22,17 +22,23 @@
       </tr>
       <tr>
         <td><?php echo $text_theme; ?></td>
-        <td>
-        <?php foreach ($templates as $template) { ?>
+        <td><?php foreach ($templates as $template) { ?>
           <?php if ($template == $config_template) { ?>
             <span style='color:#225599;'><b><?php echo $template; ?></b></span> 
           <?php } ?>
-        <?php } ?>
-        </td>
+        <?php } ?></td>
       </tr>
       <tr>
-        <td><a onclick="window.open('http://villagedefrance.net/index.php');" title="Villagedefrance"><img src="view/image/villagedefrance/villagedefrance.png" alt="" /></a></td>
-        <td></td>
+        <td><?php echo $text_timezone; ?></td>
+        <td><?php echo $server_zone; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $text_phptime; ?></td>
+        <td><?php echo $server_time; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $text_dbtime; ?></td>
+        <td><?php echo $database_time; ?></td>
       </tr>
     </table>
     <h2><?php echo $text_serverinfo; ?></h2>

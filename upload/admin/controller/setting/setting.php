@@ -49,9 +49,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_mail'] = $this->language->get('text_mail');
 		$this->data['text_smtp'] = $this->language->get('text_smtp');
-		$this->data['text_timezone'] = $this->language->get('text_timezone');
-		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
-		$this->data['text_phptime'] = $this->language->get('text_phptime');
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_store'] = $this->language->get('tab_store');
@@ -492,10 +489,6 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
-
-		$this->data['server_zone'] = ini_get('date.timezone');
-		$this->data['server_time'] = date('Y-m-d H:i:s');
-		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
 
 		if (isset($this->request->post['config_catalog_limit'])) {
 			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];

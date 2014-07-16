@@ -20,9 +20,6 @@ $_['text_shipping']                	= 'Shipping Address';
 $_['text_payment']                 	= 'Payment Address';
 $_['text_mail']                    		= 'Mail';
 $_['text_smtp']                    	= 'SMTP';
-$_['text_timezone'] 					= 'Server Time Zone:<br /><span class="help">Defined by the hosting provider through the server\'s php.ini file.</span>';
-$_['text_phptime'] 					= 'Server Time:<br /><span class="help">Current time for the selected server time zone.</span>';
-$_['text_dbtime'] 					= 'Database Time:<br /><span class="help">Current system date and time.</span>';
 
 // Entry
 $_['entry_name']                   	= 'Store Name:';

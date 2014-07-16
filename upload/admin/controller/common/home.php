@@ -10,7 +10,7 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['text_overview'] = $this->language->get('text_overview');
 		$this->data['text_statistics'] = $this->language->get('text_statistics');
-		$this->data['text_latest'] = $this->language->get('text_latest');
+		$this->data['text_latest_10_orders'] = $this->language->get('text_latest_10_orders');
 		$this->data['text_total_sale'] = $this->language->get('text_total_sale');
 		$this->data['text_total_sale_year'] = $this->language->get('text_total_sale_year');
 		$this->data['text_total_sale_month'] = $this->language->get('text_total_sale_month');
@@ -27,11 +27,6 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_year'] = $this->language->get('text_year');
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
-		$this->data['tab_order'] = $this->language->get('tab_order');
-		$this->data['tab_customer'] = $this->language->get('tab_customer');
-		$this->data['tab_review'] = $this->language->get('tab_review');
-		$this->data['tab_affiliate'] = $this->language->get('tab_affiliate');
-
 		$this->data['column_order'] = $this->language->get('column_order');
 		$this->data['column_customer'] = $this->language->get('column_customer');
 		$this->data['column_status'] = $this->language->get('column_status');
@@ -39,178 +34,9 @@ class ControllerCommonHome extends Controller {
 		$this->data['column_total'] = $this->language->get('column_total');
 		$this->data['column_firstname'] = $this->language->get('column_firstname');
 		$this->data['column_lastname'] = $this->language->get('column_lastname');
-		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_email'] = $this->language->get('column_email');
-		$this->data['column_customer_group'] = $this->language->get('column_customer_group');
-		$this->data['column_product'] = $this->language->get('column_product');
-		$this->data['column_author'] = $this->language->get('column_author');
-		$this->data['column_rating'] = $this->language->get('column_rating');
-		$this->data['column_affiliate'] = $this->language->get('column_affiliate');
-		$this->data['column_newsletter'] = $this->language->get('column_newsletter');
-		$this->data['column_approved'] = $this->language->get('column_approved');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['entry_range'] = $this->language->get('entry_range');
-
-		$this->data['breadcrumbs'] = array();
-
-		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => false
-		);
-
-		$this->data['token'] = $this->session->data['token'];
-
-		$this->load->model('sale/order');
-
-		$this->data['total_sale'] = $this->currency->format($this->model_sale_order->getTotalSales(), $this->config->get('config_currency'));
-		$this->data['total_sale_year'] = $this->currency->format($this->model_sale_order->getTotalSalesByYear(date('Y')), $this->config->get('config_currency'));
-		$this->data['total_sale_month'] = $this->currency->format($this->model_sale_order->getTotalSalesByMonth(date('m')), $this->config->get('config_currency'));
-		$this->data['total_order'] = $this->model_sale_order->getTotalOrders();
-
-		$this->load->model('sale/customer');
-
-		$this->data['total_customer'] = $this->model_sale_customer->getTotalCustomers();
-		$this->data['total_customer_approval'] = $this->model_sale_customer->getTotalCustomersAwaitingApproval();
-
-		$this->load->model('catalog/review');
-
-		$this->data['total_review'] = $this->model_catalog_review->getTotalReviews();
-		$this->data['total_review_approval'] = $this->model_catalog_review->getTotalReviewsAwaitingApproval();
-
-		$this->load->model('sale/affiliate');
-
-		$this->data['total_affiliate'] = $this->model_sale_affiliate->getTotalAffiliates();
-		$this->data['total_affiliate_approval'] = $this->model_sale_affiliate->getTotalAffiliatesAwaitingApproval();
-
-		// Orders
-		$this->data['orders'] = array();
-
-		$data = array(
-			'sort'  	=> 'o.date_added',
-			'order' 	=> 'DESC',
-			'start' 	=> 0,
-			'limit' 		=> 10
-		);
-
-		$results = $this->model_sale_order->getOrders($data);
-
-		foreach ($results as $result) {
-			$action = array();
-
-			$action[] = array(
-				'text'	=> $this->language->get('text_view'),
-				'href' 	=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
-			);
-
-			$this->data['orders'][] = array(
-				'order_id'   		=> $result['order_id'],
-				'customer'  		=> $result['customer'],
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'status'    		=> $result['status'],
-				'total'      		=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-				'action'    		=> $action
-			);
-		}
-
-		// Customers
-		$this->data['customers'] = array();
-		
-		$data = array(
-			'sort'  	=> 'c.date_added',
-			'order' 	=> 'DESC',
-			'start' 	=> 0,
-			'limit' 		=> 10
-		);
-
-		$customer_results = $this->model_sale_customer->getCustomers($data);
-
-		foreach ($customer_results as $customer_result) {
-			$action = array();
-
-			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
-			);
-
-			$this->data['customers'][] = array(
-				'customer_id' 		=> $customer_result['customer_id'],
-				'name'           		=> $customer_result['name'],
-				'email'          		=> $customer_result['email'],
-				'customer_group' 	=> $customer_result['customer_group'],
-				'status'         		=> ($customer_result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-				'approved'       	=> ($customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no')),
-				'newsletter'     	=> ($customer_result['newsletter'] ? $this->language->get('text_yes') : $this->language->get('text_no')),
-				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($customer_result['date_added'])),
-				'action'         		=> $action
-			);
-		}
-
-		// Reviews
-		$this->data['reviews'] = array();
-
-		$data = array(
-			'sort'  	=> 'r.date_added',
-			'order' 	=> 'DESC',
-			'start' 	=> 0,
-			'limit' 		=> 10
-		);
-
-		$review_results = $this->model_catalog_review->getReviews($data);
-
-		foreach ($review_results as $review_result) {
-			$action = array();
-
-			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $review_result['review_id'], 'SSL')
-			);
-
-			$this->data['reviews'][] = array(
-				'review_id' 		=> $review_result['review_id'],
-				'name' 			=> $review_result['name'],
-				'author'  		=> $review_result['author'],
-				'rating'			=> $review_result['rating'],
-				'status'  		=> ($review_result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-				'date_added'	=> date($this->language->get('date_format_time'), strtotime($review_result['date_added'])),
-				'selected'  		=> isset($this->request->post['selected']) && in_array($review_result['review_id'], $this->request->post['selected']),
-				'action' 			=> $action
-			);
-		}
-
-		// Affiliates
-		$this->data['affiliates'] = array();
-
-		$data = array(
-			'sort'  	=> 'a.date_added',
-			'order' 	=> 'DESC',
-			'start' 	=> 0,
-			'limit' 		=> 10
-		);
-
-		$affiliate_results = $this->model_sale_affiliate->getAffiliates($data);
-
-		foreach ($affiliate_results as $affiliate_result) {
-			$action = array();
-
-			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $affiliate_result['affiliate_id'], 'SSL')
-			);
-
-			$this->data['affiliates'][] = array(
-				'affiliate_id' 	=> $affiliate_result['affiliate_id'],
-				'name'         	=> $affiliate_result['name'],
-				'email'        	=> $affiliate_result['email'],
-				'balance'      	=> $this->currency->format($affiliate_result['balance'], $this->config->get('config_currency')),
-				'status'       	=> ($affiliate_result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-				'approved'     	=> ($affiliate_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no')),
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($affiliate_result['date_added'])),
-				'selected'     	=> isset($this->request->post['selected']) && in_array($affiliate_result['affiliate_id'], $this->request->post['selected']),
-				'action'       	=> $action
-			);
-		}
 
 		// Check install directory exists
 		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
@@ -289,7 +115,67 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
-		// Currency auto-update
+		$this->data['breadcrumbs'] = array();
+
+		$this->data['breadcrumbs'][] = array(
+			'text'  	=> $this->language->get('text_home'),
+			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => false
+		);
+
+		$this->data['token'] = $this->session->data['token'];
+
+		$this->load->model('sale/order');
+
+		$this->data['total_sale'] = $this->currency->format($this->model_sale_order->getTotalSales(), $this->config->get('config_currency'));
+		$this->data['total_sale_year'] = $this->currency->format($this->model_sale_order->getTotalSalesByYear(date('Y')), $this->config->get('config_currency'));
+		$this->data['total_sale_month'] = $this->currency->format($this->model_sale_order->getTotalSalesByMonth(date('m')), $this->config->get('config_currency'));
+		$this->data['total_order'] = $this->model_sale_order->getTotalOrders();
+
+		$this->load->model('sale/customer');
+
+		$this->data['total_customer'] = $this->model_sale_customer->getTotalCustomers();
+		$this->data['total_customer_approval'] = $this->model_sale_customer->getTotalCustomersAwaitingApproval();
+
+		$this->load->model('catalog/review');
+
+		$this->data['total_review'] = $this->model_catalog_review->getTotalReviews();
+		$this->data['total_review_approval'] = $this->model_catalog_review->getTotalReviewsAwaitingApproval();
+
+		$this->load->model('sale/affiliate');
+
+		$this->data['total_affiliate'] = $this->model_sale_affiliate->getTotalAffiliates();
+		$this->data['total_affiliate_approval'] = $this->model_sale_affiliate->getTotalAffiliatesAwaitingApproval();
+
+		$this->data['orders'] = array();
+
+		$data = array(
+			'sort'  	=> 'o.date_added',
+			'order' 	=> 'DESC',
+			'start' 	=> 0,
+			'limit' 		=> 10
+		);
+
+		$results = $this->model_sale_order->getOrders($data);
+
+		foreach ($results as $result) {
+			$action = array();
+
+			$action[] = array(
+				'text' => $this->language->get('text_view'),
+				'href' => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
+			);
+
+			$this->data['orders'][] = array(
+				'order_id'   		=> $result['order_id'],
+				'customer'   	=> $result['customer'],
+				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'status'     		=> $result['status'],
+				'total'      		=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'action'     		=> $action
+			);
+		}
+
 		if ($this->config->get('config_currency_auto')) {
 			$this->load->model('localisation/currency');
 

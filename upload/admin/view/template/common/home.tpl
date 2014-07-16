@@ -90,23 +90,10 @@
         </div>
       </div>
       <div class="latest">
-        <div class="dashboard-heading"><?php echo $text_latest; ?></div>
+        <div class="dashboard-heading"><?php echo $text_latest_10_orders; ?></div>
         <div class="dashboard-content">
-        <div id="latest_tabs" class="htabs">
-          <a href="#tab-order"><?php echo $tab_order; ?></a>
-          <?php if ($customers) { ?>
-            <a href="#tab-customer"><?php echo $tab_customer; ?></a>
-          <?php } ?>
-          <?php if ($reviews) { ?>
-            <a href="#tab-review"><?php echo $tab_review; ?></a>
-          <?php } ?>
-          <?php if ($affiliates) { ?>
-            <a href="#tab-affiliate"><?php echo $tab_affiliate; ?></a>
-          <?php } ?>
-        </div>
-        <div id="tab-order" class="htabs-content">
           <table class="list">
-          <thead>
+            <thead>
             <tr>
               <td class="center"><?php echo $column_order; ?></td>
               <td class="left"><?php echo $column_customer; ?></td>
@@ -115,142 +102,30 @@
               <td class="right"><?php echo $column_total; ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
-          </thead>
-          <tbody>
-          <?php if ($orders) { ?>
-            <?php foreach ($orders as $order) { ?>
-            <tr>
-              <td class="center"><?php echo $order['order_id']; ?></td>
-              <td class="left"><?php echo $order['customer']; ?></td>
-              <td class="left"><?php echo $order['date_added']; ?></td>
-              <td class="left"><?php echo $order['status']; ?></td>
-              <td class="right"><?php echo $order['total']; ?></td>
-              <td class="right"><?php foreach ($order['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
-              <?php } ?></td>
-            </tr>
+            </thead>
+            <tbody>
+            <?php if ($orders) { ?>
+              <?php foreach ($orders as $order) { ?>
+              <tr>
+                <td class="center"><?php echo $order['order_id']; ?></td>
+                <td class="left"><?php echo $order['customer']; ?></td>
+                <td class="left"><?php echo $order['date_added']; ?></td>
+                <td class="left"><?php echo $order['status']; ?></td>
+                <td class="right"><?php echo $order['total']; ?></td>
+                <td class="right"><?php foreach ($order['action'] as $action) { ?>
+                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <?php } ?></td>
+              </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+              </tr>
             <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
-            </tr>
-          <?php } ?>
-          </tbody>
+            </tbody>
           </table>
         </div>
-        <?php if ($customers) { ?>
-        <div id="tab-customer" class="htabs-content">
-        <table class="list">
-          <thead>
-            <tr>
-              <td class="left"><?php echo $column_customer; ?></td>
-              <td class="left"><?php echo $column_email; ?></td>
-              <td class="left"><?php echo $column_customer_group; ?></td>
-              <td class="left"><?php echo $column_approved; ?></td>
-              <td class="left"><?php echo $column_newsletter; ?></td>
-              <td class="left"><?php echo $column_status; ?></td>
-              <td class="right"><?php echo $column_date_added; ?></td>
-              <td class="right"><?php echo $column_action; ?></td>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if ($customers) { ?>
-            <?php foreach ($customers as $customer) { ?>
-            <tr>
-              <td class="left"><?php echo $customer['name']; ?></td>
-              <td class="left"><?php echo $customer['email']; ?></td>
-              <td class="left"><?php echo $customer['customer_group']; ?></td>
-              <td class="left"><?php echo $customer['approved']; ?></td>
-              <td class="left"><?php echo $customer['newsletter']; ?></td>
-              <td class="left"><?php echo $customer['status']; ?></td>
-              <td class="right"><?php echo $customer['date_added']; ?></td>
-              <td class="right"><?php foreach ($customer['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
-              <?php } ?></td>
-            </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
-            </tr>
-          <?php } ?>
-          </tbody>
-        </table>
-        </div>
-        <?php } ?>
-        <?php if ($reviews) { ?>
-        <div id="tab-review" class="htabs-content">
-        <table class="list">
-          <thead>
-            <tr>
-              <td class="left"><?php echo $column_product; ?></td>
-              <td class="left"><?php echo $column_author; ?></td>
-              <td class="left"><?php echo $column_rating; ?></td>
-              <td class="left"><?php echo $column_status; ?></td>
-              <td class="right"><?php echo $column_date_added; ?></td>
-              <td class="right"><?php echo $column_action; ?></td>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if ($reviews) { ?>
-          <?php foreach ($reviews as $review) { ?>
-            <tr>
-              <td class="left"><?php echo $review['name']; ?></td>
-              <td class="left"><?php echo $review['author']; ?></td>
-              <td class="left"><?php echo $review['rating']; ?></td>
-              <td class="left"><?php echo $review['status']; ?></td>
-              <td class="right"><?php echo $review['date_added']; ?></td>
-              <td class="right"><?php foreach ($review['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
-              <?php } ?></td>
-            </tr>
-          <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
-            </tr>
-          <?php } ?>
-          </tbody>
-        </table>
-        </div>
-        <?php } ?>
-        <?php if ($affiliates) { ?>
-        <div id="tab-affiliate" class="htabs-content">
-        <table class="list">
-          <thead>
-            <tr>
-              <td class="left"><?php echo $column_affiliate; ?></td>
-              <td class="left"><?php echo $column_email; ?></td>
-              <td class="left"><?php echo $column_approved; ?></td>
-              <td class="left"><?php echo $column_status; ?></td>
-              <td class="right"><?php echo $column_date_added; ?></td>
-              <td class="right"><?php echo $column_action; ?></td>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if ($affiliates) { ?>
-            <?php foreach ($affiliates as $affiliate) { ?>
-            <tr>
-              <td class="left"><?php echo $affiliate['name']; ?></td>
-              <td class="left"><?php echo $affiliate['email']; ?></td>
-              <td class="left"><?php echo $affiliate['approved']; ?></td>
-              <td class="left"><?php echo $affiliate['status']; ?></td>
-              <td class="right"><?php echo $affiliate['date_added']; ?></td>
-              <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
-                <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
-              <?php } ?></td>
-            </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
-            </tr>
-          <?php } ?>
-          </tbody>
-        </table>
-        </div>
-        <?php } ?>
-        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -263,37 +138,33 @@
 
 <script type="text/javascript"><!--
 function getSalesChart(range) {
-	$.ajax({
-		type: 'get',
-		url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range,
-		dataType: 'json',
-		async: false,
-		success: function(json) {
-			var option = {
-				shadowSize: 0,
-				lines: {
-					show: true,
-					fill: true,
-					lineWidth: 1
-				},
-				grid: {
-					backgroundColor: '#FFFFFF'
-				},
-				xaxis: {
-					ticks: json.xaxis
-				}
-			}
+  $.ajax({
+	type: 'get',
+	url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range,
+	dataType: 'json',
+	async: false,
+	success: function(json) {
+      var option = {
+        shadowSize: 0,
+        lines:{
+          show: true,
+          fill: true,
+          lineWidth: 1
+        },
+        grid:{
+          backgroundColor: '#FFFFFF'
+        },
+        xaxis:{
+          ticks: json.xaxis
+        }
+      }
 
-			$.plot($('#report'), [json.order, json.customer], option);
-		}
-	});
+      $.plot($('#report'), [json.order, json.customer], option);
+	}
+  });
 }
 
 getSalesChart($('#range').val());
-//--></script>
-
-<script type="text/javascript"><!--
-$('#latest_tabs a').tabs();
 //--></script>
 
 <?php echo $footer; ?>

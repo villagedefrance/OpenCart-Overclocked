@@ -123,7 +123,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_paypal_express_search'] = $this->language->get('text_paypal_search');
 
 		$this->data['text_filemanager'] = $this->language->get('text_filemanager');
-		$this->data['text_hosting'] = $this->language->get('text_hosting');
+		$this->data['text_server'] = $this->language->get('text_server');
 		$this->data['text_cachemanager'] = $this->language->get('text_cachemanager');
 		$this->data['text_configuration'] = $this->language->get('text_configuration');
 		$this->data['text_database'] = $this->language->get('text_database');

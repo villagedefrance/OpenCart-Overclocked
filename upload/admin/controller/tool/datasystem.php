@@ -26,12 +26,14 @@ class ControllerToolDatasystem extends Controller {
 
 		$this->data['text_on'] = $this->language->get('text_on');
 		$this->data['text_off'] = $this->language->get('text_off');
-
 		$this->data['text_system_core'] = $this->language->get('text_system_core');
 		$this->data['text_version'] = sprintf($this->language->get('text_version'), VERSION);
 		$this->data['text_system_name'] = $this->language->get('text_system_name');
 		$this->data['text_revision'] = sprintf($this->language->get('text_revision'), REVISION);
 		$this->data['text_theme'] = $this->language->get('text_theme');
+		$this->data['text_timezone'] = $this->language->get('text_timezone');
+		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
+		$this->data['text_phptime'] = $this->language->get('text_phptime');
 		$this->data['text_storeinfo'] = $this->language->get('text_storeinfo');
 		$this->data['text_serverinfo'] = $this->language->get('text_serverinfo');
 
@@ -63,6 +65,10 @@ class ControllerToolDatasystem extends Controller {
 		} else {
 			$this->data['error_warning'] = '';
 		}
+
+		$this->data['server_zone'] = ini_get('date.timezone');
+		$this->data['server_time'] = date('Y-m-d H:i:s');
+		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
 
 		$this->data['cache'] = DIR_SYSTEM . 'cache';
 		$this->data['logs'] = DIR_SYSTEM . 'logs';
