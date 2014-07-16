@@ -180,6 +180,9 @@ class ControllerCatalogReview extends Controller {
 		$this->data['insert'] = $this->url->link('catalog/review/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('catalog/review/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		// Top pagination
+		$this->data['navigation'] = $this->config->get('config_pagination');
+
 		$this->data['reviews'] = array();
 
 		$data = array(

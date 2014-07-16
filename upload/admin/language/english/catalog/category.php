@@ -8,6 +8,7 @@ $_['text_default']           		= 'Default';
 $_['text_image_manager'] 		= 'Image Manager';
 $_['text_browse']            		= 'Browse';
 $_['text_clear']             		= 'Clear';
+$_['text_autocomplete']     	= '<br /><span class="help">(Autocomplete)</span>';
 
 // Column
 $_['column_image']            	= 'Image';
@@ -20,8 +21,8 @@ $_['entry_name']             		= 'Category Name:';
 $_['entry_meta_keyword'] 	= 'Meta Tag Keywords:';
 $_['entry_meta_description'] 	= 'Meta Tag Description:';
 $_['entry_description']      	= 'Description:';
-$_['entry_parent']           		= 'Parent:<br /><span class="help">(Autocomplete)</span>';
-$_['entry_filter']           		= 'Filters:<br /><span class="help">(Autocomplete)</span>';
+$_['entry_parent']           		= 'Parent:';
+$_['entry_filter']           		= 'Filters:';
 $_['entry_store']            		= 'Stores:';
 $_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_image']            		= 'Image:';

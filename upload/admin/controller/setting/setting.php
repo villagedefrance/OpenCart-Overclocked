@@ -42,6 +42,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_stock'] = $this->language->get('text_stock');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_return'] = $this->language->get('text_return');
+		$this->data['text_administration'] = $this->language->get('text_administration');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
 		$this->data['text_clear'] = $this->language->get('text_clear');
@@ -54,6 +55,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['tab_store'] = $this->language->get('tab_store');
 		$this->data['tab_local'] = $this->language->get('tab_local');
 		$this->data['tab_option'] = $this->language->get('tab_option');
+		$this->data['tab_preference'] = $this->language->get('tab_preference');
 		$this->data['tab_image'] = $this->language->get('tab_image');
 		$this->data['tab_ftp'] = $this->language->get('tab_ftp');
 		$this->data['tab_mail'] = $this->language->get('tab_mail');
@@ -110,6 +112,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
+		$this->data['entry_pagination'] = $this->language->get('entry_pagination');
+		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
+		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -705,6 +710,36 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_return_status_id'] = $this->request->post['config_return_status_id'];
 		} else {
 			$this->data['config_return_status_id'] = $this->config->get('config_return_status_id');
+		}
+
+		if (isset($this->request->post['config_pagination'])) {
+			$this->data['config_pagination'] = $this->request->post['config_pagination'];
+		} else {
+			$this->data['config_pagination'] = $this->config->get('config_pagination');
+		}
+
+		if (isset($this->request->post['config_autocomplete_category'])) {
+			$this->data['config_autocomplete_category'] = $this->request->post['config_autocomplete_category'];
+		} else {
+			$this->data['config_autocomplete_category'] = $this->config->get('config_autocomplete_category');
+		}
+
+		if (isset($this->request->post['config_autocomplete_product'])) {
+			$this->data['config_autocomplete_product'] = $this->request->post['config_autocomplete_product'];
+		} else {
+			$this->data['config_autocomplete_product'] = $this->config->get('config_autocomplete_product');
+		}
+
+		if (isset($this->request->post['config_manufacturer'])) {
+			$this->data['config_manufacturer'] = $this->request->post['config_manufacturer'];
+		} else {
+			$this->data['config_manufacturer'] = $this->config->get('config_manufacturer');
+		}
+
+		if (isset($this->request->post['config_backtotop'])) {
+			$this->data['config_backtotop'] = $this->request->post['config_backtotop'];
+		} else {
+			$this->data['config_backtotop'] = $this->config->get('config_backtotop');
 		}
 
 		$this->load->model('localisation/return_status');

@@ -26,6 +26,7 @@
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-local"><?php echo $tab_local; ?></a>
         <a href="#tab-option"><?php echo $tab_option; ?></a>
+		<a href="#tab-preference"><?php echo $tab_preference; ?></a>
         <a href="#tab-image"><?php echo $tab_image; ?></a>
         <a href="#tab-ftp"><?php echo $tab_ftp; ?></a>
         <a href="#tab-mail"><?php echo $tab_mail; ?></a>
@@ -627,6 +628,53 @@
                 <?php } ?>
               <?php } ?>
             </select></td>
+          </tr>
+        </table>
+      </div>
+	  <div id="tab-preference">
+		<h2><?php echo $text_administration; ?></h2>
+        <table class="form">
+          <tr>
+		    <td><?php echo $entry_pagination; ?></td>
+            <td><?php if ($config_pagination) { ?>
+              <input type="radio" name="config_pagination" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_pagination" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_autocomplete_category; ?></td>
+            <td><?php if ($config_autocomplete_category) { ?>
+              <input type="radio" name="config_autocomplete_category" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_category" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_autocomplete_category" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_category" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_autocomplete_product; ?></td>
+            <td><?php if ($config_autocomplete_product) { ?>
+              <input type="radio" name="config_autocomplete_product" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_product" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_autocomplete_product" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_product" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
           </tr>
         </table>
       </div>

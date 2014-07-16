@@ -155,6 +155,9 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['delete'] = $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['repair'] = $this->url->link('catalog/category/repair', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		// Top pagination
+		$this->data['navigation'] = $this->config->get('config_pagination');
+
 		$this->load->model('tool/image');
 
 		$this->data['categories'] = array();
@@ -253,6 +256,7 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_percent'] = $this->language->get('text_percent');
 		$this->data['text_amount'] = $this->language->get('text_amount');
+		$this->data['text_autocomplete'] = $this->language->get('text_autocomplete');
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_data'] = $this->language->get('tab_data');
@@ -311,6 +315,9 @@ class ControllerCatalogCategory extends Controller {
 
 		$this->data['cancel'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
 
+		// Auto-complete
+		$this->data['autocomplete_off'] = $this->config->get('config_autocomplete_category');
+
 		if (isset($this->request->get['category_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$category_info = $this->model_catalog_category->getCategory($this->request->get['category_id']);
 		}
@@ -337,6 +344,19 @@ class ControllerCatalogCategory extends Controller {
 			$this->data['path'] = '';
 		}
 
+		$categories = $this->model_catalog_category->getCategories(0);
+
+		// Remove own id from list
+		if (!empty($category_info)) {
+			foreach ($categories as $key => $category) {
+				if ($category['category_id'] == $category_info['category_id']) {
+					unset($categories[$key]);
+				}
+			}
+		}
+
+		$this->data['categories'] = $categories;
+
 		if (isset($this->request->post['parent_id'])) {
 			$this->data['parent_id'] = $this->request->post['parent_id'];
 		} elseif (!empty($category_info)) {
@@ -345,7 +365,10 @@ class ControllerCatalogCategory extends Controller {
 			$this->data['parent_id'] = 0;
 		}
 
+		// Filter
 		$this->load->model('catalog/filter');
+
+		$this->data['filters'] = $this->model_catalog_filter->getAllFilters();
 
 		if (isset($this->request->post['category_filter'])) {
 			$filters = $this->request->post['category_filter'];
@@ -368,6 +391,7 @@ class ControllerCatalogCategory extends Controller {
 			}
 		}
 
+		// Store
 		$this->load->model('setting/store');
 
 		$this->data['stores'] = $this->model_setting_store->getStores();
@@ -505,6 +529,32 @@ class ControllerCatalogCategory extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	// Filter - Autocomplete Off
+	public function filter() {
+		$json = array();
+
+		$this->load->model('catalog/category');
+
+		if (isset($this->request->post['category_filter'])) {
+			$categories = $this->request->post['category_filter'];
+		} else {
+			$categories = array();
+		}
+
+		foreach ($categories as $category_id) {
+			$category_info = $this->model_catalog_product->getProduct($product_id);
+
+			if ($category_info) {
+				$json[] = array(
+					'category_id'	=> $category_info['category_id'],
+					'name'       		=> $category_info['name']
+				);
+			}
+		}
+
+		$this->response->setOutput(json_encode($json));
 	}
 
 	public function autocomplete() {

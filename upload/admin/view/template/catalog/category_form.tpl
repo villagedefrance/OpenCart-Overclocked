@@ -58,27 +58,68 @@
   </div>
   <div id="tab-data">
     <table class="form">
+    <?php if ($autocomplete_off) { ?>
       <tr>
         <td><?php echo $entry_parent; ?></td>
+        <td><select name="parent_id">
+          <option value="0"><?php echo $text_none; ?></option>
+          <?php foreach ($categories as $category) { ?>
+            <?php if ($category['category_id'] == $parent_id) { ?>
+              <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+            <?php } ?>
+          <?php } ?>
+        </select></td>
+      </tr>
+    <?php } else { ?>
+      <tr>
+        <td><?php echo $entry_parent; ?><?php echo $text_autocomplete; ?></td>
         <td><input type="text" name="path" value="<?php echo $path; ?>" size="40" />
         <input type="hidden" name="parent_id" value="<?php echo $parent_id; ?>" /></td>
       </tr>
+    <?php } ?>
+    <?php if ($autocomplete_off) { ?>
       <tr>
         <td><?php echo $entry_filter; ?></td>
+        <td><div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
+          <?php $class = 'odd'; ?>
+          <?php foreach ($filters as $filter) { ?>
+            <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+            <div class="<?php echo $class; ?>">
+            <?php $category_filter_id = array(); ?>
+            <?php foreach ($category_filters as $category_filter) { $category_filter_id[] = $category_filter['filter_id']; } ?>
+            <?php if (in_array($filter['filter_id'], $category_filter_id)) { ?>
+              <input type="checkbox" name="category_filter[]" value="<?php echo $filter['filter_id']; ?>" checked="checked" />
+              <?php echo $filter['name']; ?>
+            <?php } else { ?>
+              <input type="checkbox" name="category_filter[]" value="<?php echo $filter['filter_id']; ?>" />
+              <?php echo $filter['name']; ?>
+            <?php } ?>
+            </div>
+          <?php } ?>
+        </div>
+        <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+		</td>
+      </tr>
+    <?php } else { ?>
+      <tr>
+        <td><?php echo $entry_filter; ?><?php echo $text_autocomplete; ?></td>
         <td><input type="text" name="filter" value="" size="40" /></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td><div id="category-filter" class="scrollbox">
-        <?php $class = 'odd'; ?>
-        <?php foreach ($category_filters as $category_filter) { ?>
-          <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
-          <div id="category-filter<?php echo $category_filter['filter_id']; ?>" class="<?php echo $class; ?>"><?php echo $category_filter['name']; ?><img src="view/image/delete.png" alt="" />
-            <input type="hidden" name="category_filter[]" value="<?php echo $category_filter['filter_id']; ?>" />
-          </div>
-        <?php } ?>
+          <?php $class = 'odd'; ?>
+          <?php foreach ($category_filters as $category_filter) { ?>
+            <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+            <div id="category-filter<?php echo $category_filter['filter_id']; ?>" class="<?php echo $class; ?>"><?php echo $category_filter['name']; ?><img src="view/image/delete.png" alt="" />
+              <input type="hidden" name="category_filter[]" value="<?php echo $category_filter['filter_id']; ?>" />
+	        </div>
+          <?php } ?>
         </div></td>
       </tr>
+    <?php } ?>
       <tr>
         <td><?php echo $entry_store; ?></td>
         <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px;">

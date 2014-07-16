@@ -180,6 +180,9 @@ class ControllerCatalogDownload extends Controller {
 		$this->data['insert'] = $this->url->link('catalog/download/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('catalog/download/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		// Top pagination
+		$this->data['navigation'] = $this->config->get('config_pagination');
+
 		$this->data['downloads'] = array();
 
 		$data = array(

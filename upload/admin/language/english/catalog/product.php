@@ -14,6 +14,7 @@ $_['text_option']            		= 'Option';
 $_['text_option_value']      	= 'Option Value';
 $_['text_percent']           		= 'Percentage';
 $_['text_amount']            	= 'Fixed Amount';
+$_['text_autocomplete']     	= '<br /><span class="help">(Autocomplete)</span>';
 
 // Column
 $_['column_name']          		= 'Product Name';
@@ -40,7 +41,7 @@ $_['entry_isbn']             		= 'ISBN:<br/><span class="help">International Sta
 $_['entry_mpn']              		= 'MPN:<br/><span class="help">Manufacturer Part Number</span>';
 $_['entry_location']         		= 'Location:';
 $_['entry_shipping']         		= 'Requires Shipping:';
-$_['entry_manufacturer']     	= 'Manufacturer:<br /><span class="help">(Autocomplete)</span>';
+$_['entry_manufacturer']     	= 'Manufacturer:';
 $_['entry_date_available']   	= 'Date Available:';
 $_['entry_quantity']         		= 'Quantity:';
 $_['entry_minimum']          	= 'Minimum Quantity:<br/><span class="help">Force a minimum ordered amount</span>';
@@ -67,10 +68,10 @@ $_['entry_option_value']    	= 'Option Value:';
 $_['entry_required']         		= 'Required:';
 $_['entry_status']           		= 'Status:';
 $_['entry_sort_order']       	= 'Sort Order:';
-$_['entry_category']         	= 'Categories:<br /><span class="help">(Autocomplete)</span>';
-$_['entry_filter']           		= 'Filters:<br /><span class="help">(Autocomplete)</span>';
-$_['entry_download']         	= 'Downloads:<br /><span class="help">(Autocomplete)</span>';
-$_['entry_related']          		= 'Related Products:<br /><span class="help">(Autocomplete)</span>';
+$_['entry_category']         	= 'Categories:';
+$_['entry_filter']           		= 'Filters:';
+$_['entry_download']         	= 'Downloads:';
+$_['entry_related']          		= 'Related Products:';
 $_['entry_tag']          	 		= 'Product Tags:<br /><span class="help">comma separated</span>';
 $_['entry_reward']           		= 'Reward Points:';
 $_['entry_layout']           		= 'Layout Override:';

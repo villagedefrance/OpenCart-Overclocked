@@ -21,6 +21,9 @@
       </div>
     </div>
     <div class="content">
+	<?php if ($navigation) { ?>
+      <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
+    <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="list">
         <thead>

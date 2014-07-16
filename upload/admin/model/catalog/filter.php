@@ -149,6 +149,26 @@ class ModelCatalogFilter extends Model {
 		return $query->rows;
 	}
 
+	public function getAllFilters() {
+		$filter_all_data = array();
+
+		$filter_group_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "filter_group` fg LEFT JOIN " . DB_PREFIX . "filter_group_description fgd ON (fg.filter_group_id = fgd.filter_group_id) WHERE fgd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		foreach ($filter_group_query->rows as $filter_group) {
+			$filter_value_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter f LEFT JOIN " . DB_PREFIX . "filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.filter_group_id = '" . $filter_group['filter_group_id'] . "' AND fd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY f.filter_group_id, f.sort_order ASC");
+
+			foreach ($filter_value_query->rows as $filter_value) {
+				$filter_all_data[] = array(
+					'filter_group_id'	=> $filter_group['filter_group_id'],
+					'filter_id'        		=> $filter_value['filter_id'],
+					'name' 				=> $filter_group['name'] . ' &gt; ' . $filter_value['name']
+				);
+			}
+		}
+
+		return $filter_all_data;
+	}
+
 	public function getFilterDescriptions($filter_group_id) {
 		$filter_data = array();
 

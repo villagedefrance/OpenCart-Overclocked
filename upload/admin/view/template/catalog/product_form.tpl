@@ -239,12 +239,52 @@
       </div>
       <div id="tab-links">
         <table class="form">
+        <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_manufacturer; ?></td>
+            <td><select name="manufacturer_id">
+              <option value="0" selected="selected"><?php echo $text_none; ?></option>
+              <?php foreach ($manufacturers as $manufacturer) { ?>
+                <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
+                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>"><?php echo $manufacturer['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
             <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
           </tr>
+        <?php } ?>
+        <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_category; ?></td>
+            <td><div class="scrollbox" style="width:500px; height:300px; margin-bottom:5px;">
+              <?php $class = 'odd'; ?>
+              <?php foreach ($categories as $category) { ?>
+                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <div class="<?php echo $class; ?>">
+                <?php $product_category_id = array(); ?>
+                <?php foreach ($product_categories as $product_category) { $product_category_id[] = $product_category['category_id']; } ?>
+                <?php if (in_array($category['category_id'], $product_category_id)) { ?>
+                  <input type="checkbox" name="product_category[]" value="<?php echo $category['category_id']; ?>" checked="checked" />
+                  <?php echo $category['name']; ?>
+                <?php } else { ?>
+                  <input type="checkbox" name="product_category[]" value="<?php echo $category['category_id']; ?>" />
+                  <?php echo $category['name']; ?>
+                <?php } ?>
+                </div>
+              <?php } ?>
+            </div>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+			</td>
+          </tr>
+		<?php } else { ?>
+          <tr>
+            <td><?php echo $entry_category; ?><?php echo $text_autocomplete; ?></td>
             <td><input type="text" name="category" value="" /></td>
           </tr>
           <tr>
@@ -258,9 +298,34 @@
                 </div>
               <?php } ?>
             </div></td>
-          </tr> 
+          </tr>
+        <?php } ?>
+        <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_filter; ?></td>
+            <td><div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
+              <?php $class = 'odd'; ?>
+              <?php foreach ($filters as $filter) { ?>
+                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <div class="<?php echo $class; ?>">
+                  <?php $product_filter_id = array(); ?>
+                  <?php foreach ($product_filters as $product_filter) { $product_filter_id[] = $product_filter['filter_id']; } ?>
+                  <?php if (in_array($filter['filter_id'], $product_filter_id)) { ?>
+                    <input type="checkbox" name="product_filter[]" value="<?php echo $filter['filter_id']; ?>" checked="checked" />
+                    <?php echo $filter['name']; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="product_filter[]" value="<?php echo $filter['filter_id']; ?>" />
+                    <?php echo $filter['name']; ?>
+                  <?php } ?>
+                </div>
+              <?php } ?>
+            </div>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+			</td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td><?php echo $entry_filter; ?><?php echo $text_autocomplete; ?></td>
             <td><input type="text" name="filter" value="" /></td>
           </tr>
           <tr>
@@ -275,8 +340,33 @@
               <?php } ?>
             </div></td>
           </tr>
+        <?php } ?>
+        <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_download; ?></td>
+            <td><div class="scrollbox" style="width:350px; height:100px; margin-bottom:5px;">
+              <?php $class = 'odd'; ?>
+              <?php foreach ($downloads as $download) { ?>
+                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <div class="<?php echo $class; ?>">
+                  <?php $product_download_id = array(); ?>
+                  <?php foreach ($product_downloads as $product_download) { $product_download_id[] = $product_download['download_id']; } ?>
+                  <?php if (in_array($download['download_id'], $product_download_id)) { ?>
+                    <input type="checkbox" name="product_download[]" value="<?php echo $download['download_id']; ?>" checked="checked" />
+                    <?php echo $download['name']; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="product_download[]" value="<?php echo $download['download_id']; ?>" />
+                    <?php echo $download['name']; ?>
+                  <?php } ?>
+                </div>
+              <?php } ?>
+            </div>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+			</td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td><?php echo $entry_download; ?><?php echo $text_autocomplete; ?></td>
             <td><input type="text" name="download" value="" /></td>
           </tr>
           <tr>
@@ -291,8 +381,42 @@
               <?php } ?>
             </div></td>
           </tr>
+        <?php } ?>
+        <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_related; ?></td>
+            <td><table>
+              <tr>
+                <td colspan="3" style="padding:0;"><select id="category" style="margin-bottom:5px;" onchange="getProducts();">
+                <?php foreach ($categories as $category) { ?>
+                  <?php if (in_array($category['category_id'], $product_category)) { ?>
+                    <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+                </select></td>
+              </tr>
+              <tr>
+                <td style="padding:0;"><select multiple="multiple" id="product" size="10" style="width:350px; height:153px; background:#F8F8F8; border:1px solid #CCC;"></select></td>
+                <td style="vertical-align:middle;">
+                  <input type="button" class="button-form" value="&gt;&gt;" onclick="addRelated();" />
+                  <br /><br />
+                  <input type="button" class="button-form" value="&lt;&lt;" onclick="removeRelated();" />
+                </td>
+                <td style="padding:0;"><select multiple="multiple" id="related" size="10" style="width:350px; height:153px; border:1px solid #CCC;"></select></td>
+              </tr>
+            </table>
+            <div id="product_related">
+              <?php foreach ($product_related as $product_related) { ?>
+                <input type="hidden" name="product_related[]" value="<?php echo $product_related['product_id']; ?>" />
+              <?php } ?>
+            </div>
+            </td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td><?php echo $entry_related; ?><?php echo $text_autocomplete; ?></td>
             <td><input type="text" name="related" value="" /></td>
           </tr>
           <tr>
@@ -307,6 +431,7 @@
               <?php } ?>
             </div></td>
           </tr>
+        <?php } ?>
           <tr>
             <td><?php echo $entry_store; ?></td>
             <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px;">
@@ -1006,6 +1131,77 @@ $('#product-related div img').live('click', function() {
 	$('#product-related div:even').attr('class', 'even');
 });
 //--></script>
+
+<?php if ($autocomplete_off) { ?>
+<script type="text/javascript"><!--
+function addRelated() {
+	$('#product :selected').each(function() {
+		$(this).remove();
+
+		$('#related option[value=\'' + $(this).attr('value') + '\']').remove();
+		$('#related').append('<option value="' + $(this).attr('value') + '">' + $(this).text() + '</option>');
+
+		$('#product_related input[value=\'' + $(this).attr('value') + '\']').remove();
+		$('#product_related').append('<input type="hidden" name="product_related[]" value="' + $(this).attr('value') + '" />');
+	});
+}
+
+function removeRelated() {
+	$('#related :selected').each(function() {
+		$(this).remove();
+
+		$('#product_related input[value=\'' + $(this).attr('value') + '\']').remove();
+	});
+}
+
+function getProducts() {
+	$('#product option').remove();
+
+	<?php if (isset($this->request->get['product_id'])) { ?>
+		var product_id = '<?php echo $this->request->get['product_id']; ?>';
+	<?php } else { ?>
+		var product_id = 0;
+	<?php } ?>
+
+	$.ajax({
+		url: 'index.php?route=catalog/product/category&token=<?php echo $token; ?>&category_id=' + $('#category').attr('value'),
+		dataType: 'json',
+		success: function(data) {
+			for (i = 0; i < data.length; i++) {
+				if (data[i]['product_id'] == product_id) {
+					continue;
+				}
+
+				$('#product').append('<option value="' + data[i]['product_id'] + '">' + data[i]['name'] + ' (' + data[i]['model'] + ') </option>');
+			}
+		}
+	});
+}
+
+function getRelated() {
+	$('#related option').remove();
+
+	$.ajax({
+		url: 'index.php?route=catalog/product/related&token=<?php echo $token; ?>',
+		type: 'POST',
+		dataType: 'json',
+		data: $('#product_related input'),
+		success: function(data) {
+			$('#product_related input').remove();
+
+			for (i = 0; i < data.length; i++) {
+				$('#related').append('<option value="' + data[i]['product_id'] + '">' + data[i]['name'] + ' (' + data[i]['model'] + ') </option>');
+
+				$('#product_related').append('<input type="hidden" name="product_related[]" value="' + data[i]['product_id'] + '" />');
+			}
+		}
+	});
+}
+
+getProducts();
+getRelated();
+//--></script> 
+<?php } ?>
 
 <script type="text/javascript"><!--
 var attribute_row = <?php echo $attribute_row; ?>;
