@@ -93,6 +93,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
 		$this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
+		$this->data['entry_customer_redirect'] = $this->language->get('entry_customer_redirect');
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
@@ -584,6 +585,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_customer_price'] = $this->request->post['config_customer_price'];
 		} else {
 			$this->data['config_customer_price'] = $this->config->get('config_customer_price');
+		}
+
+		if (isset($this->request->post['config_customer_redirect'])) {
+			$this->data['config_customer_redirect'] = $this->request->post['config_customer_redirect'];
+		} else {
+			$this->data['config_customer_redirect'] = $this->config->get('config_customer_redirect');
 		}
 
 		if (isset($this->request->post['config_account_id'])) {
