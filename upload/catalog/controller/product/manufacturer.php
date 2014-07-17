@@ -19,7 +19,7 @@ class ControllerProductManufacturer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_home'),
+			'text'  	=> $this->language->get('text_home'),
 			'href'   	=> $this->url->link('common/home'),
 			'separator' => false
 		);
@@ -421,7 +421,7 @@ class ControllerProductManufacturer extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 404 Not Found');
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
