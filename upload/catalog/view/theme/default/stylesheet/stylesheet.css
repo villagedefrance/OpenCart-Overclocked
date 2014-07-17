@@ -1,7 +1,3 @@
-/*------------------------
-// Overclocked Edition		
-//------------------------
-*/
 html {
 	overflow-y: scroll;
 	margin: 0;
@@ -494,6 +490,18 @@ samp, small {
 	font-weight: normal;
 	font-family: Verdana, Geneva, sans-serif;
 	display: block;
+}
+.image-links {
+	display: inline-block;
+	height: 64px;
+	width: 100%;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.image-links a {
+	width: 64px;
+	margin-right: 10px;
 }
 /* table */
 table.form {
