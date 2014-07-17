@@ -525,15 +525,20 @@ class ControllerCatalogDownload extends Controller {
 					$allowed[] = trim($filetype);
 				}
 
-				// Accept ALL files
 				if (!in_array($this->request->files['file']['type'], $allowed)) {
+					$json['error'] = $this->language->get('error_filetype');
+				}
+
+				// Check to see if any PHP files are trying to be uploaded
+				$content = file_get_contents($this->request->files['file']['tmp_name']);
+
+				if (preg_match('/\<\?php/i', $content)) {
 					$json['error'] = $this->language->get('error_filetype');
 				}
 
 				if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
 					$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
 				}
-
 			} else {
 				$json['error'] = $this->language->get('error_upload');
 			}
