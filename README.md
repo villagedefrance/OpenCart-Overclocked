@@ -21,7 +21,7 @@ Additions:
 - Added jQuery UI 1.10.4 for both Admin and Catalog, replacing jQuery UI 1.8.16.
 - Added jQuery UI theme "start" for both Admin and Catalog, replacing theme "ui-lightness".
 - Added Product RSS Feed: improves SEO by generating a latest product feed.
-- Added SQL table "product_tag" to record product tags.
+- Added extra SQL table "product_tag" to record product tags.
 - Added new Date Format in language files: "date_format_time".
 - Added standard "robots.txt".
 - ...
@@ -34,6 +34,7 @@ Modifications Admin:
 - Added Enable/Disable Countries Mod.
 - Added Full Page Image Manager, with remember last position and multi-uploads.
 - Added NEW "opencart" custom theme to "jstree.js", for both Image Managers.
+- Added Preference Tab in Setting, for extra options.
 - Added Configuration Page: displays the hosting server settings.
 - Added Database Page: optimize, repair tables and convert storage engine.
 - Added Cache Manager Page.
@@ -45,10 +46,7 @@ Modifications Admin:
 - Replaced table list links with buttons.
 - Image upload limit changed from 300kb to 4mb.
 - Updated jQuery Flot from 0.7 to 0.8.2, minified.
-- Php files uploads re-instated in Downloads.
-- Removed jQuery folder Superfish (superfish.js) and files.
-- Removed redundant jQuery folder Menu (menu.js) and files.
-- Removed redundant "measurement_class_form.tpl" and "measurement_class_list.tpl".
+- Auto-complete optional for Product and Category Forms.
 - Changed Dashboard layout for "Overview" and "Statistics" to 40/60 instead of 50/50.
 - ...
 
@@ -56,7 +54,8 @@ Modifications Catalog:
 - Added new styles for Information list modules, and account pages.
 - Added magnific.js as a picture viewer for products, replacing colorbox.js.
 - Added a $template variable in all controllers to make templating easier.
-- Removed redundant jQuery folder Superfish (superfish.js) and files.
+- Added rich snippets breadcrumbs for Product and Category pages.
+- Added Manufacturer logos for manufacturers list page (optional).
 - Meta names added to header.tpl.
 - Replaced Grid/List links with buttons.
 - Modified search box on search page.
@@ -80,7 +79,10 @@ Bug Fixes:
 - ...
 
 TODO:
-I am currently modifying all files again, to be strictly in accordance with the Opencart Coding Rules.
+
+- Go through all files again to follow OpenCart Coding Standards.
+- Finish upper/lower pagination modification for Admin Lists.
+- Add some extra features ...
 
 
 -------------------------------------------
