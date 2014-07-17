@@ -134,7 +134,9 @@ $(document).ready(function() {
       <li id="sale"><a class="top"><?php echo $text_sale; ?></a>
         <ul>
           <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
+		  <?php if ($profile_exist) { ?>
           <li><a href="<?php echo $recurring_profile; ?>"><?php echo $text_recurring_profile; ?></a></li>
+		  <?php } ?>
           <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
           <li><a class="arrow"><?php echo $text_customer; ?></a>
             <ul>

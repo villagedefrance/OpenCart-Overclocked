@@ -236,6 +236,17 @@ class ControllerCommonHeader extends Controller {
 			$this->data['configuration'] = $this->url->link('tool/datasystem', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['database'] = $this->url->link('tool/database', 'token=' . $this->session->data['token'], 'SSL');
 
+			// Profiles
+			$this->load->model('catalog/profile');
+
+			$profile_total = $this->model_catalog_profile->getTotalProfiles();
+
+			if ($profile_total > 0) {
+				$this->data['profile_exist'] = true;
+			} else {
+				$this->data['profile_exist'] = false;
+			}
+
 			// Store
 			$this->data['stores'] = array();
 

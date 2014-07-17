@@ -21,10 +21,10 @@
     </div>
   </div>
   <div class="content">
-  <?php if ($navigation) { ?>
-    <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
-  <?php } ?>
-  <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+    <?php if ($navigation_hi) { ?>
+      <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
+    <?php } ?>
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
     <table class="list">
       <thead>
       <tr>
@@ -59,8 +59,10 @@
       <?php } ?>
       </tbody>
     </table>
-  </form>
-  <div class="pagination"><?php echo $pagination; ?></div>
+    </form>
+    <?php if ($navigation_lo) { ?>
+      <div class="pagination"><?php echo $pagination; ?></div>
+	<?php } ?>
   </div>
   </div>
 </div>

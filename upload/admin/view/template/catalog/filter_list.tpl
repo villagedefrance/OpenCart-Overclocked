@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation) { ?>
+	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -65,7 +65,9 @@
         </tbody>
       </table>
     </form>
-    <div class="pagination"><?php echo $pagination; ?></div>
+    <?php if ($navigation_lo) { ?>
+      <div class="pagination"><?php echo $pagination; ?></div>
+	<?php } ?>
     </div>
   </div>
 </div>

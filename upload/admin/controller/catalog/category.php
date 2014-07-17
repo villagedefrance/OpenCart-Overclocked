@@ -155,8 +155,9 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['delete'] = $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['repair'] = $this->url->link('catalog/category/repair', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		// Top pagination
-		$this->data['navigation'] = $this->config->get('config_pagination');
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
 		$this->load->model('tool/image');
 

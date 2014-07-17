@@ -349,8 +349,9 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['copy'] = $this->url->link('catalog/product/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		// Top pagination
-		$this->data['navigation'] = $this->config->get('config_pagination');
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
 		$this->data['products'] = array();
 

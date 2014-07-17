@@ -635,16 +635,30 @@
 		<h2><?php echo $text_administration; ?></h2>
         <table class="form">
           <tr>
-		    <td><?php echo $entry_pagination; ?></td>
-            <td><?php if ($config_pagination) { ?>
-              <input type="radio" name="config_pagination" value="1" checked="checked" />
+		    <td><?php echo $entry_pagination_hi; ?></td>
+            <td><?php if ($config_pagination_hi) { ?>
+              <input type="radio" name="config_pagination_hi" value="1" checked="checked" />
               <?php echo $text_yes; ?>
-              <input type="radio" name="config_pagination" value="0" />
+              <input type="radio" name="config_pagination_hi" value="0" />
               <?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_pagination" value="1" />
+              <input type="radio" name="config_pagination_hi" value="1" />
               <?php echo $text_yes; ?>
-              <input type="radio" name="config_pagination" value="0" checked="checked" />
+              <input type="radio" name="config_pagination_hi" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+		  <tr>
+		    <td><?php echo $entry_pagination_lo; ?></td>
+            <td><?php if ($config_pagination_lo) { ?>
+              <input type="radio" name="config_pagination_lo" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination_lo" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_pagination_lo" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination_lo" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
@@ -673,6 +687,23 @@
               <input type="radio" name="config_autocomplete_product" value="1" />
               <?php echo $text_yes; ?>
               <input type="radio" name="config_autocomplete_product" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_store_front; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_manufacturer; ?></td>
+            <td><?php if ($config_manufacturer) { ?>
+              <input type="radio" name="config_manufacturer" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_manufacturer" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_manufacturer" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_manufacturer" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
@@ -737,6 +768,15 @@
             <input type="text" name="config_image_additional_height" value="<?php echo $config_image_additional_height; ?>" size="3" />
             <?php if ($error_image_additional) { ?>
               <span class="error"><?php echo $error_image_additional; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_image_brand; ?></td>
+            <td><input type="text" name="config_image_brand_width" value="<?php echo $config_image_brand_width; ?>" size="3" />
+              x
+            <input type="text" name="config_image_brand_height" value="<?php echo $config_image_brand_height; ?>" size="3" />
+            <?php if ($error_image_brand) { ?>
+              <span class="error"><?php echo $error_image_brand; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
