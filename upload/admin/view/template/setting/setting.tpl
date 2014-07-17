@@ -646,7 +646,11 @@
               <?php echo $text_yes; ?>
               <input type="radio" name="config_pagination_hi" value="0" checked="checked" />
               <?php echo $text_no; ?>
-            <?php } ?></td>
+            <?php } ?>
+			<?php if ($error_preference_pagination) { ?>
+              <span class="error"><?php echo $error_preference_pagination; ?></span>
+            <?php } ?>
+			</td>
           </tr>
 		  <tr>
 		    <td><?php echo $entry_pagination_lo; ?></td>
@@ -660,7 +664,11 @@
               <?php echo $text_yes; ?>
               <input type="radio" name="config_pagination_lo" value="0" checked="checked" />
               <?php echo $text_no; ?>
-            <?php } ?></td>
+            <?php } ?>
+			<?php if ($error_preference_pagination) { ?>
+              <span class="error"><?php echo $error_preference_pagination; ?></span>
+            <?php } ?>
+			</td>
           </tr>
           <tr>
             <td><?php echo $entry_autocomplete_category; ?></td>

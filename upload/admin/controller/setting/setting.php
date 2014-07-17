@@ -254,6 +254,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_ftp_password'] = '';
 		}
 
+		if (isset($this->error['preference_pagination'])) {
+			$this->data['error_preference_pagination'] = $this->error['preference_pagination'];
+		} else {
+			$this->data['error_preference_pagination'] = '';
+		}
+
 		if (isset($this->error['image_category'])) {
 			$this->data['error_image_category'] = $this->error['image_category'];
 		} else {
@@ -1170,6 +1176,10 @@ class ControllerSettingSetting extends Controller {
 
 		if (!$this->request->post['config_voucher_max']) {
 			$this->error['voucher_max'] = $this->language->get('error_voucher_max');
+		}
+
+		if (!$this->request->post['config_pagination_hi'] && !$this->request->post['config_pagination_lo']) {
+			$this->error['preference_pagination'] = $this->language->get('error_preference_pagination');
 		}
 
 		if (!$this->request->post['config_image_category_width'] || !$this->request->post['config_image_category_height']) {
