@@ -14,10 +14,10 @@
   <div class="content">
     <div class="box-information">
       <ul>
-        <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
-        <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
-        <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
-        <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
+        <li><a href="<?php echo $edit; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/account.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_edit; ?></span></a></li>
+        <li><a href="<?php echo $password; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/password.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_password; ?></span></a></li>
+        <li><a href="<?php echo $address; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/address.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_address; ?></span></a></li>
+        <li><a href="<?php echo $wishlist; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/wishlist.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_wishlist; ?></span></a></li>
       </ul>
     </div>
   </div>
@@ -25,15 +25,15 @@
   <div class="content">
     <div class="box-information">
       <ul>
-        <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-        <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
+        <li><a href="<?php echo $order; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/order.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_order; ?></span></a></li>
+        <li><a href="<?php echo $download; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/download.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_download; ?></span></a></li>
         <?php if ($reward) { ?>
-          <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
+          <li><a href="<?php echo $reward; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/reward.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_reward; ?></span></a></li>
         <?php } ?>
-        <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-        <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
-        <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-        <li><a href="<?php echo $recurring; ?>"><?php echo $text_recurring; ?></a></li>
+        <li><a href="<?php echo $return; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/return.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_return; ?></span></a></li>
+        <li><a href="<?php echo $addreturn; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/addreturn.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_addreturn; ?></span></a></li>
+        <li><a href="<?php echo $transaction; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/transaction.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_transaction; ?></span></a></li>
+        <li><a href="<?php echo $recurring; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/recurring.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_recurring; ?></span></a></li>
       </ul>
     </div>
   </div>
@@ -41,7 +41,7 @@
   <div class="content">
     <div class="box-information">
       <ul>
-        <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
+        <li><a href="<?php echo $newsletter; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/newsletter.png" alt="" /><span style="padding-left:20px; font-size:15px;"><?php echo $text_newsletter; ?></span></a></li>
       </ul>
     </div>
   </div>
