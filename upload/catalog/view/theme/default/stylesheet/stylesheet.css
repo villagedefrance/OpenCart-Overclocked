@@ -807,7 +807,7 @@ ul.box-category > li ul > li > a.active {
 }
 .box-information > ul > li {}
 .box-information > ul > li:hover {}
-.box-information> ul > li + li {
+.box-information > ul > li + li {
 	border-top: 1px solid #EEE;
 }
 .box-information > ul > li > a {
@@ -819,7 +819,31 @@ ul.box-category > li ul > li > a.active {
 }
 .box-information > ul > li > a:hover {
 	color: #555;
+}
+/* box account */
+.box-account ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.box-account > ul > li {}
+.box-account > ul > li:hover {}
+.box-account > ul > li + li {
+	border-top: 1px solid #EEE;
+}
+.box-account > ul > li > a {
+	text-decoration: none;
 	background: none;
+	display: block;
+	padding: 8px;
+	font-size: 15px;
+	color: #22C0F0;
+}
+.box-account > ul > li > a:hover {
+	color: #555;
+}
+.box-account > ul > li > a img {
+	margin-right: 20px;
 }
 /* box filter */
 ul.box-filter, ul.box-filter ul {
