@@ -119,35 +119,6 @@ class ControllerSaleRecurring extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
-
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_filter'] = $this->language->get('text_filter');
-
-		$this->data['entry_order_id'] = $this->language->get('entry_order_id');
-		$this->data['entry_order_recurring'] = $this->language->get('entry_order_recurring');
-		$this->data['entry_payment_reference'] = $this->language->get('entry_payment_reference');
-		$this->data['entry_customer'] = $this->language->get('entry_customer');
-		$this->data['entry_date_created'] = $this->language->get('entry_date_created');
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_action'] = $this->language->get('entry_action');
-
-		$this->data['token'] = $this->session->data['token'];
-
-		if (isset($this->error['warning'])) {
-			$this->data['error_warning'] = $this->error['warning'];
-		} else {
-			$this->data['error_warning'] = '';
-		}
-
-		if (isset($this->session->data['success'])) {
-			$this->data['success'] = $this->session->data['success'];
-
-			unset($this->session->data['success']);
-		} else {
-			$this->data['success'] = '';
-		}
-
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
@@ -204,6 +175,35 @@ class ControllerSaleRecurring extends Controller {
 			'5' => $this->language->get('text_status_expired'),
 			'6' => $this->language->get('text_status_pending')
 		);
+
+		$this->data['heading_title'] = $this->language->get('heading_title');
+
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_filter'] = $this->language->get('text_filter');
+
+		$this->data['entry_order_id'] = $this->language->get('entry_order_id');
+		$this->data['entry_order_recurring'] = $this->language->get('entry_order_recurring');
+		$this->data['entry_payment_reference'] = $this->language->get('entry_payment_reference');
+		$this->data['entry_customer'] = $this->language->get('entry_customer');
+		$this->data['entry_date_created'] = $this->language->get('entry_date_created');
+		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_action'] = $this->language->get('entry_action');
+
+		$this->data['token'] = $this->session->data['token'];
+
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
 
 		$url = '';
 

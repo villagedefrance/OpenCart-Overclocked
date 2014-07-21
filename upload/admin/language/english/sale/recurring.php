@@ -1,20 +1,20 @@
 <?php
-$_['heading_title'] 				= 'Payment Profiles';
+$_['heading_title'] 					= 'Payment Profiles';
 
-$_['text_success'] 				= 'Success: You have modified <b>Payment Profiles</b> !';
-$_['text_payment_profiles'] 	= 'Payment Profiles';
-$_['text_status_active'] 		= 'Active';
-$_['text_status_inactive'] 		= 'Inactive';
-$_['text_status_cancelled'] 	= 'Cancelled';
-$_['text_status_suspended'] 	= 'Suspended';
-$_['text_status_expired'] 		= 'Expired';
-$_['text_status_pending'] 		= 'Pending';
-$_['text_transactions'] 			= 'Transactions';
-$_['text_return'] 					= 'Return';
-$_['text_cancel'] 					= 'Cancel';
-$_['text_filter'] 					= 'Filter';
+$_['text_success'] 					= 'Success: You have modified <b>Payment Profiles</b> !';
+$_['text_payment_profiles'] 		= 'Payment Profiles';
+$_['text_status_active'] 			= 'Active';
+$_['text_status_inactive'] 			= 'Inactive';
+$_['text_status_cancelled'] 		= 'Cancelled';
+$_['text_status_suspended'] 		= 'Suspended';
+$_['text_status_expired'] 			= 'Expired';
+$_['text_status_pending'] 			= 'Pending';
+$_['text_transactions'] 				= 'Transactions';
+$_['text_return'] 						= 'Return';
+$_['text_cancel'] 						= 'Cancel';
+$_['text_filter'] 						= 'Filter';
 
-$_['text_cancel_confirm'] 		= "Profile's cancelation cannot be undone! Are you sure want to do this?";
+$_['text_cancel_confirm'] 			= "Profile's cancelation cannot be undone! Are you sure want to do this?";
 
 $_['text_transaction_created'] 				= 'Created';
 $_['text_transaction_payment'] 				= 'Payment';
