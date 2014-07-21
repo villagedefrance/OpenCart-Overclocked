@@ -279,8 +279,6 @@ class ControllerCatalogProfile extends Controller {
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
 
-		$this->data['pagination'] = '';
-
 		$this->template = 'catalog/profile_list.tpl';
 		$this->children = array(
 			'common/header',
