@@ -41,7 +41,7 @@ class ControllerReportAffiliateCommission extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
+			'text' 	=> $this->language->get('text_home'),
 			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
@@ -51,6 +51,10 @@ class ControllerReportAffiliateCommission extends Controller {
 			'href'  	=> $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
+
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
 		$this->load->model('report/affiliate');
 
