@@ -1,70 +1,75 @@
 <?php echo $header; ?>
 <div id="content">
-	<div class="breadcrumb">
-	<?php foreach ($breadcrumbs as $breadcrumb) { ?>
-		<?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-	<?php } ?>
-	</div>
-	<div class="box">
-	<div class="heading">
-		<h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
-	</div>
-	<div class="content">
-		<table class="form">
-			<tr>
-				<td><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /></td>
-				<td><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /></td>
-				<td><?php echo $entry_group; ?>
-				<select name="filter_group">
-					<?php foreach ($groups as $groups) { ?>
-						<?php if ($groups['value'] == $filter_group) { ?>
-							<option value="<?php echo $groups['value']; ?>" selected="selected"><?php echo $groups['text']; ?></option>
-						<?php } else { ?>
-							<option value="<?php echo $groups['value']; ?>"><?php echo $groups['text']; ?></option>
-						<?php } ?>
-					<?php } ?>
-				</select></td>
-				<td><?php echo $entry_status; ?>
-				<select name="filter_return_status_id">
-					<option value="0"><?php echo $text_all_status; ?></option>
-					<?php foreach ($return_statuses as $return_status) { ?>
-						<?php if ($return_status['return_status_id'] == $filter_return_status_id) { ?>
-							<option value="<?php echo $return_status['return_status_id']; ?>" selected="selected"><?php echo $return_status['name']; ?></option>
-						<?php } else { ?>
-							<option value="<?php echo $return_status['return_status_id']; ?>"><?php echo $return_status['name']; ?></option>
-						<?php } ?>
-					<?php } ?>
-				</select></td>
-				<td style="text-align: right;"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
-			</tr>
-		</table>
-		<table class="list">
-		<thead>
-			<tr>
-				<td class="left"><?php echo $column_date_start; ?></td>
-				<td class="left"><?php echo $column_date_end; ?></td>
-				<td class="right"><?php echo $column_returns; ?></td>
-			</tr>
-		</thead>
-		<tbody>
-          <?php if ($returns) { ?>
+  <div class="breadcrumb">
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+  <?php } ?>
+  </div>
+  <div class="box">
+    <div class="heading">
+      <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
+    </div>
+    <div class="content">
+	<?php if ($navigation_hi) { ?>
+      <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
+    <?php } ?>
+      <table class="form">
+        <tr>
+          <td><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /></td>
+          <td><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /></td>
+          <td><?php echo $entry_group; ?>
+          <select name="filter_group">
+          <?php foreach ($groups as $groups) { ?>
+            <?php if ($groups['value'] == $filter_group) { ?>
+              <option value="<?php echo $groups['value']; ?>" selected="selected"><?php echo $groups['text']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $groups['value']; ?>"><?php echo $groups['text']; ?></option>
+            <?php } ?>
+          <?php } ?>
+          </select></td>
+          <td><?php echo $entry_status; ?>
+          <select name="filter_return_status_id">
+          <option value="0"><?php echo $text_all_status; ?></option>
+          <?php foreach ($return_statuses as $return_status) { ?>
+            <?php if ($return_status['return_status_id'] == $filter_return_status_id) { ?>
+              <option value="<?php echo $return_status['return_status_id']; ?>" selected="selected"><?php echo $return_status['name']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $return_status['return_status_id']; ?>"><?php echo $return_status['name']; ?></option>
+            <?php } ?>
+          <?php } ?>
+          </select></td>
+          <td style="text-align: right;"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
+        </tr>
+      </table>
+      <table class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $column_date_start; ?></td>
+            <td class="left"><?php echo $column_date_end; ?></td>
+            <td class="right"><?php echo $column_returns; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+        <?php if ($returns) { ?>
           <?php foreach ($returns as $return) { ?>
-			<tr>
-				<td class="left"><?php echo $return['date_start']; ?></td>
-				<td class="left"><?php echo $return['date_end']; ?></td>
-				<td class="right"><?php echo $return['returns']; ?></td>
-			</tr>
+            <tr>
+              <td class="left"><?php echo $return['date_start']; ?></td>
+              <td class="left"><?php echo $return['date_end']; ?></td>
+              <td class="right"><?php echo $return['returns']; ?></td>
+            </tr>
           <?php } ?>
-          <?php } else { ?>
-			<tr>
-				<td class="center" colspan="3"><?php echo $text_no_results; ?></td>
-			</tr>
-          <?php } ?>
-		</tbody>
-		</table>
-		<div class="pagination"><?php echo $pagination; ?></div>
-	</div>
-	</div>
+        <?php } else { ?>
+          <tr>
+            <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+          </tr>
+        <?php } ?>
+      </tbody>
+      </table>
+    <?php if ($navigation_lo) { ?>
+      <div class="pagination"><?php echo $pagination; ?></div>
+	<?php } ?>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript"><!--
@@ -97,13 +102,13 @@ function filter() {
 
 	location = url;
 }
-//--></script> 
+//--></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
 	$('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
 });
-//--></script> 
+//--></script>
 
 <?php echo $footer; ?>
