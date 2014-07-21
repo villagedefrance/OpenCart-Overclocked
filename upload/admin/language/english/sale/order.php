@@ -118,6 +118,23 @@ $_['text_queries_remaining']       	= 'Queries Remaining:<br /><span class="help
 $_['text_maxmind_id']              		= 'Maxmind ID:<br /><span class="help">Unique identifier, used to reference transactions when reporting fraudulent activity back to MaxMind. This reporting will help MaxMind improve its service to you and will enable a planned feature to customize the fraud scoring formula based on your chargeback history.</span>';
 $_['text_error']                      		= 'Error:<br /><span class="help">Returns an error string with a warning message or a reason why the request failed.</span>';
 
+// Delivery Note
+$_['text_delivery_note']             	= 'Delivery Note';
+$_['text_shipping_collection']       	= 'Collection / Shipping Company';
+$_['text_customer_reception']     	= 'Reception / Customer';
+$_['text_collection_reference']    	= 'Shipment Reference :';
+$_['text_collection_date']         		= 'Date Collected :';
+$_['text_collection_time']           	= 'Time Collected : ';
+$_['text_collection_name']           	= 'Print Name :';
+$_['text_collection_sign']            	= 'Signature :';
+$_['text_reception_name']           	= 'Print Name :';
+$_['text_reception_sign']            	= 'Signature :';
+$_['text_reception_date']         		= 'Date :';
+$_['text_reception_condition']    	= 'Shipment condition :';
+
+// Button
+$_['button_delivery_note']            	= 'Print Delivery Note';
+
 // Column
 $_['column_order_id']            		= 'Order ID';
 $_['column_customer']            		= 'Customer';

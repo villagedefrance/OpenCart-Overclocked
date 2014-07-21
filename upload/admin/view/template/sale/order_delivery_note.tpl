@@ -9,7 +9,10 @@
 <body>
 <?php foreach ($orders as $order) { ?>
 <div style="page-break-after:always;">
-  <h1><?php echo $text_invoice; ?></h1>
+  <?php if (!empty($logo)) { ?>
+    <img src="<?php echo $logo; ?>" alt="" />
+  <?php } ?>
+  <h1><?php echo $text_delivery_note; ?></h1>
   <table class="store">
     <tr>
       <td>
@@ -80,8 +83,6 @@
       <td><b><?php echo $column_product; ?></b></td>
       <td><b><?php echo $column_model; ?></b></td>
       <td align="right"><b><?php echo $column_quantity; ?></b></td>
-      <td align="right"><b><?php echo $column_price; ?></b></td>
-      <td align="right"><b><?php echo $column_total; ?></b></td>
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
     <tr>
@@ -93,23 +94,6 @@
       </td>
       <td><?php echo $product['model']; ?></td>
       <td align="right"><?php echo $product['quantity']; ?></td>
-      <td align="right"><?php echo $product['price']; ?></td>
-      <td align="right"><?php echo $product['total']; ?></td>
-    </tr>
-    <?php } ?>
-    <?php foreach ($order['voucher'] as $voucher) { ?>
-    <tr>
-      <td align="left"><?php echo $voucher['description']; ?></td>
-      <td align="left"></td>
-      <td align="right">1</td>
-      <td align="right"><?php echo $voucher['amount']; ?></td>
-      <td align="right"><?php echo $voucher['amount']; ?></td>
-    </tr>
-    <?php } ?>
-    <?php foreach ($order['total'] as $total) { ?>
-    <tr>
-      <td align="right" colspan="4"><b><?php echo $total['title']; ?>:</b></td>
-      <td align="right"><?php echo $total['text']; ?></td>
     </tr>
     <?php } ?>
   </table>
@@ -123,6 +107,27 @@
     </tr>
   </table>
   <?php } ?>
+  <table class="delivery">
+    <tr class="heading">
+      <td width="50%"><b><?php echo $text_shipping_collection; ?></b></td>
+      <td width="50%"><b><?php echo $text_customer_reception; ?></b></td>
+    </tr>
+    <tr>
+      <td>
+        <?php echo $text_collection_reference; ?><br /><br />
+        <?php echo $text_collection_date; ?><br /><br />
+        <?php echo $text_collection_time; ?><br /><br />
+        <?php echo $text_collection_name; ?><br /><br />
+        <?php echo $text_collection_sign; ?><br /><br />
+      </td>
+      <td>
+        <?php echo $text_reception_name; ?><br /><br />
+        <?php echo $text_reception_sign; ?><br /><br />
+        <?php echo $text_reception_date; ?><br /><br />
+        <?php echo $text_reception_condition; ?><br /><br />
+      </td>
+    </tr>
+  </table>
 </div>
 <?php } ?>
 </body>
