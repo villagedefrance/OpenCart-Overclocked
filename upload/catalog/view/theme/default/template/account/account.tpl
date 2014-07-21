@@ -25,7 +25,7 @@
   <div class="content">
     <div class="box-account">
       <ul>
-        <li><a href="<?php echo $order; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/order.png" alt="" /><?php echo $text_order; ?></a></li>
+        <li><a href="<?php echo $order; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/history.png" alt="" /><?php echo $text_order; ?></a></li>
         <li><a href="<?php echo $download; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/download.png" alt="" /><?php echo $text_download; ?></a></li>
         <?php if ($reward) { ?>
           <li><a href="<?php echo $reward; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/reward.png" alt="" /><?php echo $text_reward; ?></a></li>
