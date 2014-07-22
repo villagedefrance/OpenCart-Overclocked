@@ -6,9 +6,9 @@ Opencart v1.6.0 - Community Edition
 
 General:
 
-The objective of this Overclocked Edition is to make Opencart faster, richer, leaner and even more user friendly. 
-To achieve this, every line of code inside every file has been checked, adjusted and corrected when necessary. 
-Scripts have been updated or replaced by newer, better or faster versions. Some extra features have been added.
+The objective of this Overclocked - Community Edition is to make Opencart faster, richer, leaner and even more user friendly. 
+To achieve this, every line of code inside every file has been checked, adjusted and corrected when necessary, in accordance with the official OpenCart Coding Standards. 
+Most scripts have been updated or replaced by newer, better or faster versions. Many extra features have been added.
 
 Additions:
 - Added jQuery 1.11.1 for both Admin and Catalog, replacing jQuery 1.7.1.
@@ -86,6 +86,6 @@ WANT TO CONTRIBUTE?
 
 
 -------------------------------------------
-Philippe Marion (villagedefrance)
+Project Maintained by "villagedefrance"
 email: contact@villagedefrance.net
 -------------------------------------------
