@@ -1,20 +1,14 @@
 OpenCart-Overclocked
 ====================
 
-Opencart v1.6.0 - Non Official Version
+Opencart v1.6.0 - Community Version
 
 
 General:
 
-The objective of this Overclocked Version is to make Opencart faster, richer, leaner and even more user friendly. 
-To do so, every line of code inside every file has been checked, adjusted and corrected when necessary. 
+The objective of this Overclocked Edition is to make Opencart faster, richer, leaner and even more user friendly. 
+To achieve this, every line of code inside every file has been checked, adjusted and corrected when necessary. 
 Scripts have been updated or replaced by newer, better or faster versions. Some extra features have been added.
-
-Coding Rules:
-- Controller, Language and Model files with a clean, standardised PHP code.
-- Template files (.tpl) with valid Html 5 markup.
-- Javascript/jQuery scripts optimised.
-- SQL queries optimised in all Model files.
 
 Additions:
 - Added jQuery 1.11.1 for both Admin and Catalog, replacing jQuery 1.7.1.
@@ -79,11 +73,16 @@ Bug Fixes:
 - ...
 
 TODO:
-
-- Go through all files again to follow OpenCart Coding Standards.
+- Go through all files again to follow OpenCart Coding Standards (See Wiki).
 - Finish upper/lower pagination modification for Admin Lists.
-- Add some extra features ...
+- Add Product Groups, then create related functions.
+- Add Multiple Store Branches, then update Pickup from Store and Product availability per branch.
+- Add some more extra features ...
 
+WANT TO CONTRIBUTE?
+- Test and report bugs, typos or improvements.
+- Propose new features.
+- Design themes.
 
 -------------------------------------------
 Philippe Marion (villagedefrance)

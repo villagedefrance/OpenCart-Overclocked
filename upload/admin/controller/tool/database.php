@@ -16,16 +16,16 @@ class ControllerToolDatabase extends Controller {
 			switch($button) {
 				case "optimize":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/optimize', 'token=' . $this->session->data['token'], 'SSL'));
-				break; 
+				break;
 				case "repair":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/repair', 'token=' . $this->session->data['token'], 'SSL'));
-				break; 
+				break;
 				case "innodb":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/innodb', 'token=' . $this->session->data['token'], 'SSL'));
-				break; 
+				break;
 				case "myisam":
 				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/myisam', 'token=' . $this->session->data['token'], 'SSL'));
-				break; 
+				break;
 			}
 		}
 
@@ -46,14 +46,14 @@ class ControllerToolDatabase extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -82,6 +82,7 @@ class ControllerToolDatabase extends Controller {
 		$this->data['text_optimize'] = $this->language->get('text_optimize');
 		$this->data['text_repair'] = $this->language->get('text_repair');
 		$this->data['text_engine'] = $this->language->get('text_engine');
+		$this->data['text_table_engine'] = $this->language->get('text_table_engine');
 
 		$this->data['text_help_optimize'] = $this->language->get('text_help_optimize');
 		$this->data['text_help_repair'] = $this->language->get('text_help_repair');

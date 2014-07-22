@@ -12,12 +12,11 @@ $_['text_repair']         			= 'Repair Database';
 $_['text_help_repair'] 			= 'Repair your database tables to fix errors.';
 $_['text_success_repair']   	= 'Success: Database repair completed successfully !';
 
-// InnoDB
-$_['text_engine']         			= 'Convert Table Engine';
-$_['text_help_innodb'] 			= '<b>InnoDB</b>. Convert your database tables to MyISAM Engine.';
-$_['text_help_myisam'] 			= '<b>MyISAM</b>. Convert your database tables to InnoDB Engine.';
-
-// Success Engine
+// Engine
+$_['text_engine']         			= 'Database Table Engine';
+$_['text_table_engine']    		= 'Convert Table Engine';
+$_['text_help_innodb'] 			= 'Current Engine: <b>InnoDB</b><br /><span class="help">Click to convert the database table engine to MyISAM.</span>';
+$_['text_help_myisam'] 			= 'Current Engine: <b>MyISAM</b> (Default)<br /><span class="help">Click to convert the database table engine to InnoDB.</span>';
 $_['text_success_innodb']  	= 'Success: Engine Conversion to InnoDB completed successfully !';
 $_['text_success_myisam']  	= 'Success: Engine Conversion to MyISAM completed successfully !';
 
