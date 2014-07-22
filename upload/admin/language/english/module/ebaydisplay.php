@@ -16,7 +16,7 @@ $_['text_username']   			= 'Username';
 $_['text_keysearch']   			= 'Keyword search';
 $_['text_include']   				= 'Include description search';
 $_['text_limit'] 					= 'Limit';
-$_['text_sort'] 					= 'Sort order';
+$_['text_sort'] 					= 'Sort Order';
 $_['text_start_time'] 			= 'Start time newest';
 $_['text_random'] 				= 'Random';
 $_['text_display'] 				= 'Display';
@@ -24,7 +24,7 @@ $_['text_display'] 				= 'Display';
 // Entry
 $_['entry_product']       		= 'Products:<br /><span class="help">(Autocomplete)</span>';
 $_['entry_limit']         			= 'Limit:';
-$_['entry_image']         		= 'Image (W x H) and Resize Type:';
+$_['entry_image']         		= 'Image (W x H):';
 $_['entry_layout']        		= 'Layout:';
 $_['entry_position']      		= 'Position:';
 $_['entry_status']        		= 'Status:';
