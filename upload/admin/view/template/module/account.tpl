@@ -20,8 +20,8 @@
     <div class="content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="account">
         <table class="form">
-          <tr> 
-            <td><?php echo $entry_theme; ?></td> 
+          <tr>
+            <td><?php echo $entry_theme; ?></td>
             <td>
               <?php if ($account_theme) { ?>
                 <?php echo $text_yes; ?><input type="radio" name="account_theme" value="1" checked="checked" />
@@ -33,14 +33,14 @@
             </td>
           </tr>
         <?php foreach ($languages as $language) { ?>
-          <tr> 
-            <td><?php echo $entry_title; ?></td> 
-            <td> 
+          <tr>
+            <td><?php echo $entry_title; ?></td>
+            <td>
               <input type="text" name="account_title<?php echo $language['language_id']; ?>" id="account_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'account_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             </td>
           </tr>
-        <?php } ?> 
+        <?php } ?>
         </table>
         <table id="module" class="list">
           <thead>
@@ -70,12 +70,12 @@
                   <option value="content_top" selected="selected"><?php echo $text_content_top; ?></option>
                 <?php } else { ?>
                   <option value="content_top"><?php echo $text_content_top; ?></option>
-                <?php } ?>  
+                <?php } ?>
                 <?php if ($module['position'] == 'content_bottom') { ?>
                   <option value="content_bottom" selected="selected"><?php echo $text_content_bottom; ?></option>
                 <?php } else { ?>
                   <option value="content_bottom"><?php echo $text_content_bottom; ?></option>
-                <?php } ?>    
+                <?php } ?>
                 <?php if ($module['position'] == 'column_left') { ?>
                   <option value="column_left" selected="selected"><?php echo $text_column_left; ?></option>
                 <?php } else { ?>
