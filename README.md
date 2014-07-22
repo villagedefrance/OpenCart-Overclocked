@@ -1,8 +1,8 @@
 OpenCart-Overclocked
 ====================
 
-Opencart v1.6.0 - Community Version
-
+Opencart v1.6.0 - Community Edition
+------------------------------------
 
 General:
 
@@ -83,6 +83,7 @@ WANT TO CONTRIBUTE?
 - Test and report bugs, typos or improvements.
 - Propose new features.
 - Design themes.
+
 
 -------------------------------------------
 Philippe Marion (villagedefrance)
