@@ -78,7 +78,7 @@
         </tbody>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_subject; ?></td>
-          <td><input type="text" name="subject" value="" size="50" /></td>
+          <td><input type="text" name="subject" value="" size="60" /></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_message; ?></td>
