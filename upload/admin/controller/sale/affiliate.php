@@ -1101,6 +1101,10 @@ class ControllerSaleAffiliate extends Controller {
 			$page = 1;
 		}
 
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
+
 		$this->data['transactions'] = array();
 
 		$results = $this->model_sale_affiliate->getTransactions($this->request->get['affiliate_id'], ($page - 1) * 10, 10);
