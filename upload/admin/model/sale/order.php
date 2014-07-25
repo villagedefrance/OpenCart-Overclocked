@@ -729,6 +729,17 @@ class ModelSaleOrder extends Model {
 
 			$message .= $language->get('text_footer');
 
+			// HTML Mail
+			$template = new Template();
+
+			$template->data['title'] = html_entity_decode($subject, ENT_QUOTES, 'UTF-8');
+			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['message'] = nl2br($message);
+
+			$html = $template->fetch('mail/default.tpl');
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -741,7 +752,7 @@ class ModelSaleOrder extends Model {
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($order_info['store_name']);
 			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setHtml($html);
 			$mail->send();
 		}
 

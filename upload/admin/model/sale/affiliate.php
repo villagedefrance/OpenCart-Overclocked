@@ -121,6 +121,19 @@ class ModelSaleAffiliate extends Model {
 			$message .= $this->language->get('text_approve_thanks') . "\n";
 			$message .= $this->config->get('config_name');
 
+			// HTML Mail
+			$subject = html_entity_decode(sprintf($this->language->get('text_approve_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8');
+
+			$template = new Template();
+
+			$template->data['title'] = $subject;
+			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['message'] = nl2br($message);
+
+			$html = $template->fetch('mail/default.tpl');
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->hostname = $this->config->get('config_smtp_host');
@@ -131,8 +144,8 @@ class ModelSaleAffiliate extends Model {
 			$mail->setTo($affiliate_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_approve_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject($subject);
+			$mail->setHtml($html);
 			$mail->send();
 		}
 	}
@@ -206,6 +219,19 @@ class ModelSaleAffiliate extends Model {
 			$message  = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
 			$message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($affiliate_id), $this->config->get('config_currency')));
 
+			// HTML Mail
+			$subject = html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8');
+
+			$template = new Template();
+
+			$template->data['title'] = $subject;
+			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['message'] = nl2br($message);
+
+			$html = $template->fetch('mail/default.tpl');
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -217,8 +243,8 @@ class ModelSaleAffiliate extends Model {
 			$mail->setTo($affiliate_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject($subject);
+			$mail->setHtml($html);
 			$mail->send();
 		}
 	}

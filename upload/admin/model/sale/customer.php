@@ -175,6 +175,17 @@ class ModelSaleCustomer extends Model {
 			$message .= $this->language->get('text_approve_thanks') . "\n";
 			$message .= $store_name;
 
+			// HTML Mail
+			$template = new Template();
+
+			$template->data['title'] = sprintf($this->language->get('text_approve_subject'), $store_name);
+			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['message'] = nl2br($message);
+
+			$html = $template->fetch('mail/default.tpl');
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -187,7 +198,7 @@ class ModelSaleCustomer extends Model {
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($store_name);
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_approve_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setHtml($html);
 			$mail->send();
 		}
 	}
@@ -386,6 +397,17 @@ class ModelSaleCustomer extends Model {
 			$message  = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
 			$message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($customer_id)));
 
+			// HTML Mail
+			$template = new Template();
+
+			$template->data['title'] = sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name'));
+			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['message'] = nl2br($message);
+
+			$html = $template->fetch('mail/default.tpl');
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -398,7 +420,7 @@ class ModelSaleCustomer extends Model {
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($store_name);
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setHtml($html);
 			$mail->send();
 		}
 	}
@@ -465,6 +487,17 @@ class ModelSaleCustomer extends Model {
 			$message  = sprintf($this->language->get('text_reward_received'), $points) . "\n\n";
 			$message .= sprintf($this->language->get('text_reward_total'), $this->getRewardTotal($customer_id));
 
+			// HTML Mail
+			$template = new Template();
+
+			$template->data['title'] = sprintf($this->language->get('text_reward_subject'), $store_name);
+			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['store_name'] = $this->config->get('config_name');
+			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['message'] = nl2br($message);
+
+			$html = $template->fetch('mail/default.tpl');
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -477,7 +510,7 @@ class ModelSaleCustomer extends Model {
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($store_name);
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_reward_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setHtml($html);
 			$mail->send();
 		}
 	}
