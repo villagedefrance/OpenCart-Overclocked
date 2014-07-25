@@ -1,40 +1,38 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-  
-class ControllerModuleWelcome extends Controller { 
-	private $_name = 'welcome'; 
+<?php
+class ControllerModuleWelcome extends Controller {
+	private $_name = 'welcome';
 
-	protected function index($setting) { 
-		static $module = 0; 
+	protected function index($setting) {
+		static $module = 0;
 
-		$this->language->load('module/welcome'); 
+		$this->language->load('module/welcome');
 
-		$this->data['heading_title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name')); 
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template'); 
+		$this->data['heading_title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
 
 		// Module
-		$this->data['title'] = html_entity_decode($setting['title'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8'); 
+		$this->data['theme'] = $setting['theme'];
+		$this->data['title'] = html_entity_decode($setting['title'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
 
-		if (!$this->data['title']) { $this->data['title'] = $this->data['heading_title']; } 
+		if (!$this->data['title']) {
+			$this->data['title'] = $this->data['heading_title'];
+		}
 
-		$this->data['message'] = html_entity_decode($setting['description'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8'); 
+		$this->data['message'] = html_entity_decode($setting['description'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
 
-		$this->data['theme'] = $setting['theme']; 
-		$this->data['default'] = $setting['default']; 
+		$this->data['default'] = $setting['default'];
 
-		$this->data['module'] = $module++; 
+		$this->data['module'] = $module++;
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl'; 
-		} else { 
-			$this->template = 'default/template/module/' . $this->_name . '.tpl'; 
-		} 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
-		$this->render(); 
-	} 
-} 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl';
+		} else {
+			$this->template = 'default/template/module/' . $this->_name . '.tpl';
+		}
+
+		$this->render();
+	}
+}
 ?>

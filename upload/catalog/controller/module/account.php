@@ -11,7 +11,6 @@ class ControllerModuleAccount extends Controller {
 
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
-
 		$this->data['title'] = $this->config->get($this->_name . '_title' . $this->config->get('config_language_id'));
 
 		if (!$this->data['title']) {

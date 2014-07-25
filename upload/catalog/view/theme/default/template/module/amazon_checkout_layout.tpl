@@ -1,9 +1,9 @@
 <?php if ($position == 'content_top' || $position == 'content_bottom') { ?>
-	<div style="float: right">
+  <div style="float: right">
 <?php } else { ?>
-	<div style="text-align:center;">
+  <div style="text-align:center;">
 <?php } ?>
-	<span id="AmazonCheckoutWidgetModule<?php echo $layout_id; ?>-<?php echo $position; ?>"></span>
+  <span id="AmazonCheckoutWidgetModule<?php echo $layout_id; ?>-<?php echo $position; ?>"></span>
 </div>
 <div style="clear:both;"></div>
 

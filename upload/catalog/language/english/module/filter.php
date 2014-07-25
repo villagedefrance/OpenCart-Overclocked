@@ -1,12 +1,7 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Heading
 $_['heading_title']	= 'Refine Search';
 
 // Button
-$_['button_filter']	= 'Filter';
-
+$_['button_filter']		= 'Filter';
 ?>

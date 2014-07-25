@@ -22,15 +22,13 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_theme; ?></td>
-            <td>
-              <?php if ($slideshow_theme) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="slideshow_theme" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="slideshow_theme" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="slideshow_theme" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="slideshow_theme" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($slideshow_theme) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_theme" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_theme" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_theme" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_theme" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         <?php foreach ($languages as $language) { ?>
           <tr>
@@ -126,20 +124,20 @@
               </td>
               <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][effect]">
                 <?php if ($module['effect']) {$selected = "selected"; ?>
-                  <option value="random" <?php if ($module['effect']=='random') {echo $selected;} ?>>Random</option>
-                  <option value="fade" <?php if ($module['effect']=='fade') {echo $selected;} ?>>Fade</option>
-                  <option value="fold" <?php if ($module['effect']=='fold') {echo $selected;} ?>>Fold</option>
-                  <option value="boxRandom" <?php if ($module['effect']=='boxRandom') {echo $selected;} ?>>BoxRandom</option>
-                  <option value="boxRain" <?php if ($module['effect']=='boxRain') {echo $selected;} ?>>BoxRain</option>
-                  <option value="boxRainReverse" <?php if ($module['effect']=='boxRainReverse') {echo $selected;} ?>>BoxRainReverse</option>
-                  <option value="boxRainGrow" <?php if ($module['effect']=='boxRainGrow') {echo $selected;} ?>>BoxRainGrow</option>
-                  <option value="sliceDown" <?php if ($module['effect']=='sliceDown') {echo $selected;} ?>>SliceDown</option>
-                  <option value="sliceDownRight" <?php if ($module['effect']=='sliceDownRight') {echo $selected;} ?>>SliceDownRight</option>
-                  <option value="sliceDownLeft" <?php if ($module['effect']=='sliceDownLeft') {echo $selected;} ?>>SliceDownLeft</option>
-                  <option value="sliceUp" <?php if ($module['effect']=='sliceUp') {echo $selected;} ?>>SliceUp</option>
-                  <option value="sliceUpRight" <?php if ($module['effect']=='sliceUpRight') {echo $selected;} ?>>SliceUpRight</option>
-                  <option value="sliceUpLeft" <?php if ($module['effect']=='sliceUpLeft') {echo $selected;} ?>>SliceUpLeft</option>
-                  <option value="sliceUpDown" <?php if ($module['effect']=='sliceUpDown') {echo $selected;} ?>>SliceUpDown</option>
+                  <option value="random" <?php if ($module['effect'] == 'random') {echo $selected;} ?>>Random</option>
+                  <option value="fade" <?php if ($module['effect'] == 'fade') {echo $selected;} ?>>Fade</option>
+                  <option value="fold" <?php if ($module['effect'] == 'fold') {echo $selected;} ?>>Fold</option>
+                  <option value="boxRandom" <?php if ($module['effect'] == 'boxRandom') {echo $selected;} ?>>BoxRandom</option>
+                  <option value="boxRain" <?php if ($module['effect'] == 'boxRain') {echo $selected;} ?>>BoxRain</option>
+                  <option value="boxRainReverse" <?php if ($module['effect'] == 'boxRainReverse') {echo $selected;} ?>>BoxRainReverse</option>
+                  <option value="boxRainGrow" <?php if ($module['effect'] == 'boxRainGrow') {echo $selected;} ?>>BoxRainGrow</option>
+                  <option value="sliceDown" <?php if ($module['effect'] == 'sliceDown') {echo $selected;} ?>>SliceDown</option>
+                  <option value="sliceDownRight" <?php if ($module['effect'] == 'sliceDownRight') {echo $selected;} ?>>SliceDownRight</option>
+                  <option value="sliceDownLeft" <?php if ($module['effect'] == 'sliceDownLeft') {echo $selected;} ?>>SliceDownLeft</option>
+                  <option value="sliceUp" <?php if ($module['effect'] == 'sliceUp') {echo $selected;} ?>>SliceUp</option>
+                  <option value="sliceUpRight" <?php if ($module['effect'] == 'sliceUpRight') {echo $selected;} ?>>SliceUpRight</option>
+                  <option value="sliceUpLeft" <?php if ($module['effect'] == 'sliceUpLeft') {echo $selected;} ?>>SliceUpLeft</option>
+                  <option value="sliceUpDown" <?php if ($module['effect'] == 'sliceUpDown') {echo $selected;} ?>>SliceUpDown</option>
                 <?php } else { ?>
                   <option selected="selected"></option>
                   <option value="random" selected>Random</option>
@@ -160,17 +158,17 @@
               </select></td>
               <td class="left"><select name="slideshow_module[<?php echo $module_row; ?>][delay]">
                 <?php if ($module['delay']) {$selected = "selected"; ?>
-                  <option value="2000" <?php if ($module['delay']=='2000') {echo $selected;} ?>>2000</option>
-                  <option value="3000" <?php if ($module['delay']=='3000') {echo $selected;} ?>>3000</option>
-                  <option value="4000" <?php if ($module['delay']=='4000') {echo $selected;} ?>>4000</option>
-                  <option value="5000" <?php if ($module['delay']=='5000') {echo $selected;} ?>>5000</option>
-                  <option value="6000" <?php if ($module['delay']=='6000') {echo $selected;} ?>>6000</option>
-                  <option value="7000" <?php if ($module['delay']=='7000') {echo $selected;} ?>>7000</option>
-                  <option value="8000" <?php if ($module['delay']=='8000') {echo $selected;} ?>>8000</option>
-                  <option value="9000" <?php if ($module['delay']=='9000') {echo $selected;} ?>>9000</option>
-                  <option value="10000" <?php if ($module['delay']=='10000') {echo $selected;} ?>>10000</option>
-                  <option value="11000" <?php if ($module['delay']=='11000') {echo $selected;} ?>>11000</option>
-                  <option value="12000" <?php if ($module['delay']=='12000') {echo $selected;} ?>>12000</option>
+                  <option value="2000" <?php if ($module['delay'] == '2000') {echo $selected;} ?>>2000</option>
+                  <option value="3000" <?php if ($module['delay'] == '3000') {echo $selected;} ?>>3000</option>
+                  <option value="4000" <?php if ($module['delay'] == '4000') {echo $selected;} ?>>4000</option>
+                  <option value="5000" <?php if ($module['delay'] == '5000') {echo $selected;} ?>>5000</option>
+                  <option value="6000" <?php if ($module['delay'] == '6000') {echo $selected;} ?>>6000</option>
+                  <option value="7000" <?php if ($module['delay'] == '7000') {echo $selected;} ?>>7000</option>
+                  <option value="8000" <?php if ($module['delay'] == '8000') {echo $selected;} ?>>8000</option>
+                  <option value="9000" <?php if ($module['delay'] == '9000') {echo $selected;} ?>>9000</option>
+                  <option value="10000" <?php if ($module['delay'] == '10000') {echo $selected;} ?>>10000</option>
+                  <option value="11000" <?php if ($module['delay'] == '11000') {echo $selected;} ?>>11000</option>
+                  <option value="12000" <?php if ($module['delay'] == '12000') {echo $selected;} ?>>12000</option>
                 <?php } else { ?>
                   <option selected="selected"></option>
                   <option value="2000">2000</option>
@@ -260,8 +258,8 @@ function addModule() {
 	<?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="left">';
-	html += '      <input type="text" name="slideshow_module[' + module_row + '][width]" value="" size="3" /> x ';
-	html += '      <input type="text" name="slideshow_module[' + module_row + '][height]" value="" size="3" /> px';
+	html += '      <input type="text" name="slideshow_module[' + module_row + '][width]" value="480" size="3" /> x ';
+	html += '      <input type="text" name="slideshow_module[' + module_row + '][height]" value="180" size="3" /> px';
 	html += '    </td>';
 	html += '    <td class="left"><select name="slideshow_module[' + module_row + '][effect]">';
 	html += '      <option value="random" selected>Random</option>';

@@ -22,15 +22,13 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_theme; ?></td>
-            <td>
-              <?php if ($carousel_theme) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="carousel_theme" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="carousel_theme" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="carousel_theme" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="carousel_theme" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($carousel_theme) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="carousel_theme" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="carousel_theme" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="carousel_theme" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="carousel_theme" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         <?php foreach ($languages as $language) { ?>
           <tr>
@@ -162,8 +160,8 @@ function addModule() {
 	html += '      &nbsp; <?php echo $text_auto; ?> <input type="checkbox" name="carousel_module[' + module_row + '][auto]" value="1" />';
 	html += '    </td>';
 	html += '    <td class="left">';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][width]" value="100" size="3" /> x ';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="100" size="3" /> px';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][width]" value="120" size="3" /> x ';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>

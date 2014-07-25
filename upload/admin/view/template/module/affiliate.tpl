@@ -22,15 +22,13 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_theme; ?></td>
-            <td>
-              <?php if ($affiliate_theme) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="affiliate_theme" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="affiliate_theme" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="affiliate_theme" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="affiliate_theme" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($affiliate_theme) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="affiliate_theme" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="affiliate_theme" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="affiliate_theme" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="affiliate_theme" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         <?php foreach ($languages as $language) { ?>
           <tr>

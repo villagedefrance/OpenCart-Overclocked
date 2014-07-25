@@ -21,16 +21,14 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="bestseller">
         <table class="form">
           <tr>
-            <td><?php echo $entry_theme; ?></td> 
-            <td>
-              <?php if ($bestseller_theme) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="bestseller_theme" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="bestseller_theme" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="bestseller_theme" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="bestseller_theme" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php echo $entry_theme; ?></td>
+            <td><?php if ($bestseller_theme) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="bestseller_theme" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="bestseller_theme" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="bestseller_theme" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="bestseller_theme" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         <?php foreach ($languages as $language) { ?>
           <tr>
@@ -41,7 +39,7 @@
             </td>
           </tr>
         <?php } ?>
-          <tr style="background:#F8F8F8;">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_viewproduct; ?></td>
             <td>
               <?php if ($bestseller_viewproduct) { ?>
@@ -53,7 +51,7 @@
               <?php } ?>
             </td>
           </tr>
-          <tr style="background:#F8F8F8;">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_addproduct; ?></td>
             <td>
               <?php if ($bestseller_addproduct) { ?>
@@ -162,8 +160,8 @@ function addModule() {
 	html += '  <tr>';
 	html += '    <td class="left"><input type="text" name="bestseller_module[' + module_row + '][limit]" value="5" size="1" /></td>';
 	html += '    <td class="left">';
-	html += '      <input type="text" name="bestseller_module[' + module_row + '][image_width]" value="100" size="3" /> x ';
-	html += '      <input type="text" name="bestseller_module[' + module_row + '][image_height]" value="100" size="3" /> px';
+	html += '      <input type="text" name="bestseller_module[' + module_row + '][image_width]" value="120" size="3" /> x ';
+	html += '      <input type="text" name="bestseller_module[' + module_row + '][image_height]" value="120" size="3" /> px';
 	html += '    </td>';
 	html += '    <td class="left"><select name="bestseller_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>

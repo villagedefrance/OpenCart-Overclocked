@@ -1,13 +1,8 @@
 <?php
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-// Heading 
+// Heading
 $_['heading_title']	= 'Information';
 
 // Text
 $_['text_contact']	= 'Contact Us';
 $_['text_sitemap']	= 'Sitemap';
-
 ?>

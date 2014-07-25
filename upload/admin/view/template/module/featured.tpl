@@ -27,15 +27,13 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_theme; ?></td>
-            <td>
-              <?php if ($featured_theme) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_theme" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_theme" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_theme" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_theme" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_theme) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_theme" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_theme" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_theme" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_theme" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         <?php foreach ($languages as $language) { ?>
           <tr>
@@ -46,11 +44,11 @@
             </td>
           </tr>
         <?php } ?>
-          <tr style="background:#F8F8F8;">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_product; ?></td>
             <td><input type="text" name="product" value="" size="30" /></td>
           </tr>
-          <tr style="background:#F8F8F8;">
+          <tr style="background:#FCFCFC;">
             <td>&nbsp;</td>
             <td>
               <div class="scrollbox" id="featured-product" style="height:180px;">
@@ -71,87 +69,73 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_brand; ?></td> 
-            <td>
-              <?php if ($featured_brand) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_brand" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_brand" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_brand" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_brand" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_brand) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_brand" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_brand" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_brand" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_brand" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_model; ?></td> 
-            <td>
-              <?php if ($featured_model) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_model" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_model" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_model" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_model" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_model) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_model" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_model" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_model" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_model" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_reward; ?></td> 
-            <td>
-              <?php if ($featured_reward) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_reward" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_reward" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_reward" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_reward" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_reward) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_reward" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_reward" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_reward" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_reward" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_point; ?></td> 
-            <td>
-              <?php if ($featured_point) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_point" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_point" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_point" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_point" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_point) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_point" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_point" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_point" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_point" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_review; ?></td> 
-            <td>
-              <?php if ($featured_review) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_review" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_review" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_review" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_review" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_review) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_review" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_review" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_review" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_review" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
-          <tr style="background:#F8F8F8;">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_viewproduct; ?></td> 
-            <td>
-              <?php if ($featured_viewproduct) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_viewproduct" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_viewproduct" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_viewproduct" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_viewproduct" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_viewproduct) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_viewproduct" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_viewproduct" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_viewproduct" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_viewproduct" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
-          <tr style="background:#F8F8F8;">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_addproduct; ?></td> 
-            <td>
-              <?php if ($featured_addproduct) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_addproduct" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="featured_addproduct" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="featured_addproduct" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="featured_addproduct" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($featured_addproduct) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_addproduct" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="featured_addproduct" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="featured_addproduct" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="featured_addproduct" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         </table>
         </div>
@@ -295,8 +279,8 @@ function addModule() {
 	html  = '<tbody id="module-row' + module_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left">';
-	html += '      <input type="text" name="featured_module[' + module_row + '][image_width]" value="100" size="3" /> x ';
-	html += '      <input type="text" name="featured_module[' + module_row + '][image_height]" value="100" size="3" /> px';
+	html += '      <input type="text" name="featured_module[' + module_row + '][image_width]" value="120" size="3" /> x ';
+	html += '      <input type="text" name="featured_module[' + module_row + '][image_height]" value="120" size="3" /> px';
 	html += '    </td>';
 	html += '    <td class="left"><select name="featured_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>

@@ -33,9 +33,9 @@ class ControllerModuleWelcome extends Controller {
 		$this->data['text_column_left'] = $this->language->get('text_column_left');
 		$this->data['text_column_right'] = $this->language->get('text_column_right');
 
+		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_description'] = $this->language->get('entry_description');
-		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_default'] = $this->language->get('entry_default');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');

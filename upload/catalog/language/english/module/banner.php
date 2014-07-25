@@ -1,9 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-// Heading 
+<?php
+// Heading
 $_['heading_title'] = 'Banner';
-
 ?>

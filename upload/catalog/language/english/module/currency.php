@@ -1,9 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
 // Text
 $_['text_currency'] = 'Currency';
-
 ?>

@@ -13,8 +13,8 @@ $_['text_column_left']    		= 'Column Left';
 $_['text_column_right']   		= 'Column Right';
 
 // Entry
-$_['entry_theme']   				= 'Theme CSS:';
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
+$_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
 
 $_['entry_code']          		= 'Google Talk Code:<br /><span class="help">Go to <a onclick="window.open(\'http://www.google.com/talk/service/badge/New\');"><u>Create a Google Talk chatback badge</u></a> and copy &amp; paste the generated code into the text box.</span>';
 

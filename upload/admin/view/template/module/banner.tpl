@@ -22,15 +22,13 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_theme; ?></td>
-            <td>
-              <?php if ($banner_theme) { ?>
-                <?php echo $text_yes; ?><input type="radio" name="banner_theme" value="1" checked="checked" />
-                <?php echo $text_no; ?><input type="radio" name="banner_theme" value="0" />
-              <?php } else { ?>
-                <?php echo $text_yes; ?><input type="radio" name="banner_theme" value="1" />
-                <?php echo $text_no; ?><input type="radio" name="banner_theme" value="0" checked="checked" />
-              <?php } ?>
-            </td>
+            <td><?php if ($banner_theme) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="banner_theme" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="banner_theme" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="banner_theme" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="banner_theme" value="0" checked="checked" />
+            <?php } ?></td>
           </tr>
         <?php foreach ($languages as $language) { ?>
           <tr>
@@ -158,8 +156,8 @@ function addModule() {
 	<?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="left">';
-	html += '      <input type="text" name="banner_module[' + module_row + '][width]" value="160" size="3" /> x ';
-	html += '      <input type="text" name="banner_module[' + module_row + '][height]" value="160" size="3" /> px';
+	html += '      <input type="text" name="banner_module[' + module_row + '][width]" value="120" size="3" /> x ';
+	html += '      <input type="text" name="banner_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
 	html += '    <td class="left"><select name="banner_module[' + module_row + '][pause]">';
 	html += '      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';

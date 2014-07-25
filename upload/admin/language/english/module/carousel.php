@@ -14,8 +14,8 @@ $_['text_column_right']   		= 'Column Right';
 $_['text_auto']   					= 'Auto:';
 
 // Entry
-$_['entry_theme']   				= 'Theme CSS:';
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
+$_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
 
 $_['entry_banner']        		= 'Banner:';
 $_['entry_limit']         			= 'Limit:';

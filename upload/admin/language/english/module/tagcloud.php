@@ -13,11 +13,11 @@ $_['text_column_left']    		= 'Column Left';
 $_['text_column_right']   		= 'Column Right';
 $_['text_normal']       			= 'Normal';
 $_['text_bold']       				= 'Bold';
-$_['text_limit']       				= 'Number of Tags:';
+$_['text_limit']       				= 'N&deg; of Tags:';
 
 // Entry
-$_['entry_theme']   				= 'Theme CSS:';
-$_['entry_title']      				= 'Custom Title:<br /><span class="help">Overrides the default module title. "Theme CSS" must be set.</span>';
+$_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
 
 $_['entry_random']        		= 'Random:';
 $_['entry_limit']					= 'Limit:';

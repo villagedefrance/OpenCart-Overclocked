@@ -32,15 +32,15 @@ class ControllerModuleStore extends Controller {
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
 		$this->data['text_column_left'] = $this->language->get('text_column_left');
 		$this->data['text_column_right'] = $this->language->get('text_column_right');
-		$this->data['text_admins'] = $this->language->get('text_admins');
-		$this->data['text_adlinks'] = $this->language->get('text_adlinks');
+		$this->data['text_permission'] = $this->language->get('text_permission');
+		$this->data['text_access'] = $this->language->get('text_access');
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
-		$this->data['entry_admin'] = $this->language->get('entry_admin');
-		$this->data['entry_adlink'] = $this->language->get('entry_adlink');
+		$this->data['entry_permission'] = $this->language->get('entry_permission');
+		$this->data['entry_access'] = $this->language->get('entry_access');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -90,7 +90,7 @@ class ControllerModuleStore extends Controller {
 
 		$this->load->model('localisation/language');
 
-		$languages = $this->model_localisation_language->getLanguages(); 
+		$languages = $this->model_localisation_language->getLanguages();
 
 		foreach ($languages as $language) {
 			if (isset($this->request->post[$this->_name . '_title' . $language['language_id']])) {
