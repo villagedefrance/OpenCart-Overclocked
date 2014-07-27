@@ -180,6 +180,10 @@ class ControllerLocalisationTaxRate extends Controller {
 		$this->data['insert'] = $this->url->link('localisation/tax_rate/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('localisation/tax_rate/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
+
 		$this->data['tax_rates'] = array();
 
 		$data = array(
