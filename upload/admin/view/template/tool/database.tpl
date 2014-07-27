@@ -69,10 +69,22 @@
 </div>
 
 <script type="text/javascript"><!--
-function Optimize() {document.database.buttonForm.value='optimize'; $('#form').submit();}
-function Repair() {document.database.buttonForm.value='repair'; $('#form').submit();}
-function Innodb() {document.database.buttonForm.value='innodb'; $('#form').submit();}
-function Myisam() {document.database.buttonForm.value='myisam'; $('#form').submit();}
+function Optimize() {
+	document.database.buttonForm.value='optimize';
+	$('#form').submit();
+}
+function Repair() {
+	document.database.buttonForm.value='repair';
+	$('#form').submit();
+}
+function Innodb() {
+	document.database.buttonForm.value='innodb';
+	$('#form').submit();
+}
+function Myisam() {
+	document.database.buttonForm.value='myisam';
+	$('#form').submit();
+}
 //--></script>
 
 <?php echo $footer; ?>

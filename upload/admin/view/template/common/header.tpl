@@ -33,26 +33,26 @@
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
 
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $(document).ready(function() {
-  // Confirm Delete
-  $('#form').submit(function() {
-    if ($(this).attr('action').indexOf('delete',1) != -1) {
-      if (!confirm('<?php echo $text_confirm; ?>')) {
-        return false;
-      }
-    }
-  });
-  // Confirm Uninstall
-  $('a').click(function() {
-    if ($(this).attr('href') != null && $(this).attr('href').indexOf('uninstall', 1) != -1) {
-      if (!confirm('<?php echo $text_confirm; ?>')) {
-        return false;
-      }
-    }
-  });
+	// Confirm Delete
+	$('#form').submit(function() {
+		if ($(this).attr('action').indexOf('delete',1) != -1) {
+			if (!confirm('<?php echo $text_confirm; ?>')) {
+				return false;
+			}
+		}
+	});
+	// Confirm Uninstall
+	$('a').click(function() {
+		if ($(this).attr('href') != null && $(this).attr('href').indexOf('uninstall', 1) != -1) {
+			if (!confirm('<?php echo $text_confirm; ?>')) {
+				return false;
+			}
+		}
+	});
 });
-</script>
+//--></script>
 </head>
 
 <body>
@@ -206,12 +206,13 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_server; ?></a>
             <ul>
-			  <li><a href="<?php echo $cachemanager; ?>"><?php echo $text_cachemanager; ?></a></li>
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
+			  <li><a href="<?php echo $manager; ?>"><?php echo $text_manager; ?></a></li>
             </ul>
           </li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
+		  <li><a href="<?php echo $cachemanager; ?>"><?php echo $text_cachemanager; ?></a></li>
           <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
         </ul>
       </li>

@@ -5,48 +5,83 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
   <?php } ?>
   </div>
+  <?php if ($error_warning) { ?>
+    <div class="warning"><?php echo $error_warning; ?></div>
+  <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/module.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="buttons">
-        <a id="button-upload" class="button"><?php echo $button_upload; ?></a>
+    <div class="buttons">
+        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
       </div>
     </div>
     <div class="content">
-      <textarea wrap="off" style="width:98%; height:300px; padding:5px; border:1px solid#CCC; background:#FFF; overflow:scroll;"></textarea>
+      <?php if ($success_download) { ?>
+        <div class="success" style="margin-top:10px;"><?php echo $success_download; ?></div>
+      <?php } ?>
+      <?php if ($success_install) { ?>
+        <div class="success" style="margin-top:10px;"><?php echo $success_install; ?></div>
+      <?php } ?>
+	  <form action="<?php echo $update; ?>" method="post" enctype="multipart/form-data" id="form" name="update">
+	    <table class="form">
+		<?php if ($version && $revision) { ?>
+		  <tr>
+            <td></td>
+            <td colspan="2"><span style='color: #FF8800;'><b><?php echo $text_status; ?></b></span></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><?php echo $current_version; ?></td>
+            <td><?php echo $version; ?></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><?php echo $current_revision; ?></td>
+            <td><?php echo $revision; ?></td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td></td>
+            <td colspan="2"><?php echo $text_no_file; ?></td>
+          </tr>
+		<?php } ?>
+        <?php if ($ver_update || $rev_update) { ?>
+		  <tr>
+            <td></td>
+            <td colspan="2"><span style='color: #FF8800;'><b><?php echo $text_update; ?></b></span></td>
+          </tr>
+		  <?php if ($ready) { ?>
+          <tr>
+            <td></td>
+            <td colspan="2">
+			  <a onclick="Install();" class="button-form"><?php echo $button_install; ?></a>
+			</td>
+          </tr>
+		  <?php } else { ?>
+		  <tr>
+            <td></td>
+            <td colspan="2">
+			  <a onclick="Download();" class="button-form"><?php echo $button_download; ?></a>
+			</td>
+          </tr>
+		  <?php } ?>
+		<?php } ?>
+        </table>
+        <input type="hidden" name="buttonForm" value="" />
+      </form>
     </div>
   </div>
 </div>
 
-<script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
-
 <script type="text/javascript"><!--
-new AjaxUpload('#button-upload', {
-	action: 'index.php?route=extension/manage/upload&token=<?php echo $token; ?>',
-	name: 'file',
-	autoSubmit: true,
-	responseType: 'text',
-	onSubmit: function(file, extension) {
-		$('#button-upload').before('<img src="view/image/loading.gif" alt="" class="loading" style="padding-right:5px;" />');
-		$('#button-upload').attr('disabled', true);
-	},
-	onComplete: function(file, json) {
-		$('.content').after(json);
-		/*
-		$('#button-upload').attr('disabled', false);
-
-		if (json['success']) {
-			alert(json['success']);
-		}
-
-		if (json['error']) {
-			alert(json['error']);
-		}
-
-		$('.loading').remove();
-		*/
-	}
-});
+function Download() {
+	document.update.buttonForm.value='download';
+	$('#form').submit();
+}
+function Install() {
+	document.update.buttonForm.value='install';
+	$('#form').submit();
+}
 //--></script>
 
 <?php echo $footer; ?>

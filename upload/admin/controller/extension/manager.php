@@ -1,10 +1,41 @@
 <?php
 class ControllerExtensionManager extends Controller {
+	private $error = array();
+	private $_name = 'manager';
 
 	public function index() {
 		$this->language->load('extension/manager');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->data['update'] = '';
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
+			$button = $this->request->post['buttonForm'];
+
+			switch($button) {
+				case "download":
+				$this->data['update'] = $this->redirect($this->url->link('extension/' . $this->_name . '/download', 'token=' . $this->session->data['token'], 'SSL'));
+				break;
+				case "install":
+				$this->data['update'] = $this->redirect($this->url->link('extension/' . $this->_name . '/install', 'token=' . $this->session->data['token'], 'SSL'));
+				break;
+			}
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
+
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
 
 		$this->data['breadcrumbs'] = array();
 
@@ -22,9 +53,98 @@ class ControllerExtensionManager extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['button_upload'] = $this->language->get('button_upload');
+		$this->data['current_version'] = sprintf($this->language->get('text_version'), VERSION);
+		$this->data['current_revision'] = sprintf($this->language->get('text_revision'), REVISION);
+
+		$this->data['text_no_file'] = $this->language->get('text_no_file');
+		$this->data['text_status'] = $this->language->get('text_status');
+		$this->data['text_update'] = $this->language->get('text_update');
+
+		$this->data['button_download'] = $this->language->get('button_download');
+		$this->data['button_install'] = $this->language->get('button_install');
+
+		$checkurl = 'http://villagedefrance.net/updater/overclocked/revisions.txt';
+
+		$checkhandler = curl_init($checkurl);
+		curl_setopt($checkhandler, CURLOPT_RETURNTRANSFER, true);
+		$resp = curl_exec($checkhandler);
+		$check = curl_getinfo($checkhandler, CURLINFO_HTTP_CODE);
+
+		if ($check == '200') { 
+			$getRevisions = file_get_contents($checkurl);
+		} else {
+			$getRevisions = '';
+		}
+
+		if ($getRevisions !== '') {
+			$revisionList = explode("\n", $getRevisions);
+
+			foreach ($revisionList as $revision) {
+				$version = substr($revision, 0, 5);
+				$subversion = substr($revision, -8);
+
+				if ($version > VERSION) {
+					$this->data['version'] = sprintf($this->language->get('text_v_update'), $version);
+					$this->data['ver_update'] = true;
+
+					$this->data['revision'] = $this->language->get('text_no_revision');
+				} else {
+					$this->data['version'] = sprintf($this->language->get('text_v_no_update'), $version);
+					$this->data['ver_update'] = false;
+
+					if ($subversion > REVISION) {
+						$this->data['revision'] = sprintf($this->language->get('text_r_update'), $subversion);
+						$this->data['rev_update'] = true;
+					} else {
+						$this->data['revision'] = sprintf($this->language->get('text_r_no_update'), $subversion);
+						$this->data['rev_update'] = false;
+					}
+				}
+
+				$ver = max(array($version));
+				$rev = max(array($subversion));
+			}
+
+		} else {
+			$this->data['version'] = '';
+			$this->data['revision'] = '';
+			$this->data['ver_update'] = false;
+			$this->data['rev_update'] = false;
+			$ver = VERSION;
+			$rev = REVISION;
+		}
+
+		curl_close($checkhandler);
 
 		$this->data['token'] = $this->session->data['token'];
+
+		if (isset($this->session->data['success_download'])) {
+			$this->data['success_download'] = $this->session->data['success_download'];
+
+			unset($this->session->data['success_download']);
+		} else {
+			$this->data['success_download'] = '';
+		}
+
+		if (isset($this->session->data['success_install'])) {
+			$this->data['success_install'] = $this->session->data['success_install'];
+
+			unset($this->session->data['success_install']);
+		} else {
+			$this->data['success_install'] = '';
+		}
+
+		$zipfile = DIR_DOWNLOAD . 'updates/update-' . $ver . '-' . $rev . '.zip';
+
+		if (file_exists($zipfile) && is_file($zipfile)) {
+			$this->data['ready'] = true;
+		} else {
+			$this->data['ready'] = false;
+		}
+
+		$this->data['button_refresh'] = $this->language->get('button_refresh');
+
+		$this->data['refresh'] = $this->url->link('extension/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->template = 'extension/manager.tpl';
 		$this->children = array(
@@ -34,130 +154,156 @@ class ControllerExtensionManager extends Controller {
 
 		$this->response->setOutput($this->render());
 	}
+	
+	public function download() {
+		$this->language->load('extension/' . $this->_name);
 
-	public function upload() {
-		/*
-		$this->language->load('extension/manager');
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		$json = array();
+		// Check File
+		$checkurl = 'http://villagedefrance.net/updater/overclocked/revisions.txt';
 
-		if (!$this->user->hasPermission('modify', 'extension/manager')) {
-			$json['error'] = $this->language->get('error_permission') . "\n";
-		}
+		$checkhandler = curl_init($checkurl);
+		curl_setopt($checkhandler, CURLOPT_RETURNTRANSFER, true);
+		$resp = curl_exec($checkhandler);
+		$check = curl_getinfo($checkhandler, CURLINFO_HTTP_CODE);
 
-		if (!empty($this->request->files['file']['name'])) {
-			if (strrchr($this->request->files['file']['name'], '.') != '.zip') {
-				$json['error'] = $this->language->get('error_filetype');
-			}
-
-			if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
-				$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
-			}
+		if ($check == '200') { 
+			$getRevisions = file_get_contents($checkurl);
 		} else {
-			$json['error'] = $this->language->get('error_upload');
+			$getRevisions = '';
 		}
 
-		if (!isset($json['error']) && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-			// Unzip the files
-			$file = $this->request->files['file']['tmp_name'];
-			$directory = dirname($this->request->files['file']['tmp_name']) . '/' . basename($this->request->files['file']['name'], '.zip') . '/';
+		if ($getRevisions !== '') {
+			$revisionList = explode("\n", $getRevisions);
 
-			$zip = new ZipArchive();
-			$zip->open($file);
-			$zip->extractTo($directory);
-			$zip->close();
+			foreach ($revisionList as $revision) {
+				$version = substr($revision, 0, 5);
+				$subversion = substr($revision, -8);
 
-			// Remove Zip
-			unlink($file);
+				$ver = max(array($version));
+				$rev = max(array($subversion));
+			}
+		}
 
-			// Get a list of files ready to upload
-			$files = array();
+		curl_close($checkhandler);
 
-			$path = array($directory . '*');
+		// Download File
+		$url = 'http://villagedefrance.net/updater/overclocked/update-' . $ver . '-' . $rev . '.zip';
 
-			while(count($path) != 0) {
-				$next = array_shift($path);
+		if (!is_dir(DIR_DOWNLOAD . 'updates/')) {
+			mkdir(DIR_DOWNLOAD . 'updates/', 0777);
+		}
 
-				foreach(glob($next) as $file) {
-					if (is_dir($file)) {
-						$path[] = $file . '/*';
-					}
+		$zipfile = DIR_DOWNLOAD . 'updates/update-' . $ver . '-' . $rev . '.zip';
 
-					$files[] = $file;
-				}
+		$zipsource = fopen($zipfile, 'w');
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_UPLOAD, true);
+		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_FILE, $zipsource);
+
+		$response = curl_exec($ch);
+
+		if ($response) {
+			curl_close($ch);
+
+			$this->session->data['success_download'] = $this->language->get('success_download');
+
+			$this->redirect($this->url->link('extension/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
+
+		} else {
+			$this->error['warning'] = $this->language->get('error_install') . curl_error($ch);
+
+			curl_close($ch);
+
+			$this->redirect($this->url->link('extension/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
+		}
+	}
+
+	public function install() {
+		$this->language->load('extension/' . $this->_name);
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		// Check File
+		$checkurl = 'http://villagedefrance.net/updater/overclocked/revisions.txt';
+
+		$checkhandler = curl_init($checkurl);
+		curl_setopt($checkhandler, CURLOPT_RETURNTRANSFER, true);
+		$resp = curl_exec($checkhandler);
+		$check = curl_getinfo($checkhandler, CURLINFO_HTTP_CODE);
+
+		if ($check == '200') { 
+			$getRevisions = file_get_contents($checkurl);
+		} else {
+			$getRevisions = '';
+		}
+
+		if ($getRevisions !== '') {
+			$revisionList = explode("\n", $getRevisions);
+
+			foreach ($revisionList as $revision) {
+				$version = substr($revision, 0, 5);
+				$subversion = substr($revision, -8);
+
+				$ver = max(array($version));
+				$rev = max(array($subversion));
+			}
+		}
+
+		curl_close($checkhandler);
+
+		// Install File
+		$zip = new ZipArchive;
+
+		if (file_exists(DIR_DOWNLOAD . 'updates/update-' . $ver . '-' . $rev . '.zip') && is_file(DIR_DOWNLOAD . 'updates/update-' . $ver . '-' . $rev . '.zip')) {
+			$zipfile = DIR_DOWNLOAD . 'updates/update-' . $ver . '-' . $rev . '.zip';
+
+			$open = $zip->open($zipfile, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+			if ($open === true) {
+				$path_files = '../';
+
+				$zip->extractTo($path_files);
+				$zip->close();
+
+				$this->session->data['success_install'] = $this->language->get('success_install');
+
+				$this->redirect($this->url->link('extension/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
+
+			} else {
+				$this->error['warning'] = $this->language->get('error_install');
+		
+				$this->redirect($this->url->link('extension/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
 			}
 
-			sort($files);
+		} else {
+			$zipfile = '';
 
-			// Connect to the site via FTP
-			$connection = ftp_connect($this->config->get('config_ftp_host'), $this->config->get('config_ftp_port'));
+			$this->error['warning'] = $this->language->get('error_install');
+		
+			$this->redirect($this->url->link('extension/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
+		}
+	}
 
-			if (!$connection) {
-				exit($this->language->get('error_ftp_connection') . $this->config->get('config_ftp_host') . ':' . $this->config->get('config_ftp_port')) ;
-			}
+	private function validate() {
+		if (!$this->user->hasPermission('modify', 'extension/' . $this->_name)) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
 
-			$login = ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password'));
-
-			if (!$login) {
-				exit('Couldn\'t connect as ' . $this->config->get('config_ftp_username'));
-			}
-
-			if ($this->config->get('config_ftp_root')) {
-				$root = ftp_chdir($connection, $this->config->get('config_ftp_root'));
-
-				if (!$root) {
-					exit('Couldn\'t change to directory ' . $this->config->get('config_ftp_root'));
-				}
-			}
-
-			foreach ($files as $file) {
-				// Upload everything in the upload directory
-				if (substr(substr($file, strlen($directory)), 0, 7) == 'upload/') {
-					$destination = substr(substr($file, strlen($directory)), 7);
-
-					if (is_dir($file)) {
-						$list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/')));
-
-						if (!in_array($destination, $list)) {
-							if (ftp_mkdir($connection, $destination)) {
-								echo 'made directory ' . $destination . '<br />';
-							}
-						}
-					}	
-
-					if (is_file($file)) {
-						if (ftp_put($connection, $destination, $file, FTP_ASCII)) {		
-							echo 'Successfully uploaded ' . $file . '<br />';
-						}
-					}
-				} elseif (strrchr(basename($file), '.') == '.sql') {
-					//file_get_contents($file);
-				} elseif (strrchr(basename($file), '.') == '.xml') {
-					//file_get_contents($file);
-				}
-			}
-
-			ftp_close($connection);
-
-			rsort($files);
-
-			foreach ($files as $file) {
-				if (is_file($file)) {
-					unlink($file);
-				} elseif (is_dir($file)) {
-					rmdir($file);	
-				}
-			}
-
-			if (file_exists($directory)) {
-				rmdir($directory);
-			}
-
-			$json['success'] = $this->language->get('text_success');
-		}	
-
-		$this->response->setOutput(json_encode($json));
-		*/
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>
