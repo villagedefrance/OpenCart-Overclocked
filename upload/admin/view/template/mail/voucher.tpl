@@ -33,20 +33,20 @@ a img {
 </head>
 <body>
 <div id="container">
-	<div style="float:right; margin-left:20px;">
-		<a href="<?php echo $store_url; ?>" title="<?php echo $store_name; ?>"><img src="<?php echo $image; ?>" alt="<?php echo $store_name; ?>" /></a>
-	</div>
-	<div>
-	<p><?php echo $text_greeting; ?></p>
-	<p><?php echo $text_from; ?></p>
-	<?php if ($message) { ?>
-	<p><?php echo $text_message; ?></p>
-	<p><?php echo $message; ?></p>
-	<?php } ?>
-	<p><?php echo $text_redeem; ?></p>
-	<p><a href="<?php echo $store_url; ?>" title="<?php echo $store_name; ?>"><?php echo $store_url; ?></a></p>
-	<p><?php echo $text_footer; ?></p>
-	</div>
+  <div style="float:right; margin-left:20px;">
+    <a href="<?php echo $store_url; ?>" title="<?php echo $store_name; ?>"><img src="<?php echo $image; ?>" alt="<?php echo $store_name; ?>" /></a>
+  </div>
+  <div>
+    <p><?php echo $text_greeting; ?></p>
+    <p><?php echo $text_from; ?></p>
+    <?php if ($message) { ?>
+      <p><?php echo $text_message; ?></p>
+      <p><?php echo $message; ?></p>
+    <?php } ?>
+    <p><?php echo $text_redeem; ?></p>
+    <p><a href="<?php echo $store_url; ?>" title="<?php echo $store_name; ?>"><?php echo $store_url; ?></a></p>
+    <p><?php echo $text_footer; ?></p>
+  </div>
 </div>
 </body>
 </html>
