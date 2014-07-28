@@ -1,99 +1,94 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerAccountPassword extends Controller {
+	private $error = array();
 
-class ControllerAccountPassword extends Controller { 
-	private $error = array(); 
+	public function index() {
+		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/password', '', 'SSL');
 
-	public function index() { 
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
 
-		if (!$this->customer->isLogged()) { 
-			$this->session->data['redirect'] = $this->url->link('account/password', '', 'SSL'); 
+		$this->language->load('account/password');
 
-			$this->redirect($this->url->link('account/login', '', 'SSL')); 
-		} 
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->language->load('account/password'); 
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			$this->load->model('account/customer');
 
-		$this->document->setTitle($this->language->get('heading_title')); 
+			$this->model_account_customer->editPassword($this->customer->getEmail(), $this->request->post['password']);
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) { 
-			$this->load->model('account/customer'); 
+			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->model_account_customer->editPassword($this->customer->getEmail(), $this->request->post['password']); 
+			$this->redirect($this->url->link('account/account', '', 'SSL'));
+		}
 
-			$this->session->data['success'] = $this->language->get('text_success'); 
-
-			$this->redirect($this->url->link('account/account', '', 'SSL')); 
-		} 
-
-		$this->data['breadcrumbs'] = array(); 
+		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home'),
 			'separator' => false
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_account'),
-			'href'      => $this->url->link('account/account', '', 'SSL'),
+			'text'		=> $this->language->get('text_account'),
+			'href'		=> $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('account/password', '', 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('account/password', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
-		); 
+		);
 
-		$this->data['heading_title'] = $this->language->get('heading_title'); 
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_password'] = $this->language->get('text_password'); 
+		$this->data['text_password'] = $this->language->get('text_password');
 
-		$this->data['entry_password'] = $this->language->get('entry_password'); 
-		$this->data['entry_confirm'] = $this->language->get('entry_confirm'); 
+		$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 
-		$this->data['button_continue'] = $this->language->get('button_continue'); 
-		$this->data['button_back'] = $this->language->get('button_back'); 
+		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_back'] = $this->language->get('button_back');
 
-		if (isset($this->error['password'])) { 
-			$this->data['error_password'] = $this->error['password']; 
-		} else { 
-			$this->data['error_password'] = ''; 
-		} 
+		if (isset($this->error['password'])) {
+			$this->data['error_password'] = $this->error['password'];
+		} else {
+			$this->data['error_password'] = '';
+		}
 
-		if (isset($this->error['confirm'])) { 
-			$this->data['error_confirm'] = $this->error['confirm']; 
-		} else { 
-			$this->data['error_confirm'] = ''; 
-		} 
+		if (isset($this->error['confirm'])) {
+			$this->data['error_confirm'] = $this->error['confirm'];
+		} else {
+			$this->data['error_confirm'] = '';
+		}
 
-		$this->data['action'] = $this->url->link('account/password', '', 'SSL'); 
+		$this->data['action'] = $this->url->link('account/password', '', 'SSL');
 
-		if (isset($this->request->post['password'])) { 
-			$this->data['password'] = $this->request->post['password']; 
-		} else { 
-			$this->data['password'] = ''; 
-		} 
+		if (isset($this->request->post['password'])) {
+			$this->data['password'] = $this->request->post['password'];
+		} else {
+			$this->data['password'] = '';
+		}
 
-		if (isset($this->request->post['confirm'])) { 
-			$this->data['confirm'] = $this->request->post['confirm']; 
-		} else { 
-			$this->data['confirm'] = ''; 
-		} 
+		if (isset($this->request->post['confirm'])) {
+			$this->data['confirm'] = $this->request->post['confirm'];
+		} else {
+			$this->data['confirm'] = '';
+		}
 
-		$this->data['back'] = $this->url->link('account/account', '', 'SSL'); 
+		$this->data['back'] = $this->url->link('account/account', '', 'SSL');
 
-		// Custom Template Connector
-		$this->data['template'] = $this->config->get('config_template'); 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/password.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/account/password.tpl'; 
-		} else { 
-			$this->template = 'default/template/account/password.tpl'; 
-		} 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/password.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/account/password.tpl';
+		} else {
+			$this->template = 'default/template/account/password.tpl';
+		}
 
 		$this->children = array(
 			'common/column_left',
@@ -102,25 +97,25 @@ class ControllerAccountPassword extends Controller {
 			'common/content_bottom',
 			'common/footer',
 			'common/header'
-		); 
+		);
 
-		$this->response->setOutput($this->render()); 
-	} 
+		$this->response->setOutput($this->render());
+	}
 
-	protected function validate() { 
-		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) { 
-			$this->error['password'] = $this->language->get('error_password'); 
-		} 
+	protected function validate() {
+		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
+			$this->error['password'] = $this->language->get('error_password');
+		}
 
-		if ($this->request->post['confirm'] != $this->request->post['password']) { 
-			$this->error['confirm'] = $this->language->get('error_confirm'); 
-		} 
+		if ($this->request->post['confirm'] != $this->request->post['password']) {
+			$this->error['confirm'] = $this->language->get('error_confirm');
+		}
 
-		if (!$this->error) { 
-			return true; 
-		} else { 
-			return false; 
-		} 
-	} 
-} 
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
 ?>
