@@ -208,7 +208,6 @@ $(document).ready(function() {
             <ul>
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
-			  <li><a href="<?php echo $manager; ?>"><?php echo $text_manager; ?></a></li>
             </ul>
           </li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
