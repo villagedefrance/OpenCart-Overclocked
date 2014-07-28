@@ -111,8 +111,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
+		$this->data['entry_affiliate_disable'] = $this->language->get('entry_affiliate_disable');
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
+		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
 		$this->data['entry_pagination_hi'] = $this->language->get('entry_pagination_hi');
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
@@ -716,6 +718,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_commission'] = '5.00';
 		}
 
+		if (isset($this->request->post['config_affiliate_disable'])) {
+			$this->data['config_affiliate_disable'] = $this->request->post['config_affiliate_disable'];
+		} else {
+			$this->data['config_affiliate_disable'] = $this->config->get('config_affiliate_disable');
+		}
+
 		if (isset($this->request->post['config_return_id'])) {
 			$this->data['config_return_id'] = $this->request->post['config_return_id'];
 		} else {
@@ -731,6 +739,12 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/return_status');
 
 		$this->data['return_statuses'] = $this->model_localisation_return_status->getReturnStatuses();
+
+		if (isset($this->request->post['config_return_disable'])) {
+			$this->data['config_return_disable'] = $this->request->post['config_return_disable'];
+		} else {
+			$this->data['config_return_disable'] = $this->config->get('config_return_disable');
+		}
 
 		if (isset($this->request->post['config_pagination_hi'])) {
 			$this->data['config_pagination_hi'] = $this->request->post['config_pagination_hi'];

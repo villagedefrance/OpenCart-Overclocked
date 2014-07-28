@@ -63,10 +63,29 @@ class ControllerModuleAccount extends Controller {
 		$this->data['recurring'] = $this->url->link($this->_name . '/recurring', '', 'SSL');
 		$this->data['newsletter'] = $this->url->link($this->_name . '/newsletter', '', 'SSL');
 
+		// Reward
 		if ($this->config->get('reward_status')) {
 			$this->data['reward'] = $this->url->link('account/reward', '', 'SSL');
 		} else {
 			$this->data['reward'] = '';
+		}
+
+		// Returns
+		if ($this->config->get('config_return_disable')) {
+			$this->data['allow_return'] = false;
+		} else {
+			$this->data['allow_return'] = true;
+		}
+
+		// Profiles
+		$this->load->model('account/recurring');
+
+		$recurring_total = $this->model_account_recurring->getTotalRecurring();
+
+		if ($recurring_total > 0) {
+			$this->data['profile_exist'] = true;
+		} else {
+			$this->data['profile_exist'] = false;
 		}
 
 		$this->data['action'] = $this->url->link($this->_name . '/login', '', 'SSL');

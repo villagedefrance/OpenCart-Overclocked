@@ -73,6 +73,20 @@ class ControllerCommonFooter extends Controller {
 			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer);
 		}
 
+		// Returns
+		if ($this->config->get('config_return_disable')) {
+			$this->data['allow_return'] = false;
+		} else {
+			$this->data['allow_return'] = true;
+		}
+
+		// Affiliates
+		if ($this->config->get('config_affiliate_disable')) {
+			$this->data['allow_affiliate'] = false;
+		} else {
+			$this->data['allow_affiliate'] = true;
+		}
+
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 

@@ -14,7 +14,9 @@
     <ul>
       <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
       <li><a href="<?php echo $search; ?>"><?php echo $text_search; ?></a></li>
+	  <?php if ($allow_return) { ?>
       <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
+	  <?php } ?>
       <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
     </ul>
   </div>
@@ -24,7 +26,9 @@
       <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
       <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
       <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
+	  <?php if ($allow_affiliate) { ?>
       <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
+	  <?php } ?>
     </ul>
   </div>
   <div class="column">

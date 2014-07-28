@@ -601,6 +601,20 @@
             <td><?php echo $entry_commission; ?></td>
             <td><input type="text" name="config_commission" value="<?php echo $config_commission; ?>" size="3" /></td>
           </tr>
+		  <tr>
+            <td><?php echo $entry_affiliate_disable; ?></td>
+            <td><?php if ($config_affiliate_disable) { ?>
+              <input type="radio" name="config_affiliate_disable" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_disable" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_affiliate_disable" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_disable" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
         </table>
         <h2><?php echo $text_return; ?></h2>
         <table class="form">
@@ -628,6 +642,20 @@
                 <?php } ?>
               <?php } ?>
             </select></td>
+          </tr>
+		  <tr>
+            <td><?php echo $entry_return_disable; ?></td>
+            <td><?php if ($config_return_disable) { ?>
+              <input type="radio" name="config_return_disable" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_return_disable" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_return_disable" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_return_disable" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
           </tr>
         </table>
       </div>
