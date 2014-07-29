@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-$_['text_klarna_fee'] = 'Klarna Fee';
-
+<?php
+// Text
+$_['text_klarna_fee'] 	= 'Klarna Fee';
 ?>

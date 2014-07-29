@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-$_['text_total'] = 'Total';
-
+<?php
+// Text
+$_['text_total'] 	= 'Total';
 ?>

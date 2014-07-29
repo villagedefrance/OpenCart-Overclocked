@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
+<?php
+// Text
 $_['text_sub_total'] = 'Sub-Total';
-
 ?>

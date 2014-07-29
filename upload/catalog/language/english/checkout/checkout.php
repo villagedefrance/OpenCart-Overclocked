@@ -1,41 +1,37 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-// Heading 
-$_['heading_title']                  		= 'Checkout';
+<?php
+// Heading
+$_['heading_title']                  			= 'Checkout';
 
 // Text
-$_['text_cart']                      		= 'Shopping Cart';
+$_['text_cart']                      			= 'Shopping Cart';
 $_['text_checkout_option']           		= 'Step 1: Checkout Options';
-$_['text_checkout_account']          		= 'Step 2: Account &amp; Billing Details';
-$_['text_checkout_payment_address']  	= 'Step 2: Billing Details';
+$_['text_checkout_account']				= 'Step 2: Account &amp; Billing Details';
+$_['text_checkout_payment_address']	= 'Step 2: Billing Details';
 $_['text_checkout_shipping_address'] 	= 'Step 3: Delivery Details';
-$_['text_checkout_shipping_method']  	= 'Step 4: Delivery Method';
-$_['text_checkout_payment_method']   	= 'Step 5: Payment Method';
+$_['text_checkout_shipping_method']	= 'Step 4: Delivery Method';
+$_['text_checkout_payment_method']	= 'Step 5: Payment Method';
 $_['text_checkout_confirm']          		= 'Step 6: Confirm Order';
-$_['text_modify']                    		= 'Modify &raquo;';
-$_['text_new_customer']            	= 'New Customer';
-$_['text_returning_customer']        	= 'Returning Customer';
+$_['text_modify']                    			= 'Modify &raquo;';
+$_['text_new_customer']            		= 'New Customer';
+$_['text_returning_customer']        		= 'Returning Customer';
 $_['text_checkout']                  		= 'Checkout Options:';
 $_['text_i_am_returning_customer'] 	= 'I am a returning customer';
-$_['text_register']                  		= 'Register Account';
-$_['text_guest']                     		= 'Guest Checkout';
-$_['text_register_account']          	= 'By creating an account you will be able to shop faster, be up to date on an order\'s status, and keep track of the orders you have previously made.';
-$_['text_forgotten']                 		= 'Forgotten Password';
+$_['text_register']                  			= 'Register Account';
+$_['text_guest']                     			= 'Guest Checkout';
+$_['text_register_account']          		= 'By creating an account you will be able to shop faster, be up to date on an order\'s status, and keep track of the orders you have previously made.';
+$_['text_forgotten']                 			= 'Forgotten Password';
 $_['text_your_details']              		= 'Your Personal Details';
-$_['text_your_address']              	= 'Your Address';
-$_['text_your_password']             	= 'Your Password';
-$_['text_agree']                     		= 'I have read and agree to the <a class="colorbox" href="%s" alt="%s"><b>%s</b></a>';
-$_['text_address_new']               	= 'I want to use a new address';
-$_['text_address_existing']          	= 'I want to use an existing address';
-$_['text_shipping_method']           	= 'Please select the preferred shipping method to use on this order.';
+$_['text_your_address']              		= 'Your Address';
+$_['text_your_password']             		= 'Your Password';
+$_['text_agree']                     			= 'I have read and agree to the <a class="colorbox" href="%s" alt="%s"><b>%s</b></a>';
+$_['text_address_new']               		= 'I want to use a new address';
+$_['text_address_existing']          		= 'I want to use an existing address';
+$_['text_shipping_method']           		= 'Please select the preferred shipping method to use on this order.';
 $_['text_payment_method']            	= 'Please select the preferred payment method to use on this order.';
-$_['text_comments']                  	= 'Add Comments About Your Order';
+$_['text_comments']                  		= 'Add Comments About Your Order';
 
-$_['text_recurring_item']            	= 'Recurring item';
-$_['text_payment_profile']           	= 'Payment Profile';
+$_['text_recurring_item']            		= 'Recurring item';
+$_['text_payment_profile']           		= 'Payment Profile';
 $_['text_trial_description']         		= '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description']       	= '%s every %d %s(s) for %d payment(s)';
 $_['text_payment_until_canceled_description'] = '%s every %d %s(s) until canceled';
@@ -72,12 +68,12 @@ $_['entry_city']                     	= 'City:';
 $_['entry_country']            		= 'Country:';
 $_['entry_zone']               		= 'Region / State:';
 $_['entry_newsletter']        		= 'I wish to subscribe to the %s newsletter.';
-$_['entry_shipping'] 	     		= 'My delivery and billing addresses are the same.';
+$_['entry_shipping'] 	     			= 'My delivery and billing addresses are the same.';
 
 // Error
 $_['error_warning']            		= 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
 $_['error_login']               		= 'Warning: No match for E-Mail Address and/or Password.';
-$_['error_approved']            		= 'Warning: Your account requires approval before you can login.'; 
+$_['error_approved']            		= 'Warning: Your account requires approval before you can login.';
 $_['error_exists']              		= 'Warning: E-Mail Address is already registered!';
 $_['error_firstname']         		= 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']           		= 'Last Name must be between 1 and 32 characters!';
@@ -89,7 +85,7 @@ $_['error_company_id']        		= 'Company ID required!';
 $_['error_tax_id']              		= 'Tax ID required!';
 $_['error_vat']                 		= 'VAT number is invalid!';
 $_['error_address_1']         		= 'Address 1 must be between 3 and 128 characters!';
-$_['error_city']               		= 'City must be between 2 and 128 characters!';
+$_['error_city']               			= 'City must be between 2 and 128 characters!';
 $_['error_postcode']         		= 'Postcode must be between 2 and 10 characters!';
 $_['error_country']         			= 'Please select a country!';
 $_['error_zone']               		= 'Please select a region / state!';
@@ -103,5 +99,4 @@ $_['error_no_payment']      		= 'Warning: No Payment options are available. Plea
 $_['text_trial']                    		= '%s every %s %s for %s payments then ';
 $_['text_recurring']                	= '%s every %s %s';
 $_['text_length']                   	= ' for %s payments';
-
 ?>

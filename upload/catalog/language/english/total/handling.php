@@ -1,8 +1,4 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-$_['text_handling'] = 'Handling Fee';
-
+<?php
+// Text
+$_['text_handling'] 	= 'Handling Fee';
 ?>

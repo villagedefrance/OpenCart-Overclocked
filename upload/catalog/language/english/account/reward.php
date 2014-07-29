@@ -1,10 +1,6 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
-
-// Heading 
-$_['heading_title']      	= 'Your Reward Points';
+<?php
+// Heading
+$_['heading_title']      		= 'Your Reward Points';
 
 // Column
 $_['column_date_added']	= 'Date Added';
@@ -13,8 +9,7 @@ $_['column_points']      	= 'Points';
 
 // Text
 $_['text_account']       	= 'Account';
-$_['text_reward']        	= 'Reward Points';
+$_['text_reward']        		= 'Reward Points';
 $_['text_total']         		= 'Your total number of reward points is:';
-$_['text_empty']         	= 'You do not have any reward points!';
-
+$_['text_empty']         		= 'You do not have any reward points!';
 ?>
