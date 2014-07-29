@@ -1,105 +1,100 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerFeedGoogleSitemap extends Controller {
 
-class ControllerFeedGoogleSitemap extends Controller { 
+	public function index() {
+		if ($this->config->get('google_sitemap_status')) {
+			$output  = '<?xml version="1.0" encoding="UTF-8"?>';
+			$output .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-	public function index() { 
+			$this->load->model('catalog/product');
 
-		if ($this->config->get('google_sitemap_status')) { 
-			$output  = '<?xml version="1.0" encoding="UTF-8"?>'; 
-			$output .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'; 
+			$products = $this->model_catalog_product->getProducts();
 
-			$this->load->model('catalog/product'); 
+			foreach ($products as $product) {
+				$output .= '<url>';
+				$output .= '<loc>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</loc>';
+				$output .= '<changefreq>weekly</changefreq>';
+				$output .= '<priority>1.0</priority>';
+				$output .= '</url>';
+			}
 
-			$products = $this->model_catalog_product->getProducts(); 
+			$this->load->model('catalog/category');
 
-			foreach ($products as $product) { 
-				$output .= '<url>'; 
-				$output .= '<loc>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</loc>'; 
-				$output .= '<changefreq>weekly</changefreq>'; 
-				$output .= '<priority>1.0</priority>'; 
-				$output .= '</url>'; 
-			} 
+			$output .= $this->getCategories(0);
 
-			$this->load->model('catalog/category'); 
+			$this->load->model('catalog/manufacturer');
 
-			$output .= $this->getCategories(0); 
+			$manufacturers = $this->model_catalog_manufacturer->getManufacturers();
 
-			$this->load->model('catalog/manufacturer'); 
+			foreach ($manufacturers as $manufacturer) {
+				$output .= '<url>';
+				$output .= '<loc>' . $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $manufacturer['manufacturer_id']) . '</loc>';
+				$output .= '<changefreq>weekly</changefreq>';
+				$output .= '<priority>0.7</priority>';
+				$output .= '</url>';
 
-			$manufacturers = $this->model_catalog_manufacturer->getManufacturers(); 
+				$products = $this->model_catalog_product->getProducts(array('filter_manufacturer_id' => $manufacturer['manufacturer_id']));
 
-			foreach ($manufacturers as $manufacturer) { 
-				$output .= '<url>'; 
-				$output .= '<loc>' . $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $manufacturer['manufacturer_id']) . '</loc>'; 
-				$output .= '<changefreq>weekly</changefreq>'; 
-				$output .= '<priority>0.7</priority>'; 
-				$output .= '</url>'; 
+				foreach ($products as $product) {
+					$output .= '<url>';
+					$output .= '<loc>' . $this->url->link('product/product', 'manufacturer_id=' . $manufacturer['manufacturer_id'] . '&product_id=' . $product['product_id']) . '</loc>';
+					$output .= '<changefreq>weekly</changefreq>';
+					$output .= '<priority>1.0</priority>';
+					$output .= '</url>';
+				}
+			}
 
-				$products = $this->model_catalog_product->getProducts(array('filter_manufacturer_id' => $manufacturer['manufacturer_id'])); 
+			$this->load->model('catalog/information');
 
-				foreach ($products as $product) { 
-					$output .= '<url>'; 
-					$output .= '<loc>' . $this->url->link('product/product', 'manufacturer_id=' . $manufacturer['manufacturer_id'] . '&product_id=' . $product['product_id']) . '</loc>'; 
-					$output .= '<changefreq>weekly</changefreq>'; 
-					$output .= '<priority>1.0</priority>'; 
-					$output .= '</url>'; 
-				} 
-			} 
+			$informations = $this->model_catalog_information->getInformations();
 
-			$this->load->model('catalog/information'); 
+			foreach ($informations as $information) {
+				$output .= '<url>';
+				$output .= '<loc>' . $this->url->link('information/information', 'information_id=' . $information['information_id']) . '</loc>';
+				$output .= '<changefreq>weekly</changefreq>';
+				$output .= '<priority>0.5</priority>';
+				$output .= '</url>';
+			}
 
-			$informations = $this->model_catalog_information->getInformations(); 
+			$output .= '</urlset>';
 
-			foreach ($informations as $information) { 
-				$output .= '<url>'; 
-				$output .= '<loc>' . $this->url->link('information/information', 'information_id=' . $information['information_id']) . '</loc>'; 
-				$output .= '<changefreq>weekly</changefreq>'; 
-				$output .= '<priority>0.5</priority>'; 
-				$output .= '</url>'; 
-			} 
+			$this->response->addHeader('Content-Type: application/xml');
+			$this->response->setOutput($output);
+		}
+	}
 
-			$output .= '</urlset>'; 
+	protected function getCategories($parent_id, $current_path = '') {
+		$output = '';
 
-			$this->response->addHeader('Content-Type: application/xml'); 
-			$this->response->setOutput($output); 
-		} 
-	} 
+		$results = $this->model_catalog_category->getCategories($parent_id);
 
-	protected function getCategories($parent_id, $current_path = '') { 
-		$output = ''; 
+		foreach ($results as $result) {
+			if (!$current_path) {
+				$new_path = $result['category_id'];
+			} else {
+				$new_path = $current_path . '_' . $result['category_id'];
+			}
 
-		$results = $this->model_catalog_category->getCategories($parent_id); 
+			$output .= '<url>';
+			$output .= '<loc>' . $this->url->link('product/category', 'path=' . $new_path) . '</loc>';
+			$output .= '<changefreq>weekly</changefreq>';
+			$output .= '<priority>0.7</priority>';
+			$output .= '</url>';
 
-		foreach ($results as $result) { 
-			if (!$current_path) { 
-				$new_path = $result['category_id']; 
-			} else { 
-				$new_path = $current_path . '_' . $result['category_id']; 
-			} 
+			$products = $this->model_catalog_product->getProducts(array('filter_category_id' => $result['category_id']));
 
-			$output .= '<url>'; 
-			$output .= '<loc>' . $this->url->link('product/category', 'path=' . $new_path) . '</loc>'; 
-			$output .= '<changefreq>weekly</changefreq>'; 
-			$output .= '<priority>0.7</priority>'; 
-			$output .= '</url>'; 
+			foreach ($products as $product) {
+				$output .= '<url>';
+				$output .= '<loc>' . $this->url->link('product/product', 'path=' . $new_path . '&product_id=' . $product['product_id']) . '</loc>';
+				$output .= '<changefreq>weekly</changefreq>';
+				$output .= '<priority>1.0</priority>';
+				$output .= '</url>';
+			}
 
-			$products = $this->model_catalog_product->getProducts(array('filter_category_id' => $result['category_id'])); 
+			$output .= $this->getCategories($result['category_id'], $new_path);
+		}
 
-			foreach ($products as $product) { 
-				$output .= '<url>'; 
-				$output .= '<loc>' . $this->url->link('product/product', 'path=' . $new_path . '&product_id=' . $product['product_id']) . '</loc>'; 
-				$output .= '<changefreq>weekly</changefreq>'; 
-				$output .= '<priority>1.0</priority>'; 
-				$output .= '</url>'; 
-			} 
-
-			$output .= $this->getCategories($result['category_id'], $new_path); 
-		} 
-
-		return $output; 
-	} 
-} 
+		return $output;
+	}
+}
 ?>

@@ -9,8 +9,8 @@ class ControllerErrorNotFound extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home'),
 			'separator' => false
 		);
 
@@ -36,8 +36,8 @@ class ControllerErrorNotFound extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('heading_title'),
-				'href' 		=> $this->url->link($route, $url, $connection),
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link($route, $url, $connection),
 				'separator' => $this->language->get('text_separator')
 			);
 		}
