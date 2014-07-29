@@ -442,6 +442,7 @@ class ModelCheckoutOrder extends Model {
 			if (!$this->model_payment_amazon_checkout->isAmazonOrder($order_info['order_id'])) {
 				// Text Mail
 				$text = sprintf($language->get('text_new_greeting'), html_entity_decode($order_info['store_name'], ENT_QUOTES, 'UTF-8')) . "\n\n";
+
 				$text .= $language->get('text_new_order_id') . ' ' . $order_id . "\n";
 				$text .= $language->get('text_new_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n";
 				$text .= $language->get('text_new_order_status') . ' ' . $order_status . "\n\n";

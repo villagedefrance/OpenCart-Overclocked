@@ -1,59 +1,48 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerAmazonListing extends Controller {
+	public function index() {
+		if ($this->config->get('amazon_status') != '1') {
+			return;
+		}
 
-class ControllerAmazonListing extends Controller { 
+		$this->load->library('log');
+		$this->load->library('amazon');
+		$this->load->model('openbay/amazon_listing');
+		$this->load->model('openbay/amazon_product');
 
-	public function index() { 
+		$logger = new Log('amazon_listing.log');
+		$logger->write('amazon/listing - started');
 
-		if ($this->config->get('amazon_status') != '1') { 
-			return; 
-		} 
+		$token = $this->config->get('openbay_amazon_token');
 
-		$this->load->library('log'); 
-		$this->load->library('amazon'); 
+		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : '';
 
-		$this->load->model('openbay/amazon_listing'); 
-		$this->load->model('openbay/amazon_product'); 
+		if ($incomingToken !== $token) {
+			$logger->write('amazon/listing - Incorrect token: ' . $incomingToken);
+			return;
+		}
 
-		$logger = new Log('amazon_listing.log'); 
-		$logger->write('amazon/listing - started'); 
+		$decrypted = $this->openbay->amazon->decryptArgs($this->request->post['data']);
 
-		$token = $this->config->get('openbay_amazon_token'); 
+		if (!$decrypted) {
+			$logger->write('amazon/order Failed to decrypt data');
+			return;
+		}
 
-		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : ''; 
+		$data = json_decode($decrypted, 1);
 
-		if ($incomingToken !== $token) { 
-			$logger->write('amazon/listing - Incorrect token: ' . $incomingToken); 
-			return; 
-		} 
+		$logger->write("Received data: " . print_r($data, 1));
 
-		$decrypted = $this->openbay->amazon->decryptArgs($this->request->post['data']); 
-
-		if (!$decrypted) { 
-			$logger->write('amazon/order Failed to decrypt data'); 
-			return; 
-		} 
-
-		$data = json_decode($decrypted, 1); 
-
-		$logger->write("Received data: " . print_r($data, 1)); 
-
-		if ($data['status']) { 
-			$logger->write("Updating " . $data['product_id'] . ' from ' . $data['marketplace'] . ' as successful'); 
-
-			$this->model_openbay_amazon_listing->listingSuccessful($data['product_id'], $data['marketplace']); 
-			$this->model_openbay_amazon_product->linkProduct($data['sku'], $data['product_id']); 
-
-			$logger->write("Updated successfully"); 
-		} else { 
-			$logger->write("Updating " . $data['product_id'] . ' from ' . $data['marketplace'] . ' as failed'); 
-
-			$this->model_openbay_amazon_listing->listingFailed($data['product_id'], $data['marketplace'], $data['messages']); 
-
-			$logger->write("Updated successfully"); 
-		} 
-	} 
-} 
+		if ($data['status']) {
+			$logger->write("Updating " . $data['product_id'] . ' from ' . $data['marketplace'] . ' as successful');
+			$this->model_openbay_amazon_listing->listingSuccessful($data['product_id'], $data['marketplace']);
+			$this->model_openbay_amazon_product->linkProduct($data['sku'], $data['product_id']);
+			$logger->write("Updated successfully");
+		} else {
+			$logger->write("Updating " . $data['product_id'] . ' from ' . $data['marketplace'] . ' as failed');
+			$this->model_openbay_amazon_listing->listingFailed($data['product_id'], $data['marketplace'], $data['messages']);
+			$logger->write("Updated successfully");
+		}
+	}
+}
 ?>

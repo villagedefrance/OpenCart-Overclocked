@@ -1,59 +1,48 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerAmazonusListing extends Controller {
+	public function index() {
+		if ($this->config->get('amazonus_status') != '1') {
+			return;
+		}
 
-class ControllerAmazonusListing extends Controller { 
+		$this->load->library('log');
+		$this->load->library('amazonus');
+		$this->load->model('openbay/amazonus_listing');
+		$this->load->model('openbay/amazonus_product');
 
-	public function index() { 
+		$logger = new Log('amazonus_listing.log');
+		$logger->write('amazonus/listing - started');
 
-		if ($this->config->get('amazonus_status') != '1') { 
-			return; 
-		} 
+		$token = $this->config->get('openbay_amazonus_token');
 
-		$this->load->library('log'); 
-		$this->load->library('amazonus'); 
+		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : '';
 
-		$this->load->model('openbay/amazonus_listing'); 
-		$this->load->model('openbay/amazonus_product'); 
+		if ($incomingToken !== $token) {
+			$logger->write('amazonus/listing - Incorrect token: ' . $incomingToken);
+			return;
+		}
 
-		$logger = new Log('amazonus_listing.log'); 
-		$logger->write('amazonus/listing - started'); 
+		$decrypted = $this->openbay->amazonus->decryptArgs($this->request->post['data']);
 
-		$token = $this->config->get('openbay_amazonus_token'); 
+		if (!$decrypted) {
+			$logger->write('amazonus/order Failed to decrypt data');
+			return;
+		}
 
-		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : ''; 
+		$data = json_decode($decrypted, 1);
 
-		if ($incomingToken !== $token) { 
-			$logger->write('amazonus/listing - Incorrect token: ' . $incomingToken); 
-			return; 
-		} 
+		$logger->write("Received data: " . print_r($data, 1));
 
-		$decrypted = $this->openbay->amazonus->decryptArgs($this->request->post['data']); 
-
-		if (!$decrypted) { 
-			$logger->write('amazonus/order Failed to decrypt data'); 
-			return; 
-		} 
-
-		$data = json_decode($decrypted, 1); 
-
-		$logger->write("Received data: " . print_r($data, 1)); 
-
-		if ($data['status']) { 
-			$logger->write("Updating " . $data['product_id'] . ' as successful'); 
-
-			$this->model_openbay_amazonus_listing->listingSuccessful($data['product_id']); 
-			$this->model_openbay_amazonus_product->linkProduct($data['sku'], $data['product_id']); 
-
-			$logger->write("Updated successfully"); 
-		} else { 
-			$logger->write("Updating " . $data['product_id'] . ' as failed'); 
-
-			$this->model_openbay_amazonus_listing->listingFailed($data['product_id'], $data['messages']); 
-
-			$logger->write("Updated successfully"); 
-		} 
-	} 
-} 
+		if ($data['status']) {
+			$logger->write("Updating " . $data['product_id'] . ' as successful');
+			$this->model_openbay_amazonus_listing->listingSuccessful($data['product_id']);
+			$this->model_openbay_amazonus_product->linkProduct($data['sku'], $data['product_id']);
+			$logger->write("Updated successfully");
+		} else {
+			$logger->write("Updating " . $data['product_id'] . ' as failed');
+			$this->model_openbay_amazonus_listing->listingFailed($data['product_id'], $data['messages']);
+			$logger->write("Updated successfully");
+		}
+	}
+}
 ?>

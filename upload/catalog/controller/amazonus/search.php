@@ -1,42 +1,36 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerAmazonusSearch extends Controller {
+	public function index() {
+		if ($this->config->get('amazonus_status') != '1') {
+			return;
+		}
 
-class ControllerAmazonusSearch extends Controller { 
+		$this->load->model('openbay/amazonus_product');
 
-	public function index() { 
+		$logger = new Log('amazonus.log');
+		$logger->write('amazonus/search - started');
 
-		if ($this->config->get('amazonus_status') != '1') { 
-			return; 
-		} 
+		$token = $this->config->get('openbay_amazonus_token');
 
-		$this->load->model('openbay/amazonus_product'); 
+		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : '';
 
-		$logger = new Log('amazonus.log'); 
-		$logger->write('amazonus/search - started'); 
+		if ($incomingToken !== $token) {
+			$logger->write('amazonus/search - Incorrect token: ' . $incomingToken);
+			return;
+		}
 
-		$token = $this->config->get('openbay_amazonus_token'); 
+		$decrypted = $this->openbay->amazonus->decryptArgs($this->request->post['data']);
 
-		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : ''; 
+		if (!$decrypted) {
+			$logger->write('amazonus/search Failed to decrypt data');
+			return;
+		}
 
-		if ($incomingToken !== $token) { 
-			$logger->write('amazonus/search - Incorrect token: ' . $incomingToken); 
-			return; 
-		} 
+		$logger->write($decrypted);
 
-		$decrypted = $this->openbay->amazonus->decryptArgs($this->request->post['data']); 
+		$json = json_decode($decrypted, 1);
 
-		if (!$decrypted) { 
-			$logger->write('amazonus/search Failed to decrypt data'); 
-			return; 
-		} 
-
-		$logger->write($decrypted); 
-
-		$json = json_decode($decrypted, 1); 
-
-		$this->model_openbay_amazonus_product->updateSearch($json); 
-	} 
-} 
+		$this->model_openbay_amazonus_product->updateSearch($json);
+	}
+}
 ?>

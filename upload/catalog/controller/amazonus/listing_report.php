@@ -1,59 +1,53 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerAmazonusListingReport extends Controller {
+	public function index() {
+		if ($this->config->get('amazonus_status') != '1') {
+			return;
+		}
 
-class ControllerAmazonusListingReport extends Controller { 
+		$this->load->model('openbay/amazonus_product');
 
-	public function index() { 
+		$logger = new Log('amazonus.log');
+		$logger->write('amazonus/listing_reports - started');
 
-		if ($this->config->get('amazonus_status') != '1') { 
-			return; 
-		} 
+		$token = $this->config->get('openbay_amazonus_token');
 
-		$this->load->model('openbay/amazonus_product'); 
+		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : '';
 
-		$logger = new Log('amazonus.log'); 
-		$logger->write('amazonus/listing_reports - started'); 
+		if ($incomingToken !== $token) {
+			$logger->write('amazonus/listing_reports - Incorrect token: ' . $incomingToken);
+			return;
+		}
 
-		$token = $this->config->get('openbay_amazonus_token'); 
+		$decrypted = $this->openbay->amazonus->decryptArgs($this->request->post['data']);
 
-		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : ''; 
+		if (!$decrypted) {
+			$logger->write('amazonus/listing_reports - Failed to decrypt data');
+			return;
+		}
 
-		if ($incomingToken !== $token) { 
-			$logger->write('amazonus/listing_reports - Incorrect token: ' . $incomingToken); 
-			return; 
-		} 
+		$logger->write('Received Listing Report: ' . $decrypted);
 
-		$decrypted = $this->openbay->amazonus->decryptArgs($this->request->post['data']); 
+		$request = json_decode($decrypted, 1);
 
-		if (!$decrypted) { 
-			$logger->write('amazonus/listing_reports - Failed to decrypt data'); 
-			return; 
-		} 
+		$data = array();
 
-		$logger->write('Received Listing Report: ' . $decrypted); 
-
-		$request = json_decode($decrypted, 1); 
-
-		$data = array(); 
-
-		foreach ($request['products'] as $product) { 
+		foreach ($request['products'] as $product) {
 			$data[] = array(
-				'sku' 		=> $product['sku'],
-				'quantity' 	=> $product['quantity'],
-				'asin' 		=> $product['asin'],
-				'price' 		=> $product['price']
-			); 
-		} 
+				'sku' => $product['sku'],
+				'quantity' => $product['quantity'],
+				'asin' => $product['asin'],
+				'price' => $product['price'],
+			);
+		}
 
-		if ($data) { 
-			$this->model_openbay_amazonus_product->addListingReport($data); 
-		} 
+		if ($data) {
+			$this->model_openbay_amazonus_product->addListingReport($data);
+		}
 
-		$this->model_openbay_amazonus_product->removeListingReportLock($request['marketplace']); 
+		$this->model_openbay_amazonus_product->removeListingReportLock($request['marketplace']);
 
-		$logger->write('amazonus/listing_reports - Finished'); 
-	} 
-} 
+		$logger->write('amazonus/listing_reports - Finished');
+	}
+}
 ?>
