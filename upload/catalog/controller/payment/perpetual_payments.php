@@ -1,75 +1,69 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerPaymentPerpetualPayments extends Controller {
 
-class ControllerPaymentPerpetualPayments extends Controller { 
+	protected function index() {
+		$this->language->load('payment/perpetual_payments');
 
-	protected function index() { 
+		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
+		$this->data['text_start_date'] = $this->language->get('text_start_date');
+		$this->data['text_issue'] = $this->language->get('text_issue');
+		$this->data['text_wait'] = $this->language->get('text_wait');
 
-		$this->language->load('payment/perpetual_payments'); 
+		$this->data['entry_cc_number'] = $this->language->get('entry_cc_number');
+		$this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date');
+		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');
+		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
+		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');
 
-		$this->data['text_credit_card'] = $this->language->get('text_credit_card'); 
-		$this->data['text_start_date'] = $this->language->get('text_start_date'); 
-		$this->data['text_issue'] = $this->language->get('text_issue'); 
-		$this->data['text_wait'] = $this->language->get('text_wait'); 
+		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
-		$this->data['entry_cc_number'] = $this->language->get('entry_cc_number'); 
-		$this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date'); 
-		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date'); 
-		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2'); 
-		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue'); 
+		$this->data['months'] = array();
 
-		$this->data['button_confirm'] = $this->language->get('button_confirm'); 
-
-		$this->data['months'] = array(); 
-
-		for ($i = 1; $i <= 12; $i++) { 
+		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text'  => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)), 
-				'value' => sprintf('%02d', $i)
-			); 
-		} 
+				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value'	=> sprintf('%02d', $i)
+			);
+		}
 
-		$today = getdate(); 
+		$today = getdate();
 
-		$this->data['year_valid'] = array(); 
+		$this->data['year_valid'] = array();
 
-		for ($i = $today['year'] - 10; $i < $today['year'] + 1; $i++) { 
+		for ($i = $today['year'] - 10; $i < $today['year'] + 1; $i++) {
 			$this->data['year_valid'][] = array(
-				'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)), 
-				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
-			); 
-		} 
+				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+			);
+		}
 
-		$this->data['year_expire'] = array(); 
+		$this->data['year_expire'] = array();
 
-		for ($i = $today['year']; $i < $today['year'] + 11; $i++) { 
+		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)) 
-			); 
-		} 
+				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+			);
+		}
 
-		// Custom Template Connector
-		$this->data['template'] = $this->config->get('config_template'); 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/perpetual_payments.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/payment/perpetual_payments.tpl'; 
-		} else { 
-			$this->template = 'default/template/payment/perpetual_payments.tpl'; 
-		} 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/perpetual_payments.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/payment/perpetual_payments.tpl';
+		} else {
+			$this->template = 'default/template/payment/perpetual_payments.tpl';
+		}
 
-		$this->render(); 
-	} 
+		$this->render();
+	}
 
-	public function send() { 
+	public function send() {
+		$this->language->load('payment/perpetual_payments');
 
-		$this->language->load('payment/perpetual_payments'); 
+		$this->load->model('checkout/order');
 
-		$this->load->model('checkout/order'); 
-
-		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']); 
+		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		$payment_data = array(
 			'auth_id'       		=> $this->config->get('perpetual_payments_auth_id'),
@@ -91,9 +85,9 @@ class ControllerPaymentPerpetualPayments extends Controller {
 			'tran_testmode' 	=> $this->config->get('perpetual_payments_test'),
 			'tran_type'     		=> 'Sale',
 			'tran_class'    		=> 'MoTo'
-		); 
+		);
 
-		$curl = curl_init('https://secure.voice-pay.com/gateway/remote'); 
+		$curl = curl_init('https://secure.voice-pay.com/gateway/remote');
 
 		curl_setopt($curl, CURLOPT_PORT, 443);
 		curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -104,43 +98,44 @@ class ControllerPaymentPerpetualPayments extends Controller {
 		curl_setopt($curl, CURLOPT_POST, 1);
 		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($payment_data));
 
-		$response = curl_exec($curl); 
+		$response = curl_exec($curl);
 
-		curl_close($curl); 
+		curl_close($curl);
 
-		if ($response) { 
-			$data = explode('|', $response); 
+		if ($response) {
+			$data = explode('|', $response);
 
-			if (isset($data[0]) && $data[0] == 'A') { 
-				$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('config_order_status_id')); 
+			if (isset($data[0]) && $data[0] == 'A') {
+				$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('config_order_status_id'));
 
-				$message = ''; 
+				$message = '';
 
-				if (isset($data[1])) { 
-					$message .= $this->language->get('text_transaction') . ' ' . $data[1] . "\n"; 
-				} 
+				if (isset($data[1])) {
+					$message .= $this->language->get('text_transaction') . ' ' . $data[1] . "\n";
+				}
 
-				if (isset($data[2])) { 
-					if ($data[2] == '232') { 
-						$message .= $this->language->get('text_avs') . ' ' . $this->language->get('text_avs_full_match') . "\n"; 
-					} elseif ($data[2] == '400') { 
-						$message .= $this->language->get('text_avs') . ' ' . $this->language->get('text_avs_not_match') . "\n"; 
-					} 
-				} 
+				if (isset($data[2])) {
+					if ($data[2] == '232') {
+						$message .= $this->language->get('text_avs') . ' ' . $this->language->get('text_avs_full_match') . "\n";
+					} elseif ($data[2] == '400') {
+						$message .= $this->language->get('text_avs') . ' ' . $this->language->get('text_avs_not_match') . "\n";
+					}
+				}
 
-				if (isset($data[3])) { 
-					$message .= $this->language->get('text_authorisation') . ' ' . $data[3] . "\n"; 
-				} 
+				if (isset($data[3])) {
+					$message .= $this->language->get('text_authorisation') . ' ' . $data[3] . "\n";
+				}
 
-				$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('perpetual_payments_order_status_id'), $message, false); 
+				$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('perpetual_payments_order_status_id'), $message, false);
 
-				$json['success'] = $this->url->link('checkout/success'); 
-			} else { 
-				$json['error'] = end($data); 
-			} 
-		} 
+				$json['success'] = $this->url->link('checkout/success');
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
-} 
+			} else {
+				$json['error'] = end($data);
+			}
+		}
+
+		$this->response->setOutput(json_encode($json));
+	}
+}
 ?>
