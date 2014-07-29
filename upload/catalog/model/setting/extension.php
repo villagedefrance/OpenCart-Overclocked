@@ -1,14 +1,10 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ModelSettingExtension extends Model {
 
-class ModelSettingExtension extends Model { 
+	function getExtensions($type) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "'");
 
-	function getExtensions($type) { 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "'"); 
-
-		return $query->rows; 
-	} 
-} 
+		return $query->rows;
+	}
+}
 ?>

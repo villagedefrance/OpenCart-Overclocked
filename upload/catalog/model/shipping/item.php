@@ -1,34 +1,29 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ModelShippingItem extends Model {
 
-class ModelShippingItem extends Model { 
+	function getQuote($address) {
+		$this->language->load('shipping/item');
 
-	function getQuote($address) { 
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('item_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		$this->language->load('shipping/item'); 
+		if (!$this->config->get('item_geo_zone_id')) {
+			$status = true;
+		} elseif ($query->num_rows) {
+			$status = true;
+		} else {
+			$status = false;
+		}
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('item_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')"); 
+		$method_data = array();
 
-		if (!$this->config->get('item_geo_zone_id')) { 
-			$status = true; 
-		} elseif ($query->num_rows) { 
-			$status = true; 
-		} else { 
-			$status = false; 
-		} 
+		if ($status) {
+			$items = 0;
 
-		$method_data = array(); 
+			foreach ($this->cart->getProducts() as $product) {
+				if ($product['shipping']) $items += $product['quantity'];
+			}
 
-		if ($status) { 
-			$items = 0; 
-
-			foreach ($this->cart->getProducts() as $product) { 
-				if ($product['shipping']) $items += $product['quantity']; 
-			} 
-
-			$quote_data = array(); 
+			$quote_data = array();
 
 			$quote_data['item'] = array(
 				'code'         	=> 'item.item',
@@ -36,18 +31,18 @@ class ModelShippingItem extends Model {
 				'cost'         	=> $this->config->get('item_cost') * $items,
 				'tax_class_id' 	=> $this->config->get('item_tax_class_id'),
 				'text'         	=> $this->currency->format($this->tax->calculate($this->config->get('item_cost') * $items, $this->config->get('item_tax_class_id'), $this->config->get('config_tax')))
-			); 
+			);
 
 			$method_data = array(
-				'code'       	=> 'item',
-				'title'      		=> $this->language->get('text_title'),
-				'quote'      	=> $quote_data,
-				'sort_order' 	=> $this->config->get('item_sort_order'),
-				'error'      		=> false
-			); 
-		} 
+				'code'		=> 'item',
+				'title'			=> $this->language->get('text_title'),
+				'quote'		=> $quote_data,
+				'sort_order'	=> $this->config->get('item_sort_order'),
+				'error'			=> false
+			);
+		}
 
-		return $method_data; 
-	} 
-} 
+		return $method_data;
+	}
+}
 ?>

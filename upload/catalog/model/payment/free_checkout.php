@@ -1,31 +1,26 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ModelPaymentFreeCheckout extends Model {
 
-class ModelPaymentFreeCheckout extends Model { 
+	public function getMethod($address, $total) {
+		$this->language->load('payment/free_checkout');
 
-	public function getMethod($address, $total) { 
+		if ($total <= 0) {
+			$status = true;
+		} else {
+			$status = false;
+		}
 
-		$this->language->load('payment/free_checkout'); 
+		$method_data = array();
 
-		if ($total <= 0) { 
-			$status = true; 
-		} else { 
-			$status = false; 
-		} 
-
-		$method_data = array(); 
-
-		if ($status) { 
+		if ($status) {
 			$method_data = array(
-				'code'       	=> 'free_checkout',
-				'title'      		=> $this->language->get('text_title'),
-				'sort_order' 	=> $this->config->get('free_checkout_sort_order')
-			); 
-		} 
+				'code'		=> 'free_checkout',
+				'title'			=> $this->language->get('text_title'),
+				'sort_order'	=> $this->config->get('free_checkout_sort_order')
+			);
+		}
 
-		return $method_data; 
-	} 
-} 
+		return $method_data;
+	}
+}
 ?>

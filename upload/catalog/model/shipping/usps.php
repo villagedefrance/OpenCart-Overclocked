@@ -1,40 +1,35 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ModelShippingUsps extends Model {
 
-class ModelShippingUsps extends Model { 
+	public function getQuote($address) {
+		$this->language->load('shipping/usps');
 
-	public function getQuote($address) { 
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('usps_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		$this->language->load('shipping/usps'); 
+		if (!$this->config->get('usps_geo_zone_id')) {
+			$status = true;
+		} elseif ($query->num_rows) {
+			$status = true;
+		} else {
+			$status = false;
+		}
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('usps_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')"); 
+		$method_data = array();
 
-		if (!$this->config->get('usps_geo_zone_id')) { 
-			$status = true; 
-		} elseif ($query->num_rows) { 
-			$status = true; 
-		} else { 
-			$status = false; 
-		} 
+		if ($status) {
+			$this->load->model('localisation/country');
 
-		$method_data = array(); 
+			$quote_data = array();
 
-		if ($status) { 
-			$this->load->model('localisation/country'); 
+			$weight = $this->weight->convert($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->config->get('usps_weight_class_id'));
 
-			$quote_data = array(); 
-
-			$weight = $this->weight->convert($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->config->get('usps_weight_class_id')); 
-
-			$weight = ($weight < 0.1 ? 0.1 : $weight); 
-			$pounds = floor($weight); 
+			$weight = ($weight < 0.1 ? 0.1 : $weight);
+			$pounds = floor($weight);
 			$ounces = round(16 * ($weight - $pounds), 2); // max 5 digits
 
-			$postcode = str_replace(' ', '', $address['postcode']); 
+			$postcode = str_replace(' ', '', $address['postcode']);
 
-			if ($address['iso_code_2'] == 'US') { 
+			if ($address['iso_code_2'] == 'US') {
 				$xml  = '<RateV4Request USERID="' . $this->config->get('usps_user_id') . '">';
 				$xml .= '	<Package ID="1">';
 				$xml .=	'		<Service>ALL</Service>';
@@ -44,9 +39,9 @@ class ModelShippingUsps extends Model {
 				$xml .=	'		<Ounces>' . $ounces . '</Ounces>';
 
 				// Prevent common size mismatch error from USPS (Size cannot be Regular if Container is Rectangular for some reason)
-				if ($this->config->get('usps_container') == 'RECTANGULAR' && $this->config->get('usps_size') == 'REGULAR') { 
+				if ($this->config->get('usps_container') == 'RECTANGULAR' && $this->config->get('usps_size') == 'REGULAR') {
 					$this->config->set('usps_container', 'VARIABLE');
-				} 
+				}
 
 				$xml .=	'		<Container>' . $this->config->get('usps_container') . '</Container>';
 				$xml .=	'		<Size>' . $this->config->get('usps_size') . '</Size>';
@@ -63,7 +58,7 @@ class ModelShippingUsps extends Model {
 
 				$request = 'API=RateV4&XML=' . urlencode($xml);
 
-			} else { 
+			} else {
 				$country = array(
 					'AF' => 'Afghanistan',
 					'AL' => 'Albania',
@@ -284,9 +279,9 @@ class ModelShippingUsps extends Model {
 					'YE' => 'Yemen',
 					'ZM' => 'Zambia',
 					'ZW' => 'Zimbabwe'
-				); 
+				);
 
-				if (isset($country[$address['iso_code_2']])) { 
+				if (isset($country[$address['iso_code_2']])) {
 					$xml  = '<IntlRateV2Request USERID="' . $this->config->get('usps_user_id') . '">';
 					$xml .=	'	<Package ID="1">';
 					$xml .=	'		<Pounds>' . $pounds . '</Pounds>';
@@ -300,9 +295,9 @@ class ModelShippingUsps extends Model {
 					$xml .=	'		<Country>' . $country[$address['iso_code_2']] . '</Country>';
 
 					// Intl only supports RECT and NONRECT
-					if ($this->config->get('usps_container') == 'VARIABLE') { 
+					if ($this->config->get('usps_container') == 'VARIABLE') {
 						$this->config->set('usps_container', 'NONRECTANGULAR');
-					} 
+					}
 
 					$xml .=	'		<Container>' . $this->config->get('usps_container') . '</Container>';
 					$xml .=	'		<Size>' . $this->config->get('usps_size') . '</Size>';
@@ -315,21 +310,22 @@ class ModelShippingUsps extends Model {
 					$xml .=	'</IntlRateV2Request>';
 
 					$request = 'API=IntlRateV2&XML=' . urlencode($xml);
-				} else { 
-					$status = false; 
-				} 
-			} 
 
-			if ($status) { 
-				$curl = curl_init(); 
+				} else {
+					$status = false;
+				}
+			}
+
+			if ($status) {
+				$curl = curl_init();
 
 				curl_setopt($curl, CURLOPT_URL, 'production.shippingapis.com/ShippingAPI.dll?' . $request);
 				curl_setopt($curl, CURLOPT_HEADER, 0);
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
-				$result = curl_exec($curl); 
+				$result = curl_exec($curl);
 
-				curl_close($curl); 
+				curl_close($curl);
 
 				// strip reg, trade and ** out 01-02-2011
 				$result = str_replace('&amp;lt;sup&amp;gt;&amp;amp;reg;&amp;lt;/sup&amp;gt;', '', $result);
@@ -338,51 +334,51 @@ class ModelShippingUsps extends Model {
 				$result = str_replace("\r\n", '', $result);
 				$result = str_replace('\"', '"', $result);
 
-				if ($result) { 
-					if ($this->config->get('usps_debug')) { 
+				if ($result) {
+					if ($this->config->get('usps_debug')) {
 						$this->log->write("USPS DATA SENT: " . urldecode($request));
 						$this->log->write("USPS DATA RECV: " . $result);
-					} 
+					}
 
-					$dom = new DOMDocument('1.0', 'UTF-8'); 
-					$dom->loadXml($result); 
+					$dom = new DOMDocument('1.0', 'UTF-8');
+					$dom->loadXml($result);
 
-					$rate_response = $dom->getElementsByTagName('RateV4Response')->item(0); 
-					$intl_rate_response = $dom->getElementsByTagName('IntlRateV2Response')->item(0); 
-					$error = $dom->getElementsByTagName('Error')->item(0); 
+					$rate_response = $dom->getElementsByTagName('RateV4Response')->item(0);
+					$intl_rate_response = $dom->getElementsByTagName('IntlRateV2Response')->item(0);
+					$error = $dom->getElementsByTagName('Error')->item(0);
 
 					$firstclasses = array(
 						'First-Class Mail Parcel',
 						'First-Class Mail Large Envelope',
 						'First-Class Mail Letter',
 						'First-Class Mail Postcards'
-					); 
+					);
 
-					if ($rate_response || $intl_rate_response) { 
-						if ($address['iso_code_2'] == 'US') { 
-							$allowed = array(0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 16, 17, 18, 19, 22, 23, 25, 27, 28); 
+					if ($rate_response || $intl_rate_response) {
+						if ($address['iso_code_2'] == 'US') {
+							$allowed = array(0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 16, 17, 18, 19, 22, 23, 25, 27, 28);
 
-							$package = $rate_response->getElementsByTagName('Package')->item(0); 
+							$package = $rate_response->getElementsByTagName('Package')->item(0);
 
-							$postages = $package->getElementsByTagName('Postage'); 
+							$postages = $package->getElementsByTagName('Postage');
 
-							if ($postages->length) { 
-								foreach ($postages as $postage) { 
-									$classid = $postage->getAttribute('CLASSID'); 
+							if ($postages->length) {
+								foreach ($postages as $postage) {
+									$classid = $postage->getAttribute('CLASSID');
 
-									if (in_array($classid, $allowed)) { 
-										if ($classid == '0') { 
-											$mailservice = $postage->getElementsByTagName('MailService')->item(0)->nodeValue; 
+									if (in_array($classid, $allowed)) {
+										if ($classid == '0') {
+											$mailservice = $postage->getElementsByTagName('MailService')->item(0)->nodeValue;
 
-											foreach ($firstclasses as $k => $firstclass)  { 
-												if ($firstclass == $mailservice) { 
-													$classid = $classid . $k; 
-													break; 
-												} 
-											} 
+											foreach ($firstclasses as $k => $firstclass) {
+												if ($firstclass == $mailservice) {
+													$classid = $classid . $k;
+													break;
+												}
+											}
 
-											if (($this->config->get('usps_domestic_' . $classid))) { 
-												$cost = $postage->getElementsByTagName('Rate')->item(0)->nodeValue; 
+											if (($this->config->get('usps_domestic_' . $classid))) {
+												$cost = $postage->getElementsByTagName('Rate')->item(0)->nodeValue;
 
 												$quote_data[$classid] = array(
 													'code'         	=> 'usps.' . $classid,
@@ -390,11 +386,11 @@ class ModelShippingUsps extends Model {
 													'cost'         	=> $this->currency->convert($cost, 'USD', $this->config->get('config_currency')),
 													'tax_class_id' 	=> $this->config->get('usps_tax_class_id'),
 													'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($cost, 'USD', $this->currency->getCode()), $this->config->get('usps_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
-												); 
-											} 
+												);
+											}
 
-										} elseif ($this->config->get('usps_domestic_' . $classid)) { 
-											$cost = $postage->getElementsByTagName('Rate')->item(0)->nodeValue; 
+										} elseif ($this->config->get('usps_domestic_' . $classid)) {
+											$cost = $postage->getElementsByTagName('Rate')->item(0)->nodeValue;
 
 											$quote_data[$classid] = array(
 												'code'         	=> 'usps.' . $classid,
@@ -402,41 +398,41 @@ class ModelShippingUsps extends Model {
 												'cost'         	=> $this->currency->convert($cost, 'USD', $this->config->get('config_currency')),
 												'tax_class_id' 	=> $this->config->get('usps_tax_class_id'),
 												'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($cost, 'USD', $this->currency->getCode()), $this->config->get('usps_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
-											); 
-										} 
-									} 
-								} 
+											);
+										}
+									}
+								}
 
-							} else { 
-								$error = $package->getElementsByTagName('Error')->item(0); 
+							} else {
+								$error = $package->getElementsByTagName('Error')->item(0);
 
 								$method_data = array(
-									'code'       	=> 'usps',
-									'title'      		=> $this->language->get('text_title'),
-									'quote'      	=> $quote_data,
-									'sort_order' 	=> $this->config->get('usps_sort_order'),
-									'error'      		=> $error->getElementsByTagName('Description')->item(0)->nodeValue
-								); 
-							} 
+									'code'		=> 'usps',
+									'title'			=> $this->language->get('text_title'),
+									'quote'		=> $quote_data,
+									'sort_order'	=> $this->config->get('usps_sort_order'),
+									'error'			=> $error->getElementsByTagName('Description')->item(0)->nodeValue
+								);
+							}
 
-						} else { 
-							$allowed = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 21); 
+						} else {
+							$allowed = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 21);
 
-							$package = $intl_rate_response->getElementsByTagName('Package')->item(0); 
+							$package = $intl_rate_response->getElementsByTagName('Package')->item(0);
 
-							$services = $package->getElementsByTagName('Service'); 
+							$services = $package->getElementsByTagName('Service');
 
-							foreach ($services as $service) { 
-								$id = $service->getAttribute('ID'); 
+							foreach ($services as $service) {
+								$id = $service->getAttribute('ID');
 
-								if (in_array($id, $allowed) && $this->config->get('usps_international_' . $id)) { 
-									$title = $service->getElementsByTagName('SvcDescription')->item(0)->nodeValue; 
+								if (in_array($id, $allowed) && $this->config->get('usps_international_' . $id)) {
+									$title = $service->getElementsByTagName('SvcDescription')->item(0)->nodeValue;
 
-									if ($this->config->get('usps_display_time')) { 
-										$title .= ' (' . $this->language->get('text_eta') . ' ' . $service->getElementsByTagName('SvcCommitments')->item(0)->nodeValue . ')'; 
-									} 
+									if ($this->config->get('usps_display_time')) {
+										$title .= ' (' . $this->language->get('text_eta') . ' ' . $service->getElementsByTagName('SvcCommitments')->item(0)->nodeValue . ')';
+									}
 
-									$cost = $service->getElementsByTagName('Postage')->item(0)->nodeValue; 
+									$cost = $service->getElementsByTagName('Postage')->item(0)->nodeValue;
 
 									$quote_data[$id] = array(
 										'code'         	=> 'usps.' . $id,
@@ -444,41 +440,41 @@ class ModelShippingUsps extends Model {
 										'cost'         	=> $this->currency->convert($cost, 'USD', $this->config->get('config_currency')),
 										'tax_class_id' 	=> $this->config->get('usps_tax_class_id'),
 										'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($cost, 'USD', $this->currency->getCode()), $this->config->get('usps_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
-									); 
-								} 
-							} 
-						} 
+									);
+								}
+							}
+						}
 
-					} elseif ($error) { 
+					} elseif ($error) {
 						$method_data = array(
-							'code'       	=> 'usps',
-							'title'      		=> $this->language->get('text_title'),
-							'quote'      	=> $quote_data,
-							'sort_order' 	=> $this->config->get('usps_sort_order'),
-							'error'      		=> $error->getElementsByTagName('Description')->item(0)->nodeValue
-						); 
-					} 
-				} 
-			} 
+							'code'		=> 'usps',
+							'title'			=> $this->language->get('text_title'),
+							'quote'		=> $quote_data,
+							'sort_order'	=> $this->config->get('usps_sort_order'),
+							'error'			=> $error->getElementsByTagName('Description')->item(0)->nodeValue
+						);
+					}
+				}
+			}
 
-			if ($quote_data) { 
-				$title = $this->language->get('text_title'); 
+			if ($quote_data) {
+				$title = $this->language->get('text_title');
 
-				if ($this->config->get('usps_display_weight')) { 
-					$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('usps_weight_class_id')) . ')'; 
-				} 
+				if ($this->config->get('usps_display_weight')) {
+					$title .= ' (' . $this->language->get('text_weight') . ' ' . $this->weight->format($weight, $this->config->get('usps_weight_class_id')) . ')';
+				}
 
 				$method_data = array(
-					'code'       	=> 'usps',
-					'title'      		=> $title,
-					'quote'      	=> $quote_data,
-					'sort_order' 	=> $this->config->get('usps_sort_order'),
-					'error'      		=> false
-				); 
-			} 
-		} 
+					'code'		=> 'usps',
+					'title'			=> $title,
+					'quote'		=> $quote_data,
+					'sort_order'	=> $this->config->get('usps_sort_order'),
+					'error'			=> false
+				);
+			}
+		}
 
-		return $method_data; 
-	} 
-} 
+		return $method_data;
+	}
+}
 ?>
