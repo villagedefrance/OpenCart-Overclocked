@@ -1,21 +1,16 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerPaymentAuthorizeNetSim extends Controller {
 
-class ControllerPaymentAuthorizeNetSim extends Controller { 
+	protected function index() {
+		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
-	protected function index() { 
+		$this->data['action'] = $this->config->get('authorizenet_sim_url');
 
-		$this->data['button_confirm'] = $this->language->get('button_confirm'); 
+		$this->load->model('checkout/order');
 
-		$this->data['action'] = $this->config->get('authorizenet_sim_url'); 
+		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		$this->load->model('checkout/order'); 
-
-		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']); 
-
-		$data =& $this->data; 
+		$data =& $this->data;
 
 		/* 6.1 Essential Fields
 		 * The following parameters are required, and validated with each request. If one
@@ -27,7 +22,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		 *  Varies by merchant
 		 *	Maximum length 20, the Payment Page ID from the Administration Console. Case-sensitive.
 		 */
-		$data['x_login'] = $this->config->get('authorizenet_sim_merchant'); 
+		$data['x_login'] = $this->config->get('authorizenet_sim_merchant');
 
 		/** 
 		 * 
@@ -38,7 +33,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		 * 
 		 * @var unknown_type
 		 */
-		$data['x_fp_sequence'] = $this->session->data['order_id']; 
+		$data['x_fp_sequence'] = $this->session->data['order_id'];
 
 		/** 
 		 * 
@@ -47,7 +42,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		 * 
 		 * @var Time in seconds since January 1, 1970. UTC
 		 */
-		$data['x_fp_timestamp'] = time(); 
+		$data['x_fp_timestamp'] = time();
 
 		/** 
 		 * 
@@ -56,7 +51,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		 * 
 		 * @var Positive number
 		 */
-		$data['x_amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false); 
+		$data['x_amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
 
 		/** 
 		 * 
@@ -81,65 +76,65 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		 * 
 		 * @var String
 		 */
-		$data['x_show_form'] = 'PAYMENT_FORM'; 
+		$data['x_show_form'] = 'PAYMENT_FORM';
 
 		/* 6.2 Transaction and Display Fields */
-		$mode = $this->config->get('authorizenet_sim_mode'); 
+		$mode = $this->config->get('authorizenet_sim_mode');
 
-		if ($mode == 'live') { 
-			$data['x_test_request'] = 'false'; 
-		} else { 
-			$data['x_test_request'] = 'true'; 
-		} 
+		if ($mode == 'live') {
+			$data['x_test_request'] = 'false';
+		} else {
+			$data['x_test_request'] = 'true';
+		}
 
-		$data['x_type'] = 'AUTH_CAPTURE'; 
-		$data['x_currency_code'] = $this->currency->getCode(); 
+		$data['x_type'] = 'AUTH_CAPTURE';
+		$data['x_currency_code'] = $this->currency->getCode();
 
 		/* 6.3 Order and Customer Detail Fields */
 
 		/* Order Information Fields */
-		$data['x_invoice_num'] = $this->session->data['order_id']; 
-		$data['x_description'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'); 
+		$data['x_invoice_num'] = $this->session->data['order_id'];
+		$data['x_description'] = html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
 
 		/* Customer Name and Billing Address Fields */
-		$data['x_first_name'] = html_entity_decode($order_info['payment_firstname'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_last_name'] = html_entity_decode($order_info['payment_lastname'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_company'] = html_entity_decode($order_info['payment_company'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_address'] = html_entity_decode($order_info['payment_address_1'], ENT_QUOTES, 'UTF-8') . ' ' . html_entity_decode($order_info['payment_address_2'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_city'] = html_entity_decode($order_info['payment_city'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_state'] = html_entity_decode($order_info['payment_zone'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_zip'] = html_entity_decode($order_info['payment_postcode'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_country'] = html_entity_decode($order_info['payment_country'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_phone'] = $order_info['telephone']; 
+		$data['x_first_name'] = html_entity_decode($order_info['payment_firstname'], ENT_QUOTES, 'UTF-8');
+		$data['x_last_name'] = html_entity_decode($order_info['payment_lastname'], ENT_QUOTES, 'UTF-8');
+		$data['x_company'] = html_entity_decode($order_info['payment_company'], ENT_QUOTES, 'UTF-8');
+		$data['x_address'] = html_entity_decode($order_info['payment_address_1'], ENT_QUOTES, 'UTF-8') . ' ' . html_entity_decode($order_info['payment_address_2'], ENT_QUOTES, 'UTF-8');
+		$data['x_city'] = html_entity_decode($order_info['payment_city'], ENT_QUOTES, 'UTF-8');
+		$data['x_state'] = html_entity_decode($order_info['payment_zone'], ENT_QUOTES, 'UTF-8');
+		$data['x_zip'] = html_entity_decode($order_info['payment_postcode'], ENT_QUOTES, 'UTF-8');
+		$data['x_country'] = html_entity_decode($order_info['payment_country'], ENT_QUOTES, 'UTF-8');
+		$data['x_phone'] = $order_info['telephone'];
 
 		/* Customer Shipping Address Fields */
-		$data['x_ship_to_first_name'] = html_entity_decode($order_info['shipping_firstname'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_last_name'] = html_entity_decode($order_info['shipping_lastname'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_company'] = html_entity_decode($order_info['shipping_company'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_address'] = html_entity_decode($order_info['shipping_address_1'], ENT_QUOTES, 'UTF-8') . ' ' . html_entity_decode($order_info['shipping_address_2'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_city'] = html_entity_decode($order_info['shipping_city'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_state'] = html_entity_decode($order_info['shipping_zone'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_zip'] = html_entity_decode($order_info['shipping_postcode'], ENT_QUOTES, 'UTF-8'); 
-		$data['x_ship_to_country'] = html_entity_decode($order_info['shipping_country'], ENT_QUOTES, 'UTF-8'); 
+		$data['x_ship_to_first_name'] = html_entity_decode($order_info['shipping_firstname'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_last_name'] = html_entity_decode($order_info['shipping_lastname'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_company'] = html_entity_decode($order_info['shipping_company'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_address'] = html_entity_decode($order_info['shipping_address_1'], ENT_QUOTES, 'UTF-8') . ' ' . html_entity_decode($order_info['shipping_address_2'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_city'] = html_entity_decode($order_info['shipping_city'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_state'] = html_entity_decode($order_info['shipping_zone'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_zip'] = html_entity_decode($order_info['shipping_postcode'], ENT_QUOTES, 'UTF-8');
+		$data['x_ship_to_country'] = html_entity_decode($order_info['shipping_country'], ENT_QUOTES, 'UTF-8');
 
 		/* Additional Customer Data Field */
-		$data['x_customer_ip'] = $this->request->server['REMOTE_ADDR']; 
-		$data['x_email'] = $order_info['email']; 
+		$data['x_customer_ip'] = $this->request->server['REMOTE_ADDR'];
+		$data['x_email'] = $order_info['email'];
 
 		/* 7 Relay Response Mode */
-		$data['x_relay_response'] = 'true'; 
+		$data['x_relay_response'] = 'true';
 
 		// calculate this after all our fields are generated
-		$data['x_fp_hash'] = $this->calculateFpHash(); 
+		$data['x_fp_hash'] = $this->calculateFpHash();
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/authorizenet_sim_index.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/payment/authorizenet_sim_index.tpl'; 
-		} else { 
-			$this->template = 'default/template/payment/authorizenet_sim_index.tpl'; 
-		} 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/authorizenet_sim_index.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/payment/authorizenet_sim_index.tpl';
+		} else {
+			$this->template = 'default/template/payment/authorizenet_sim_index.tpl';
+		}
 
-		$this->render(); 
-	} 
+		$this->render();
+	}
 
 	/** Calculates the x_fp_hash value for transaction
 	 * 
@@ -155,90 +150,90 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 	 * 
 	 * @return String
 	 */
-	protected function calculateFpHash() { 
-		$this->load->library('hash'); 
+	protected function calculateFpHash() {
+		$this->load->library('hash');
 
-		$hash = new Hash(); 
+		$hash = new Hash();
 
-		$data = $this->data; 
+		$data = $this->data;
 
-		$code = $data['x_login'] . '^' . $data['x_fp_sequence'] . '^' . $data['x_fp_timestamp'] . '^' . $data['x_amount'] . '^' . $data['x_currency_code']; 
+		$code = $data['x_login'] . '^' . $data['x_fp_sequence'] . '^' . $data['x_fp_timestamp'] . '^' . $data['x_amount'] . '^' . $data['x_currency_code'];
 
-		$fp_hash = $hash->hmac_md5($code, $this->config->get('authorizenet_sim_transaction_key')); 
+		$fp_hash = $hash->hmac_md5($code, $this->config->get('authorizenet_sim_transaction_key'));
 
-		return $fp_hash; 
-	} 
+		return $fp_hash;
+	}
 
-	protected function calculateResponseHash() { 
-		$this->load->library('hash'); 
+	protected function calculateResponseHash() {
+		$this->load->library('hash');
 
-		$hash = new Hash(); 
+		$hash = new Hash();
 
-		$data = $this->request->post; 
+		$data = $this->request->post;
 
-		$code = $this->config->get('authorizenet_sim_response_key') . $data['x_login'] . $data['x_trans_id'] . $data['x_amount']; 
+		$code = $this->config->get('authorizenet_sim_response_key') . $data['x_login'] . $data['x_trans_id'] . $data['x_amount'];
 
-		return md5($code); 
-	} 
+		return md5($code);
+	}
 
-	public function callback() { 
+	public function callback() {
 		//Transaction_Approved
-		$details =& $this->request->post; 
+		$details =& $this->request->post;
 
 		// Ensure our hashes are in the same case
-		$calc_hash = strtolower($this->calculateResponseHash()); 
-		$posted_hash = strtolower($details['x_MD5_Hash']); 
+		$calc_hash = strtolower($this->calculateResponseHash());
+		$posted_hash = strtolower($details['x_MD5_Hash']);
 
-		$data =& $this->data; 
-		$data['x_response_reason_text'] = $details['x_response_reason_text']; 
-		$data['x_response_code'] = $details['x_response_code']; 
-		$data['exact_ctr'] = $details['exact_ctr']; 
-		$data['exact_issname'] = $details['exact_issname']; 
-		$data['exact_issconf'] = $details['exact_issconf']; 
-		$data['hash_match'] = ($calc_hash == $posted_hash); 
-		$data['order_id'] = $details['x_invoice_num']; 
+		$data =& $this->data;
+		$data['x_response_reason_text'] = $details['x_response_reason_text'];
+		$data['x_response_code'] = $details['x_response_code'];
+		$data['exact_ctr'] = $details['exact_ctr'];
+		$data['exact_issname'] = $details['exact_issname'];
+		$data['exact_issconf'] = $details['exact_issconf'];
+		$data['hash_match'] = ($calc_hash == $posted_hash);
+		$data['order_id'] = $details['x_invoice_num'];
 
-		$data['button_confirm'] = $this->language->get('button_continue'); 
+		$data['button_confirm'] = $this->language->get('button_continue');
 
-		$data['confirm'] = $this->url->https('checkout/success'); 
+		$data['confirm'] = $this->url->https('checkout/success');
 
-		if ($data['hash_match']) { 
-			$order_id = $data['order_id']; 
+		if ($data['hash_match']) {
+			$order_id = $data['order_id'];
 
-			$this->load->model('checkout/order'); 
+			$this->load->model('checkout/order');
 
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
-			if ($order_info) { 
-				if ($data['x_response_code'] == '1') { 
-					$this->model_checkout_order->confirm($order_id, $this->config->get('authorizenet_sim_order_status_id')); 
-				} else { 
-					$this->model_checkout_order->confirm($order_id, $this->config->get('config_order_status_id')); 
-				} 
-			} 
-		} 
+			if ($order_info) {
+				if ($data['x_response_code'] == '1') {
+					$this->model_checkout_order->confirm($order_id, $this->config->get('authorizenet_sim_order_status_id'));
+				} else {
+					$this->model_checkout_order->confirm($order_id, $this->config->get('config_order_status_id'));
+				}
+			}
+		}
 
-		$this->document->breadcrumbs = array(); 
+		$this->document->breadcrumbs = array();
 
 		$this->document->breadcrumbs[] = array(
-			'href'      => $this->url->http('common/home'),
-			'text'      => $this->language->get('text_home'),
+			'href'		=> $this->url->http('common/home'),
+			'text'		=> $this->language->get('text_home'),
 			'separator' => false
-		); 
+		);
 
 		$this->document->breadcrumbs[] = array(
-			'href'      => $this->url->http('checkout/cart'),
-			'text'      => $this->language->get('text_basket'),
+			'href'		=> $this->url->http('checkout/cart'),
+			'text'		=> $this->language->get('text_basket'),
 			'separator' => $this->language->get('text_separator')
-		); 
+		);
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/authorizenet_sim_callback.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/payment/authorizenet_sim_callback.tpl'; 
-		} else { 
-			$this->template = 'default/template/payment/authorizenet_sim_callback.tpl'; 
-		} 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/authorizenet_sim_callback.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/payment/authorizenet_sim_callback.tpl';
+		} else {
+			$this->template = 'default/template/payment/authorizenet_sim_callback.tpl';
+		}
 
-		$this->render(); 
-	} 
-} 
+		$this->render();
+	}
+}
 ?>

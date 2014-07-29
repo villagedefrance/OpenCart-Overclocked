@@ -11,9 +11,9 @@ To achieve this, every line of code inside every file has been checked, adjusted
 Opencart Overclocked Edition is based originally on Opencart v1.5.6.4 but most scripts have been updated or replaced by newer, better or faster versions, and many extra features have also been added.
 
 Additions:
-- Added jQuery 1.11.1 for both Admin and Catalog, replacing jQuery 1.7.1.
-- Added jQuery UI 1.10.4 for both Admin and Catalog, replacing jQuery UI 1.8.16.
-- Added jQuery UI theme "start" for both Admin and Catalog, replacing theme "ui-lightness".
+- Added jQuery 1.11.1 for both Admin and Catalog.
+- Added jQuery UI 1.10.4 for both Admin and Catalog.
+- Added jQuery UI theme "start" for both Admin and Catalog.
 - Added Product RSS Feed: improves SEO by generating a latest product feed.
 - Added extra SQL table "product_tag" to record product tags.
 - Added new Date Format in language files: "date_format_time".
@@ -22,7 +22,7 @@ Additions:
 
 Modifications Admin:
 - Added "Save and Continue" (Apply) to all essential Forms.
-- Added CKEditor 4.2.1 Full for Admin, replacing default CKEditor.
+- Added CKEditor 4.2.1.
 - Added "total sales this month" to Dashboard.
 - Added "total reviews" to Dashboard.
 - Added Enable/Disable Countries Mod.
@@ -35,8 +35,9 @@ Modifications Admin:
 - Added Meta-description and Meta-keyword to Information pages.
 - Added AddThis Publisher ID in setting form.
 - Added Category List Images.
+- Added Manufacturer List Images.
 - Added Opencart favicon for Admin.
-- New CSS Admin menu to replace obsolete Superfish.
+- New CSS Admin menu.
 - Replaced table list links with buttons.
 - Image upload limit changed from 300kb to 4mb.
 - Updated jQuery Flot from 0.7 to 0.8.2, minified.
@@ -46,7 +47,7 @@ Modifications Admin:
 
 Modifications Catalog:
 - Added new styles for Information list modules, and account pages.
-- Added magnific.js as a picture viewer for products, replacing colorbox.js.
+- Added magnific.js as a picture viewer for products.
 - Added a $template variable in all controllers to make templating easier.
 - Added rich snippets breadcrumbs for Product and Category pages.
 - Added Category List page.

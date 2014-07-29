@@ -1,47 +1,41 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerPaymentGoogleCheckout extends Controller {
 
-class ControllerPaymentGoogleCheckout extends Controller { 
+	public function index() {
+		$this->language->load('payment/google_checkout');
 
-	public function index() { 
+		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
-		$this->language->load('payment/google_checkout'); 
+		if (!$this->config->get('google_checkout_test')) {
+			$this->data['action'] = 'https://checkout.google.com/api/checkout/v2/checkout/Merchant/' . $this->config->get('google_checkout_merchant_id');
+		} else {
+			$this->data['action'] = 'https://sandbox.google.com/checkout/api/checkout/v2/checkout/Merchant/' . $this->config->get('google_checkout_merchant_id');
+		}
 
-		$this->data['button_confirm'] = $this->language->get('button_confirm'); 
+		$this->data['merchant'] = $this->config->get('google_checkout_merchant_id');
 
-		if (!$this->config->get('google_checkout_test')) { 
-			$this->data['action'] = 'https://checkout.google.com/api/checkout/v2/checkout/Merchant/' . $this->config->get('google_checkout_merchant_id'); 
-		} else { 
-			$this->data['action'] = 'https://sandbox.google.com/checkout/api/checkout/v2/checkout/Merchant/' . $this->config->get('google_checkout_merchant_id'); 
-		} 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
-		$this->data['merchant'] = $this->config->get('google_checkout_merchant_id'); 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/google_checkout.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/payment/google_checkout.tpl';
+		} else {
+			$this->template = 'default/template/payment/google_checkout.tpl';
+		}
 
-		// Custom Template Connector
-		$this->data['template'] = $this->config->get('config_template'); 
+		$this->render();
+	}
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/google_checkout.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/payment/google_checkout.tpl'; 
-		} else { 
-			$this->template = 'default/template/payment/google_checkout.tpl'; 
-		} 
+	public function send() {
+		$this->language->load('payment/google_checkout');
 
-		$this->render(); 
-	} 
+		$json = array();
 
-	public function send() { 
+		if ($this->cart->hasShipping() && !isset($this->session->data['shipping_method'])) {
+			$json['error'] = $this->language->get('error_shipping');
+		}
 
-		$this->language->load('payment/google_checkout'); 
-
-		$json = array(); 
-
-		if ($this->cart->hasShipping() && !isset($this->session->data['shipping_method'])) { 
-			$json['error'] = $this->language->get('error_shipping'); 
-		} 
-
-		if (!$json) { 
+		if (!$json) {
 			$xml  = '<?xml version="1.0" encoding="UTF-8"?>';
 			$xml .= '<checkout-shopping-cart xmlns="http://checkout.google.com/schema/2">';
 			$xml .= '	<shopping-cart>';
@@ -50,36 +44,36 @@ class ControllerPaymentGoogleCheckout extends Controller {
 		//	$xml .= '   	</merchant-private-data>'; 
 			$xml .= '		<items>';
 
-			$products = $this->cart->getProducts(); 
+			$products = $this->cart->getProducts();
 
-			foreach ($products as $product) { 
+			foreach ($products as $product) {
 				$xml .= '			<item>';
 				$xml .= '				<merchant-item-id>' . $product['key'] . '</merchant-item-id>';
 
 				$option_data = array();
 
-				foreach ($product['option'] as $option) { 
+				foreach ($product['option'] as $option) {
 					$option_data[] = $option['name'] . ': ' . $option['value'];
-				} 
+				}
 
-				if ($option_data) { 
-					$xml .= '				<item-name>' . $product['name'] . ' ' . implode('; ', $option_data) . '</item-name>'; 
-					$xml .= '				<item-description>' . $product['name'] . ' ' . implode('; ', $option_data) . '</item-description>';  
-				} else { 
-					$xml .= '				<item-name>' . $product['name'] . '</item-name>'; 
-					$xml .= '				<item-description>' . $product['name'] . '</item-description>';  
-				} 
+				if ($option_data) {
+					$xml .= '				<item-name>' . $product['name'] . ' ' . implode('; ', $option_data) . '</item-name>';
+					$xml .= '				<item-description>' . $product['name'] . ' ' . implode('; ', $option_data) . '</item-description>';
+				} else {
+					$xml .= '				<item-name>' . $product['name'] . '</item-name>';
+					$xml .= '				<item-description>' . $product['name'] . '</item-description>';
+				}
 
 				$xml .= '				<unit-price currency="' . $this->currency->getCode() . '">' . $this->currency->format($product['price'], $this->currency->getCode(), false, false) . '</unit-price>';
 				$xml .= '				<quantity>' . $product['quantity'] . '</quantity>';
-				$xml .= '			</item>'; 
+				$xml .= '			</item>';
 			} 
 
 			$xml .= '		</items>';
 			$xml .= '	</shopping-cart>';
 
-			if ($this->cart->hasShipping()) { 
-				$xml .= '	<checkout-flow-support>';  
+			if ($this->cart->hasShipping()) {
+				$xml .= '	<checkout-flow-support>';
 				$xml .= '		<merchant-checkout-flow-support>';
 				$xml .= '			<shipping-methods>';
 				$xml .= '				<flat-rate-shipping name="' . $this->session->data['shipping_method']['title'] . '">';
@@ -88,10 +82,10 @@ class ControllerPaymentGoogleCheckout extends Controller {
 				$xml .= '			</shipping-methods>';
 				$xml .= '		</merchant-checkout-flow-support>';
 				$xml .= '	</checkout-flow-support>';
-			} 
+			}
 
-			if ($this->cart->hasShipping()) { 
-				$xml .= '	<checkout-flow-support>';  
+			if ($this->cart->hasShipping()) {
+				$xml .= '	<checkout-flow-support>';
 				$xml .= '		<merchant-checkout-flow-support>';
 				$xml .= '			<shipping-methods>';
 				$xml .= '				<flat-rate-shipping name="' . $this->session->data['shipping_method']['title'] . '">';
@@ -100,33 +94,33 @@ class ControllerPaymentGoogleCheckout extends Controller {
 				$xml .= '			</shipping-methods>';
 				$xml .= '		</merchant-checkout-flow-support>';
 				$xml .= '	</checkout-flow-support>';
-			} 
+			}
 
 			$xml .= '</checkout-shopping-cart>';
 
-			$key = $this->config->get('google_checkout_merchant_key'); 
-			$blocksize = 64; 
-			$hash = 'sha1'; 
+			$key = $this->config->get('google_checkout_merchant_key');
+			$blocksize = 64;
+			$hash = 'sha1';
 
-			if (strlen($key) > $blocksize) { 
-				$key = pack('H*', $hash($key)); 
-			} 
+			if (strlen($key) > $blocksize) {
+				$key = pack('H*', $hash($key));
+			}
 
-			$key = str_pad($key, $blocksize, chr(0x00)); 
-			$ipad = str_repeat(chr(0x36), $blocksize); 
-			$opad = str_repeat(chr(0x5c), $blocksize); 
-			$hmac = pack('H*', $hash(($key ^ $opad) . pack('H*', $hash(($key ^ $ipad) . $xml)))); 
+			$key = str_pad($key, $blocksize, chr(0x00));
+			$ipad = str_repeat(chr(0x36), $blocksize);
+			$opad = str_repeat(chr(0x5c), $blocksize);
+			$hmac = pack('H*', $hash(($key ^ $opad) . pack('H*', $hash(($key ^ $ipad) . $xml))));
 
-			$json['cart'] = base64_encode($xml); 
-			$json['signature'] = base64_encode($hmac);	
-		} 
+			$json['cart'] = base64_encode($xml);
+			$json['signature'] = base64_encode($hmac);
+		}
 
-		$this->response->setOutput(json_encode($json)); 
-	} 
+		$this->response->setOutput(json_encode($json));
+	}
 
-	public function callback() { 
-		$this->log->write(http_build_query($this->request->get)); 
-		$this->log->write(http_build_query($this->request->post)); 
+	public function callback() {
+		$this->log->write(http_build_query($this->request->get));
+		$this->log->write(http_build_query($this->request->post));
 		/*	
 		order-summary.google-order-number=923823874108605
 
@@ -229,6 +223,6 @@ class ControllerPaymentGoogleCheckout extends Controller {
   ... [order-summary parameters]	
 
 		*/	
-	} 
-} 
+	}
+}
 ?>
