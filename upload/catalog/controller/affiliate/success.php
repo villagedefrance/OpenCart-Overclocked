@@ -1,52 +1,47 @@
-<?php 
-//------------------------
-// Overclocked Edition		
-//------------------------
+<?php
+class ControllerAffiliateSuccess extends Controller {
 
-class ControllerAffiliateSuccess extends Controller { 
+	public function index() {
+		$this->language->load('affiliate/success');
 
-	public function index() { 
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->language->load('affiliate/success'); 
-
-		$this->document->setTitle($this->language->get('heading_title')); 
-
-		$this->data['breadcrumbs'] = array(); 
+		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home'),
 			'separator' => false
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_account'),
-			'href'      => $this->url->link('affiliate/account', '', 'SSL'),
+			'text'		=> $this->language->get('text_account'),
+			'href'		=> $this->url->link('affiliate/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_success'),
-			'href'      => $this->url->link('affiliate/success'),
+			'text'		=> $this->language->get('text_success'),
+			'href'		=> $this->url->link('affiliate/success'),
 			'separator' => $this->language->get('text_separator')
-		); 
+		);
 
-		$this->data['heading_title'] = $this->language->get('heading_title'); 
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_message'] = sprintf($this->language->get('text_approval'), $this->config->get('config_name'), $this->url->link('information/contact')); 
+		$this->data['text_message'] = sprintf($this->language->get('text_approval'), $this->config->get('config_name'), $this->url->link('information/contact'));
 
-		$this->data['button_continue'] = $this->language->get('button_continue'); 
+		$this->data['button_continue'] = $this->language->get('button_continue');
 
-		$this->data['continue'] = $this->url->link('affiliate/account', '', 'SSL'); 
+		$this->data['continue'] = $this->url->link('affiliate/account', '', 'SSL');
 
-		// Custom Template Connector
-		$this->data['template'] = $this->config->get('config_template'); 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) { 
-			$this->template = $this->config->get('config_template') . '/template/common/success.tpl'; 
-		} else { 
-			$this->template = 'default/template/common/success.tpl'; 
-		} 
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/common/success.tpl';
+		} else {
+			$this->template = 'default/template/common/success.tpl';
+		}
 
 		$this->children = array(
 			'common/column_left',
@@ -55,9 +50,9 @@ class ControllerAffiliateSuccess extends Controller {
 			'common/content_bottom',
 			'common/footer',
 			'common/header'
-		); 
+		);
 
-		$this->response->setOutput($this->render()); 
-	} 
-} 
+		$this->response->setOutput($this->render());
+	}
+}
 ?>
