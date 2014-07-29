@@ -72,7 +72,7 @@ $_['entry_stock_checkout']      		= 'Stock Checkout:<br /><span class="help">All
 $_['entry_stock_status']        		= 'Out of Stock Status:<br /><span class="help">Set the default out of stock status selected in product edit.</span>';
 $_['entry_affiliate']              			= 'Affiliate Terms:<br /><span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
 $_['entry_commission']          		= 'Affiliate Commission (%):<br /><span class="help">The default affiliate commission percentage.</span>';
-$_['entry_affiliate_disable']  			= 'Disable Affiliates:<br /><span class="help">Select Yes if you do not use affiliate functions in your store.</span>';
+$_['entry_affiliate_disable']  			= 'Disable Affiliates:<br /><span class="help">Select Yes if you don\'t want to use affiliate functions in your store.</span>';
 $_['entry_return']                 		= 'Return Terms:<br /><span class="help">Forces people to agree to terms before an return account can be created.</span>';
 $_['entry_return_status']     			= 'Return Status:<br /><span class="help">Set the default return status when an returns request is submitted.</span>';
 $_['entry_return_disable']				= 'Disable Returns:<br /><span class="help">Caution! Returns are a legal requirement in many countries. Disable only if you sell non-returnable goods, such as digital downloads.</span>';

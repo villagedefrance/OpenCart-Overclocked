@@ -118,8 +118,8 @@ class ControllerCommonHome extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -146,6 +146,13 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['total_affiliate'] = $this->model_sale_affiliate->getTotalAffiliates();
 		$this->data['total_affiliate_approval'] = $this->model_sale_affiliate->getTotalAffiliatesAwaitingApproval();
+
+		// Affiliates
+		if ($this->config->get('config_affiliate_disable')) {
+			$this->data['allow_affiliate'] = false;
+		} else {
+			$this->data['allow_affiliate'] = true;
+		}
 
 		$this->data['orders'] = array();
 

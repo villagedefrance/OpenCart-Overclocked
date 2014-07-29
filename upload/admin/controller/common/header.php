@@ -245,6 +245,13 @@ class ControllerCommonHeader extends Controller {
 				$this->data['profile_exist'] = false;
 			}
 
+			// Affiliates
+			if ($this->config->get('config_affiliate_disable')) {
+				$this->data['allow_affiliate'] = false;
+			} else {
+				$this->data['allow_affiliate'] = true;
+			}
+
 			// Store
 			$this->data['stores'] = array();
 

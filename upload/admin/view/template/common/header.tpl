@@ -145,7 +145,9 @@ $(document).ready(function() {
               <li><a href="<?php echo $customer_ban_ip; ?>"><?php echo $text_customer_ban_ip; ?></a></li>
             </ul>
           </li>
+		  <?php if ($allow_affiliate) { ?>
           <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
+		  <?php } ?>
           <li><a href="<?php echo $coupon; ?>"><?php echo $text_coupon; ?></a></li>
           <li><a class="arrow"><?php echo $text_voucher; ?></a>
             <ul>

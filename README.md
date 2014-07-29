@@ -1,14 +1,14 @@
 OpenCart-Overclocked
 ====================
 
-Opencart v1.6.0 - Community Edition
+Opencart Overclocked - Community Edition
 ------------------------------------
 
 General:
 
-The objective of this Overclocked - Community Edition is to make Opencart faster, richer, leaner and even more user friendly. 
+The objective of the Overclocked Edition is to make Opencart faster, richer, leaner and even more user friendly. 
 To achieve this, every line of code inside every file has been checked, adjusted and corrected when necessary, in accordance with the official OpenCart Coding Standards. 
-Most scripts have been updated or replaced by newer, better or faster versions. Many extra features have been added.
+Opencart Overclocked Edition is based originally on Opencart v1.5.6.4 but most scripts have been updated or replaced by newer, better or faster versions, and many extra features have also been added.
 
 Additions:
 - Added jQuery 1.11.1 for both Admin and Catalog, replacing jQuery 1.7.1.
@@ -49,6 +49,8 @@ Modifications Catalog:
 - Added magnific.js as a picture viewer for products, replacing colorbox.js.
 - Added a $template variable in all controllers to make templating easier.
 - Added rich snippets breadcrumbs for Product and Category pages.
+- Added Category List page.
+- Added Product List page.
 - Added Manufacturer logos for manufacturers list page (optional).
 - Meta names added to header.tpl.
 - Replaced Grid/List links with buttons.
@@ -67,14 +69,13 @@ Modules:
 
 Bug Fixes:
 - Complete rework of Profile/Recurring Profile !
-- All updates up to v1.5.6.4 applied.
-- Some fixes from V2.0 have been applied.
+- All updates up to v1.5.6.5 applied.
+- Some fixes from V2.0 have also been applied.
 - Fixed many more bugs and typos.
 - ...
 
 TODO:
 - Go through all files again to follow OpenCart Coding Standards (See Wiki).
-- Finish upper/lower pagination modification for Admin Lists.
 - Add Product Groups, then create related functions.
 - Add Multiple Store Branches, then update Pickup from Store and Product availability per branch.
 - Add some more extra features ...
