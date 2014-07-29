@@ -36,6 +36,8 @@
         <li><a href="<?php echo $cart; ?>"><?php echo $text_cart; ?></a></li>
         <li><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>
         <br />
+		<li><a href="<?php echo $product_list; ?>"><?php echo $text_product_list; ?></a></li>
+		<li><a href="<?php echo $category_list; ?>"><?php echo $text_category_list; ?></a></li>
         <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
         <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
         <li><a href="<?php echo $search; ?>"><?php echo $text_search; ?></a></li>
@@ -86,6 +88,6 @@
       </ul>
     </div>
   </div>
-<?php echo $content_bottom; ?>
+  <?php echo $content_bottom; ?>
 </div>
 <?php echo $footer; ?>

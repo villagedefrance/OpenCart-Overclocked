@@ -25,6 +25,8 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['text_cart'] = $this->language->get('text_cart');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
 
+		$this->data['text_product_list'] = $this->language->get('text_product_list');
+		$this->data['text_category_list'] = $this->language->get('text_category_list');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_special'] = $this->language->get('text_special');
 		$this->data['text_search'] = $this->language->get('text_search');
@@ -96,6 +98,8 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['cart'] = $this->url->link('checkout/cart');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
+		$this->data['product_list'] = $this->url->link('product/product_list');
+		$this->data['category_list'] = $this->url->link('product/category_list');
 		$this->data['manufacturer'] = $this->url->link('product/manufacturer');
 		$this->data['special'] = $this->url->link('product/special');
 		$this->data['search'] = $this->url->link('product/search');
