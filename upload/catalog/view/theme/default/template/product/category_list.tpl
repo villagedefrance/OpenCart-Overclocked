@@ -7,7 +7,7 @@
   <?php } ?>
   </div>
   <h1><?php echo $heading_title; ?></h1>
-  <div class="cat-list">
+  <div class="category-page">
     <div class="left">
       <?php foreach ($categories as $category_1) { ?>
         <?php if ($category_1['count'] <= $cattotal1) { ?>
@@ -87,7 +87,6 @@
       <?php } ?>
     </div>
   </div>
-  <div>&nbsp;</div>
   <div class="buttons">
     <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
   </div>

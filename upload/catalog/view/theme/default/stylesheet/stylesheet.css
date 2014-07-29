@@ -876,106 +876,108 @@ ul.box-filter > li ul {
 	float: right;
 	width: 49%;
 }
-/* category page list */
-.cat-list {
+/* category page */
+.category-page {
 	overflow: auto;
-	margin: 10px 0px;
+	margin-top: 10px;
+	margin-bottom: 30px;
 	width: 100%;
 }
-.cat-list ul { 
+.category-page ul { 
 	list-style: url('../image/bullet-3.png');
 	margin-bottom: 5px;
 	padding-left: 5px;
 }
-.cat-list ul li { 
+.category-page ul li { 
 	margin-left: 15px;
 }
-.cat-list ul li.head {
+.category-page ul li.head {
 	background: #F4F4F4;
 	list-style: none;
 	margin-bottom: 3px;
 	margin-left: 0px;
 	padding: 5px;
 }
-.cat-list ul li.head a {
+.category-page ul li.head a {
 	text-decoration: none;
 	font-size: 13px;
 	font-weight: bold;
 }
-.cat-list ul li.head a:hover {
+.category-page ul li.head a:hover {
 	text-decoration: underline;
 }
-.cat-list ul li a {
+.category-page ul li a {
 	text-decoration: none;
 	font-size: 13px;
 }
-.cat-list ul li a:hover {
+.category-page ul li a:hover {
 	font-weight: bold;
 }
-.cat-list ul li ul { 
+.category-page ul li ul { 
 	list-style: url('../image/arrow-right.png');
 	margin-bottom: 5px;
 	padding-left: 10px;
 }
-.cat-list div.left {
+.category-page div.left {
 	float: left;
 	width: 30%;
 	margin-left: 5px;
 }
-.cat-list div.middle {
+.category-page div.middle {
 	float: left;
 	width: 30%;
 	margin-left: 5px;
 }
-.cat-list div.right {
+.category-page div.right {
 	float: left;
 	width: 30%;
 	margin-left: 5px;
 }
-/* product page list */
-.prod-list {
+/* product page */
+.product-page {
 	overflow: auto;
-	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 30px;
 	width: 100%;
 }
-.prod-list ul { 
+.product-page ul { 
 	list-style: url('../image/bullet-3.png'); 
 }
-.prod-list li {
+.product-page li {
 	text-decoration: none;
 }
-.prod-list li a {
+.product-page li a {
 	text-decoration: none;
 	font-size: 13px;
 }
-.prod-list li a:hover {
+.product-page li a:hover {
 	font-size: 13px;
 	font-weight: bold;
 }
-.prod-list div.left {
+.product-page div.left {
 	float: left;
 	width: 30%;
 	margin-left: 10px;
 }
-.prod-list div.left .heads {
+.product-page div.left .head {
 	margin: 10px 5px;
 	font-weight: bold;
 }
-.prod-list div.middle {
+.product-page div.middle {
 	float: left;
 	width: 30%;
 	margin-left: 10px;
 }
-.prod-list div.middle .heads {
+.product-page div.middle .head {
 	margin: 10px 5px;
 	font-weight: bold;
 }
-.prod-list div.right {
+.product-page div.right {
 	float: left;
 	width: 30%;
 	margin-left: 10px;
 }
-.prod-list div.right .heads {
+.product-page div.right .head {
 	margin: 10px 5px;
 	font-weight: bold;
 }
