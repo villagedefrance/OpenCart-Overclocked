@@ -44,6 +44,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_administration'] = $this->language->get('text_administration');
 		$this->data['text_store_front'] = $this->language->get('text_store_front');
+		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
 		$this->data['text_clear'] = $this->language->get('text_clear');
@@ -120,6 +121,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
 		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
+		$this->data['entry_contact_image'] = $this->language->get('entry_contact_image');
+		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
+		$this->data['entry_contact_height'] = $this->language->get('entry_contact_height');
+		$this->data['entry_contact_link'] = $this->language->get('entry_contact_link');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -777,6 +782,36 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		$this->load->model('tool/image');
+
+		if (isset($this->request->post['config_contact_image'])) {
+			$this->data['config_contact_image'] = $this->request->post['config_contact_image'];
+		} else {
+			$this->data['config_contact_image'] = $this->config->get('config_contact_image');
+		}
+
+		if ($this->config->get('config_contact_image') && file_exists(DIR_IMAGE . $this->config->get('config_contact_image')) && is_file(DIR_IMAGE . $this->config->get('config_contact_image'))) {
+			$this->data['contact_image'] = $this->model_tool_image->resize($this->config->get('config_contact_image'), 100, 100);
+		} else {
+			$this->data['contact_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
+		if (isset($this->request->post['config_contact_width'])) {
+			$this->data['config_contact_width'] = $this->request->post['config_contact_width'];
+		} else {
+			$this->data['config_contact_width'] = $this->config->get('config_contact_width');
+		}
+
+		if (isset($this->request->post['config_contact_height'])) {
+			$this->data['config_contact_height'] = $this->request->post['config_contact_height'];
+		} else {
+			$this->data['config_contact_height'] = $this->config->get('config_contact_height');
+		}
+
+		if (isset($this->request->post['config_contact_link'])) {
+			$this->data['config_contact_link'] = $this->request->post['config_contact_link'];
+		} else {
+			$this->data['config_contact_link'] = $this->config->get('config_contact_link');
+		}
 
 		if (isset($this->request->post['config_logo'])) {
 			$this->data['config_logo'] = $this->request->post['config_logo'];

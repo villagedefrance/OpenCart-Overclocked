@@ -1806,16 +1806,17 @@ ul.box-filter > li ul {
 	border-bottom: 1px solid #DDD;
 }
 /* contact */
-.contact-info {
+.content .contact-info {
+	width: 100%;
 	overflow: auto;
 }
-.contact-info .left {
+.content .contact-info .info-left {
 	float: left;
-	width: 48%;
+	width: 38%;
 }
-.contact-info .right {
+.content .contact-info .info-right {
 	float: left;
-	width: 48%;
+	width: 58%;
 }
 /* sitemap */
 .sitemap-info {

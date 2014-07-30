@@ -743,6 +743,26 @@
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_contact_image; ?></td>
+            <td><div class="image"><img src="<?php echo $contact_image; ?>" alt="" id="thumb-contact-image" />
+              <input type="hidden" name="config_contact_image" value="<?php echo $config_contact_image; ?>" id="contact-image" />
+              <br />
+              <a onclick="image_upload('contact-image', 'thumb-contact-image');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-contact-image').attr('src', '<?php echo $no_image; ?>'); $('#contact-image').attr('value', '');"><?php echo $text_clear; ?></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $text_image_resize; ?></td>
+            <td>
+              <input type="text" name="config_contact_width" value="<?php echo $config_contact_width; ?>" size="4" /> x 
+              <input type="text" name="config_contact_height" value="<?php echo $config_contact_height; ?>" size="4" /> px
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_contact_link; ?></td>
+            <td><textarea name="config_contact_link" cols="60" rows="2"><?php echo $config_contact_link; ?></textarea></td>
+          </tr>
         </table>
       </div>
       <div id="tab-image">

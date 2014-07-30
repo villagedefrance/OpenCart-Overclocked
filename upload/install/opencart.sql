@@ -1452,7 +1452,7 @@ CREATE TABLE IF NOT EXISTS `oc_layout` (
   `layout_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`layout_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `oc_layout`
@@ -1469,7 +1469,8 @@ INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
 (8, 'Contact'),
 (9, 'Sitemap'),
 (10, 'Affiliate'),
-(11, 'Information');
+(11, 'Information'),
+(12, 'Special');
 
 -- --------------------------------------------------------
 
@@ -1483,23 +1484,24 @@ CREATE TABLE IF NOT EXISTS `oc_layout_route` (
   `store_id` int(11) NOT NULL,
   `route` varchar(255) NOT NULL,
   PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `oc_layout_route`
 --
 
 INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
-(30, 6, 0, 'account'),
-(17, 10, 0, 'affiliate/'),
-(29, 3, 0, 'product/category'),
-(26, 1, 0, 'common/home'),
-(20, 2, 0, 'product/product'),
-(24, 11, 0, 'information/information'),
-(22, 5, 0, 'product/manufacturer'),
-(23, 7, 0, 'checkout/'),
-(31, 8, 0, 'information/contact'),
-(32, 9, 0, 'information/sitemap');
+(1, 6, 0, 'account'),
+(2, 10, 0, 'affiliate/'),
+(3, 3, 0, 'product/category'),
+(4, 1, 0, 'common/home'),
+(5, 2, 0, 'product/product'),
+(6, 11, 0, 'information/information'),
+(7, 5, 0, 'product/manufacturer'),
+(8, 7, 0, 'checkout/'),
+(8, 8, 0, 'information/contact'),
+(10, 9, 0, 'information/sitemap'),
+(11, 12, 0, 'product/special');
 
 -- --------------------------------------------------------
 

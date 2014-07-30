@@ -40,7 +40,7 @@
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
 
-<!--[if IE 7]> 
+<!--[if IE 7]>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/ie7.css" />
 <![endif]-->
 
@@ -56,7 +56,7 @@ DD_belatedPNG.fix('#logo img');
 <script type="text/javascript"><!--
 $(document).ready(function() {
 <?php foreach ($stores as $store) { ?>
-	$('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
+  $('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
 <?php } ?>
 });
 //--></script>
@@ -68,61 +68,61 @@ $(document).ready(function() {
 <body>
 <div id="container">
 <div id="header">
-	<?php if ($logo) { ?>
-		<div id="logo">
-			<a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
-		</div>
-	<?php } ?>
-	<?php echo $language; ?>
-	<?php echo $currency; ?>
-	<?php echo $cart; ?>
-	<div id="search">
-		<div class="button-search"></div>
-		<input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
-	</div>
-	<div id="welcome">
-		<?php if (!$logged) { ?>
-			<?php echo $text_welcome; ?>
-		<?php } else { ?>
-			<?php echo $text_logged; ?>
-		<?php } ?>
-	</div>
-	<div class="links">
-		<a href="<?php echo $home; ?>"><?php echo $text_home; ?></a>
-		<a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a>
-		<a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
-		<a href="<?php echo $shopping_cart; ?>"><?php echo $text_shopping_cart; ?></a>
-		<a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a>
-		<?php if ($rss) { ?>
-		<a onclick="window.open('/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>');" class="rss"><img src="catalog/view/theme/<?php echo $template; ?>/image/rss.png" alt="Subscribe" title="Rss" /></a>
-		<?php } ?>
-	</div>
+  <?php if ($logo) { ?>
+    <div id="logo">
+      <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a>
+    </div>
+  <?php } ?>
+  <?php echo $language; ?>
+  <?php echo $currency; ?>
+  <?php echo $cart; ?>
+  <div id="search">
+    <div class="button-search"></div>
+    <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
+  </div>
+  <div id="welcome">
+    <?php if (!$logged) { ?>
+      <?php echo $text_welcome; ?>
+    <?php } else { ?>
+      <?php echo $text_logged; ?>
+    <?php } ?>
+  </div>
+  <div class="links">
+    <a href="<?php echo $home; ?>"><?php echo $text_home; ?></a>
+    <a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a>
+    <a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
+    <a href="<?php echo $shopping_cart; ?>"><?php echo $text_shopping_cart; ?></a>
+    <a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a>
+    <?php if ($rss) { ?>
+      <a onclick="window.open('/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>');" class="rss"><img src="catalog/view/theme/<?php echo $template; ?>/image/rss.png" alt="Subscribe" title="Rss" /></a>
+    <?php } ?>
+  </div>
 </div>
 <?php if ($categories) { ?>
-<div id="menu">
-	<ul>
-	<?php foreach ($categories as $category) { ?>
-		<li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-		<?php if ($category['children']) { ?>
-		<div>
-		<?php for ($i = 0; $i < count($category['children']);) { ?>
-			<ul>
-			<?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-			<?php for (; $i < $j; $i++) { ?>
-			<?php if (isset($category['children'][$i])) { ?>
-				<li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
-			<?php } ?>
-			<?php } ?>
-			</ul>
-		<?php } ?>
-		</div>
-		<?php } ?>
-		</li>
-	<?php } ?>
-	</ul>
-</div>
+  <div id="menu">
+    <ul>
+    <?php foreach ($categories as $category) { ?>
+      <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+      <?php if ($category['children']) { ?>
+        <div>
+        <?php for ($i = 0; $i < count($category['children']);) { ?>
+          <ul>
+          <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+          <?php for (; $i < $j; $i++) { ?>
+            <?php if (isset($category['children'][$i])) { ?>
+              <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
+            <?php } ?>
+          <?php } ?>
+          </ul>
+        <?php } ?>
+        </div>
+      <?php } ?>
+      </li>
+    <?php } ?>
+    </ul>
+  </div>
 <?php } ?>
 <?php if ($error) { ?>
-	<div class="warning"><?php echo $error ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
+  <div class="warning"><?php echo $error ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
 <div id="notification"></div>
