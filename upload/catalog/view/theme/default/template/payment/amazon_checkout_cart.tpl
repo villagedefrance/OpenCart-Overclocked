@@ -19,4 +19,4 @@ new CBA.Widgets.InlineCheckoutWidget({
 		window.location = redirectUrl;
 	}
 }).render("AmazonCheckoutWidgetCart");
-//--></script> 
+//--></script>

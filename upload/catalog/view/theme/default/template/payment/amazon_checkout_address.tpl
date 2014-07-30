@@ -1,16 +1,16 @@
 <?php echo $header; ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
-	<h2><?php echo $heading_address; ?></h2>
-	<div style="float:left;" id="amazon-address-widget"></div>
-	<div style="float:left; width:58%;" class="shipping-methods"></div>
-	<div style="clear:both;"></div>
-	<div class="buttons" style="margin-top:15px;">
-		<a href="<?php echo $cart; ?>" class="button left"><span><?php echo $text_cart; ?></span></a>
-		<a class="button right" id="continue-button"><span><?php echo $text_continue; ?></span></a>
-	</div>
-	<input type="hidden" name="addressSelected" value="0" />
-	<?php echo $content_bottom; ?>
+  <h2><?php echo $heading_address; ?></h2>
+  <div style="float:left;" id="amazon-address-widget"></div>
+  <div style="float:left; width:58%;" class="shipping-methods"></div>
+  <div style="clear:both;"></div>
+  <div class="buttons" style="margin-top:15px;">
+    <a href="<?php echo $cart; ?>" class="button left"><span><?php echo $text_cart; ?></span></a>
+    <a class="button right" id="continue-button"><span><?php echo $text_continue; ?></span></a>
+  </div>
+  <input type="hidden" name="addressSelected" value="0" />
+  <?php echo $content_bottom; ?>
 </div>
 
 <script type="text/javascript"><!--
@@ -84,6 +84,6 @@ $(document).ready(function() {
 		}
 	}).render('amazon-address-widget');
 });
-//--></script> 
+//--></script>
 
 <?php echo $footer; ?>
