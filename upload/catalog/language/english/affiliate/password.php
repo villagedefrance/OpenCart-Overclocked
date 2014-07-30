@@ -5,6 +5,7 @@ $_['heading_title']  		= 'Change Password';
 // Text
 $_['text_account']   	= 'Account';
 $_['text_password']  	= 'Your Password';
+$_['text_match']  		= '<span style="color:#46A020;">Password match!</span>';
 $_['text_success']   		= 'Success: Your password has been successfully updated.';
 
 // Entry

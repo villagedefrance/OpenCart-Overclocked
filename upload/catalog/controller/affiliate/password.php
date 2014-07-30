@@ -46,6 +46,7 @@ class ControllerAffiliatePassword extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_password'] = $this->language->get('text_password');
+		$this->data['text_match'] = $this->language->get('text_match');
 
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');

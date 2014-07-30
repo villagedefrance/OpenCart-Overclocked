@@ -54,6 +54,7 @@ class ControllerAffiliateRegister extends Controller {
 		$this->data['text_your_address'] = $this->language->get('text_your_address');
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_your_password'] = $this->language->get('text_your_password');
+		$this->data['text_match'] = $this->language->get('text_match');
 		$this->data['text_cheque'] = $this->language->get('text_cheque');
 		$this->data['text_paypal'] = $this->language->get('text_paypal');
 		$this->data['text_bank'] = $this->language->get('text_bank');

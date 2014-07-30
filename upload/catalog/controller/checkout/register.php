@@ -7,6 +7,7 @@ class ControllerCheckoutRegister extends Controller {
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
 		$this->data['text_your_address'] = $this->language->get('text_your_address');
 		$this->data['text_your_password'] = $this->language->get('text_your_password');
+		$this->data['text_match'] = $this->language->get('text_match');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
 

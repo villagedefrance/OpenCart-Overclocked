@@ -78,6 +78,7 @@ Bug Fixes:
 TODO:
 - Go through all files again to follow OpenCart Coding Standards (See Wiki).
 - Add Product Groups, then create related functions.
+- Add Product Colors, additional images colors, filter by color.
 - Add Multiple Store Branches, then update Pickup from Store and Product availability per branch.
 - Add some more extra features ...
 
