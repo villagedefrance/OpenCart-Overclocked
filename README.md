@@ -2,13 +2,14 @@ OpenCart-Overclocked
 ====================
 
 Opencart Overclocked - Community Edition
-------------------------------------
+-----------------------------------------
 
 General:
 
-The objective of the Overclocked Edition is to make Opencart faster, richer, leaner and even more user friendly. 
+Opencart Overclocked Edition is a community project aimed at making Opencart Shopping Cart faster, richer, leaner and even more user friendly. 
 To achieve this, every line of code inside every file has been checked, adjusted and corrected when necessary, in accordance with the official OpenCart Coding Standards. 
-Opencart Overclocked Edition is based originally on Opencart v1.5.6.4 but most scripts have been updated or replaced by newer, better or faster versions, and many extra features have also been added.
+Opencart Overclocked Edition is based originally on Opencart v1.5.6.4 but most scripts have been updated or replaced by newer, better or faster versions. 
+Extra features have also been added, many of them in response to user feedback from the Opencart Forum.
 
 Additions:
 - Added jQuery 1.11.1 for both Admin and Catalog.
@@ -76,7 +77,6 @@ Bug Fixes:
 - ...
 
 TODO:
-- Go through all files again to follow OpenCart Coding Standards (See Wiki).
 - Add Product Groups, then create related functions.
 - Add Product Colors, additional images colors, filter by color.
 - Add Multiple Store Branches, then update Pickup from Store and Product availability per branch.

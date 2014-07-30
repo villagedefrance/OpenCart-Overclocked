@@ -15,25 +15,25 @@
     </p>
     <?php foreach ($categories as $category) { ?>
       <div class="manufacturer-list">
-      <div class="manufacturer-heading"><?php echo $category['name']; ?><a id="<?php echo $category['name']; ?>"></a></div>
-      <div class="manufacturer-content">
-      <?php if ($category['manufacturer']) { ?>
-        <?php for ($i = 0; $i < count($category['manufacturer']);) { ?>
-          <ul>
-          <?php $j = $i + ceil(count($category['manufacturer']) / 4); ?>
-          <?php for (; $i < $j; $i++) { ?>
-            <?php if (isset($category['manufacturer'][$i])) { ?>
-              <?php if ($category['manufacturer'][$i]['image']) { ?>
-                <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title="<?php echo $category['manufacturer'][$i]['name']; ?>"><img src="<?php echo $category['manufacturer'][$i]['image']; ?>" alt="" /></a></li>
-              <?php } else { ?>
-                <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title=""><?php echo $category['manufacturer'][$i]['name']; ?></a></li>
+        <div class="manufacturer-heading"><?php echo $category['name']; ?><a id="<?php echo $category['name']; ?>"></a></div>
+        <div class="manufacturer-content">
+          <?php if ($category['manufacturer']) { ?>
+            <?php for ($i = 0; $i < count($category['manufacturer']);) { ?>
+            <ul>
+              <?php $j = $i + ceil(count($category['manufacturer']) / 4); ?>
+              <?php for (; $i < $j; $i++) { ?>
+                <?php if (isset($category['manufacturer'][$i])) { ?>
+                  <?php if ($category['manufacturer'][$i]['image']) { ?>
+                    <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title="<?php echo $category['manufacturer'][$i]['name']; ?>"><img src="<?php echo $category['manufacturer'][$i]['image']; ?>" alt="" /></a></li>
+                  <?php } else { ?>
+                    <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title=""><?php echo $category['manufacturer'][$i]['name']; ?></a></li>
+                  <?php } ?>
+                <?php } ?>
               <?php } ?>
+            </ul>
             <?php } ?>
           <?php } ?>
-          </ul>
-        <?php } ?>
-      <?php } ?>
-      </div>
+        </div>
       </div>
     <?php } ?>
   <?php } else { ?>

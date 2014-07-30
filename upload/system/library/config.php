@@ -26,7 +26,7 @@ class Config {
 
 		} else {
 			trigger_error('Error: Could not load config ' . $filename . '!');
-			exit(); 
+			exit();
 		}
 	}
 }

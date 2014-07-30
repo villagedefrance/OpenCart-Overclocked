@@ -20,7 +20,7 @@ class Image {
 			$this->image = $this->create($file);
 
 		} else {
-			exit('Error: Could not load image ' . $file . '!'); 
+			exit('Error: Could not load image ' . $file . '!');
 		}
 	}
 
@@ -116,19 +116,19 @@ class Image {
 			case 'topleft':
 				$watermark_pos_x = 0;
 				$watermark_pos_y = 0;
-				break; 
+				break;
 			case 'topright':
 				$watermark_pos_x = $this->info['width'] - $watermark_width;
 				$watermark_pos_y = 0;
-				break; 
+				break;
 			case 'bottomleft':
 				$watermark_pos_x = 0;
 				$watermark_pos_y = $this->info['height'] - $watermark_height;
-				break; 
+				break;
 			case 'bottomright':
 				$watermark_pos_x = $this->info['width'] - $watermark_width;
 				$watermark_pos_y = $this->info['height'] - $watermark_height;
-				break; 
+				break;
 		}
 
 		imagecopy($this->image, $watermark, $watermark_pos_x, $watermark_pos_y, 0, 0, 120, 40);

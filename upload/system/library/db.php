@@ -11,9 +11,8 @@ class DB {
 			$class = 'DB' . $driver;
 
 			$this->driver = new $class($hostname, $username, $password, $database);
-
 		} else {
-			exit('Error: Could not load database driver type ' . $driver . '!'); 
+			exit('Error: Could not load database driver type ' . $driver . '!');
 		}
 	}
 
