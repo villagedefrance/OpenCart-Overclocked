@@ -1499,7 +1499,7 @@ INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rout
 (6, 11, 0, 'information/information'),
 (7, 5, 0, 'product/manufacturer'),
 (8, 7, 0, 'checkout/'),
-(8, 8, 0, 'information/contact'),
+(9, 8, 0, 'information/contact'),
 (10, 9, 0, 'information/sitemap'),
 (11, 12, 0, 'product/special');
 
