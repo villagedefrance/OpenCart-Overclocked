@@ -23,7 +23,7 @@ h1, .welcome {
 	text-shadow: 0 0 1px rgba(0, 0, 0, .01);
 }
 h2 {
-	color: #000;
+	color: #333;
 	font-size: 16px;
 	margin-top: 0px;
 	margin-bottom: 5px;
@@ -1851,6 +1851,31 @@ ul.box-filter > li ul {
 }
 .banner div img {
 	margin-bottom: 20px;
+}
+/* back to top */
+#backtotop {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	z-index: 9999;
+}
+#backtotop p {
+	margin-bottom: 20px;
+	margin-top: 0px;
+}
+#backtotop a:hover span {
+	background-position: bottom;
+	display: block;
+	width: 35px;
+}
+#backtotop a:hover span {
+	background-position: 0% -34px;
+}
+#backtotop span {
+	background: url('../image/up-arrow.png') 0% 0px no-repeat transparent;
+	display: block;
+	height: 20px;
+	width: 35px;
 }
 /* footer */ 
 #footer {

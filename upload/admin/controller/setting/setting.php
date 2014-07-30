@@ -125,6 +125,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
 		$this->data['entry_contact_height'] = $this->language->get('entry_contact_height');
 		$this->data['entry_contact_link'] = $this->language->get('entry_contact_link');
+		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -811,6 +812,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_contact_link'] = $this->request->post['config_contact_link'];
 		} else {
 			$this->data['config_contact_link'] = $this->config->get('config_contact_link');
+		}
+
+		if (isset($this->request->post['config_back_to_top'])) {
+			$this->data['config_back_to_top'] = $this->request->post['config_back_to_top'];
+		} else {
+			$this->data['config_back_to_top'] = $this->config->get('config_back_to_top');
 		}
 
 		if (isset($this->request->post['config_logo'])) {

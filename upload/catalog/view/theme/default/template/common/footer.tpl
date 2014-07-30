@@ -1,3 +1,8 @@
+<?php if ($back_to_top) { ?>
+  <p id="backtotop" style="display:block;">
+    <a href="#" title=""><span></span></a>
+  </p>
+<?php } ?>
 <div id="footer">
   <?php if ($informations) { ?>
   <div class="column">
@@ -47,4 +52,26 @@ Please donate via PayPal to donate@opencart.com
 //-->
 <div id="powered"><?php echo $powered; ?></div>
 </div>
+<?php if ($back_to_top) { ?>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#backtotop').hide();
+	$(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 100) {
+				$('#backtotop').fadeIn();
+			} else {
+				$('#backtotop').fadeOut();
+			}
+		});
+		$('#backtotop a').click(function() {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+});
+//--></script>
+<?php } ?>
 </body></html>

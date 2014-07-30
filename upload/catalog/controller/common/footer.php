@@ -87,6 +87,8 @@ class ControllerCommonFooter extends Controller {
 			$this->data['allow_affiliate'] = true;
 		}
 
+		$this->data['back_to_top'] = $this->config->get('config_back_to_top');
+
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 

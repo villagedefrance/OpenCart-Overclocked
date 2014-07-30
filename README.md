@@ -54,10 +54,12 @@ Modifications Catalog:
 - Added Category List page.
 - Added Product List page.
 - Added Manufacturer logos for manufacturers list page (optional).
+- Added Scroll Back to Top (optional).
 - Meta names added to header.tpl.
 - Replaced Grid/List links with buttons.
 - Modified search box on search page.
-- Updated AddThis script on product pages, to 300 instead of 250.
+- Modified Contact Us page.
+- Updated AddThis script to 300.
 - Extended Site Map page.
 - Improved Captcha.
 - ...
