@@ -465,7 +465,7 @@ class ControllerCommonFileManager extends Controller {
 					$json['error'] = $this->language->get('error_directory');
 				}
 
-				if ($this->request->files['image']['size'] > 4096000) {
+				if ($this->request->files['image']['size'] > 5120000) {
 					$json['error'] = $this->language->get('error_file_size');
 				}
 
@@ -495,7 +495,13 @@ class ControllerCommonFileManager extends Controller {
 					$json['error'] = $this->language->get('error_file_type');
 				}
 
-				// Accept ALL files
+				// Check to see if any PHP files are trying to be uploaded
+				$content = file_get_contents($this->request->files['image']['tmp_name']);
+
+				if (preg_match('/\<\?php/i', $content)) {
+					$json['error'] = $this->language->get('error_file_type');
+				}
+
 				if ($this->request->files['image']['error'] != UPLOAD_ERR_OK) {
 					$json['error'] = 'error_upload_' . $this->request->files['image']['error'];
 				}
@@ -532,8 +538,6 @@ class ControllerCommonFileManager extends Controller {
 		header("Pragma: no-cache");
 
 		$targetDir = rtrim(DIR_IMAGE . 'data/' . str_replace('../', '', $this->request->get['directory']), '/');
-
-		@set_time_limit(5 * 60);
 
 		$chunk = isset($_REQUEST["chunk"]) ? $_REQUEST["chunk"] : 0;
 		$chunks = isset($_REQUEST["chunks"]) ? $_REQUEST["chunks"] : 0;
@@ -574,7 +578,7 @@ class ControllerCommonFileManager extends Controller {
 					$in = fopen($_FILES['file']['tmp_name'], "rb");
 
 					if ($in) {
-						while ($buff = fread($in, 4096))
+						while ($buff = fread($in, 5120))
 							fwrite($out, $buff);
 					} else {
 						die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
@@ -600,7 +604,7 @@ class ControllerCommonFileManager extends Controller {
 				$in = fopen("php://input", "rb");
 
 				if ($in) {
-					while ($buff = fread($in, 4096))
+					while ($buff = fread($in, 5120))
 						fwrite($out, $buff);
 				} else {
 					die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
