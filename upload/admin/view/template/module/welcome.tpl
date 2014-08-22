@@ -61,18 +61,6 @@
           </div>
         <?php } ?>
           <table class="form">
-            <tr>
-              <td><?php echo $entry_default; ?></td> 
-              <td><select name="welcome_module[<?php echo $module_row; ?>][default]">
-                <?php if ($module['default']) { ?>
-                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                  <option value="0"><?php echo $text_no; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_yes; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
-                <?php } ?>
-              </select></td>
-            </tr>
             <tr style="background:#FCFCFC;">
               <td><?php echo $entry_layout; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][layout_id]">
@@ -185,13 +173,6 @@ function addModule() {
 	html += '  </div>';
 	<?php } ?>
 	html += '  <table class="form">';
-	html += '    <tr>';
-	html += '      <td><?php echo $entry_default; ?></td>';
-	html += '      <td><select name="welcome_module[' + module_row + '][default]">';
-	html += '        <option value="1"><?php echo $text_yes; ?></option>';
-	html += '        <option value="0"><?php echo $text_no; ?></option>';
-	html += '      </select></td>';
-	html += '    </tr>';
 	html += '    <tr style="background:#FCFCFC;">';
 	html += '      <td><?php echo $entry_layout; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][layout_id]">';
