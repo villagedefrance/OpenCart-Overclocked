@@ -79,16 +79,16 @@
       </div>
       <div class="statistic">
         <div class="range"><?php echo $entry_range; ?>
-        <select id="range" onchange="getSalesChart(this.value)">
-          <option value="day"><?php echo $text_day; ?></option>
-          <option value="week"><?php echo $text_week; ?></option>
-          <option value="month"><?php echo $text_month; ?></option>
-          <option value="year"><?php echo $text_year; ?></option>
-        </select>
+          <select id="range" onchange="getSalesChart(this.value)">
+            <option value="day"><?php echo $text_day; ?></option>
+            <option value="week"><?php echo $text_week; ?></option>
+            <option value="month"><?php echo $text_month; ?></option>
+            <option value="year"><?php echo $text_year; ?></option>
+          </select>
         </div>
         <div class="dashboard-heading"><?php echo $text_statistics; ?></div>
         <div class="dashboard-content">
-          <div id="report" style="width:500px; height:190px; margin:auto;"></div> 
+          <div id="report" style="width:100%; height:190px;"></div> 
         </div>
       </div>
 	  <div class="tiles">
@@ -118,7 +118,7 @@
 		</div>
 	  </div>
       <div class="latest">
-        <div class="dashboard-heading"><?php echo $text_latest_5_orders; ?></div>
+        <div class="dashboard-heading"><?php echo $text_latest_10_orders; ?></div>
         <div class="dashboard-content">
           <table class="list">
             <thead>
@@ -162,36 +162,44 @@
 <script type="text/javascript" src="view/javascript/jquery/flot/excanvas.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script> 
+<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.resize.min.js"></script> 
 
 <script type="text/javascript"><!--
 function getSalesChart(range) {
-  $.ajax({
-	type: 'get',
-	url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range,
-	dataType: 'json',
-	async: false,
-	success: function(json) {
-      var option = {
-        shadowSize: 0,
-        lines:{
-          show: true,
-          fill: true,
-          lineWidth: 1
-        },
-        grid:{
-          backgroundColor: '#FFFFFF'
-        },
-        xaxis:{
-          ticks: json.xaxis
+	$.ajax({
+		type: 'get',
+		url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range,
+		dataType: 'json',
+		success: function(json) {
+			var option = {
+				shadowSize: 0,
+				bars: {
+					show: true,
+					fill: true,
+					lineWidth: 1,
+					barColor: '#000000'
+				},
+				grid: {
+					backgroundColor: '#FFFFFF',
+					hoverable: true
+				},
+				points: {
+					show: false
+				},
+				xaxis: {
+					show: true,
+            		ticks: json['xaxis']
+				}
+			}
+
+			$.plot($('#report'), [json['order'], json['customer']], option);
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
-      }
-
-      $.plot($('#report'), [json.order, json.customer], option);
-	}
-  });
+	});
 }
-
 getSalesChart($('#range').val());
 //--></script>
 

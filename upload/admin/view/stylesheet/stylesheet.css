@@ -769,7 +769,7 @@ table.form > tbody > tr > td {
 /* Overview */
 .overview {
 	float: left;
-	width: 33%;
+	width: 38%;
 	margin-bottom: 20px;
 }
 .overview table {
@@ -781,7 +781,7 @@ table.form > tbody > tr > td {
 /* Statistic */
 .statistic {
 	float: right;
-	width: 66%;
+	width: 60%;
 	margin-bottom: 20px;
 }
 /* Range */
