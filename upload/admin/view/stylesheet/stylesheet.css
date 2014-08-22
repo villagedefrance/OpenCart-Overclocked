@@ -310,7 +310,7 @@ ul.menu ul {
 	overflow: auto;
 }
 /* Button */
-a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel, a.button-filter, .list a.button-filter {
+a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {
 	display: inline-block;
 	line-height: 12px;
 	padding: 6px 15px;
@@ -360,10 +360,34 @@ a.button-cancel:hover, .list a.button-cancel:hover {
 }
 /* Button Filter */
 a.button-filter, .list a.button-filter {
-	background: #9C9C9C;
+	display: inline-block;
+	line-height: 12px;
+	padding: 6px 13px;
+	margin: 0px 4px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+	text-decoration: none;
+	font-weight: bold;
+	color: #405060;
 }
 a.button-filter:hover, .list a.button-filter:hover {
-	background: #ACACAC;
+	background-color: #F2F2F2;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#CFCFCF));
+	background-image: -webkit-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -moz-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -ms-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -o-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: linear-gradient(to bottom, #F2F2F2, #CFCFCF);
 }
 /* Button Form */
 a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-install, a.button-form-edit, .list a.button-form-edit, a.button-form-uninstall, .list a.button-form-uninstall {
