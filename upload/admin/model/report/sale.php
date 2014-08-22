@@ -103,6 +103,18 @@ class ModelReportSale extends Model {
 		return $query->row['total'];
 	}
 
+	public function getTotalSales($data = array()) {
+		$sql = "SELECT SUM(total) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id > '0'";
+
+		if (!empty($data['filter_date_added'])) {
+			$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+		}
+
+      	$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
 	public function getTaxes($data = array()) {
 		$sql = "SELECT MIN(o.date_added) AS date_start, MAX(o.date_added) AS date_end, ot.title, SUM(ot.value) AS total, COUNT(o.order_id) AS `orders` FROM `" . DB_PREFIX . "order_total` ot LEFT JOIN `" . DB_PREFIX . "order` o ON (ot.order_id = o.order_id) WHERE ot.code = 'tax'";
 

@@ -10,7 +10,11 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['text_overview'] = $this->language->get('text_overview');
 		$this->data['text_statistics'] = $this->language->get('text_statistics');
-		$this->data['text_latest_10_orders'] = $this->language->get('text_latest_10_orders');
+		$this->data['text_latest_5_orders'] = $this->language->get('text_latest_5_orders');
+		$this->data['text_order_today'] = $this->language->get('text_order_today');
+		$this->data['text_customer_today'] = $this->language->get('text_customer_today');
+		$this->data['text_sale_today'] = $this->language->get('text_sale_today');
+		$this->data['text_online'] = $this->language->get('text_online');
 		$this->data['text_total_sale'] = $this->language->get('text_total_sale');
 		$this->data['text_total_sale_year'] = $this->language->get('text_total_sale_year');
 		$this->data['text_total_sale_month'] = $this->language->get('text_total_sale_month');
@@ -125,12 +129,12 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		// Overview
 		$this->load->model('sale/order');
 
 		$this->data['total_sale'] = $this->currency->format($this->model_sale_order->getTotalSales(), $this->config->get('config_currency'));
 		$this->data['total_sale_year'] = $this->currency->format($this->model_sale_order->getTotalSalesByYear(date('Y')), $this->config->get('config_currency'));
 		$this->data['total_sale_month'] = $this->currency->format($this->model_sale_order->getTotalSalesByMonth(date('m')), $this->config->get('config_currency'));
-		$this->data['total_order'] = $this->model_sale_order->getTotalOrders();
 
 		$this->load->model('sale/customer');
 
@@ -147,20 +151,20 @@ class ControllerCommonHome extends Controller {
 		$this->data['total_affiliate'] = $this->model_sale_affiliate->getTotalAffiliates();
 		$this->data['total_affiliate_approval'] = $this->model_sale_affiliate->getTotalAffiliatesAwaitingApproval();
 
-		// Affiliates
 		if ($this->config->get('config_affiliate_disable')) {
 			$this->data['allow_affiliate'] = false;
 		} else {
 			$this->data['allow_affiliate'] = true;
 		}
 
+		// Statistics
 		$this->data['orders'] = array();
 
 		$data = array(
 			'sort'  	=> 'o.date_added',
 			'order' 	=> 'DESC',
 			'start' 	=> 0,
-			'limit' 		=> 10
+			'limit' 		=> 5
 		);
 
 		$results = $this->model_sale_order->getOrders($data);
@@ -182,6 +186,33 @@ class ControllerCommonHome extends Controller {
 				'action'     		=> $action
 			);
 		}
+
+		// Today
+		$this->data['total_order'] = $this->model_sale_order->getTotalOrders();
+
+		$order_today = $this->model_sale_order->getTotalOrders(array('filter_date_added' => date('Y-m-d')));
+
+		if ($order_today > 0) {
+			$this->data['total_order_today'] = $order_today;
+		} else {
+			$this->data['total_order_today'] = 0;
+		}
+
+		$customer_today = $this->model_sale_customer->getTotalCustomers(array('filter_date_added' => date('Y-m-d')));
+
+		if ($customer_today > 0) {
+			$this->data['total_customer_today'] = $customer_today;
+		} else {
+			$this->data['total_customer_today'] = 0;
+		}
+
+		$this->load->model('report/sale');
+
+		$this->data['total_sale_today'] = $this->currency->format($this->model_report_sale->getTotalSales(array('filter_date_added' => date('Y-m-d'))), $this->config->get('config_currency'));
+
+		$this->load->model('report/online');
+
+		$this->data['total_online'] = $this->model_report_online->getTotalCustomersOnline();
 
 		// Currency auto-update
 		if ($this->config->get('config_currency_auto')) {

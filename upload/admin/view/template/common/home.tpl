@@ -91,8 +91,34 @@
           <div id="report" style="width:500px; height:190px; margin:auto;"></div> 
         </div>
       </div>
+	  <div class="tiles">
+        <div class="tile">
+	      <div class="tile-red">
+		    <p><?php echo $text_order_today; ?> &nbsp; <?php echo $total_order_today; ?></p>
+			<img src="view/image/dashboard/order.png" alt="" />
+          </div>
+        </div>
+		<div class="tile">
+          <div class="tile-blue">
+            <p><?php echo $text_customer_today; ?> &nbsp; <?php echo $total_customer_today; ?></p>
+			<img src="view/image/dashboard/customer.png" alt="" />
+          </div>
+        </div>
+		<div class="tile">
+          <div class="tile-yellow">
+            <p><?php echo $text_sale_today; ?> &nbsp; <?php echo $total_sale_today; ?></p>
+			<img src="view/image/dashboard/sale.png" alt="" />
+          </div>
+        </div>
+		<div class="tile">
+		  <div class="tile-green">
+            <p><?php echo $text_online; ?> &nbsp; <?php echo $total_online; ?></p>
+			<img src="view/image/dashboard/online.png" alt="" />
+          </div>
+		</div>
+	  </div>
       <div class="latest">
-        <div class="dashboard-heading"><?php echo $text_latest_10_orders; ?></div>
+        <div class="dashboard-heading"><?php echo $text_latest_5_orders; ?></div>
         <div class="dashboard-content">
           <table class="list">
             <thead>

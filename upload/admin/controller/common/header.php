@@ -224,9 +224,9 @@ class ControllerCommonHeader extends Controller {
 			$this->data['openbay_link_amazonus_links'] = $this->url->link('openbay/amazonus/itemLinks', 'token=' . $this->session->data['token'], 'SSL');
 
 			$this->data['openbay_markets'] = array(
-				'ebay' => $this->config->get('openbay_status'),
-				'amazon' => $this->config->get('amazon_status'),
-				'amazonus' => $this->config->get('amazonus_status')
+				'ebay'		=> $this->config->get('openbay_status'),
+				'amazon'		=> $this->config->get('amazon_status'),
+				'amazonus'	=> $this->config->get('amazonus_status')
 			);
 
 			$this->data['pp_express_status'] = $this->config->get('pp_express_status');
@@ -261,14 +261,13 @@ class ControllerCommonHeader extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['stores'][] = array(
-					'name' => $result['name'],
-					'href' => $result['url']
+					'name'	=> $result['name'],
+					'href'		=> $result['url']
 				);
 			}
 		}
 
 		$this->template = 'common/header.tpl';
-
 		$this->render();
 	}
 }

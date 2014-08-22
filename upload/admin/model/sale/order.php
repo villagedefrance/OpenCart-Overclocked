@@ -432,7 +432,7 @@ class ModelSaleOrder extends Model {
 				'payment_country'         	=> $order_query->row['payment_country'],
 				'payment_iso_code_2'  		=> $payment_iso_code_2,
 				'payment_iso_code_3'  		=> $payment_iso_code_3,
-				'payment_address_format' => $order_query->row['payment_address_format'],
+				'payment_address_format'	=> $order_query->row['payment_address_format'],
 				'payment_method'     		=> $order_query->row['payment_method'],
 				'payment_code'            	=> $order_query->row['payment_code'],
 				'shipping_firstname'      	=> $order_query->row['shipping_firstname'],
