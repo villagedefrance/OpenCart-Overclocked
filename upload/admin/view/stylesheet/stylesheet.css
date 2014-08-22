@@ -34,7 +34,7 @@ select {
 }
 a, a:visited {
 	color: #547C96;
-	text-decoration: underline;
+	text-decoration: none;
 	cursor: pointer;
 }
 a img {
@@ -318,7 +318,7 @@ ul.menu ul {
 	overflow: auto;
 }
 /* Button */
-a.button, .list a.button {
+a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {
 	text-decoration: none;
 	color: #FFF;
 	display: inline-block;
@@ -327,23 +327,52 @@ a.button, .list a.button {
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: 0px 2px 2px #DDD;
-	-moz-box-shadow: 0px 2px 2px #DDD;
-	box-shadow: 0px 2px 2px #DDD;	
+	-webkit-box-shadow: 0px 1px 1px #AAA;
+	-moz-box-shadow: 0px 1px 1px #AAA;
+	box-shadow: 0px 1px 1px #AAA;	
 }
+/* Button Blue */
 a.button, .list a.button {
-	background: #12498A;
-}
-a.button:hover, .list a.button:hover {
 	background: #4691D2;
 }
-/* Button form */
-a.button-form, .list a.button-form, input.button-form {
+a.button:hover, .list a.button:hover {
+	background: #62A1D7;
+}
+/* Button Green */
+a.button-save, .list a.button-save {
+	background: #5DC15E;
+}
+a.button-save:hover, .list a.button-save:hover {
+	background: #75CA75;
+}
+/* Button Red */
+a.button-delete, .list a.button-delete {
+	background: #DE5954;
+}
+a.button-delete:hover, .list a.button-delete:hover {
+	background: #E3726E;
+}
+/* Button Yellow */
+a.button-repair, .list a.button-repair {
+	background: #F2B155;
+}
+a.button-repair:hover, .list a.button-repair:hover {
+	background: #F4BD6D;
+}
+/* Button Grey */
+a.button-cancel, .list a.button-cancel {
+	background: #A7A7A7;
+}
+a.button-cancel:hover, .list a.button-cancel:hover {
+	background: #BCBCBC;
+}
+/* Button Form */
+a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-install, a.button-form-edit, .list a.button-form-edit, a.button-form-uninstall, .list a.button-form-uninstall {
+	display: inline-block;
 	color: #FFF;
 	line-height: 12px;
 	font-weight: bold;
 	text-decoration: none;
-	background-color: #547C96;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -351,19 +380,45 @@ a.button-form, .list a.button-form, input.button-form {
 	-webkit-box-shadow: 0px 2px 2px #DDD;
 	-moz-box-shadow: 0px 2px 2px #DDD;
 	box-shadow: 0px 2px 2px #DDD;
-}
-a.button-form, .list a.button-form {
-	display: inline-block;
 	padding: 6px 13px;
 }
-input.button-form {
+input.button-form, input.button-form-install, input.button-form-edit, input.button-form-uninstall {
 	margin: 0;
 	border: 0;
 	height: 22px;
+	color: #FFF;
+	line-height: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 2px 2px #DDD;
+	-moz-box-shadow: 0px 2px 2px #DDD;
+	box-shadow: 0px 2px 2px #DDD;
 	padding: 0px 13px 2px 13px;
 }
-a.button-form:hover, .list a.button-form:hover, input.button-form:hover {
-	background-color: #3A5668;
+/* Button Form Blue */
+a.button-form, .list a.button-form, input.button-form, a.button-form-edit, .list a.button-form-edit, input.button-form-edit {
+	background: #4691D2;
+}
+a.button-form:hover, .list a.button-form:hover, input.button-form:hover, a.button-form-edit:hover, .list a.button-form-edit:hover, input.button-form-edit:hover {
+	background: #62A1D7;
+}
+/* Button Form Green */
+a.button-form-install, .list a.button-form-install, input.button-form-install {
+	background: #5DC15E;
+}
+a.button-form-install:hover, .list a.button-form-install:hover,  input.button-form-install:hover {
+	background: #75CA75;
+}
+/* Button Form Red */
+a.button-form-uninstall, .list a.button-form-uninstall, input.button-form-uninstall {
+	background: #DE5954;
+}
+a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button-form-uninstall:hover {
+	background: #E3726E;
 }
 /* List */
 .list {

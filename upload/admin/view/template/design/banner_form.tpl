@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/banner.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -66,7 +66,7 @@
               <br />
               <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
             </div></td>
-            <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $image_row++; ?>
@@ -99,7 +99,7 @@ function addImage() {
 	html += '	  <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="banner_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
 	html += '	  <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
 	html += '	</div></td>';
-	html += '	<td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '	<td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '</tr>';
 	html += '</tbody>';
 

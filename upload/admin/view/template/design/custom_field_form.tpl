@@ -12,9 +12,9 @@
 	<div class="heading">
 		<h1><img src="view/image/layout.png" alt="" /> <?php echo $heading_title; ?></h1>
 		<div class="buttons">
-			<a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a>
-			<a onclick="apply();" class="button"><?php echo $button_apply; ?></a>
-			<a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+			<a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+			<a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+			<a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
 		</div>
 	</div>
 	<div class="content">
@@ -161,7 +161,7 @@
             <?php } ?>
           <?php } ?></td>
           <td class="right"><input type="text" name="custom_field_value[<?php echo $custom_field_value_row; ?>][sort_order]" value="<?php echo $custom_field_value['sort_order']; ?>" size="1" /></td>
-          <td class="center"><a onclick="$('#custom-field-value-row<?php echo $custom_field_value_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+          <td class="center"><a onclick="$('#custom-field-value-row<?php echo $custom_field_value_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
         </tr>
         </tbody>
         <?php $custom_field_value_row++; ?>
@@ -221,7 +221,7 @@ function addCustomFieldValue() {
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="right"><input type="text" name="custom_field_value[' + custom_field_value_row + '][sort_order]" value="" size="1" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#custom-field-value-row' + custom_field_value_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#custom-field-value-row' + custom_field_value_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

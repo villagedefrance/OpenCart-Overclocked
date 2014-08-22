@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/country.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -59,7 +59,7 @@
             </select></td>
             <td class="left"><select name="zone_to_geo_zone[<?php echo $zone_to_geo_zone_row; ?>][zone_id]" id="zone<?php echo $zone_to_geo_zone_row; ?>">
             </select></td>
-            <td class="center"><a onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#zone-to-geo-zone-row<?php echo $zone_to_geo_zone_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $zone_to_geo_zone_row++; ?>
@@ -100,7 +100,7 @@ function addGeoZone() {
 	<?php } ?>
 	html += '</select></td>';
 	html += '<td class="left"><select name="zone_to_geo_zone[' + zone_to_geo_zone_row + '][zone_id]" id="zone' + zone_to_geo_zone_row + '"></select></td>';
-	html += '<td class="center"><a onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '<td class="center"><a onclick="$(\'#zone-to-geo-zone-row' + zone_to_geo_zone_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '</tr>';
 	html += '</tbody>';
 

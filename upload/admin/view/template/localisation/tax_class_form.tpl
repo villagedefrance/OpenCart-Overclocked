@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/tax.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -76,7 +76,7 @@
                 <?php } ?>
               </select></td>
               <td class="left"><input type="text" name="tax_rule[<?php echo $tax_rule_row; ?>][priority]" value="<?php echo $tax_rule['priority']; ?>" size="1" /></td>
-              <td class="center"><a onclick="$('#tax-rule-row<?php echo $tax_rule_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+              <td class="center"><a onclick="$('#tax-rule-row<?php echo $tax_rule_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
             </tr>
           </tbody>
           <?php $tax_rule_row++; ?>
@@ -110,7 +110,7 @@ function addRule() {
 	html += '      <option value="store"><?php echo $text_store; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="left"><input type="text" name="tax_rule[' + tax_rule_row + '][priority]" value="" size="1" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#tax-rule-row' + tax_rule_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#tax-rule-row' + tax_rule_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 

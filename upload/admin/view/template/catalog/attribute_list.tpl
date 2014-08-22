@@ -16,7 +16,7 @@
 		<h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
 		<div class="buttons">
 			<a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-			<a onclick="$('form').submit();" class="button"><?php echo $button_delete; ?></a>
+			<a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
 		</div>
 	</div>
 	<div class="content">
@@ -27,7 +27,7 @@
 		<table class="list">
           <thead>
 			<tr>
-				<td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+				<td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
 				<td class="left"><?php if ($sort == 'ad.name') { ?>
 					<a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
 				<?php } else { ?>
@@ -50,7 +50,7 @@
 		<?php if ($attributes) { ?>
 			<?php foreach ($attributes as $attribute) { ?>
 			<tr>
-				<td style="text-align: center;"><?php if ($attribute['selected']) { ?>
+				<td style="text-align:center;"><?php if ($attribute['selected']) { ?>
 					<input type="checkbox" name="selected[]" value="<?php echo $attribute['attribute_id']; ?>" checked="checked" />
 				<?php } else { ?>
 					<input type="checkbox" name="selected[]" value="<?php echo $attribute['attribute_id']; ?>" />

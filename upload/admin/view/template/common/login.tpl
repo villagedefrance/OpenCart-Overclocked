@@ -12,7 +12,7 @@
       <div class="warning"><?php echo $error_warning; ?></div>
     <?php } ?>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-    <table style="width: 100%;">
+    <table style="width:100%;">
       <tr>
         <td style="text-align:center;" rowspan="4"><img src="view/image/login.png" alt="<?php echo $text_login; ?>" /></td>
       </tr>

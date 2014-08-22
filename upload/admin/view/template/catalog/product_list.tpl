@@ -17,7 +17,7 @@
       <div class="buttons">
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').attr('action', '<?php echo $copy; ?>'); $('#form').submit();" class="button"><?php echo $button_copy; ?></a>
-        <a onclick="$('form').submit();" class="button"><?php echo $button_delete; ?></a>
+        <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
