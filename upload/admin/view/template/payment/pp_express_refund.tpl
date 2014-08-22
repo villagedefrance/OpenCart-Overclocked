@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $btn_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $btn_cancel; ?></a>
       </div>
     </div>
     <div class="content">

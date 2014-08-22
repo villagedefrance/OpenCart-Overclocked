@@ -11,7 +11,7 @@
       <div class="buttons">
         <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button"><?php echo $button_delivery_note; ?></a>
         <a onclick="window.open('<?php echo $invoice; ?>');" class="button"><?php echo $button_invoice; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -401,7 +401,7 @@
         </tr>
         <tr>
           <td><?php echo $entry_comment; ?></td>
-          <td><textarea name="comment" cols="40" rows="8" style="width: 99%"></textarea>
+          <td><textarea name="comment" cols="40" rows="8" style="width:100%"></textarea>
           <div style="margin-top:10px; text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div></td>
         </tr>
       </table>

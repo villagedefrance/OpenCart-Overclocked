@@ -12,7 +12,7 @@
     <div class="heading">
       <h1><img src="view/image/report.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $reset; ?>" class="button"><?php echo $button_reset; ?></a>
+        <a href="<?php echo $reset; ?>" class="button-delete"><?php echo $button_reset; ?></a>
       </div>
     </div>
     <div class="content">

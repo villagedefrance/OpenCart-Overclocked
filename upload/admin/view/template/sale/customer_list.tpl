@@ -15,9 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('form').attr('action', '<?php echo $approve; ?>'); $('form').submit();" class="button"><?php echo $button_approve; ?></a>
+        <a onclick="$('form').attr('action', '<?php echo $approve; ?>'); $('form').submit();" class="button-save"><?php echo $button_approve; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('form').attr('action', '<?php echo $delete; ?>'); $('form').submit();" class="button"><?php echo $button_delete; ?></a>
+        <a onclick="$('form').attr('action', '<?php echo $delete; ?>'); $('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
@@ -112,7 +112,7 @@
             <td><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
             <td><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
             <td></td>
-            <td style="text-align:right;"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
+            <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
         <?php if ($customers) { ?>
           <?php foreach ($customers as $customer) { ?>

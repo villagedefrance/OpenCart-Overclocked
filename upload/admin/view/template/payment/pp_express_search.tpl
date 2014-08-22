@@ -9,8 +9,8 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a class="button" onclick="editSearch();" id="btn_edit" style="display:none;"><?php echo $btn_edit_search; ?></a>
-        <a class="button" onclick="doSearch();" id="btn_search"><?php echo $btn_search; ?></a>
+        <a onclick="editSearch();" id="btn_edit" class="button" style="display:none;"><?php echo $btn_edit_search; ?></a>
+        <a onclick="doSearch();" id="btn_search" class="button-save"><?php echo $btn_search; ?></a>
       </div>
     </div>
     <div class="content">
@@ -116,7 +116,7 @@
       </div>
     </form>
     <div id="search_box" style="display:none;">
-      <div id="searching"><img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" alt="" /> <?php echo $text_searching; ?></div>
+      <div id="searching"><img src="view/image/loading.gif" alt="" /> <?php echo $text_searching; ?></div>
       <div id="error" class="warning" style="display:none;"></div>
         <table id="search_results" style="display:none;" class="list" ></table>
       </div>

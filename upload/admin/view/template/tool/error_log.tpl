@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="content">
-       <textarea wrap="off" style="width:98%; height:300px; padding:5px; border:1px solid #CCC; background:#FFF; overflow:scroll;"><?php echo $log; ?></textarea>
+       <textarea wrap="off" style="width:99%; height:300px; padding:5px; border:1px solid #CCC; background:#FFF; overflow:scroll;"><?php echo $log; ?></textarea>
     </div>
   </div>
 </div>

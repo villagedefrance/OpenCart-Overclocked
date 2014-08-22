@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_refund; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content"> 
@@ -26,7 +26,7 @@
           <td><?php echo $entry_refund_amount; ?></td>
           <td>
             <input type="test" value="0.00" name="amount" />
-            <a class="button" onclick="refund()" id="button-refund"><?php echo $button_refund; ?></a>
+            <a onclick="refund()" id="button-refund" class="button"><?php echo $button_refund; ?></a>
           </td>
         </tr>
       </table>

@@ -18,7 +18,7 @@
         <a onclick="$('#form').attr('action', '<?php echo $delivery_note; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_delivery_note; ?></a>
         <a onclick="$('#form').attr('action', '<?php echo $invoice; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_invoice; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="$('#form').attr('action', '<?php echo $delete; ?>'); $('#form').attr('target', '_self'); $('#form').submit();" class="button"><?php echo $button_delete; ?></a>
+        <a onclick="$('#form').attr('action', '<?php echo $delete; ?>'); $('#form').attr('target', '_self'); $('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
@@ -86,7 +86,7 @@
             <td class="right"><input type="text" name="filter_total" value="<?php echo $filter_total; ?>" size="4" style="text-align:right;" /></td>
             <td class="left"><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" class="date" /></td>
             <td class="left"><input type="text" name="filter_date_modified" value="<?php echo $filter_date_modified; ?>" size="12" class="date" /></td>
-            <td class="right"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($orders) { ?>
             <?php foreach ($orders as $order) { ?>

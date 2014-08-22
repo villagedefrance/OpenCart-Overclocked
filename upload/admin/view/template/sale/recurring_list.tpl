@@ -72,7 +72,7 @@
                 <?php } ?>
               <?php } ?>
               </select></td>
-            <td class="right"><a onclick="filter();" class="button"><?php echo $text_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $text_filter; ?></a></td>
           </tr>
           <?php if ($profiles) { ?>
             <?php foreach ($profiles as $profile) { ?>

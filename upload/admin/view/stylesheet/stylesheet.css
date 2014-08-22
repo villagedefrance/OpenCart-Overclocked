@@ -267,10 +267,10 @@ ul.menu ul {
 	padding-left: 7px;
 	padding-right: 7px;
 	border: 1px solid #CCC;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	-moz-border-radius: 5px 5px 0px 0px;
-	-khtml-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#EEE));
 	background-image: -webkit-linear-gradient(top, #FCFCFC, #EEE);
@@ -281,10 +281,9 @@ ul.menu ul {
 }
 .box > .heading h1 {
 	margin: 0px;
-	padding: 11px 0px 0px 0px;
-	color: #12498A;
+	padding: 9px 0px 0px 0px;
+	color: #405060;
 	font-size: 16px;
-	text-shadow: 0 1px 0 #FCFCFC;
 	float: left;
 }
 .box > .heading h1 img {
@@ -295,11 +294,7 @@ ul.menu ul {
 }
 .box > .heading .buttons {
 	padding-top: 7px;
-	margin-right: 5px;
 	float: right;
-}
-.box > .heading .buttons .button {
-	margin-left: 5px;
 }
 .box > .content h2 {
 	color: #FF802B;
@@ -310,26 +305,23 @@ ul.menu ul {
 	padding-bottom: 3px;
 }
 .box > .content {
-	border-left: 1px solid #CCC;
-	border-right: 1px solid #CCC;
-	border-bottom: 1px solid #CCC;
 	min-height: 300px;
-	padding: 10px;
+	padding-top: 10px;
 	overflow: auto;
 }
 /* Button */
-a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {
-	text-decoration: none;
-	color: #FFF;
+a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel, a.button-filter, .list a.button-filter {
 	display: inline-block;
-	padding: 5px 15px;
+	line-height: 12px;
+	padding: 6px 15px;
+	margin: 0px 3px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: 0px 1px 1px #AAA;
-	-moz-box-shadow: 0px 1px 1px #AAA;
-	box-shadow: 0px 1px 1px #AAA;	
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFF;
 }
 /* Button Blue */
 a.button, .list a.button {
@@ -361,18 +353,24 @@ a.button-repair:hover, .list a.button-repair:hover {
 }
 /* Button Grey */
 a.button-cancel, .list a.button-cancel {
-	background: #A7A7A7;
+	background: #A0A0A0;
 }
 a.button-cancel:hover, .list a.button-cancel:hover {
-	background: #BCBCBC;
+	background: #B5B5B5;
+}
+/* Button Filter */
+a.button-filter, .list a.button-filter {
+	background: #9C9C9C;
+}
+a.button-filter:hover, .list a.button-filter:hover {
+	background: #ACACAC;
 }
 /* Button Form */
 a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-install, a.button-form-edit, .list a.button-form-edit, a.button-form-uninstall, .list a.button-form-uninstall {
 	display: inline-block;
-	color: #FFF;
 	line-height: 12px;
-	font-weight: bold;
-	text-decoration: none;
+	padding: 6px 13px;
+	margin: 0px 3px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -380,16 +378,14 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 	-webkit-box-shadow: 0px 2px 2px #DDD;
 	-moz-box-shadow: 0px 2px 2px #DDD;
 	box-shadow: 0px 2px 2px #DDD;
-	padding: 6px 13px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFF;
 }
 input.button-form, input.button-form-install, input.button-form-edit, input.button-form-uninstall {
-	margin: 0;
-	border: 0;
 	height: 22px;
-	color: #FFF;
 	line-height: 12px;
-	font-weight: bold;
-	text-decoration: none;
+	padding: 0px 13px 2px 13px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -397,7 +393,9 @@ input.button-form, input.button-form-install, input.button-form-edit, input.butt
 	-webkit-box-shadow: 0px 2px 2px #DDD;
 	-moz-box-shadow: 0px 2px 2px #DDD;
 	box-shadow: 0px 2px 2px #DDD;
-	padding: 0px 13px 2px 13px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFF;
 }
 /* Button Form Blue */
 a.button-form, .list a.button-form, input.button-form, a.button-form-edit, .list a.button-form-edit, input.button-form-edit {
@@ -513,11 +511,11 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	padding: 4px 10px;
 }
 .pagination .links b {
-	color: #547C96;
+	color: #4691D2;
 	font-size: 12px;
 	font-weight: normal;
 	text-decoration: none;
-	border: 1px solid #547C96;
+	border: 1px solid #4691D2;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -662,25 +660,21 @@ table.form > tbody > tr > td {
 }
 /* Dashboard */
 .dashboard-heading {
-	background: #547C96;
+	background: #6A6A6A;
 	color: #FFF;
 	font-size: 14px;
 	font-weight: bold;
-	text-shadow: 0 1px 1px #444;
-	border-top: 1px solid #547C96;
-	border-left: 1px solid #547C96;
-	border-right: 1px solid #547C96;
-	border-bottom: 1px solid #8EAEC3;
+	border: 1px solid #6A6A6A;
 	-webkit-border-radius: 3px 3px 0px 0px;
 	-moz-border-radius: 3px 3px 0px 0px;
 	-khtml-border-radius: 3px 3px 0px 0px;
 	border-radius: 3px 3px 0px 0px;
-	padding: 5px 0px 5px 7px;
+	padding: 6px 0px 6px 10px;
 }
 .dashboard-content {
 	background: #FCFCFC;
 	min-height: 200px;
-	border: 1px solid #8EAEC3;
+	border: 1px solid #AAA;
 	-webkit-border-radius: 0px 0px 3px 3px;
 	-moz-border-radius: 0px 0px 3px 3px;
 	-khtml-border-radius: 0px 0px 3px 3px;
@@ -771,8 +765,8 @@ table.form > tbody > tr > td {
 	float: right;
 	color: #FFF;
 	vertical-align: middle;
-	padding-top: 2px;
-	padding-right: 2px;
+	padding-top: 4px;
+	padding-right: 4px;
 }
 .range, .range select {
 	font-size: 11px;
