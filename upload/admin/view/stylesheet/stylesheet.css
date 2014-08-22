@@ -761,7 +761,7 @@ table.form > tbody > tr > td {
 	padding: 15px;
 	margin: 0;
 }
-.tiles .tile .tile-red img, .tiles .tile .tile-blue img, .tiles .tile .tile-yellow img, .tiles .tile .tile-green img {
+.tiles .tile .tile-red a img, .tiles .tile .tile-blue a img, .tiles .tile .tile-yellow a img, .tiles .tile .tile-green a img {
 	position: absolute;
 	top: 10px;
 	right: 20px;
