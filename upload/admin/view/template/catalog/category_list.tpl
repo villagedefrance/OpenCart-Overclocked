@@ -15,8 +15,8 @@
   <div class="heading">
     <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
     <div class="buttons">
-      <a href="<?php echo $repair; ?>" class="button"><?php echo $button_repair; ?></a>
       <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
+	  <a href="<?php echo $repair; ?>" class="button"><?php echo $button_repair; ?></a>
       <a onclick="$('#form').submit();" class="button"><?php echo $button_delete; ?></a>
     </div>
   </div>
