@@ -10,6 +10,9 @@
   <?php } ?>
   </div>
   <h1><?php echo $heading_title; ?></h1>
+  <div class="content">
+    <h3><?php echo $firstname; ?> <?php echo $lastname; ?> &nbsp; (<?php echo $email; ?>)</h3>
+  </div>
   <h2><?php echo $text_my_account; ?></h2>
   <div class="content">
     <div class="box-account">

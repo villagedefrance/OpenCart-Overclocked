@@ -5,7 +5,6 @@
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
 <link rel="icon" type="image/png" href="favicon.png" />
-
 <?php if ($description) { ?>
 <meta name="description" content="<?php echo $description; ?>" />
 <?php } ?>
@@ -15,29 +14,24 @@
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
-
 <link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" />
-
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
-
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.10.4.custom.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
 <script type="text/javascript" src="view/javascript/common.js"></script>
-
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
-
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	// Confirm Delete
 	$('#form').submit(function() {
-		if ($(this).attr('action').indexOf('delete',1) != -1) {
+		if ($(this).attr('action').indexOf('delete', 1) != -1) {
 			if (!confirm('<?php echo $text_confirm; ?>')) {
 				return false;
 			}
@@ -54,7 +48,6 @@ $(document).ready(function() {
 });
 //--></script>
 </head>
-
 <body>
 <div id="container">
   <div id="header">

@@ -151,6 +151,8 @@ $('select[name=\'type\']').bind('change', function() {
 	}
 });
 
+$('select[name=\'type\']').trigger('change');
+
 var option_value_row = <?php echo $option_value_row; ?>;
 
 function addOptionValue() {

@@ -4,11 +4,9 @@
 <meta charset="UTF-8" />
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
-
 <meta name="robots" content="index, follow" />
 <meta name="generator" content="<?php echo $version; ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <?php if ($description) { ?>
 <meta name="description" content="<?php echo $description; ?>" />
 <?php } ?>
@@ -23,27 +21,21 @@
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
-
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet.css" />
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" />
-
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
-
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.10.4.custom.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
-
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
-
 <!--[if IE 7]>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/ie7.css" />
 <![endif]-->
-
 <!--[if lt IE 7]>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/ie6.css" />
 <script type="text/javascript" src="catalog/view/javascript/DD_belatedPNG_0.0.8a-min.js"></script>
@@ -51,7 +43,6 @@
 DD_belatedPNG.fix('#logo img');
 </script>
 <![endif]-->
-
 <?php if ($stores) { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -64,7 +55,6 @@ $(document).ready(function() {
 <link href="/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>" rel="alternate" type="application/rss+xml" />
 <?php echo $google_analytics; ?>
 </head>
-
 <body>
 <div id="container">
 <div id="header">
