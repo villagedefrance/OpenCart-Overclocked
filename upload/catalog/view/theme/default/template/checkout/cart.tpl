@@ -71,6 +71,10 @@
                 &nbsp;
                 <input type="image" src="catalog/view/theme/<?php echo $template; ?>/image/update.png" alt="<?php echo $button_update; ?>" title="<?php echo $button_update; ?>" />
                 &nbsp;
+				<?php if ($logged) { ?>
+				  <a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><img src="catalog/view/theme/<?php echo $template; ?>/image/wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
+				  &nbsp;
+				<?php } ?>
                 <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
               <td class="price"><?php echo $product['price']; ?></td>
