@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -279,7 +279,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
 			</td>
           </tr>
 		<?php } else { ?>
@@ -320,7 +320,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
 			</td>
           </tr>
         <?php } else { ?>
@@ -361,7 +361,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a>
 			</td>
           </tr>
         <?php } else { ?>
@@ -486,7 +486,7 @@
                 <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
               <?php } ?>
 			</td>
-            <td class="center"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $attribute_row++; ?>
@@ -572,9 +572,9 @@
             <table id="option-value<?php echo $option_row; ?>" class="list">
             <thead>
               <tr>
-                <td class="left"><?php echo $entry_option_value; ?></td>
+                <td class="right"><?php echo $entry_option_value; ?></td>
                 <td class="right"><?php echo $entry_quantity; ?></td>
-                <td class="left"><?php echo $entry_subtract; ?></td>
+                <td class="right"><?php echo $entry_subtract; ?></td>
                 <td class="right"><?php echo $entry_price; ?></td>
                 <td class="right"><?php echo $entry_option_points; ?></td>
                 <td class="right"><?php echo $entry_weight; ?></td>
@@ -584,7 +584,7 @@
             <?php foreach ($product_option['product_option_value'] as $product_option_value) { ?>
             <tbody id="option-value-row<?php echo $option_value_row; ?>">
               <tr>
-                <td class="left"><select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][option_value_id]">
+                <td class="right"><select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][option_value_id]">
                   <?php if (isset($option_values[$product_option['option_id']])) { ?>
                     <?php foreach ($option_values[$product_option['option_id']] as $option_value) { ?>
                       <?php if ($option_value['option_value_id'] == $product_option_value['option_value_id']) { ?>
@@ -598,7 +598,7 @@
                 <input type="hidden" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][product_option_value_id]" value="<?php echo $product_option_value['product_option_value_id']; ?>" />
 				</td>
                 <td class="right"><input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][quantity]" value="<?php echo $product_option_value['quantity']; ?>" size="3" /></td>
-                <td class="left">
+                <td class="right">
 				  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][subtract]">
                   <?php if ($product_option_value['subtract']) { ?>
                     <option value="1" selected="selected"><?php echo $text_yes; ?></option>
@@ -654,7 +654,7 @@
                   </select>
                   <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][weight]" value="<?php echo $product_option_value['weight']; ?>" size="5" />
 				</td>
-                <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+                <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
               </tr>
             </tbody>
             <?php $option_value_row++; ?>
@@ -713,10 +713,10 @@
               <?php } ?>
               </select>
             </td>
-            <td class="center"><a onclick="$('#profile-row<?php echo $profileCount; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#profile-row<?php echo $profileCount; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
-        <?php $profileCount++ ?>
+        <?php $profileCount++; ?>
         <?php } ?>
         <tfoot>
           <tr>
@@ -731,9 +731,9 @@
         <thead>
           <tr>
             <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="right"><?php echo $entry_quantity; ?></td>
-            <td class="right"><?php echo $entry_priority; ?></td>
-            <td class="right"><?php echo $entry_price; ?></td>
+            <td class="left"><?php echo $entry_quantity; ?></td>
+            <td class="left"><?php echo $entry_priority; ?></td>
+            <td class="left"><?php echo $entry_price; ?></td>
             <td class="left"><?php echo $entry_date_start; ?></td>
             <td class="left"><?php echo $entry_date_end; ?></td>
             <td></td>
@@ -752,12 +752,12 @@
               <?php } ?>
             <?php } ?>
             </select></td>
-            <td class="right"><input type="text" name="product_discount[<?php echo $discount_row; ?>][quantity]" value="<?php echo $product_discount['quantity']; ?>" size="2" /></td>
-            <td class="right"><input type="text" name="product_discount[<?php echo $discount_row; ?>][priority]" value="<?php echo $product_discount['priority']; ?>" size="2" /></td>
-            <td class="right"><input type="text" name="product_discount[<?php echo $discount_row; ?>][price]" value="<?php echo $product_discount['price']; ?>" /></td>
+            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][quantity]" value="<?php echo $product_discount['quantity']; ?>" size="2" /></td>
+            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][priority]" value="<?php echo $product_discount['priority']; ?>" size="2" /></td>
+            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][price]" value="<?php echo $product_discount['price']; ?>" /></td>
             <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_start]" value="<?php echo $product_discount['date_start']; ?>" class="date" /></td>
             <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_end]" value="<?php echo $product_discount['date_end']; ?>" class="date" /></td>
-            <td class="center"><a onclick="$('#discount-row<?php echo $discount_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#discount-row<?php echo $discount_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $discount_row++; ?>
@@ -775,8 +775,8 @@
         <thead>
           <tr>
             <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="right"><?php echo $entry_priority; ?></td>
-            <td class="right"><?php echo $entry_price; ?></td>
+            <td class="left"><?php echo $entry_priority; ?></td>
+            <td class="left"><?php echo $entry_price; ?></td>
             <td class="left"><?php echo $entry_date_start; ?></td>
             <td class="left"><?php echo $entry_date_end; ?></td>
             <td></td>
@@ -795,11 +795,11 @@
               <?php } ?>
             <?php } ?>
             </select></td>
-            <td class="right"><input type="text" name="product_special[<?php echo $special_row; ?>][priority]" value="<?php echo $product_special['priority']; ?>" size="2" /></td>
-            <td class="right"><input type="text" name="product_special[<?php echo $special_row; ?>][price]" value="<?php echo $product_special['price']; ?>" /></td>
+            <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][priority]" value="<?php echo $product_special['priority']; ?>" size="2" /></td>
+            <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][price]" value="<?php echo $product_special['price']; ?>" /></td>
             <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_start]" value="<?php echo $product_special['date_start']; ?>" class="date" /></td>
             <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_end]" value="<?php echo $product_special['date_end']; ?>" class="date" /></td>
-            <td class="center"><a onclick="$('#special-row<?php echo $special_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#special-row<?php echo $special_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $special_row++; ?>
@@ -817,7 +817,7 @@
         <thead>
           <tr>
             <td class="left"><?php echo $entry_image; ?></td>
-            <td class="right"><?php echo $entry_sort_order; ?></td>
+            <td class="left"><?php echo $entry_sort_order; ?></td>
             <td></td>
           </tr>
         </thead>
@@ -825,13 +825,13 @@
         <?php foreach ($product_images as $product_image) { ?>
         <tbody id="image-row<?php echo $image_row; ?>">
           <tr>
-            <td class="left"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
+            <td class="center"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
               <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
               <br />
               <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
 			</div></td>
-            <td class="right"><input type="text" name="product_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $product_image['sort_order']; ?>" size="2" /></td>
-            <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><input type="text" name="product_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $product_image['sort_order']; ?>" size="2" /></td>
+            <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $image_row++; ?>
@@ -855,14 +855,14 @@
         <thead>
           <tr>
             <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="right"><?php echo $entry_reward; ?></td>
+            <td class="left"><?php echo $entry_reward; ?></td>
           </tr>
         </thead>
         <?php foreach ($customer_groups as $customer_group) { ?>
         <tbody>
           <tr>
             <td class="left"><?php echo $customer_group['name']; ?></td>
-            <td class="right"><input type="text" name="product_reward[<?php echo $customer_group['customer_group_id']; ?>][points]" value="<?php echo isset($product_reward[$customer_group['customer_group_id']]) ? $product_reward[$customer_group['customer_group_id']]['points'] : ''; ?>" /></td>
+            <td class="left"><input type="text" name="product_reward[<?php echo $customer_group['customer_group_id']; ?>][points]" value="<?php echo isset($product_reward[$customer_group['customer_group_id']]) ? $product_reward[$customer_group['customer_group_id']]['points'] : ''; ?>" /></td>
           </tr>
         </tbody>
         <?php } ?>
@@ -1215,7 +1215,7 @@ function addAttribute() {
 	html += '<textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
 	<?php } ?>
 	html += '    </td>';
-	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1346,9 +1346,9 @@ $('input[name=\'option\']').catcomplete({
 			html += '  <table id="option-value' + option_row + '" class="list">';
 			html += '  	 <thead>';
 			html += '      <tr>';
-			html += '        <td class="left"><?php echo $entry_option_value; ?></td>';
+			html += '        <td class="right"><?php echo $entry_option_value; ?></td>';
 			html += '        <td class="right"><?php echo $entry_quantity; ?></td>';
-			html += '        <td class="left"><?php echo $entry_subtract; ?></td>';
+			html += '        <td class="right"><?php echo $entry_subtract; ?></td>';
 			html += '        <td class="right"><?php echo $entry_price; ?></td>';
 			html += '        <td class="right"><?php echo $entry_option_points; ?></td>';
 			html += '        <td class="right"><?php echo $entry_weight; ?></td>';
@@ -1405,11 +1405,11 @@ var option_value_row = <?php echo $option_value_row; ?>;
 function addOptionValue(option_row) {
 	html  = '<tbody id="option-value-row' + option_value_row + '">';
 	html += '  <tr>';
-	html += '    <td class="left"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][option_value_id]">';
+	html += '    <td class="right"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][option_value_id]">';
 	html += $('#option-values' + option_row).html();
 	html += '    </select><input type="hidden" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][product_option_value_id]" value="" /></td>';
 	html += '    <td class="right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][quantity]" value="" size="3" /></td>';
-	html += '    <td class="left"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][subtract]">';
+	html += '    <td class="right"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][subtract]">';
 	html += '      <option value="1"><?php echo $text_yes; ?></option>';
 	html += '      <option value="0"><?php echo $text_no; ?></option>';
 	html += '    </select></td>';
@@ -1428,7 +1428,7 @@ function addOptionValue(option_row) {
 	html += '      <option value="-">-</option>';
 	html += '    </select>';
 	html += '    <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][weight]" value="" size="5" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1459,7 +1459,7 @@ function addProfile() {
 	html += '    </select>';
 	html += '  </td>';
 	html += '  <td class="center">';
-	html += '    <a class="button" onclick="$(\'#profile-row' + profileCount + '\').remove()"><?php echo $button_remove; ?></a>';
+	html += '    <a onclick="$(\'#profile-row' + profileCount + '\').remove()" class="button-delete"><?php echo $button_remove; ?></a>';
 	html += '  </td>';
 	html += '</tr>';
 	html += '</tbody>';
@@ -1481,12 +1481,12 @@ function addDiscount() {
 	html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
 	<?php } ?>
 	html += '    </select></td>';
-	html += '    <td class="right"><input type="text" name="product_discount[' + discount_row + '][quantity]" value="" size="2" /></td>';
-	html += '    <td class="right"><input type="text" name="product_discount[' + discount_row + '][priority]" value="" size="2" /></td>';
-	html += '    <td class="right"><input type="text" name="product_discount[' + discount_row + '][price]" value="" /></td>';
+	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][quantity]" value="" size="2" /></td>';
+	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][priority]" value="" size="2" /></td>';
+	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][price]" value="" /></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_start]" value="" class="date" /></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_end]" value="" class="date" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#discount-row' + discount_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#discount-row' + discount_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1509,11 +1509,11 @@ function addSpecial() {
 	html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
 	<?php } ?>
 	html += '    </select></td>';
-	html += '    <td class="right"><input type="text" name="product_special[' + special_row + '][priority]" value="" size="2" /></td>';
-	html += '    <td class="right"><input type="text" name="product_special[' + special_row + '][price]" value="" /></td>';
+	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][priority]" value="" size="2" /></td>';
+	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][price]" value="" /></td>';
 	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_start]" value="" class="date" /></td>';
 	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_end]" value="" class="date" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#special-row' + special_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#special-row' + special_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
@@ -1559,14 +1559,14 @@ var image_row = <?php echo $image_row; ?>;
 function addImage() {
 	html  = '<tbody id="image-row' + image_row + '">';
 	html += ' <tr>';
-	html += ' 	<td class="left">';
+	html += ' 	<td class="center">';
 	html += '  	<div class="image">';
 	html += '		<img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
 	html += '       	<a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
 	html += ' 	</div>';
 	html += ' 	</td>';
-	html += ' 	<td class="right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
-	html += ' 	<td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += ' 	<td class="center"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
+	html += ' 	<td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += ' </tr>';
 	html += '</tbody>';
 

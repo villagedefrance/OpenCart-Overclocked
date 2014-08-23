@@ -79,18 +79,44 @@
       </div>
       <div class="statistic">
         <div class="range"><?php echo $entry_range; ?>
-        <select id="range" onchange="getSalesChart(this.value)">
-          <option value="day"><?php echo $text_day; ?></option>
-          <option value="week"><?php echo $text_week; ?></option>
-          <option value="month"><?php echo $text_month; ?></option>
-          <option value="year"><?php echo $text_year; ?></option>
-        </select>
+          <select id="range" onchange="getSalesChart(this.value)">
+            <option value="day"><?php echo $text_day; ?></option>
+            <option value="week"><?php echo $text_week; ?></option>
+            <option value="month"><?php echo $text_month; ?></option>
+            <option value="year"><?php echo $text_year; ?></option>
+          </select>
         </div>
         <div class="dashboard-heading"><?php echo $text_statistics; ?></div>
         <div class="dashboard-content">
-          <div id="report" style="width:500px; height:190px; margin:auto;"></div> 
+          <div id="report" style="width:100%; height:190px;"></div> 
         </div>
       </div>
+	  <div class="tiles">
+        <div class="tile">
+	      <div class="tile-red">
+		    <p><?php echo $text_order_today; ?> &nbsp; <?php echo $total_order_today; ?></p>
+			<a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /></a>
+          </div>
+        </div>
+		<div class="tile">
+          <div class="tile-blue">
+            <p><?php echo $text_customer_today; ?> &nbsp; <?php echo $total_customer_today; ?></p>
+			<a href="<?php echo $view_customers; ?>" title=""><img src="view/image/dashboard/customer.png" alt="" /></a>
+          </div>
+        </div>
+		<div class="tile">
+          <div class="tile-yellow">
+            <p><?php echo $text_sale_today; ?> &nbsp; <?php echo $total_sale_today; ?></p>
+			<a href="<?php echo $view_sales; ?>" title=""><img src="view/image/dashboard/sale.png" alt="" /></a>
+          </div>
+        </div>
+		<div class="tile">
+		  <div class="tile-green">
+            <p><?php echo $text_online; ?> &nbsp; <?php echo $total_online; ?></p>
+			<a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /></a>
+          </div>
+		</div>
+	  </div>
       <div class="latest">
         <div class="dashboard-heading"><?php echo $text_latest_10_orders; ?></div>
         <div class="dashboard-content">
@@ -136,36 +162,44 @@
 <script type="text/javascript" src="view/javascript/jquery/flot/excanvas.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script> 
+<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.resize.min.js"></script> 
 
 <script type="text/javascript"><!--
 function getSalesChart(range) {
-  $.ajax({
-	type: 'get',
-	url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range,
-	dataType: 'json',
-	async: false,
-	success: function(json) {
-      var option = {
-        shadowSize: 0,
-        lines:{
-          show: true,
-          fill: true,
-          lineWidth: 1
-        },
-        grid:{
-          backgroundColor: '#FFFFFF'
-        },
-        xaxis:{
-          ticks: json.xaxis
+	$.ajax({
+		type: 'get',
+		url: 'index.php?route=common/home/chart&token=<?php echo $token; ?>&range=' + range,
+		dataType: 'json',
+		success: function(json) {
+			var option = {
+				shadowSize: 0,
+				bars: {
+					show: true,
+					fill: true,
+					lineWidth: 1,
+					barColor: '#000000'
+				},
+				grid: {
+					backgroundColor: '#FFFFFF',
+					hoverable: true
+				},
+				points: {
+					show: false
+				},
+				xaxis: {
+					show: true,
+            		ticks: json['xaxis']
+				}
+			}
+
+			$.plot($('#report'), [json['order'], json['customer']], option);
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
-      }
-
-      $.plot($('#report'), [json.order, json.customer], option);
-	}
-  });
+	});
 }
-
 getSalesChart($('#range').val());
 //--></script>
 

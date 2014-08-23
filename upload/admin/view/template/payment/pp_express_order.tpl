@@ -10,7 +10,7 @@
       <?php if ($paypal_order['capture_status'] != 'Complete') { ?>
         &nbsp;&nbsp;
         <a onclick="doVoid();" class="button paypal_capture" id="btn_void"><?php echo $btn_void; ?></a>
-        <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
+        <img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
       <?php } ?>
     </td>
   </tr>
@@ -29,7 +29,7 @@
       <p><input type="checkbox" name="paypal_capture_complete" id="paypal_capture_complete" value="1" /> <?php echo $text_complete_capture; ?></p>
       <p><input type="text" size="10" id="paypal_capture_amount" value="<?php echo $paypal_order['remaining']; ?>" />
         <a class="button" onclick="capture();" id="btn_capture"><?php echo $btn_capture; ?></a>
-        <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
+        <img src="view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
       </p>
     </td>
   </tr>
@@ -214,7 +214,7 @@ function resendTransaction(element) {
 		url: $(element).attr('href'),
 		beforeSend: function() {
 			$(element).hide();
-			$(element).after('<img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" alt="" class="loading" />');
+			$(element).after('<img src="view/image/loading.gif" alt="" class="loading" />');
 		},
 		success: function(data) {
 			$(element).show();

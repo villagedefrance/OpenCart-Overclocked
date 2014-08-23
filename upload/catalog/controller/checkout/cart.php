@@ -143,6 +143,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['entry_postcode'] = $this->language->get('entry_postcode');
 
 			$this->data['button_update'] = $this->language->get('button_update');
+			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_remove'] = $this->language->get('button_remove');
 			$this->data['button_coupon'] = $this->language->get('button_coupon');
 			$this->data['button_voucher'] = $this->language->get('button_voucher');
@@ -157,6 +158,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_length'] = $this->language->get('text_length');
 			$this->data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
+
+			$this->data['logged'] = $this->customer->isLogged();
 
 			if (isset($this->error['warning'])) {
 				$this->data['error_warning'] = $this->error['warning'];
@@ -270,6 +273,7 @@ class ControllerCheckoutCart extends Controller {
 				}
 
 				$this->data['products'][] = array(
+					'product_id'				=> $product['product_id'],
 					'key'                 		=> $product['key'],
 					'thumb'               	=> $image,
 					'name'                	=> $product['name'],

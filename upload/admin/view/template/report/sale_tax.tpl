@@ -38,7 +38,7 @@
             <?php } ?>
           <?php } ?>
           </select></td>
-          <td style="text-align:right;"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
+          <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
         </tr>
       </table>
       <table class="list">

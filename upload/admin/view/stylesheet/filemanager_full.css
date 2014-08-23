@@ -1,15 +1,15 @@
 /* Page Styles */
 #filemanager_menu {
 	clear: both;
-	background: #333;
+	background: #4A4A4A;
 	position: relative;
 	height: 33px;
 	min-width: 900px;
-	border: 1px solid #333;
-	-webkit-border-radius: 5px 5px 0px 0px;
-	-moz-border-radius: 5px 5px 0px 0px;
-	-khtml-border-radius: 5px 5px 0px 0px;
-	border-radius: 5px 5px 0px 0px;
+	border: 1px solid #4A4A4A;
+	-webkit-border-radius: 3px 3px 0px 0px;
+	-moz-border-radius: 3px 3px 0px 0px;
+	-khtml-border-radius: 3px 3px 0px 0px;
+	border-radius: 3px 3px 0px 0px;
 	padding: 0px 30px;
 }
 #filemanager_menu a {

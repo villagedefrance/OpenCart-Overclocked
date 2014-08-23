@@ -89,6 +89,29 @@ class ControllerAccountAccount extends Controller {
 			$this->data['profile_exist'] = false;
 		}
 
+		// Account Header
+		$this->load->model('account/customer');
+
+		$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
+
+		if (isset($customer_info)) {
+			$this->data['firstname'] = $customer_info['firstname'];
+		} else {
+			$this->data['firstname'] = '';
+		}
+
+		if (isset($customer_info)) {
+			$this->data['lastname'] = $customer_info['lastname'];
+		} else {
+			$this->data['lastname'] = '';
+		}
+
+		if (isset($customer_info)) {
+			$this->data['email'] = $customer_info['email'];
+		} else {
+			$this->data['email'] = '';
+		}
+
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 

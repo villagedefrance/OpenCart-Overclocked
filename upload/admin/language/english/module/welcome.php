@@ -15,8 +15,7 @@ $_['text_column_right']   		= 'Column Right';
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
 $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
-$_['entry_description']   		= 'Welcome Message:';
-$_['entry_default']   			= 'Show Default Heading:<br /><span class="help">Select Yes to display the default welcome heading.</span>';
+$_['entry_description']   		= 'Message:';
 $_['entry_layout']        		= 'Layout:';
 $_['entry_position']      		= 'Position:';
 $_['entry_status']        		= 'Status:';

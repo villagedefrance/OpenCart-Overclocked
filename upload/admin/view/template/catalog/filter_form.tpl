@@ -12,9 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/information.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a>
-        <a onclick="apply();" class="button"><?php echo $button_apply; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -56,7 +56,7 @@
               <?php } ?>
             <?php } ?></td>
             <td class="right"><input type="text" name="filter[<?php echo $filter_row; ?>][sort_order]" value="<?php echo $filter['sort_order']; ?>" size="1" /></td>
-            <td class="center"><a onclick="$('#filter-row<?php echo $filter_row; ?>').remove();" class="button"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#filter-row<?php echo $filter_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
         <?php $filter_row++; ?>
@@ -85,7 +85,7 @@ function addFilter() {
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="right"><input type="text" name="filter[' + filter_row + '][sort_order]" value="" size="1" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#filter-row' + filter_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="center"><a onclick="$(\'#filter-row' + filter_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
