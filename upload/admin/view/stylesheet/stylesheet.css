@@ -509,11 +509,13 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	display: inline-block;
 	width: 100%;
 	padding-top: 6px;
+	margin-bottom: 3px;
 	border-top: 1px solid #DDD;
 }
 .pagination .links {
 	float: left;
 	padding-top: 6px;
+	line-height: 18px;
 }
 .pagination .links a {
 	color: #999;
