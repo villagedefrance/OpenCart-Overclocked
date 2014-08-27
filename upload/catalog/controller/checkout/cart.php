@@ -447,7 +447,6 @@ class ControllerCheckoutCart extends Controller {
 			$this->response->setOutput($this->render());
 
 		} else {
-
 			$this->data['heading_title'] = $this->language->get('heading_title');
 
 			$this->data['text_error'] = $this->language->get('text_empty');

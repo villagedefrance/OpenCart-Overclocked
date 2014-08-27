@@ -474,13 +474,13 @@ class ControllerSaleCoupon extends Controller {
 
 		$this->load->model('catalog/product');
 
-		$this->data['coupon_product'] = array();
+		$this->data['coupon_products'] = array();
 
 		foreach ($products as $product_id) {
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 
 			if ($product_info) {
-				$this->data['coupon_product'][] = array(
+				$this->data['coupon_products'][] = array(
 					'product_id'	=> $product_info['product_id'],
 					'name'       	=> $product_info['name']
 				);
@@ -497,13 +497,13 @@ class ControllerSaleCoupon extends Controller {
 
 		$this->load->model('catalog/category');
 
-		$this->data['coupon_category'] = array();
+		$this->data['coupon_categories'] = array();
 
 		foreach ($categories as $category_id) {
 			$category_info = $this->model_catalog_category->getCategory($category_id);
 
 			if ($category_info) {
-				$this->data['coupon_category'][] = array(
+				$this->data['coupon_categories'][] = array(
 					'category_id'	=> $category_info['category_id'],
 					'name'        	=> ($category_info['path'] ? $category_info['path'] . ' &gt; ' : '') . $category_info['name']
 				);

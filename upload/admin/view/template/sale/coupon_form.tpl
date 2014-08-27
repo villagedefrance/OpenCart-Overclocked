@@ -100,7 +100,7 @@
             <td>&nbsp;</td>
             <td><div id="coupon-product" class="scrollbox">
               <?php $class = 'odd'; ?>
-              <?php foreach ($coupon_product as $coupon_product) { ?>
+              <?php foreach ($coupon_products as $coupon_product) { ?>
                 <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
                 <div id="coupon-product<?php echo $coupon_product['product_id']; ?>" class="<?php echo $class; ?>"> <?php echo $coupon_product['name']; ?><img src="view/image/delete.png" alt="" />
                   <input type="hidden" name="coupon_product[]" value="<?php echo $coupon_product['product_id']; ?>" />
@@ -116,7 +116,7 @@
             <td>&nbsp;</td>
             <td><div id="coupon-category" class="scrollbox">
               <?php $class = 'odd'; ?>
-              <?php foreach ($coupon_category as $coupon_category) { ?>
+              <?php foreach ($coupon_categories as $coupon_category) { ?>
                 <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
                 <div id="coupon-category<?php echo $coupon_category['category_id']; ?>" class="<?php echo $class; ?>"> <?php echo $coupon_category['name']; ?><img src="view/image/delete.png" alt="" />
                   <input type="hidden" name="coupon_category[]" value="<?php echo $coupon_category['category_id']; ?>" />

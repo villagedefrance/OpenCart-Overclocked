@@ -604,7 +604,7 @@ class ControllerProductProduct extends Controller {
 		foreach ($results as $result) {
 			$this->data['reviews'][] = array(
 				'author'     		=> $result['author'],
-				'text'       		=> $result['text'],
+				'text'       		=> nl2br($result['text']),
 				'rating'     		=> (int)$result['rating'],
 				'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$review_total),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
