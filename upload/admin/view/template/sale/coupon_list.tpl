@@ -16,7 +16,7 @@
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-        <a onclick="document.getElementById('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
+        <a onclick="$('form').attr('action', '<?php echo $delete; ?>'); $('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
@@ -38,7 +38,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'discount') { ?>
+            <td class="left"><?php if ($sort == 'discount') { ?>
               <a href="<?php echo $sort_discount; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_discount; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_discount; ?>"><?php echo $column_discount; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -72,10 +72,10 @@
             <?php } ?></td>
             <td class="left"><?php echo $coupon['name']; ?></td>
             <td class="left"><?php echo $coupon['code']; ?></td>
-            <td class="right"><?php echo $coupon['discount']; ?></td>
+            <td class="center"><?php echo $coupon['discount']; ?> <?php echo $coupon['type']; ?></td>
             <td class="left"><?php echo $coupon['date_start']; ?></td>
             <td class="left"><?php echo $coupon['date_end']; ?></td>
-            <td class="left"><?php echo $coupon['status']; ?></td>
+            <td class="center"><?php echo $coupon['status']; ?></td>
             <td class="right"><?php foreach ($coupon['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

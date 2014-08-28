@@ -206,15 +206,16 @@ class ControllerSaleCoupon extends Controller {
 			);
 
 			$this->data['coupons'][] = array(
-				'coupon_id'	=> $result['coupon_id'],
-				'name'       	=> $result['name'],
-				'code'       	=> $result['code'],
-				'discount'   	=> $result['discount'],
-				'date_start'	=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
-				'date_end' 	=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-				'status'     	=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-				'selected'   	=> isset($this->request->post['selected']) && in_array($result['coupon_id'], $this->request->post['selected']),
-				'action'    	=> $action
+				'coupon_id'		=> $result['coupon_id'],
+				'name'       		=> $result['name'],
+				'code'       		=> $result['code'],
+				'type'				=> ($result['type'] == 'P' ? '%' : ' '),
+				'discount'   		=> $result['discount'],
+				'date_start'		=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
+				'date_end' 		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+				'status'     		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'selected'   		=> isset($this->request->post['selected']) && in_array($result['coupon_id'], $this->request->post['selected']),
+				'action'    		=> $action
 			);
 		}
 
@@ -308,7 +309,6 @@ class ControllerSaleCoupon extends Controller {
 		$this->data['text_amount'] = $this->language->get('text_amount');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_description'] = $this->language->get('entry_description');
 		$this->data['entry_code'] = $this->language->get('entry_code');
 		$this->data['entry_discount'] = $this->language->get('entry_discount');
 		$this->data['entry_logged'] = $this->language->get('entry_logged');
@@ -632,7 +632,7 @@ class ControllerSaleCoupon extends Controller {
 				'order_id'   		=> $result['order_id'],
 				'customer'   	=> $result['customer'],
 				'amount'     	=> $result['amount'],
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added']))
 			);
 		}
 

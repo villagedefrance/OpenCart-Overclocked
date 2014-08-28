@@ -62,11 +62,12 @@ class ModelSaleCoupon extends Model {
 	}
 
 	public function getCoupons($data = array()) {
-		$sql = "SELECT coupon_id, name, code, discount, date_start, date_end, status FROM " . DB_PREFIX . "coupon";
+		$sql = "SELECT coupon_id, name, code, type, discount, date_start, date_end, status FROM " . DB_PREFIX . "coupon";
 
 		$sort_data = array(
 			'name',
 			'code',
+			'type',
 			'discount',
 			'date_start',
 			'date_end',
