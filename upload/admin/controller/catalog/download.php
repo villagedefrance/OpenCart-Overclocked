@@ -539,6 +539,7 @@ class ControllerCatalogDownload extends Controller {
 				if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
 					$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
 				}
+
 			} else {
 				$json['error'] = $this->language->get('error_upload');
 			}

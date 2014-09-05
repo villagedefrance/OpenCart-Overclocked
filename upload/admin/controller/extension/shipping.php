@@ -76,6 +76,7 @@ class ControllerExtensionShipping extends Controller {
 						'type'	=> 'install',
 						'href'	=> $this->url->link('extension/shipping/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
+
 				} else {
 					$action[] = array(
 						'text'	=> $this->language->get('text_edit'),

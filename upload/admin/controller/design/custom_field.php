@@ -166,14 +166,14 @@ class ControllerDesignCustomField extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('design/custom_field', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('design/custom_field', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -198,7 +198,7 @@ class ControllerDesignCustomField extends Controller {
 
 			$action[] = array(
 				'text'	=> $this->language->get('text_edit'),
-				'href' 	=> $this->url->link('design/custom_field/update', 'token=' . $this->session->data['token'] . '&custom_field_id=' . $result['custom_field_id'] . $url, 'SSL')
+				'href'	=> $this->url->link('design/custom_field/update', 'token=' . $this->session->data['token'] . '&custom_field_id=' . $result['custom_field_id'] . $url, 'SSL')
 			);
 
 			$type = '';
@@ -375,6 +375,8 @@ class ControllerDesignCustomField extends Controller {
 		$this->data['button_add_custom_field_value'] = $this->language->get('button_add_custom_field_value');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -410,14 +412,14 @@ class ControllerDesignCustomField extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('design/custom_field', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('design/custom_field', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -432,8 +434,6 @@ class ControllerDesignCustomField extends Controller {
 		if (isset($this->request->get['custom_field_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$custom_field_info = $this->model_design_custom_field->getCustomField($this->request->get['custom_field_id']);
 		}
-
-		$this->data['token'] = $this->session->data['token'];
 
 		$this->load->model('localisation/language');
 
@@ -536,7 +536,7 @@ class ControllerDesignCustomField extends Controller {
 		if (($this->request->post['type'] == 'select' || $this->request->post['type'] == 'radio' || $this->request->post['type'] == 'checkbox') && !isset($this->request->post['custom_field_value'])) {
 			$this->error['warning'] = $this->language->get('error_type');
 		}
-	
+
 		if (isset($this->request->post['custom_field_value'])) {
 			foreach ($this->request->post['custom_field_value'] as $custom_field_value_id => $custom_field_value) {
 				foreach ($custom_field_value['custom_field_value_description'] as $language_id => $custom_field_value_description) {

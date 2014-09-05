@@ -201,8 +201,8 @@ class ControllerCatalogProfile extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'href' 		=> $this->url->link('catalog/profile/update', 'token=' . $this->session->data['token'] . '&profile_id=' . $result['profile_id'], 'SSL'),
-				'name' 	=> $this->language->get('text_edit')
+				'name' 	=> $this->language->get('text_edit'),
+				'href' 		=> $this->url->link('catalog/profile/update', 'token=' . $this->session->data['token'] . '&profile_id=' . $result['profile_id'], 'SSL')
 			);
 
 			$this->data['profiles'][] = array(

@@ -199,7 +199,7 @@ class ControllerCommonHome extends Controller {
 		}
 
 		$this->data['view_orders'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'], 'SSL');
-		
+
 		$customer_today = $this->model_sale_customer->getTotalCustomers(array('filter_date_added' => date('Y-m-d')));
 
 		if ($customer_today > 0) {
@@ -215,7 +215,7 @@ class ControllerCommonHome extends Controller {
 		$this->data['total_sale_today'] = $this->currency->format($this->model_report_sale->getTotalSales(array('filter_date_added' => date('Y-m-d'))), $this->config->get('config_currency'));
 
 		$this->data['view_sales'] = $this->url->link('report/sale_order', 'token=' . $this->session->data['token'] . '&filter_date_start=' . date('Y-m-d', strtotime(date('Y') . '-' . date('m') . '-01')) . '&filter_date_end=' . date('Y-m-d') . '&filter_group=day', 'SSL');
-		
+
 		$this->load->model('report/online');
 
 		$this->data['total_online'] = $this->model_report_online->getTotalCustomersOnline();

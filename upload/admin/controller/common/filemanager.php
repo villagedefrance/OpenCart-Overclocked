@@ -397,7 +397,7 @@ class ControllerCommonFileManager extends Controller {
 
 		$directories = glob(rtrim(str_replace('../', '', $directory), '/') . '/*', GLOB_ONLYDIR);
 
-		foreach ($directories  as $directory) {
+		foreach ($directories as $directory) {
 			$output .= $this->recursiveFolders($directory);
 		}
 

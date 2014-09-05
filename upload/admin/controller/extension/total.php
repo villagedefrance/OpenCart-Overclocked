@@ -9,7 +9,7 @@ class ControllerExtensionTotal extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
+			'text'		=> $this->language->get('text_home'),
 			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
@@ -76,6 +76,7 @@ class ControllerExtensionTotal extends Controller {
 						'type'	=> 'install',
 						'href'	=> $this->url->link('extension/total/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
+
 				} else {
 					$action[] = array(
 						'text'	=> $this->language->get('text_edit'),
