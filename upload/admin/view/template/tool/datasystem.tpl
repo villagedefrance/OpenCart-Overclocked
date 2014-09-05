@@ -7,7 +7,7 @@
   </div>
   <div class="box">
   <div class="heading">
-    <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
+    <h1><img src="view/image/server.png" alt="" /> <?php echo $heading_title; ?></h1>
   </div>
   <div class="content">
     <h2><?php echo $text_storeinfo; ?></h2>

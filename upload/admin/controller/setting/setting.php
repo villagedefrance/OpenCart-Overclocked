@@ -428,16 +428,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_meta_description'] = $this->config->get('config_meta_description');
 		}
 
-		if (isset($this->request->post['config_layout_id'])) {
-			$this->data['config_layout_id'] = $this->request->post['config_layout_id'];
-		} else {
-			$this->data['config_layout_id'] = $this->config->get('config_layout_id');
-		}
-
-		$this->load->model('design/layout');
-
-		$this->data['layouts'] = $this->model_design_layout->getLayouts();
-
 		if (isset($this->request->post['config_template'])) {
 			$this->data['config_template'] = $this->request->post['config_template'];
 		} else {
@@ -451,6 +441,16 @@ class ControllerSettingSetting extends Controller {
 		foreach ($directories as $directory) {
 			$this->data['templates'][] = basename($directory);
 		}
+
+		if (isset($this->request->post['config_layout_id'])) {
+			$this->data['config_layout_id'] = $this->request->post['config_layout_id'];
+		} else {
+			$this->data['config_layout_id'] = $this->config->get('config_layout_id');
+		}
+
+		$this->load->model('design/layout');
+
+		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
 		if (isset($this->request->post['config_country_id'])) {
 			$this->data['config_country_id'] = $this->request->post['config_country_id'];

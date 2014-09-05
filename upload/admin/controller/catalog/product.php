@@ -407,7 +407,7 @@ class ControllerCatalogProduct extends Controller {
 				'special' 		=> $special,
 				'image'      	=> $image,
 				'quantity'   	=> $result['quantity'],
-				'status'     	=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'     	=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
 				'action'   	=> $action
 			);
@@ -1059,7 +1059,7 @@ class ControllerCatalogProduct extends Controller {
 			if ($category_info) {
 				$this->data['product_categories'][] = array(
 					'category_id' 	=> $category_info['category_id'],
-					'name'        	=> ($category_info['path'] ? $category_info['path'] . ' &gt; ' : '') . $category_info['name']
+					'name'        	=> ($category_info['path']) ? $category_info['path'] . ' &gt; ' : '' . $category_info['name']
 				);
 			}
 		}

@@ -221,6 +221,17 @@ ul.menu ul {
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
+.tooltip {
+	padding: 10px 10px 10px 33px;
+	margin-bottom: 15px;
+	background: #D7E6F4 url('../image/tooltip.png') 10px center no-repeat;
+	border: 1px solid #AAC5E0;
+	color: #444;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
 /* Common */
 .close {
 	float: right;
@@ -303,6 +314,14 @@ ul.menu ul {
 	text-transform: uppercase;
 	border-bottom: 1px dotted #111;
 	padding-bottom: 3px;
+}
+.box > .content h3 {
+	color: #6A6A6A;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 25px;
+	padding: 0px 0px 5px 1px;
+	margin: 0px;
 }
 .box > .content {
 	min-height: 300px;

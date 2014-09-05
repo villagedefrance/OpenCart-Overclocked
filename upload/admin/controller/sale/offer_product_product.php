@@ -1,0 +1,561 @@
+<?php
+class ControllerSaleOfferProductProduct extends Controller {
+	private $error = array();
+
+	public function index() {
+		$this->language->load('sale/offer_product_product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('sale/offer_product_product');
+
+		$this->getList();
+	}
+
+	public function insert() {
+		$this->language->load('sale/offer_product_product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('sale/offer_product_product');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$this->model_sale_offer_product_product->addOfferProductProduct($this->request->post);
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			if (isset($this->request->post['apply'])) {
+				$offer_product_product_id = $this->session->data['new_offer_product_product_id'];
+
+				if ($offer_product_product_id) {
+					unset($this->session->data['new_offer_product_product_id']);
+
+					$this->redirect($this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $offer_product_product_id . $url, 'SSL'));
+				}
+
+			} else {
+				$this->redirect($this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
+		}
+
+		$this->getForm();
+	}
+
+	public function update() {
+		$this->language->load('sale/offer_product_product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('sale/offer_product_product');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$this->model_sale_offer_product_product->editOfferProductProduct($this->request->get['offer_product_product_id'], $this->request->post);
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			if (isset($this->request->post['apply'])) {
+				$offer_product_product_id = $this->request->get['offer_product_product_id'];
+
+				if ($offer_product_product_id) {
+					$this->redirect($this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $offer_product_product_id . $url, 'SSL'));
+				}
+
+			} else {
+				$this->redirect($this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
+		}
+
+		$this->getForm();
+	}
+
+	public function delete() {
+		$this->language->load('sale/offer_product_product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('sale/offer_product_product');
+
+		if (isset($this->request->post['selected']) && $this->validateDelete()) {
+			foreach ($this->request->post['selected'] as $offer_product_product_id) {
+				$this->model_sale_offer_product_product->deleteOfferProductProduct($offer_product_product_id);
+			}
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->redirect($this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
+
+		$this->getList();
+	}
+
+	protected function getList() {
+		if (isset($this->request->get['sort'])) {
+			$sort = $this->request->get['sort'];
+		} else {
+			$sort = 'name';
+		}
+
+		if (isset($this->request->get['order'])) {
+			$order = $this->request->get['order'];
+		} else {
+			$order = 'ASC';
+		}
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+
+		$url = '';
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		$this->data['breadcrumbs'] = array();
+
+		$this->data['breadcrumbs'][] = array(
+			'text' 	=> $this->language->get('text_home'),
+			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => false
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'   	=> $this->language->get('heading_title'),
+			'href'  	=> $this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'separator' => ' :: '
+		);
+
+		$this->data['insert'] = $this->url->link('sale/offer_product_product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$this->data['delete'] = $this->url->link('sale/offer_product_product/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
+
+		$this->data['offer_product_products'] = array();
+
+		$data = array(
+			'sort'  	=> $sort,
+			'order' 	=> $order,
+			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' 		=> $this->config->get('config_admin_limit')
+		);
+
+		$offer_product_product_total = $this->model_sale_offer_product_product->getTotalOfferProductProduct();
+
+		$results = $this->model_sale_offer_product_product->getOfferProductProducts($data);
+
+		foreach ($results as $result) {
+			$action = array();
+
+			$action[] = array(
+				'text'	=> $this->language->get('text_edit'),
+				'href' 	=> $this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $result['offer_product_product_id'] . $url, 'SSL')
+			);
+
+			$this->data['offer_product_products'][] = array(
+				'offer_product_product_id'	=> $result['offer_product_product_id'],
+				'name'       				=> $result['name'],
+				'discount'   				=> $result['discount'],
+				'type'   					=> $result['type'],
+				'logged'     				=> ($result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no')),
+				'date_start'				=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
+				'date_end' 				=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+				'status'     				=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'selected'   				=> isset($this->request->post['selected']) && in_array($result['offer_product_product_id'], $this->request->post['selected']),
+				'action'    				=> $action
+			);
+		}
+
+		$this->data['heading_title'] = $this->language->get('heading_title');
+
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+
+		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_discount'] = $this->language->get('column_discount');
+		$this->data['column_type'] = $this->language->get('column_type');
+		$this->data['column_logged'] = $this->language->get('column_logged');
+		$this->data['column_date_start'] = $this->language->get('column_date_start');
+		$this->data['column_date_end'] = $this->language->get('column_date_end');
+		$this->data['column_status'] = $this->language->get('column_status');
+		$this->data['column_action'] = $this->language->get('column_action');
+
+		$this->data['button_insert'] = $this->language->get('button_insert');
+		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_dashboard'] = $this->language->get('button_dashboard');
+
+		$this->data['dashboard'] = $this->url->link('sale/offer', 'token=' . $this->session->data['token'], 'SSL');
+
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
+
+		$url = '';
+
+		if ($order == 'ASC') {
+			$url .= '&order=DESC';
+		} else {
+			$url .= '&order=ASC';
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		$this->data['sort_name'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=name' . $url;
+		$this->data['sort_discount'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=discount' . $url;
+		$this->data['sort_type'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=type' . $url;
+		$this->data['sort_logged'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=logged' . $url;
+		$this->data['sort_date_start'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=date_start' . $url;
+		$this->data['sort_date_end'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=date_end' . $url;
+		$this->data['sort_status'] = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . '&sort=status' . $url;
+
+		$url = '';
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		$pagination = new Pagination();
+		$pagination->total = $offer_product_product_total;
+		$pagination->page = $page;
+		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->text = $this->language->get('text_pagination');
+		$pagination->url = HTTPS_SERVER . 'index.php?route=sale/offer_product_product&token=' . $this->session->data['token'] . $url . '&page={page}';
+
+		$this->data['pagination'] = $pagination->render();
+
+		$this->data['sort'] = $sort;
+		$this->data['order'] = $order;
+
+		$this->template = 'sale/offer_product_product_list.tpl';
+		$this->children = array(
+			'common/header',
+			'common/footer'
+		);
+
+		$this->response->setOutput($this->render());
+	}
+
+	protected function getForm() {
+		$this->data['heading_title'] = $this->language->get('heading_title');
+
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_fixed'] = $this->language->get('text_fixed');
+		$this->data['text_percent'] = $this->language->get('text_percent');
+
+		$this->data['entry_name'] = $this->language->get('entry_name');
+		$this->data['entry_discount'] = $this->language->get('entry_discount');
+		$this->data['entry_type'] = $this->language->get('entry_type');
+		$this->data['entry_logged'] = $this->language->get('entry_logged');
+		$this->data['entry_product_one'] = $this->language->get('entry_product_one');
+		$this->data['entry_product_two'] = $this->language->get('entry_product_two');
+		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
+		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
+		$this->data['entry_status'] = $this->language->get('entry_status');
+
+		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
+		$this->data['token'] = $this->session->data['token'];
+
+		if (isset($this->request->get['offer_product_product_id'])) {
+			$this->data['offer_product_product_id'] = $this->request->get['offer_product_product_id'];
+		} else {
+			$this->data['offer_product_product_id'] = 0;
+		}
+
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->error['name'])) {
+			$this->data['error_name'] = $this->error['name'];
+		} else {
+			$this->data['error_name'] = '';
+		}
+
+		if (isset($this->error['percent'])) {
+			$this->data['error_percent'] = $this->error['percent'];
+		} else {
+			$this->data['error_percent'] = '';
+		}
+
+		if (isset($this->error['price'])) {
+			$this->data['error_price'] = $this->error['price'];
+		} else {
+			$this->data['error_price'] = '';
+		}
+
+		if (isset($this->error['product_one'])) {
+			$this->data['error_product_one'] = $this->error['product_one'];
+		} else {
+			$this->data['error_product_one'] = '';
+		}
+
+		if (isset($this->error['product_two'])) {
+			$this->data['error_product_two'] = $this->error['product_two'];
+		} else {
+			$this->data['error_product_two'] = '';
+		}
+
+		if (isset($this->error['date_start'])) {
+			$this->data['error_date_start'] = $this->error['date_start'];
+		} else {
+			$this->data['error_date_start'] = '';
+		}
+
+		if (isset($this->error['date_end'])) {
+			$this->data['error_date_end'] = $this->error['date_end'];
+		} else {
+			$this->data['error_date_end'] = '';
+		}
+
+		$url = '';
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$url .= '&sort=' . $this->request->get['sort'];
+		}
+
+		if (isset($this->request->get['order'])) {
+			$url .= '&order=' . $this->request->get['order'];
+		}
+
+		$this->data['breadcrumbs'] = array();
+
+		$this->data['breadcrumbs'][] = array(
+			'text'   	=> $this->language->get('text_home'),
+			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => false
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'   	=> $this->language->get('heading_title'),
+			'href'  	=> $this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'separator' => ' :: '
+		);
+
+		if (!isset($this->request->get['offer_product_product_id'])) {
+			$this->data['action'] = $this->url->link('sale/offer_product_product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		} else {
+			$this->data['action'] = $this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $this->request->get['offer_product_product_id'] . $url, 'SSL');
+		}
+
+		$this->data['cancel'] = $this->url->link('sale/offer_product_product', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+		if (isset($this->request->get['offer_product_product_id']) && (!$this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$offer_product_product_info = $this->model_sale_offer_product_product->getOfferProductProduct($this->request->get['offer_product_product_id']);
+		}
+
+		if (isset($this->request->post['name'])) {
+			$this->data['name'] = $this->request->post['name'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['name'] = $offer_product_product_info['name'];
+		} else {
+			$this->data['name'] = '';
+		}
+
+		if (isset($this->request->post['discount'])) {
+			$this->data['discount'] = $this->request->post['discount'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['discount'] = $offer_product_product_info['discount'];
+		} else {
+			$this->data['discount'] = '';
+		}
+
+		if (isset($this->request->post['type'])) {
+			$this->data['type'] = $this->request->post['type'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['type'] = $offer_product_product_info['type'];
+		} else {
+			$this->data['type'] = '';
+		}
+
+		if (isset($this->request->post['logged'])) {
+			$this->data['logged'] = $this->request->post['logged'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['logged'] = $offer_product_product_info['logged'];
+		} else {
+			$this->data['logged'] = '';
+		}
+
+		$this->load->model('catalog/product');
+
+		$this->data['products'] = $this->model_catalog_product->getProducts();
+
+		if (isset($this->request->post['product_one'])) {
+			$this->data['product_one'] = $this->request->post['product_one'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['product_one'] = $offer_product_product_info['product_one'];
+		} else {
+			$this->data['product_one'] = '';
+		}
+
+		if (isset($this->request->post['product_two'])) {
+			$this->data['product_two'] = $this->request->post['product_two'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['product_two'] = $offer_product_product_info['product_two'];
+		} else {
+			$this->data['product_two'] = '';
+		}
+
+		if (isset($this->request->post['date_start'])) {
+			$this->data['date_start'] = $this->request->post['date_start'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['date_start'] = date('Y-m-d', strtotime($offer_product_product_info['date_start']));
+		} else {
+			$this->data['date_start'] = date('Y-m-d', time());
+		}
+
+		if (isset($this->request->post['date_end'])) {
+			$this->data['date_end'] = $this->request->post['date_end'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['date_end'] = date('Y-m-d', strtotime($offer_product_product_info['date_end']));
+		} else {
+			$this->data['date_end'] = date('Y-m-d', time());
+		}
+
+		if (isset($this->request->post['status'])) {
+			$this->data['status'] = $this->request->post['status'];
+		} elseif (!empty($offer_product_product_info)) {
+			$this->data['status'] = $offer_product_product_info['status'];
+		} else {
+			$this->data['status'] = 1;
+		}
+
+		$this->template = 'sale/offer_product_product_form.tpl';
+		$this->children = array(
+			'common/header',
+			'common/footer'
+		);
+
+		$this->response->setOutput($this->render());
+	}
+
+	protected function validateForm() {
+		if (!$this->user->hasPermission('modify', 'sale/offer_product_product')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 128)) {
+			$this->error['name'] = $this->language->get('error_name');
+		}
+
+		if (($this->request->post['type'] == 'P') && ($this->request->post['discount'] > '100')) {
+			$this->error['percent'] = $this->language->get('error_percent');
+		}
+
+		$this->load->model('sale/offer');
+
+		$product_price = $this->model_sale_offer->getProductPrice($this->request->post['product_two']);
+
+		if (($this->request->post['type'] == 'F') && ($this->request->post['discount'] > $product_price)) {
+			$this->error['price'] = $this->language->get('error_price');
+
+			$this->data['gross_price'] = $product_price;
+		}
+
+		if (empty($this->request->post['product_one'])) {
+			$this->error['product_one'] = $this->language->get('error_product');
+		}
+
+		if (empty($this->request->post['product_two'])) {
+			$this->error['product_two'] = $this->language->get('error_product');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function validateDelete() {
+		if (!$this->user->hasPermission('modify', 'sale/offer_product_product')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+?>

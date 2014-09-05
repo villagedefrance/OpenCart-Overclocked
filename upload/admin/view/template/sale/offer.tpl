@@ -1,0 +1,159 @@
+<?php echo $header; ?>
+<div id="content">
+  <div class="breadcrumb">
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+  <?php } ?>
+  </div>
+  <div class="box">
+    <div class="heading">
+      <h1><img src="view/image/offer.png" alt="" /> <?php echo $heading_title; ?></h1>
+    </div>
+    <div class="content">
+      <div class="overview">
+        <div class="dashboard-heading"><?php echo $text_overview; ?></div>
+        <div class="dashboard-content">
+          <table>
+            <tr>
+              <td><b><?php echo $text_total_offers; ?></b></td>
+              <td><b><?php echo $total_offers; ?></b></td>
+            </tr>
+			<tr>
+              <td colspan="2" style="display:block; border-bottom:1px dotted #555; margin:5px 0px;"></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_total_p2p; ?></td>
+              <td><?php echo $total_p2p; ?></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_total_p2c; ?></td>
+              <td><?php echo $total_p2c; ?></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_total_c2p; ?></td>
+              <td><?php echo $total_c2p; ?></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_total_c2c; ?></td>
+              <td><?php echo $total_c2c; ?></td>
+            </tr>
+			<tr>
+              <td colspan="2" style="display:block; border-bottom:1px dotted #555; margin-bottom:5px; margin-top:25px;"></td>
+            </tr>
+			<tr>
+              <td><b><?php echo $text_total_discount; ?></b></td>
+              <td><b><?php echo $total_discount; ?></b></td>
+            </tr>
+			<tr>
+              <td><b><?php echo $text_total_special; ?></b></td>
+              <td><b><?php echo $total_special; ?></b></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="statistic">
+        <div class="dashboard-heading"><?php echo $text_quicklinks; ?></div>
+        <div class="dashboard-content">
+          <table class="list" style="margin-bottom:0px;">
+            <tr>
+              <td><?php echo $text_p2p; ?></td>
+              <td class="right"><a href="<?php echo $link_p2p; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_p2c; ?></td>
+              <td class="right"><a href="<?php echo $link_p2c; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_c2p; ?></td>
+              <td class="right"><a href="<?php echo $link_c2p; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_c2c; ?></td>
+              <td class="right"><a href="<?php echo $link_c2c; ?>" class="button-form"><?php echo $button_view; ?></a></td>
+            </tr>
+          </table>
+          <?php if ($error_offers) { ?>
+            <div class="warning" style="margin:5px 0px 0px 0px;"><?php echo $error_offers; ?></div>
+          <?php } ?>
+		  <?php if ($success_offers) { ?>
+            <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $success_offers; ?></div>
+          <?php } ?>
+        </div>
+      </div>
+	  <div class="latest">
+        <div class="dashboard-heading"><?php echo $text_status; ?></div>
+        <div class="dashboard-content" style="height:400px; overflow-y:scroll;">
+          <table class="list">
+            <thead>
+              <tr>
+                <td class="left"><?php echo $column_group; ?></td>
+                <td class="left"><?php echo $column_name; ?></td>
+                <td class="left"><?php echo $column_date_end; ?></td>
+                <td class="left"><?php echo $column_validity; ?></td>
+                <td class="left"><?php echo $column_status; ?></td>
+				<td class="right"><?php echo $column_action; ?></td>
+              </tr>
+            </thead>
+            <tbody>
+			<?php if ($offer_product_products || $offer_product_categories || $offer_category_products || $offer_category_categories) { ?>
+			  <?php if ($offer_product_products) { ?>
+                <?php foreach ($offer_product_products as $offer) { ?>
+                <tr>
+                  <td class="center"><?php echo $offer['group']; ?></td>
+                  <td class="left"><?php echo $offer['name']; ?></td>
+                  <td class="center"><?php echo $offer['date_end']; ?></td>
+                  <td class="left"><?php echo $offer['validity']; ?></td>
+                  <td class="center"><?php echo $offer['status']; ?></td>
+				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                </tr>
+                <?php } ?>
+              <?php } ?>
+			  <?php if ($offer_product_categories) { ?>
+                <?php foreach ($offer_product_categories as $offer) { ?>
+                <tr>
+                  <td class="center"><?php echo $offer['group']; ?></td>
+                  <td class="left"><?php echo $offer['name']; ?></td>
+                  <td class="center"><?php echo $offer['date_end']; ?></td>
+                  <td class="left"><?php echo $offer['validity']; ?></td>
+                  <td class="center"><?php echo $offer['status']; ?></td>
+				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                </tr>
+                <?php } ?>
+              <?php } ?>
+			  <?php if ($offer_category_products) { ?>
+                <?php foreach ($offer_category_products as $offer) { ?>
+                <tr>
+                  <td class="center"><?php echo $offer['group']; ?></td>
+                  <td class="left"><?php echo $offer['name']; ?></td>
+                  <td class="center"><?php echo $offer['date_end']; ?></td>
+                  <td class="left"><?php echo $offer['validity']; ?></td>
+                  <td class="center"><?php echo $offer['status']; ?></td>
+				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                </tr>
+                <?php } ?>
+              <?php } ?>
+			  <?php if ($offer_category_categories) { ?>
+                <?php foreach ($offer_category_categories as $offer) { ?>
+                <tr>
+                  <td class="center"><?php echo $offer['group']; ?></td>
+                  <td class="left"><?php echo $offer['name']; ?></td>
+                  <td class="center"><?php echo $offer['date_end']; ?></td>
+                  <td class="left"><?php echo $offer['validity']; ?></td>
+                  <td class="center"><?php echo $offer['status']; ?></td>
+				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                </tr>
+                <?php } ?>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php echo $footer; ?>

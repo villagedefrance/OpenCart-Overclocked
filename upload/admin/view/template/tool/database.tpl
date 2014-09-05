@@ -10,7 +10,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/server.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
       </div>

@@ -400,9 +400,9 @@
               <tr>
                 <td style="padding:0;"><select multiple="multiple" id="product" size="10" style="width:350px; height:153px; background:#F8F8F8; border:1px solid #CCC;"></select></td>
                 <td style="vertical-align:middle;">
-                  <input type="button" class="button-form" value="&gt;&gt;" onclick="addRelated();" />
+                  <input type="button" class="button" value="&gt;&gt;" onclick="addRelated();" />
                   <br /><br />
-                  <input type="button" class="button-form" value="&lt;&lt;" onclick="removeRelated();" />
+                  <input type="button" class="button" value="&lt;&lt;" onclick="removeRelated();" />
                 </td>
                 <td style="padding:0;"><select multiple="multiple" id="related" size="10" style="width:350px; height:153px; border:1px solid #CCC;"></select></td>
               </tr>
