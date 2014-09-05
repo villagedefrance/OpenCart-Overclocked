@@ -44,15 +44,15 @@
         </tr>
         <tr>
           <td><?php echo $entry_show_price; ?></td>
-          <td><input type="checkbox" name="rss_feed_show_price" value="1"<?php echo $rss_feed_show_price == 1 ? ' checked="checked"' : ''; ?> /></td>
+          <td><input type="checkbox" name="rss_feed_show_price" value="1" <?php echo $rss_feed_show_price == 1 ? ' checked="checked"' : ''; ?> /></td>
         </tr>
         <tr>
           <td><?php echo $entry_include_tax; ?></td>
-          <td><input type="checkbox" name="rss_feed_include_tax" value="1"<?php echo $rss_feed_include_tax == 1 ? ' checked="checked"' : ''; ?> /></td>
+          <td><input type="checkbox" name="rss_feed_include_tax" value="1" <?php echo $rss_feed_include_tax == 1 ? ' checked="checked"' : ''; ?> /></td>
         </tr>
         <tr>
           <td><?php echo $entry_show_image; ?></td>
-          <td><input type="checkbox" name="rss_feed_show_image" value="1"<?php echo $rss_feed_show_image == 1 ? ' checked="checked"' : ''; ?> /></td>
+          <td><input type="checkbox" name="rss_feed_show_image" value="1" <?php echo $rss_feed_show_image == 1 ? ' checked="checked"' : ''; ?> /></td>
         </tr>
         <tr>
           <td><?php echo $entry_image_size; ?></td>

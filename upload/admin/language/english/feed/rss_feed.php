@@ -13,7 +13,7 @@ $_['entry_show_image']		= 'Show Image:';
 $_['entry_show_price']		= 'Show Price:';
 $_['entry_include_tax'] 		= 'Include Tax in Price:';
 $_['entry_image_size'] 		= 'Image size:';
-$_['entry_data_feed'] 		= 'Data Feed Url:<br /><span class="help">This url points to your feed.<br/>(Not editable)</span>';
+$_['entry_data_feed'] 		= 'Data Feed Url:<br /><span class="help">This url points to your feed.<br />(Not editable)</span>';
 
 // Button
 $_['button_save']      		= 'Save';

@@ -37,14 +37,14 @@ class ControllerFeedRSSFeed extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_feed'),
-			'href'      => $this->url->link('feed/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_feed'),
+			'href'		=> $this->url->link('feed/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -71,10 +71,6 @@ class ControllerFeedRSSFeed extends Controller {
 		$this->data['action'] = $this->url->link('feed/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
-
-		$this->data['data_feed'] = HTTP_CATALOG . 'index.php?route=feed/rss_feed';
-
-		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->post[$this->_name . '_status'])) {
 			$this->data[$this->_name . '_status'] = $this->request->post[$this->_name . '_status'];
@@ -117,6 +113,8 @@ class ControllerFeedRSSFeed extends Controller {
 		} else {
 			$this->data[$this->_name . '_image_height'] = $this->config->get($this->_name . '_image_height') ? $this->config->get($this->_name . '_image_height') : 100;
 		}
+
+		$this->data['data_feed'] = HTTP_CATALOG . 'index.php?route=feed/rss_feed';
 
 		$this->template = 'feed/' . $this->_name . '.tpl';
 		$this->children = array(
