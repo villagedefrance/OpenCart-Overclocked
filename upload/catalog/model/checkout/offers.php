@@ -2,28 +2,6 @@
 class ModelCheckoutOffers extends Model {
 
 	// Product Product
-	public function getOfferProductProduct($offer_product_product_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "offer_product_product` WHERE offer_product_product_id = '" . (int)$offer_product_product_id . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
-
-		if ($query->num_rows) {
-			return array(
-				'offer_product_product_id'	=> $query->row['offer_product_product_id'],
-				'name'             		=> $query->row['name'],
-				'discount'             	=> $query->row['discount'],
-				'type'             		=> $query->row['type'],
-				'logged'      			=> $query->row['logged'],
-				'product_one'			=> $query->row['product_one'],
-				'product_two'  		=> $query->row['product_two'],
-				'date_start'				=> $query->row['date_start'],
-				'date_end'  			=> $query->row['date_end'],
-				'status'           		=> $query->row['status']
-			);
-
-		} else {
-			return false;
-		}
-	}
-
 	public function getOfferProductProducts($data = array()) {
 		$status = true;
 
@@ -57,28 +35,6 @@ class ModelCheckoutOffers extends Model {
 	}
 
 	// Product Category
-	public function getOfferProductCategory($offer_product_category_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "offer_product_category` WHERE offer_product_category_id = '" . (int)$offer_product_category_id . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
-
-		if ($query->num_rows) {
-			return array(
-				'offer_product_category_id'	=> $query->row['offer_product_category_id'],
-				'name'             		=> $query->row['name'],
-				'discount'             	=> $query->row['discount'],
-				'type'             		=> $query->row['type'],
-				'logged'      			=> $query->row['logged'],
-				'product_one'			=> $query->row['product_one'],
-				'category_two'  		=> $query->row['category_two'],
-				'date_start'				=> $query->row['date_start'],
-				'date_end'  			=> $query->row['date_end'],
-				'status'           		=> $query->row['status']
-			);
-
-		} else {
-			return false;
-		}
-	}
-
 	public function getOfferProductCategories($data = array()) {
 		$status = true;
 
@@ -112,28 +68,6 @@ class ModelCheckoutOffers extends Model {
 	}
 
 	// Category Product
-	public function getOfferCategoryProduct($offer_category_product_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "offer_category_product` WHERE offer_category_product_id = '" . (int)$offer_category_product_id . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
-
-		if ($query->num_rows) {
-			return array(
-				'offer_category_product_id'	=> $query->row['offer_category_product_id'],
-				'name'             		=> $query->row['name'],
-				'discount'             	=> $query->row['discount'],
-				'type'             		=> $query->row['type'],
-				'logged'      			=> $query->row['logged'],
-				'category_one'			=> $query->row['category_one'],
-				'product_two'  		=> $query->row['product_two'],
-				'date_start'				=> $query->row['date_start'],
-				'date_end'  			=> $query->row['date_end'],
-				'status'           		=> $query->row['status']
-			);
-
-		} else {
-			return false;
-		}
-	}
-
 	public function getOfferCategoryProducts($data = array()) {
 		$status = true;
 
@@ -167,28 +101,6 @@ class ModelCheckoutOffers extends Model {
 	}
 
 	// Category Category
-	public function getOfferCategoryCategory($offer_category_category_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "offer_category_category` WHERE offer_category_category_id = '" . (int)$offer_category_category_id . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
-
-		if ($query->num_rows) {
-			return array(
-				'offer_category_category_id'	=> $query->row['offer_category_category_id'],
-				'name'             		=> $query->row['name'],
-				'discount'             	=> $query->row['discount'],
-				'type'             		=> $query->row['type'],
-				'logged'      			=> $query->row['logged'],
-				'category_one'			=> $query->row['category_one'],
-				'category_two'  		=> $query->row['category_two'],
-				'date_start'				=> $query->row['date_start'],
-				'date_end'  			=> $query->row['date_end'],
-				'status'           		=> $query->row['status']
-			);
-
-		} else {
-			return false;
-		}
-	}
-
 	public function getOfferCategoryCategories($data = array()) {
 		$status = true;
 

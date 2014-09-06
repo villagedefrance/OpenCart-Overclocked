@@ -791,6 +791,26 @@ a.button:hover, input.button:hover {
 	display: block;
 	margin-bottom: 4px;
 }
+.box-product .offer {
+	display: block;
+	margin: 8px 3px 0px 3px;
+	background: #0D6D98;
+	border: 1px solid #BBB;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 2px 2px #DDD;
+	-moz-box-shadow: 0px 2px 2px #DDD;
+	box-shadow: 0px 2px 2px #DDD;
+}
+.box-product .offer a {
+	display: block;
+	color: #FFF;
+	font-weight: normal;
+	text-decoration: none;
+	padding: 8px;
+}
 /* Box category */
 ul.box-category, ul.box-category ul {
 	list-style: none;

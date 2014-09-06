@@ -269,6 +269,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['tab_description'] = $this->language->get('tab_description');
 			$this->data['tab_attribute'] = $this->language->get('tab_attribute');
+			$this->data['tab_offer'] = $this->language->get('tab_offer');
 			$this->data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
 			$this->data['tab_related'] = $this->language->get('tab_related');
 
@@ -397,6 +398,71 @@ class ControllerProductProduct extends Controller {
 				$this->data['addthis'] = $this->config->get('config_addthis');
 			} else {
 				$this->data['addthis'] = false;
+			}
+
+			// Offers
+			$this->data['offers'] = array();
+
+			$this->load->model('catalog/offer');
+
+			$product_offers = $this->model_catalog_offer->getOfferProducts($this->request->get['product_id']);
+
+			if ($product_offers) {
+				foreach ($product_offers as $product_offer) {
+					if ($product_offer['one'] == $this->request->get['product_id']) {
+						$product_offer_image = $this->model_catalog_offer->getOfferProductImage($product_offer['two']);
+
+						if ($product_offer_image) {
+							$offer_image = $this->model_tool_image->resize($product_offer_image, $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+						} else {
+							$offer_image = false;
+						}
+
+						$offer_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
+						$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['one']);
+
+						$offer_product = $product_offer['two'];
+
+					} elseif ($product_offer['two'] == $this->request->get['product_id']) {
+						$product_offer_image = $this->model_catalog_offer->getOfferProductImage($product_offer['one']);
+
+						if ($product_offer_image) {
+							$offer_image = $this->model_tool_image->resize($product_offer_image, $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+						} else {
+							$offer_image = false;
+						}
+
+						$offer_name = $this->model_catalog_offer->getOfferProductName($product_offer['one']);
+						$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
+
+						$offer_product = $product_offer['one'];
+
+					} else {
+						$offer_image = false;
+						$offer_name = false;
+						$offer_mirror_name = false;
+						$offer_product = false;
+					}
+
+					if ($product_offer['group'] == 'G241') {
+						$offer_label = sprintf($this->language->get('text_G241'), $product_offer['type']);
+					} elseif ($product_offer['group'] == 'G241D') {
+						$offer_label = sprintf($this->language->get('text_G241D'), $offer_mirror_name, $offer_name, $product_offer['type']);
+					} elseif ($product_offer['group'] == 'G242D') {
+						$offer_label = sprintf($this->language->get('text_G242D'), $offer_mirror_name, $offer_name, $product_offer['type']);
+					} elseif ($product_offer['group'] == 'G142D') {
+						$offer_label = sprintf($this->language->get('text_G142D'), $offer_mirror_name, $product_offer['type'], $offer_name);
+					} else {
+						$offer_label = '';
+					}
+
+					$this->data['offers'][] = array(
+						'thumb'	=> $offer_image,
+						'name'	=> $offer_name,
+						'href'		=> $this->url->link('product/product', 'product_id=' . $offer_product),
+						'group'	=> $offer_label
+					);
+				}
 			}
 
 			$this->data['review_status'] = $this->config->get('config_review_status');

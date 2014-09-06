@@ -19,7 +19,7 @@ $_['column_action']       		= 'Action';
 
 // Entry
 $_['entry_name']          		= 'Offer Name:';
-$_['entry_discount']      		= 'Discount:';
+$_['entry_discount']      		= 'Discount:<br /><span class="help">Special characters like %, £ or $ are not allowed.</span>';
 $_['entry_type']          			= 'Type:<br /><span class="help">Percentage or Fixed Amount</span>';
 $_['entry_logged']        		= 'Customer Login:<br /><span class="help">Customer must be logged in to benefit from the offer.</span>';
 $_['entry_product_one']       	= 'Product 1:<br /><span class="help">Select a reference product.</span>';
@@ -34,7 +34,7 @@ $_['button_dashboard']        	= 'Dashboard';
 // Error
 $_['error_permission']    		= 'Warning: You do not have permission to modify <b>Product to Product</b> !';
 $_['error_name']          		= 'Offer Name must be between 3 and 128 characters!';
-$_['error_percent']          		= 'Percent Discount can not be more than 100%!';
+$_['error_percent']          		= 'Percent Discount must be a number and can not be higher than 100!';
 $_['error_price']          			= 'Fixed Discount can not be higher than the product price!';
 $_['error_product']          		= 'Product is required!';
 ?>

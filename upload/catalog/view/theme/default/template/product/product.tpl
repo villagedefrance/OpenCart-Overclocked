@@ -260,9 +260,13 @@
         <?php } ?>
       </div>
     </div>
-    <div id="tabs" class="htabs"><a href="#tab-description"><?php echo $tab_description; ?></a>
+    <div id="tabs" class="htabs">
+      <a href="#tab-description"><?php echo $tab_description; ?></a>
       <?php if ($attribute_groups) { ?>
         <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
+      <?php } ?>
+	  <?php if ($offers) { ?>
+        <a href="#tab-offer"><?php echo $tab_offer; ?> (<?php echo count($offers); ?>)</a>
       <?php } ?>
       <?php if ($review_status) { ?>
         <a href="#tab-review"><?php echo $tab_review; ?></a>
@@ -291,6 +295,21 @@
             </tbody>
           <?php } ?>
         </table>
+      </div>
+    <?php } ?>
+    <?php if ($offers) { ?>
+      <div id="tab-offer" class="tab-content">
+        <div class="box-product">
+		<?php foreach ($offers as $offer) { ?>
+          <div>
+			<?php if ($offer['thumb']) { ?>
+              <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
+            <?php } ?>
+            <div class="name"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['name']; ?></a></div>
+			<div class="offer"><a href="<?php echo $offer['href']; ?>"><?php echo $offer['group']; ?></a></div>
+          </div>
+        <?php } ?>
+        </div>
       </div>
     <?php } ?>
     <?php if ($review_status) { ?>
