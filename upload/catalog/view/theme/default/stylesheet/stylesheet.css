@@ -794,8 +794,8 @@ a.button:hover, input.button:hover {
 .box-product .offer {
 	display: block;
 	margin: 8px 3px 0px 3px;
-	background: #0D6D98;
-	border: 1px solid #BBB;
+	background: #EEE;
+	border: 1px solid #38B0E3;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -806,7 +806,7 @@ a.button:hover, input.button:hover {
 }
 .box-product .offer a {
 	display: block;
-	color: #FFF;
+	color: #111;
 	font-weight: normal;
 	text-decoration: none;
 	padding: 8px;
