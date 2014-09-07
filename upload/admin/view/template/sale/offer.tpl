@@ -82,12 +82,15 @@
       </div>
 	  <div class="latest">
         <div class="dashboard-heading"><?php echo $text_status; ?></div>
-        <div class="dashboard-content" style="height:400px; overflow-y:scroll;">
+        <div class="dashboard-content" style="height:300px; overflow-y:scroll;">
           <table class="list">
             <thead>
               <tr>
                 <td class="left"><?php echo $column_group; ?></td>
                 <td class="left"><?php echo $column_name; ?></td>
+				<td class="left"><?php echo $column_type; ?></td>
+                <td class="left"><?php echo $column_discount; ?></td>
+                <td class="left"><?php echo $column_logged; ?></td>
                 <td class="left"><?php echo $column_date_end; ?></td>
                 <td class="left"><?php echo $column_validity; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
@@ -101,6 +104,9 @@
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
+				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="right"><?php echo $offer['discount']; ?></td>
+				  <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
                   <td class="left"><?php echo $offer['validity']; ?></td>
                   <td class="center"><?php echo $offer['status']; ?></td>
@@ -113,6 +119,9 @@
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
+				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="right"><?php echo $offer['discount']; ?></td>
+                  <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
                   <td class="left"><?php echo $offer['validity']; ?></td>
                   <td class="center"><?php echo $offer['status']; ?></td>
@@ -125,6 +134,9 @@
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
+				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="right"><?php echo $offer['discount']; ?></td>
+                  <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
                   <td class="left"><?php echo $offer['validity']; ?></td>
                   <td class="center"><?php echo $offer['status']; ?></td>
@@ -137,6 +149,9 @@
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
+				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="right"><?php echo $offer['discount']; ?></td>
+                  <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
                   <td class="left"><?php echo $offer['validity']; ?></td>
                   <td class="center"><?php echo $offer['status']; ?></td>
@@ -146,7 +161,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="9"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>

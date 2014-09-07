@@ -152,6 +152,7 @@ class ModelCheckoutOrder extends Model {
 				'date_modified'           		=> $order_query->row['date_modified'],
 				'date_added'              		=> $order_query->row['date_added']
 			);
+
 		} else {
 			return false;
 		}
@@ -403,9 +404,9 @@ class ModelCheckoutOrder extends Model {
 
 					$option_data[] = array(
 						'name'	=> $option['name'],
-						'value' 	=> (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
-					); 
-				} 
+						'value' 	=> (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
+					);
+				}
 
 				$template->data['products'][] = array(
 					'name'     	=> $product['name'],

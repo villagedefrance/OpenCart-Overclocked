@@ -121,7 +121,7 @@ class ModelCatalogOffer extends Model {
 				}
 
 				$product_lists = array();
-				
+
 				$product_lists = $this->getCategoryProducts($result['one']);
 
 				if ($product_lists) {

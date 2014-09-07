@@ -82,6 +82,7 @@ $_['entry_pagination_lo'] 				= 'Enable Bottom Pagination:<br/><span class="help
 $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<br/><span class="help">Use standard selectors in Category form.</span>';
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br/><span class="help">Use standard selectors in Product form.</span>';
 $_['entry_manufacturer']      			= 'Enable Manufacturer Logo:<br/><span class="help">Show the Manufacturer\'s logo in Manufacturer List.</span>';
+$_['entry_offer_label']      				= 'Hide Offer Labels:';
 $_['entry_contact_image']				= 'Contact Form Image:<br/><span class="help">Image can be png, gif or jpg.</span>';
 $_['entry_contact_width'] 			= 'Width:';
 $_['entry_contact_height']			= 'Height:';

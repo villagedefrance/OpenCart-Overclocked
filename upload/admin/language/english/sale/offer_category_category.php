@@ -19,8 +19,8 @@ $_['column_action']       		= 'Action';
 
 // Entry
 $_['entry_name']          		= 'Offer Name:';
-$_['entry_discount']      		= 'Discount:<br /><span class="help">Special characters like %, £ or $ are not allowed.</span>';
 $_['entry_type']          			= 'Type:<br /><span class="help">Percentage or Fixed Amount</span>';
+$_['entry_discount']      		= 'Discount:<br /><span class="help">Special characters like %, £ or $ are not allowed.</span>';
 $_['entry_logged']        		= 'Customer Login:<br /><span class="help">Customer must be logged in to benefit from the offer.</span>';
 $_['entry_category_one']		= 'Category 1:<br /><span class="help">Select a reference category.</span>';
 $_['entry_category_two']		= 'Category 2:<br /><span class="help">Select the category the offer will apply to.</span>';

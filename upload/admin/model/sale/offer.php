@@ -3,10 +3,13 @@ class ModelSaleOffer extends Model {
 
 	// Product to Product
 	public function getOfferProductProducts($data = array()) {
-		$sql = "SELECT offer_product_product_id, name, date_end, status FROM " . DB_PREFIX . "offer_product_product";
+		$sql = "SELECT offer_product_product_id, name, type, discount, logged, date_end, status FROM " . DB_PREFIX . "offer_product_product";
 
 		$sort_data = array(
 			'name',
+			'type',
+			'discount',
+			'logged',
 			'date_end',
 			'status'
 		);
@@ -48,10 +51,13 @@ class ModelSaleOffer extends Model {
 
 	// Product to Category
 	public function getOfferProductCategories($data = array()) {
-		$sql = "SELECT offer_product_category_id, name, date_end, status FROM " . DB_PREFIX . "offer_product_category";
+		$sql = "SELECT offer_product_category_id, name, type, discount, logged, date_end, status FROM " . DB_PREFIX . "offer_product_category";
 
 		$sort_data = array(
 			'name',
+			'type',
+			'discount',
+			'logged',
 			'date_end',
 			'status'
 		);
@@ -93,10 +99,13 @@ class ModelSaleOffer extends Model {
 
 	// Category to Product
 	public function getOfferCategoryProducts($data = array()) {
-		$sql = "SELECT offer_category_product_id, name, date_end, status FROM " . DB_PREFIX . "offer_category_product";
+		$sql = "SELECT offer_category_product_id, name, type, discount, logged, date_end, status FROM " . DB_PREFIX . "offer_category_product";
 
 		$sort_data = array(
 			'name',
+			'type',
+			'discount',
+			'logged',
 			'date_end',
 			'status'
 		);
@@ -138,10 +147,13 @@ class ModelSaleOffer extends Model {
 
 	// Category to Category
 	public function getOfferCategoryCategories($data = array()) {
-		$sql = "SELECT offer_category_category_id, name, date_end, status FROM " . DB_PREFIX . "offer_category_category";
+		$sql = "SELECT offer_category_category_id, name, type, discount, logged, date_end, status FROM " . DB_PREFIX . "offer_category_category";
 
 		$sort_data = array(
 			'name',
+			'type',
+			'discount',
+			'logged',
 			'date_end',
 			'status'
 		);

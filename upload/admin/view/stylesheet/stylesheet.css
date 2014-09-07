@@ -224,8 +224,8 @@ ul.menu ul {
 .tooltip {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
-	background: #D7E6F4 url('../image/tooltip.png') 10px center no-repeat;
-	border: 1px solid #AAC5E0;
+	background: #FAFAFA url('../image/tooltip.png') 10px center no-repeat;
+	border: 1px solid #D7E6F4;
 	color: #444;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;

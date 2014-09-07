@@ -1606,8 +1606,8 @@ INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 CREATE TABLE IF NOT EXISTS `oc_offer_category_category` (
   `offer_category_category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `discount` decimal(15,4) NOT NULL,
   `type` char(1) NOT NULL,
+  `discount` decimal(15,4) NOT NULL,
   `logged` tinyint(1) NOT NULL,
   `category_one` int(11) NOT NULL,
   `category_two` int(11) NOT NULL,
@@ -1627,8 +1627,8 @@ CREATE TABLE IF NOT EXISTS `oc_offer_category_category` (
 CREATE TABLE IF NOT EXISTS `oc_offer_category_product` (
   `offer_category_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `discount` decimal(15,4) NOT NULL,
   `type` char(1) NOT NULL,
+  `discount` decimal(15,4) NOT NULL,
   `logged` tinyint(1) NOT NULL,
   `category_one` int(11) NOT NULL,
   `product_two` int(11) NOT NULL,
@@ -1648,8 +1648,8 @@ CREATE TABLE IF NOT EXISTS `oc_offer_category_product` (
 CREATE TABLE IF NOT EXISTS `oc_offer_product_category` (
   `offer_product_category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `discount` decimal(15,4) NOT NULL,
   `type` char(1) NOT NULL,
+  `discount` decimal(15,4) NOT NULL,
   `logged` tinyint(1) NOT NULL,
   `product_one` int(11) NOT NULL,
   `category_two` int(11) NOT NULL,
@@ -1669,8 +1669,8 @@ CREATE TABLE IF NOT EXISTS `oc_offer_product_category` (
 CREATE TABLE IF NOT EXISTS `oc_offer_product_product` (
   `offer_product_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `discount` decimal(15,4) NOT NULL,
   `type` char(1) NOT NULL,
+  `discount` decimal(15,4) NOT NULL,
   `logged` tinyint(1) NOT NULL,
   `product_one` int(11) NOT NULL,
   `product_two` int(11) NOT NULL,

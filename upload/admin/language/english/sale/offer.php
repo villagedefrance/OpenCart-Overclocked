@@ -25,6 +25,9 @@ $_['button_view']				= 'View List';
 
 $_['column_group'] 			= 'Group';
 $_['column_name'] 			= 'Name';
+$_['column_type'] 			= 'Type';
+$_['column_discount'] 		= 'Discount';
+$_['column_logged'] 			= 'Logged';
 $_['column_date_end'] 		= 'Expiry';
 $_['column_validity'] 		= 'State';
 $_['column_status'] 			= 'Status';
@@ -39,8 +42,8 @@ $_['text_offer_valid']		= '<span style="background:#5DC15E; color:#FFF; padding:
 $_['text_no_results'] 		= 'There are no offers to display at this time.';
 
 // Success
-$_['success_offers']			= 'Extension "Order Totals/Offers" is Enabled and set to appear in position %s in the Shopping Cart.';
+$_['success_offers']			= 'Extension "Totals/Offers" is Enabled and set to appear in position %s in the Shopping Cart.';
 
 // Error
-$_['error_offers']				= 'WARNING: Extension "Order Totals/Offers" must be Installed and Enabled!';
+$_['error_offers']				= 'WARNING: Extension "Totals/Offers" must be Installed and Enabled!';
 ?>

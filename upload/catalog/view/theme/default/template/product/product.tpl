@@ -12,6 +12,9 @@
     <?php if ($thumb || $images) { ?>
       <div class="left">
         <?php if ($thumb) { ?>
+          <?php if (!$label && $offers) { ?>
+            <div class="promo-large"><?php echo $text_offer; ?></div>
+          <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
           </div>

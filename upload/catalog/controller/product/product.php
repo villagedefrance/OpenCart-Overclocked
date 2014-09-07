@@ -401,6 +401,14 @@ class ControllerProductProduct extends Controller {
 			}
 
 			// Offers
+			$this->data['text_offer'] = $this->language->get('text_offer');
+
+			if ($this->config->get('config_offer_label')) {
+				$this->data['label'] = $this->config->get('config_offer_label');
+			} else {
+				$this->data['label'] = false;
+			}
+
 			$this->data['offers'] = array();
 
 			$this->load->model('catalog/offer');
@@ -471,6 +479,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
+			// Related
 			$this->data['products'] = array();
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);

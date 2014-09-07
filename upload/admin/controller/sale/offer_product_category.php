@@ -314,8 +314,8 @@ class ControllerSaleOfferProductCategory extends Controller {
 		$this->data['text_percent'] = $this->language->get('text_percent');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_discount'] = $this->language->get('entry_discount');
 		$this->data['entry_type'] = $this->language->get('entry_type');
+		$this->data['entry_discount'] = $this->language->get('entry_discount');
 		$this->data['entry_logged'] = $this->language->get('entry_logged');
 		$this->data['entry_product_one'] = $this->language->get('entry_product_one');
 		$this->data['entry_category_two'] = $this->language->get('entry_category_two');
@@ -431,20 +431,20 @@ class ControllerSaleOfferProductCategory extends Controller {
 			$this->data['name'] = '';
 		}
 
-		if (isset($this->request->post['discount'])) {
-			$this->data['discount'] = $this->request->post['discount'];
-		} elseif (!empty($offer_product_category_info)) {
-			$this->data['discount'] = $offer_product_category_info['discount'];
-		} else {
-			$this->data['discount'] = '';
-		}
-
 		if (isset($this->request->post['type'])) {
 			$this->data['type'] = $this->request->post['type'];
 		} elseif (!empty($offer_product_category_info)) {
 			$this->data['type'] = $offer_product_category_info['type'];
 		} else {
 			$this->data['type'] = '';
+		}
+
+		if (isset($this->request->post['discount'])) {
+			$this->data['discount'] = $this->request->post['discount'];
+		} elseif (!empty($offer_product_category_info)) {
+			$this->data['discount'] = $offer_product_category_info['discount'];
+		} else {
+			$this->data['discount'] = '';
 		}
 
 		if (isset($this->request->post['logged'])) {

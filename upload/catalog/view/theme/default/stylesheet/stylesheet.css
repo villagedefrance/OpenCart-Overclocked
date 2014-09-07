@@ -794,8 +794,8 @@ a.button:hover, input.button:hover {
 .box-product .offer {
 	display: block;
 	margin: 8px 3px 0px 3px;
-	background: #EEE;
-	border: 1px solid #38B0E3;
+	background: #FAFAFA;
+	border: 1px solid #DE5954;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -1892,6 +1892,73 @@ ul.box-filter > li ul {
 .sitemap-info .left ul li ul li ul {
 	list-style: url('../image/arrow-right.png');
 	margin-bottom: 5px;
+}
+/* Promo */
+.promo-large {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin: 0px 0px -72px 0px;
+	padding: 0px;
+	height: 70px;
+	width: 70px;
+	background: #DE5954;
+	border: 1px solid #DE5954;
+	-webkit-border-radius: 35px;
+	-moz-border-radius: 35px;
+	-khtml-border-radius: 35px;
+	border-radius: 35px;
+	z-index: 99;
+	line-height: 70px;
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	color: #FFF;
+}
+.promo-medium {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin: 0px 0px -36px 0px;
+	padding: 0px;
+	height: 40px;
+	width: 40px;
+	background: #DE5954;
+	border: 1px solid #DE5954;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	border-radius: 20px;
+	z-index: 99;
+	line-height: 40px;
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	color: #FFF;
+}
+.promo-small {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin: 0px 0px -18px 0px;
+	padding: 0px;
+	height: 16px;
+	width: 16px;
+	background: #DE5954;
+	border: 1px solid #DE5954;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-khtml-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 0px 2px 2px #DDD;
+	-moz-box-shadow: 0px 2px 2px #DDD;
+	box-shadow: 0px 2px 2px #DDD;
+	z-index: 99;
 }
 /* Banner */
 .banner div {

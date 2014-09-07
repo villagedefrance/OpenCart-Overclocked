@@ -27,17 +27,6 @@
               <span class="error"><?php echo $error_name; ?></span>
             <?php } ?></td>
           </tr>
-		  <tr>
-            <td><span class="required">*</span> <?php echo $entry_discount; ?></td>
-            <td><input type="text" name="discount" value="<?php echo $discount; ?>" />
-            <?php if ($error_percent) { ?>
-              <span class="error"><?php echo $error_percent; ?></span>
-            <?php } ?>
-			<?php if ($error_price) { ?>
-              <span class="error"><?php echo $error_price; ?> (<?php echo $gross_price; ?>)</span>
-            <?php } ?>
-            </td>
-          </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_type; ?></td>
             <td><select name="type">
@@ -52,6 +41,17 @@
                 <option value="F"><?php echo $text_fixed; ?></option>
               <?php } ?>
             </select></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_discount; ?></td>
+            <td><input type="text" name="discount" value="<?php echo $discount; ?>" />
+            <?php if ($error_percent) { ?>
+              <span class="error"><?php echo $error_percent; ?></span>
+            <?php } ?>
+			<?php if ($error_price) { ?>
+              <span class="error"><?php echo $error_price; ?> (<?php echo $gross_price; ?>)</span>
+            <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_logged; ?></td>

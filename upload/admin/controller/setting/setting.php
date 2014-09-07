@@ -121,6 +121,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
 		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
+		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_contact_image'] = $this->language->get('entry_contact_image');
 		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
 		$this->data['entry_contact_height'] = $this->language->get('entry_contact_height');
@@ -780,6 +781,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_manufacturer'] = $this->request->post['config_manufacturer'];
 		} else {
 			$this->data['config_manufacturer'] = $this->config->get('config_manufacturer');
+		}
+
+		if (isset($this->request->post['config_offer_label'])) {
+			$this->data['config_offer_label'] = $this->request->post['config_offer_label'];
+		} else {
+			$this->data['config_offer_label'] = $this->config->get('config_offer_label');
 		}
 
 		$this->load->model('tool/image');
