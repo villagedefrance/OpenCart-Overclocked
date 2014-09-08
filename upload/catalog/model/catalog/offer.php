@@ -226,6 +226,114 @@ class ModelCatalogOffer extends Model {
 		return $offer_products;
 	}
 
+	public function getAllOffers($data = array()) {
+		$this->load->model('checkout/offers');
+
+		$offer_products = array();
+
+		// Product Product
+		$offer_product_products = $this->model_checkout_offers->getOfferProductProducts(0);
+
+		if ($offer_product_products) {
+			foreach ($offer_product_products as $pp_result) {
+				if ($pp_result['one'] && (!in_array($pp_result['one'], $offer_products))) {
+					$offer_products[] = $pp_result['one'];
+				}
+
+				if ($pp_result['two'] && (!in_array($pp_result['two'], $offer_products))) {
+					$offer_products[] = $pp_result['two'];
+				}
+			}
+		}
+
+		// Product Category
+		$offer_product_categories = $this->model_checkout_offers->getOfferProductCategories(0);
+
+		if ($offer_product_categories) {
+			foreach ($offer_product_categories as $pc_result) {
+				if (($pc_result['one']) && (!in_array($pc_result['one'], $offer_products))) {
+					$offer_products[] = $pc_result['one'];
+				}
+
+				$product_lists = array();
+
+				$product_lists = $this->getCategoryProducts($pc_result['two']);
+
+				if ($product_lists) {
+					$pc_product = 0;
+
+					foreach ($product_lists as $pc_product) {
+						if ($pc_product && (!in_array($pc_product, $offer_products))) {
+							$offer_products[] = $pc_product;
+						}
+					}
+				}
+			}
+		}
+
+		// Category Product
+		$offer_category_products = $this->model_checkout_offers->getOfferCategoryProducts(0);
+
+		if ($offer_category_products) {
+			foreach ($offer_category_products as $cp_result) {
+				$product_lists = array();
+
+				$product_lists = $this->getCategoryProducts($cp_result['one']);
+
+				if ($product_lists) {
+					$cp_product = 0;
+
+					foreach ($product_lists as $cp_product) {
+						if (($cp_product) && (!in_array($cp_product, $offer_products))) {
+							$offer_products[] = $cp_product;
+						}
+					}
+				}
+
+				if ($cp_result['two'] && (!in_array($cp_result['two'], $offer_products))) {
+					$offer_products[] = $cp_result['two'];
+				}
+			}
+		}
+
+		// Category Category
+		$offer_category_categories = $this->model_checkout_offers->getOfferCategoryCategories(0);
+
+		if ($offer_category_categories) {
+			foreach ($offer_category_categories as $cc_result) {
+				$product_one_lists = array();
+
+				$product_one_lists = $this->getCategoryProducts($cc_result['one']);
+
+				if ($product_one_lists) {
+					$product_one = 0;
+
+					foreach ($product_one_lists as $product_one) {
+						if ($product_one && (!in_array($product_one, $offer_products))) {
+							$offer_products[] = $product_one;
+						}
+					}
+				}
+
+				$product_two_lists = array();
+
+				$product_two_lists = $this->getCategoryProducts($cc_result['two']);
+
+				if ($product_two_lists) {
+					$product_two = 0;
+
+					foreach ($product_two_lists as $product_two) {
+						if ($product_two && (!in_array($product_two, $offer_products))) {
+							$offer_products[] = $product_two;
+						}
+					}
+				}
+			}
+		}
+
+		return $offer_products;
+	}
+
 	// Product List
 	private function getCategoryProducts($category_id) {
         $product_list = array();
