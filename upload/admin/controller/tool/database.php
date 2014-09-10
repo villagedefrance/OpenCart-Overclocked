@@ -60,8 +60,10 @@ class ControllerToolDatabase extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['button_refresh'] = $this->language->get('button_refresh');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['refresh'] = $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Optimize & Repair
 		$this->load->model('tool/database');

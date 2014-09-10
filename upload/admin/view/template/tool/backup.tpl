@@ -17,6 +17,7 @@
       <div class="buttons">
         <a onclick="$('#restore').submit();" class="button"><?php echo $button_restore; ?></a>
         <a onclick="$('#backup').submit();" class="button"><?php echo $button_backup; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
@@ -33,9 +34,9 @@
           <tr>
             <td><?php echo $entry_backup; ?></td>
             <td><div class="scrollbox" style="height:220px; margin-bottom:5px;">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($tables as $table) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even') ? 'odd' : 'even'; ?>
                 <div class="<?php echo $class; ?>">
                   <input type="checkbox" name="backup[]" value="<?php echo $table; ?>" checked="checked" />
                 <?php echo $table; ?></div>

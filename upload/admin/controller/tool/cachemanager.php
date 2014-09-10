@@ -19,7 +19,7 @@ class ControllerToolCacheManager extends Controller {
 			'href'      => $this->url->link('tool/cachemanager', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => ' :: '
    		);
-		
+
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
@@ -30,10 +30,12 @@ class ControllerToolCacheManager extends Controller {
 
 		$this->data['button_clean'] = $this->language->get('button_clean');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['clean'] = $this->url->link('tool/cachemanager/clean', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['delete'] = $this->url->link('tool/cachemanager/delete', 'token=' . $this->session->data['token'], 'SSL');
-		
+		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['caches'] = array();
 
 		$files = glob(DIR_CACHE . 'cache.*');
@@ -133,7 +135,7 @@ class ControllerToolCacheManager extends Controller {
 			$this->redirect($this->url->link('tool/cachemanager', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}
-	
+
 	private function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'tool/cachemanager')) {
 			$this->error['warning'] = $this->language->get('error_permission');

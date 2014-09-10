@@ -58,6 +58,8 @@ class ControllerToolDatasystem extends Controller {
 		$this->data['text_mbstring'] = $this->language->get('text_mbstring');
 		$this->data['text_mbstring_note'] = $this->language->get('text_mbstring_note');
 
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
 		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
@@ -65,6 +67,8 @@ class ControllerToolDatasystem extends Controller {
 		} else {
 			$this->data['error_warning'] = '';
 		}
+
+		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['server_zone'] = ini_get('date.timezone');
 		$this->data['server_time'] = date('Y-m-d H:i:s');
