@@ -27,9 +27,14 @@
         <tr>
           <td><?php echo $text_image; ?></td>
           <?php foreach ($products as $product) { ?>
-            <td><?php if ($products[$product['product_id']]['thumb']) { ?>
-              <img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" />
-            <?php } ?></td>
+            <td>
+              <?php if (!$label && $product['offer']) { ?>
+                <div class="promo-small"><?php echo $text_offer; ?></div>
+              <?php } ?>
+              <?php if ($products[$product['product_id']]['thumb']) { ?>
+                <img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" />
+              <?php } ?>
+            </td>
           <?php } ?>
         </tr>
         <tr>
@@ -60,6 +65,16 @@
           <td><?php echo $text_availability; ?></td>
           <?php foreach ($products as $product) { ?>
             <td><?php echo $products[$product['product_id']]['availability']; ?></td>
+          <?php } ?>
+        </tr>
+        <tr>
+          <td><?php echo $text_offer; ?></td>
+          <?php foreach ($products as $product) { ?>
+            <?php if ($product['offer']) { ?>
+              <td><a href="<?php echo $product['offer_href']; ?>" style="text-decoration:none;"><?php echo $product['offer_label']; ?></a></td>
+            <?php } else { ?>
+              <td><?php echo $text_no_offer; ?></td>
+            <?php } ?>
           <?php } ?>
         </tr>
         <?php if ($review_status) { ?>

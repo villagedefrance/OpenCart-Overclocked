@@ -37,6 +37,9 @@
     <div class="product-list">
       <?php foreach ($products as $product) { ?>
         <div>
+          <?php if (!$label && $product['offer']) { ?>
+            <div class="promo-medium"><?php echo $text_offer; ?></div>
+          <?php } ?>
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
           <?php } ?>
@@ -85,6 +88,12 @@ function display(view) {
 
 			html += '<div class="left">';
 
+			var offer = $(element).find('.promo-medium').html();
+
+			if (offer != null) {
+				html += '<div class="promo-medium">' + $(element).find('.promo-medium').html() + '</div>';
+			}
+
 			var image = $(element).find('.image').html();
 
 			if (image != null) {
@@ -121,6 +130,12 @@ function display(view) {
 
 		$('.product-grid > div').each(function(index, element) {
 			html = '';
+
+			var offer = $(element).find('.promo-medium').html();
+
+			if (offer != null) {
+				html += '<div class="promo-medium">' + $(element).find('.promo-medium').html() + '</div>';
+			}
 
 			var image = $(element).find('.image').html();
 

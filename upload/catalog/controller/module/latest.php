@@ -17,6 +17,8 @@ class ControllerModuleLatest extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$this->data['text_offer'] = $this->language->get('text_offer');
+
 		$this->data['button_view'] = $this->language->get('button_view');
 		$this->data['button_cart'] = $this->language->get('button_cart');
 
@@ -26,6 +28,12 @@ class ControllerModuleLatest extends Controller {
 		// Latest
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
+
+		$this->data['label'] = $this->config->get('config_offer_label');
+
+		$this->load->model('catalog/offer');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['products'] = array();
 
@@ -63,9 +71,16 @@ class ControllerModuleLatest extends Controller {
 				$rating = false;
 			}
 
+			if (in_array($result['product_id'], $offers, true)) {
+				$offer = true;
+			} else {
+				$offer = false;
+			}
+
 			$this->data['products'][] = array(
 				'product_id'	=> $result['product_id'],
 				'thumb'  		=> $image,
+				'offer'			=> $offer,
 				'name'  		=> $result['name'],
 				'price'   		=> $price,
 				'special' 		=> $special,

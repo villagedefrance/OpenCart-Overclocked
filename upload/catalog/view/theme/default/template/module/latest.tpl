@@ -5,6 +5,9 @@
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>
+        <?php if (!$label && $product['offer']) { ?>
+          <div class="promo-medium"><?php echo $text_offer; ?></div>
+        <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
@@ -34,9 +37,12 @@
 </div>
 <?php } else { ?>
   <div style="margin-bottom:20px;">
-  <div class="box-product" style="text-align:center;">
+    <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>
+        <?php if (!$label && $product['offer']) { ?>
+          <div class="promo-medium"><?php echo $text_offer; ?></div>
+        <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>

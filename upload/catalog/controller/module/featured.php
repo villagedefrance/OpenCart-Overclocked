@@ -20,6 +20,7 @@ class ControllerModuleFeatured extends Controller {
 		$this->data['text_model'] = $this->language->get('text_model');
 		$this->data['text_reward'] = $this->language->get('text_reward');
 		$this->data['text_points'] = $this->language->get('text_points');
+		$this->data['text_offer'] = $this->language->get('text_offer');
 
 		$this->data['button_view'] = $this->language->get('button_view');
 		$this->data['button_cart'] = $this->language->get('button_cart');
@@ -39,9 +40,7 @@ class ControllerModuleFeatured extends Controller {
 
 		$this->data['manufacturers'] = array();
 
-		$data = array();
-
-		$results = $this->model_catalog_manufacturer->getManufacturers($data);
+		$results = $this->model_catalog_manufacturer->getManufacturers(0);
 
 		foreach ($results as $result) {
 			if ($result['image']) {
@@ -58,6 +57,12 @@ class ControllerModuleFeatured extends Controller {
 				'href' 					=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}
+
+		$this->data['label'] = $this->config->get('config_offer_label');
+
+		$this->load->model('catalog/offer');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['products'] = array();
 
@@ -115,9 +120,16 @@ class ControllerModuleFeatured extends Controller {
 					$points = false;
 				}
 
+				if (in_array($product_info['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
 				$this->data['products'][] = array(
 					'product_id'		=> $product_info['product_id'],
 					'thumb'   	 	=> $image,
+					'offer'       		=> $offer,
 					'name'    	 	=> $product_info['name'],
 					'manufacturer'	=> $product_info['manufacturer'],
 					'model' 			=> $product_info['model'],

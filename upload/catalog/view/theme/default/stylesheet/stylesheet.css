@@ -787,29 +787,24 @@ a.button:hover, input.button:hover {
 .box-product .price-new {
 	font-weight: bold;
 }
+.box-product .brand {
+	display: block;
+	color: #111;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 4px;
+}
 .box-product .rating {
 	display: block;
 	margin-bottom: 4px;
 }
-.box-product .offer {
-	display: block;
-	margin: 8px 3px 0px 3px;
-	background: #FAFAFA;
-	border: 1px solid #DE5954;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0px 2px 2px #DDD;
-	-moz-box-shadow: 0px 2px 2px #DDD;
-	box-shadow: 0px 2px 2px #DDD;
-}
 .box-product .offer a {
 	display: block;
-	color: #111;
-	font-weight: normal;
+	color: #444;
+	font-weight: bold;
 	text-decoration: none;
-	padding: 8px;
+	padding: 5px;
+	margin-bottom: 2px;
 }
 /* Box category */
 ul.box-category, ul.box-category ul {
@@ -1899,22 +1894,20 @@ ul.box-filter > li ul {
 	top: 0;
 	left: 0;
 	display: block;
-	margin: 0px 0px -72px 0px;
+	margin: 0px 0px -70px 0px;
 	padding: 0px;
 	height: 70px;
 	width: 70px;
 	background: #DE5954;
-	border: 1px solid #DE5954;
 	-webkit-border-radius: 35px;
 	-moz-border-radius: 35px;
 	-khtml-border-radius: 35px;
 	border-radius: 35px;
-	z-index: 99;
 	line-height: 70px;
 	text-align: center;
 	font-family: Verdana, Geneva, sans-serif;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 17px;
 	color: #FFF;
 }
 .promo-medium {
@@ -1922,22 +1915,20 @@ ul.box-filter > li ul {
 	top: 0;
 	left: 0;
 	display: block;
-	margin: 0px 0px -36px 0px;
+	margin: 0px 0px -40px 0px;
 	padding: 0px;
 	height: 40px;
 	width: 40px;
 	background: #DE5954;
-	border: 1px solid #DE5954;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	-khtml-border-radius: 20px;
 	border-radius: 20px;
-	z-index: 99;
 	line-height: 40px;
 	text-align: center;
 	font-family: Verdana, Geneva, sans-serif;
 	font-weight: bold;
-	font-size: 11px;
+	font-size: 10px;
 	color: #FFF;
 }
 .promo-small {
@@ -1945,20 +1936,36 @@ ul.box-filter > li ul {
 	top: 0;
 	left: 0;
 	display: block;
-	margin: 0px 0px -18px 0px;
+	margin: 0px 0px -30px 0px;
 	padding: 0px;
-	height: 16px;
-	width: 16px;
+	height: 30px;
+	width: 30px;
 	background: #DE5954;
-	border: 1px solid #DE5954;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	-khtml-border-radius: 8px;
-	border-radius: 8px;
-	-webkit-box-shadow: 0px 2px 2px #DDD;
-	-moz-box-shadow: 0px 2px 2px #DDD;
-	box-shadow: 0px 2px 2px #DDD;
-	z-index: 99;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-khtml-border-radius: 15px;
+	border-radius: 15px;
+	line-height: 30px;
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 8px;
+	color: #FFF;
+}
+.promo-mini {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin: 0px 0px -11px 0px;
+	padding: 0px;
+	height: 10px;
+	width: 10px;
+	background: #DE5954;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 }
 /* Banner */
 .banner div {

@@ -53,6 +53,8 @@ class ControllerProductCompare extends Controller {
 		$this->data['text_weight'] = $this->language->get('text_weight');
 		$this->data['text_dimension'] = $this->language->get('text_dimension');
 		$this->data['text_empty'] = $this->language->get('text_empty');
+		$this->data['text_offer'] = $this->language->get('text_offer');
+		$this->data['text_no_offer'] = $this->language->get('text_no_offer');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_cart'] = $this->language->get('button_cart');
@@ -67,6 +69,12 @@ class ControllerProductCompare extends Controller {
 		}
 
 		$this->data['review_status'] = $this->config->get('config_review_status');
+
+		$this->data['label'] = $this->config->get('config_offer_label');
+
+		$this->load->model('catalog/offer');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['products'] = array();
 
@@ -112,16 +120,57 @@ class ControllerProductCompare extends Controller {
 					}
 				}
 
+				if (in_array($product_info['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
+				$product_offers = $this->model_catalog_offer->getOfferProducts($product_info['product_id']);
+
+				if ($product_offers) {
+					foreach ($product_offers as $product_offer) {
+						if ($product_offer['one'] == $product_info['product_id']) {
+							$offer_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
+							$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['one']);
+							$offer_product = $product_offer['two'];
+						} elseif ($product_offer['two'] == $product_info['product_id']) {
+							$offer_name = $this->model_catalog_offer->getOfferProductName($product_offer['one']);
+							$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
+							$offer_product = $product_offer['one'];
+						} else {
+							$offer_name = false;
+							$offer_mirror_name = false;
+							$offer_product = false;
+						}
+
+						if ($product_offer['group'] == 'G241') {
+							$offer_label = sprintf($this->language->get('text_G241'), $product_offer['type']);
+						} elseif ($product_offer['group'] == 'G241D') {
+							$offer_label = sprintf($this->language->get('text_G241D'), $offer_mirror_name, $offer_name, $product_offer['type']);
+						} elseif ($product_offer['group'] == 'G242D') {
+							$offer_label = sprintf($this->language->get('text_G242D'), $offer_mirror_name, $offer_name, $product_offer['type']);
+						} elseif ($product_offer['group'] == 'G142D') {
+							$offer_label = sprintf($this->language->get('text_G142D'), $product_offer['type'], $offer_mirror_name, $offer_name);
+						} else {
+							$offer_label = '';
+						}
+					}
+				}
+
 				$this->data['products'][$product_id] = array(
 					'product_id'   	=> $product_info['product_id'],
 					'name'         	=> $product_info['name'],
 					'thumb'        	=> $image,
+					'offer'       		=> $offer,
 					'price'        	=> $price,
 					'special'      	=> $special,
 					'description'  	=> utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 					'model'        	=> $product_info['model'],
 					'manufacturer'	=> $product_info['manufacturer'],
 					'availability' 	=> $availability,
+					'offer_href'		=> $this->url->link('product/product', 'product_id=' . $offer_product),
+					'offer_label'		=> $offer_label,
 					'rating'       	=> (int)$product_info['rating'],
 					'reviews'      	=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'weight'       	=> $this->weight->format($product_info['weight'], $product_info['weight_class_id']),

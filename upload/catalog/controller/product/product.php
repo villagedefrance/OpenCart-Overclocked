@@ -251,6 +251,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_share'] = $this->language->get('text_share');
 			$this->data['text_wait'] = $this->language->get('text_wait');
 			$this->data['text_tags'] = $this->language->get('text_tags');
+			$this->data['text_offer'] = $this->language->get('text_offer');
 
 			$this->data['entry_name'] = $this->language->get('entry_name');
 			$this->data['entry_review'] = $this->language->get('entry_review');
@@ -400,18 +401,12 @@ class ControllerProductProduct extends Controller {
 				$this->data['addthis'] = false;
 			}
 
-			// Offers
-			$this->data['text_offer'] = $this->language->get('text_offer');
-
-			if ($this->config->get('config_offer_label')) {
-				$this->data['label'] = $this->config->get('config_offer_label');
-			} else {
-				$this->data['label'] = false;
-			}
-
-			$this->data['offers'] = array();
+			// Offer
+			$this->data['label'] = $this->config->get('config_offer_label');
 
 			$this->load->model('catalog/offer');
+
+			$this->data['offers'] = array();
 
 			$product_offers = $this->model_catalog_offer->getOfferProducts($this->request->get['product_id']);
 
@@ -459,7 +454,7 @@ class ControllerProductProduct extends Controller {
 					} elseif ($product_offer['group'] == 'G242D') {
 						$offer_label = sprintf($this->language->get('text_G242D'), $offer_mirror_name, $offer_name, $product_offer['type']);
 					} elseif ($product_offer['group'] == 'G142D') {
-						$offer_label = sprintf($this->language->get('text_G142D'), $offer_mirror_name, $product_offer['type'], $offer_name);
+						$offer_label = sprintf($this->language->get('text_G142D'), $product_offer['type'], $offer_mirror_name, $offer_name);
 					} else {
 						$offer_label = '';
 					}

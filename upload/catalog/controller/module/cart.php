@@ -58,6 +58,12 @@ class ControllerModuleCart extends Controller {
 
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		$this->data['label'] = $this->config->get('config_offer_label');
+
+		$this->load->model('catalog/offer');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
+
 		$this->load->model('tool/image');
 
 		$this->data['products'] = array();
@@ -67,6 +73,12 @@ class ControllerModuleCart extends Controller {
 				$image = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
 			} else {
 				$image = '';
+			}
+
+			if (in_array($product['product_id'], $offers, true)) {
+				$offer = true;
+			} else {
+				$offer = false;
 			}
 
 			$option_data = array();
@@ -82,7 +94,7 @@ class ControllerModuleCart extends Controller {
 
 				$option_data[] = array(
 					'name' 	=> $option['name'],
-					'value'	=> (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value),
+					'value'	=> (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value,
 					'type'  	=> $option['type']
 				);
 			}
@@ -104,6 +116,7 @@ class ControllerModuleCart extends Controller {
 			$this->data['products'][] = array(
 				'key'       	=> $product['key'],
 				'thumb' 		=> $image,
+				'offer'			=> $offer,
 				'name'   		=> $product['name'],
 				'model' 		=> $product['model'],
 				'option'    	=> $option_data,

@@ -226,7 +226,7 @@ class ModelCatalogOffer extends Model {
 		return $offer_products;
 	}
 
-	public function getAllOffers($data = array()) {
+	public function getListProductOffers($data = array()) {
 		$this->load->model('checkout/offers');
 
 		$offer_products = array();
@@ -260,8 +260,6 @@ class ModelCatalogOffer extends Model {
 				$product_lists = $this->getCategoryProducts($pc_result['two']);
 
 				if ($product_lists) {
-					$pc_product = 0;
-
 					foreach ($product_lists as $pc_product) {
 						if ($pc_product && (!in_array($pc_product, $offer_products))) {
 							$offer_products[] = $pc_product;
@@ -281,8 +279,6 @@ class ModelCatalogOffer extends Model {
 				$product_lists = $this->getCategoryProducts($cp_result['one']);
 
 				if ($product_lists) {
-					$cp_product = 0;
-
 					foreach ($product_lists as $cp_product) {
 						if (($cp_product) && (!in_array($cp_product, $offer_products))) {
 							$offer_products[] = $cp_product;
@@ -306,8 +302,6 @@ class ModelCatalogOffer extends Model {
 				$product_one_lists = $this->getCategoryProducts($cc_result['one']);
 
 				if ($product_one_lists) {
-					$product_one = 0;
-
 					foreach ($product_one_lists as $product_one) {
 						if ($product_one && (!in_array($product_one, $offer_products))) {
 							$offer_products[] = $product_one;
@@ -320,8 +314,6 @@ class ModelCatalogOffer extends Model {
 				$product_two_lists = $this->getCategoryProducts($cc_result['two']);
 
 				if ($product_two_lists) {
-					$product_two = 0;
-
 					foreach ($product_two_lists as $product_two) {
 						if ($product_two && (!in_array($product_two, $offer_products))) {
 							$offer_products[] = $product_two;

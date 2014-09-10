@@ -35,7 +35,7 @@
         </thead>
         <tbody>
           <?php foreach ($products as $product) { ?>
-            <?php if($product['recurring']) { ?>
+            <?php if ($product['recurring']) { ?>
               <tr>
                 <td colspan="6" style="border:none; line-height:18px; margin-left:10px;"> 
                   <image src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" /> 
@@ -45,9 +45,14 @@
               </tr>
             <?php } ?>
             <tr>
-              <td class="image"><?php if ($product['thumb']) { ?>
-              <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
-              <?php } ?></td>
+              <td class="image">
+                <?php if (!$label && $product['offer']) { ?>
+                  <div class="promo-small"><?php echo $text_offer; ?></div>
+                <?php } ?>
+                <?php if ($product['thumb']) { ?>
+                  <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
+                <?php } ?>
+              </td>
               <td class="name">
                 <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
                 <?php if (!$product['stock']) { ?>
@@ -145,7 +150,7 @@
     </table>
   </div>
   <div class="cart-module">
-    <div id="coupon" class="content" style="display: <?php echo ($next == 'coupon' ? 'block' : 'none'); ?>;">
+    <div id="coupon" class="content" style="display:<?php echo ($next == 'coupon') ? 'block' : 'none'; ?>;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <?php echo $entry_coupon; ?>&nbsp;
         <input type="text" name="coupon" value="<?php echo $coupon; ?>" />
@@ -154,7 +159,7 @@
         <input type="submit" value="<?php echo $button_coupon; ?>" class="button" />
       </form>
     </div>
-    <div id="voucher" class="content" style="display: <?php echo ($next == 'voucher' ? 'block' : 'none'); ?>;">
+    <div id="voucher" class="content" style="display:<?php echo ($next == 'voucher') ? 'block' : 'none'; ?>;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <?php echo $entry_voucher; ?>&nbsp;
         <input type="text" name="voucher" value="<?php echo $voucher; ?>" />
@@ -163,7 +168,7 @@
         <input type="submit" value="<?php echo $button_voucher; ?>" class="button" />
       </form>
     </div>
-    <div id="reward" class="content" style="display: <?php echo ($next == 'reward' ? 'block' : 'none'); ?>;">
+    <div id="reward" class="content" style="display:<?php echo ($next == 'reward') ? 'block' : 'none'; ?>;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <?php echo $entry_reward; ?>&nbsp;
         <input type="text" name="reward" value="<?php echo $reward; ?>" />
@@ -172,7 +177,7 @@
         <input type="submit" value="<?php echo $button_reward; ?>" class="button" />
       </form>
     </div>
-    <div id="shipping" class="content" style="display: <?php echo ($next == 'shipping' ? 'block' : 'none'); ?>;">
+    <div id="shipping" class="content" style="display:<?php echo ($next == 'shipping') ? 'block' : 'none'; ?>;">
       <p><?php echo $text_shipping_detail; ?></p>
       <table>
         <tr>
@@ -247,11 +252,11 @@ $('#button-quote').live('click', function() {
 
 			if (json['error']) {
 				if (json['error']['warning']) {
-					$('#notification').html('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
+					$('#notification').html('<div class="warning" style="display:none;">' + json['error']['warning'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
 
 					$('.warning').fadeIn('slow');
 
-					$('html, body').animate({ scrollTop:0 }, 'slow');
+					$('html, body').animate({scrollTop:0}, 'slow');
 				}
 
 				if (json['error']['country']) {

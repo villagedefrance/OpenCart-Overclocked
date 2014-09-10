@@ -20,4 +20,11 @@ $_['text_compare']     	 	= 'Product Compare (%s)';
 $_['text_success']      		= 'Success: You have added <a href="%s">%s</a> to your <a href="%s">product comparison</a>!';
 $_['text_remove']       		= 'Success: You have modified your product comparison!';
 $_['text_empty']        		= 'You have not chosen any products to compare.';
+$_['text_no_offer']			= 'No offer at this time.';
+
+// Offer
+$_['text_G241']				= 'Buy 1 Get 1 %s!';
+$_['text_G241D']				= 'Buy 1 %s and Get 1 %s for %s!';
+$_['text_G242D']				= 'Buy 1 %s and Get 1 %s for %s!';
+$_['text_G142D']				= '%s %s when you buy 1 %s!';
 ?>

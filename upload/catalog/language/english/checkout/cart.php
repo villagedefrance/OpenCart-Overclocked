@@ -21,6 +21,8 @@ $_['text_shipping_estimate']	= 'Estimate Shipping &amp; Taxes';
 $_['text_shipping_detail']   	= 'Enter your destination to get a shipping estimate.';
 $_['text_shipping_method'] 	= 'Please select the preferred shipping method to use on this order.';
 $_['text_empty']             		= 'Your shopping cart is empty!';
+
+// Text Recurring
 $_['text_until_cancelled']   	= 'until cancelled';
 $_['text_recurring_item']    	= 'Recurring item';
 $_['text_payment_profile']   	= 'Payment Profile';
@@ -32,6 +34,9 @@ $_['text_week']              		= 'week';
 $_['text_semi_month']        	= 'half-month';
 $_['text_month']             		= 'month';
 $_['text_year']              		= 'year';
+$_['text_trial']             		= '%s every %s %s for %s payments then ';
+$_['text_recurring']         		= '%s every %s %s';
+$_['text_length']            		= ' for %s payments';
 
 // Column
 $_['column_image']           	= 'Image';
@@ -65,8 +70,4 @@ $_['error_zone']             		= 'Please select a region / state!';
 $_['error_shipping']         		= 'Warning: Shipping method required!';
 $_['error_no_shipping']      	= 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_profile_required'] 	= 'Please select a payment profile!';
-
-$_['text_trial']             		= '%s every %s %s for %s payments then ';
-$_['text_recurring']         		= '%s every %s %s';
-$_['text_length']            		= ' for %s payments';
 ?>

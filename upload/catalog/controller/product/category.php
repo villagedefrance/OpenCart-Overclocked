@@ -114,6 +114,7 @@ class ControllerProductCategory extends Controller {
 			$this->data['text_grid'] = $this->language->get('text_grid');
 			$this->data['text_sort'] = $this->language->get('text_sort');
 			$this->data['text_limit'] = $this->language->get('text_limit');
+			$this->data['text_offer'] = $this->language->get('text_offer');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
@@ -172,6 +173,12 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+
+			$this->data['label'] = $this->config->get('config_offer_label');
+
+			$this->load->model('catalog/offer');
+
+			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 			$this->data['categories'] = array();
 
@@ -237,9 +244,16 @@ class ControllerProductCategory extends Controller {
 					$rating = false;
 				}
 
+				if (in_array($result['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+				
 				$this->data['products'][] = array(
 					'product_id' 	=> $result['product_id'],
 					'thumb'       	=> $image,
+					'offer'       		=> $offer,
 					'name'        	=> $result['name'],
 					'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 					'price'       		=> $price,

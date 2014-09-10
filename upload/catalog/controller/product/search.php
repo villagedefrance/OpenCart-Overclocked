@@ -148,6 +148,7 @@ class ControllerProductSearch extends Controller {
 		$this->data['text_grid'] = $this->language->get('text_grid');
 		$this->data['text_sort'] = $this->language->get('text_sort');
 		$this->data['text_limit'] = $this->language->get('text_limit');
+		$this->data['text_offer'] = $this->language->get('text_offer');
 
 		$this->data['entry_search'] = $this->language->get('entry_search');
 		$this->data['entry_description'] = $this->language->get('entry_description');
@@ -158,6 +159,12 @@ class ControllerProductSearch extends Controller {
 		$this->data['button_compare'] = $this->language->get('button_compare');
 
 		$this->data['compare'] = $this->url->link('product/compare');
+
+		$this->data['label'] = $this->config->get('config_offer_label');
+
+		$this->load->model('catalog/offer');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->load->model('catalog/category');
 
@@ -247,9 +254,16 @@ class ControllerProductSearch extends Controller {
 					$rating = false;
 				}
 
+				if (in_array($result['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
 				$this->data['products'][] = array(
 					'product_id'  	=> $result['product_id'],
 					'thumb'       	=> $image,
+					'offer'       		=> $offer,
 					'name'        	=> $result['name'],
 					'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 					'price'       		=> $price,

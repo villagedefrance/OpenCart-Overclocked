@@ -121,6 +121,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
 			$this->data['text_select'] = $this->language->get('text_select');
 			$this->data['text_none'] = $this->language->get('text_none');
+			$this->data['text_offer'] = $this->language->get('text_offer');
 			$this->data['text_until_cancelled'] = $this->language->get('text_until_cancelled');
 			$this->data['text_freq_day'] = $this->language->get('text_freq_day');
 			$this->data['text_freq_week'] = $this->language->get('text_freq_week');
@@ -191,6 +192,12 @@ class ControllerCheckoutCart extends Controller {
 				$this->data['weight'] = '';
 			}
 
+			$this->data['label'] = $this->config->get('config_offer_label');
+
+			$this->load->model('catalog/offer');
+
+			$offers = $this->model_catalog_offer->getListProductOffers(0);
+
 			$this->load->model('tool/image');
 
 			$this->data['products'] = array();
@@ -216,6 +223,12 @@ class ControllerCheckoutCart extends Controller {
 					$image = '';
 				}
 
+				if (in_array($product['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
 				$option_data = array();
 
 				foreach ($product['option'] as $option) {
@@ -229,7 +242,7 @@ class ControllerCheckoutCart extends Controller {
 
 					$option_data[] = array(
 						'name'	=> $option['name'],
-						'value' 	=> (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+						'value' 	=> (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
 					);
 				}
 
@@ -276,12 +289,13 @@ class ControllerCheckoutCart extends Controller {
 					'product_id'				=> $product['product_id'],
 					'key'                 		=> $product['key'],
 					'thumb'               	=> $image,
+					'offer'						=> $offer,
 					'name'                	=> $product['name'],
 					'model'               	=> $product['model'],
 					'option'              		=> $option_data,
 					'quantity'           		=> $product['quantity'],
-					'stock'               		=> $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-					'reward'              	=> ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
+					'stock'               		=> ($product['stock']) ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+					'reward'              	=> ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               		=> $price,
 					'total'               		=> $total,
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
@@ -664,7 +678,7 @@ class ControllerCheckoutCart extends Controller {
 
 				$json['total'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
 
-			} else { 
+			} else {
 				$json['redirect'] = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']));
 			}
 		}
