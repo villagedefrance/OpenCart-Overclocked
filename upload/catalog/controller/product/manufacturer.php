@@ -158,7 +158,7 @@ class ControllerProductManufacturer extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $manufacturer_info['name'],
+				'text'		=> $manufacturer_info['name'],
 				'href'  	=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
 				'separator' => $this->language->get('text_separator')
 			);
@@ -178,6 +178,7 @@ class ControllerProductManufacturer extends Controller {
 			$this->data['text_grid'] = $this->language->get('text_grid');
 			$this->data['text_sort'] = $this->language->get('text_sort');
 			$this->data['text_limit'] = $this->language->get('text_limit');
+			$this->data['text_offer'] = $this->language->get('text_offer');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
@@ -185,6 +186,12 @@ class ControllerProductManufacturer extends Controller {
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['compare'] = $this->url->link('product/compare');
+
+			$this->data['label'] = $this->config->get('config_offer_label');
+
+			$this->load->model('catalog/offer');
+
+			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 			$this->data['products'] = array();
 
@@ -231,9 +238,16 @@ class ControllerProductManufacturer extends Controller {
 					$rating = false;
 				}
 
+				if (in_array($result['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
 				$this->data['products'][] = array(
 					'product_id'  	=> $result['product_id'],
 					'thumb'       	=> $image,
+					'offer'       		=> $offer,
 					'name'        	=> $result['name'],
 					'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 					'price'       		=> $price,
