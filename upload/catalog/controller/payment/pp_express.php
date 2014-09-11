@@ -1180,7 +1180,7 @@ class ControllerPaymentPPExpress extends Controller {
 					'payment_type' 			=> $result['PAYMENTINFO_0_PAYMENTTYPE'],
 					'payment_status' 		=> $result['PAYMENTINFO_0_PAYMENTSTATUS'],
 					'pending_reason' 			=> $result['PAYMENTINFO_0_PENDINGREASON'],
-					'transaction_entity' 		=> ($this->config->get('pp_express_method')) == 'Sale' ? 'payment' : 'auth',
+					'transaction_entity' 		=> ($this->config->get('pp_express_method') == 'Sale') ? 'payment' : 'auth',
 					'amount' 					=> $result['PAYMENTINFO_0_AMT'],
 					'debug_data' 				=> json_encode($result)
 				);
