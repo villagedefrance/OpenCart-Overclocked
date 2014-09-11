@@ -139,9 +139,9 @@ class ControllerProductCompare extends Controller {
 							$offer_mirror_name = $this->model_catalog_offer->getOfferProductName($product_offer['two']);
 							$offer_product = $product_offer['one'];
 						} else {
-							$offer_name = false;
-							$offer_mirror_name = false;
-							$offer_product = false;
+							$offer_name = '';
+							$offer_mirror_name = '';
+							$offer_product = '';
 						}
 
 						if ($product_offer['group'] == 'G241') {
@@ -156,6 +156,10 @@ class ControllerProductCompare extends Controller {
 							$offer_label = '';
 						}
 					}
+
+				} else {
+					$offer_product = '';
+					$offer_label = '';
 				}
 
 				$this->data['products'][$product_id] = array(

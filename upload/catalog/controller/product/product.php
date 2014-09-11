@@ -243,9 +243,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_tax'] = $this->language->get('text_tax');
 			$this->data['text_discount'] = $this->language->get('text_discount');
 			$this->data['text_option'] = $this->language->get('text_option');
-			$this->data['text_qty'] = $this->language->get('text_qty');
 			$this->data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
-			$this->data['text_or'] = $this->language->get('text_or');
 			$this->data['text_write'] = $this->language->get('text_write');
 			$this->data['text_note'] = $this->language->get('text_note');
 			$this->data['text_share'] = $this->language->get('text_share');
@@ -442,9 +440,9 @@ class ControllerProductProduct extends Controller {
 
 					} else {
 						$offer_image = false;
-						$offer_name = false;
-						$offer_mirror_name = false;
-						$offer_product = false;
+						$offer_name = '';
+						$offer_mirror_name = '';
+						$offer_product = '';
 					}
 
 					if ($product_offer['group'] == 'G241') {

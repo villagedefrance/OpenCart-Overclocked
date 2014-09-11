@@ -602,12 +602,9 @@ table.radio tr.highlight:hover td {
 	padding-top: 3px;
 }
 /* Button */
-a.button, input.button {
+a.button, input.button, input.button-cart {
 	font-family: Arial, Helvetica, sans-serif;
 	color: #FFF;
-	font-size: 12px;
-	font-weight: bold;
-	line-height: 12px;
 	background-color: #28B0EC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#28B0EC), to(#079BDC));
 	background-image: -webkit-linear-gradient(top, #28B0EC, #079BDC);
@@ -615,10 +612,10 @@ a.button, input.button {
 	background-image: -ms-linear-gradient(top, #28B0EC, #079BDC);
 	background-image: -o-linear-gradient(top, #28B0EC, #079BDC);
 	background-image: linear-gradient(to bottom, #28B0EC, #079BDC);
-	-webkit-border-radius: 7px;
-	-moz-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	border-radius: 7px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 	-webkit-box-shadow: 0px 2px 2px #DDD;
 	-moz-box-shadow: 0px 2px 2px #DDD;
 	box-shadow: 0px 2px 2px #DDD;
@@ -628,14 +625,29 @@ a.button {
 	display: inline-block;
 	text-decoration: none;
 	padding: 6px 12px 6px 12px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 12px;
 }
 input.button {
 	margin: 0;
 	border: 0;
 	height: 24px;
 	padding: 0px 12px 0px 12px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 12px;
 }
-a.button:hover, input.button:hover {
+input.button-cart {
+	margin: 0;
+	border: 0;
+	height: 28px;
+	padding: 0px 14px 0px 14px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 14px;
+}
+a.button:hover, input.button:hover, input.button-cart:hover {
 	background-color: #0D6D98;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#0D6D98), to(#045C84));
 	background-image: -webkit-linear-gradient(top, #0D6D98, #045C84);
@@ -643,6 +655,36 @@ a.button:hover, input.button:hover {
 	background-image: -ms-linear-gradient(top, #0D6D98, #045C84);
 	background-image: -o-linear-gradient(top, #0D6D98, #045C84);
 	background-image: linear-gradient(to bottom, #0D6D98, #045C84);
+}
+/* Button Add */
+a.button-add {
+	display: inline-block;
+	margin: 0;
+	border: 0;
+	height: 20px;
+	padding: 1px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+	line-height: 20px;
+}
+a.button-add:hover {
+	background-color: #F2F2F2;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#CFCFCF));
+	background-image: -webkit-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -moz-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -ms-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -o-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: linear-gradient(to bottom, #F2F2F2, #CFCFCF);
 }
 /* Buttons */
 .buttons {
@@ -1374,7 +1416,9 @@ ul.box-filter > li ul {
 }
 .product-info .cart .links {
 	display: inline-block;
-	vertical-align: middle;
+	position: relative;
+	top: 1px;
+	margin-left: 25px;
 }
 .product-info .cart .minimum {
 	padding-top: 5px;

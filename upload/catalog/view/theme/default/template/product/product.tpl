@@ -226,15 +226,16 @@
         </div>
         <?php } ?>
         <div class="cart">
-          <div><?php echo $text_qty; ?>
-            <input type="text" name="quantity" size="2" value="<?php echo $minimum; ?>" />
-            <input type="hidden" name="product_id" size="2" value="<?php echo $product_id; ?>" />
+          <div>
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-minus.png" alt="" style="cursor:pointer;" onclick="buttonminus(<?php echo $minimum; ?>);" />
+            <input type="text" name="quantity" id="quantity" size="2" value="<?php echo $minimum; ?>" />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-plus.png" alt="" style="cursor:pointer;" onclick="buttonplus();" />
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             &nbsp;
-            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button" />
-            <span>&nbsp;&nbsp;<?php echo $text_or; ?>&nbsp;&nbsp;</span>
+            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
             <span class="links">
-              <a onclick="addToWishList('<?php echo $product_id; ?>');"><?php echo $button_wishlist; ?></a><br />
-              <a onclick="addToCompare('<?php echo $product_id; ?>');"><?php echo $button_compare; ?></a>
+              <a onclick="addToWishList('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
+              <a onclick="addToCompare('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
             </span>
           </div>
           <?php if ($minimum > 1) { ?>
@@ -246,12 +247,12 @@
           <div><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $text_write; ?></a></div>
           <div class="share">
             <div class="addthis_toolbox addthis_default_style">
-              <a class="addthis_button_compact"><?php echo $text_share; ?></a> 
-              <a class="addthis_button_email"></a>
               <a class="addthis_button_print"></a>
+              <a class="addthis_button_email"></a>
               <a class="addthis_button_preferred_1"></a>
               <a class="addthis_button_preferred_2"></a>
               <a class="addthis_button_preferred_3"></a>
+              <a class="addthis_button_compact"><?php echo $text_share; ?></a> 
             </div>
             <?php if ($addthis) { ?>
               <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $addthis; ?>"></script>
@@ -406,6 +407,23 @@ $(document).ready(function() {
 		}
 	});
 });
+//--></script>
+
+<script type="text/javascript"><!--
+$('#quantity').parent().children().css('vertical-align', 'middle');
+
+function buttonminus(a) {
+	var b = document.getElementById("quantity");
+	if (b.value > a) {
+		document.getElementById("quantity").value--;
+	} else {
+		document.getElementById("quantity").value=a;
+	}
+}
+
+function buttonplus() {
+	document.getElementById("quantity").value++;
+}
 //--></script>
 
 <script type="text/javascript"><!--

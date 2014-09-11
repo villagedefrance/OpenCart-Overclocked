@@ -41,22 +41,22 @@
 	width: 0px;
 	height: 0px;
 	cursor: pointer;
-    border-left: 30px solid #CCC;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+    border-left: 25px solid #CCC;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
 }
 .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-next-horizontal {
 	left: 5px;
 	right: auto;
-	border-right: 30px solid #CCC;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+	border-right: 25px solid #CCC;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
 }
 .jcarousel-skin-opencart .jcarousel-next-horizontal:hover, .jcarousel-skin-opencart .jcarousel-next-horizontal:focus {
-	border-left: 30px solid #38B0E3;
+	border-left: 25px solid #38B0E3;
 }
 .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-next-horizontal:hover, .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-next-horizontal:focus {
-	border-right: 30px solid #38B0E3;
+	border-right: 25px solid #38B0E3;
 }
 .jcarousel-skin-opencart .jcarousel-next-horizontal:active {
 }
@@ -72,22 +72,22 @@
 	width: 0px;
 	height: 0px;
 	cursor: pointer;
-	border-right: 30px solid #CCC;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+	border-right: 25px solid #CCC;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
 }
 .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-prev-horizontal {
 	left: auto;
 	right: 0px;
-	border-left: 30px solid #CCC;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+	border-left: 25px solid #CCC;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
 }
 .jcarousel-skin-opencart .jcarousel-prev-horizontal:hover, .jcarousel-skin-opencart .jcarousel-prev-horizontal:focus {
-	border-right: 30px solid #38B0E3;
+	border-right: 25px solid #38B0E3;
 }
 .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-prev-horizontal:hover, .jcarousel-skin-opencart .jcarousel-direction-rtl .jcarousel-prev-horizontal:focus {
-	border-left: 30px solid #38B0E3;
+	border-left: 25px solid #38B0E3;
 }
 .jcarousel-skin-opencart .jcarousel-prev-horizontal:active {
 }
