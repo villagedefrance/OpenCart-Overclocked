@@ -508,7 +508,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				$option_data[] = array(
 					'name' => $option['name'],
-					'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+					'value' => (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
 				);
 			}
 
@@ -560,7 +560,7 @@ class ControllerPaymentPPExpress extends Controller {
 				'option' 					=> $option_data,
 				'quantity' 				=> $product['quantity'],
 				'stock' 					=> $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-				'reward' 					=> ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
+				'reward' 					=> ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 				'price' 					=> $price,
 				'total' 					=> $total,
 				'href' 						=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
@@ -1161,7 +1161,7 @@ class ControllerPaymentPPExpress extends Controller {
 				//add order to paypal table
 				$paypal_order_data = array(
 					'order_id' 			=> $order_id,
-					'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale' ? 'Complete' : 'NotComplete'),
+					'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
 					'currency_code' 	=> $result['PAYMENTINFO_0_CURRENCYCODE'],
 					'authorization_id' 	=> $result['PAYMENTINFO_0_TRANSACTIONID'],
 					'total' 				=> $result['PAYMENTINFO_0_AMT']
@@ -1180,7 +1180,7 @@ class ControllerPaymentPPExpress extends Controller {
 					'payment_type' 			=> $result['PAYMENTINFO_0_PAYMENTTYPE'],
 					'payment_status' 		=> $result['PAYMENTINFO_0_PAYMENTSTATUS'],
 					'pending_reason' 			=> $result['PAYMENTINFO_0_PENDINGREASON'],
-					'transaction_entity' 		=> ($this->config->get('pp_express_method') == 'Sale' ? 'payment' : 'auth'),
+					'transaction_entity' 		=> ($this->config->get('pp_express_method')) == 'Sale' ? 'payment' : 'auth',
 					'amount' 					=> $result['PAYMENTINFO_0_AMT'],
 					'debug_data' 				=> json_encode($result)
 				);
@@ -1432,7 +1432,7 @@ class ControllerPaymentPPExpress extends Controller {
 			//add order to paypal table
 			$paypal_order_data = array(
 				'order_id' 			=> $order_id,
-				'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale' ? 'Complete' : 'NotComplete'),
+				'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
 				'currency_code' 	=> $result['PAYMENTINFO_0_CURRENCYCODE'],
 				'authorization_id' 	=> $result['PAYMENTINFO_0_TRANSACTIONID'],
 				'total' 				=> $result['PAYMENTINFO_0_AMT']
@@ -1451,7 +1451,7 @@ class ControllerPaymentPPExpress extends Controller {
 				'payment_type' 			=> $result['PAYMENTINFO_0_PAYMENTTYPE'],
 				'payment_status' 		=> $result['PAYMENTINFO_0_PAYMENTSTATUS'],
 				'pending_reason' 			=> $result['PAYMENTINFO_0_PENDINGREASON'],
-				'transaction_entity' 		=> ($this->config->get('pp_express_method') == 'Sale' ? 'payment' : 'auth'),
+				'transaction_entity' 		=> ($this->config->get('pp_express_method') == 'Sale') ? 'payment' : 'auth',
 				'amount' 					=> $result['PAYMENTINFO_0_AMT'],
 				'debug_data' 				=> json_encode($result)
 			);

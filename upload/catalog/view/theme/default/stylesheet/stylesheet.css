@@ -630,7 +630,6 @@ a.button {
 	line-height: 12px;
 }
 input.button {
-	margin: 0;
 	border: 0;
 	height: 24px;
 	padding: 0px 12px 0px 12px;
@@ -639,7 +638,6 @@ input.button {
 	line-height: 12px;
 }
 input.button-cart {
-	margin: 0;
 	border: 0;
 	height: 28px;
 	padding: 0px 14px 0px 14px;
@@ -659,7 +657,6 @@ a.button:hover, input.button:hover, input.button-cart:hover {
 /* Button Add */
 a.button-add {
 	display: inline-block;
-	margin: 0;
 	border: 0;
 	height: 20px;
 	padding: 1px;
@@ -1213,24 +1210,11 @@ ul.box-filter > li ul {
 	color: #BBB;
 }
 .product-list .cart {
-	margin-bottom: 3px;
+	margin: 3px auto;
 }
-.product-list .wishlist, .product-list .compare {
-	margin-bottom: 3px;
-}
-.product-list .wishlist a {
-	display: block;
-	color: #333;
-	text-decoration: none;
-	background: url('../image/add.png') left center no-repeat;
-	padding-left: 18px;
-}
-.product-list .compare a {
-	display: block;
-	color: #333;
-	text-decoration: none;
-	background: url('../image/add.png') left 60% no-repeat;
-	padding-left: 18px;
+.product-list .links {
+	display: inline-block;
+	margin: 4px auto;
 }
 /* Product grid */
 .product-grid {
