@@ -1273,22 +1273,9 @@ ul.box-filter > li ul {
 .product-grid .cart {
 	margin-bottom: 3px;
 }
-.product-grid .wishlist, .product-grid .compare {
-	margin-bottom: 3px;
-}
-.product-grid .wishlist a {
-	display: block;
-	color: #333;
-	text-decoration: none;
-	background: url('../image/add.png') left center no-repeat;
-	padding-left: 18px;
-}
-.product-grid .compare a {
-	display: block;
-	color: #333;
-	text-decoration: none;
-	background: url('../image/add.png') left center no-repeat;
-	padding-left: 18px;
+.product-grid .links {
+	display: inline-block;
+	margin: 4px auto;
 }
 /* Product info */
 .product-info {
@@ -1303,17 +1290,17 @@ ul.box-filter > li ul {
 	margin-left: 265px;
 }
 .product-info .image {
-	border: 1px solid #E7E7E7;
 	float: left;
+	border: 1px solid #E7E7E7;
+	text-align: center;
 	margin-bottom: 20px;
 	padding: 10px;
-	text-align: center;
 }
 .product-info .image-additional {
 	width: 260px;
 	margin-left: -10px;
-	clear: both;
 	overflow: hidden;
+	clear: both;
 }
 .product-info .image-additional img {
 	border: 1px solid #E7E7E7;
@@ -1340,7 +1327,6 @@ ul.box-filter > li ul {
 	text-decoration: none;
 }
 .product-info .price {
-	overflow: auto;
 	border-bottom: 1px solid #E7E7E7;
 	padding: 0px 5px 10px 5px;
 	margin-bottom: 10px;
@@ -1386,7 +1372,7 @@ ul.box-filter > li ul {
 }
 .product-info .option-image img {
 	margin-right: 5px;
-	border: 1px solid #CCC;
+	border: 1px solid #D7D7D7;
 	cursor: pointer;
 }
 .product-info .cart {
@@ -1411,22 +1397,18 @@ ul.box-filter > li ul {
 }
 .product-info .review {
 	color: #4D4D4D;
-	border-top: 1px solid #E7E7E7;
-	border-left: 1px solid #E7E7E7;
-	border-right: 1px solid #E7E7E7;
+	border: 1px solid #E7E7E7;
 	margin-bottom: 10px;
 }
-.product-info .review > div {
-	padding: 8px;
+.product-info .review .rating {
 	border-bottom: 1px solid #E7E7E7;
 	line-height: 20px;
-}
-.product-info .review > div > span {
-	color: #38B0E3;
+	padding: 8px;
 }
 .product-info .review .share {
-	overflow: auto;
-	line-height: normal;
+	line-height: 20px;
+	padding: 8px;
+	overflow: hidden;
 }
 .product-info .review .share a {
 	text-decoration: none;

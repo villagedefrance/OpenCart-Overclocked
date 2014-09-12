@@ -226,8 +226,6 @@ class ControllerProductProduct extends Controller {
 			$this->document->setKeywords($product_info['meta_keyword']);
 			$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');
 
-			$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
-			$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
 			$this->document->addScript('catalog/view/javascript/jquery/tabs.js');
 
 			$this->data['heading_title'] = $product_info['name'];
@@ -289,16 +287,50 @@ class ControllerProductProduct extends Controller {
 
 			$this->load->model('tool/image');
 
+			if ($this->config->get('config_viewer') == 'zoomlens') {
+				$this->document->addStyle('catalog/view/javascript/jquery/simple-lens/css/jquery.simpleLens.css');
+
+				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/js/jquery.simpleGallery.min.js');
+				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/js/jquery.simpleLens.min.js');
+
+				if ($product_info['image']) {
+					$this->data['zoom'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2);
+				} else {
+					$this->data['zoom'] = '';
+				}
+
+				if ($product_info['image']) {
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 230, 230);
+				} else {
+					$this->data['thumb'] = '';
+				}
+
+				if ($product_info['image']) {
+					$this->data['gallery_thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
+				} else {
+					$this->data['gallery_thumb'] = '';
+				}
+
+				$this->data['lightbox'] = 'zoomlens';
+
+			} else {
+				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
+
+				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
+
+				if ($product_info['image']) {
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+				} else {
+					$this->data['thumb'] = '';
+				}
+
+				$this->data['lightbox'] = 'magnific';
+			}
+
 			if ($product_info['image']) {
 				$this->data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
 			} else {
 				$this->data['popup'] = '';
-			}
-
-			if ($product_info['image']) {
-				$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-			} else {
-				$this->data['thumb'] = '';
 			}
 
 			$this->data['images'] = array();
@@ -307,6 +339,7 @@ class ControllerProductProduct extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['images'][] = array(
+					'zoom' 	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2),
 					'popup'	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
 					'thumb' 	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
 				);

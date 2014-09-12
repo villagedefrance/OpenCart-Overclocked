@@ -44,6 +44,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_administration'] = $this->language->get('text_administration');
 		$this->data['text_store_front'] = $this->language->get('text_store_front');
+		$this->data['text_magnific'] = $this->language->get('text_magnific');
+		$this->data['text_zoomlens'] = $this->language->get('text_zoomlens');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
@@ -120,6 +122,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
+		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
 		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_contact_image'] = $this->language->get('entry_contact_image');
@@ -775,6 +778,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_autocomplete_product'] = $this->request->post['config_autocomplete_product'];
 		} else {
 			$this->data['config_autocomplete_product'] = $this->config->get('config_autocomplete_product');
+		}
+
+		if (isset($this->request->post['config_viewer'])) {
+			$this->data['config_viewer'] = $this->request->post['config_viewer'];
+		} else {
+			$this->data['config_viewer'] = $this->config->get('config_viewer');
 		}
 
 		if (isset($this->request->post['config_manufacturer'])) {

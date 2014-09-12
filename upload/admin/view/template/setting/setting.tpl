@@ -730,6 +730,18 @@
         <h2><?php echo $text_store_front; ?></h2>
         <table class="form">
           <tr>
+            <td><?php echo $entry_viewer; ?></td>
+            <td><select name="config_viewer">
+              <?php if (isset($config_viewer)) { $selected = "selected"; ?>
+                <option value="magnific" <?php if ($config_viewer == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?></option>
+                <option value="zoomlens" <?php if ($config_viewer == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
+              <?php } else { ?>
+                <option value="magnific"><?php echo $text_magnific; ?></option>
+                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_manufacturer; ?></td>
             <td><?php if ($config_manufacturer) { ?>
               <input type="radio" name="config_manufacturer" value="1" checked="checked" />
