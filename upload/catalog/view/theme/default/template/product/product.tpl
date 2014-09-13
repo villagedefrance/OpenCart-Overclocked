@@ -32,6 +32,9 @@
       <?php } ?>
       <?php if ($lightbox == 'zoomlens') { ?>
         <?php if ($thumb) { ?>
+          <?php if (!$label && $offers) { ?>
+            <div class="promo-large" style="z-index: 9999;"><?php echo $text_offer; ?></div>
+          <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
             <div class="simpleLens-container">
               <div class="simpleLens-big-image-container">
