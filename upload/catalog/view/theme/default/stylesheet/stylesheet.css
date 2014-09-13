@@ -657,31 +657,25 @@ a.button:hover, input.button:hover, input.button-cart:hover {
 /* Button Add */
 a.button-add {
 	display: inline-block;
-	border: 0;
 	height: 20px;
 	padding: 1px;
-	border: 1px solid #CCC;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-	background-color: #FCFCFC;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
-	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: -moz-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
 	line-height: 20px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-khtml-border-radius: 11px;
+	border-radius: 11px;
+	-webkit-box-shadow: 0px 1px 2px #DDD;
+	-moz-box-shadow: 0px 1px 2px #DDD;
+	box-shadow: 0px 1px 2px #DDD;
+	cursor: pointer;
 }
 a.button-add:hover {
-	background-color: #F2F2F2;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#CFCFCF));
-	background-image: -webkit-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: -moz-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: -ms-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: -o-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: linear-gradient(to bottom, #F2F2F2, #CFCFCF);
+	border: 1px solid #4C4C4C;
+	-webkit-box-shadow: 0px 1px 2px #999;
+	-moz-box-shadow: 0px 1px 2px #999;
+	box-shadow: 0px 1px 2px #999;
 }
 /* Buttons */
 .buttons {
