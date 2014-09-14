@@ -28,7 +28,7 @@
 	float: none;
     position: relative;
 	display: inline-block;
-	height: auto !important;
+	height: auto;
 	width: 230px;
 	vertical-align: middle;
     text-align: center;
@@ -43,6 +43,7 @@
 	opacity: 0.2;
 	zoom: 1;
 	cursor: none;
+	z-index: 10;
 }
 .simpleLens-lens-element {
 	position: absolute;
@@ -54,14 +55,14 @@
 	border: 1px solid #E7E7E7;
 	text-align: center;
 	overflow: hidden;
-    z-index: 99;
+    z-index: 10;
 }
 .simpleLens-lens-element img {
     position: relative;
     top: 0;
     left: 0;
-    width: auto !important;
-    max-width: none !important;
+    width: auto;
+    max-width: none;
 }
 /* Simple Lens - Thumbnails */
 .product-info .simpleLens-thumbnails-container {

@@ -379,7 +379,7 @@ samp, small {
 	position: relative;
 	float: left;
 	padding: 6px 5px 5px 0px;
-	z-index: 20;
+	z-index: 10;
 }
 #menu > ul > li:hover {
 }
@@ -411,7 +411,7 @@ samp, small {
 	border-radius: 0px 0px 5px 5px;
 	background: url('../image/menu.png');
 	padding: 5px;
-	z-index: 10;
+	z-index: 12;
 }
 #menu > ul > li:hover > div {
 	display: table;
@@ -483,12 +483,12 @@ samp, small {
 }
 /* Common */
 .required {
-	color: #FF0000;
+	color: #F00;
 	font-weight: bold;
 }
 .error {
 	display: block;
-	color: #FF0000;
+	color: #F00;
 }
 .help {
 	color: #999;
@@ -507,7 +507,7 @@ table.form tr td:first-child {
 	width: 150px;
 }
 table.form > * > * > td {
-	color: #000;
+	color: #111;
 }
 table.form td {
 	padding: 4px;
@@ -672,10 +672,10 @@ a.button-add {
 	cursor: pointer;
 }
 a.button-add:hover {
-	border: 1px solid #4C4C4C;
-	-webkit-box-shadow: 0px 1px 2px #999;
-	-moz-box-shadow: 0px 1px 2px #999;
-	box-shadow: 0px 1px 2px #999;
+	border: 1px solid #269BC6;
+	-webkit-box-shadow: 0px 1px 2px #CCC;
+	-moz-box-shadow: 0px 1px 2px #CCC;
+	box-shadow: 0px 1px 2px #CCC;
 }
 /* Buttons */
 .buttons {
@@ -1353,7 +1353,7 @@ ul.box-filter > li ul {
 	border-bottom: 1px solid #E7E7E7;
 	padding: 0px 5px 10px 5px;
 	margin-bottom: 10px;
-	color: #000;
+	color: #111;
 }
 .product-info .option-image {
 	margin-top: 3px;
@@ -1919,6 +1919,7 @@ ul.box-filter > li ul {
 	font-weight: bold;
 	font-size: 17px;
 	color: #FFF;
+	z-index: 9;
 }
 .promo-medium {
 	position: relative;
@@ -1940,6 +1941,7 @@ ul.box-filter > li ul {
 	font-weight: bold;
 	font-size: 10px;
 	color: #FFF;
+	z-index: 9;
 }
 .promo-small {
 	position: relative;
@@ -1961,6 +1963,7 @@ ul.box-filter > li ul {
 	font-weight: bold;
 	font-size: 8px;
 	color: #FFF;
+	z-index: 9;
 }
 .promo-mini {
 	position: relative;
