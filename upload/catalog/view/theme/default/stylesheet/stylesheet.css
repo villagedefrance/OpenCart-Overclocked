@@ -358,9 +358,8 @@ samp, small {
 /* Menu */
 #menu {
 	background: #585858;
-	border-bottom: 1px solid #000;
 	height: 37px;
-	margin-bottom: 15px;
+	border-bottom: 1px solid #111;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-khtml-border-radius: 5px 5px 5px 5px;
@@ -368,6 +367,7 @@ samp, small {
 	-webkit-box-shadow: 0px 2px 2px #DDD;
 	-moz-box-shadow: 0px 2px 2px #DDD;
 	box-shadow: 0px 2px 2px #DDD;
+	margin-bottom: 15px;
 	padding: 0px 5px;
 }
 #menu ul {
@@ -378,40 +378,40 @@ samp, small {
 #menu > ul > li {
 	position: relative;
 	float: left;
-	z-index: 20;
 	padding: 6px 5px 5px 0px;
+	z-index: 20;
 }
 #menu > ul > li:hover {
 }
 #menu > ul > li > a {
+	position: relative;
+	display: block;
+	line-height: 14px;
 	font-size: 13px;
 	color: #FFF;
-	line-height: 14px;
 	text-decoration: none;
-	display: block;
-	padding: 6px 10px 6px 10px;
 	margin-bottom: 5px;
-	z-index: 6;
-	position: relative;
+	padding: 6px 10px 6px 10px;
+	z-index: 11;
 }
 #menu > ul > li:hover > a {
-	background: #000;
+	background: #111;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
 #menu > ul > li > div {
-	display: none;
 	position: absolute;
-	z-index: 5;
-	padding: 5px;
-	border: 1px solid #000;
+	display: none;
+	border: 1px solid #111;
 	-webkit-border-radius: 0px 0px 5px 5px;
 	-moz-border-radius: 0px 0px 5px 5px;
 	-khtml-border-radius: 0px 0px 5px 5px;
 	border-radius: 0px 0px 5px 5px;
 	background: url('../image/menu.png');
+	padding: 5px;
+	z-index: 10;
 }
 #menu > ul > li:hover > div {
 	display: table;
@@ -423,15 +423,15 @@ samp, small {
 	padding-left: 20px;
 }
 #menu > ul > li ul > li > a {
-	text-decoration: none;
-	padding: 4px;
-	color: #FFF;
 	display: block;
 	white-space: nowrap;
 	min-width: 120px;
+	color: #FFF;
+	text-decoration: none;
+	padding: 4px;
 }
 #menu > ul > li ul > li > a:hover {
-	background: #000;
+	background: #111;
 }
 #menu > ul > li > div > ul > li > a {
 	color: #FFF;
@@ -1399,6 +1399,12 @@ ul.box-filter > li ul {
 	line-height: 20px;
 	padding: 8px;
 }
+.product-info .review .rating img {
+	vertical-align: middle;
+}
+.product-info .review .rating a {
+	text-decoration: none;
+}
 .product-info .review .share {
 	line-height: 20px;
 	padding: 8px;
@@ -1434,14 +1440,14 @@ ul.box-filter > li ul {
 	margin-bottom: 20px;
 }
 .attribute thead td, .attribute thead tr td:first-child {
-	color: #000;
+	color: #111;
 	font-size: 14px;
 	font-weight: bold;
 	background: #F7F7F7;
 	text-align: left;
 }
 .attribute tr td:first-child {
-	color: #000;
+	color: #111;
 	font-weight: bold;
 	text-align: right;
 	width: 20%;
@@ -1463,14 +1469,14 @@ ul.box-filter > li ul {
 	margin-bottom: 20px;
 }
 .compare-info thead td, .compare-info thead tr td:first-child {
-	color: #000;
+	color: #111;
 	font-size: 14px;
 	font-weight: bold;
 	background: #F7F7F7;
 	text-align: left;
 }
 .compare-info tr td:first-child {
-	color: #000;
+	color: #111;
 	font-weight: bold;
 	text-align: right;
 }
