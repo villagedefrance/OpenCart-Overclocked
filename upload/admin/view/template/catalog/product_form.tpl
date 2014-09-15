@@ -1213,7 +1213,7 @@ function addAttribute() {
 	html += '    <td class="left"><input type="text" name="product_attribute[' + attribute_row + '][name]" value="" /><input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" /></td>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '<textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
+	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
@@ -1294,10 +1294,10 @@ $('input[name=\'option\']').catcomplete({
 		html += '	  <tr>';
 		html += '		<td><?php echo $entry_required; ?></td>';
 		html += '        <td><select name="product_option[' + option_row + '][required]">';
-		html += '	       <option value="1"><?php echo $text_yes; ?></option>';
-		html += '	       <option value="0"><?php echo $text_no; ?></option>';
-		html += '	     </select></td>';
-		html += '     </tr>';
+		html += '          <option value="1"><?php echo $text_yes; ?></option>';
+		html += '          <option value="0"><?php echo $text_no; ?></option>';
+		html += '        </select></td>';
+		html += '      </tr>';
 
 		if (ui.item.type == 'text') {
 			html += '     <tr>';
@@ -1345,7 +1345,7 @@ $('input[name=\'option\']').catcomplete({
 
 		if (ui.item.type == 'select' || ui.item.type == 'radio' || ui.item.type == 'checkbox' || ui.item.type == 'image') {
 			html += '  <table id="option-value' + option_row + '" class="list">';
-			html += '  	 <thead>';
+			html += '    <thead>';
 			html += '      <tr>';
 			html += '        <td class="right"><?php echo $entry_option_value; ?></td>';
 			html += '        <td class="right"><?php echo $entry_quantity; ?></td>';
@@ -1355,7 +1355,7 @@ $('input[name=\'option\']').catcomplete({
 			html += '        <td class="right"><?php echo $entry_weight; ?></td>';
 			html += '        <td></td>';
 			html += '      </tr>';
-			html += '  	 </thead>';
+			html += '    </thead>';
 			html += '    <tfoot>';
 			html += '      <tr>';
 			html += '        <td colspan="6"></td>';
@@ -1559,16 +1559,16 @@ var image_row = <?php echo $image_row; ?>;
 
 function addImage() {
 	html  = '<tbody id="image-row' + image_row + '">';
-	html += ' <tr>';
-	html += ' 	<td class="center">';
-	html += '  	<div class="image">';
-	html += '		<img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
-	html += '       	<a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
-	html += ' 	</div>';
-	html += ' 	</td>';
-	html += ' 	<td class="center"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
-	html += ' 	<td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
-	html += ' </tr>';
+	html += '  <tr>';
+	html += '    <td class="center">';
+	html += '      <div class="image">';
+	html += '        <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
+	html += '        <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
+	html += '      </div>';
+	html += '    </td>';
+	html += '    <td class="center"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
+	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
 	html += '</tbody>';
 
 	$('#images tfoot').before(html);

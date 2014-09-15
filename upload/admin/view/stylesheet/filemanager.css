@@ -11,7 +11,7 @@ img {
 }
 #container {
 	padding: 0px 10px;
-	height: 350px;
+	height: 355px;
 	overflow: hidden;
 }
 #menu {
@@ -24,7 +24,7 @@ img {
 	border: 1px solid #CCC;
 	float: left;
 	width: 26%;
-	height: 280px;
+	height: 285px;
 	overflow: auto;
 }
 #column-right {
@@ -32,7 +32,7 @@ img {
 	border: 1px solid #CCC;
 	float: right;
 	width: 72%;
-	height: 280px;
+	height: 285px;
 	overflow: auto;
 	text-align: center;
 }
