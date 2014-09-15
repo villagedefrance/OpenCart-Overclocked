@@ -463,6 +463,12 @@ class ModelCatalogProduct extends Model {
 		return $product_description_data;
 	}
 
+	public function getProductName($product_id) {
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
+
+		return $query->row['name'];
+	}
+
 	public function getProductCategories($product_id) {
 		$product_category_data = array();
 

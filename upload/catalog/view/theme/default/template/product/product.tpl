@@ -334,7 +334,9 @@
       <div class="box-product">
       <?php foreach ($offers as $offer) { ?>
         <div>
-          <div class="promo-medium"><?php echo $text_offer; ?></div>
+          <?php if (!$label) { ?>
+            <div class="promo-medium"><?php echo $text_offer; ?></div>
+          <?php } ?>
           <?php if ($offer['thumb']) { ?>
             <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
           <?php } ?>

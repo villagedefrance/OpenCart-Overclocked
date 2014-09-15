@@ -10,7 +10,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/product.png" alt="" /> <?php echo $product_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
@@ -385,33 +385,34 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_related; ?></td>
-            <td><table>
-              <tr>
-                <td colspan="3" style="padding:0;"><select id="category" style="margin-bottom:5px;" onchange="getProducts();">
-                <?php foreach ($categories as $category) { ?>
-                  <?php if (in_array($category['category_id'], $product_category)) { ?>
-                    <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+            <td>
+			  <table>
+                <tr>
+                  <td colspan="3" style="padding:0;"><select id="category" style="margin-bottom:5px;" onchange="getProducts();">
+                  <?php foreach ($categories as $category) { ?>
+                    <?php if (in_array($category['category_id'], $product_categories)) { ?>
+                      <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+                    <?php } ?>
                   <?php } ?>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td style="padding:0;"><select multiple="multiple" id="product" size="10" style="width:350px; height:153px; background:#F8F8F8; border:1px solid #CCC;"></select></td>
+                  <td style="vertical-align:middle;">
+                    <input type="button" class="button" value="&gt;&gt;" onclick="addRelated();" />
+                    <br /><br />
+                    <input type="button" class="button" value="&lt;&lt;" onclick="removeRelated();" />
+                  </td>
+                  <td style="padding:0;"><select multiple="multiple" id="related" size="10" style="width:350px; height:153px; border:1px solid #CCC;"></select></td>
+                </tr>
+              </table>
+              <div id="product_related">
+                <?php foreach ($product_related as $product_related) { ?>
+                  <input type="hidden" name="product_related[]" value="<?php echo $product_related['product_id']; ?>" />
                 <?php } ?>
-                </select></td>
-              </tr>
-              <tr>
-                <td style="padding:0;"><select multiple="multiple" id="product" size="10" style="width:350px; height:153px; background:#F8F8F8; border:1px solid #CCC;"></select></td>
-                <td style="vertical-align:middle;">
-                  <input type="button" class="button" value="&gt;&gt;" onclick="addRelated();" />
-                  <br /><br />
-                  <input type="button" class="button" value="&lt;&lt;" onclick="removeRelated();" />
-                </td>
-                <td style="padding:0;"><select multiple="multiple" id="related" size="10" style="width:350px; height:153px; border:1px solid #CCC;"></select></td>
-              </tr>
-            </table>
-            <div id="product_related">
-              <?php foreach ($product_related as $product_related) { ?>
-                <input type="hidden" name="product_related[]" value="<?php echo $product_related['product_id']; ?>" />
-              <?php } ?>
-            </div>
+              </div>
             </td>
           </tr>
         <?php } else { ?>

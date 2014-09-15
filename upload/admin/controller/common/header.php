@@ -103,6 +103,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_server'] = $this->language->get('text_server');
 		$this->data['text_setting'] = $this->language->get('text_setting');
 		$this->data['text_shipping'] = $this->language->get('text_shipping');
+		$this->data['text_sitemap'] = $this->language->get('text_sitemap');
 		$this->data['text_stock_status'] = $this->language->get('text_stock_status');
 		$this->data['text_support'] = $this->language->get('text_support');
 		$this->data['text_system'] = $this->language->get('text_system');
@@ -204,8 +205,9 @@ class ControllerCommonHeader extends Controller {
 			$this->data['return_action'] = $this->url->link('localisation/return_action', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return_reason'] = $this->url->link('localisation/return_reason', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return_status'] = $this->url->link('localisation/return_status', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['shipping'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['setting'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['shipping'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['sitemap'] = $this->url->link('tool/sitemap', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['store'] = HTTP_CATALOG;
 			$this->data['stock_status'] = $this->url->link('localisation/stock_status', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');

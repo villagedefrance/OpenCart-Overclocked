@@ -43,6 +43,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->data['button_view_text'] = $this->language->get('button_view_text');
 		$this->data['button_view_list'] = $this->language->get('button_view_list');
 		$this->data['button_view_thumb'] = $this->language->get('button_view_thumb');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['text_loading'] = $this->language->get('text_loading');
 		$this->data['text_file_found'] = $this->language->get('text_file_found');
@@ -64,6 +65,8 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->data['text_allowed'] = $this->language->get('text_allowed');
 
 		$this->data['error_directory'] = $this->language->get('error_directory');
+
+		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['token'] = $this->session->data['token'];
 

@@ -40,7 +40,7 @@
           <?php } else { ?>
             <a href="<?php echo $sort_model; ?>"><?php echo $column_model; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="left"><?php if ($sort == 'p.price') { ?>
+          <td class="right"><?php if ($sort == 'p.price') { ?>
             <a href="<?php echo $sort_price; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_price; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_price; ?>"><?php echo $column_price; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -50,7 +50,7 @@
           <?php } else { ?>
             <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="left"><?php if ($sort == 'p.status') { ?>
+          <td class="right"><?php if ($sort == 'p.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -64,9 +64,9 @@
             <td></td>
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
-            <td style="text-align:left;"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8"/></td>
+            <td style="text-align:right;"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8"/></td>
             <td style="text-align:right;"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" style="text-align:right;" /></td>
-            <td><select name="filter_status">
+            <td style="text-align:right;"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
@@ -92,8 +92,8 @@
               <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $product['name']; ?></td>
               <td class="left"><?php echo $product['model']; ?></td>
-              <td class="left"><?php if ($product['special']) { ?>
-                <span style="text-decoration: line-through;"><?php echo $product['price']; ?></span><br />
+              <td class="right"><?php if ($product['special']) { ?>
+                <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
                 <span style="color:#B00;"><?php echo $product['special']; ?></span>
               <?php } else { ?>
                 <?php echo $product['price']; ?>
@@ -105,7 +105,7 @@
               <?php } else { ?>
                 <span style="color:#008000;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
-              <td class="left"><?php echo $product['status']; ?></td>
+              <td class="right"><?php echo $product['status']; ?></td>
               <td class="right"><?php foreach ($product['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>

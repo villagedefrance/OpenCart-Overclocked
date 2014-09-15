@@ -59,17 +59,15 @@ img {
 	display: none;
 }
 /* Buttons */
-.button {
+.filemanager_button {
 	display: block;
 	float: left;
 	padding: 8px 5px 8px 25px;
+	margin-top: 1px;
 	margin-right: 5px;
 	background-position: 5px 6px;
 	background-repeat: no-repeat;
 	cursor: pointer;
-}
-.button:hover {
-	background-color: #EEE;
 }
 /* Images */
 .thumb {
@@ -94,7 +92,7 @@ img {
 	margin-top: 3px;
 	padding: 5px;
 	border: 1px solid #DDD;
-	background: background: #5C9CCC; 
+	background: background: #5C9CCC;
 	background-position: 0px -50px;
 }
 #updateImage a:hover { 

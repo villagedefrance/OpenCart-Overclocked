@@ -79,6 +79,7 @@ $_['text_sale']                    		= 'Sales';
 $_['text_server'] 						= 'Server';
 $_['text_setting']                		= 'Settings';
 $_['text_shipping']              		= 'Shipping';
+$_['text_sitemap']              		= 'Sitemap';
 $_['text_stock_status']         	= 'Stock Statuses';
 $_['text_support']                	= 'Support Forum';
 $_['text_system']                 	= 'System';
