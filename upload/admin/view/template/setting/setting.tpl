@@ -790,6 +790,32 @@
             <td><textarea name="config_contact_link" cols="60" rows="2"><?php echo $config_contact_link; ?></textarea></td>
           </tr>
           <tr>
+            <td><?php echo $entry_cookie_consent; ?></td>
+            <td><?php if ($config_cookie_consent) { ?>
+              <input type="radio" name="config_cookie_consent" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_cookie_consent" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_cookie_consent" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_cookie_consent" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_cookie_privacy; ?></td>
+            <td><select name="config_cookie_privacy">
+              <?php foreach ($informations as $information) { ?>
+                <?php if ($information['information_id'] == $config_cookie_privacy) { ?>
+                  <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_back_to_top; ?></td>
             <td><?php if ($config_back_to_top) { ?>
               <input type="radio" name="config_back_to_top" value="1" checked="checked" />

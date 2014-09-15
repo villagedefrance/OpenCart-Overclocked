@@ -52,8 +52,29 @@ $(document).ready(function() {
 });
 //--></script>
 <?php } ?>
+<?php if ($cookie_consent) { ?>
+<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/cookiecuttr.css" />
+<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookiecuttr.js"></script>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+  $.cookieCuttr({
+    cookieAnalytics: false,
+    cookiePolicyPage: true,
+    cookieAcceptButton: true,
+    cookieDeclineButton: true,
+    cookiePolicyPageMessage: '<?php echo $cookie_message; ?>',
+    cookieAcceptButtonText: '<?php echo $cookie_yes; ?>',
+    cookieDeclineButtonText: '<?php echo $cookie_no; ?>',
+    cookieExpires: 365
+  });
+});
+if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google_analytics; ?>}
+//--></script>
+<?php } else { ?>
+  <?php echo $google_analytics; ?>
+<?php } ?>
 <link href="/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>" rel="alternate" type="application/rss+xml" />
-<?php echo $google_analytics; ?>
 </head>
 <body>
 <div id="container">

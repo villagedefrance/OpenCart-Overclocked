@@ -129,6 +129,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
 		$this->data['entry_contact_height'] = $this->language->get('entry_contact_height');
 		$this->data['entry_contact_link'] = $this->language->get('entry_contact_link');
+		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
+		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
@@ -828,6 +830,20 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_contact_link'] = $this->request->post['config_contact_link'];
 		} else {
 			$this->data['config_contact_link'] = $this->config->get('config_contact_link');
+		}
+
+		if (isset($this->request->post['config_cookie_consent'])) {
+			$this->data['config_cookie_consent'] = $this->request->post['config_cookie_consent'];
+		} else {
+			$this->data['config_cookie_consent'] = $this->config->get('config_cookie_consent');
+		}
+
+		$this->data['informations'] = $this->model_catalog_information->getInformationPages();
+
+		if (isset($this->request->post['config_cookie_privacy'])) {
+			$this->data['config_cookie_privacy'] = $this->request->post['config_cookie_privacy'];
+		} else {
+			$this->data['config_cookie_privacy'] = $this->config->get('config_cookie_privacy');
 		}
 
 		if (isset($this->request->post['config_back_to_top'])) {

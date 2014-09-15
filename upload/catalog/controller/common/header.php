@@ -96,7 +96,22 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$this->data['search'] = '';
 		}
-		
+
+		// Cookie Consent
+		$this->data['cookie_consent'] = $this->config->get('config_cookie_consent');
+
+		$privacy = $this->config->get('config_cookie_privacy');
+
+		if (isset($privacy)) {
+			$cookie_privacy = $this->url->link('information/information', 'information_id=' . $privacy);
+		} else {
+			$cookie_privacy = $this->url->link('information/contact');
+		}
+
+		$this->data['cookie_message'] = sprintf($this->language->get('text_cookie_message'), $cookie_privacy);
+		$this->data['cookie_yes'] = $this->language->get('text_cookie_yes');
+		$this->data['cookie_no'] = $this->language->get('text_cookie_no');
+
 		// Rss
 		$this->data['rss'] = $this->config->get('rss_feed_status');
 
