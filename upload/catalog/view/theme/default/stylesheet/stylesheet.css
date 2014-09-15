@@ -1413,23 +1413,72 @@ ul.box-filter > li ul {
 .product-info .review .share a {
 	text-decoration: none;
 }
-/* Review list */
+/* Reviews */
+#review {
+	float: right;
+	width: 55%;
+}
+#review .content {
+	background: #FCFCFC;
+	border: 1px solid #E1E6EB;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 2px 2px #CCC;
+	-moz-box-shadow: 0px 2px 2px #CCC;
+	box-shadow: 0px 2px 2px #CCC;
+	margin-bottom: 15px;
+	padding: 10px 5px;
+}
 .review-list {
+	background: #FCFCFC;
+	border: 1px solid #E1E6EB;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 2px 2px #CCC;
+	-moz-box-shadow: 0px 2px 2px #CCC;
+	box-shadow: 0px 2px 2px #CCC;
+	margin-bottom: 15px;
 	padding: 10px;
-	overflow: auto;
-	margin-bottom: 20px;
-	border: 1px solid #EEE;
 }
 .review-list .author {
 	float: left;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 .review-list .rating {
 	float: right;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 .review-list .text {
 	clear: both;
+	font-size: 13px;
+	font-style: italic;
+}
+/* Add Review */
+#add-review {
+	float: left;
+	width: 42%;
+}
+#add-review textarea {
+	max-width: 243px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	resize: vertical;
+}
+#add-review div {
+	margin-bottom: 10px;
+}
+#add-review .review-rating {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+#add-review input[name='captcha'] {
+	width: 150px;
 }
 /* Attribute */
 .attribute {

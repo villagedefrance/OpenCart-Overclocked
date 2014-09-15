@@ -506,6 +506,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
 			// Related
+			$offers = $this->model_catalog_offer->getListProductOffers(0);
+
 			$this->data['products'] = array();
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
@@ -535,9 +537,16 @@ class ControllerProductProduct extends Controller {
 					$rating = false;
 				}
 
+				if (in_array($result['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
 				$this->data['products'][] = array(
 					'product_id'	=> $result['product_id'],
 					'thumb'  		=> $image,
+					'offer'			=> $offer,
 					'name'    	=> $result['name'],
 					'price'   	 	=> $price,
 					'special' 	 	=> $special,
@@ -686,6 +695,7 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/review');
 
+		$this->data['text_latest'] = $this->language->get('text_latest');
 		$this->data['text_on'] = $this->language->get('text_on');
 		$this->data['text_no_reviews'] = $this->language->get('text_no_reviews');
 
@@ -699,7 +709,7 @@ class ControllerProductProduct extends Controller {
 
 		$review_total = $this->model_catalog_review->getTotalReviewsByProductId($this->request->get['product_id']);
 
-		$results = $this->model_catalog_review->getReviewsByProductId($this->request->get['product_id'], ($page - 1) * 5, 5);
+		$results = $this->model_catalog_review->getReviewsByProductId($this->request->get['product_id'], ($page - 1) * 3, 3);
 
 		foreach ($results as $result) {
 			$this->data['reviews'][] = array(
@@ -714,7 +724,7 @@ class ControllerProductProduct extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $review_total;
 		$pagination->page = $page;
-		$pagination->limit = 5;
+		$pagination->limit = 3;
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}');
 

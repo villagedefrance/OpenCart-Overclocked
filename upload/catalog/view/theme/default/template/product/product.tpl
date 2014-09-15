@@ -350,36 +350,32 @@
   <?php if ($review_status) { ?>
     <div id="tab-review" class="tab-content">
       <div id="review"></div>
-      <h2 id="review-title"><?php echo $text_write; ?></h2>
-      <b><?php echo $entry_name; ?></b><br />
-      <input type="text" name="name" value="" />
-      <br />
-      <br />
-      <b><?php echo $entry_review; ?></b>
-      <textarea name="text" cols="40" rows="8" style="width:98%;"></textarea>
-      <span style="font-size:11px;"><?php echo $text_note; ?></span><br />
-      <br />
-      <b><?php echo $entry_rating; ?></b> <span><?php echo $entry_bad; ?></span>&nbsp;
-      <input type="radio" name="rating" value="1" />
-      &nbsp;
-      <input type="radio" name="rating" value="2" />
-      &nbsp;
-      <input type="radio" name="rating" value="3" />
-      &nbsp;
-      <input type="radio" name="rating" value="4" />
-      &nbsp;
-      <input type="radio" name="rating" value="5" />
-      &nbsp;<span><?php echo $entry_good; ?></span><br />
-      <br />
-      <div class="captcha">
-        <b><?php echo $entry_captcha; ?></b><br />
-        <input type="text" name="captcha" value="" autocomplete="off" />
-        <br />
-        <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
-      </div>
-      <br />
-      <div class="buttons">
-        <div class="right"><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
+      <div id="add-review">
+        <h2 id="review-title"><?php echo $text_write; ?></h2>
+        <div>
+          <input type="text" name="name" value="" placeholder="<?php echo $entry_name; ?>" size="30" />
+        </div>
+        <div>
+          <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>
+          <br /><?php echo $text_note; ?>
+        </div>
+        <div class="review-rating">
+          <b><?php echo $entry_rating; ?></b>
+          <?php echo $entry_bad; ?>
+          <input type="radio" name="rating" value="1" />
+          <input type="radio" name="rating" value="2" />
+          <input type="radio" name="rating" value="3" />
+          <input type="radio" name="rating" value="4" />
+          <input type="radio" name="rating" value="5" />
+          <?php echo $entry_good; ?>
+        </div>
+        <div class="captcha">
+          <b><?php echo $entry_captcha; ?></b><br />
+          <input type="text" name="captcha" value="" autocomplete="off" />
+          <br />
+          <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
+        </div>
+        <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
       </div>
     </div>
   <?php } ?>
@@ -388,6 +384,9 @@
       <div class="box-product">
       <?php foreach ($products as $product) { ?>
         <div>
+          <?php if (!$label && $product['offer']) { ?>
+            <div class="promo-medium"><?php echo $text_offer; ?></div>
+          <?php } ?>
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
           <?php } ?>
