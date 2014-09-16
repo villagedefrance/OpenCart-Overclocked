@@ -6,7 +6,7 @@ $_['heading_title']			= 'Sitemap Manager';
 $_['text_generate']			= 'Generate';
 $_['text_download']			= 'Download';
 
-$_['text_sitemaps']			= 'Sitemap List';
+$_['text_sitemaps']			= 'Sitemaps';
 $_['text_submit']				= 'Search Engine Submissions';
 
 $_['text_success_text']		= 'Success: You have successfully updated your <b>Master TEXT Sitemap</b> !';

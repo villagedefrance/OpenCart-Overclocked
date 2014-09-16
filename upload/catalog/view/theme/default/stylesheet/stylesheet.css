@@ -1419,28 +1419,22 @@ ul.box-filter > li ul {
 	width: 55%;
 }
 #review .content {
-	background: #FCFCFC;
+	background: #FFF;
 	border: 1px solid #E1E6EB;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-box-shadow: 0px 2px 2px #CCC;
-	-moz-box-shadow: 0px 2px 2px #CCC;
-	box-shadow: 0px 2px 2px #CCC;
 	margin-bottom: 15px;
 	padding: 10px 5px;
 }
 .review-list {
-	background: #FCFCFC;
+	background: #FFF;
 	border: 1px solid #E1E6EB;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-box-shadow: 0px 2px 2px #CCC;
-	-moz-box-shadow: 0px 2px 2px #CCC;
-	box-shadow: 0px 2px 2px #CCC;
 	margin-bottom: 15px;
 	padding: 10px;
 }
@@ -1463,7 +1457,7 @@ ul.box-filter > li ul {
 	width: 42%;
 }
 #add-review textarea {
-	max-width: 243px;
+	max-width: 242px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
@@ -1478,7 +1472,7 @@ ul.box-filter > li ul {
 	margin-bottom: 10px;
 }
 #add-review input[name='captcha'] {
-	width: 150px;
+	width: 142px;
 }
 /* Attribute */
 .attribute {
@@ -1718,17 +1712,23 @@ ul.box-filter > li ul {
 	float: left;
 	width: 31%;
 	text-align: left;
+	border: 1px solid #EEE;
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px; 
+	padding: 10px;
 }
 .return-captcha input {
-	width: 142px;
+	width: 140px;
 }
 .return-captcha img {
 	margin-top: 8px;
 }
 /* Captcha */
 .captcha {
-	text-align: left;
 	width: 220px;
+	text-align: left;
 	border: 1px solid #EEE;
 	-moz-border-radius: 3px; 
 	-webkit-border-radius: 3px;
@@ -1737,7 +1737,7 @@ ul.box-filter > li ul {
 	padding: 10px;
 }
 .captcha input {
-	width: 142px;
+	width: 140px;
 }
 .captcha img {
 	margin-top: 8px;
@@ -2019,15 +2019,15 @@ ul.box-filter > li ul {
 	top: 0;
 	left: 0;
 	display: block;
-	margin: 0px 0px -11px 0px;
+	margin: 0px 0px -9px 0px;
 	padding: 0px;
-	height: 10px;
-	width: 10px;
+	height: 8px;
+	width: 8px;
 	background: #DE5954;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
 }
 /* Banner */
 .banner div {

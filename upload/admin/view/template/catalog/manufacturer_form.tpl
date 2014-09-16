@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <td><?php echo $entry_store; ?></td>
-          <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px;">
+          <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px; margin-bottom:5px;">
             <?php $class = 'even'; ?>
             <div class="<?php echo $class; ?>">
               <?php if (in_array(0, $manufacturer_store)) { ?>
@@ -66,9 +66,9 @@
         </tr>
         <tr>
           <td><?php echo $entry_image; ?></td>
-          <td valign="top"><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
+          <td style="vertical-align:top;"><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
             <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" /><br />
-			<a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
+            <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
           </div></td>
         </tr>
         <tr>

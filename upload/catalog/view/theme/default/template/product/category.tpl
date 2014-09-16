@@ -19,12 +19,12 @@
     </div>
   <?php } ?>
   <?php if ($categories) { ?>
-  <h2><?php echo $text_refine; ?></h2>
+  <h3><?php echo $text_refine; ?></h3>
   <div class="category-list">
     <?php if (count($categories) <= 5) { ?>
       <ul>
       <?php foreach ($categories as $category) { ?>
-        <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+        <li><img src="catalog/view/theme/<?php echo $template; ?>/image/arrow-right.png" alt="" /> &nbsp; <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
       <?php } ?>
       </ul>
     <?php } else { ?>
@@ -33,7 +33,7 @@
         <?php $j = $i + ceil(count($categories) / 4); ?>
         <?php for (; $i < $j; $i++) { ?>
           <?php if (isset($categories[$i])) { ?>
-            <li><a href="<?php echo $categories[$i]['href']; ?>"><?php echo $categories[$i]['name']; ?></a></li>
+            <li><img src="catalog/view/theme/<?php echo $template; ?>/image/arrow-right.png" alt="" /> &nbsp; <a href="<?php echo $categories[$i]['href']; ?>"><?php echo $categories[$i]['name']; ?></a></li>
           <?php } ?>
         <?php } ?>
       </ul>

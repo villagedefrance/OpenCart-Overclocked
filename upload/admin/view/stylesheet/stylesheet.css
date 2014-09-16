@@ -523,6 +523,10 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	padding: 5px;
 	background-color: #EEE;
 }
+/* Form Image */
+table.form tr td div.image {
+	text-align: center;
+}
 /* Pagination */
 .pagination {
 	display: inline-block;

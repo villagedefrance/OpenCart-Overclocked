@@ -186,6 +186,7 @@ $(document).ready(function() {
             <ul>
               <li><a href="<?php echo $language; ?>"><?php echo $text_language; ?></a></li>
               <li><a href="<?php echo $currency; ?>"><?php echo $text_currency; ?></a></li>
+              <li><a href="<?php echo $location; ?>"><?php echo $text_location; ?></a></li>
               <li><a href="<?php echo $stock_status; ?>"><?php echo $text_stock_status; ?></a></li>
               <li><a href="<?php echo $order_status; ?>"><?php echo $text_order_status; ?></a></li>
               <li><a class="arrow"><?php echo $text_return; ?></a>

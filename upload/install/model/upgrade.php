@@ -303,7 +303,7 @@ class ModelUpgrade extends Model {
 				}
 			}
 		}
-	
+
 		// Update any additional table
 
 		// Settings

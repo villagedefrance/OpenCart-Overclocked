@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']              		= 'Administration';
 
+// Confirm
+$_['text_confirm']			     		= 'Delete/Uninstall cannot be undone! Are you sure you want to do this ?';
+
 // Text
 $_['text_affiliate']                  	= 'Affiliates';
 $_['text_attribute']                	= 'Attributes';
@@ -12,7 +15,6 @@ $_['text_cachemanager']			= 'Cache Manager';
 $_['text_catalog']					= 'Catalog';
 $_['text_category']                	= 'Categories';
 $_['text_configuration'] 			= 'Configuration';
-$_['text_confirm']			     		= 'Delete/Uninstall cannot be undone! Are you sure you want to do this ?';
 $_['text_contact']                	= 'Mail';
 $_['text_country']                	= 'Countries';
 $_['text_coupon']                		= 'Coupons';
@@ -38,6 +40,7 @@ $_['text_information']            	= 'Information';
 $_['text_language']            		= 'Languages';
 $_['text_layout']                   	= 'Layouts';
 $_['text_localisation']             	= 'Localisation';
+$_['text_location']             		= 'Locations';
 $_['text_logged']               		= 'You are logged in as <span>%s</span>';
 $_['text_logout']                    	= 'Logout';
 $_['text_manager']                	= 'Updates';
