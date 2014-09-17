@@ -218,8 +218,8 @@ class ControllerLocalisationLocation extends Controller {
 				'image'			=> $thumb,
 				'name'			=> $result['name'],
 				'address'			=> $result['address'],
-				'latitude' 		=> ($result['latitude']) ? $result['latitude'] . '&deg;' : '',
-				'longitude' 		=> ($result['longitude']) ? $result['longitude'] . '&deg;' : '',
+				'latitude' 		=> ($result['latitude']) ? $result['latitude'] . '&deg; N' : '',
+				'longitude' 		=> ($result['longitude']) ? $result['longitude'] . '&deg; E' : '',
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['location_id'], $this->request->post['selected']),
 				'action'     		=> $action
 			);

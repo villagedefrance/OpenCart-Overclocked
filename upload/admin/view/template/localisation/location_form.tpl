@@ -50,11 +50,11 @@
         </tr>
 		<tr>
           <td><?php echo $entry_latitude; ?></td>
-          <td><input type="text" name="latitude" value="<?php echo $latitude; ?>" /> &deg;</td>
+          <td><input type="text" name="latitude" value="<?php echo $latitude; ?>" /> &deg; N</td>
         </tr>
         <tr>
           <td><?php echo $entry_longitude; ?></td>
-          <td><input type="text" name="longitude" value="<?php echo $longitude; ?>" /> &deg;</td>
+          <td><input type="text" name="longitude" value="<?php echo $longitude; ?>" /> &deg; E</td>
         </tr>
         <tr>
           <td><?php echo $entry_open; ?></td>
