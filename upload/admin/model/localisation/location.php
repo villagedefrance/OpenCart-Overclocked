@@ -25,12 +25,13 @@ class ModelLocalisationLocation extends Model {
 	}
 
 	public function getLocations($data = array()) {
-		$sql = "SELECT location_id, image, name, address, latitude, longitude FROM " . DB_PREFIX . "location";
+		$sql = "SELECT location_id, image, name, address, telephone, latitude, longitude FROM " . DB_PREFIX . "location";
 
 		$sort_data = array(
 			'image',
 			'name',
 			'address',
+			'telephone',
 			'latitude',
 			'longitude'
 		);

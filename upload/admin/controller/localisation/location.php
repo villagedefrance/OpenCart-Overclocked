@@ -218,6 +218,7 @@ class ControllerLocalisationLocation extends Controller {
 				'image'			=> $thumb,
 				'name'			=> $result['name'],
 				'address'			=> $result['address'],
+				'telephone'		=> $result['telephone'],
 				'latitude' 		=> ($result['latitude']) ? $result['latitude'] . '&deg; N' : '',
 				'longitude' 		=> ($result['longitude']) ? $result['longitude'] . '&deg; E' : '',
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['location_id'], $this->request->post['selected']),
@@ -233,6 +234,7 @@ class ControllerLocalisationLocation extends Controller {
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_address'] = $this->language->get('column_address');
+		$this->data['column_telephone'] = $this->language->get('column_telephone');
 		$this->data['column_latitude'] = $this->language->get('column_latitude');
 		$this->data['column_longitude'] = $this->language->get('column_longitude');
 		$this->data['column_action'] = $this->language->get('column_action');

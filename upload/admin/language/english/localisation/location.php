@@ -14,6 +14,7 @@ $_['text_time']        			= 'Opening Times';
 $_['column_image']      		= 'Image';
 $_['column_name']      		= 'Name';
 $_['column_address']   		= 'Address';
+$_['column_telephone']		= 'Telephone';
 $_['column_latitude']		= 'Latitude';
 $_['column_longitude']		= 'Longitude';
 $_['column_action']    		= 'Action';

@@ -39,6 +39,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_address; ?>"><?php echo $column_address; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php echo $column_telephone; ?></td>
             <td class="left"><?php echo $column_latitude; ?></td>
 			<td class="left"><?php echo $column_longitude; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
@@ -58,6 +59,7 @@
                 <td class="center"><img src="<?php echo $location['image']; ?>" alt="<?php echo $location['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
                 <td class="left"><?php echo $location['name']; ?></td>
                 <td class="left"><?php echo $location['address']; ?></td>
+                <td class="left"><?php echo $location['telephone']; ?></td>
                 <td class="left"><?php echo $location['latitude']; ?></td>
 				<td class="left"><?php echo $location['longitude']; ?></td>
                 <td class="right"><?php foreach ($location['action'] as $action) { ?>
@@ -67,7 +69,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
         </tbody>
