@@ -8,8 +8,8 @@ class ControllerProductProduct extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home'),
 			'separator' => false
 		);
 
@@ -33,7 +33,7 @@ class ControllerProductProduct extends Controller {
 
 				if ($category_info) {
 					$this->data['breadcrumbs'][] = array(
-						'text' 	=> $category_info['name'],
+						'text'		=> $category_info['name'],
 						'href'		=> $this->url->link('product/category', 'path=' . $path),
 						'separator' => $this->language->get('text_separator')
 					);
@@ -63,8 +63,8 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$this->data['breadcrumbs'][] = array(
-					'text'      => $category_info['name'],
-					'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
+					'text'		=> $category_info['name'],
+					'href'		=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
@@ -74,8 +74,8 @@ class ControllerProductProduct extends Controller {
 
 		if (isset($this->request->get['manufacturer_id'])) {
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_brand'),
-				'href'   	=> $this->url->link('product/manufacturer'),
+				'text'		=> $this->language->get('text_brand'),
+				'href'		=> $this->url->link('product/manufacturer'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -101,8 +101,8 @@ class ControllerProductProduct extends Controller {
 
 			if ($manufacturer_info) {
 				$this->data['breadcrumbs'][] = array(
-					'text'	 	=> $manufacturer_info['name'],
-					'href'	 	=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
+					'text'		=> $manufacturer_info['name'],
+					'href'		=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
@@ -148,8 +148,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_search'),
-				'href'  	=> $this->url->link('product/search', $url),
+				'text'		=> $this->language->get('text_search'),
+				'href'		=> $this->url->link('product/search', $url),
 				'separator' => $this->language->get('text_separator')
 			);
 		}
@@ -216,8 +216,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $product_info['name'],
-				'href'  	=> $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']),
+				'text'		=> $product_info['name'],
+				'href'		=> $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -358,7 +358,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if ($this->config->get('config_tax')) {
-				$this->data['tax'] = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price']);
+				$this->data['tax'] = $this->currency->format((float)$product_info['special']) ? $product_info['special'] : $product_info['price'];
 			} else {
 				$this->data['tax'] = false;
 			}

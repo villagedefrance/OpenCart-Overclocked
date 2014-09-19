@@ -125,7 +125,7 @@ class ControllerProductSearch extends Controller {
 		);
 
 		if (isset($this->request->get['search'])) {
-			$this->data['heading_title'] = $this->language->get('heading_title') .  ' - ' . $this->request->get['search'];
+			$this->data['heading_title'] = $this->language->get('heading_title') . ' - ' . $this->request->get['search'];
 		} else {
 			$this->data['heading_title'] = $this->language->get('heading_title');
 		}
@@ -142,7 +142,7 @@ class ControllerProductSearch extends Controller {
 		$this->data['text_price'] = $this->language->get('text_price');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_points'] = $this->language->get('text_points');
-		$this->data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
+		$this->data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare'])) ? count($this->session->data['compare']) : 0);
 		$this->data['text_display'] = $this->language->get('text_display');
 		$this->data['text_list'] = $this->language->get('text_list');
 		$this->data['text_grid'] = $this->language->get('text_grid');

@@ -83,16 +83,16 @@ class ControllerInformationSitemap extends Controller {
 				}
 
 				$level_2_data[] = array(
-					'name'		=> $category_2['name'],
-					'children'		=> $level_3_data,
-					'href'			=> $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
+					'name'	=> $category_2['name'],
+					'children'	=> $level_3_data,
+					'href'		=> $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
 				);
 			}
 
 			$this->data['categories'][] = array(
-				'name'		=> $category_1['name'],
-				'children'		=> $level_2_data,
-				'href'			=> $this->url->link('product/category', 'path=' . $category_1['category_id'])
+				'name'	=> $category_1['name'],
+				'children'	=> $level_2_data,
+				'href'		=> $this->url->link('product/category', 'path=' . $category_1['category_id'])
 			);
 		}
 

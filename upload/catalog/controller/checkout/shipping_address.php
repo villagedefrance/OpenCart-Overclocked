@@ -90,13 +90,13 @@ class ControllerCheckoutShippingAddress extends Controller {
 
 		foreach ($products as $product) {
 			$product_total = 0;
-				
+
 			foreach ($products as $product_2) {
 				if ($product_2['product_id'] == $product['product_id']) {
 					$product_total += $product_2['quantity'];
 				}
 			}
-			
+
 			if ($product['minimum'] > $product_total) {
 				$json['redirect'] = $this->url->link('checkout/cart');
 				break;
@@ -172,7 +172,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 				if (!$json) {
 					// Default Shipping Address
 					$this->load->model('account/address');
-					
+
 					$this->session->data['shipping_address_id'] = $this->model_account_address->addAddress($this->request->post);
 					$this->session->data['shipping_country_id'] = $this->request->post['country_id'];
 					$this->session->data['shipping_zone_id'] = $this->request->post['zone_id'];
