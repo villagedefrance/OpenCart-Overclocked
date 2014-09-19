@@ -29,6 +29,7 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['text_category_list'] = $this->language->get('text_category_list');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_special'] = $this->language->get('text_special');
+		$this->data['text_review_list'] = $this->language->get('text_review_list');
 		$this->data['text_search'] = $this->language->get('text_search');
 
 		$this->data['text_account'] = $this->language->get('text_account');
@@ -102,6 +103,7 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['category_list'] = $this->url->link('product/category_list');
 		$this->data['manufacturer'] = $this->url->link('product/manufacturer');
 		$this->data['special'] = $this->url->link('product/special');
+		$this->data['review_list'] = $this->url->link('product/review_list');
 		$this->data['search'] = $this->url->link('product/search');
 
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');

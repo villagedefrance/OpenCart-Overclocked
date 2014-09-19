@@ -301,6 +301,8 @@ class ControllerCatalogReview extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_select'] = $this->language->get('text_select');
+		$this->data['text_date_added'] = $this->language->get('text_date_added');
+		$this->data['text_date_modified'] = $this->language->get('text_date_modified');
 
 		$this->data['entry_product'] = $this->language->get('entry_product');
 		$this->data['entry_author'] = $this->language->get('entry_author');
@@ -434,6 +436,20 @@ class ControllerCatalogReview extends Controller {
 			$this->data['status'] = $review_info['status'];
 		} else {
 			$this->data['status'] = '';
+		}
+
+		if (!empty($review_info['date_added'])) {
+			$this->data['date_added'] = date($this->language->get('date_format_time'), strtotime($review_info['date_added']));
+		} else {
+			$this->data['date_added'] = '';
+		}
+
+		if (!empty($review_info['date_modified'])) {
+			$this->data['date_modified'] = date($this->language->get('date_format_time'), strtotime($review_info['date_modified']));
+		} elseif (!empty($review_info['date_added'])) {
+			$this->data['date_modified'] = date($this->language->get('date_format_time'), strtotime($review_info['date_added']));
+		} else {
+			$this->data['date_modified'] = '';
 		}
 
 		$this->template = 'catalog/review_form.tpl';

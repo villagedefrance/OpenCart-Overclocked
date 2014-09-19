@@ -40,6 +40,7 @@
 		<li><a href="<?php echo $category_list; ?>"><?php echo $text_category_list; ?></a></li>
         <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
         <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
+        <li><a href="<?php echo $review_list; ?>"><?php echo $text_review_list; ?></a></li>
         <li><a href="<?php echo $search; ?>"><?php echo $text_search; ?></a></li>
         <br />
         <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>

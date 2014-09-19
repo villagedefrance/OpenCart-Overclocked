@@ -10,6 +10,7 @@ $_['text_product_list']    			= 'Products';
 $_['text_category_list']     		= 'Categories';
 $_['text_manufacturer'] 			= 'Manufacturers';
 $_['text_special']      				= 'Special Offers';
+$_['text_review_list'] 				= 'Reviews';
 $_['text_search']      				= 'Search';
 
 $_['text_account']     				= 'My Account';

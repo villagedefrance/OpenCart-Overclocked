@@ -93,6 +93,18 @@
             <?php } ?>
           </select></td>
         </tr>
+        <?php if ($date_added) { ?>
+        <tr>
+          <td><?php echo $text_date_added; ?></td>
+          <td><?php echo $date_added; ?></td>
+        </tr>
+        <?php } ?>
+        <?php if ($date_modified) { ?>
+        <tr>
+          <td><?php echo $text_date_modified; ?></td>
+          <td><?php echo $date_modified; ?></td>
+        </tr>
+        <?php } ?>
       </table>
     </form>
     </div>

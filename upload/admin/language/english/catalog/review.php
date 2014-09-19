@@ -4,6 +4,8 @@ $_['heading_title']       		= 'Reviews';
 
 // Text
 $_['text_success']      		= 'Success: You have modified <b>Reviews</b> !';
+$_['text_date_added'] 		= 'Date Added:';
+$_['text_date_modified'] 	= 'Date Modified:';
 
 // Column
 $_['column_product']    	= 'Product';
