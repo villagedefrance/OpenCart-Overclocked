@@ -32,9 +32,11 @@ Extra Features:
 - ...
 
 TODO:
-- Add Multiple Store Branches, then update Pickup from Store and Product availability per branch.
+- Add Sitemap Generator (done).
+- Add Multiple Store Branches, then update Pickup from Store and Product availability per branch (in progress ...).
 - Add Product Colors, additional images colors, filter by color.
 - Add Product Groups, then create related functions.
+- Make the Footer content completely customisable.
 - Add some more extra features ...
 
 WANT TO CONTRIBUTE?
