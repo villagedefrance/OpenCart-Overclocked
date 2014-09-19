@@ -742,16 +742,30 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_manufacturer; ?></td>
-            <td><?php if ($config_manufacturer) { ?>
-              <input type="radio" name="config_manufacturer" value="1" checked="checked" />
+            <td><?php echo $entry_manufacturer_name; ?></td>
+            <td><?php if ($config_manufacturer_name) { ?>
+              <input type="radio" name="config_manufacturer_name" value="1" checked="checked" />
               <?php echo $text_yes; ?>
-              <input type="radio" name="config_manufacturer" value="0" />
+              <input type="radio" name="config_manufacturer_name" value="0" />
               <?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_manufacturer" value="1" />
+              <input type="radio" name="config_manufacturer_name" value="1" />
               <?php echo $text_yes; ?>
-              <input type="radio" name="config_manufacturer" value="0" checked="checked" />
+              <input type="radio" name="config_manufacturer_name" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_manufacturer_image; ?></td>
+            <td><?php if ($config_manufacturer_image) { ?>
+              <input type="radio" name="config_manufacturer_image" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_manufacturer_image" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_manufacturer_image" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_manufacturer_image" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
@@ -787,7 +801,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_contact_link; ?></td>
-            <td><textarea name="config_contact_link" cols="60" rows="2"><?php echo $config_contact_link; ?></textarea></td>
+            <td><input type="text" name="config_contact_link" value="<?php echo $config_contact_link; ?>" size="60" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_cookie_consent; ?></td>

@@ -116,6 +116,12 @@ class ControllerProductSpecial extends Controller {
 				$image = false;
 			}
 
+			if ($result['manufacturer'] && $this->config->get('config_manufacturer_name')) {
+				$manufacturer = $result['manufacturer'];
+			} else {
+				$manufacturer = false;
+			}
+
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
 			} else {
@@ -129,7 +135,7 @@ class ControllerProductSpecial extends Controller {
 			}
 
 			if ($this->config->get('config_tax')) {
-				$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
+				$tax = $this->currency->format((float)$result['special']) ? $result['special'] : $result['price'];
 			} else {
 				$tax = false;
 			}
@@ -150,6 +156,7 @@ class ControllerProductSpecial extends Controller {
 				'product_id'  	=> $result['product_id'],
 				'thumb'       	=> $image,
 				'offer'       		=> $offer,
+				'manufacturer'	=> $manufacturer,
 				'name'        	=> $result['name'],
 				'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 				'price'       		=> $price,

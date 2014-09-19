@@ -35,7 +35,7 @@ class ControllerProductManufacturer extends Controller {
 		$results = $this->model_catalog_manufacturer->getManufacturers();
 
 		foreach ($results as $result) {
-			if ($result['image'] && $this->config->get('config_manufacturer')) {
+			if ($result['image'] && $this->config->get('config_manufacturer_image')) {
 				$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_brand_width'), $this->config->get('config_image_brand_height'));
 			} else {
 				$image = false;
@@ -227,7 +227,7 @@ class ControllerProductManufacturer extends Controller {
 				}
 
 				if ($this->config->get('config_tax')) {
-					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
+					$tax = $this->currency->format((float)$result['special']) ? $result['special'] : $result['price'];
 				} else {
 					$tax = false;
 				}

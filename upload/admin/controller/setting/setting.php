@@ -123,7 +123,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
 		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
-		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
+		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
+		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_contact_image'] = $this->language->get('entry_contact_image');
 		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
@@ -788,10 +789,16 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_viewer'] = $this->config->get('config_viewer');
 		}
 
-		if (isset($this->request->post['config_manufacturer'])) {
-			$this->data['config_manufacturer'] = $this->request->post['config_manufacturer'];
+		if (isset($this->request->post['config_manufacturer_name'])) {
+			$this->data['config_manufacturer_name'] = $this->request->post['config_manufacturer_name'];
 		} else {
-			$this->data['config_manufacturer'] = $this->config->get('config_manufacturer');
+			$this->data['config_manufacturer_name'] = $this->config->get('config_manufacturer_name');
+		}
+
+		if (isset($this->request->post['config_manufacturer_image'])) {
+			$this->data['config_manufacturer_image'] = $this->request->post['config_manufacturer_image'];
+		} else {
+			$this->data['config_manufacturer_image'] = $this->config->get('config_manufacturer_image');
 		}
 
 		if (isset($this->request->post['config_offer_label'])) {

@@ -1175,6 +1175,12 @@ ul.box-filter > li ul {
 	font-weight: bold;
 	text-decoration: none;
 }
+.product-list .manufacturer {
+	color: #444;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 3px;
+}
 .product-list .description {
 	color: #4D4D4D;
 	line-height: 15px;
@@ -1237,6 +1243,13 @@ ul.box-filter > li ul {
 .product-grid .name a {
 	display: block;
 	color: #38B0E3;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 4px;
+}
+.product-grid .manufacturer {
+	display: block;
+	color: #444;
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 4px;

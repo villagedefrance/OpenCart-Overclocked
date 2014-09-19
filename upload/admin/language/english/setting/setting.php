@@ -66,7 +66,7 @@ $_['entry_cart_weight']         		= 'Display Weight on Cart Page:<br /><span cla
 $_['entry_guest_checkout']    		= 'Guest Checkout:<br /><span class="help">Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.</span>';
 $_['entry_checkout']               		= 'Checkout Terms:<br /><span class="help">Forces people to agree to terms before an a customer can checkout.</span>';
 $_['entry_order_edit']             		= 'Order Editing:<br /><span class="help">Number of days allowed to edit an order. This is required because prices and discounts may change over time corrupting the order if it\'s edited.</span>';
-$_['entry_invoice_prefix']         		= 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2011-00). Invoice ID\'s will start at 1 for each unique prefix</span>';
+$_['entry_invoice_prefix']         		= 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2014-00). Invoice ID\'s will start at 1 for each unique prefix</span>';
 $_['entry_order_status']           		= 'Order Status:<br /><span class="help">Set the default order status when an order is processed.</span>';
 $_['entry_complete_status']   		= 'Complete Order Status:<br /><span class="help">Set the order status the customers order must reach before they are allowed to access their downloadable products and gift vouchers.</span>';
 $_['entry_stock_display']          		= 'Display Stock:<br /><span class="help">Display stock quantity on the product page.</span>';
@@ -84,8 +84,9 @@ $_['entry_pagination_lo'] 				= 'Enable Bottom Pagination:<br /><span class="hel
 $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<br /><span class="help">Use standard selectors in Category form.</span>';
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br /><span class="help">Use standard selectors in Product form.</span>';
 $_['entry_viewer']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, Product Image Thumb size will be set at 230 x 230px.</span>';
-$_['entry_manufacturer']      			= 'Enable Manufacturer Logo:<br /><span class="help">Show the Manufacturer\'s logo in Manufacturer List.</span>';
-$_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be applied at checkout.</span>';
+$_['entry_manufacturer_name']		= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
+$_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
+$_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_contact_image']				= 'Contact Form Image:<br /><span class="help">Image can be png, gif or jpg.</span>';
 $_['entry_contact_width'] 			= 'Width:';
 $_['entry_contact_height']			= 'Height:';

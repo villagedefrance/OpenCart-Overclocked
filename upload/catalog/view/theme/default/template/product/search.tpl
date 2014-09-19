@@ -96,6 +96,7 @@
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
           <?php } ?>
+          <div class="manufacturer"><?php echo $product['manufacturer']; ?></div>
           <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
           <div class="description"><?php echo $product['description']; ?></div>
           <?php if ($product['price']) { ?>
@@ -208,6 +209,7 @@ function display(view) {
 				html += '<div class="price">' + price + '</div>';
 			}
 
+			html += '  <div class="manufacturer">' + $(element).find('.manufacturer').html() + '</div>';
 			html += '  <div class="name">' + $(element).find('.name').html() + '</div>';
 			html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
 
@@ -245,6 +247,7 @@ function display(view) {
 				html += '<div class="image">' + image + '</div>';
 			}
 
+			html += '<div class="manufacturer">' + $(element).find('.manufacturer').html() + '</div>';
 			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
 			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
 
