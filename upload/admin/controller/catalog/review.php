@@ -166,14 +166,14 @@ class ControllerCatalogReview extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -201,8 +201,8 @@ class ControllerCatalogReview extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['review_id'] . $url, 'SSL')
+				'text'	=> $this->language->get('text_edit'),
+				'href'	=> $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $result['review_id'] . $url, 'SSL')
 			);
 
 			$this->data['reviews'][] = array(
@@ -211,7 +211,7 @@ class ControllerCatalogReview extends Controller {
 				'author'     		=> $result['author'],
 				'rating'     		=> $result['rating'],
 				'status'     		=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['review_id'], $this->request->post['selected']),
 				'action'     		=> $action
 			);
@@ -223,9 +223,9 @@ class ControllerCatalogReview extends Controller {
 
 		$this->data['column_product'] = $this->language->get('column_product');
 		$this->data['column_author'] = $this->language->get('column_author');
+		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_rating'] = $this->language->get('column_rating');
 		$this->data['column_status'] = $this->language->get('column_status');
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -259,9 +259,9 @@ class ControllerCatalogReview extends Controller {
 
 		$this->data['sort_product'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&sort=pd.name' . $url, 'SSL');
 		$this->data['sort_author'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&sort=r.author' . $url, 'SSL');
+		$this->data['sort_date_added'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&sort=r.date_added' . $url, 'SSL');
 		$this->data['sort_rating'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&sort=r.rating' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&sort=r.status' . $url, 'SSL');
-		$this->data['sort_date_added'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&sort=r.date_added' . $url, 'SSL');
 
 		$url = '';
 
@@ -361,14 +361,14 @@ class ControllerCatalogReview extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

@@ -8,9 +8,9 @@ $_['text_success']      		= 'Success: You have modified <b>Reviews</b> !';
 // Column
 $_['column_product']    	= 'Product';
 $_['column_author']     		= 'Author';
+$_['column_date_added'] 	= 'Date Added';
 $_['column_rating']     		= 'Rating';
 $_['column_status']     		= 'Status';
-$_['column_date_added'] 	= 'Date Added';
 $_['column_action']     		= 'Action';
 
 // Entry

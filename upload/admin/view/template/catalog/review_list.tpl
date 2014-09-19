@@ -38,7 +38,12 @@
             <?php } else { ?>
               <a href="<?php echo $sort_author; ?>"><?php echo $column_author; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'r.rating') { ?>
+            <td class="left"><?php if ($sort == 'r.date_added') { ?>
+              <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'r.rating') { ?>
               <a href="<?php echo $sort_rating; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_rating; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_rating; ?>"><?php echo $column_rating; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -47,11 +52,6 @@
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-            <?php } ?></td>
-            <td class="left"><?php if ($sort == 'r.date_added') { ?>
-              <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
-            <?php } else { ?>
-              <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
@@ -67,9 +67,9 @@
             <?php } ?></td>
             <td class="left"><?php echo $review['name']; ?></td>
             <td class="left"><?php echo $review['author']; ?></td>
-            <td class="right"><?php echo $review['rating']; ?></td>
-            <td class="left"><?php echo $review['status']; ?></td>
-            <td class="left"><?php echo $review['date_added']; ?></td>
+			<td class="left"><?php echo $review['date_added']; ?></td>
+            <td class="center"><img src="view/image/rating/stars-<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['rating']; ?>" style="margin-top:2px;" /></td>
+            <td class="center"><?php echo $review['status']; ?></td>
             <td class="right"><?php foreach ($review['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
