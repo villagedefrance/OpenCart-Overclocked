@@ -29,6 +29,7 @@ class ModelToolSitemap extends Model {
 		fwrite($fp, $this->getCategories(0));
 		fwrite($fp, $this->getProducts());
 		fwrite($fp, $this->getManufacturers());
+		fwrite($fp, $this->getNews());
 		fwrite($fp, $this->getInformationPages());
 		fwrite($fp, "</urlset>");
 		fclose($fp);
@@ -164,6 +165,39 @@ class ModelToolSitemap extends Model {
 
 					foreach ($results as $result) {
 						$output .= $this->generateLinkNode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $result['manufacturer_id'], "weekly", "1.0");
+					}
+				}
+			}
+		}
+
+		return $output;
+	}
+
+	protected function getNews() {
+		$output = '';
+
+		$this->load->model('catalog/sitemap');
+
+		$store_id = 0;
+		$store_url = HTTP_CATALOG;
+
+		$results = $this->model_catalog_sitemap->getAllNews($store_id);
+
+		foreach ($results as $result) {
+			$output .= $this->generateLinkNode($store_url . 'index.php?route=information/news&news_id=' . $result['news_id'], "weekly", "1.0");
+		}
+
+		$stores_new = $this->model_catalog_sitemap->getAllStores();
+
+		if ($stores_new) {
+			foreach ($stores_new as $store_new) {
+				if ($store_new['store_id'] != 0) {
+					$store_url = $store_new['url'];
+
+					$results = $this->model_catalog_sitemap->getAllNews($store_new['store_id']);
+
+					foreach ($results as $result) {
+						$output .= $this->generateLinkNode($store_url . 'index.php?route=information/news&news_id=' . $result['news_id'], "weekly", "1.0");
 					}
 				}
 			}
@@ -356,6 +390,40 @@ class ModelToolSitemap extends Model {
 
 					foreach ($manufacturers as $manufacturer) { 
 						$link = utf8_encode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']);
+
+						$link = $this->model_tool_seo_url->rewrite($link);
+
+						$output .= str_replace("&", "&amp;", $link) . "\r";
+					}
+				}
+			}
+		}
+
+		// News
+		$store_id = 0;
+		$store_url = HTTP_CATALOG;
+
+		$news = $this->model_catalog_sitemap->getAllNews($store_id);
+
+		foreach ($news as $new) {
+			$link = utf8_encode($store_url . 'index.php?route=information/news&news_id=' . $new['news_id']);
+
+			$link = $this->model_tool_seo_url->rewrite($link);
+
+			$output .= str_replace("&", "&amp;", $link) . "\r";
+		}
+
+		$stores_new = $this->model_catalog_sitemap->getAllStores();
+
+		if ($stores_new) {
+			foreach ($stores_new as $store_new) {
+				if ($store_new['store_id'] != 0) {
+					$store_url = $store_new['url'];
+
+					$news = $this->model_catalog_sitemap->getAllNews($store_new['store_id']);
+
+					foreach ($news as $new) {
+						$link = utf8_encode($store_url . 'index.php?route=information/news&news_id=' . $new['news_id']);
 
 						$link = $this->model_tool_seo_url->rewrite($link);
 

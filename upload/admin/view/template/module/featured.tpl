@@ -52,9 +52,9 @@
             <td>&nbsp;</td>
             <td>
               <div class="scrollbox" id="featured-product" style="height:180px;">
-                <?php $class = 'odd'; ?>
+                <?php $class='odd'; ?>
                 <?php foreach ($products as $product) { ?>
-                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                  <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                   <div id="featured-product<?php echo $product['product_id']; ?>" class="<?php echo $class; ?>"><?php echo $product['name']; ?> <img src="view/image/delete.png" alt="" />
                     <input type="hidden" value="<?php echo $product['product_id']; ?>" />
                   </div>
@@ -142,7 +142,7 @@
         <table id="module" class="list">
           <thead>
             <tr>
-              <td class="left"><?php echo $entry_image; ?></td>
+              <td class="left"><span class="required">*</span> <?php echo $entry_image; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
               <td class="left"><?php echo $entry_status; ?></td>

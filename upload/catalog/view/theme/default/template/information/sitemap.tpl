@@ -84,6 +84,8 @@
           </ul>
         </li>
         <br />
+        <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+        <br />
         <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
         <br />
       </ul>

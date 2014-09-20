@@ -56,6 +56,7 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['text_affiliate_transaction'] = $this->language->get('text_affiliate_transaction');
 
 		$this->data['text_information'] = $this->language->get('text_information');
+		$this->data['text_news'] = $this->language->get('text_news');
 		$this->data['text_contact'] = $this->language->get('text_contact');
 
 		$this->load->model('catalog/category');
@@ -130,6 +131,7 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['affiliate_transaction'] = $this->url->link('affiliate/transaction', '', 'SSL');
 
 		$this->data['sitemap'] = $this->url->link('information/sitemap');
+		$this->data['news'] = $this->url->link('information/news_list');
 		$this->data['contact'] = $this->url->link('information/contact');
 
 		$this->load->model('catalog/information');

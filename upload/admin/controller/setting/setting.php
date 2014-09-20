@@ -126,6 +126,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
+		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
+		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
 		$this->data['entry_contact_image'] = $this->language->get('entry_contact_image');
 		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
 		$this->data['entry_contact_height'] = $this->language->get('entry_contact_height');
@@ -144,6 +146,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_image_related'] = $this->language->get('entry_image_related');
 		$this->data['entry_image_compare'] = $this->language->get('entry_image_compare');
 		$this->data['entry_image_wishlist'] = $this->language->get('entry_image_wishlist');
+		$this->data['entry_image_newsthumb'] = $this->language->get('entry_image_newsthumb');
+		$this->data['entry_image_newspopup'] = $this->language->get('entry_image_newspopup');
 		$this->data['entry_image_cart'] = $this->language->get('entry_image_cart');
 		$this->data['entry_ftp_host'] = $this->language->get('entry_ftp_host');
 		$this->data['entry_ftp_port'] = $this->language->get('entry_ftp_port');
@@ -327,6 +331,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_image_wishlist'] = $this->error['image_wishlist'];
 		} else {
 			$this->data['error_image_wishlist'] = '';
+		}
+
+		if (isset($this->error['image_newsthumb'])) {
+			$this->data['error_image_newsthumb'] = $this->error['image_newsthumb'];
+		} else {
+			$this->data['error_image_newsthumb'] = '';
+		}
+
+		if (isset($this->error['image_newspopup'])) {
+			$this->data['error_image_newspopup'] = $this->error['image_newspopup'];
+		} else {
+			$this->data['error_image_newspopup'] = '';
 		}
 
 		if (isset($this->error['image_cart'])) {
@@ -807,6 +823,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_offer_label'] = $this->config->get('config_offer_label');
 		}
 
+		if (isset($this->request->post['config_news_addthis'])) {
+			$this->data['config_news_addthis'] = $this->request->post['config_news_addthis'];
+		} else {
+			$this->data['config_news_addthis'] = $this->config->get('config_news_addthis');
+		}
+
+		if (isset($this->request->post['config_news_chars'])) {
+			$this->data['config_news_chars'] = $this->request->post['config_news_chars'];
+		} else {
+			$this->data['config_news_chars'] = $this->config->get('config_news_chars');
+		}
+
 		$this->load->model('tool/image');
 
 		if (isset($this->request->post['config_contact_image'])) {
@@ -991,6 +1019,30 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_image_wishlist_height'] = $this->request->post['config_image_wishlist_height'];
 		} else {
 			$this->data['config_image_wishlist_height'] = $this->config->get('config_image_wishlist_height');
+		}
+
+		if (isset($this->request->post['config_image_newsthumb_width'])) {
+			$this->data['config_image_newsthumb_width'] = $this->request->post['config_image_newsthumb_width'];
+		} else {
+			$this->data['config_image_newsthumb_width'] = $this->config->get('config_image_newsthumb_width');
+		}
+
+		if (isset($this->request->post['config_image_newsthumb_height'])) {
+			$this->data['config_image_newsthumb_height'] = $this->request->post['config_image_newsthumb_height'];
+		} else {
+			$this->data['config_image_newsthumb_height'] = $this->config->get('config_image_newsthumb_height');
+		}
+
+		if (isset($this->request->post['config_image_newspopup_width'])) {
+			$this->data['config_image_newspopup_width'] = $this->request->post['config_image_newspopup_width'];
+		} else {
+			$this->data['config_image_newspopup_width'] = $this->config->get('config_image_newspopup_width');
+		}
+
+		if (isset($this->request->post['config_image_newspopup_height'])) {
+			$this->data['config_image_newspopup_height'] = $this->request->post['config_image_newspopup_height'];
+		} else {
+			$this->data['config_image_newspopup_height'] = $this->config->get('config_image_newspopup_height');
 		}
 
 		if (isset($this->request->post['config_image_cart_width'])) {
@@ -1311,6 +1363,14 @@ class ControllerSettingSetting extends Controller {
 
 		if (!$this->request->post['config_image_wishlist_width'] || !$this->request->post['config_image_wishlist_height']) {
 			$this->error['image_wishlist'] = $this->language->get('error_image_wishlist');
+		}
+
+		if (!$this->request->post['config_image_newsthumb_width'] || !$this->request->post['config_image_newsthumb_height']) {
+			$this->error['image_newsthumb'] = $this->language->get('error_image_newsthumb');
+		}
+
+		if (!$this->request->post['config_image_newspopup_width'] || !$this->request->post['config_image_newspopup_height']) {
+			$this->error['image_newspopup'] = $this->language->get('error_image_newspopup');
 		}
 
 		if (!$this->request->post['config_image_cart_width'] || !$this->request->post['config_image_cart_height']) {

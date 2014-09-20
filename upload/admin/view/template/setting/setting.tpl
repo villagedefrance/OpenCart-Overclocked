@@ -784,6 +784,24 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_news_addthis; ?></td>
+            <td><?php if ($config_news_addthis) { ?>
+              <input type="radio" name="config_news_addthis" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_news_addthis" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_news_addthis" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_news_addthis" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_news_chars; ?></td>
+            <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> chars</td>
+          </tr>
+          <tr>
             <td><?php echo $entry_contact_image; ?></td>
             <td><div class="image"><img src="<?php echo $contact_image; ?>" alt="" id="thumb-contact-image" />
               <input type="hidden" name="config_contact_image" value="<?php echo $config_contact_image; ?>" id="contact-image" />
@@ -940,6 +958,24 @@
             <input type="text" name="config_image_wishlist_height" value="<?php echo $config_image_wishlist_height; ?>" size="3" />
             <?php if ($error_image_wishlist) { ?>
               <span class="error"><?php echo $error_image_wishlist; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_image_newsthumb; ?></td>
+            <td><input type="text" name="config_image_newsthumb_width" value="<?php echo $config_image_newsthumb_width; ?>" size="3" />
+              x
+            <input type="text" name="config_image_newsthumb_height" value="<?php echo $config_image_newsthumb_height; ?>" size="3" />
+            <?php if ($error_image_newsthumb) { ?>
+              <span class="error"><?php echo $error_image_newsthumb; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_image_newspopup; ?></td>
+            <td><input type="text" name="config_image_newspopup_width" value="<?php echo $config_image_newspopup_width; ?>" size="3" />
+              x
+            <input type="text" name="config_image_newspopup_height" value="<?php echo $config_image_newspopup_height; ?>" size="3" />
+            <?php if ($error_image_newspopup) { ?>
+              <span class="error"><?php echo $error_image_newspopup; ?></span>
             <?php } ?></td>
           </tr>
           <tr>

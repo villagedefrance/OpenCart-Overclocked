@@ -2018,6 +2018,58 @@ ul.box-filter > li ul {
 	text-align: right;
 	border-bottom: 1px solid #DDD;
 }
+/* News */
+.box-news {
+	background: #FFF;
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #DDD;
+}
+.box-news h4 {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+.box-news a img {
+	float: right;
+	margin-left: 2px;
+	margin-bottom: 2px;
+}
+.box-news p {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+.box-news a.read {
+	float: right;
+	text-decoration: none;
+	margin-bottom: 3px;
+}
+.box-news span {
+	font-size: 10px;
+	margin-bottom: 3px;
+}
+.product-list .read {
+	margin: 5px 5px 20px 5px;
+}
+.product-grid .read {
+	margin: 5px 5px 10px 5px;
+}
+.product-list .date, .product-grid .date {
+	margin-bottom: 2px;
+}
+/* Content Info (News) */
+.content-info {
+	background: #FFF;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.content-info .info {
+	width: 100%;
+}
+.content-info .info a {
+	text-decoration: none;
+}
+.content-info .info .image {
+	float: right;
+}
 /* Contact */
 .content .contact-info {
 	width: 100%;

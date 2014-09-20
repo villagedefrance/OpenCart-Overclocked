@@ -25,6 +25,12 @@ class ModelCatalogSitemap extends Model {
 		return $query->rows;
 	}
 
+	public function getAllNews($store_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND n2s.store_id = '" . (int)$store_id . "' AND n.status = '1' ORDER BY LCASE(nd.title)");
+
+		return $query->rows;
+	}
+
 	public function getAllInformations($data = array()) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE id.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 

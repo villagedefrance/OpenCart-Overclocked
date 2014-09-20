@@ -87,6 +87,8 @@ $_['entry_viewer']						= 'Product Image Viewer:<br /><span class="help">If "Zoo
 $_['entry_manufacturer_name']		= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
 $_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
 $_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
+$_['entry_news_addthis'] 				= 'Show AddThis on News Pages:';
+$_['entry_news_chars']   				= 'Headlines News Character Limit:<br /><span class="help">Adjust News Story\'s length on Headlines page.</span>';
 $_['entry_contact_image']				= 'Contact Form Image:<br /><span class="help">Image can be png, gif or jpg.</span>';
 $_['entry_contact_width'] 			= 'Width:';
 $_['entry_contact_height']			= 'Height:';
@@ -105,6 +107,8 @@ $_['entry_image_brand']        		= 'Manufacturer Image Size:';
 $_['entry_image_related']      		= 'Related Product Image Size:';
 $_['entry_image_compare']    		= 'Compare Image Size:';
 $_['entry_image_wishlist']   			= 'Wish List Image Size:';
+$_['entry_image_newsthumb']		= 'News Image Thumb Size:';
+$_['entry_image_newspopup']			= 'News Image Popup Size:';
 $_['entry_image_cart']        			= 'Cart Image Size:';
 $_['entry_ftp_host']        				= 'FTP Host:';
 $_['entry_ftp_port']          			= 'FTP Port:';
@@ -164,6 +168,8 @@ $_['error_image_additional']    		= 'Additional Product Image Size dimensions re
 $_['error_image_related']       		= 'Related Product Image Size dimensions required!';
 $_['error_image_compare']     		= 'Compare Image Size dimensions required!';
 $_['error_image_wishlist']      			= 'Wish List Image Size dimensions required!';
+$_['error_image_newsthumb']   		= 'News Image Thumb Size dimensions required!';
+$_['error_image_newspopup'] 		= 'News Image Popup Size dimensions required!';
 $_['error_image_cart']          			= 'Cart Image Size dimensions required!';
 $_['error_ftp_host']             			= 'FTP Host required!';
 $_['error_ftp_port']            			= 'FTP Port required!';

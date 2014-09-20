@@ -37,5 +37,6 @@ $_['text_affiliate_tracking'] 		= 'Tracking Codes';
 $_['text_affiliate_transaction']	= 'Transactions';
 
 $_['text_information']				= 'Information';
+$_['text_news']						= 'News';
 $_['text_contact']     				= 'Contact us';
 ?>
