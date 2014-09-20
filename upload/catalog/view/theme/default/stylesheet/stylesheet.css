@@ -2028,7 +2028,7 @@ ul.box-filter > li ul {
 	margin-top: 0px;
 	margin-bottom: 5px;
 }
-.box-news a img {
+.box-news a img, .box-news img {
 	float: right;
 	margin-left: 2px;
 	margin-bottom: 2px;
@@ -2055,7 +2055,7 @@ ul.box-filter > li ul {
 .product-list .date, .product-grid .date {
 	margin-bottom: 2px;
 }
-/* Content Info (News) */
+/* Content Info */
 .content-info {
 	background: #FFF;
 	padding: 10px;

@@ -1044,16 +1044,16 @@
           <tr>
             <td><?php echo $entry_mail_protocol; ?></td>
             <td><select name="config_mail_protocol">
-            <?php if ($config_mail_protocol == 'mail') { ?>
-              <option value="mail" selected="selected"><?php echo $text_mail; ?></option>
-            <?php } else { ?>
-              <option value="mail"><?php echo $text_mail; ?></option>
-            <?php } ?>
-            <?php if ($config_mail_protocol == 'smtp') { ?>
-              <option value="smtp" selected="selected"><?php echo $text_smtp; ?></option>
-            <?php } else { ?>
-              <option value="smtp"><?php echo $text_smtp; ?></option>
-            <?php } ?>
+              <?php if ($config_mail_protocol == 'mail') { ?>
+                <option value="mail" selected="selected"><?php echo $text_mail; ?></option>
+              <?php } else { ?>
+                <option value="mail"><?php echo $text_mail; ?></option>
+              <?php } ?>
+              <?php if ($config_mail_protocol == 'smtp') { ?>
+                <option value="smtp" selected="selected"><?php echo $text_smtp; ?></option>
+              <?php } else { ?>
+                <option value="smtp"><?php echo $text_smtp; ?></option>
+              <?php } ?>
             </select></td>
           </tr>
           <tr>
@@ -1199,6 +1199,10 @@
               <input type="radio" name="config_seo_url" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_file_max_size; ?></td>
+            <td><input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" /> bytes</td>
           </tr>
           <tr>
             <td><?php echo $entry_file_extension_allowed; ?></td>

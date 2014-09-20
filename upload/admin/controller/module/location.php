@@ -1,7 +1,7 @@
 <?php
-class ControllerModulePopular extends Controller {
+class ControllerModuleLocation extends Controller {
 	private $error = array();
-	private $_name = 'popular';
+	private $_name = 'location';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -37,9 +37,6 @@ class ControllerModulePopular extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-
-		$this->data['entry_viewproduct'] = $this->language->get('entry_viewproduct');
-		$this->data['entry_addproduct'] = $this->language->get('entry_addproduct');
 
 		$this->data['entry_limit'] = $this->language->get('entry_limit');
 		$this->data['entry_image'] = $this->language->get('entry_image');
@@ -115,18 +112,6 @@ class ControllerModulePopular extends Controller {
 			$this->data[$this->_name . '_title'] = $this->request->post[$this->_name . '_title'];
 		} else {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
-		}
-
-		if (isset($this->request->post[$this->_name . '_viewproduct'])) {
-			$this->data[$this->_name . '_viewproduct'] = $this->request->post[$this->_name . '_viewproduct'];
-		} else {
-			$this->data[$this->_name . '_viewproduct'] = $this->config->get($this->_name . '_viewproduct');
-		}
-
-		if (isset($this->request->post[$this->_name . '_addproduct'])) {
-			$this->data[$this->_name . '_addproduct'] = $this->request->post[$this->_name . '_addproduct'];
-		} else {
-			$this->data[$this->_name . '_addproduct'] = $this->config->get($this->_name . '_addproduct');
 		}
 
 		$this->data['modules'] = array();

@@ -482,7 +482,9 @@ class ControllerCommonFileManagerFull extends Controller {
 					$json['error'] = $this->language->get('error_directory');
 				}
 
-				if ($this->request->files['image']['size'] > 5120000) {
+				$file_max_size = $this->config->get('config_file_max_size');
+
+				if ($this->request->files['image']['size'] > (int)$file_max_size) {
 					$json['error'] = $this->language->get('error_file_size');
 				}
 
@@ -587,6 +589,8 @@ class ControllerCommonFileManagerFull extends Controller {
 			$contentType = $_SERVER["CONTENT_TYPE"];
 		}
 
+		$file_max_size = $this->config->get('config_file_max_size') / 1000;
+
 		if (strpos($contentType, "multipart") !== false) {
 			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) {
 				$out = fopen($targetDir . DIRECTORY_SEPARATOR . $fileName, $chunk == 0 ? "wb" : "ab");
@@ -595,7 +599,7 @@ class ControllerCommonFileManagerFull extends Controller {
 					$in = fopen($_FILES['file']['tmp_name'], "rb");
 
 					if ($in) {
-						while ($buff = fread($in, 5120))
+						while ($buff = fread($in, (int)$file_max_size))
 							fwrite($out, $buff);
 					} else {
 						die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
@@ -621,7 +625,7 @@ class ControllerCommonFileManagerFull extends Controller {
 				$in = fopen("php://input", "rb");
 
 				if ($in) {
-					while ($buff = fread($in, 5120))
+					while ($buff = fread($in, (int)$file_max_size))
 						fwrite($out, $buff);
 				} else {
 					die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
