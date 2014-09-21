@@ -591,6 +591,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_subtract'] = $this->language->get('entry_subtract');
 		$this->data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$this->data['entry_shipping'] = $this->language->get('entry_shipping');
+		$this->data['entry_store_location'] = $this->language->get('entry_store_location');
 		$this->data['entry_sku'] = $this->language->get('entry_sku');
 		$this->data['entry_upc'] = $this->language->get('entry_upc');
 		$this->data['entry_ean'] = $this->language->get('entry_ean');
@@ -919,6 +920,19 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['shipping'] = $product_info['shipping'];
 		} else {
 			$this->data['shipping'] = 1;
+		}
+
+		// Locations
+		$this->load->model('localisation/location');
+
+		$this->data['store_locations'] = $this->model_localisation_location->getLocations();
+
+		if (isset($this->request->post['product_location'])) {
+			$this->data['product_location'] = $this->request->post['product_location'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$this->data['product_location'] = $this->model_catalog_product->getProductLocations($this->request->get['product_id']);
+		} else {
+			$this->data['product_location'] = array(0);
 		}
 
 		if (isset($this->request->post['sku'])) {

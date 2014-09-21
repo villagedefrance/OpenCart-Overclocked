@@ -47,6 +47,7 @@ $_['entry_minimum']          	= 'Minimum Quantity:<br /><span class="help">Force
 $_['entry_subtract']         	= 'Subtract Stock:';
 $_['entry_stock_status']     	= 'Out Of Stock Status:<br /><span class="help">Status shown when a product is out of stock</span>';
 $_['entry_shipping']         		= 'Requires Shipping:';
+$_['entry_store_location']		= 'Store Locations:';
 $_['entry_sku']              		= 'SKU:<br /><span class="help">Stock Keeping Unit</span>';
 $_['entry_upc']              		= 'UPC:<br /><span class="help">Universal Product Code</span>';
 $_['entry_ean']              		= 'EAN:<br /><span class="help">European Article Number</span>';

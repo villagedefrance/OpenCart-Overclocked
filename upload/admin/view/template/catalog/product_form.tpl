@@ -175,6 +175,35 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_store_location; ?></td>
+            <td><div id="location_ids" class="scrollbox" style="width:220px; height:70px; margin-bottom:5px;">
+              <?php $class='even'; ?>
+              <div class="<?php echo $class; ?>">
+                <?php if (in_array(0, $product_location)) { ?>
+                  <input type="checkbox" name="product_location[]" value="0" checked="checked" />
+                  <?php echo $text_default; ?>
+                <?php } else { ?>
+                  <input type="checkbox" name="product_location[]" value="0" />
+                  <?php echo $text_default; ?>
+                <?php } ?>
+              </div>
+              <?php foreach ($store_locations as $store_location) { ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
+                <div class="<?php echo $class; ?>">
+                  <?php if (in_array($store_location['location_id'], $product_location)) { ?>
+                    <input type="checkbox" name="product_location[]" value="<?php echo $store_location['location_id']; ?>" checked="checked" />
+                    <?php echo $store_location['name']; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="product_location[]" value="<?php echo $store_location['location_id']; ?>" />
+                    <?php echo $store_location['name']; ?>
+                  <?php } ?>
+                </div>
+              <?php } ?>
+            </div>
+			<a onclick="select_all('product_location', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('product_location', '0');"><?php echo $text_unselect_all; ?></a>
+            </td>
+          </tr>
+          <tr>
             <td><?php echo $entry_sku; ?></td>
             <td><input type="text" name="sku" value="<?php echo $sku; ?>" size="30" /></td>
           </tr>
@@ -1595,20 +1624,39 @@ $('.time').timepicker({timeFormat: 'h:m'});
 //--></script>
 
 <script type="text/javascript"><!--
-var formblock;
-var forminput;
+var formblockA;
+var forminputA;
 
-formblock = document.getElementById('store_ids');
-forminput = formblock.getElementsByTagName('input');
+var formblockB;
+var forminputB;
+
+formblockA = document.getElementById('store_ids');
+forminputA = formblockA.getElementsByTagName('input');
 
 function select_all(name, value) {
-	for (i = 0; i < forminput.length; i++) {
+	for (i = 0; i < forminputA.length; i++) {
 		var regex = new RegExp(name, "i");
-		if (regex.test(forminput[i].getAttribute('name'))) {
+		if (regex.test(forminputA[i].getAttribute('name'))) {
 			if (value == '1') {
-				forminput[i].checked = true;
+				forminputA[i].checked = true;
 			} else {
-				forminput[i].checked = false;
+				forminputA[i].checked = false;
+			}
+		}
+	}
+}
+
+formblockB = document.getElementById('location_ids');
+forminputB = formblockB.getElementsByTagName('input');
+
+function select_all(name, value) {
+	for (i = 0; i < forminputB.length; i++) {
+		var regex = new RegExp(name, "i");
+		if (regex.test(forminputB[i].getAttribute('name'))) {
+			if (value == '1') {
+				forminputB[i].checked = true;
+			} else {
+				forminputB[i].checked = false;
 			}
 		}
 	}

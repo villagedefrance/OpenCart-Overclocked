@@ -25,6 +25,12 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
+		if (isset($data['product_location'])) {
+			foreach ($data['product_location'] as $location_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_location SET product_id = '" . (int)$product_id . "', location_id = '" . (int)$location_id . "'");
+			}
+		}
+
 		if (isset($data['product_store'])) {
 			foreach ($data['product_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "'");
@@ -125,14 +131,14 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}
-
 		if (isset($data['product_profiles'])) {
 			foreach ($data['product_profiles'] as $profile) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_profile SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$profile['customer_group_id'] . "', profile_id = '" . (int)$profile['profile_id'] . "'");
 			}
+		}
+
+		if ($data['keyword']) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
 		$this->cache->delete('product');
@@ -140,7 +146,7 @@ class ModelCatalogProduct extends Model {
 
 	public function editProduct($product_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', shipping = '" . (int)$data['shipping'] . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', points = '" . (int)$data['points'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
-		
+
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
@@ -154,10 +160,18 @@ class ModelCatalogProduct extends Model {
 
 			if ($value['tag']) {
 				$tags = explode(',', $value['tag']);
-				
+
 				foreach ($tags as $tag) {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "product_tag SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', tag = '" . $this->db->escape(trim($tag)) . "'");
 				}
+			}
+		}
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
+
+		if (isset($data['product_location'])) {
+			foreach ($data['product_location'] as $location_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_location SET product_id = '" . (int)$product_id . "', location_id = '" . (int)$location_id . "'");
 			}
 		}
 
@@ -175,7 +189,7 @@ class ModelCatalogProduct extends Model {
 			foreach ($data['product_attribute'] as $product_attribute) {
 				if ($product_attribute['attribute_id']) {
 					$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' AND attribute_id = '" . (int)$product_attribute['attribute_id'] . "'");
-	
+
 					foreach ($product_attribute['product_attribute_description'] as $language_id => $product_attribute_description) {
 						$this->db->query("INSERT INTO " . DB_PREFIX . "product_attribute SET product_id = '" . (int)$product_id . "', attribute_id = '" . (int)$product_attribute['attribute_id'] . "', language_id = '" . (int)$language_id . "', text = '" .  $this->db->escape($product_attribute_description['text']) . "'");
 					}
@@ -287,18 +301,18 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
-
-		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
-		}
-
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_profile WHERE product_id = '" . (int)$product_id . "'");
 
 		if (isset($data['product_profiles'])) {
 			foreach ($data['product_profiles'] as $profile) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_profile SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$profile['customer_group_id'] . "', profile_id = '" . (int)$profile['profile_id'] . "'");
 			}
+		}
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
+
+		if ($data['keyword']) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
 		$this->cache->delete('product');
@@ -330,6 +344,7 @@ class ModelCatalogProduct extends Model {
 			$data = array_merge($data, array('product_category' => $this->getProductCategories($product_id)));
 			$data = array_merge($data, array('product_download' => $this->getProductDownloads($product_id)));
 			$data = array_merge($data, array('product_layout' => $this->getProductLayouts($product_id)));
+			$data = array_merge($data, array('product_location' => $this->getProductLocations($product_id)));
 			$data = array_merge($data, array('product_store' => $this->getProductStores($product_id)));
 			$data = array_merge($data, array('product_profiles' => $this->getProfiles($product_id)));
 			$data = array_merge($data, array('product_tag' => $this->getProductTags($product_id)));
@@ -354,6 +369,7 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_download WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_profile WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_tag WHERE product_id='" . (int)$product_id. "'");
@@ -597,18 +613,6 @@ class ModelCatalogProduct extends Model {
 		return $product_download_data;
 	}
 
-	public function getProductStores($product_id) {
-		$product_store_data = array();
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
-
-		foreach ($query->rows as $result) {
-			$product_store_data[] = $result['store_id'];
-		}
-
-		return $product_store_data;
-	}
-
 	public function getProductLayouts($product_id) {
 		$product_layout_data = array();
 
@@ -621,6 +625,18 @@ class ModelCatalogProduct extends Model {
 		return $product_layout_data;
 	}
 
+	public function getProductLocations($product_id) {
+		$product_location_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$product_location_data[] = $result['location_id'];
+		}
+
+		return $product_location_data;
+	}
+
 	public function getProductRelated($product_id) {
 		$product_related_data = array();
 
@@ -631,6 +647,18 @@ class ModelCatalogProduct extends Model {
 		}
 
 		return $product_related_data;
+	}
+
+	public function getProductStores($product_id) {
+		$product_store_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$product_store_data[] = $result['store_id'];
+		}
+
+		return $product_store_data;
 	}
 
 	public function getProductTags($product_id) {
@@ -741,6 +769,12 @@ class ModelCatalogProduct extends Model {
 
 	public function getTotalProductsByLayoutId($layout_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalProductsByLocationId($location_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_location WHERE location_id = '" . (int)$location_id . "'");
 
 		return $query->row['total'];
 	}
