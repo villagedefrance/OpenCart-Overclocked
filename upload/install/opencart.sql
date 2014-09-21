@@ -2879,7 +2879,7 @@ CREATE TABLE `oc_product_to_location` (
 -- Dumping data for table `oc_product_to_location`
 --
 
-INSERT INTO `oc_product_to_store` (`product_id`, `location_id`) VALUES
+INSERT INTO `oc_product_to_location` (`product_id`, `location_id`) VALUES
 (28, 0),
 (29, 0),
 (30, 0),
