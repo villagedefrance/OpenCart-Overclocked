@@ -5,8 +5,6 @@ $_['heading_title']       			= 'Slideshow';
 // Text
 $_['text_module']         		= 'Modules';
 $_['text_success']        		= 'Success: You have modified module <b>Slideshow</b> !';
-$_['text_yes']	       				= 'Yes';
-$_['text_no']	       				= 'No';
 $_['text_true']             		= 'True';
 $_['text_false']            		= 'False';
 $_['text_content_top']    		= 'Content Top';

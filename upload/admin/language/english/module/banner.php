@@ -5,8 +5,6 @@ $_['heading_title']       			= 'Banner';
 // Text
 $_['text_module']         		= 'Modules';
 $_['text_success']        		= 'Success: You have modified module <b>Banner</b> !';
-$_['text_yes']	       				= 'Yes';
-$_['text_no']	       				= 'No';
 $_['text_content_top']    		= 'Content Top';
 $_['text_content_bottom'] 	= 'Content Bottom';
 $_['text_column_left']    		= 'Column Left';

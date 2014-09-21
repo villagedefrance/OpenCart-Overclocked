@@ -78,32 +78,11 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_sku; ?></td>
-            <td><input type="text" name="sku" value="<?php echo $sku; ?>" size="30" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_upc; ?></td>
-            <td><input type="text" name="upc" value="<?php echo $upc; ?>" size="30" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_ean; ?></td>
-            <td><input type="text" name="ean" value="<?php echo $ean; ?>" size="30" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_jan; ?></td>
-            <td><input type="text" name="jan" value="<?php echo $jan; ?>" size="30" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_isbn; ?></td>
-            <td><input type="text" name="isbn" value="<?php echo $isbn; ?>" size="30" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_mpn; ?></td>
-            <td><input type="text" name="mpn" value="<?php echo $mpn; ?>" size="30" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_location; ?></td>
-            <td><input type="text" name="location" value="<?php echo $location; ?>" size="30" /></td>
+            <td><?php echo $entry_image; ?></td>
+            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+              <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+              <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
+            </div></td>
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_price; ?></td>
@@ -122,6 +101,33 @@
               <?php } ?>
             </select></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_date_available; ?></td>
+            <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" size="12" class="date" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_keyword; ?></td>
+            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_sort_order; ?></td>
+            <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="2" /></td>
+          </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_status; ?></td>
+            <td><select name="status">
+              <?php if ($status) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
+        <h2><?php echo $heading_inventory; ?></h2>
+        <table class="form">
           <tr>
             <td><?php echo $entry_quantity; ?></td>
             <td><input type="text" name="quantity" value="<?php echo $quantity; ?>" size="2" /></td>
@@ -169,20 +175,36 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_keyword; ?></td>
-            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
+            <td><?php echo $entry_sku; ?></td>
+            <td><input type="text" name="sku" value="<?php echo $sku; ?>" size="30" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_image; ?></td>
-            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
-              <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-              <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
-            </div></td>
+            <td><?php echo $entry_upc; ?></td>
+            <td><input type="text" name="upc" value="<?php echo $upc; ?>" size="30" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_date_available; ?></td>
-            <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" size="12" class="date" /></td>
+            <td><?php echo $entry_ean; ?></td>
+            <td><input type="text" name="ean" value="<?php echo $ean; ?>" size="30" /></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_jan; ?></td>
+            <td><input type="text" name="jan" value="<?php echo $jan; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_isbn; ?></td>
+            <td><input type="text" name="isbn" value="<?php echo $isbn; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_mpn; ?></td>
+            <td><input type="text" name="mpn" value="<?php echo $mpn; ?>" size="30" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_location; ?></td>
+            <td><input type="text" name="location" value="<?php echo $location; ?>" size="30" /></td>
+          </tr>
+        </table>
+        <h2><?php echo $heading_dimension; ?></h2>
+        <table class="form">
           <tr>
             <td><?php echo $entry_dimension; ?></td>
             <td>
@@ -219,46 +241,39 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="status">
-              <?php if ($status) { ?>
-                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                <option value="0"><?php echo $text_disabled; ?></option>
-              <?php } else { ?>
-                <option value="1"><?php echo $text_enabled; ?></option>
-                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="2" /></td>
-          </tr>
         </table>
       </div>
       <div id="tab-links">
         <table class="form">
-        <?php if ($autocomplete_off) { ?>
           <tr>
-            <td><?php echo $entry_manufacturer; ?></td>
-            <td><select name="manufacturer_id">
-              <option value="0" selected="selected"><?php echo $text_none; ?></option>
-              <?php foreach ($manufacturers as $manufacturer) { ?>
-                <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
-                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
+            <td><?php echo $entry_store; ?></td>
+            <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px; margin-bottom:5px;">
+              <?php $class = 'even'; ?>
+              <div class="<?php echo $class; ?>">
+                <?php if (in_array(0, $product_store)) { ?>
+                  <input type="checkbox" name="product_store[]" value="0" checked="checked" />
+                  <?php echo $text_default; ?>
                 <?php } else { ?>
-                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>"><?php echo $manufacturer['name']; ?></option>
+                  <input type="checkbox" name="product_store[]" value="0" />
+                  <?php echo $text_default; ?>
                 <?php } ?>
+              </div>
+              <?php foreach ($stores as $store) { ?>
+                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <div class="<?php echo $class; ?>">
+                  <?php if (in_array($store['store_id'], $product_store)) { ?>
+                    <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                    <?php echo $store['name']; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" />
+                    <?php echo $store['name']; ?>
+                  <?php } ?>
+                </div>
               <?php } ?>
-            </select></td>
+            </div>
+			<a onclick="select_all('product_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('product_store', '0');"><?php echo $text_unselect_all; ?></a>
+            </td>
           </tr>
-        <?php } else { ?>
-          <tr>
-            <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
-          </tr>
-        <?php } ?>
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_category; ?></td>
@@ -298,6 +313,26 @@
                 </div>
               <?php } ?>
             </div></td>
+          </tr>
+        <?php } ?>
+        <?php if ($autocomplete_off) { ?>
+          <tr>
+            <td><?php echo $entry_manufacturer; ?></td>
+            <td><select name="manufacturer_id">
+              <option value="0" selected="selected"><?php echo $text_none; ?></option>
+              <?php foreach ($manufacturers as $manufacturer) { ?>
+                <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
+                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>"><?php echo $manufacturer['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
+            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
           </tr>
         <?php } ?>
         <?php if ($autocomplete_off) { ?>
@@ -433,35 +468,6 @@
             </div></td>
           </tr>
         <?php } ?>
-          <tr>
-            <td><?php echo $entry_store; ?></td>
-            <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px; margin-bottom:5px;">
-              <?php $class = 'even'; ?>
-              <div class="<?php echo $class; ?>">
-                <?php if (in_array(0, $product_store)) { ?>
-                  <input type="checkbox" name="product_store[]" value="0" checked="checked" />
-                  <?php echo $text_default; ?>
-                <?php } else { ?>
-                  <input type="checkbox" name="product_store[]" value="0" />
-                  <?php echo $text_default; ?>
-                <?php } ?>
-              </div>
-              <?php foreach ($stores as $store) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
-                <div class="<?php echo $class; ?>">
-                  <?php if (in_array($store['store_id'], $product_store)) { ?>
-                    <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
-                    <?php echo $store['name']; ?>
-                  <?php } else { ?>
-                    <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" />
-                    <?php echo $store['name']; ?>
-                  <?php } ?>
-                </div>
-              <?php } ?>
-            </div>
-			<a onclick="select_all('product_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('product_store', '0');"><?php echo $text_unselect_all; ?></a>
-            </td>
-          </tr>
         </table>
       </div>
       <div id="tab-attribute">
