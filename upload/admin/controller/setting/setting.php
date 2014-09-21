@@ -128,10 +128,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
-		$this->data['entry_contact_image'] = $this->language->get('entry_contact_image');
-		$this->data['entry_contact_width'] = $this->language->get('entry_contact_width');
-		$this->data['entry_contact_height'] = $this->language->get('entry_contact_height');
-		$this->data['entry_contact_link'] = $this->language->get('entry_contact_link');
 		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
 		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
@@ -836,38 +832,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_news_chars'] = $this->config->get('config_news_chars');
 		}
 
-		$this->load->model('tool/image');
-
-		if (isset($this->request->post['config_contact_image'])) {
-			$this->data['config_contact_image'] = $this->request->post['config_contact_image'];
-		} else {
-			$this->data['config_contact_image'] = $this->config->get('config_contact_image');
-		}
-
-		if ($this->config->get('config_contact_image') && file_exists(DIR_IMAGE . $this->config->get('config_contact_image')) && is_file(DIR_IMAGE . $this->config->get('config_contact_image'))) {
-			$this->data['contact_image'] = $this->model_tool_image->resize($this->config->get('config_contact_image'), 100, 100);
-		} else {
-			$this->data['contact_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
-		}
-
-		if (isset($this->request->post['config_contact_width'])) {
-			$this->data['config_contact_width'] = $this->request->post['config_contact_width'];
-		} else {
-			$this->data['config_contact_width'] = $this->config->get('config_contact_width');
-		}
-
-		if (isset($this->request->post['config_contact_height'])) {
-			$this->data['config_contact_height'] = $this->request->post['config_contact_height'];
-		} else {
-			$this->data['config_contact_height'] = $this->config->get('config_contact_height');
-		}
-
-		if (isset($this->request->post['config_contact_link'])) {
-			$this->data['config_contact_link'] = $this->request->post['config_contact_link'];
-		} else {
-			$this->data['config_contact_link'] = $this->config->get('config_contact_link');
-		}
-
 		if (isset($this->request->post['config_cookie_consent'])) {
 			$this->data['config_cookie_consent'] = $this->request->post['config_cookie_consent'];
 		} else {
@@ -887,6 +851,8 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_back_to_top'] = $this->config->get('config_back_to_top');
 		}
+
+		$this->load->model('tool/image');
 
 		if (isset($this->request->post['config_logo'])) {
 			$this->data['config_logo'] = $this->request->post['config_logo'];

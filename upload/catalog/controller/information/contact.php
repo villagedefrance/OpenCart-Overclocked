@@ -85,32 +85,6 @@ class ControllerInformationContact extends Controller {
 		$this->data['telephone'] = $this->config->get('config_telephone');
 		$this->data['fax'] = $this->config->get('config_fax');
 
-		$this->load->model('tool/image');
-
-		if ($this->config->get('config_contact_width')) {
-			$image_width = $this->config->get('config_contact_width');
-		} else {
-			$image_width = 200;
-		}
-
-		if ($this->config->get('config_contact_height')) {
-			$image_height = $this->config->get('config_contact_height');
-		} else {
-			$image_height = 200;
-		}
-
-		if ($this->config->get('config_contact_image') && file_exists(DIR_IMAGE . $this->config->get('config_contact_image'))) {
-			$this->data['contact_image'] = $this->model_tool_image->resize($this->config->get('config_contact_image'), $image_width, $image_height);
-		} else {
-			$this->data['contact_image'] = '';
-		}
-
-		if ($this->config->get('config_contact_link')) {
-			$this->data['contact_link'] = html_entity_decode($this->config->get('config_contact_link'), ENT_QUOTES, 'UTF-8');
-		} else {
-			$this->data['contact_link'] = '';
-		}
-
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
 		} else {

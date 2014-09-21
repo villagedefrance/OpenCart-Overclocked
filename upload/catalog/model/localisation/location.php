@@ -8,7 +8,7 @@ class ModelLocalisationLocation extends Model {
 	}
 
 	public function getLocations($limit) {
-		$query = $this->db->query("SELECT location_id, image, name, address, telephone, latitude, longitude FROM " . DB_PREFIX . "location ORDER BY name DESC LIMIT " . (int)$limit);
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "location ORDER BY name DESC LIMIT " . (int)$limit);
 
 		return $query->rows;
 	}

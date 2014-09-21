@@ -89,10 +89,6 @@ $_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span cla
 $_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_news_addthis'] 				= 'Show AddThis on News Pages:';
 $_['entry_news_chars']   				= 'Headlines News Character Limit:<br /><span class="help">Adjust News Story\'s length on Headlines page.</span>';
-$_['entry_contact_image']				= 'Contact Form Image:<br /><span class="help">Image can be png, gif or jpg.</span>';
-$_['entry_contact_width'] 			= 'Width:';
-$_['entry_contact_height']			= 'Height:';
-$_['entry_contact_link']				= 'Contact Form Image Url:<br /><span class="help">(optional)</span>';
 $_['entry_cookie_consent']       		= 'Cookie Consent:<br /><span class="help">If Yes, Cookie Consent banner will be enabled. Gives customers the option to opt-out of Google Analytics tracking.</span>';
 $_['entry_cookie_privacy']        		= 'Select Cookie Policy page:<br /><span class="help">Usually part of the Privacy Policy.</span>';
 $_['entry_back_to_top']				= 'Enable Scroll Back to Top:';

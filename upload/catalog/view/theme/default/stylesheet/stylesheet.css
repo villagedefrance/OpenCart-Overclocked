@@ -438,8 +438,17 @@ samp, small {
 }
 /* Breadcrumbs */
 .breadcrumb {
-	color: #CCC;
+	color: #AAA;
 	margin-bottom: 10px;
+}
+.breadcrumb a {
+	color: #38B0E3;
+	font-size: 11px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.breadcrumb a:hover {
+	color: #0D6D98;
 }
 /* Notifications */
 .success, .warning, .attention, .information {
@@ -2021,6 +2030,7 @@ ul.box-filter > li ul {
 /* News */
 .box-news {
 	background: #FFF;
+	padding-bottom: 5px;
 	margin-bottom: 10px;
 	border-bottom: 1px dotted #DDD;
 }
@@ -2077,11 +2087,11 @@ ul.box-filter > li ul {
 }
 .content .contact-info .info-left {
 	float: left;
-	width: 38%;
+	width: 32%;
 }
 .content .contact-info .info-right {
 	float: left;
-	width: 58%;
+	width: 65%;
 }
 /* Sitemap */
 .sitemap-info {

@@ -36,12 +36,26 @@ class ControllerModuleLocation extends Controller {
 					$image = false;
 				}
 
+				if ($result['open']) {
+					$open = $result['open'];
+				} else {
+					$open = false;
+				}
+
+				if ($result['comment']) {
+					$comment = $result['comment'];
+				} else {
+					$comment = false;
+				}
+
 				$this->data['locations'][] = array(
 					'location_id'		=> $result['location_id'],
 					'thumb'			=> $image,
 					'name'			=> $result['name'],
-					'address'   	 	=> $result['address'],
+					'address'   	 	=> nl2br($result['address']),
 					'telephone' 		=> $result['telephone'],
+					'open'			=> nl2br($open),
+					'comment'		=> nl2br($comment),
 					'latitude'     	=> $result['latitude'],
 					'longitude'    	=> $result['longitude']
 				);

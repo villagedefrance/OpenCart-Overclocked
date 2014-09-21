@@ -27,17 +27,6 @@
             <?php echo $fax; ?>
 			<br />
           <?php } ?>
-		  <br />
-          <br />
-          <div>
-            <?php if ($contact_image) { ?>
-              <?php if ($contact_link) { ?>
-                <a onclick="window.open('<?php echo $contact_link; ?>');"><img src="<?php echo $contact_image; ?>" alt="" /></a>
-              <?php } else { ?>
-                <img src="<?php echo $contact_image; ?>" alt="" />
-              <?php } ?>
-            <?php } ?>
-          </div>
         </div>
         <div class="info-right">
           <h2><?php echo $text_contact; ?></h2>
