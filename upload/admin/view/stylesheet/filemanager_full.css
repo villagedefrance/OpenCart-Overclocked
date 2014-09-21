@@ -124,10 +124,10 @@
 	display: block;
 }
 #visualFeedback {
-	width: 400px;
 	position: fixed;
 	right: 36px;
-	top: 134px;
+	top: 129px;
+	width: 400px;
 	border: 1px solid #888;
 	z-index: 99;
 	-webkit-border-radius: 5px;

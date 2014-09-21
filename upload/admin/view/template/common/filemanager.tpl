@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 		$('#container').prepend(html);
 
-		$( ".draggable" ).draggable({ cursor: "move", revert: true });
+		$( ".draggable" ).draggable({ cursor:"move", revert:true });
 
 		var box = $('#visualFeedback');
 
@@ -210,21 +210,21 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#btnExpand').click( function() {
+	$('#btnExpand').click(function() {
 		var myTree= $.tree.focused();
 
 		myTree.open_all('#top');
 		myTree.refresh(myTree.selected);
 	});
 
-	$('#btnCollapse').click( function() {
+	$('#btnCollapse').click(function() {
 		var myTree= $.tree.focused();
 
 		myTree.close_all('#top');
 		myTree.refresh(myTree.selected);
 	});
 
-	$('#btnTextView').click( function() {
+	$('#btnTextView').click(function() {
 		$('#column-right a img').hide();
 		$('#column-right a').each(function(index, e2) {
 			$('span.fileSize').hide();
@@ -242,7 +242,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#btnListView').click( function() {
+	$('#btnListView').click(function() {
 		$('#column-right a img').show();
 		$('#column-right a img').each(function(index, e1) {
 			$(e1).css({
@@ -270,7 +270,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#btnThumbView').click( function() {
+	$('#btnThumbView').click(function() {
 		$('#column-right a img').show();
 		$('#column-right a img').each(function(index, e1) {
 			$(e1).css({
@@ -765,7 +765,7 @@ $(document).ready(function() {
 
 			this.submit();
 		},
-		onSubmit: function(file, extension){ },
+		onSubmit: function(file, extension) { },
 		onComplete: function(file, json) {
 			if (json.success) {
 				var tree = $.tree.focused();
@@ -816,7 +816,7 @@ $(document).ready(function() {
 				$("#uploader").plupload({
 					runtimes: 'flash,html5',
 					url: 'index.php?route=common/filemanager/multi&token=<?php echo $token; ?>&directory=' + window.dr,
-					max_file_size: '4mb',
+					max_file_size: '5mb',
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { height:600, width:800, quality:90 },
@@ -850,11 +850,7 @@ $(document).ready(function() {
 				var uploader = $('#uploader').plupload('getUploader');
 				var tree = $.tree.reference('#column-left a');
 
-				if (tree.selected) {
-					tree.refresh(tree.selected);
-				} else {
-					tree.refresh();
-				}
+				tree.refresh();
 
 				$('#uploadMulti').remove();
 			}

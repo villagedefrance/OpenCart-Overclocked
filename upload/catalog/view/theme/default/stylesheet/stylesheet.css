@@ -439,6 +439,9 @@ samp, small {
 /* Breadcrumbs */
 .breadcrumb {
 	color: #AAA;
+	font-size: 13px;
+	line-height: 13px;
+	padding: 0px 3px;
 	margin-bottom: 10px;
 }
 .breadcrumb a {

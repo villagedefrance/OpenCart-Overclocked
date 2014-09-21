@@ -181,11 +181,22 @@ ul.menu ul {
 	padding: 10px 30px 128px 30px;
 	min-width: 900px;
 }
-/* Breadcrumb */
-.breadcrumb, .breadcrumb a {
+/* Breadcrumbs */
+.breadcrumb {
+	color: #777;
+	font-size: 14px;
+	line-height: 14px;
+	padding: 0px 3px;
+	margin-bottom: 10px;
+}
+.breadcrumb a {
+	color: #555;
 	font-size: 12px;
-	color: #666;
-	margin-bottom: 15px;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.breadcrumb a:hover {
+	color: #0D6D98;
 }
 /* Notifications */
 .success {
