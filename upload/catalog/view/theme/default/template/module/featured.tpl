@@ -11,6 +11,9 @@
       <?php if ($product['thumb']) { ?>
         <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
       <?php } ?>
+      <?php if ($brand && $product['manufacturer']) { ?>
+        <div class="brand"><?php echo $product['manufacturer']; ?></div>
+      <?php } ?>
       <div class="name">
         <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
       </div>
@@ -23,30 +26,17 @@
         <?php } ?>
         </div>
       <?php } ?>
-      <?php if ($brand) { ?>
-        <?php if ($product['manufacturer']) { ?>
-          <div class="brand"><?php echo $product['manufacturer']; ?></div>
-        <?php } ?>
+      <?php if ($model && $product['model']) { ?>
+        <div><span style="font-size:9px;"><?php echo $text_model; ?></span> <?php echo $product['model']; ?><br /></div>
       <?php } ?>
-      <?php if ($model) { ?>
-        <?php if ($product['model']) { ?>
-          <div><span style="font-size:9px;"><?php echo $text_model; ?></span> <?php echo $product['model']; ?><br /></div>
-        <?php } ?>
+      <?php if ($reward && $product['reward']) { ?>
+        <div><span style="font-size:9px;"><?php echo $text_reward; ?></span> <?php echo $product['reward']; ?><br /></div>
       <?php } ?>
-      <?php if ($reward) { ?>
-        <?php if ($product['reward']) { ?>
-          <div><span style="font-size:9px;"><?php echo $text_reward; ?></span> <?php echo $product['reward']; ?><br /></div>
-        <?php } ?>
+      <?php if ($point && $product['points']) { ?>
+        <div><span class="reward" style="font-size:9px;"><?php echo $text_points; ?> <?php echo $product['points']; ?></span><br /></div>
       <?php } ?>
-      <?php if ($point) { ?>
-        <?php if ($product['points']) { ?>
-          <div><span class="reward" style="font-size:9px;"><?php echo $text_points; ?> <?php echo $product['points']; ?></span><br /></div>
-        <?php } ?>
-      <?php } ?>
-      <?php if ($review) { ?>
-        <?php if ($product['rating']) { ?>
-          <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
-        <?php } ?>
+      <?php if ($review && $product['rating']) { ?>
+        <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
       <?php } ?>
       <?php if ($viewproduct) { ?>
         <div style="padding:2px 0px;"><a href="<?php echo $product['href']; ?>" class="button"><?php echo $button_view; ?></a></div>
@@ -70,6 +60,9 @@
       <?php if ($product['thumb']) { ?>
         <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
       <?php } ?>
+      <?php if ($brand && $product['manufacturer']) { ?>
+        <div class="brand"><?php echo $product['manufacturer']; ?></div>
+      <?php } ?>
       <div class="name">
         <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
       </div>
@@ -82,30 +75,17 @@
         <?php } ?>
         </div>
       <?php } ?>
-      <?php if ($brand) { ?>
-        <?php if ($product['manufacturer']) { ?>
-          <div class="brand"><?php echo $product['manufacturer']; ?></div>
-        <?php } ?>
+      <?php if ($model && $product['model']) { ?>
+        <div><span style="font-size:9px;"><?php echo $text_model; ?></span> <?php echo $product['model']; ?><br /></div>
       <?php } ?>
-      <?php if ($model) { ?>
-        <?php if ($product['model']) { ?>
-          <div><span style="font-size:9px;"><?php echo $text_model; ?></span> <?php echo $product['model']; ?><br /></div>
-        <?php } ?>
+      <?php if ($reward && $product['reward']) { ?>
+        <div><span style="font-size:9px;"><?php echo $text_reward; ?></span> <?php echo $product['reward']; ?><br /></div>
       <?php } ?>
-      <?php if ($reward) { ?>
-        <?php if ($product['reward']) { ?>
-          <div><span style="font-size:9px;"><?php echo $text_reward; ?></span> <?php echo $product['reward']; ?><br /></div>
-        <?php } ?>
+      <?php if ($point && $product['points']) { ?>
+        <div><span class="reward" style="font-size:9px;"><?php echo $text_points; ?> <?php echo $product['points']; ?></span><br /></div>
       <?php } ?>
-      <?php if ($point) { ?>
-        <?php if ($product['points']) { ?>
-          <div><span class="reward" style="font-size:9px;"><?php echo $text_points; ?> <?php echo $product['points']; ?></span><br /></div>
-        <?php } ?>
-      <?php } ?>
-      <?php if ($review) { ?>
-        <?php if ($product['rating']) { ?>
-          <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
-        <?php } ?>
+      <?php if ($review && $product['rating']) { ?>
+        <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
       <?php } ?>
       <?php if ($viewproduct) { ?>
         <div style="padding:2px 0px;"><a href="<?php echo $product['href']; ?>" class="button"><?php echo $button_view; ?></a></div>
