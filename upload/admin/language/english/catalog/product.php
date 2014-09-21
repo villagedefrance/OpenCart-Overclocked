@@ -36,10 +36,10 @@ $_['entry_tag']          	 		= 'Product Tags:<br /><span class="help">Comma sepa
 
 $_['entry_model']            		= 'Model:';
 $_['entry_image']            		= 'Image:';
+$_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique</span>';
 $_['entry_price']            		= 'Price:';
 $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
-$_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique</span>';
 $_['entry_sort_order']       	= 'Sort Order:';
 $_['entry_status']           		= 'Status:';
 $_['entry_quantity']         		= 'Quantity in Stock:';

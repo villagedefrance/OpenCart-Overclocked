@@ -579,10 +579,10 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['entry_model'] = $this->language->get('entry_model');
 		$this->data['entry_image'] = $this->language->get('entry_image');
+		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_price'] = $this->language->get('entry_price');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
-		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
@@ -825,6 +825,14 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
 
+		if (isset($this->request->post['keyword'])) {
+			$this->data['keyword'] = $this->request->post['keyword'];
+		} elseif (!empty($product_info)) {
+			$this->data['keyword'] = $product_info['keyword'];
+		} else {
+			$this->data['keyword'] = '';
+		}
+
 		if (isset($this->request->post['price'])) {
 			$this->data['price'] = $this->request->post['price'];
 		} elseif (!empty($product_info)) {
@@ -851,14 +859,6 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['date_available'] = date('Y-m-d', strtotime($product_info['date_available']));
 		} else {
 			$this->data['date_available'] = date('Y-m-d', time() - 86400);
-		}
-
-		if (isset($this->request->post['keyword'])) {
-			$this->data['keyword'] = $this->request->post['keyword'];
-		} elseif (!empty($product_info)) {
-			$this->data['keyword'] = $product_info['keyword'];
-		} else {
-			$this->data['keyword'] = '';
 		}
 
 		if (isset($this->request->post['sort_order'])) {

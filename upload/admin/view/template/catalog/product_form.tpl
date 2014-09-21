@@ -84,6 +84,10 @@
               <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
             </div></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_keyword; ?></td>
+            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
+          </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_price; ?></td>
             <td><input type="text" name="price" value="<?php echo $price; ?>" /></td>
@@ -104,10 +108,6 @@
           <tr>
             <td><?php echo $entry_date_available; ?></td>
             <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" size="12" class="date" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_keyword; ?></td>
-            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
@@ -248,7 +248,7 @@
           <tr>
             <td><?php echo $entry_store; ?></td>
             <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px; margin-bottom:5px;">
-              <?php $class = 'even'; ?>
+              <?php $class='even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $product_store)) { ?>
                   <input type="checkbox" name="product_store[]" value="0" checked="checked" />
@@ -259,7 +259,7 @@
                 <?php } ?>
               </div>
               <?php foreach ($stores as $store) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div class="<?php echo $class; ?>">
                   <?php if (in_array($store['store_id'], $product_store)) { ?>
                     <input type="checkbox" name="product_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
@@ -278,9 +278,9 @@
           <tr>
             <td><?php echo $entry_category; ?></td>
             <td><div class="scrollbox" style="width:500px; height:300px; margin-bottom:5px;">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($categories as $category) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div class="<?php echo $class; ?>">
                 <?php $product_category_id = array(); ?>
                 <?php foreach ($product_categories as $product_category) { $product_category_id[] = $product_category['category_id']; } ?>
@@ -305,9 +305,9 @@
           <tr>
             <td>&nbsp;</td>
             <td><div id="product-category" class="scrollbox">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($product_categories as $product_category) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div id="product-category<?php echo $product_category['category_id']; ?>" class="<?php echo $class; ?>"><?php echo $product_category['name']; ?><img src="view/image/delete.png" alt="" />
                   <input type="hidden" name="product_category[]" value="<?php echo $product_category['category_id']; ?>" />
                 </div>
@@ -339,9 +339,9 @@
           <tr>
             <td><?php echo $entry_filter; ?></td>
             <td><div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($filters as $filter) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div class="<?php echo $class; ?>">
                   <?php $product_filter_id = array(); ?>
                   <?php foreach ($product_filters as $product_filter) { $product_filter_id[] = $product_filter['filter_id']; } ?>
@@ -366,9 +366,9 @@
           <tr>
             <td>&nbsp;</td>
             <td><div id="product-filter" class="scrollbox">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($product_filters as $product_filter) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div id="product-filter<?php echo $product_filter['filter_id']; ?>" class="<?php echo $class; ?>"><?php echo $product_filter['name']; ?><img src="view/image/delete.png" alt="" />
                   <input type="hidden" name="product_filter[]" value="<?php echo $product_filter['filter_id']; ?>" />
                 </div>
@@ -380,9 +380,9 @@
           <tr>
             <td><?php echo $entry_download; ?></td>
             <td><div class="scrollbox" style="width:350px; height:100px; margin-bottom:5px;">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($downloads as $download) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div class="<?php echo $class; ?>">
                   <?php $product_download_id = array(); ?>
                   <?php foreach ($product_downloads as $product_download) { $product_download_id[] = $product_download['download_id']; } ?>
@@ -407,9 +407,9 @@
           <tr>
             <td>&nbsp;</td>
             <td><div id="product-download" class="scrollbox">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($product_downloads as $product_download) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div id="product-download<?php echo $product_download['download_id']; ?>" class="<?php echo $class; ?>"> <?php echo $product_download['name']; ?><img src="view/image/delete.png" alt="" />
                   <input type="hidden" name="product_download[]" value="<?php echo $product_download['download_id']; ?>" />
                 </div>
@@ -458,9 +458,9 @@
           <tr>
             <td>&nbsp;</td>
             <td><div id="product-related" class="scrollbox">
-              <?php $class = 'odd'; ?>
+              <?php $class='odd'; ?>
               <?php foreach ($product_related as $product_related) { ?>
-                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div id="product-related<?php echo $product_related['product_id']; ?>" class="<?php echo $class; ?>"> <?php echo $product_related['name']; ?><img src="view/image/delete.png" alt="" />
                   <input type="hidden" name="product_related[]" value="<?php echo $product_related['product_id']; ?>" />
                 </div>
