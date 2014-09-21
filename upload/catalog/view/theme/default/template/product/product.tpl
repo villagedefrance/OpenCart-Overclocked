@@ -61,7 +61,15 @@
         <?php if ($reward) { ?>
           <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
         <?php } ?>
-        <span><?php echo $text_stock; ?></span> <?php echo $stock; ?>
+        <span><?php echo $text_stock; ?></span> <?php echo $stock; ?><br />
+		<?php if ($locations) { ?>
+          <span><?php echo $text_location; ?></span> &nbsp;
+          <?php foreach ($locations as $location) { ?>
+            <?php if (isset($location['name'])) { ?>
+              <?php echo $location['name']; ?> &nbsp;
+            <?php } ?>
+          <?php } ?>
+        <?php } ?>
       </div>
       <?php if ($price) { ?>
         <div class="price"><?php echo $text_price; ?>

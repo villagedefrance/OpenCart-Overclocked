@@ -11,6 +11,7 @@ $_['text_instock']      		= 'In Stock';
 $_['text_price']        		= 'Price:';
 $_['text_tax']          		= 'Ex Tax:';
 $_['text_discount']     		= '%s or more %s';
+$_['text_location']     		= 'Stock at Location:';
 $_['text_option']       		= 'Available Options';
 $_['text_minimum']      		= 'This product has a minimum quantity of %s';
 $_['text_reviews']      		= '%s reviews';

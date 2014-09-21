@@ -1613,7 +1613,7 @@ INSERT INTO `oc_length_class_description` (`length_class_id`, `language_id`, `ti
 DROP TABLE IF EXISTS `oc_location`;
 CREATE TABLE `oc_location` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL,
+  `name` varchar(64) NOT NULL,
   `address` text NOT NULL,
   `telephone` varchar(32) NOT NULL,
   `image` varchar(255) DEFAULT NULL,

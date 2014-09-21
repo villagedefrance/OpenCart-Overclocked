@@ -23,6 +23,16 @@ class ModelCatalogProduct extends Model {
 				'meta_keyword'  		=> $query->row['meta_keyword'],
 				'tag'              		=> $query->row['tag'],
 				'model'            		=> $query->row['model'],
+				'image'            		=> $query->row['image'],
+				'price'            		=> $query->row['discount'] ? $query->row['discount'] : $query->row['price'],
+				'tax_class_id'     		=> $query->row['tax_class_id'],
+				'date_available'   		=> $query->row['date_available'],
+				'sort_order'       		=> $query->row['sort_order'],
+				'status'           		=> $query->row['status'],
+				'quantity'         		=> $query->row['quantity'],
+				'minimum'          		=> $query->row['minimum'],
+				'subtract'         		=> $query->row['subtract'],
+				'stock_status' 			=> $query->row['stock_status'],
 				'sku'              		=> $query->row['sku'],
 				'upc'              		=> $query->row['upc'],
 				'ean'              		=> $query->row['ean'],
@@ -30,29 +40,19 @@ class ModelCatalogProduct extends Model {
 				'isbn'             			=> $query->row['isbn'],
 				'mpn'              		=> $query->row['mpn'],
 				'location'         		=> $query->row['location'],
-				'quantity'         		=> $query->row['quantity'],
-				'stock_status' 			=> $query->row['stock_status'],
-				'image'            		=> $query->row['image'],
-				'manufacturer_id'		=> $query->row['manufacturer_id'],
-				'manufacturer'     	=> $query->row['manufacturer'],
-				'price'            		=> $query->row['discount'] ? $query->row['discount'] : $query->row['price'],
-				'special'          		=> $query->row['special'],
-				'reward'           		=> $query->row['reward'],
-				'points'           		=> $query->row['points'],
-				'tax_class_id'     		=> $query->row['tax_class_id'],
-				'date_available'   		=> $query->row['date_available'],
-				'weight'           		=> $query->row['weight'],
-				'weight_class_id'		=> $query->row['weight_class_id'],
 				'length'           		=> $query->row['length'],
 				'width'            		=> $query->row['width'],
 				'height'           		=> $query->row['height'],
 				'length_class_id'		=> $query->row['length_class_id'],
-				'subtract'         		=> $query->row['subtract'],
+				'weight'           		=> $query->row['weight'],
+				'weight_class_id'		=> $query->row['weight_class_id'],
+				'manufacturer_id'		=> $query->row['manufacturer_id'],
+				'manufacturer'     	=> $query->row['manufacturer'],
+				'special'          		=> $query->row['special'],
+				'reward'           		=> $query->row['reward'],
+				'points'           		=> $query->row['points'],
 				'rating'           		=> round($query->row['rating']),
 				'reviews'          		=> $query->row['reviews'] ? $query->row['reviews'] : 0,
-				'minimum'          		=> $query->row['minimum'],
-				'sort_order'       		=> $query->row['sort_order'],
-				'status'           		=> $query->row['status'],
 				'date_added'     		=> $query->row['date_added'],
 				'date_modified'		=> $query->row['date_modified'],
 				'viewed'           		=> $query->row['viewed']
@@ -474,6 +474,18 @@ class ModelCatalogProduct extends Model {
 		} else {
 			return false;
 		}
+	}
+
+	public function getProductLocationId($product_id) {
+		$location_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$location_data[] = $result['location_id'];
+		}
+
+		return $location_data;
 	}
 
 	public function getCategories($product_id) {

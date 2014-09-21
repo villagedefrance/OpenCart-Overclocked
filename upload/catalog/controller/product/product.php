@@ -231,11 +231,13 @@ class ControllerProductProduct extends Controller {
 			$this->data['heading_title'] = $product_info['name'];
 
 			$this->data['text_select'] = $this->language->get('text_select');
+			$this->data['text_offer'] = $this->language->get('text_offer');
 			$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 			$this->data['text_model'] = $this->language->get('text_model');
 			$this->data['text_reward'] = $this->language->get('text_reward');
 			$this->data['text_points'] = $this->language->get('text_points');
 			$this->data['text_discount'] = $this->language->get('text_discount');
+			$this->data['text_location'] = $this->language->get('text_location');
 			$this->data['text_stock'] = $this->language->get('text_stock');
 			$this->data['text_price'] = $this->language->get('text_price');
 			$this->data['text_tax'] = $this->language->get('text_tax');
@@ -247,7 +249,6 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_share'] = $this->language->get('text_share');
 			$this->data['text_wait'] = $this->language->get('text_wait');
 			$this->data['text_tags'] = $this->language->get('text_tags');
-			$this->data['text_offer'] = $this->language->get('text_offer');
 
 			$this->data['entry_name'] = $this->language->get('entry_name');
 			$this->data['entry_review'] = $this->language->get('entry_review');
@@ -504,6 +505,21 @@ class ControllerProductProduct extends Controller {
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
+
+			// Locations
+			$this->load->model('localisation/location');
+
+			$this->data['locations'] = array();
+
+			$location_results = $this->model_catalog_product->getProductLocationId($this->request->get['product_id']);
+
+			arsort($location_results);
+
+			foreach ($location_results as $location_result) {
+				if ($location_result > 0) {
+					$this->data['locations'][] = $this->model_localisation_location->getLocation($location_result);
+				}
+			}
 
 			// Related
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
