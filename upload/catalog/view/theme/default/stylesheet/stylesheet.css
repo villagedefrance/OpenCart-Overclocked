@@ -672,12 +672,12 @@ a.button-add {
 	height: 20px;
 	padding: 1px;
 	line-height: 20px;
-	background: #FFF;
-	border: 1px solid #CCC;
-	-webkit-border-radius: 11px;
-	-moz-border-radius: 11px;
-	-khtml-border-radius: 11px;
-	border-radius: 11px;
+	background: inherit;
+	border: 1px solid transparent;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	-webkit-box-shadow: 0px 1px 2px #DDD;
 	-moz-box-shadow: 0px 1px 2px #DDD;
 	box-shadow: 0px 1px 2px #DDD;
