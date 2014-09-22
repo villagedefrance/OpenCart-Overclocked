@@ -1,5 +1,5 @@
 /* LOCKED */
-.tree-image .locked li a { color: gray; }
+.tree-image .locked li a { color: #CCC; }
 /* DOTS */
 .tree-image ul {
 	margin: 0;
@@ -9,10 +9,10 @@
 .tree-image li {
 	float: left;
 	clear: none;
+	text-align: center;
 	border: 1px solid #444;
 	width: 150px;
 	height: 150px;
-	text-align: center;
 }
 .tree-image li ins img {
 	clear: both;
@@ -20,13 +20,13 @@
 }
 .tree-image li ins {
 	clear: both;
-	border: 1px solid #00F;
-	padding: 0px;
-	margin: 0px;
-	text-align: center;
 	float: left;
+	text-align: center;
+	border: 1px solid #00F;
 	width: auto;
 	height: auto;
+	padding: 0;
+	margin: 0;
 }
 .tree-image li a {
 	display: inline-block;
