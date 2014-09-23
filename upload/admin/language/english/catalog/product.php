@@ -1,7 +1,7 @@
 <?php
 // Heading
 $_['heading_title']          		= 'Products';
-$_['heading_inventory'] 		= 'Inventory';
+$_['heading_inventory'] 		= 'Stock Control';
 $_['heading_dimension'] 		= 'Measurements';
 
 // Text  
