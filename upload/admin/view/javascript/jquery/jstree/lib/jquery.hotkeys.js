@@ -94,7 +94,7 @@ Note:
 		}
 		else {
 			// split the job
-			var result = null,            
+			var result = null,
 			// pass the rest to the original $.fn.bind
 			pass2jq = jQuery.trim(type.replace(hotkeys.override, ''));
 
@@ -102,7 +102,7 @@ Note:
 			if (pass2jq) {
 				// call original jQuery.bind()
 				result = this.__bind__(pass2jq, data, fn);
-			}            
+			}
 
 			if (typeof data === "string") {
 				data = {'combi': data};
@@ -180,8 +180,8 @@ Note:
 				// prevent f5 overlapping with 't' (or f4 with 's', etc.)
 				character = !special && String.fromCharCode(code).toLowerCase(),
 				shift = event.shiftKey,
-				ctrl = event.ctrlKey,            
-				// patch for jquery 1.2.5 && 1.2.6 see more at:  
+				ctrl = event.ctrlKey,
+				// patch for jquery 1.2.5 && 1.2.6 see more at:
 				// http://groups.google.com/group/jquery-en/browse_thread/thread/83e10b3bb1f1c32b
 				alt = event.altKey || event.originalEvent.altKey,
 				mapPoint = null;
@@ -193,7 +193,7 @@ Note:
 					}
 				}
 
-				//find by: id.type.combi.options            
+				//find by: id.type.combi.options
 				if (mapPoint) { 
 					var trigger;
 					// event type is associated with the hkId

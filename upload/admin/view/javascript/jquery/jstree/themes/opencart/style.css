@@ -1,6 +1,6 @@
 /* BACKGROUND */
 .tree-opencart .ltr, .tree-opencart .rtl { background: #FFF; min-width: 90%; margin-left: 0; margin-right: 0; display: table; }
-.tree-opencart .ltr { margin-left: 5px; margin-top: 5px; }
+.tree-opencart .ltr { margin-left: 5px; margin-top: 2px; }
 .tree-opencart .ltr > li.leaf, .tree-opencart .rtl > li.leaf { background-image: none; }
 /* LOCKED */
 .tree-opencart .locked li a { color: #CCC; }
@@ -11,16 +11,16 @@
 .tree-opencart .no_dots, .tree-opencart .no_dots ul { background: transparent; }
 .tree-opencart .no_dots li.leaf { background-image: none; background-color: transparent; }
 /* OPEN or CLOSED */
-.tree-opencart li.open { background: url('icons.png') -32px -48px no-repeat; width: 16px; height: 16px; cursor: default; }
-.tree-opencart li.closed, #jstree-dragged.tree-opencart li li.open { background: url('icons.png') -48px -32px no-repeat; width: 16px; height: 16px; cursor: default; }
+.tree-opencart li.open { background: url('icons.png') -32px -48px no-repeat; height: 16px; cursor: default; }
+.tree-opencart li.closed, #jstree-dragged.tree-opencart li li.open { background: url('icons.png') -48px -32px no-repeat; height: 16px; cursor: default; }
 #jstree-marker { background-image: url('icons.png'); }
 /* DEFAULT, HOVER, CLICKED, LOADING STATES */
-.tree-opencart li a, .tree-opencart li span { color: #444; font-size: 13px; cursor: pointer; }
+.tree-opencart li a, .tree-opencart li span { color: #444; }
 .tree-opencart li a:hover, .tree-opencart li a.hover, .tree-opencart li span { font-weight: bold; }
 .tree-opencart li a.clicked, .tree-opencart li a.clicked:hover, .tree-opencart li span.clicked { color: #1373AF; font-weight: bold; }
 /* ICONS */
 .tree-opencart ins { background-image: url('icons.png'); background-position: 0 0; background-repeat: no-repeat; }
-.tree-opencart ul li a.loading ins { background-image: url('throbber.gif'); background-position: 0 0; }
+.tree-opencart ul li a.loading ins { background-image: url('throbber.gif') !important; background-position: 0 0 !important; }
 .tree-opencart li a ins.forbidden { background-position: -16px -16px; }
 .tree-opencart .locked li a ins { background-position: 0 -48px; }
 .tree-opencart li span ins { background-position: -16px 0; }
