@@ -32,18 +32,6 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_tax_recalculation; ?></td>
-            <td><select name="offers_tax_recalculation">
-              <?php if ($offers_tax_recalculation) { ?>
-                <option value="1" selected="selected"><?php echo $text_tax_recalculation_standard; ?></option>
-                <option value="0"><?php echo $text_tax_recalculation_none; ?></option>
-              <?php } else { ?>
-                <option value="1"><?php echo $text_tax_recalculation_standard; ?></option>
-                <option value="0" selected="selected"><?php echo $text_tax_recalculation_none; ?></option>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_sort_order; ?></td>
             <td><input type="text" name="offers_sort_order" value="<?php echo $offers_sort_order; ?>" size="1" /></td>
           </tr>

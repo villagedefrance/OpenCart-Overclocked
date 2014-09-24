@@ -8,7 +8,7 @@ class ModelTotalTotal extends Model {
 			'code'		=> 'total',
 			'title'			=> $this->language->get('text_total'),
 			'text'			=> $this->currency->format(max(0, $total)),
-			'value'		=> max(0, $total),
+			'value'		=> max(0, round($total, 2)),
 			'sort_order'	=> $this->config->get('total_sort_order')
 		);
 	}

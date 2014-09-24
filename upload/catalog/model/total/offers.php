@@ -25,7 +25,7 @@ class Offer {
     function init($item1, $item2, $type, $amount, $variation) {
         $this->isvalid = 0;
 
-         if ($type != "$" && $type != "%") {
+        if ($type != "$" && $type != "%") {
             die("Unknown type " . $type);
         }
 
@@ -67,7 +67,6 @@ class ModelTotalOffers {
                 if ($li->item1 != $discount_item['product_id']) {
                     continue;
                 }
-
             } else {
                 if (!in_array($li->item1, $discount_item['category_id'])) {
                     continue;
@@ -85,7 +84,6 @@ class ModelTotalOffers {
                     if ($all_items[$i]['product_id'] == $li->item2) {
                         $match = 1;
                     }
-
                 } else {
                     if (in_array($li->item2, $all_items[$i]['category_id'])) {
                         $match = 1;
@@ -108,12 +106,12 @@ class ModelTotalOffers {
                     $all_items[$i]['quantity'] -= 1;
 
                     if ($li->type == "$") {
-                        $discount = $li->amount;
+                        $discount_total = $li->amount;
                     } else {
-                        $discount = $all_items[$i]['price'] * $li->amount / 100;
+                        $discount_total = ($all_items[$i]['price'] * $li->amount) / 100;
                     }
 
-                    return $discount;
+                    return $discount_total;
                 }
             }
         }
@@ -161,26 +159,6 @@ class ModelTotalOffers {
         }
     }
 
-    private function reduceTaxes($product, $count, $discount, &$taxes) {
-        if ($this->config->get('offers_tax_recalculation') == 1) {
-			if ($count > 0) {
-				$per_item_discount = $discount / $count;
-			} else {
-				$per_item_discount = $discount;
-			}
-
-			if ($product['tax_class_id']) {
-				$tax_rates = $this->tax->getRates($product['total'] - ($product['total'] - $per_item_discount), $product['tax_class_id']);
-
-				foreach ($tax_rates as $tax_rate) {
-					if ($tax_rate['type'] == 'P') {
-						$taxes[$tax_rate['tax_rate_id']] -= $tax_rate['amount'] * $count;
-					}
-				}
-			}
-		}
-    }
-
     public function getTotal(&$total_data, &$total, &$taxes) {
         $products = $this->cart->getProducts();
 
@@ -198,7 +176,7 @@ class ModelTotalOffers {
             $discountable_products[$i] = $products[$i];
         }
 
-        $discount = 0;
+        $discount_total = 0;
 
         $one_to_many = false;
 
@@ -227,26 +205,36 @@ class ModelTotalOffers {
                         }
                     }
 
-                } else {
-                    $discount += $item_discountable;
+				} else {
+					$discount_total += $item_discountable;
 
-                    $this->reduceTaxes($discountable_products[$i], 1, $item_discountable, $taxes);
+					foreach ($this->cart->getProducts() as $product) {
+						if ($product['tax_class_id']) {
+							$tax_rates = $this->tax->getRates($product['total'] - ($product['total'] - $item_discountable), $product['tax_class_id']);
+
+							foreach ($tax_rates as $tax_rate) {
+								if ($tax_rate['type'] == 'P') {
+									$taxes[$tax_rate['tax_rate_id']] -= $tax_rate['amount'];
+								}
+							}
+						}
+					}
                 }
             }
         }
 
-        if ($discount > 0) {
+        if ($discount_total > 0) {
             $this->load->language('total/offers');
 
             $total_data[] = array(
                 'code'		=> 'offers',
                 'title'			=> $this->language->get('text_offers'),
-                'text'			=> $this->currency->format(-$discount),
-                'value'		=> -$discount,
+                'text'			=> $this->currency->format(-$discount_total),
+				'value'		=> round(-$discount_total, 2),
                 'sort_order'	=> $this->config->get('offers_sort_order')
             );
 
-            $total -= $discount;
+            $total -= round($discount_total, 2);
         }
     }
 

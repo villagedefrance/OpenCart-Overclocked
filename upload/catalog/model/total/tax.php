@@ -8,7 +8,7 @@ class ModelTotalTax extends Model {
 					'code'		=> 'tax',
 					'title'			=> $this->tax->getRateName($key),
 					'text'			=> $this->currency->format($value),
-					'value'		=> $value,
+					'value'		=> round($value, 2),
 					'sort_order'	=> $this->config->get('tax_sort_order')
 				);
 

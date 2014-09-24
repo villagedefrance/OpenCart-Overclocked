@@ -21,11 +21,8 @@ class ControllerTotalOffers extends Controller {
 
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_tax_recalculation_standard'] = $this->language->get('text_tax_recalculation_standard');
-		$this->data['text_tax_recalculation_none'] = $this->language->get('text_tax_recalculation_none');
 
 		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_tax_recalculation'] = $this->language->get('entry_tax_recalculation');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
 		$this->data['button_save'] = $this->language->get('button_save');
@@ -65,12 +62,6 @@ class ControllerTotalOffers extends Controller {
 			$this->data['offers_status'] = $this->request->post['offers_status'];
 		} else {
 			$this->data['offers_status'] = $this->config->get('offers_status');
-		}
-
-		if (isset($this->request->post['offers_tax_recalculation'])) {
-			$this->data['offers_tax_recalculation'] = $this->request->post['offers_tax_recalculation'];
-		} else {
-			$this->data['offers_tax_recalculation'] = $this->config->get('offers_tax_recalculation');
 		}
 
 		if (isset($this->request->post['offers_sort_order'])) {
