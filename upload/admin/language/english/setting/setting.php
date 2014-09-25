@@ -48,7 +48,7 @@ $_['entry_weight_class']       			= 'Weight Class:';
 $_['entry_catalog_limit'] 	   			= 'Default Items Per Page (Catalog):<br /><span class="help">Determines how many catalog items are shown per page (products, categories, etc)</span>';
 $_['entry_admin_limit']   	  			= 'Default Items Per Page (Admin):<br /><span class="help">Determines how many admin items are shown per page (orders, customers, etc)</span>';
 $_['entry_product_count']     		= 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the storefront header category menu. Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';
-$_['entry_review']       	    			= 'Allow Reviews:<br /><span class="help">Enable/Disable new review entry and display of existing reviews</span>';
+$_['entry_review']       	    			= 'Allow Reviews:<br /><span class="help">Enable/Disable new review entry and display of existing reviews.</span>';
 $_['entry_download']          			= 'Allow Downloads:';
 $_['entry_voucher_min']       			= 'Voucher Min:<br /><span class="help">Minimum amount a customer can purchase a voucher for.</span>';
 $_['entry_voucher_max']       		= 'Voucher Max:<br /><span class="help">Maximum amount a customer can purchase a voucher for.</span>';
@@ -66,7 +66,8 @@ $_['entry_cart_weight']         		= 'Display Weight on Cart Page:<br /><span cla
 $_['entry_guest_checkout']    		= 'Guest Checkout:<br /><span class="help">Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.</span>';
 $_['entry_checkout']               		= 'Checkout Terms:<br /><span class="help">Forces people to agree to terms before an a customer can checkout.</span>';
 $_['entry_order_edit']             		= 'Order Editing:<br /><span class="help">Number of days allowed to edit an order. This is required because prices and discounts may change over time corrupting the order if it\'s edited.</span>';
-$_['entry_invoice_prefix']         		= 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2014-00). Invoice ID\'s will start at 1 for each unique prefix</span>';
+$_['entry_invoice_prefix']         		= 'Invoice Prefix:<br /><span class="help">Set the invoice prefix (e.g. INV-2014-00). Invoice ID\'s will start at 1 for each unique prefix.</span>';
+$_['entry_auto_invoice']         		= 'Auto Invoice Number:<br /><span class="help">Automatically generate the invoice number when a new order is received.</span>';
 $_['entry_order_status']           		= 'Order Status:<br /><span class="help">Set the default order status when an order is processed.</span>';
 $_['entry_complete_status']   		= 'Complete Order Status:<br /><span class="help">Set the order status the customers order must reach before they are allowed to access their downloadable products and gift vouchers.</span>';
 $_['entry_stock_display']          		= 'Display Stock:<br /><span class="help">Display stock quantity on the product page.</span>';
@@ -136,7 +137,7 @@ $_['entry_file_mime_allowed']  		= 'Allowed File Mime Types:<br /><span class="h
 $_['entry_maintenance']        		= 'Maintenance Mode:<br /><span class="help">Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.</span>';
 $_['entry_password']					= 'Allow Forgotten Password:<br /><span class="help">Allow forgotten password to be used for the admin. This will be disabled automatically if the system detects a hack attempt.</span>';
 $_['entry_encryption']          			= 'Encryption Key:<br /><span class="help">Please provide a secret key that will be used to encrypt private information when processing orders.</span>';
-$_['entry_compression']        		= 'Output Compression Level:<br /><span class="help">GZIP for more efficient transfer to requesting clients. Compression level must be between 0 - 9</span>';
+$_['entry_compression']        		= 'Output Compression Level:<br /><span class="help">GZIP for more efficient transfer to requesting clients. Compression level must be between 0 - 9.</span>';
 $_['entry_error_display']       			= 'Display Errors:';
 $_['entry_error_log']           			= 'Log Errors:';
 $_['entry_error_filename']     			= 'Error Log Filename:';

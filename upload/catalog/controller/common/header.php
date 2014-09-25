@@ -155,6 +155,7 @@ class ControllerCommonHeader extends Controller {
 		}
 
 		$this->children = array(
+			'common/content_header',
 			'module/language',
 			'module/currency',
 			'module/cart'

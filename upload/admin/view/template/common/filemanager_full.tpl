@@ -856,7 +856,11 @@ $(document).ready(function() {
 				var uploader = $('#uploader').plupload('getUploader');
 				var tree = $.tree.reference('#column-left a');
 
-				tree.refresh();
+				if (tree.selected) {
+					tree.refresh(tree.selected);
+				} else {
+					tree.refresh();
+				}
 
 				$('#uploadMulti').remove();
 			}

@@ -162,6 +162,19 @@ class ModelCheckoutOrder extends Model {
 		$order_info = $this->getOrder($order_id);
 
 		if ($order_info && !$order_info['order_status_id']) {
+			// Auto Invoice Number
+			$auto_invoice = $this->config->get('config_auto_invoice');
+
+			if ($auto_invoice) {
+				$query = $this->db->query("SELECT MAX(invoice_no) AS invoice_no FROM `" . DB_PREFIX . "order` WHERE invoice_prefix = '" . $this->db->escape($order_info['invoice_prefix']) . "'");
+
+				if ($query->row['invoice_no']) {
+					$invoice_no = (int)$query->row['invoice_no'] + 1;
+				} else {
+					$invoice_no = 1;
+				}
+			}
+
 			// Fraud Detection
 			if ($this->config->get('config_fraud_detection')) {
 				$this->load->model('checkout/fraud');
@@ -196,7 +209,12 @@ class ModelCheckoutOrder extends Model {
 				$order_status_id = $this->config->get('config_order_status_id');
 			}
 
-			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+			// Auto Invoice Number
+			if ($auto_invoice) {
+				$this->db->query("UPDATE `" . DB_PREFIX . "order` SET invoice_no = '" . (int)$invoice_no . "', invoice_prefix = '" . $this->db->escape($order_info['invoice_prefix']) . "', order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+			} else {
+				$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+			}
 
 			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '1', comment = '" . $this->db->escape(($comment && $notify) ? $comment : '') . "', date_added = NOW()");
 
@@ -275,6 +293,10 @@ class ModelCheckoutOrder extends Model {
 			$template->data['text_link'] = $language->get('text_new_link');
 			$template->data['text_download'] = $language->get('text_new_download');
 			$template->data['text_order_detail'] = $language->get('text_new_order_detail');
+			// Auto Invoice Number
+			if ($auto_invoice) {
+				$template->data['text_invoice_no'] = $language->get('text_new_invoice_no');
+			}
 			$template->data['text_instruction'] = $language->get('text_new_instruction');
 			$template->data['text_order_id'] = $language->get('text_new_order_id');
 			$template->data['text_date_added'] = $language->get('text_new_date_added');
@@ -303,6 +325,10 @@ class ModelCheckoutOrder extends Model {
 				$template->data['download'] = $order_info['store_url'] . 'index.php?route=account/download';
 			} else {
 				$template->data['download'] = '';
+			}
+			// Auto Invoice Number
+			if ($auto_invoice) {
+				$template->data['invoice_no'] = $invoice_no;
 			}
 
 			$template->data['order_id'] = $order_id;
