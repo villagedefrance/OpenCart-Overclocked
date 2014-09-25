@@ -10,15 +10,7 @@
         <?php } ?>
         <h4><?php echo $location['name']; ?></h4>
         <p><?php echo $location['address']; ?></p>
-        <p><?php echo $text_telephone; ?> <?php echo $location['telephone']; ?></p>
-        <?php if ($location['open']) { ?>
-          <p><?php echo $location['open']; ?></p>
-        <?php } ?>
-        <?php if ($location['comment']) { ?>
-          <p><?php echo $location['comment']; ?></p>
-        <?php } ?>
-        <?php echo $text_latitude; ?> <?php echo $location['latitude']; ?>&deg; N<br />
-        <?php echo $text_longitude; ?> <?php echo $location['longitude']; ?>&deg; E<br />
+		<?php echo $location['details']; ?>
       </div>
     <?php } ?>
   </div>
@@ -32,17 +24,19 @@
         <?php } ?>
         <h4><?php echo $location['name']; ?></h4>
         <p><?php echo $location['address']; ?></p>
-        <p><?php echo $text_telephone; ?> <?php echo $location['telephone']; ?></p>
-        <?php if ($location['open']) { ?>
-          <p><?php echo $location['open']; ?></p>
-        <?php } ?>
-        <?php if ($location['comment']) { ?>
-          <p><?php echo $location['comment']; ?></p>
-        <?php } ?>
-        <?php echo $text_latitude; ?> <?php echo $location['latitude']; ?>&deg; N<br />
-        <?php echo $text_longitude; ?> <?php echo $location['longitude']; ?>&deg; E<br />
+		<?php echo $location['details']; ?>
       </div>
     <?php } ?>
   </div>
 <?php } ?>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.colorbox').colorbox({
+		width: 640,
+		height: 480
+	});
+});
+//--></script>
+
 <?php } ?>

@@ -13,18 +13,15 @@
         <div class="info-left">
           <h2><?php echo $text_location; ?></h2>
           <br />
-          <b><?php echo $text_address; ?></b><br />
-          <?php echo $store; ?><br />
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/address.png" alt="" /> &nbsp; <b><?php echo $store; ?></b><br />
           <?php echo $address; ?><br />
           <br />
           <?php if ($telephone) { ?>
-            <b><?php echo $text_telephone; ?></b><br />
-            <?php echo $telephone; ?><br />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" /> &nbsp; <?php echo $telephone; ?><br />
             <br />
           <?php } ?>
           <?php if ($fax) { ?>
-            <b><?php echo $text_fax; ?></b><br />
-            <?php echo $fax; ?>
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
 			<br />
           <?php } ?>
         </div>
@@ -46,7 +43,7 @@
           <?php } ?>
           <br />
           <b><?php echo $entry_enquiry; ?></b><br />
-          <textarea name="enquiry" cols="40" rows="10" style="width:98%;"><?php echo $enquiry; ?></textarea>
+          <textarea name="enquiry" cols="40" rows="10" style="width:99%;"><?php echo $enquiry; ?></textarea>
           <br />
           <?php if ($error_enquiry) { ?>
             <span class="error"><?php echo $error_enquiry; ?></span>

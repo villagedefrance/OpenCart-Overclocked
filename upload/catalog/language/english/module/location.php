@@ -3,7 +3,5 @@
 $_['heading_title']		= 'Store Locations';
 
 // Text
-$_['text_telephone']		= 'Tel:';
-$_['text_latitude']		= 'Lat:';
-$_['text_longitude']		= 'Lon:';
+$_['text_details']         	= '<a class="colorbox" href="%s" title="%s"><b>Information</b></a>';
 ?>

@@ -120,10 +120,10 @@ class ControllerSaleOffer extends Controller {
 					'name'			=> $result['name'],
 					'type'				=> $result['type'],
 					'discount'		=> $result['discount'],
-					'logged'			=> ($result['logged']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
 					'validity'			=> $validity,
-					'status'			=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+					'status'			=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 					'href'				=> $this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $result['offer_product_product_id'], 'SSL')
 				);
 			}
@@ -154,10 +154,10 @@ class ControllerSaleOffer extends Controller {
 					'name'			=> $result['name'],
 					'type'				=> $result['type'],
 					'discount'		=> $result['discount'],
-					'logged'			=> ($result['logged']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
 					'validity'			=> $validity,
-					'status'			=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+					'status'			=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 					'href'				=> $this->url->link('sale/offer_product_category/update', 'token=' . $this->session->data['token'] . '&offer_product_category_id=' . $result['offer_product_category_id'], 'SSL')
 				);
 			}
@@ -188,10 +188,10 @@ class ControllerSaleOffer extends Controller {
 					'name'			=> $result['name'],
 					'type'				=> $result['type'],
 					'discount'		=> $result['discount'],
-					'logged'			=> ($result['logged']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
 					'validity'			=> $validity,
-					'status'			=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+					'status'			=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 					'href'				=> $this->url->link('sale/offer_category_product/update', 'token=' . $this->session->data['token'] . '&offer_category_product_id=' . $result['offer_category_product_id'], 'SSL')
 				);
 			}
@@ -222,10 +222,10 @@ class ControllerSaleOffer extends Controller {
 					'name'			=> $result['name'],
 					'type'				=> $result['type'],
 					'discount'		=> $result['discount'],
-					'logged'			=> ($result['logged']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
 					'validity'			=> $validity,
-					'status'			=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+					'status'			=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 					'href'				=> $this->url->link('sale/offer_category_category/update', 'token=' . $this->session->data['token'] . '&offer_category_category_id=' . $result['offer_category_category_id'], 'SSL')
 				);
 			}
