@@ -33,6 +33,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_category'] = $this->language->get('text_category');
 		$this->data['text_configuration'] = $this->language->get('text_configuration');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_connection'] = $this->language->get('text_connection');
 		$this->data['text_contact'] = $this->language->get('text_contact');
 		$this->data['text_country'] = $this->language->get('text_country');
 		$this->data['text_coupon'] = $this->language->get('text_coupon');
@@ -153,6 +154,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['cachemanager'] = $this->url->link('tool/cachemanager', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['configuration'] = $this->url->link('tool/datasystem', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['connection'] = $this->url->link('design/connection', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['contact'] = $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['country'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['coupon'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'], 'SSL');
@@ -260,6 +262,39 @@ class ControllerCommonHeader extends Controller {
 				$this->data['profile_exist'] = true;
 			} else {
 				$this->data['profile_exist'] = false;
+			}
+
+			// Connections
+			$this->load->model('design/connection');
+
+			$connection_total = $this->model_design_connection->getTotalConnections();
+
+			if ($connection_total > 0) {
+				$this->data['connections_ul'] = array();
+				$this->data['connections_li'] = array();
+
+				$connections = $this->model_design_connection->getConnections(0);
+
+				foreach ($connections as $connection) {
+					$this->data['connections_ul'][] = array(
+						'connection_id'	=> $connection['connection_id'],
+						'name'				=> $connection['name']
+					);
+
+					$connection_routes = $this->model_design_connection->getConnectionRoutes($connection['connection_id']);
+
+					foreach ($connection_routes as $connection_route) {
+						$this->data['connections_li'][] = array(
+							'parent_id'	=> $connection_route['connection_id'],
+							'title'			=> $connection_route['title'],
+							'route'		=> html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
+						);
+					}
+				}
+
+				$this->data['connection_exist'] = true;
+			} else {
+				$this->data['connection_exist'] = false;
 			}
 
 			// Affiliates

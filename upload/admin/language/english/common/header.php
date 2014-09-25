@@ -15,6 +15,7 @@ $_['text_cachemanager']			= 'Cache Manager';
 $_['text_catalog']					= 'Catalog';
 $_['text_category']                	= 'Categories';
 $_['text_configuration'] 			= 'Configuration';
+$_['text_connection']				= 'Connections';
 $_['text_contact']                	= 'Mail';
 $_['text_country']                	= 'Countries';
 $_['text_coupon']                		= 'Coupons';

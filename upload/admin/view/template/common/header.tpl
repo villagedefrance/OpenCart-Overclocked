@@ -84,8 +84,8 @@ $(document).ready(function() {
       <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
         <ul>
           <li><a href="<?php echo $module; ?>"><?php echo $text_module; ?></a></li>
-          <li><a href="<?php echo $shipping; ?>"><?php echo $text_shipping; ?></a></li>
           <li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
+          <li><a href="<?php echo $shipping; ?>"><?php echo $text_shipping; ?></a></li>
           <li><a href="<?php echo $total; ?>"><?php echo $text_total; ?></a></li>
           <li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
           <li><a href="<?php echo $filemanager; ?>"><?php echo $text_filemanager; ?></a></li>
@@ -173,8 +173,9 @@ $(document).ready(function() {
           <li><a href="<?php echo $setting; ?>"><?php echo $text_setting; ?></a></li>
           <li><a class="arrow"><?php echo $text_design; ?></a>
             <ul>
-              <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
               <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
+              <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
+              <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo $text_users; ?></a>
@@ -254,6 +255,23 @@ $(document).ready(function() {
           </li>
         </ul>
       </li>
+	  <?php if ($connection_exist) { ?>
+	  <li id="connection"><a class="top"><?php echo $text_connection; ?></a>
+        <ul>
+        <?php foreach ($connections_ul as $connection_ul) { ?>
+          <li><a class="arrow"><?php echo $connection_ul['name']; ?></a>
+            <ul>
+            <?php foreach ($connections_li as $connection_li) { ?>
+              <?php if ($connection_li['parent_id'] == $connection_ul['connection_id']) { ?>
+                <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><?php echo $connection_li['title']; ?></a></li>
+              <?php } ?>
+            <?php } ?>
+            </ul>
+          </li>
+        <?php } ?>
+        </ul>
+      </li>
+	  <?php } ?>
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
           <li><a onclick="window.open('http://www.opencart.com');" title=""><?php echo $text_opencart; ?></a></li>

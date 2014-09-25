@@ -13,7 +13,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/layout.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
@@ -34,16 +34,16 @@
         </tr>
       </thead>
       <tbody>
-      <?php if ($layouts) { ?>
-        <?php foreach ($layouts as $layout) { ?>
+      <?php if ($connections) { ?>
+        <?php foreach ($connections as $connection) { ?>
         <tr>
-          <td style="text-align:center;"><?php if ($layout['selected']) { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $layout['layout_id']; ?>" checked="checked" />
+          <td style="text-align:center;"><?php if ($connection['selected']) { ?>
+            <input type="checkbox" name="selected[]" value="<?php echo $connection['connection_id']; ?>" checked="checked" />
           <?php } else { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $layout['layout_id']; ?>" />
+            <input type="checkbox" name="selected[]" value="<?php echo $connection['connection_id']; ?>" />
           <?php } ?></td>
-          <td class="left"><?php echo $layout['name']; ?></td>
-          <td class="right"><?php foreach ($layout['action'] as $action) { ?>
+          <td class="left"><?php echo $connection['name']; ?></td>
+          <td class="right"><?php foreach ($connection['action'] as $action) { ?>
             <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
           <?php } ?></td>
         </tr>
