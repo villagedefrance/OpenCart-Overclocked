@@ -118,18 +118,31 @@
 		</div>
 	  </div>
       <div class="latest">
-        <div class="dashboard-heading"><?php echo $text_latest_10_orders; ?></div>
+        <div class="dashboard-heading"><?php echo $text_latest; ?></div>
         <div class="dashboard-content">
+        <div id="latest_tabs" class="htabs">
+          <a href="#tab-latest-order"><?php echo $tab_order; ?></a>
+          <?php if ($customers) { ?>
+            <a href="#tab-latest-customer"><?php echo $tab_customer; ?></a>
+          <?php } ?>
+          <?php if ($reviews) { ?>
+            <a href="#tab-latest-review"><?php echo $tab_review; ?></a>
+          <?php } ?>
+          <?php if ($affiliates && $allow_affiliate) { ?>
+            <a href="#tab-latest-affiliate"><?php echo $tab_affiliate; ?></a>
+          <?php } ?>
+        </div>
+        <div id="tab-latest-order" class="htabs-content">
           <table class="list">
             <thead>
-            <tr>
-              <td class="center"><?php echo $column_order; ?></td>
-              <td class="left"><?php echo $column_customer; ?></td>
-              <td class="left"><?php echo $column_date_added; ?></td>
-              <td class="left"><?php echo $column_status; ?></td>
-              <td class="right"><?php echo $column_total; ?></td>
-              <td class="right"><?php echo $column_action; ?></td>
-            </tr>
+              <tr>
+                <td class="center"><?php echo $column_order; ?></td>
+                <td class="left"><?php echo $column_customer; ?></td>
+                <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="left"><?php echo $column_status; ?></td>
+                <td class="left"><?php echo $column_total; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
+              </tr>
             </thead>
             <tbody>
             <?php if ($orders) { ?>
@@ -153,6 +166,118 @@
             </tbody>
           </table>
         </div>
+        <?php if ($customers) { ?>
+        <div id="tab-latest-customer" class="htabs-content">
+          <table class="list">
+            <thead>
+              <tr>
+                <td class="left"><?php echo $column_customer; ?></td>
+                <td class="left"><?php echo $column_email; ?></td>
+                <td class="left"><?php echo $column_customer_group; ?></td>
+                <td class="left"><?php echo $column_approved; ?></td>
+                <td class="left"><?php echo $column_newsletter; ?></td>
+                <td class="left"><?php echo $column_status; ?></td>
+                <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php if ($customers) { ?>
+              <?php foreach ($customers as $customer) { ?>
+              <tr>
+                <td class="left"><?php echo $customer['name']; ?></td>
+                <td class="left"><?php echo $customer['email']; ?></td>
+                <td class="left"><?php echo $customer['customer_group']; ?></td>
+                <td class="left"><?php echo $customer['approved']; ?></td>
+                <td class="left"><?php echo $customer['newsletter']; ?></td>
+                <td class="left"><?php echo $customer['status']; ?></td>
+                <td class="center"><?php echo $customer['date_added']; ?></td>
+                <td class="right"><?php foreach ($customer['action'] as $action) { ?>
+                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <?php } ?></td>
+              </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <?php } ?>
+        <?php if ($reviews) { ?>
+        <div id="tab-latest-review" class="htabs-content">
+          <table class="list">
+            <thead>
+              <tr>
+                <td class="left"><?php echo $column_product; ?></td>
+                <td class="left"><?php echo $column_author; ?></td>
+                <td class="left"><?php echo $column_rating; ?></td>
+                <td class="left"><?php echo $column_status; ?></td>
+                <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php if ($reviews) { ?>
+              <?php foreach ($reviews as $review) { ?>
+              <tr>
+                <td class="left"><?php echo $review['name']; ?></td>
+                <td class="left"><?php echo $review['author']; ?></td>
+                <td class="left"><?php echo $review['rating']; ?></td>
+                <td class="left"><?php echo $review['status']; ?></td>
+                <td class="center"><?php echo $review['date_added']; ?></td>
+                <td class="right"><?php foreach ($review['action'] as $action) { ?>
+                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <?php } ?></td>
+              </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+        </div>
+        <?php } ?>
+        <?php if ($affiliates && $allow_affiliate) { ?>
+        <div id="tab-latest-affiliate" class="htabs-content">
+          <table class="list">
+            <thead>
+              <tr>
+                <td class="left"><?php echo $column_affiliate; ?></td>
+                <td class="left"><?php echo $column_email; ?></td>
+                <td class="left"><?php echo $column_approved; ?></td>
+                <td class="left"><?php echo $column_status; ?></td>
+                <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php if ($affiliates) { ?>
+              <?php foreach ($affiliates as $affiliate) { ?>
+              <tr>
+                <td class="left"><?php echo $affiliate['name']; ?></td>
+                <td class="left"><?php echo $affiliate['email']; ?></td>
+                <td class="left"><?php echo $affiliate['approved']; ?></td>
+                <td class="left"><?php echo $affiliate['status']; ?></td>
+                <td class="center"><?php echo $affiliate['date_added']; ?></td>
+                <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
+                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <?php } ?></td>
+              </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <?php } ?>
       </div>
     </div>
   </div>
@@ -201,6 +326,10 @@ function getSalesChart(range) {
 	});
 }
 getSalesChart($('#range').val());
+//--></script>
+
+<script type="text/javascript"><!--
+$('#latest_tabs a').tabs();
 //--></script>
 
 <?php echo $footer; ?>

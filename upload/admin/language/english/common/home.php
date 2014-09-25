@@ -5,7 +5,7 @@ $_['heading_title']                 		= 'Dashboard';
 // Text
 $_['text_overview']                 		= 'Overview';
 $_['text_statistics']               		= 'Statistics';
-$_['text_latest_10_orders']			= 'Latest Orders';
+$_['text_latest']           				= 'Latest Activity';
 $_['text_order_today'] 					= 'New Orders:';
 $_['text_customer_today'] 			= 'New Customers:';
 $_['text_sale_today'] 					= 'Today\'s Sales:';
@@ -27,14 +27,29 @@ $_['text_year']                     		= 'This Year';
 $_['text_order']                    		= 'Total Orders';
 $_['text_customer']                 		= 'Total Customers';
 
+// Tab
+$_['tab_order']             				= 'Orders';
+$_['tab_customer']          				= 'Customers';
+$_['tab_review']            				= 'Reviews';
+$_['tab_affiliate']         				= 'Affiliates';
+
 // Column
 $_['column_order']                  		= 'Order ID';
 $_['column_customer']               	= 'Customer';
 $_['column_date_added']             	= 'Date Added';
 $_['column_status']                 		= 'Status';
 $_['column_total']                  		= 'Total';
-$_['column_firstname']       			= 'First Name';
-$_['column_lastname']            		= 'Last Name';
+$_['column_firstname']         			= 'First Name';
+$_['column_lastname']         			= 'Last Name';
+$_['column_name']           			= 'Name';
+$_['column_email']          				= 'E-Mail';
+$_['column_customer_group'] 		= 'Customer Group';
+$_['column_product']        			= 'Product';
+$_['column_author']         				= 'Author';
+$_['column_rating']         				= 'Rating';
+$_['column_affiliate']           			= 'Affiliate';
+$_['column_newsletter']     			= 'Newsletter';
+$_['column_approved']       			= 'Approved';
 $_['column_action']                 		= 'Action';
 
 // Entry
