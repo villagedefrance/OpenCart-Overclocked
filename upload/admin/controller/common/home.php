@@ -222,8 +222,8 @@ class ControllerCommonHome extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text' => $this->language->get('text_view'),
-				'href' => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
+				'text'	=> $this->language->get('text_view'),
+				'href'	=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
 			);
 
 			$this->data['orders'][] = array(
@@ -252,8 +252,8 @@ class ControllerCommonHome extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
+				'text'	=> $this->language->get('text_edit'),
+				'href'	=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
 			);
 			
 			$this->data['customers'][] = array(
@@ -285,8 +285,8 @@ class ControllerCommonHome extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $review_result['review_id'], 'SSL')
+				'text'	=> $this->language->get('text_edit'),
+				'href'	=> $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $review_result['review_id'], 'SSL')
 			);
 
 			$this->data['reviews'][] = array(
@@ -317,8 +317,8 @@ class ControllerCommonHome extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $affiliate_result['affiliate_id'], 'SSL')
+				'text'	=> $this->language->get('text_edit'),
+				'href'	=> $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $affiliate_result['affiliate_id'], 'SSL')
 			);
 
 			$this->data['affiliates'][] = array(

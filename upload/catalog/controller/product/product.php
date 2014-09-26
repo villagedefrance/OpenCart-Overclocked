@@ -289,10 +289,10 @@ class ControllerProductProduct extends Controller {
 			$this->load->model('tool/image');
 
 			if ($this->config->get('config_viewer') == 'zoomlens') {
-				$this->document->addStyle('catalog/view/javascript/jquery/simple-lens/css/jquery.simpleLens.css');
+				$this->document->addStyle('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.css');
 
-				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/js/jquery.simpleGallery.min.js');
-				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/js/jquery.simpleLens.min.js');
+				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleGallery.min.js');
+				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.min.js');
 
 				if ($product_info['image']) {
 					$this->data['zoom'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2);

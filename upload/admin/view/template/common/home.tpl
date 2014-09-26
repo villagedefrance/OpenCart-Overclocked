@@ -325,11 +325,16 @@ function getSalesChart(range) {
         }
 	});
 }
-getSalesChart($('#range').val());
+
+$(document).ready(function() {
+	getSalesChart($('#range').val());
+});
 //--></script>
 
 <script type="text/javascript"><!--
-$('#latest_tabs a').tabs();
+$(document).ready(function() {
+	$('#latest_tabs a').tabs();
+});
 //--></script>
 
 <?php echo $footer; ?>

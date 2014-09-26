@@ -57,7 +57,7 @@
         parent_anchor_class: '.simpleLens-lens-image',
         gallery_container: '.simpleLens-thumbnails-container',
         big_image_container: '.simpleLens-big-image-container',
-        loading_image: 'circular.gif',
-        show_event: 'mouseenter'
+        loading_image: 'images/loading.gif',
+        show_event: 'click'
     };
 })( jQuery );

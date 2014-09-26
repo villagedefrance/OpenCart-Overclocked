@@ -63,10 +63,16 @@
         <?php } ?>
         <span><?php echo $text_stock; ?></span> <?php echo $stock; ?><br />
 		<?php if ($locations) { ?>
-          <span><?php echo $text_location; ?></span> &nbsp;
-          <?php foreach ($locations as $location) { ?>
-            <?php if (isset($location['name'])) { ?>
-              <?php echo $location['name']; ?> &nbsp;
+          <span><?php echo $text_location; ?></span>&nbsp;
+          <?php for ($i = 0; $i < count($locations); $i++) { ?>
+            <?php if ($i < (count($locations) - 1)) { ?>
+              <?php if (isset($locations[$i]['name'])) { ?>
+                <?php echo $locations[$i]['name']; ?>,&nbsp;
+              <?php } ?>
+            <?php } else { ?>
+              <?php if (isset($locations[$i]['name'])) { ?>
+                <?php echo $locations[$i]['name']; ?>
+              <?php } ?>
             <?php } ?>
           <?php } ?>
         <?php } ?>
@@ -455,12 +461,8 @@ $(document).ready(function() {
         event.preventDefault();
         return false;
 	});
-	$('#zoom .simpleLens-thumbnails-container img').simpleGallery({
-		loading_image: '<img src="catalog/view/javascript/jquery/simple-lens/circular.gif" alt="" />'
-	});
-	$('#zoom .simpleLens-big-image').simpleLens({
-		loading_image: '<img src="catalog/view/javascript/jquery/simple-lens/circular.gif" alt="" />'
-	});
+	$('#zoom .simpleLens-thumbnails-container img').simpleGallery();
+	$('#zoom .simpleLens-big-image').simpleLens();
 });
 //--></script>
 <?php } ?>
@@ -622,7 +624,9 @@ $('#button-review').bind('click', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#tabs a').tabs();
+$(document).ready(function() {
+	$('#tabs a').tabs();
+});
 //--></script>
 
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>
