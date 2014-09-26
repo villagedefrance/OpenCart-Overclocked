@@ -1196,7 +1196,10 @@
           </tr>
           <tr>
             <td><?php echo $entry_file_max_size; ?></td>
-            <td><input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" /> bytes</td>
+            <td><input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" /> bytes
+            <?php if ($error_file_max_size) { ?>
+              <span class="error"><?php echo $error_file_max_size; ?></span>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_file_extension_allowed; ?></td>

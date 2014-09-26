@@ -367,6 +367,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_admin_limit'] = '';
 		}
 
+		if (isset($this->error['file_max_size'])) {
+			$this->data['error_file_max_size'] = $this->error['file_max_size'];
+		} else {
+			$this->data['error_file_max_size'] = '';
+		}
+
 		if (isset($this->error['encryption'])) {
 			$this->data['error_encryption'] = $this->error['encryption'];
 		} else {
@@ -1387,6 +1393,10 @@ class ControllerSettingSetting extends Controller {
 
 		if (!$this->request->post['config_admin_limit']) {
 			$this->error['admin_limit'] = $this->language->get('error_limit');
+		}
+
+		if ($this->request->post['config_file_max_size'] < 100000) {
+			$this->error['file_max_size'] = $this->language->get('error_file_max_size');
 		}
 
 		if ((utf8_strlen($this->request->post['config_encryption']) < 3) || (utf8_strlen($this->request->post['config_encryption']) > 32)) {

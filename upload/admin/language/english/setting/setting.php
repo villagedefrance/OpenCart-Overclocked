@@ -174,5 +174,6 @@ $_['error_ftp_port']            			= 'FTP Port required!';
 $_['error_ftp_username']         		= 'FTP Username required!';
 $_['error_ftp_password']        		= 'FTP Password required!';
 $_['error_error_filename']     			= 'Error Log Filename required!';
+$_['error_file_max_size']				= 'File Maximum Size should be greater than 100000 (100kb)!';
 $_['error_encryption']         			= 'Encryption must be between 3 and 32 characters!';
 ?>
