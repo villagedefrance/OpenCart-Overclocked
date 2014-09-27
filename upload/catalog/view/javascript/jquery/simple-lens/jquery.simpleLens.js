@@ -218,7 +218,7 @@
         parent_class: '.simpleLens-big-image-container',
         lens_class: '.simpleLens-lens-element',
         cursor_class: '.simpleLens-mouse-cursor',
-        loading_image: 'images/loading.gif',
+        loading_image: 'catalog/view/javascript/jquery/simple-lens/images/loading.gif',
         open_lens_event: 'mouseenter'
     };
 })( jQuery );
