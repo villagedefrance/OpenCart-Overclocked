@@ -312,6 +312,8 @@ class ControllerProductProduct extends Controller {
 					$this->data['gallery_thumb'] = '';
 				}
 
+				$this->data['column_offset'] = 265;
+				$this->data['images_offset'] = 260;
 				$this->data['lightbox'] = 'zoomlens';
 
 			} else {
@@ -325,6 +327,8 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = '';
 				}
 
+				$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
+				$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				$this->data['lightbox'] = 'magnific';
 			}
 

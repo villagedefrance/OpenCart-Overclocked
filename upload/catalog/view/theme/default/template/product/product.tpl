@@ -23,7 +23,7 @@
           </div>
         <?php } ?>
         <?php if ($images) { ?>
-          <div class="image-additional">
+          <div class="image-additional" style="width:<?php echo $images_offset; ?>px;">
             <?php foreach ($images as $image) { ?>
               <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
             <?php } ?>
@@ -52,7 +52,7 @@
       <?php } ?>
       </div>
     <?php } ?>
-    <div class="right">
+    <div class="right" style="margin-left:<?php echo $column_offset; ?>px;">
       <div class="description">
         <?php if ($manufacturer) { ?>
           <span><?php echo $text_manufacturer; ?></span> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a><br />

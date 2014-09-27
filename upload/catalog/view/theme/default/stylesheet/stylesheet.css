@@ -1204,9 +1204,10 @@ ul.box-filter > li ul {
 .product-list .price {
 	float: right;
 	height: 50px;
-	text-align: right;
 	color: #333;
 	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
 	margin-left: 8px;
 }
 .product-list .price-old {
@@ -1275,8 +1276,8 @@ ul.box-filter > li ul {
 }
 .product-grid .price {
 	display: block;
-	font-weight: bold;
 	color: #333;
+	font-weight: bold;
 	margin-bottom: 4px;
 }
 .product-grid .price-old {
@@ -1305,8 +1306,8 @@ ul.box-filter > li ul {
 	float: left;
 	margin-right: 15px;
 }
-.product-info > .left + .right {
-	margin-left: 265px;
+.product-info > .right {
+	min-height: 250px;
 }
 .product-info .image {
 	float: left;
@@ -1316,8 +1317,6 @@ ul.box-filter > li ul {
 	padding: 10px;
 }
 .product-info .image-additional {
-	width: 260px;
-	margin-left: -10px;
 	overflow: hidden;
 	clear: both;
 }
@@ -1327,7 +1326,7 @@ ul.box-filter > li ul {
 .product-info .image-additional a {
 	float: left;
 	display: block;
-	margin-left: 10px;
+	margin-right: 10px;
 	margin-bottom: 10px;
 }
 .product-info .description {
