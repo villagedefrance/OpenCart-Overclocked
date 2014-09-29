@@ -29,7 +29,7 @@ Main Features:
 - Opencart favicon for Admin.
 - Cache Manager Page.
 - News / Blog.
-- ... and many more!
+- ... and more!
 
 TODO:
 - Add Sitemap Generator (done).
