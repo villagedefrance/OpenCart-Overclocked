@@ -661,14 +661,14 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_data'] = $this->language->get('tab_data');
+		$this->data['tab_links'] = $this->language->get('tab_links');
 		$this->data['tab_attribute'] = $this->language->get('tab_attribute');
 		$this->data['tab_option'] = $this->language->get('tab_option');
 		$this->data['tab_profile'] = $this->language->get('tab_profile');
 		$this->data['tab_discount'] = $this->language->get('tab_discount');
 		$this->data['tab_special'] = $this->language->get('tab_special');
-		$this->data['tab_image'] = $this->language->get('tab_image');
-		$this->data['tab_links'] = $this->language->get('tab_links');
 		$this->data['tab_reward'] = $this->language->get('tab_reward');
+		$this->data['tab_image'] = $this->language->get('tab_image');
 		$this->data['tab_design'] = $this->language->get('tab_design');
 		$this->data['tab_marketplace_links'] = $this->language->get('tab_marketplace_links');
 
@@ -1308,6 +1308,22 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['product_specials'] = array();
 		}
 
+		if (isset($this->request->post['points'])) {
+			$this->data['points'] = $this->request->post['points'];
+		} elseif (!empty($product_info)) {
+			$this->data['points'] = $product_info['points'];
+		} else {
+			$this->data['points'] = '';
+		}
+
+		if (isset($this->request->post['product_reward'])) {
+			$this->data['product_reward'] = $this->request->post['product_reward'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$this->data['product_reward'] = $this->model_catalog_product->getProductRewards($this->request->get['product_id']);
+		} else {
+			$this->data['product_reward'] = array();
+		}
+
 		// Images
 		if (isset($this->request->post['product_image'])) {
 			$product_images = $this->request->post['product_image'];
@@ -1334,22 +1350,6 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
-
-		if (isset($this->request->post['points'])) {
-			$this->data['points'] = $this->request->post['points'];
-		} elseif (!empty($product_info)) {
-			$this->data['points'] = $product_info['points'];
-		} else {
-			$this->data['points'] = '';
-		}
-
-		if (isset($this->request->post['product_reward'])) {
-			$this->data['product_reward'] = $this->request->post['product_reward'];
-		} elseif (isset($this->request->get['product_id'])) {
-			$this->data['product_reward'] = $this->model_catalog_product->getProductRewards($this->request->get['product_id']);
-		} else {
-			$this->data['product_reward'] = array();
-		}
 
 		if (isset($this->request->post['product_layout'])) {
 			$this->data['product_layout'] = $this->request->post['product_layout'];

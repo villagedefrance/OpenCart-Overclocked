@@ -42,7 +42,7 @@ $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
 $_['entry_sort_order']       	= 'Sort Order:';
 $_['entry_status']           		= 'Status:';
-$_['entry_quantity']         		= 'Quantity in Stock:<br /><span class="help">Total number of units across all stores and locations</span>';
+$_['entry_quantity']         		= 'Total Quantity in Stock:';
 $_['entry_minimum']          	= 'Minimum Quantity:<br /><span class="help">Force a minimum ordered amount</span>';
 $_['entry_subtract']         	= 'Subtract Stock:';
 $_['entry_stock_status']     	= 'Out Of Stock Status:<br /><span class="help">Status shown when the product is Out of stock</span>';

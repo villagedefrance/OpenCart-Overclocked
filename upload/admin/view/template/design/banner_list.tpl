@@ -20,6 +20,9 @@
       </div>
     </div>
     <div class="content">
+    <?php if ($navigation_hi) { ?>
+      <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
+    <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="list">
         <thead>
@@ -42,7 +45,7 @@
         <?php if ($banners) { ?>
           <?php foreach ($banners as $banner) { ?>
           <tr>
-            <td style="text-align: center;"><?php if ($banner['selected']) { ?>
+            <td style="text-align:center;"><?php if ($banner['selected']) { ?>
               <input type="checkbox" name="selected[]" value="<?php echo $banner['banner_id']; ?>" checked="checked" />
             <?php } else { ?>
               <input type="checkbox" name="selected[]" value="<?php echo $banner['banner_id']; ?>" />
@@ -62,7 +65,9 @@
         </tbody>
       </table>
     </form>
-    <div class="pagination"><?php echo $pagination; ?></div>
+    <?php if ($navigation_lo) { ?>
+      <div class="pagination"><?php echo $pagination; ?></div>
+	<?php } ?>
     </div>
   </div>
 </div>

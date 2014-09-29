@@ -25,8 +25,8 @@
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="list">
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="list">
         <thead>
           <tr>
             <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
@@ -53,20 +53,18 @@
         <?php if ($countries) { ?>
           <?php foreach ($countries as $country) { ?>
           <tr>
-            <td style="text-align:center;">
-              <?php if ($country['selected']) { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" checked="checked" />
-              <?php } else { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" />
-              <?php } ?>
-            </td>
+            <td style="text-align:center;"><?php if ($country['selected']) { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" checked="checked" />
+            <?php } else { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" />
+            <?php } ?></td>
             <td class="left"><?php echo $country['name']; ?></td>
             <td class="left"><?php echo $country['iso_code_2']; ?></td>
             <td class="left"><?php echo $country['iso_code_3']; ?></td>
             <?php if ($country['status'] == 1) { ?>
-              <td class="left"><font color="#00CC00"><?php echo $text_enabled; ?></font></td>
+              <td class="left"><span style="color:#5DC15E;"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
-              <td class="left"><font color="#FF0033"><?php echo $text_disabled; ?></font></td>
+              <td class="left"><span style="color:#DE5954;"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
             <td class="right"><?php foreach ($country['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -79,8 +77,8 @@
           </tr>
         <?php } ?>
         </tbody>
-        </table>
-      </form>
+      </table>
+    </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
 	<?php } ?>

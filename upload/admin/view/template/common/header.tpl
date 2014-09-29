@@ -174,6 +174,7 @@ $(document).ready(function() {
           <li><a class="arrow"><?php echo $text_design; ?></a>
             <ul>
               <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
+              <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
               <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
               <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
             </ul>
@@ -219,7 +220,7 @@ $(document).ready(function() {
             </ul>
           </li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
-		  <li><a href="<?php echo $cachemanager; ?>"><?php echo $text_cachemanager; ?></a></li>
+		  <li><a href="<?php echo $cache; ?>"><?php echo $text_cache; ?></a></li>
           <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
         </ul>
       </li>

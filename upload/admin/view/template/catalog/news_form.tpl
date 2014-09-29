@@ -61,7 +61,7 @@
             <tr>
               <td><?php echo $entry_store; ?></td>
               <td>
-                <div id="store_ids" class="scrollbox" style="width:220px; height:60px; margin-bottom:5px;">
+                <div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
                   <?php $class = 'even'; ?>
                   <div class="<?php echo $class; ?>">
                     <?php if (in_array(0, $news_store)) { ?>

@@ -27,8 +27,8 @@
       <a href="#tab-profile"><?php echo $tab_profile; ?></a>
       <a href="#tab-discount"><?php echo $tab_discount; ?></a>
       <a href="#tab-special"><?php echo $tab_special; ?></a>
-      <a href="#tab-image"><?php echo $tab_image; ?></a>
       <a href="#tab-reward"><?php echo $tab_reward; ?></a>
+      <a href="#tab-image"><?php echo $tab_image; ?></a>
       <a href="#tab-design"><?php echo $tab_design; ?></a>
     </div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -176,7 +176,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_store_location; ?></td>
-            <td><div id="location_ids" class="scrollbox" style="width:220px; height:70px; margin-bottom:5px;">
+            <td><div id="location_ids" class="scrollbox" style="width:220px; height:85px; margin-bottom:5px;">
               <?php $class='even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $product_location)) { ?>
@@ -276,7 +276,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_store; ?></td>
-            <td><div id="store_ids" class="scrollbox" style="width:220px; height:60px; margin-bottom:5px;">
+            <td><div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
               <?php $class='even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $product_store)) { ?>
@@ -367,7 +367,7 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_filter; ?></td>
-            <td><div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
+            <td><div class="scrollbox" style="width:350px; height:155px; margin-bottom:5px;">
               <?php $class='odd'; ?>
               <?php foreach ($filters as $filter) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -408,7 +408,7 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_download; ?></td>
-            <td><div class="scrollbox" style="width:350px; height:100px; margin-bottom:5px;">
+            <td><div class="scrollbox" style="width:350px; height:155px; margin-bottom:5px;">
               <?php $class='odd'; ?>
               <?php foreach ($downloads as $download) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -848,6 +848,30 @@
         </tfoot>
         </table>
       </div>
+      <div id="tab-reward">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_points; ?></td>
+            <td><input type="text" name="points" value="<?php echo $points; ?>" /></td>
+          </tr>
+        </table>
+        <table class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $entry_customer_group; ?></td>
+            <td class="left"><?php echo $entry_reward; ?></td>
+          </tr>
+        </thead>
+        <?php foreach ($customer_groups as $customer_group) { ?>
+        <tbody>
+          <tr>
+            <td class="left"><?php echo $customer_group['name']; ?></td>
+            <td class="left"><input type="text" name="product_reward[<?php echo $customer_group['customer_group_id']; ?>][points]" value="<?php echo isset($product_reward[$customer_group['customer_group_id']]) ? $product_reward[$customer_group['customer_group_id']]['points'] : ''; ?>" /></td>
+          </tr>
+        </tbody>
+        <?php } ?>
+        </table>
+      </div>
       <div id="tab-image">
         <table id="images" class="list">
         <thead>
@@ -878,30 +902,6 @@
             <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
           </tr>
         </tfoot>
-        </table>
-      </div>
-      <div id="tab-reward">
-        <table class="form">
-          <tr>
-            <td><?php echo $entry_points; ?></td>
-            <td><input type="text" name="points" value="<?php echo $points; ?>" /></td>
-          </tr>
-        </table>
-        <table class="list">
-        <thead>
-          <tr>
-            <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="left"><?php echo $entry_reward; ?></td>
-          </tr>
-        </thead>
-        <?php foreach ($customer_groups as $customer_group) { ?>
-        <tbody>
-          <tr>
-            <td class="left"><?php echo $customer_group['name']; ?></td>
-            <td class="left"><input type="text" name="product_reward[<?php echo $customer_group['customer_group_id']; ?>][points]" value="<?php echo isset($product_reward[$customer_group['customer_group_id']]) ? $product_reward[$customer_group['customer_group_id']]['points'] : ''; ?>" /></td>
-          </tr>
-        </tbody>
-        <?php } ?>
         </table>
       </div>
       <div id="tab-design">

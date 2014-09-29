@@ -51,6 +51,7 @@ $_['button_invoice']          	= 'Print Invoice';
 $_['button_add_address']       	= 'Add Address';
 $_['button_add_attribute']  		= 'Add Attribute';
 $_['button_add_banner']        	= 'Add Banner';
+$_['button_add_color']        		= 'Add Color';
 $_['button_add_custom_field_value'] = 'Add Custom Field';
 $_['button_add_product']      	= 'Add Product';
 $_['button_add_voucher']    		= 'Add Voucher';

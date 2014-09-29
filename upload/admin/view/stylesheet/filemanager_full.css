@@ -10,10 +10,12 @@
 	-moz-border-radius: 3px 3px 0px 0px;
 	-khtml-border-radius: 3px 3px 0px 0px;
 	border-radius: 3px 3px 0px 0px;
-	padding: 0px 30px;
+	padding-left: 10px;
 }
 #filemanager_menu a {
 	color: #FFF;
+	padding-left: 27px;
+	margin-right: 15px;
 }
 #column-left {
 	background: #FFF;
@@ -102,7 +104,7 @@
 	margin-top: 3px;
 	padding: 5px;
 	border: 1px solid #DDD;
-	background: background: #5C9CCC;
+	background: #5C9CCC;
 	background-position: 0px -50px;
 }
 #updateImage a:hover {
@@ -123,24 +125,9 @@
 	clear: both;
 	display: block;
 }
-#visualFeedback {
-	position: fixed;
-	right: 36px;
-	top: 129px;
-	width: 400px;
-	border: 1px solid #888;
-	z-index: 99;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
-	overflow: hidden;
-	display: none;
-}
-#visualFeedback span {
-	font-size: 12px;
-	color: #FCFCFC;
+.feedback {
+	color: #1571B0;
+	font-size: 14px;
 	font-weight: bold;
-	padding: 8px;
-	display: block;
+	margin: 30px 0px 0px 50px;
 }

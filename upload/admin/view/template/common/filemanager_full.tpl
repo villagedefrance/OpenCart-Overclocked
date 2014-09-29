@@ -77,26 +77,6 @@ $(document).ready(function() {
 		return filename + '.' + ext;
 	};
 
-	function feedback(message, color) {
-		$('#visualFeedback').stop().remove();
-
-		html = '<div id="visualFeedback" class="draggable"></div>';
-
-		$('#container').prepend(html);
-
-		$( ".draggable" ).draggable({ cursor:"move", revert:true });
-
-		var box = $('#visualFeedback');
-
-		box.css('background-color', '' + color + '').html('<span>' + message + '</span>').fadeIn(500).delay(2500).fadeOut(1000);
-
-		box.hover(function() {
-			$(this).stop(true, true).fadeIn();
-		}, function() {
-			$(this).fadeOut(1000);
-		});
-	};
-
 	$('#column-left').tree({
 		plugins: {
 			cookie: {}
@@ -148,26 +128,23 @@ $(document).ready(function() {
 					return { 'directory': $(NODE).attr('directory') }
 				}
 			},
-			onselect: function (NODE, TREE_OBJ) {
+			onselect: function(NODE, TREE_OBJ) {
 				var dr;
 				var tree = $.tree.reference('#column-left a');
 
 				window.dr = $(tree.selected).attr('directory');
-
-				feedback('<img src="view/image/loading_mini.gif" alt="" class="loading" /><span style="padding-left:10px; display:inline; color:Gray;"><?php echo $text_loading; ?></span>', 'Snow');
 
 				$.ajax({
 					url: 'index.php?route=common/filemanager_full/files&token=<?php echo $token; ?>',
 					type: 'post',
 					data: 'directory=' + encodeURIComponent($(NODE).attr('directory')),
 					dataType: 'json',
-					success: function(json) {
+					success: function (json) {
 						html = '<div>';
 
 						if (json.length == 0) {
-							feedback('<?php echo $text_no_file_found; ?>', 'Crimson');
+							html += '<div class="feedback"><?php echo $text_no_file_found; ?></div>';
 						} else {
-							feedback(json.length + " <?php echo $text_file_found; ?>", 'CadetBlue');
 							for (i = 0; i < json.length; i++) {
 								name = '';
 								filename = json[i]['filename'];
@@ -186,7 +163,7 @@ $(document).ready(function() {
 								dataType: 'html',
 								success: function(html) {
 									$(element).prepend('<img src="' + html + '" title="" alt="" /><br />');
-									$(element).fadeIn('fast');
+									$(element).fadeIn(400);
 								}
 							});
 						});
@@ -207,8 +184,8 @@ $(document).ready(function() {
 					$(domEle).attr('id', dd);
 				});
 
-				var myTree = $.tree.reference('#column-left');
-				var cc = $.cookie('selected');
+				var myTree = $.tree.reference('#column-left a');
+				var cc = $.cookie('tree.selected');
 				var bb = '#' + cc;
 
 				myTree.select_branch(bb);
@@ -220,14 +197,14 @@ $(document).ready(function() {
 		var myTree= $.tree.focused();
 
 		myTree.open_all('#top');
-		myTree.refresh(myTree.selected);
+		myTree.refresh(tree.select_branch);
 	});
 
 	$('#btnCollapse').click(function() {
 		var myTree= $.tree.focused();
 
 		myTree.close_all('#top');
-		myTree.refresh(myTree.selected);
+		myTree.refresh(tree.selected);
 	});
 
 	$('#btnTextView').click(function() {
@@ -334,8 +311,8 @@ $(document).ready(function() {
 			$('#dialog').remove();
 
 			html  = '<div id="dialog">';
-			html += '<?php echo $entry_folder; ?> <input type="text" name="name" value="" /><br /><br />';
-			html += '<input type="button" value="<?php echo $button_submit; ?>" />';
+			html += '  <?php echo $entry_folder; ?> <input type="text" name="name" value="" /><br /><br />';
+			html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
@@ -356,10 +333,8 @@ $(document).ready(function() {
 							$('#dialog').remove();
 
 							tree.refresh(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						} else {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -379,19 +354,19 @@ $(document).ready(function() {
 
 		fldr = fldr.replace("<ins>&nbsp;</ins>", "");
 
-		if (path==undefined) {
+		if (path == undefined) {
 			$('#dialog').remove();
 
 			html  = '<div id="dialog">';
-			html += '<p><?php echo $text_folder_action; ?>' + '<span style="font-weight:bold;"> "' + fldr + '"' +'</span><br />';
-			html += '<?php echo $text_folder_content; ?><br /><br />';
-			html += '<span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
+			html += '  <p><?php echo $text_folder_action; ?>' + '<span style="font-weight:bold;"> "' + fldr + '"' +'</span><br />';
+			html += '  <?php echo $text_folder_content; ?><br /><br />';
+			html += '  <span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
 
-			$( "#dialog" ).dialog({
-				resizable: false,
+			$('#dialog').dialog({
+				resizable: true,
 				height: 220,
 				width: 400,
 				modal: true,
@@ -406,19 +381,17 @@ $(document).ready(function() {
 							type: 'post',
 							data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')),
 							dataType: 'json',
-							success: function(json) {
+							success: function (json) {
 								if (json.success) {
 									var tt = tree.prev(tree.selected);
 
 									tree.refresh(tree.parent(tree.selected));
 
 									tree.select_branch(tt);
-
-									feedback(json.success, 'CadetBlue');
 								}
 
 								if (json.error) {
-									feedback(json.error, 'Crimson');
+									alert(json.error);
 								}
 							},
 							error: function(xhr, ajaxOptions, thrownError) {
@@ -427,10 +400,10 @@ $(document).ready(function() {
 						});
 					}
 
-					$( this ).dialog( "close" );
+					$(this).dialog('close');
 				},
 				"<?php echo $text_no_cancel; ?>": function() {
-					$( this ).dialog( "close" );
+					$(this).dialog('close');
 				}
 			}
 		});
@@ -441,13 +414,13 @@ $(document).ready(function() {
 			$('#dialog').remove();
 
 			html  = '<div id="dialog">';
-			html += '<p><?php echo $text_file_action; ?> ' + '<span style="font-weight:bold;"> "' + file + '"' +'</span><br /><br />';
-			html += '<span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
+			html += '  <p><?php echo $text_file_action; ?> ' + '<span style="font-weight:bold;"> "' + file + '"' +'</span><br /><br />';
+			html += '  <span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
 
-			$( "#dialog" ).dialog({
+			$('#dialog').dialog({
 				resizable: false,
 				height: 220,
 				width: 400,
@@ -467,12 +440,10 @@ $(document).ready(function() {
 									var tree = $.tree.focused();
 
 									tree.select_branch(tree.selected);
-
-									feedback(json.success, 'CadetBlue');
 								}
 
 								if (json.error) {
-									feedback(json.error, 'Crimson');
+									alert(json.error);
 								}
 							},
 							error: function(xhr, ajaxOptions, thrownError) {
@@ -480,10 +451,10 @@ $(document).ready(function() {
 							}
 						});
 
-						$( this ).dialog( "close" );
+						$(this).dialog('close');
 					},
 					"<?php echo $text_no_cancel; ?>": function() {
-						$( this ).dialog( "close" );
+						$(this).dialog('close');
 					}
 				}
 			});
@@ -494,8 +465,8 @@ $(document).ready(function() {
 		$('#dialog').remove();
 
 		html  = '<div id="dialog">';
-		html += '<?php echo $entry_move; ?> <select name="to"></select><br /><br />';
-		html += '<input type="button" value="<?php echo $button_submit; ?>" />';
+		html += '  <?php echo $entry_move; ?> <select name="to"></select><br /><br />';
+		html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
 		html += '</div>';
 
 		$('#column-right').prepend(html);
@@ -523,12 +494,10 @@ $(document).ready(function() {
 							var tree = $.tree.focused();
 
 							tree.select_branch(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						}
 
 						if (json.error) {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -551,12 +520,10 @@ $(document).ready(function() {
 							tree.select_branch('#top');
 
 							tree.refresh(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						}
 
 						if (json.error) {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -578,7 +545,7 @@ $(document).ready(function() {
 
 			$('#column-right').prepend(html);
 
-			$( "#dialog" ).dialog({
+			$('#dialog').dialog({
 				resizable: false,
 				height: 220,
 				width: 400,
@@ -607,8 +574,8 @@ $(document).ready(function() {
 		$('#dialog').remove();
 
 		html  = '<div id="dialog">';
-		html += '<?php echo $entry_copy; ?> <input type="text" name="name" value="" /><br /><br />'; 
-		html += '<input type="button" value="<?php echo $button_submit; ?>" />';
+		html += '  <?php echo $entry_copy; ?> <input type="text" name="name" value="" /><br /><br />'; 
+		html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
 		html += '</div>';
 
 		$('#column-right').prepend(html);
@@ -636,12 +603,10 @@ $(document).ready(function() {
 							var tree = $.tree.focused();
 
 							tree.select_branch(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						}
 
 						if (json.error) {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -664,12 +629,10 @@ $(document).ready(function() {
 							tree.select_branch(tree.parent(tree.selected));
 
 							tree.refresh(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						}
 
 						if (json.error) {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -684,8 +647,8 @@ $(document).ready(function() {
 		$('#dialog').remove();
 
 		html  = '<div id="dialog">';
-		html += '<?php echo $entry_rename; ?> <input type="text" name="name" value="" /><br /><br />';
-		html += '<input type="button" value="<?php echo $button_submit; ?>" />';
+		html += '  <?php echo $entry_rename; ?> <input type="text" name="name" value="" /><br /><br />';
+		html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
 		html += '</div>';
 
 		$('#column-right').prepend(html);
@@ -711,12 +674,10 @@ $(document).ready(function() {
 							var tree = $.tree.focused();
 
 							tree.select_branch(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						}
 
 						if (json.error) {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -739,12 +700,10 @@ $(document).ready(function() {
 							tree.select_branch(tree.parent(tree.selected));
 
 							tree.refresh(tree.selected);
-
-							feedback(json.success, 'CadetBlue');
 						}
 
 						if (json.error) {
-							feedback(json.error, 'Crimson');
+							alert(json.error);
 						}
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
@@ -777,12 +736,10 @@ $(document).ready(function() {
 				var tree = $.tree.focused();
 
 				tree.select_branch(tree.selected);
-
-				feedback(json.success, 'CadetBlue');
 			}
 
 			if (json.error) {
-				feedback(json.error, 'Crimson');
+				alert(json.error);
 			}
 
 			$('.loading').remove();
@@ -792,7 +749,7 @@ $(document).ready(function() {
 	$('#refresh').bind('click', function() {
 		var tree = $.tree.focused();
 
-		tree.refresh(tree.selected);
+		tree.select_branch(tree.selected);
 	});
 
 	// ----------------------- Multi Upload ------------------------
@@ -806,7 +763,7 @@ $(document).ready(function() {
 
 	$('#uploadmulti').click(function() {
 		html  = '<div id="uploadMulti" title="<?php echo $text_upload_plus; ?>">';
-		html += '<div id="uploader"></div>';
+		html += '  <div id="uploader"></div>';
 		html += '</div>';
 
 		$('#column-left').prepend(html);
@@ -819,7 +776,7 @@ $(document).ready(function() {
 			create: function(event, ui) {
 				var tree = $.tree.focused();
 
-				$("#uploader").plupload({
+				$('#uploader').plupload({
 					runtimes: 'flash,html5',
 					url: 'index.php?route=common/filemanager_full/multi&token=<?php echo $token; ?>&directory=' + window.dr,
 					max_file_size: '5mb',
@@ -831,7 +788,7 @@ $(document).ready(function() {
 					silverlight_xap_url: 'view/javascript/plupload/js/plupload.silverlight.xap'
 				});
 
-				$('form').submit(function(e) {
+				$('form').submit(function (e) {
 					var uploader = $('#uploader').plupload('getUploader');
 					var tree = $.tree.reference('#column-left a');
 
@@ -856,11 +813,7 @@ $(document).ready(function() {
 				var uploader = $('#uploader').plupload('getUploader');
 				var tree = $.tree.reference('#column-left a');
 
-				if (tree.selected) {
-					tree.refresh(tree.selected);
-				} else {
-					tree.refresh();
-				}
+				tree.select_branch(tree.selected);
 
 				$('#uploadMulti').remove();
 			}

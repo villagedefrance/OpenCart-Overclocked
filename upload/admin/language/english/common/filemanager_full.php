@@ -19,7 +19,6 @@ $_['entry_rename']     		= 'Rename:';
 
 // Message
 $_['text_loading']     		= 'Loading ...';
-$_['text_file_found']     	= 'files found.';
 $_['text_no_file_found']		= 'No files found!';
 $_['text_confirm']				= ' Confirm?';
 $_['text_folder_delete']		= 'Folder Delete';

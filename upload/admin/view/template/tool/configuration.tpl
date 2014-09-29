@@ -27,7 +27,7 @@
         <td><?php echo $text_theme; ?></td>
         <td><?php foreach ($templates as $template) { ?>
           <?php if ($template == $config_template) { ?>
-            <span style='color:#225599;'><b><?php echo $template; ?></b></span> 
+            <span style='color:#547C96;'><b><?php echo $template; ?></b></span> 
           <?php } ?>
         <?php } ?></td>
       </tr>
@@ -143,22 +143,22 @@
       </tr>
       <tr>
         <td><?php echo $cache . '/'; ?></td>
-        <td><?php echo is_writable($cache) ? '<span style="color:#38BC00;">Writable</span>' : '<span style="color:#880033;">Not Writable</span>'; ?></td>
+        <td><?php echo is_writable($cache) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
         <td><?php echo $logs . '/'; ?></td>
-        <td><?php echo is_writable($logs) ? '<span style="color:#38BC00;">Writable</span>' : '<span style="color:#880033;">Not Writable</span>'; ?></td>
+        <td><?php echo is_writable($logs) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
         <td><?php echo $image_cache . '/'; ?></td>
-        <td><?php echo is_writable($image_cache) ? '<span style="color:#38BC00;">Writable</span>' : '<span style="color:#880033;">Not Writable</span>'; ?></td>
+        <td><?php echo is_writable($image_cache) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
         <td><?php echo $image_data . '/'; ?></td>
-        <td><?php echo is_writable($image_data) ? '<span style="color:#38BC00;">Writable</span>' : '<span style="color:#880033;">Not Writable</span>'; ?></td>
+        <td><?php echo is_writable($image_data) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
     </table>
-    </div>
-    </div>
+  </div>
+  </div>
 </div>
 <?php echo $footer; ?>

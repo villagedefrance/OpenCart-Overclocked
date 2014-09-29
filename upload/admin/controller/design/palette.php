@@ -1,26 +1,26 @@
 <?php
-class ControllerDesignLayout extends Controller {
+class ControllerDesignPalette extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('design/layout');
+		$this->language->load('design/palette');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/layout');
+		$this->load->model('design/palette');
 
 		$this->getList();
 	}
 
 	public function insert() {
-		$this->language->load('design/layout');
+		$this->language->load('design/palette');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/layout');
+		$this->load->model('design/palette');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_design_layout->addLayout($this->request->post);
+			$this->model_design_palette->addPalette($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -39,16 +39,16 @@ class ControllerDesignLayout extends Controller {
 			}
 
 			if (isset($this->request->post['apply'])) {
-				$layout_id = $this->session->data['new_layout_id'];
+				$palette_id = $this->session->data['new_palette_id'];
 
-				if ($layout_id) {
-					unset($this->session->data['new_layout_id']);
+				if ($palette_id) {
+					unset($this->session->data['new_palette_id']);
 
-					$this->redirect($this->url->link('design/layout/update', 'token=' . $this->session->data['token'] . '&layout_id=' . $layout_id . $url, 'SSL'));
+					$this->redirect($this->url->link('design/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $palette_id . $url, 'SSL'));
 				}
 
 			} else {
-				$this->redirect($this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+				$this->redirect($this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 			}
 		}
 
@@ -56,14 +56,14 @@ class ControllerDesignLayout extends Controller {
 	}
 
 	public function update() {
-		$this->language->load('design/layout');
+		$this->language->load('design/palette');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/layout');
+		$this->load->model('design/palette');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_design_layout->editLayout($this->request->get['layout_id'], $this->request->post);
+			$this->model_design_palette->editPalette($this->request->get['palette_id'], $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -82,14 +82,14 @@ class ControllerDesignLayout extends Controller {
 			}
 
 			if (isset($this->request->post['apply'])) {
-				$layout_id = $this->request->get['layout_id'];
+				$palette_id = $this->request->get['palette_id'];
 
-				if ($layout_id) {
-					$this->redirect($this->url->link('design/layout/update', 'token=' . $this->session->data['token'] . '&layout_id=' . $layout_id . $url, 'SSL'));
+				if ($palette_id) {
+					$this->redirect($this->url->link('design/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $palette_id . $url, 'SSL'));
 				}
 
 			} else {
-				$this->redirect($this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+				$this->redirect($this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 			}
 		}
 
@@ -97,15 +97,15 @@ class ControllerDesignLayout extends Controller {
 	}
 
 	public function delete() {
-		$this->language->load('design/layout');
+		$this->language->load('design/palette');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/layout');
+		$this->load->model('design/palette');
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
-			foreach ($this->request->post['selected'] as $layout_id) {
-				$this->model_design_layout->deleteLayout($layout_id);
+			foreach ($this->request->post['selected'] as $palette_id) {
+				$this->model_design_palette->deletePalette($palette_id);
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -124,7 +124,7 @@ class ControllerDesignLayout extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->redirect($this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			$this->redirect($this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
 		$this->getList();
@@ -173,18 +173,18 @@ class ControllerDesignLayout extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'href'		=> $this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['insert'] = $this->url->link('design/layout/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$this->data['delete'] = $this->url->link('design/layout/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$this->data['insert'] = $this->url->link('design/palette/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$this->data['delete'] = $this->url->link('design/palette/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
-		$this->data['layouts'] = array();
+		$this->data['palettes'] = array();
 
 		$data = array(
 			'sort'  	=> $sort,
@@ -193,23 +193,23 @@ class ControllerDesignLayout extends Controller {
 			'limit' 		=> $this->config->get('config_admin_limit')
 		);
 
-		$layout_total = $this->model_design_layout->getTotalLayouts();
+		$palette_total = $this->model_design_palette->getTotalPalettes();
 
-		$results = $this->model_design_layout->getLayouts($data);
+		$results = $this->model_design_palette->getPalettes($data);
 
 		foreach ($results as $result) {
 			$action = array();
 
 			$action[] = array(
 				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('design/layout/update', 'token=' . $this->session->data['token'] . '&layout_id=' . $result['layout_id'] . $url, 'SSL')
+				'href'	=> $this->url->link('design/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $result['palette_id'] . $url, 'SSL')
 			);
 
-			$this->data['layouts'][] = array(
-				'layout_id' 	=> $result['layout_id'],
-				'name'      	=> $result['name'],
-				'selected'  	=> isset($this->request->post['selected']) && in_array($result['layout_id'], $this->request->post['selected']),
-				'action'    	=> $action
+			$this->data['palettes'][] = array(
+				'palette_id'	=> $result['palette_id'],
+				'name'		=> $result['name'],
+				'selected'	=> isset($this->request->post['selected']) && in_array($result['palette_id'], $this->request->post['selected']),
+				'action'		=> $action
 			);
 		}
 
@@ -249,7 +249,7 @@ class ControllerDesignLayout extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
+		$this->data['sort_name'] = $this->url->link('design/palette', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
 
 		$url = '';
 
@@ -262,18 +262,18 @@ class ControllerDesignLayout extends Controller {
 		}
 
 		$pagination = new Pagination();
-		$pagination->total = $layout_total;
+		$pagination->total = $palette_total;
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
 
-		$this->template = 'design/layout_list.tpl';
+		$this->template = 'design/palette_list.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -288,13 +288,13 @@ class ControllerDesignLayout extends Controller {
 		$this->data['text_default'] = $this->language->get('text_default');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_route'] = $this->language->get('entry_route');
+		$this->data['entry_title'] = $this->language->get('entry_title');
+		$this->data['entry_color'] = $this->language->get('entry_color');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
-		$this->data['button_add_route'] = $this->language->get('button_add_route');
+		$this->data['button_add_color'] = $this->language->get('button_add_color');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
 		if (isset($this->error['warning'])) {
@@ -307,6 +307,18 @@ class ControllerDesignLayout extends Controller {
 			$this->data['error_name'] = $this->error['name'];
 		} else {
 			$this->data['error_name'] = '';
+		}
+
+		if (isset($this->error['title'])) {
+			$this->data['error_title'] = $this->error['title'];
+		} else {
+			$this->data['error_title'] = '';
+		}
+
+		if (isset($this->error['color'])) {
+			$this->data['error_color'] = $this->error['color'];
+		} else {
+			$this->data['error_color'] = array();
 		}
 
 		$url = '';
@@ -333,43 +345,48 @@ class ControllerDesignLayout extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'href'		=> $this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
-		if (!isset($this->request->get['layout_id'])) {
-			$this->data['action'] = $this->url->link('design/layout/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		if (!isset($this->request->get['palette_id'])) {
+			$this->data['action'] = $this->url->link('design/palette/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		} else {
-			$this->data['action'] = $this->url->link('design/layout/update', 'token=' . $this->session->data['token'] . '&layout_id=' . $this->request->get['layout_id'] . $url, 'SSL');
+			$this->data['action'] = $this->url->link('design/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $this->request->get['palette_id'] . $url, 'SSL');
 		}
 
-		$this->data['cancel'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$this->data['cancel'] = $this->url->link('design/palette', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		if (isset($this->request->get['layout_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$layout_info = $this->model_design_layout->getLayout($this->request->get['layout_id']);
+		if (isset($this->request->get['palette_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$palette_info = $this->model_design_palette->getPalette($this->request->get['palette_id']);
 		}
 
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
-		} elseif (!empty($layout_info)) {
-			$this->data['name'] = $layout_info['name'];
+		} elseif (!empty($palette_info)) {
+			$this->data['name'] = $palette_info['name'];
 		} else {
 			$this->data['name'] = '';
 		}
 
-		$this->load->model('setting/store');
-
-		$this->data['stores'] = $this->model_setting_store->getStores();
-
-		if (isset($this->request->post['layout_route'])) {
-			$this->data['layout_routes'] = $this->request->post['layout_route'];
-		} elseif (isset($this->request->get['layout_id'])) {
-			$this->data['layout_routes'] = $this->model_design_layout->getLayoutRoutes($this->request->get['layout_id']);
+		if (isset($this->request->post['palette_color'])) {
+			$palette_colors = $this->request->post['palette_color'];
+		} elseif (isset($this->request->get['palette_id'])) {
+			$palette_colors = $this->model_design_palette->getPaletteColors($this->request->get['palette_id']);
 		} else {
-			$this->data['layout_routes'] = array();
+			$palette_colors = array();
 		}
 
-		$this->template = 'design/layout_form.tpl';
+		$this->data['palette_colors'] = array();
+
+		foreach ($palette_colors as $palette_color) {
+			$this->data['palette_colors'][] = array(
+				'title'		=> $palette_color['title'],
+				'color'	=> $palette_color['color']
+			);
+		}
+
+		$this->template = 'design/palette_form.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -379,12 +396,28 @@ class ControllerDesignLayout extends Controller {
 	}
 
 	protected function validateForm() {
-		if (!$this->user->hasPermission('modify', 'design/layout')) {
+		if (!$this->user->hasPermission('modify', 'design/palette')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
 			$this->error['name'] = $this->language->get('error_name');
+		}
+
+		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
+			$this->error['name'] = $this->language->get('error_name');
+		}
+
+		if (isset($this->request->post['palette_color'])) {
+			foreach ($this->request->post['palette_color'] as $key => $value) {
+				if ((utf8_strlen($value['title']) < 3) || (utf8_strlen($value['title']) > 64)) {
+					$this->error['title'][$key] = $this->language->get('error_title');
+				}
+
+				if ((utf8_strlen($value['color']) != 6) || (!preg_match('/^[a-f0-9]{6}$/i', $value['color']))) {
+					$this->error['color'][$key] = $this->language->get('error_color');
+				}
+			}
 		}
 
 		if (!$this->error) {
@@ -395,43 +428,8 @@ class ControllerDesignLayout extends Controller {
 	}
 
 	protected function validateDelete() {
-		if (!$this->user->hasPermission('modify', 'design/layout')) {
+		if (!$this->user->hasPermission('modify', 'design/palette')) {
 			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
-		$this->load->model('setting/store');
-		$this->load->model('catalog/product');
-		$this->load->model('catalog/category');
-		$this->load->model('catalog/information');
-
-		foreach ($this->request->post['selected'] as $layout_id) {
-			if ($this->config->get('config_layout_id') == $layout_id) {
-				$this->error['warning'] = $this->language->get('error_default');
-			} 
-
-			$store_total = $this->model_setting_store->getTotalStoresByLayoutId($layout_id);
-
-			if ($store_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_store'), $store_total);
-			}
-
-			$product_total = $this->model_catalog_product->getTotalProductsByLayoutId($layout_id);
-
-			if ($product_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_product'), $product_total);
-			}
-
-			$category_total = $this->model_catalog_category->getTotalCategoriesByLayoutId($layout_id);
-
-			if ($category_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_category'), $category_total);
-			}
-
-			$information_total = $this->model_catalog_information->getTotalInformationsByLayoutId($layout_id);
-
-			if ($information_total) {
-				$this->error['warning'] = sprintf($this->language->get('error_information'), $information_total);
-			}
 		}
 
 		if (!$this->error) {
