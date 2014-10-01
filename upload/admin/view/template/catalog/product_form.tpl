@@ -887,47 +887,44 @@
       </div>
       <div id="tab-image">
 		<?php if ($direct_image) { ?>
-        <table id="images" class="list">
-          <thead>
-            <tr>
-              <td class="left"><?php echo $entry_image; ?></td>
-              <td class="left"><?php echo $entry_sort_order; ?></td>
-              <td>
-                <?php $row = 1; ?>
-                <?php while (!empty($image[$row])) { ?>
+          <table id="images" class="list">
+            <thead>
+              <tr>
+                <td class="center"><?php echo $entry_image; ?></td>
+                <td class="center"><?php echo $entry_sort_order; ?></td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php $row = 1; ?>
+            <?php while (!empty($image[$row])) { ?>
+              <tr style="display:none;">
+                <td>
                   <input type="hidden" name="image[<?php echo $row; ?>][id]" id="image-id-<?php echo $row; ?>" value="<?php echo $image[$row]['id']; ?>" />
                   <input type="hidden" name="image[<?php echo $row; ?>][delete]" id="image-delete-<?php echo $row; ?>" value="<?php echo $image[$row]['delete']; ?>" disabled="disabled" />
-                  <?php $row++; ?>
-                <?php } ?>
-              </td>
-            </tr>
-          </thead>
-          <?php $row = 1; ?>
-          <?php while (!empty($image[$row])) { ?>
-          <tbody id="image-row-<?php echo $row; ?>">
-            <tr>
-              <td class="center">
-                <div class="image"><img src="<?php echo (isset($image[$row]['thumb']) ? $image[$row]['thumb'] : $image[$row]['thumb']); ?>" alt="" id="thumb-<?php echo $row; ?>" /><br />
-                  <input type="file" id="input-file-<?php echo $row; ?>" />&nbsp;&nbsp;|&nbsp;&nbsp;
-                  <input type="hidden" name="image[<?php echo $row; ?>][thumb]" id="image-thumb-<?php echo $row; ?>" value="<?php echo $image[$row]['thumb']; ?>" />
-                  <input type="hidden" name="image[<?php echo $row; ?>][path]" id="image-path-<?php echo $row; ?>" value="<?php echo $image[$row]['path']; ?>" />
-                  <input type="hidden" name="image[<?php echo $row; ?>][delete]" id="image-path-<?php echo $row; ?>" value="<?php echo $image[$row]['delete']; ?>" disabled="disabled" />
-                  <a onclick="removePrepare(<?php echo $row; ?>);"><?php echo $text_clear; ?></a>
-                </div>
-              </td>
-              <td class="center"><input type="text" name="image[<?php echo $row; ?>][sort_order]" value="<?php echo $image[$row]['sort_order']; ?>" size="2" /></td>
-              <td class="center"><a onclick="removePrepare(<?php echo $row; ?>); $('#image-row-<?php echo $row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
-            </tr>
-          </tbody>
-          <?php $row++; ?>
-          <?php } ?>
-          <tfoot>
-            <tr>
-              <td colspan="2"></td>
-              <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
-            </tr>
-          </tfoot>
-        </table>
+                </td>
+              </tr>
+              <tr id="image-row-<?php echo $row; ?>">
+                <td class="center">
+                  <div class="image"><img src="<?php echo (isset($image[$row]['thumb']) ? $image[$row]['thumb'] : $image[$row]['thumb']) ?>" alt="image-preview" id="thumb-<?php echo $row; ?>" /><br />
+                    <input type="file" id="input-file-<?php echo $row; ?>" />
+                    <input type="hidden" name="image[<?php echo $row; ?>][thumb]" id="image-thumb-<?php echo $row; ?>" value="<?php echo $image[$row]['thumb']; ?>" />
+                    <input type="hidden" name="image[<?php echo $row; ?>][path]" id="image-path-<?php echo $row; ?>" value="<?php echo $image[$row]['path']; ?>" />
+                  </div>
+                </td>
+                <td class="center"><input type="text" name="image[<?php echo $row; ?>][sort_order]" value="<?php echo $image[$row]['sort_order']; ?>" size="2" /></td>
+                <td class="center"><a onclick="removePrepare(<?php echo $row; ?>);$('#image-row-<?php echo $row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+              </tr>
+            <?php $row++; ?>
+            <?php } ?>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2"></td>
+                <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
+              </tr>
+            </tfoot>
+          </table>
 		<?php } else { ?>
         <table id="images" class="list">
           <thead>
@@ -1682,19 +1679,16 @@ function removePrepare(nb) {
     $('#image-delete-' + nb).prop('disabled', false);
 }
 
-var row = <?php echo $row; ?>;
+var row = <?php echo $row; ?>
 
 function addImage() {
-    html  = '<tbody id="image-row-' + row + '">';
-    html += '  <tr>';
+    html = '  <tr id="image-row-' + row + '">';
     html += '    <td class="center">';
     html += '      <div class="image">';
     html += '        <img src="<?php echo $no_image; ?>" alt="" id="thumb-' + row + '" /><br />';
-    html += '        <input type="file" id="input-file-' + row + '" />&nbsp;&nbsp;|&nbsp;&nbsp;';
+    html += '        <input type="file" id="input-file-' + row + '" />';
     html += '        <input type="hidden" name="image[' + row + '][thumb]" id="image-thumb-' + row + '" value="" />';
     html += '        <input type="hidden" name="image[' + row + '][path]" id="image-path-' + row + '" value="" />';
-    html += '        <input type="hidden" name="image[' + row + '][delete]" id="image-path-' + row + '" value="" disabled="disabled" />';
-    html += '        <a onclick="removePrepare(' + row + ');"><?php echo $text_clear; ?></a>';
     html += '      </div>';
     html += '   </td>';
     html += '   <td class="center">';
@@ -1704,9 +1698,8 @@ function addImage() {
     html += '     <a onclick="removePrepare(' + row + '); $(\'#image-row-' + row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a>';
     html += '   </td>';
     html += '  </tr>';
-    html += '</tbody>';
 
-    $('#images tfoot').before(html);
+    $('#images tbody').after(html);
 
     row++;
 }
