@@ -834,7 +834,7 @@ class ControllerCatalogProduct extends Controller {
 
 		} else {
 			$this->data['image'] = array(0 => array(
-				'thumb'	=> DIR_IMAGE . '/no_image.jpg',
+				'thumb'	=> $this->data['no_image'],
 				'id'			=> '',
 				'path'		=> '',
 				'delete'	=> ''
