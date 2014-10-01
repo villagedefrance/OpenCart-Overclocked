@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="content">
-    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="files">
       <table class="list">
         <thead>
           <tr>
@@ -32,17 +32,17 @@
           </tr>
         </thead>
         <tbody>
-        <?php if ($caches) { ?>
-          <?php foreach ($caches as $cache) { ?>
+        <?php if ($cache_files) { ?>
+          <?php foreach ($cache_files as $cache_file) { ?>
           <tr>
-            <td style="text-align:center;"><?php if ($cache['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $cache['name']; ?>" checked="checked" />
+            <td style="text-align:center;"><?php if ($cache_file['selected']) { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $cache_file['name']; ?>" checked="checked" />
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $cache['name']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $cache_file['name']; ?>" />
             <?php } ?></td>
-            <td class="left"><?php echo $cache['name']; ?></td>
-            <td class="left"><?php echo $cache['size']; ?></td>
-            <td class="left"><?php echo $cache['time']; ?></td>
+            <td class="left"><?php echo $cache_file['name']; ?></td>
+            <td class="left"><?php echo $cache_file['size']; ?></td>
+            <td class="left"><?php echo $cache_file['time']; ?></td>
           </tr>
           <?php } ?>
         <?php } else { ?>

@@ -29,6 +29,8 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_backup'] = $this->language->get('text_backup');
 		$this->data['text_banner'] = $this->language->get('text_banner');
 		$this->data['text_cache'] = $this->language->get('text_cache');
+		$this->data['text_cache_files'] = $this->language->get('text_cache_files');
+		$this->data['text_cache_images'] = $this->language->get('text_cache_images');
 		$this->data['text_catalog'] = $this->language->get('text_catalog');
 		$this->data['text_category'] = $this->language->get('text_category');
 		$this->data['text_configuration'] = $this->language->get('text_configuration');
@@ -152,7 +154,8 @@ class ControllerCommonHeader extends Controller {
 			$this->data['attribute_group'] = $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['banner'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['cache'] = $this->url->link('tool/cache', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['cache_files'] = $this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['cache_images'] = $this->url->link('tool/cache_images', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['configuration'] = $this->url->link('tool/configuration', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['connection'] = $this->url->link('design/connection', 'token=' . $this->session->data['token'], 'SSL');

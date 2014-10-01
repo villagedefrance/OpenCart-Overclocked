@@ -219,8 +219,13 @@ $(document).ready(function() {
 			  <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
             </ul>
           </li>
+		  <li><a class="arrow"><?php echo $text_cache; ?></a>
+            <ul>
+              <li><a href="<?php echo $cache_files; ?>"><?php echo $text_cache_files; ?></a></li>
+              <li><a href="<?php echo $cache_images; ?>"><?php echo $text_cache_images; ?></a></li>
+            </ul>
+          </li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
-		  <li><a href="<?php echo $cache; ?>"><?php echo $text_cache; ?></a></li>
           <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
         </ul>
       </li>

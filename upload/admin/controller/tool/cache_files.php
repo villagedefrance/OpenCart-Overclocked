@@ -1,8 +1,8 @@
 <?php
-class ControllerToolCache extends Controller {
+class ControllerToolCacheFiles extends Controller {
 
 	public function index() {
-		$this->language->load('tool/cache');
+		$this->language->load('tool/cache_files');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -16,7 +16,7 @@ class ControllerToolCache extends Controller {
 
    		$this->data['breadcrumbs'][] = array(
        		'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/cache', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'		=> $this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => ' :: '
    		);
 
@@ -32,11 +32,11 @@ class ControllerToolCache extends Controller {
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
-		$this->data['clean'] = $this->url->link('tool/cache/clean', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['delete'] = $this->url->link('tool/cache/delete', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['clean'] = $this->url->link('tool/cache_files/clean', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['delete'] = $this->url->link('tool/cache_files/delete', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['caches'] = array();
+		$this->data['cache_files'] = array();
 
 		$files = glob(DIR_CACHE . 'cache.*');
 
@@ -57,7 +57,7 @@ class ControllerToolCache extends Controller {
 				if (end($data) != 'index.html') {
 					$time = substr(strrchr(end($data), '.'), 1);
 
-					$this->data['caches'][] = array(
+					$this->data['cache_files'][] = array(
 						'name' 		=> end($data),
 						'size'			=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
 						'time'			=> round(($time - time()) / 60),
@@ -81,7 +81,7 @@ class ControllerToolCache extends Controller {
 			$this->data['success'] = '';
 		}
 
-		$this->template = 'tool/cache.tpl';
+		$this->template = 'tool/cache_files.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -91,7 +91,7 @@ class ControllerToolCache extends Controller {
 	}
 
 	public function clean() {
-		$this->language->load('tool/cache');
+		$this->language->load('tool/cache_files');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -109,11 +109,11 @@ class ControllerToolCache extends Controller {
 			}
 		}
 
-		$this->redirect($this->url->link('tool/cache', 'token=' . $this->session->data['token'], 'SSL'));
+		$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
 	public function delete() {
-		$this->language->load('tool/cache');
+		$this->language->load('tool/cache_files');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -132,12 +132,12 @@ class ControllerToolCache extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->redirect($this->url->link('tool/cache', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}
 
 	private function validateDelete() {
-		if (!$this->user->hasPermission('modify', 'tool/cache')) {
+		if (!$this->user->hasPermission('modify', 'tool/cache_files')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
