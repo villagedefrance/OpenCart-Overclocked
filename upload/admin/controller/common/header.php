@@ -269,7 +269,7 @@ class ControllerCommonHeader extends Controller {
 			// Connections
 			$this->load->model('design/connection');
 
-			$connection_total = $this->model_design_connection->getTotalConnections();
+			$connection_total = $this->model_design_connection->getTotalAdminConnections();
 
 			if ($connection_total > 0) {
 				$this->data['connections_ul'] = array();
@@ -278,19 +278,21 @@ class ControllerCommonHeader extends Controller {
 				$connections = $this->model_design_connection->getConnections(0);
 
 				foreach ($connections as $connection) {
-					$this->data['connections_ul'][] = array(
-						'connection_id'	=> $connection['connection_id'],
-						'name'				=> $connection['name']
-					);
-
-					$connection_routes = $this->model_design_connection->getConnectionRoutes($connection['connection_id']);
-
-					foreach ($connection_routes as $connection_route) {
-						$this->data['connections_li'][] = array(
-							'parent_id'	=> $connection_route['connection_id'],
-							'title'			=> $connection_route['title'],
-							'route'		=> html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
+					if ($connection['backend']) {
+						$this->data['connections_ul'][] = array(
+							'connection_id'	=> $connection['connection_id'],
+							'name'				=> $connection['name']
 						);
+
+						$connection_routes = $this->model_design_connection->getConnectionRoutes($connection['connection_id']);
+
+						foreach ($connection_routes as $connection_route) {
+							$this->data['connections_li'][] = array(
+								'parent_id'	=> $connection_route['connection_id'],
+								'title'			=> $connection_route['title'],
+								'route'		=> html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
+							);
+						}
 					}
 				}
 

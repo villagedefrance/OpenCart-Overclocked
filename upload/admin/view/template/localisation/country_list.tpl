@@ -62,9 +62,9 @@
             <td class="left"><?php echo $country['iso_code_2']; ?></td>
             <td class="left"><?php echo $country['iso_code_3']; ?></td>
             <?php if ($country['status'] == 1) { ?>
-              <td class="left"><span style="color:#5DC15E;"><?php echo $text_enabled; ?></span></td>
+              <td class="center"><span style="color:#11BB11;"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
-              <td class="left"><span style="color:#DE5954;"><?php echo $text_disabled; ?></span></td>
+              <td class="center"><span style="color:#CC2626;"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
             <td class="right"><?php foreach ($country['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>

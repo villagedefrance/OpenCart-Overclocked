@@ -495,12 +495,12 @@ samp, small {
 }
 /* Common */
 .required {
-	color: #F00;
+	color: #CC2626;
 	font-weight: bold;
 }
 .error {
 	display: block;
-	color: #F00;
+	color: #CC2626;
 }
 .help {
 	color: #999;
@@ -906,9 +906,6 @@ ul.box-category > li ul > li > a.active {
 	display: block;
 	padding: 8px;
 	color: #22C0F0;
-}
-.box-information > ul > li > a:hover {
-	color: #555;
 }
 /* Box account */
 .box-account ul {

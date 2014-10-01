@@ -740,6 +740,20 @@
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
+		  <tr>
+            <td><?php echo $entry_direct_image_product; ?></td>
+            <td><?php if ($config_direct_image_product) { ?>
+              <input type="radio" name="config_direct_image_product" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_direct_image_product" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_direct_image_product" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_direct_image_product" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
         </table>
         <h2><?php echo $text_store_front; ?></h2>
         <table class="form">

@@ -808,22 +808,79 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['model'] = '';
 		}
 
-		if (isset($this->request->post['image'])) {
-			$this->data['image'] = $this->request->post['image'];
-		} elseif (!empty($product_info)) {
-			$this->data['image'] = $product_info['image'];
-		} else {
-			$this->data['image'] = '';
-		}
-
+		// Images
 		$this->load->model('tool/image');
 
-		if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
-			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
-		} elseif (!empty($product_info) && $product_info['image'] && file_exists(DIR_IMAGE . $product_info['image'])) {
-			$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
+		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+
+		$this->data['direct_image'] = $this->config->get('config_direct_image_product');
+
+		if (!$this->config->get('config_direct_image_product')) {
+			if (isset($this->request->post['image'])) {
+				$this->data['image'] = $this->request->post['image'];
+			} elseif (!empty($product_info)) {
+				$this->data['image'] = $product_info['image'];
+			} else {
+				$this->data['image'] = '';
+			}
+
+			if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
+				$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+			} elseif (!empty($product_info) && $product_info['image'] && file_exists(DIR_IMAGE . $product_info['image'])) {
+				$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
+			} else {
+				$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+			}
+
 		} else {
-			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+			$this->data['image'] = array(0 => array(
+				'thumb'	=> DIR_IMAGE . '/no_image.jpg',
+				'id'			=> '',
+				'path'		=> '',
+				'delete'	=> ''
+			));
+
+			if (isset($this->request->post['image'])) {
+				$image = $this->request->post['image'];
+
+				foreach ($image as $key => $value) {
+					if ($key == 0) {
+						$this->data['image'][0] = array(
+							'thumb'	=> (isset($value['thumb']) ? $value['thumb'] : ''),
+							'path'		=> (isset($value['path']) ? $value['path'] : ''),
+							'delete'	=> (isset($value['delete']) ? $value['delete'] : '')
+						);
+
+					} else {
+						$this->data['image'][] = array(
+							'thumb'		=> $this->model_tool_image->resize((isset($value['path']) ? $value['path'] : 'no_image.jpg'), 100, 100),
+							'id'				=> (isset($value['id']) ? $value['id'] : ''),
+							'path'			=> (isset($value['path']) ? $value['path'] : ''),
+							'delete'		=> (isset($value['delete']) ? $value['delete'] : ''),
+							'sort_order'	=> (isset($value['sort_order']) ? $value['sort_order'] : '')
+						);
+					}
+				}
+
+			} elseif (isset($this->request->get['product_id']) && !empty($product_info)) {
+				$this->data['image'][0] = array(
+					'thumb'	=> $this->model_tool_image->resize((!empty($product_info['image']) ? $product_info['image'] : 'no_image.jpg'), 100, 100),
+					'path'		=> '',
+					'delete'	=> $product_info['image']
+				);
+
+				$image = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
+
+				foreach ($image as $image_key => $image_value) {
+					$this->data['image'][] = array(
+						'thumb'		=> $this->model_tool_image->resize($image_value['image'], 100, 100),
+						'id'				=> $image_value['product_image_id'],
+						'path'			=> '',
+						'delete'		=> $image_value['image'],
+						'sort_order'	=> $image_value['sort_order']
+					);
+				}
+			}
 		}
 
 		if (isset($this->request->post['keyword'])) {
@@ -1081,7 +1138,7 @@ class ControllerCatalogProduct extends Controller {
 			if ($category_info) {
 				$this->data['product_categories'][] = array(
 					'category_id' 	=> $category_info['category_id'],
-					'name'        	=> ($category_info['path']) ? $category_info['path'] . ' &gt; ' : '' . $category_info['name']
+					'name'        	=> $category_info['path'] ? $category_info['path'] . ' &gt; ' : '' . $category_info['name']
 				);
 			}
 		}
@@ -1325,31 +1382,31 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		// Images
-		if (isset($this->request->post['product_image'])) {
-			$product_images = $this->request->post['product_image'];
-		} elseif (isset($this->request->get['product_id'])) {
-			$product_images = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
-		} else {
-			$product_images = array();
-		}
-
-		$this->data['product_images'] = array();
-
-		foreach ($product_images as $product_image) {
-			if ($product_image['image'] && file_exists(DIR_IMAGE . $product_image['image'])) {
-				$image = $product_image['image'];
+		if (!$this->config->get('config_direct_image_product')) {
+			if (isset($this->request->post['product_image'])) {
+				$product_images = $this->request->post['product_image'];
+			} elseif (isset($this->request->get['product_id'])) {
+				$product_images = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
 			} else {
-				$image = 'no_image.jpg';
+				$product_images = array();
 			}
 
-			$this->data['product_images'][] = array(
-				'image'      	=> $image,
-				'thumb'    	=> $this->model_tool_image->resize($image, 100, 100),
-				'sort_order'	=> $product_image['sort_order']
-			);
-		}
+			$this->data['product_images'] = array();
 
-		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+			foreach ($product_images as $product_image) {
+				if ($product_image['image'] && file_exists(DIR_IMAGE . $product_image['image'])) {
+					$image = $product_image['image'];
+				} else {
+					$image = 'no_image.jpg';
+				}
+
+				$this->data['product_images'][] = array(
+					'image'      	=> $image,
+					'thumb'    	=> $this->model_tool_image->resize($image, 100, 100),
+					'sort_order'	=> $product_image['sort_order']
+				);
+			}
+		}
 
 		if (isset($this->request->post['product_layout'])) {
 			$this->data['product_layout'] = $this->request->post['product_layout'];
@@ -1621,6 +1678,53 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		$this->response->setOutput(json_encode($json));
+	}
+
+	private function resize($filename, $width, $height) {
+		$info = pathinfo($filename);
+
+		$new_image = 'cache/' . $info['filename'] . '-' . $width . 'x' . $height . '.' . $info['extension'];
+
+		if (file_exists($filename)) {
+			$image = new Image($filename);
+			$image->resize($width, $height);
+			$image->save(DIR_IMAGE . $new_image);
+		} else {
+			return false;
+		}
+
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+			return HTTPS_CATALOG . 'image/' . $new_image;
+		} else {
+			return HTTP_CATALOG . 'image/' . $new_image;
+		}
+	}
+
+	public function ajaxThumb() {
+		$filetypes = array('jpg','jpeg','png','gif');
+
+		$ext = strtolower(pathinfo($_FILES['file-0']['name'], PATHINFO_EXTENSION));
+
+		if (!in_array($ext, $filetypes)) {
+			return false;
+		}
+
+		$target = array();
+
+		$tmp_name = $_FILES['file-0']['tmp_name'];
+
+		$file = 'cache/' . $_FILES['file-0']['name'];
+
+		if (is_uploaded_file($tmp_name) && strpos($_FILES['file-0']['type'], 'image/') !== false) {
+			move_uploaded_file($tmp_name, DIR_IMAGE . $file);
+
+			$target['name'] = $file;
+			$target['thumb'] = $this->resize(DIR_IMAGE . $file, 100, 100);
+
+			$this->response->setOutput(json_encode($target));
+		} else {
+			return false;
+		}
 	}
 }
 ?>

@@ -27,6 +27,34 @@
             <span class="error"><?php echo $error_name; ?></span>
           <?php } ?></td>
         </tr>
+        <tr>
+          <td><?php echo $entry_backend; ?></td>
+          <td><?php if ($backend) { ?>
+            <input type="radio" name="backend" value="1" checked="checked" />
+            <?php echo $text_yes; ?>
+            <input type="radio" name="backend" value="0" />
+            <?php echo $text_no; ?>
+          <?php } else { ?>
+            <input type="radio" name="backend" value="1" />
+            <?php echo $text_yes; ?>
+            <input type="radio" name="backend" value="0" checked="checked" />
+            <?php echo $text_no; ?>
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_frontend; ?></td>
+          <td><?php if ($frontend) { ?>
+            <input type="radio" name="frontend" value="1" checked="checked" />
+            <?php echo $text_yes; ?>
+            <input type="radio" name="frontend" value="0" />
+            <?php echo $text_no; ?>
+          <?php } else { ?>
+            <input type="radio" name="frontend" value="1" />
+            <?php echo $text_yes; ?>
+            <input type="radio" name="frontend" value="0" checked="checked" />
+            <?php echo $text_no; ?>
+          <?php } ?></td>
+        </tr>
       </table>
       <br />
       <table id="route" class="list">

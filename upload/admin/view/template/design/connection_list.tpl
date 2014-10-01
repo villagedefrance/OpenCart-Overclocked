@@ -33,6 +33,16 @@
           <?php } else { ?>
             <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
+		  <td class="left"><?php if ($sort == 'backend') { ?>
+            <a href="<?php echo $sort_backend; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_backend; ?></a>
+          <?php } else { ?>
+            <a href="<?php echo $sort_backend; ?>"><?php echo $column_backend; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+          <?php } ?></td>
+		  <td class="left"><?php if ($sort == 'frontend') { ?>
+            <a href="<?php echo $sort_frontend; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_frontend; ?></a>
+          <?php } else { ?>
+            <a href="<?php echo $sort_frontend; ?>"><?php echo $column_frontend; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+          <?php } ?></td>
           <td class="right"><?php echo $column_action; ?></td>
         </tr>
       </thead>
@@ -46,6 +56,16 @@
             <input type="checkbox" name="selected[]" value="<?php echo $connection['connection_id']; ?>" />
           <?php } ?></td>
           <td class="left"><?php echo $connection['name']; ?></td>
+          <?php if ($connection['backend'] == 1) { ?>
+            <td class="center"><span style="color:#11BB11;"><?php echo $text_enabled; ?></span></td>
+          <?php } else { ?>
+            <td class="center"><span style="color:#CC2626;"><?php echo $text_disabled; ?></span></td>
+          <?php } ?>
+          <?php if ($connection['frontend'] == 1) { ?>
+            <td class="center"><span style="color:#11BB11;"><?php echo $text_enabled; ?></span></td>
+          <?php } else { ?>
+            <td class="center"><span style="color:#CC2626;"><?php echo $text_disabled; ?></span></td>
+          <?php } ?>
           <td class="right"><?php foreach ($connection['action'] as $action) { ?>
             <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
           <?php } ?></td>
@@ -53,7 +73,7 @@
         <?php } ?>
       <?php } else { ?>
         <tr>
-          <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+          <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
         </tr>
       <?php } ?>
       </tbody>

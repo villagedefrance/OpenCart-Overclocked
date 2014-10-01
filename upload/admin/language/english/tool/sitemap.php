@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']			= 'Sitemap Manager';
+$_['heading_title']			= 'Sitemaps';
 
 // Text
 $_['text_generate']			= 'Generate';
@@ -42,5 +42,5 @@ $_['button_check']			= 'Verify';
 $_['button_refresh']			= 'Refresh';
 
 // Error
-$_['error_permission']		= 'Warning: You do not have permission to modify <b>Sitemap Manager</b> !';
+$_['error_permission']		= 'Warning: You do not have permission to modify <b>Sitemaps</b> !';
 ?>

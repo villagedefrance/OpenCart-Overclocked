@@ -147,10 +147,10 @@ label {
 	margin-bottom: 15px;
 }
 .required, .error, .bad {
-	color: #F00;
+	color: #CC2626;
 }
 .good {
-	color: #00CC00;
+	color: #11BB11;
 }
 /* Button */
 a.button, input.button {

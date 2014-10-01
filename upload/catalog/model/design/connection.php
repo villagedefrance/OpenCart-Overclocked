@@ -1,38 +1,6 @@
 <?php
 class ModelDesignConnection extends Model {
 
-	public function addConnection($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "connection SET name = '" . $this->db->escape($data['name']) . "', backend = '" . (int)$data['backend'] . "', frontend = '" . (int)$data['frontend'] . "'");
-
-		$connection_id = $this->db->getLastId();
-
-		// Save and Continue
-		$this->session->data['new_connection_id'] = $connection_id;
-
-		if (isset($data['connection_route'])) {
-			foreach ($data['connection_route'] as $connection_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "connection_route SET connection_id = '" . (int)$connection_id . "', title = '" . $this->db->escape($connection_route['title']) . "', route = '" . $this->db->escape($connection_route['route']) . "'");
-			}
-		}
-	}
-
-	public function editConnection($connection_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "connection SET name = '" . $this->db->escape($data['name']) . "', backend = '" . (int)$data['backend'] . "', frontend = '" . (int)$data['frontend'] . "' WHERE connection_id = '" . (int)$connection_id . "'");
-
-		$this->db->query("DELETE FROM " . DB_PREFIX . "connection_route WHERE connection_id = '" . (int)$connection_id . "'");
-
-		if (isset($data['connection_route'])) {
-			foreach ($data['connection_route'] as $connection_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "connection_route SET connection_id = '" . (int)$connection_id . "', title = '" . $this->db->escape($connection_route['title']) . "', route = '" . $this->db->escape($connection_route['route']) . "'");
-			}
-		}
-	}
-
-	public function deleteConnection($connection_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "connection_route WHERE connection_id = '" . (int)$connection_id . "'");
-	}
-
 	public function getConnection($connection_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
 
@@ -103,12 +71,6 @@ class ModelDesignConnection extends Model {
 
 	public function getTotalConnections() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalAdminConnections() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection WHERE backend = '1'");
 
 		return $query->row['total'];
 	}

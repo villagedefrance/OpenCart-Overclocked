@@ -208,6 +208,8 @@ class ControllerDesignConnection extends Controller {
 			$this->data['connections'][] = array(
 				'connection_id'	=> $result['connection_id'],
 				'name'      			=> $result['name'],
+				'backend'			=> $result['backend'],
+				'frontend'			=> $result['frontend'],
 				'selected'			=> isset($this->request->post['selected']) && in_array($result['connection_id'], $this->request->post['selected']),
 				'action'				=> $action
 			);
@@ -216,8 +218,12 @@ class ControllerDesignConnection extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_backend'] = $this->language->get('column_backend');
+		$this->data['column_frontend'] = $this->language->get('column_frontend');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -250,6 +256,8 @@ class ControllerDesignConnection extends Controller {
 		}
 
 		$this->data['sort_name'] = $this->url->link('design/connection', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
+		$this->data['sort_backend'] = $this->url->link('design/connection', 'token=' . $this->session->data['token'] . '&sort=backend' . $url, 'SSL');
+		$this->data['sort_frontend'] = $this->url->link('design/connection', 'token=' . $this->session->data['token'] . '&sort=frontend' . $url, 'SSL');
 
 		$url = '';
 
@@ -286,8 +294,12 @@ class ControllerDesignConnection extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_default'] = $this->language->get('text_default');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
+		$this->data['entry_backend'] = $this->language->get('entry_backend');
+		$this->data['entry_frontend'] = $this->language->get('entry_frontend');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_route'] = $this->language->get('entry_route');
 
@@ -355,6 +367,22 @@ class ControllerDesignConnection extends Controller {
 			$this->data['name'] = $connection_info['name'];
 		} else {
 			$this->data['name'] = '';
+		}
+
+		if (isset($this->request->post['backend'])) {
+			$this->data['backend'] = $this->request->post['backend'];
+		} elseif (!empty($connection_info)) {
+			$this->data['backend'] = $connection_info['backend'];
+		} else {
+			$this->data['backend'] = '';
+		}
+
+		if (isset($this->request->post['frontend'])) {
+			$this->data['frontend'] = $this->request->post['frontend'];
+		} elseif (!empty($connection_info)) {
+			$this->data['frontend'] = $connection_info['frontend'];
+		} else {
+			$this->data['frontend'] = '';
 		}
 
 		if (isset($this->request->post['connection_route'])) {
