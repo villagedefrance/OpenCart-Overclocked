@@ -123,7 +123,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
-		$this->data['entry_direct_image_product'] = $this->language->get('entry_direct_image_product');
 		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
@@ -808,12 +807,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_autocomplete_product'] = $this->request->post['config_autocomplete_product'];
 		} else {
 			$this->data['config_autocomplete_product'] = $this->config->get('config_autocomplete_product');
-		}
-
-		if (isset($this->request->post['config_direct_image_product'])) {
-			$this->data['config_direct_image_product'] = $this->request->post['config_direct_image_product'];
-		} else {
-			$this->data['config_direct_image_product'] = $this->config->get('config_direct_image_product');
 		}
 
 		if (isset($this->request->post['config_viewer'])) {

@@ -33,44 +33,30 @@ class ControllerToolCacheImages extends Controller {
 		$this->data['delete'] = $this->url->link('tool/cache_images/delete', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
-		$product_ids = array();
-
-		$this->load->model('catalog/product');
-
-		$results = $this->model_catalog_product->getProducts(0);
-
-		if ($results) {
-			foreach ($results as $result) {
-				$product_ids[] = $result['product_id'];
-			}
-		}
-
 		$this->data['cache_images'] = array();
 
-		foreach ($product_ids as $product_id) {
-			$files = glob(DIR_IMAGE . 'cache/product/' . $product_id . '/*');
+		$files = glob(DIR_IMAGE . 'cache/*');
 
-			foreach ($files as $file) {
-				if (file_exists($file)) {
-					$size = filesize($file);
+		foreach ($files as $file) {
+			if (file_exists($file)) {
+				$size = filesize($file);
 
-					$i = 0;
+				$i = 0;
 
-					$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
+				$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
 
-					while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
-				}
+				while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
+			}
 
-				$data = explode('/', $file);
+			$data = explode('/', $file);
 
-				if (strpos(end($data), '.') > 0) {
-					if (end($data) != 'index.html') {
-						$this->data['cache_images'][] = array(
-							'name' 		=> end($data),
-							'size'			=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-							'selected'	=> isset($this->request->post['selected']) && in_array(end($data), $this->request->post['selected'])
-						);
-					}
+			if (strpos(end($data), '.') > 0) {
+				if (end($data) != 'index.html') {
+					$this->data['cache_images'][] = array(
+						'name' 		=> end($data),
+						'size'			=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+						'selected'	=> isset($this->request->post['selected']) && in_array(end($data), $this->request->post['selected'])
+					);
 				}
 			}
 		}
@@ -105,26 +91,12 @@ class ControllerToolCacheImages extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $name) {
-				$product_ids = array();
+				$files = glob(DIR_IMAGE . 'cache/' . $name);
 
-				$this->load->model('catalog/product');
-
-				$results = $this->model_catalog_product->getProducts(0);
-
-				if ($results) {
-					foreach ($results as $result) {
-						$product_ids[] = $result['product_id'];
-					}
-				}
-
-				foreach ($product_ids as $product_id) {
-					$files = glob(DIR_IMAGE . 'cache/product/' . $product_id . '/' . $name);
-
-					if ($files) {
-						foreach ($files as $file) {
-							if (file_exists($file)) {
-								unlink($file);
-							}
+				if ($files) {
+					foreach ($files as $file) {
+						if (file_exists($file)) {
+							unlink($file);
 						}
 					}
 				}
@@ -132,6 +104,9 @@ class ControllerToolCacheImages extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
+			$this->redirect($this->url->link('tool/cache_images', 'token=' . $this->session->data['token'], 'SSL'));
+
+		} else {
 			$this->redirect($this->url->link('tool/cache_images', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}

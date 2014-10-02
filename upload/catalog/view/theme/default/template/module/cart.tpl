@@ -11,7 +11,7 @@
       <tr>
         <td class="image">
           <?php if (!$label && $product['offer']) { ?>
-            <div class="promo-mini"></div>
+            <div class="promo-mini"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-10x10.png" alt="" /></div>
           <?php } ?>
           <?php if ($product['thumb']) { ?>
             <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
@@ -23,7 +23,7 @@
             - <small><?php echo $option['name']; ?> <?php echo $option['value']; ?></small><br />
           <?php } ?>
           <?php if ($product['recurring']) { ?>
-            - <small><?php echo $text_payment_profile ?> <?php echo $product['profile']; ?></small><br />
+            - <small><?php echo $text_payment_profile; ?> <?php echo $product['profile']; ?></small><br />
           <?php } ?>
         </div>
         </td>

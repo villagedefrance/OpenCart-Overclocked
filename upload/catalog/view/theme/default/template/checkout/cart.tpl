@@ -47,7 +47,7 @@
             <tr>
               <td class="image">
                 <?php if (!$label && $product['offer']) { ?>
-                  <div class="promo-small"><?php echo $text_offer; ?></div>
+                  <div class="promo-small"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-30x30.png" alt="" /></div>
                 <?php } ?>
                 <?php if ($product['thumb']) { ?>
                   <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>

@@ -9,12 +9,6 @@ class ModelCatalogProduct extends Model {
 		// Save and Continue
 		$this->session->data['new_product_id'] = $product_id;
 
-		if (isset($data['image']) && $this->config->get('config_direct_image_product')) {
-			$this->addImages($data['image'], $product_id);
-		} else {
-			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
-		}
-
 		foreach ($data['product_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "'");
 
@@ -25,6 +19,10 @@ class ModelCatalogProduct extends Model {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "product_tag SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', tag = '" . $this->db->escape(trim($tag)) . "'");
 				}
 			}
+		}
+
+		if (isset($data['image'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		if (isset($data['product_location'])) {
@@ -151,12 +149,6 @@ class ModelCatalogProduct extends Model {
 	public function editProduct($product_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', shipping = '" . (int)$data['shipping'] . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', points = '" . (int)$data['points'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
-		if (isset($data['image']) && $this->config->get('config_direct_image_product')) {
-			$this->editImages($data['image'], $product_id);
-		} else {
-			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
-		}
-
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($data['product_description'] as $language_id => $value) {
@@ -171,6 +163,10 @@ class ModelCatalogProduct extends Model {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "product_tag SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', tag = '" . $this->db->escape(trim($tag)) . "'");
 				}
 			}
+		}
+
+		if (isset($data['image'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
@@ -384,17 +380,6 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "review WHERE product_id = '" . (int)$product_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
-
-		if ($this->config->get('config_direct_image_product')) {
-			$query_1 = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
-			$query_2 = $this->db->query("SELECT image FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
-
-			$images = array_merge($query_1->rows, $query_2->rows);
-
-			foreach ($images as $value) {
-				$this->deleteFile(DIR_IMAGE . $value['image']);
-			}
-		}
 
 		$this->cache->delete('product');
 	}
@@ -796,127 +781,6 @@ class ModelCatalogProduct extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_location WHERE location_id = '" . (int)$location_id . "'");
 
 		return $query->row['total'];
-	}
-
-	// Direct Image Upload
-	private function randomString($chars = 8) {
-		$letters = 'abcefghijklmnopqrstuvwxyz0123456789';
-
-		return substr(str_shuffle($letters), 0, $chars);
-	}
-
-	private function moveImage($parameter, $destination) {
-		$file = DIR_IMAGE . $parameter;
-
-		if (file_exists($file)) {
-			$newdir = DIR_IMAGE . $destination;
-
-			if (!file_exists($newdir)) {
-				mkdir($newdir, 0777, true);
-			}
-
-			$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-
-			while (true) {
-				$doc = $this->randomString() . '.' . $ext;
-				$out = $newdir . '/' . $doc;
-
-				if (!file_exists($out)) {
-					break;
-				}
-			}
-
-			rename($file, $out);
-
-			return $destination . '/' . $doc;
-		} else {
-			return false;
-		}
-	}
-
-	private function addImages($parameter, $product_id) {
-		foreach ($parameter as $key => $value) {
-			if ($key == 0) {
-				if (isset($value['path'])) {
-					$image = $this->moveImage($value['path'], 'product/' . $product_id);
-
-					if ($image !== false) {
-						$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($image, ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
-					}
-				}
-
-			} else {
-				if (isset($value['path'])) {
-					$image = $this->moveImage($value['path'], 'product/' . $product_id);
-
-					if ($image !== false) {
-						$sort_order = (isset($value['sort_order']) ? $value['sort_order'] : 0);
-
-						$this->db->query("INSERT INTO " . DB_PREFIX . "product_image (product_id, image, sort_order) VALUES (" . (int)$product_id . ", '" . $this->db->escape(html_entity_decode($image, ENT_QUOTES, 'UTF-8')) . "', " . (int)$sort_order . ")");
-					}
-				}
-
-				if (isset($value['sort_order']) && isset($value['id'])) {
-					$this->db->query("UPDATE " . DB_PREFIX . "product_image SET sort_order = '" . (int)$value['sort_order'] . "' WHERE product_image_id = '" . (int)$value['id'] . "'");
-				}
-			}
-		}
-	}
-
-	private function editImages($parameter, $product_id) {
-		foreach ($parameter as $key => $value) {
-			if ($key == 0) {
-				if (isset($value['delete'])) {
-					$this->deleteFile(DIR_IMAGE . $value['delete']);
-
-					$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '' WHERE product_id = '" . (int)$product_id . "'");
-				}
-
-				if (isset($value['path']) && !empty($value['path'])) {
-					$image = $this->moveImage($value['path'], 'product/' . $product_id);
-
-					if ($image !== false) {
-						$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape(html_entity_decode($image, ENT_QUOTES, 'UTF-8')) . "' WHERE product_id = '" . (int)$product_id . "'");
-					}
-				}
-
-			} else {
-				if (isset($value['delete'])) {
-					$this->deleteFile(DIR_IMAGE . $value['delete']);
-
-					$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE image = '" . $this->db->escape(html_entity_decode($value['delete'], ENT_QUOTES, 'UTF-8')) . "'");
-				}
-
-				if (isset($value['path']) && !empty($value['path'])) {
-					$image = $this->moveImage($value['path'], 'product/' . $product_id);
-
-					if ($image !== false) {
-						$sort_order = (isset($value['sort_order']) ? $value['sort_order'] : 0);
-
-						$this->db->query("INSERT INTO " . DB_PREFIX . "product_image (product_id, image, sort_order) VALUES (" . (int)$product_id . ", '" . $this->db->escape(html_entity_decode($image, ENT_QUOTES, 'UTF-8')) . "', " . (int)$sort_order . ")");
-					}
-				}
-
-				if ((isset($value['sort_order']) && isset($value['id'])) && !isset($value['delete'])) {
-					$this->db->query("UPDATE " . DB_PREFIX . "product_image SET sort_order = '" . (int)$value['sort_order'] . "' WHERE product_image_id = '" . (int)$value['id'] . "'");
-				}
-			}
-		}
-	}
-
-	public function deleteFile($file) {
-		if (file_exists($file) && is_file($file)) {
-			chmod($file, 0777);
-			unlink($file);
-
-			if (dirname($file)) {
-				$dir = dirname($file . '/');
-
-				if (count(scandir($dir)) == 2) {
-					rmdir($dir);
-				}
-			}
-		}
 	}
 }
 ?>

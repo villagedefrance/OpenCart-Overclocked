@@ -26,7 +26,11 @@
         <?php foreach ($products as $product) { ?>
           <tbody id="wishlist-row<?php echo $product['product_id']; ?>">
             <tr>
-              <td class="image"><?php if ($product['thumb']) { ?>
+              <td class="image">
+              <?php if (!$label && $product['offer']) { ?>
+                <div class="promo-small"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-30x30.png" alt="" /></div>
+              <?php } ?>
+              <?php if ($product['thumb']) { ?>
                 <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
               <?php } ?></td>
               <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></td>

@@ -74,6 +74,12 @@ class ControllerAccountWishList extends Controller {
 			$this->data['success'] = '';
 		}
 
+		$this->data['label'] = $this->config->get('config_offer_label');
+
+		$this->load->model('catalog/offer');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
+
 		$this->data['products'] = array();
 
 		foreach ($this->session->data['wishlist'] as $key => $product_id) {
@@ -106,9 +112,16 @@ class ControllerAccountWishList extends Controller {
 					$special = false;
 				}
 
+				if (in_array($product_info['product_id'], $offers, true)) {
+					$offer = true;
+				} else {
+					$offer = false;
+				}
+
 				$this->data['products'][] = array(
 					'product_id' 	=> $product_info['product_id'],
 					'thumb'      		=> $image,
+					'offer'       		=> $offer,
 					'name'       		=> $product_info['name'],
 					'model'      		=> $product_info['model'],
 					'stock'      		=> $stock,

@@ -39,7 +39,7 @@
       <?php foreach ($reviews as $review) { ?>
         <div>
 		  <?php if (!$label && $review['offer']) { ?>
-            <div class="promo-medium"><?php echo $text_offer; ?></div>
+            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45.png" alt="" /></div>
           <?php } ?>
 		  <?php if ($review['thumb']) { ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>

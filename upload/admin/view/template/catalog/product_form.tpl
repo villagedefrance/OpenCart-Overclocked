@@ -77,26 +77,13 @@
               <span class="error"><?php echo $error_model; ?></span>
             <?php } ?></td>
           </tr>
-		  <?php if ($direct_image) { ?>
-            <tr>
-              <td><?php echo $entry_image; ?></td>
-              <td><div class="image"><img src="<?php echo $image[0]['thumb']; ?>" alt="" id="thumb-0" /><br/>
-                <input type="file" id="input-file-0" />&nbsp;&nbsp;|&nbsp;&nbsp;
-                <input type="hidden" name="image[0][thumb]" id="image-thumb-0" value="<?php echo $image[0]['thumb']; ?>" />
-                <input type="hidden" name="image[0][path]" id="image-path-0" value="<?php echo $image[0]['path']; ?>" />
-                <input type="hidden" name="image[0][delete]" id="image-delete-0" value="<?php echo $image[0]['delete']; ?>" disabled="disabled" />
-                <a onclick="removePrepare(0);"><?php echo $text_clear; ?></a>
-              </div></td>
-            </tr>
-          <?php } else { ?>
-            <tr>
-              <td><?php echo $entry_image; ?></td>
-              <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
-                <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-                <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
-              </div></td>
-            </tr>
-          <?php } ?>
+          <tr>
+            <td><?php echo $entry_image; ?></td>
+            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+              <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+              <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
+            </div></td>
+          </tr>
           <tr>
             <td><?php echo $entry_keyword; ?></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
@@ -886,46 +873,6 @@
         </table>
       </div>
       <div id="tab-image">
-		<?php if ($direct_image) { ?>
-          <table id="images" class="list">
-            <thead>
-              <tr>
-                <td class="center"><?php echo $entry_image; ?></td>
-                <td class="center"><?php echo $entry_sort_order; ?></td>
-                <td></td>
-              </tr>
-            </thead>
-            <tbody>
-            <?php $row = 1; ?>
-            <?php while (!empty($image[$row])) { ?>
-              <tr style="display:none;">
-                <td>
-                  <input type="hidden" name="image[<?php echo $row; ?>][id]" id="image-id-<?php echo $row; ?>" value="<?php echo $image[$row]['id']; ?>" />
-                  <input type="hidden" name="image[<?php echo $row; ?>][delete]" id="image-delete-<?php echo $row; ?>" value="<?php echo $image[$row]['delete']; ?>" disabled="disabled" />
-                </td>
-              </tr>
-              <tr id="image-row-<?php echo $row; ?>">
-                <td class="center">
-                  <div class="image"><img src="<?php echo (isset($image[$row]['thumb']) ? $image[$row]['thumb'] : $image[$row]['thumb']) ?>" alt="image-preview" id="thumb-<?php echo $row; ?>" /><br />
-                    <input type="file" id="input-file-<?php echo $row; ?>" />
-                    <input type="hidden" name="image[<?php echo $row; ?>][thumb]" id="image-thumb-<?php echo $row; ?>" value="<?php echo $image[$row]['thumb']; ?>" />
-                    <input type="hidden" name="image[<?php echo $row; ?>][path]" id="image-path-<?php echo $row; ?>" value="<?php echo $image[$row]['path']; ?>" />
-                  </div>
-                </td>
-                <td class="center"><input type="text" name="image[<?php echo $row; ?>][sort_order]" value="<?php echo $image[$row]['sort_order']; ?>" size="2" /></td>
-                <td class="center"><a onclick="removePrepare(<?php echo $row; ?>);$('#image-row-<?php echo $row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
-              </tr>
-            <?php $row++; ?>
-            <?php } ?>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2"></td>
-                <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
-              </tr>
-            </tfoot>
-          </table>
-		<?php } else { ?>
         <table id="images" class="list">
           <thead>
             <tr>
@@ -956,7 +903,6 @@
             </tr>
           </tfoot>
         </table>
-        <?php } ?>
       </div>
       <div id="tab-design">
         <table class="list">
@@ -1609,102 +1555,12 @@ function addSpecial() {
 
 	$('#special tfoot').before(html);
 
-	$('#special-row' + special_row + ' .date').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#special-row' + special_row + '.date').datepicker({dateFormat: 'yy-mm-dd'});
 
 	special_row++;
 };
 //--></script>
 
-<?php if ($direct_image) { ?>
-<script type="text/javascript"><!--
-$('body').on('change', 'input[type=file]', null, function(Event) {
-   var input_id = Event.target.id;
-   var nb = input_id.split('-');
-
-   $('#thumb-' + nb[2]).attr('src', 'view/image/loading.gif');
-
-   ajaxThumb(nb[2]);
-});
-
-function ajaxThumb(nb) {
-    var data = new FormData();
-
-    jQuery.each($('#input-file-' + nb)[0].files, function(i, file) {
-		data.append('file-'+i, file);
-	});
-
-    $.ajax({
-        url: 'index.php?route=catalog/product/ajaxThumb&token=<?php echo $token; ?>',
-        type: 'POST',
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(json) {
-            var obj = $.parseJSON(json);
-
-            if (typeof obj.error !== 'undefined') {
-                alert(obj.error);
-                return;
-            }
-
-            removePrepare(nb);
-
-            $('#thumb-' + nb).attr('src', obj.thumb);
-            $('#image-thumb-' + nb).val(obj.thumb);
-            $('#image-thumb-' + nb).prop('disabled', false);
-
-            if ($('#image-path-'+ nb).length > 0) {
-                $('#image-path-' + nb).replaceWith('<input type="hidden" name="image[' + nb + '][path]" id="image-path-' + nb + '" value="' + obj.name + '" />');
-            } else {
-                $('#input-file-' + nb).after('<input type="hidden" name="image[' + nb + '][path]" id="image-path-' + nb + '" value="' + obj.name + '" />');
-            }
-        }
-    });
-}
-
-function removePrepare(nb) {
-    $('#thumb-' + nb).attr('src', '<?php echo $no_image; ?>');
-
-    $.browser.msie ? $('#input-file-' + nb).replaceWith($('#input-file-' + nb).clone(true)) : $('#input-file-' + nb).val('');
-
-    if ($('#image-thumb-' + nb).length > 0) {
-        $('#image-thumb-' + nb).prop('disabled', true);
-    }
-
-    if ($('#image-path-' + nb).length > 0) {
-        $('#image-path-' + nb).prop('disabled', true);
-    }
-
-    $('#image-delete-' + nb).prop('disabled', false);
-}
-
-var row = <?php echo $row; ?>
-
-function addImage() {
-    html = '  <tr id="image-row-' + row + '">';
-    html += '    <td class="center">';
-    html += '      <div class="image">';
-    html += '        <img src="<?php echo $no_image; ?>" alt="" id="thumb-' + row + '" /><br />';
-    html += '        <input type="file" id="input-file-' + row + '" />';
-    html += '        <input type="hidden" name="image[' + row + '][thumb]" id="image-thumb-' + row + '" value="" />';
-    html += '        <input type="hidden" name="image[' + row + '][path]" id="image-path-' + row + '" value="" />';
-    html += '      </div>';
-    html += '   </td>';
-    html += '   <td class="center">';
-    html += '     <input type="text" name="image[' + row + '][sort_order]" value="" size="2" />';
-    html += '   </td>';
-    html += '   <td class="center">';
-    html += '     <a onclick="removePrepare(' + row + '); $(\'#image-row-' + row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a>';
-    html += '   </td>';
-    html += '  </tr>';
-
-    $('#images tbody').after(html);
-
-    row++;
-}
-//--></script>
-<?php } else { ?>
 <script type="text/javascript"><!--
 function image_upload(field, thumb) {
 	$('#dialog').remove();
@@ -1755,7 +1611,6 @@ function addImage() {
 	image_row++;
 };
 //--></script>
-<?php } ?>
 
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>
 

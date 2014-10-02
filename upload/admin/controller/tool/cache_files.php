@@ -133,6 +133,9 @@ class ControllerToolCacheFiles extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
+
+		} else {
+			$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}
 

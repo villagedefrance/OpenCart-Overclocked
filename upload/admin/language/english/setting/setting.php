@@ -84,7 +84,6 @@ $_['entry_pagination_hi'] 				= 'Enable Top Pagination:<br /><span class="help">
 $_['entry_pagination_lo'] 				= 'Enable Bottom Pagination:<br /><span class="help">Show pagination links at the bottom of all lists.</span>';
 $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<br /><span class="help">Use standard html selectors in Category form.</span>';
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br /><span class="help">Use standard html selectors in Product form.</span>';
-$_['entry_direct_image_product']	= 'Product Image Direct Upload:<br /><span class="help">Bypass Image Manager and upload images directly in Product forms. Caution! this option will generate a very large amount of data in your cache folder.</span>';
 $_['entry_viewer']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, Product Image Thumb size will be set at 230 x 230px.</span>';
 $_['entry_manufacturer_name']		= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
 $_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
