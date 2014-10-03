@@ -130,7 +130,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_quantity; ?></td>
-            <td><input type="text" name="quantity" value="<?php echo $quantity; ?>" size="2" /></td>
+            <td><input type="text" name="quantity" value="<?php echo $quantity; ?>" size="8" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_minimum; ?></td>

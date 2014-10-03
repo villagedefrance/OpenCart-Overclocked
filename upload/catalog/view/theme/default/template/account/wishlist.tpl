@@ -37,13 +37,11 @@
               <td class="model"><?php echo $product['model']; ?></td>
               <td class="stock"><?php echo $product['stock']; ?></td>
               <td class="price"><?php if ($product['price']) { ?>
-                <div class="price">
                 <?php if (!$product['special']) { ?>
                   <?php echo $product['price']; ?>
                 <?php } else { ?>
-                  <small><?php echo $product['price']; ?></small> <b><?php echo $product['special']; ?></b>
+                  <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
                 <?php } ?>
-                </div>
               <?php } ?></td>
               <td class="action">
                 <img src="catalog/view/theme/<?php echo $template; ?>/image/cart-add.png" alt="<?php echo $button_cart; ?>" title="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" />

@@ -7,13 +7,13 @@
   <?php } ?>
   </div>
   <h1><?php echo $heading_title; ?></h1>
-  <b><?php echo $text_critea; ?></b>
+  <h2><?php echo $text_critea; ?></h2>
   <div class="content">
-    <p><?php echo $entry_search; ?>
+    <p><b><?php echo $entry_search; ?></b>
     <?php if ($search) { ?>
       <input type="text" name="search" value="<?php echo $search; ?>" />
     <?php } else { ?>
-      <input type="text" name="search" value="<?php echo $search; ?>" onclick="this.value = '';" onkeydown="this.style.color = '000000'" style="color:#999;" />
+      <input type="text" name="search" value="<?php echo $search; ?>" onclick="this.value='';" onkeydown="this.style.color='000000'" style="color:#999;" />
     <?php } ?>
     <select name="category_id">
       <option value="0"><?php echo $text_category; ?></option>

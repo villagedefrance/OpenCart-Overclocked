@@ -3,11 +3,11 @@
 $_['heading_title']     		= 'Search';
 
 // Text
-$_['text_search']       		= 'Products meeting the search criteria';
+$_['text_critea']       		= 'Search Criteria';
+$_['text_search']       		= 'Search Results';
 $_['text_keyword']      		= 'Keywords';
 $_['text_category']     		= 'All Categories';
 $_['text_sub_category'] 	= 'Search in subcategories';
-$_['text_critea']       		= 'Search Criteria';
 $_['text_empty']        		= 'There is no product that matches the search criteria.';
 $_['text_quantity']     		= 'Qty:';
 $_['text_manufacturer'] 	= 'Brand:';

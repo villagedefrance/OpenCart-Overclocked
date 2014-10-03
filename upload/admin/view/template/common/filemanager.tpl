@@ -86,7 +86,7 @@ $(document).ready(function() {
 		selected: 'top',
 		ui: {
 			theme_name: 'opencart',
-			animation: 'fast'
+			animation: 100
 		},
 		types: {
 			'default': {
@@ -157,7 +157,7 @@ $(document).ready(function() {
 								dataType: 'html',
 								success: function(html) {
 									$(element).prepend('<img src="' + html + '" title="" alt="" /><br />');
-									$(element).fadeIn(300);
+									$(element).fadeIn(100);
 								}
 							});
 						});

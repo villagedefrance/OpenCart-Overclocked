@@ -453,40 +453,32 @@ samp, small {
 	color: #0D6D98;
 }
 /* Notifications */
-.success, .warning, .attention, .information {
+.success, .warning, .attention, .tooltip {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
 	color: #555;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 }
 .success {
 	background: #EAF7D9 url('../image/success.png') 10px center no-repeat;
 	border: 1px solid #BBDF8D;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
 .warning {
 	background: #FFD1D1 url('../image/warning.png') 10px center no-repeat;
 	border: 1px solid #F8ACAC;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
 .attention {
 	background: #FFF5CC url('../image/attention.png') 10px center no-repeat;
 	border: 1px solid #F2DD8C;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
 }
-.success .close, .warning .close, .attention .close, .information .close {
+.tooltip {
+	background: #FAFAFA url('../image/tooltip.png') 10px center no-repeat;
+	border: 1px solid #D7E6F4;
+}
+.success .close, .warning .close, .attention .close, .tooltip .close {
 	float: right;
 	padding-top: 4px;
 	padding-right: 4px;
@@ -824,7 +816,7 @@ a.button-add:hover {
 	margin-bottom: 4px;
 }
 .box-product .price-old {
-	color: #F00;
+	color: #CC2626;
 	text-decoration: line-through;
 }
 .box-product .price-new {
@@ -1208,7 +1200,7 @@ ul.box-filter > li ul {
 	margin-left: 8px;
 }
 .product-list .price-old {
-	color: #F00;
+	color: #CC2626;
 	text-decoration: line-through;
 }
 .product-list .price-new {
@@ -1277,7 +1269,7 @@ ul.box-filter > li ul {
 	margin-bottom: 4px;
 }
 .product-grid .price-old {
-	color: #F00;
+	color: #CC2626;
 	text-decoration: line-through;
 }
 .product-grid .price-new {
@@ -1349,7 +1341,7 @@ ul.box-filter > li ul {
 	color: #333;
 }
 .product-info .price-old {
-	color: #F00;
+	color: #CC2626;
 	text-decoration: line-through;
 }
 .product-info .price-new {
@@ -1652,7 +1644,7 @@ ul.box-filter > li ul {
 }
 .compare-info .price-old {
 	font-weight: bold;
-	color: #F00;
+	color: #CC2626;
 	text-decoration: line-through;
 }
 .compare-info .price-new {
@@ -1699,9 +1691,14 @@ ul.box-filter > li ul {
 .wishlist-info tbody .quantity, .wishlist-info tbody .price, .wishlist-info tbody .total, .wishlist-info tbody .action {
 	text-align: right;
 }
-.wishlist-info tbody .price s {
-	color: #F00;
+.wishlist-info .price {
+	color: #333;
 }
+.wishlist-info .price-old {
+	color: #CC2626;
+	text-decoration: line-through;
+}
+.wishlist-info .price-new {}
 .wishlist-info tbody .action img {
 	cursor: pointer;
 }
