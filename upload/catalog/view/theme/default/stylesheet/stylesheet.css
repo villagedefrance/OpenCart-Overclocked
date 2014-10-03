@@ -884,6 +884,9 @@ ul.box-category > li ul > li > a {
 	text-decoration: none;
 	display: block;
 }
+ul.box-category > li ul > li > a:hover {
+	color: #0D6D98;
+}
 ul.box-category > li ul > li > a.active {
 	font-weight: bold;
 }
@@ -996,7 +999,7 @@ ul.box-filter > li ul {
 	font-size: 13px;
 }
 .category-page ul li a:hover {
-	font-weight: bold;
+	color: #0D6D98;
 }
 .category-page ul li ul { 
 	list-style: url('../image/arrow-right.png');
@@ -1037,7 +1040,7 @@ ul.box-filter > li ul {
 }
 .product-page li a:hover {
 	font-size: 13px;
-	font-weight: bold;
+	color: #0D6D98;
 }
 .product-page div.left {
 	float: left;
@@ -1092,7 +1095,7 @@ ul.box-filter > li ul {
 	line-height: 16px;
 }
 .category-list ul li a:hover {
-	font-weight: bold;
+	color: #0D6D98;
 }
 /* Manufacturer */
 .manufacturer-list {

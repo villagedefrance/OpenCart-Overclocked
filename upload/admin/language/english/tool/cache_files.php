@@ -4,6 +4,7 @@ $_['heading_title']  		= 'Cache Files';
 
 // Text
 $_['text_success']    	= 'Success: You have deleted <b>Cache Files</b> !';
+$_['text_attention']		= 'Attention: You must select at least one file !';
 $_['text_no_results']  	= 'Cache File folder is empty !';
 
 // Column

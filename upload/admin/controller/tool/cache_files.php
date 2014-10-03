@@ -73,6 +73,14 @@ class ControllerToolCacheFiles extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
+		if (isset($this->session->data['attention'])) {
+			$this->data['attention'] = $this->session->data['attention'];
+
+			unset($this->session->data['attention']);
+		} else {
+			$this->data['attention'] = '';
+		}
+
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
 
@@ -135,6 +143,8 @@ class ControllerToolCacheFiles extends Controller {
 			$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 
 		} else {
+			$this->session->data['attention'] = $this->language->get('text_attention');
+
 			$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}

@@ -749,7 +749,7 @@ class ControllerProductProduct extends Controller {
 		$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}');
 
 		$this->data['pagination'] = $pagination->render();
-		
+
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 

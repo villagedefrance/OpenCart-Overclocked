@@ -27,14 +27,8 @@
         <div class="success"><?php echo $success_gzip; ?></div>
       <?php } ?>
       <form action="<?php echo $sitemap; ?>" method="post" enctype="multipart/form-data" id="form" name="generator">
-      <?php if (!$sitemapxml) { ?>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
-            <tr>
-              <td><?php echo $text_create; ?></td>
-            </tr>
-          </table>
-        </div>
+      <?php if (!$sitemaptext || !$sitemapxml) { ?>
+        <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $text_create; ?></div>
       <?php } ?>
       <h2><?php echo $text_sitemaps; ?></h2>
       <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
