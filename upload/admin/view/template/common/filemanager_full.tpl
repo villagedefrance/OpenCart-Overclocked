@@ -92,7 +92,7 @@ $(document).ready(function() {
 		selected: 'top',
 		ui: {
 			theme_name: 'opencart',
-			animation: 100
+			animation: 'fast'
 		},
 		types: {
 			'default': {
@@ -163,7 +163,7 @@ $(document).ready(function() {
 								dataType: 'html',
 								success: function(html) {
 									$(element).prepend('<img src="' + html + '" title="" alt="" /><br />');
-									$(element).fadeIn(400);
+									$(element).fadeIn(300);
 								}
 							});
 						});
@@ -174,7 +174,7 @@ $(document).ready(function() {
 				});
 			},
 			onopen: function(NODE, TREE_OBJ) {
-				var tr = $('#column-left li #top li[directory]');
+				var tr = $('#column-left li#top li[directory]');
 
 				tr.each(function(index, domEle) {
 					dd = $(domEle).attr('directory');
