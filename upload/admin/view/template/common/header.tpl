@@ -175,6 +175,7 @@ $(document).ready(function() {
             <ul>
               <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
               <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
+              <li><a href="<?php echo $footer; ?>"><?php echo $text_footer; ?></a></li>
               <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
               <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
             </ul>

@@ -2189,18 +2189,20 @@ ul.box-filter > li ul {
 /* Footer */ 
 #footer {
 	clear: both;
-	overflow: auto;
-	min-height: 100px;
-	padding: 20px;
-	border-top: 1px solid #DBDEE1;
-	border-bottom: 1px solid #DBDEE1;
+	width: 100%;
+	border: 1px solid #DBDEE1;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 	background: #F8F8F8;
+	padding: 20px 0px;
+	overflow: hidden;
 }
 #footer h3 {
-	color: #111;
+	color: #333;
 	font-size: 14px;
-	margin-top: 0px;
-	margin-bottom: 8px;
+	margin: 0px 0px 0px 18px;
 }
 #footer .column {
 	float: left;
@@ -2208,22 +2210,21 @@ ul.box-filter > li ul {
 	min-height: 100px;
 }
 #footer .column ul {
-	margin-top: 0px;
-	margin-left: 8px;
-	padding-left: 12px;
+	list-style: url('../image/bullet-2.png');
+	margin-bottom: 8px;
 }
 #footer .column ul li {
-	margin-bottom: 3px;
+	margin-bottom: 4px;
 }
 #footer .column a {
 	text-decoration: none;
-	color: #111;
+	color: #333;
 }
 #footer .column a:hover {
-	text-decoration: underline;
+	color: #0D6D98;
 }
 #powered {
-	margin-top: 5px;
-	text-align: right;
 	clear: both;
+	text-align: right;
+	margin-top: 8px;
 }

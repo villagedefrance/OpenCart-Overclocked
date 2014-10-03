@@ -304,7 +304,7 @@ class ModelCatalogProduct extends Model {
 				$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
 			}
 
-			$this->cache->set('product.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'). '.' . $customer_group_id . '.' . (int)$limit, $product_data);
+			$this->cache->set('product.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $customer_group_id . '.' . (int)$limit, $product_data);
 		}
 
 		return $product_data;
@@ -341,7 +341,7 @@ class ModelCatalogProduct extends Model {
 			$customer_group_id = $this->config->get('config_customer_group_id');
 		}
 
-		$product_data = $this->cache->get('product.bestseller.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'). '.' . $customer_group_id . '.' . (int)$limit);
+		$product_data = $this->cache->get('product.bestseller.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $customer_group_id . '.' . (int)$limit);
 
 		if (!$product_data) {
 			$product_data = array();
@@ -352,7 +352,7 @@ class ModelCatalogProduct extends Model {
 				$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
 			}
 
-			$this->cache->set('product.bestseller.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'). '.' . $customer_group_id . '.' . (int)$limit, $product_data);
+			$this->cache->set('product.bestseller.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $customer_group_id . '.' . (int)$limit, $product_data);
 		}
 
 		return $product_data;
@@ -455,12 +455,24 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductRelated($product_id) {
-		$product_data = array();
+		if ($this->customer->isLogged()) {
+			$customer_group_id = $this->customer->getCustomerGroupId();
+		} else {
+			$customer_group_id = $this->config->get('config_customer_group_id');
+		}
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_related pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+		$product_data = $this->cache->get('product.related.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $customer_group_id . '.' . (int)$product_id);
 
-		foreach ($query->rows as $result) {
-			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
+		if (!$product_data) {
+			$product_data = array();
+
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_related pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+
+			foreach ($query->rows as $result) {
+				$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
+			}
+
+			$this->cache->set('product.related.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $customer_group_id . '.' . (int)$product_id, $product_data);
 		}
 
 		return $product_data;
@@ -477,12 +489,18 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductLocationId($product_id) {
-		$location_data = array();
+		$location_data = $this->cache->get('location.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$product_id);
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
+		if (!$location_data) {
+			$location_data = array();
 
-		foreach ($query->rows as $result) {
-			$location_data[] = $result['location_id'];
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "'");
+
+			foreach ($query->rows as $result) {
+				$location_data[] = $result['location_id'];
+			}
+
+			$this->cache->set('location.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$product_id, $location_data);
 		}
 
 		return $location_data;
@@ -672,9 +690,7 @@ class ModelCatalogProduct extends Model {
 
 		$query = $this->db->query("SELECT *, pd.name AS name, p.image, m.name AS manufacturer, (SELECT price FROM " . DB_PREFIX . "product_discount pd2 WHERE pd2.product_id = p.product_id AND pd2.customer_group_id = '" . (int)$customer_group_id . "' AND pd2.quantity = '1' AND ((pd2.date_start = '0000-00-00' OR pd2.date_start < NOW()) AND (pd2.date_end = '0000-00-00' OR pd2.date_end > NOW())) ORDER BY pd2.priority ASC, pd2.price ASC LIMIT 1) AS discount, (SELECT price FROM " . DB_PREFIX . "product_special ps WHERE ps.product_id = p.product_id AND ps.customer_group_id = '" . (int)$customer_group_id . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) ORDER BY ps.priority ASC, ps.price ASC LIMIT 1) AS special, (SELECT points FROM " . DB_PREFIX . "product_reward pr WHERE pr.product_id = p.product_id AND customer_group_id = '" . (int)$customer_group_id . "') AS reward, (SELECT ss.name FROM " . DB_PREFIX . "stock_status ss WHERE ss.stock_status_id = p.stock_status_id AND ss.language_id = '" . (int)$this->config->get('config_language_id') . "') AS stock_status, (SELECT AVG(r.rating) FROM " . DB_PREFIX . "review r WHERE p.product_id = r.product_id GROUP BY r.product_id) AS rating FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "manufacturer m ON (p.manufacturer_id = m.manufacturer_id) LEFT JOIN " . DB_PREFIX . "stock_status ss ON (p.stock_status_id = ss.stock_status_id) WHERE p.status = '1' AND p.date_available <= NOW() AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND ss.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY pd.name ASC ");
 
-		$results = $query->rows;
-
-		return $results;
+		return $query->rows;
 	}
 
 	public function getTotalListProducts() {

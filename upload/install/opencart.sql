@@ -1384,6 +1384,37 @@ CREATE TABLE `oc_filter_group_description` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_footer`
+--
+
+DROP TABLE IF EXISTS `oc_footer`;
+CREATE TABLE `oc_footer` (
+  `footer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `position` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`footer_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_footer_route`
+--
+
+DROP TABLE IF EXISTS `oc_footer_route`;
+CREATE TABLE `oc_footer_route` (
+  `footer_route_id` int(11) NOT NULL AUTO_INCREMENT,
+  `footer_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `route` varchar(255) NOT NULL,
+  `sort_order` int(3) NOT NULL,
+  PRIMARY KEY (`footer_route_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_geo_zone`
 --
 

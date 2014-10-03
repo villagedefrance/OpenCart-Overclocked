@@ -11,10 +11,10 @@ class ModelDesignConnection extends Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "connection";
 
 		$sort_data = array(
-				'name',
-				'backend',
-				'frontend'
-			);
+			'name',
+			'backend',
+			'frontend'
+		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
@@ -46,12 +46,18 @@ class ModelDesignConnection extends Model {
 	}
 
 	public function getConnectionIds($data = array()) {
-		$connection_data = array();
+		$connection_data = $this->cache->get('connection.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'));
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "connection");
+		if (!$connection_data) {
+			$connection_data = array();
 
-		foreach ($query->rows as $result) {
-			$connection_data[] = array('connection_id' => $result['connection_id']);
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "connection");
+
+			foreach ($query->rows as $result) {
+				$connection_data[] = array('connection_id' => $result['connection_id']);
+			}
+
+			$this->cache->set('connection.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $connection_data);
 		}
 
 		return $connection_data;

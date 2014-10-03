@@ -36,6 +36,7 @@ $_['text_extension']              	= 'Extensions';
 $_['text_feed']                   		= 'Product Feeds';
 $_['text_filemanager'] 				= 'Image Manager';
 $_['text_filter']                  		= 'Filters';
+$_['text_footer']						= 'Footers';
 $_['text_front']                   		= 'Store Front';
 $_['text_geo_zone']              	= 'Geo Zones';
 $_['text_help']                       	= 'Help';
