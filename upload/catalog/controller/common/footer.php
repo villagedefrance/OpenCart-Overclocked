@@ -11,7 +11,7 @@ class ControllerCommonFooter extends Controller {
 		if ($total_footers) {
 			$this->data['footer_routes'] = array();
 
-			$routes = $this->model_design_footer->getFooterRouteList(0);
+			$routes = $this->model_design_footer->getFooterRoutes(0);
 
 			if ($routes) {
 				foreach ($routes as $route) {
@@ -23,7 +23,7 @@ class ControllerCommonFooter extends Controller {
 
 					$this->data['footer_blocks'] = array();
 
-					$blocks = $this->model_design_footer->getFooterList(0);
+					$blocks = $this->model_design_footer->getFooters();
 
 					if ($blocks) {
 						foreach ($blocks as $block) {

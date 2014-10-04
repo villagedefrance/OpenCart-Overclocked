@@ -20,7 +20,6 @@
       </div>
     </div>
     <div class="content">
-    <div class="tooltip"><?php echo $text_cache; ?> &nbsp;&nbsp; <a href="<?php echo $cache_page; ?>" title=""><b><?php echo $button_cache; ?></b></a></div>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
@@ -29,17 +28,17 @@
       <thead>
         <tr>
           <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-          <td class="left"><?php if ($sort == 'name') { ?>
+          <td class="left"><?php if ($sort == 'fd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-		  <td class="left"><?php if ($sort == 'position') { ?>
+		  <td class="left"><?php if ($sort == 'f.position') { ?>
             <a href="<?php echo $sort_position; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_position; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_position; ?>"><?php echo $column_position; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-		  <td class="left"><?php if ($sort == 'status') { ?>
+		  <td class="left"><?php if ($sort == 'f.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>

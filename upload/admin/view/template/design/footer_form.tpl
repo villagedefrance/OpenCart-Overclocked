@@ -18,50 +18,98 @@
       </div>
     </div>
     <div class="content">
+    <div id="tabs" class="htabs">
+      <a href="#tab-general"><?php echo $tab_general; ?></a>
+      <a href="#tab-data"><?php echo $tab_data; ?></a>
+    </div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-      <table class="form">
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-          <td><input type="text" name="name" value="<?php echo $name; ?>" size="30" />
-          <?php if ($error_name) { ?>
-            <span class="error"><?php echo $error_name; ?></span>
-          <?php } ?></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_position; ?></td>
-          <td><select name="position">
-            <?php if (isset($position)) { $selected = "selected"; ?>
-              <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1</option>
-              <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2</option>
-              <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3</option>
-              <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4</option>
-            <?php } else { ?>
-              <option selected="selected"></option>
-              <option value="1" selected><?php echo $text_position; ?> 1</option>
-              <option value="2"><?php echo $text_position; ?> 2</option>
-              <option value="3"><?php echo $text_position; ?> 3</option>
-              <option value="4"><?php echo $text_position; ?> 4</option>
-            <?php } ?>
-          </select></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_status; ?></td>
-          <td><select name="status">
-            <?php if ($status) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-            <?php } ?>
-          </select></td>
-        </tr>
-      </table>
+      <div id="tab-general">
+        <div id="languages" class="htabs">
+        <?php foreach ($languages as $language) { ?>
+          <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+        <?php } ?>
+        </div>
+        <?php foreach ($languages as $language) { ?>
+          <div id="language<?php echo $language['language_id']; ?>">
+          <table class="form">
+            <tr>
+              <td><span class="required">*</span> <?php echo $entry_name; ?></td>
+              <td><input type="text" name="footer_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($footer_description[$language['language_id']]) ? $footer_description[$language['language_id']]['name'] : ''; ?>" />
+              <?php if (isset($error_name[$language['language_id']])) { ?>
+                <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
+              <?php } ?></td>
+            </tr>
+          </table>
+          </div>
+        <?php } ?>
+      </div>
+      <div id="tab-data">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_store; ?></td>
+            <td><div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
+              <?php $class = 'even'; ?>
+              <div class="<?php echo $class; ?>">
+                <?php if (in_array(0, $footer_store)) { ?>
+                  <input type="checkbox" name="footer_store[]" value="0" checked="checked" />
+                  <?php echo $text_default; ?>
+                <?php } else { ?>
+                  <input type="checkbox" name="footer_store[]" value="0" />
+                  <?php echo $text_default; ?>
+                <?php } ?>
+              </div>
+              <?php foreach ($stores as $store) { ?>
+                <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                <div class="<?php echo $class; ?>">
+                <?php if (in_array($store['store_id'], $footer_store)) { ?>
+                  <input type="checkbox" name="footer_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                  <?php echo $store['name']; ?>
+                <?php } else { ?>
+                  <input type="checkbox" name="footer_store[]" value="<?php echo $store['store_id']; ?>" />
+                  <?php echo $store['name']; ?>
+                <?php } ?>
+                </div>
+              <?php } ?>
+            </div>
+			<a onclick="select_all('footer_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('footer_store', '0');"><?php echo $text_unselect_all; ?></a>
+			</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_position; ?></td>
+            <td><select name="position">
+              <?php if (isset($position)) { $selected = "selected"; ?>
+                <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1</option>
+                <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2</option>
+                <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3</option>
+                <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4</option>
+              <?php } else { ?>
+                <option selected="selected"></option>
+                <option value="1" selected><?php echo $text_position; ?> 1</option>
+                <option value="2"><?php echo $text_position; ?> 2</option>
+                <option value="3"><?php echo $text_position; ?> 3</option>
+                <option value="4"><?php echo $text_position; ?> 4</option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_status; ?></td>
+            <td><select name="status">
+              <?php if ($status) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
+      </div>
       <br />
       <table id="route" class="list">
       <thead>
         <tr>
-          <td class="left"><?php echo $entry_title; ?></td>
+          <td class="left"><span class="required">*</span> <?php echo $entry_title; ?></td>
           <td class="left"><?php echo $entry_route; ?></td>
 		  <td class="left"><?php echo $entry_sort_order; ?></td>
           <td></td>
@@ -71,7 +119,13 @@
       <?php foreach ($footer_routes as $footer_route) { ?>
       <tbody id="route-row<?php echo $route_row; ?>">
         <tr>
-          <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][title]" value="<?php echo $footer_route['title']; ?>" size="30" /></td>
+          <td class="left"><?php foreach ($languages as $language) { ?>
+            <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" />
+            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+            <?php if (isset($error_footer_route[$route_row][$language['language_id']])) { ?>
+              <span class="error"><?php echo $error_footer_route[$route_row][$language['language_id']]; ?></span>
+            <?php } ?>
+          <?php } ?></td>
           <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
           <td class="center"><input type="text" name="footer_route[<?php echo $route_row; ?>][sort_order]" value="<?php echo $footer_route['sort_order']; ?>" size="4" /></td>
           <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
@@ -97,7 +151,11 @@ var route_row = <?php echo $route_row; ?>;
 function addRoute() {
 	html  = '<tbody id="route-row' + route_row + '">';
 	html += '  <tr>';
-	html += '    <td class="left"><input type="text" name="footer_route[' + route_row + '][title]" value="" size="30" /></td>';
+	html += '	<td class="left">';
+	<?php foreach ($languages as $language) { ?>
+	html += '	<input type="text" name="footer_route[' + route_row + '][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
+	<?php } ?>
+	html += '	</td>';
 	html += '    <td class="left"><input type="text" name="footer_route[' + route_row + '][route]" value="" size="50" /></td>';
 	html += '    <td class="center"><input type="text" name="footer_route[' + route_row + '][sort_order]" value="" size="4" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
@@ -108,6 +166,32 @@ function addRoute() {
 
 	route_row++;
 }
+//--></script>
+
+<script type="text/javascript"><!--
+var formblock;
+var forminput;
+
+formblock = document.getElementById('store_ids');
+forminput = formblock.getElementsByTagName('input');
+
+function select_all(name, value) {
+	for (i = 0; i < forminput.length; i++) {
+		var regex = new RegExp(name, "i");
+		if (regex.test(forminput[i].getAttribute('name'))) {
+			if (value == '1') {
+				forminput[i].checked = true;
+			} else {
+				forminput[i].checked = false;
+			}
+		}
+	}
+}
+//--></script>
+
+<script type="text/javascript"><!--
+$('#tabs a').tabs();
+$('#languages a').tabs();
 //--></script>
 
 <?php echo $footer; ?>

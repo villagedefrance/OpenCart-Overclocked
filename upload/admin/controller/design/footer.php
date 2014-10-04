@@ -134,7 +134,7 @@ class ControllerDesignFooter extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'fd.name';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -218,7 +218,6 @@ class ControllerDesignFooter extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_cache'] = $this->language->get('text_cache');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
@@ -229,9 +228,6 @@ class ControllerDesignFooter extends Controller {
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_cache'] = $this->language->get('button_cache');
-
-		$this->data['cache_page'] = $this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -259,9 +255,9 @@ class ControllerDesignFooter extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
-		$this->data['sort_position'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . '&sort=position' . $url, 'SSL');
-		$this->data['sort_status'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
+		$this->data['sort_name'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . '&sort=fd.name' . $url, 'SSL');
+		$this->data['sort_position'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . '&sort=f.position' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . '&sort=f.status' . $url, 'SSL');
 
 		$url = '';
 
@@ -301,8 +297,11 @@ class ControllerDesignFooter extends Controller {
 		$this->data['text_position'] = $this->language->get('text_position');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_select_all'] = $this->language->get('text_select_all');
+		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
+		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_title'] = $this->language->get('entry_title');
@@ -315,6 +314,11 @@ class ControllerDesignFooter extends Controller {
 		$this->data['button_add_route'] = $this->language->get('button_add_route');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_data'] = $this->language->get('tab_data');
+
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -325,6 +329,12 @@ class ControllerDesignFooter extends Controller {
 			$this->data['error_name'] = $this->error['name'];
 		} else {
 			$this->data['error_name'] = '';
+		}
+
+		if (isset($this->error['footer_route'])) {
+			$this->data['error_footer_route'] = $this->error['footer_route'];
+		} else {
+			$this->data['error_footer_route'] = array();
 		}
 
 		$url = '';
@@ -367,12 +377,28 @@ class ControllerDesignFooter extends Controller {
 			$footer_info = $this->model_design_footer->getFooter($this->request->get['footer_id']);
 		}
 
-		if (isset($this->request->post['name'])) {
-			$this->data['name'] = $this->request->post['name'];
-		} elseif (!empty($footer_info)) {
-			$this->data['name'] = $footer_info['name'];
+		$this->load->model('localisation/language');
+
+		$this->data['languages'] = $this->model_localisation_language->getLanguages();
+
+		if (isset($this->request->post['footer_description'])) {
+			$this->data['footer_description'] = $this->request->post['footer_description'];
+		} elseif (isset($this->request->get['footer_id'])) {
+			$this->data['footer_description'] = $this->model_design_footer->getFooterDescriptions($this->request->get['footer_id']);
 		} else {
-			$this->data['name'] = '';
+			$this->data['footer_description'] = array();
+		}
+
+		$this->load->model('setting/store');
+
+		$this->data['stores'] = $this->model_setting_store->getStores();
+
+		if (isset($this->request->post['footer_store'])) {
+			$this->data['footer_store'] = $this->request->post['footer_store'];
+		} elseif (isset($this->request->get['footer_id'])) {
+			$this->data['footer_store'] = $this->model_design_footer->getFooterStores($this->request->get['footer_id']);
+		} else {
+			$this->data['footer_store'] = array(0);
 		}
 
 		if (isset($this->request->post['position'])) {
@@ -403,10 +429,9 @@ class ControllerDesignFooter extends Controller {
 
 		foreach ($footer_routes as $footer_route) {
 			$this->data['footer_routes'][] = array(
-				'route_id'	=> $footer_route['footer_route_id'],
-				'title'			=> $footer_route['title'],
-				'route'		=> $footer_route['route'],
-				'sort_order'	=> $footer_route['sort_order']
+				'footer_route_description'	=> $footer_route['footer_route_description'],
+				'route'							=> $footer_route['route'],
+				'sort_order'						=> $footer_route['sort_order']
 			);
 		}
 
@@ -424,8 +449,20 @@ class ControllerDesignFooter extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
-			$this->error['name'] = $this->language->get('error_name');
+		foreach ($this->request->post['footer_description'] as $language_id => $value) {
+			if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 64)) {
+				$this->error['name'][$language_id] = $this->language->get('error_name');
+			}
+		}
+
+		if (isset($this->request->post['footer_route'])) {
+			foreach ($this->request->post['footer_route'] as $footer_route_id => $footer_route) {
+				foreach ($footer_route['footer_route_description'] as $language_id => $footer_route_description) {
+					if ((utf8_strlen($footer_route_description['title']) < 2) || (utf8_strlen($footer_route_description['title']) > 64)) {
+						$this->error['footer_route'][$footer_route_id][$language_id] = $this->language->get('error_title');
+					}
+				}
+			}
 		}
 
 		if (!$this->error) {

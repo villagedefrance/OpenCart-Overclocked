@@ -208,7 +208,7 @@ class ControllerDesignBanner extends Controller {
 			$this->data['banners'][] = array(
 				'banner_id' 	=> $result['banner_id'],
 				'name'   		=> $result['name'],
-				'status'   	=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'   	=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'selected'  	=> isset($this->request->post['selected']) && in_array($result['banner_id'], $this->request->post['selected']),
 				'action'  		=> $action
 			);
