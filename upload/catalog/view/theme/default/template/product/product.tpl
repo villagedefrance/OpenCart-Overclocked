@@ -76,6 +76,11 @@
             <?php } ?>
           <?php } ?>
         <?php } ?>
+        <?php if ($colors) { ?>
+          <?php foreach ($colors as $color) { ?>
+            <span class="color" style="background-color:#<?php echo $color['color']; ?>;"></span>
+          <?php } ?><br />
+        <?php } ?>
       </div>
       <?php if ($price) { ?>
         <div class="price"><?php echo $text_price; ?>

@@ -1328,6 +1328,23 @@ ul.box-filter > li ul {
 .product-info .description span {
 	color: #38B0E3;
 }
+.product-info .description span.color {
+	display: block;
+	float: left;
+	height: 20px;
+	width: 20px;
+	border: 0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 2px #DDD;
+	-moz-box-shadow: 0px 1px 2px #DDD;
+	box-shadow: 0px 1px 2px #DDD;
+	line-height: 20px;
+	text-align: center;
+	margin: 5px 10px 5px 0px;
+}
 .product-info .description a {
 	color: #4D4D4D;
 	text-decoration: none;

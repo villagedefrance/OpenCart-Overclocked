@@ -110,6 +110,19 @@
             <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" size="12" class="date" /></td>
           </tr>
           <tr>
+            <td><?php echo $entry_palette; ?></td>
+            <td><select name="palette_id">
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($palettes as $palette) { ?>
+                <?php if ($palette['palette_id'] == $palette_id) { ?>
+                  <option value="<?php echo $palette['palette_id']; ?>" selected="selected"><?php echo $palette['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_sort_order; ?></td>
             <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="2" /></td>
           </tr>
@@ -723,12 +736,12 @@
             <td></td>
           </tr>
         </thead>
-        <?php $profileCount = 0; ?>
+        <?php $profile_row = 0; ?>
         <?php foreach ($product_profiles as $product_profile) { ?>
-        <tbody id="profile-row<?php echo $profileCount; ?>">
+        <tbody id="profile-row<?php echo $profile_row; ?>">
           <tr>
             <td class="left">
-              <select name="product_profiles[<?php echo $profileCount; ?>][profile_id]">
+              <select name="product_profiles[<?php echo $profile_row; ?>][profile_id]">
               <?php foreach ($profiles as $profile) { ?>
                 <?php if ($profile['profile_id'] == $product_profile['profile_id']) { ?>
                   <option value="<?php echo $profile['profile_id']; ?>" selected="selected"><?php echo $profile['name']; ?></option>
@@ -739,7 +752,7 @@
               </select>
             </td>
             <td class="left">
-              <select name="product_profiles[<?php echo $profileCount; ?>][customer_group_id]">
+              <select name="product_profiles[<?php echo $profile_row; ?>][customer_group_id]">
               <?php foreach ($customer_groups as $customer_group) { ?>
                 <?php if ($customer_group['customer_group_id'] == $product_profile['customer_group_id']) { ?>
                   <option value="<?php echo $customer_group['customer_group_id']; ?>" selected="selected"><?php echo $customer_group['name']; ?></option>
@@ -749,10 +762,10 @@
               <?php } ?>
               </select>
             </td>
-            <td class="center"><a onclick="$('#profile-row<?php echo $profileCount; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            <td class="center"><a onclick="$('#profile-row<?php echo $profile_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
-        <?php $profileCount++; ?>
+        <?php $profile_row++; ?>
         <?php } ?>
         <tfoot>
           <tr>
@@ -1475,34 +1488,34 @@ function addOptionValue(option_row) {
 //--></script>
 
 <script type="text/javascript"><!--
-var profileCount = <?php echo $profileCount; ?>;
+var profile_row = <?php echo $profile_row; ?>;
 
 function addProfile() {
-	html  = '<tbody id="profile-row' + profileCount + '">';
+	html  = '<tbody id="profile-row' + profile_row + '">';
 	html += '<tr>';
 	html += '  <td class="left">';
-	html += '    <select name="product_profiles[' + profileCount + '][profile_id]">';
+	html += '    <select name="product_profiles[' + profile_row + '][profile_id]">';
 	<?php foreach ($profiles as $profile) { ?>
 	html += '      <option value="<?php echo $profile['profile_id']; ?>"><?php echo $profile['name']; ?></option>';
 	<?php } ?>
 	html += '    </select>';
 	html += '  </td>';
 	html += '  <td class="left">';
-	html += '    <select name="product_profiles[' + profileCount + '][customer_group_id]">';
+	html += '    <select name="product_profiles[' + profile_row + '][customer_group_id]">';
 	<?php foreach ($customer_groups as $customer_group) { ?>
 	html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
 	<?php } ?>
 	html += '    </select>';
 	html += '  </td>';
 	html += '  <td class="center">';
-	html += '    <a onclick="$(\'#profile-row' + profileCount + '\').remove()" class="button-delete"><?php echo $button_remove; ?></a>';
+	html += '    <a onclick="$(\'#profile-row' + profile_row + '\').remove()" class="button-delete"><?php echo $button_remove; ?></a>';
 	html += '  </td>';
 	html += '</tr>';
 	html += '</tbody>';
 
 	$('#profile tfoot').before(html);
 
-	profileCount++;
+	profile_row++;
 };
 //--></script>
 

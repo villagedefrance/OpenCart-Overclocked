@@ -583,6 +583,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_price'] = $this->language->get('entry_price');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
+		$this->data['entry_palette'] = $this->language->get('entry_palette');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
@@ -671,6 +672,8 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['tab_image'] = $this->language->get('tab_image');
 		$this->data['tab_design'] = $this->language->get('tab_design');
 		$this->data['tab_marketplace_links'] = $this->language->get('tab_marketplace_links');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -786,8 +789,6 @@ class ControllerCatalogProduct extends Controller {
 			$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
 		}
 
-		$this->data['token'] = $this->session->data['token'];
-
 		$this->load->model('localisation/language');
 
 		$this->data['languages'] = $this->model_localisation_language->getLanguages();
@@ -863,6 +864,18 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['date_available'] = date('Y-m-d', strtotime($product_info['date_available']));
 		} else {
 			$this->data['date_available'] = date('Y-m-d', time() - 86400);
+		}
+
+		$this->load->model('design/palette');
+
+		$this->data['palettes'] = $this->model_design_palette->getPalettes(0);
+
+		if (isset($this->request->post['palette_id'])) {
+			$this->data['palette_id'] = $this->request->post['palette_id'];
+		} elseif (!empty($product_info)) {
+			$this->data['palette_id'] = $product_info['palette_id'];
+		} else {
+			$this->data['palette_id'] = 0;
 		}
 
 		if (isset($this->request->post['sort_order'])) {

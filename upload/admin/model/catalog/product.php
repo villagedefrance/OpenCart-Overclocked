@@ -2,7 +2,7 @@
 class ModelCatalogProduct extends Model {
 
 	public function addProduct($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', shipping = '" . (int)$data['shipping'] . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', points = '" . (int)$data['points'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', palette_id = '" . $this->db->escape($data['palette_id']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', shipping = '" . (int)$data['shipping'] . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', points = '" . (int)$data['points'] . "', date_added = NOW()");
 
 		$product_id = $this->db->getLastId();
 
@@ -123,11 +123,9 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if (!$this->config->get('config_direct_image_product')) {
-			if (isset($data['product_image'])) {
-				foreach ($data['product_image'] as $product_image) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
-				}
+		if (isset($data['product_image'])) {
+			foreach ($data['product_image'] as $product_image) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
 			}
 		}
 
@@ -147,7 +145,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function editProduct($product_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', shipping = '" . (int)$data['shipping'] . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', points = '" . (int)$data['points'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', price = '" . (float)$data['price'] . "', tax_class_id = '" . $this->db->escape($data['tax_class_id']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', palette_id = '" . $this->db->escape($data['palette_id']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', quantity = '" . (int)$data['quantity'] . "', minimum = '" . (int)$data['minimum'] . "', subtract = '" . (int)$data['subtract'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', shipping = '" . (int)$data['shipping'] . "', sku = '" . $this->db->escape($data['sku']) . "', upc = '" . $this->db->escape($data['upc']) . "', ean = '" . $this->db->escape($data['ean']) . "', jan = '" . $this->db->escape($data['jan']) . "', isbn = '" . $this->db->escape($data['isbn']) . "', mpn = '" . $this->db->escape($data['mpn']) . "', location = '" . $this->db->escape($data['location']) . "', length = '" . (float)$data['length'] . "', width = '" . (float)$data['width'] . "', height = '" . (float)$data['height'] . "', length_class_id = '" . (int)$data['length_class_id'] . "', weight = '" . (float)$data['weight'] . "', weight_class_id = '" . (int)$data['weight_class_id'] . "', manufacturer_id = '" . (int)$data['manufacturer_id'] . "', points = '" . (int)$data['points'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
@@ -293,13 +291,11 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if (!$this->config->get('config_direct_image_product')) {
-			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
 
-			if (isset($data['product_image'])) {
-				foreach ($data['product_image'] as $product_image) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
-				}
+		if (isset($data['product_image'])) {
+			foreach ($data['product_image'] as $product_image) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
 			}
 		}
 
@@ -549,15 +545,15 @@ class ModelCatalogProduct extends Model {
 			foreach ($product_option_value_query->rows as $product_option_value) {
 				$product_option_value_data[] = array(
 					'product_option_value_id'	=> $product_option_value['product_option_value_id'],
-					'option_value_id'         	=> $product_option_value['option_value_id'],
-					'quantity'               		=> $product_option_value['quantity'],
-					'subtract'                	=> $product_option_value['subtract'],
-					'price'                   		=> $product_option_value['price'],
-					'price_prefix'          		=> $product_option_value['price_prefix'],
-					'points'                  		=> $product_option_value['points'],
-					'points_prefix'      		=> $product_option_value['points_prefix'],
-					'weight'                		=> $product_option_value['weight'],
-					'weight_prefix'           	=> $product_option_value['weight_prefix']
+					'option_value_id'         		=> $product_option_value['option_value_id'],
+					'quantity'               			=> $product_option_value['quantity'],
+					'subtract'                		=> $product_option_value['subtract'],
+					'price'                   			=> $product_option_value['price'],
+					'price_prefix'          			=> $product_option_value['price_prefix'],
+					'points'                  			=> $product_option_value['points'],
+					'points_prefix'      			=> $product_option_value['points_prefix'],
+					'weight'                			=> $product_option_value['weight'],
+					'weight_prefix'           		=> $product_option_value['weight_prefix']
 				);
 			}
 

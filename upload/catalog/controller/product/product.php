@@ -272,19 +272,6 @@ class ControllerProductProduct extends Controller {
 			$this->data['tab_related'] = $this->language->get('tab_related');
 
 			$this->data['product_id'] = $this->request->get['product_id'];
-			$this->data['manufacturer'] = $product_info['manufacturer'];
-			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
-			$this->data['model'] = $product_info['model'];
-			$this->data['reward'] = $product_info['reward'];
-			$this->data['points'] = $product_info['points'];
-
-			if ($product_info['quantity'] <= 0) {
-				$this->data['stock'] = $product_info['stock_status'];
-			} elseif ($this->config->get('config_stock_display')) {
-				$this->data['stock'] = $product_info['quantity'];
-			} else {
-				$this->data['stock'] = $this->language->get('text_instock');
-			}
 
 			$this->load->model('tool/image');
 
@@ -348,6 +335,49 @@ class ControllerProductProduct extends Controller {
 					'popup'	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
 					'thumb' 	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
 				);
+			}
+
+			$this->data['manufacturer'] = $product_info['manufacturer'];
+			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
+			$this->data['model'] = $product_info['model'];
+			$this->data['reward'] = $product_info['reward'];
+			$this->data['points'] = $product_info['points'];
+
+			if ($product_info['quantity'] <= 0) {
+				$this->data['stock'] = $product_info['stock_status'];
+			} elseif ($this->config->get('config_stock_display')) {
+				$this->data['stock'] = $product_info['quantity'];
+			} else {
+				$this->data['stock'] = $this->language->get('text_instock');
+			}
+
+			$this->load->model('localisation/location');
+
+			$this->data['locations'] = array();
+
+			$location_results = $this->model_catalog_product->getProductLocationId($this->request->get['product_id']);
+
+			arsort($location_results);
+
+			foreach ($location_results as $location_result) {
+				if ($location_result > 0) {
+					$this->data['locations'][] = $this->model_localisation_location->getLocation($location_result);
+				}
+			}
+
+			$this->load->model('design/palette');
+
+			$this->data['colors'] = array();
+
+			if ($product_info['palette_id'] > 0) {
+				$colors = $this->model_design_palette->getPaletteColors($product_info['palette_id']);
+
+				foreach ($colors as $color) {
+					$this->data['colors'][] = array(
+						'title'		=> $color['title'],
+						'color'	=> $color['color']
+					);
+				}
 			}
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -437,7 +467,6 @@ class ControllerProductProduct extends Controller {
 				$this->data['addthis'] = false;
 			}
 
-			// Offer
 			$this->data['label'] = $this->config->get('config_offer_label');
 
 			$this->load->model('catalog/offer');
@@ -510,23 +539,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
-			// Locations
-			$this->load->model('localisation/location');
-
-			$this->data['locations'] = array();
-
-			$location_results = $this->model_catalog_product->getProductLocationId($this->request->get['product_id']);
-
-			arsort($location_results);
-
-			foreach ($location_results as $location_result) {
-				if ($location_result > 0) {
-					$this->data['locations'][] = $this->model_localisation_location->getLocation($location_result);
-				}
-			}
-
-			// Related
-			$offers = $this->model_catalog_offer->getListProductOffers(0);
+			$related_offers = $this->model_catalog_offer->getListProductOffers(0);
 
 			$this->data['products'] = array();
 
@@ -557,7 +570,7 @@ class ControllerProductProduct extends Controller {
 					$rating = false;
 				}
 
-				if (in_array($result['product_id'], $offers, true)) {
+				if (in_array($result['product_id'], $related_offers, true)) {
 					$offer = true;
 				} else {
 					$offer = false;

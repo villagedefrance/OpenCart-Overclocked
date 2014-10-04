@@ -40,6 +40,7 @@ $_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use
 $_['entry_price']            		= 'Price:';
 $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
+$_['entry_palette']       		= 'Color Palette:';
 $_['entry_sort_order']       	= 'Sort Order:';
 $_['entry_status']           		= 'Status:';
 $_['entry_quantity']         		= 'Total Quantity in Stock:';
