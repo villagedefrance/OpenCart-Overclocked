@@ -116,42 +116,49 @@ class ControllerCommonHeader extends Controller {
 		$this->data['rss'] = $this->config->get('rss_feed_status');
 
 		// Menu
-		$this->load->model('catalog/category');
-		$this->load->model('catalog/product');
+		$this->data['custom_menu'] = $this->config->get('config_custom_menu');
 
-		$this->data['categories'] = array();
+		if (!$this->data['custom_menu']) {
+			$this->load->model('catalog/category');
+			$this->load->model('catalog/product');
 
-		$categories = $this->model_catalog_category->getCategories(0);
+			$this->data['categories'] = array();
 
-		foreach ($categories as $category) {
-			if ($category['top']) {
-				// Level 2
-				$children_data = array();
+			$categories = $this->model_catalog_category->getCategories(0);
 
-				$children = $this->model_catalog_category->getCategories($category['category_id']);
+			foreach ($categories as $category) {
+				if ($category['top']) {
+					// Level 2
+					$children_data = array();
 
-				foreach ($children as $child) {
-					$data = array(
-						'filter_category_id' 	=> $child['category_id'],
-						'filter_sub_category'	=> true
-					);
+					$children = $this->model_catalog_category->getCategories($category['category_id']);
 
-					$product_total = $this->model_catalog_product->getTotalProducts($data);
+					foreach ($children as $child) {
+						$data = array(
+							'filter_category_id' 	=> $child['category_id'],
+							'filter_sub_category'	=> true
+						);
 
-					$children_data[] = array(
-						'name'	=> $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
-						'href'  	=> $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+						$product_total = $this->model_catalog_product->getTotalProducts($data);
+
+						$children_data[] = array(
+							'name'	=> $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
+							'href'  	=> $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
+						);
+					}
+
+					// Level 1
+					$this->data['categories'][] = array(
+						'name'     	=> $category['name'],
+						'children' 	=> $children_data,
+						'column'   	=> $category['column'] ? $category['column'] : 1,
+						'href'     		=> $this->url->link('product/category', 'path=' . $category['category_id'])
 					);
 				}
-
-				// Level 1
-				$this->data['categories'][] = array(
-					'name'     	=> $category['name'],
-					'children' 	=> $children_data,
-					'column'   	=> $category['column'] ? $category['column'] : 1,
-					'href'     		=> $this->url->link('product/category', 'path=' . $category['category_id'])
-				);
 			}
+
+		} else {
+			$this->data['categories'] = false;
 		}
 
 		$this->children = array(

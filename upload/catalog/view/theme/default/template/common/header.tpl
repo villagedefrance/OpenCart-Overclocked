@@ -109,7 +109,7 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google
     <?php } ?>
   </div>
 </div>
-<?php if ($categories) { ?>
+<?php if ($categories && !$custom_menu) { ?>
   <div id="menu">
     <ul>
     <?php foreach ($categories as $category) { ?>
@@ -133,8 +133,8 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google
     </ul>
   </div>
 <?php } ?>
+<?php echo $content_header; ?>
 <?php if ($error) { ?>
   <div class="warning"><?php echo $error ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
-<?php echo $content_header; ?>
 <div id="notification"></div>

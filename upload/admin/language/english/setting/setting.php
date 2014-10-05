@@ -87,6 +87,7 @@ $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br /><span cl
 $_['entry_viewer']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, Product Image Thumb size will be set at 230 x 230px.</span>';
 $_['entry_manufacturer_name']		= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
 $_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
+$_['entry_custom_menu']      		= 'Hide Default Category Menu:<br /><span class="help">Select Yes if you are using a Custom Menu, or if you don\'t need the Default Horizontal Menu.</span>';
 $_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_news_addthis'] 				= 'Show AddThis on News Pages:';
 $_['entry_news_chars']   				= 'Headlines News Character Limit:<br /><span class="help">Adjust News Story\'s length on Headlines page.</span>';

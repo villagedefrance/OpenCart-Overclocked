@@ -126,6 +126,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
+		$this->data['entry_custom_menu'] = $this->language->get('entry_custom_menu');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
@@ -825,6 +826,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_manufacturer_image'] = $this->request->post['config_manufacturer_image'];
 		} else {
 			$this->data['config_manufacturer_image'] = $this->config->get('config_manufacturer_image');
+		}
+
+		if (isset($this->request->post['config_custom_menu'])) {
+			$this->data['config_custom_menu'] = $this->request->post['config_custom_menu'];
+		} else {
+			$this->data['config_custom_menu'] = $this->config->get('config_custom_menu');
 		}
 
 		if (isset($this->request->post['config_offer_label'])) {
