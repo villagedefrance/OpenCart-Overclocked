@@ -890,6 +890,7 @@
           <thead>
             <tr>
               <td class="left"><?php echo $entry_image; ?></td>
+			  <td class="left"><?php echo $entry_palette_color_id; ?></td>
               <td class="left"><?php echo $entry_sort_order; ?></td>
               <td></td>
             </tr>
@@ -903,6 +904,16 @@
                 <br />
                 <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
               </div></td>
+              <td class="center"><select name="product_image[<?php echo $image_row; ?>][palette_color_id]">
+                <option value=""><?php echo $text_none; ?></option>
+                <?php foreach ($colors as $color) { ?>
+                  <?php if ((isset($product_image['palette_color_id'])) && $product_image['palette_color_id'] == $color['palette_color_id']) { ?>
+                    <option value="<?php echo $color['palette_color_id']; ?>" selected="selected"><?php echo $color['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
               <td class="center"><input type="text" name="product_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $product_image['sort_order']; ?>" size="2" /></td>
               <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
             </tr>
@@ -911,7 +922,7 @@
           <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="2"></td>
+              <td colspan="3"></td>
               <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
             </tr>
           </tfoot>
@@ -1614,6 +1625,12 @@ function addImage() {
 	html += '        <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
 	html += '      </div>';
 	html += '    </td>';
+	html += '    <td class="center"><select name="product_image[' + image_row + '][palette_color_id]">';
+    html += '      <option value=""><?php echo $text_none; ?></option>';
+	<?php foreach ($colors as $color) { ?>
+	html += '      <option value="<?php echo $color['palette_color_id']; ?>"><?php echo addslashes($color['title']); ?></option>';
+	<?php } ?>
+	html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

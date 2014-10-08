@@ -81,6 +81,7 @@ $_['entry_date_end']         	= 'Date End';
 $_['entry_points']           		= 'Points<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points leave as 0.</span>';
 $_['entry_option_points']    	= 'Points';
 $_['entry_reward']           		= 'Reward Points';
+$_['entry_palette_color_id']	= 'Palette Color:';
 $_['entry_layout']           		= 'Layout Override';
 
 $_['text_recurring_help']    	= '<u>Recurring amounts are calculated by the frequency and cycles.</u><br />For example if you use a frequency of "week" and a cycle of "2", then the user will be billed every 2 weeks.<br />The length is the number of times the user will make a payment, set this to 0 if you want payments until they are cancelled.';

@@ -56,7 +56,7 @@ class ControllerModuleMenu extends Controller {
 
   		foreach ($menu_items as $menu_item) {
   			if ($menu_item['menu_external']) {
-				$href = $menu_item['menu_link'];
+				$href = html_entity_decode($menu_item['menu_link'], ENT_QUOTES, 'UTF-8');
 			} else {
 				$href = $this->url->link($menu_item['menu_link']);
 			}
@@ -64,11 +64,7 @@ class ControllerModuleMenu extends Controller {
 			$drawmenu.='<li><a href="' . $href . '">' . $menu_item['menu_name'] . '</a>';
 
   			if ($menu_item['children']) {
-				if (!empty($menu_item['menu_class'])) {
-					$drawmenu.='<div><ul class="' . $menu_class . '">';
-				} else {
-					$drawmenu.='<div><ul>';
-				}
+				$drawmenu.='<div><ul>';
 
 				for ($i = 1; $i < count($menu_item['children']); $i++) {
 					if ($i = count($menu_item['children'])) {

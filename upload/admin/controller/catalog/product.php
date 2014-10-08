@@ -626,6 +626,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_points'] = $this->language->get('entry_points');
 		$this->data['entry_option_points'] = $this->language->get('entry_option_points');
 		$this->data['entry_reward'] = $this->language->get('entry_reward');
+		$this->data['entry_palette_color_id'] = $this->language->get('entry_palette_color_id');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 
 		$this->data['text_recurring_help'] = $this->language->get('text_recurring_help');
@@ -1349,6 +1350,23 @@ class ControllerCatalogProduct extends Controller {
 			$product_images = array();
 		}
 
+		if (isset($product_info['palette_id'])) {
+			$this->data['colors'] = array();
+
+			$colors = $this->model_design_palette->getPaletteColors($product_info['palette_id']);
+
+			foreach ($colors as $color) {
+				$this->data['colors'][] = array(
+					'palette_color_id'	=> $color['palette_color_id'],
+					'title'					=> $color['title'],
+					'color'				=> $color['color']
+				);
+			}
+
+		} else {
+			$colors = array(0);
+		}
+
 		$this->data['product_images'] = array();
 
 		foreach ($product_images as $product_image) {
@@ -1358,10 +1376,17 @@ class ControllerCatalogProduct extends Controller {
 				$image = 'no_image.jpg';
 			}
 
+			if (isset($product_image['palette_color_id']) && !empty($colors)) {
+				$palette_color_id = $product_image['palette_color_id'];
+			} else {
+				$palette_color_id = 0;
+			}
+
 			$this->data['product_images'][] = array(
-				'image'      	=> $image,
-				'thumb'    	=> $this->model_tool_image->resize($image, 100, 100),
-				'sort_order'	=> $product_image['sort_order']
+				'image'      			=> $image,
+				'thumb'    			=> $this->model_tool_image->resize($image, 100, 100),
+				'palette_color_id'	=> $palette_color_id,
+				'sort_order'			=> $product_image['sort_order']
 			);
 		}
 

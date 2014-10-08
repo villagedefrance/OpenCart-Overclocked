@@ -125,7 +125,7 @@ class ModelCatalogProduct extends Model {
 
 		if (isset($data['product_image'])) {
 			foreach ($data['product_image'] as $product_image) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', palette_color_id = '" . $this->db->escape($product_image['palette_color_id']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
 			}
 		}
 
@@ -295,7 +295,7 @@ class ModelCatalogProduct extends Model {
 
 		if (isset($data['product_image'])) {
 			foreach ($data['product_image'] as $product_image) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape(html_entity_decode($product_image['image'], ENT_QUOTES, 'UTF-8')) . "', palette_color_id = '" . $this->db->escape($product_image['palette_color_id']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
 			}
 		}
 

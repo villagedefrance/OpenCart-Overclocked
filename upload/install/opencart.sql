@@ -2693,6 +2693,7 @@ CREATE TABLE `oc_product_image` (
   `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `palette_color_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_image_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
