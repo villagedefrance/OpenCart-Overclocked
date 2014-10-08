@@ -43,17 +43,10 @@ class ControllerModuleFeatured extends Controller {
 		$results = $this->model_catalog_manufacturer->getManufacturers(0);
 
 		foreach ($results as $result) {
-			if ($result['image']) {
-				$image = $result['image'];
-			} else {
-				$image = 'no_image.jpg';
-			}
-
 			$this->data['manufacturers'][] = array(
 				'store_id' 			=> $result['store_id'],
 				'manufacturer_id'	=> $result['manufacturer_id'],
 				'name' 				=> $result['name'],
-				'image' 				=> $this->model_tool_image->resize($image, $setting['image_width'], $setting['image_height']),
 				'href' 					=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}

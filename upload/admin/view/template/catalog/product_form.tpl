@@ -742,6 +742,7 @@
           <tr>
             <td class="left">
               <select name="product_profiles[<?php echo $profile_row; ?>][profile_id]">
+			  <option value=""><?php echo $text_none; ?></option>
               <?php foreach ($profiles as $profile) { ?>
                 <?php if ($profile['profile_id'] == $product_profile['profile_id']) { ?>
                   <option value="<?php echo $profile['profile_id']; ?>" selected="selected"><?php echo $profile['name']; ?></option>
@@ -1506,6 +1507,7 @@ function addProfile() {
 	html += '<tr>';
 	html += '  <td class="left">';
 	html += '    <select name="product_profiles[' + profile_row + '][profile_id]">';
+	html += '    <option value=""><?php echo $text_none; ?></option>';
 	<?php foreach ($profiles as $profile) { ?>
 	html += '      <option value="<?php echo $profile['profile_id']; ?>"><?php echo $profile['name']; ?></option>';
 	<?php } ?>
