@@ -8,7 +8,7 @@ $_['text_success']           		= 'Success: You have modified <b>News</b> !';
 $_['text_yes']	       				= 'Yes'; 
 $_['text_no']	       				= 'No';
 $_['text_default']           		= 'Default';
-$_['text_image_manager'] 		= 'Image Manager';
+$_['text_image_manager'] 		= 'File Manager';
 $_['text_browse']            		= 'Browse';
 $_['text_clear']             		= 'Clear';
 $_['text_edit']	       				= 'Edit';
@@ -36,6 +36,6 @@ $_['button_reset']          		= 'Reset Views';
 
 // Error
 $_['error_permission']       		= 'Warning: You do not have permission to modify <b>News</b> !';
-$_['error_title']            		= 'Headline must be greater than 3 and less than 250 characters !';
-$_['error_description']      		= 'Main Story must be greater than 3 characters !';
+$_['error_title']            		= 'News Headline must be greater than 3 and less than 250 characters !';
+$_['error_description']      		= 'News Main Content must be greater than 3 characters !';
 ?>

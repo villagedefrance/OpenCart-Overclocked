@@ -10,7 +10,7 @@
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/plugins/jquery.tree.cookie.js"></script>
-<script type="text/javascript" src="view/javascript/plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="view/javascript/plupload/js/plupload.full.min.js"></script>
 <script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
 <div id="content">
@@ -38,17 +38,17 @@
         <a id="refresh" class="filemanager_button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
       </div>
       <div id="column-left"></div>
-        <div id="column-right"></div>
-        <div id="toolset">
-          <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
-          <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
-          <button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
-          <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
-          <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
-        </div>
-        <span style="float:right; font-size:12px; padding-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
+      <div id="column-right"></div>
+      <div id="toolset">
+        <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
+        <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
+        <button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
+        <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
+        <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
       </div>
+      <span style="float:right; font-size:12px; padding-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
     </div>
+  </div>
 	
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -777,18 +777,19 @@ $(document).ready(function() {
 				var tree = $.tree.focused();
 
 				$('#uploader').plupload({
-					runtimes: 'flash,html5',
+					runtimes : 'html5,flash,silverlight',
 					url: 'index.php?route=common/filemanager_full/multi&token=<?php echo $token; ?>&directory=' + window.dr,
-					max_file_size: '5mb',
+					max_file_count: 20,
+					max_file_size: '25mb',
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { height:600, width:800, quality:90 },
-					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,gif,png,pdf,zip,flv,swf" } ],
-					flash_swf_url: 'view/javascript/plupload/js/plupload.flash.swf',
-					silverlight_xap_url: 'view/javascript/plupload/js/plupload.silverlight.xap'
+					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,gif,png,zip,rar,pdf,flv,swf" } ],
+					flash_swf_url: 'view/javascript/plupload/js/Moxie.swf',
+					silverlight_xap_url: 'view/javascript/plupload/js/Moxie.xap'
 				});
 
-				$('form').submit(function (e) {
+				$('form').submit(function(e) {
 					var uploader = $('#uploader').plupload('getUploader');
 					var tree = $.tree.reference('#column-left a');
 
@@ -821,6 +822,5 @@ $(document).ready(function() {
 	})
 });
 //--></script>
-</div>
 </div>
 <?php echo $footer; ?>

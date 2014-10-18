@@ -204,7 +204,7 @@ class ControllerUserUser extends Controller {
 			$this->data['users'][] = array(
 				'user_id'    		=> $result['user_id'],
 				'username'   	=> $result['username'],
-				'status'     		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'     		=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['user_id'], $this->request->post['selected']),
 				'action'     		=> $action

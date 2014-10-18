@@ -18,7 +18,7 @@ $_['text_store_front']      				= 'Store Front';
 $_['text_magnific']  						= 'Magnific (Default)';
 $_['text_zoomlens']  					= 'Zoom Lens';
 $_['text_image_resize']					= 'Contact Form Image Resize:<br /><span class="help">(Optional)</span>';
-$_['text_image_manager']    			= 'Image Manager';
+$_['text_image_manager']    			= 'File Manager';
 $_['text_browse']                  		= 'Browse';
 $_['text_clear']                   			= 'Clear';
 $_['text_shipping']                		= 'Shipping Address';

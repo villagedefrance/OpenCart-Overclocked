@@ -5,7 +5,7 @@ $_['heading_title']			= 'Store Locations';
 // Text
 $_['text_success']			= 'Success: You have modified <b>Store Locations</b> !';
 $_['text_default']     		= 'Default';
-$_['text_image_manager']	= 'Image Manager';
+$_['text_image_manager']	= 'File Manager';
 $_['text_browse']        		= 'Browse';
 $_['text_clear']         		= 'Clear';
 $_['text_time']        			= 'Opening Times';

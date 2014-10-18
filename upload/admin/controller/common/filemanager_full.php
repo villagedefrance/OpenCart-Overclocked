@@ -144,7 +144,12 @@ class ControllerCommonFileManagerFull extends Controller {
 			'.jpg',
 			'.jpeg',
 			'.png',
-			'.gif'
+			'.gif',
+			'.zip',
+			'.rar',
+			'.pdf',
+			'.swf',
+			'.flv'
 		);
 
 		$files = glob(rtrim($directory, '/') . '/*');
@@ -493,6 +498,9 @@ class ControllerCommonFileManagerFull extends Controller {
 					'image/png',
 					'image/x-png',
 					'image/gif',
+					'application/zip',
+					'application/x-rar-compressed',
+					'application/pdf',
 					'application/x-shockwave-flash'
 				);
 
@@ -503,8 +511,11 @@ class ControllerCommonFileManagerFull extends Controller {
 				$allowed = array(
 					'.jpg',
 					'.jpeg',
-					'.gif',
 					'.png',
+					'.gif',
+					'.zip',
+					'.rar',
+					'.pdf',
 					'.swf',
 					'.flv'
 				);
@@ -550,6 +561,7 @@ class ControllerCommonFileManagerFull extends Controller {
 	// ---------------- Multiple Upload -------------------
 
 	public function multi() {
+		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 		header("Cache-Control: no-store, no-cache, must-revalidate");
 		header("Cache-Control: post-check=0, pre-check=0", false);
@@ -588,7 +600,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$contentType = $_SERVER["CONTENT_TYPE"];
 		}
 
-		$file_max_size = $this->config->get('config_file_max_size') / 1000;
+		$file_max_size = 25600; // 25Mb
 
 		if (strpos($contentType, "multipart") !== false) {
 			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) {

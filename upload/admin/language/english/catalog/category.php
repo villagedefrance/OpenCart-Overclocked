@@ -5,7 +5,7 @@ $_['heading_title']          		= 'Category';
 // Text
 $_['text_success']           		= 'Success: You have modified <b>Categories</b> !';
 $_['text_default']           		= 'Default';
-$_['text_image_manager'] 		= 'Image Manager';
+$_['text_image_manager'] 		= 'File Manager';
 $_['text_browse']            		= 'Browse';
 $_['text_clear']             		= 'Clear';
 $_['text_autocomplete']     	= '<br /><span class="help">(Autocomplete)</span>';

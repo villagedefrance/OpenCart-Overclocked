@@ -16,7 +16,7 @@
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/plugins/jquery.tree.cookie.js"></script>
-<script type="text/javascript" src="view/javascript/plupload/js/plupload.full.js"></script>
+<script type="text/javascript" src="view/javascript/plupload/js/plupload.full.min.js"></script>
 <script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
 
@@ -757,7 +757,7 @@ $(document).ready(function() {
 
 	$('#uploadmulti').click(function() {
 		html  = '<div id="uploadMulti" title="<?php echo $text_upload_plus; ?>">';
-		html += '<div id="uploader"></div>';
+		html += '  <div id="uploader"></div>';
 		html += '</div>';
 
 		$('#column-left').prepend(html);
@@ -770,16 +770,17 @@ $(document).ready(function() {
 			create: function(event, ui) {
 				var tree = $.tree.focused();
 
-				$("#uploader").plupload({
-					runtimes: 'flash,html5',
+				$('#uploader').plupload({
+					runtimes : 'html5,flash,silverlight',
 					url: 'index.php?route=common/filemanager/multi&token=<?php echo $token; ?>&directory=' + window.dr,
-					max_file_size: '5mb',
+					max_file_count: 20,
+					max_file_size: '25mb',
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { height:600, width:800, quality:90 },
-					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,gif,png,pdf,zip,flv,swf" } ],
-					flash_swf_url: 'view/javascript/plupload/js/plupload.flash.swf',
-					silverlight_xap_url: 'view/javascript/plupload/js/plupload.silverlight.xap'
+					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,gif,png,zip,rar,pdf,flv,swf" } ],
+					flash_swf_url: 'view/javascript/plupload/js/Moxie.swf',
+					silverlight_xap_url: 'view/javascript/plupload/js/Moxie.xap'
 				});
 
 				$('form').submit(function(e) {
@@ -815,5 +816,6 @@ $(document).ready(function() {
 	})
 });
 //--></script>
+</div>
 </body>
 </html>

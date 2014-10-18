@@ -387,7 +387,6 @@ class ControllerLocalisationOrderStatus extends Controller {
 		$this->load->model('sale/order');
 
 		foreach ($this->request->post['selected'] as $order_status_id) {
-
 			if ($this->config->get('config_order_status_id') == $order_status_id) {
 				$this->error['warning'] = $this->language->get('error_default');
 			}
