@@ -21,7 +21,7 @@ class ModelDesignFooter extends Model {
 
 		if (isset($data['footer_route'])) {
 			foreach ($data['footer_route'] as $footer_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "footer_route SET footer_id = '" . (int)$footer_id . "', route = '" . $this->db->escape($footer_route['route']) . "', sort_order = '" . $this->db->escape($footer_route['sort_order']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "footer_route SET footer_id = '" . (int)$footer_id . "', route = '" . $this->db->escape($footer_route['route']) . "', external_link = '" . (int)$footer_route['external_link'] . "', sort_order = '" . $this->db->escape($footer_route['sort_order']) . "'");
 
 				$footer_route_id = $this->db->getLastId();
 
@@ -56,7 +56,7 @@ class ModelDesignFooter extends Model {
 
 		if (isset($data['footer_route'])) {
 			foreach ($data['footer_route'] as $footer_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "footer_route SET footer_id = '" . (int)$footer_id . "', route = '" .  $this->db->escape($footer_route['route']) . "', sort_order = '" .  $this->db->escape($footer_route['sort_order']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "footer_route SET footer_id = '" . (int)$footer_id . "', route = '" .  $this->db->escape($footer_route['route']) . "', external_link = '" . (int)$footer_route['external_link'] . "', sort_order = '" .  $this->db->escape($footer_route['sort_order']) . "'");
 
 				$footer_route_id = $this->db->getLastId();
 
@@ -75,6 +75,8 @@ class ModelDesignFooter extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_route WHERE footer_id = '" . (int)$footer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_route_description WHERE footer_id = '" . (int)$footer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_to_store WHERE footer_id = '" . (int)$footer_id . "'");
+
+		$this->cache->delete('footer');
 	}
 
 	public function getFooter($footer_id) {
@@ -166,6 +168,7 @@ class ModelDesignFooter extends Model {
 			$footer_route_data[] = array(
 				'footer_route_description'	=> $footer_route_description_data,
 				'route'                			=> $footer_route['route'],
+				'external_link'					=> $footer_route['external_link'],
 				'sort_order'           			=> $footer_route['sort_order']
 			);
 		}

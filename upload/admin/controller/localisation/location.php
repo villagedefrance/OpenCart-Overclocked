@@ -213,14 +213,14 @@ class ControllerLocalisationLocation extends Controller {
 				$thumb = $this->model_tool_image->resize('no_image.jpg', 50, 50);
 			}
 
-			$this->data['locations'][] =   array(
+			$this->data['locations'][] = array(
 				'location_id'		=> $result['location_id'],
 				'image'			=> $thumb,
 				'name'			=> $result['name'],
 				'address'			=> $result['address'],
 				'telephone'		=> $result['telephone'],
-				'latitude' 		=> ($result['latitude']) ? $result['latitude'] . '&deg; N' : '',
-				'longitude' 		=> ($result['longitude']) ? $result['longitude'] . '&deg; E' : '',
+				'latitude' 		=> $result['latitude'] ? $result['latitude'] . '&deg; N' : '',
+				'longitude' 		=> $result['longitude'] ? $result['longitude'] . '&deg; E' : '',
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['location_id'], $this->request->post['selected']),
 				'action'     		=> $action
 			);
@@ -427,6 +427,8 @@ class ControllerLocalisationLocation extends Controller {
 
 		$this->load->model('tool/image');
 
+		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+
 		if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
 			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
 		} elseif (!empty($location_info) && $location_info['image'] && file_exists(DIR_IMAGE . $location_info['image'])) {
@@ -434,8 +436,6 @@ class ControllerLocalisationLocation extends Controller {
 		} else {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
-
-		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 		if (isset($this->request->post['latitude'])) {
 			$this->data['latitude'] = $this->request->post['latitude'];

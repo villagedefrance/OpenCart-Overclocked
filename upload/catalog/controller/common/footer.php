@@ -15,10 +15,16 @@ class ControllerCommonFooter extends Controller {
 
 			if ($routes) {
 				foreach ($routes as $route) {
+					if ($route['external_link']) {
+						$href = html_entity_decode($route['route'], ENT_QUOTES, 'UTF-8');
+					} else {
+						$href = $this->url->link($route['route']);
+					}
+
 					$this->data['footer_routes'][] = array(
 						'footer_id'	=> $route['footer_id'],
 						'title'			=> $route['title'],
-						'route'		=> html_entity_decode($route['route'], ENT_QUOTES, 'UTF-8')
+						'route'		=> $href
 					);
 
 					$this->data['footer_blocks'] = array();

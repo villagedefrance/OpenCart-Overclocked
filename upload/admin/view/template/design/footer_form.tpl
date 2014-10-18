@@ -111,6 +111,7 @@
         <tr>
           <td class="left"><span class="required">*</span> <?php echo $entry_title; ?></td>
           <td class="left"><?php echo $entry_route; ?></td>
+		  <td class="left"><?php echo $entry_external_link; ?></td>
 		  <td class="left"><?php echo $entry_sort_order; ?></td>
           <td></td>
         </tr>
@@ -127,6 +128,15 @@
             <?php } ?>
           <?php } ?></td>
           <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
+		  <td class="center"><select name="footer_route[<?php echo $route_row; ?>][external_link]">
+            <?php if ($footer_route['external_link']) { ?>
+              <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+              <option value="0"><?php echo $text_no; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_yes; ?></option>
+              <option value="0" selected="selected"><?php echo $text_no; ?></option>
+            <?php } ?>
+          </select></td>
           <td class="center"><input type="text" name="footer_route[<?php echo $route_row; ?>][sort_order]" value="<?php echo $footer_route['sort_order']; ?>" size="4" /></td>
           <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
         </tr>
@@ -135,7 +145,7 @@
       <?php } ?>
       <tfoot>
         <tr>
-          <td colspan="3"></td>
+          <td colspan="4"></td>
           <td class="center"><a onclick="addRoute();" class="button"><?php echo $button_add_route; ?></a></td>
         </tr>
       </tfoot>
@@ -157,6 +167,10 @@ function addRoute() {
 	<?php } ?>
 	html += '	</td>';
 	html += '    <td class="left"><input type="text" name="footer_route[' + route_row + '][route]" value="" size="50" /></td>';
+    html += '    <td class="center"><select name="footer_route[' + route_row + '][external_link]">';
+    html += '      <option value="1"><?php echo $text_yes; ?></option>';
+    html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
+    html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="footer_route[' + route_row + '][sort_order]" value="" size="4" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

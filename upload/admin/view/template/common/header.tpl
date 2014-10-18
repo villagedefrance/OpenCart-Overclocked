@@ -88,7 +88,6 @@ $(document).ready(function() {
           <li><a href="<?php echo $shipping; ?>"><?php echo $text_shipping; ?></a></li>
           <li><a href="<?php echo $total; ?>"><?php echo $text_total; ?></a></li>
           <li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
-          <li><a href="<?php echo $filemanager; ?>"><?php echo $text_filemanager; ?></a></li>
           <?php if ($openbay_show_menu == 1) { ?>
           <li><a class="arrow"><?php echo $text_openbay_extension; ?></a>
             <ul>
@@ -219,6 +218,7 @@ $(document).ready(function() {
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
 			  <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
+              <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
             </ul>
           </li>
 		  <li><a class="arrow"><?php echo $text_cache; ?></a>
@@ -228,7 +228,8 @@ $(document).ready(function() {
             </ul>
           </li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
-          <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
+          <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
+          <li><a href="<?php echo $filemanager; ?>"><?php echo $text_filemanager; ?></a></li>
         </ul>
       </li>
       <li id="reports"><a class="top"><?php echo $text_reports; ?></a>

@@ -295,6 +295,8 @@ class ControllerDesignFooter extends Controller {
 
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_position'] = $this->language->get('text_position');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_select_all'] = $this->language->get('text_select_all');
@@ -306,6 +308,7 @@ class ControllerDesignFooter extends Controller {
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_route'] = $this->language->get('entry_route');
+		$this->data['entry_external_link'] = $this->language->get('entry_external_link');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
 		$this->data['button_save'] = $this->language->get('button_save');
@@ -431,6 +434,7 @@ class ControllerDesignFooter extends Controller {
 			$this->data['footer_routes'][] = array(
 				'footer_route_description'	=> $footer_route['footer_route_description'],
 				'route'							=> $footer_route['route'],
+				'external_link'					=> $footer_route['external_link'],
 				'sort_order'						=> $footer_route['sort_order']
 			);
 		}
