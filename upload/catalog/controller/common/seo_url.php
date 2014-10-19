@@ -46,12 +46,16 @@ class ControllerCommonSeoUrl extends Controller {
 						$this->request->get['news_id'] = $url[1];
 					}
 
-					if ($query->row['query'] && $url[0] != 'news_id' && $url[0] != 'information_id' && $url[0] != 'manufacturer_id'  && $url[0] != 'category_id' && $url[0] != 'product_id') {
-						$this->request->get['route'] = $query->row['query'];
-					}
+					if ($this->config->get('config_seo_url')) {
+						if ($query->row['query'] && $url[0] != 'news_id' && $url[0] != 'information_id' && $url[0] != 'manufacturer_id'  && $url[0] != 'category_id' && $url[0] != 'product_id') {
+							$this->request->get['route'] = $query->row['query'];
 
-				} else {
-					$this->request->get['route'] = 'error/not_found';
+						} else {
+							$this->request->get['route'] = 'error/not_found';
+
+							break;
+						}
+					}
 				}
 			}
 
@@ -70,10 +74,11 @@ class ControllerCommonSeoUrl extends Controller {
 			if (isset($this->request->get['route'])) {
 				return new Action($this->request->get['route']);
 			}
+		}
 
-		} elseif (isset($this->request->get['route'])) {
+		if ((isset($this->request->get['route'])) && ($this->config->get('config_seo_url'))) {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = '" . $this->request->get['route'] . "'");
-			
+
 			if ($query->num_rows) {
 				header('Location:/' . $query->row['keyword'], true, 301);
 			}
@@ -117,15 +122,17 @@ class ControllerCommonSeoUrl extends Controller {
 
 					unset($data[$key]);
 
-				} else  {
-					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $data['route'] . "'");
+				} else {
+					if ($this->config->get('config_seo_url')) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $data['route'] . "'");
 
-					if ($query->num_rows) {
-						$url .= '/' . $query->row['keyword'];
+						if ($query->num_rows) {
+							$url .= '/' . $query->row['keyword'];
 
-						unset($data[$key]);
+							unset($data[$key]);
+						}
 					}
-				}
+				}	
 			}
 		}
 
