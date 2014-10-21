@@ -18,6 +18,9 @@ CKEDITOR.editorConfig = function(config) {
 	config.filebrowserWindowWidth = '850';
 	config.filebrowserWindowHeight = '500';
 
+	config.enterMode = CKEDITOR.ENTER_BR;
+	config.shiftEnterMode = CKEDITOR.ENTER_P;
+
 	config.extraPlugins = 'codemirror';
 	config.codemirror_theme = 'rubyblue';
 	config.codemirror = {

@@ -299,11 +299,12 @@ function getSalesChart(range) {
 		success: function(json) {
 			var option = {
 				shadowSize: 0,
+				colors: ['#DE5954', '#4691D2'],
 				bars: {
 					show: true,
 					fill: true,
 					lineWidth: 1,
-					barColor: '#000000'
+					barColor: '#222222'
 				},
 				grid: {
 					backgroundColor: '#FFFFFF',

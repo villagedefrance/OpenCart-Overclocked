@@ -83,7 +83,7 @@ class ControllerReportCustomerCredit extends Controller {
 				'customer'       	=> $result['customer'],
 				'email'          		=> $result['email'],
 				'customer_group' 	=> $result['customer_group'],
-				'status'         		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'         		=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'total'          		=> $this->currency->format($result['total'], $this->config->get('config_currency')),
 				'action'         		=> $action
 			);

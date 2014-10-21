@@ -77,7 +77,7 @@ class ControllerReportCustomerOnline extends Controller {
 
 			if ($result['customer_id']) {
 				$action[] = array(
-					'text'	=> 'Edit',
+					'text'	=> $this->language->get('text_edit'),
 					'href'	=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'], 'SSL')
 				);
 			}

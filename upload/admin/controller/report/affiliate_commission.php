@@ -82,7 +82,7 @@ class ControllerReportAffiliateCommission extends Controller {
 			$this->data['affiliates'][] = array(
 				'affiliate'  		=> $result['affiliate'],
 				'email'      		=> $result['email'],
-				'status'     		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'     		=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'commission' 	=> $this->currency->format($result['commission'], $this->config->get('config_currency')),
 				'orders'     		=> $result['orders'],
 				'total'      		=> $this->currency->format($result['total'], $this->config->get('config_currency')),
