@@ -44,7 +44,7 @@
       </form>
     </div>
   </div>
-<?php echo $content_bottom; ?>
+  <?php echo $content_bottom; ?>
 </div>
 
 <script type="text/javascript"><!--

@@ -55,7 +55,7 @@
       <tr>
         <td><?php echo $entry_company; ?></td>
         <td><input type="text" name="company" value="<?php echo $company; ?>" size="30" /></td>
-      </tr>        
+      </tr>
       <tr style="display: <?php echo (count($customer_groups) > 1 ? 'table-row' : 'none'); ?>;">
         <td><?php echo $entry_customer_group; ?></td>
         <td><?php foreach ($customer_groups as $customer_group) { ?>

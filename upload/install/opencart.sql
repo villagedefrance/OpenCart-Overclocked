@@ -1869,7 +1869,7 @@ CREATE TABLE `oc_news_description` (
   `language_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `meta_description` VARCHAR(255) NOT NULL,
-  `description` TEXT CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`news_id`,`language_id`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
