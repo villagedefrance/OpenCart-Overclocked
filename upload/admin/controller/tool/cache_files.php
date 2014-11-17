@@ -1,5 +1,6 @@
 <?php
 class ControllerToolCacheFiles extends Controller {
+	private $error = array();
 
 	public function index() {
 		$this->language->load('tool/cache_files');
