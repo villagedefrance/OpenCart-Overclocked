@@ -92,7 +92,7 @@ class ControllerProductSearch extends Controller {
 
 		if (isset($this->request->get['description'])) {
 			$url .= '&description=' . $this->request->get['description'];
-		} 
+		}
 
 		if (isset($this->request->get['category_id'])) {
 			$url .= '&category_id=' . $this->request->get['category_id'];

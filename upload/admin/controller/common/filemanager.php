@@ -554,9 +554,9 @@ class ControllerCommonFileManager extends Controller {
 
 		$chunk = isset($_REQUEST["chunk"]) ? $_REQUEST["chunk"] : 0;
 		$chunks = isset($_REQUEST["chunks"]) ? $_REQUEST["chunks"] : 0;
-		$fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : '';
+		$filename = isset($_REQUEST["name"]) ? $_REQUEST["name"] : '';
 
-		$fileName = preg_replace('/[^\w\._]+/', '', $fileName);
+		$fileName = basename(html_entity_decode($filename, ENT_QUOTES, 'UTF-8'));
 
 		if ($chunks < 2 && file_exists($targetDir . DIRECTORY_SEPARATOR . $fileName)) {
 			$ext = strrpos($fileName, '.');
