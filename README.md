@@ -34,9 +34,9 @@ Main Features:
 TODO:
 - Add Sitemap Generator (done).
 - Add Product to Product Offer System (done).
-- Add Multiple Store Locations (in progress ...).
+- Add Multiple Store Locations (done).
 - Add Product Colors, additional images colors, filter by color (in progress ...).
-- Make the Footer content completely customisable.
+- Make the Footer content completely customisable (done).
 - Add some more features ...
 
 WANT TO CONTRIBUTE?
