@@ -7,10 +7,11 @@ class ModelToolSitemap extends Model {
 		$output = '';
 
 		//Generating TEXT sitemap
-		$fp = fopen("../sitemap.txt", "w+");
+		$fp = fopen('../sitemap.txt','w+');
 		fwrite($fp, $this->getTextLinks());
 		fwrite($fp, $this->getTextCategories(0));
 		fclose($fp);
+
 		$output .= "<img src=\"view/image/success.png\" alt=\"\" /> &nbsp; <b>" . HTTP_CATALOG . "sitemap.txt</b><br /><br />";
 
 		return $output;
@@ -22,9 +23,9 @@ class ModelToolSitemap extends Model {
 		$output = '';
 
 		//Generating XML sitemap
-		$fp = fopen("../sitemap.xml", "w+");
-		fwrite($fp, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r");
-		fwrite($fp, "<urlset xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd\" xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r");
+		$fp = fopen('../sitemap.xml','w+');
+		fwrite($fp, "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r");
+		fwrite($fp, "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\r");
 		fwrite($fp, $this->getCommonPages());
 		fwrite($fp, $this->getCategories(0));
 		fwrite($fp, $this->getProducts());
@@ -33,6 +34,7 @@ class ModelToolSitemap extends Model {
 		fwrite($fp, $this->getInformationPages());
 		fwrite($fp, "</urlset>");
 		fclose($fp);
+
 		$output .= "<img src=\"view/image/success.png\" alt=\"\" /> &nbsp; <b>" . HTTP_CATALOG . "sitemap.xml</b><br /><br />";
 
 		return $output;
@@ -50,6 +52,7 @@ class ModelToolSitemap extends Model {
 				gzwrite ($fp_out, fread($fp_in,10000));
 				fclose($fp_in);
 			}
+
 			gzclose($fp_out);
 		}
 
@@ -543,11 +546,11 @@ class ModelToolSitemap extends Model {
 
 		$link_url = str_replace("&", "&amp;", $link_node);
 
-		$output = "<url>";
-		$output .= "<loc>" . utf8_encode($link_url) . "</loc>";
-		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>";
-		$output .= "<changefreq>" . $changefreq . "</changefreq>";
-		$output .= "<priority>" . $priority . "</priority>";
+		$output = "<url>\r";
+		$output .= "<loc>" . html_entity_decode($link_url) . "</loc>\r";
+		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>\r";
+		$output .= "<changefreq>" . $changefreq . "</changefreq>\r";
+		$output .= "<priority>" . $priority . "</priority>\r";
 		$output .= "</url>\r";
 
 		return $output;
@@ -556,11 +559,11 @@ class ModelToolSitemap extends Model {
 	protected function standardLinkNode($link, $changefreq = 'monthly', $priority = '1.0') {
 		$link_url = str_replace("&", "&amp;", $link);
 
-		$output = "<url>";
-		$output .= "<loc>" . utf8_encode($link_url) . "</loc>";
-		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>";
-		$output .= "<changefreq>" . $changefreq . "</changefreq>";
-		$output .= "<priority>" . $priority . "</priority>";
+		$output = "<url>\r";
+		$output .= "<loc>" . html_entity_decode($link_url) . "</loc>\r";
+		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>\r";
+		$output .= "<changefreq>" . $changefreq . "</changefreq>\r";
+		$output .= "<priority>" . $priority . "</priority>\r";
 		$output .= "</url>\r";
 
 		return $output;
