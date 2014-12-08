@@ -59,6 +59,46 @@ class ModelToolSitemap extends Model {
 	}
 
 	// Generators
+	protected function getCommonPages() {
+		$output = '';
+
+		$this->load->model('catalog/sitemap');
+
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=common/home');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/contact');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/sitemap');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=account/login');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=account/register');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/search');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/special');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/product_list');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/category_list');
+
+		$stores_pag = $this->model_catalog_sitemap->getAllStores();
+
+		if ($stores_pag) {
+			foreach ($stores_pag as $store_pag) {
+				if ($store_pag['store_id'] != 0) {
+					$store_url = $store_pag['url'];
+
+					$output .= $this->standardLinkNode($store_url . 'index.php');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=common/home');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/contact');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/sitemap');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=account/login');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=account/register');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/search');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/special');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/product_list');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/category_list');
+				}
+			}
+		}
+
+		return $output;
+	}
+
 	protected function getCategories($parent_id, $current_path = '') {
 		$output = '';
 
@@ -75,7 +115,7 @@ class ModelToolSitemap extends Model {
 				$new_path = $current_path . '_' . $result['category_id'];
 			}
 
-			$output .= $this->generateLinkNode(HTTP_CATALOG . 'index.php?route=product/category&path=' . $new_path);
+			$output .= $this->generateLinkNode(HTTP_CATALOG . 'index.php?route=product/category&path=' . $new_path, "monthly", "1.0");
 
 			$output .= $this->getCategories($result['category_id'], $new_path);
 		}
@@ -96,7 +136,7 @@ class ModelToolSitemap extends Model {
 							$new_path = $current_path . '_' . $result['category_id'];
 						}
 
-						$output .= $this->generateLinkNode($store_url . 'index.php?route=product/category&path=' . $new_path);
+						$output .= $this->generateLinkNode($store_url . 'index.php?route=product/category&path=' . $new_path, "monthly", "1.0");
 
 						$output .= $this->getCategories($result['category_id'], $new_path);
 					}
@@ -247,47 +287,7 @@ class ModelToolSitemap extends Model {
 		return $output;
 	}
 
-	protected function getCommonPages() {
-		$output = '';
-
-		$this->load->model('catalog/sitemap');
-
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=common/home');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/contact');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/sitemap');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=account/login');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=account/register');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/search');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/special');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/product_list');
-		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/category_list');
-
-		$stores_pag = $this->model_catalog_sitemap->getAllStores();
-
-		if ($stores_pag) {
-			foreach ($stores_pag as $store_pag) {
-				if ($store_pag['store_id'] != 0) {
-					$store_url = $store_pag['url'];
-
-					$output .= $this->standardLinkNode($store_url . 'index.php');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=common/home');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/contact');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/sitemap');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=account/login');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=account/register');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/search');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/special');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/product_list');
-					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/category_list');
-				}
-			}
-		}
-
-		return $output;
-	}
-
-	// Text Sitemap - Other Links
+	// Text Sitemap - Links
 	protected function getTextLinks() {
 		$output = '';
 
@@ -338,9 +338,9 @@ class ModelToolSitemap extends Model {
 		$products = $this->model_catalog_sitemap->getAllProducts($store_id);
 
 		foreach ($products as $product) {
-			$link = utf8_encode($store_url . 'index.php?route=product/product&product_id=' . $product['product_id']);
+			$link_product = utf8_encode($store_url . 'index.php?route=product/product&product_id=' . $product['product_id']);
 
-			$link = $this->model_tool_seo_url->rewrite($link);
+			$link = $this->model_tool_seo_url->rewrite($link_product);
 
 			$output .= str_replace("&", "&amp;", $link) . "\r";
 		}
@@ -355,9 +355,9 @@ class ModelToolSitemap extends Model {
 					foreach ($products as $product) {
 						$store_url = $store_pro['url'];
 
-						$link = utf8_encode($store_url . 'index.php?route=product/product&product_id=' . $product['product_id']);
+						$link_product = utf8_encode($store_url . 'index.php?route=product/product&product_id=' . $product['product_id']);
 
-						$link = $this->model_tool_seo_url->rewrite($link);
+						$link = $this->model_tool_seo_url->rewrite($link_product);
 
 						$output .= str_replace("&", "&amp;", $link) . "\r";
 					}
@@ -372,9 +372,9 @@ class ModelToolSitemap extends Model {
 		$manufacturers = $this->model_catalog_sitemap->getAllManufacturers($store_id);
 
 		foreach ($manufacturers as $manufacturer) {
-			$link = utf8_encode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']);
+			$link_manufacturer = utf8_encode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']);
 
-			$link = $this->model_tool_seo_url->rewrite($link);
+			$link = $this->model_tool_seo_url->rewrite($link_manufacturer);
 
 			$output .= str_replace("&", "&amp;", $link) . "\r";
 		}
@@ -389,9 +389,9 @@ class ModelToolSitemap extends Model {
 					$manufacturers = $this->model_catalog_sitemap->getAllManufacturers($store_man['store_id']);
 
 					foreach ($manufacturers as $manufacturer) { 
-						$link = utf8_encode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']);
+						$link_manufacturer = utf8_encode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']);
 
-						$link = $this->model_tool_seo_url->rewrite($link);
+						$link = $this->model_tool_seo_url->rewrite($link_manufacturer);
 
 						$output .= str_replace("&", "&amp;", $link) . "\r";
 					}
@@ -406,9 +406,9 @@ class ModelToolSitemap extends Model {
 		$news = $this->model_catalog_sitemap->getAllNews($store_id);
 
 		foreach ($news as $new) {
-			$link = utf8_encode($store_url . 'index.php?route=information/news&news_id=' . $new['news_id']);
+			$link_news = utf8_encode($store_url . 'index.php?route=information/news&news_id=' . $new['news_id']);
 
-			$link = $this->model_tool_seo_url->rewrite($link);
+			$link = $this->model_tool_seo_url->rewrite($link_news);
 
 			$output .= str_replace("&", "&amp;", $link) . "\r";
 		}
@@ -423,9 +423,9 @@ class ModelToolSitemap extends Model {
 					$news = $this->model_catalog_sitemap->getAllNews($store_new['store_id']);
 
 					foreach ($news as $new) {
-						$link = utf8_encode($store_url . 'index.php?route=information/news&news_id=' . $new['news_id']);
+						$link_news = utf8_encode($store_url . 'index.php?route=information/news&news_id=' . $new['news_id']);
 
-						$link = $this->model_tool_seo_url->rewrite($link);
+						$link = $this->model_tool_seo_url->rewrite($link_news);
 
 						$output .= str_replace("&", "&amp;", $link) . "\r";
 					}
@@ -440,9 +440,9 @@ class ModelToolSitemap extends Model {
 		$informations = $this->model_catalog_sitemap->getAllInformations();
 
 		foreach ($informations as $information) {
-			$link = utf8_encode($store_url . 'index.php?route=information/information&information_id=' . $information['information_id']);
+			$link_information = utf8_encode($store_url . 'index.php?route=information/information&information_id=' . $information['information_id']);
 
-			$link = $this->model_tool_seo_url->rewrite($link);
+			$link = $this->model_tool_seo_url->rewrite($link_information);
 
 			$output .= str_replace("&", "&amp;", $link) . "\r";
 		}
@@ -463,9 +463,9 @@ class ModelToolSitemap extends Model {
 							if ($store_info_id != 0) {
 								$store_url = $this->model_catalog_sitemap->getStoreUrl($store_info_id);
 
-								$link = utf8_encode($store_url . 'index.php?route=information/information&information_id=' . $information['information_id']);
+								$link_information = utf8_encode($store_url . 'index.php?route=information/information&information_id=' . $information['information_id']);
 
-								$link = $this->model_tool_seo_url->rewrite($link);
+								$link = $this->model_tool_seo_url->rewrite($link_information);
 
 								$output .= str_replace("&", "&amp;", $link) . "\r";
 							}
@@ -496,9 +496,9 @@ class ModelToolSitemap extends Model {
 				$new_path = $current_path . '_' . $result['category_id'];
 			}
 
-			$link = utf8_encode(HTTP_CATALOG . 'index.php?route=product/category&path=' . $new_path);
+			$link_category = utf8_encode(HTTP_CATALOG . 'index.php?route=product/category&path=' . $new_path);
 
-			$link = $this->model_tool_seo_url->rewrite($link);
+			$link = $this->model_tool_seo_url->rewrite($link_category);
 
 			$output .= str_replace("&", "&amp;", $link) . "\r";
 
@@ -521,9 +521,9 @@ class ModelToolSitemap extends Model {
 							$new_path = $current_path . '_' . $result['category_id'];
 						}
 
-						$link = utf8_encode($store_url . 'index.php?route=product/category&path=' . $new_path);
+						$link_category = utf8_encode($store_url . 'index.php?route=product/category&path=' . $new_path);
 
-						$link = $this->model_tool_seo_url->rewrite($link);
+						$link = $this->model_tool_seo_url->rewrite($link_category);
 
 						$output .= str_replace("&", "&amp;", $link) . "\r";
 
@@ -539,12 +539,12 @@ class ModelToolSitemap extends Model {
 	protected function generateLinkNode($link, $changefreq = 'monthly', $priority = '1.0') {
 		$this->load->model('tool/seo_url');
 
-		$link = $this->model_tool_seo_url->rewrite($link);
+		$link_node = $this->model_tool_seo_url->rewrite($link);
 
-		$link = str_replace("&", "&amp;", $link);
+		$link_url = str_replace("&", "&amp;", $link_node);
 
 		$output = "<url>";
-		$output .= "<loc>" . $link . "</loc>";
+		$output .= "<loc>" . utf8_encode($link_url) . "</loc>";
 		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>";
 		$output .= "<changefreq>" . $changefreq . "</changefreq>";
 		$output .= "<priority>" . $priority . "</priority>";
@@ -554,10 +554,10 @@ class ModelToolSitemap extends Model {
 	}
 
 	protected function standardLinkNode($link, $changefreq = 'monthly', $priority = '1.0') {
-		$link = str_replace("&", "&amp;", $link);
+		$link_url = str_replace("&", "&amp;", $link);
 
 		$output = "<url>";
-		$output .= "<loc>" . $link . "</loc>";
+		$output .= "<loc>" . utf8_encode($link_url) . "</loc>";
 		$output .= "<lastmod>" . date("Y-m-d") . "</lastmod>";
 		$output .= "<changefreq>" . $changefreq . "</changefreq>";
 		$output .= "<priority>" . $priority . "</priority>";

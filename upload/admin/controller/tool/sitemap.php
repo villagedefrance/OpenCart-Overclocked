@@ -146,7 +146,7 @@ class ControllerToolSitemap extends Controller {
 			$this->data['sitemaptext'] = '';
 			$this->data['text_text'] = $this->language->get('text_text');
 			$this->data['text_notext'] = $this->language->get('text_notext');
-		} 
+		}
 
 		// Master XML Sitemap
 		if (file_exists("../sitemap.xml") && is_file("../sitemap.xml")) {

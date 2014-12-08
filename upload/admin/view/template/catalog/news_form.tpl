@@ -19,11 +19,11 @@
     </div>
     <div class="content">
       <div id="tabs" class="htabs">
-        <a href="#tab_general"><?php echo $tab_general; ?></a>
-        <a href="#tab_data"><?php echo $tab_data; ?></a>
+        <a href="#tab-general"><?php echo $tab_general; ?></a>
+        <a href="#tab-data"><?php echo $tab_data; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="newsform">
-        <div id="tab_general">
+        <div id="tab-general">
           <div id="languages" class="htabs">
             <?php foreach ($languages as $language) { ?>
               <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
@@ -56,7 +56,7 @@
             </div>
           <?php } ?>
 		</div>
-		<div id="tab_data">
+		<div id="tab-data">
           <table class="form">
             <tr>
               <td><?php echo $entry_store; ?></td>

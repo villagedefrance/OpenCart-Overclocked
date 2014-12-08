@@ -132,7 +132,7 @@ class ControllerCommonSeoUrl extends Controller {
 							unset($data[$key]);
 						}
 					}
-				}	
+				}
 			}
 		}
 

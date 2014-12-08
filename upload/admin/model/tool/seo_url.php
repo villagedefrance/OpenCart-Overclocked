@@ -132,7 +132,7 @@ class ModelToolSeoUrl extends Controller {
 							unset($data[$key]);
 						}
 					}
-				}	
+				}
 			}
 		}
 
