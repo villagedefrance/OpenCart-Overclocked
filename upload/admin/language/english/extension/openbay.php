@@ -78,14 +78,15 @@ $_['lang_tab_help']						= 'Help';
 $_['lang_help_guide']					= 'User guides';
 $_['lang_help_guide_description']	= 'To download and view the eBay and Amazon user guides <a href="http://shop.openbaypro.com/index.php?route=information/faq&topic=37" title="OpenBay Pro user guides">click here</a>';
 
-$_['lang_mcrypt_text_false']			= 'PHP function "mcrypt_encrypt" is not enabled. Contact your hosting provider.';
-$_['lang_mb_text_false']				= 'PHP library "mb strings" is not enabled. Contact your hosting provider.';
-$_['lang_ftp_text_false']				= 'PHP FTP functions are not enabled. Contact your hosting provider.';
-$_['lang_error_oc_version']			= 'Your version of OpenCart is not tested to work with this module. You may experience problems.';
-$_['lang_patch_applied']				= 'Patch applied';
-$_['faqbtn']									= 'View FAQ';
-$_['lang_clearfaq']						= 'Clear hidden FAQ popups';
-$_['lang_clearfaqbtn']					= 'Clear';
+$_['lang_error_mcrypt']			= 'PHP function "mcrypt_encrypt" is not enabled. Contact your hosting provider.';
+$_['lang_error_mbstring']		= 'PHP library "mb strings" is not enabled. Contact your hosting provider.';
+$_['lang_error_ftpconnect']	= 'PHP FTP functions are not enabled. Contact your hosting provider.';
+$_['lang_error_oc_version']	= 'Your version of OpenCart is not tested to work with this module. You may experience problems.';
+$_['lang_error_vqmod']			= 'You have VQMOD files for OpenBay Pro installed, this version does not require them. Have you installed the wrong version?';
+$_['lang_patch_applied']		= 'Patch applied';
+$_['faqbtn']							= 'View FAQ';
+$_['lang_clearfaq']				= 'Clear hidden FAQ popups';
+$_['lang_clearfaqbtn']			= 'Clear';
 
 // Ajax elements
 $_['lang_ajax_ebay_shipped']			= 'The order will be marked as shipped on eBay automatically';
@@ -104,12 +105,12 @@ $_['lang_ajax_tracking_msg2']		= 'Your tracking ID cannot contain the characters
 $_['lang_ajax_tracking_msg3']		= 'You must select courier if you want to upload tracking no.';
 $_['lang_ajax_tracking_msg4']		= 'Please leave courier field empty if you want to use custom courier.';
 
-$_['lang_title_help']					= 'Need help with OpenBay Pro?';
-$_['lang_pod_help']					= 'Help';
-$_['lang_title_manage']				= 'Manage OpenBay Pro; updates, settings and more';
-$_['lang_pod_manage']				= 'Manage';
-$_['lang_title_shop']					= 'OpenBay Pro store; addons, templates and more';
-$_['lang_pod_shop']					= 'Store';
+$_['lang_title_help']				= 'Need help with OpenBay Pro?';
+$_['lang_pod_help']				= 'Help';
+$_['lang_title_manage']			= 'Manage OpenBay Pro; updates, settings and more';
+$_['lang_pod_manage']			= 'Manage';
+$_['lang_title_shop']				= 'OpenBay Pro store; addons, templates and more';
+$_['lang_pod_shop']				= 'Store';
 
 $_['lang_checking_messages']	= 'Checking for messages';
 $_['lang_title_messages']			= 'Messages &amp; notifications';

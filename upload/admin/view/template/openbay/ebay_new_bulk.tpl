@@ -449,7 +449,11 @@
             }
         });
     }
-    
+
+    function html_encode(s) {
+      return $('<div>').text(s).html();
+    }
+
     function itemFeatures(cat, id){
         $('#editFeature_'+id).hide();
         
@@ -465,6 +469,7 @@
                     var htmlInj = '';
                     var htmlInj2 = '';
                     var specificCount = 0;
+                    var field_value = '';
 
                     if(data.data.Recommendations.NameRecommendation){
 
@@ -480,7 +485,8 @@
                                 val.ValueRecommendation = $.makeArray(val.ValueRecommendation);
 
                                 $.each(val.ValueRecommendation, function(key2, option){
-                                    htmlInj2 += '<option value="'+option.Value+'">'+option.Value+'</option>';
+                                  field_value = option.Value.replace('"', '&quot;');
+                                  htmlInj2 += '<option value="'+field_value+'">'+option.Value+'</option>';
                                 });
 
                                 if(val.ValidationRules.SelectionMode == 'FreeText'){
@@ -495,7 +501,8 @@
                                 val.ValueRecommendation = $.makeArray(val.ValueRecommendation);
 
                                 $.each(val.ValueRecommendation, function(key2, option){
-                                    htmlInj += '<p><input type="checkbox" name="feat['+val.Name+'][]" value="'+option.Value+'" class="openbayData_'+id+'"/>'+option.Value+'</p>';
+                                  field_value = option.Value.replace('"', '&quot;');
+                                  htmlInj += '<p><input type="checkbox" name="feat['+val.Name+'][]" value="'+field_value+'" class="openbayData_'+id+'"/>'+option.Value+'</p>';
                                 });
 
                                 htmlInj += '</td></tr>';

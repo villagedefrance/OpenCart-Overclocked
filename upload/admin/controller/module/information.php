@@ -101,7 +101,7 @@ class ControllerModuleInformation extends Controller {
 		if (isset($this->request->post[$this->_name . '_title'])) {
 			$this->data[$this->_name . '_title'] = $this->request->post[$this->_name . '_title'];
 		} else {
-			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
+			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
 		}
 
 		$this->data['modules'] = array();

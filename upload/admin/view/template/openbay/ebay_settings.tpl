@@ -548,7 +548,9 @@
                     }, 500);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                  alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                  if (xhr.status != 0) {
+                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                  }
                 }
             });
         } else {
@@ -575,7 +577,9 @@
           }, 500);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          if (xhr.status != 0) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
         }
       });
     }
@@ -597,7 +601,9 @@
           }, 500);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          if (xhr.status != 0) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
         }
       });
     }

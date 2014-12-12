@@ -23,11 +23,11 @@ class ModelOpenbayAmazonProduct extends Model {
 	}
 
 	public function linkItems(array $data) {
-		foreach($data as $amazonSku => $productId) {
+		foreach($data as $amazonSku => $product_id) {
 			$varRow = $this->db->query("SELECT `var` FROM `" . DB_PREFIX . "amazon_product`
-				WHERE `sku` = '" . $amazonSku . "' AND `product_id` = '" . (int)$productId . "'")->row;
+				WHERE `sku` = '" . $amazonSku . "' AND `product_id` = '" . (int)$product_id . "'")->row;
 			$var = isset($varRow['var']) ? $varRow['var'] : '';
-			$this->linkProduct($amazonSku, $productId, $var);
+			$this->linkProduct($amazonSku, $product_id, $var);
 		}
 	}
 

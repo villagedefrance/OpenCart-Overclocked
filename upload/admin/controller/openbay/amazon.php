@@ -658,7 +658,7 @@ class ControllerOpenbayAmazon extends Controller {
 	}
 
 	public function doBulkList() {
-		$this->load->language('amazon/listing');
+		$this->load->language('openbay/amazon_listing');
 
 		if (empty($this->request->post['products'])) {
 			$json = array(
@@ -674,7 +674,7 @@ class ControllerOpenbayAmazon extends Controller {
 			foreach ($this->request->post['products'] as $product_id => $asin) {
 				$delete_search_results[] = $product_id;
 
-				if (!empty($asin)) {
+				if (!empty($asin) && in_array($product_id, $this->request->post['product_ids'])) {
 					$bulk_list_products[$product_id] = $asin;
 				}
 			}
@@ -722,8 +722,6 @@ class ControllerOpenbayAmazon extends Controller {
 	}
 
 	public function doBulkSearch() {
-
-
 		$this->load->model('catalog/product');
 		$this->load->model('openbay/amazon_listing');
 		$this->load->language('openbay/amazon_bulk');
@@ -743,7 +741,7 @@ class ControllerOpenbayAmazon extends Controller {
 
 				$key = '';
 
-				$id_types = array('isbn', 'upc', 'ean', 'jan');
+				$id_types = array('isbn', 'upc', 'ean', 'jan', 'sku');
 
 				foreach ($id_types as $id_type) {
 					if (!empty($product[$id_type])) {

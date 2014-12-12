@@ -22,7 +22,7 @@ final class Ebay {
 		return $this->registry->get($name);
 	}
 
-	public function log($data, $write = true) {
+	public function log($data, $write = true) { 
 		if($this->logging == 1) {
 			if(function_exists('getmypid')) {
 				$pId = getmypid();
@@ -478,12 +478,12 @@ final class Ebay {
 	public function isEbayOrder($id) {
 		$this->log('isEbayOrder() - Is eBay order? ID: '.$id);
 
-		$qry = $this->db->query("SELECT `comment` FROM `" . DB_PREFIX . "order_history` WHERE `comment` LIKE '[eBay Import:%]' AND `order_id` = '".$id."' LIMIT 1");
+		$qry = $this->db->query("SELECT `comment` FROM `" . DB_PREFIX . "order_history` WHERE `comment` LIKE '[eBay Import:%]' AND `order_id` = '".(int)$id."' LIMIT 1");
 
 		if($qry->num_rows) {
 			$this->log('isEbayOrder() - Yes');
 			$smp_id = str_replace(array('[eBay Import:', ']'), '', $qry->row['comment']);
-			return $smp_id;
+			return (int)$smp_id;
 		}else{
 			$this->log('isEbayOrder() - No');
 			return false;
@@ -637,6 +637,17 @@ final class Ebay {
 			}
 		}else{
 			$this->removeItemByItemId($item_id);
+
+			if($sku == null) {
+				if ($stock <= 0 && $this->config->get('ebay_disable_nostock') == 1) {
+					$this->disableProduct($product_id);
+				}
+			} else {
+				if ($stock <= 0 && $this->config->get('ebay_disable_nostock') == 1) {
+					$this->disableVariant($product_id, $sku);
+				}
+			}
+
 			$this->log('putStockUpdate() - Listing not active, item id: '. $item_id .', status returned: '.$listing['statusActual']);
 		}
 	}
@@ -782,15 +793,15 @@ final class Ebay {
 		}
 	}
 
-	public function getProductStockLevel($productId, $sku = '') {
-		$this->log('getProductStockLevel() - ID: '.$productId.', SKU: '.$sku);
+	public function getProductStockLevel($product_id, $sku = '') {
+		$this->log('getProductStockLevel() - ID: '.(int)$product_id.', SKU: '.$sku);
 
 		if($sku == '' || $sku == null){
-			$qry = $this->db->query("SELECT `quantity`, `status` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".(int)$productId."' LIMIT 1");
+			$qry = $this->db->query("SELECT `quantity`, `status` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".(int)$product_id."' LIMIT 1");
 
 			return array('quantity' => (int)$qry->row['quantity'], 'status' => ($qry->row['status']));
 		}else{
-			$qry = $this->db->query("SELECT `stock`, `active` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '".(int)$productId."' AND `var` = '".$this->db->escape($sku)."' LIMIT 1");
+			$qry = $this->db->query("SELECT `stock`, `active` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '".(int)$product_id."' AND `var` = '".$this->db->escape($sku)."' LIMIT 1");
 
 			return array('quantity' => (int)$qry->row['stock'], 'status' => ($qry->row['active']));
 		}
@@ -1065,14 +1076,14 @@ final class Ebay {
 		return $this->call('item/getItem/', array('itemId' => $itemId));
 	}
 
-	public function relistItem($itemId, $productId, $qty) {
-		$this->log('relistItem() - Starting relist item, ID: '.$itemId.', product: '.$productId.', qty: '.$qty);
+	public function relistItem($itemId, $product_id, $qty) {
+		$this->log('relistItem() - Starting relist item, ID: '.$itemId.', product: '.$product_id.', qty: '.$qty);
 
 		$response = $this->call('listing/relistItem/', array('itemId' => $itemId, 'qty' => $qty));
 
 		if(!empty($response['ItemID'])) {
 			$this->log('relistItem() - Created: '.$response['ItemID']);
-			$this->createLink($productId, $response['ItemID'], '');
+			$this->createLink($product_id, $response['ItemID'], '');
 			return $response['ItemID'];
 		}else{
 			$this->log('relistItem() - Relisting failed ID: '.$itemId);
@@ -1265,7 +1276,7 @@ final class Ebay {
 							`InternationalService`      = '" . $this->db->escape($service['InternationalService']) . "',
 							`ShippingService`           = '" . $this->db->escape((string)$service['ShippingService']) . "' ,
 							`ShippingServiceID`         = '" . (int)$service['ShippingServiceID'] . "',
-							`ServiceType`               = '" . $this->db->escape((string)$service['ServiceType']) . "' ,
+							`ServiceType`               = '" . $this->db->escape(strtolower(implode(',', $service['ServiceType']))) . "' ,
 							`ValidForSellingFlow`       = '" . $this->db->escape((string)$service['ValidForSellingFlow']) . "',
 							`ShippingCategory`          = '" . $this->db->escape((string)$service['ShippingCategory']) . "' ,
 							`ShippingTimeMin`           = '" . $min . "',

@@ -13,12 +13,12 @@ class ControllerModuleEbaydisplay extends Controller {
 
 		$this->load->model('setting/setting');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting($this->_name, $this->request->post);
 
-			$this->cache->delete('ebaydisplay');
-
 			$this->session->data['success'] = $this->language->get('text_success');
+
+			$this->cache->delete('ebaydisplay');
 
 			if (isset($this->request->post['apply'])) {
 				$this->redirect($this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
@@ -46,8 +46,8 @@ class ControllerModuleEbaydisplay extends Controller {
 		$this->data['text_start_time'] = $this->language->get('text_start_time');
 		$this->data['text_random'] = $this->language->get('text_random');
 		$this->data['text_display'] = $this->language->get('text_display');
+		$this->data['text_site'] = $this->language->get('text_site');
 
-		$this->data['entry_product'] = $this->language->get('entry_product');
 		$this->data['entry_limit'] = $this->language->get('entry_limit');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
@@ -78,20 +78,20 @@ class ControllerModuleEbaydisplay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_module'),
-			'href' 		=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_module'),
+			'href'		=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('module/ebaydisplay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('module/ebaydisplay', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -146,8 +146,32 @@ class ControllerModuleEbaydisplay extends Controller {
 		} elseif ($this->config->get('ebaydisplay_module_sort')) {
 			$this->data['ebaydisplay_module_sort'] = $this->config->get('ebaydisplay_module_sort');
 		} else {
-			$this->data['ebaydisplay_module_sort'] = $this->language->get('text_start_time');
+			$this->data['ebaydisplay_module_sort'] = 'StartTimeNewest';
 		}
+
+		if (isset($this->request->post['ebaydisplay_module_site'])) {
+			$this->data['ebaydisplay_module_site'] = $this->request->post['ebaydisplay_module_site'];
+		} elseif ($this->config->get('ebaydisplay_module_site')) {
+			$this->data['ebaydisplay_module_site'] = $this->config->get('ebaydisplay_module_site');
+		} else {
+			$this->data['ebaydisplay_module_site'] = 3;
+		}
+
+		$this->data['ebay_sites'] = array(
+			0		=> 'USA',
+			3		=> 'UK',
+			15		=> 'Australia',
+			2		=> 'Canada (English)',
+			71		=> 'France',
+			77		=> 'Germany',
+			101	=> 'Italy',
+			186	=> 'Spain',
+			205	=> 'Ireland',
+			16		=> 'Austria',
+			146	=> 'Netherlands',
+			23		=> 'Belgium (French)',
+			123	=> 'Belgium (Dutch)'
+		);
 
 		$this->load->model('design/layout');
 

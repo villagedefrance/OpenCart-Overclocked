@@ -63,13 +63,14 @@
                         }
                       }
 
-                      if($order['channel'] == 'Amazon') {
+                      if($order['channel'] == 'Amazon EU') {
                         //shipping info
                         if($this->request->post['change_order_status_id'] == $this->config->get('openbay_amazon_order_status_shipped')) {
 ?>
                         <p>
                             <span style="display:block; width:80px; font-weight:bold;"><?php echo $lang_carrier; ?>:</span>
                             <select name="carrier[<?php echo $order['order_id']; ?>]" class="amazon_carrier" id="amazon_carrier_<?php echo $order['order_id']; ?>">
+                                <option></option>
                                 <?php foreach($market_options['amazon']['carriers'] as $courier){ ?>
                                     <?php echo '<option'.($courier == $market_options['amazon']['default_carrier'] ? ' selected' : '').'>'.$courier.'</option>'; ?>
                                 <?php } ?>
@@ -88,7 +89,7 @@
                         }
                       }
                       
-                      if($order['channel'] == 'Amazonus') {
+                      if($order['channel'] == 'Amazon US') {
                         if($this->request->post['change_order_status_id'] == $this->config->get('openbay_amazonus_order_status_shipped')) {
 ?>
                         <p>

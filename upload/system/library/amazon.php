@@ -64,15 +64,15 @@ class Amazon {
 		}
 	}
 
-	public function productUpdateListen($productId, $data) {
+	public function productUpdateListen($product_id, $data) {
 		$logger = new Log('amazon_stocks.log');
-		$logger->write('productUpdateListen called for product id: ' . $productId);
+		$logger->write('productUpdateListen called for product id: ' . $product_id);
 
 		if ($this->openbay->addonLoad('openstock') && (isset($data['has_option']) && $data['has_option'] == 1)) {
 			$logger->write('openStock found installed and product has options.');
 			$quantityData = array();
 			foreach($data['product_option_stock'] as $optStock) {
-				$amazonSkuRows = $this->getLinkedSkus($productId, $optStock['var']);
+				$amazonSkuRows = $this->getLinkedSkus($product_id, $optStock['var']);
 				foreach($amazonSkuRows as $amazonSkuRow) {
 					$quantityData[$amazonSkuRow['amazon_sku']] = $optStock['stock'];
 				}
@@ -85,11 +85,64 @@ class Amazon {
 			}
 
 		} else {
-			$this->putStockUpdateBulk(array($productId));
+			$this->putStockUpdateBulk(array($product_id));
 		}
 		$logger->write('productUpdateListen() exiting');
 	}
 
+	public function bulkUpdateOrders($orders) {
+		// Is the module enabled and called from admin?
+		if ($this->config->get('amazon_status') != 1 || !defined('HTTPS_CATALOG')) {
+			return;
+		}
+		$this->load->model('openbay/amazon');
+		
+		$log = new Log('amazon.log');
+		$log->write('Called bulkUpdateOrders method');
+		
+		$request = array(
+			'orders' => array(),
+		);
+		
+		foreach ($orders as $order) {
+			$amazon_order = $this->getOrder($order['order_id']);
+			$amazon_order_products = $this->model_openbay_amazon->getAmazonOrderedProducts($order['order_id']);
+			
+			$products = array();
+			
+			foreach ($amazon_order_products as $amazon_order_product) {
+				$products[] = array(
+					'amazon_order_item_id' => $amazon_order_product['amazon_order_item_id'],
+					'quantity' => $amazon_order_product['quantity'],
+				);
+			}
+			
+			$order_info = array(
+				'amazon_order_id' => $amazon_order['amazon_order_id'],
+				'status' => $order['status'],
+				'products' => $products,
+			);
+			
+			if ($order['status'] == 'shipped' && !empty($order['carrier'])) {
+				if ($order['carrier_from_list']) {
+					$order_info['carrier_id'] = $order['carrier'];
+				} else {
+					$order_info['carrier_name'] = $order['carrier'];
+				}
+				
+				$order_info['tracking'] = $order['tracking'];
+			}
+			
+			$request['orders'][] = $order_info;
+		}
+		
+		$log->write('order/bulkUpdate call: ' . print_r($request, 1));
+		
+		$response = $this->callWithResponse('order/bulkUpdate', $request);
+
+		$log->write('order/bulkUpdate response: ' . $response);
+	}
+	
 	public function updateOrder($orderId, $orderStatusString, $courier_id = '', $courierFromList = true, $tracking_no = '') {
 
 		if ($this->config->get('amazon_status') != 1) {
@@ -354,16 +407,16 @@ class Amazon {
 		return $this->server;
 	}
 
-	public function putStockUpdateBulk($productIdArray, $endInactive = false){
+	public function putStockUpdateBulk($product_id_array, $endInactive = false){
 		$this->load->library('log');
 		$logger = new Log('amazon_stocks.log');
 		$logger->write('Updating stock using putStockUpdateBulk()');
 		$quantityData = array();
-		foreach($productIdArray as $productId) {
-			$amazonRows = $this->getLinkedSkus($productId);
+		foreach($product_id_array as $product_id) {
+			$amazonRows = $this->getLinkedSkus($product_id);
 			foreach($amazonRows as $amazonRow) {
 				$productRow = $this->db->query("SELECT quantity, status FROM `" . DB_PREFIX . "product`
-					WHERE `product_id` = '" . (int)$productId . "'")->row;
+					WHERE `product_id` = '" . (int)$product_id . "'")->row;
 
 				if(!empty($productRow)) {
 					if($endInactive && $productRow['status'] == '0') {
@@ -383,8 +436,8 @@ class Amazon {
 		}
 	}
 
-	public function getLinkedSkus($productId, $var='') {
-		return $this->db->query("SELECT `amazon_sku` FROM `" . DB_PREFIX . "amazon_product_link` WHERE `product_id` = '" . (int)$productId . "' AND `var` = '" . $this->db->escape($var) . "'")->rows;
+	public function getLinkedSkus($product_id, $var='') {
+		return $this->db->query("SELECT `amazon_sku` FROM `" . DB_PREFIX . "amazon_product_link` WHERE `product_id` = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($var) . "'")->rows;
 	}
 
 	public function getOrderdProducts($orderId) {

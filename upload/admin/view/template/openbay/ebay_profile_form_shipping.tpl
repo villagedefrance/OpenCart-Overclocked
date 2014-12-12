@@ -176,43 +176,45 @@
         count = parseInt(count);
 
         $.ajax({
-            url: 'index.php?route=openbay/openbay/getShippingService&token=<?php echo $token; ?>&loc=' + loc,
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                html = '';
-                html += '<p class="shipping_' + id + '_' + count + '" style="border-top:1px dotted; margin:0; padding:8px 0;"><label><strong><?php echo $lang_shipping_service; ?></strong> <label><select name="data[service_' + id + '][' + count + ']">';
+          url: 'index.php?route=openbay/openbay/getShippingService&token=<?php echo $token; ?>&loc=' + loc,
+          type: 'GET',
+          dataType: 'json',
+          success: function(data) {
+              html = '';
+              html += '<p class="shipping_' + id + '_' + count + '" style="border-top:1px dotted; margin:0; padding:8px 0;"><label><strong><?php echo $lang_shipping_service; ?></strong> <label><select name="data[service_' + id + '][' + count + ']">';
 
-                $.each(data.svc, function(key, val) {
-                    html += '<option value="' + val.ShippingService + '">' + val.description + '</option>';
-                });
+              $.each(data.svc, function(key, val) {
+                  html += '<option value="' + val.ShippingService + '">' + val.description + '</option>';
+              });
 
-                html += '</select></p>';
+              html += '</select></p>';
 
-                if(id == 'international'){
-                    html += '<h5 style="margin:5px 0;" class="shipping_' + id + '_' + count + '">Ship to zones</h5>';
-                    html += '<div style="border:1px solid #000; background-color:#F5F5F5; width:100%; min-height:40px; margin-bottom:10px; display:inline-block;" class="shipping_' + id + '_' + count + '">';
-                    html += '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
-                    html += '<input type="checkbox" name="data[shipto_international][' + count + '][]" value="Worldwide" /> Worldwide</div>';
-                    
-                    <?php foreach($shipping_international_zones as $zone){ ?>
-                        html += '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
-                        html += '<input type="checkbox" name="data[shipto_international][' + count + '][]" value="<?php echo $zone['shipping_location']; ?>" /> <?php echo $zone['description']; ?></div>';
-                    <?php } ?>
-                    
-                    html += '</div>';
-                    html += '<div style="clear:both;" class="shipping_' + id + '_' + count + '"></div>';
-                }
-                
-                
-                html += '<p class="shipping_' + id + '_' + count + '"><label><?php echo $lang_shipping_first; ?></label><input type="text" name="data[price_' + id + '][' + count + ']" style="width:50px;" value="0.00" />';
-                html += '&nbsp;&nbsp;<label><?php echo $lang_shipping_add; ?></label><input type="text" name="data[priceadditional_' + id + '][' + count + ']" style="width:50px;" value="0.00" />&nbsp;&nbsp;<a onclick="removeShipping(\'' + id + '\',\'' + count + '\');" class="button"><span><?php echo $lang_btn_remove; ?></span></a></p>';
-                html += '<div style="clear:both;" class="shipping_' + id + '_' + count + '"></div>';                
+              if(id == 'international'){
+                  html += '<h5 style="margin:5px 0;" class="shipping_' + id + '_' + count + '">Ship to zones</h5>';
+                  html += '<div style="border:1px solid #000; background-color:#F5F5F5; width:100%; min-height:40px; margin-bottom:10px; display:inline-block;" class="shipping_' + id + '_' + count + '">';
+                  html += '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
+                  html += '<input type="checkbox" name="data[shipto_international][' + count + '][]" value="Worldwide" /> Worldwide</div>';
 
-                $('#' + id + 'Btn').append(html);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                  <?php foreach($shipping_international_zones as $zone){ ?>
+                      html += '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
+                      html += '<input type="checkbox" name="data[shipto_international][' + count + '][]" value="<?php echo $zone['shipping_location']; ?>" /> <?php echo $zone['description']; ?></div>';
+                  <?php } ?>
+
+                  html += '</div>';
+                  html += '<div style="clear:both;" class="shipping_' + id + '_' + count + '"></div>';
+              }
+
+
+              html += '<p class="shipping_' + id + '_' + count + '"><label><?php echo $lang_shipping_first; ?></label><input type="text" name="data[price_' + id + '][' + count + ']" style="width:50px;" value="0.00" />';
+              html += '&nbsp;&nbsp;<label><?php echo $lang_shipping_add; ?></label><input type="text" name="data[priceadditional_' + id + '][' + count + ']" style="width:50px;" value="0.00" />&nbsp;&nbsp;<a onclick="removeShipping(\'' + id + '\',\'' + count + '\');" class="button"><span><?php echo $lang_btn_remove; ?></span></a></p>';
+              html += '<div style="clear:both;" class="shipping_' + id + '_' + count + '"></div>';
+
+              $('#' + id + 'Btn').append(html);
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            if (xhr.status != 0) {
+              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
           }
         });
 

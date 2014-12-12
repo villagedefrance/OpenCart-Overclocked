@@ -44,7 +44,7 @@ final class Openbay {
 		 */
 	}
 
-	public function productUpdateListen($productId, $data) {
+	public function productUpdateListen($product_id, $data) {
 		/**
 		 * This call is performed after the product has been updated.
 		 * The $data variable holds all of the information that has
@@ -53,17 +53,17 @@ final class Openbay {
 
 		// eBay Module
 		if ($this->config->get('openbay_status') == 1) {
-			$this->ebay->productUpdateListen($productId, $data);
+			$this->ebay->productUpdateListen($product_id, $data);
 		}
 
 		// Amazon Module
 		if ($this->config->get('amazon_status') == 1) {
-			$this->amazon->productUpdateListen($productId, $data);
+			$this->amazon->productUpdateListen($product_id, $data);
 		}
 
 		// Amazon US Module
 		if ($this->config->get('amazonus_status') == 1) {
-			$this->amazonus->productUpdateListen($productId, $data);
+			$this->amazonus->productUpdateListen($product_id, $data);
 		}
 	}
 

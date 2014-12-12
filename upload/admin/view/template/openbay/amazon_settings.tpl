@@ -199,6 +199,7 @@
                         </td>
                         <td>
                           <select class="width120" name="openbay_amazon_default_carrier">
+                            <option <?php echo ($openbay_amazon_default_carrier == '' ) ? 'selected' : '' ?>></option>
                             <?php foreach($carriers as $carrier) { ?>
                               <?php echo '<option'.($carrier == $openbay_amazon_default_carrier ? ' selected' : '').'>'.$carrier.'</option>'; ?>
                             <?php } ?>

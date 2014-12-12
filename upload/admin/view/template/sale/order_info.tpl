@@ -990,12 +990,12 @@ function orderStatusChange() {
 		url: 'index.php?route=extension/openbay/ajaxOrderInfo&token=<?php echo $this->request->get['token']; ?>&order_id=<?php echo $this->request->get['order_id']; ?>&status_id=' + status_id,
 		type: 'post',
 		dataType: 'html',
-		beforeSend: function(){},
+		beforeSend: function() {},
 		success: function(html) {
 			$('#history').after(html);
 		},
-		failure: function(){},
-		error: function(){}
+		failure: function() {},
+		error: function() {}
 	});
 }
 
@@ -1010,10 +1010,10 @@ function addOrderInfo() {
 		type: 'post',
 		dataType: 'html',
 		data: $(".openbayData").serialize(),
-		beforeSend: function(){},
+		beforeSend: function() {},
 		success: function() {},
-		failure: function(){},
-		error: function(){}
+		failure: function() {},
+		error: function() {}
 	});
 }
 

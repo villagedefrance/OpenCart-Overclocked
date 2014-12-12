@@ -59,7 +59,6 @@ class ControllerModuleOpenbaypro extends Controller {
 
 		$settings = $this->model_setting_setting->getSetting('openbaymanager');
 		$settings['openbaymanager_show_menu'] = 1;
-
 		$this->model_setting_setting->editSetting('openbaymanager', $settings);
 	}
 
@@ -68,7 +67,6 @@ class ControllerModuleOpenbaypro extends Controller {
 
 		$settings = $this->model_setting_setting->getSetting('openbaymanager');
 		$settings['openbaymanager_show_menu'] = 0;
-
 		$this->model_setting_setting->editSetting('openbaymanager', $settings);
 	}
 }

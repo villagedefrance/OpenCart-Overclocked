@@ -225,39 +225,41 @@
 
     function save(){
         $.ajax({
-            type: 'POST',
-            url: 'index.php?route=openbay/openbay/editSave&token=<?php echo $token; ?>',
-            dataType: 'json',
-            data: $("#form").serialize(),
-            beforeSend: function(){
-                $('#reviewButtonLoading').show();
-                $('#reviewButton').hide();
-                $('#error_box').empty().hide();
-                $('#successForm').hide();
-            },
-            success: function(data) {
-                $('#reviewButtonLoading').hide();
-                $('#reviewButton').show();
+          type: 'POST',
+          url: 'index.php?route=openbay/openbay/editSave&token=<?php echo $token; ?>',
+          dataType: 'json',
+          data: $("#form").serialize(),
+          beforeSend: function(){
+              $('#reviewButtonLoading').show();
+              $('#reviewButton').hide();
+              $('#error_box').empty().hide();
+              $('#successForm').hide();
+          },
+          success: function(data) {
+              $('#reviewButtonLoading').hide();
+              $('#reviewButton').show();
 
-                if(data.Errors){
-                    if(data.Errors.ShortMessage){
-                        $('#error_box').append('<p class="m3">'+data.Errors.LongMessage+'</p>');
-                    }else{
-                        $.each(data.Errors, function(key,val){
-                            $('#error_box').append('<p class="m3">'+val.LongMessage+'</p>');
-                        });
-                    }
-                    $('#error_box').fadeIn('slow');
-                }
+              if(data.Errors){
+                  if(data.Errors.ShortMessage){
+                      $('#error_box').append('<p class="m3">'+data.Errors.LongMessage+'</p>');
+                  }else{
+                      $.each(data.Errors, function(key,val){
+                          $('#error_box').append('<p class="m3">'+val.LongMessage+'</p>');
+                      });
+                  }
+                  $('#error_box').fadeIn('slow');
+              }
 
-                if(data.Ack !== 'Failure'){
-                    $('#successForm').fadeIn('slow');
-                }
+              if(data.Ack !== 'Failure'){
+                  $('#successForm').fadeIn('slow');
+              }
 
-                $('#form').hide();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+              $('#form').hide();
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            if (xhr.status != 0) {
+              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
           }
         });
     }
@@ -269,47 +271,51 @@
             var id = $('#itemId').val();
 
             if(id !== ''){
-                $.ajax({
-                    type: 'GET',
-                    url: 'index.php?route=openbay/openbay/removeItemLink&token=<?php echo $token; ?>&product_id=<?php echo $product_id; ?>',
-                    dataType: 'json',
-                    success: function() {
-                        alert('<?php echo $lang_alert_removed; ?>');
-                        window.location = 'index.php?route=extension/openbay/itemList&token=<?php echo $token; ?>';
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
+              $.ajax({
+                type: 'GET',
+                url: 'index.php?route=openbay/openbay/removeItemLink&token=<?php echo $token; ?>&product_id=<?php echo $product_id; ?>',
+                dataType: 'json',
+                success: function() {
+                    alert('<?php echo $lang_alert_removed; ?>');
+                    window.location = 'index.php?route=extension/openbay/itemList&token=<?php echo $token; ?>';
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  if (xhr.status != 0) {
                     alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                   }
-                });
+                }
+              });
             }
         }
     }
 
     function endItem() {
-        var pass = confirm("<?php echo $lang_confirm; ?>");
+      var pass = confirm("<?php echo $lang_confirm; ?>");
 
-        if (pass == true) {
-            var id = $('#itemId').val();
+      if (pass == true) {
+        var id = $('#itemId').val();
 
-            if(id !== ''){
-                $.ajax({
-                    type: 'GET',
-                    url: 'index.php?route=openbay/openbay/endItem&token=<?php echo $token; ?>&id='+id,
-                    dataType: 'json',
-                    success: function(data) {
-                        if(data.error == true){
-                            alert(data.msg);
-                        }else{
-                            alert('<?php echo $lang_alert_ended; ?>');
-                            window.location = 'index.php?route=extension/openbay/itemList&token=<?php echo $token; ?>';
-                        }
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                  }
-                });
+        if(id !== ''){
+          $.ajax({
+            type: 'GET',
+            url: 'index.php?route=openbay/openbay/endItem&token=<?php echo $token; ?>&id='+id,
+            dataType: 'json',
+            success: function(data) {
+                if(data.error == true){
+                    alert(data.msg);
+                }else{
+                    alert('<?php echo $lang_alert_ended; ?>');
+                    window.location = 'index.php?route=extension/openbay/itemList&token=<?php echo $token; ?>';
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              if (xhr.status != 0) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+              }
             }
+          });
         }
+      }
     }
 
     $(document).ready(function() {

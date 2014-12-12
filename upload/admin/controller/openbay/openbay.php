@@ -622,6 +622,8 @@ class ControllerOpenbayOpenbay extends Controller {
 				  $this->db->query("TRUNCATE `" . DB_PREFIX . "customer_transaction`");
 				  $this->db->query("TRUNCATE `" . DB_PREFIX . "address`");
 				  $this->db->query("TRUNCATE `" . DB_PREFIX . "ebay_transaction`");
+				  $this->db->query("TRUNCATE `" . DB_PREFIX . "ebay_order`");
+				  $this->db->query("TRUNCATE `" . DB_PREFIX . "ebay_order_lock`");
 				 */
 				$this->db->query("TRUNCATE `" . DB_PREFIX . "manufacturer`");
 				$this->db->query("TRUNCATE `" . DB_PREFIX . "manufacturer_to_store`");
@@ -1146,7 +1148,7 @@ class ControllerOpenbayOpenbay extends Controller {
 						$sku = (isset($listing['SKU']) ? $listing['SKU'] : '');
 
 						if($sku != '' && $sku == $option['var']) {
-							$listing['StartPrice'] = number_format($listing['StartPrice'], 2);
+							$listing['StartPrice'] = number_format($listing['StartPrice'], 2, '.', '');
 							$listing['Quantity'] = $listing['Quantity'] - $listing['SellingStatus']['QuantitySold'];
 
 							$ebay_listing = $listing;
@@ -1312,25 +1314,29 @@ class ControllerOpenbayOpenbay extends Controller {
 				$product_info['product_images'] = array();
 
 				if (!empty($product_info['image'])) {
+					$img_info = getimagesize(HTTPS_CATALOG . 'image/' . $product_info['image']);
+
 					$product_info['product_images'][] = array(
 						'image' => $product_info['image'],
 						'preview' => $this->model_tool_image->resize($product_info['image'], 100, 100),
-						'full' => HTTPS_CATALOG . 'image/' . $product_info['image']
+						'full' => HTTPS_CATALOG . 'image/' . $product_info['image'],
+						'width' => $img_info[0],
+						'height' => $img_info[1],
 					);
 				}
 
 				foreach ($product_images as $product_image) {
 					if ($product_image['image'] && file_exists(DIR_IMAGE . $product_image['image'])) {
-						$image = $product_image['image'];
-					} else {
-						$image = 'no_image.jpg';
-					}
+						$img_info = getimagesize(HTTPS_CATALOG . 'image/' . $product_image['image']);
 
-					$product_info['product_images'][] = array(
-						'image' => $image,
-						'preview' => $this->model_tool_image->resize($image, 100, 100),
-						'full' => HTTPS_CATALOG . 'image/' . $image
-					);
+						$product_info['product_images'][] = array(
+							'image' => $product_image['image'],
+							'preview' => $this->model_tool_image->resize($product_image['image'], 100, 100),
+							'full' => HTTPS_CATALOG . 'image/' . $product_image['image'],
+							'width' => $img_info[0],
+							'height' => $img_info[1],
+						);
+					}
 				}
 
 				$product_info['manufacturers']                      = $this->model_catalog_manufacturer->getManufacturers();
@@ -1631,8 +1637,8 @@ class ControllerOpenbayOpenbay extends Controller {
 				$data['qty'][0]             = (int)$post['qty'];
 				$data['product_id']         = (int)$post['product_id'];
 
-				$data['feat']           	= $post['feat'];
-				$data['featother']          = $post['featother'];
+				$data['feat']           	= !empty($post['feat']) ? $post['feat'] : array();
+				$data['featother']          = !empty($post['featother']) ? $post['featother'] : array();
 
 				if(!empty($product_info['sku'])){
 					$data['sku'] = $product_info['sku'];
@@ -1809,8 +1815,6 @@ class ControllerOpenbayOpenbay extends Controller {
 	}
 
 	public function listItemBulk() {
-
-
 		$this->load->model('openbay/ebay_profile');
 		$this->load->model('openbay/ebay');
 		$this->load->model('openbay/ebay_template');
@@ -1844,8 +1848,8 @@ class ControllerOpenbayOpenbay extends Controller {
 				$data['qty'][0]             = $post['qty'];
 				$data['product_id']         = $post['product_id'];
 
-				$data['feat']           	= $post['feat'];
-				$data['featother']          = $post['featother'];
+				$data['feat']           	= !empty($post['feat']) ? $post['feat'] : array();
+				$data['featother']          = !empty($post['featother']) ? $post['featother'] : array();
 
 				if(!empty($product_info['sku'])){
 					$data['sku'] = $product_info['sku'];

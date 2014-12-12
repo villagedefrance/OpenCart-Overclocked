@@ -36,6 +36,7 @@ class ModelOpenbayOpenbay extends Model {
 				$directory_list = ftp_nlist($connection, ".");
 
 				$folders = array();
+
 				foreach ($directory_list as $key => $list) {
 					if ($this->ftpDir($list, $connection)) {
 						$folders[] = $list;
@@ -44,6 +45,7 @@ class ModelOpenbayOpenbay extends Model {
 
 				$folder_error = false;
 				$folder_error_admin = false;
+
 				if (!in_array('catalog', $folders)) {
 					$folder_error = true;
 				}
@@ -68,9 +70,11 @@ class ModelOpenbayOpenbay extends Model {
 						return array('connection' => true, 'msg' => $this->language->get('update_okcon'));
 					}
 				}
+
 			} else {
 				return array('connection' => false, 'msg' => $this->language->get('update_failed_user'));
 			}
+
 		} else {
 			return array('connection' => false, 'msg' => $this->language->get('update_failed_connect'));
 		}
@@ -295,6 +299,14 @@ class ModelOpenbayOpenbay extends Model {
 		}
 	}
 
+	private function ftpDir($file, $connection) {
+		if (ftp_size($connection, $file) == '-1') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function getNotifications() {
 		$data = $this->call('update/getNotifications/');
 		return $data;
@@ -342,36 +354,28 @@ class ModelOpenbayOpenbay extends Model {
 		}
 	}
 
-	private function ftpDir($file, $connection) {
-		if (ftp_size($connection, $file) == '-1') {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	public function requirementTest() {
+		$error = array();
 
-	public function checkMcrypt() {
-		if (function_exists('mcrypt_encrypt')) {
-			return true;
-		} else {
-			return false;
+		if (!function_exists('mcrypt_encrypt')) {
+			$error[] = $this->language->get('lang_error_mcrypt');
 		}
-	}
 
-	public function checkMbstings() {
-		if (function_exists('mb_detect_encoding')) {
-			return true;
-		} else {
-			return false;
+		if (!function_exists('mb_detect_encoding')) {
+			$error[] = $this->language->get('lang_error_mbstring');
 		}
-	}
 
-	public function checkFtpenabled() {
-		if (function_exists('ftp_connect')) {
-			return true;
-		} else {
-			return false;
+		if (!function_exists('ftp_connect')) {
+			$error[] = $this->language->get('lang_error_ftpconnect');
 		}
+
+		$root_directory = preg_replace('/catalog\/$/', '', DIR_CATALOG);
+
+		if (file_exists($root_directory.'/vqmod/xml/ebay.xml') || file_exists($root_directory.'/vqmod/xml/amazon.xml') || file_exists($root_directory.'/vqmod/xml/amazonus.xml') || file_exists($root_directory.'/vqmod/xml/play.xml') || file_exists($root_directory.'/vqmod/xml/openbay.xml')) {
+			$error[] = $this->language->get('lang_error_vqmod');
+		}
+
+		return $error;
 	}
 
 	private function call($call, array $post = null, array $options = array(), $content_type = 'json') {
@@ -499,9 +503,9 @@ class ModelOpenbayOpenbay extends Model {
 
 		if ($data['filter_market_name'] == 'ebay') {
 			if ($data['filter_market_id'] == 0) {
-				$sql .= " AND ebay.ebay_listing_id IS NULL OR ebay2.listing_status = 0";
+				$sql .= " AND (ebay.ebay_listing_id IS NULL OR ebay2.listing_status = 0)";
 			} else {
-				$sql .= " AND ebay.ebay_listing_id IS NOT NULL AND ebay.status = 1";
+				$sql .= " AND (ebay.ebay_listing_id IS NOT NULL AND ebay.status = 1)";
 			}
 		}
 
@@ -619,9 +623,9 @@ class ModelOpenbayOpenbay extends Model {
 
 		if ($data['filter_market_name'] == 'ebay') {
 			if ($data['filter_market_id'] == 0) {
-				$sql .= " AND ebay.ebay_listing_id IS NULL OR ebay2.listing_status = 0";
+				$sql .= " AND (ebay.ebay_listing_id IS NULL OR ebay2.listing_status = 0)";
 			} else {
-				$sql .= " AND ebay.ebay_listing_id IS NOT NULL AND ebay.status = 1";
+				$sql .= " AND (ebay.ebay_listing_id IS NOT NULL AND ebay.status = 1)";
 			}
 		}
 
@@ -686,7 +690,7 @@ class ModelOpenbayOpenbay extends Model {
 		}
 
 		if (isset($data['filter_manufacturer']) && !is_null($data['filter_manufacturer'])) {
-			$sql .= " AND p.manufacturer = '" . (int)$data['filter_manufacturer'] . "'";
+			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer'] . "'";
 		}
 
 		$sql .= " GROUP BY p.product_id";

@@ -48,6 +48,14 @@
               <option value="random" <?php echo ($ebaydisplay_module_sort == 'random' ? 'selected' : ''); ?>><?php echo $text_random; ?></option>
             </select></td>
           </tr>
+          <tr>
+            <td><?php echo $text_site; ?></td>
+            <td><select name="ebaydisplay_module_site">
+              <?php foreach ($ebay_sites as $id => $site) { ?>
+                <option value="<?php echo $id; ?>" <?php echo $id == $ebaydisplay_module_site ? ' selected' : ''; ?>><?php echo $site; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
         </table>
         <h3><?php echo $text_display; ?></h3>
         <table id="module" class="list">
@@ -62,70 +70,64 @@
               <td></td>
             </tr>
           </thead>
-        <?php $module_row = 0; ?>
-        <?php foreach ($modules as $module) { ?>
-          <tbody id="module-row<?php echo $module_row; ?>">
-            <tr>
-              <td class="left">
-                <input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][limit]" value="<?php echo $module['limit']; ?>" size="1" />
-              </td>
-              <td class="left">
-                <input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][image_width]" value="<?php echo $module['image_width']; ?>" size="3" /> x
-                <input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][image_height]" value="<?php echo $module['image_height']; ?>" size="3" /> px
-                <?php if (isset($error_image[$module_row])) { ?>
-                  <span class="error"><?php echo $error_image[$module_row]; ?></span>
-                <?php } ?>
-              </td>
-              <td class="left"><select name="ebaydisplay_module[<?php echo $module_row; ?>][layout_id]">
-                <?php foreach ($layouts as $layout) { ?>
-                  <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
-                    <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
+          <?php $module_row = 0; ?>
+          <?php foreach ($modules as $module) { ?>
+            <tbody id="module-row<?php echo $module_row; ?>">
+              <tr>
+                <td class="left"><input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][limit]" value="<?php echo $module['limit']; ?>" size="1" /></td>
+                <td class="left">
+                  <input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][image_width]" value="<?php echo $module['image_width']; ?>" size="3" />
+                  <input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][image_height]" value="<?php echo $module['image_height']; ?>" size="3" />
+                  <?php if (isset($error_image[$module_row])) { ?>
+                    <span class="error"><?php echo $error_image[$module_row]; ?></span>
                   <?php } ?>
-                <?php } ?>
-              </select></td>
-              <td class="left"><select name="ebaydisplay_module[<?php echo $module_row; ?>][position]">
-                <?php if ($module['position'] == 'content_top') { ?>
-                  <option value="content_top" selected="selected"><?php echo $text_content_top; ?></option>
-                <?php } else { ?>
-                  <option value="content_top"><?php echo $text_content_top; ?></option>
-                <?php } ?>
-                <?php if ($module['position'] == 'content_bottom') { ?>
-                  <option value="content_bottom" selected="selected"><?php echo $text_content_bottom; ?></option>
-                <?php } else { ?>
-                  <option value="content_bottom"><?php echo $text_content_bottom; ?></option>
-                <?php } ?>
-                <?php if ($module['position'] == 'column_left') { ?>
-                  <option value="column_left" selected="selected"><?php echo $text_column_left; ?></option>
-                <?php } else { ?>
-                  <option value="column_left"><?php echo $text_column_left; ?></option>
-                <?php } ?>
-                <?php if ($module['position'] == 'column_right') { ?>
-                  <option value="column_right" selected="selected"><?php echo $text_column_right; ?></option>
-                <?php } else { ?>
-                  <option value="column_right"><?php echo $text_column_right; ?></option>
-                <?php } ?>
-              </select></td>
-              <td class="left"><select name="ebaydisplay_module[<?php echo $module_row; ?>][status]">
-                <?php if ($module['status']) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                <?php } ?>
-              </select></td>
-              <td class="center">
-                <input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" />
-              </td>
-              <td class="center">
-                <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a>
-              </td>
-            </tr>
-          </tbody>
-        <?php $module_row++; ?>
-        <?php } ?>
+                </td>
+                <td class="left"><select name="ebaydisplay_module[<?php echo $module_row; ?>][layout_id]">
+                  <?php foreach ($layouts as $layout) { ?>
+                    <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
+                      <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
+                    <?php } ?>
+                  <?php } ?>
+                </select></td>
+                <td class="left"><select name="ebaydisplay_module[<?php echo $module_row; ?>][position]">
+                  <?php if ($module['position'] == 'content_top') { ?>
+                    <option value="content_top" selected="selected"><?php echo $text_content_top; ?></option>
+                  <?php } else { ?>
+                    <option value="content_top"><?php echo $text_content_top; ?></option>
+                  <?php } ?>
+                  <?php if ($module['position'] == 'content_bottom') { ?>
+                    <option value="content_bottom" selected="selected"><?php echo $text_content_bottom; ?></option>
+                  <?php } else { ?>
+                    <option value="content_bottom"><?php echo $text_content_bottom; ?></option>
+                  <?php } ?>
+                  <?php if ($module['position'] == 'column_left') { ?>
+                    <option value="column_left" selected="selected"><?php echo $text_column_left; ?></option>
+                  <?php } else { ?>
+                    <option value="column_left"><?php echo $text_column_left; ?></option>
+                  <?php } ?>
+                  <?php if ($module['position'] == 'column_right') { ?>
+                    <option value="column_right" selected="selected"><?php echo $text_column_right; ?></option>
+                  <?php } else { ?>
+                    <option value="column_right"><?php echo $text_column_right; ?></option>
+                  <?php } ?>
+                </select></td>
+                <td class="left"><select name="ebaydisplay_module[<?php echo $module_row; ?>][status]">
+                  <?php if ($module['status']) { ?>
+                    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                    <option value="0"><?php echo $text_disabled; ?></option>
+                  <?php } else { ?>
+                    <option value="1"><?php echo $text_enabled; ?></option>
+                    <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                  <?php } ?>
+                </select></td>
+                <td class="center"><input type="text" name="ebaydisplay_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" /></td>
+                <td class="center"><a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+              </tr>
+            </tbody>
+            <?php $module_row++; ?>
+          <?php } ?>
           <tfoot>
             <tr>
               <td colspan="6"></td>
@@ -142,37 +144,36 @@
 var module_row = <?php echo $module_row; ?>;
 
 function addModule() {
-	html  = '<tbody id="module-row' + module_row + '">';
-	html += '  <tr>';
-	html += '    <td class="left"><input type="text" name="ebaydisplay_module[' + module_row + '][limit]" value="5" size="1" /></td>';
-	html += '    <td class="left">';
-	html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_width]" value="100" size="3" /> x ';
-	html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_height]" value="100" size="3" /> px';
-	html += '    </td>';
-	html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][layout_id]">';
-	<?php foreach ($layouts as $layout) { ?>
-	html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';
-	<?php } ?>
-	html += '    </select></td>';
-	html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][position]">';
-	html += '      <option value="content_top"><?php echo $text_content_top; ?></option>';
-	html += '      <option value="content_bottom"><?php echo $text_content_bottom; ?></option>';
-	html += '      <option value="column_left"><?php echo $text_column_left; ?></option>';
-	html += '      <option value="column_right"><?php echo $text_column_right; ?></option>';
-	html += '    </select></td>';
-	html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][status]">';
-	html += '      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';
-	html += '      <option value="0"><?php echo $text_disabled; ?></option>';
-	html += '    </select></td>';
-	html += '    <td class="center"><input type="text" name="ebaydisplay_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
-	html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
-	html += '  </tr>';
-	html += '</tbody>';
+    html  = '<tbody id="module-row' + module_row + '">';
+    html += '  <tr>';
+    html += '    <td class="left"><input type="text" name="ebaydisplay_module[' + module_row + '][limit]" value="5" size="1" /></td>';
+    html += '    <td class="left">';
+    html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_width]" value="80" size="3" />';
+    html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_height]" value="80" size="3" />';
+    html += '    </td>';
+    html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][layout_id]">';
+    <?php foreach ($layouts as $layout) { ?>
+    html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';
+    <?php } ?>
+    html += '    </select></td>';
+    html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][position]">';
+    html += '      <option value="content_top"><?php echo $text_content_top; ?></option>';
+    html += '      <option value="content_bottom"><?php echo $text_content_bottom; ?></option>';
+    html += '      <option value="column_left"><?php echo $text_column_left; ?></option>';
+    html += '      <option value="column_right"><?php echo $text_column_right; ?></option>';
+    html += '    </select></td>';
+    html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][status]">';
+    html += '      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';
+    html += '      <option value="0"><?php echo $text_disabled; ?></option>';
+    html += '    </select></td>';
+    html += '    <td class="center"><input type="text" name="ebaydisplay_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
+    html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+    html += '  </tr>';
+    html += '</tbody>';
 
-	$('#module tfoot').before(html);
+    $('#module tfoot').before(html);
 
-	module_row++;
+    module_row++;
 }
 //--></script>
-
 <?php echo $footer; ?>

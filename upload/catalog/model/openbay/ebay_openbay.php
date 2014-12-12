@@ -50,10 +50,10 @@ class ModelOpenbayEbayOpenbay extends Model{
 
 		$order_id = $this->model_openbay_ebay_order->find($order->smpId);
 
-		$createdHours = (int)$this->config->get('openbaypro_created_hours');
-		if($createdHours == 0 || $createdHours == ''){ $createdHours = 24; } //This is a fallback value.
+		$created_hours = (int)$this->config->get('openbaypro_created_hours');
+		if($created_hours == 0 || $created_hours == ''){ $created_hours = 24; } //This is a fallback value.
 
-		$from = date("Y-m-d H:i:00", mktime(date("H")-(int)$createdHours, date("i"), date("s"), date("m"), date("d"), date("y")));
+		$from = date("Y-m-d H:i:00", mktime(date("H")-(int)$created_hours, date("i"), date("s"), date("m"), date("d"), date("y")));
 		$this->openbay->ebay->log('Accepting orders newer than: '.$from);
 
 		if($order_id != false){
@@ -230,10 +230,10 @@ class ModelOpenbayEbayOpenbay extends Model{
 		$currency = $this->model_localisation_currency->getCurrencyByCode($this->config->get('openbay_def_currency'));
 
 		if($this->config->get('openbaypro_create_date') == 1){
-			$createdDateObj     = new DateTime((string)$order->order->created);
+			$created_date_obj     = new DateTime((string)$order->order->created);
 			$offset             = ($this->config->get('openbaypro_time_offset') != '' ? (int)$this->config->get('openbaypro_time_offset') : (int)0);
-			$createdDateObj->modify($offset . ' hour');
-			$createdDate        = $createdDateObj->format('Y-m-d H:i:s');
+			$created_date_obj->modify($offset . ' hour');
+			$createdDate        = $created_date_obj->format('Y-m-d H:i:s');
 		}else{
 			$createdDate = date("Y-m-d H:i:s");
 			$offset = 0;
@@ -289,11 +289,11 @@ class ModelOpenbayEbayOpenbay extends Model{
 				//calculate taxes that come in from eBay
 				$this->openbay->ebay->log('create() - Using tax rates from eBay');
 
-				$priceNet = $price;
-				$this->openbay->ebay->log('create() - Net price: '.$priceNet);
+				$price_net = $price;
+				$this->openbay->ebay->log('create() - Net price: '.$price_net);
 
-				$totalNet = $price * $qty;
-				$this->openbay->ebay->log('create() - Total net price: '.$totalNet);
+				$total_net = $price * $qty;
+				$this->openbay->ebay->log('create() - Total net price: '.$total_net);
 
 				$tax = number_format((double)$txn->item->tax->item, 4,'.','');
 				$this->openbay->ebay->log('create() - Tax: '.$tax);
@@ -301,13 +301,13 @@ class ModelOpenbayEbayOpenbay extends Model{
 				//use the store pre-set tax-rate for everything
 				$this->openbay->ebay->log('create() - Using tax rates from store');
 
-				$priceNet = $price / $this->tax;
-				$this->openbay->ebay->log('create() - Net price: '.$priceNet);
+				$price_net = $price / $this->tax;
+				$this->openbay->ebay->log('create() - Net price: '.$price_net);
 
-				$totalNet = $priceNet * $qty;
-				$this->openbay->ebay->log('create() - Total net price: '.$totalNet);
+				$total_net = $price_net * $qty;
+				$this->openbay->ebay->log('create() - Total net price: '.$total_net);
 
-				$tax = number_format(($price - $priceNet), 4,'.','');
+				$tax = number_format(($price - $price_net), 4,'.','');
 				$this->openbay->ebay->log('create() - Tax: '.$tax);
 			}
 
@@ -322,8 +322,8 @@ class ModelOpenbayEbayOpenbay extends Model{
 					`name`                = '" . $this->db->escape(( (isset($txn->item->varianttitle) && !empty($txn->item->varianttitle)) ? $txn->item->varianttitle : $txn->item->name )) . "',
 					`model`               = '" . $this->db->escape($model_number) . "',
 					`quantity`            = '" . (int)$qty . "',
-					`price`               = '" . (double)$priceNet . "',
-					`total`               = '" . (double)$totalNet . "',
+					`price`               = '" . (double)$price_net . "',
+					`total`               = '" . (double)$total_net . "',
 					`tax`                 = '" . (double)$tax . "'
 				");
 
@@ -338,7 +338,7 @@ class ModelOpenbayEbayOpenbay extends Model{
 
 					if($product_id != false){
 						$skuParts = explode(':', $txn->item->variantsku);
-						$pOptions = array();
+						$p_options = array();
 
 						foreach($skuParts as $part){
 							$sql = "SELECT
@@ -358,7 +358,7 @@ class ModelOpenbayEbayOpenbay extends Model{
 							$option_qry = $this->db->query($sql);
 
 							if(!empty($option_qry->row)){
-								$pOptions[] = array(
+								$p_options[] = array(
 									'product_option_id'         => $option_qry->row['product_option_id'],
 									'product_option_value_id'   => $option_qry->row['product_option_value_id'],
 									'name'                      => $option_qry->row['name'],
@@ -369,7 +369,7 @@ class ModelOpenbayEbayOpenbay extends Model{
 						}
 
 						//insert into order_option table
-						foreach ($pOptions as $option) {
+						foreach ($p_options as $option) {
 							$this->db->query("
 								INSERT INTO `" . DB_PREFIX . "order_option`
 								SET
@@ -455,8 +455,8 @@ class ModelOpenbayEbayOpenbay extends Model{
 		   WHERE `order_id` = '".$this->db->escape($order_id)."'
 		   ");
 
-		$totalTax = 0;
-		$totalNet = 0;
+		$total_tax = 0;
+		$total_net = 0;
 
 		/* force array type */
 		if(!is_array($order->txn)) {
@@ -471,63 +471,65 @@ class ModelOpenbayEbayOpenbay extends Model{
 				//calculate taxes that come in from eBay
 				$this->openbay->ebay->log('updateOrderWithConfirmedData() - Using tax rates from eBay');
 
-				$totalTax   += (double)$txn->item->tax->total;
-				$totalNet   += $price * $qty;
+				$total_tax   += (double)$txn->item->tax->total;
+				$total_net   += $price * $qty;
 			}else{
 				//use the store pre-set tax-rate for everything
 				$this->openbay->ebay->log('updateOrderWithConfirmedData() - Using tax rates from store');
 
-				$itemNet     = $price / $this->tax;
-				$itemTax     = $price - $itemNet;
-				$lineNet     = $itemNet * $qty;
-				$lineTax     = $itemTax * $qty;
+				$item_net     = $price / $this->tax;
+				$item_tax     = $price - $item_net;
+				$line_net     = $item_net * $qty;
+				$line_tax     = $item_tax * $qty;
 
-				$totalTax   += number_format($lineTax, 4,'.','');
-				$totalNet   += $lineNet;
+				$total_tax   += number_format($line_tax, 4,'.','');
+				$total_net   += $line_net;
 			}
 		}
 
 		if($this->tax_type == 1){
-			$discountNet    = (double)$order->order->discount;
-			$shippingNet    = (double)$order->shipping->cost;
+			$discount_net    = (double)$order->order->discount;
+			$shipping_net    = (double)$order->shipping->cost;
 
-			$tax = number_format($totalTax, 4,'.','');
+			$tax = number_format($total_tax, 4,'.','');
 		}else{
-			$discountNet    = (double)$order->order->discount / $this->tax;
-			$discountTax    = (double)$order->order->discount - $discountNet;
-			$shippingNet    = (double)$order->shipping->cost / $this->tax;
-			$shippingTax    = (double)$order->shipping->cost - $shippingNet;
+			$discount_net    = (double)$order->order->discount / $this->tax;
+			$discount_tax    = (double)$order->order->discount - $discount_net;
+			$shipping_net    = (double)$order->shipping->cost / $this->tax;
+			$shipping_tax    = (double)$order->shipping->cost - $shipping_net;
 
-			$tax = number_format($shippingTax + $totalTax + $discountTax, 4,'.','');
+			$tax = number_format($shipping_tax + $total_tax + $discount_tax, 4,'.','');
 		}
 
-		$totals = number_format((double)$totalNet + (double)$shippingNet + (double)$tax + (double)$discountNet, 4,'.','');
+		$totals = number_format((double)$total_net + (double)$shipping_net + (double)$tax + (double)$discount_net, 4,'.','');
 
 		$data = array();
 
 		$data['totals'][0] = array(
 			'code'          => 'sub_total',
 			'title'         => $totals_language['lang_subtotal'],
-			'text'          => $this->db->escape($currency['symbol_left']).number_format($totalNet, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'         => number_format((double)$totalNet, 4,'.',''),
+			'text'          => $this->db->escape($currency['symbol_left']).number_format($total_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+			'value'         => number_format((double)$total_net, 4,'.',''),
 			'sort_order'    => '1'
 		);
 
 		$data['totals'][1] = array(
 			'code'          => 'shipping',
 			'title'         => $totals_language['lang_shipping'],
-			'text'          => $this->db->escape($currency['symbol_left']).number_format($shippingNet, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'         => number_format((double)$shippingNet, 4,'.',''),
+			'text'          => $this->db->escape($currency['symbol_left']).number_format($shipping_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+			'value'         => number_format((double)$shipping_net, 4,'.',''),
 			'sort_order'    => '3'
 		);
 
-		$data['totals'][2] = array(
-			'code'          => 'credit',
-			'title'         => $totals_language['lang_discount'],
-			'text'          => $this->db->escape($currency['symbol_left']).number_format($discountNet, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'         => number_format((double)$discountNet, 4,'.',''),
-			'sort_order'    => '4'
-		);
+		if ($discount_net != 0.00) {
+			$data['totals'][2] = array(
+				'code'          => 'coupon',
+				'title'         => $totals_language['lang_discount'],
+				'text'          => $this->db->escape($currency['symbol_left']).number_format($discount_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+				'value'         => number_format((double)$discount_net, 4,'.',''),
+				'sort_order'    => '4'
+			);
+		}
 
 		$data['totals'][3] = array(
 			'code'          => 'tax',
@@ -556,7 +558,6 @@ class ModelOpenbayEbayOpenbay extends Model{
 		$user['fname']  = $name_parts['firstname'];
 		$user['lname']  = $name_parts['surname'];
 
-		/** get the iso2 code from the data and pull out the correct country for the details. */
 		if(!empty($order->address->iso2)){
 			$country_qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '".$this->db->escape($order->address->iso2)."'");
 		}

@@ -78,8 +78,8 @@ class ModelOpenbayAmazonListing extends Model {
 		$result = json_decode($this->openbay->amazon->callWithResponse('productv3/getPrice', $search_params), 1);
 
 		if (isset($result['Price']['Amount']) && $result['Price']['Currency'] && $this->currency->has($result['Price']['Currency'])) {
-			$bestPrice['amount'] = number_format($this->currency->convert($result['Price']['Amount'], $result['Price']['Currency'], $this->config->get('config_currency')), 2);
-			$bestPrice['shipping'] = number_format($this->currency->convert($result['Price']['Shipping'], $result['Price']['Currency'], $this->config->get('config_currency')), 2);
+			$bestPrice['amount'] = number_format($this->currency->convert($result['Price']['Amount'], $result['Price']['Currency'], $this->config->get('config_currency')), 2, '.', '');
+			$bestPrice['shipping'] = number_format($this->currency->convert($result['Price']['Shipping'], $result['Price']['Currency'], $this->config->get('config_currency')), 2, '.', '');
 			$bestPrice['currency'] = $result['Price']['Currency'];
 		}
 
@@ -119,7 +119,7 @@ class ModelOpenbayAmazonListing extends Model {
 		$response = (array)$response;
 
 		if($response['status'] === 1) {
-			$this->db->query("REPLACE INTO `" . DB_PREFIX . "amazon_product` SET `product_id` = " . (int)$data['product_id'] . ", `status` = 'uploaded', `marketplaces` = '" . $this->db->escape($data['marketplace']) . "', `version` = 3, `var` = '" . isset($data['var']) ? $this->db->escape($data['var']) : '' . "'");
+			$this->db->query("REPLACE INTO `" . DB_PREFIX . "amazon_product` SET `product_id` = " . (int)$data['product_id'] . ", `status` = 'uploaded', `marketplaces` = '" . $this->db->escape($data['marketplace']) . "', `version` = 3, `var` = '" . $this->db->escape(isset($data['var']) ? $data['var'] : '') . "'");
 		}
 
 		return $response;

@@ -289,7 +289,9 @@ function show_form(xml, formType) {
             });
         },
         error: function (xhr, ajaxOptions, thrownError) {
-        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          if (xhr.status != 0) {
+          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
       }
     });
 }
@@ -486,17 +488,19 @@ function image_upload(field, thumb) {
         close: function (event, ui) {
             if ($('#' + field).attr('value')) {
                 $.ajax({
-                    url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
-                    dataType: 'text',
-                    success: function(data) {
-                        if(data != "") {
-                            $('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
-                            var imageUrl = $('#' + field).attr('value');
-                            $('#' + field).attr('value', '<?php echo HTTPS_CATALOG; ?>image/' + imageUrl);
-                        }
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                    alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                  url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
+                  dataType: 'text',
+                  success: function(data) {
+                      if(data != "") {
+                          $('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
+                          var imageUrl = $('#' + field).attr('value');
+                          $('#' + field).attr('value', '<?php echo HTTPS_CATALOG; ?>image/' + imageUrl);
+                      }
+                  },
+                  error: function (xhr, ajaxOptions, thrownError) {
+                    if (xhr.status != 0) {
+                      alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                    }
                   }
                 });
             }

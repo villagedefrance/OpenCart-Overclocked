@@ -109,11 +109,11 @@ class ControllerAmazonusOrder extends Controller {
 				continue;
 			}
 
-			$productId = $this->model_openbay_amazonus_order->getProductId((string)$item->Sku);
+			$product_id = $this->model_openbay_amazonus_order->getProductId((string)$item->Sku);
 			$productVar = $this->model_openbay_amazonus_order->getProductVar((string)$item->Sku);
 
 			$products[] = array(
-				'product_id' => $productId,
+				'product_id' => $product_id,
 				'var' => $productVar,
 				'sku' => (string)$item->Sku,
 				'asin' => (string)$item->Asin,
