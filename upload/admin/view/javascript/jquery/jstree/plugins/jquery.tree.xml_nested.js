@@ -1,10 +1,10 @@
-(function ($){ 
+(function($) {
 	if (typeof Sarissa == "undefined") throw "jsTree xml_nested: Sarissa is not included.";
 
 	$.extend($.tree.datastores, {
-		"xml_nested" : function (){ 
+		"xml_nested" : function() {
 			return {
-				get : function(obj, tree, opts){ 
+				get : function(obj, tree, opts) {
 					var str = "";
 					if (!obj || $(obj).size() == 0) {
 						obj = tree.container.children("ul").children("li");
@@ -14,7 +14,7 @@
 					if (obj.size() > 1) {
 						var _this = this;
 						var str	 = '<root>';
-						obj.each(function (){ 
+						obj.each(function() {
 							opts.callback = true;
 							str += _this.get(this, tree, opts);
 						});
@@ -28,7 +28,7 @@
 					if (!opts.callback) str += '<root>';
 
 					str += '<item ';
-					for(var i in opts.outer_attrib) {
+					for (var i in opts.outer_attrib) {
 						if (!opts.outer_attrib.hasOwnProperty(i)) continue;
 						var val = (opts.outer_attrib[i] == "class") ? obj.attr(opts.outer_attrib[i]).replace(/(^| )last( |$)/ig," ").replace(/(^| )(leaf|closed|open)( |$)/ig," ") : obj.attr(opts.outer_attrib[i]);
 						if (typeof val != "undefined" && val.toString().replace(" ","").length > 0) str += ' ' + opts.outer_attrib[i] + '="' + val.toString() + '" ';
@@ -38,7 +38,7 @@
 
 					str += '<content>';
 					if (tree.settings.languages.length) {
-						for(var i in tree.settings.languages) {
+						for (var i in tree.settings.languages) {
 							if (!tree.settings.languages.hasOwnProperty(i)) continue;
 							str += this.process_inner(obj.children("a." + tree.settings.languages[i]), tree, opts, tree.settings.languages[i]);
 						}
@@ -51,7 +51,7 @@
 					if (obj.children("ul").size() > 0) {
 						var _this = this;
 						opts.callback = true;
-						obj.children("ul").children("li").each(function (){ 
+						obj.children("ul").children("li").each(function() {
 							str += _this.get(this, tree, opts);
 						});
 						opts.callback = false;
@@ -61,7 +61,7 @@
 					if (!opts.callback) str += '</root>';
 					return str;
 				},
-				process_inner : function(obj, tree, opts, lang){ 
+				process_inner : function(obj, tree, opts, lang) {
 					var str = '<name ';
 					if (lang) str += ' lang="' + lang + '" ';
 					if (opts.inner_attrib.length || obj.children("ins").get(0).style.backgroundImage.toString().length || obj.children("ins").get(0).className.length) {
@@ -72,7 +72,7 @@
 							str += ' icon="' + obj.children("ins").get(0).style.backgroundImage.replace("url(","").replace(")","") + '" ';
 						}
 						if (opts.inner_attrib.length) {
-							for(var j in opts.inner_attrib) {
+							for (var j in opts.inner_attrib) {
 								if (!opts.inner_attrib.hasOwnProperty(j)) continue;
 								var val = obj.attr(opts.inner_attrib[j]);
 								if (typeof val != "undefined" && val.toString().replace(" ","").length > 0) str += ' ' + opts.inner_attrib[j] + '="' + val.toString() + '" ';
@@ -83,7 +83,7 @@
 					str += '><![CDATA[' + tree.get_text(obj,lang) + ']]></name>';
 					return str;
 				},
-				parse : function(data, tree, opts, callback){ 
+				parse : function(data, tree, opts, callback) {
 					var processor = new XSLTProcessor();
 					processor.importStylesheet($.tree.datastores.xml_nested.xsl);
 
@@ -93,24 +93,23 @@
 					if (result.is("ul")) result = result.html();
 					else result = result.find("ul:eq(0)").html();
 					if (callback) callback.call(null,result);
-
 					// Disabled because of Chrome issues
 					// if(callback) callback.call(null,(new XMLSerializer()).serializeToString(processor.transformToDocument(data)).replace(/^<ul[^>]*>/i,"").replace(/<\/ul>$/i,""));
 				},
-				load : function(data, tree, opts, callback){ 
+				load : function(data, tree, opts, callback) {
 					if (opts.static) {
 						callback.call(null, (new DOMParser()).parseFromString(opts.static,'text/xml'));
 					}
 					else {
 						$.ajax({
-							'type'		: opts.method,
-							'url'			: opts.url, 
-							'data'		: data, 
-							'dataType'	: "xml",
-							'success'	: function (d, textStatus){ 
+							'type' : opts.method,
+							'url' : opts.url, 
+							'data' : data, 
+							'dataType' : "xml",
+							'success' : function (d, textStatus) {
 								callback.call(null, d);
 							},
-							'error'		: function (xhttp, textStatus, errorThrown){ 
+							'error' : function (xhttp, textStatus, errorThrown) {
 								callback.call(null, false);
 								tree.error(errorThrown + " " + textStatus); 
 							}

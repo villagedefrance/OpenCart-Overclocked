@@ -1,10 +1,9 @@
 <?php
 class ControllerCommonFileManager extends Controller {
 	private $error = array();
-	private $_name = 'filemanager';
 
 	public function index() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$this->data['title'] = $this->language->get('heading_title');
 
@@ -34,8 +33,9 @@ class ControllerCommonFileManager extends Controller {
 		$this->data['button_view_list'] = $this->language->get('button_view_list');
 		$this->data['button_view_thumb'] = $this->language->get('button_view_thumb');
 
+		$this->data['text_top_folder'] = $this->language->get('text_top_folder');
 		$this->data['text_loading'] = $this->language->get('text_loading');
-		$this->data['text_no_file_found']	= $this->language->get('text_no_file_found');
+		$this->data['text_no_file_found'] = $this->language->get('text_no_file_found');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
 		$this->data['text_folder_delete'] = $this->language->get('text_folder_delete');
 		$this->data['text_folder_action'] = $this->language->get('text_folder_action');
@@ -74,7 +74,7 @@ class ControllerCommonFileManager extends Controller {
 			$this->data['fckeditor'] = false;
 		}
 
-		$this->template = 'common/' . $this->_name . '.tpl';
+		$this->template = 'common/filemanager.tpl';
 
 		$this->response->setOutput($this->render());
 	}
@@ -180,7 +180,7 @@ class ControllerCommonFileManager extends Controller {
 	}
 
 	public function create() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$json = array();
 
@@ -204,7 +204,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['error'] = $this->language->get('error_directory');
 		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
       		$json['error'] = $this->language->get('error_permission');
 		}
 
@@ -218,7 +218,7 @@ class ControllerCommonFileManager extends Controller {
 	}
 
 	public function delete() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$json = array();
 
@@ -237,7 +237,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['error'] = $this->language->get('error_select');
 		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
       		$json['error'] = $this->language->get('error_permission');
 		}
 
@@ -281,7 +281,7 @@ class ControllerCommonFileManager extends Controller {
 	}
 
 	public function move() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$json = array();
 
@@ -310,7 +310,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['error'] = $this->language->get('error_directory');
 		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
       		$json['error'] = $this->language->get('error_permission');
 		}
 
@@ -324,7 +324,7 @@ class ControllerCommonFileManager extends Controller {
 	}
 
 	public function copy() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$json = array();
 
@@ -355,7 +355,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['error'] = $this->language->get('error_select');
 		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
       		$json['error'] = $this->language->get('error_permission');
 		}
 
@@ -372,7 +372,7 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	function recursiveCopy($source, $destination) {
+	protected function recursiveCopy($source, $destination) {
 		$directory = opendir($source);
 
 		@mkdir($destination);
@@ -409,7 +409,7 @@ class ControllerCommonFileManager extends Controller {
 	}
 
 	public function rename() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$json = array();
 
@@ -437,7 +437,7 @@ class ControllerCommonFileManager extends Controller {
 			}
 		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
       		$json['error'] = $this->language->get('error_permission');
 		}
 
@@ -451,7 +451,7 @@ class ControllerCommonFileManager extends Controller {
 	}
 
 	public function upload() {
-		$this->language->load('common/' . $this->_name);
+		$this->language->load('common/filemanager');
 
 		$json = array();
 
@@ -469,7 +469,7 @@ class ControllerCommonFileManager extends Controller {
 					$json['error'] = $this->language->get('error_directory');
 				}
 
-				$file_max_size = $this->config->get('config_file_max_size');
+				$file_max_size = 1024000; // 1mb
 
 				if ($this->request->files['image']['size'] > (int)$file_max_size) {
 					$json['error'] = $this->language->get('error_file_size');
@@ -526,7 +526,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['error'] = $this->language->get('error_directory');
 		}
 
-		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
       		$json['error'] = $this->language->get('error_permission');
 		}
 

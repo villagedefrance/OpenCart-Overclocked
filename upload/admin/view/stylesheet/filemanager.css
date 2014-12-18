@@ -15,7 +15,7 @@ img {
 	height: 355px;
 	overflow: hidden;
 }
-#menu {
+#file-menu {
 	clear: both;
 	height: 29px;
 	margin-bottom: 3px;
@@ -60,7 +60,7 @@ img {
 	display: none;
 }
 /* Buttons */
-.filemanager_button {
+.filemanager-button {
 	display: block;
 	float: left;
 	padding: 8px 5px 8px 25px;
@@ -68,6 +68,7 @@ img {
 	margin-right: 5px;
 	background-position: 5px 6px;
 	background-repeat: no-repeat;
+	text-decoration: none;
 	cursor: pointer;
 }
 /* Images */
@@ -96,7 +97,7 @@ img {
 	background: #5C9CCC;
 	background-position: 0px -50px;
 }
-#updateImage a:hover { 
+#updateImage a:hover {
 	background-position: 0px 0px;
 	background-color: #EEE;
 }
@@ -107,12 +108,12 @@ img {
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
-.fileName { 
+.fileName {
 	display: block;
 }
-.fileSize { 
-	clear: both; 
-	display: block; 
+.fileSize {
+	clear: both;
+	display: block;
 }
 .feedback {
 	color: #1571B0;

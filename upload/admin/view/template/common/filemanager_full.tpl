@@ -1,11 +1,7 @@
 <?php echo $header; ?>
 <link rel="stylesheet" type="text/css" href="view/stylesheet/filemanager_full.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" />
 
-<script type="text/javascript" src="view/javascript/jquery/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.10.4.custom.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/external/jquery.bgiframe-2.1.2.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie.js"></script>
@@ -23,19 +19,19 @@
     <div class="heading">
       <h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
 	  <div class="buttons">
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button"><?php echo $button_exit; ?></a>
       </div>
     </div>
     <div class="content">
-      <div id="filemanager_menu">
-        <a id="create" class="filemanager_button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
-        <a id="delete" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
-        <a id="move" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
-        <a id="copy" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
-        <a id="rename" class="filemanager_button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
-        <a id="upload" class="filemanager_button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-        <a id="uploadmulti" class="filemanager_button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_uploads; ?>+</a>
-        <a id="refresh" class="filemanager_button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+      <div id="file-menu">
+        <a id="create" class="filemanager-button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
+        <a id="delete" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
+        <a id="move" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
+        <a id="copy" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
+        <a id="rename" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
+        <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
+        <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_uploads; ?>+</a>
+        <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
       </div>
       <div id="column-left"></div>
       <div id="column-right"></div>
@@ -49,11 +45,12 @@
       <span style="float:right; font-size:12px; padding-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
     </div>
   </div>
-	
+</div>
+
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#toolset button:first').button({
-		icons: { primary: "ui-icon-plus" }
+        icons: { primary: "ui-icon-plus" }
 	}).next().button({
 		icons: { primary: "ui-icon-minus" }
 	}).next().button({
@@ -64,35 +61,22 @@ $(document).ready(function() {
 		icons: { primary: "ui-icon-image" }
 	});
 
-	function truncate(name, len) {
-		var ext = name.substring(name.lastIndexOf(".") + 1, name.length).toLowerCase();
-		var filename = name.replace('.' + ext,'');
-
-		if (filename.length <= len) {
-			return name;
-		}
-
-		filename = filename.substr(0, len) + (name.length > len ? '<span style="color:Crimson;">..</span>' : '');
-
-		return filename + '.' + ext;
-	};
-
 	$('#column-left').tree({
-		plugins: {
-			cookie: {}
+		plugins : {
+			cookie : {}
 		},
 		data: {
 			type: 'json',
-			async: true,
+			async: true, 
 			opts: {
-				method: 'post',
+				method: 'post', 
 				url: 'index.php?route=common/filemanager_full/directory&token=<?php echo $token; ?>'
 			}
 		},
 		selected: 'top',
 		ui: {
-			theme_name: 'opencart',
-			animation: 100
+			theme_name: 'apple',
+			animation: 50
 		},
 		types: {
 			'default': {
@@ -110,7 +94,7 @@ $(document).ready(function() {
 			beforedata: function(NODE, TREE_OBJ) {
 				if (NODE == false) {
 					TREE_OBJ.settings.data.opts.static = [ {
-						data: 'image',
+						data: '<?php echo $text_top_folder; ?>',
 						attributes: {
 							'id': 'top',
 							'directory': ''
@@ -121,17 +105,15 @@ $(document).ready(function() {
 					return { 'directory': '' }
 
 					$('#column-left a.clicked').prepend('(' + json.length + ')');
-
 				} else {
 					TREE_OBJ.settings.data.opts.static = false;
 
 					return { 'directory': $(NODE).attr('directory') }
 				}
 			},
-			onselect: function(NODE, TREE_OBJ) {
+			onselect: function (NODE, TREE_OBJ) {
 				var dr;
 				var tree = $.tree.reference('#column-left a');
-
 				window.dr = $(tree.selected).attr('directory');
 
 				$.ajax({
@@ -139,31 +121,30 @@ $(document).ready(function() {
 					type: 'post',
 					data: 'directory=' + encodeURIComponent($(NODE).attr('directory')),
 					dataType: 'json',
-					success: function (json) {
+					success: function(json) {
 						html = '<div>';
 
-						if (json.length == 0) {
-							html += '<div class="feedback"><?php echo $text_no_file_found; ?></div>';
-						} else {
-							for (i = 0; i < json.length; i++) {
-								name = '';
-								filename = json[i]['filename'];
-								name += truncate(filename, 20);
-								size = json[i]['size'];
-								html += '<a file="' + json[i]['file'] + '" style="display:none; float:left;" title="' + filename +'"><span class="fileName">' + name + '</span><span class="fileSize">' + size + '</span><input type="hidden" name="image" value="' + json[i]['file'] + '" /></a>';
+						if (json) {
+							if (json.length == 0) {
+								html += '<div class="feedback"><?php echo $text_no_file_found; ?></div>';
+							} else {
+								for (i = 0; i < json.length; i++) {
+									html += '<a file="' + json[i]['file'] + '" style="display:none; float:left;" title="' + json[i]['filename'] +'"><span class="fileName">' + ((json[i]['filename'].length > 18) ? (json[i]['filename'].substr(0, 18) + '..') : json[i]['filename']) + '</span><span class="fileSize">' +  json[i]['size'] + '</span><input type="hidden" name="image" value="' + json[i]['file'] + '" /></a>';
+								}
 							}
 						}
 
 						html += '</div>';
 
 						$('#column-right').html(html);
+
 						$('#column-right a').each(function(index, element) {
 							$.ajax({
 								url: 'index.php?route=common/filemanager_full/image&token=<?php echo $token; ?>&image=' + encodeURIComponent('data/' + $(element).find('input[name=\'image\']').attr('value')),
 								dataType: 'html',
 								success: function(html) {
 									$(element).prepend('<img src="' + html + '" title="" alt="" /><br />');
-									$(element).fadeIn(100);
+									$(element).fadeIn();
 								}
 							});
 						});
@@ -178,33 +159,31 @@ $(document).ready(function() {
 
 				tr.each(function(index, domEle) {
 					dd = $(domEle).attr('directory');
-					dd = dd.replace(/\//g, "");
-					dd = dd.replace(" ", "");
+					dd = dd.replace(/\//g, ""); 
+					dd = dd.replace(" ", ""); 
 
 					$(domEle).attr('id', dd);
 				});
 
-				var myTree = $.tree.reference('#column-left a');
-				var cc = $.cookie('tree.selected');
+				var memTree = $.tree.reference('#column-left a');
+				var cc = $.cookie('selected');
 				var bb = '#' + cc;
 
-				myTree.select_branch(bb);
+				memTree.select_branch(bb);
 			}
 		}
 	});
 
 	$('#btnExpand').click(function() {
-		var myTree= $.tree.focused();
-
-		myTree.open_all('#top');
-		myTree.refresh(tree.select_branch);
+		var allTree= $.tree.focused();
+        allTree.open_all('#top');
+		allTree.refresh(allTree);
 	});
 
 	$('#btnCollapse').click(function() {
-		var myTree= $.tree.focused();
-
-		myTree.close_all('#top');
-		myTree.refresh(tree.selected);
+		var allTree= $.tree.focused();
+        allTree.close_all('#top');
+		allTree.refresh(allTree);
 	});
 
 	$('#btnTextView').click(function() {
@@ -220,7 +199,8 @@ $(document).ready(function() {
 			});
 			$('span.fileName').css({
 				'margin-top': '-10px',
-				'margin-left': '15px'
+				'margin-left': '15px',
+				'text-decoration': 'none'
 			});
 		});
 	});
@@ -248,7 +228,8 @@ $(document).ready(function() {
 			});
 			$('span.fileName').css({
 				'margin-top': '',
-				'margin-left': ''
+				'margin-left': '',
+				'text-decoration': 'none'
 			});
 		});
 	});
@@ -276,7 +257,8 @@ $(document).ready(function() {
 			});
 			$('span.fileName').css({
 				'margin-top': '',
-				'margin-left': ''
+				'margin-left': '',
+				'text-decoration': 'none'
 			});
 		});
 	});
@@ -286,7 +268,7 @@ $(document).ready(function() {
 			$(this).removeAttr('class');
 		} else {
 			$('#column-right a').removeAttr('class');
-
+			
 			$(this).attr('class', 'selected');
 
 			$('#updateImage').attr('file', $(this).attr('file'));
@@ -300,8 +282,43 @@ $(document).ready(function() {
 		<?php } else { ?>
 			parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).find('input[name=\'image\']').attr('value'));
 			parent.$('#dialog').dialog('close');
-			parent.$('#dialog').remove();
+			parent.$('#dialog').remove();	
 		<?php } ?>
+	});
+
+	$('#updateImage').bind('click', function() {
+		if ($(this).attr('file') == "") {
+			$('#dialog').remove();
+
+			html  = '<div id="dialog">';
+			html += '<p><?php echo $text_no_image; ?>';
+			html += '<?php echo $text_select_image; ?></p>';
+			html += '</div>';
+
+			$('#column-right').prepend(html);
+
+			$('#dialog').dialog({
+				resizable: false,
+				height: 220,
+				width: 400,
+				modal: true,
+				title: '<?php echo $text_update_image; ?>',
+				buttons: {
+					"<?php echo $text_yes_execute; ?>": function() {
+						$('#dialog').remove();
+					}
+				}
+			});
+		} else {
+			<?php if ($fckeditor) { ?>
+				window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).attr('file'));
+				self.close();
+			<?php } else { ?>
+				parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).attr('file'));
+				parent.$('#dialog').dialog('close');
+				parent.$('#dialog').remove();
+			<?php } ?>
+		}
 	});
 
 	$('#create').bind('click', function() {
@@ -373,40 +390,40 @@ $(document).ready(function() {
 				title: '<?php echo $text_folder_delete; ?>',
 				buttons: {
 					"<?php echo $text_yes_delete; ?>": function() {
-					var tree = $.tree.focused();
+						var tree = $.tree.focused();
 
-					if (tree.selected) {
-						$.ajax({
-							url: 'index.php?route=common/filemanager_full/delete&token=<?php echo $token; ?>',
-							type: 'post',
-							data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')),
-							dataType: 'json',
-							success: function (json) {
-								if (json.success) {
-									var tt = tree.prev(tree.selected);
+						if (tree.selected) {
+							$.ajax({
+								url: 'index.php?route=common/filemanager_full/delete&token=<?php echo $token; ?>',
+								type: 'post',
+								data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')),
+								dataType: 'json',
+								success: function(json) {
+									if (json.success) {
+										var tt = tree.prev(tree.selected);
 
-									tree.refresh(tree.parent(tree.selected));
+										tree.refresh(tree.parent(tree.selected));
 
-									tree.select_branch(tt);
+										tree.select_branch(tt);
+									}
+
+									if (json.error) {
+										alert(json.error);
+									}
+								},
+								error: function(xhr, ajaxOptions, thrownError) {
+									alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 								}
+							});
+						}
 
-								if (json.error) {
-									alert(json.error);
-								}
-							},
-							error: function(xhr, ajaxOptions, thrownError) {
-								alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-							}
-						});
+						$(this).dialog('close');
+					},
+					"<?php echo $text_no_cancel; ?>": function() {
+						$(this).dialog('close');
 					}
-
-					$(this).dialog('close');
-				},
-				"<?php echo $text_no_cancel; ?>": function() {
-					$(this).dialog('close');
 				}
-			}
-		});
+			});
 
 		} else if (path) {
 			var file = path.substring(path.lastIndexOf('/') + 1).toLowerCase();
@@ -532,42 +549,6 @@ $(document).ready(function() {
 				});
 			}
 		});
-	});
-
-	$('#updateImage').bind('click', function() {
-		if ($(this).attr('file') == "") {
-			$('#dialog').remove();
-
-			html  = '<div id="dialog">';
-			html += '<p><?php echo $text_no_image; ?>';
-			html += '<?php echo $text_select_image; ?></p>';
-			html += '</div>';
-
-			$('#column-right').prepend(html);
-
-			$('#dialog').dialog({
-				resizable: false,
-				height: 220,
-				width: 400,
-				modal: true,
-				title: '<?php echo $text_update_image; ?>',
-				buttons: {
-					"<?php echo $text_yes_execute; ?>": function() {
-						$('#dialog').remove();
-					}
-				}
-			});
-
-		} else {
-			<?php if ($fckeditor) { ?>
-				window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).attr('file'));
-				self.close();
-			<?php } else { ?>
-				parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).attr('file'));
-				parent.$('#dialog').dialog('close');
-				parent.$('#dialog').remove();
-			<?php } ?>
-		};
 	});
 
 	$('#copy').bind('click', function() {
@@ -723,9 +704,9 @@ $(document).ready(function() {
 			var tree = $.tree.focused();
 
 			if (tree.selected) {
-				this.setData({ 'directory': $(tree.selected).attr('directory') });
+				this.setData({'directory': $(tree.selected).attr('directory')});
 			} else {
-				this.setData({ 'directory': '' });
+				this.setData({'directory': ''});
 			}
 
 			this.submit();
@@ -736,6 +717,8 @@ $(document).ready(function() {
 				var tree = $.tree.focused();
 
 				tree.select_branch(tree.selected);
+
+				alert(json.success);
 			}
 
 			if (json.error) {
@@ -749,17 +732,10 @@ $(document).ready(function() {
 	$('#refresh').bind('click', function() {
 		var tree = $.tree.focused();
 
-		tree.select_branch(tree.selected);
+		tree.refresh(tree.selected);
 	});
 
 	// ----------------------- Multi Upload ------------------------
-
-	var dr;
-	var tree = $.tree.reference('#column-left a');
-
-	$('#column-left a').live('click', function() {
-		window.dr = $(tree.selected).attr('directory');
-	});
 
 	$('#uploadmulti').click(function() {
 		html  = '<div id="uploadMulti" title="<?php echo $text_upload_plus; ?>">';
@@ -769,7 +745,7 @@ $(document).ready(function() {
 		$('#column-left').prepend(html);
 
 		$('#uploadMulti').dialog({
-			height: '360',
+			height: '355',
 			width: '760',
 			modal: true,
 			resizable: false,
@@ -818,9 +794,8 @@ $(document).ready(function() {
 
 				$('#uploadMulti').remove();
 			}
-		})
-	})
+		});
+	});
 });
 //--></script>
-</div>
 <?php echo $footer; ?>

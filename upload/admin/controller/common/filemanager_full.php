@@ -29,6 +29,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->data['entry_copy'] = $this->language->get('entry_copy');
 		$this->data['entry_rename'] = $this->language->get('entry_rename');
 
+		$this->data['button_exit'] = $this->language->get('button_exit');
 		$this->data['button_folder'] = $this->language->get('button_folder');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_move'] = $this->language->get('button_move');
@@ -43,10 +44,10 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->data['button_view_text'] = $this->language->get('button_view_text');
 		$this->data['button_view_list'] = $this->language->get('button_view_list');
 		$this->data['button_view_thumb'] = $this->language->get('button_view_thumb');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
+		$this->data['text_top_folder'] = $this->language->get('text_top_folder');
 		$this->data['text_loading'] = $this->language->get('text_loading');
-		$this->data['text_no_file_found']	= $this->language->get('text_no_file_found');
+		$this->data['text_no_file_found'] = $this->language->get('text_no_file_found');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
 		$this->data['text_folder_delete'] = $this->language->get('text_folder_delete');
 		$this->data['text_folder_action'] = $this->language->get('text_folder_action');
@@ -389,7 +390,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	function recursiveCopy($source, $destination) {
+	protected function recursiveCopy($source, $destination) {
 		$directory = opendir($source);
 
 		@mkdir($destination);
@@ -486,7 +487,7 @@ class ControllerCommonFileManagerFull extends Controller {
 					$json['error'] = $this->language->get('error_directory');
 				}
 
-				$file_max_size = $this->config->get('config_file_max_size');
+				$file_max_size = 1024000; // 1mb
 
 				if ($this->request->files['image']['size'] > (int)$file_max_size) {
 					$json['error'] = $this->language->get('error_file_size');
