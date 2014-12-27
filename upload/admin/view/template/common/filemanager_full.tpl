@@ -1,6 +1,6 @@
 <?php echo $header; ?>
-<link rel="stylesheet" type="text/css" href="view/stylesheet/filemanager_full.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" />
+<link type="text/css" href="view/stylesheet/filemanager_full.css" rel="stylesheet" />
+<link type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
 
 <script type="text/javascript" src="view/javascript/jquery/ui/external/jquery.bgiframe-2.1.2.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
@@ -66,10 +66,10 @@ $(document).ready(function() {
 			cookie : {}
 		},
 		data: {
+			async: true,
 			type: 'json',
-			async: true, 
 			opts: {
-				method: 'post', 
+				method: 'post',
 				url: 'index.php?route=common/filemanager_full/directory&token=<?php echo $token; ?>'
 			}
 		},
@@ -94,7 +94,7 @@ $(document).ready(function() {
 			beforedata: function(NODE, TREE_OBJ) {
 				if (NODE == false) {
 					TREE_OBJ.settings.data.opts.static = [ {
-						data: '<?php echo $text_top_folder; ?>',
+						data: 'image',
 						attributes: {
 							'id': 'top',
 							'directory': ''

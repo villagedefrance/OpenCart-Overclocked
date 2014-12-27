@@ -100,6 +100,8 @@ class ControllerCommonFileManagerFull extends Controller {
 	public function image() {
 		$this->load->model('tool/image');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->request->get['image'])) {
 			$this->response->setOutput($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100));
 		}
@@ -133,6 +135,8 @@ class ControllerCommonFileManagerFull extends Controller {
 	}
 
 	public function files() {
+		$this->data['token'] = $this->session->data['token'];
+
 		$json = array();
 
 		if (!empty($this->request->post['directory'])) {

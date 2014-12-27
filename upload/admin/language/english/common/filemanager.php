@@ -1,9 +1,8 @@
 <?php
 // Heading
-$_['heading_title']    		= 'File Manager';
+$_['heading_title']    		= 'Image Manager';
  
 // Text
-$_['text_top_folder']     	= 'Files';
 $_['text_uploaded']  		= 'Success: Your file has been uploaded!';
 $_['text_file_delete'] 		= 'File has been deleted!';
 $_['text_create']      		= 'Success: Directory created!';

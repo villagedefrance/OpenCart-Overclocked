@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
-<link rel="stylesheet" type="text/css" href="view/stylesheet/filemanager.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" />
+<link type="text/css" href="view/stylesheet/filemanager.css" rel="stylesheet" />
+<link type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
+<link type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
 
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
@@ -62,10 +62,10 @@ $(document).ready(function() {
 			cookie : {}
 		},
 		data: {
+			async: true,
 			type: 'json',
-			async: true, 
 			opts: {
-				method: 'post', 
+				method: 'post',
 				url: 'index.php?route=common/filemanager/directory&token=<?php echo $token; ?>'
 			}
 		},
@@ -90,7 +90,7 @@ $(document).ready(function() {
 			beforedata: function(NODE, TREE_OBJ) {
 				if (NODE == false) {
 					TREE_OBJ.settings.data.opts.static = [ {
-						data: '<?php echo $text_top_folder; ?>',
+						data: 'image',
 						attributes: {
 							'id': 'top',
 							'directory': ''
