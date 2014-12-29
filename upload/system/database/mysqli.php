@@ -17,7 +17,7 @@ final class DBMySQLi {
 	public function query($sql) {
 		$query = $this->link->query($sql);
 
-		if (!$this->link->errno){
+		if (!$this->link->errno) {
 			if (isset($query->num_rows)) {
 				$data = array();
 
@@ -35,7 +35,7 @@ final class DBMySQLi {
 				$query->close();
 
 				return $result;
-			} else{
+			} else {
 				return true;
 			}
 		} else {
