@@ -1,18 +1,24 @@
 /* Page Styles */
-#file-menu {
+#files-menu {
 	clear: both;
-	background: #4A4A4A;
 	position: relative;
 	height: 33px;
 	min-width: 900px;
-	border: 1px solid #4A4A4A;
+	background-color: #4A4A4A;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#4A4A4A), to(#333));
+	background-image: -webkit-linear-gradient(top, #4A4A4A, #333);
+	background-image: -moz-linear-gradient(top, #4A4A4A, #333);
+	background-image: -ms-linear-gradient(top, #4A4A4A, #333);
+	background-image: -o-linear-gradient(top, #4A4A4A, #333);
+	background-image: linear-gradient(to bottom, #4A4A4A, #333);
+	border-bottom: 1px solid #333;
 	-webkit-border-radius: 3px 3px 0px 0px;
 	-moz-border-radius: 3px 3px 0px 0px;
 	-khtml-border-radius: 3px 3px 0px 0px;
 	border-radius: 3px 3px 0px 0px;
 	padding-left: 10px;
 }
-#file-menu a {
+#files-menu a {
 	color: #FFF;
 	padding-left: 27px;
 	margin-right: 15px;
@@ -21,24 +27,31 @@
 	background: #FFF;
 	border: 1px solid #CCC;
 	border-top: none;
+	-webkit-border-radius: 0px 0px 0px 3px;
+	-moz-border-radius: 0px 0px 0px 3px;
+	-khtml-border-radius: 0px 0px 0px 3px;
+	border-radius: 0px 0px 0px 3px;
 	float: left;
 	width: 25%;
 	height: 400px;
-	overflow: auto;
-	padding-top: 5px;
 	margin-bottom: 20px;
+	padding-top: 5px;
 }
 #column-right {
 	background: #FFF;
 	border: 1px solid #CCC;
-	border-top:none;
+	border-top: none;
+	-webkit-border-radius: 0px 0px 3px 0px;
+	-moz-border-radius: 0px 0px 3px 0px;
+	-khtml-border-radius: 0px 0px 3px 0px;
+	border-radius: 0px 0px 3px 0px;
 	float: right;
 	width: 73%;
 	height: 400px;
-	overflow: auto;
 	text-align: center;
 	margin-bottom: 20px;
 	padding-top: 5px;
+	overflow: auto;
 }
 #column-right div {
 	text-align: left;

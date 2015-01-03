@@ -33,7 +33,6 @@ class ControllerCommonFileManager extends Controller {
 		$this->data['button_view_list'] = $this->language->get('button_view_list');
 		$this->data['button_view_thumb'] = $this->language->get('button_view_thumb');
 
-		$this->data['text_top_folder'] = $this->language->get('text_top_folder');
 		$this->data['text_loading'] = $this->language->get('text_loading');
 		$this->data['text_no_file_found'] = $this->language->get('text_no_file_found');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');

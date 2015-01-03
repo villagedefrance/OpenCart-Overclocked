@@ -9,6 +9,7 @@
 <script type="text/javascript" src="view/javascript/plupload/js/plupload.full.min.js"></script>
 <script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script>
+
 <div id="content">
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -23,14 +24,14 @@
       </div>
     </div>
     <div class="content">
-      <div id="file-menu">
+      <div id="files-menu">
         <a id="create" class="filemanager-button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
         <a id="delete" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
         <a id="move" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
         <a id="copy" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
         <a id="rename" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
         <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-        <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_uploads; ?>+</a>
+        <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
         <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
       </div>
       <div id="column-left"></div>
@@ -50,15 +51,15 @@
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#toolset button:first').button({
-        icons: { primary: "ui-icon-plus" }
+        icons: { primary:'ui-icon-plus' }
 	}).next().button({
-		icons: { primary: "ui-icon-minus" }
+		icons: { primary:'ui-icon-minus' }
 	}).next().button({
-		icons: { primary: "ui-icon-pencil" }
+		icons: { primary:'ui-icon-pencil' }
 	}).next().button({
-		icons: { primary: "ui-icon-grip-dotted-horizontal" }
+		icons: { primary:'ui-icon-grip-dotted-horizontal' }
 	}).next().button({
-		icons: { primary: "ui-icon-image" }
+		icons: { primary:'ui-icon-image' }
 	});
 
 	$('#column-left').tree({
