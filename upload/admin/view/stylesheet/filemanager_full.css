@@ -33,8 +33,8 @@
 	border-radius: 0px 0px 0px 3px;
 	float: left;
 	width: 25%;
-	height: 400px;
-	margin-bottom: 20px;
+	height: 367px;
+	margin-bottom: 9px;
 	padding-top: 5px;
 }
 #column-right {
@@ -49,7 +49,7 @@
 	width: 73%;
 	height: 400px;
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	padding-top: 5px;
 	overflow: auto;
 }
@@ -125,6 +125,38 @@
 #updateImage a:hover {
 	background-position: 0px 0px;
 	background-color: #EEE;
+}
+/* Filter */
+.filter {
+	position: relative;
+	clear: left;
+	float: left;
+    width: 25%;
+	background: #FFF;
+    border: 1px solid #CCC;
+	margin: 0px 0px 15px 0px;
+}
+.filter > input {
+	margin: 0;
+	padding: 1px 0px 1px 2px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	background: #FFF;
+	border: none;
+	height: 20px;
+	width: 80%;
+}
+.filter > input:focus {
+	margin: 0;
+	outline: 0;
+}
+.filter > img {
+	position: relative;
+	float: right;
+	background: #FFF;
+	line-height: 20px;
+	margin-right: 2px;
 }
 /* Tools */
 #toolset .btn {

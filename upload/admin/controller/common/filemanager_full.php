@@ -101,6 +101,28 @@ class ControllerCommonFileManagerFull extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		$ext = utf8_substr(strrchr($this->request->get['image'], '.'), 1);
+
+        if (strtolower($ext) == 'pdf') {
+            $this->request->get['image'] = 'pdf.png';
+        }
+
+		if (strtolower($ext) == 'flv') {
+            $this->request->get['image'] = 'flv.png';
+        }
+
+		if (strtolower($ext) == 'swf') {
+            $this->request->get['image'] = 'swf.png';
+        }
+
+		if (strtolower($ext) == 'zip') {
+            $this->request->get['image'] = 'zip.png';
+        }
+
+		if (strtolower($ext) == 'rar') {
+            $this->request->get['image'] = 'rar.png';
+        }
+
 		if (isset($this->request->get['image'])) {
 			$this->response->setOutput($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100));
 		}
@@ -145,15 +167,15 @@ class ControllerCommonFileManagerFull extends Controller {
 		}
 
 		$allowed = array(
-			'.jpg',
-			'.jpeg',
-			'.png',
-			'.gif',
-			'.zip',
-			'.rar',
-			'.pdf',
-			'.swf',
-			'.flv'
+			'jpg',
+			'jpeg',
+			'png',
+			'gif',
+			'zip',
+			'rar',
+			'pdf',
+			'swf',
+			'flv'
 		);
 
 		$files = glob(rtrim($directory, '/') . '/*');
@@ -161,7 +183,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		if ($files) {
 			foreach ($files as $file) {
 				if (is_file($file)) {
-					$ext = strrchr($file, '.');
+					$ext = utf8_substr(strrchr($file, '.'), 1);
 				} else {
 					$ext = '';
 				}
@@ -502,9 +524,14 @@ class ControllerCommonFileManagerFull extends Controller {
 					'image/png',
 					'image/x-png',
 					'image/gif',
+					'multipart/x-zip',
 					'application/zip',
+					'application/x-compressed',
+					'application/x-zip-compressed',
+					'application/rar',
 					'application/x-rar-compressed',
 					'application/pdf',
+					'application/x-pdf',
 					'application/x-shockwave-flash'
 				);
 

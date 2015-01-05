@@ -31,8 +31,11 @@
     <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
     <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
   </div>
-  <div id="column-left"></div>
   <div id="column-right"></div>
+  <div id="column-left"></div>
+  <div class="filter">
+    <input type="text" name="filter" id="filter" /><img src="view/image/filemanager/filter.png" alt="" />
+  </div>
   <div id="toolset">
     <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
     <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
@@ -125,7 +128,7 @@ $(document).ready(function() {
 								html += '<div class="feedback"><?php echo $text_no_file_found; ?></div>';
 							} else {
 								for (i = 0; i < json.length; i++) {
-									html += '<a file="' + json[i]['file'] + '" style="display:none; float:left;" title="' + json[i]['filename'] +'"><span class="fileName">' + ((json[i]['filename'].length > 18) ? (json[i]['filename'].substr(0, 18) + '..') : json[i]['filename']) + '</span><span class="fileSize">' +  json[i]['size'] + '</span><input type="hidden" name="image" value="' + json[i]['file'] + '" /></a>';
+									html += '<a file="' + json[i]['file'] + '" style="display:none; float:left;" title="' + json[i]['filename'] + '"><span class="fileName">' + ((json[i]['filename'].length > 16) ? (json[i]['filename'].substr(0, 16) + '..') : json[i]['filename']) + '</span><span class="fileSize">' + json[i]['size'] + '</span><input type="hidden" name="image" value="' + json[i]['file'] + '" /></a>';
 								}
 							}
 						}
@@ -315,6 +318,38 @@ $(document).ready(function() {
 				parent.$('#dialog').remove();
 			<?php } ?>
 		}
+	});
+
+	$('#filter').keyup(function() {
+		var filter = $(this).val();
+
+		$('#column-right a').each(function() {
+			var image = $(this).text();
+			var text = image.split('.');
+
+			image = text[0];
+
+			if (image.indexOf(filter) > -1) {
+				$(this).css('display','inline-block');
+			} else {
+				$(this).css('display','none');
+			}
+		});
+
+		$('#column-right a').each(function(index, element) {
+			var height = $('#column-right').height();
+			var offset = $(element).offset();
+
+			if ((offset.top > 0) && (offset.top < height) && $(element).find('img').attr('src') == '<?php echo $no_image; ?>') {
+				$.ajax({
+					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent('data/' + $(element).find('input[name=\'image\']').attr('value')),
+					dataType: 'html',
+					success: function(html) {
+						$(element).find('img').replaceWith('<img src="' + html + '" alt="" title="" />');
+					}
+				});
+			}
+		});
 	});
 
 	$('#create').bind('click', function() {

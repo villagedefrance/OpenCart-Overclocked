@@ -25,7 +25,7 @@ img {
 	border: 1px solid #CCC;
 	float: left;
 	width: 26%;
-	height: 285px;
+	height: 258px;
 	overflow: auto;
 }
 #column-right {
@@ -100,6 +100,35 @@ img {
 #updateImage a:hover {
 	background-position: 0px 0px;
 	background-color: #EEE;
+}
+/* Filter */
+.filter {
+	position: relative;
+	clear: left;
+	float: left;
+    width: 26%;
+	background: #FFF;
+    border: 1px solid #CCC;
+	margin: 3px 0px 0px 0px;
+}
+.filter > input {
+	margin: 0;
+	padding-left: 2px;
+	background: #FFF;
+	border: none;
+	height: 20px;
+	width: 80%;
+}
+.filter > input:focus {
+	margin: 0;
+	outline: 0;
+}
+.filter > img {
+	position: relative;
+	float: right;
+	background: #FFF;
+	line-height: 20px;
+	margin-right: 2px;
 }
 /* Tools */
 #toolset .btn {
