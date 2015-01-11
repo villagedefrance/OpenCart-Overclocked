@@ -43,7 +43,9 @@
     <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
     <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
   </div>
-  <span style="float:right; font-size:12px; margin-top:10px; padding-right:10px; color:#269BC6;">Overclocked Edition</span>
+  <span style="float:right; font-size:12px; padding:10px 10px 0px 0px; color:#269BC6;">
+    <a onclick="window.open('http://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
+  </span>
 </div>
 
 <script type="text/javascript"><!--

@@ -44,6 +44,7 @@ img {
 #column-right a {
 	display: inline-block;
 	text-align: center;
+	text-decoration: none;
 	border: 1px solid #EEE;
 	cursor: pointer;
 	margin: 5px;
@@ -131,6 +132,9 @@ img {
 	margin-right: 2px;
 }
 /* Tools */
+#toolset {
+	clear: both;
+}
 #toolset .btn {
 	float: left;
 	font-size: 10px;
