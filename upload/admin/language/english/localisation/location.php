@@ -21,11 +21,11 @@ $_['column_action']    		= 'Action';
 
 // Entry
 $_['entry_name']       		= 'Store Name:';
-$_['entry_address']    		= 'Address:';
+$_['entry_address']    		= 'Enter/Select Address:<br /><span class="help">Auto-completed as you type.</span>';
 $_['entry_telephone']  		= 'Telephone:';
 $_['entry_image']      		= 'Image:';
-$_['entry_latitude']    		= 'Latitude:<br /><span class="help">Enter a decimal value, i.e London: 51.500152</span>';
-$_['entry_longitude']			= 'Longitude:<br /><span class="help">Enter a decimal value, i.e London: -0.126236</span>';
+$_['entry_latitude'] 			= 'Address Latitude:<br /><span class="help">Generated automatically from address selected.</span>';
+$_['entry_longitude'] 		= 'Address Longitude:<br /><span class="help">Generated automatically from address selected.</span>';
 $_['entry_open']       		= 'Opening Times:<br /><span class="help">Fill in your store opening times.</span>';
 $_['entry_comment'] 		= 'Comment:<br /><span class="help">This field is for any special notes you would like to tell the customer, i.e. Free car park.</span>';
 

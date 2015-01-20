@@ -33,6 +33,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_map'] = $this->language->get('text_map');
 		$this->data['text_items'] = $this->language->get('text_items');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
@@ -72,6 +73,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_location'] = $this->language->get('entry_location');
+		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
+		$this->data['entry_longitude'] = $this->language->get('entry_longitude');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
@@ -442,6 +446,24 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_fax'] = $this->request->post['config_fax'];
 		} else {
 			$this->data['config_fax'] = $this->config->get('config_fax');
+		}
+
+		if (isset($this->request->post['config_location'])) {
+			$this->data['config_location'] = $this->request->post['config_location'];
+		} else {
+			$this->data['config_location'] = $this->config->get('config_location');
+		}
+
+		if (isset($this->request->post['config_latitude'])) {
+			$this->data['config_latitude'] = $this->request->post['config_latitude'];
+		} else {
+			$this->data['config_latitude'] = $this->config->get('config_latitude');
+		}
+
+		if (isset($this->request->post['config_longitude'])) {
+			$this->data['config_longitude'] = $this->request->post['config_longitude'];
+		} else {
+			$this->data['config_longitude'] = $this->config->get('config_longitude');
 		}
 
 		if (isset($this->request->post['config_title'])) {

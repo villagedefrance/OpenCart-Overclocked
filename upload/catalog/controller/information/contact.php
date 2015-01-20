@@ -46,11 +46,33 @@ class ControllerInformationContact extends Controller {
 
 		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_contact'] = $this->language->get('text_contact');
+		$this->data['text_geolocation'] = $this->language->get('text_geolocation');
+		$this->data['text_latitude'] = $this->language->get('text_latitude');
+		$this->data['text_longitude'] = $this->language->get('text_longitude');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
+
+		$map_location = $this->config->get('config_location');
+
+		if (!empty($map_location)) {
+			$this->document->addScript('catalog/view/javascript/gmap/gmap3.min.js');
+			$this->document->addScript('catalog/view/javascript/gmap/gmap3.infobox.js');
+
+			$this->data['map_location'] = $map_location;
+			$this->data['map_latitude'] = $this->config->get('config_latitude');
+			$this->data['map_longitude'] = $this->config->get('config_longitude');
+
+			$this->data['map'] = true;
+		} else {
+			$this->data['map_location'] = '';
+			$this->data['map_latitude'] = '';
+			$this->data['map_longitude'] = '';
+
+			$this->data['map'] = false;
+		}
 
 		if (isset($this->error['name'])) {
 			$this->data['error_name'] = $this->error['name'];

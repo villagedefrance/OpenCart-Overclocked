@@ -4,6 +4,7 @@ $_['heading_title']                		= 'Settings';
 
 // Text
 $_['text_success']                 		= 'Success: You have modified <b>Settings</b> !';
+$_['text_map']                    			= 'Google Map';
 $_['text_items']                    		= 'Items';
 $_['text_product']                 		= 'Products';
 $_['text_voucher']                 		= 'Vouchers';
@@ -33,6 +34,9 @@ $_['entry_address']                		= 'Address:';
 $_['entry_email']                 			= 'E-Mail:';
 $_['entry_telephone']              		= 'Telephone:';
 $_['entry_fax']                    			= 'Fax:';
+$_['entry_location'] 						= 'Enter/Select Address:<br /><span class="help">Auto-completed as you type.</span>';
+$_['entry_latitude'] 						= 'Address Latitude:<br /><span class="help">Generated automatically from address selected.</span>';
+$_['entry_longitude'] 					= 'Address Longitude:<br /><span class="help">Generated automatically from address selected.</span>';
 $_['entry_title']                  			= 'Title:';
 $_['entry_meta_description']			= 'Meta Tag Description:';
 $_['entry_layout']                 		= 'Default Layout:';

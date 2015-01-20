@@ -76,6 +76,21 @@
             <td><input type="text" name="config_fax" value="<?php echo $config_fax; ?>" /></td>
           </tr>
         </table>
+		<h2><?php echo $text_map; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_location; ?></td>
+            <td><input id="search_address" name="config_location" type="text" value="<?php echo isset($config_location) ? $config_location : ''; ?>" autocomplete="on" runat="server" size="80" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_latitude; ?></td>
+            <td><input id="location_latitude" name="config_latitude" value="<?php echo isset($config_latitude) ? $config_latitude : ''; ?>" size="30" readonly="readonly" /> &deg; N</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_longitude; ?></td>
+            <td><input id="location_longitude" name="config_longitude" value="<?php echo isset($config_longitude) ? $config_longitude : ''; ?>" size="30" readonly="readonly" /> &deg; E</td>
+          </tr>
+        </table>
       </div>
       <div id="tab-store">
         <table class="form">
@@ -1311,6 +1326,25 @@
     </div>
   </div>
 </div>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript"><!--
+function initialize() {
+	var input = document.getElementById('search_address');
+	var autocomplete = new google.maps.places.Autocomplete(input);
+	google.maps.event.addListener(autocomplete, 'place_changed', function() {
+		var place = autocomplete.getPlace();
+
+		var lat = place.geometry.location.lat();
+		var lon = place.geometry.location.lng();
+
+		document.getElementById('location_latitude').value = lat;
+		document.getElementById('location_longitude').value = lon;
+	});
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+//--></script>
 
 <script type="text/javascript"><!--
 $('#template').load('index.php?route=setting/setting/template&token=<?php echo $token; ?>&template=' + encodeURIComponent($('select[name=\'config_template\']').attr('value')));
