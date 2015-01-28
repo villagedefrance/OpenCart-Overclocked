@@ -34,7 +34,7 @@
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
 		    <td class="left"><?php echo $column_filesize; ?></td>
-            <td class="right"><?php if ($sort == 'd.remaining') { ?>
+            <td class="left"><?php if ($sort == 'd.remaining') { ?>
               <a href="<?php echo $sort_remaining; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_remaining; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_remaining; ?>"><?php echo $column_remaining; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -53,7 +53,7 @@
             <?php } ?></td>
             <td class="left"><?php echo $download['name']; ?></td>
 			<td class="left"><?php echo $download['filesize']; ?></td>
-            <td class="right"><?php echo $download['remaining']; ?></td>
+            <td class="center"><?php echo $download['remaining']; ?></td>
             <td class="right"><?php foreach ($download['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

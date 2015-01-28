@@ -208,8 +208,8 @@ class ControllerCatalogProfile extends Controller {
 			$this->data['profiles'][] = array(
 				'profile_id'	=> $result['profile_id'],
 				'name' 		=> $result['name'],
-				'sort_order'	=> $result['sort_order'],
 				'status' 		=> $result['status'],
+				'sort_order'	=> $result['sort_order'],
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['profile_id'], $this->request->post['selected']),
 				'action' 		=> $action
 			);
@@ -220,8 +220,8 @@ class ControllerCatalogProfile extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
 		$this->data['column_status'] = $this->language->get('column_status');
+		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -254,8 +254,8 @@ class ControllerCatalogProfile extends Controller {
 		}
 
 		$this->data['sort_name'] = $this->url->link('catalog/profile', 'token=' . $this->session->data['token'] . '&sort=pfd.name' . $url, 'SSL');
-		$this->data['sort_sort_order'] = $this->url->link('catalog/profile', 'token=' . $this->session->data['token'] . '&sort=pf.sort_order' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('catalog/profile', 'token=' . $this->session->data['token'] . '&sort=pf.status' . $url, 'SSL');
+		$this->data['sort_sort_order'] = $this->url->link('catalog/profile', 'token=' . $this->session->data['token'] . '&sort=pf.sort_order' . $url, 'SSL');
 
 		$url = '';
 

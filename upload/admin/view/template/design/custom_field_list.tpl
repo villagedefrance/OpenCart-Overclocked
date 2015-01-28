@@ -40,7 +40,7 @@
           <?php } else { ?>
             <a href="<?php echo $sort_location; ?>"><?php echo $column_location; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="right"><?php if ($sort == 'cf.sort_order') { ?>
+          <td class="left"><?php if ($sort == 'cf.sort_order') { ?>
             <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -60,7 +60,7 @@
           <td class="left"><?php echo $custom_field['name']; ?></td>
           <td class="left"><?php echo $custom_field['type']; ?></td>
           <td class="left"><?php echo $custom_field['location']; ?></td>
-          <td class="right"><?php echo $custom_field['sort_order']; ?></td>
+          <td class="center"><?php echo $custom_field['sort_order']; ?></td>
           <td class="right"><?php foreach ($custom_field['action'] as $action) { ?>
             <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
           <?php } ?></td>

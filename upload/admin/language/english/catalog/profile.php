@@ -20,8 +20,8 @@ $_['text_recurring_help']		= 'Recurring amounts are calculated by the frequency 
 
 // Column
 $_['column_name'] 				= 'Name';
-$_['column_sort_order'] 		= 'Sort Order';
 $_['column_status'] 				= 'Status';
+$_['column_sort_order'] 		= 'Sort Order';
 $_['column_action'] 				= 'Action';
 
 // Entry

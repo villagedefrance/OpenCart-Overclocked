@@ -33,7 +33,7 @@
           <?php } else { ?>
             <a href="<?php echo $sort_name; ?>"><?php echo $column_group; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="right"><?php if ($sort == 'fg.sort_order') { ?>
+          <td class="left"><?php if ($sort == 'fg.sort_order') { ?>
             <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -51,7 +51,7 @@
                 <input type="checkbox" name="selected[]" value="<?php echo $filter['filter_group_id']; ?>" />
               <?php } ?></td>
               <td class="left"><?php echo $filter['name']; ?></td>
-              <td class="right"><?php echo $filter['sort_order']; ?></td>
+              <td class="center"><?php echo $filter['sort_order']; ?></td>
               <td class="right"><?php foreach ($filter['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>

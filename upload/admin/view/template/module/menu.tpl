@@ -41,7 +41,9 @@
           <?php foreach ($modules as $module) { ?>
           <tbody id="module-row<?php echo $module_row; ?>">
             <tr>
-              <td class="left"><select name="menu_module[<?php echo $module_row; ?>][menu_id]">
+              <td class="left">
+			  <?php if ($menus) { ?>
+              <select name="menu_module[<?php echo $module_row; ?>][menu_id]">
                 <?php foreach ($menus as $menu) { ?>
                   <?php if ($menu['menu_id'] == $module['menu_id']) { ?>
                     <option value="<?php echo $menu['menu_id']; ?>" selected="selected"><?php echo $menu['title']; ?></option>
@@ -49,7 +51,9 @@
                     <option value="<?php echo $menu['menu_id']; ?>"><?php echo $menu['title']; ?></option>
                   <?php } ?>
                 <?php } ?>
-              </select></td>
+              </select>
+              <?php } ?>
+              </td>
               <td class="left"><select name="menu_module[<?php echo $module_row; ?>][layout_id]">
                 <?php foreach ($layouts as $layout) { ?>
                   <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
@@ -110,8 +114,10 @@ function addModule() {
 	html  = '<tbody id="module-row' + module_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left"><select name="menu_module[' + module_row + '][menu_id]">';
+    <?php if ($menus) { ?>
 	<?php foreach ($menus as $menu) { ?>
 	html += '      <option value="<?php echo $menu['menu_id']; ?>"><?php echo addslashes($menu['title']); ?></option>';
+	<?php } ?>
 	<?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_module[' + module_row + '][layout_id]">';

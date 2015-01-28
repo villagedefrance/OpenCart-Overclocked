@@ -455,6 +455,12 @@ class ModelCatalogProduct extends Model {
 		return $query->rows;
 	}
 
+	public function getProductImagesByColor($product_id, $palette_color_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "' AND palette_color_id = '" . (int)$palette_color_id . "' ORDER BY sort_order ASC");
+
+		return $query->rows;
+	}
+
 	public function getProductRelated($product_id) {
 		if ($this->customer->isLogged()) {
 			$customer_group_id = $this->customer->getCustomerGroupId();

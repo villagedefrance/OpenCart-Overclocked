@@ -31,7 +31,7 @@
         <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
         <td class="left"><?php echo $column_image; ?></td>
         <td class="left"><?php echo $column_name; ?></td>
-        <td class="right"><?php echo $column_sort_order; ?></td>
+        <td class="left"><?php echo $column_sort_order; ?></td>
         <td class="right"><?php echo $column_action; ?></td>
       </tr>
       </thead>
@@ -46,7 +46,7 @@
             <?php } ?></td>
             <td class="center"><img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
             <td class="left"><?php echo $category['name']; ?></td>
-            <td class="right"><?php echo $category['sort_order']; ?></td>
+            <td class="center"><?php echo $category['sort_order']; ?></td>
             <td class="right"><?php foreach ($category['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

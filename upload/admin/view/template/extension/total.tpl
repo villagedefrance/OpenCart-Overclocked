@@ -21,7 +21,7 @@
           <tr>
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_status; ?></td>
-            <td class="right"><?php echo $column_sort_order; ?></td>
+            <td class="left"><?php echo $column_sort_order; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -31,7 +31,7 @@
           <tr>
             <td class="left"><?php echo $extension['name']; ?></td>
             <td class="left"><?php echo $extension['status'] ?></td>
-            <td class="right"><?php echo $extension['sort_order']; ?></td>
+            <td class="center"><?php echo $extension['sort_order']; ?></td>
             <td class="right"><?php foreach ($extension['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form-<?php echo $action['type']; ?>"><?php echo $action['text']; ?></a>
             <?php } ?></td>

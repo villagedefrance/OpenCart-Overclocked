@@ -33,7 +33,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_title; ?>"><?php echo $column_title; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'i.sort_order') { ?>
+            <td class="left"><?php if ($sort == 'i.sort_order') { ?>
               <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -51,7 +51,7 @@
                 <input type="checkbox" name="selected[]" value="<?php echo $information['information_id']; ?>" />
               <?php } ?></td>
               <td class="left"><?php echo $information['title']; ?></td>
-              <td class="right"><?php echo $information['sort_order']; ?></td>
+              <td class="center"><?php echo $information['sort_order']; ?></td>
               <td class="right"><?php foreach ($information['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>
@@ -63,7 +63,7 @@
           </tr>
         <?php } ?>
         </tbody>
-     </table>
+      </table>
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
