@@ -76,21 +76,6 @@
             <td><input type="text" name="config_fax" value="<?php echo $config_fax; ?>" /></td>
           </tr>
         </table>
-		<h2><?php echo $text_map; ?></h2>
-        <table class="form">
-          <tr>
-            <td><?php echo $entry_location; ?></td>
-            <td><input id="search_address" name="config_location" type="text" value="<?php echo isset($config_location) ? $config_location : ''; ?>" autocomplete="on" runat="server" size="80" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_latitude; ?></td>
-            <td><input id="location_latitude" name="config_latitude" value="<?php echo isset($config_latitude) ? $config_latitude : ''; ?>" size="30" readonly="readonly" /> &deg; N</td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_longitude; ?></td>
-            <td><input id="location_longitude" name="config_longitude" value="<?php echo isset($config_longitude) ? $config_longitude : ''; ?>" size="30" readonly="readonly" /> &deg; E</td>
-          </tr>
-        </table>
       </div>
       <div id="tab-store">
         <table class="form">
@@ -227,6 +212,35 @@
               <?php } ?>
             <?php } ?>
             </select></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_map; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_location; ?></td>
+            <td><input id="search_address" name="config_location" type="text" value="<?php echo isset($config_location) ? $config_location : ''; ?>" autocomplete="on" runat="server" size="80" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_latitude; ?></td>
+            <td><input id="location_latitude" name="config_latitude" value="<?php echo isset($config_latitude) ? $config_latitude : ''; ?>" size="30" readonly="readonly" /> &deg; N</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_longitude; ?></td>
+            <td><input id="location_longitude" name="config_longitude" value="<?php echo isset($config_longitude) ? $config_longitude : ''; ?>" size="30" readonly="readonly" /> &deg; E</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_contact_map; ?></td>
+            <td><?php if ($config_contact_map) { ?>
+              <input type="radio" name="config_contact_map" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_contact_map" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_contact_map" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_contact_map" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
           </tr>
         </table>
       </div>

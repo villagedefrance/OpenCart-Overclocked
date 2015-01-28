@@ -56,8 +56,9 @@ class ControllerInformationContact extends Controller {
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
 		$map_location = $this->config->get('config_location');
+		$map_display = $this->config->get('config_contact_map');
 
-		if (!empty($map_location)) {
+		if (isset($map_display) && !empty($map_location)) {
 			$this->document->addScript('catalog/view/javascript/gmap/gmap3.min.js');
 			$this->document->addScript('catalog/view/javascript/gmap/gmap3.infobox.js');
 

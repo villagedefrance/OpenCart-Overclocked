@@ -1,21 +1,20 @@
 $.extend({
-    getUrlVars: function(){
+    getUrlVars: function() {
         var vars = [], hash;
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
-        {
+        for(var i = 0; i < hashes.length; i++) {
             hash = hashes[i].split('=');
             vars.push(hash[0]);
             vars[hash[0]] = hash[1];
         }
         return vars;
     },
-    getUrlVar: function(name){
+    getUrlVar: function(name) {
         return $.getUrlVars()[name];
     }
 });
 
-function getFaq(){
+function getFaq() {
     var route = $.getUrlVar('route');
     var token = $.getUrlVar('token');
 
@@ -24,17 +23,17 @@ function getFaq(){
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            if(data.faq_id){
+            if (data.faq_id) {
                 var htmlInj = '';
 
-                htmlInj += '<div id="faqPopupContainer">';
-                htmlInj += '<span id="faqClose" onclick="hideFaq();">X</span>';
-                htmlInj += '<h4>'+data.title+'</h4>';
-                htmlInj += '<p>'+data.message+'</p>';
-                htmlInj += '<p class="buttons">';
-                    htmlInj += '<a class="button" style="float:right;" href="'+data.link+'" target="_BLANK"><span>'+data.faqbtn+'</span></a>';
-                htmlInj += '</p>';
-                htmlInj += '</div>';
+				htmlInj += '<div id="faqPopupContainer">';
+				htmlInj += '<span id="faqClose" onclick="hideFaq();">X</span>';
+				htmlInj += '<h4>'+data.title+'</h4>';
+				htmlInj += '<p>'+data.message+'</p>';
+				htmlInj += '<p class="buttons">';
+				htmlInj += '<a class="button" style="float:right;" href="'+data.link+'" target="_BLANK"><span>'+data.faqbtn+'</span></a>';
+				htmlInj += '</p>';
+				htmlInj += '</div>';
 
                 $('#content').prepend(htmlInj);
                 $('#faqPopupContainer').fadeIn();
@@ -43,11 +42,11 @@ function getFaq(){
     });
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
     getFaq();
 });
 
-function hideFaq(){
+function hideFaq() {
     var route = $.getUrlVar('route');
     var token = $.getUrlVar('token');
     

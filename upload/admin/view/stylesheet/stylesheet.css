@@ -767,11 +767,17 @@ table.form > tbody > tr > td {
 }
 /* Dashboard */
 .dashboard-heading {
-	background: #5A5A5A;
 	color: #FFF;
 	font-size: 14px;
 	font-weight: bold;
-	border: 1px solid #5A5A5A;
+	background-color: #5A5A5A;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#5A5A5A), to(#444));
+	background-image: -webkit-linear-gradient(top, #5A5A5A, #444);
+	background-image: -moz-linear-gradient(top, #5A5A5A, #444);
+	background-image: -ms-linear-gradient(top, #5A5A5A, #444);
+	background-image: -o-linear-gradient(top, #5A5A5A, #444);
+	background-image: linear-gradient(to bottom, #5A5A5A, #444);
+	border-bottom: 1px solid #444;
 	-webkit-border-radius: 3px 3px 0px 0px;
 	-moz-border-radius: 3px 3px 0px 0px;
 	-khtml-border-radius: 3px 3px 0px 0px;

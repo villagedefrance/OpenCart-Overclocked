@@ -6,11 +6,11 @@
 <base href="<?php echo $base; ?>" />
 <link type="text/css" href="view/stylesheet/filemanager.css" rel="stylesheet" />
 <link type="text/css" href="view/javascript/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" rel="stylesheet" />
-<link type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<link type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.11.2.custom.css" rel="stylesheet" />
 
-<script type="text/javascript" src="view/javascript/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.11.2.custom.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/external/jquery.bgiframe-2.1.2.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie.js"></script>

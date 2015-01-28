@@ -4,14 +4,14 @@
 	position: relative;
 	height: 33px;
 	min-width: 900px;
-	background-color: #4A4A4A;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#4A4A4A), to(#333));
-	background-image: -webkit-linear-gradient(top, #4A4A4A, #333);
-	background-image: -moz-linear-gradient(top, #4A4A4A, #333);
-	background-image: -ms-linear-gradient(top, #4A4A4A, #333);
-	background-image: -o-linear-gradient(top, #4A4A4A, #333);
-	background-image: linear-gradient(to bottom, #4A4A4A, #333);
-	border-bottom: 1px solid #333;
+	background-color: #5A5A5A;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#5A5A5A), to(#444));
+	background-image: -webkit-linear-gradient(top, #5A5A5A, #444);
+	background-image: -moz-linear-gradient(top, #5A5A5A, #444);
+	background-image: -ms-linear-gradient(top, #5A5A5A, #444);
+	background-image: -o-linear-gradient(top, #5A5A5A, #444);
+	background-image: linear-gradient(to bottom, #5A5A5A, #444);
+	border-bottom: 1px solid #444;
 	-webkit-border-radius: 3px 3px 0px 0px;
 	-moz-border-radius: 3px 3px 0px 0px;
 	-khtml-border-radius: 3px 3px 0px 0px;
@@ -90,7 +90,7 @@
 	cursor: pointer;
 }
 .filemanager-button:hover {
-	background-color: #222;
+	background-color: #333;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;

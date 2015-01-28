@@ -73,9 +73,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
-		$this->data['entry_location'] = $this->language->get('entry_location');
-		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
-		$this->data['entry_longitude'] = $this->language->get('entry_longitude');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
@@ -88,6 +85,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
+		$this->data['entry_location'] = $this->language->get('entry_location');
+		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
+		$this->data['entry_longitude'] = $this->language->get('entry_longitude');
+		$this->data['entry_contact_map'] = $this->language->get('entry_contact_map');
 		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
@@ -448,24 +449,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_fax'] = $this->config->get('config_fax');
 		}
 
-		if (isset($this->request->post['config_location'])) {
-			$this->data['config_location'] = $this->request->post['config_location'];
-		} else {
-			$this->data['config_location'] = $this->config->get('config_location');
-		}
-
-		if (isset($this->request->post['config_latitude'])) {
-			$this->data['config_latitude'] = $this->request->post['config_latitude'];
-		} else {
-			$this->data['config_latitude'] = $this->config->get('config_latitude');
-		}
-
-		if (isset($this->request->post['config_longitude'])) {
-			$this->data['config_longitude'] = $this->request->post['config_longitude'];
-		} else {
-			$this->data['config_longitude'] = $this->config->get('config_longitude');
-		}
-
 		if (isset($this->request->post['config_title'])) {
 			$this->data['config_title'] = $this->request->post['config_title'];
 		} else {
@@ -569,6 +552,30 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
+
+		if (isset($this->request->post['config_location'])) {
+			$this->data['config_location'] = $this->request->post['config_location'];
+		} else {
+			$this->data['config_location'] = $this->config->get('config_location');
+		}
+
+		if (isset($this->request->post['config_latitude'])) {
+			$this->data['config_latitude'] = $this->request->post['config_latitude'];
+		} else {
+			$this->data['config_latitude'] = $this->config->get('config_latitude');
+		}
+
+		if (isset($this->request->post['config_longitude'])) {
+			$this->data['config_longitude'] = $this->request->post['config_longitude'];
+		} else {
+			$this->data['config_longitude'] = $this->config->get('config_longitude');
+		}
+
+		if (isset($this->request->post['config_contact_map'])) {
+			$this->data['config_contact_map'] = $this->request->post['config_contact_map'];
+		} else {
+			$this->data['config_contact_map'] = $this->config->get('config_contact_map');
+		}
 
 		if (isset($this->request->post['config_catalog_limit'])) {
 			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
