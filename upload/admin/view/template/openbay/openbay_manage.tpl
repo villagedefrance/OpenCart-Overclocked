@@ -1,18 +1,19 @@
 <?php echo $header; ?>
 <div id="content">
-
     <div class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
         <?php } ?>
     </div>
-
     <div class="box mBottom130">
         <div class="left"></div>
         <div class="right"></div>
         <div class="heading">
             <h1><?php echo $lang_text_manager; ?></h1>
-            <div class="buttons"><a onclick="validateForm(); return false;" class="button"><span><?php echo $lang_btn_save; ?></span></a><a onclick="location = '<?php echo $cancel; ?>';" class="button"><span><?php echo $lang_btn_cancel; ?></span></a></div>
+            <div class="buttons">
+			<a onclick="validateForm(); return false;" class="button"><span><?php echo $lang_btn_save; ?></span></a>
+			<a onclick="location = '<?php echo $cancel; ?>';" class="button"><span><?php echo $lang_btn_cancel; ?></span></a>
+			</div>
         </div>
         <div class="content">
             <div id="tabs" class="htabs">
@@ -21,12 +22,10 @@
                 <a href="#tab-patch"><?php echo $lang_btn_patch; ?></a>
                 <a href="#tab-help"><?php echo $lang_tab_help; ?></a>
             </div>
-
             <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
                 <div id="tab-updates">
                     <p><?php echo $lang_patch_notes1; ?> <a href="http://shop.openbaypro.com/index.php?route=information/information/changelog" title="OpenBay Pro change log" target="_BLANK"><?php echo $lang_patch_notes2; ?></a></p>
                     <p><?php echo $lang_patch_notes3; ?></p>
-                    
                     <table class="form">
                         <tr>
                             <td><?php echo $lang_installed_version; ?>:</td>
@@ -90,7 +89,6 @@
                         </tr>
                     </table>
                 </div>
-
                 <div id="tab-settings">
                     <table class="form">
                         <tr>
@@ -109,7 +107,6 @@
                         </tr>
                     </table>
                 </div>
-
                 <div id="tab-patch">
                     <table class="form">
                         <tr>
@@ -118,7 +115,6 @@
                         </tr>
                     </table>
                 </div>
-
                 <div id="tab-help">
                     <h2><?php echo $lang_help_title; ?></h2>
                     <table class="form">
