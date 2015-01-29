@@ -1,6 +1,6 @@
 /**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
 CKEDITOR.editorConfig = function(config) {
@@ -22,15 +22,17 @@ CKEDITOR.editorConfig = function(config) {
 	config.shiftEnterMode = CKEDITOR.ENTER_P;
 
 	config.extraPlugins = 'codemirror';
-	config.codemirror_theme = 'rubyblue';
 	config.codemirror = {
+		theme: 'default',
+		mode: 'htmlmixed',
 		lineNumbers: true,
+		matchBrackets: true,
 		highlightActiveLine: false,
 		enableSearchTools: true,
 		showSearchButton: true,
-		showFormatButton: true,
-		showCommentButton: true,
-		showUncommentButton: true,
+		showFormatButton: false,
+		showCommentButton: false,
+		showUncommentButton: false,
 		showAutoCompleteButton: true,
 		showTrailingSpace: true
 	};

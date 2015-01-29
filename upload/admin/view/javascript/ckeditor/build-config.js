@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/ab7eb7c97134cf6b455944f41a1a03a4
+ * (2) http://ckeditor.com/builder/de433352634dc7f3696bdfe67d9e53d3
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/ab7eb7c97134cf6b455944f41a1a03a4
+ * (3) http://ckeditor.com/builder/download/de433352634dc7f3696bdfe67d9e53d3
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -28,11 +28,25 @@ var CKBUILDER_CONFIG = {
 	skin: 'moonocolor',
 	preset: 'full',
 	ignore: [
+		'.bender',
+		'bender.js',
+		'bender-err.log',
+		'bender-out.log',
 		'dev',
-		'.gitignore',
+		'.DS_Store',
+		'.editorconfig',
 		'.gitattributes',
+		'.gitignore',
+		'gruntfile.js',
+		'.idea',
+		'.jscsrc',
+		'.jshintignore',
+		'.jshintrc',
+		'.mailmap',
+		'node_modules',
+		'package.json',
 		'README.md',
-		'.mailmap'
+		'tests'
 	],
 	plugins : {
 		'a11yhelp' : 1,
@@ -57,10 +71,12 @@ var CKBUILDER_CONFIG = {
 		'font' : 1,
 		'format' : 1,
 		'forms' : 1,
+		'googledocs' : 1,
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
 		'iframe' : 1,
 		'image' : 1,
+		'image2' : 1,
 		'indentblock' : 1,
 		'indentlist' : 1,
 		'justify' : 1,
@@ -71,12 +87,13 @@ var CKBUILDER_CONFIG = {
 		'magicline' : 1,
 		'maximize' : 1,
 		'newpage' : 1,
+		'oembed' : 1,
 		'pagebreak' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
-		'pbckcode' : 1,
 		'preview' : 1,
 		'print' : 1,
+		'qrc' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
 		'save' : 1,
@@ -93,9 +110,7 @@ var CKBUILDER_CONFIG = {
 		'tabletools' : 1,
 		'templates' : 1,
 		'toolbar' : 1,
-		'uicolor' : 1,
 		'undo' : 1,
-		'widget' : 1,
 		'wsc' : 1,
 		'wysiwygarea' : 1
 	},
