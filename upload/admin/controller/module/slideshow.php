@@ -30,8 +30,10 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['text_no']	= $this->language->get('text_no');
 		$this->data['text_true'] = $this->language->get('text_true');
 		$this->data['text_false'] = $this->language->get('text_false');
+		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
+		$this->data['text_content_footer'] = $this->language->get('text_content_footer');
 		$this->data['text_column_left'] = $this->language->get('text_column_left');
 		$this->data['text_column_right'] = $this->language->get('text_column_right');
 

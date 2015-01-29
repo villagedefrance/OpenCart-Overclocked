@@ -76,6 +76,11 @@
             <tr style="background:#FCFCFC;">
               <td><?php echo $entry_position; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][position]">
+                <?php if ($module['position'] == 'content_header') { ?>
+                  <option value="content_header" selected="selected"><?php echo $text_content_header; ?></option>
+                <?php } else { ?>
+                  <option value="content_header"><?php echo $text_content_header; ?></option>
+                <?php } ?>
                 <?php if ($module['position'] == 'content_top') { ?>
                   <option value="content_top" selected="selected"><?php echo $text_content_top; ?></option>
                 <?php } else { ?>
@@ -85,6 +90,11 @@
                   <option value="content_bottom" selected="selected"><?php echo $text_content_bottom; ?></option>
                 <?php } else { ?>
                   <option value="content_bottom"><?php echo $text_content_bottom; ?></option>
+                <?php } ?>
+                <?php if ($module['position'] == 'content_footer') { ?>
+                  <option value="content_footer" selected="selected"><?php echo $text_content_footer; ?></option>
+                <?php } else { ?>
+                  <option value="content_footer"><?php echo $text_content_footer; ?></option>
                 <?php } ?>
                 <?php if ($module['position'] == 'column_left') { ?>
                   <option value="column_left" selected="selected"><?php echo $text_column_left; ?></option>
@@ -184,8 +194,10 @@ function addModule() {
 	html += '    <tr style="background:#FCFCFC;">';
 	html += '      <td><?php echo $entry_position; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][position]">';
+	html += '        <option value="content_header"><?php echo $text_content_header; ?></option>';
 	html += '        <option value="content_top"><?php echo $text_content_top; ?></option>';
 	html += '        <option value="content_bottom"><?php echo $text_content_bottom; ?></option>';
+	html += '        <option value="content_footer"><?php echo $text_content_footer; ?></option>';
 	html += '        <option value="column_left"><?php echo $text_column_left; ?></option>';
 	html += '        <option value="column_right"><?php echo $text_column_right; ?></option>';
 	html += '      </select></td>';
