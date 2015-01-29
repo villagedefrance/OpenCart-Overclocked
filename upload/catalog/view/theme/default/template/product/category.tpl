@@ -1,13 +1,15 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
+<?php if (!$hidecrumbs) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" style="display:inline;">
     <a href="<?php echo $breadcrumb['href']; ?>" itemprop="url"><span itemprop="title"><?php echo $breadcrumb['text']; ?></span></a></div>
   <?php } ?>
   </div>
+<?php } ?>
+<?php echo $column_left; ?><?php echo $column_right; ?>
+<div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
   <?php if ($thumb || $description) { ?>
     <div class="category-info">

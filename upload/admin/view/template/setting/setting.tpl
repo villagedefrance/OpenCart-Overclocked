@@ -773,16 +773,18 @@
         <h2><?php echo $text_store_front; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_viewer; ?></td>
-            <td><select name="config_viewer">
-              <?php if (isset($config_viewer)) { $selected = "selected"; ?>
-                <option value="magnific" <?php if ($config_viewer == 'magnific') {echo $selected;} ?>><?php echo $text_magnific; ?></option>
-                <option value="zoomlens" <?php if ($config_viewer == 'zoomlens') {echo $selected;} ?>><?php echo $text_zoomlens; ?></option>
-              <?php } else { ?>
-                <option value="magnific"><?php echo $text_magnific; ?></option>
-                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
-              <?php } ?>
-            </select></td>
+            <td><?php echo $entry_breadcrumbs; ?></td>
+            <td><?php if ($config_breadcrumbs) { ?>
+              <input type="radio" name="config_breadcrumbs" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_breadcrumbs" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_breadcrumbs" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_breadcrumbs" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_manufacturer_name; ?></td>
@@ -825,6 +827,18 @@
               <input type="radio" name="config_custom_menu" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_viewer; ?></td>
+            <td><select name="config_viewer">
+              <?php if (isset($config_viewer)) { $selected = "selected"; ?>
+                <option value="magnific" <?php if ($config_viewer == 'magnific') {echo $selected;} ?>><?php echo $text_magnific; ?></option>
+                <option value="zoomlens" <?php if ($config_viewer == 'zoomlens') {echo $selected;} ?>><?php echo $text_zoomlens; ?></option>
+              <?php } else { ?>
+                <option value="magnific"><?php echo $text_magnific; ?></option>
+                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
+              <?php } ?>
+            </select></td>
           </tr>
           <tr>
             <td><?php echo $entry_offer_label; ?></td>

@@ -1,6 +1,6 @@
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="<?php echo $stylesheet ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo $stylesheet; ?>" />
 </head>
 <body>
   <?php if (!$error_connection) { ?>

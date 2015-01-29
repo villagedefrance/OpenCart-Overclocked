@@ -84,6 +84,9 @@ class ControllerCheckoutCart extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

@@ -16,6 +16,9 @@ class ControllerAccountReturn extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -135,6 +138,9 @@ class ControllerAccountReturn extends Controller {
 		if ($return_info) {
 			$this->document->setTitle($this->language->get('text_return'));
 
+			// Breadcrumbs
+			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
@@ -249,6 +255,9 @@ class ControllerAccountReturn extends Controller {
 		} else {
 			$this->document->setTitle($this->language->get('text_return'));
 
+			// Breadcrumbs
+			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
@@ -326,6 +335,9 @@ class ControllerAccountReturn extends Controller {
 		}
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -594,6 +606,9 @@ class ControllerAccountReturn extends Controller {
 		$this->language->load('account/return');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 		$this->data['breadcrumbs'] = array();
 

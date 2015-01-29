@@ -129,6 +129,9 @@ class ControllerAccountAddress extends Controller {
 	}
 
 	protected function getList() {
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -244,6 +247,9 @@ class ControllerAccountAddress extends Controller {
 	}
 
 	protected function getForm() {
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

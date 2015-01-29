@@ -7,6 +7,9 @@ class ControllerInformationNews extends Controller {
 
 		$this->load->model('catalog/news');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

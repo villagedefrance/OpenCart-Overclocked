@@ -22,6 +22,9 @@ class ControllerAccountNewsletter extends Controller {
 			$this->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

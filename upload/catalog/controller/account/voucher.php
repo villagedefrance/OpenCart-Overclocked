@@ -26,6 +26,9 @@ class ControllerAccountVoucher extends Controller {
 			$this->redirect($this->url->link('account/voucher/success'));
 		}
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -188,6 +191,9 @@ class ControllerAccountVoucher extends Controller {
 		$this->language->load('account/voucher');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 		$this->data['breadcrumbs'] = array();
 

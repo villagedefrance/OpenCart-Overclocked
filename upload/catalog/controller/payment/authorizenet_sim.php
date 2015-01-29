@@ -213,6 +213,9 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 			}
 		}
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->document->breadcrumbs = array();
 
 		$this->document->breadcrumbs[] = array(

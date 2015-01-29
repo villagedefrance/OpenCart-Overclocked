@@ -9,6 +9,9 @@
 <body>
 <?php foreach ($orders as $order) { ?>
 <div style="page-break-after:always;">
+  <?php if (!empty($logo)) { ?>
+    <img src="<?php echo $logo; ?>" alt="" />
+  <?php } ?>
   <h1><?php echo $text_invoice; ?></h1>
   <table class="store">
     <tr>

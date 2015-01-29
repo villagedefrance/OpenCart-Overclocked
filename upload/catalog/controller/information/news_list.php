@@ -38,6 +38,9 @@ class ControllerInformationNewsList extends Controller {
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(

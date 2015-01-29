@@ -16,6 +16,9 @@ class ControllerProductManufacturer extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -119,6 +122,9 @@ class ControllerProductManufacturer extends Controller {
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
 		}
+
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 		$this->data['breadcrumbs'] = array();
 

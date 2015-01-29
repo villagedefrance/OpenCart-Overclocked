@@ -22,6 +22,9 @@ class ControllerAffiliateLogin extends Controller {
 			}
 		}
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

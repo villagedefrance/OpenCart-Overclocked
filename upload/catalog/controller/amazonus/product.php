@@ -123,9 +123,7 @@ class ControllerAmazonusProduct extends Controller {
 			$product_id = trim((string)$dataXml->product_id);
 
 			if ($product_id === "all") {
-				$all_rows = $this->db->query("
-					SELECT * FROM `" . DB_PREFIX . "amazonus_product`
-				")->rows;
+				$all_rows = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazonus_product`")->rows;
 
 				$response = array();
 				foreach ($all_rows as $row) {
@@ -137,10 +135,7 @@ class ControllerAmazonusProduct extends Controller {
 				return;
 
 			} else {
-				$response = $this->db->query("
-					SELECT * FROM `" . DB_PREFIX . "amazonus_product`
-					WHERE `product_id` = '" . (int)$product_id . "'
-				")->rows;
+				$response = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazonus_product` WHERE `product_id` = '" . (int)$product_id . "'")->rows;
 
 				$this->response->setOutput(print_r($response, true));
 				return;

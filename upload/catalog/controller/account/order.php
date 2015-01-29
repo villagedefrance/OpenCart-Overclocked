@@ -47,6 +47,9 @@ class ControllerAccountOrder extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -170,6 +173,9 @@ class ControllerAccountOrder extends Controller {
 
 		if ($order_info) {
 			$this->document->setTitle($this->language->get('text_order'));
+
+			// Breadcrumbs
+			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 			$this->data['breadcrumbs'] = array();
 
@@ -404,6 +410,9 @@ class ControllerAccountOrder extends Controller {
 			$this->data['text_error'] = $this->language->get('text_error');
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
+
+			// Breadcrumbs
+			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 			$this->data['breadcrumbs'] = array();
 

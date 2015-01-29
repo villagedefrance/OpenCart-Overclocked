@@ -10,6 +10,9 @@ class ControllerAffiliateAccount extends Controller {
 
 		$this->language->load('affiliate/account');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

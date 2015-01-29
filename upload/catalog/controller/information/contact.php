@@ -28,6 +28,9 @@ class ControllerInformationContact extends Controller {
 			$this->redirect($this->url->link('information/contact/success'));
 		}
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -158,6 +161,9 @@ class ControllerInformationContact extends Controller {
 		$this->language->load('information/contact');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 		$this->data['breadcrumbs'] = array();
 

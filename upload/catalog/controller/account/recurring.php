@@ -13,6 +13,9 @@ class ControllerAccountRecurring extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -200,6 +203,9 @@ class ControllerAccountRecurring extends Controller {
 
 		if ($profile) {
 			$this->document->setTitle($this->language->get('text_recurring'));
+
+			// Breadcrumbs
+			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 			$this->data['breadcrumbs'] = array();
 

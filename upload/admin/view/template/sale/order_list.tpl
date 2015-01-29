@@ -30,7 +30,7 @@
         <thead>
           <tr>
             <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-            <td class="right"><?php if ($sort == 'o.order_id') { ?>
+            <td class="left"><?php if ($sort == 'o.order_id') { ?>
               <a href="<?php echo $sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_order_id; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_order; ?>"><?php echo $column_order_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -45,11 +45,6 @@
             <?php } else { ?>
               <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'o.total') { ?>
-              <a href="<?php echo $sort_total; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_total; ?></a>
-            <?php } else { ?>
-              <a href="<?php echo $sort_total; ?>"><?php echo $column_total; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-            <?php } ?></td>
             <td class="left"><?php if ($sort == 'o.date_added') { ?>
               <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
             <?php } else { ?>
@@ -60,13 +55,18 @@
             <?php } else { ?>
               <a href="<?php echo $sort_date_modified; ?>"><?php echo $column_date_modified; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php if ($sort == 'o.total') { ?>
+              <a href="<?php echo $sort_total; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_total; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_total; ?>"><?php echo $column_total; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
         <tbody>
           <tr class="filter">
             <td></td>
-            <td class="right"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="4" style="text-align:right;" /></td>
+            <td class="center"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="6" style="text-align:right;" /></td>
             <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
             <td class="left"><select name="filter_order_status_id">
               <option value="*"></option>
@@ -83,9 +83,9 @@
                 <?php } ?>
               <?php } ?>
             </select></td>
-            <td class="right"><input type="text" name="filter_total" value="<?php echo $filter_total; ?>" size="4" style="text-align:right;" /></td>
             <td class="left"><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" class="date" /></td>
             <td class="left"><input type="text" name="filter_date_modified" value="<?php echo $filter_date_modified; ?>" size="12" class="date" /></td>
+            <td class="right"><input type="text" name="filter_total" value="<?php echo $filter_total; ?>" size="10" style="text-align:right;" /></td>
             <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($orders) { ?>
@@ -96,12 +96,12 @@
               <?php } else { ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" />
               <?php } ?></td>
-              <td class="right"><?php echo $order['order_id']; ?></td>
+              <td class="center"><?php echo $order['order_id']; ?></td>
               <td class="left"><?php echo $order['customer']; ?></td>
               <td class="left"><?php echo $order['status']; ?></td>
-              <td class="right"><?php echo $order['total']; ?></td>
               <td class="left"><?php echo $order['date_added']; ?></td>
               <td class="left"><?php echo $order['date_modified']; ?></td>
+              <td class="right"><?php echo $order['total']; ?></td>
               <td class="right"><?php foreach ($order['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>
@@ -144,12 +144,6 @@ function filter() {
 		url += '&filter_order_status_id=' + encodeURIComponent(filter_order_status_id);
 	}
 
-	var filter_total = $('input[name=\'filter_total\']').attr('value');
-
-	if (filter_total) {
-		url += '&filter_total=' + encodeURIComponent(filter_total);
-	}
-
 	var filter_date_added = $('input[name=\'filter_date_added\']').attr('value');
 
 	if (filter_date_added) {
@@ -160,6 +154,12 @@ function filter() {
 
 	if (filter_date_modified) {
 		url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+	}
+
+	var filter_total = $('input[name=\'filter_total\']').attr('value');
+
+	if (filter_total) {
+		url += '&filter_total=' + encodeURIComponent(filter_total);
 	}
 
 	location = url;

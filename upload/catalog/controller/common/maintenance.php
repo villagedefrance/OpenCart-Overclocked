@@ -31,6 +31,9 @@ class ControllerCommonMaintenance extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		// Breadcrumbs
+		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+
 		$this->document->breadcrumbs = array();
 
 		$this->document->breadcrumbs[] = array(
