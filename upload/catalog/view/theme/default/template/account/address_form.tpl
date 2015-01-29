@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php echo $content_header; ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div class="breadcrumb">
@@ -119,6 +120,7 @@
   </form>
   <?php echo $content_bottom; ?>
 </div>
+<?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').bind('change', function() {

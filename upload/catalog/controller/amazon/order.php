@@ -1,5 +1,6 @@
 <?php
 class ControllerAmazonOrder extends Controller {
+
 	public function index() {
 		if ($this->config->get('amazon_status') != '1') {
 			return;
@@ -49,7 +50,6 @@ class ControllerAmazonOrder extends Controller {
 		}
 
 		/* Check if order comes from subscribed marketplace */
-
 		$currencyTo = $this->config->get('config_currency');
 		$orderCurrency = (string)$orderXml->Payment->CurrencyCode;
 
@@ -70,7 +70,6 @@ class ControllerAmazonOrder extends Controller {
 		$productMapping = array();
 
 		foreach ($orderXml->Items->Item as $item) {
-
 			$totalPrice = $this->currency->convert((double)$item->Totals->Price, $orderCurrency, $currencyTo);
 			$taxTotal = (double)$item->Totals->Tax;
 
@@ -135,6 +134,7 @@ class ControllerAmazonOrder extends Controller {
 		$total = sprintf('%.4f', $this->currency->convert((double)$orderXml->Payment->Amount, $orderCurrency, $currencyTo));
 
 		$addressLine2 = (string)$orderXml->Shipping->AddressLine2;
+
 		if ((string)$orderXml->Shipping->AddressLine3 != '') {
 			$addressLine2 .= ', ' . (string)$orderXml->Shipping->AddressLine3;
 		}
@@ -304,7 +304,7 @@ class ControllerAmazonOrder extends Controller {
 		$this->model_openbay_amazon_order->addAmazonOrderProducts($orderId, $productMapping);
 
 		foreach($products as $product) {
-			if($product['product_id'] != 0) {
+			if ($product['product_id'] != 0) {
 				$this->model_openbay_amazon_order->decreaseProductQuantity($product['product_id'], $product['quantity'], $product['var']);
 			}
 		}
@@ -318,11 +318,12 @@ class ControllerAmazonOrder extends Controller {
 
 		$this->model_openbay_amazon_order->acknowledgeOrder($orderId);
 
-		if($this->config->get('openbay_amazon_notify_admin') == 1){
+		if ($this->config->get('openbay_amazon_notify_admin') == 1) {
 			$this->openbay->newOrderAdminNotify($orderId, $orderStatus);
 		}
 
 		$logger->write("Ok");
+
 		$this->response->setOutput('Ok');
 	}
 }

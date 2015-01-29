@@ -1,32 +1,32 @@
 <?php
 class ControllerEbayOpenbay extends Controller {
 	public function inbound() {
-		$encrypted      = $this->request->post;
-		$secret         = $this->config->get('openbaypro_secret');
-		$active         = $this->config->get('openbay_status');
-		$s1             = $this->config->get('openbaypro_string1');
-		$s2             = $this->config->get('openbaypro_string2');
+		$encrypted = $this->request->post;
+		$secret = $this->config->get('openbaypro_secret');
+		$active = $this->config->get('openbay_status');
+		$s1 = $this->config->get('openbaypro_string1');
+		$s2 = $this->config->get('openbaypro_string2');
 
 		$this->load->model('openbay/ebay_openbay');
 		$this->load->model('openbay/ebay_product');
 		$this->load->model('openbay/ebay_order');
 
-		if(empty($encrypted)) {
+		if (empty($encrypted)) {
 			$this->response->setOutput(json_encode(array('msg' => 'error 002')));
 		} else {
-			$token  = $this->openbay->ebay->pbkdf2($s1, $s2, 1000, 32);
-			$data   = $this->openbay->ebay->decrypt($encrypted['data'],$token, true);
+			$token = $this->openbay->ebay->pbkdf2($s1, $s2, 1000, 32);
+			$data = $this->openbay->ebay->decrypt($encrypted['data'],$token, true);
 
-			if($secret == $data['secret'] && $active == 1) {
-				if($data['action'] == 'ItemUnsold') {
+			if ($secret == $data['secret'] && $active == 1) {
+				if ($data['action'] == 'ItemUnsold') {
 					$this->openbay->ebay->log('Action: Unsold Item');
 					$product_id = $this->openbay->ebay->getProductId($data['itemId']);
 
-					if($product_id != false) {
+					if ($product_id != false) {
 						$this->openbay->ebay->log('eBay item link found with internal product');
 						$rules = $this->model_openbay_ebay_product->getRelistRule($data['itemId']);
 
-						if(!empty($rules)) {
+						if (!empty($rules)) {
 							$this->openbay->ebay->log('Item is due to be automatically relisted');
 							$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_listing_pending` SET `ebay_item_id` = '".$this->db->escape($data['itemId'])."', `product_id` = '".(int)$product_id."', `key` = '".$this->db->escape($data['key'])."'");
 							$this->openbay->ebay->removeItemByItemId($data['itemId']);
@@ -39,12 +39,12 @@ class ControllerEbayOpenbay extends Controller {
 					$this->response->setOutput(json_encode(array('msg' => 'ok')));
 				}
 
-				if($data['action'] == 'ItemListed') {
+				if ($data['action'] == 'ItemListed') {
 					$this->openbay->ebay->log('Action: Listed Item');
 
 					$product_id = $this->openbay->ebay->getProductIdFromKey($data['key']);
 
-					if($product_id != false) {
+					if ($product_id != false) {
 						$this->openbay->ebay->createLink($product_id, $data['itemId'], '');
 						$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_listing_pending` WHERE `key` = '".$data['key']."' LIMIT 1");
 						$this->openbay->ebay->log('A link was found with product id: '.$product_id.', item id: '.$data['itemId'].' and key: '.$data['key']);
@@ -55,23 +55,23 @@ class ControllerEbayOpenbay extends Controller {
 					$this->response->setOutput(json_encode(array('msg' => 'ok')));
 				}
 
-				if($data['action'] == 'newOrder') {
+				if ($data['action'] == 'newOrder') {
 					$this->openbay->ebay->log('Action: newOrder / Order data from polling');
 					$this->model_openbay_ebay_openbay->importOrders($data['data2']);
 					$this->response->setOutput(json_encode(array('msg' => 'ok')));
 				}
 
-				if($data['action'] == 'notificationOrder') {
+				if ($data['action'] == 'notificationOrder') {
 					$this->openbay->ebay->log('Action: notificationOrder / Order data from notification');
 					$this->model_openbay_ebay_openbay->importOrders($data['data']);
 					$this->response->setOutput(json_encode(array('msg' => 'ok')));
 				}
 
-				if($data['action'] == 'outputLog') {
+				if ($data['action'] == 'outputLog') {
 					$this->model_openbay_ebay_openbay->outputLog();
 				}
 
-				if($data['action'] == 'updateLog') {
+				if ($data['action'] == 'updateLog') {
 					$this->model_openbay_ebay_openbay->updateLog();
 				}
 			} else {
@@ -84,11 +84,11 @@ class ControllerEbayOpenbay extends Controller {
 	public function importItems() {
 		set_time_limit(0);
 
-		$data   = $this->request->post;
+		$data = $this->request->post;
 		$secret = $this->config->get('openbaypro_secret');
 		$active = $this->config->get('openbay_status');
 
-		if(isset($data['secret']) && $secret == $data['secret'] && $active == 1 && isset($data['data'])) {
+		if (isset($data['secret']) && $secret == $data['secret'] && $active == 1 && isset($data['data'])) {
 			$this->load->model('openbay/ebay_openbay');
 			$this->load->model('openbay/ebay_product');
 			$this->model_openbay_ebay_product->importItems($data);
@@ -99,9 +99,9 @@ class ControllerEbayOpenbay extends Controller {
 	}
 
 	public function ping() {
-		$postSize   = ini_get('post_max_size');
-		$postSize   = (int)str_replace(array('M','m','Mb','MB'), '', $postSize);
-		$version    = (int)$this->config->get('openbay_version');
+		$postSize = ini_get('post_max_size');
+		$postSize = (int)str_replace(array('M','m','Mb','MB'), '', $postSize);
+		$version = (int)$this->config->get('openbay_version');
 
 		$this->response->addHeader('Cache-Control: no-cache, must-revalidate');
 		$this->response->addHeader('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -113,13 +113,14 @@ class ControllerEbayOpenbay extends Controller {
 	public function autoSetup() {
 		set_time_limit(0);
 		$this->load->model('setting/setting');
+
 		$settings = $this->model_setting_setting->getSetting('openbay');
 
 		$this->response->addHeader('Cache-Control: no-cache, must-revalidate');
 		$this->response->addHeader('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		$this->response->addHeader('Content-type: application/json; charset=utf-8');
 
-		if(
+		if (
 			(isset($settings['openbaypro_token']) && !empty($settings['openbaypro_token'])) ||
 			(isset($settings['openbaypro_secret']) && !empty($settings['openbaypro_secret'])) ||
 			(isset($settings['openbaypro_string1']) && !empty($settings['openbaypro_string1'])) ||
@@ -143,11 +144,12 @@ class ControllerEbayOpenbay extends Controller {
 
 	public function autoSync() {
 		set_time_limit(0);
-		if($this->request->post['process'] == 'categories') {
+
+		if ($this->request->post['process'] == 'categories') {
 			$this->response->setOutput(json_encode($this->openbay->ebay->loadCategories()));
-		}elseif($this->request->post['process'] == 'settings') {
+		} elseif ($this->request->post['process'] == 'settings') {
 			$this->response->setOutput(json_encode($this->openbay->ebay->loadSettings()));
-		}elseif($this->request->post['process'] == 'store') {
+		} elseif ($this->request->post['process'] == 'store') {
 			$this->response->setOutput(json_encode($this->openbay->ebay->loadSellerStore()));
 		}
 	}

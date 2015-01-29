@@ -9,7 +9,11 @@ $_['text_custom_menu']    	= 'Custom Menu';
 $_['text_yes']	       				= 'Yes';
 $_['text_no']	       				= 'No';
 $_['text_create_menu']    		= 'Add, Edit or View, Menus and Menu items.';
+$_['text_header_bottom']    	= 'Header Bottom';
 $_['text_content_header']    	= 'Content Header';
+$_['text_content_top']    		= 'Content Top';
+$_['text_content_bottom'] 	= 'Content Bottom';
+$_['text_content_footer']    	= 'Content Footer';
 
 // Entry
 $_['entry_menus']        		= 'Menus:';

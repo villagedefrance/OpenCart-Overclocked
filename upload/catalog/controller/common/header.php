@@ -69,7 +69,6 @@ class ControllerCommonHeader extends Controller {
 			foreach ($robots as $robot) {
 				if ($robot && strpos($this->request->server['HTTP_USER_AGENT'], trim($robot)) !== false) {
 					$status = false;
-
 					break;
 				}
 			}
@@ -162,7 +161,7 @@ class ControllerCommonHeader extends Controller {
 		}
 
 		$this->children = array(
-			'common/content_header',
+			'common/header_bottom',
 			'module/language',
 			'module/currency',
 			'module/cart'

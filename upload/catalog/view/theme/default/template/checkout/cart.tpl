@@ -8,6 +8,7 @@
 <?php if ($error_warning) { ?>
   <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
+<?php echo $content_header; ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div class="breadcrumb">
@@ -223,6 +224,7 @@
   </div>
   <?php echo $content_bottom; ?>
 </div>
+<?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
 $('input[name=\'next\']').bind('change', function() {

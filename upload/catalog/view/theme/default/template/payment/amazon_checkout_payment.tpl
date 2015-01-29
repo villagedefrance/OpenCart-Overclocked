@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php echo $content_header; ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <h2><?php echo $heading_payment; ?></h2>
@@ -11,6 +12,7 @@
   <input type="hidden" name="payment_method" value="" />
   <?php echo $content_bottom; ?>
 </div>
+<?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {

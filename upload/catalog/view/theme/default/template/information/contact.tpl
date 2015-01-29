@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php echo $content_header; ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div class="breadcrumb">
@@ -83,6 +84,7 @@
   </form>
   <?php echo $content_bottom; ?>
 </div>
+<?php echo $content_footer; ?>
 
 <?php if ($map) { ?>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>

@@ -2,6 +2,7 @@
 <?php if ($error_warning) { ?>
   <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
+<?php echo $content_header; ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div class="breadcrumb">
@@ -198,6 +199,7 @@
   </form>
   <?php echo $content_bottom; ?>
 </div>
+<?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
 $('input[name=\'customer_group_id\']:checked').live('change', function() {

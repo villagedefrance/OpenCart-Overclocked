@@ -1,5 +1,6 @@
 <?php
 class ControllerAmazonListingReport extends Controller {
+
 	public function index() {
 		if ($this->config->get('amazon_status') != '1') {
 			return;
@@ -38,7 +39,7 @@ class ControllerAmazonListingReport extends Controller {
 				'sku' => $product['sku'],
 				'quantity' => $product['quantity'],
 				'asin' => $product['asin'],
-				'price' => $product['price'],
+				'price' => $product['price']
 			);
 		}
 

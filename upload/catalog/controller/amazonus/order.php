@@ -1,5 +1,6 @@
 <?php
 class ControllerAmazonusOrder extends Controller {
+
 	public function index() {
 		if ($this->config->get('amazonus_status') != '1') {
 			return;
@@ -70,7 +71,6 @@ class ControllerAmazonusOrder extends Controller {
 		$productMapping = array();
 
 		foreach ($orderXml->Items->Item as $item) {
-
 			$totalPrice = $this->currency->convert((double)$item->Totals->Price, $orderCurrency, $currencyTo);
 			$taxTotal = (double)$item->Totals->Tax;
 
@@ -135,6 +135,7 @@ class ControllerAmazonusOrder extends Controller {
 		$total = sprintf('%.4f', $this->currency->convert((double)$orderXml->Payment->Amount, $orderCurrency, $currencyTo));
 
 		$addressLine2 = (string)$orderXml->Shipping->AddressLine2;
+
 		if ((string)$orderXml->Shipping->AddressLine3 != '') {
 			$addressLine2 .= ', ' . (string)$orderXml->Shipping->AddressLine3;
 		}
@@ -142,7 +143,7 @@ class ControllerAmazonusOrder extends Controller {
 		$customer_info = $this->db->query("SELECT `customer_id` FROM " . DB_PREFIX . "customer WHERE email = '" . $this->db->escape((string)$orderXml->Payment->Email) . "'")->row;
 		$customer_id = '0';
 
-		if(isset($customer_info['customer_id'])) {
+		if (isset($customer_info['customer_id'])) {
 			$customer_id = $customer_info['customer_id'];
 		} else {
 			/* Add a new customer */
@@ -304,7 +305,7 @@ class ControllerAmazonusOrder extends Controller {
 		$this->model_openbay_amazonus_order->addAmazonusOrderProducts($orderId, $productMapping);
 
 		foreach($products as $product) {
-			if($product['product_id'] != 0) {
+			if ($product['product_id'] != 0) {
 				$this->model_openbay_amazonus_order->decreaseProductQuantity($product['product_id'], $product['quantity'], $product['var']);
 			}
 		}
@@ -319,11 +320,12 @@ class ControllerAmazonusOrder extends Controller {
 		$this->model_openbay_amazonus_order->acknowledgeOrder($orderId);
 
 		//send an email to the administrator about the sale
-		if($this->config->get('openbay_amazonus_notify_admin') == 1){
+		if ($this->config->get('openbay_amazonus_notify_admin') == 1) {
 			$this->openbay->newOrderAdminNotify($orderId, $orderStatus);
 		}
 
 		$logger->write("Ok");
+
 		$this->response->setOutput('Ok');
 	}
 }

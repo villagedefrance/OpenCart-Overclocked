@@ -134,7 +134,6 @@ class ControllerPaymentAuthorizeNetAim extends Controller {
 
 			foreach ($results as $result) {
 				$response_info[$i] = trim($result, '"');
-
 				$i++;
 			}
 

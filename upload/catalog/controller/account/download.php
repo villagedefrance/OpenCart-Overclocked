@@ -115,8 +115,10 @@ class ControllerAccountDownload extends Controller {
 			$this->children = array(
 				'common/column_left',
 				'common/column_right',
+				'common/content_header',
 				'common/content_top',
 				'common/content_bottom',
+				'common/content_footer',
 				'common/footer',
 				'common/header'
 			);
@@ -146,8 +148,10 @@ class ControllerAccountDownload extends Controller {
 			$this->children = array(
 				'common/column_left',
 				'common/column_right',
+				'common/content_header',
 				'common/content_top',
 				'common/content_bottom',
+				'common/content_footer',
 				'common/footer',
 				'common/header'
 			);

@@ -64,6 +64,11 @@
                 <?php } ?>
               </select></td>
               <td class="left"><select name="menu_module[<?php echo $module_row; ?>][position]">
+                <?php if ($module['position'] == 'header_bottom') { ?>
+                  <option value="header_bottom" selected="selected"><?php echo $text_header_bottom; ?></option>
+                <?php } else { ?>
+                  <option value="header_bottom"><?php echo $text_header_bottom; ?></option>
+                <?php } ?>
                 <?php if ($module['position'] == 'content_header') { ?>
                   <option value="content_header" selected="selected"><?php echo $text_content_header; ?></option>
                 <?php } else { ?>
@@ -78,6 +83,11 @@
                   <option value="content_bottom" selected="selected"><?php echo $text_content_bottom; ?></option>
                 <?php } else { ?>
                   <option value="content_bottom"><?php echo $text_content_bottom; ?></option>
+                <?php } ?>
+                <?php if ($module['position'] == 'content_footer') { ?>
+                  <option value="content_footer" selected="selected"><?php echo $text_content_footer; ?></option>
+                <?php } else { ?>
+                  <option value="content_footer"><?php echo $text_content_footer; ?></option>
                 <?php } ?>
               </select></td>
               <td class="left"><select name="menu_module[<?php echo $module_row; ?>][status]">
@@ -126,9 +136,11 @@ function addModule() {
 	<?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_module[' + module_row + '][position]">';
+	html += '      <option value="header_bottom"><?php echo $text_header_bottom; ?></option>';
 	html += '      <option value="content_header"><?php echo $text_content_header; ?></option>';
 	html += '      <option value="content_top"><?php echo $text_content_top; ?></option>';
 	html += '      <option value="content_bottom"><?php echo $text_content_bottom; ?></option>';
+	html += '      <option value="content_footer"><?php echo $text_content_footer; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_module[' + module_row + '][status]">';
 	html += '      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';

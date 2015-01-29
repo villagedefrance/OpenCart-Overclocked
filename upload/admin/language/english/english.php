@@ -28,6 +28,15 @@ $_['text_edit']              		= 'Edit';
 $_['text_view']            		= 'View';
 $_['text_home']               	= 'Home';
 
+// Position
+$_['text_header_bottom']    	= 'Header Bottom';
+$_['text_content_header']    	= 'Content Header';
+$_['text_content_top']    		= 'Content Top';
+$_['text_content_bottom'] 	= 'Content Bottom';
+$_['text_content_footer']    	= 'Content Footer';
+$_['text_column_left']    		= 'Column Left';
+$_['text_column_right']   		= 'Column Right';
+
 // Button
 $_['button_insert']           	= 'Insert';
 $_['button_delete']         		= 'Delete';

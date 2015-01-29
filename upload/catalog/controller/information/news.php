@@ -33,13 +33,13 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('information/news'),
+				'href'		=> $this->url->link('information/news_list'),
 				'separator' 	=> $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
 				'text'		=> $news_info['title'],
-				'href'		=> $this->url->link('information/news', 'news_id=' . $this->request->get['news_id']),
+				'href'		=> $this->url->link('information/news_list', 'news_id=' . $this->request->get['news_id']),
 				'separator' 	=> $this->language->get('text_separator')
 			);
 
@@ -99,8 +99,10 @@ class ControllerInformationNews extends Controller {
 			$this->children = array(
 				'common/column_left',
 				'common/column_right',
+				'common/content_header',
 				'common/content_top',
 				'common/content_bottom',
+				'common/content_footer',
 				'common/footer',
 				'common/header'
 			);
@@ -124,7 +126,7 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/ 404 Not Found');
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
@@ -138,8 +140,10 @@ class ControllerInformationNews extends Controller {
 			$this->children = array(
 				'common/column_left',
 				'common/column_right',
+				'common/content_header',
 				'common/content_top',
 				'common/content_bottom',
+				'common/content_footer',
 				'common/footer',
 				'common/header'
 			);

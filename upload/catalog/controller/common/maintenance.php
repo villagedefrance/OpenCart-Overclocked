@@ -3,7 +3,6 @@ class ControllerCommonMaintenance extends Controller {
 
 	public function index() {
 		if ($this->config->get('config_maintenance')) {
-
 			$route = '';
 
 			if (isset($this->request->get['route'])) {

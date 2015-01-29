@@ -30,9 +30,11 @@ class ControllerModuleMenu extends Controller {
 		$this->data['text_no']	= $this->language->get('text_no');
 		$this->data['text_custom_menu'] = $this->language->get('text_custom_menu');
 		$this->data['text_create_menu'] = $this->language->get('text_create_menu');
+		$this->data['text_header_bottom'] = $this->language->get('text_header_bottom');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
+		$this->data['text_content_footer'] = $this->language->get('text_content_footer');
 
 		$this->data['entry_menus'] = $this->language->get('entry_menus');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');

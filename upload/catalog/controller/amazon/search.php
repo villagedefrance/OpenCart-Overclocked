@@ -1,5 +1,6 @@
 <?php
 class ControllerAmazonSearch extends Controller {
+
 	public function index() {
 		if ($this->config->get('amazon_status') != '1') {
 			return;

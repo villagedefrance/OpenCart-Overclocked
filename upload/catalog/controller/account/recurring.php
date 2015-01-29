@@ -112,8 +112,10 @@ class ControllerAccountRecurring extends Controller {
 		$this->children = array(
 			'common/column_left',
 			'common/column_right',
+			'common/content_header',
 			'common/content_top',
 			'common/content_bottom',
+			'common/content_footer',
 			'common/footer',
 			'common/header'
 		);
@@ -163,8 +165,7 @@ class ControllerAccountRecurring extends Controller {
 		$profile['order_link'] = $this->url->link('account/order/info', 'order_id=' . $profile['order_id'], 'SSL');
 
 		if ($profile['status'] == 1 || $profile['status'] == 2) {
-			// If the payment profiles payment type has a cancel action then link to that.
-			// If not then hide the button.
+			// If the payment profiles payment type has a cancel action then link to that. If not then hide the button.
 			if (!empty($profile['payment_code']) && $this->hasAction('payment/' . $profile['payment_code'] . '/recurringCancel') == true && $this->config->get($profile['payment_code'] . '_profile_cancel_status')) {
 				$this->data['cancel_link'] = $this->url->link('payment/' . $profile['payment_code'] . '/recurringCancel', 'recurring_id=' . $this->request->get['recurring_id'], 'SSL');
 			} else {
@@ -255,9 +256,9 @@ class ControllerAccountRecurring extends Controller {
 			$this->data['button_return'] = $this->language->get('button_return');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 			$this->data['button_cancel_profile'] = $this->language->get('button_cancel_profile');
-			
+
 			$this->data['continue'] = $this->url->link('account/recurring', '', 'SSL');
-			
+
 			$this->data['profile'] = $profile;
 
 			// Template
@@ -272,8 +273,10 @@ class ControllerAccountRecurring extends Controller {
 			$this->children = array(
 				'common/column_left',
 				'common/column_right',
+				'common/content_header',
 				'common/content_top',
 				'common/content_bottom',
+				'common/content_footer',
 				'common/footer',
 				'common/header'
 			);

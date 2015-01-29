@@ -1,5 +1,6 @@
 <?php
-class ControllerAmazonusProduct extends Controller  {
+class ControllerAmazonusProduct extends Controller {
+
 	public function inbound() {
 		if ($this->config->get('amazonus_status') != '1') {
 			$this->response->setOutput("disabled");
@@ -17,7 +18,7 @@ class ControllerAmazonusProduct extends Controller  {
 
 		$incomingToken = isset($this->request->post['token']) ? $this->request->post['token'] : '';
 
-		if($incomingToken != $this->config->get('openbay_amazonus_token')) {
+		if ($incomingToken != $this->config->get('openbay_amazonus_token')) {
 			$logger->write("Error - Incorrect token: " . $this->request->post['token']);
 			ob_get_clean();
 			$this->response->setOutput("tokens did not match");
@@ -25,7 +26,8 @@ class ControllerAmazonusProduct extends Controller  {
 		}
 
 		$data = $this->openbay->amazonus->decryptArgs($this->request->post['data']);
-		if(!$data) {
+
+		if (!$data) {
 			$logger->write("Error - Failed to decrypt received data.");
 			ob_get_clean();
 			$this->response->setOutput("failed to decrypt");
@@ -33,15 +35,18 @@ class ControllerAmazonusProduct extends Controller  {
 		}
 
 		$decodedData = (array)json_decode($data);
+
 		$logger->write("Received data: " . print_r($decodedData, true));
+
 		$status = $decodedData['status'];
 
-		if($status == "submit_error") {
+		if ($status == "submit_error") {
 			$message = 'Product was not submited to amazonus properly. Please try again or contact OpenBay.';
 			$this->model_openbay_amazonus_product->setSubmitError($decodedData['insertion_id'], $message);
 		} else {
 			$status = (array)$status;
-			if($status['successful'] == 1) {
+
+			if ($status['successful'] == 1) {
 				$this->model_openbay_amazonus_product->setStatus($decodedData['insertion_id'], 'ok');
 				$insertionProduct = $this->model_openbay_amazonus_product->getProduct($decodedData['insertion_id']);
 				$this->model_openbay_amazonus_product->linkProduct($insertionProduct['sku'], $insertionProduct['product_id'], $insertionProduct['var']);
@@ -50,13 +55,15 @@ class ControllerAmazonusProduct extends Controller  {
 				$quantityData = array(
 					$insertionProduct['sku'] => $this->model_openbay_amazonus_product->getProductQuantity($insertionProduct['product_id'], $insertionProduct['var'])
 				);
+
 				$logger->write('Updating quantity with data: ' . print_r($quantityData, true));
 				$logger->write('Response: ' . print_r($this->openbay->amazonus->updateQuantities($quantityData), true));
+
 			} else {
 				$msg = 'Product was not accepted by amazonus. Please try again or contact OpenBay.';
 				$this->model_openbay_amazonus_product->setSubmitError($decodedData['insertion_id'], $msg);
 
-				if(isset($decodedData['error_details'])) {
+				if (isset($decodedData['error_details'])) {
 					foreach($decodedData['error_details'] as $error) {
 						$error = (array)$error;
 						$error_data = array(
@@ -65,8 +72,8 @@ class ControllerAmazonusProduct extends Controller  {
 							'message' => $error['message'],
 							'insertion_id' => $decodedData['insertion_id']
 						);
-						$this->model_openbay_amazonus_product->insertError($error_data);
 
+						$this->model_openbay_amazonus_product->insertError($error_data);
 					}
 				}
 			}
@@ -74,6 +81,7 @@ class ControllerAmazonusProduct extends Controller  {
 
 		$logger->write("Data processed successfully.");
 		ob_get_clean();
+
 		$this->response->setOutput("ok");
 	}
 
@@ -91,6 +99,7 @@ class ControllerAmazonusProduct extends Controller  {
 		}
 
 		$data = $this->openbay->amazonus->decryptArgs($this->request->post['data']);
+
 		if (!$data) {
 			$this->response->setOutput("error 003");
 			return;
@@ -106,11 +115,13 @@ class ControllerAmazonusProduct extends Controller  {
 		$action = trim((string)$dataXml->action);
 
 		if ($action === "get_amazonus_product") {
-			if(!isset($dataXml->product_id)) {
+			if (!isset($dataXml->product_id)) {
 				$this->response->setOutput("error 005");
 				return;
 			}
+
 			$product_id = trim((string)$dataXml->product_id);
+
 			if ($product_id === "all") {
 				$all_rows = $this->db->query("
 					SELECT * FROM `" . DB_PREFIX . "amazonus_product`
@@ -124,6 +135,7 @@ class ControllerAmazonusProduct extends Controller  {
 
 				$this->response->setOutput(print_r($response, true));
 				return;
+
 			} else {
 				$response = $this->db->query("
 					SELECT * FROM `" . DB_PREFIX . "amazonus_product`
@@ -133,11 +145,11 @@ class ControllerAmazonusProduct extends Controller  {
 				$this->response->setOutput(print_r($response, true));
 				return;
 			}
+
 		} else {
 			$this->response->setOutput("error 999");
 			return;
 		}
 	}
-
 }
 ?>
