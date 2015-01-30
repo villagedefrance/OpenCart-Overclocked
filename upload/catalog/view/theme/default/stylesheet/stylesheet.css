@@ -160,19 +160,29 @@ samp, small {
 #currency {
 	width: 75px;
 	position: absolute;
-	top: 15px;
+	top: 17px;
 	left: 425px;
 	color: #999;
 	line-height: 17px;
 }
 #currency a {
 	display: inline-block;
-	padding: 2px 4px;
-	border: 1px solid #CCC;
 	color: #999;
 	text-decoration: none;
 	margin-right: 2px;
 	margin-bottom: 2px;
+	padding: 2px 4px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 2px #E7E7E7;
+	-moz-box-shadow: 0px 1px 2px #E7E7E7;
+	box-shadow: 0px 1px 2px #E7E7E7;
+}
+#currency a:hover {
+	color: #38B0E3;
 }
 #currency a b {
 	color: #111;
@@ -229,9 +239,9 @@ samp, small {
 	-moz-border-radius: 0px 7px 7px 7px;
 	-khtml-border-radius: 0px 7px 7px 7px;
 	border-radius: 0px 7px 7px 7px;
-	-webkit-box-shadow: 0px 2px 2px #DDD;
-	-moz-box-shadow: 0px 2px 2px #DDD;
-	box-shadow: 0px 2px 2px #DDD;
+	-webkit-box-shadow: 0px 1px 2px #E7E7E7;
+	-moz-box-shadow: 0px 1px 2px #E7E7E7;
+	box-shadow: 0px 1px 2px #E7E7E7;
 	background: #FFF;
 }
 #header #cart.active .heading {
@@ -324,13 +334,13 @@ samp, small {
 	width: 262px;
 	height: 21px;
 	border: 1px solid #CCC;
-	-webkit-border-radius: 3px 3px 3px 3px;
-	-moz-border-radius: 3px 3px 3px 3px;
-	-khtml-border-radius: 3px 3px 3px 3px;
-	border-radius: 3px 3px 3px 3px;
-	-webkit-box-shadow: 0px 2px 0px #F0F0F0;
-	-moz-box-shadow: 0px 2px 0px #F0F0F0;
-	box-shadow: 0px 2px 0px #F0F0F0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 2px #E7E7E7;
+	-moz-box-shadow: 0px 1px 2px #E7E7E7;
+	box-shadow: 0px 1px 2px #E7E7E7;
 }
 /* Header welcome */
 #header #welcome {
@@ -408,10 +418,10 @@ samp, small {
 }
 #menu > ul > li:hover > a {
 	background: #111;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 }
 #menu > ul > li > div {
 	position: absolute;
