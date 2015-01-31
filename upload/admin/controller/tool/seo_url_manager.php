@@ -226,8 +226,20 @@ class ControllerToolSeoUrlManager extends Controller {
 		$this->data['column_keyword'] = $this->language->get('column_keyword');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['link_seo_category'] = $this->language->get('link_seo_category');
+		$this->data['link_seo_product'] = $this->language->get('link_seo_product');
+		$this->data['link_seo_manufacturer'] = $this->language->get('link_seo_manufacturer');
+		$this->data['link_seo_information'] = $this->language->get('link_seo_information');
+		$this->data['link_seo_news'] = $this->language->get('link_seo_news');
+
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+
+		$this->data['seo_category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['seo_product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['seo_manufacturer'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['seo_information'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['seo_news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');
 
 		$seo_url_status = $this->config->get('config_seo_url');
 

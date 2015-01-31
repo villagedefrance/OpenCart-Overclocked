@@ -19,6 +19,13 @@
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
+    <div style="height:24px; margin-top:8px;">
+      <a href="<?php echo $seo_category; ?>" class="button-filter"><?php echo $link_seo_category; ?></a>
+      <a href="<?php echo $seo_product; ?>" class="button-filter"><?php echo $link_seo_product; ?></a>
+      <a href="<?php echo $seo_manufacturer; ?>" class="button-filter"><?php echo $link_seo_manufacturer; ?></a>
+      <a href="<?php echo $seo_information; ?>" class="button-filter"><?php echo $link_seo_information; ?></a>
+      <a href="<?php echo $seo_news; ?>" class="button-filter"><?php echo $link_seo_news; ?></a>
+    </div>
     <div class="content">
     <?php if ($error_url_status) { ?>
       <div class="warning" style="margin:0px 0px 5px 0px;"><?php echo $error_url_status; ?></div>
