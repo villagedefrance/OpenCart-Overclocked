@@ -1,4 +1,4 @@
 <?php
 // Heading
-$_['heading_title'] = 'Google Talk';
+$_['heading_title'] = 'Live Chat';
 ?>
