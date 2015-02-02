@@ -216,7 +216,17 @@ class ControllerCatalogNews extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['module'] = $this->url->link('module/news', 'token=' . $this->session->data['token'], 'SSL');
+		$this->load->model('setting/extension');
+
+		$extensions = $this->model_setting_extension->getInstalled('module');
+
+		foreach ($extensions as $extension) {
+			if ($extension == 'news' && file_exists(DIR_APPLICATION . 'controller/module/news.php')) {
+				$this->data['module'] = $this->url->link('module/news', 'token=' . $this->session->data['token'], 'SSL');
+			} else {
+				$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+			}
+		}
 
 		$this->data['reset'] = $this->url->link('catalog/news/reset', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('catalog/news/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

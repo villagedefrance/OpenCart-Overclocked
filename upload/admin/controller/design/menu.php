@@ -136,6 +136,18 @@ class ControllerDesignMenu extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->load->model('setting/extension');
+
+		$extensions = $this->model_setting_extension->getInstalled('module');
+
+		foreach ($extensions as $extension) {
+			if ($extension == 'menu' && file_exists(DIR_APPLICATION . 'controller/module/menu.php')) {
+				$this->data['module'] = $this->url->link('module/menu', 'token=' . $this->session->data['token'], 'SSL');
+			} else {
+				$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+			}
+		}
+
 		$this->data['insert'] = $this->url->link('design/menu/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/menu/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
@@ -198,18 +210,6 @@ class ControllerDesignMenu extends Controller {
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
-
-		$this->load->model('setting/extension');
-
-		$extensions = $this->model_setting_extension->getInstalled('module');
-
-		foreach ($extensions as $key => $value) {
-			if ($value == 'menu' && file_exists(DIR_APPLICATION . 'controller/module/menu.php')) {
-				$this->data['module'] = $this->url->link('module/menu', 'token=' . $this->session->data['token'], 'SSL');
-			} else {
-				$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
-			}
-		}
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
