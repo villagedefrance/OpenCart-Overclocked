@@ -12,10 +12,10 @@ Opencart Overclocked Edition is based originally on Opencart v1.5.6.4 but most s
 Many extra features have also been added, most of them in response to user feedback from the Opencart Forum.
 
 Main Scripts:
-- jQuery 1.11.1.
-- jQuery UI 1.10.4.
+- jQuery 1.11.2.
+- jQuery UI 1.11.2.
 - jQuery Flot 0.8.2.
-- CKEditor 4 Full.
+- CKEditor 4.4.7 Full.
 - ...
 
 Main Features:
