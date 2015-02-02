@@ -20,7 +20,7 @@
       <table class="form">
         <tr>
           <td><?php echo $entry_email; ?></td>
-          <td><input type="text" name="email" value="" size="30" /></td>
+          <td><input type="text" name="email" value="" size="40" /></td>
         </tr>
       </table>
     </div>
