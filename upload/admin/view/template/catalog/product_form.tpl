@@ -907,12 +907,14 @@
               </div></td>
               <td class="center"><select name="product_image[<?php echo $image_row; ?>][palette_color_id]">
                 <option value=""><?php echo $text_none; ?></option>
+                <?php if ($colors) { ?>
                 <?php foreach ($colors as $color) { ?>
                   <?php if ((isset($product_image['palette_color_id'])) && $product_image['palette_color_id'] == $color['palette_color_id']) { ?>
                     <option value="<?php echo $color['palette_color_id']; ?>" selected="selected"><?php echo $color['title']; ?></option>
                   <?php } else { ?>
                     <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>
                   <?php } ?>
+                <?php } ?>
                 <?php } ?>
               </select></td>
               <td class="center"><input type="text" name="product_image[<?php echo $image_row; ?>][sort_order]" value="<?php echo $product_image['sort_order']; ?>" size="2" /></td>
@@ -1629,8 +1631,10 @@ function addImage() {
 	html += '    </td>';
 	html += '    <td class="center"><select name="product_image[' + image_row + '][palette_color_id]">';
     html += '      <option value=""><?php echo $text_none; ?></option>';
+    <?php if ($colors) { ?>
 	<?php foreach ($colors as $color) { ?>
 	html += '      <option value="<?php echo $color['palette_color_id']; ?>"><?php echo addslashes($color['title']); ?></option>';
+	<?php } ?>
 	<?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" size="2" /></td>';
