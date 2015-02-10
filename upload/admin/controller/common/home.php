@@ -171,6 +171,10 @@ class ControllerCommonHome extends Controller {
 			$this->data['allow_affiliate'] = true;
 		}
 
+		// Overview Links
+		$this->data['view_reviews'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['view_affiliates'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Today
 		$this->data['total_order'] = $this->model_sale_order->getTotalOrders();
 

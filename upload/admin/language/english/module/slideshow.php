@@ -23,14 +23,14 @@ $_['entry_arrows']      			= 'Show Arrows: ';
 $_['entry_autohide']      		= 'AutoHide Arrows: ';
 $_['entry_controls']      		= 'Show Controls: ';
 
-$_['entry_banner']        		= 'Banner:';
-$_['entry_dimension']     		= 'Dimension (W x H):';
-$_['entry_effect']      			= 'Effect:';
-$_['entry_delay']      			= 'Delay:';
-$_['entry_layout']        		= 'Layout:';
-$_['entry_position']      		= 'Position:';
-$_['entry_status']        		= 'Status:';
-$_['entry_sort_order']    		= 'Sort Order:';
+$_['entry_banner']        		= 'Banner';
+$_['entry_dimension']     		= 'Dimension (W x H)';
+$_['entry_effect']      			= 'Effect';
+$_['entry_delay']      			= 'Delay';
+$_['entry_layout']        		= 'Layout';
+$_['entry_position']      		= 'Position';
+$_['entry_status']        		= 'Status';
+$_['entry_sort_order']    		= 'Sort Order';
 
 // Error
 $_['error_permission']    		= 'Warning: You do not have permission to modify module <b>Slideshow</b> !';

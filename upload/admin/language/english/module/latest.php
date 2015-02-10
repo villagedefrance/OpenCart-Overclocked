@@ -19,12 +19,12 @@ $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the 
 $_['entry_viewproduct'] 		= 'Show View Product Button:';
 $_['entry_addproduct'] 			= 'Show Add to Cart Button:';
 
-$_['entry_limit']         			= 'Limit:';
-$_['entry_image']         		= 'Image (W x H):';
-$_['entry_layout']        		= 'Layout:';
-$_['entry_position']      		= 'Position:';
-$_['entry_status']        		= 'Status:';
-$_['entry_sort_order']    		= 'Sort Order:';
+$_['entry_limit']         			= 'Limit';
+$_['entry_image']         		= 'Image (W x H)';
+$_['entry_layout']        		= 'Layout';
+$_['entry_position']      		= 'Position';
+$_['entry_status']        		= 'Status';
+$_['entry_sort_order']    		= 'Sort Order';
 
 // Error
 $_['error_permission']    		= 'Warning: You do not have permission to modify module <b>Latest</b> !';

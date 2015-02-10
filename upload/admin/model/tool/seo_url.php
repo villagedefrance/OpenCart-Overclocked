@@ -11,7 +11,7 @@ class ModelToolSeoUrl extends Controller {
 		if (isset($this->request->get['_route_'])) {
 			$parts = explode('/', $this->request->get['_route_']);
 
-			// remove any empty arrays from trailing
+			// Remove any empty arrays from trailing
 			if (utf8_strlen(end($parts)) == 0) {
 				array_pop($parts);
 			}
@@ -49,11 +49,8 @@ class ModelToolSeoUrl extends Controller {
 					if ($this->config->get('config_seo_url')) {
 						if ($query->row['query'] && $url[0] != 'news_id' && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id') {
 							$this->request->get['route'] = $query->row['query'];
-
 						} else {
 							$this->request->get['route'] = 'error/not_found';
-
-							break;
 						}
 					}
 				}
@@ -72,7 +69,7 @@ class ModelToolSeoUrl extends Controller {
 			}
 
 			if (isset($this->request->get['route'])) {
-				return new Action($this->request->get['route']);
+				return $this->forward($this->request->get['route']);
 			}
 		}
 

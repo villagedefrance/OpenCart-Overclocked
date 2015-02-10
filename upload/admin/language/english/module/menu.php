@@ -16,12 +16,12 @@ $_['text_content_bottom'] 	= 'Content Bottom';
 $_['text_content_footer']    	= 'Content Footer';
 
 // Entry
-$_['entry_menus']        		= 'Menus:';
-$_['entry_layout']        		= 'Layout:';
-$_['entry_position']     			= 'Position:';
-$_['entry_name']      			= 'Name:';
-$_['entry_status']        		= 'Status:';
-$_['entry_sort_order']    		= 'Sort Order:';
+$_['entry_menus']        		= 'Menus';
+$_['entry_layout']        		= 'Layout';
+$_['entry_position']     			= 'Position';
+$_['entry_name']      			= 'Name';
+$_['entry_status']        		= 'Status';
+$_['entry_sort_order']    		= 'Sort Order';
 
 // Button
 $_['button_create'] 				= 'Menu Manager';

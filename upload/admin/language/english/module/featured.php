@@ -31,11 +31,11 @@ $_['entry_review'] 				= 'Show Product Star Rating:<span class="help">(if any)</
 $_['entry_viewproduct'] 		= 'Show View Product Button:';
 $_['entry_addproduct'] 			= 'Show Add to Cart Button:';
 
-$_['entry_image']         		= 'Image (W x H):';
-$_['entry_layout']        		= 'Layout:';
-$_['entry_position']      		= 'Position:';
-$_['entry_status']        		= 'Status:';
-$_['entry_sort_order']    		= 'Sort Order:';
+$_['entry_image']         		= 'Image (W x H)';
+$_['entry_layout']        		= 'Layout';
+$_['entry_position']      		= 'Position';
+$_['entry_status']        		= 'Status';
+$_['entry_sort_order']    		= 'Sort Order';
 
 // Error 
 $_['error_permission']    		= 'Warning: You do not have permission to modify module <b>Featured</b> !';

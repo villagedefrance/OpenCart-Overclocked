@@ -16,8 +16,8 @@ $_['column_action'] 		= 'Action';
 $_['entry_name']    		= 'Link Name:';
 $_['entry_backend']		= 'Administration:';
 $_['entry_frontend']		= 'Store Front:';
-$_['entry_title']       	= 'Title';
-$_['entry_route']       	= 'Address (Url)';
+$_['entry_title']       	= 'Title:';
+$_['entry_route']       	= 'Address (Url):';
 
 // Error
 $_['error_permission'] 	= 'Warning: You do not have permission to modify <b>Links</b> !';

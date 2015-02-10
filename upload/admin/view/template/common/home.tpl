@@ -31,47 +31,53 @@
       <div class="overview">
         <div class="dashboard-heading"><?php echo $text_overview; ?></div>
         <div class="dashboard-content">
-          <table>
+          <table class="list" style="margin-bottom:10px;">
             <tr>
-              <td><?php echo $text_total_sale; ?></td>
-              <td><?php echo $total_sale; ?></td>
+              <td class="left"><?php echo $text_total_sale; ?></td>
+              <td class="right"><?php echo $total_sale; ?></td>
             </tr>
             <tr>
-              <td><?php echo $text_total_sale_year; ?></td>
-              <td><?php echo $total_sale_year; ?></td>
+              <td class="left"><?php echo $text_total_sale_year; ?></td>
+              <td class="right"><?php echo $total_sale_year; ?></td>
             </tr>
             <tr>
-              <td><?php echo $text_total_sale_month; ?></td>
-              <td><?php echo $total_sale_month; ?></td>
+              <td class="left"><?php echo $text_total_sale_month; ?></td>
+              <td class="right"><?php echo $total_sale_month; ?></td>
             </tr>
             <tr>
-              <td><?php echo $text_total_order; ?></td>
-              <td><?php echo $total_order; ?></td>
+              <td class="left"><?php echo $text_total_order; ?></td>
+              <td class="right"><?php echo $total_order; ?></td>
             </tr>
             <tr>
-              <td><?php echo $text_total_customer; ?></td>
-              <td><?php echo $total_customer; ?></td>
+              <td class="left"><?php echo $text_total_customer; ?>
+              <?php if ($total_customer_approval > 0) { ?>
+                <a href="<?php echo $view_customers; ?>" title=""><span class="color" style="background-color:#DE5954; color:#FFF;"><?php echo $total_customer_approval; ?></span></a>
+              <?php } else { ?>
+                <a href="<?php echo $view_customers; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+              <?php } ?>
+              </td>
+              <td class="right"><?php echo $total_customer; ?></td>
             </tr>
             <tr>
-              <td><?php echo $text_total_customer_approval; ?></td>
-              <td><?php echo $total_customer_approval; ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_review; ?></td>
-              <td><?php echo $total_review; ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_review_approval; ?></td>
-              <td><?php echo $total_review_approval; ?></td>
+              <td class="left"><?php echo $text_total_review; ?>
+              <?php if ($total_review_approval > 0) { ?>
+                <a href="<?php echo $view_reviews; ?>" title=""><span class="color" style="background-color:#DE5954; color:#FFF;"><?php echo $total_review_approval; ?></span></a>
+              <?php } else { ?>
+                <a href="<?php echo $view_reviews; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+              <?php } ?>
+              </td>
+              <td class="right"><?php echo $total_review; ?></td>
             </tr>
 			<?php if ($allow_affiliate) { ?>
             <tr>
-              <td><?php echo $text_total_affiliate; ?></td>
-              <td><?php echo $total_affiliate; ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_affiliate_approval; ?></td>
-              <td><?php echo $total_affiliate_approval; ?></td>
+              <td class="left"><?php echo $text_total_affiliate; ?>
+              <?php if ($total_affiliate_approval > 0) { ?>
+                <a href="<?php echo $view_affiliates; ?>" title=""><span class="color" style="background-color:#DE5954; color:#FFF;"><?php echo $total_affiliate_approval; ?></span></a>
+              <?php } else { ?>
+                <a href="<?php echo $view_affiliates; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+              <?php } ?>
+              </td>
+              <td class="right"><?php echo $total_affiliate; ?></td>
             </tr>
 			<?php } ?>
           </table>
@@ -88,7 +94,7 @@
         </div>
         <div class="dashboard-heading"><?php echo $text_statistics; ?></div>
         <div class="dashboard-content">
-          <div id="report" style="width:100%; height:190px;"></div> 
+          <div id="report" style="width:100%; height:230px;"></div> 
         </div>
       </div>
 	  <div class="tiles">

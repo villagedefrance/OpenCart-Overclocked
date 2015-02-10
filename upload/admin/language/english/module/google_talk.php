@@ -18,10 +18,10 @@ $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the 
 
 $_['entry_code']          		= 'Google Hangout Code:<br /><span class="help">Go to <a onclick="window.open(\'https://developers.google.com/+/hangouts/button\');"><u>Create a Google Hangout chatback badge</u></a> and copy &amp; paste the generated code into the text box.</span>';
 
-$_['entry_layout']        		= 'Layout:';
-$_['entry_position']      		= 'Position:';
-$_['entry_status']        		= 'Status:';
-$_['entry_sort_order']    		= 'Sort Order:';
+$_['entry_layout']        		= 'Layout';
+$_['entry_position']      		= 'Position';
+$_['entry_status']        		= 'Status';
+$_['entry_sort_order']    		= 'Sort Order';
 
 // Error
 $_['error_permission']    		= 'Warning: You do not have permission to modify module <b>Google Hangouts</b> !';

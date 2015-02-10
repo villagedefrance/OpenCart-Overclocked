@@ -17,13 +17,13 @@ $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from
 $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
 $_['entry_headline']         		= 'Headline Page Link:<br /><span class="help">Headline page button link will be displayed at the bottom of the list.</span>';
 
-$_['entry_limit']            		= 'Limit:';
-$_['entry_dimension']     		= 'Dimension (W x H):';
-$_['entry_numchars']       		= 'Characters:';
-$_['entry_layout']           		= 'Layout:';
-$_['entry_position']         		= 'Position:';
-$_['entry_status']           		= 'Status:';
-$_['entry_sort_order']       	= 'Sort Order:';
+$_['entry_limit']            		= 'Limit';
+$_['entry_dimension']     		= 'Dimension (W x H)';
+$_['entry_numchars']       		= 'Characters';
+$_['entry_layout']           		= 'Layout';
+$_['entry_position']         		= 'Position';
+$_['entry_status']           		= 'Status';
+$_['entry_sort_order']       	= 'Sort Order';
 
 // Button
 $_['button_news']            	= 'Add / Edit News';

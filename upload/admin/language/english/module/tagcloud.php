@@ -19,15 +19,15 @@ $_['text_limit']       				= 'N&deg; of Tags:';
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
 $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
 
-$_['entry_random']        		= 'Random:';
-$_['entry_limit']					= 'Limit:';
-$_['entry_min_font_size']		= 'Min Size:';
-$_['entry_max_font_size']		= 'Max Size:';
-$_['entry_font_weight'] 		= 'Font Weight:';
-$_['entry_layout']        		= 'Layout:';
-$_['entry_position']      		= 'Position:';
-$_['entry_status']        		= 'Status:';
-$_['entry_sort_order']    		= 'Sort Order:';
+$_['entry_random']        		= 'Random';
+$_['entry_limit']					= 'Limit';
+$_['entry_min_font_size']		= 'Min Size';
+$_['entry_max_font_size']		= 'Max Size';
+$_['entry_font_weight'] 		= 'Font Weight';
+$_['entry_layout']        		= 'Layout';
+$_['entry_position']      		= 'Position';
+$_['entry_status']        		= 'Status';
+$_['entry_sort_order']    		= 'Sort Order';
 
 // Error
 $_['error_permission']			= 'Warning: You do not have permission to modify module <b>Tag Cloud</b> !';
