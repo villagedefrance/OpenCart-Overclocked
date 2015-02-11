@@ -3,7 +3,6 @@
 $_['heading_title']                     	= 'Orders';
 
 // Text
-
 $_['text_amazon_order_id']        	= 'Amazon Order ID:';
 $_['text_name']                        	= 'Name:';
 $_['text_success']                      	= 'Success: You have modified <b>Orders</b> !';
