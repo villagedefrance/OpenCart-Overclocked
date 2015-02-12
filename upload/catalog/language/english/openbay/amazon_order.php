@@ -1,8 +1,8 @@
 <?php
-//Text
+// Text
 $_['paid_on_amazon_text']	= 'Paid on Amazon';
 
-//Order totals
+// Order totals
 $_['shipping_text']				= 'Shipping';
 $_['shipping_tax_text']			= 'Shipping tax';
 $_['gift_wrap_text']				= 'Gift Wrap';
