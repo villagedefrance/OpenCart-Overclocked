@@ -22,6 +22,8 @@ class ControllerModuleFeatured extends Controller {
 		$this->data['text_points'] = $this->language->get('text_points');
 		$this->data['text_offer'] = $this->language->get('text_offer');
 
+		$this->data['lang'] = $this->language->get('code');
+
 		$this->data['button_view'] = $this->language->get('button_view');
 		$this->data['button_cart'] = $this->language->get('button_cart');
 

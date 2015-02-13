@@ -59,6 +59,8 @@ class ControllerProductCompare extends Controller {
 		$this->data['text_offer'] = $this->language->get('text_offer');
 		$this->data['text_no_offer'] = $this->language->get('text_no_offer');
 
+		$this->data['lang'] = $this->language->get('code');
+
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_cart'] = $this->language->get('button_cart');
 		$this->data['button_remove'] = $this->language->get('button_remove');

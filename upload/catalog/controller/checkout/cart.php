@@ -132,6 +132,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_freq_bi_month'] = $this->language->get('text_freq_bi_month');
 			$this->data['text_freq_year'] = $this->language->get('text_freq_year');
 
+			$this->data['lang'] = $this->language->get('code');
+
 			$this->data['column_image'] = $this->language->get('column_image');
 			$this->data['column_name'] = $this->language->get('column_name');
 			$this->data['column_model'] = $this->language->get('column_model');

@@ -274,6 +274,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
 			$this->data['tab_related'] = $this->language->get('tab_related');
 
+			$this->data['lang'] = $this->language->get('code');
+
 			$this->data['product_id'] = $this->request->get['product_id'];
 
 			$this->load->model('tool/image');

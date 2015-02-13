@@ -119,6 +119,8 @@ class ControllerProductCategory extends Controller {
 			$this->data['text_limit'] = $this->language->get('text_limit');
 			$this->data['text_offer'] = $this->language->get('text_offer');
 
+			$this->data['lang'] = $this->language->get('code');
+
 			$this->data['button_cart'] = $this->language->get('button_cart');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');

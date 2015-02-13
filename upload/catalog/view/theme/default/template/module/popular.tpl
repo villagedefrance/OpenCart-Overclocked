@@ -6,7 +6,7 @@
     <?php foreach ($products as $product) { ?>
       <div>
         <?php if (!$label && $product['offer']) { ?>
-          <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45.png" alt="" /></div>
+          <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
         <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
@@ -41,7 +41,7 @@
     <?php foreach ($products as $product) { ?>
       <div>
         <?php if (!$label && $product['offer']) { ?>
-          <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45.png" alt="" /></div>
+          <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
         <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>

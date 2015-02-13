@@ -32,7 +32,7 @@
           <?php foreach ($products as $product) { ?>
             <td>
               <?php if (!$label && $product['offer']) { ?>
-                <div class="promo-small"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-30x30.png" alt="" /></div>
+                <div class="promo-small"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-30x30-<?php echo $lang; ?>.png" alt="" /></div>
               <?php } ?>
               <?php if ($products[$product['product_id']]['thumb']) { ?>
                 <img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" />

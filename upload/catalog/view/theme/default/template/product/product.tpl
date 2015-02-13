@@ -19,7 +19,7 @@
       <?php if ($lightbox == 'magnific') { ?>
         <?php if ($thumb) { ?>
           <?php if (!$label && $offers) { ?>
-            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75.png" alt="" /></div>
+            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -36,7 +36,7 @@
       <?php if ($lightbox == 'zoomlens') { ?>
         <?php if ($thumb) { ?>
           <?php if (!$label && $offers) { ?>
-            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75.png" alt="" /></div>
+            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
             <div class="simpleLens-container">
@@ -357,7 +357,7 @@
       <?php foreach ($offers as $offer) { ?>
         <div>
           <?php if (!$label) { ?>
-            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45.png" alt="" /></div>
+            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <?php if ($offer['thumb']) { ?>
             <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
@@ -407,7 +407,7 @@
       <?php foreach ($products as $product) { ?>
         <div>
           <?php if (!$label && $product['offer']) { ?>
-            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45.png" alt="" /></div>
+            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>

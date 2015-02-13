@@ -156,6 +156,8 @@ class ControllerProductSearch extends Controller {
 		$this->data['entry_search'] = $this->language->get('entry_search');
 		$this->data['entry_description'] = $this->language->get('entry_description');
 
+		$this->data['lang'] = $this->language->get('code');
+
 		$this->data['button_search'] = $this->language->get('button_search');
 		$this->data['button_cart'] = $this->language->get('button_cart');
 		$this->data['button_wishlist'] = $this->language->get('button_wishlist');
