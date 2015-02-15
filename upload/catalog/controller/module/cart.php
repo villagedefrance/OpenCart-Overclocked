@@ -58,6 +58,8 @@ class ControllerModuleCart extends Controller {
 
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		$this->data['lang'] = $this->language->get('code');
+
 		$this->data['label'] = $this->config->get('config_offer_label');
 
 		$this->load->model('catalog/offer');

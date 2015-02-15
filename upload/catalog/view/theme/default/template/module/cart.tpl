@@ -11,7 +11,7 @@
       <tr>
         <td class="image">
           <?php if (!$label && $product['offer']) { ?>
-            <div class="promo-mini"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-10x10.png" alt="" /></div>
+            <div class="promo-mini"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-10x10-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <?php if ($product['thumb']) { ?>
             <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>

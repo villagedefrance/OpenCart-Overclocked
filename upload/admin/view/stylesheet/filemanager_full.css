@@ -49,9 +49,8 @@
 	float: right;
 	width: 73%;
 	height: 400px;
-	text-align: center;
 	margin-bottom: 15px;
-	padding-top: 5px;
+	padding-bottom: 5px;
 	overflow: auto;
 }
 #column-right div {
