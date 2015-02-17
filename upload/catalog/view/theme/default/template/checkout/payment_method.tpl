@@ -5,6 +5,7 @@
   <p><?php echo $text_payment_method; ?></p>
   <table class="radio">
     <?php foreach ($payment_methods as $payment_method) { ?>
+      <?php $paypal_fee = ((substr($payment_method['code'], 0, 3) == "pp_") || ($payment_method['code'] == "paypal_email")) ? "$paypal_fee_fee" : ""; ?>
       <tr class="highlight">
         <td><?php if ($payment_method['code'] == $code || !$code) { ?>
           <?php $code = $payment_method['code']; ?>
@@ -12,7 +13,11 @@
         <?php } else { ?>
           <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
         <?php } ?></td>
-        <td><label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?></label></td>
+        <td><?php if ($paypal_fee) { ?>
+          <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?> (+<?php echo $paypal_fee; ?>)</label>
+        <?php } else { ?>
+          <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?></label>
+        <?php } ?></td>
       </tr>
     <?php } ?>
   </table>

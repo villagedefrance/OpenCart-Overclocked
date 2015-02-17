@@ -227,9 +227,9 @@ $(document).ready(function() {
               <li><a href="<?php echo $cache_images; ?>"><?php echo $text_cache_images; ?></a></li>
             </ul>
           </li>
-          <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
           <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
           <li><a href="<?php echo $filemanager; ?>"><?php echo $text_filemanager; ?></a></li>
+          <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
         </ul>
       </li>
       <li id="reports"><a class="top"><?php echo $text_reports; ?></a>

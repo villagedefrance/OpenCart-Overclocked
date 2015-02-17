@@ -78,7 +78,7 @@ class ControllerAffiliateTracking extends Controller {
 			$this->load->model('catalog/product');
 
 			$data = array(
-				'filter_name' 	=> $this->request->get['filter_name'],
+				'filter_name'	=> $this->request->get['filter_name'],
 				'start'       		=> 0,
 				'limit'       		=> 20
 			);
@@ -88,7 +88,7 @@ class ControllerAffiliateTracking extends Controller {
 			foreach ($results as $result) {
 				$json[] = array(
 					'name' 	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'link' 		=> str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $result['product_id'] . '&tracking=' . $this->affiliate->getCode()))
+					'link'		=> str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $result['product_id']) . '&tracking=' . $this->affiliate->getCode())
 				);
 			}
 		}

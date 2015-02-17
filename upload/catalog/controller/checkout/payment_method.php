@@ -77,6 +77,32 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			$this->session->data['payment_methods'] = $method_data;
 		}
 
+		// Paypal Fee
+		$ppfee = 0;
+		$paypal_fee = $this->config->get('paypal_fee_total');
+
+		if (empty($paypal_fee) || ($this->cart->getSubTotal() < $paypal_fee)) {
+			if ($this->config->get('paypal_fee_fee_type') == 'F') {
+				$ppfee = $this->config->get('paypal_fee_fee');
+			} else {
+				$min = $this->config->get('paypal_fee_fee_min');
+				$max = $this->config->get('paypal_fee_fee_max');
+
+				$ppfee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
+
+				if (!empty($min) && ($ppfee < $min)) {
+					$ppfee = $min;
+				}
+
+				if (!empty($max) && ($ppfee > $max)) {
+					$ppfee = $max;
+				}
+			}
+		}
+
+		$this->data['paypal_fee_fee'] = $this->currency->format($ppfee);
+
+		// Language
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_comments'] = $this->language->get('text_comments');
 
