@@ -12,6 +12,7 @@ class ControllerAmazonProduct extends Controller {
 		$this->load->library('amazon');
 		$this->load->model('openbay/amazon_product');
 		$this->load->library('log');
+
 		$logger = new Log('amazon_product.log');
 
 		$logger->write("AmazonProduct/inbound: incoming data");
@@ -44,6 +45,7 @@ class ControllerAmazonProduct extends Controller {
 
 		if ($status == "submit_error") {
 			$message = 'Product was not submited to amazon properly. Please try again or contact OpenBay.';
+
 			$this->model_openbay_amazon_product->setSubmitError($decodedData['insertion_id'], $message);
 		} else {
 			$status = (array)$status;
@@ -63,16 +65,18 @@ class ControllerAmazonProduct extends Controller {
 
 			} else {
 				$msg = 'Product was not accepted by amazon. Please try again or contact OpenBay.';
+
 				$this->model_openbay_amazon_product->setSubmitError($decodedData['insertion_id'], $msg);
 
 				if (isset($decodedData['error_details'])) {
-					foreach($decodedData['error_details'] as $error) {
+					foreach ($decodedData['error_details'] as $error) {
 						$error = (array)$error;
+
 						$error_data = array(
-							'sku' => $error['sku'],
-							'error_code' => $error['error_code'],
-							'message' => $error['message'],
-							'insertion_id' => $decodedData['insertion_id']
+							'sku' 				=> $error['sku'],
+							'error_code'		=> $error['error_code'],
+							'message' 		=> $error['message'],
+							'insertion_id'	=> $decodedData['insertion_id']
 						);
 
 						$this->model_openbay_amazon_product->insertError($error_data);
@@ -83,6 +87,7 @@ class ControllerAmazonProduct extends Controller {
 
 		$logger->write("Data processed successfully.");
 		ob_get_clean();
+
 		$this->response->setOutput("ok");
 	}
 
@@ -127,6 +132,7 @@ class ControllerAmazonProduct extends Controller {
 				$all_rows = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazon_product`")->rows;
 
 				$response = array();
+
 				foreach ($all_rows as $row) {
 					unset($row['data']);
 					$response[] = $row;

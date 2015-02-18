@@ -8,6 +8,7 @@ class ControllerAmazonusListing extends Controller {
 
 		$this->load->library('log');
 		$this->load->library('amazonus');
+
 		$this->load->model('openbay/amazonus_listing');
 		$this->load->model('openbay/amazonus_product');
 

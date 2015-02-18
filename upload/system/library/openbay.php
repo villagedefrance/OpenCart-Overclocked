@@ -95,9 +95,10 @@ final class Openbay {
 	public function testDbColumn($table, $column) {
 		//check profile table for default column
 		$res = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX.$table."` LIKE '".$column."'");
-		if($res->num_rows != 0) {
+
+		if ($res->num_rows != 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -107,13 +108,13 @@ final class Openbay {
 
 		$tables = array();
 
-		foreach($res->rows as $row) {
+		foreach ($res->rows as $row) {
 			$tables[] = $row['c'];
 		}
 
-		if(in_array($table, $tables)) {
+		if (in_array($table, $tables)) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -121,12 +122,14 @@ final class Openbay {
 	public function splitName($name) {
 		$name = explode(' ', $name);
 		$fname = $name[0];
+
 		unset($name[0]);
+
 		$lname = implode(' ', $name);
 
 		return array(
 			'firstname' => $fname,
-			'surname'   => $lname
+			'surname' => $lname
 		);
 	}
 
@@ -168,8 +171,8 @@ final class Openbay {
 		$rates = $this->getTaxRates($class_id);
 		$percentage = 0.00;
 
-		foreach($rates as $rate) {
-			if($rate['type'] == 'P') {
+		foreach ($rates as $rate) {
+			if ($rate['type'] == 'P') {
 				$percentage += $rate['rate'];
 			}
 		}
@@ -180,9 +183,9 @@ final class Openbay {
 	public function getZoneId($name, $country_id) {
 		$query = $this->db->query("SELECT `zone_id` FROM `" . DB_PREFIX . "zone` WHERE `country_id` = '" . (int)$country_id . "' AND status = '1' AND `name` = '".$this->db->escape($name)."'");
 
-		if($query->num_rows > 0) {
+		if ($query->num_rows > 0) {
 			return $query->row['zone_id'];
-		}else{
+		} else {
 			return 0;
 		}
 	}
@@ -200,7 +203,7 @@ final class Openbay {
 		// Order Totals
 		$order_total_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '" . (int)$order_id . "' ORDER BY `sort_order` ASC");
 
-		//Order contents
+		// Order contents
 		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		$subject = sprintf($language->get('text_new_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'), $order_id);
@@ -228,7 +231,7 @@ final class Openbay {
 			}
 		}
 
-		if(isset($order_voucher_query) && is_array($order_voucher_query)) {
+		if (isset($order_voucher_query) && is_array($order_voucher_query)) {
 			foreach ($order_voucher_query->rows as $voucher) {
 				$text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
 			}
@@ -312,21 +315,21 @@ final class Openbay {
 	}
 
 	public function getProductModelNumber($product_id, $sku = null) {
-		if($sku != null) {
+		if ($sku != null) {
 			$qry = $this->db->query("SELECT `sku` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '".(int)$product_id."' AND `var` = '".$this->db->escape($sku)."'");
 
-			if($qry->num_rows > 0) {
+			if ($qry->num_rows > 0) {
 				return $qry->row['sku'];
-			}else{
+			} else {
 				return false;
 			}
 
-		}else{
+		} else {
 			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".(int)$product_id."' LIMIT 1");
 
-			if($qry->num_rows > 0) {
+			if ($qry->num_rows > 0) {
 				return $qry->row['model'];
-			}else{
+			} else {
 				return false;
 			}
 		}
@@ -351,9 +354,9 @@ final class Openbay {
 	public function getUserByEmail($email) {
 		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer` WHERE `email` = '".$this->db->escape($email)."'");
 
-		if($qry->num_rows){
+		if ($qry->num_rows){
 			return $qry->row['customer_id'];
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -372,36 +375,36 @@ final class Openbay {
 				foreach ($product_option_value_query->rows as $product_option_value) {
 					$product_option_value_data[] = array(
 						'product_option_value_id' => $product_option_value['product_option_value_id'],
-						'option_value_id'         => $product_option_value['option_value_id'],
-						'name'                    => $product_option_value['name'],
-						'image'                   => $product_option_value['image'],
-						'quantity'                => $product_option_value['quantity'],
-						'subtract'                => $product_option_value['subtract'],
-						'price'                   => $product_option_value['price'],
-						'price_prefix'            => $product_option_value['price_prefix'],
-						'points'                  => $product_option_value['points'],
-						'points_prefix'           => $product_option_value['points_prefix'],
-						'weight'                  => $product_option_value['weight'],
-						'weight_prefix'           => $product_option_value['weight_prefix']
+						'option_value_id'		=> $product_option_value['option_value_id'],
+						'name'					=> $product_option_value['name'],
+						'image'					=> $product_option_value['image'],
+						'quantity'				=> $product_option_value['quantity'],
+						'subtract'				=> $product_option_value['subtract'],
+						'price'					=> $product_option_value['price'],
+						'price_prefix'			=> $product_option_value['price_prefix'],
+						'points'					=> $product_option_value['points'],
+						'points_prefix'			=> $product_option_value['points_prefix'],
+						'weight'					=> $product_option_value['weight'],
+						'weight_prefix'			=> $product_option_value['weight_prefix']
 					);
 				}
 
 				$product_option_data[] = array(
-					'product_option_id'    => $product_option['product_option_id'],
-					'option_id'            => $product_option['option_id'],
-					'name'                 => $product_option['name'],
-					'type'                 => $product_option['type'],
-					'product_option_value' => $product_option_value_data,
-					'required'             => $product_option['required']
+					'product_option_id'		=> $product_option['product_option_id'],
+					'option_id'					=> $product_option['option_id'],
+					'name'						=> $product_option['name'],
+					'type'							=> $product_option['type'],
+					'product_option_value'	=> $product_option_value_data,
+					'required'					=> $product_option['required']
 				);
 			} else {
 				$product_option_data[] = array(
-					'product_option_id' => $product_option['product_option_id'],
-					'option_id'         => $product_option['option_id'],
-					'name'              => $product_option['name'],
-					'type'              => $product_option['type'],
-					'option_value'      => $product_option['option_value'],
-					'required'          => $product_option['required']
+					'product_option_id'	=> $product_option['product_option_id'],
+					'option_id'				=> $product_option['option_id'],
+					'name'					=> $product_option['name'],
+					'type'						=> $product_option['type'],
+					'option_value'			=> $product_option['option_value'],
+					'required'				=> $product_option['required']
 				);
 			}
 		}

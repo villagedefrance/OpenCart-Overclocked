@@ -43,19 +43,16 @@
           <?php } ?>
           </tbody>
         </table>
-
         <div class="openbayPod overviewPod" onclick="location='<?php echo $manage_link; ?>'">
           <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon1.png'; ?>" title="<?php echo $lang_title_manage; ?>" alt="Manage icon" border="0" />
           <h3><?php echo $lang_pod_manage; ?></h3>
         </div>
-
         <a href="http://help.welfordmedia.co.uk/" target="_BLANK">
           <div class="openbayPod overviewPod">
             <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon7.png'; ?>" title="<?php echo $lang_title_help; ?>" alt="Help icon" border="0" />
             <h3><?php echo $lang_pod_help; ?></h3>
           </div>
         </a>
-
         <a href="http://shop.openbaypro.com/?utm_campaign=OpenBayModule&utm_medium=referral&utm_source=shopbutton" target="_BLANK">
           <div class="openbayPod overviewPod">
             <img src="<?php echo HTTPS_SERVER . 'view/image/openbay/openbay_icon11.png'; ?>" title="<?php echo $lang_title_shop; ?>" alt="Shop icon" border="0" />
@@ -92,7 +89,7 @@ function getOpenbayVersion() {
       type: 'GET',
       url: 'index.php?route=extension/openbay/getVersion&token=' + token,
       dataType: 'json',
-      success: function (json) {
+      success: function(json) {
         $('#openbay_version_loading').hide();
 
         if (version < json.version) {
@@ -104,7 +101,7 @@ function getOpenbayVersion() {
       failure: function() {
         $('#openbay_version').html('<?php echo $lang_error_retry; ?><strong><span onclick="getOpenbayVersion();"><?php echo $lang_btn_retry; ?></span></strong>');
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -127,7 +124,7 @@ function getOpenbayNotifications() {
         html += '<h3 style="background: url(<?php echo HTTPS_SERVER; ?>/view/image/information.png) no-repeat top left;"><?php echo $lang_title_messages; ?></h3>';
         html += '<ul>';
 
-        $.each(json, function(key, val) {
+        $.each(json, function (key, val) {
           html += '<li>' + val + '</li>';
         });
 
@@ -135,7 +132,7 @@ function getOpenbayNotifications() {
 
         $('#openbay_notification').html(html);
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -149,5 +146,4 @@ $(document).ready(function() {
   getOpenbayNotifications();
 });
 //--></script>
-
 <?php echo $footer; ?>

@@ -1,5 +1,6 @@
 <?php
 class ModelOpenbayAmazonOrder extends Model {
+
 	public function acknowledgeOrder($orderId) {
 		$amazonOrderId = $this->getAmazonOrderId($orderId);
 
@@ -41,6 +42,7 @@ class ModelOpenbayAmazonOrder extends Model {
         if ($productId == 0) {
             return;
         }
+
         if ($var == '') {
             $this->db->query("
                 UPDATE `" . DB_PREFIX . "product`
@@ -148,7 +150,6 @@ class ModelOpenbayAmazonOrder extends Model {
 
 	public function addAmazonOrderProducts($orderId, $data) {
 		foreach ($data as $sku => $orderItemId) {
-
 			$row = $this->db->query("
 				SELECT `order_product_id`
 				FROM `" . DB_PREFIX . "order_product`
@@ -212,7 +213,8 @@ class ModelOpenbayAmazonOrder extends Model {
 		$options = array();
 
 		$optionValueIds = explode(':', $productVar);
-		foreach($optionValueIds as $optionValueId) {
+
+		foreach ($optionValueIds as $optionValueId) {
 			$optionDetailsRow = $this->db->query("SELECT
 				pov.product_option_id,
 				pov.product_option_value_id,
@@ -231,7 +233,7 @@ class ModelOpenbayAmazonOrder extends Model {
 				od.option_id = pov.option_id AND od.language_id = '" . (int)$this->config->get('config_language_id') . "'
 			")->row;
 
-			if(!empty($optionDetailsRow)) {
+			if (!empty($optionDetailsRow)) {
 				$options[] = array(
 					'product_option_id' => (int)$optionDetailsRow['product_option_id'],
 					'product_option_value_id' => (int)$optionDetailsRow['product_option_value_id'],

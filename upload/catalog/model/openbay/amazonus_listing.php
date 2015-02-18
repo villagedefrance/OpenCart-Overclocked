@@ -1,5 +1,6 @@
 <?php
 class ModelOpenbayAmazonusListing extends Model {
+
 	public function listingSuccessful($product_id) {
 		$this->db->query("
 			UPDATE `" . DB_PREFIX . "amazonus_product`

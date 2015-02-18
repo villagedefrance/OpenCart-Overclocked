@@ -66,7 +66,7 @@
                   <option value="amazon_saved" <?php echo ($filter_marketplace == 'amazon_saved' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_saved; ?></option>
                   <option value="amazon_uploaded" <?php echo ($filter_marketplace == 'amazon_uploaded' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_processing; ?></option>
                   <option value="amazon_ok" <?php echo ($filter_marketplace == 'amazon_ok' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_active; ?></option>
-                <option value="amazon_unlisted" <?php echo ($filter_marketplace == 'amazon_unlisted' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_notlisted; ?></option>
+                  <option value="amazon_unlisted" <?php echo ($filter_marketplace == 'amazon_unlisted' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_notlisted; ?></option>
                   <option value="amazon_error" <?php echo ($filter_marketplace == 'amazon_error' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_failed; ?></option>
                   <option value="amazon_linked" <?php echo ($filter_marketplace == 'amazon_linked' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_linked; ?></option>
                   <option value="amazon_not_linked" <?php echo ($filter_marketplace == 'amazon_not_linked' ? ' selected' : ''); ?>><?php echo $text_status_amazoneu_notlinked; ?></option>
@@ -75,7 +75,7 @@
                   <option value="amazonus_saved" <?php echo ($filter_marketplace == 'amazonus_saved' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_saved; ?></option>
                   <option value="amazonus_uploaded" <?php echo ($filter_marketplace == 'amazonus_uploaded' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_processing; ?></option>
                   <option value="amazonus_ok" <?php echo ($filter_marketplace == 'amazonus_ok' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_active; ?></option>
-                <option value="amazonus_unlisted" <?php echo ($filter_marketplace == 'amazonus_unlisted' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_notlisted; ?></option>
+                  <option value="amazonus_unlisted" <?php echo ($filter_marketplace == 'amazonus_unlisted' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_notlisted; ?></option>
                   <option value="amazonus_error" <?php echo ($filter_marketplace == 'amazonus_error' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_failed; ?></option>
                   <option value="amazonus_linked" <?php echo ($filter_marketplace == 'amazonus_linked' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_linked; ?></option>
                   <option value="amazonus_not_linked" <?php echo ($filter_marketplace == 'amazonus_not_linked' ? ' selected' : ''); ?>><?php echo $text_status_amazonus_notlinked; ?></option>

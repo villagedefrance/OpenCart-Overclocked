@@ -1,5 +1,6 @@
 <?php
 class ModelOpenbayAmazonusProduct extends Model {
+
 	public function setStatus($insertionId, $statusString) {
 		$this->db->query("
 			UPDATE `" . DB_PREFIX . "amazonus_product`
@@ -23,10 +24,12 @@ class ModelOpenbayAmazonusProduct extends Model {
 	}
 
 	public function linkItems(array $data) {
-		foreach($data as $amazonusSku => $product_id) {
+		foreach ($data as $amazonusSku => $product_id) {
 			$varRow = $this->db->query("SELECT `var` FROM `" . DB_PREFIX . "amazonus_product`
 				WHERE `sku` = '" . $amazonusSku . "' AND `product_id` = '" . (int)$product_id . "'")->row;
+
 			$var = isset($varRow['var']) ? $varRow['var'] : '';
+
 			$this->linkProduct($amazonusSku, $product_id, $var);
 		}
 	}
@@ -57,20 +60,22 @@ class ModelOpenbayAmazonusProduct extends Model {
 			WHERE `insertion_id` = '" . $this->db->escape($insertionId) . "'
 			")->rows;
 
-		foreach($skuRows as $skuRow) {
+		foreach ($skuRows as $skuRow) {
 			$data = array(
-				'sku' => $skuRow['sku'],
-				'error_code' => '0',
-				'message' => $message,
-				'insertion_id' => $insertionId
+				'sku'				=> $skuRow['sku'],
+				'error_code'		=> '0',
+				'message'		=> $message,
+				'insertion_id'	=> $insertionId
 			);
+
 			$this->insertError($data);
 		}
 	 }
 
 	public function linkProduct($amazonus_sku, $product_id, $var = '') {
 		$count = $this->db->query("SELECT COUNT(*) as 'count' FROM `" . DB_PREFIX . "amazonus_product_link` WHERE `product_id` = '" . (int)$product_id . "' AND `amazonus_sku` = '" . $this->db->escape($amazonus_sku) . "' AND `var` = '" . $this->db->escape($var) . "' LIMIT 1")->row;
-		if($count['count'] == 0) {
+
+		if ($count['count'] == 0) {
 			$this->db->query(
 				"INSERT INTO `" . DB_PREFIX . "amazonus_product_link`
 				SET `product_id` = '" . (int)$product_id . "', `amazonus_sku` = '" . $this->db->escape($amazonus_sku) . "', `var` = '" . $this->db->escape($var) . "'");
@@ -85,27 +90,32 @@ class ModelOpenbayAmazonusProduct extends Model {
 		if ($var !== '' && $this->openbay->addonLoad('openstock')) {
 			$this->load->model('tool/image');
 			$this->load->model('openstock/openstock');
+
 			$optionStocks = $this->model_openstock_openstock->getProductOptionStocks($product_id);
 
 			$option = null;
+
 			foreach ($optionStocks as $optionIterator) {
-				if($optionIterator['var'] === $var) {
+				if ($optionIterator['var'] === $var) {
 					$option = $optionIterator;
 					break;
 				}
 			}
 
-			if($option != null) {
+			if ($option != null) {
 				$result = $option['stock'];
 			}
+
 		} else {
 			$this->load->model('catalog/product');
+
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 
 			if (isset($product_info['quantity'])) {
 				$result = $product_info['quantity'];
 			}
 		}
+
 		return $result;
 	}
 

@@ -9,10 +9,9 @@ class Amazon {
 	public function __construct($registry) {
 		$this->registry = $registry;
 
-		$this->token   = $registry->get('config')->get('openbay_amazon_token');
+		$this->token = $registry->get('config')->get('openbay_amazon_token');
 		$this->encPass = $registry->get('config')->get('openbay_amazon_enc_string1');
 		$this->encSalt = $registry->get('config')->get('openbay_amazon_enc_string2');
-
 	}
 
 	public function __get($name) {
@@ -39,45 +38,59 @@ class Amazon {
 
 				$osProducts = $this->osProducts($orderId);
 				$logger->write(print_r($osProducts, true));
+
 				$quantityData = array();
+
 				foreach ($osProducts as $osProduct) {
 					$amazonSkuRows = $this->getLinkedSkus($osProduct['pid'], $osProduct['var']);
-					foreach($amazonSkuRows as $amazonSkuRow) {
+
+					foreach ($amazonSkuRows as $amazonSkuRow) {
 						$quantityData[$amazonSkuRow['amazon_sku']] = $osProduct['qty_left'];
 					}
 				}
-				if(!empty($quantityData)) {
+
+				if (!empty($quantityData)) {
 					$logger->write('Updating quantities with data: ' . print_r($quantityData, true));
 					$this->updateQuantities($quantityData);
 				} else {
 					$logger->write('No quantity data need to be posted.');
 				}
+
 			} else {
 				$orderedProducts = $this->getOrderdProducts($orderId);
+
 				$orderedProductIds = array();
-				foreach($orderedProducts as $orderedProduct) {
+
+				foreach ($orderedProducts as $orderedProduct) {
 					$orderedProductIds[] = $orderedProduct['product_id'];
 				}
+
 				$this->putStockUpdateBulk($orderedProductIds);
 			}
+
 			$logger->write('orderNew() exiting');
 		}
 	}
 
 	public function productUpdateListen($product_id, $data) {
 		$logger = new Log('amazon_stocks.log');
+
 		$logger->write('productUpdateListen called for product id: ' . $product_id);
 
 		if ($this->openbay->addonLoad('openstock') && (isset($data['has_option']) && $data['has_option'] == 1)) {
 			$logger->write('openStock found installed and product has options.');
+
 			$quantityData = array();
-			foreach($data['product_option_stock'] as $optStock) {
+
+			foreach ($data['product_option_stock'] as $optStock) {
 				$amazonSkuRows = $this->getLinkedSkus($product_id, $optStock['var']);
-				foreach($amazonSkuRows as $amazonSkuRow) {
+
+				foreach ($amazonSkuRows as $amazonSkuRow) {
 					$quantityData[$amazonSkuRow['amazon_sku']] = $optStock['stock'];
 				}
 			}
-			if(!empty($quantityData)) {
+
+			if (!empty($quantityData)) {
 				$logger->write('Updating quantities with data: ' . print_r($quantityData, true));
 				$this->updateQuantities($quantityData);
 			} else {
@@ -87,6 +100,7 @@ class Amazon {
 		} else {
 			$this->putStockUpdateBulk(array($product_id));
 		}
+
 		$logger->write('productUpdateListen() exiting');
 	}
 
@@ -95,6 +109,7 @@ class Amazon {
 		if ($this->config->get('amazon_status') != 1 || !defined('HTTPS_CATALOG')) {
 			return;
 		}
+
 		$this->load->model('openbay/amazon');
 		
 		$log = new Log('amazon.log');
@@ -144,7 +159,6 @@ class Amazon {
 	}
 	
 	public function updateOrder($orderId, $orderStatusString, $courier_id = '', $courierFromList = true, $tracking_no = '') {
-
 		if ($this->config->get('amazon_status') != 1) {
 			return;
 		}
@@ -156,32 +170,30 @@ class Amazon {
 
 		$amazonOrder = $this->getOrder($orderId);
 
-		if(!$amazonOrder) {
+		if (!$amazonOrder) {
 			return;
 		}
 
 		$amazonOrderId = $amazonOrder['amazon_order_id'];
 
-
 		$log = new Log('amazon.log');
 		$log->write("Order's $amazonOrderId status changed to $orderStatusString");
 
-
 		$this->load->model('openbay/amazon');
 		$amazonOrderProducts = $this->model_openbay_amazon->getAmazonOrderedProducts($orderId);
-
 
 		$requestNode = new SimpleXMLElement('<Request/>');
 
 		$requestNode->addChild('AmazonOrderId', $amazonOrderId);
 		$requestNode->addChild('Status', $orderStatusString);
 
-		if(!empty($courier_id)) {
-			if($courierFromList) {
+		if (!empty($courier_id)) {
+			if ($courierFromList) {
 				$requestNode->addChild('CourierId', $courier_id);
 			} else {
 				$requestNode->addChild('CourierOther', $courier_id);
 			}
+
 			$requestNode->addChild('TrackingNo', $tracking_no);
 		}
 
@@ -189,6 +201,7 @@ class Amazon {
 
 		foreach ($amazonOrderProducts as $product) {
 			$newOrderItem = $orderItemsNode->addChild('OrderItem');
+
 			$newOrderItem->addChild('ItemId', htmlspecialchars($product['amazon_order_item_id']));
 			$newOrderItem->addChild('Quantity', (int)$product['quantity']);
 		}
@@ -200,13 +213,15 @@ class Amazon {
 
 		$this->model_openbay_amazon->updateAmazonOrderTracking($orderId, $courier_id, $courierFromList, !empty($courier_id) ? $tracking_no : '');
 		$log->write('Request: ' . $doc->saveXML());
+
 		$response = $this->callWithResponse('order/update2', $doc->saveXML(), false);
 		$log->write("Response for Order's status update: $response");
 	}
 
 	public function getCategoryTemplates() {
 		$result = $this->callWithResponse("productv2/RequestTemplateList");
-		if(isset($result)) {
+
+		if (isset($result)) {
 			return (array)json_decode($result);
 		} else {
 			return array();
@@ -215,7 +230,8 @@ class Amazon {
 
 	public function registerInsertion($data) {
 		$result = $this->callWithResponse("productv2/RegisterInsertionRequest", $data);
-		if(isset($result)) {
+
+		if (isset($result)) {
 			return (array)json_decode($result);
 		} else {
 			return array();
@@ -224,7 +240,8 @@ class Amazon {
 
 	public function insertProduct($data) {
 		$result = $this->callWithResponse("productv2/InsertProductRequest", $data);
-		if(isset($result)) {
+
+		if (isset($result)) {
 			return (array)json_decode($result);
 		} else {
 			return array();
@@ -233,7 +250,8 @@ class Amazon {
 
 	public function updateQuantities($data) {
 		$result = $this->callWithResponse("product/UpdateQuantityRequest", $data);
-		if(isset($result)) {
+
+		if (isset($result)) {
 			return (array)json_decode($result);
 		} else {
 			return array();
@@ -242,7 +260,8 @@ class Amazon {
 
 	public function getStockUpdatesStatus($data) {
 		$result = $this->callWithResponse("status/StockUpdates", $data);
-		if(isset($result)) {
+
+		if (isset($result)) {
 			return $result;
 		} else {
 			return false;
@@ -250,7 +269,7 @@ class Amazon {
 	}
 
 	public function callNoResponse($method, $data = array(), $isJson = true) {
-		if  ($isJson) {
+		if ($isJson) {
 			$argString = json_encode($data);
 		} else {
 			$argString = $data;
@@ -282,7 +301,7 @@ class Amazon {
 	}
 
 	public function callWithResponse($method, $data = array(), $isJson = true) {
-		if  ($isJson) {
+		if ($isJson) {
 			$argString = json_encode($data);
 		} else {
 			$argString = $data;
@@ -411,15 +430,18 @@ class Amazon {
 		$this->load->library('log');
 		$logger = new Log('amazon_stocks.log');
 		$logger->write('Updating stock using putStockUpdateBulk()');
+
 		$quantityData = array();
-		foreach($product_id_array as $product_id) {
+
+		foreach ($product_id_array as $product_id) {
 			$amazonRows = $this->getLinkedSkus($product_id);
-			foreach($amazonRows as $amazonRow) {
+
+			foreach ($amazonRows as $amazonRow) {
 				$productRow = $this->db->query("SELECT quantity, status FROM `" . DB_PREFIX . "product`
 					WHERE `product_id` = '" . (int)$product_id . "'")->row;
 
-				if(!empty($productRow)) {
-					if($endInactive && $productRow['status'] == '0') {
+				if (!empty($productRow)) {
+					if ($endInactive && $productRow['status'] == '0') {
 						$quantityData[$amazonRow['amazon_sku']] = 0;
 					} else {
 						$quantityData[$amazonRow['amazon_sku']] = $productRow['quantity'];
@@ -427,7 +449,8 @@ class Amazon {
 				}
 			}
 		}
-		if(!empty($quantityData)) {
+
+		if (!empty($quantityData)) {
 			$logger->write('Quantity data to be sent:' . print_r($quantityData, true));
 			$response = $this->updateQuantities($quantityData);
 			$logger->write('Submit to API. Response: ' . print_r($response, true));
@@ -453,6 +476,7 @@ class Amazon {
 		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		$passArray = array();
+
 		foreach ($order_product_query->rows as $order_product) {
 			$product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".(int)$order_product['product_id']."' LIMIT 1");
 
@@ -471,6 +495,7 @@ class Amazon {
 
 					if ($pOption_query->num_rows != 0) {
 						$pOptions = array();
+
 						foreach ($pOption_query->rows as $pOptionRow) {
 							$pOptions[] = $pOptionRow['product_option_value_id'];
 						}
@@ -478,12 +503,13 @@ class Amazon {
 						$var = implode(':', $pOptions);
 						$qtyLeftRow = $this->db->query("SELECT `stock` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '" . (int)$order_product['product_id'] . "' AND `var` = '" . $this->db->escape($var) . "'")->row;
 
-						if(empty($qtyLeftRow)) {
+						if (empty($qtyLeftRow)) {
 							$qtyLeftRow['stock'] = 0;
 						}
 
 						$passArray[] = array('pid' => $order_product['product_id'], 'qty_left' => $qtyLeftRow['stock'], 'var' => $var);
 					}
+
 				} else {
 					$passArray[] = array('pid' => $order_product['product_id'], 'qty_left' => $product_query->row['quantity'], 'var' => '');
 				}
@@ -493,22 +519,22 @@ class Amazon {
 		return $passArray;
 	}
 
-	public function validate(){
-		if($this->config->get('amazon_status') != 0 &&
+	public function validate() {
+		if ($this->config->get('amazon_status') != 0 &&
 			$this->config->get('openbay_amazon_token') != '' &&
 			$this->config->get('openbay_amazon_enc_string1') != '' &&
 			$this->config->get('openbay_amazon_enc_string2') != ''){
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 
-	public function deleteProduct($product_id){
+	public function deleteProduct($product_id) {
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "amazon_product_link` WHERE `product_id` = '" . $this->db->escape($product_id) . "'");
 	}
 
-	public function deleteOrder($order_id){
+	public function deleteOrder($order_id) {
 		/**
 		 * @todo
 		 */
@@ -517,9 +543,9 @@ class Amazon {
 	public function getOrder($orderId) {
 		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazon_order` WHERE `order_id` = '".(int)$orderId."' LIMIT 1");
 
-		if($qry->num_rows > 0){
+		if ($qry->num_rows > 0){
 			return $qry->row;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -558,15 +584,18 @@ class Amazon {
 		$simplexml = null;
 
 		libxml_use_internal_errors(true);
-		if(($simplexml = simplexml_load_string($xml)) == false) {
+
+		if (($simplexml = simplexml_load_string($xml)) == false) {
 			return false;
 		}
 
 		$category = (string)$simplexml->filename;
 
 		$tabs = array();
-		foreach($simplexml->tabs->tab as $tab) {
+
+		foreach ($simplexml->tabs->tab as $tab) {
 			$attributes = $tab->attributes();
+
 			$tabs[] = array(
 				'id' => (string)$attributes['id'],
 				'name' => (string)$tab->name,
@@ -575,9 +604,11 @@ class Amazon {
 
 		$fields = array();
 		$fieldTypes = array('required', 'desired', 'optional');
+
 		foreach ($fieldTypes as $type) {
 			foreach ($simplexml->fields->$type->field as $field) {
 				$attributes = $field->attributes();
+
 				$fields[] = array(
 					'name' => (string)$attributes['name'],
 					'title' => (string)$field->title,
@@ -589,8 +620,10 @@ class Amazon {
 					'tab' => (string)$attributes['tab'],
 				);
 			}
+
 			foreach ($simplexml->fields->$type->childfield as $field) {
 				$attributes = $field->attributes();
+
 				$fields[] = array(
 					'name' => (string)$attributes['name'],
 					'title' => (string)$field->title,
@@ -619,11 +652,11 @@ class Amazon {
 	}
 
 	private static function compareFields($field1, $field2) {
-		if($field1['order'] == $field2['order']) {
+		if ($field1['order'] == $field2['order']) {
 			return ($field1['unordered_index'] < $field2['unordered_index']) ? -1 : 1;
-		} else if(!empty($field1['order']) && empty($field2['order'])) {
+		} elseif (!empty($field1['order']) && empty($field2['order'])) {
 			return -1;
-		} else if(!empty($field2['order']) && empty($field1['order'])) {
+		} elseif (!empty($field2['order']) && empty($field1['order'])) {
 			return 1;
 		} else {
 			return ($field1['order'] < $field2['order']) ? -1 : 1;
