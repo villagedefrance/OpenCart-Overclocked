@@ -184,6 +184,8 @@ class ControllerSaleVoucherTheme extends Controller {
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
+		$this->load->model('tool/image');
+
 		$this->data['voucher_themes'] = array();
 
 		$data = array(
@@ -205,8 +207,17 @@ class ControllerSaleVoucherTheme extends Controller {
 				'href'	=> $this->url->link('sale/voucher_theme/update', 'token=' . $this->session->data['token'] . '&voucher_theme_id=' . $result['voucher_theme_id'] . $url, 'SSL')
 			);
 
+			$image = $this->model_sale_voucher_theme->getVoucherThemeImage($result['voucher_theme_id']);
+
+			if ($image && file_exists(DIR_IMAGE . $image)) {
+				$thumb = $this->model_tool_image->resize($image, 40, 40);
+			} else {
+				$thumb = $this->model_tool_image->resize('no_image.jpg', 40, 40);
+			}
+
 			$this->data['voucher_themes'][] = array(
 				'voucher_theme_id' 	=> $result['voucher_theme_id'],
+				'image'					=> $thumb,
 				'name'             		=> $result['name'],
 				'selected'         		=> isset($this->request->post['selected']) && in_array($result['voucher_theme_id'], $this->request->post['selected']),
 				'action'           		=> $action
@@ -217,6 +228,7 @@ class ControllerSaleVoucherTheme extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
+		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_action'] = $this->language->get('column_action');
 

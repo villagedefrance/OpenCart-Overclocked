@@ -28,6 +28,7 @@
           <thead>
             <tr>
               <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+              <td class="left"><?php echo $column_image; ?></td>
               <td class="left"><?php if ($sort == 'name') { ?>
                 <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
               <?php } else { ?>
@@ -45,6 +46,7 @@
               <?php } else { ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $voucher_theme['voucher_theme_id']; ?>" />
               <?php } ?></td>
+              <td class="center"><img src="<?php echo $voucher_theme['image']; ?>" alt="<?php echo $voucher_theme['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $voucher_theme['name']; ?></td>
               <td class="right"><?php foreach ($voucher_theme['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -53,7 +55,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
           </tbody>

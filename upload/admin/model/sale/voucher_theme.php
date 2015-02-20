@@ -82,6 +82,12 @@ class ModelSaleVoucherTheme extends Model {
 		}
 	}
 
+	public function getVoucherThemeImage($voucher_theme_id) {
+		$query = $this->db->query("SELECT image FROM " . DB_PREFIX . "voucher_theme WHERE voucher_theme_id = '" . (int)$voucher_theme_id . "'");
+
+		return $query->row['image'];
+	}
+
 	public function getVoucherThemeDescriptions($voucher_theme_id) {
 		$voucher_theme_data = array();
 

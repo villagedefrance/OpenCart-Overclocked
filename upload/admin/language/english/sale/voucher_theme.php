@@ -9,6 +9,7 @@ $_['text_browse']        		= 'Browse';
 $_['text_clear']         		= 'Clear';
 
 // Column
+$_['column_image']      		= 'Image';
 $_['column_name']        	= 'Voucher Theme Name';
 $_['column_action']      	= 'Action';
 
