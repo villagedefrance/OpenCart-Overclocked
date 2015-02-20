@@ -220,8 +220,8 @@ class ControllerCatalogNews extends Controller {
 
 		$extensions = $this->model_setting_extension->getInstalled('module');
 
-		foreach ($extensions as $extension) {
-			if ($extension == 'news' && file_exists(DIR_APPLICATION . 'controller/module/news.php')) {
+		foreach ($extensions as $key => $value) {
+			if (file_exists(DIR_APPLICATION . 'controller/module/news.php')) {
 				$this->data['module'] = $this->url->link('module/news', 'token=' . $this->session->data['token'], 'SSL');
 			} else {
 				$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');

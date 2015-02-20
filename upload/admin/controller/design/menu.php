@@ -140,8 +140,8 @@ class ControllerDesignMenu extends Controller {
 
 		$extensions = $this->model_setting_extension->getInstalled('module');
 
-		foreach ($extensions as $extension) {
-			if ($extension == 'menu' && file_exists(DIR_APPLICATION . 'controller/module/menu.php')) {
+		foreach ($extensions as $key => $value) {
+			if (file_exists(DIR_APPLICATION . 'controller/module/menu.php')) {
 				$this->data['module'] = $this->url->link('module/menu', 'token=' . $this->session->data['token'], 'SSL');
 			} else {
 				$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
