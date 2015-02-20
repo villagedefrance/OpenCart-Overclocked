@@ -43,7 +43,7 @@
               <?php } else { ?>
                 <a href="<?php echo $sort_to; ?>"><?php echo $column_to; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
               <?php } ?></td>
-              <td class="right"><?php if ($sort == 'v.amount') { ?>
+              <td class="left"><?php if ($sort == 'v.amount') { ?>
                 <a href="<?php echo $sort_amount; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_amount; ?></a>
               <?php } else { ?>
                 <a href="<?php echo $sort_amount; ?>"><?php echo $column_amount; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -78,11 +78,11 @@
                 <td class="left"><?php echo $voucher['code']; ?></td>
                 <td class="left"><?php echo $voucher['from']; ?></td>
                 <td class="left"><?php echo $voucher['to']; ?></td>
-                <td class="right"><?php echo $voucher['amount']; ?></td>
-                <td class="left"><?php echo $voucher['theme']; ?></td>
-                <td class="left"><?php echo $voucher['status']; ?></td>
-                <td class="left"><?php echo $voucher['date_added']; ?></td>
-                <td class="right"><a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');" class="button-form"><?php echo $text_send; ?></a>
+                <td class="center"><?php echo $voucher['amount']; ?></td>
+                <td class="center"><?php echo $voucher['theme']; ?></td>
+                <td class="center"><?php echo $voucher['status']; ?></td>
+                <td class="center"><?php echo $voucher['date_added']; ?></td>
+                <td class="right"><a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');" class="button-save"><?php echo $text_send; ?></a>
                 <?php foreach ($voucher['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
                 <?php } ?></td>

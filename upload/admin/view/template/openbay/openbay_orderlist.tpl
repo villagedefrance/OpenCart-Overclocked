@@ -25,79 +25,77 @@
         </div>
       </div>
       <div class="content">
-          <table class="list">
-            <thead>
-              <tr>
-                <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-                <td class="right"><?php if ($sort == 'o.order_id') { ?>
-                  <a href="<?php echo $sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_order_id; ?></a>
-                  <?php } else { ?>
-                  <a href="<?php echo $sort_order; ?>"><?php echo $column_order_id; ?></a>
-                  <?php } ?></td>
-                <td class="left"><?php if ($sort == 'customer') { ?>
-                  <a href="<?php echo $sort_customer; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_customer; ?></a>
-                  <?php } else { ?>
-                  <a href="<?php echo $sort_customer; ?>"><?php echo $column_customer; ?></a>
-                  <?php } ?></td>
-                <td class="left"><?php if ($sort == 'status') { ?>
-                  <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
-                  <?php } else { ?>
-                  <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
-                  <?php } ?></td>
-                <td class="right"><?php if ($sort == 'channel') { ?>
-                  <a href="<?php echo $sort_channel; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_channel; ?></a>
-                  <?php } else { ?>
-                  <a href="<?php echo $sort_channel; ?>"><?php echo $column_channel; ?></a>
-                  <?php } ?></td>
-                <td class="left"><?php if ($sort == 'o.date_added') { ?>
-                  <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
-                  <?php } else { ?>
-                  <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
-                  <?php } ?></td>
-                <td class="left"></td>
-                <td class="right"><?php echo $column_action; ?></td>
-              </tr>
+        <table class="list">
+          <thead>
+            <tr>
+              <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+              <td class="right"><?php if ($sort == 'o.order_id') { ?>
+                <a href="<?php echo $sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_order_id; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $sort_order; ?>"><?php echo $column_order_id; ?></a>
+              <?php } ?></td>
+              <td class="left"><?php if ($sort == 'customer') { ?>
+                <a href="<?php echo $sort_customer; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_customer; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $sort_customer; ?>"><?php echo $column_customer; ?></a>
+              <?php } ?></td>
+              <td class="left"><?php if ($sort == 'status') { ?>
+                <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?></a>
+              <?php } ?></td>
+              <td class="left"><?php if ($sort == 'channel') { ?>
+                <a href="<?php echo $sort_channel; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_channel; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $sort_channel; ?>"><?php echo $column_channel; ?></a>
+              <?php } ?></td>
+              <td class="left"><?php if ($sort == 'o.date_added') { ?>
+                <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?></a>
+              <?php } ?></td>
+              <td class="left"></td>
+              <td class="right"><?php echo $column_action; ?></td>
+            </tr>
             </thead>
             <tbody>
-              <tr class="filter">
-                <td></td>
-                <td align="right"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="4" style="text-align: right;" /></td>
-                <td><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
-                <td>
-                  <select name="filter_order_status_id">
-                    <option value="*"></option>
-                    <?php if ($filter_order_status_id == '0') { ?>
-                      <option value="0" selected="selected"><?php echo $text_missing; ?></option>
-                    <?php } else { ?>
-                      <option value="0"><?php echo $text_missing; ?></option>
-                    <?php } ?>
-                    <?php foreach ($order_statuses as $order_status) { ?>
-                      <?php if ($order_status['order_status_id'] == $filter_order_status_id) { ?>
-                        <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-                      <?php } else { ?>
-                        <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-                      <?php } ?>
-                    <?php } ?>
-                  </select>
-                </td>
-                <td align="right"><select name="filter_channel">
+            <tr class="filter">
+              <td></td>
+              <td style="text-align:right;"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="4" style="text-align:right;" /></td>
+              <td><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
+              <td><select name="filter_order_status_id">
+                <option value="*"></option>
+                <?php if ($filter_order_status_id == '0') { ?>
+                  <option value="0" selected="selected"><?php echo $text_missing; ?></option>
+                <?php } else { ?>
+                  <option value="0"><?php echo $text_missing; ?></option>
+                <?php } ?>
+                <?php foreach ($order_statuses as $order_status) { ?>
+                  <?php if ($order_status['order_status_id'] == $filter_order_status_id) { ?>
+                    <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
+              <td><select name="filter_channel">
                 <option value=""></option>
                 <?php foreach ($channels as $channel) { ?>
                   <?php if ($channel['module'] == $filter_channel) { ?>
-                    <option value="<?php echo $channel['module'] ?>" selected="selected"><?php echo $channel['title'] ?></option>
+                    <option value="<?php echo $channel['module'] ?>" selected="selected"><?php echo $channel['title']; ?></option>
                   <?php } else {  ?>
-                    <option value="<?php echo $channel['module'] ?>"><?php echo $channel['title'] ?></option>
+                    <option value="<?php echo $channel['module'] ?>"><?php echo $channel['title']; ?></option>
                   <?php } ?>
                 <?php } ?>
-                </select></td>
-                <td><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" class="date" /></td>
-                <td></td>
-                <td align="right"><a onclick="filter();" class="button"><?php echo $button_filter; ?></a></td>
-              </tr>
-              <?php if ($orders) { ?>
-                <?php foreach ($orders as $order) { ?>
+              </select></td>
+              <td><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" class="date" /></td>
+              <td></td>
+              <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            </tr>
+            <?php if ($orders) { ?>
+              <?php foreach ($orders as $order) { ?>
                 <tr>
-                  <td style="text-align: center;"><?php if ($order['selected']) { ?>
+                  <td style="text-align:center;"><?php if ($order['selected']) { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" checked="checked" />
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $order['order_id']; ?>" />
@@ -105,21 +103,21 @@
                   <td class="right"><?php echo $order['order_id']; ?></td>
                   <td class="left"><?php echo $order['customer']; ?></td>
                   <td class="left"><?php echo $order['status']; ?></td>
-                  <td class="right"><?php echo $order['channel']; ?></td>
+                  <td class="left"><?php echo $order['channel']; ?></td>
                   <td class="left"><?php echo $order['date_added']; ?></td>
                   <td class="left"></td>
                   <td class="right">
                     <?php foreach ($order['action'] as $action) { ?>
-                    [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
+                      <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
                     <?php } ?>
                   </td>
                 </tr>
-                <?php } ?>
-              <?php } else { ?>
+              <?php } ?>
+            <?php } else { ?>
               <tr>
                 <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
               </tr>
-              <?php } ?>
+            <?php } ?>
             </tbody>
           </table>
         <div class="pagination"><?php echo $pagination; ?></div>
@@ -127,20 +125,25 @@
     </div>
   </form>
 </div>
+
 <script type="text/javascript"><!--
-  function filter() {
+function filter() {
     url = 'index.php?route=extension/openbay/orderList&token=<?php echo $token; ?>';
+
     var filter_order_id = $('input[name=\'filter_order_id\']').attr('value');
+
     if (filter_order_id) {
       url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
     }
 
     var filter_customer = $('input[name=\'filter_customer\']').attr('value');
+
     if (filter_customer) {
       url += '&filter_customer=' + encodeURIComponent(filter_customer);
     }
 
     var filter_order_status_id = $('select[name=\'filter_order_status_id\']').attr('value');
+
     if (filter_order_status_id != '*') {
       url += '&filter_order_status_id=' + encodeURIComponent(filter_order_status_id);
     }
@@ -152,18 +155,21 @@
     }
 
     var filter_date_added = $('input[name=\'filter_date_added\']').attr('value');
+
     if (filter_date_added) {
       url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
     }
 
     location = url;
-  }
+}
 //--></script>
+
 <script type="text/javascript"><!--
   $(document).ready(function() {
-	  $('.date').datepicker({dateFormat: 'yy-mm-dd'});
+    $('.date').datepicker({dateFormat: 'yy-mm-dd'});
   });
 //--></script>
+
 <script type="text/javascript"><!--
   $('#form input').keydown(function(e) {
     if (e.keyCode == 13) {
@@ -171,6 +177,7 @@
     }
   });
 //--></script>
+
 <script type="text/javascript"><!--
     $.widget('custom.catcomplete', $.ui.autocomplete, {
         _renderMenu: function(ul, items) {
@@ -192,7 +199,7 @@
         delay: 0,
         source: function(request, response) {
             $.ajax({
-                url: 'index.php?route=sale/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
+                url: 'index.php?route=sale/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
                 dataType: 'json',
                 success: function(json) {
                     response($.map(json, function(item) {
@@ -203,7 +210,7 @@
                         }
                     }));
                 },
-                error: function (xhr, ajaxOptions, thrownError) {
+                error: function(xhr, ajaxOptions, thrownError) {
                   if (xhr.status != 0) {
                     alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
                   }
@@ -217,4 +224,5 @@
         }
     });
 //--></script>
+
 <?php echo $footer; ?>

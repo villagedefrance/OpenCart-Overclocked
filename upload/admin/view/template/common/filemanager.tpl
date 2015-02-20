@@ -50,25 +50,13 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#toolset button:first').button({
-        icons: { primary:'ui-icon-plus' }
-	}).next().button({
-		icons: { primary:'ui-icon-minus' }
-	}).next().button({
-		icons: { primary:'ui-icon-pencil' }
-	}).next().button({
-		icons: { primary:'ui-icon-grip-dotted-horizontal' }
-	}).next().button({
-		icons: { primary:'ui-icon-image' }
-	});
-
 	$('#column-left').tree({
-		plugins : {
-			cookie : {}
+		plugins: {
+			cookie: {}
 		},
 		data: {
-			async: true,
 			type: 'json',
+			async: true, 
 			opts: {
 				method: 'post',
 				url: 'index.php?route=common/filemanager/directory&token=<?php echo $token; ?>'
@@ -77,7 +65,7 @@ $(document).ready(function() {
 		selected: 'top',
 		ui: {
 			theme_name: 'apple',
-			animation: 50
+			animation: 60
 		},
 		types: {
 			'default': {
@@ -105,16 +93,15 @@ $(document).ready(function() {
 
 					return { 'directory': '' }
 
-					$('#column-left a.clicked').prepend('(' + json.length + ')');
 				} else {
 					TREE_OBJ.settings.data.opts.static = false;
 
 					return { 'directory': $(NODE).attr('directory') }
 				}
 			},
-			onselect: function (NODE, TREE_OBJ) {
+			onselect: function(NODE, TREE_OBJ) {
 				var dr;
-				var tree = $.tree.reference('#column-left a');
+				var tree = $.tree.focused('#column-left a');
 				window.dr = $(tree.selected).attr('directory');
 
 				$.ajax({
@@ -145,7 +132,7 @@ $(document).ready(function() {
 								dataType: 'html',
 								success: function(html) {
 									$(element).prepend('<img src="' + html + '" title="" alt="" /><br />');
-									$(element).fadeIn();
+									$(element).fadeIn(60);
 								}
 							});
 						});
@@ -166,13 +153,45 @@ $(document).ready(function() {
 					$(domEle).attr('id', dd);
 				});
 
-				var memTree = $.tree.reference('#column-left a');
+				var memTree = $.tree.focused('#column-left a');
 				var cc = $.cookie('selected');
 				var bb = '#' + cc;
 
 				memTree.select_branch(bb);
 			}
 		}
+	});
+
+	$('#column-right a').live('click', function() {
+		if ($(this).attr('class') == 'selected') {
+			$(this).removeAttr('class');
+		} else {
+			$('#column-right a').removeAttr('class');
+			$(this).attr('class', 'selected');
+		}
+	});
+
+	$('#column-right a').live('dblclick', function() {
+		<?php if ($fckeditor) { ?>
+			window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).find('input[name=\'image\']').attr('value'));
+			self.close();
+		<?php } else { ?>
+			parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).find('input[name=\'image\']').attr('value'));
+			parent.$('#dialog').dialog('close');
+			parent.$('#dialog').remove();
+		<?php } ?>
+	});
+
+	$('#toolset button:first').button({
+        icons: { primary:'ui-icon-plus' }
+	}).next().button({
+		icons: { primary:'ui-icon-minus' }
+	}).next().button({
+		icons: { primary:'ui-icon-pencil' }
+	}).next().button({
+		icons: { primary:'ui-icon-grip-dotted-horizontal' }
+	}).next().button({
+		icons: { primary:'ui-icon-image' }
 	});
 
 	$('#btnExpand').click(function() {
@@ -264,64 +283,6 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#column-right a').live('click', function() {
-		if ($(this).attr('class') == 'selected') {
-			$(this).removeAttr('class');
-		} else {
-			$('#column-right a').removeAttr('class');
-			
-			$(this).attr('class', 'selected');
-
-			$('#updateImage').attr('file', $(this).attr('file'));
-		}
-	});
-
-	$('#column-right a').live('dblclick', function() {
-		<?php if ($fckeditor) { ?>
-			window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).find('input[name=\'image\']').attr('value'));
-			self.close();
-		<?php } else { ?>
-			parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).find('input[name=\'image\']').attr('value'));
-			parent.$('#dialog').dialog('close');
-			parent.$('#dialog').remove();	
-		<?php } ?>
-	});
-
-	$('#updateImage').bind('click', function() {
-		if ($(this).attr('file') == "") {
-			$('#dialog').remove();
-
-			html  = '<div id="dialog">';
-			html += '<p><?php echo $text_no_image; ?>';
-			html += '<?php echo $text_select_image; ?></p>';
-			html += '</div>';
-
-			$('#column-right').prepend(html);
-
-			$('#dialog').dialog({
-				resizable: false,
-				height: 220,
-				width: 400,
-				modal: true,
-				title: '<?php echo $text_update_image; ?>',
-				buttons: {
-					"<?php echo $text_yes_execute; ?>": function() {
-						$('#dialog').remove();
-					}
-				}
-			});
-		} else {
-			<?php if ($fckeditor) { ?>
-				window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).attr('file'));
-				self.close();
-			<?php } else { ?>
-				parent.$('#<?php echo $field; ?>').attr('value', 'data/' + $(this).attr('file'));
-				parent.$('#dialog').dialog('close');
-				parent.$('#dialog').remove();
-			<?php } ?>
-		}
-	});
-
 	$('#filter').keyup(function() {
 		var filter = $(this).val();
 
@@ -337,21 +298,6 @@ $(document).ready(function() {
 				$(this).css('display','none');
 			}
 		});
-
-		$('#column-right a').each(function(index, element) {
-			var height = $('#column-right').height();
-			var offset = $(element).offset();
-
-			if ((offset.top > 0) && (offset.top < height) && $(element).find('img').attr('src') == '<?php echo $no_image; ?>') {
-				$.ajax({
-					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent('data/' + $(element).find('input[name=\'image\']').attr('value')),
-					dataType: 'html',
-					success: function(html) {
-						$(element).find('img').replaceWith('<img src="' + html + '" alt="" title="" />');
-					}
-				});
-			}
-		});
 	});
 
 	$('#create').bind('click', function() {
@@ -360,9 +306,9 @@ $(document).ready(function() {
 		if (tree.selected) {
 			$('#dialog').remove();
 
-			html  = '<div id="dialog">';
-			html += '  <?php echo $entry_folder; ?> <input type="text" name="name" value="" /><br /><br />';
-			html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
+			html = '<div id="dialog">';
+			html += '<?php echo $entry_folder; ?> <input type="text" name="name" value="" /><br /><br />';
+			html += '<input type="button" value="<?php echo $button_submit; ?>" />';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
@@ -407,10 +353,10 @@ $(document).ready(function() {
 		if (path == undefined) {
 			$('#dialog').remove();
 
-			html  = '<div id="dialog">';
-			html += '  <p><?php echo $text_folder_action; ?>' + '<span style="font-weight:bold;"> "' + fldr + '"' +'</span><br />';
-			html += '  <?php echo $text_folder_content; ?><br /><br />';
-			html += '  <span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
+			html = '<div id="dialog">';
+			html += '<p><?php echo $text_folder_action; ?>' + '<span style="font-weight:bold;"> "' + fldr + '"' + '</span><br />';
+			html += '<?php echo $text_folder_content; ?><br /><br />';
+			html += '<span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
@@ -463,9 +409,9 @@ $(document).ready(function() {
 
 			$('#dialog').remove();
 
-			html  = '<div id="dialog">';
-			html += '  <p><?php echo $text_file_action; ?> ' + '<span style="font-weight:bold;"> "' + file + '"' +'</span><br /><br />';
-			html += '  <span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
+			html = '<div id="dialog">';
+			html += '<p><?php echo $text_file_action; ?> ' + '<span style="font-weight:bold;"> "' + file + '"' + '</span><br /><br />';
+			html += '<span style="font-weight:bold; color:Crimson;"><?php echo $text_confirm; ?></span></p>';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
@@ -514,9 +460,9 @@ $(document).ready(function() {
 	$('#move').bind('click', function() {
 		$('#dialog').remove();
 
-		html  = '<div id="dialog">';
-		html += '  <?php echo $entry_move; ?> <select name="to"></select><br /><br />';
-		html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
+		html = '<div id="dialog">';
+		html += '<?php echo $entry_move; ?> <select name="to"></select><br /><br />';
+		html += '<input type="button" value="<?php echo $button_submit; ?>" />';
 		html += '</div>';
 
 		$('#column-right').prepend(html);
@@ -587,9 +533,9 @@ $(document).ready(function() {
 	$('#copy').bind('click', function() {
 		$('#dialog').remove();
 
-		html  = '<div id="dialog">';
-		html += '  <?php echo $entry_copy; ?> <input type="text" name="name" value="" /><br /><br />'; 
-		html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
+		html = '<div id="dialog">';
+		html += '<?php echo $entry_copy; ?> <input type="text" name="name" value="" /><br /><br />'; 
+		html += '<input type="button" value="<?php echo $button_submit; ?>" />';
 		html += '</div>';
 
 		$('#column-right').prepend(html);
@@ -660,9 +606,9 @@ $(document).ready(function() {
 	$('#rename').bind('click', function() {
 		$('#dialog').remove();
 
-		html  = '<div id="dialog">';
-		html += '  <?php echo $entry_rename; ?> <input type="text" name="name" value="" /><br /><br />';
-		html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
+		html = '<div id="dialog">';
+		html += '<?php echo $entry_rename; ?> <input type="text" name="name" value="" /><br /><br />';
+		html += '<input type="button" value="<?php echo $button_submit; ?>" />';
 		html += '</div>';
 
 		$('#column-right').prepend(html);
@@ -762,17 +708,9 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#refresh').bind('click', function() {
-		var tree = $.tree.focused();
-
-		tree.refresh(tree.selected);
-	});
-
-	// ----------------------- Multi Upload ------------------------
-
 	$('#uploadmulti').click(function() {
-		html  = '<div id="uploadMulti" title="<?php echo $text_upload_plus; ?>">';
-		html += '  <div id="uploader"></div>';
+		html = '<div id="uploadMulti" title="<?php echo $text_upload_plus; ?>">';
+		html += '<div id="uploader"></div>';
 		html += '</div>';
 
 		$('#column-left').prepend(html);
@@ -786,9 +724,9 @@ $(document).ready(function() {
 				var tree = $.tree.focused();
 
 				$('#uploader').plupload({
-					runtimes : 'html5,flash,silverlight',
+					runtimes: 'html5,flash,silverlight',
 					url: 'index.php?route=common/filemanager/multi&token=<?php echo $token; ?>&directory=' + window.dr,
-					max_file_count: 20,
+					max_file_count: 50,
 					max_file_size: '25mb',
 					chunk_size: '1mb',
 					unique_names: false,
@@ -800,7 +738,7 @@ $(document).ready(function() {
 
 				$('form').submit(function(e) {
 					var uploader = $('#uploader').plupload('getUploader');
-					var tree = $.tree.reference('#column-left a');
+					var tree = $.tree.focused('#column-left a');
 
 					if (uploader.files.length > 0) {
 						uploader.bind('StateChanged', function() {
@@ -810,7 +748,6 @@ $(document).ready(function() {
 						});
 
 						uploader.start();
-
 					} else {
 						alert('<?php echo $text_no_selection; ?>');
 
@@ -820,14 +757,19 @@ $(document).ready(function() {
 			},
 
 			close: function(event, ui) {
-				var uploader = $('#uploader').plupload('getUploader');
-				var tree = $.tree.reference('#column-left a');
+				var tree = $.tree.focused();
 
 				tree.select_branch(tree.selected);
 
 				$('#uploadMulti').remove();
 			}
 		});
+	});
+
+	$('#refresh').bind('click', function() {
+		var tree = $.tree.focused();
+
+		tree.select_branch(tree.selected);
 	});
 });
 //--></script>
