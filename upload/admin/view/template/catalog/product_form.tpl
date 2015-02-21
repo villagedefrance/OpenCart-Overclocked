@@ -1348,59 +1348,59 @@ $('input[name=\'option\']').catcomplete({
 	},
 	select: function(event, ui) {
 		html  = '<div id="tab-option-' + option_row + '" class="vtabs-content">';
-		html += '	<input type="hidden" name="product_option[' + option_row + '][product_option_id]" value="" />';
-		html += '	<input type="hidden" name="product_option[' + option_row + '][name]" value="' + ui.item.label + '" />';
-		html += '	<input type="hidden" name="product_option[' + option_row + '][option_id]" value="' + ui.item.value + '" />';
-		html += '	<input type="hidden" name="product_option[' + option_row + '][type]" value="' + ui.item.type + '" />';
-		html += '	<table class="form">';
-		html += '	  <tr>';
-		html += '		<td><?php echo $entry_required; ?></td>';
-		html += '        <td><select name="product_option[' + option_row + '][required]">';
-		html += '          <option value="1"><?php echo $text_yes; ?></option>';
-		html += '          <option value="0"><?php echo $text_no; ?></option>';
-		html += '        </select></td>';
-		html += '      </tr>';
+		html += '  <input type="hidden" name="product_option[' + option_row + '][product_option_id]" value="" />';
+		html += '  <input type="hidden" name="product_option[' + option_row + '][name]" value="' + ui.item.label + '" />';
+		html += '  <input type="hidden" name="product_option[' + option_row + '][option_id]" value="' + ui.item.value + '" />';
+		html += '  <input type="hidden" name="product_option[' + option_row + '][type]" value="' + ui.item.type + '" />';
+		html += '  <table class="form">';
+		html += '    <tr>';
+		html += '      <td><?php echo $entry_required; ?></td>';
+		html += '      <td><select name="product_option[' + option_row + '][required]">';
+		html += '        <option value="1"><?php echo $text_yes; ?></option>';
+		html += '        <option value="0"><?php echo $text_no; ?></option>';
+		html += '      </select></td>';
+		html += '    </tr>';
 
 		if (ui.item.type == 'text') {
-			html += '     <tr>';
-			html += '       <td><?php echo $entry_option_value; ?></td>';
-			html += '       <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" /></td>';
-			html += '     </tr>';
+			html += '    <tr>';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" /></td>';
+			html += '    </tr>';
 		}
 
 		if (ui.item.type == 'textarea') {
-			html += '     <tr>';
-			html += '       <td><?php echo $entry_option_value; ?></td>';
-			html += '       <td><textarea name="product_option[' + option_row + '][option_value]" cols="40" rows="5"></textarea></td>';
-			html += '     </tr>';
+			html += '    <tr>';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><textarea name="product_option[' + option_row + '][option_value]" cols="40" rows="5"></textarea></td>';
+			html += '    </tr>';
 		}
 
 		if (ui.item.type == 'file') {
-			html += '     <tr style="display:none;">';
-			html += '       <td><?php echo $entry_option_value; ?></td>';
-			html += '       <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" /></td>';
-			html += '     </tr>';
+			html += '    <tr style="display:none;">';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" /></td>';
+			html += '    </tr>';
 		}
 
 		if (ui.item.type == 'date') {
-			html += '     <tr>';
-			html += '       <td><?php echo $entry_option_value; ?></td>';
-			html += '       <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="date" /></td>';
-			html += '     </tr>';
+			html += '    <tr>';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="date" /></td>';
+			html += '    </tr>';
 		}
 
 		if (ui.item.type == 'datetime') {
-			html += '     <tr>';
-			html += '       <td><?php echo $entry_option_value; ?></td>';
-			html += '       <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="datetime" /></td>';
-			html += '     </tr>';
+			html += '    <tr>';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="datetime" /></td>';
+			html += '    </tr>';
 		}
 
 		if (ui.item.type == 'time') {
-			html += '     <tr>';
-			html += '       <td><?php echo $entry_option_value; ?></td>';
-			html += '       <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="time" /></td>';
-			html += '     </tr>';
+			html += '    <tr>';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="time" /></td>';
+			html += '    </tr>';
 		}
 
 		html += '  </table>';
@@ -1597,7 +1597,7 @@ function image_upload(field, thumb) {
 
 	$('#dialog').dialog({
 		title: '<?php echo $text_image_manager; ?>',
-		close: function (event, ui) {
+		close: function(event, ui) {
 			if ($('#' + field).attr('value')) {
 				$.ajax({
 					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),

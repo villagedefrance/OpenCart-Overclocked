@@ -74,7 +74,6 @@ $(document).ready(function() {
 			dataType: 'html',
 			success: function(html) {
 				$('#checkout .checkout-content').html(html);
-
 				$('#checkout .checkout-content').slideDown('slow');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -93,7 +92,6 @@ $(document).ready(function() {
 			dataType: 'html',
 			success: function(html) {
 				$('#payment-address .checkout-content').html(html);
-
 				$('#payment-address .checkout-content').slideDown('slow');
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -158,7 +156,6 @@ $('#button-login').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				$('#checkout .checkout-content').prepend('<div class="warning" style="display:none;">' + json['error']['warning'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 		},

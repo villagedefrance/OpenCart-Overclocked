@@ -445,8 +445,8 @@ class ControllerSaleCustomer extends Controller {
 				'name'           		=> $result['name'],
 				'email'          		=> $result['email'],
 				'customer_group' 	=> $result['customer_group'],
-				'status'         		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-				'approved'       	=> ($result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no')),
+				'status'         		=> $result['status'],
+				'approved'       	=> $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'ip'             		=> $result['ip'],
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'selected'       		=> isset($this->request->post['selected']) && in_array($result['customer_id'], $this->request->post['selected']),
@@ -456,13 +456,13 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_default'] = $this->language->get('text_default');
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_email'] = $this->language->get('column_email');

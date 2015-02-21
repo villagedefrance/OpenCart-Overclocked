@@ -96,6 +96,18 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->getForm();
 	}
 
+	public function refresh() {
+		$this->language->load('localisation/currency');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('localisation/currency');
+
+		$this->model_localisation_currency->updateCurrenciesHourly();
+
+		$this->getList();
+	}
+
 	public function delete() {
 		$this->language->load('localisation/currency');
 
@@ -166,17 +178,18 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
+		$this->data['refresh'] = $this->url->link('localisation/currency/refresh', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('localisation/currency/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('localisation/currency/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -205,10 +218,21 @@ class ControllerLocalisationCurrency extends Controller {
 				'href' => $this->url->link('localisation/currency/update', 'token=' . $this->session->data['token'] . '&currency_id=' . $result['currency_id'] . $url, 'SSL')
 			);
 
+			if ($result['date_modified'] < date('Y-m-d H:i:s', strtotime('-1 day'))) {
+				$this->model_localisation_currency->updateCurrencies();
+			}
+
+			if ($result['date_modified'] < date('Y-m-d H:i:s', strtotime('-1 hour'))) {
+				$this->data['allow_refresh'] = true;
+			} else {
+				$this->data['allow_refresh'] = false;
+			}
+
 			$this->data['currencies'][] = array(
 				'currency_id'   	=> $result['currency_id'],
 				'title'         			=> $result['title'] . (($result['code'] == $this->config->get('config_currency')) ? $this->language->get('text_default') : null),
 				'code'          		=> $result['code'],
+				'status'     			=> $result['status'],
 				'value'         		=> $result['value'],
 				'date_modified' 	=> date($this->language->get('date_format_time'), strtotime($result['date_modified'])),
 				'selected'      		=> isset($this->request->post['selected']) && in_array($result['currency_id'], $this->request->post['selected']),
@@ -219,13 +243,17 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_title'] = $this->language->get('column_title');
 		$this->data['column_code'] = $this->language->get('column_code');
+		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_value'] = $this->language->get('column_value');
 		$this->data['column_date_modified'] = $this->language->get('column_date_modified');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_refresh'] = $this->language->get('button_refresh');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 
@@ -257,6 +285,7 @@ class ControllerLocalisationCurrency extends Controller {
 
 		$this->data['sort_title'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . '&sort=title' . $url, 'SSL');
 		$this->data['sort_code'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . '&sort=code' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
 		$this->data['sort_value'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . '&sort=value' . $url, 'SSL');
 		$this->data['sort_date_modified'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . '&sort=date_modified' . $url, 'SSL');
 

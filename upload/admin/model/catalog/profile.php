@@ -33,7 +33,7 @@ class ModelCatalogProfile extends Model {
 
 		$this->db->query("UPDATE " . DB_PREFIX . "order_recurring SET profile_id = 0 WHERE profile_id = '" . (int)$profile_id . "'");
 	}
-	
+
 	public function getFrequencies() {
 		return array(
 			'day' 				=> $this->language->get('text_day'),

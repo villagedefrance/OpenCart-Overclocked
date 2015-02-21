@@ -1391,17 +1391,18 @@ ul.box-filter > li ul {
 .product-info .price-tax {
 	font-size: 12px;
 	font-weight: normal;
-	color: #999;
+	color: #888;
 }
 .product-info .price .reward {
-	font-size: 12px;
+	font-size: 11px;
 	font-weight: normal;
-	color: #999;
+	color: #888;
 }
 .product-info .price .discount {
 	font-weight: normal;
-	font-size: 12px;
+	font-size: 13px;
 	color: #4D4D4D;
+	margin-top: 6px;
 }
 .product-info .options {
 	border-bottom: 1px solid #E7E7E7;

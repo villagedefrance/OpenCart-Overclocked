@@ -193,6 +193,7 @@ class ControllerCatalogCategory extends Controller {
 				'image'			=> $thumb,
 				'name'        	=> $result['name'],
 				'sort_order'  	=> $result['sort_order'],
+				'status'  		=> $result['status'],
 				'selected'    	=> isset($this->request->post['selected']) && in_array($result['category_id'], $this->request->post['selected']),
 				'action'      		=> $action
 			);
@@ -201,10 +202,13 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
+		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');

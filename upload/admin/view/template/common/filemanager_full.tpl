@@ -61,7 +61,7 @@ $(document).ready(function() {
 		},
 		data: {
 			type: 'json',
-			async: true, 
+			async: true,
 			opts: {
 				method: 'post',
 				url: 'index.php?route=common/filemanager_full/directory&token=<?php echo $token; ?>'

@@ -552,7 +552,7 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	text-align: center;
 	padding: 7px;
 }
-.list tbody td span.color {
+.list tbody tr td span.color {
 	display: block;
 	float: right;
 	height: 20px;
@@ -571,6 +571,26 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	line-height: 20px;
 	text-align: center;
 	margin-right: 10px;
+}
+.list tbody tr td span.enabled {
+	background: #5DC15E;
+	padding: 2px 12px;
+	color: #FFF;
+	border: 0px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+.list tbody tr td span.disabled {
+	background: #A0A0A0;
+	padding: 2px 12px;
+	color: #FFF;
+	border: 0px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 .list .asc {
 	background: url('../image/asc.png') right center no-repeat;

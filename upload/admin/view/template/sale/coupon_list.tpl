@@ -71,11 +71,15 @@
               <input type="checkbox" name="selected[]" value="<?php echo $coupon['coupon_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $coupon['name']; ?></td>
-            <td class="left"><?php echo $coupon['code']; ?></td>
+            <td class="center"><?php echo $coupon['code']; ?></td>
             <td class="center"><?php echo $coupon['discount']; ?> <?php echo $coupon['type']; ?></td>
-            <td class="left"><?php echo $coupon['date_start']; ?></td>
-            <td class="left"><?php echo $coupon['date_end']; ?></td>
-            <td class="center"><?php echo $coupon['status']; ?></td>
+            <td class="center"><?php echo $coupon['date_start']; ?></td>
+            <td class="center"><?php echo $coupon['date_end']; ?></td>
+            <?php if ($coupon['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php foreach ($coupon['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

@@ -43,6 +43,9 @@ class ModelSaleCustomerGroup extends Model {
 
 		$sort_data = array(
 			'cgd.name',
+			'cg.approval',
+			'cg.company_id_display',
+			'cg.tax_id_display',
 			'cg.sort_order'
 		);
 

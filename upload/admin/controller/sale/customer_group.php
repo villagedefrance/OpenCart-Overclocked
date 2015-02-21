@@ -167,7 +167,7 @@ class ControllerSaleCustomerGroup extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -208,6 +208,9 @@ class ControllerSaleCustomerGroup extends Controller {
 			$this->data['customer_groups'][] = array(
 				'customer_group_id'	=> $result['customer_group_id'],
 				'name'              		=> $result['name'] . (($result['customer_group_id'] == $this->config->get('config_customer_group_id')) ? $this->language->get('text_default') : null),
+				'approval'        		=> $result['approval'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'company_id'        	=> $result['company_id_display'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'tax_id'        			=> $result['tax_id_display'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'sort_order'        		=> $result['sort_order'],
 				'selected'          		=> isset($this->request->post['selected']) && in_array($result['customer_group_id'], $this->request->post['selected']),
 				'action'            		=> $action
@@ -219,6 +222,9 @@ class ControllerSaleCustomerGroup extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_approval'] = $this->language->get('column_approval');
+		$this->data['column_company_id'] = $this->language->get('column_company_id');
+		$this->data['column_tax_id'] = $this->language->get('column_tax_id');
 		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
 		$this->data['column_action'] = $this->language->get('column_action');
 
@@ -252,6 +258,9 @@ class ControllerSaleCustomerGroup extends Controller {
 		}
 
 		$this->data['sort_name'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . '&sort=cgd.name' . $url, 'SSL');
+		$this->data['sort_approval'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . '&sort=cg.approval' . $url, 'SSL');
+		$this->data['sort_company_id_display'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . '&sort=cg.sort_company_id_display' . $url, 'SSL');
+		$this->data['sort_tax_id_display'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . '&sort=cg.sort_tax_id_display' . $url, 'SSL');
 		$this->data['sort_sort_order'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . '&sort=cg.sort_order' . $url, 'SSL');
 
 		$url = '';

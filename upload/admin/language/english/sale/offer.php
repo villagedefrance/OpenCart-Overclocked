@@ -8,18 +8,18 @@ $_['text_quicklinks']			= 'Groups';
 $_['text_status']				= 'Statuses';
 
 $_['text_total_offers']		= 'Total Offers';
-$_['text_total_p2p']			= 'P2P &#8211; Product to Product:';
-$_['text_total_p2c']			= 'P2C &#8211; Product to Category:';
-$_['text_total_c2p']			= 'C2P &#8211; Category to Product:';
-$_['text_total_c2c']			= 'C2C &#8211; Category to Category:';
+$_['text_total_p2p']			= 'P2P &#8211; Product :: Product:';
+$_['text_total_p2c']			= 'P2C &#8211; Product :: Category:';
+$_['text_total_c2p']			= 'C2P &#8211; Category :: Product:';
+$_['text_total_c2c']			= 'C2C &#8211; Category :: Category:';
 
 $_['text_total_discount']	= 'N&deg; of Products with Discount';
 $_['text_total_special']		= 'N&deg; of Products with Special';
 
-$_['text_p2p']					= '<b>Product to Product</b>';
-$_['text_p2c']					= '<b>Product to Category</b>';
-$_['text_c2p']					= '<b>Category to Product</b>';
-$_['text_c2c']					= '<b>Category to Category</b>';
+$_['text_p2p']					= '<b>Product :: Product</b>';
+$_['text_p2c']					= '<b>Product :: Category</b>';
+$_['text_c2p']					= '<b>Category :: Product</b>';
+$_['text_c2c']					= '<b>Category :: Category</b>';
 
 $_['button_view']				= 'View List';
 
@@ -35,9 +35,9 @@ $_['column_action'] 			= 'Action';
 
 $_['button_edit']				= 'Edit';
 
-$_['text_offer_expired']		= '<span style="background:#DE5954; color:#FFF; padding:5px 20px; text-align:center;">Offer has expired!</span>';
-$_['text_offer_expiring']	= '<span style="background:#F2B155; color:#FFF; padding:5px 20px; text-align:center;">Offer is about to expire!</span>';
-$_['text_offer_valid']		= '<span style="background:#5DC15E; color:#FFF; padding:5px 20px; text-align:center;">Offer is up-to-date.</span>';
+$_['text_offer_expired']		= '<span style="color:#DE5954; font-weight:bold;">Offer has expired!</span>';
+$_['text_offer_expiring']	= '<span style="color:#F2B155; font-weight:bold;">Offer is about to expire!</span>';
+$_['text_offer_valid']		= '<span style="color:#5DC15E; font-weight:bold;">Offer is up-to-date.</span>';
 
 $_['text_no_results'] 		= 'There are no offers to display at this time.';
 

@@ -97,10 +97,9 @@
             <span class="price-tax"><?php echo $text_tax; ?> <?php echo $tax; ?></span><br />
           <?php } ?>
           <?php if ($points) { ?>
-            <span class="reward"><small><?php echo $text_points; ?> <?php echo $points; ?></small></span><br />
+            <span class="reward"><?php echo $text_points; ?> <?php echo $points; ?></span><br />
           <?php } ?>
           <?php if ($discounts) { ?>
-            <br />
             <div class="discount">
               <?php foreach ($discounts as $discount) { ?>
                 <?php echo sprintf($text_discount, $discount['quantity'], $discount['price']); ?><br />
@@ -302,7 +301,7 @@
               <a class="addthis_button_preferred_1"></a>
               <a class="addthis_button_preferred_2"></a>
               <a class="addthis_button_preferred_3"></a>
-              <a class="addthis_button_compact"><?php echo $text_share; ?></a> 
+              <a class="addthis_button_compact">&nbsp;&nbsp;<?php echo $text_share; ?></a> 
             </div>
             <?php if ($addthis) { ?>
               <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $addthis; ?>"></script>

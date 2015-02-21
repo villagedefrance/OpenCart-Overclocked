@@ -407,7 +407,7 @@ class ControllerCatalogProduct extends Controller {
 				'special' 		=> $special,
 				'image'      	=> $image,
 				'quantity'   	=> $result['quantity'],
-				'status'     	=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'     	=> $result['status'],
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
 				'action'   	=> $action
 			);
@@ -415,9 +415,9 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_name'] = $this->language->get('column_name');

@@ -28,6 +28,9 @@ class ControllerExtensionOpenbay extends Controller {
 
 		$this->data['manage_link'] = $this->url->link('extension/openbay/manage', 'token=' . $this->session->data['token'], 'SSL');
 
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+
 		$this->data['success'] = '';
 
 		if (isset($this->session->data['success'])) {
@@ -88,7 +91,7 @@ class ControllerExtensionOpenbay extends Controller {
 
 			$this->data['extensions'][] = array(
 				'name'	=> $this->language->get('heading_title'),
-				'status'	=> $this->config->get($extension . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'	=> $this->config->get($extension . '_status'),
 				'action'	=> $action
 			);
 		}

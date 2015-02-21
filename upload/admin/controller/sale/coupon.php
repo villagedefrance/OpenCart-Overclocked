@@ -209,11 +209,11 @@ class ControllerSaleCoupon extends Controller {
 				'coupon_id'		=> $result['coupon_id'],
 				'name'       		=> $result['name'],
 				'code'       		=> $result['code'],
-				'type'				=> ($result['type'] == 'P' ? '%' : ' '),
+				'type'				=> $result['type'] == 'P' ? '%' : ' ',
 				'discount'   		=> $result['discount'],
 				'date_start'		=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
 				'date_end' 		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-				'status'     		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+				'status'     		=> $result['status'],
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['coupon_id'], $this->request->post['selected']),
 				'action'    		=> $action
 			);
@@ -222,6 +222,8 @@ class ControllerSaleCoupon extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_code'] = $this->language->get('column_code');
@@ -260,12 +262,12 @@ class ControllerSaleCoupon extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . '&sort=name' . $url;
-		$this->data['sort_code'] = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . '&sort=code' . $url;
-		$this->data['sort_discount'] = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . '&sort=discount' . $url;
-		$this->data['sort_date_start'] = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . '&sort=date_start' . $url;
-		$this->data['sort_date_end'] = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . '&sort=date_end' . $url;
-		$this->data['sort_status'] = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . '&sort=status' . $url;
+		$this->data['sort_name'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
+		$this->data['sort_code'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . '&sort=code' . $url, 'SSL');
+		$this->data['sort_discount'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . '&sort=discount' . $url, 'SSL');
+		$this->data['sort_date_start'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . '&sort=date_start' . $url, 'SSL');
+		$this->data['sort_date_end'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . '&sort=date_end' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
 
 		$url = '';
 
@@ -282,7 +284,7 @@ class ControllerSaleCoupon extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = HTTPS_SERVER . 'index.php?route=sale/coupon&token=' . $this->session->data['token'] . $url . '&page={page}';
+		$pagination->url = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 

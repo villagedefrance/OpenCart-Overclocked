@@ -92,7 +92,9 @@ class ModelCatalogInformation extends Model {
 
 			$sort_data = array(
 				'id.title',
-				'i.sort_order'
+				'i.sort_order',
+				'i.bottom',
+				'i.status'
 			);
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {

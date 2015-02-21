@@ -71,7 +71,11 @@
                   <td class="left"><?php echo $news_story['title']; ?></td>
                   <td class="left"><?php echo $news_story['date_added']; ?></td>
                   <td class="center"><?php echo $news_story['viewed']; ?></td>
-                  <td class="center"><?php echo $news_story['status']; ?></td>
+                  <?php if ($news_story['status'] == 1) { ?>
+                    <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                  <?php } else { ?>
+                    <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                  <?php } ?>
                   <td class="right">
                     <?php foreach ($news_story['action'] as $action) { ?>
                       <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>

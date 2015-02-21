@@ -38,6 +38,16 @@
             <?php } else { ?>
               <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php if ($sort == 'i.bottom') { ?>
+              <a href="<?php echo $sort_bottom; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_bottom; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_bottom; ?>"><?php echo $column_bottom; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'i.status') { ?>
+              <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -52,6 +62,12 @@
               <?php } ?></td>
               <td class="left"><?php echo $information['title']; ?></td>
               <td class="center"><?php echo $information['sort_order']; ?></td>
+              <td class="center"><?php echo $information['bottom']; ?></td>
+			  <?php if ($information['status'] == 1) { ?>
+                <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+              <?php } else { ?>
+                <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+              <?php } ?>
               <td class="right"><?php foreach ($information['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>
@@ -59,7 +75,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

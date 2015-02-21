@@ -28,7 +28,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_order_recurring; ?>"><?php echo $entry_order_recurring; ?></a>
             <?php } ?></td>
-            <td width="80" class="center"><?php if ($sort == 'or.order_id') { ?>
+            <td class="center"><?php if ($sort == 'or.order_id') { ?>
               <a href="<?php echo $sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_order_id; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_order; ?>"><?php echo $entry_order_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -59,7 +59,7 @@
         <tbody>
           <tr class="filter">
             <td class="left"><input type="text" name="filter_order_recurring_id" size="4" value="<?php echo $filter_order_recurring_id; ?>" /></td>
-            <td class="center"><input type="text" name="filter_order_id" size="4" value="<?php echo $filter_order_id; ?>" /></td>
+            <td class="left"><input type="text" name="filter_order_id" size="4" value="<?php echo $filter_order_id; ?>" /></td>
             <td class="left"><input type="text" name="filter_payment_reference" value="<?php echo $filter_payment_reference; ?>" /></td>
             <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
             <td class="left"><input type="text" name="filter_created" value="<?php echo $filter_created; ?>" class="date" /></td>
@@ -78,11 +78,15 @@
             <?php foreach ($profiles as $profile) { ?>
             <tr>
               <td class="left"><?php echo $profile['order_recurring_id']; ?></td>
-              <td class="center"><a href="<?php echo $profile['order_link']; ?>"><?php echo $profile['order_id']; ?></a></td>
+              <td class="left"><a href="<?php echo $profile['order_link']; ?>"><?php echo $profile['order_id']; ?></a></td>
               <td class="left"><?php echo $profile['profile_reference']; ?></td>
               <td class="left"><?php echo $profile['customer']; ?></td>
-              <td class="left"><?php echo $profile['date_created']; ?></td>
-              <td class="left"><?php echo $profile['status']; ?></td>
+              <td class="center"><?php echo $profile['date_created']; ?></td>
+              <?php if ($profile['status'] == 1) { ?>
+                <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+              <?php } else { ?>
+                <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+              <?php } ?>
               <td class="right">
                 <?php foreach ($profile['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>

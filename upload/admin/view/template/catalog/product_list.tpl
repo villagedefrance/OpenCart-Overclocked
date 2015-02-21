@@ -105,7 +105,11 @@
               <?php } else { ?>
                 <span style="color:#008000;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
-              <td class="right"><?php echo $product['status']; ?></td>
+              <?php if ($product['status'] == 1) { ?>
+                <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+              <?php } else { ?>
+                <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+              <?php } ?>
               <td class="right"><?php foreach ($product['action'] as $action) { ?>
                 <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
               <?php } ?></td>

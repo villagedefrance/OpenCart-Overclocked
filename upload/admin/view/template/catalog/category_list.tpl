@@ -32,6 +32,7 @@
         <td class="left"><?php echo $column_image; ?></td>
         <td class="left"><?php echo $column_name; ?></td>
         <td class="left"><?php echo $column_sort_order; ?></td>
+		<td class="left"><?php echo $column_status; ?></td>
         <td class="right"><?php echo $column_action; ?></td>
       </tr>
       </thead>
@@ -47,6 +48,11 @@
             <td class="center"><img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
             <td class="left"><?php echo $category['name']; ?></td>
             <td class="center"><?php echo $category['sort_order']; ?></td>
+			<?php if ($category['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php foreach ($category['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -54,7 +60,7 @@
         <?php } ?>
       <?php } else { ?>
         <tr>
-          <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+          <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
         </tr>
       <?php } ?>
       </tbody>

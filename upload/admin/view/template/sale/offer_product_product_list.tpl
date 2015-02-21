@@ -82,7 +82,11 @@
 			<td class="center"><?php echo $offer_product_product['logged']; ?></td>
             <td class="left"><?php echo $offer_product_product['date_start']; ?></td>
             <td class="left"><?php echo $offer_product_product['date_end']; ?></td>
-            <td class="center"><?php echo $offer_product_product['status']; ?></td>
+            <?php if ($offer_product_product['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php foreach ($offer_product_product['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

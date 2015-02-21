@@ -8,8 +8,9 @@ $_['text_success']         		= 'Success: You have modified <b>Currencies</b> !';
 // Column
 $_['column_title']         		= 'Currency Title';
 $_['column_code']          		= 'Code';
+$_['column_status']     			= 'Status';
 $_['column_value']         		= 'Value';
-$_['column_date_modified'] 	= 'Last Updated';
+$_['column_date_modified'] 	= 'Last Update';
 $_['column_action']        		= 'Action';
 
 // Entry
@@ -20,6 +21,9 @@ $_['entry_symbol_left']    		= 'Symbol Left:';
 $_['entry_symbol_right']   		= 'Symbol Right:';
 $_['entry_decimal_place']  	= 'Decimal Places:';
 $_['entry_status']         		= 'Status:';
+
+// Button
+$_['button_refresh']				= 'Update Rates';
 
 // Error
 $_['error_permission']     		= 'Warning: You do not have permission to modify <b>Currencies</b> !';

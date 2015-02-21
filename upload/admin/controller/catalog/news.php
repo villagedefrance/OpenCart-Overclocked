@@ -274,7 +274,7 @@ class ControllerCatalogNews extends Controller {
 				'image'      		=> $image,
 				'date_added'  	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'viewed'			=> $result['viewed'],
-				'status'     		=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'     		=> $result['status'],
 				'selected'    	=> isset($this->request->post['selected']) && in_array($result['news_id'], $this->request->post['selected']),
 				'action'      		=> $action
 			);
@@ -283,6 +283,8 @@ class ControllerCatalogNews extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_title'] = $this->language->get('column_title');

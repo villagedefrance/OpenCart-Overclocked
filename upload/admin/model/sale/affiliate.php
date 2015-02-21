@@ -52,16 +52,16 @@ class ModelSaleAffiliate extends Model {
 			$implode[] = "a.code = '" . $this->db->escape($data['filter_code']) . "'";
 		}
 
-		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
-			$implode[] = "a.status = '" . (int)$data['filter_status'] . "'";
-		}
-
 		if (isset($data['filter_approved']) && !is_null($data['filter_approved'])) {
 			$implode[] = "a.approved = '" . (int)$data['filter_approved'] . "'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
 			$implode[] = "DATE(a.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+		}
+
+		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+			$implode[] = "a.status = '" . (int)$data['filter_status'] . "'";
 		}
 
 		if ($implode) {
@@ -72,9 +72,9 @@ class ModelSaleAffiliate extends Model {
 			'name',
 			'a.email',
 			'a.code',
-			'a.status',
 			'a.approved',
-			'a.date_added'
+			'a.date_added',
+			'a.status'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -169,16 +169,16 @@ class ModelSaleAffiliate extends Model {
 			$implode[] = "LCASE(email) = '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "'";
 		}
 
-		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
-			$implode[] = "status = '" . (int)$data['filter_status'] . "'";
-		}
-
 		if (isset($data['filter_approved']) && !is_null($data['filter_approved'])) {
 			$implode[] = "approved = '" . (int)$data['filter_approved'] . "'";
 		}
 
 		if (!empty($data['filter_date_added'])) {
 			$implode[] = "DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+		}
+
+		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+			$implode[] = "status = '" . (int)$data['filter_status'] . "'";
 		}
 
 		if ($implode) {

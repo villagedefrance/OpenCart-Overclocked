@@ -150,18 +150,14 @@ class ControllerSaleRecurring extends Controller {
 				'href'	=> $this->url->link('sale/recurring/info', 'token=' . $this->session->data['token'] . '&order_recurring_id=' . $result['order_recurring_id'] . $url, 'SSL')
 			);
 
-			$date_created = date($this->language->get('date_format_short'), strtotime($result['created']));
-
-			$order_link = $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL');
-
 			$this->data['profiles'][] = array(
 				'order_recurring_id' 	=> $result['order_recurring_id'],
 				'order_id'           		=> $result['order_id'],
-				'order_link'         		=> $order_link,
+				'order_link'         		=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL'),
 				'profile_reference'  	=> $result['profile_reference'],
 				'customer'           	=> $result['customer'],
 				'status'            	 	=> $result['status'],
-				'date_created'       	=> $date_created,
+				'date_created'       	=> date($this->language->get('date_format_short'), strtotime($result['created'])),
 				'action'             		=> $action
 			);
 		}
@@ -180,6 +176,8 @@ class ControllerSaleRecurring extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_filter'] = $this->language->get('text_filter');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['entry_order_id'] = $this->language->get('entry_order_id');
 		$this->data['entry_order_recurring'] = $this->language->get('entry_order_recurring');

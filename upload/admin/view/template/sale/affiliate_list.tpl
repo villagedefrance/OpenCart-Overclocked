@@ -39,12 +39,7 @@
           <?php } else { ?>
             <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="right"><?php echo $column_balance; ?></td>
-          <td class="left"><?php if ($sort == 'c.status') { ?>
-            <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
-          <?php } else { ?>
-            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-          <?php } ?></td>
+          <td class="left"><?php echo $column_balance; ?></td>
           <td class="left"><?php if ($sort == 'c.approved') { ?>
             <a href="<?php echo $sort_approved; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_approved; ?></a>
           <?php } else { ?>
@@ -55,6 +50,11 @@
           <?php } else { ?>
             <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
+          <td class="left"><?php if ($sort == 'c.status') { ?>
+            <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+          <?php } else { ?>
+            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+          <?php } ?></td>
           <td class="right"><?php echo $column_action; ?></td>
         </tr>
       </thead>
@@ -64,20 +64,7 @@
           <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
           <td><input type="text" name="filter_email" value="<?php echo $filter_email; ?>" /></td>
           <td>&nbsp;</td>
-          <td><select name="filter_status">
-            <option value="*"></option>
-            <?php if ($filter_status) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-            <?php } ?>
-            <?php if (!is_null($filter_status) && !$filter_status) { ?>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-            <?php } else { ?>
-              <option value="0"><?php echo $text_disabled; ?></option>
-            <?php } ?>
-          </select></td>
-          <td><select name="filter_approved">
+          <td class="center"><select name="filter_approved">
             <option value="*"></option>
             <?php if ($filter_approved) { ?>
               <option value="1" selected="selected"><?php echo $text_yes; ?></option>
@@ -90,8 +77,21 @@
               <option value="0"><?php echo $text_no; ?></option>
             <?php } ?>
           </select></td>
-          <td><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
-          <td align="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          <td class="center"><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
+          <td class="center"><select name="filter_status">
+            <option value="*"></option>
+            <?php if ($filter_status) { ?>
+              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_enabled; ?></option>
+            <?php } ?>
+            <?php if (!is_null($filter_status) && !$filter_status) { ?>
+              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+            <?php } else { ?>
+              <option value="0"><?php echo $text_disabled; ?></option>
+            <?php } ?>
+          </select></td>
+          <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
         </tr>
         <?php if ($affiliates) { ?>
           <?php foreach ($affiliates as $affiliate) { ?>
@@ -103,10 +103,14 @@
             <?php } ?></td>
             <td class="left"><?php echo $affiliate['name']; ?></td>
             <td class="left"><?php echo $affiliate['email']; ?></td>
-            <td class="right"><?php echo $affiliate['balance']; ?></td>
-            <td class="left"><?php echo $affiliate['status']; ?></td>
-            <td class="left"><?php echo $affiliate['approved']; ?></td>
-            <td class="left"><?php echo $affiliate['date_added']; ?></td>
+            <td class="center"><?php echo $affiliate['balance']; ?></td>
+            <td class="center"><?php echo $affiliate['approved']; ?></td>
+            <td class="center"><?php echo $affiliate['date_added']; ?></td>
+            <?php if ($affiliate['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -149,12 +153,6 @@ function filter() {
 		url += '&filter_affiliate_group_id=' + encodeURIComponent(filter_affiliate_group_id);
 	}
 
-	var filter_status = $('select[name=\'filter_status\']').attr('value');
-
-	if (filter_status != '*') {
-		url += '&filter_status=' + encodeURIComponent(filter_status);
-	}
-
 	var filter_approved = $('select[name=\'filter_approved\']').attr('value');
 
 	if (filter_approved != '*') {
@@ -165,6 +163,12 @@ function filter() {
 
 	if (filter_date_added) {
 		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+	}
+
+	var filter_status = $('select[name=\'filter_status\']').attr('value');
+
+	if (filter_status != '*') {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
 	}
 
 	location = url;

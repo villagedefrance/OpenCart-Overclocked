@@ -9,6 +9,8 @@ $_['text_default']      			= 'Default';
 // Column
 $_['column_title']      			= 'Information Title';
 $_['column_sort_order']			= 'Sort Order';
+$_['column_bottom'] 			= 'Footer';
+$_['column_status']     			= 'Status';
 $_['column_action']     			= 'Action';
 
 // Entry

@@ -15,6 +15,9 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <?php if ($allow_refresh) { ?>
+          <a href="<?php echo $refresh; ?>" class="button-save"><?php echo $button_refresh; ?></a> 
+        <?php } ?>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
@@ -37,6 +40,11 @@
               <a href="<?php echo $sort_code; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_code; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+			<td class="left"><?php if ($sort == 'status') { ?>
+              <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php if ($sort == 'value') { ?>
               <a href="<?php echo $sort_value; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_value; ?></a>
@@ -62,6 +70,11 @@
             <?php } ?></td>
             <td class="left"><?php echo $currency['title']; ?></td>
             <td class="left"><?php echo $currency['code']; ?></td>
+			<?php if ($currency['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php echo $currency['value']; ?></td>
             <td class="right"><?php echo $currency['date_modified']; ?></td>
             <td class="right"><?php foreach ($currency['action'] as $action) { ?>
@@ -71,7 +84,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

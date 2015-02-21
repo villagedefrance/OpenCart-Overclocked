@@ -210,7 +210,7 @@ class ControllerCatalogReview extends Controller {
 				'name'       		=> $result['name'],
 				'author'     		=> $result['author'],
 				'rating'     		=> $result['rating'],
-				'status'     		=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'     		=> $result['status'],
 				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['review_id'], $this->request->post['selected']),
 				'action'     		=> $action
@@ -220,6 +220,8 @@ class ControllerCatalogReview extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_product'] = $this->language->get('column_product');
 		$this->data['column_author'] = $this->language->get('column_author');

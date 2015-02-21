@@ -24,6 +24,8 @@ class ControllerExtensionShipping extends Controller {
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_status'] = $this->language->get('column_status');
@@ -93,8 +95,8 @@ class ControllerExtensionShipping extends Controller {
 
 				$this->data['extensions'][] = array(
 					'name'		=> $this->language->get('heading_title'),
-					'status' 		=> $this->config->get($extension . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 					'sort_order'	=> $this->config->get($extension . '_sort_order'),
+					'status' 		=> $this->config->get($extension . '_status'),
 					'action'  		=> $action
 				);
 			}

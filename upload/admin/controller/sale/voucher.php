@@ -212,8 +212,8 @@ class ControllerSaleVoucher extends Controller {
 				'to'         		=> $result['to_name'],
 				'theme'      		=> $result['theme'],
 				'amount'     	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'status'     		=> ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'status'     		=> $result['status'],
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['voucher_id'], $this->request->post['selected']),
 				'action'     		=> $action
 			);
@@ -221,17 +221,19 @@ class ControllerSaleVoucher extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_send'] = $this->language->get('text_send');
 		$this->data['text_wait'] = $this->language->get('text_wait');
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_code'] = $this->language->get('column_code');
 		$this->data['column_from'] = $this->language->get('column_from');
 		$this->data['column_to'] = $this->language->get('column_to');
 		$this->data['column_theme'] = $this->language->get('column_theme');
 		$this->data['column_amount'] = $this->language->get('column_amount');
-		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');

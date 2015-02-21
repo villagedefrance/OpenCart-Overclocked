@@ -197,15 +197,16 @@ class ControllerUserUser extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text' => $this->language->get('text_edit'),
-				'href' => $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $result['user_id'] . $url, 'SSL')
+				'text'	=> $this->language->get('text_edit'),
+				'href'	=> $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $result['user_id'] . $url, 'SSL')
 			);
 
 			$this->data['users'][] = array(
 				'user_id'    		=> $result['user_id'],
 				'username'   	=> $result['username'],
-				'status'     		=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'email'   			=> $result['email'],
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'status'     		=> $result['status'],
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['user_id'], $this->request->post['selected']),
 				'action'     		=> $action
 			);
@@ -214,10 +215,14 @@ class ControllerUserUser extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
+		$this->data['column_user_id'] = $this->language->get('column_user_id');
 		$this->data['column_username'] = $this->language->get('column_username');
-		$this->data['column_status'] = $this->language->get('column_status');
+		$this->data['column_email'] = $this->language->get('column_email');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -249,9 +254,11 @@ class ControllerUserUser extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		$this->data['sort_user_id'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=user_id' . $url, 'SSL');
 		$this->data['sort_username'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=username' . $url, 'SSL');
-		$this->data['sort_status'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
+		$this->data['sort_email'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=email' . $url, 'SSL');
 		$this->data['sort_date_added'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=date_added' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
 
 		$url = '';
 

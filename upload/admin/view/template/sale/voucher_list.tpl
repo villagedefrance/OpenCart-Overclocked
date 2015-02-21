@@ -53,15 +53,15 @@
               <?php } else { ?>
                 <a href="<?php echo $sort_theme; ?>"><?php echo $column_theme; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
               <?php } ?></td>
-              <td class="left"><?php if ($sort == 'v.status') { ?>
-                <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
-              <?php } else { ?>
-                <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-              <?php } ?></td>
               <td class="left"><?php if ($sort == 'v.date_added') { ?>
                 <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
               <?php } else { ?>
                 <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <?php } ?></td>
+              <td class="left"><?php if ($sort == 'v.status') { ?>
+                <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+              <?php } else { ?>
+                <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
               <?php } ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
@@ -80,8 +80,12 @@
                 <td class="left"><?php echo $voucher['to']; ?></td>
                 <td class="center"><?php echo $voucher['amount']; ?></td>
                 <td class="center"><?php echo $voucher['theme']; ?></td>
-                <td class="center"><?php echo $voucher['status']; ?></td>
                 <td class="center"><?php echo $voucher['date_added']; ?></td>
+                <?php if ($voucher['status'] == 1) { ?>
+                  <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                <?php } else { ?>
+                  <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                <?php } ?>
                 <td class="right"><a onclick="sendVoucher('<?php echo $voucher['voucher_id']; ?>');" class="button-save"><?php echo $text_send; ?></a>
                 <?php foreach ($voucher['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>

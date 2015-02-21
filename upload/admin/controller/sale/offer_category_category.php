@@ -206,14 +206,14 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 			);
 
 			$this->data['offer_category_categories'][] = array(
-				'offer_category_category_id'	=> $result['offer_category_category_id'],
+				'offer_category_category_id' => $result['offer_category_category_id'],
 				'name'       				=> $result['name'],
 				'discount'   				=> $result['discount'],
 				'type'   					=> $result['type'],
-				'logged'     				=> ($result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no')),
+				'logged'     				=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'date_start'				=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
 				'date_end' 				=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-				'status'     				=> ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'     				=> $result['status'],
 				'selected'   				=> isset($this->request->post['selected']) && in_array($result['offer_category_category_id'], $this->request->post['selected']),
 				'action'    				=> $action
 			);
@@ -222,6 +222,8 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_discount'] = $this->language->get('column_discount');
@@ -264,13 +266,13 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=name' . $url;
-		$this->data['sort_discount'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=discount' . $url;
-		$this->data['sort_type'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=type' . $url;
-		$this->data['sort_logged'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=logged' . $url;
-		$this->data['sort_date_start'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=date_start' . $url;
-		$this->data['sort_date_end'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=date_end' . $url;
-		$this->data['sort_status'] = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . '&sort=status' . $url;
+		$this->data['sort_name'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
+		$this->data['sort_discount'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=discount' .$url, 'SSL');
+		$this->data['sort_type'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=type' . $url, 'SSL');
+		$this->data['sort_logged'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=logged' . $url, 'SSL');
+		$this->data['sort_date_start'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=date_start' . $url, 'SSL');
+		$this->data['sort_date_end'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=date_end' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
 
 		$url = '';
 
@@ -287,7 +289,7 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = HTTPS_SERVER . 'index.php?route=sale/offer_category_category&token=' . $this->session->data['token'] . $url . '&page={page}';
+		$pagination->url = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 

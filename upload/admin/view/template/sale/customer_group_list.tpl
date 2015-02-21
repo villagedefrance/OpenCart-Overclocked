@@ -33,7 +33,22 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'cg.sort_order') { ?>
+            <td class="left"><?php if ($sort == 'cg.approval') { ?>
+              <a href="<?php echo $sort_approval; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_approval; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_approval; ?>"><?php echo $column_approval; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'cg.company_id_display') { ?>
+              <a href="<?php echo $sort_company_id_display; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_company_id; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_company_id_display; ?>"><?php echo $column_company_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'cg.tax_id_display') { ?>
+              <a href="<?php echo $sort_tax_id_display; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_tax_id; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_tax_id_display; ?>"><?php echo $column_tax_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'cg.sort_order') { ?>
               <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -51,7 +66,10 @@
               <input type="checkbox" name="selected[]" value="<?php echo $customer_group['customer_group_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $customer_group['name']; ?></td>
-            <td class="right"><?php echo $customer_group['sort_order']; ?></td>
+            <td class="center"><?php echo $customer_group['approval']; ?></td>
+            <td class="center"><?php echo $customer_group['company_id']; ?></td>
+            <td class="center"><?php echo $customer_group['tax_id']; ?></td>
+            <td class="center"><?php echo $customer_group['sort_order']; ?></td>
             <td class="right"><?php foreach ($customer_group['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -59,7 +77,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

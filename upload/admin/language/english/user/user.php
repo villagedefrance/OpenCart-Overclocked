@@ -6,9 +6,11 @@ $_['heading_title']     		= 'User';
 $_['text_success']      		= 'Success: You have modified <b>Users</b> !';
 
 // Column
+$_['column_user_id']   		= 'ID';
 $_['column_username']   	= 'Username';
-$_['column_status']     		= 'Status';
+$_['column_email']   			= 'E-mail';
 $_['column_date_added'] 	= 'Date Added';
+$_['column_status']     		= 'Status';
 $_['column_action']     		= 'Action';
 
 // Entry

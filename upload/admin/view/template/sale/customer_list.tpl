@@ -125,10 +125,14 @@
             <td class="left"><?php echo $customer['name']; ?></td>
             <td class="left"><?php echo $customer['email']; ?></td>
             <td class="left"><?php echo $customer['customer_group']; ?></td>
-            <td class="left"><?php echo $customer['status']; ?></td>
-            <td class="left"><?php echo $customer['approved']; ?></td>
-            <td class="left"><?php echo $customer['ip']; ?></td>
-            <td class="left"><?php echo $customer['date_added']; ?></td>
+            <?php if ($customer['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
+            <td class="center"><?php echo $customer['approved']; ?></td>
+            <td class="center"><?php echo $customer['ip']; ?></td>
+            <td class="center"><?php echo $customer['date_added']; ?></td>
             <td class="left"><select onchange="((this.value !== '') ? window.open('index.php?route=sale/customer/login&token=<?php echo $token; ?>&customer_id=<?php echo $customer['customer_id']; ?>&store_id=' + this.value) : null); this.value = '';">
               <option value=""><?php echo $text_select; ?></option>
               <option value="0"><?php echo $text_default; ?></option>

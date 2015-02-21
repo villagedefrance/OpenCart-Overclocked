@@ -108,8 +108,12 @@
                   <td class="right"><?php echo $offer['discount']; ?></td>
 				  <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
-                  <td class="left"><?php echo $offer['validity']; ?></td>
-                  <td class="center"><?php echo $offer['status']; ?></td>
+                  <td class="center"><?php echo $offer['validity']; ?></td>
+                  <?php if ($offer['status'] == 1) { ?>
+                    <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                  <?php } else { ?>
+                    <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                  <?php } ?>
 				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
@@ -123,8 +127,12 @@
                   <td class="right"><?php echo $offer['discount']; ?></td>
                   <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
-                  <td class="left"><?php echo $offer['validity']; ?></td>
-                  <td class="center"><?php echo $offer['status']; ?></td>
+                  <td class="center"><?php echo $offer['validity']; ?></td>
+                  <?php if ($offer['status'] == 1) { ?>
+                    <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                  <?php } else { ?>
+                    <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                  <?php } ?>
 				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
@@ -138,8 +146,12 @@
                   <td class="right"><?php echo $offer['discount']; ?></td>
                   <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
-                  <td class="left"><?php echo $offer['validity']; ?></td>
-                  <td class="center"><?php echo $offer['status']; ?></td>
+                  <td class="center"><?php echo $offer['validity']; ?></td>
+                  <?php if ($offer['status'] == 1) { ?>
+                    <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                  <?php } else { ?>
+                    <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                  <?php } ?>
 				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
@@ -153,8 +165,12 @@
                   <td class="right"><?php echo $offer['discount']; ?></td>
                   <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
-                  <td class="left"><?php echo $offer['validity']; ?></td>
-                  <td class="center"><?php echo $offer['status']; ?></td>
+                  <td class="center"><?php echo $offer['validity']; ?></td>
+                  <?php if ($offer['status'] == 1) { ?>
+                    <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                  <?php } else { ?>
+                    <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                  <?php } ?>
 				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
