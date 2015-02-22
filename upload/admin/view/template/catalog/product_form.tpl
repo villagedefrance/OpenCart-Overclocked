@@ -516,8 +516,8 @@
         <table id="attribute" class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $entry_attribute; ?></td>
-            <td class="left"><?php echo $entry_text; ?></td>
+            <td class="left"><?php echo $column_attribute; ?></td>
+            <td class="left"><?php echo $column_text; ?></td>
             <td></td>
           </tr>
         </thead>
@@ -593,7 +593,7 @@
               </tr>
               <?php } ?>
               <?php if ($product_option['type'] == 'file') { ?>
-              <tr style="display: none;">
+              <tr style="display:none;">
                 <td><?php echo $entry_option_value; ?></td>
                 <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" /></td>
               </tr>
@@ -621,12 +621,12 @@
             <table id="option-value<?php echo $option_row; ?>" class="list">
             <thead>
               <tr>
-                <td class="right"><?php echo $entry_option_value; ?></td>
-                <td class="right"><?php echo $entry_quantity; ?></td>
-                <td class="right"><?php echo $entry_subtract; ?></td>
-                <td class="right"><?php echo $entry_price; ?></td>
-                <td class="right"><?php echo $entry_option_points; ?></td>
-                <td class="right"><?php echo $entry_weight; ?></td>
+                <td class="right"><?php echo $column_option_value; ?></td>
+                <td class="right"><?php echo $column_quantity; ?></td>
+                <td class="right"><?php echo $column_subtract; ?></td>
+                <td class="right"><?php echo $column_price; ?></td>
+                <td class="right"><?php echo $column_option_points; ?></td>
+                <td class="right"><?php echo $column_weight; ?></td>
                 <td></td>
               </tr>
             </thead>
@@ -731,8 +731,8 @@
         <table id="profile" class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $entry_profile; ?></td>
-            <td class="left"><?php echo $entry_customer_group; ?></td>
+            <td class="left"><?php echo $column_profile; ?></td>
+            <td class="left"><?php echo $column_customer_group; ?></td>
             <td></td>
           </tr>
         </thead>
@@ -780,12 +780,12 @@
         <table id="discount" class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="left"><?php echo $entry_quantity; ?></td>
-            <td class="left"><?php echo $entry_priority; ?></td>
-            <td class="left"><?php echo $entry_price; ?></td>
-            <td class="left"><?php echo $entry_date_start; ?></td>
-            <td class="left"><?php echo $entry_date_end; ?></td>
+            <td class="left"><?php echo $column_customer_group; ?></td>
+            <td class="left"><?php echo $column_quantity; ?></td>
+            <td class="left"><?php echo $column_priority; ?></td>
+            <td class="left"><?php echo $column_price; ?></td>
+            <td class="left"><?php echo $column_date_start; ?></td>
+            <td class="left"><?php echo $column_date_end; ?></td>
             <td></td>
           </tr>
         </thead>
@@ -824,11 +824,11 @@
         <table id="special" class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="left"><?php echo $entry_priority; ?></td>
-            <td class="left"><?php echo $entry_price; ?></td>
-            <td class="left"><?php echo $entry_date_start; ?></td>
-            <td class="left"><?php echo $entry_date_end; ?></td>
+            <td class="left"><?php echo $column_customer_group; ?></td>
+            <td class="left"><?php echo $column_priority; ?></td>
+            <td class="left"><?php echo $column_price; ?></td>
+            <td class="left"><?php echo $column_date_start; ?></td>
+            <td class="left"><?php echo $column_date_end; ?></td>
             <td></td>
           </tr>
         </thead>
@@ -872,8 +872,8 @@
         <table class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $entry_customer_group; ?></td>
-            <td class="left"><?php echo $entry_reward; ?></td>
+            <td class="left"><?php echo $column_customer_group; ?></td>
+            <td class="left"><?php echo $column_reward; ?></td>
           </tr>
         </thead>
         <?php foreach ($customer_groups as $customer_group) { ?>
@@ -890,9 +890,9 @@
         <table id="images" class="list">
           <thead>
             <tr>
-              <td class="left"><?php echo $entry_image; ?></td>
-			  <td class="left"><?php echo $entry_palette_color_id; ?></td>
-              <td class="left"><?php echo $entry_sort_order; ?></td>
+              <td class="left"><?php echo $column_image; ?></td>
+			  <td class="left"><?php echo $column_palette_color_id; ?></td>
+              <td class="left"><?php echo $column_sort_order; ?></td>
               <td></td>
             </tr>
           </thead>
@@ -935,8 +935,8 @@
         <table class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $entry_store; ?></td>
-            <td class="left"><?php echo $entry_layout; ?></td>
+            <td class="left"><?php echo $column_store; ?></td>
+            <td class="left"><?php echo $column_layout; ?></td>
           </tr>
         </thead>
         <tbody>
@@ -1409,12 +1409,12 @@ $('input[name=\'option\']').catcomplete({
 			html += '  <table id="option-value' + option_row + '" class="list">';
 			html += '    <thead>';
 			html += '      <tr>';
-			html += '        <td class="right"><?php echo $entry_option_value; ?></td>';
-			html += '        <td class="right"><?php echo $entry_quantity; ?></td>';
-			html += '        <td class="right"><?php echo $entry_subtract; ?></td>';
-			html += '        <td class="right"><?php echo $entry_price; ?></td>';
-			html += '        <td class="right"><?php echo $entry_option_points; ?></td>';
-			html += '        <td class="right"><?php echo $entry_weight; ?></td>';
+			html += '        <td class="right"><?php echo $column_option_value; ?></td>';
+			html += '        <td class="right"><?php echo $column_quantity; ?></td>';
+			html += '        <td class="right"><?php echo $column_subtract; ?></td>';
+			html += '        <td class="right"><?php echo $column_price; ?></td>';
+			html += '        <td class="right"><?php echo $column_option_points; ?></td>';
+			html += '        <td class="right"><?php echo $column_weight; ?></td>';
 			html += '        <td></td>';
 			html += '      </tr>';
 			html += '    </thead>';

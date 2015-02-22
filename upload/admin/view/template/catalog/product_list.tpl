@@ -50,7 +50,7 @@
           <?php } else { ?>
             <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="right"><?php if ($sort == 'p.status') { ?>
+          <td class="center"><?php if ($sort == 'p.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -66,7 +66,7 @@
             <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
             <td class="right"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8" /></td>
             <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" style="text-align:right;" /></td>
-            <td class="right"><select name="filter_status">
+            <td class="center"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>

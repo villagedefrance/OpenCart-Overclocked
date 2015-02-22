@@ -19,13 +19,26 @@ $_['text_amount']            	= 'Fixed Amount';
 $_['text_autocomplete']     	= '<br /><span class="help">(Autocomplete)</span>';
 
 // Column
-$_['column_name']          		= 'Product Name';
-$_['column_model']           	= 'Model';
-$_['column_image']           	= 'Image';
-$_['column_price']           		= 'Price';
+$_['column_attribute'] 			= 'Attribute';
+$_['column_text'] 				= 'Text';
+$_['column_option_value']		= 'Option Value';
+$_['column_option_points']    	= 'Points';
+$_['column_total_quantity']	= 'Total Quantity in Stock';
+$_['column_substract']			= 'Subtract Stock';
+$_['column_weight']				= 'Weight';
+$_['column_profile']				= 'Profile';
+$_['column_customer_group']	= 'Customer Group';
 $_['column_quantity']        	= 'Quantity';
-$_['column_status']          	= 'Status';
-$_['column_action']          	= 'Action';
+$_['column_priority']				= 'Priority';
+$_['column_price']           		= 'Price';
+$_['column_date_start']       	= 'Date Start';
+$_['column_date_end']         	= 'Date End';
+$_['column_reward']           	= 'Reward Points';
+$_['column_image']           	= 'Image';
+$_['column_palette_color_id']	= 'Palette Color';
+$_['column_sort_order']       	= 'Sort Order';
+$_['column_store']				= 'Stores';
+$_['column_layout']				= 'Layout Override';
 
 // Entry
 $_['entry_name']             		= 'Product Name:';
@@ -67,26 +80,29 @@ $_['entry_manufacturer']     	= 'Manufacturer:';
 $_['entry_filter']           		= 'Filters:';
 $_['entry_download']         	= 'Downloads:';
 $_['entry_related']          		= 'Related Products:';
+$_['entry_points']           		= 'Points:<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points leave as 0.</span>';
+$_['entry_option']           		= 'Option:';
+$_['entry_required']         		= 'Required:';
 
+// Compatibility 1.5.X
 $_['entry_attribute']        		= 'Attribute';
 $_['entry_text']             		= 'Text';
-$_['entry_option']           		= 'Option';
-$_['entry_required']         		= 'Required';
 $_['entry_option_value']    	= 'Option Value';
 $_['entry_profile']          		= 'Profile';
 $_['entry_customer_group'] 	= 'Customer Group';
 $_['entry_priority']         		= 'Priority';
 $_['entry_date_start']       	= 'Date Start';
 $_['entry_date_end']         	= 'Date End';
-$_['entry_points']           		= 'Points<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points leave as 0.</span>';
 $_['entry_option_points']    	= 'Points';
 $_['entry_reward']           		= 'Reward Points';
 $_['entry_palette_color_id']	= 'Palette Color:';
 $_['entry_layout']           		= 'Layout Override';
 
+// Recurring
 $_['text_recurring_help']    	= '<u>Recurring amounts are calculated by the frequency and cycles.</u><br />For example if you use a frequency of "week" and a cycle of "2", then the user will be billed every 2 weeks.<br />The length is the number of times the user will make a payment, set this to 0 if you want payments until they are cancelled.';
 $_['text_recurring_title']   		= 'Recurring payments';
 $_['text_recurring_trial']   		= 'Trial period';
+
 $_['entry_recurring']        		= 'Recurring billing:';
 $_['entry_recurring_price']  	= 'Recurring price:';
 $_['entry_recurring_freq']   	= 'Recurring frequency:';

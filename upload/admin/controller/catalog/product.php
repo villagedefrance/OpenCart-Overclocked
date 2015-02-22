@@ -570,6 +570,27 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_amount'] = $this->language->get('text_amount');
 		$this->data['text_autocomplete'] = $this->language->get('text_autocomplete');
 
+		$this->data['column_attribute'] = $this->language->get('column_attribute');
+		$this->data['column_text'] = $this->language->get('column_text');
+		$this->data['column_option_value'] = $this->language->get('column_option_value');
+		$this->data['column_option_points'] = $this->language->get('column_option_points');
+		$this->data['column_total_quantity'] = $this->language->get('column_total_quantity');
+		$this->data['column_subtract'] = $this->language->get('column_substract');
+		$this->data['column_weight'] = $this->language->get('column_weight');
+		$this->data['column_profile'] = $this->language->get('column_profile');
+		$this->data['column_customer_group'] = $this->language->get('column_customer_group');
+		$this->data['column_quantity'] = $this->language->get('column_quantity');
+		$this->data['column_priority']	= $this->language->get('column_priority');
+		$this->data['column_price'] = $this->language->get('column_price');
+		$this->data['column_date_start'] = $this->language->get('column_date_start');
+		$this->data['column_date_end'] = $this->language->get('column_date_end');
+		$this->data['column_reward'] = $this->language->get('column_reward');
+		$this->data['column_image'] = $this->language->get('column_image');
+		$this->data['column_palette_color_id'] = $this->language->get('column_palette_color_id');
+		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
+		$this->data['column_store'] = $this->language->get('column_store');
+		$this->data['column_layout'] = $this->language->get('column_layout');
+
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
@@ -611,26 +632,29 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_filter'] = $this->language->get('entry_filter');
 		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_related'] = $this->language->get('entry_related');
-
-		$this->data['entry_attribute'] = $this->language->get('entry_attribute');
-		$this->data['entry_text'] = $this->language->get('entry_text');
+		$this->data['entry_points'] = $this->language->get('entry_points');
 		$this->data['entry_option'] = $this->language->get('entry_option');
 		$this->data['entry_required'] = $this->language->get('entry_required');
+
+		// Compatibility 1.5.X
+		$this->data['entry_attribute'] = $this->language->get('entry_attribute');
+		$this->data['entry_text'] = $this->language->get('entry_text');
 		$this->data['entry_option_value'] = $this->language->get('entry_option_value');
 		$this->data['entry_profile'] = $this->language->get('entry_profile');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_priority'] = $this->language->get('entry_priority');
 		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
 		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
-		$this->data['entry_points'] = $this->language->get('entry_points');
 		$this->data['entry_option_points'] = $this->language->get('entry_option_points');
 		$this->data['entry_reward'] = $this->language->get('entry_reward');
 		$this->data['entry_palette_color_id'] = $this->language->get('entry_palette_color_id');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 
+		// Recurring
 		$this->data['text_recurring_help'] = $this->language->get('text_recurring_help');
 		$this->data['text_recurring_title'] = $this->language->get('text_recurring_title');
 		$this->data['text_recurring_trial'] = $this->language->get('text_recurring_trial');
+
 		$this->data['entry_recurring'] = $this->language->get('entry_recurring');
 		$this->data['entry_recurring_price'] = $this->language->get('entry_recurring_price');
 		$this->data['entry_recurring_freq'] = $this->language->get('entry_recurring_freq');
