@@ -45,7 +45,11 @@
             <?php } else { ?>
               <a href="<?php echo $sort_iso_code_3; ?>"><?php echo $column_iso_code_3; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="left"><?php echo $column_status; ?></td>
+            <td class="left"><?php if ($sort == 'status') { ?>
+              <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -62,9 +66,9 @@
             <td class="left"><?php echo $country['iso_code_2']; ?></td>
             <td class="left"><?php echo $country['iso_code_3']; ?></td>
             <?php if ($country['status'] == 1) { ?>
-              <td class="center"><span style="color:#11BB11;"><?php echo $text_enabled; ?></span></td>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
-              <td class="center"><span style="color:#CC2626;"><?php echo $text_disabled; ?></span></td>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
             <td class="right"><?php foreach ($country['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>

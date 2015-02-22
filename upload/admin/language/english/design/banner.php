@@ -11,6 +11,7 @@ $_['text_clear']         		= 'Clear';
 
 // Column
 $_['column_name']        	= 'Banner Name';
+$_['column_images'] 		= 'Images';
 $_['column_status']      	= 'Status';
 $_['column_action']      	= 'Action';
 

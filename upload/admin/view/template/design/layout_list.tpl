@@ -25,38 +25,40 @@
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="list">
-      <thead>
-        <tr>
-          <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-          <td class="left"><?php if ($sort == 'name') { ?>
-            <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
-          <?php } else { ?>
-            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-          <?php } ?></td>
-          <td class="right"><?php echo $column_action; ?></td>
-        </tr>
-      </thead>
-      <tbody>
-      <?php if ($layouts) { ?>
-        <?php foreach ($layouts as $layout) { ?>
-        <tr>
-          <td style="text-align:center;"><?php if ($layout['selected']) { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $layout['layout_id']; ?>" checked="checked" />
-          <?php } else { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $layout['layout_id']; ?>" />
-          <?php } ?></td>
-          <td class="left"><?php echo $layout['name']; ?></td>
-          <td class="right"><?php foreach ($layout['action'] as $action) { ?>
-            <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
-          <?php } ?></td>
-        </tr>
+        <thead>
+          <tr>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td class="left"><?php if ($sort == 'name') { ?>
+              <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php echo $column_routes; ?></td>
+            <td class="right"><?php echo $column_action; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+        <?php if ($layouts) { ?>
+          <?php foreach ($layouts as $layout) { ?>
+          <tr>
+            <td style="text-align:center;"><?php if ($layout['selected']) { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $layout['layout_id']; ?>" checked="checked" />
+            <?php } else { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $layout['layout_id']; ?>" />
+            <?php } ?></td>
+            <td class="left"><?php echo $layout['name']; ?></td>
+            <td class="center"><?php echo $layout['routes']; ?></td>
+            <td class="right"><?php foreach ($layout['action'] as $action) { ?>
+              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+            <?php } ?></td>
+          </tr>
+          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+          </tr>
         <?php } ?>
-      <?php } else { ?>
-        <tr>
-          <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
-        </tr>
-      <?php } ?>
-      </tbody>
+        </tbody>
       </table>
     </form>
     <?php if ($navigation_lo) { ?>

@@ -208,6 +208,7 @@ class ControllerDesignLayout extends Controller {
 			$this->data['layouts'][] = array(
 				'layout_id' 	=> $result['layout_id'],
 				'name'      	=> $result['name'],
+				'routes'		=> $this->model_design_layout->getTotalRoutesByLayoutId($result['layout_id']),
 				'selected'  	=> isset($this->request->post['selected']) && in_array($result['layout_id'], $this->request->post['selected']),
 				'action'    	=> $action
 			);
@@ -218,6 +219,7 @@ class ControllerDesignLayout extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_routes'] = $this->language->get('column_routes');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');

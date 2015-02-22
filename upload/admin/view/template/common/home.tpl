@@ -157,7 +157,7 @@
                 <td class="center"><?php echo $order['order_id']; ?></td>
                 <td class="left"><?php echo $order['customer']; ?></td>
                 <td class="left"><?php echo $order['date_added']; ?></td>
-                <td class="left"><?php echo $order['status']; ?></td>
+                <td class="center"><?php echo $order['status']; ?></td>
                 <td class="right"><?php echo $order['total']; ?></td>
                 <td class="right"><?php foreach ($order['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -194,9 +194,13 @@
                 <td class="left"><?php echo $customer['name']; ?></td>
                 <td class="left"><?php echo $customer['email']; ?></td>
                 <td class="left"><?php echo $customer['customer_group']; ?></td>
-                <td class="left"><?php echo $customer['approved']; ?></td>
-                <td class="left"><?php echo $customer['newsletter']; ?></td>
-                <td class="left"><?php echo $customer['status']; ?></td>
+                <td class="center"><?php echo $customer['approved']; ?></td>
+                <td class="center"><?php echo $customer['newsletter']; ?></td>
+                <?php if ($customer['status'] == 1) { ?>
+                  <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                <?php } else { ?>
+                  <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                <?php } ?>
                 <td class="center"><?php echo $customer['date_added']; ?></td>
                 <td class="right"><?php foreach ($customer['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -231,8 +235,12 @@
               <tr>
                 <td class="left"><?php echo $review['name']; ?></td>
                 <td class="left"><?php echo $review['author']; ?></td>
-                <td class="left"><?php echo $review['rating']; ?></td>
-                <td class="left"><?php echo $review['status']; ?></td>
+                <td class="center"><img src="view/image/rating/stars-<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['rating']; ?>" style="margin-top:2px;" /></td>
+                <?php if ($review['status'] == 1) { ?>
+                  <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                <?php } else { ?>
+                  <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                <?php } ?>
                 <td class="center"><?php echo $review['date_added']; ?></td>
                 <td class="right"><?php foreach ($review['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -267,8 +275,12 @@
               <tr>
                 <td class="left"><?php echo $affiliate['name']; ?></td>
                 <td class="left"><?php echo $affiliate['email']; ?></td>
-                <td class="left"><?php echo $affiliate['approved']; ?></td>
-                <td class="left"><?php echo $affiliate['status']; ?></td>
+                <td class="center"><?php echo $affiliate['approved']; ?></td>
+                <?php if ($affiliate['status'] == 1) { ?>
+                  <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+                <?php } else { ?>
+                  <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+                <?php } ?>
                 <td class="center"><?php echo $affiliate['date_added']; ?></td>
                 <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>

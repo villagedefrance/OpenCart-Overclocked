@@ -166,7 +166,7 @@ class ControllerLocalisationZone extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
+			'text'		=> $this->language->get('text_home'),
 			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
@@ -210,6 +210,7 @@ class ControllerLocalisationZone extends Controller {
 				'country'  	=> $result['country'],
 				'name'     	=> $result['name'] . (($result['zone_id'] == $this->config->get('config_zone_id')) ? $this->language->get('text_default') : null),
 				'code'     	=> $result['code'],
+				'status'		=> $result['status'],
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['zone_id'], $this->request->post['selected']),
 				'action'   	=> $action
 			);
@@ -218,10 +219,13 @@ class ControllerLocalisationZone extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_country'] = $this->language->get('column_country');
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_code'] = $this->language->get('column_code');
+		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -256,6 +260,7 @@ class ControllerLocalisationZone extends Controller {
 		$this->data['sort_country'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'] . '&sort=c.name' . $url, 'SSL');
 		$this->data['sort_name'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'] . '&sort=z.name' . $url, 'SSL');
 		$this->data['sort_code'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'] . '&sort=z.code' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'] . '&sort=z.status' . $url, 'SSL');
 
 		$url = '';
 
@@ -294,10 +299,10 @@ class ControllerLocalisationZone extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
-		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_country'] = $this->language->get('entry_country');
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_code'] = $this->language->get('entry_code');
-		$this->data['entry_country'] = $this->language->get('entry_country');
+		$this->data['entry_status'] = $this->language->get('entry_status');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -355,12 +360,12 @@ class ControllerLocalisationZone extends Controller {
 			$zone_info = $this->model_localisation_zone->getZone($this->request->get['zone_id']);
 		}
 
-		if (isset($this->request->post['status'])) {
-			$this->data['status'] = $this->request->post['status'];
+		if (isset($this->request->post['country_id'])) {
+			$this->data['country_id'] = $this->request->post['country_id'];
 		} elseif (!empty($zone_info)) {
-			$this->data['status'] = $zone_info['status'];
+			$this->data['country_id'] = $zone_info['country_id'];
 		} else {
-			$this->data['status'] = '1';
+			$this->data['country_id'] = '';
 		}
 
 		if (isset($this->request->post['name'])) {
@@ -379,12 +384,12 @@ class ControllerLocalisationZone extends Controller {
 			$this->data['code'] = '';
 		}
 
-		if (isset($this->request->post['country_id'])) {
-			$this->data['country_id'] = $this->request->post['country_id'];
+		if (isset($this->request->post['status'])) {
+			$this->data['status'] = $this->request->post['status'];
 		} elseif (!empty($zone_info)) {
-			$this->data['country_id'] = $zone_info['country_id'];
+			$this->data['status'] = $zone_info['status'];
 		} else {
-			$this->data['country_id'] = '';
+			$this->data['status'] = '1';
 		}
 
 		$this->load->model('localisation/country');

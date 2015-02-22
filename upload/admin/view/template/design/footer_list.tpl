@@ -25,54 +25,54 @@
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="list">
-      <thead>
-        <tr>
-          <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-          <td class="left"><?php if ($sort == 'fd.name') { ?>
-            <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
-          <?php } else { ?>
-            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-          <?php } ?></td>
-		  <td class="left"><?php if ($sort == 'f.position') { ?>
-            <a href="<?php echo $sort_position; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_position; ?></a>
-          <?php } else { ?>
-            <a href="<?php echo $sort_position; ?>"><?php echo $column_position; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-          <?php } ?></td>
-		  <td class="left"><?php if ($sort == 'f.status') { ?>
-            <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
-          <?php } else { ?>
-            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
-          <?php } ?></td>
-          <td class="right"><?php echo $column_action; ?></td>
-        </tr>
-      </thead>
-      <tbody>
-      <?php if ($footer_blocks) { ?>
-        <?php foreach ($footer_blocks as $footer_block) { ?>
-        <tr>
-          <td style="text-align:center;"><?php if ($footer_block['selected']) { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $footer_block['footer_id']; ?>" checked="checked" />
-          <?php } else { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $footer_block['footer_id']; ?>" />
-          <?php } ?></td>
-          <td class="left"><?php echo $footer_block['name']; ?></td>
-          <td class="center"><?php echo $footer_block['position']; ?></td>
-          <?php if ($footer_block['status'] == '1') { ?>
-            <td class="center"><span style="color:#11BB11;"><?php echo $text_enabled; ?></span></td>
-          <?php } else { ?>
-            <td class="center"><span style="color:#CC2626;"><?php echo $text_disabled; ?></span></td>
+        <thead>
+          <tr>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td class="left"><?php if ($sort == 'fd.name') { ?>
+              <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+		    <td class="left"><?php if ($sort == 'f.position') { ?>
+              <a href="<?php echo $sort_position; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_position; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_position; ?>"><?php echo $column_position; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+		    <td class="left"><?php if ($sort == 'f.status') { ?>
+              <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="right"><?php echo $column_action; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+        <?php if ($footer_blocks) { ?>
+          <?php foreach ($footer_blocks as $footer_block) { ?>
+          <tr>
+            <td style="text-align:center;"><?php if ($footer_block['selected']) { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $footer_block['footer_id']; ?>" checked="checked" />
+            <?php } else { ?>
+              <input type="checkbox" name="selected[]" value="<?php echo $footer_block['footer_id']; ?>" />
+            <?php } ?></td>
+            <td class="left"><?php echo $footer_block['name']; ?></td>
+            <td class="center"><?php echo $footer_block['position']; ?></td>
+            <?php if ($footer_block['status'] == '1') { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
+            <td class="right"><?php foreach ($footer_block['action'] as $action) { ?>
+              <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+            <?php } ?></td>
+          </tr>
           <?php } ?>
-          <td class="right"><?php foreach ($footer_block['action'] as $action) { ?>
-            <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
-          <?php } ?></td>
-        </tr>
+        <?php } else { ?>
+          <tr>
+            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+          </tr>
         <?php } ?>
-      <?php } else { ?>
-        <tr>
-          <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
-        </tr>
-      <?php } ?>
-      </tbody>
+        </tbody>
       </table>
     </form>
     <?php if ($navigation_lo) { ?>

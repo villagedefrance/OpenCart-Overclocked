@@ -312,7 +312,9 @@ class ModelLocalisationLanguage extends Model {
 			$sort_data = array(
 				'name',
 				'code',
-				'sort_order'
+				'image',
+				'sort_order',
+				'status'
 			);
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {

@@ -8,6 +8,7 @@ $_['text_default']  		= 'Default';
 
 // Column
 $_['column_name']   	= 'Layout Name';
+$_['column_routes'] 		= 'Routes';
 $_['column_action'] 		= 'Action';
 
 // Entry

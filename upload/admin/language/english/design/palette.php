@@ -8,6 +8,7 @@ $_['text_default']  		= 'Default';
 
 // Column
 $_['column_name']   	= 'Palette Name';
+$_['column_colors'] 		= 'Colors';
 $_['column_action'] 		= 'Action';
 
 // Entry

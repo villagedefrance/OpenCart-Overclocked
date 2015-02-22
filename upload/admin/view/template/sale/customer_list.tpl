@@ -83,7 +83,7 @@
                 <?php } ?>
               <?php } ?>
             </select></td>
-            <td><select name="filter_status">
+            <td class="center"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
@@ -96,7 +96,7 @@
                 <option value="0"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
-            <td><select name="filter_approved">
+            <td class="center"><select name="filter_approved">
               <option value="*"></option>
               <?php if ($filter_approved) { ?>
                 <option value="1" selected="selected"><?php echo $text_yes; ?></option>
@@ -109,8 +109,8 @@
                 <option value="0"><?php echo $text_no; ?></option>
               <?php } ?>
             </select></td>
-            <td><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
-            <td><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
+            <td class="center"><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
+            <td class="center"><input type="text" name="filter_date_added" value="<?php echo $filter_date_added; ?>" size="12" id="date" /></td>
             <td></td>
             <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>

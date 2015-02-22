@@ -218,16 +218,6 @@ class ControllerLocalisationCurrency extends Controller {
 				'href' => $this->url->link('localisation/currency/update', 'token=' . $this->session->data['token'] . '&currency_id=' . $result['currency_id'] . $url, 'SSL')
 			);
 
-			if ($result['date_modified'] < date('Y-m-d H:i:s', strtotime('-1 day'))) {
-				$this->model_localisation_currency->updateCurrencies();
-			}
-
-			if ($result['date_modified'] < date('Y-m-d H:i:s', strtotime('-1 hour'))) {
-				$this->data['allow_refresh'] = true;
-			} else {
-				$this->data['allow_refresh'] = false;
-			}
-
 			$this->data['currencies'][] = array(
 				'currency_id'   	=> $result['currency_id'],
 				'title'         			=> $result['title'] . (($result['code'] == $this->config->get('config_currency')) ? $this->language->get('text_default') : null),

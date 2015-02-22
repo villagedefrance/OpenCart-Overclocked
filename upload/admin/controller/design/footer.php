@@ -293,6 +293,8 @@ class ControllerDesignFooter extends Controller {
 	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['header_links'] = $this->language->get('header_links');
+
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_position'] = $this->language->get('text_position');
 		$this->data['text_yes'] = $this->language->get('text_yes');

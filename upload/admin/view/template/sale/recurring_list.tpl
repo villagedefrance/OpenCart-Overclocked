@@ -28,7 +28,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_order_recurring; ?>"><?php echo $entry_order_recurring; ?></a>
             <?php } ?></td>
-            <td class="center"><?php if ($sort == 'or.order_id') { ?>
+            <td class="left"><?php if ($sort == 'or.order_id') { ?>
               <a href="<?php echo $sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_order_id; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_order; ?>"><?php echo $entry_order_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -64,7 +64,7 @@
             <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
             <td class="left"><input type="text" name="filter_created" value="<?php echo $filter_created; ?>" class="date" /></td>
             <td class="left"><select name="filter_status">
-              <?php foreach($statuses as $status => $text) { ?>
+              <?php foreach ($statuses as $status => $text) { ?>
                 <?php if ($filter_status == $status) { ?>
                   <option value="<?php echo $status; ?>" selected="selected"><?php echo $text; ?></option>
                 <?php } else { ?>

@@ -209,7 +209,9 @@ class ControllerLocalisationLanguage extends Controller {
 				'language_id' 	=> $result['language_id'],
 				'name'        	=> $result['name'] . (($result['code'] == $this->config->get('config_language')) ? $this->language->get('text_default') : null),
 				'code'        	=> $result['code'],
+				'image'        	=> $result['image'],
 				'sort_order'  	=> $result['sort_order'],
+				'status'  		=> $result['status'],
 				'selected'    	=> isset($this->request->post['selected']) && in_array($result['language_id'], $this->request->post['selected']),
 				'action'      		=> $action
 			);
@@ -218,10 +220,14 @@ class ControllerLocalisationLanguage extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_code'] = $this->language->get('column_code');
+		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
+		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -255,7 +261,9 @@ class ControllerLocalisationLanguage extends Controller {
 
 		$this->data['sort_name'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
 		$this->data['sort_code'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . '&sort=code' . $url, 'SSL');
+		$this->data['sort_image'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . '&sort=image' . $url, 'SSL');
 		$this->data['sort_sort_order'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . '&sort=sort_order' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
 
 		$url = '';
 

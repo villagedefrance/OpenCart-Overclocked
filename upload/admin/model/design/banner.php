@@ -119,5 +119,11 @@ class ModelDesignBanner extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getTotalImagesByBannerId($banner_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "banner_image WHERE banner_id = '" . (int)$banner_id . "'");
+
+		return $query->row['total'];
+	}
 }
 ?>

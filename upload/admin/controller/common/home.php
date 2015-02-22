@@ -30,6 +30,8 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_month'] = $this->language->get('text_month');
 		$this->data['text_year'] = $this->language->get('text_year');
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['tab_order'] = $this->language->get('tab_order');
 		$this->data['tab_customer'] = $this->language->get('tab_customer');
@@ -265,7 +267,7 @@ class ControllerCommonHome extends Controller {
 				'name'           		=> $customer_result['name'],
 				'email'          		=> $customer_result['email'],
 				'customer_group' 	=> $customer_result['customer_group'],
-				'status'         		=> $customer_result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'         		=> $customer_result['status'],
 				'approved'       	=> $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'newsletter'     	=> $customer_result['newsletter'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($customer_result['date_added'])),
@@ -298,7 +300,7 @@ class ControllerCommonHome extends Controller {
 				'name'       		=> $review_result['name'],
 				'author'     		=> $review_result['author'],
 				'rating'     		=> $review_result['rating'],
-				'status'     		=> $review_result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'     		=> $review_result['status'],
 				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($review_result['date_added'])),
 				'selected'   		=> isset($this->request->post['selected']) && in_array($review_result['review_id'], $this->request->post['selected']),
 				'action'     		=> $action
@@ -330,7 +332,7 @@ class ControllerCommonHome extends Controller {
 				'name'         	=> $affiliate_result['name'],
 				'email'        	=> $affiliate_result['email'],
 				'balance'      	=> $this->currency->format($affiliate_result['balance'], $this->config->get('config_currency')),
-				'status'       	=> $affiliate_result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'status'       	=> $affiliate_result['status'],
 				'approved'     	=> $affiliate_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($affiliate_result['date_added'])),
 				'selected'     	=> isset($this->request->post['selected']) && in_array($affiliate_result['affiliate_id'], $this->request->post['selected']),

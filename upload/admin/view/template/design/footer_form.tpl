@@ -106,6 +106,7 @@
         </table>
       </div>
       <br />
+	  <h2><?php echo $header_links; ?></h2>
       <table id="route" class="list">
       <thead>
         <tr>

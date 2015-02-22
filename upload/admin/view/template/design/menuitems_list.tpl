@@ -49,9 +49,9 @@
               <td class="center"><?php echo $menu_item['external']; ?></td>
               <td class="center"><?php echo $menu_item['sort_order']; ?></td>
               <?php if ($menu_item['status'] == 1) { ?>
-                <td class="center"><span style="color:#11BB11;"><?php echo $text_enabled; ?></span></td>
+                <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>
-                <td class="center"><span style="color:#CC2626;"><?php echo $text_disabled; ?></span></td>
+                <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
               <td class="right">
                 <?php foreach ($menu_item['action'] as $action) { ?>

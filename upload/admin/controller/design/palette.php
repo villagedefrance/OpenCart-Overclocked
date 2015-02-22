@@ -208,6 +208,7 @@ class ControllerDesignPalette extends Controller {
 			$this->data['palettes'][] = array(
 				'palette_id'	=> $result['palette_id'],
 				'name'		=> $result['name'],
+				'colors'		=> $this->model_design_palette->getTotalColorsByPaletteId($result['palette_id']),
 				'selected'	=> isset($this->request->post['selected']) && in_array($result['palette_id'], $this->request->post['selected']),
 				'action'		=> $action
 			);
@@ -218,6 +219,7 @@ class ControllerDesignPalette extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_colors'] = $this->language->get('column_colors');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');

@@ -6,16 +6,17 @@ $_['heading_title']        		= 'Zones';
 $_['text_success']       			= 'Success: You have modified <b>Zones</b> !';
 
 // Column
+$_['column_country']    		= 'Country';
 $_['column_name']        		= 'Zone Name';
 $_['column_code']        		= 'Zone Code';
-$_['column_country']    		= 'Country';
+$_['column_status'] 				= 'Status';
 $_['column_action']    			= 'Action';
 
 // Entry
-$_['entry_status']       			= 'Zone Status:';
+$_['entry_country']       		= 'Country:';
 $_['entry_name']         			= 'Zone Name:';
 $_['entry_code']        			= 'Zone Code:';
-$_['entry_country']       		= 'Country:';
+$_['entry_status']       			= 'Zone Status:';
 
 // Error
 $_['error_permission']    		= 'Warning: You do not have permission to modify <b>Zones</b> !';

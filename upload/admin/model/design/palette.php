@@ -102,5 +102,11 @@ class ModelDesignPalette extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getTotalColorsByPaletteId($palette_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "palette_color WHERE palette_id = '" . (int)$palette_id . "'");
+
+		return $query->row['total'];
+	}
 }
 ?>

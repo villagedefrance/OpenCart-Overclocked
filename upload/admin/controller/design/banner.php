@@ -208,7 +208,8 @@ class ControllerDesignBanner extends Controller {
 			$this->data['banners'][] = array(
 				'banner_id' 	=> $result['banner_id'],
 				'name'   		=> $result['name'],
-				'status'   	=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'images'		=> $this->model_design_banner->getTotalImagesByBannerId($result['banner_id']),
+				'status'   	=> $result['status'],
 				'selected'  	=> isset($this->request->post['selected']) && in_array($result['banner_id'], $this->request->post['selected']),
 				'action'  		=> $action
 			);
@@ -217,8 +218,11 @@ class ControllerDesignBanner extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_images'] = $this->language->get('column_images');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 

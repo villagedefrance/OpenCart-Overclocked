@@ -38,10 +38,20 @@
             <?php } else { ?>
               <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'sort_order') { ?>
+            <td class="left"><?php if ($sort == 'image') { ?>
+              <a href="<?php echo $sort_image; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_image; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_image; ?>"><?php echo $column_image; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'sort_order') { ?>
               <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'status') { ?>
+              <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
@@ -56,8 +66,14 @@
               <input type="checkbox" name="selected[]" value="<?php echo $language['language_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $language['name']; ?></td>
-            <td class="left"><?php echo $language['code']; ?></td>
-            <td class="right"><?php echo $language['sort_order']; ?></td>
+            <td class="center"><?php echo $language['code']; ?></td>
+			<td class="center"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" /></td>
+            <td class="center"><?php echo $language['sort_order']; ?></td>
+            <?php if ($language['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php foreach ($language['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

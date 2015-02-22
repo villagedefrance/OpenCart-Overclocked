@@ -30,6 +30,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php echo $column_users; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -43,6 +44,7 @@
               <input type="checkbox" name="selected[]" value="<?php echo $user_group['user_group_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $user_group['name']; ?></td>
+			<td class="center"><?php echo $user_group['users']; ?></td>
             <td class="right"><?php foreach ($user_group['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -50,7 +52,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

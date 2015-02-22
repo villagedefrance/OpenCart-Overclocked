@@ -340,6 +340,7 @@ class ControllerLocalisationCountry extends Controller {
 		$this->data['sort_name'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
 		$this->data['sort_iso_code_2'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=iso_code_2' . $url, 'SSL');
 		$this->data['sort_iso_code_3'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=iso_code_3' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
 
 		$url = '';
 

@@ -33,6 +33,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php echo $column_images; ?></td>
             <td class="left"><?php if ($sort == 'status') { ?>
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
             <?php } else { ?>
@@ -51,7 +52,12 @@
               <input type="checkbox" name="selected[]" value="<?php echo $banner['banner_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $banner['name']; ?></td>
-            <td class="left"><?php echo $banner['status']; ?></td>
+			<td class="center"><?php echo $banner['images']; ?></td>
+            <?php if ($banner['status'] == 1) { ?>
+              <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
+            <?php } else { ?>
+              <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
+            <?php } ?>
             <td class="right"><?php foreach ($banner['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -59,7 +65,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

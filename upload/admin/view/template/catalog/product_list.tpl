@@ -64,9 +64,9 @@
             <td></td>
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
-            <td style="text-align:right;"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8"/></td>
-            <td style="text-align:right;"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" style="text-align:right;" /></td>
-            <td style="text-align:right;"><select name="filter_status">
+            <td class="right"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8" /></td>
+            <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" style="text-align:right;" /></td>
+            <td class="right"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
@@ -79,7 +79,7 @@
                 <option value="0"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
-            <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($products) { ?>
             <?php foreach ($products as $product) { ?>
