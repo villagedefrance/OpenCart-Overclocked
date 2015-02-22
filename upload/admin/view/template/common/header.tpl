@@ -284,6 +284,7 @@ $(document).ready(function() {
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
           <li><a onclick="window.open('http://www.opencart.com');" title=""><?php echo $text_opencart; ?></a></li>
+          <li><a onclick="window.open('http://villagedefrance.net');" title=""><?php echo $text_opencart_overclocked; ?></a></li>
           <li><a onclick="window.open('http://www.opencart.com/index.php?route=documentation/introduction');" title=""><?php echo $text_documentation; ?></a></li>
           <li><a onclick="window.open('http://forum.opencart.com');" title=""><?php echo $text_support; ?></a></li>
         </ul>
