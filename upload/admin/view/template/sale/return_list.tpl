@@ -28,12 +28,12 @@
           <thead>
             <tr>
               <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-              <td class="right"><?php if ($sort == 'r.return_id') { ?>
+              <td class="left"><?php if ($sort == 'r.return_id') { ?>
                 <a href="<?php echo $sort_return_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_return_id; ?></a>
               <?php } else { ?>
                 <a href="<?php echo $sort_return_id; ?>"><?php echo $column_return_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
               <?php } ?></td>
-              <td class="right"><?php if ($sort == 'r.order_id') { ?>
+              <td class="left"><?php if ($sort == 'r.order_id') { ?>
                 <a href="<?php echo $sort_order_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_order_id; ?></a>
               <?php } else { ?>
                 <a href="<?php echo $sort_order_id; ?>"><?php echo $column_order_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
