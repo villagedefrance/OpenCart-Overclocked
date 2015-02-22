@@ -10,7 +10,11 @@ $_['text_browse']            		= 'Browse';
 $_['text_clear']             		= 'Clear';
 $_['text_autocomplete']     	= '<br /><span class="help">(Autocomplete)</span>';
 
-// Column
+// Column Form
+$_['column_store']				= 'Store';
+$_['column_layout']				= 'Layout Override';
+
+// Column List
 $_['column_image']            	= 'Image';
 $_['column_name']            	= 'Category Name';
 $_['column_sort_order']      	= 'Sort Order';

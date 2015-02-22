@@ -18,13 +18,13 @@ $_['text_percent']           		= 'Percentage';
 $_['text_amount']            	= 'Fixed Amount';
 $_['text_autocomplete']     	= '<br /><span class="help">(Autocomplete)</span>';
 
-// Column
+// Column Form
 $_['column_attribute'] 			= 'Attribute';
 $_['column_text'] 				= 'Text';
 $_['column_option_value']		= 'Option Value';
 $_['column_option_points']    	= 'Points';
 $_['column_total_quantity']	= 'Total Quantity in Stock';
-$_['column_substract']			= 'Subtract Stock';
+$_['column_substract']         	= 'Substract Stock';
 $_['column_weight']				= 'Weight';
 $_['column_profile']				= 'Profile';
 $_['column_customer_group']	= 'Customer Group';
@@ -39,6 +39,12 @@ $_['column_palette_color_id']	= 'Palette Color';
 $_['column_sort_order']       	= 'Sort Order';
 $_['column_store']				= 'Stores';
 $_['column_layout']				= 'Layout Override';
+
+// Column List
+$_['column_name']				= 'Product Name';
+$_['column_model']				= 'Model';
+$_['column_status']				= 'Status';
+$_['column_action']				= 'Action';
 
 // Entry
 $_['entry_name']             		= 'Product Name:';
@@ -80,9 +86,9 @@ $_['entry_manufacturer']     	= 'Manufacturer:';
 $_['entry_filter']           		= 'Filters:';
 $_['entry_download']         	= 'Downloads:';
 $_['entry_related']          		= 'Related Products:';
-$_['entry_points']           		= 'Points:<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points leave as 0.</span>';
-$_['entry_option']           		= 'Option:';
-$_['entry_required']         		= 'Required:';
+$_['entry_points']           		= 'Points<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points leave as 0.</span>';
+$_['entry_option']           		= 'Option';
+$_['entry_required']         		= 'Required';
 
 // Compatibility 1.5.X
 $_['entry_attribute']        		= 'Attribute';

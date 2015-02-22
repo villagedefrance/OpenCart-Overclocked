@@ -267,6 +267,9 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['tab_data'] = $this->language->get('tab_data');
 		$this->data['tab_design'] = $this->language->get('tab_design');
 
+		$this->data['column_store'] = $this->language->get('column_store');
+		$this->data['column_layout'] = $this->language->get('column_layout');
+
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');

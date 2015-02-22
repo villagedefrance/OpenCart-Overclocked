@@ -29,7 +29,7 @@
         <thead>
         <tr>
           <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-          <td class="center"><?php echo $column_image; ?></td>
+          <td class="left"><?php echo $column_image; ?></td>
           <td class="left"><?php if ($sort == 'pd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
           <?php } else { ?>
@@ -40,17 +40,17 @@
           <?php } else { ?>
             <a href="<?php echo $sort_model; ?>"><?php echo $column_model; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="right"><?php if ($sort == 'p.price') { ?>
+          <td class="left"><?php if ($sort == 'p.price') { ?>
             <a href="<?php echo $sort_price; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_price; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_price; ?>"><?php echo $column_price; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="right"><?php if ($sort == 'p.quantity') { ?>
+          <td class="left"><?php if ($sort == 'p.quantity') { ?>
             <a href="<?php echo $sort_quantity; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_quantity; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
           <?php } ?></td>
-          <td class="center"><?php if ($sort == 'p.status') { ?>
+          <td class="left"><?php if ($sort == 'p.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
             <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
