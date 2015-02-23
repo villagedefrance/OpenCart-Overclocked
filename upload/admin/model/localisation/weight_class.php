@@ -2,7 +2,7 @@
 class ModelLocalisationWeightClass extends Model {
 
 	public function addWeightClass($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "weight_class SET value = '" . (float)$data['value'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "weight_class SET `value` = '" . (float)$data['value'] . "'");
 
 		$weight_class_id = $this->db->getLastId();
 
@@ -17,7 +17,7 @@ class ModelLocalisationWeightClass extends Model {
 	}
 
 	public function editWeightClass($weight_class_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "weight_class SET value = '" . (float)$data['value'] . "' WHERE weight_class_id = '" . (int)$weight_class_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "weight_class SET `value` = '" . (float)$data['value'] . "' WHERE weight_class_id = '" . (int)$weight_class_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "weight_class_description WHERE weight_class_id = '" . (int)$weight_class_id . "'");
 

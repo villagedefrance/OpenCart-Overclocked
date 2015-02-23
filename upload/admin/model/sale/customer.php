@@ -348,7 +348,7 @@ class ModelSaleCustomer extends Model {
 	}
 
 	public function addHistory($customer_id, $comment) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "customer_history SET customer_id = '" . (int)$customer_id . "', comment = '" . $this->db->escape(strip_tags($comment)) . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "customer_history SET customer_id = '" . (int)$customer_id . "', `comment` = '" . $this->db->escape(strip_tags($comment)) . "', date_added = NOW()");
 	} 
 
 	public function getHistories($customer_id, $start = 0, $limit = 10) {
@@ -556,15 +556,15 @@ class ModelSaleCustomer extends Model {
 	}
 
 	public function addBanIp($ip) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "customer_ban_ip` SET `ip` = '" . $this->db->escape($ip) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "customer_ban_ip SET ip = '" . $this->db->escape($ip) . "'");
 	}
 
 	public function removeBanIp($ip) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_ban_ip` WHERE `ip` = '" . $this->db->escape($ip) . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_ban_ip` WHERE ip = '" . $this->db->escape($ip) . "'");
 	}
 
 	public function getTotalBanIpsByIp($ip) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_ban_ip` WHERE `ip` = '" . $this->db->escape($ip) . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_ban_ip WHERE ip = '" . $this->db->escape($ip) . "'");
 
 		return $query->row['total'];
 	}
