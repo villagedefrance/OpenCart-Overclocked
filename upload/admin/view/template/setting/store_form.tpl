@@ -473,6 +473,24 @@
           <?php } ?></td>
         </tr>
         <tr>
+          <td><span class="required">*</span> <?php echo $entry_image_newsthumb; ?></td>
+          <td><input type="text" name="config_image_newsthumb_width" value="<?php echo $config_image_newsthumb_width; ?>" size="3" />
+            x
+          <input type="text" name="config_image_newsthumb_height" value="<?php echo $config_image_newsthumb_height; ?>" size="3" />
+          <?php if ($error_image_newsthumb) { ?>
+            <span class="error"><?php echo $error_image_newsthumb; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_image_newspopup; ?></td>
+          <td><input type="text" name="config_image_newspopup_width" value="<?php echo $config_image_newspopup_width; ?>" size="3" />
+            x
+          <input type="text" name="config_image_newspopup_height" value="<?php echo $config_image_newspopup_height; ?>" size="3" />
+          <?php if ($error_image_newspopup) { ?>
+            <span class="error"><?php echo $error_image_newspopup; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><span class="required">*</span> <?php echo $entry_image_cart; ?></td>
           <td><input type="text" name="config_image_cart_width" value="<?php echo $config_image_cart_width; ?>" size="3" />
             x

@@ -104,14 +104,14 @@ class ControllerSettingStore extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -250,6 +250,8 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_image_related'] = $this->language->get('entry_image_related');
 		$this->data['entry_image_compare'] = $this->language->get('entry_image_compare');
 		$this->data['entry_image_wishlist'] = $this->language->get('entry_image_wishlist');
+		$this->data['entry_image_newsthumb'] = $this->language->get('entry_image_newsthumb');
+		$this->data['entry_image_newspopup'] = $this->language->get('entry_image_newspopup');
 		$this->data['entry_image_cart'] = $this->language->get('entry_image_cart');
 		$this->data['entry_secure'] = $this->language->get('entry_secure');
 
@@ -364,6 +366,18 @@ class ControllerSettingStore extends Controller {
 			$this->data['error_image_wishlist'] = $this->error['image_wishlist'];
 		} else {
 			$this->data['error_image_wishlist'] = '';
+		}
+
+		if (isset($this->error['image_newsthumb'])) {
+			$this->data['error_image_newsthumb'] = $this->error['image_newsthumb'];
+		} else {
+			$this->data['error_image_newsthumb'] = '';
+		}
+
+		if (isset($this->error['image_newspopup'])) {
+			$this->data['error_image_newspopup'] = $this->error['image_newspopup'];
+		} else {
+			$this->data['error_image_newspopup'] = '';
 		}
 
 		if (isset($this->error['image_cart'])) {
@@ -852,6 +866,38 @@ class ControllerSettingStore extends Controller {
 			$this->data['config_image_wishlist_height'] = 50;
 		}
 
+		if (isset($this->request->post['config_image_newsthumb_width'])) {
+			$this->data['config_image_newsthumb_width'] = $this->request->post['config_image_newsthumb_width'];
+		} elseif (isset($store_info['config_image_newsthumb_width'])) {
+			$this->data['config_image_newsthumb_width'] = $store_info['config_image_newsthumb_width'];
+		} else {
+			$this->data['config_image_newsthumb_width'] = 100;
+		}
+
+		if (isset($this->request->post['config_image_newsthumb_height'])) {
+			$this->data['config_image_newsthumb_height'] = $this->request->post['config_image_newsthumb_height'];
+		} elseif (isset($store_info['config_image_newsthumb_height'])) {
+			$this->data['config_image_newsthumb_height'] = $store_info['config_image_newsthumb_height'];
+		} else {
+			$this->data['config_image_newsthumb_height'] = 100;
+		}
+
+		if (isset($this->request->post['config_image_newspopup_width'])) {
+			$this->data['config_image_newspopup_width'] = $this->request->post['config_image_newspopup_width'];
+		} elseif (isset($store_info['config_image_newspopup_width'])) {
+			$this->data['config_image_newspopup_width'] = $store_info['config_image_newspopup_width'];
+		} else {
+			$this->data['config_image_newspopup_width'] = 500;
+		}
+
+		if (isset($this->request->post['config_image_newspopup_height'])) {
+			$this->data['config_image_newspopup_height'] = $this->request->post['config_image_newspopup_height'];
+		} elseif (isset($store_info['config_image_newspopup_height'])) {
+			$this->data['config_image_newspopup_height'] = $store_info['config_image_newspopup_height'];
+		} else {
+			$this->data['config_image_newspopup_height'] = 500;
+		}
+
 		if (isset($this->request->post['config_image_cart_width'])) {
 			$this->data['config_image_cart_width'] = $this->request->post['config_image_cart_width'];
 		} elseif (isset($store_info['config_image_cart_width'])) {
@@ -952,6 +998,14 @@ class ControllerSettingStore extends Controller {
 
 		if (!$this->request->post['config_image_wishlist_width'] || !$this->request->post['config_image_wishlist_height']) {
 			$this->error['image_wishlist'] = $this->language->get('error_image_wishlist');
+		}
+
+		if (!$this->request->post['config_image_newsthumb_width'] || !$this->request->post['config_image_newsthumb_height']) {
+			$this->error['image_newsthumb'] = $this->language->get('error_image_newsthumb');
+		}
+
+		if (!$this->request->post['config_image_newspopup_width'] || !$this->request->post['config_image_newspopup_height']) {
+			$this->error['image_newspopup'] = $this->language->get('error_image_newspopup');
 		}
 
 		if (!$this->request->post['config_image_cart_width'] || !$this->request->post['config_image_cart_height']) {
