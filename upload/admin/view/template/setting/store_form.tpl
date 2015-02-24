@@ -446,6 +446,15 @@
           <?php } ?></td>
         </tr>
         <tr>
+          <td><span class="required">*</span> <?php echo $entry_image_brand; ?></td>
+          <td><input type="text" name="config_image_brand_width" value="<?php echo $config_image_brand_width; ?>" size="3" />
+            x
+          <input type="text" name="config_image_brand_height" value="<?php echo $config_image_brand_height; ?>" size="3" />
+          <?php if ($error_image_brand) { ?>
+            <span class="error"><?php echo $error_image_brand; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><span class="required">*</span> <?php echo $entry_image_related; ?></td>
           <td><input type="text" name="config_image_related_width" value="<?php echo $config_image_related_width; ?>" size="3" />
             x
