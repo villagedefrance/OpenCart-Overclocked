@@ -832,10 +832,10 @@
             <td><?php echo $entry_viewer; ?></td>
             <td><select name="config_viewer">
               <?php if (isset($config_viewer)) { $selected = "selected"; ?>
-                <option value="magnific" <?php if ($config_viewer == 'magnific') {echo $selected;} ?>><?php echo $text_magnific; ?></option>
+                <option value="magnific" <?php if ($config_viewer == 'magnific') {echo $selected;} ?>><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
                 <option value="zoomlens" <?php if ($config_viewer == 'zoomlens') {echo $selected;} ?>><?php echo $text_zoomlens; ?></option>
               <?php } else { ?>
-                <option value="magnific"><?php echo $text_magnific; ?></option>
+                <option value="magnific"><?php echo $text_magnific; ?> <?php echo $text_default; ?></option>
                 <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
               <?php } ?>
             </select></td>
@@ -870,7 +870,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_news_chars; ?></td>
-            <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> chars</td>
+            <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> <?php echo $text_characters; ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_cookie_consent; ?></td>
@@ -930,6 +930,9 @@
             <br />
             <a onclick="image_upload('icon', 'thumb-icon');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-icon').attr('src', '<?php echo $no_image; ?>'); $('#icon').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
           </tr>
+        </table>
+        <h2><?php echo $text_image_resize; ?></h2>
+        <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_category; ?></td>
             <td><input type="text" name="config_image_category_width" value="<?php echo $config_image_category_width; ?>" size="3" />

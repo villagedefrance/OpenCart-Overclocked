@@ -26,7 +26,8 @@ $_['text_no_results']   			= 'No results!';
 $_['text_separator']      		= ' &gt; ';
 $_['text_edit']              		= 'Edit';
 $_['text_view']            		= 'View';
-$_['text_home']               	= 'Home';
+$_['text_home']					= 'Home';
+$_['text_characters']			= 'Characters';
 
 // Position
 $_['text_header_bottom']    	= 'Header Bottom';

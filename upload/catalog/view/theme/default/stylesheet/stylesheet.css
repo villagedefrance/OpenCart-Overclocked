@@ -1333,14 +1333,14 @@ ul.box-filter > li ul {
 	overflow: hidden;
 	clear: both;
 }
-.product-info .image-additional img {
-	border: 1px solid #E7E7E7;
-}
 .product-info .image-additional a {
 	float: left;
 	display: block;
-	margin-right: 10px;
-	margin-bottom: 10px;
+	margin: 0px 10px 10px 0px;
+}
+.product-info .image-additional img {
+	border: 1px solid #E7E7E7;
+	padding: 2px;
 }
 .product-info .description {
 	border-top: 1px solid #E7E7E7;

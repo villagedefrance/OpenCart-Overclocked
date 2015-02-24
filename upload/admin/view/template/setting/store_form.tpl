@@ -400,6 +400,9 @@
           <br />
           <a onclick="image_upload('icon', 'thumb-icon');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-icon').attr('src', '<?php echo $no_image; ?>'); $('#icon').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
         </tr>
+      </table>
+      <h2><?php echo $text_image_resize; ?></h2>
+      <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_image_category; ?></td>
           <td><input type="text" name="config_image_category_width" value="<?php echo $config_image_category_width; ?>" size="3" />

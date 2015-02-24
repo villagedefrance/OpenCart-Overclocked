@@ -194,6 +194,7 @@ class ControllerSettingStore extends Controller {
 	public function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_yes'] = $this->language->get('text_yes');
@@ -203,6 +204,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
 		$this->data['text_stock'] = $this->language->get('text_stock');
+		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
 		$this->data['text_clear'] = $this->language->get('text_clear');
@@ -814,7 +816,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_image_additional_width'])) {
 			$this->data['config_image_additional_width'] = $store_info['config_image_additional_width'];
 		} else {
-			$this->data['config_image_additional_width'] = 75;
+			$this->data['config_image_additional_width'] = 70;
 		}
 
 		if (isset($this->request->post['config_image_additional_height'])) {
@@ -822,7 +824,7 @@ class ControllerSettingStore extends Controller {
 		} elseif (isset($store_info['config_image_additional_height'])) {
 			$this->data['config_image_additional_height'] = $store_info['config_image_additional_height'];
 		} else {
-			$this->data['config_image_additional_height'] = 75;
+			$this->data['config_image_additional_height'] = 70;
 		}
 
 		if (isset($this->request->post['config_image_brand_width'])) {

@@ -66,13 +66,19 @@
 }
 /* Simple Lens - Thumbnails */
 .product-info .simpleLens-thumbnails-container {
-    width: 250px;
-	margin-left: 0px;
+    width: 260px;
+	margin: 0px;
+	padding: 0px;
 	overflow: hidden;
 	clear: both;
 }
-.product-info .simpleLens-thumbnails-container a img {
-    border: 1px solid #E7E7E7;
-	margin-right: 5px;
-	margin-bottom: 5px;
+.product-info .simpleLens-thumbnails-container a {
+	float: left;
+	display: block;
+	margin: 0px 10px 10px 0px;
+	padding: 0px;
+}
+.product-info .simpleLens-thumbnails-container img {
+	border: 1px solid #E7E7E7;
+	padding: 2px;
 }
