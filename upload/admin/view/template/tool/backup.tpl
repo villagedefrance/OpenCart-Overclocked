@@ -22,6 +22,7 @@
     </div>
     <div class="content">
       <form action="<?php echo $restore; ?>" method="post" enctype="multipart/form-data" id="restore">
+        <h2><?php echo $heading_restore; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_restore; ?></td>
@@ -30,6 +31,7 @@
         </table>
       </form>
       <form action="<?php echo $backup; ?>" method="post" enctype="multipart/form-data" id="backup">
+        <h2><?php echo $heading_backup; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_backup; ?></td>

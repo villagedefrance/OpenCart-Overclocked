@@ -62,21 +62,15 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
-		if (isset($this->error['warning'])) {
-			$this->data['error_warning'] = $this->error['warning'];
-		} else {
-			$this->data['error_warning'] = '';
-		}
-
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$date_timezone = ini_get('date.timezone');
 		$default_timezone = date_default_timezone_get();
 
 		if ($date_timezone) {
-			$this->data['server_zone'] = ini_get('date.timezone');
+			$this->data['server_zone'] = $date_timezone;
 		} elseif ($default_timezone) {
-			$this->data['server_zone'] = date_default_timezone_get();
+			$this->data['server_zone'] = $default_timezone;
 		} else {
 			$this->data['server_zone'] = $this->language->get('text_no_timezone');
 		}
@@ -84,6 +78,14 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['server_time'] = date('Y-m-d H:i:s');
 		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
 
+		// Check install directory exists
+		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
+			$this->data['error_install'] = $this->language->get('error_install');
+		} else {
+			$this->data['error_install'] = '';
+		}
+
+		// Check write permissions
 		$this->data['cache'] = DIR_SYSTEM . 'cache';
 		$this->data['logs'] = DIR_SYSTEM . 'logs';
 		$this->data['image_cache'] = DIR_IMAGE . 'cache';
@@ -111,18 +113,6 @@ class ControllerToolConfiguration extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
-	}
-
-	private function validate() {
-		if (!$this->user->hasPermission('modify', 'tool/' . $this->_name)) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 }
 ?>

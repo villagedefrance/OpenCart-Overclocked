@@ -30,6 +30,9 @@ class ControllerToolBackup extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['heading_restore'] = $this->language->get('heading_restore');
+		$this->data['heading_backup'] = $this->language->get('heading_backup');
+
 		$this->data['text_select_all'] = $this->language->get('text_select_all');
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 

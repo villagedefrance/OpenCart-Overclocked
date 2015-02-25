@@ -44,6 +44,9 @@
         <td><?php echo $database_time; ?></td>
       </tr>
     </table>
+    <?php if ($error_install) { ?>
+      <div class="warning"><?php echo $error_install; ?></div>
+    <?php } ?>
     <h2><?php echo $text_serverinfo; ?></h2>
     <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
     <table width="100%">
