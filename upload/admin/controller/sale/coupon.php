@@ -612,8 +612,8 @@ class ControllerSaleCoupon extends Controller {
 
 		$this->data['column_order_id'] = $this->language->get('column_order_id');
 		$this->data['column_customer'] = $this->language->get('column_customer');
-		$this->data['column_amount'] = $this->language->get('column_amount');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_amount'] = $this->language->get('column_amount');
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -633,8 +633,8 @@ class ControllerSaleCoupon extends Controller {
 			$this->data['histories'][] = array(
 				'order_id'   		=> $result['order_id'],
 				'customer'   	=> $result['customer'],
-				'amount'     	=> $result['amount'],
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added']))
+				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'amount'     	=> $result['amount']
 			);
 		}
 

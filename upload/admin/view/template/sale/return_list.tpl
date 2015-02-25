@@ -74,8 +74,8 @@
           <tbody>
             <tr class="filter">
               <td></td>
-              <td class="right"><input type="text" name="filter_return_id" value="<?php echo $filter_return_id; ?>" size="4" style="text-align:right;" /></td>
-              <td class="right"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="4" style="text-align:right;" /></td>
+              <td class="center"><input type="text" name="filter_return_id" value="<?php echo $filter_return_id; ?>" size="4" style="text-align:right;" /></td>
+              <td class="center"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="4" style="text-align:right;" /></td>
               <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
               <td class="left"><input type="text" name="filter_product" value="<?php echo $filter_product; ?>" /></td>
               <td class="left"><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
@@ -101,8 +101,8 @@
               <?php } else { ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $return['return_id']; ?>" />
               <?php } ?></td>
-              <td class="right"><?php echo $return['return_id']; ?></td>
-              <td class="right"><?php echo $return['order_id']; ?></td>
+              <td class="center"><?php echo $return['return_id']; ?></td>
+              <td class="center"><?php echo $return['order_id']; ?></td>
               <td class="left"><?php echo $return['customer']; ?></td>
               <td class="left"><?php echo $return['product']; ?></td>
               <td class="left"><?php echo $return['model']; ?></td>

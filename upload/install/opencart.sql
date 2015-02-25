@@ -3455,7 +3455,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (361, 0, 'config', 'config_location', '', 0),
 (360, 0, 'config', 'config_latitude', '', 0),
 (359, 0, 'config', 'config_longitude', '', 0),
-(358, 0, 'config', 'config_contact_map', '', 0),
+(358, 0, 'config', 'config_contact_map', '0', 0),
 (357, 0, 'config', 'config_news_chars', '300', 0),
 (356, 0, 'config', 'config_news_addthis', '1', 0),
 (355, 0, 'config', 'config_offer_label', '0', 0),

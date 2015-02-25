@@ -23,7 +23,7 @@ $_['column_action']                		= 'Action';
 
 // Entry
 $_['entry_url']                    			= 'Store URL:<br /><span class="help">Include the full URL to your store. Make sure to add \'/\' at the end. Example: http://www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.</span>';
-$_['entry_ssl']                    			= 'SSL URL:<br /><span class="help">SSL URL to your store. Make sure to add \'/\' at the end. Example: http://www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.</span>';
+$_['entry_ssl']                    			= 'SSL URL:<br /><span class="help">SSL URL to your store. Make sure to add \'/\' at the end. Example: https://www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.</span>';
 $_['entry_name']                   		= 'Store Name:';
 $_['entry_owner']                  		= 'Store Owner:';
 $_['entry_address']              		= 'Address:';

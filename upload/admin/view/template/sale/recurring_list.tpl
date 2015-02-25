@@ -58,8 +58,8 @@
         </thead>
         <tbody>
           <tr class="filter">
-            <td class="left"><input type="text" name="filter_order_recurring_id" size="4" value="<?php echo $filter_order_recurring_id; ?>" /></td>
-            <td class="left"><input type="text" name="filter_order_id" size="4" value="<?php echo $filter_order_id; ?>" /></td>
+            <td class="left"><input type="text" name="filter_order_recurring_id" value="<?php echo $filter_order_recurring_id; ?>" size="4" /></td>
+            <td class="left"><input type="text" name="filter_order_id" value="<?php echo $filter_order_id; ?>" size="6" /></td>
             <td class="left"><input type="text" name="filter_payment_reference" value="<?php echo $filter_payment_reference; ?>" /></td>
             <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
             <td class="left"><input type="text" name="filter_created" value="<?php echo $filter_created; ?>" class="date" /></td>

@@ -142,7 +142,7 @@
           <table class="list">
             <thead>
               <tr>
-                <td class="center"><?php echo $column_order; ?></td>
+                <td class="left"><?php echo $column_order; ?></td>
                 <td class="left"><?php echo $column_customer; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>

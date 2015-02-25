@@ -4,20 +4,20 @@
 <table class="list">
   <thead>
     <tr>
-      <td class="right"><?php echo $column_order_id; ?></td>
+      <td class="left"><?php echo $column_order_id; ?></td>
       <td class="left"><?php echo $column_customer; ?></td>
-      <td class="right"><?php echo $column_amount; ?></td>
       <td class="left"><?php echo $column_date_added; ?></td>
+      <td class="right"><?php echo $column_amount; ?></td>
     </tr>
   </thead>
   <tbody>
   <?php if ($histories) { ?>
     <?php foreach ($histories as $history) { ?>
     <tr>
-      <td class="right"><?php echo $history['order_id']; ?></td>
+      <td class="center"><?php echo $history['order_id']; ?></td>
       <td class="left"><?php echo $history['customer']; ?></td>
+      <td class="center"><?php echo $history['date_added']; ?></td>
       <td class="right"><?php echo $history['amount']; ?></td>
-      <td class="left"><?php echo $history['date_added']; ?></td>
     </tr>
     <?php } ?>
   <?php } else { ?>

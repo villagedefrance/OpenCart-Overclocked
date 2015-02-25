@@ -3,10 +3,10 @@
 $_['heading_title']                     	= 'Orders';
 
 // Text
-$_['text_amazon_order_id']        	= 'Amazon Order ID:';
 $_['text_name']                        	= 'Name:';
 $_['text_success']                      	= 'Success: You have modified <b>Orders</b> !';
 $_['text_order_id']                      	= 'Order ID:';
+$_['text_amazon_order_id']        	= 'Amazon Order ID:';
 $_['text_invoice_no']              		= 'Invoice N&deg;:';
 $_['text_invoice_date']           		= 'Invoice Date:';
 $_['text_store_name']                	= 'Store Name:';
