@@ -32,8 +32,8 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_revision'] = sprintf($this->language->get('text_revision'), REVISION);
 		$this->data['text_theme'] = $this->language->get('text_theme');
 		$this->data['text_timezone'] = $this->language->get('text_timezone');
-		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
 		$this->data['text_phptime'] = $this->language->get('text_phptime');
+		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
 		$this->data['text_storeinfo'] = $this->language->get('text_storeinfo');
 		$this->data['text_serverinfo'] = $this->language->get('text_serverinfo');
 
@@ -70,7 +70,17 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['server_zone'] = ini_get('date.timezone');
+		$date_timezone = ini_get('date.timezone');
+		$default_timezone = date_default_timezone_get();
+
+		if ($date_timezone) {
+			$this->data['server_zone'] = ini_get('date.timezone');
+		} elseif ($default_timezone) {
+			$this->data['server_zone'] = date_default_timezone_get();
+		} else {
+			$this->data['server_zone'] = $this->language->get('text_no_timezone');
+		}
+
 		$this->data['server_time'] = date('Y-m-d H:i:s');
 		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
 

@@ -15,6 +15,7 @@ $_['text_phptime'] 			= 'Server Time:<br /><span class="help">Current time for t
 $_['text_dbtime'] 			= 'Database Time:<br /><span class="help">Current system date and time.</span>';
 $_['text_storeinfo']   		= 'Store Information';
 $_['text_serverinfo']   		= 'Server Information';
+$_['text_no_timezone'] 		= 'Time Zone data not available.';
 
 // Columns
 $_['column_php'] 				= 'PHP Settings';
