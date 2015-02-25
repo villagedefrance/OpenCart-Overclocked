@@ -67,5 +67,11 @@ class ModelToolSeoUrlManager extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getTotalUniqueKeywords() {
+		$query = $this->db->query("SELECT COUNT(DISTINCT keyword) AS keyword_total FROM " . DB_PREFIX . "url_alias");
+
+		return $query->row['keyword_total'];
+	}
 }
 ?>

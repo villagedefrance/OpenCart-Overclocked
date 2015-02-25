@@ -195,7 +195,12 @@ class ControllerToolSeoUrlManager extends Controller {
 			'limit' 		=> $this->config->get('config_admin_limit')
 		);
 
+		$keyword_total = $this->model_tool_seo_url_manager->getTotalUniqueKeywords();
+
 		$url_total = $this->model_tool_seo_url_manager->getTotalUrls();
+
+		$this->data['keyword_total'] = $keyword_total;
+		$this->data['seo_url_total'] = $url_total;
 
 		$results = $this->model_tool_seo_url_manager->getUrls($data);
 

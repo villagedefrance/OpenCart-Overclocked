@@ -26,12 +26,12 @@
         </thead>
         <tbody>
           <tr class="filter">
-            <td align="left"><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
-            <td align="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
+            <td class="left"><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
+            <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td align="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($customers) { ?>
             <?php foreach ($customers as $customer) { ?>
@@ -66,16 +66,16 @@
 function filter() {
 	url = 'index.php?route=report/customer_online&token=<?php echo $token; ?>';
 
-	var filter_customer = $('input[name=\'filter_customer\']').attr('value');
-
-	if (filter_customer) {
-		url += '&filter_customer=' + encodeURIComponent(filter_customer);
-	}
-
 	var filter_ip = $('input[name=\'filter_ip\']').attr('value');
 
 	if (filter_ip) {
 		url += '&filter_ip=' + encodeURIComponent(filter_ip);
+	}
+
+	var filter_customer = $('input[name=\'filter_customer\']').attr('value');
+
+	if (filter_customer) {
+		url += '&filter_customer=' + encodeURIComponent(filter_customer);
 	}
 
 	location = url;

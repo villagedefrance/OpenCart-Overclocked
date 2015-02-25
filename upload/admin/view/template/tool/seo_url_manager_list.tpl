@@ -25,6 +25,11 @@
       <a href="<?php echo $seo_manufacturer; ?>" class="button-filter"><?php echo $link_seo_manufacturer; ?></a>
       <a href="<?php echo $seo_information; ?>" class="button-filter"><?php echo $link_seo_information; ?></a>
       <a href="<?php echo $seo_news; ?>" class="button-filter"><?php echo $link_seo_news; ?></a>
+	  <?php if ($seo_url_total == $keyword_total) { ?>
+	    <span style="background:#5DC15E; color:#FFF; padding:3px 6px; float:right;"><?php echo $seo_url_total; ?> / <?php echo $keyword_total; ?></span>
+      <?php } else { ?>
+		<span style="background:#DE5954; color:#FFF; padding:3px 6px; float:right;"><?php echo $seo_url_total; ?> / <?php echo $keyword_total; ?></span>
+      <?php } ?>
     </div>
     <div class="content">
     <?php if ($error_url_status) { ?>
