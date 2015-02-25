@@ -4,8 +4,6 @@ $_['heading_title']           		= 'Country';
 
 // Text
 $_['text_success']            	= 'Success: You have modified <b>Countries</b> !';
-$_['text_enabled']            	= 'Enabled';
-$_['text_disabled']            	= 'Disabled';
 $_['text_enable_success'] 	= 'Success: countries Enabled !';
 $_['text_disable_success']		= 'Success: countries Disabled !';
 
@@ -33,10 +31,6 @@ Zone Code = {zone_code}<br />
 Country = {country}</span>';
 $_['entry_postcode_required'] = 'Postcode Required:';
 $_['entry_status']            	= 'Status:';
-
-// Button
-$_['button_enable']           	= 'Enable';
-$_['button_disable']          	= 'Disable';
 
 // Error
 $_['error_permission']        	= 'Warning: You do not have permission to modify <b>Countries</b> !';

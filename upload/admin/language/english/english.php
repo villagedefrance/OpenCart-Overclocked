@@ -39,6 +39,8 @@ $_['text_column_left']    		= 'Column Left';
 $_['text_column_right']   		= 'Column Right';
 
 // Button
+$_['button_enable']				= 'Enable';
+$_['button_disable']				= 'Disable';
 $_['button_insert']           	= 'Insert';
 $_['button_delete']         		= 'Delete';
 $_['button_save']        			= 'Save';
