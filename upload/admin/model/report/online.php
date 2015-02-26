@@ -18,8 +18,6 @@ class ModelReportOnline extends Model {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
-		$sql .= " ORDER BY co.date_added DESC";
-
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {
 				$data['start'] = 0;
@@ -38,7 +36,7 @@ class ModelReportOnline extends Model {
 	}
 
 	public function getTotalCustomersOnline($data = array()) {
-		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "customer_online` co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id)";
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer_online co LEFT JOIN " . DB_PREFIX . "customer c ON (co.customer_id = c.customer_id)";
 
 		$implode = array();
 

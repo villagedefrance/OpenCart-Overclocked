@@ -17,10 +17,10 @@ $_['column_action']      	= 'Action';
 
 // Entry
 $_['entry_name']         		= 'Banner Name:';
-$_['entry_title']        		= 'Title:';
-$_['entry_link']         		= 'Link:';
-$_['entry_image']        		= 'Image:';
 $_['entry_status']       		= 'Status:';
+$_['entry_title']        		= 'Title';
+$_['entry_link']         		= 'Link';
+$_['entry_image']        		= 'Image';
 
 // Error
 $_['error_permission']   		= 'Warning: You do not have permission to modify <b>Banners</b> !';

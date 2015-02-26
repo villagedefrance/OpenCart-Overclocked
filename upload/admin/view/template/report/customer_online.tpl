@@ -28,19 +28,19 @@
           <tr class="filter">
             <td class="left"><input type="text" name="filter_ip" value="<?php echo $filter_ip; ?>" /></td>
             <td class="left"><input type="text" name="filter_customer" value="<?php echo $filter_customer; ?>" /></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($customers) { ?>
             <?php foreach ($customers as $customer) { ?>
             <tr>
               <td class="left"><a href="http://whatismyipaddress.com/ip/<?php echo $customer['ip']; ?>" target="_blank"><?php echo $customer['ip']; ?></a></td>
               <td class="left"><?php echo $customer['customer']; ?></td>
-              <td class="left"><a href="<?php echo $customer['url']; ?>" target="_blank"><?php echo implode('<br/>', str_split($customer['url'], 30)); ?></a></td>
+              <td class="left"><a href="<?php echo $customer['url']; ?>" target="_blank"><?php echo implode('<br />', str_split($customer['url'], 30)); ?></a></td>
               <td class="left"><?php if ($customer['referer']) { ?>
-                <a href="<?php echo $customer['referer']; ?>" target="_blank"><?php echo implode('<br/>', str_split($customer['referer'], 30)); ?></a>
+                <a href="<?php echo $customer['referer']; ?>" target="_blank"><?php echo implode('<br />', str_split($customer['referer'], 30)); ?></a>
               <?php } ?></td>
               <td class="left"><?php echo $customer['date_added']; ?></td>
               <td class="right"><?php foreach ($customer['action'] as $action) { ?>
