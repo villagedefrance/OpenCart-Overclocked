@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'Cheque / Money Order';
 
+// Link
+$_['text_cheque']				= '';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment Cheque / Money Order</b> !';

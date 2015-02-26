@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'PSIGate';
 
+// Link
+$_['text_psigate']				= '';
+
 // Text 
 $_['text_payment']       	= 'Payment'; 
 $_['text_success']       		= 'Success: You have modified <b>Payment PSIGate</b> account details !';

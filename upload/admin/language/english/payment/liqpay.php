@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'LIQPAY';
 
+// Link
+$_['text_liqpay']				= '';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment LIQPAY</b> account details !';

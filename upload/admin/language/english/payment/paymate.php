@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'Paymate';
 
+// Link
+$_['text_paymate']	     	= '';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']     	  	= 'Success: You have modified <b>Payment Paymate</b> account details !';

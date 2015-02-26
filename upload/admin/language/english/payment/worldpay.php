@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'WorldPay';
 
+// Link
+$_['text_worldpay']			= '';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment WorldPay</b> account details !';

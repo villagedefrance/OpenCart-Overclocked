@@ -2,10 +2,12 @@
 // Heading
 $_['heading_title']             		= 'Web Payment Software';
 
+// Link
+$_['text_web_payment_software']	= '<a onclick="window.open(\'http://www.web-payment-software.com/\');"><img src="view/image/payment/wps-logo.jpg" alt="Web Payment Software" title="Web Payment Software" style="border: 1px solid #EEEEEE;" /></a>';
+
 // Text 
 $_['text_payment']              		= 'Payment';
 $_['text_success']              		= 'Success: You have modified <b>Payment Web Payment Software</b> account details !';
-$_['text_web_payment_software'] = '<a href="http://www.web-payment-software.com/" target="_blank"><img src="view/image/payment/wps-logo.jpg" alt="Web Payment Software" title="Web Payment Software" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_test']                 		= 'Test';
 $_['text_live']                 			= 'Live';
 $_['text_authorization']        		= 'Authorization';

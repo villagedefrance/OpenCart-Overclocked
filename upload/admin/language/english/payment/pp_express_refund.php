@@ -10,7 +10,7 @@ $_['text_current_refunds']  	= 'Refunds have already been done for this transact
 $_['btn_cancel']                	= 'Cancel';
 $_['btn_refund']                	= 'Issue refund';
 
-// Form entry
+// Entry
 $_['entry_transaction_id']  	= 'Transaction ID';
 $_['entry_full_refund']         	= 'Full refund';
 $_['entry_amount']           	= 'Amount';

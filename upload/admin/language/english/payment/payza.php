@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'Payza';
 
+// Link
+$_['text_payza']      		= '';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment Payza</b> account details !';

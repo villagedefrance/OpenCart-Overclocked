@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'Free Checkout';
 
+// Link
+$_['text_free_checkout']	= '';
+
 // Text
 $_['text_payment']       	= 'Payment';
 $_['text_success']      	 	= 'Success: You have modified <b>Payment Free Checkout</b> !';

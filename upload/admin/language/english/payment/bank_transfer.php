@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'Bank Transfer';
 
+// Link
+$_['text_bank_transfer']	= '';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment Bank Transfer</b> !';

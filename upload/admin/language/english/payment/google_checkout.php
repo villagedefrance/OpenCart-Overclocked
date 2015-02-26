@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      			= 'Google Checkout';
 
+// Link
+$_['text_google_checkout']	= '';
+
 // Text
 $_['text_payment']       		= 'Payment';
 $_['text_success']       			= 'Success: You have modified <b>Payment Google Checkout</b> account details !';

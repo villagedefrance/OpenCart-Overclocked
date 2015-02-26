@@ -2,8 +2,10 @@
 // Headings
 $_['heading_title']             		= 'View Transaction';
 
+// Link
+$_['text_pp_express']             	= 'PayPal Express Checkout';
+
 // Text
-$_['text_pp_express']           	= 'PayPal Express Checkout';
 $_['text_product_lines']        		= 'Product lines';
 $_['text_ebay_txn_id']          	= 'eBay transaction ID';
 $_['text_name']                 		= 'Name';

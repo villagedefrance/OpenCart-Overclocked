@@ -2,6 +2,9 @@
 // Heading
 $_['heading_title']      		= 'Cash On Delivery';
 
+// Link
+$_['text_cod']					= '';
+
 // Text
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment Cash On Delivery</b> !';

@@ -1,11 +1,13 @@
 <?php
 // Heading
-$_['heading_title']      		= 'PayPal Payments Pro Payflow Edition';
+$_['heading_title']      		= 'PayPal Payments Pro Payflow';
+
+// Link
+$_['text_pp_pro_pf']     	= '<a onclick="window.open(\'https://www.paypal.com/uk/mrb/pal=W9TBB5DTD6QJW\');"><img src="view/image/payment/paypal.png" alt="PayPal Payments Pro Payflow Edition" title="PayPal Payments Pro Payflow Edition" style="border: 1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment';
-$_['text_success']       		= 'Success: You have modified <b>Payment PayPal Website Payment Pro Payflow Edition</b> account details !';
-$_['text_pp_pro_pf']     	= '<a onclick="window.open(\'https://www.paypal.com/uk/mrb/pal=W9TBB5DTD6QJW\');"><img src="view/image/payment/paypal.png" alt="PayPal Payments Pro Payflow Edition" title="PayPal Payments Pro Payflow Edition" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_success']       		= 'Success: You have modified <b>Payment PayPal Website Payment Pro Payflow</b> account details !';
 $_['text_authorization'] 	= 'Authorization';
 $_['text_sale']          		= 'Sale';
 
@@ -23,7 +25,7 @@ $_['entry_status']       		= 'Status:';
 $_['entry_sort_order']   	= 'Sort Order:';
 
 // Error
-$_['error_permission']   		= 'Warning: You do not have permission to modify <b>Payment PayPal Website Payment Pro Payflow Edition</b> !';
+$_['error_permission']   		= 'Warning: You do not have permission to modify <b>Payment PayPal Website Payment Pro Payflow</b> !';
 $_['error_vendor']       		= 'Vendor Required!'; 
 $_['error_user']         		= 'User Required!'; 
 $_['error_password']     	= 'Password Required!'; 

@@ -1,6 +1,8 @@
 <?php
 // Headings
 $_['heading_title']                 	= 'Search Transactions';
+
+// Link
 $_['text_pp_express']             	= 'PayPal Express Checkout';
 
 // Table column
@@ -20,7 +22,7 @@ $_['tbl_column_action']           	= 'Action';
 $_['btn_search']                 		= 'Search';
 $_['btn_edit_search']              	= 'Edit search';
 
-// Form entry status
+// Entry Status
 $_['entry_status_all']            	= 'All';
 $_['entry_status_pending']    	= 'Pending';
 $_['entry_status_processing']    	= 'Processing';
@@ -28,7 +30,7 @@ $_['entry_status_success']     	= 'Success';
 $_['entry_status_denied']        	= 'Denied';
 $_['entry_status_reversed']      	= 'Reversed';
 
-// Form entry
+// Entry
 $_['entry_trans_all']              	= 'All';
 $_['entry_trans_sent']            	= 'Sent';
 $_['entry_trans_received']       	= 'Received';

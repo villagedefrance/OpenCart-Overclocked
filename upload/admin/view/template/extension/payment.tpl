@@ -31,7 +31,7 @@
           <?php foreach ($extensions as $extension) { ?>
           <tr>
             <td class="left"><?php echo $extension['name']; ?></td>
-            <td class="center"><?php echo $extension['link'] ?></td>
+            <td class="center"><?php echo $extension['link']; ?></td>
             <td class="center"><?php echo $extension['sort_order']; ?></td>
             <?php if ($extension['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>

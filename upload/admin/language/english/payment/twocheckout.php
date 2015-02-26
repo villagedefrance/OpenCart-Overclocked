@@ -2,10 +2,12 @@
 // Heading
 $_['heading_title']      		= '2Checkout';
 
+// Link
+$_['text_twocheckout']		= '<a onclick="window.open(\'https://www.2checkout.com/2co/affiliate?affiliate=1596408\');"><img src="view/image/payment/2checkout.png" alt="2Checkout" title="2Checkout" style="border: 1px solid #EEEEEE;" /></a>';
+
 // Text 
 $_['text_payment']       	= 'Payment';
 $_['text_success']       		= 'Success: You have modified <b>Payment 2Checkout</b> account details !';
-$_['text_twocheckout']		= '<a href="https://www.2checkout.com/2co/affiliate?affiliate=1596408" target="_blank"><img src="view/image/payment/2checkout.png" alt="2Checkout" title="2Checkout" style="border: 1px solid #EEEEEE;" /></a>';
 
 // Entry
 $_['entry_account']      	= '2Checkout Account ID:';
