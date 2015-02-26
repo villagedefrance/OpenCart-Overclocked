@@ -26,9 +26,11 @@ class ControllerPaymentFreeCheckout extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-		$this->data['text_none'] = $this->language->get('text_none');
 
+		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
+		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
@@ -66,6 +68,18 @@ class ControllerPaymentFreeCheckout extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 
+		if (isset($this->request->post['free_checkout_total'])) {
+			$this->data['free_checkout_total'] = $this->request->post['free_checkout_total'];
+		} else {
+			$this->data['free_checkout_total'] = $this->config->get('free_checkout_total');
+		}
+
+		if (isset($this->request->post['free_checkout_total_max'])) {
+			$this->data['free_checkout_total_max'] = $this->request->post['free_checkout_total_max'];
+		} else {
+			$this->data['free_checkout_total_max'] = $this->config->get('free_checkout_total_max');
+		}
+
 		if (isset($this->request->post['free_checkout_order_status_id'])) {
 			$this->data['free_checkout_order_status_id'] = $this->request->post['free_checkout_order_status_id'];
 		} else {
@@ -75,6 +89,16 @@ class ControllerPaymentFreeCheckout extends Controller {
 		$this->load->model('localisation/order_status');
 
 		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+
+		if (isset($this->request->post['free_checkout_geo_zone_id'])) {
+			$this->data['free_checkout_geo_zone_id'] = $this->request->post['free_checkout_geo_zone_id'];
+		} else {
+			$this->data['free_checkout_geo_zone_id'] = $this->config->get('free_checkout_geo_zone_id');
+		}
+
+		$this->load->model('localisation/geo_zone');
+
+		$this->data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
 
 		if (isset($this->request->post['free_checkout_status'])) {
 			$this->data['free_checkout_status'] = $this->request->post['free_checkout_status'];

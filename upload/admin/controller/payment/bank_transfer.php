@@ -29,6 +29,7 @@ class ControllerPaymentBankTransfer extends Controller {
 
 		$this->data['entry_bank'] = $this->language->get('entry_bank');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -96,6 +97,12 @@ class ControllerPaymentBankTransfer extends Controller {
 			$this->data['bank_transfer_total'] = $this->request->post['bank_transfer_total'];
 		} else {
 			$this->data['bank_transfer_total'] = $this->config->get('bank_transfer_total');
+		}
+
+		if (isset($this->request->post['bank_transfer_total_max'])) {
+			$this->data['bank_transfer_total_max'] = $this->request->post['bank_transfer_total_max'];
+		} else {
+			$this->data['bank_transfer_total_max'] = $this->config->get('bank_transfer_total_max');
 		}
 
 		if (isset($this->request->post['bank_transfer_order_status_id'])) {

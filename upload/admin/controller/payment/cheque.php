@@ -29,6 +29,7 @@ class ControllerPaymentCheque extends Controller {
 
 		$this->data['entry_payable'] = $this->language->get('entry_payable');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -84,6 +85,12 @@ class ControllerPaymentCheque extends Controller {
 			$this->data['cheque_total'] = $this->request->post['cheque_total'];
 		} else {
 			$this->data['cheque_total'] = $this->config->get('cheque_total');
+		}
+
+		if (isset($this->request->post['cheque_total_max'])) {
+			$this->data['cheque_total_max'] = $this->request->post['cheque_total_max'];
+		} else {
+			$this->data['cheque_total_max'] = $this->config->get('cheque_total_max');
 		}
 
 		if (isset($this->request->post['cheque_order_status_id'])) {

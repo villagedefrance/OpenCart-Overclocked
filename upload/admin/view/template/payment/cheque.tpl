@@ -32,6 +32,10 @@
             <td><input type="text" name="cheque_total" value="<?php echo $cheque_total; ?>" /></td>
           </tr>
           <tr>
+            <td><?php echo $entry_total_max; ?></td>
+            <td><input type="text" name="cheque_total_max" value="<?php echo $cheque_total_max; ?>" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_order_status; ?></td>
             <td><select name="cheque_order_status_id">
               <?php foreach ($order_statuses as $order_status) { ?>

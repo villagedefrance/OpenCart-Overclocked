@@ -27,8 +27,9 @@ class ControllerPaymentCod extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
 
-		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
+		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -71,6 +72,12 @@ class ControllerPaymentCod extends Controller {
 			$this->data['cod_total'] = $this->request->post['cod_total'];
 		} else {
 			$this->data['cod_total'] = $this->config->get('cod_total');
+		}
+
+		if (isset($this->request->post['cod_total_max'])) {
+			$this->data['cod_total_max'] = $this->request->post['cod_total_max'];
+		} else {
+			$this->data['cod_total_max'] = $this->config->get('cod_total_max');
 		}
 
 		if (isset($this->request->post['cod_order_status_id'])) {
