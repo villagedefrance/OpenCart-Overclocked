@@ -12,7 +12,7 @@ $_['text_success']       		= 'Success: You have modified <b>Payment Cheque / Mon
 // Entry
 $_['entry_payable']      	= 'Payable To:';
 $_['entry_total']        		= 'Total Minimum:<br /><span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
-$_['entry_total_max']		= 'Total Maximum:<br /><span class="help">The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.</span>';
+$_['entry_total_max']		= 'Total Maximum:<br /><span class="help">The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.</span>';
 $_['entry_order_status'] 	= 'Order Status:';
 $_['entry_geo_zone']     	= 'Geo Zone:';
 $_['entry_status']       		= 'Status:';

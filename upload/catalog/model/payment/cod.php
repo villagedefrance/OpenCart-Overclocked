@@ -6,7 +6,9 @@ class ModelPaymentCOD extends Model {
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('cod_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		if (($this->config->get('cod_total') > 0 && $this->config->get('cod_total') > $total) || ($this->config->get('cod_total_max') > 0 && $this->config->get('cod_total_max') < $total)) {
+		$total_max = $this->config->get('cod_total_max');
+
+		if (($this->config->get('cod_total') > 0 && $this->config->get('cod_total') > $total) || (!empty($total_max) && $total_max > 0 && $total_max < $total)) {
 			$status = false;
 		} elseif (!$this->config->get('cod_geo_zone_id')) {
 			$status = true;
