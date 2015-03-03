@@ -2506,6 +2506,22 @@ INSERT INTO `oc_palette_color` (`palette_color_id`, `palette_id`, `title`, `colo
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_payment_image`
+--
+
+DROP TABLE IF EXISTS `oc_payment_image`;
+CREATE TABLE `oc_payment_image` (
+  `payment_image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `payment` varchar(64) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`payment_image_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_product`
 --
 

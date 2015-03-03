@@ -61,7 +61,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 						} else {
 							$method_data[$result['code']] = $method;
-						}
+						}	
 					}
 				}
 			}
@@ -77,27 +77,49 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			$this->session->data['payment_methods'] = $method_data;
 		}
 
+		// Image
+		$this->load->model('design/payment');
+		$this->load->model('tool/image');
+
+		$this->data['payment_images'] = array();
+
+		$image_results = $this->model_design_payment->getPaymentImages(0);
+
+		if ($image_results) {
+			foreach ($image_results as $image_result) {
+				if ($image_result['image'] && file_exists(DIR_IMAGE . $image_result['image'])) {
+					$payment_logo = $this->model_tool_image->resize($image_result['image'], 140, 35);
+				} else {
+					$payment_logo = '';
+				}
+
+				$this->data['payment_images'][] = array(
+					'payment'	=> strtolower($image_result['payment']),
+					'image'		=> $payment_logo
+				);
+			}
+		}
+
 		// Paypal Fee
 		$ppfee = 0;
 		$paypal_fee = $this->config->get('paypal_fee_total');
 
-		if (empty($paypal_fee) || ($this->cart->getSubTotal() < $paypal_fee)) {
-			if ($this->config->get('paypal_fee_fee_type') == 'F') {
-				$ppfee = $this->config->get('paypal_fee_fee');
-			} else {
-				$min = $this->config->get('paypal_fee_fee_min');
-				$max = $this->config->get('paypal_fee_fee_max');
+		if ($this->config->get('paypal_fee_fee_type') == 'P') {
+			$min = $this->config->get('paypal_fee_fee_min');
+			$max = $this->config->get('paypal_fee_fee_max');
 
-				$ppfee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
+			$fee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
 
-				if (!empty($min) && ($ppfee < $min)) {
-					$ppfee = $min;
-				}
-
-				if (!empty($max) && ($ppfee > $max)) {
-					$ppfee = $max;
-				}
+			if (!empty($min) && ($fee < $min)) {
+				$fee = $min;
 			}
+
+			if (!empty($max) && ($fee > $max)) {
+				$fee = $max;
+			}
+
+		} else {
+			$fee = $this->config->get('paypal_fee_fee');
 		}
 
 		$this->data['paypal_fee_fee'] = $this->currency->format($ppfee);
@@ -170,7 +192,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 		$json = array();
 
-		// Validate if payment address has been set.
+		// Validate if payment address has been set
 		$this->load->model('account/address');
 
 		if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
@@ -183,12 +205,12 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirements.
+		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {

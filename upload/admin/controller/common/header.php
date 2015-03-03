@@ -84,6 +84,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_opencart_overclocked'] = $this->language->get('text_opencart_overclocked');
 		$this->data['text_palette'] = $this->language->get('text_palette');
 		$this->data['text_payment'] = $this->language->get('text_payment');
+		$this->data['text_payment_image'] = $this->language->get('text_payment_image');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_profile'] = $this->language->get('text_profile');
 		$this->data['text_recurring_profile'] = $this->language->get('text_recurring_profile');
@@ -202,6 +203,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['order_status'] = $this->url->link('localisation/order_status', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['palette'] = $this->url->link('design/palette', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['payment'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['payment_image'] = $this->url->link('design/payment', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['profile'] = $this->url->link('catalog/profile', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['recurring_profile'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');

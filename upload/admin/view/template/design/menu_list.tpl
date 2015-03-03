@@ -18,7 +18,6 @@
         <a onclick="location = '<?php echo $module; ?>';" class="button"><?php echo $button_module; ?></a>
         <a onclick="location = '<?php echo $insert; ?>'" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">

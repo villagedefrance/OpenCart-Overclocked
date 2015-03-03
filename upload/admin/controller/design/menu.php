@@ -150,7 +150,6 @@ class ControllerDesignMenu extends Controller {
 
 		$this->data['insert'] = $this->url->link('design/menu/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/menu/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
-		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
@@ -209,7 +208,6 @@ class ControllerDesignMenu extends Controller {
 		$this->data['button_module'] = $this->language->get('button_module');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

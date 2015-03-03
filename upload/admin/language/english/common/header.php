@@ -65,6 +65,7 @@ $_['text_order']                     		= 'Orders';
 $_['text_order_status']           		= 'Order Statuses';
 $_['text_palette']             			= 'Palettes';
 $_['text_payment']             			= 'Payments';
+$_['text_payment_image']             	= 'Payments';
 $_['text_product']                		= 'Products';
 $_['text_profile']                   		= 'Profiles';
 $_['text_recurring_profile']      		= 'Recurring Profiles';

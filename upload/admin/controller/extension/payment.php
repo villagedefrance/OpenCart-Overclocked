@@ -32,6 +32,8 @@ class ControllerExtensionPayment extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_images'] = $this->language->get('button_images');
+
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
 
@@ -47,6 +49,8 @@ class ControllerExtensionPayment extends Controller {
 		} else {
 			$this->data['error'] = '';
 		}
+
+		$this->data['payment_images'] = $this->url->link('design/payment', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->load->model('setting/extension');
 
