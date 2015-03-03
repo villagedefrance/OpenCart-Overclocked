@@ -12,6 +12,7 @@ $_['text_info_note'] 			= 'If you choose to use payment images, you must add an 
 // Column
 $_['column_image'] 			= 'Image';
 $_['column_name'] 			= 'Name';
+$_['column_method']			= 'Payment status';
 $_['column_status'] 			= 'Status';
 $_['column_action']       	= 'Action';
 

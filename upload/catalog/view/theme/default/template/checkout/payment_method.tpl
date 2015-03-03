@@ -16,7 +16,7 @@
         <td>
           <?php if ($payment_images) { ?>
             <?php foreach ($payment_images as $payment_image) { ?>
-              <?php if (($payment_image['payment'] == strtolower($payment_method['code'])) && $payment_image['image']) { ?>
+              <?php if ($payment_image['payment'] == strtolower($payment_method['code'])) { ?>
                 <?php if ($paypal_fee) { ?>
                   <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" /> (+<?php echo $paypal_fee; ?>)</label>
                 <?php } else { ?>

@@ -8,7 +8,9 @@ class ModelTotalPayPalFee extends Model {
 			$this->load->language('total/paypal_fee');
 
 			if ((isset($this->session->data['payment_method']) && ((substr($this->session->data['payment_method']['code'], 0, 3) == 'pp_') || ($this->session->data['payment_method']['code'] == "paypal_email"))) || (isset($this->request->post['payment']) && ((substr($this->request->post['payment'], 0, 3) == 'pp_') || ($this->request->post['payment'] == "paypal_email")))) {
-				if ($this->config->get('paypal_fee_fee_type') == 'P') {
+				if ($this->config->get('paypal_fee_fee_type') == 'F') {
+					$fee = $this->config->get('paypal_fee_fee');
+				} else {
 					$min = $this->config->get('paypal_fee_fee_min');
 					$max = $this->config->get('paypal_fee_fee_max');
 
@@ -21,9 +23,6 @@ class ModelTotalPayPalFee extends Model {
 					if (!empty($max) && ($fee > $max)) {
 						$fee = $max;
 					}
-
-				} else {
-					$fee = $this->config->get('paypal_fee_fee');
 				}
 
 				$total_data[] = array(

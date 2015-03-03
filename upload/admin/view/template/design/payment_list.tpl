@@ -36,6 +36,7 @@
               <?php } else { ?>
                 <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
               <?php } ?></td>
+              <td class="left"><?php echo $column_method; ?></td>
               <td class="left"><?php echo $column_status; ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
@@ -51,6 +52,7 @@
                 <?php } ?></td>
                 <td class="center"><img src="<?php echo $payment_image['image']; ?>" alt="<?php echo $payment_image['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
                 <td class="left"><?php echo $payment_image['name']; ?></td>
+				<td class="center"><?php echo ($payment_image['method']) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
                 <?php if ($payment_image['status'] == 1) { ?>
                   <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
                 <?php } else { ?>
@@ -63,7 +65,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
           </tbody>

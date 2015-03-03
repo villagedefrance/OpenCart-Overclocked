@@ -185,6 +185,7 @@ class ControllerDesignPayment extends Controller {
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
+		$this->load->model('setting/extension');
 		$this->load->model('tool/image');
 
 		$this->data['payment_images'] = array();
@@ -220,6 +221,7 @@ class ControllerDesignPayment extends Controller {
 				'payment_image_id' 	=> $result['payment_image_id'],
 				'image'					=> $thumb,
 				'name'             		=> $result['name'],
+				'method'					=> $this->config->get(strtolower($result['payment']) . '_status'),
 				'status'     				=> $result['status'],
 				'selected'        		=> isset($this->request->post['selected']) && in_array($result['payment_image_id'], $this->request->post['selected']),
 				'action'          			=> $action
@@ -235,6 +237,7 @@ class ControllerDesignPayment extends Controller {
 
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_method'] = $this->language->get('column_method');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 

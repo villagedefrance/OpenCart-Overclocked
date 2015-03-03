@@ -104,7 +104,9 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		$ppfee = 0;
 		$paypal_fee = $this->config->get('paypal_fee_total');
 
-		if ($this->config->get('paypal_fee_fee_type') == 'P') {
+		if ($this->config->get('paypal_fee_fee_type') == 'F') {
+			$fee = $this->config->get('paypal_fee_fee');
+		} else {
 			$min = $this->config->get('paypal_fee_fee_min');
 			$max = $this->config->get('paypal_fee_fee_max');
 
@@ -117,9 +119,6 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			if (!empty($max) && ($fee > $max)) {
 				$fee = $max;
 			}
-
-		} else {
-			$fee = $this->config->get('paypal_fee_fee');
 		}
 
 		$this->data['paypal_fee_fee'] = $this->currency->format($ppfee);
