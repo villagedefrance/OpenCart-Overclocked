@@ -14,11 +14,11 @@ class ModelSettingExtension extends Model {
 	}
 
 	public function install($type, $code) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "extension SET `type` = '" . $this->db->escape($type) . "', `code` = '" . $this->db->escape($code) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "extension SET `type` = '" . $this->db->escape($type) . "', code = '" . $this->db->escape($code) . "'");
 	}
 
 	public function uninstall($type, $code) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "' AND `code` = '" . $this->db->escape($code) . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "' AND code = '" . $this->db->escape($code) . "'");
 	}
 
 	public function sql($sql) {

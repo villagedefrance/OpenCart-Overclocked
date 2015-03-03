@@ -110,7 +110,7 @@ class ModelLocalisationCurrency extends Model {
 	}
 
 	public function updateCurrencies() {
-		$this->db->query("UPDATE " . DB_PREFIX . "currency SET value = '1.00000', date_modified = '" . $this->db->escape(date('Y-m-d H:i:s')) . "' WHERE code = '" . $this->db->escape($this->config->get('config_currency')) . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "currency SET `value` = '1.00000', date_modified = '" . $this->db->escape(date('Y-m-d H:i:s')) . "' WHERE code = '" . $this->db->escape($this->config->get('config_currency')) . "'");
 
 		if (extension_loaded('curl')) {
 			$data = array();

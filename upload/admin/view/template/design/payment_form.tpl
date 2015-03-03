@@ -28,7 +28,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_payment; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_payment; ?></td>
             <td><select name="payment">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($payment_methods as $payment_method) { ?>
@@ -45,7 +45,7 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_image; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_image; ?></td>
             <td style="vertical-align:top;"><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
               <br />

@@ -2,7 +2,7 @@
 class ModelLocalisationLengthClass extends Model {
 
 	public function addLengthClass($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "length_class SET value = '" . (float)$data['value'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "length_class SET `value` = '" . (float)$data['value'] . "'");
 
 		$length_class_id = $this->db->getLastId();
 
@@ -17,7 +17,7 @@ class ModelLocalisationLengthClass extends Model {
 	}
 
 	public function editLengthClass($length_class_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "length_class SET value = '" . (float)$data['value'] . "' WHERE length_class_id = '" . (int)$length_class_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "length_class SET `value` = '" . (float)$data['value'] . "' WHERE length_class_id = '" . (int)$length_class_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "length_class_description WHERE length_class_id = '" . (int)$length_class_id . "'");
 

@@ -128,7 +128,8 @@ class ControllerReportCustomerOnline extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $customer_total;
 		$pagination->page = $page;
-		$pagination->limit = 20;
+		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
@@ -143,48 +144,6 @@ class ControllerReportCustomerOnline extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
-	}
-
-	public function autocomplete() {
-		$json = array();
-
-		if (isset($this->request->get['filter_customer'])) {
-			$this->load->model('sale/customer');
-
-			$data = array(
-				'filter_ip'				=> $this->request->get['filter_ip'],
-				'filter_customer'	=> $this->request->get['filter_customer'],
-				'start'       			=> 0,
-				'limit'       			=> 20
-			);
-
-			$results = $this->model_sale_customer->getCustomers($data);
-
-			foreach ($results as $result) {
-				$json[] = array(
-					'customer_id'       	=> $result['customer_id'],
-					'customer_group_id' 	=> $result['customer_group_id'],
-					'name'              		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'customer_group'    	=> $result['customer_group'],
-					'firstname'         		=> $result['firstname'],
-					'lastname'          		=> $result['lastname'],
-					'email'             		=> $result['email'],
-					'telephone'         		=> $result['telephone'],
-					'fax'               		=> $result['fax'],
-					'address'           		=> $this->model_sale_customer->getAddresses($result['customer_id'])
-				);
-			}
-		}
-
-		$sort_order = array();
-
-		foreach ($json as $key => $value) {
-			$sort_order[$key] = $value['name'];
-		}
-
-		array_multisort($sort_order, SORT_ASC, $json);
-
-		$this->response->setOutput(json_encode($json));
 	}
 }
 ?>

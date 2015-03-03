@@ -80,7 +80,7 @@ class ModelUserUserGroup extends Model {
 	}
 
 	public function getTotalUsersByUserGroups($user_group_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE user_group_id = '" . (int)$user_group_id . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "user` WHERE user_group_id = '" . (int)$user_group_id . "'");
 
 		return $query->row['total'];
 	}

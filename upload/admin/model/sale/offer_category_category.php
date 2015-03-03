@@ -2,7 +2,7 @@
 class ModelSaleOfferCategoryCategory extends Model {
 
 	public function addOfferCategoryCategory($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "offer_category_category SET name = '" . $this->db->escape($data['name']) . "', type = '" . $this->db->escape($data['type']) . "', discount = '" . (float)$data['discount'] . "', logged = '" . (int)$data['logged'] . "', category_one = '" . $this->db->escape($data['category_one']) . "', category_two = '" . $this->db->escape($data['category_two']) . "', date_start = '" . $this->db->escape($data['date_start']) . "', date_end = '" . $this->db->escape($data['date_end']) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "offer_category_category SET name = '" . $this->db->escape($data['name']) . "', `type` = '" . $this->db->escape($data['type']) . "', discount = '" . (float)$data['discount'] . "', logged = '" . (int)$data['logged'] . "', category_one = '" . $this->db->escape($data['category_one']) . "', category_two = '" . $this->db->escape($data['category_two']) . "', date_start = '" . $this->db->escape($data['date_start']) . "', date_end = '" . $this->db->escape($data['date_end']) . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
 
 		$offer_category_category_id = $this->db->getLastId();
 
@@ -11,7 +11,7 @@ class ModelSaleOfferCategoryCategory extends Model {
 	}
 
 	public function editOfferCategoryCategory($offer_category_category_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "offer_category_category SET name = '" . $this->db->escape($data['name']) . "', type = '" . $this->db->escape($data['type']) . "', discount = '" . (float)$data['discount'] . "', logged = '" . (int)$data['logged'] . "', category_one = '" . $this->db->escape($data['category_one']) . "', category_two = '" . $this->db->escape($data['category_two']) . "', date_start = '" . $this->db->escape($data['date_start']) . "', date_end = '" . $this->db->escape($data['date_end']) . "', status = '" . (int)$data['status'] . "' WHERE offer_category_category_id = '" . (int)$offer_category_category_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "offer_category_category SET name = '" . $this->db->escape($data['name']) . "', `type` = '" . $this->db->escape($data['type']) . "', discount = '" . (float)$data['discount'] . "', logged = '" . (int)$data['logged'] . "', category_one = '" . $this->db->escape($data['category_one']) . "', category_two = '" . $this->db->escape($data['category_two']) . "', date_start = '" . $this->db->escape($data['date_start']) . "', date_end = '" . $this->db->escape($data['date_end']) . "', status = '" . (int)$data['status'] . "' WHERE offer_category_category_id = '" . (int)$offer_category_category_id . "'");
 	}
 
 	public function deleteOfferCategoryCategory($offer_category_category_id) {
@@ -25,7 +25,7 @@ class ModelSaleOfferCategoryCategory extends Model {
 	}
 
 	public function getOfferCategoryCategories($data = array()) {
-		$sql = "SELECT offer_category_category_id, name, discount, type, logged, date_start, date_end, status FROM " . DB_PREFIX . "offer_category_category";
+		$sql = "SELECT offer_category_category_id, name, discount, `type`, logged, date_start, date_end, status FROM " . DB_PREFIX . "offer_category_category";
 
 		$sort_data = array(
 			'name',

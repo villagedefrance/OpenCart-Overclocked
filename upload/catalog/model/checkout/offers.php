@@ -5,7 +5,7 @@ class ModelCheckoutOffers extends Model {
 	public function getOfferProductProducts($data = array()) {
 		$status = true;
 
-		$product_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_product_product` WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+		$product_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_product_product WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
 
 		$product_product_data = array();
 
@@ -14,7 +14,7 @@ class ModelCheckoutOffers extends Model {
 				$status = false;
 			}
 
-			$product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_product_product` WHERE offer_product_product_id = '" . (int)$result['offer_product_product_id'] . "'");
+			$product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_product_product WHERE offer_product_product_id = '" . (int)$result['offer_product_product_id'] . "'");
 
 			if ($product_query->num_rows) {
 				$product_product_data[] = array(
@@ -38,7 +38,7 @@ class ModelCheckoutOffers extends Model {
 	public function getOfferProductCategories($data = array()) {
 		$status = true;
 
-		$product_category_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_product_category` WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+		$product_category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_product_category WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
 
 		$product_category_data = array();
 
@@ -47,7 +47,7 @@ class ModelCheckoutOffers extends Model {
 				$status = false;
 			}
 
-			$product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_product_category` WHERE offer_product_category_id = '" . (int)$result['offer_product_category_id'] . "'");
+			$product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_product_category WHERE offer_product_category_id = '" . (int)$result['offer_product_category_id'] . "'");
 
 			if ($product_query->num_rows) {
 				$product_category_data[] = array(
@@ -71,7 +71,7 @@ class ModelCheckoutOffers extends Model {
 	public function getOfferCategoryProducts($data = array()) {
 		$status = true;
 
-		$category_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_category_product` WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+		$category_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_category_product WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
 
 		$category_product_data = array();
 
@@ -80,7 +80,7 @@ class ModelCheckoutOffers extends Model {
 				$status = false;
 			}
 
-			$category_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_category_product` WHERE offer_category_product_id = '" . (int)$result['offer_category_product_id'] . "'");
+			$category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_category_product WHERE offer_category_product_id = '" . (int)$result['offer_category_product_id'] . "'");
 
 			if ($category_query->num_rows) {
 				$category_product_data[] = array(
@@ -104,7 +104,7 @@ class ModelCheckoutOffers extends Model {
 	public function getOfferCategoryCategories($data = array()) {
 		$status = true;
 
-		$category_category_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_category_category` WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+		$category_category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_category_category WHERE ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
 
 		$category_category_data = array();
 
@@ -113,7 +113,7 @@ class ModelCheckoutOffers extends Model {
 				$status = false;
 			}
 
-			$category_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "offer_category_category` WHERE offer_category_category_id = '" . (int)$result['offer_category_category_id'] . "'");
+			$category_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "offer_category_category WHERE offer_category_category_id = '" . (int)$result['offer_category_category_id'] . "'");
 
 			if ($category_query->num_rows) {
 				$category_category_data[] = array(
