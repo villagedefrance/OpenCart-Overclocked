@@ -21,7 +21,6 @@
       </div>
     </div>
     <div class="content">
-	<div class="tooltip" style="margin:0px 0px 5px 0px;"><?php echo $text_info_note; ?></div>
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>

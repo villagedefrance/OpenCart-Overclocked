@@ -88,40 +88,43 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		if ($image_results) {
 			foreach ($image_results as $image_result) {
 				if ($image_result['image'] && file_exists(DIR_IMAGE . $image_result['image'])) {
-					$payment_logo = $this->model_tool_image->resize($image_result['image'], 140, 35);
+					$method_image = $this->model_tool_image->resize($image_result['image'], 140, 35);
 				} else {
-					$payment_logo = '';
+					$method_image = '';
 				}
 
 				$this->data['payment_images'][] = array(
 					'payment'	=> strtolower($image_result['payment']),
-					'image'		=> $payment_logo
+					'image'		=> $method_image,
+					'status'		=> $image_result['status']
 				);
 			}
 		}
 
 		// Paypal Fee
-		$ppfee = 0;
-		$paypal_fee = $this->config->get('paypal_fee_total');
+		$paypal_fee = 0;
+		$paypal_fee_total = $this->config->get('paypal_fee_total');
 
-		if ($this->config->get('paypal_fee_fee_type') == 'F') {
-			$fee = $this->config->get('paypal_fee_fee');
-		} else {
-			$min = $this->config->get('paypal_fee_fee_min');
-			$max = $this->config->get('paypal_fee_fee_max');
+		if (empty($paypal_fee_total) || ($this->cart->getTotal() < $paypal_fee_total)) {
+			if ($this->config->get('paypal_fee_fee_type') == 'F') {
+				$paypal_fee = $this->config->get('paypal_fee_fee');
+			} else {
+				$paypal_fee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
 
-			$fee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
+				$min = $this->config->get('paypal_fee_fee_min');
+				$max = $this->config->get('paypal_fee_fee_max');
 
-			if (!empty($min) && ($fee < $min)) {
-				$fee = $min;
-			}
+				if (!empty($min) && ($paypal_fee < $min)) {
+					$paypal_fee = $min;
+				}
 
-			if (!empty($max) && ($fee > $max)) {
-				$fee = $max;
+				if (!empty($max) && ($paypal_fee > $max)) {
+					$paypal_fee = $max;
+				}
 			}
 		}
 
-		$this->data['paypal_fee_fee'] = $this->currency->format($ppfee);
+		$this->data['paypal_fee_fee'] = $this->currency->format($paypal_fee);
 
 		// Language
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');

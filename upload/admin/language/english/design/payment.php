@@ -7,13 +7,12 @@ $_['text_success']        	= 'Success: You have modified <b>Payments</b> !';
 $_['text_image_manager']	= 'File Manager';
 $_['text_browse']        		= 'Browse';
 $_['text_clear']         		= 'Clear';
-$_['text_info_note'] 			= 'If you choose to use payment images, you must add an image to ALL your payment methods.';
 
 // Column
 $_['column_image'] 			= 'Image';
 $_['column_name'] 			= 'Name';
-$_['column_method']			= 'Payment status';
-$_['column_status'] 			= 'Status';
+$_['column_method']			= 'Payment Status';
+$_['column_status'] 			= 'Image Status';
 $_['column_action']       	= 'Action';
 
 // Entry
@@ -23,7 +22,7 @@ $_['entry_image']          	= 'Image:<br /><span class="help">Important! Payment
 $_['entry_status']        	= 'Status:';
 
 // Button
-$_['button_extension']		= 'Payment List';
+$_['button_extension']		= 'Payment Modules';
 
 // Error
 $_['error_permission']		= 'Warning: You do not have permission to modify <b>Payments</b> !';

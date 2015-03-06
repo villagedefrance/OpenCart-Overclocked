@@ -5,31 +5,41 @@
   <p><?php echo $text_payment_method; ?></p>
   <table class="radio">
     <?php foreach ($payment_methods as $payment_method) { ?>
-	  <?php $paypal_fee = ((substr($payment_method['code'], 0, 3) == "pp_") || ($payment_method['code'] == "paypal_email")) ? "$paypal_fee_fee" : ""; ?>
+      <?php $paypal_fee = ((substr($payment_method['code'], 0, 3) == "pp_") || ($payment_method['code'] == "paypal_email")) ? "$paypal_fee_fee" : ""; ?>
       <tr class="highlight">
-        <td><?php if ($payment_method['code'] == $code || !$code) { ?>
-          <?php $code = $payment_method['code']; ?>
-          <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" checked="checked" />
-        <?php } else { ?>
-          <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
-        <?php } ?></td>
         <td>
-          <?php if ($payment_images) { ?>
+          <?php if ($payment_method['code'] == $code || !$code) { ?>
+            <?php $code = $payment_method['code']; ?>
+            <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" checked="checked" />
+          <?php } else { ?>
+            <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
+          <?php } ?>
+        </td>
+		<td>
+		  <?php if ($payment_images) { ?>
             <?php foreach ($payment_images as $payment_image) { ?>
               <?php if ($payment_image['payment'] == strtolower($payment_method['code'])) { ?>
-                <?php if ($paypal_fee) { ?>
-                  <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" /> (+<?php echo $paypal_fee; ?>)</label>
+				<?php if ($payment_image['status']) { ?>
+                  <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" />
+                    <?php if ($paypal_fee) { ?>
+                      <span> + <?php echo $paypal_fee; ?></span>
+                    <?php } ?>
+                  </label>
                 <?php } else { ?>
-                  <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" /></label>
+                  <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
+                    <?php if ($paypal_fee) { ?>
+                      <span> + <?php echo $paypal_fee; ?></span>
+                    <?php } ?>
+                  </label>
                 <?php } ?>
               <?php } ?>
             <?php } ?>
           <?php } else { ?>
-		    <?php if ($paypal_fee) { ?>
-              <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?> (+<?php echo $paypal_fee; ?>)</label>
-            <?php } else { ?>
-              <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?></label>
-            <?php } ?>
+            <label for="<?php echo $payment_method['code']; ?>"><?php echo $payment_method['title']; ?>
+              <?php if ($paypal_fee) { ?>
+                <span> + <?php echo $paypal_fee; ?></span>
+              <?php } ?>
+            </label>
           <?php } ?>
         </td>
       </tr>

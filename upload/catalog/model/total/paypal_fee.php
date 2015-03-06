@@ -2,39 +2,39 @@
 class ModelTotalPayPalFee extends Model {
 
 	public function getTotal(&$total_data, &$total, &$taxes) {
-		$paypal_fee = $this->config->get('paypal_fee_total');
+		$paypal_fee_total = $this->config->get('paypal_fee_total');
 
-		if ($this->cart->getTotal() && (empty($paypal_fee) || ($this->cart->getSubTotal() < $paypal_fee))) {
+		if ($this->cart->getTotal() && (empty($paypal_fee_total) || ($this->cart->getTotal() < $paypal_fee_total))) {
 			$this->load->language('total/paypal_fee');
 
 			if ((isset($this->session->data['payment_method']) && ((substr($this->session->data['payment_method']['code'], 0, 3) == 'pp_') || ($this->session->data['payment_method']['code'] == "paypal_email"))) || (isset($this->request->post['payment']) && ((substr($this->request->post['payment'], 0, 3) == 'pp_') || ($this->request->post['payment'] == "paypal_email")))) {
 				if ($this->config->get('paypal_fee_fee_type') == 'F') {
-					$fee = $this->config->get('paypal_fee_fee');
+					$paypal_fee = $this->config->get('paypal_fee_fee');
 				} else {
+					$paypal_fee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
+
 					$min = $this->config->get('paypal_fee_fee_min');
 					$max = $this->config->get('paypal_fee_fee_max');
 
-					$fee = ($this->cart->getTotal() * $this->config->get('paypal_fee_fee')) / 100;
-
-					if (!empty($min) && ($fee < $min)) {
-						$fee = $min;
+					if (!empty($min) && ($paypal_fee < $min)) {
+						$paypal_fee = $min;
 					}
 
-					if (!empty($max) && ($fee > $max)) {
-						$fee = $max;
+					if (!empty($max) && ($paypal_fee > $max)) {
+						$paypal_fee = $max;
 					}
 				}
 
 				$total_data[] = array(
 					'code'		=> 'paypal_fee',
 					'title'			=> $this->language->get('text_paypal_fee'),
-					'text'			=> $this->currency->format($fee),
-					'value'		=> $fee,
+					'text'			=> $this->currency->format($paypal_fee),
+					'value'		=> $paypal_fee,
 					'sort_order'	=> $this->config->get('paypal_fee_sort_order')
 				);
 
 				if ($this->config->get('paypal_fee_tax_class_id')) {
-					$tax_rates = $this->tax->getRates($fee, $this->config->get('paypal_fee_tax_class_id'));
+					$tax_rates = $this->tax->getRates($paypal_fee, $this->config->get('paypal_fee_tax_class_id'));
 
 					foreach ($tax_rates as $tax_rate) {
 						if (!isset($taxes[$tax_rate['tax_rate_id']])) {
@@ -45,7 +45,7 @@ class ModelTotalPayPalFee extends Model {
 					}
 				}
 
-				$total += $fee;
+				$total += $paypal_fee;
 			}
 		}
 	}
