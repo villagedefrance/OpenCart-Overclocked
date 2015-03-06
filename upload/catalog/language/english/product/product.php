@@ -21,7 +21,7 @@ $_['text_no_reviews']   	= 'There are no reviews for this product.';
 $_['text_on']           		= ' on ';
 $_['text_note']         		= '<span style="color: #DE5954;">Note:</span> HTML is not translated!';
 $_['text_share']        		= 'Share';
-$_['text_success']     	 	= 'Thank you for your review. It has been submitted for approval.';
+$_['text_success']     	 	= 'Thank you for your review.<br />It has been submitted for approval.';
 $_['text_upload']       		= 'Your file was successfully uploaded!';
 $_['text_wait']         		= 'Please Wait!';
 $_['text_tags']         		= 'Tags:';
@@ -43,7 +43,7 @@ $_['entry_review']      		= 'Your Review';
 $_['entry_rating']      		= 'Rating:';
 $_['entry_good']        		= 'Good';
 $_['entry_bad']         		= 'Bad';
-$_['entry_captcha']     		= 'Enter the code in the box below';
+$_['entry_captcha']     		= 'Enter the two words';
 
 // Tabs
 $_['tab_description']   		= 'Description';

@@ -373,10 +373,10 @@
       <div id="review"></div>
       <div id="add-review">
         <h2 id="review-title"><?php echo $text_write; ?></h2>
-        <div>
+        <div class="review-element">
           <input type="text" name="name" value="" placeholder="<?php echo $entry_name; ?>" size="30" />
         </div>
-        <div>
+        <div class="review-element">
           <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>
           <br /><?php echo $text_note; ?>
         </div>
@@ -390,12 +390,19 @@
           <input type="radio" name="rating" value="5" />
           <?php echo $entry_good; ?>
         </div>
-        <div class="captcha">
-          <b><?php echo $entry_captcha; ?></b><br />
-          <input type="text" name="captcha" value="" autocomplete="off" />
-          <br />
-          <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
+		<div id="captcha-wrap">
+          <div class="captcha-box">
+            <img src="index.php?route=product/product/captcha" alt="" id="captcha_image" />
+          </div>
+          <div class="captcha-text">
+            <label><?php echo $entry_captcha; ?></label>
+            <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
+		  </div>
+          <div class="captcha-action">
+            <a onclick="location='<?php echo $refresh; ?>';"><img src="catalog/view/theme/<?php echo $template; ?>/image/refresh.png" alt="" id="refresh" /></a>
+          </div>
         </div>
+        <br />
         <div><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
       </div>
     </div>

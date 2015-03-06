@@ -64,16 +64,22 @@
             <span class="error"><?php echo $error_enquiry; ?></span>
           <?php } ?>
           <br />
-          <div class="captcha">
-            <b><?php echo $entry_captcha; ?></b><br />
-            <input type="text" name="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-            <img src="index.php?route=information/contact/captcha" alt="" />
-            <?php if ($error_captcha) { ?>
-              <span class="error"><?php echo $error_captcha; ?></span>
-            <?php } ?>
+		  <div id="captcha-wrap">
+            <div class="captcha-box">
+              <img src="index.php?route=information/contact/captcha" alt="" id="captcha_image" />
+            </div>
+            <div class="captcha-text">
+              <label><?php echo $entry_captcha; ?></label>
+              <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
+		    </div>
+            <div class="captcha-action">
+              <a onclick="location='<?php echo $refresh; ?>';"><img src="catalog/view/theme/<?php echo $template; ?>/image/refresh.png" alt="" id="refresh" /></a>
+            </div>
           </div>
           <br />
-          <br />
+          <?php if ($error_captcha) { ?>
+            <span class="error"><?php echo $error_captcha; ?></span>
+          <?php } ?>
           <div class="buttons">
             <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>
           </div>

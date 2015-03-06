@@ -72,14 +72,6 @@
             <span class="error"><?php echo $error_product; ?></span>
           <?php } ?>
         </div>
-        <div class="return-model">
-          <span class="required">*</span> <b><?php echo $entry_model; ?></b><br />
-          <input type="text" name="model" value="<?php echo $model; ?>" />
-          <br />
-          <?php if ($error_model) { ?>
-            <span class="error"><?php echo $error_model; ?></span>
-          <?php } ?>
-        </div>
         <div class="return-quantity">
           <b><?php echo $entry_quantity; ?></b><br />
           <input type="text" name="quantity" value="<?php echo $quantity; ?>" />
@@ -87,6 +79,13 @@
       </div>
       <div class="return-detail">
         <div class="return-reason">
+          <span class="required">*</span> <b><?php echo $entry_model; ?></b><br />
+          <input type="text" name="model" value="<?php echo $model; ?>" />
+          <br />
+          <?php if ($error_model) { ?>
+            <span class="error"><?php echo $error_model; ?></span>
+          <?php } ?>
+		  <br />
           <span class="required">*</span> <b><?php echo $entry_reason; ?></b><br />
           <table>
             <?php foreach ($return_reasons as $return_reason) { ?>
@@ -126,15 +125,24 @@
           <?php echo $entry_fault_detail; ?><br />
           <textarea name="comment" cols="150" rows="6"><?php echo $comment; ?></textarea>
         </div>
-        <div class="return-captcha">
-          <b><?php echo $entry_captcha; ?></b><br />
-          <input type="text" name="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-          <br />
-          <img src="index.php?route=account/return/captcha" alt="" />
-          <?php if ($error_captcha) { ?>
-            <span class="error"><?php echo $error_captcha; ?></span>
-          <?php } ?>
+      </div>
+      <div class="return-captcha">
+        <div id="captcha-wrap">
+          <div class="captcha-box">
+            <img src="index.php?route=account/return/captcha" alt="" id="captcha_image" />
+          </div>
+          <div class="captcha-text">
+            <label><?php echo $entry_captcha; ?></label>
+            <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
+		  </div>
+          <div class="captcha-action">
+            <a onclick="location='<?php echo $refresh; ?>';"><img src="catalog/view/theme/<?php echo $template; ?>/image/refresh.png" alt="" id="refresh" /></a>
+          </div>
         </div>
+        <br />
+        <?php if ($error_captcha) { ?>
+          <span class="error"><?php echo $error_captcha; ?></span>
+        <?php } ?>
       </div>
     </div>
   </div>

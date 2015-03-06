@@ -58,6 +58,8 @@ class ControllerInformationContact extends Controller {
 		$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
+		$this->data['refresh'] = $this->url->link('information/contact');
+
 		$map_location = $this->config->get('config_location');
 		$map_display = $this->config->get('config_contact_map');
 

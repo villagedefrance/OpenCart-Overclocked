@@ -578,6 +578,7 @@ class ControllerAccountReturn extends Controller {
 		}
 
 		$this->data['back'] = $this->url->link('account/account', '', 'SSL');
+		$this->data['refresh'] = $this->url->link('account/return/insert', '', 'SSL');
 
 		// Template
 		$this->data['template'] = $this->config->get('config_template');

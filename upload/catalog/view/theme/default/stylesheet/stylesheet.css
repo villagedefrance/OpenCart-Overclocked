@@ -1471,7 +1471,7 @@ ul.box-filter > li ul {
 /* Reviews */
 #review {
 	float: right;
-	width: 55%;
+	width: 50%;
 }
 #review .content {
 	background: #FFF;
@@ -1604,25 +1604,22 @@ ul.box-filter > li ul {
 /* Add Review */
 #add-review {
 	float: left;
-	width: 42%;
+	width: 45%;
 }
 #add-review textarea {
-	max-width: 242px;
+	width: 270px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
 	resize: vertical;
 }
-#add-review div {
+#add-review div.review-element {
 	margin-bottom: 10px;
 }
 #add-review .review-rating {
 	margin-top: 15px;
 	margin-bottom: 10px;
-}
-#add-review input[name='captcha'] {
-	width: 142px;
 }
 /* Attribute */
 .attribute {
@@ -1820,7 +1817,7 @@ ul.box-filter > li ul {
 }
 .return-list .return-content div {
 	float: left;
-	width: 33.3%;
+	width: 49%;
 }
 .return-list .return-info {
 	text-align: right;
@@ -1831,17 +1828,12 @@ ul.box-filter > li ul {
 }
 .return-name {
 	float: left;
-	width: 31%;
-	margin-right: 15px;
-}
-.return-model {
-	float: left;
-	width: 31%;
+	width: 48%;
 	margin-right: 15px;
 }
 .return-quantity {
 	float: left;
-	width: 31%;
+	width: 48%;
 }
 .return-detail {
 	overflow: auto;
@@ -1849,51 +1841,78 @@ ul.box-filter > li ul {
 }
 .return-reason {
 	float: left;
-	width: 31%;
+	width: 48%;
 	margin-right: 15px;
 }
 .return-opened {
 	float: left;
-	width: 31%;
-	margin-right: 15px;
+	width: 48%;
 }
 .return-opened textarea {
 	width: 98%;
 	vertical-align: top;
 }
 .return-captcha {
-	float: left;
-	width: 31%;
-	text-align: left;
-	border: 1px solid #E7E7E7;
-	-moz-border-radius: 3px; 
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px; 
-	padding: 10px;
-}
-.return-captcha input {
-	width: 140px;
-}
-.return-captcha img {
-	margin-top: 8px;
+	overflow: auto;
 }
 /* Captcha */
-.captcha {
-	width: 220px;
+#captcha-wrap {
+	width: 270px;
+	height: 100px;
+	background: #870500;
+	border: 1px solid #870500;
+	-moz-border-radius: 9px;
+	-webkit-border-radius: 9px;
+	-khtml-border-radius: 9px;
+	border-radius: 9px;
 	text-align: left;
-	border: 1px solid #E7E7E7;
-	-moz-border-radius: 3px; 
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px; 
-	padding: 10px;
 }
-.captcha input {
+#captcha-wrap .captcha-box {
+	background: #FAFAFA;
+	border: 1px solid #FAFAFA;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+}
+#captcha-wrap .captcha-text {
 	width: 140px;
+	height: 43px;
+	float: left;
+	background:#FFDC73;
+	border: 1px solid #FFDC73;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+	text-align: center;
+	margin: 4px;
 }
-.captcha img {
-	margin-top: 8px;
+#captcha-wrap .captcha-text input {
+	width: 120px;
+}
+#captcha-wrap .captcha-text label {
+	color: #111;
+	font-size: 12px;	
+	width: 150px;
+	padding-top: 3px;
+	padding-bottom: 4px;
+}
+#captcha-wrap .captcha-action {
+	width: 117px;
+	height: 44px;
+	float: right;
+	background: url('../image/logos.jpg') top right no-repeat;
+	margin-top: 3px;
+}
+#captcha-wrap a img#refresh {
+	border: 1px solid #555;
+	margin-top: 15px;
+	margin-right: 6px;
+	cursor: pointer;
 }
 /* Downloads */
 .download-list {

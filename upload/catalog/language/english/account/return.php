@@ -20,6 +20,7 @@ $_['text_comment']     		= 'Return Comments';
 $_['text_history']       		= 'Return History';
 $_['text_empty']        		= 'You have not made any previous returns!';
 $_['text_agree']         		= 'I have read and agree to the <a class="colorbox" href="%s" alt="%s"><b>%s</b></a>';
+$_['text_error']         		= 'The returns you requested could not be found!';
 
 // Column
 $_['column_product']    	= 'Product Name';
@@ -46,10 +47,9 @@ $_['entry_quantity']     		= 'Quantity:';
 $_['entry_reason']       		= 'Reason for Return:';
 $_['entry_opened']       	= 'Product is opened:';
 $_['entry_fault_detail']		= 'Faulty or other details:';
-$_['entry_captcha']      	= 'Enter the code in the box below';
+$_['entry_captcha']      	= 'Enter the two words';
 
 // Error
-$_['text_error']         		= 'The returns you requested could not be found!';
 $_['error_order_id']     		= 'Order ID required!';
 $_['error_firstname']    		= 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']     		= 'Last Name must be between 1 and 32 characters!';

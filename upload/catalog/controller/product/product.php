@@ -541,6 +541,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['review_status'] = $this->config->get('config_review_status');
 			$this->data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
 			$this->data['rating'] = (int)$product_info['rating'];
+			$this->data['captcha'] = ''; // ReCaptcha required
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
@@ -614,6 +615,8 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$this->data['profiles'] = false;
 			}
+
+			$this->data['refresh'] = $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']);
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 

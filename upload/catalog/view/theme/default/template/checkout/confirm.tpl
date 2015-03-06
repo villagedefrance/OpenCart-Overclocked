@@ -15,7 +15,7 @@
         <?php if ($product['recurring']) { ?>
           <tr>
             <td colspan="5" style="border:none; line-height:18px; margin-left:10px;">
-              <image src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" />
+              <img src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" />
               <strong><?php echo $text_recurring_item; ?></strong>
               <?php echo $product['profile_description']; ?>
             </td>

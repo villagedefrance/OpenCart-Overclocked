@@ -7,8 +7,8 @@ $time = microtime();
 $GLOBALS['start'] = $time;
 
 // Check Version
-if (version_compare(phpversion(), '5.1.0', '<') == true) {
-	exit('PHP5.1+ Required'); 
+if (version_compare(phpversion(), '5.2.0', '<') == true) {
+	exit('PHP5.2+ Required'); 
 }
 
 if (!ini_get('date.timezone')) {
