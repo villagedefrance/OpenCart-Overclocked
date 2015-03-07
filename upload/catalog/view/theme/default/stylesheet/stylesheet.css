@@ -1878,6 +1878,10 @@ ul.box-filter > li ul {
 	padding: 0px;
 	margin: 0px;
 }
+#captcha-wrap .captcha-box img {
+	width: 210px;
+	height: 42px;
+}
 #captcha-wrap .captcha-text {
 	width: 140px;
 	height: 43px;

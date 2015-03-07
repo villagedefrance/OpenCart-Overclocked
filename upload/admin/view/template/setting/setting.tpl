@@ -840,6 +840,18 @@
               <?php } ?>
             </select></td>
           </tr>
+		  <tr>
+            <td><?php echo $entry_captcha_font; ?></td>
+            <td><select name="config_captcha_font">
+            <?php foreach ($fontnames as $fontname) { ?>
+              <?php if ($fontname == $config_captcha_font) { ?>
+                <option value="<?php echo $fontname; ?>" selected="selected"><?php echo $fontname; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $fontname; ?>"><?php echo $fontname; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select></td>
+          </tr>
           <tr>
             <td><?php echo $entry_offer_label; ?></td>
             <td><?php if ($config_offer_label) { ?>

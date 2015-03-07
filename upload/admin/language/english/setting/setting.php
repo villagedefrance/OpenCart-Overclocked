@@ -95,6 +95,7 @@ $_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span cla
 $_['entry_custom_menu']      		= 'Hide Default Category Menu:<br /><span class="help">Select Yes if you are using a Custom Menu, or if you don\'t need the Default Horizontal Menu.</span>';
 $_['entry_viewer']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, Product Image Thumb size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
+$_['entry_captcha_font']				= 'Select a Captcha Font:<br /><span class="help">Choose which TrueType Font to use for the Captcha.</span>';
 $_['entry_news_addthis'] 				= 'Show AddThis on News Pages:';
 $_['entry_news_chars']   				= 'Headlines News Character Limit:<br /><span class="help">Adjust News Story\'s length on Headlines page.</span>';
 $_['entry_cookie_consent']       		= 'Activate Cookie Consent:<br /><span class="help">If Yes, Cookie Consent banner will be enabled. Gives customers the option to opt-out of Google Analytics tracking.</span>';

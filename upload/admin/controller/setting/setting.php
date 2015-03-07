@@ -136,6 +136,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_custom_menu'] = $this->language->get('entry_custom_menu');
 		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
+		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
 		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
@@ -876,6 +877,22 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_offer_label'] = $this->request->post['config_offer_label'];
 		} else {
 			$this->data['config_offer_label'] = $this->config->get('config_offer_label');
+		}
+
+		$this->data['fontnames'] = array();
+
+		$fonts = glob(DIR_SYSTEM . 'library/fonts/*.ttf');
+
+		if ($fonts) {
+			foreach ($fonts as $font) {
+				$this->data['fontnames'][] = basename($font, '.ttf');
+			}
+		}
+
+		if (isset($this->request->post['config_captcha_font'])) {
+			$this->data['config_captcha_font'] = $this->request->post['config_captcha_font'];
+		} else {
+			$this->data['config_captcha_font'] = $this->config->get('config_captcha_font');
 		}
 
 		if (isset($this->request->post['config_news_addthis'])) {

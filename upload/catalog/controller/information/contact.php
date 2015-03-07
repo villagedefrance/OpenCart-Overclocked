@@ -243,7 +243,9 @@ class ControllerInformationContact extends Controller {
 
 		$this->session->data['captcha'] = $captcha->getCode();
 
-		$captcha->showImage();
+		$font = $this->config->get('config_captcha_font');
+
+		$captcha->showImage($font);
 	}
 }
 ?>
