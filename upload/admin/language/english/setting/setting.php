@@ -4,7 +4,7 @@ $_['heading_title']                		= 'Settings';
 
 // Text
 $_['text_success']                 		= 'Success: You have modified <b>Settings</b> !';
-$_['text_map']                    			= 'Google Map';
+$_['text_location']                    	= 'Map &amp; Location';
 $_['text_items']                    		= 'Items';
 $_['text_product']                 		= 'Products';
 $_['text_voucher']                 		= 'Vouchers';
@@ -46,6 +46,7 @@ $_['entry_currency']            			= 'Currency:<br /><span class="help">Change t
 $_['entry_currency_auto']       		= 'Auto Update Currency:<br /><span class="help">Set your store to automatically update currencies daily.</span>';
 $_['entry_length_class']       			= 'Length Class:';
 $_['entry_weight_class']       			= 'Weight Class:';
+$_['entry_our_location']       			= 'Hide Store Location:<br /><span class="help">Remove "Our Location" block from the Contact page.</span>';
 $_['entry_location'] 						= 'Enter/Select Address:<br /><span class="help">Auto-completed as you type.</span>';
 $_['entry_latitude'] 						= 'Address Latitude:<br /><span class="help">Generated automatically from address selected.</span>';
 $_['entry_longitude'] 					= 'Address Longitude:<br /><span class="help">Generated automatically from address selected.</span>';

@@ -13,6 +13,7 @@
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <div class="content">
       <div class="contact-info">
+        <?php if (!$hide_location) { ?>
         <div class="info-left">
           <h2><?php echo $text_location; ?></h2>
           <br />
@@ -40,6 +41,7 @@
            <br />
           <?php } ?>
         </div>
+        <?php } ?>
         <div class="info-right">
           <h2><?php echo $text_contact; ?></h2>
           <br />

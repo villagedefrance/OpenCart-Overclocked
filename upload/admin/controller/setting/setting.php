@@ -35,7 +35,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_characters'] = $this->language->get('text_characters');
-		$this->data['text_map'] = $this->language->get('text_map');
+		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_items'] = $this->language->get('text_items');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
@@ -87,6 +87,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
+		$this->data['entry_our_location'] = $this->language->get('entry_our_location');
 		$this->data['entry_location'] = $this->language->get('entry_location');
 		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
 		$this->data['entry_longitude'] = $this->language->get('entry_longitude');
@@ -556,6 +557,12 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
+
+		if (isset($this->request->post['config_our_location'])) {
+			$this->data['config_our_location'] = $this->request->post['config_our_location'];
+		} else {
+			$this->data['config_our_location'] = $this->config->get('config_our_location');
+		}
 
 		if (isset($this->request->post['config_location'])) {
 			$this->data['config_location'] = $this->request->post['config_location'];

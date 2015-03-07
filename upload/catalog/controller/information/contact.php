@@ -58,6 +58,8 @@ class ControllerInformationContact extends Controller {
 		$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
+		$this->data['hide_location'] = $this->config->get('config_our_location');
+
 		$map_location = $this->config->get('config_location');
 		$map_display = $this->config->get('config_contact_map');
 
@@ -105,6 +107,7 @@ class ControllerInformationContact extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['action'] = $this->url->link('information/contact');
+
 		$this->data['store'] = $this->config->get('config_name');
 		$this->data['address'] = nl2br($this->config->get('config_address'));
 		$this->data['telephone'] = $this->config->get('config_telephone');

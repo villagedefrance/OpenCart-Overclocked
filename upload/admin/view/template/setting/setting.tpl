@@ -214,8 +214,22 @@
             </select></td>
           </tr>
         </table>
-        <h2><?php echo $text_map; ?></h2>
+        <h2><?php echo $text_location; ?></h2>
         <table class="form">
+          <tr>
+            <td><?php echo $entry_our_location; ?></td>
+            <td><?php if ($config_our_location) { ?>
+              <input type="radio" name="config_our_location" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_our_location" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_our_location" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_our_location" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
           <tr>
             <td><?php echo $entry_location; ?></td>
             <td><input id="search_address" name="config_location" type="text" value="<?php echo isset($config_location) ? $config_location : ''; ?>" autocomplete="on" runat="server" size="80" /></td>
