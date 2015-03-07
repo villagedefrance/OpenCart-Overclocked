@@ -135,9 +135,7 @@
             <label><?php echo $entry_captcha; ?></label>
             <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
 		  </div>
-          <div class="captcha-action">
-            <a onclick="location='<?php echo $refresh; ?>';"><img src="catalog/view/theme/<?php echo $template; ?>/image/refresh.png" alt="" id="refresh" /></a>
-          </div>
+          <div class="captcha-action"></div>
         </div>
         <br />
         <?php if ($error_captcha) { ?>

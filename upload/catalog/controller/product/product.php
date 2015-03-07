@@ -616,8 +616,6 @@ class ControllerProductProduct extends Controller {
 				$this->data['profiles'] = false;
 			}
 
-			$this->data['refresh'] = $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']);
-
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 
 			// Template

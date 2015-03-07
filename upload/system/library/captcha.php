@@ -33,7 +33,7 @@ class Captcha {
 		if ($font) {
 			$fontfile = $font . ".ttf";
 		} else {
-			$fontfile = "RecaptchaFont.ttf";
+			$fontfile = "Stampede.ttf";
 		}
 
 		$image = imagecreatetruecolor($this->height, $this->width);
