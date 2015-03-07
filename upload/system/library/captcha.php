@@ -33,18 +33,18 @@ class Captcha {
 		if ($font) {
 			$fontfile = $font . ".ttf";
 		} else {
-			$fontfile = "Stampede.ttf";
+			$fontfile = "Recaptcha.ttf";
 		}
 
 		$image = imagecreatetruecolor($this->height, $this->width);
 
-		$color = imagecolorallocate($image, 20, 20, 20);
+		$color = imagecolorallocate($image, 10, 10, 10);
 
-		$background = imagecolorallocate($image, 250, 250, 250); // #FAFAFA
+		$background = imagecolorallocate($image, 250, 250, 250);
 
 		imagefilledrectangle($image, 0, 0, 268, 98, $background);
 
-		imagettftext($image, 22, 0, 4, 30, $color, $dir.$fontfile, $this->code);
+		imagettftext($image, 21, 0, 3, 30, $color, $dir.$fontfile, $this->code);
 
 		header("Content-type: image/png");
 
