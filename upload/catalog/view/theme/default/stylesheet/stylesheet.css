@@ -600,10 +600,10 @@ table.radio tr.highlight:hover td {
 }
 /* Pagination */
 .pagination {
+	width: 100%;
+	display: inline-block;
 	border-top: 1px solid #E7E7E7;
 	padding-top: 8px;
-	display: inline-block;
-	width: 100%;
 	margin-bottom: 10px;
 }
 .pagination .links {
@@ -614,14 +614,25 @@ table.radio tr.highlight:hover td {
 	border: 1px solid #E7E7E7;
 	padding: 4px 10px;
 	text-decoration: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	color: #A3A3A3;
+}
+.pagination .links a:hover {
+	border: 1px solid #999;
+	color: #777;
 }
 .pagination .links b {
 	display: inline-block;
 	border: 1px solid #269BC6;
 	padding: 4px 10px;
-	font-weight: normal;
 	text-decoration: none;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	color: #269BC6;
 	background: #FFF;
 }
@@ -1912,7 +1923,7 @@ ul.box-filter > li ul {
 	background: url('../image/logos.jpg') top right no-repeat;
 	margin-top: 3px;
 }
-#captcha-wrap a img#refresh {
+#captcha-wrap img#refresh {
 	border: 1px solid #555;
 	margin-top: 15px;
 	margin-right: 6px;

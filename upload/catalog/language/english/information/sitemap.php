@@ -6,7 +6,8 @@ $_['heading_title']    				= 'Site Map';
 $_['text_cart']        					= 'Shopping Cart';
 $_['text_checkout']   				= 'Checkout';
 
-$_['text_product_list']    			= 'Products';
+$_['text_product_list']    			= 'Product List';
+$_['text_product_wall']    			= 'Product Wall';
 $_['text_category_list']     		= 'Categories';
 $_['text_manufacturer'] 			= 'Manufacturers';
 $_['text_special']      				= 'Special Offers';
