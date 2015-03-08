@@ -67,6 +67,7 @@ $_['entry_customer_group']       	= 'Customer Group:<br /><span class="help">Def
 $_['entry_customer_group_display']	= 'Customer Groups:<br /><span class="help">Display customer groups that new customers can select to use such as wholesale and business when signing up.</span>';
 $_['entry_customer_price']     		= 'Login Display Prices:<br /><span class="help">Only show prices when a customer is logged in.</span>';
 $_['entry_customer_redirect']			= 'Login Home Redirect:<br/><span class="help">If set, customers will be redirected to the Home page upon Login.</span>';
+$_['entry_customer_fax']				= 'Hide Customer Fax:<br/><span class="help">Remove customer fax information globally.</span>';
 $_['entry_account']                		= 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
 $_['entry_cart_weight']         		= 'Display Weight on Cart Page:<br /><span class="help">Show the cart weight on the cart page</span>';
 $_['entry_guest_checkout']    		= 'Guest Checkout:<br /><span class="help">Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.</span>';
@@ -82,6 +83,7 @@ $_['entry_stock_checkout']      		= 'Stock Checkout:<br /><span class="help">All
 $_['entry_stock_status']        		= 'Out of Stock Status:<br /><span class="help">Set the default out of stock status selected in product edit.</span>';
 $_['entry_affiliate']              			= 'Affiliate Terms:<br /><span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
 $_['entry_commission']          		= 'Affiliate Commission (%):<br /><span class="help">The default affiliate commission percentage.</span>';
+$_['entry_affiliate_fax']					= 'Hide Affiliate Fax:<br/><span class="help">Remove affiliate fax information globally.</span>';
 $_['entry_affiliate_disable']  			= 'Disable Affiliates:<br /><span class="help">Select Yes if you don\'t want to use affiliate functions in your store.</span>';
 $_['entry_return']                 		= 'Return Terms:<br /><span class="help">Forces people to agree to terms before an return account can be created.</span>';
 $_['entry_return_status']     			= 'Return Status:<br /><span class="help">Set the default return status when an returns request is submitted.</span>';

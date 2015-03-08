@@ -181,6 +181,8 @@ class ControllerAccountRegister extends Controller {
 			$this->data['error_zone'] = '';
 		}
 
+		$this->data['hide_fax'] = $this->config->get('config_customer_fax');
+
 		$this->data['action'] = $this->url->link('account/register', '', 'SSL');
 
 		if (isset($this->request->post['firstname'])) {

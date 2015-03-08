@@ -130,6 +130,8 @@ class ControllerAffiliateEdit extends Controller {
 			$this->data['error_zone'] = '';
 		}
 
+		$this->data['hide_fax'] = $this->config->get('config_affiliate_fax');
+
 		$this->data['action'] = $this->url->link('affiliate/edit', '', 'SSL');
 
 		if ($this->request->server['REQUEST_METHOD'] != 'POST') {

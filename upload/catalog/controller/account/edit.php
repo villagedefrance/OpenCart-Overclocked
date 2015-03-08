@@ -89,6 +89,8 @@ class ControllerAccountEdit extends Controller {
 			$this->data['error_telephone'] = '';
 		}
 
+		$this->data['hide_fax'] = $this->config->get('config_customer_fax');
+
 		$this->data['action'] = $this->url->link('account/edit', '', 'SSL');
 
 		if ($this->request->server['REQUEST_METHOD'] != 'POST') {

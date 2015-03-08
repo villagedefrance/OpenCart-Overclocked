@@ -33,6 +33,8 @@ class ControllerCheckoutRegister extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
+		$this->data['hide_fax'] = $this->config->get('config_customer_fax');
+
 		$this->data['customer_groups'] = array();
 
 		if (is_array($this->config->get('config_customer_group_display'))) {
@@ -103,8 +105,6 @@ class ControllerCheckoutRegister extends Controller {
 	public function validate() {
 		$this->language->load('checkout/checkout');
 
-		$this->load->model('account/customer');
-
 		$json = array();
 
 		// Validate if customer is already logged out.
@@ -136,6 +136,8 @@ class ControllerCheckoutRegister extends Controller {
 		}
 
 		if (!$json) {
+			$this->load->model('account/customer');
+
 			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
 				$json['error']['firstname'] = $this->language->get('error_firstname');
 			}
@@ -144,7 +146,7 @@ class ControllerCheckoutRegister extends Controller {
 				$json['error']['lastname'] = $this->language->get('error_lastname');
 			}
 
-			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
+			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
 
@@ -236,7 +238,11 @@ class ControllerCheckoutRegister extends Controller {
 
 			$this->session->data['account'] = 'register';
 
-			if ($customer_group && !$customer_group['approval']) {
+			$this->load->model('account/customer_group');
+
+			$customer_group_info = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
+
+			if ($customer_group_info && !$customer_group_info['approval']) {
 				$this->customer->login($this->request->post['email'], $this->request->post['password']);
 
 				$this->session->data['payment_address_id'] = $this->customer->getAddressId();

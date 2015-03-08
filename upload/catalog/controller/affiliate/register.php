@@ -161,6 +161,8 @@ class ControllerAffiliateRegister extends Controller {
 			$this->data['error_zone'] = '';
 		}
 
+		$this->data['hide_fax'] = $this->config->get('config_affiliate_fax');
+
 		$this->data['action'] = $this->url->link('affiliate/register', '', 'SSL');
 
 		if (isset($this->request->post['firstname'])) {

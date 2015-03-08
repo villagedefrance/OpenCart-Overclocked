@@ -108,6 +108,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
 		$this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
 		$this->data['entry_customer_redirect'] = $this->language->get('entry_customer_redirect');
+		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
@@ -123,6 +124,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
+		$this->data['entry_affiliate_fax'] = $this->language->get('entry_affiliate_fax');
 		$this->data['entry_affiliate_disable'] = $this->language->get('entry_affiliate_disable');
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
@@ -690,6 +692,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_customer_redirect'] = $this->config->get('config_customer_redirect');
 		}
 
+		if (isset($this->request->post['config_customer_fax'])) {
+			$this->data['config_customer_fax'] = $this->request->post['config_customer_fax'];
+		} else {
+			$this->data['config_customer_fax'] = $this->config->get('config_customer_fax');
+		}
+
 		if (isset($this->request->post['config_account_id'])) {
 			$this->data['config_account_id'] = $this->request->post['config_account_id'];
 		} else {
@@ -796,6 +804,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_commission'] = $this->config->get('config_commission');
 		} else {
 			$this->data['config_commission'] = '5.00';
+		}
+
+		if (isset($this->request->post['config_affiliate_fax'])) {
+			$this->data['config_affiliate_fax'] = $this->request->post['config_affiliate_fax'];
+		} else {
+			$this->data['config_affiliate_fax'] = $this->config->get('config_affiliate_fax');
 		}
 
 		if (isset($this->request->post['config_affiliate_disable'])) {

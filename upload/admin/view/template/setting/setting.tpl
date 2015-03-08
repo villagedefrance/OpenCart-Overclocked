@@ -479,6 +479,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_customer_fax; ?></td>
+            <td><?php if ($config_customer_fax) { ?>
+              <input type="radio" name="config_customer_fax" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_fax" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_customer_fax" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_fax" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_account; ?></td>
             <td><select name="config_account_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -657,6 +671,20 @@
           <tr>
             <td><?php echo $entry_commission; ?></td>
             <td><input type="text" name="config_commission" value="<?php echo $config_commission; ?>" size="3" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_affiliate_fax; ?></td>
+            <td><?php if ($config_affiliate_fax) { ?>
+              <input type="radio" name="config_affiliate_fax" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_fax" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_affiliate_fax" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_fax" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
           </tr>
 		  <tr>
             <td><?php echo $entry_affiliate_disable; ?></td>

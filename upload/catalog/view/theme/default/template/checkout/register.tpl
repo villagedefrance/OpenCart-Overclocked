@@ -16,8 +16,11 @@
   <input type="text" name="telephone" value="" class="large-field" />
   <br />
   <br />
-  <?php echo $entry_fax; ?><br />
-  <input type="text" name="fax" value="" class="large-field" />
+  <?php if (!$hide_fax) { ?>
+    <?php echo $entry_fax; ?><br />
+    <input type="text" name="fax" value="" class="large-field" />
+  <?php } ?>
+  <br />
   <br />
   <br />
   <h2><?php echo $text_your_password; ?></h2>

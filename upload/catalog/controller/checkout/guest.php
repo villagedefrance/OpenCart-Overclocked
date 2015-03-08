@@ -29,6 +29,8 @@ class ControllerCheckoutGuest extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
+		$this->data['hide_fax'] = $this->config->get('config_customer_fax');
+
 		if (isset($this->session->data['guest']['firstname'])) {
 			$this->data['firstname'] = $this->session->data['guest']['firstname'];
 		} else {
@@ -194,7 +196,7 @@ class ControllerCheckoutGuest extends Controller {
 				$json['error']['lastname'] = $this->language->get('error_lastname');
 			}
 
-			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
+			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
 
@@ -265,7 +267,10 @@ class ControllerCheckoutGuest extends Controller {
 			$this->session->data['guest']['lastname'] = $this->request->post['lastname'];
 			$this->session->data['guest']['email'] = $this->request->post['email'];
 			$this->session->data['guest']['telephone'] = $this->request->post['telephone'];
-			$this->session->data['guest']['fax'] = $this->request->post['fax'];
+
+			if ($this->config->get('config_customer_fax') == 0) {
+				$this->session->data['guest']['fax'] = $this->request->post['fax'];
+			}
 
 			$this->session->data['guest']['payment']['firstname'] = $this->request->post['firstname'];
 			$this->session->data['guest']['payment']['lastname'] = $this->request->post['lastname'];
