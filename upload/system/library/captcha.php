@@ -42,7 +42,7 @@ class Captcha {
 
 		$background = imagecolorallocate($image, 250, 250, 250);
 
-		imagefilledrectangle($image, 0, 0, 242, 42, $background);
+		imagefilledrectangle($image, 0, 0, 222, 42, $background);
 
 		imagettftext($image, 22, 0, 2, 30, $color, $dir.$fontfile, $this->code);
 
