@@ -1889,9 +1889,14 @@ ul.box-filter > li ul {
 	padding: 0px;
 	margin: 0px;
 }
-#captcha-wrap .captcha-box img {
-	width: 250px;
+#captcha-wrap .captcha-box .captcha-view {
+	width: 262px;
 	height: 42px;
+}
+#captcha-wrap .captcha-box .captcha-view img {
+	display: none;
+	margin-left: auto;
+	margin-right: auto;
 }
 #captcha-wrap .captcha-text {
 	width: 140px;
@@ -1922,12 +1927,7 @@ ul.box-filter > li ul {
 	float: right;
 	background: url('../image/logos.jpg') top right no-repeat;
 	margin-top: 3px;
-}
-#captcha-wrap img#refresh {
-	border: 1px solid #555;
-	margin-top: 15px;
-	margin-right: 6px;
-	cursor: pointer;
+	margin-right: 1px;
 }
 /* Downloads */
 .download-list {

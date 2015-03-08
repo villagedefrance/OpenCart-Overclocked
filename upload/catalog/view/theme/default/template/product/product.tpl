@@ -392,7 +392,9 @@
         </div>
 		<div id="captcha-wrap">
           <div class="captcha-box">
-            <img src="index.php?route=product/product/captcha" alt="" id="captcha_image" />
+            <div class="captcha-view">
+              <img src="index.php?route=product/product/captcha" alt="" id="captcha_image" />
+            </div>
           </div>
           <div class="captcha-text">
             <label><?php echo $entry_captcha; ?></label>
@@ -639,6 +641,14 @@ $('#button-review').bind('click', function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#tabs a').tabs();
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#captcha_image').load(function(event) { 
+		$(event.target).fadeIn(800);
+	});
 });
 //--></script>
 

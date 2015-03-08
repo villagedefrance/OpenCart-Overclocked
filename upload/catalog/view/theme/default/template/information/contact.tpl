@@ -68,7 +68,9 @@
           <br />
 		  <div id="captcha-wrap">
             <div class="captcha-box">
-              <img src="index.php?route=information/contact/captcha" alt="" id="captcha_image" />
+              <div class="captcha-view">
+                <img src="index.php?route=information/contact/captcha" alt="" id="captcha_image" />
+              </div>
             </div>
             <div class="captcha-text">
               <label><?php echo $entry_captcha; ?></label>
@@ -93,6 +95,14 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#captcha_image').load(function(event) { 
+		$(event.target).fadeIn(800);
+	});
+});
+//--></script>
 
 <?php if ($map) { ?>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>

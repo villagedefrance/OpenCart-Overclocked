@@ -42,9 +42,9 @@ class Captcha {
 
 		$background = imagecolorallocate($image, 250, 250, 250);
 
-		imagefilledrectangle($image, 0, 0, 268, 98, $background);
+		imagefilledrectangle($image, 0, 0, 242, 42, $background);
 
-		imagettftext($image, 21, 0, 3, 30, $color, $dir.$fontfile, $this->code);
+		imagettftext($image, 22, 0, 2, 30, $color, $dir.$fontfile, $this->code);
 
 		header("Content-type: image/png");
 

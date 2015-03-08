@@ -129,7 +129,9 @@
       <div class="return-captcha">
         <div id="captcha-wrap">
           <div class="captcha-box">
-            <img src="index.php?route=account/return/captcha" alt="" id="captcha_image" />
+            <div class="captcha-view">
+              <img src="index.php?route=account/return/captcha" alt="" id="captcha_image" />
+            </div>
           </div>
           <div class="captcha-text">
             <label><?php echo $entry_captcha; ?></label>
@@ -168,6 +170,14 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#captcha_image').load(function(event) { 
+		$(event.target).fadeIn(800);
+	});
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
