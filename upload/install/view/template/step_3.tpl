@@ -21,6 +21,9 @@
       <td><select name="db_driver">
         <option value="mysqli">MySQLi</option>
         <option value="mysql">MySQL</option>
+        <option value="mssql">MSSQL</option>
+        <option value="mpdo">PDO</option>
+        <option value="postgre">PostGre</option>
       </select>
       <br />
       <?php if ($error_db_driver) { ?>

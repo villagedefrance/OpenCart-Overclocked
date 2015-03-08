@@ -1,8 +1,8 @@
 <?php
 class Captcha {
 	protected $code;
-	protected $height = 150;
-	protected $width = 40;
+	protected $height = 172;
+	protected $width = 42;
 
 	function __construct() {
 		$this->code = null;
@@ -42,7 +42,7 @@ class Captcha {
 
 		$background = imagecolorallocate($image, 250, 250, 250);
 
-		imagefilledrectangle($image, 0, 0, 222, 42, $background);
+		imagefilledrectangle($image, 0, 0, 262, 42, $background);
 
 		imagettftext($image, 22, 0, 2, 30, $color, $dir.$fontfile, $this->code);
 

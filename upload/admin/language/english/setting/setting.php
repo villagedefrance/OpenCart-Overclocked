@@ -50,7 +50,7 @@ $_['entry_our_location']       			= 'Hide Store Location:<br /><span class="help
 $_['entry_location'] 						= 'Enter/Select Address:<br /><span class="help">Auto-completed as you type.</span>';
 $_['entry_latitude'] 						= 'Address Latitude:<br /><span class="help">Generated automatically from address selected.</span>';
 $_['entry_longitude'] 					= 'Address Longitude:<br /><span class="help">Generated automatically from address selected.</span>';
-$_['entry_contact_map'] 				= 'Display Contact Map:<br /><span class="help">Show Google Map and coordinates on Contact Page.</span>';
+$_['entry_contact_map'] 				= 'Display Contact Map:<br /><span class="help">Show Google Map and coordinates on Contact page.</span>';
 $_['entry_catalog_limit'] 	   			= 'Default Items Per Page (Catalog):<br /><span class="help">Determines how many catalog items are shown per page (products, categories, etc)</span>';
 $_['entry_admin_limit']   	  			= 'Default Items Per Page (Admin):<br /><span class="help">Determines how many admin items are shown per page (orders, customers, etc)</span>';
 $_['entry_product_count']     		= 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the storefront header category menu. Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';

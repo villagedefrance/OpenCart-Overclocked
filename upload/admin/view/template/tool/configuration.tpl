@@ -27,7 +27,7 @@
         <td><?php echo $text_theme; ?></td>
         <td><?php foreach ($templates as $template) { ?>
           <?php if ($template == $config_template) { ?>
-            <span style='color:#547C96;'><b><?php echo $template; ?></b></span> 
+            <span style="color:#547C96;"><b><?php echo $template; ?></b></span> 
           <?php } ?>
         <?php } ?></td>
       </tr>
@@ -58,9 +58,9 @@
       </tr>
       <tr>
         <td><?php echo $text_phpversion; ?></td>
-        <td>5.0+</td>
+        <td>5.2+</td>
         <td><?php echo phpversion(); ?></td>
-        <td><?php echo (phpversion() >= '5.0') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+        <td><?php echo (phpversion() >= '5.2') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
       </tr>
       <tr>
         <td><?php echo $text_registerglobals; ?></td>
@@ -153,12 +153,20 @@
         <td><?php echo is_writable($logs) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
+        <td><?php echo $image; ?></td>
+        <td><?php echo is_writable($image) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+      </tr>
+      <tr>
         <td><?php echo $image_cache . '/'; ?></td>
         <td><?php echo is_writable($image_cache) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
         <td><?php echo $image_data . '/'; ?></td>
         <td><?php echo is_writable($image_data) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $download; ?></td>
+        <td><?php echo is_writable($download) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
     </table>
   </div>

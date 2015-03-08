@@ -88,8 +88,10 @@ class ControllerToolConfiguration extends Controller {
 		// Check write permissions
 		$this->data['cache'] = DIR_SYSTEM . 'cache';
 		$this->data['logs'] = DIR_SYSTEM . 'logs';
+		$this->data['image'] = DIR_IMAGE;
 		$this->data['image_cache'] = DIR_IMAGE . 'cache';
 		$this->data['image_data'] = DIR_IMAGE . 'data';
+		$this->data['download'] = DIR_DOWNLOAD;
 
 		// Template
 		$this->data['templates'] = array();
