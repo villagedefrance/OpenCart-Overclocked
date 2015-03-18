@@ -2,6 +2,11 @@
 class ControllerCheckoutCheckout extends Controller {
 
 	public function index() {
+		// Express checkout redirect
+		if ($this->config->get('config_express_checkout')) {
+			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
+		}
+
 		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$this->redirect($this->url->link('checkout/cart'));
@@ -68,6 +73,10 @@ class ControllerCheckoutCheckout extends Controller {
 		$this->data['logged'] = $this->customer->isLogged();
 		$this->data['shipping_required'] = $this->cart->hasShipping();
 
+		if (isset($this->request->get['quickconfirm'])) {
+			$this->data['quickconfirm'] = $this->request->get['quickconfirm'];
+		}
+
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 
@@ -87,10 +96,6 @@ class ControllerCheckoutCheckout extends Controller {
 			'common/footer',
 			'common/header'
 		);
-
-		if (isset($this->request->get['quickconfirm'])) {
-			$this->data['quickconfirm'] = $this->request->get['quickconfirm'];
-		}
 
 		$this->response->setOutput($this->render());
 	}

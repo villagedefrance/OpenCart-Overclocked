@@ -34,17 +34,22 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_required'] = $this->language->get('text_required');
+		$this->data['text_choice'] = $this->language->get('text_choice');
+		$this->data['text_automatic'] = $this->language->get('text_automatic');
+		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
 		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_items'] = $this->language->get('text_items');
 		$this->data['text_product'] = $this->language->get('text_product');
-		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
+		$this->data['text_express'] = $this->language->get('text_express');
 		$this->data['text_stock'] = $this->language->get('text_stock');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_return'] = $this->language->get('text_return');
+		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_administration'] = $this->language->get('text_administration');
 		$this->data['text_store_front'] = $this->language->get('text_store_front');
 		$this->data['text_magnific'] = $this->language->get('text_magnific');
@@ -58,9 +63,12 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_mail'] = $this->language->get('text_mail');
 		$this->data['text_smtp'] = $this->language->get('text_smtp');
 
+		$this->data['info_express'] = $this->language->get('info_express');
+
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_store'] = $this->language->get('tab_store');
 		$this->data['tab_local'] = $this->language->get('tab_local');
+		$this->data['tab_checkout'] = $this->language->get('tab_checkout');
 		$this->data['tab_option'] = $this->language->get('tab_option');
 		$this->data['tab_preference'] = $this->language->get('tab_preference');
 		$this->data['tab_image'] = $this->language->get('tab_image');
@@ -92,24 +100,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
 		$this->data['entry_longitude'] = $this->language->get('entry_longitude');
 		$this->data['entry_contact_map'] = $this->language->get('entry_contact_map');
-		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
-		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
-		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
-		$this->data['entry_review'] = $this->language->get('entry_review');
-		$this->data['entry_download'] = $this->language->get('entry_download');
-		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
-		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
-		$this->data['entry_tax'] = $this->language->get('entry_tax');
-		$this->data['entry_vat'] = $this->language->get('entry_vat');
-		$this->data['entry_tax_default'] = $this->language->get('entry_tax_default');
-		$this->data['entry_tax_customer'] = $this->language->get('entry_tax_customer');
-		$this->data['entry_customer_online'] = $this->language->get('entry_customer_online');
-		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
-		$this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
-		$this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
-		$this->data['entry_customer_redirect'] = $this->language->get('entry_customer_redirect');
-		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
-		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
@@ -118,10 +108,38 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_auto_invoice'] = $this->language->get('entry_auto_invoice');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
+		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
+		$this->data['entry_express_name'] = $this->language->get('entry_express_name');
+		$this->data['entry_express_password'] = $this->language->get('entry_express_password');
+		$this->data['entry_express_phone'] = $this->language->get('entry_express_phone');
+		$this->data['entry_express_autofill'] = $this->language->get('entry_express_autofill');
+		$this->data['entry_express_billing'] = $this->language->get('entry_express_billing');
+		$this->data['entry_express_postcode'] = $this->language->get('entry_express_postcode');
+		$this->data['entry_express_comment'] = $this->language->get('entry_express_comment');
+		$this->data['entry_express_newsletter'] = $this->language->get('entry_express_newsletter');
+		$this->data['entry_express_coupon'] = $this->language->get('entry_express_coupon');
+		$this->data['entry_express_voucher'] = $this->language->get('entry_express_voucher');
+		$this->data['entry_express_point'] = $this->language->get('entry_express_point');
+		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
+		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
+		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
+		$this->data['entry_review'] = $this->language->get('entry_review');
+		$this->data['entry_download'] = $this->language->get('entry_download');
+		$this->data['entry_tax'] = $this->language->get('entry_tax');
+		$this->data['entry_vat'] = $this->language->get('entry_vat');
+		$this->data['entry_tax_default'] = $this->language->get('entry_tax_default');
+		$this->data['entry_tax_customer'] = $this->language->get('entry_tax_customer');
 		$this->data['entry_stock_display'] = $this->language->get('entry_stock_display');
 		$this->data['entry_stock_warning'] = $this->language->get('entry_stock_warning');
 		$this->data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
 		$this->data['entry_stock_status'] = $this->language->get('entry_stock_status');
+		$this->data['entry_customer_online'] = $this->language->get('entry_customer_online');
+		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
+		$this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
+		$this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
+		$this->data['entry_customer_redirect'] = $this->language->get('entry_customer_redirect');
+		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
+		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
 		$this->data['entry_affiliate_fax'] = $this->language->get('entry_affiliate_fax');
@@ -129,6 +147,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
 		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
+		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
+		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
 		$this->data['entry_pagination_hi'] = $this->language->get('entry_pagination_hi');
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
@@ -492,6 +512,7 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
+		// Local
 		if (isset($this->request->post['config_country_id'])) {
 			$this->data['config_country_id'] = $this->request->post['config_country_id'];
 		} else {
@@ -590,124 +611,7 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_contact_map'] = $this->config->get('config_contact_map');
 		}
 
-		if (isset($this->request->post['config_catalog_limit'])) {
-			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
-		} else {
-			$this->data['config_catalog_limit'] = $this->config->get('config_catalog_limit');
-		}
-
-		if (isset($this->request->post['config_admin_limit'])) {
-			$this->data['config_admin_limit'] = $this->request->post['config_admin_limit'];
-		} else {
-			$this->data['config_admin_limit'] = $this->config->get('config_admin_limit');
-		}
-
-		if (isset($this->request->post['config_product_count'])) {
-			$this->data['config_product_count'] = $this->request->post['config_product_count'];
-		} else {
-			$this->data['config_product_count'] = $this->config->get('config_product_count');
-		}
-
-		if (isset($this->request->post['config_review_status'])) {
-			$this->data['config_review_status'] = $this->request->post['config_review_status'];
-		} else {
-			$this->data['config_review_status'] = $this->config->get('config_review_status');
-		}
-
-		if (isset($this->request->post['config_download'])) {
-			$this->data['config_download'] = $this->request->post['config_download'];
-		} else {
-			$this->data['config_download'] = $this->config->get('config_download');
-		}
-
-		if (isset($this->request->post['config_voucher_min'])) {
-			$this->data['config_voucher_min'] = $this->request->post['config_voucher_min'];
-		} else {
-			$this->data['config_voucher_min'] = $this->config->get('config_voucher_min');
-		}
-
-		if (isset($this->request->post['config_voucher_max'])) {
-			$this->data['config_voucher_max'] = $this->request->post['config_voucher_max'];
-		} else {
-			$this->data['config_voucher_max'] = $this->config->get('config_voucher_max');
-		}
-
-		if (isset($this->request->post['config_tax'])) {
-			$this->data['config_tax'] = $this->request->post['config_tax'];
-		} else {
-			$this->data['config_tax'] = $this->config->get('config_tax');
-		}
-
-		if (isset($this->request->post['config_vat'])) {
-			$this->data['config_vat'] = $this->request->post['config_vat'];
-		} else {
-			$this->data['config_vat'] = $this->config->get('config_vat');
-		}
-
-		if (isset($this->request->post['config_tax_default'])) {
-			$this->data['config_tax_default'] = $this->request->post['config_tax_default'];
-		} else {
-			$this->data['config_tax_default'] = $this->config->get('config_tax_default');
-		}
-
-		if (isset($this->request->post['config_tax_customer'])) {
-			$this->data['config_tax_customer'] = $this->request->post['config_tax_customer'];
-		} else {
-			$this->data['config_tax_customer'] = $this->config->get('config_tax_customer');
-		}
-
-		if (isset($this->request->post['config_customer_online'])) {
-			$this->data['config_customer_online'] = $this->request->post['config_customer_online'];
-		} else {
-			$this->data['config_customer_online'] = $this->config->get('config_customer_online');
-		}
-
-		if (isset($this->request->post['config_customer_group_id'])) {
-			$this->data['config_customer_group_id'] = $this->request->post['config_customer_group_id'];
-		} else {
-			$this->data['config_customer_group_id'] = $this->config->get('config_customer_group_id');
-		}
-
-		$this->load->model('sale/customer_group');
-
-		$this->data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
-
-		if (isset($this->request->post['config_customer_group_display'])) {
-			$this->data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
-		} elseif ($this->config->get('config_customer_group_display')) {
-			$this->data['config_customer_group_display'] = $this->config->get('config_customer_group_display');
-		} else {
-			$this->data['config_customer_group_display'] = array();
-		}
-
-		if (isset($this->request->post['config_customer_price'])) {
-			$this->data['config_customer_price'] = $this->request->post['config_customer_price'];
-		} else {
-			$this->data['config_customer_price'] = $this->config->get('config_customer_price');
-		}
-
-		if (isset($this->request->post['config_customer_redirect'])) {
-			$this->data['config_customer_redirect'] = $this->request->post['config_customer_redirect'];
-		} else {
-			$this->data['config_customer_redirect'] = $this->config->get('config_customer_redirect');
-		}
-
-		if (isset($this->request->post['config_customer_fax'])) {
-			$this->data['config_customer_fax'] = $this->request->post['config_customer_fax'];
-		} else {
-			$this->data['config_customer_fax'] = $this->config->get('config_customer_fax');
-		}
-
-		if (isset($this->request->post['config_account_id'])) {
-			$this->data['config_account_id'] = $this->request->post['config_account_id'];
-		} else {
-			$this->data['config_account_id'] = $this->config->get('config_account_id');
-		}
-
-		$this->load->model('catalog/information');
-
-		$this->data['informations'] = $this->model_catalog_information->getInformations();
-
+		// Checkout
 		if (isset($this->request->post['config_cart_weight'])) {
 			$this->data['config_cart_weight'] = $this->request->post['config_cart_weight'];
 		} else {
@@ -764,6 +668,134 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
+		// Express Checkout
+		if (isset($this->request->post['config_express_checkout'])) {
+			$this->data['config_express_checkout'] = $this->request->post['config_express_checkout'];
+		} else {
+			$this->data['config_express_checkout'] = $this->config->get('config_express_checkout');
+		}
+
+		if (isset($this->request->post['config_express_name'])) {
+			$this->data['config_express_name'] = $this->request->post['config_express_name'];
+		} else {
+			$this->data['config_express_name'] = $this->config->get('config_express_name');
+		}
+
+		if (isset($this->request->post['config_express_phone'])) {
+			$this->data['config_express_phone'] = $this->request->post['config_express_phone'];
+		} else {
+			$this->data['config_express_phone'] = $this->config->get('config_express_phone');
+		}
+
+		if (isset($this->request->post['config_express_billing'])) {
+			$this->data['config_express_billing'] = $this->request->post['config_express_billing'];
+		} else {
+			$this->data['config_express_billing'] = $this->config->get('config_express_billing');
+		}
+
+		if (isset($this->request->post['config_express_autofill'])) {
+			$this->data['config_express_autofill'] = $this->request->post['config_express_autofill'];
+		} else {
+			$this->data['config_express_autofill'] = $this->config->get('config_express_autofill');
+		}
+
+		if (isset($this->request->post['config_express_postcode'])) {
+			$this->data['config_express_postcode'] = $this->request->post['config_express_postcode'];
+		} else {
+			$this->data['config_express_postcode'] = $this->config->get('config_express_postcode');
+		}
+
+		if (isset($this->request->post['config_express_comment'])) {
+			$this->data['config_express_comment'] = $this->request->post['config_express_comment'];
+		} else {
+			$this->data['config_express_comment'] = $this->config->get('config_express_comment');
+		}
+
+		if (isset($this->request->post['config_express_password'])) {
+			$this->data['config_express_password'] = $this->request->post['config_express_password'];
+		} else {
+			$this->data['config_express_password'] = $this->config->get('config_express_password');
+		}
+
+		if (isset($this->request->post['config_express_newsletter'])) {
+			$this->data['config_express_newsletter'] = $this->request->post['config_express_newsletter'];
+		} else {
+			$this->data['config_express_newsletter'] = $this->config->get('config_express_newsletter');
+		}
+
+		if (isset($this->request->post['config_express_coupon'])) {
+			$this->data['config_express_coupon'] = $this->request->post['config_express_coupon'];
+		} else {
+			$this->data['config_express_coupon'] = $this->config->get('config_express_coupon');
+		}
+
+		if (isset($this->request->post['config_express_voucher'])) {
+			$this->data['config_express_voucher'] = $this->request->post['config_express_voucher'];
+		} else {
+			$this->data['config_express_voucher'] = $this->config->get('config_express_voucher');
+		}
+
+		if (isset($this->request->post['config_express_point'])) {
+			$this->data['config_express_point'] = $this->request->post['config_express_point'];
+		} else {
+			$this->data['config_express_point'] = $this->config->get('config_express_point');
+		}
+
+		// Options
+		if (isset($this->request->post['config_catalog_limit'])) {
+			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
+		} else {
+			$this->data['config_catalog_limit'] = $this->config->get('config_catalog_limit');
+		}
+
+		if (isset($this->request->post['config_admin_limit'])) {
+			$this->data['config_admin_limit'] = $this->request->post['config_admin_limit'];
+		} else {
+			$this->data['config_admin_limit'] = $this->config->get('config_admin_limit');
+		}
+
+		if (isset($this->request->post['config_product_count'])) {
+			$this->data['config_product_count'] = $this->request->post['config_product_count'];
+		} else {
+			$this->data['config_product_count'] = $this->config->get('config_product_count');
+		}
+
+		if (isset($this->request->post['config_review_status'])) {
+			$this->data['config_review_status'] = $this->request->post['config_review_status'];
+		} else {
+			$this->data['config_review_status'] = $this->config->get('config_review_status');
+		}
+
+		if (isset($this->request->post['config_download'])) {
+			$this->data['config_download'] = $this->request->post['config_download'];
+		} else {
+			$this->data['config_download'] = $this->config->get('config_download');
+		}
+
+		if (isset($this->request->post['config_tax'])) {
+			$this->data['config_tax'] = $this->request->post['config_tax'];
+		} else {
+			$this->data['config_tax'] = $this->config->get('config_tax');
+		}
+
+		if (isset($this->request->post['config_vat'])) {
+			$this->data['config_vat'] = $this->request->post['config_vat'];
+		} else {
+			$this->data['config_vat'] = $this->config->get('config_vat');
+		}
+
+		if (isset($this->request->post['config_tax_default'])) {
+			$this->data['config_tax_default'] = $this->request->post['config_tax_default'];
+		} else {
+			$this->data['config_tax_default'] = $this->config->get('config_tax_default');
+		}
+
+		if (isset($this->request->post['config_tax_customer'])) {
+			$this->data['config_tax_customer'] = $this->request->post['config_tax_customer'];
+		} else {
+			$this->data['config_tax_customer'] = $this->config->get('config_tax_customer');
+		}
+
 		if (isset($this->request->post['config_stock_display'])) {
 			$this->data['config_stock_display'] = $this->request->post['config_stock_display'];
 		} else {
@@ -791,6 +823,58 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/stock_status');
 
 		$this->data['stock_statuses'] = $this->model_localisation_stock_status->getStockStatuses();
+
+		if (isset($this->request->post['config_customer_online'])) {
+			$this->data['config_customer_online'] = $this->request->post['config_customer_online'];
+		} else {
+			$this->data['config_customer_online'] = $this->config->get('config_customer_online');
+		}
+
+		if (isset($this->request->post['config_customer_group_id'])) {
+			$this->data['config_customer_group_id'] = $this->request->post['config_customer_group_id'];
+		} else {
+			$this->data['config_customer_group_id'] = $this->config->get('config_customer_group_id');
+		}
+
+		$this->load->model('sale/customer_group');
+
+		$this->data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+
+		if (isset($this->request->post['config_customer_group_display'])) {
+			$this->data['config_customer_group_display'] = $this->request->post['config_customer_group_display'];
+		} elseif ($this->config->get('config_customer_group_display')) {
+			$this->data['config_customer_group_display'] = $this->config->get('config_customer_group_display');
+		} else {
+			$this->data['config_customer_group_display'] = array();
+		}
+
+		if (isset($this->request->post['config_customer_price'])) {
+			$this->data['config_customer_price'] = $this->request->post['config_customer_price'];
+		} else {
+			$this->data['config_customer_price'] = $this->config->get('config_customer_price');
+		}
+
+		if (isset($this->request->post['config_customer_redirect'])) {
+			$this->data['config_customer_redirect'] = $this->request->post['config_customer_redirect'];
+		} else {
+			$this->data['config_customer_redirect'] = $this->config->get('config_customer_redirect');
+		}
+
+		if (isset($this->request->post['config_customer_fax'])) {
+			$this->data['config_customer_fax'] = $this->request->post['config_customer_fax'];
+		} else {
+			$this->data['config_customer_fax'] = $this->config->get('config_customer_fax');
+		}
+
+		if (isset($this->request->post['config_account_id'])) {
+			$this->data['config_account_id'] = $this->request->post['config_account_id'];
+		} else {
+			$this->data['config_account_id'] = $this->config->get('config_account_id');
+		}
+
+		$this->load->model('catalog/information');
+
+		$this->data['informations'] = $this->model_catalog_information->getInformations();
 
 		if (isset($this->request->post['config_affiliate_id'])) {
 			$this->data['config_affiliate_id'] = $this->request->post['config_affiliate_id'];
@@ -840,6 +924,19 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_return_disable'] = $this->config->get('config_return_disable');
 		}
 
+		if (isset($this->request->post['config_voucher_min'])) {
+			$this->data['config_voucher_min'] = $this->request->post['config_voucher_min'];
+		} else {
+			$this->data['config_voucher_min'] = $this->config->get('config_voucher_min');
+		}
+
+		if (isset($this->request->post['config_voucher_max'])) {
+			$this->data['config_voucher_max'] = $this->request->post['config_voucher_max'];
+		} else {
+			$this->data['config_voucher_max'] = $this->config->get('config_voucher_max');
+		}
+
+		// Preference
 		if (isset($this->request->post['config_pagination_hi'])) {
 			$this->data['config_pagination_hi'] = $this->request->post['config_pagination_hi'];
 		} else {

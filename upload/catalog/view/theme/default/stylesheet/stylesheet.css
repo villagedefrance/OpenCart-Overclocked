@@ -503,7 +503,7 @@ samp, small {
 	background: #FAFAFA url('../image/tooltip.png') 10px center no-repeat;
 	border: 1px solid #D7E6F4;
 }
-.success .close, .warning .close, .attention .close, .tooltip .close {
+.close, .success .close, .warning .close, .attention .close, .tooltip .close {
 	float: right;
 	padding-top: 4px;
 	padding-right: 4px;
@@ -532,7 +532,7 @@ table.form {
 	margin-bottom: 20px;
 }
 table.form tr td:first-child {
-	width: 150px;
+	width: 160px;
 }
 table.form > * > * > td {
 	color: #111;
@@ -595,7 +595,7 @@ table.radio tr td:first-child input {
 	margin-top: 1px;
 }
 table.radio tr.highlight:hover td {
-	background: #F1FFDD;
+	background: #EAFBFF;
 	cursor: pointer;
 }
 /* Pagination */
@@ -2027,13 +2027,23 @@ ul.box-filter > li ul {
 }
 /* Checkout */
 .checkout-heading {
-	background: #F8F8F8;
-	border: 1px solid #DBDEE1;
-	padding: 8px;
+	padding: 9px 8px;
+	margin-bottom: 15px;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#EEE));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #EEE);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #EEE);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #EEE);
+	background-image: -o-linear-gradient(top, #FCFCFC, #EEE);
+	background-image: linear-gradient(to bottom, #FCFCFC, #EEE);
 	font-weight: bold;
 	font-size: 13px;
 	color: #555;
-	margin-bottom: 15px;
 }
 .checkout-heading a {
 	float: right;
@@ -2054,7 +2064,7 @@ ul.box-filter > li ul {
 	float: right;
 	width: 48%;
 }
-.checkout-content .buttons {
+.checkout-content .buttons, .checkout-product {
 	clear: both;
 }
 .checkout-product table {

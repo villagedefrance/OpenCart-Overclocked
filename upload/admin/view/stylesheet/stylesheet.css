@@ -353,16 +353,16 @@ ul.menu ul {
 	font-size: 15px;
 	font-weight: bold;
 	text-transform: uppercase;
-	border-bottom: 1px dotted #111;
+	border-bottom: 1px dotted #222;
 	padding-bottom: 3px;
 }
 .box > .content h3 {
-	color: #6A6A6A;
-	font-size: 15px;
+	color: #5A5A5A;
+	font-size: 16px;
 	font-weight: bold;
 	line-height: 25px;
+	border-bottom: 1px dotted #444;
 	padding: 0px 0px 5px 1px;
-	margin: 0px;
 }
 .box > .content {
 	min-height: 300px;

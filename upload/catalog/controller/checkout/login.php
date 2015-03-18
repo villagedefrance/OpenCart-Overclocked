@@ -2,6 +2,11 @@
 class ControllerCheckoutLogin extends Controller {
 
 	public function index() {
+		// Express checkout redirect
+		if ($this->config->get('config_express_checkout')) {
+			$this->redirect($this->url->link('checkout_express/login', '', 'SSL'));
+		}
+
 		$this->language->load('checkout/checkout');
 
 		$this->data['text_new_customer'] = $this->language->get('text_new_customer');

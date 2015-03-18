@@ -91,6 +91,7 @@ $_['button_reset']            		= 'Reset';
 $_['tab_address']              	= 'Address';
 $_['tab_admin']            		= 'Admin';
 $_['tab_attribute']           		= 'Attribute';
+$_['tab_checkout']           	= 'Checkout';
 $_['tab_customer']            	= 'Customer Details';
 $_['tab_data']                  	= 'Data';
 $_['tab_design']               	= 'Design';

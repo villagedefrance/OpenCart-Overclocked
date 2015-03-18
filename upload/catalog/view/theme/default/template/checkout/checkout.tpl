@@ -156,6 +156,7 @@ $('#button-login').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				$('#checkout .checkout-content').prepend('<div class="warning" style="display:none;">' + json['error']['warning'] + '</div>');
+
 				$('.warning').fadeIn('slow');
 			}
 		},
