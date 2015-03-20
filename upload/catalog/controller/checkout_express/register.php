@@ -172,7 +172,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 		}
 
 		$this->request->post['fax'] = '';
-		
+
 		if (!$json) {
 			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
 				$json['error']['firstname'] = $this->language->get('error_fullname');

@@ -54,7 +54,7 @@
     <br />
   </div>
   <div id="company_link" style="margin-bottom:5px;">
-    <a onclick="$('#company_row').show(500);$(this).hide(100);" style="text-decoration:none;"><?php echo $text_express_company_info; ?></a>
+    <a onclick="$('#company_row').show(500);$(this).hide(100);"><?php echo $text_express_company_info; ?></a>
   </div>
   <div id="company_row" style="display:none;">
     <?php echo $entry_company; ?><br />

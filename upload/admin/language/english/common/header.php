@@ -21,6 +21,7 @@ $_['text_connection']				= 'Links';
 $_['text_contact']                	= 'Mail';
 $_['text_country']                	= 'Countries';
 $_['text_coupon']                		= 'Coupons';
+$_['text_csv']                			= 'CSV Import / Export';
 $_['text_currency']              	 	= 'Currencies';
 $_['text_customer']               	= 'Customers';
 $_['text_customer_group']     	= 'Customer Groups';

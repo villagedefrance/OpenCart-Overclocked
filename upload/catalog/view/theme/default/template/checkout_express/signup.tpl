@@ -142,14 +142,14 @@
 <script type="text/javascript"><!--
 $('input[name=\'customer_group_id\']:checked').live('change', function() {
 	var customer_group = [];
-	
+
 <?php foreach ($customer_groups as $customer_group) { ?>
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>] = [];
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_id_display'] = '<?php echo $customer_group['company_id_display']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['company_id_required'] = '<?php echo $customer_group['company_id_required']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['tax_id_display'] = '<?php echo $customer_group['tax_id_display']; ?>';
 	customer_group[<?php echo $customer_group['customer_group_id']; ?>]['tax_id_required'] = '<?php echo $customer_group['tax_id_required']; ?>';
-<?php } ?>	
+<?php } ?>
 
 	if (customer_group[this.value]) {
 		if (customer_group[this.value]['company_id_display'] == '1') {
@@ -159,24 +159,24 @@ $('input[name=\'customer_group_id\']:checked').live('change', function() {
 			$('#company-name-display').hide(100);
             $('#company-id-display').hide(100);
 		}
-		
+
 		if (customer_group[this.value]['company_id_required'] == '1') {
 			$('#company-id-required').show(500);
 		} else {
 			$('#company-id-required').hide(100);
 		}
-		
+
 		if (customer_group[this.value]['tax_id_display'] == '1') {
 			$('#tax-id-display').show(500);
 		} else {
 			$('#tax-id-display').hide(100);
 		}
-		
+
 		if (customer_group[this.value]['tax_id_required'] == '1') {
 			$('#tax-id-required').show(500);
 		} else {
 			$('#tax-id-required').hide(100);
-		}	
+		}
 	}
 });
 
@@ -193,30 +193,30 @@ $('select[name=\'country_id\']').bind('change', function() {
 		},
 		complete: function() {
 			$('.wait').remove();
-		},			
+		},
 		success: function(json) {
 			if (json['postcode_required'] == '1') {
 				$('#postcode-required').show(500);
 			} else {
 				$('#postcode-required').hide(100);
 			}
-			
+
 			var html = '<option value=""><?php echo $text_select; ?></option>';
-			
+
 			if (json['zone'] != '') {
 				for (var i = 0; i < json['zone'].length; i++) {
         			html += '<option value="' + json['zone'][i]['zone_id'] + '"';
-	    			
+
 					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
 	      				html += ' selected="selected"';
 	    			}
-	
+
 	    			html += '>' + json['zone'][i]['name'] + '</option>';
 				}
 			} else {
 				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
 			}
-			
+
 			$('select[name=\'zone_id\']').html(html);
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
@@ -226,7 +226,7 @@ $('select[name=\'country_id\']').bind('change', function() {
 });
 
 $('select[name=\'country_id\']').trigger('change');
-//--></script> 
+//--></script>
 
 <script type="text/javascript"><!--
 $('.colorbox').colorbox({

@@ -151,7 +151,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 		} else {
 			$this->data['error_address_1'] = '';
 		}
-   
+
 		if (isset($this->error['city'])) {
 			$this->data['error_city'] = $this->error['city'];
 		} else {

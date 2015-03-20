@@ -39,6 +39,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_contact'] = $this->language->get('text_contact');
 		$this->data['text_country'] = $this->language->get('text_country');
 		$this->data['text_coupon'] = $this->language->get('text_coupon');
+		$this->data['text_csv'] = $this->language->get('text_csv');
 		$this->data['text_currency'] = $this->language->get('text_currency');
 		$this->data['text_customer'] = $this->language->get('text_customer');
 		$this->data['text_customer_group'] = $this->language->get('text_customer_group');
@@ -167,6 +168,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['contact'] = $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['country'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['coupon'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['csv'] = $this->url->link('tool/csv', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['currency'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer'] = $this->url->link('sale/customer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer_fields'] = $this->url->link('sale/customer_field', 'token=' . $this->session->data['token'], 'SSL');

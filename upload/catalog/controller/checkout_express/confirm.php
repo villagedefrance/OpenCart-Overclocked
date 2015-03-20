@@ -49,7 +49,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 
 		if (empty($payment_address)) {
 			$redirect = $this->url->link('checkout_express/checkout', '', 'SSL');
-		}			
+		}
 
 		// Validate if payment method has been set.
 		if (!isset($this->session->data['payment_method'])) {
@@ -86,7 +86,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 
 			$this->load->model('setting/extension');
 
-			$sort_order = array(); 
+			$sort_order = array();
 
 			$results = $this->model_setting_extension->getExtensions('total');
 

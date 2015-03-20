@@ -46,7 +46,7 @@ class ControllerSaleContact extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['cancel'] = $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->load->model('setting/store');
 

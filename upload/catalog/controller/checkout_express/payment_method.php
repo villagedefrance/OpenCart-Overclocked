@@ -4,7 +4,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
   	public function index() {
 		$this->language->load('checkout/checkout_express');
 
-		if ($this->config->get('express_reward') == 2) {
+		if ($this->config->get('config_express_reward') == 2) {
 			$points = $this->customer->getRewardPoints();
 
 			$points_total = 0;
@@ -15,7 +15,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 				}
 			}
 
-			$points = min ($points,@$points_total);
+			$points = min ($points, $points_total);
 
 			if ($points && $this->config->get('reward_status') && $this->config->get('buy_reward')) {
 				$this->session->data['reward'] = $points;
@@ -238,7 +238,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 			$payment_address = $this->session->data['guest']['payment'];
 		}
 
-        if (empty($payment_address) && !$this->config->get('express_billing')) {
+        if (empty($payment_address) && !$this->config->get('config_express_billing')) {
             if (isset($this->session->data['shipping_country_id'])) {
                 $payment_address['country_id'] = $this->session->data['shipping_country_id'];
             } else {
@@ -254,7 +254,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 
 		if (empty($payment_address)) {
 			$json['redirect'] = $this->url->link('checkout_express/checkout', '', 'SSL');
-		}		
+		}
 
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {

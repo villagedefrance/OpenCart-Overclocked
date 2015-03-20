@@ -1,9 +1,4 @@
 <?php if (!isset($redirect)) { ?>
-<div id="checkout" style="display:none;"></div>
-<div id="payment-address" style="display:none;"></div>
-<div id="shipping-address" style="display:none;"></div>
-<div id="shipping-method" style="display:none;"></div>
-<div id="payment-method" style="display:none;"></div>
 <div style="margin-bottom:15px;">
   <h2><?php echo $text_checkout_confirm; ?></h2>
 </div>
