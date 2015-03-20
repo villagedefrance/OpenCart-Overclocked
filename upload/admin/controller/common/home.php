@@ -135,6 +135,28 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
+		$error_log_file = DIR_LOGS . $this->config->get('config_error_filename');
+
+		if (file_exists($error_log_file)) {
+			$this->data['error_log_status'] = file_get_contents($error_log_file, FILE_USE_INCLUDE_PATH, null);
+		} else {
+			$this->data['error_log_status'] = '';
+		}
+
+		$this->data['open_error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Email log
+		$email_log_file = DIR_SYSTEM . 'mails/mails.txt';
+
+		if (file_exists($email_log_file)) {
+			$this->data['mail_log_status'] = file_get_contents($email_log_file, FILE_USE_INCLUDE_PATH, null);
+		} else {
+			$this->data['mail_log_status'] = '';
+		}
+
+		$this->data['open_mail_log'] = $this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

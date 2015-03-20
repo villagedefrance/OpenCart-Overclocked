@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="content">
-       <textarea wrap="off" class="log"><?php echo $log; ?></textarea>
+       <textarea wrap="off" class="log"><?php echo $mail_log; ?></textarea>
     </div>
   </div>
 </div>

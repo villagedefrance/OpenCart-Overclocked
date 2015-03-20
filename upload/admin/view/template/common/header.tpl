@@ -231,6 +231,7 @@ $(document).ready(function() {
           </li>
           <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
           <li><a href="<?php echo $filemanager; ?>"><?php echo $text_filemanager; ?></a></li>
+          <li><a href="<?php echo $email_log; ?>"><?php echo $text_email_log; ?></a></li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
         </ul>
       </li>

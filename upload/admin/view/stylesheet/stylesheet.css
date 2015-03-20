@@ -38,6 +38,17 @@ input[type='text'], input[type='password'], textarea {
 	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	box-shadow: inset 0 2px 0 -1px #EDEDED;
 }
+textarea.log {
+	width: 99%;
+	height: 360px;
+	padding: 5px 0px 5px 5px;
+	border: 1px solid #CCC;
+	background: #FFF;
+	font-size: 14px;
+	overflow: auto;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
 select {
 	padding: 2px;
 	border-top: 1px solid #B6B6B6;
@@ -347,6 +358,14 @@ ul.menu ul {
 .box > .heading .buttons {
 	padding-top: 7px;
 	float: right;
+}
+.box > .heading .bell {
+	padding-top: 10px;
+	margin-right: 15px;
+	float: right;
+}
+.box > .heading .bell a {
+	margin-left: 15px;
 }
 .box > .content h2 {
 	color: #FF802B;

@@ -11,7 +11,7 @@ $_['text_latitude'] 		= 'Latitude:';
 $_['text_longitude'] 		= 'Longitude:';
 
 // Entry Fields
-$_['entry_name']     		= 'First Name:';
+$_['entry_name']     		= 'Your Name:';
 $_['entry_email']    		= 'E-Mail Address:';
 $_['entry_enquiry']  		= 'Enquiry:';
 $_['entry_captcha']  	= 'Enter the two words';

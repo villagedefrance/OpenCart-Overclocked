@@ -32,6 +32,7 @@ $_['text_database'] 					= 'Database';
 $_['text_design']                    	= 'Design';
 $_['text_documentation']       	= 'Documentation';
 $_['text_download']               	= 'Downloads';
+$_['text_email_log']               	= 'Email Logs';
 $_['text_error_log']               	= 'Error Logs';
 $_['text_extension']              	= 'Extensions';
 $_['text_feed']                   		= 'Feeds';

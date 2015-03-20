@@ -10,6 +10,18 @@ class ControllerInformationContact extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			unset($this->session->data['captcha']);
 
+			// Log mail
+			$mail_log = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) : " . $this->request->post['enquiry'];
+
+			$mail_file = DIR_SYSTEM . 'mails/mails.txt';
+
+			$handle = fopen($mail_file, 'a+');
+
+			fwrite($handle, date('Y-m-d G:i:s') . ' - ' . print_r($mail_log, true) . "\n");
+
+			fclose($handle);
+
+			// Send mail
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -135,6 +147,22 @@ class ControllerInformationContact extends Controller {
 			$this->data['captcha'] = $this->request->post['captcha'];
 		} else {
 			$this->data['captcha'] = '';
+		}
+
+		$directory = DIR_SYSTEM . 'mails/';
+
+		// Create directory if it does not exist.
+		if (!is_dir($directory)) {
+			mkdir(DIR_SYSTEM . 'mails', 0777);
+		}
+
+		$mail_file = DIR_SYSTEM . 'mails/mails.txt';
+
+		// Create file if it does not exist.
+		if (!file_exists($mail_file)) {
+			$handle = fopen($mail_file, 'w+');
+
+			fclose($handle);
 		}
 
 		// Template
