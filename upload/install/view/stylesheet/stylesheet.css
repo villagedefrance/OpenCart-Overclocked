@@ -11,8 +11,13 @@ body {
 	padding: 0px;
 	margin: 0px;
 }
-body, p, td, th, input, textarea, select, option {
+body, p, td, th, input, textarea, select {
 	color: #777;
+	font-size: 13px;
+	text-decoration: none;
+}
+option {
+	color: #111;
 	font-size: 13px;
 	text-decoration: none;
 }
@@ -56,21 +61,56 @@ fieldset table {
 fieldset table.form tr td:first-child {
 	width: 250px;
 }
-fieldset table td {
+fieldset table.form tr td {
 	padding: 5px;
 }
-select, input[type='text'], input[type='password'], textarea {
-	color: #111;
-	background: #FFF url('../image/field.png') repeat-x;
-	border: 1px solid #DBDBDB;
+fieldset table.form tr td.text-center {
+	text-align: center;
+}
+input[type='text'], input[type='password'], textarea {
+	padding: 3px 0px 3px 4px;
+	min-height: 16px;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	padding: 4px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
 }
-option {
-	color: #111;
+select {
+	padding: 2px;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
 }
 a, a:visited, a b {
 	color: #23A1D1;
@@ -93,6 +133,7 @@ b, strong {
 label {
 	cursor: pointer;
 }
+/* Content */
 #container {
 	width: 960px;
 	margin: 0 auto;
@@ -139,6 +180,7 @@ label {
 	margin-bottom: 20px;
 	overflow: hidden;
 }
+/* Message */
 .warning {
 	background: #FFD1D1 url('../image/warning.png') 10px center no-repeat;
 	border: 1px solid #F8ACAC;
@@ -154,40 +196,53 @@ label {
 }
 /* Button */
 a.button, input.button {
-	background: url('../image/button.png') repeat-x;
 	color: #FFF;
-	font-size: 13px;
-	text-shadow: 0px -1px #7A8A3D;
-	border: 1px solid #78883C;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 1px 2px 2px #DDD;
-	-moz-box-shadow: 1px 2px 2px #DDD;
-	box-shadow: 1px 2px 2px #DDD;
-	margin-bottom: 2px;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #28B0EC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#28B0EC), to(#079BDC));
+	background-image: -webkit-linear-gradient(top, #28B0EC, #079BDC);
+	background-image: -moz-linear-gradient(top, #28B0EC, #079BDC);
+	background-image: -ms-linear-gradient(top, #28B0EC, #079BDC);
+	background-image: -o-linear-gradient(top, #28B0EC, #079BDC);
+	background-image: linear-gradient(to bottom, #28B0EC, #079BDC);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 2px 2px #DDD;
+	-moz-box-shadow: 0px 2px 2px #DDD;
+	box-shadow: 0px 2px 2px #DDD;
 	cursor: pointer;
-}
-a.button:hover, input.button:hover {
-	background-position: 0px -26px;
-	text-shadow: 0px -1px #626F30;
-	border: 1px solid #606D30;
 }
 a.button {
 	display: inline-block;
 	text-decoration: none;
-	padding: 4px 11px;
+	padding: 6px 12px 6px 12px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 12px;
 }
 input.button {
-	height: 28px;
-	padding: 0px 11px;
-	margin: 0;
+	border: 0;
+	height: 24px;
+	padding: 0px 12px 0px 12px;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 12px;
+}
+a.button:hover, input.button:hover, input.button-cart:hover {
+	background-color: #0D6D98;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#0D6D98), to(#045C84));
+	background-image: -webkit-linear-gradient(top, #0D6D98, #045C84);
+	background-image: -moz-linear-gradient(top, #0D6D98, #045C84);
+	background-image: -ms-linear-gradient(top, #0D6D98, #045C84);
+	background-image: -o-linear-gradient(top, #0D6D98, #045C84);
+	background-image: linear-gradient(to bottom, #0D6D98, #045C84);
 }
 /* Buttons */
 .buttons {
 	border: 1px solid #DBDBDB;
-	padding: 6px;
+	padding: 5px;
 	margin-bottom: 20px;
 	overflow: auto;
 }
@@ -207,15 +262,17 @@ input.button {
 /* Terms */
 .terms {
 	background: #FFF;
-	height: 250px;
+	height: 360px;
 	border: 1px solid #DBDBDB;
 	margin: 3px 0px 10px 0px;
 	padding: 4px;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 .terms p, .terms ul, .terms ol {
 	color: #111;
 }
+/* Success */
 .success {
 	margin-bottom: 15px;
 	overflow: auto;
@@ -232,6 +289,7 @@ input.button {
 	padding: 5px;
 	margin-bottom: 3px;
 }
+/* Footer */
 #footer {
 	text-align: center;
 	margin-bottom: 25px;

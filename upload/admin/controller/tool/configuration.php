@@ -55,6 +55,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_curl'] = $this->language->get('text_curl');
 		$this->data['text_mcrypt'] = $this->language->get('text_mcrypt');
 		$this->data['text_zlib'] = $this->language->get('text_zlib');
+		$this->data['text_zip'] = $this->language->get('text_zip');
 		$this->data['text_mbstring'] = $this->language->get('text_mbstring');
 		$this->data['text_mbstring_note'] = $this->language->get('text_mbstring_note');
 
@@ -88,10 +89,10 @@ class ControllerToolConfiguration extends Controller {
 		// Check write permissions
 		$this->data['cache'] = DIR_SYSTEM . 'cache';
 		$this->data['logs'] = DIR_SYSTEM . 'logs';
+		$this->data['download'] = DIR_DOWNLOAD;
 		$this->data['image'] = DIR_IMAGE;
 		$this->data['image_cache'] = DIR_IMAGE . 'cache';
 		$this->data['image_data'] = DIR_IMAGE . 'data';
-		$this->data['download'] = DIR_DOWNLOAD;
 
 		// Template
 		$this->data['templates'] = array();

@@ -8,7 +8,7 @@
 </div>
 <div id="content">
   <div class="warning">Don't forget to delete your installation directory!</div>
-	<p>Congratulations! You have successfully upgraded OpenCart.</p>
+	<p>Congratulations! You have successfully upgraded OpenCart Overclocked Edition.</p>
 	<div class="success">
 	<div><a href="../"><img src="view/image/screenshot_1.png" alt="" /></a><br />
       <a href="../">Goto your Online Shop</a>

@@ -4,8 +4,53 @@ class ControllerStep2 extends Controller {
 
 	public function index() {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->redirect($this->url->link('step_3'));
+			$this->response->redirect($this->url->link('step_3'));
 		}
+
+		$this->document->setTitle($this->language->get('heading_step_2'));
+
+		$this->data['heading_step_2'] = $this->language->get('heading_step_2');
+
+		$this->data['text_license'] = $this->language->get('text_license');
+		$this->data['text_installation'] = $this->language->get('text_installation');
+		$this->data['text_configuration'] = $this->language->get('text_configuration');
+		$this->data['text_finished'] = $this->language->get('text_finished');
+		$this->data['text_install_php'] = $this->language->get('text_install_php');
+		$this->data['text_install_extension'] = $this->language->get('text_install_extension');
+		$this->data['text_install_file'] = $this->language->get('text_install_file');
+		$this->data['text_install_directory'] = $this->language->get('text_install_directory');
+		$this->data['text_setting'] = $this->language->get('text_setting');
+		$this->data['text_current'] = $this->language->get('text_current');
+		$this->data['text_required'] = $this->language->get('text_required');
+		$this->data['text_extension'] = $this->language->get('text_extension');
+		$this->data['text_file'] = $this->language->get('text_file');
+		$this->data['text_directory'] = $this->language->get('text_directory');
+		$this->data['text_status'] = $this->language->get('text_status');
+		$this->data['text_on'] = $this->language->get('text_on');
+		$this->data['text_off'] = $this->language->get('text_off');
+		$this->data['text_missing'] = $this->language->get('text_missing');
+		$this->data['text_writable'] = $this->language->get('text_writable');
+		$this->data['text_unwritable'] = $this->language->get('text_unwritable');
+		$this->data['text_version'] = $this->language->get('text_version');
+		$this->data['text_global'] = $this->language->get('text_global');
+		$this->data['text_magic'] = $this->language->get('text_magic');
+		$this->data['text_file_upload'] = $this->language->get('text_file_upload');
+		$this->data['text_session'] = $this->language->get('text_session');
+		$this->data['text_global'] = $this->language->get('text_global');
+		$this->data['text_db'] = $this->language->get('text_db');
+		$this->data['text_mysqli'] = $this->language->get('text_mysqli');
+		$this->data['text_mysql'] = $this->language->get('text_mysql');
+		$this->data['text_mpdo'] = $this->language->get('text_mpdo');
+		$this->data['text_pgsql'] = $this->language->get('text_pgsql');
+		$this->data['text_gd'] = $this->language->get('text_gd');
+		$this->data['text_curl'] = $this->language->get('text_curl');
+		$this->data['text_mcrypt'] = $this->language->get('text_mcrypt');
+		$this->data['text_zlib'] = $this->language->get('text_zlib');
+		$this->data['text_zip'] = $this->language->get('text_zip');
+		$this->data['text_mbstring'] = $this->language->get('text_mbstring');
+
+		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_back'] = $this->language->get('button_back');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -15,15 +60,35 @@ class ControllerStep2 extends Controller {
 
 		$this->data['action'] = $this->url->link('step_2');
 
+		$this->data['php_version'] = phpversion();
+		$this->data['register_globals'] = ini_get('register_globals');
+		$this->data['magic_quotes_gpc'] = ini_get('magic_quotes_gpc');
+		$this->data['file_uploads'] = ini_get('file_uploads');
+		$this->data['session_auto_start'] = ini_get('session_auto_start');
+
+		if (!array_filter(array('mysql', 'mysqli', 'pgsql', 'pdo'), 'extension_loaded')) {
+			$this->data['db'] = false;
+		} else {
+			$this->data['db'] = true;
+		}
+
+		$this->data['gd'] = extension_loaded('gd');
+		$this->data['curl'] = extension_loaded('curl');
+		$this->data['mcrypt_encrypt'] = function_exists('mcrypt_encrypt');
+		$this->data['zlib'] = extension_loaded('zlib');
+		$this->data['zip'] = extension_loaded('zip');
+		$this->data['iconv'] = function_exists('iconv');
+		$this->data['mbstring'] = extension_loaded('mbstring');
+
 		$this->data['config_catalog'] = DIR_OPENCART . 'config.php';
 		$this->data['config_admin'] = DIR_OPENCART . 'admin/config.php';
 
 		$this->data['cache'] = DIR_SYSTEM . 'cache';
 		$this->data['logs'] = DIR_SYSTEM . 'logs';
+		$this->data['download'] = DIR_OPENCART . 'download';
 		$this->data['image'] = DIR_OPENCART . 'image';
 		$this->data['image_cache'] = DIR_OPENCART . 'image/cache';
 		$this->data['image_data'] = DIR_OPENCART . 'image/data';
-		$this->data['download'] = DIR_OPENCART . 'download';
 
 		$this->data['back'] = $this->url->link('step_1');
 
@@ -38,78 +103,81 @@ class ControllerStep2 extends Controller {
 
 	private function validate() {
 		if (phpversion() < '5.2') {
-			$this->error['warning'] = 'Warning: You need to use PHP5.2 or above for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_php_version');
 		}
 
 		if (!ini_get('file_uploads')) {
-			$this->error['warning'] = 'Warning: file_uploads needs to be enabled!';
+			$this->error['warning'] = $this->language->get('error_php_uploads');
 		}
 
 		if (ini_get('session.auto_start')) {
-			$this->error['warning'] = 'Warning: OpenCart OCE will not work with session.auto_start enabled!';
+			$this->error['warning'] = $this->language->get('error_php_session');
 		}
 
-		if (!extension_loaded('mysql')) {
-			$this->error['warning'] = 'Warning: MySQL extension needs to be loaded for OpenCart OCE to work!';
+		if (!array_filter(array('mysql', 'mysqli', 'pdo', 'pgsql'), 'extension_loaded')) {
+			$this->error['warning'] = $this->language->get('error_php_extension');
 		}
 
 		if (!extension_loaded('gd')) {
-			$this->error['warning'] = 'Warning: GD extension needs to be loaded for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_php_gd');
 		}
 
 		if (!extension_loaded('curl')) {
-			$this->error['warning'] = 'Warning: CURL extension needs to be loaded for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_php_curl');
 		}
 
 		if (!function_exists('mcrypt_encrypt')) {
-			$this->error['warning'] = 'Warning: mCrypt extension needs to be loaded for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_php_mcrypt');
 		}
 
 		if (!extension_loaded('zlib')) {
-			$this->error['warning'] = 'Warning: ZLIB extension needs to be loaded for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_php_zlib');
 		}
 
-		// iconv or mbstrings are used in the utf8 helper. Only 1 is needed but suggested to enable mbstring if iconv is not set
+		if (!extension_loaded('zip')) {
+			$this->error['warning'] = $this->language->get('error_php_zip');
+		}
+
 		if (!function_exists('iconv')) {
 			if (!extension_loaded('mbstring')) {
-				$this->error['warning'] = 'Warning: mbstring extension needs to be loaded for OpenCart OCE to work!';
+				$this->error['warning'] = $this->language->get('error_php_mbstring');
 			}
 		}
 
 		if (!file_exists(DIR_OPENCART . 'config.php')) {
-			$this->error['warning'] = 'Warning: config.php does not exist. You need to rename config-dist.php to config.php!';
+			$this->error['warning'] = $this->language->get('error_config_rename');
 		} elseif (!is_writable(DIR_OPENCART . 'config.php')) {
-			$this->error['warning'] = 'Warning: config.php needs to be writable for OpenCart OCE to be installed!';
+			$this->error['warning'] = $this->language->get('error_config_write');
 		}
 
 		if (!file_exists(DIR_OPENCART . 'admin/config.php')) {
-			$this->error['warning'] = 'Warning: admin/config.php does not exist. You need to rename admin/config-dist.php to admin/config.php!';
+			$this->error['warning'] = $this->language->get('error_config_rename');
 		} elseif (!is_writable(DIR_OPENCART . 'admin/config.php')) {
-			$this->error['warning'] = 'Warning: admin/config.php needs to be writable for OpenCart OCE to be installed!';
+			$this->error['warning'] = $this->language->get('error_config_write');
 		}
 
 		if (!is_writable(DIR_SYSTEM . 'cache')) {
-			$this->error['warning'] = 'Warning: Cache directory needs to be writable for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_cache_write');
 		}
 
 		if (!is_writable(DIR_SYSTEM . 'logs')) {
-			$this->error['warning'] = 'Warning: Logs directory needs to be writable for OpenCart OCE to work!';
-		}
-
-		if (!is_writable(DIR_OPENCART . 'image')) {
-			$this->error['warning'] = 'Warning: Image directory needs to be writable for OpenCart OCE to work!';
-		}
-
-		if (!is_writable(DIR_OPENCART . 'image/cache')) {
-			$this->error['warning'] = 'Warning: Image cache directory needs to be writable for OpenCart OCE to work!';
-		}
-
-		if (!is_writable(DIR_OPENCART . 'image/data')) {
-			$this->error['warning'] = 'Warning: Image data directory needs to be writable for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_logs_write');
 		}
 
 		if (!is_writable(DIR_OPENCART . 'download')) {
-			$this->error['warning'] = 'Warning: Download directory needs to be writable for OpenCart OCE to work!';
+			$this->error['warning'] = $this->language->get('error_download_write');
+		}
+
+		if (!is_writable(DIR_OPENCART . 'image')) {
+			$this->error['warning'] = $this->language->get('error_image_write');
+		}
+
+		if (!is_writable(DIR_OPENCART . 'image/cache')) {
+			$this->error['warning'] = $this->language->get('error_imagecache_write');
+		}
+
+		if (!is_writable(DIR_OPENCART . 'image/data')) {
+			$this->error['warning'] = $this->language->get('error_imagedata_write');
 		}
 
 		if (!$this->error) {

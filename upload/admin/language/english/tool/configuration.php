@@ -35,7 +35,8 @@ $_['text_mysql'] 				= 'MySQL:';
 $_['text_gd'] 					= 'GD:';
 $_['text_curl'] 				= 'cURL:';
 $_['text_mcrypt'] 			= 'mCrypt:';
-$_['text_zlib'] 					= 'ZIP:';
+$_['text_zlib'] 					= 'ZLIB:';
+$_['text_zip']					= 'ZIP';
 $_['text_mbstring'] 			= 'mbstring:';
 $_['text_mbstring_note'] 	= '<span class="help">mbstring is required only when iconv is not available.</span>';
 

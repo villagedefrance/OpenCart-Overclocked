@@ -2,7 +2,7 @@
 class ModelInstall extends Model {
 
 	public function database($data) {
-		$db = new DB($data['db_driver'], $data['db_host'], $data['db_user'], $data['db_password'], $data['db_name']);
+		$db = new DB($data['db_driver'], $data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_database']);
 
 		$file = DIR_APPLICATION . 'opencart.sql';
 
@@ -47,7 +47,7 @@ class ModelInstall extends Model {
 			$db->query("DELETE FROM " . $data['db_prefix'] . "setting WHERE `key` = 'config_encryption'");
 			$db->query("INSERT INTO " . $data['db_prefix'] . "setting SET `group` = 'config', `key` = 'config_encryption', `value` = '" . $db->escape(md5(mt_rand())) . "'");
 
-			$db->query("UPDATE " . $data['db_prefix'] . "product SET viewed = '0'");
+			$db->query("UPDATE " . $data['db_prefix'] . "product SET `viewed` = '0'");
 		}
 	}
 }

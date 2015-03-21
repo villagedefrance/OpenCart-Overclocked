@@ -361,11 +361,11 @@ ul.menu ul {
 }
 .box > .heading .bell {
 	padding-top: 10px;
-	margin-right: 15px;
+	margin-right: 10px;
 	float: right;
 }
 .box > .heading .bell a {
-	margin-left: 15px;
+	margin-left: 10px;
 }
 .box > .content h2 {
 	color: #FF802B;

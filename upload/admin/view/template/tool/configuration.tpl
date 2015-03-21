@@ -127,6 +127,12 @@
         <td><?php echo extension_loaded('zlib') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
       </tr>
       <tr>
+        <td><?php echo $text_zip; ?></td>
+        <td><?php echo $text_on; ?></td>
+        <td><?php echo extension_loaded('zip') ? 'On' : 'Off'; ?></td>
+        <td><?php echo extension_loaded('zip') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+      </tr>
+      <tr>
         <td><?php echo $text_mbstring; ?></td>
         <td><?php echo $text_on; ?></td>
         <td><?php echo extension_loaded('mbstring') ? 'On' : 'Off'; ?></td>
@@ -153,6 +159,10 @@
         <td><?php echo is_writable($logs) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
+        <td><?php echo $download; ?></td>
+        <td><?php echo is_writable($download) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+      </tr>
+      <tr>
         <td><?php echo $image; ?></td>
         <td><?php echo is_writable($image) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
@@ -163,10 +173,6 @@
       <tr>
         <td><?php echo $image_data . '/'; ?></td>
         <td><?php echo is_writable($image_data) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
-      </tr>
-      <tr>
-        <td><?php echo $download; ?></td>
-        <td><?php echo is_writable($download) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
     </table>
   </div>

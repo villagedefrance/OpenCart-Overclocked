@@ -29,10 +29,10 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// DB' . "\n";
 			$output .= 'define(\'DB_DRIVER\', \'' . addslashes($this->request->post['db_driver']) . '\');' . "\n";
-			$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($this->request->post['db_host']) . '\');' . "\n";
-			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_user']) . '\');' . "\n";
+			$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($this->request->post['db_hostname']) . '\');' . "\n";
+			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_username']) . '\');' . "\n";
 			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($this->request->post['db_password']) . '\');' . "\n";
-			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_name']) . '\');' . "\n";
+			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_database']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 			$output .= '?>';
 
@@ -66,10 +66,10 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// DB' . "\n";
 			$output .= 'define(\'DB_DRIVER\', \'' . addslashes($this->request->post['db_driver']) . '\');' . "\n";
-			$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($this->request->post['db_host']) . '\');' . "\n";
-			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_user']) . '\');' . "\n";
+			$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($this->request->post['db_hostname']) . '\');' . "\n";
+			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_username']) . '\');' . "\n";
 			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($this->request->post['db_password']) . '\');' . "\n";
-			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_name']) . '\');' . "\n";
+			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_database']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 			$output .= '?>';
 
@@ -81,6 +81,34 @@ class ControllerStep3 extends Controller {
 
 			$this->redirect($this->url->link('step_4'));
 		}
+
+		$this->document->setTitle($this->language->get('heading_step_3'));
+
+		$this->data['heading_step_3'] = $this->language->get('heading_step_3');
+
+		$this->data['text_license'] = $this->language->get('text_license');
+		$this->data['text_installation'] = $this->language->get('text_installation');
+		$this->data['text_configuration'] = $this->language->get('text_configuration');
+		$this->data['text_finished'] = $this->language->get('text_finished');
+		$this->data['text_db_connection'] = $this->language->get('text_db_connection');
+		$this->data['text_db_administration'] = $this->language->get('text_db_administration');
+		$this->data['text_mysqli'] = $this->language->get('text_mysqli');
+		$this->data['text_mysql'] = $this->language->get('text_mysql');
+		$this->data['text_mpdo'] = $this->language->get('text_mpdo');
+		$this->data['text_pgsql'] = $this->language->get('text_pgsql');
+
+		$this->data['entry_db_driver'] = $this->language->get('entry_db_driver');
+		$this->data['entry_db_hostname'] = $this->language->get('entry_db_hostname');
+		$this->data['entry_db_username'] = $this->language->get('entry_db_username');
+		$this->data['entry_db_password'] = $this->language->get('entry_db_password');
+		$this->data['entry_db_database'] = $this->language->get('entry_db_database');
+		$this->data['entry_db_prefix'] = $this->language->get('entry_db_prefix');
+		$this->data['entry_username'] = $this->language->get('entry_username');
+		$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_email'] = $this->language->get('entry_email');
+
+		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_back'] = $this->language->get('button_back');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -94,22 +122,22 @@ class ControllerStep3 extends Controller {
 			$this->data['error_db_driver'] = '';
 		}
 
-		if (isset($this->error['db_host'])) {
-			$this->data['error_db_host'] = $this->error['db_host'];
+		if (isset($this->error['db_hostname'])) {
+			$this->data['error_db_hostname'] = $this->error['db_hostname'];
 		} else {
-			$this->data['error_db_host'] = '';
+			$this->data['error_db_hostname'] = '';
 		}
 
-		if (isset($this->error['db_user'])) {
-			$this->data['error_db_user'] = $this->error['db_user'];
+		if (isset($this->error['db_username'])) {
+			$this->data['error_db_username'] = $this->error['db_username'];
 		} else {
-			$this->data['error_db_user'] = '';
+			$this->data['error_db_username'] = '';
 		}
 
-		if (isset($this->error['db_name'])) {
-			$this->data['error_db_name'] = $this->error['db_name'];
+		if (isset($this->error['db_database'])) {
+			$this->data['error_db_database'] = $this->error['db_database'];
 		} else {
-			$this->data['error_db_name'] = '';
+			$this->data['error_db_database'] = '';
 		}
 
 		if (isset($this->error['db_prefix'])) {
@@ -144,16 +172,16 @@ class ControllerStep3 extends Controller {
 			$this->data['db_driver'] = 'mysqli';
 		}
 
-		if (isset($this->request->post['db_host'])) {
-			$this->data['db_host'] = $this->request->post['db_host'];
+		if (isset($this->request->post['db_hostname'])) {
+			$this->data['db_hostname'] = $this->request->post['db_hostname'];
 		} else {
-			$this->data['db_host'] = 'localhost';
+			$this->data['db_hostname'] = 'localhost';
 		}
 
-		if (isset($this->request->post['db_user'])) {
-			$this->data['db_user'] = html_entity_decode($this->request->post['db_user']);
+		if (isset($this->request->post['db_username'])) {
+			$this->data['db_username'] = html_entity_decode($this->request->post['db_username']);
 		} else {
-			$this->data['db_user'] = '';
+			$this->data['db_username'] = '';
 		}
 
 		if (isset($this->request->post['db_password'])) {
@@ -162,10 +190,10 @@ class ControllerStep3 extends Controller {
 			$this->data['db_password'] = '';
 		}
 
-		if (isset($this->request->post['db_name'])) {
-			$this->data['db_name'] = html_entity_decode($this->request->post['db_name']);
+		if (isset($this->request->post['db_database'])) {
+			$this->data['db_database'] = html_entity_decode($this->request->post['db_database']);
 		} else {
-			$this->data['db_name'] = '';
+			$this->data['db_database'] = '';
 		}
 
 		if (isset($this->request->post['db_prefix'])) {
@@ -192,6 +220,11 @@ class ControllerStep3 extends Controller {
 			$this->data['email'] = '';
 		}
 
+		$this->data['mysqli'] = extension_loaded('mysqli');
+		$this->data['mysql'] = extension_loaded('mysql');
+		$this->data['pdo'] = extension_loaded('pdo');
+		$this->data['pgsql'] = extension_loaded('pgsql');
+
 		$this->data['back'] = $this->url->link('step_2');
 
 		$this->template = 'step_3.tpl';
@@ -204,72 +237,72 @@ class ControllerStep3 extends Controller {
 	}
 
 	private function validate() {
-		if (!$this->request->post['db_host']) {
-			$this->error['db_host'] = 'Host required!';
+		if (!$this->request->post['db_hostname']) {
+			$this->error['db_hostname'] = $this->language->get('error_db_hostname');
 		}
 
-		if (!$this->request->post['db_user']) {
-			$this->error['db_user'] = 'User required!';
+		if (!$this->request->post['db_username']) {
+			$this->error['db_username'] = $this->language->get('error_db_username');
 		}
 
-		if (!$this->request->post['db_name']) {
-			$this->error['db_name'] = 'Database Name required!';
+		if (!$this->request->post['db_database']) {
+			$this->error['db_database'] = $this->language->get('error_db_database');
 		}
 
 		if ($this->request->post['db_prefix'] && preg_match('/[^a-z0-9_]/', $this->request->post['db_prefix'])) {
-			$this->error['db_prefix'] = 'DB Prefix can only contain lowercase characters in the a-z range, 0-9 and "_"!';
+			$this->error['db_prefix'] = $this->language->get('error_db_prefix');
 		}
 
 		if ($this->request->post['db_driver'] == 'mysql') {
 			if (function_exists('mysql_connect')) {
-				if (!$connection = @mysql_connect($this->request->post['db_host'], $this->request->post['db_user'], $this->request->post['db_password'])) {
-					$this->error['warning'] = 'Error: Could not connect to the database please make sure the database server, username and password is correct!';
+				if (!$connection = @mysql_connect($this->request->post['db_hostname'], $this->request->post['db_username'], $this->request->post['db_password'])) {
+					$this->error['warning'] = $this->language->get('error_db_connect');
 				} else {
-					if (!@mysql_select_db($this->request->post['db_name'], $connection)) {
-						$this->error['warning'] = 'Error: Database does not exist!';
+					if (!@mysql_select_db($this->request->post['db_database'], $connection)) {
+						$this->error['warning'] = $this->language->get('error_db_not_exist');
 					}
 
 					mysql_close($connection);
 				}
 
 			} else {
-				$this->error['db_driver'] = 'MySQL is not supported on your server! Try using MySQLi';
+				$this->error['db_driver'] = $this->language->get('error_db_mysql');
 			}
 		}
 
 		if ($this->request->post['db_driver'] == 'mysqli') {
 			if (function_exists('mysqli_connect')) {
-				$connection = new mysqli($this->request->post['db_host'], $this->request->post['db_user'], $this->request->post['db_password'], $this->request->post['db_name']);
+				$connection = new mysqli($this->request->post['db_hostname'], $this->request->post['db_username'], $this->request->post['db_password'], $this->request->post['db_database']);
 
 				if (mysqli_connect_error()) {
-					$this->error['warning'] = 'Error: Could not connect to the database please make sure the database server, username and password is correct!';
+					$this->error['warning'] = $this->language->get('error_db_connect');
 				} else {
 					$connection->close();
 				}
 
 			} else {
-				$this->error['db_driver'] = 'MySQLi is not supported on your server! Try using MySQL';
+				$this->error['db_driver'] = $this->language->get('error_db_mysqli');
 			}
 		}
 
 		if (!$this->request->post['username']) {
-			$this->error['username'] = 'Username required!';
+			$this->error['username'] = $this->language->get('error_username');
 		}
 
 		if (!$this->request->post['password']) {
-			$this->error['password'] = 'Password required!';
+			$this->error['password'] = $this->language->get('error_password');
 		}
 
 		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-			$this->error['email'] = 'Invalid E-Mail!';
+			$this->error['email'] = $this->language->get('error_email');
 		} 
 
 		if (!is_writable(DIR_OPENCART . 'config.php')) {
-			$this->error['warning'] = 'Error: Could not write to config.php please check you have set the correct permissions on: ' . DIR_OPENCART . 'config.php!';
+			$this->error['warning'] = $this->language->get('error_config') . DIR_OPENCART . 'config.php!';
 		}
 
 		if (!is_writable(DIR_OPENCART . 'admin/config.php')) {
-			$this->error['warning'] = 'Error: Could not write to config.php please check you have set the correct permissions on: ' . DIR_OPENCART . 'admin/config.php!';
+			$this->error['warning'] = $this->language->get('error_config') . DIR_OPENCART . 'admin/config.php!';
 		}
 
 		if (!$this->error) {

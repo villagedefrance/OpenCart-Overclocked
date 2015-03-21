@@ -203,11 +203,6 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 			$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 
-            if ($json && !$this->config->get('config_express_billing')) {
-                $this->response->setOutput(json_encode($json));
-                return false;
-            }
-
             if ($this->config->get('config_express_billing')) {
                 if ($customer_group) {
 					// Company ID
@@ -253,21 +248,25 @@ class ControllerCheckoutExpressRegister extends Controller {
 				if ($this->request->post['zone_id'] == '') {
 					$json['error']['zone'] = $this->language->get('error_zone');
 				}
+			}
 
-				if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-					$json['error']['password'] = $this->language->get('error_password');
-				}
+			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
+				$json['error']['password'] = $this->language->get('error_password');
+			}
 
-				if ($this->config->get('config_account_id')) {
-					$this->load->model('catalog/information');
+			if ($this->config->get('config_account_id')) {
+				$this->load->model('catalog/information');
 
-					$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
+				$information_info = $this->model_catalog_information->getInformation($this->config->get('config_account_id'));
 
-					if ($information_info && !isset($this->request->post['agree'])) {
-						$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
-					}
+				if ($information_info && !isset($this->request->post['agree'])) {
+					$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
 				}
 			}
+
+			if ($json) {
+                $this->response->setOutput(json_encode($json));
+            }
 
         } else {
 			$json = array();
