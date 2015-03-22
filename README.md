@@ -14,8 +14,8 @@ Many extra features have also been added, most of them in response to user feedb
 Main Scripts:
 - jQuery 1.11.2.
 - jQuery UI 1.11.2.
-- jQuery Flot 0.8.2.
 - CKEditor 4.4.7 Full.
+- jQuery Flot 0.8.2.
 - ...
 
 Main Features:
@@ -27,16 +27,23 @@ Main Features:
 - Auto-complete optional for Product and Category Forms.
 - Zoom Lens viewer for product images (optional).
 - Opencart favicon for Admin.
-- Cache Manager Page.
+- Cache Managers.
 - News / Blog.
 - ... and more!
 
+New in v1.6.4.0:
+- Express Checkout.
+- All Product Wall page.
+- Custom Payment labels.
+- Import/Export tables (CSV).
+- Contact us Email log.
+- Improved Installer.
+- Improved Captcha.
+- Improved Dashboard.
+- Bug fixes ...
+
 TODO:
-- Add Sitemap Generator (done).
-- Add Product to Product Offer System (done).
-- Add Multiple Store Locations (done).
-- Add Product Colors, additional images colors, filter by color (in progress ...).
-- Make the Footer content completely customisable (done).
+- Add filter product images by colour (in progress ...).
 - Add some more features ...
 
 WANT TO CONTRIBUTE?
