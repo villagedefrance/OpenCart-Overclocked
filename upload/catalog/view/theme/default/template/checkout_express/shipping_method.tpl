@@ -54,9 +54,7 @@ $(document).ready(function() {
 
 <div class="buttons">
   <div class="left">
-    <?php if ($good) { ?>
-      <input type="button" value="<?php echo $button_express_go; ?>" id="button-shipping-method" class="button" />
-    <?php } ?>
+    <input type="button" value="<?php echo $button_express_go; ?>" id="button-shipping-method" class="button" />
 	&nbsp;&nbsp;&nbsp;&nbsp;
     <a id="modify-address" onclick="$('#shipping-method .checkout-content').fadeOut(100); $('#shipping-address .checkout-content').fadeIn(500);" style="text-decoration:none;"><?php echo $text_your_address; ?></a>
   </div>

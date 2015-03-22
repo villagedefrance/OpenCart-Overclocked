@@ -342,7 +342,7 @@ class ModelUpgrade extends Model {
 		}
 
 		// Move blacklisted ip to ban ip table
-		$query = $this->db->query("SHOW TABLES LIKE " . DB_PREFIX . "customer_ip_blacklist");
+		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "customer_ip_blacklist'");
 
 		if ($query->num_rows) {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip_blacklist");
