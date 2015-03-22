@@ -290,8 +290,6 @@ class ControllerSaleOrder extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['delivery_note'] = $this->url->link('sale/order/delivery_note', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['insert'] = $this->url->link('sale/order/insert', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['delete'] = $this->url->link('sale/order/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -358,8 +356,6 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_total'] = $this->language->get('column_total');
 		$this->data['column_action'] = $this->language->get('column_action');
 
-		$this->data['button_delivery_note'] = $this->language->get('button_delivery_note');
-		$this->data['button_invoice'] = $this->language->get('button_invoice');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_filter'] = $this->language->get('button_filter');

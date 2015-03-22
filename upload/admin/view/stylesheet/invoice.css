@@ -1,3 +1,8 @@
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
 body {
 	background: #FFF;
 }
@@ -17,7 +22,7 @@ h1 {
 	margin-bottom: 15px;
 	border-bottom: 1px solid #CDDDDD;
 }
-/* general */
+/* General */
 .store {
 	width: 100%;
 	margin-bottom: 20px;
@@ -34,10 +39,24 @@ h1 {
 .heading td {
 	background: #E7EFEF;
 }
-.address, .product, .comment, .delivery {
+/* Table */
+table.address, table.product, table.comment, table.delivery {
+	width: 100%;
 	border-collapse: collapse;
+	margin-bottom: 20px;
 }
-/* address */
+.left {
+	text-align: left;
+}
+.right {
+	text-align: right;
+}
+.top-right {
+	float: right;
+	text-align: left;
+	vertical-align: top;
+}
+/* Address */
 .address {
 	width: 100%;
 	margin-bottom: 20px;
@@ -53,7 +72,7 @@ h1 {
 .address td {
 	width: 50%;
 }
-/* product */
+/* Product */
 .product {
 	width: 100%;
 	margin-bottom: 20px;
@@ -65,7 +84,7 @@ h1 {
 	border-bottom: 1px solid #CDDDDD;
 	padding: 5px;
 }
-/* comment */
+/* Comment */
 .comment {
 	width: 100%;
 	margin-bottom: 20px;
@@ -77,7 +96,7 @@ h1 {
 	border-bottom: 1px solid #CDDDDD;
 	padding: 5px;
 }
-/* delivery */
+/* Delivery */
 .delivery {
 	width: 100%;
 	margin-bottom: 20px;

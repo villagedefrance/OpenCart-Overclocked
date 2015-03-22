@@ -4,6 +4,8 @@ class ControllerProductProductWall extends Controller {
 	public function index() {
 		$this->language->load('product/product_wall');
 
+		$this->document->setTitle($this->language->get('heading_title'));
+
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
 

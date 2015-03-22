@@ -1,10 +1,9 @@
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="<?php echo $direction; ?>" lang="<?php echo $language; ?>" xml:lang="<?php echo $language; ?>">
 <head>
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
-<link rel="stylesheet" type="text/css" href="view/stylesheet/invoice.css" />
+<link rel="stylesheet" type="text/css" href="view/stylesheet/invoice.css" media="screen" />
 </head>
 <body>
 <?php foreach ($orders as $order) { ?>
@@ -25,7 +24,7 @@
         <?php echo $order['store_email']; ?><br />
         <?php echo $order['store_url']; ?>
       </td>
-      <td align="right" valign="top">
+      <td class="top-right">
         <table>
           <tr>
             <td><b><?php echo $text_date_added; ?></b></td>
@@ -82,9 +81,9 @@
     <tr class="heading">
       <td><b><?php echo $column_product; ?></b></td>
       <td><b><?php echo $column_model; ?></b></td>
-      <td align="right"><b><?php echo $column_quantity; ?></b></td>
-      <td align="right"><b><?php echo $column_price; ?></b></td>
-      <td align="right"><b><?php echo $column_total; ?></b></td>
+      <td class="right"><b><?php echo $column_quantity; ?></b></td>
+      <td class="right"><b><?php echo $column_price; ?></b></td>
+      <td class="right"><b><?php echo $column_total; ?></b></td>
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
     <tr>
@@ -95,24 +94,24 @@
         <?php } ?>
       </td>
       <td><?php echo $product['model']; ?></td>
-      <td align="right"><?php echo $product['quantity']; ?></td>
-      <td align="right"><?php echo $product['price']; ?></td>
-      <td align="right"><?php echo $product['total']; ?></td>
+      <td class="right"><?php echo $product['quantity']; ?></td>
+      <td class="right"><?php echo $product['price']; ?></td>
+      <td class="right"><?php echo $product['total']; ?></td>
     </tr>
     <?php } ?>
     <?php foreach ($order['voucher'] as $voucher) { ?>
     <tr>
-      <td align="left"><?php echo $voucher['description']; ?></td>
-      <td align="left"></td>
-      <td align="right">1</td>
-      <td align="right"><?php echo $voucher['amount']; ?></td>
-      <td align="right"><?php echo $voucher['amount']; ?></td>
+      <td class="left"><?php echo $voucher['description']; ?></td>
+      <td class="left"></td>
+      <td class="right">1</td>
+      <td class="right"><?php echo $voucher['amount']; ?></td>
+      <td class="right"><?php echo $voucher['amount']; ?></td>
     </tr>
     <?php } ?>
     <?php foreach ($order['total'] as $total) { ?>
     <tr>
-      <td align="right" colspan="4"><b><?php echo $total['title']; ?>:</b></td>
-      <td align="right"><?php echo $total['text']; ?></td>
+      <td class="right" colspan="4"><b><?php echo $total['title']; ?>:</b></td>
+      <td class="right"><?php echo $total['text']; ?></td>
     </tr>
     <?php } ?>
   </table>

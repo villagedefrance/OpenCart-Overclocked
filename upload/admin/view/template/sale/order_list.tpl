@@ -15,8 +15,6 @@
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('#form').attr('action', '<?php echo $delivery_note; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_delivery_note; ?></a>
-        <a onclick="$('#form').attr('action', '<?php echo $invoice; ?>'); $('#form').attr('target', '_blank'); $('#form').submit();" class="button"><?php echo $button_invoice; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').attr('action', '<?php echo $delete; ?>'); $('#form').attr('target', '_self'); $('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
