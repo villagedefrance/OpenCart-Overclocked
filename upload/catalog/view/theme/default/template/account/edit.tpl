@@ -45,7 +45,7 @@
           <span class="error"><?php echo $error_telephone; ?></span>
         <?php } ?></td>
       </tr>
-      <?php if (!$hide_fax) { ?>
+      <?php if (!$hide_fax || $fax > 0) { ?>
       <tr>
         <td><?php echo $entry_fax; ?></td>
         <td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
