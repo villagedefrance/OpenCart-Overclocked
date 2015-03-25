@@ -1,4 +1,4 @@
-<?php $nodata = (($this->config->get('config_express_password') == 2) && !$this->config->get('config_express_phone') && !$this->config->get('config_express_name') && !$this->config->get('config_express_newsletter')); ?>
+<?php $nodata = (!$this->config->get('config_express_name') && !$this->config->get('config_express_phone') && ($this->config->get('config_express_password') == 2)); ?>
 <div class="left" <?php echo ($nodata) ? 'style="display:none;"' : ''; ?>>
   <h2><?php echo $text_your_details; ?></h2>
   <span class="required">* </span><?php echo $entry_email; ?><br />
@@ -29,14 +29,11 @@
   <?php if ($this->config->get('config_express_newsletter') == 2) { ?>
     <input type="checkbox" name="newsletter" value="1" checked="true" id="newsletter" />
     <label for="newsletter"><?php echo $entry_express_newsletter; ?></label>
-  <?php } elseif ($this->config->get('config_express_newsletter') == 1) { ?>
-    <input type="checkbox" name="newsletter" value="1" checked="true" id="newsletter" />
-    <label for="newsletter"><?php echo $entry_express_newsletter; ?></label>
   <?php } ?>
   <br/>
   <br/>
 </div>
-<div class="<?php echo ($nodata) ? 'left' : 'right'; ?>" <?php echo ($this->config->get('config_express_billing') == 0) ? 'style="display:none;"' : ''; ?>>
+<div class="<?php echo ($nodata) ? 'left' : 'right'; ?>" <?php echo (!$this->config->get('config_express_billing')) ? 'style="display:none;"' : ''; ?>>
   <h2><?php echo $text_your_address; ?></h2>
   <div style="display:<?php echo (count($customer_groups) > 1) ? 'table-row' : 'none'; ?>;">
     <?php echo $entry_customer_group; ?><br />
@@ -54,9 +51,9 @@
     <br />
   </div>
   <div id="company_link" style="margin-bottom:5px;">
-    <a onclick="$('#company_row').show(500);$(this).hide(100);"><?php echo $text_express_company_info; ?></a>
+    <a onclick="$('#company-row').show(500);$(this).hide(100);"><?php echo $text_express_company_info; ?></a>
   </div>
-  <div id="company_row" style="display:none;">
+  <div id="company-row" style="display:none;">
     <?php echo $entry_company; ?><br />
     <input type="text" name="company" value="" class="large-field" />
     <br />
@@ -92,7 +89,7 @@
   <br />
   <br />
   <span class="required">* </span><?php echo $entry_zone; ?><br />
-  <select name="zone_id" id="zone" onchange="city = $('#zone option:selected').text();
+  <select name="zone_id" id="zone" onchange="city=$('#zone option:selected').text();
     if (!$('#zone option:selected').val()) { city='';
     <?php if ($this->config->get('config_express_autofill')) { ?>
       document.getElementsByName('city')[0].value=city;
@@ -156,8 +153,8 @@ $('#payment-address input[name=\'customer_group_id\']:checked').live('change', f
 
         if (customer_group[this.value]['company_id_required'] == '1') {
             $('#company-id-required').show(500);
-            $('#company_row').show(500);
-			$('#company_link').hide(100);
+            $('#company-row').show(500);
+			$('#company-link').hide(100);
         } else {
             $('#company-id-required').hide(100);
         }
@@ -231,10 +228,6 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 });
 
 $('#payment-address select[name=\'country_id\']').trigger('change');
-
-<?php if (!$this->config->get('config_express_name') && !$this->config->get('config_express_billing') && !$this->config->get('config_express_phone') && ($this->config->get('config_express_password') == 2)) { ?>
-	button-register();
-<?php } ?>
 //--></script>
 
 <script type="text/javascript"><!--

@@ -135,7 +135,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		// Validate if customer is already logged out.
 		if ($this->customer->isLogged()) {
-			$json['redirect'] = $this->url->link('checkout_express/checkout', '', 'SSL');
+			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
 
 		// Validate cart has products and has stock.
@@ -157,7 +157,6 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 			if ($product['minimum'] > $product_total) {
 				$json['redirect'] = $this->url->link('checkout/cart');
-
 				break;
 			}
 		}
@@ -190,6 +189,10 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 			if ($this->model_checkout_checkout_express->getTotalCustomersByEmail($this->request->post['email'])) {
 				$json['error']['warning'] = $this->language->get('error_exists');
+			}
+
+			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
+				$json['error']['password'] = $this->language->get('error_password');
 			}
 
 			// Customer Group
@@ -250,10 +253,6 @@ class ControllerCheckoutExpressRegister extends Controller {
 				}
 			}
 
-			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
-				$json['error']['password'] = $this->language->get('error_password');
-			}
-
 			if ($this->config->get('config_account_id')) {
 				$this->load->model('catalog/information');
 
@@ -263,10 +262,6 @@ class ControllerCheckoutExpressRegister extends Controller {
 					$json['error']['warning'] = sprintf($this->language->get('error_agree'), $information_info['title']);
 				}
 			}
-
-			if ($json) {
-                $this->response->setOutput(json_encode($json));
-            }
 
         } else {
 			$json = array();
@@ -279,14 +274,18 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 			$this->load->model('account/customer_group');
 
-			$customer_group_info = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
+			$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 
-			// Always approved
-			if ($customer_group_info['approval'] || $customer_group_info['approval'] != 0) {
-				$customer_group_info['approval'] = 0;
+			if (!isset($customer_group)) { 
+				$customer_group = 0;
 			}
 
-			if (!$customer_group_info['approval']) {
+			// Always approved
+			if ($customer_group['approval'] || $customer_group['approval'] != 0) {
+				$customer_group['approval'] = 0;
+			}
+
+			if (!$customer_group['approval']) {
 				$this->customer->login($this->request->post['email'], $this->request->post['password']);
 
                 if ($this->config->get('config_express_billing')) {
