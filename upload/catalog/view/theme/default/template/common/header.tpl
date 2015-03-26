@@ -2,11 +2,10 @@
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <head>
 <meta charset="UTF-8" />
-<title><?php echo $title; ?></title>
-<base href="<?php echo $base; ?>" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="index, follow" />
 <meta name="generator" content="<?php echo $version; ?>" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <?php if ($description) { ?>
 <meta name="description" content="<?php echo $description; ?>" />
 <?php } ?>
@@ -15,6 +14,8 @@
 <?php } else { ?>
 <meta name="keywords" content="<?php echo $text_home; ?>" />
 <?php } ?>
+<title><?php echo $title; ?></title>
+<base href="<?php echo $base; ?>" />
 <?php if ($icon) { ?>
 <link href="<?php echo $icon; ?>" rel="icon" />
 <?php } ?>

@@ -2,15 +2,17 @@
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <head>
 <meta charset="UTF-8" />
-<title><?php echo $title; ?></title>
-<base href="<?php echo $base; ?>" />
-<link rel="icon" type="image/png" href="favicon.png" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php if ($description) { ?>
 <meta name="description" content="<?php echo $description; ?>" />
 <?php } ?>
 <?php if ($keywords) { ?>
 <meta name="keywords" content="<?php echo $keywords; ?>" />
 <?php } ?>
+<title><?php echo $title; ?></title>
+<base href="<?php echo $base; ?>" />
+<link rel="icon" type="image/png" href="favicon.png" />
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>

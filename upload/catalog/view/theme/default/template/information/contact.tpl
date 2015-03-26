@@ -69,7 +69,7 @@
 		  <div id="captcha-wrap">
             <div class="captcha-box">
               <div class="captcha-view">
-                <img src="index.php?route=information/contact/captcha" alt="" id="captcha_image" />
+                <img src="index.php?route=information/contact/captcha" alt="" id="captcha-image" />
               </div>
             </div>
             <div class="captcha-text">
@@ -98,8 +98,8 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#captcha_image').load(function(event) { 
-		$(event.target).fadeIn(800);
+	$('#captcha-image').load(function(event) { 
+		$(event.target).fadeIn(100);
 	});
 });
 //--></script>

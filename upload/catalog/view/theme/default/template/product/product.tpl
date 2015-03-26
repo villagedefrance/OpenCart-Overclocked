@@ -393,7 +393,7 @@
 		<div id="captcha-wrap">
           <div class="captcha-box">
             <div class="captcha-view">
-              <img src="index.php?route=product/product/captcha" alt="" id="captcha_image" />
+              <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
             </div>
           </div>
           <div class="captcha-text">
@@ -547,7 +547,7 @@ $('#button-cart').bind('click', function() {
 
 				$('#cart-total').html(json['total']);
 
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				$('html, body').animate({ scrollTop:0 }, 800);
 			}
 		}
 	});
@@ -591,6 +591,14 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 <?php } ?>
 <?php } ?>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#captcha-image').load(function(event) { 
+		$(event.target).fadeIn(100);
+	});
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $('#review .pagination a').live('click', function() {
@@ -641,14 +649,6 @@ $('#button-review').bind('click', function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#tabs a').tabs();
-});
-//--></script>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#captcha_image').load(function(event) { 
-		$(event.target).fadeIn(800);
-	});
 });
 //--></script>
 
