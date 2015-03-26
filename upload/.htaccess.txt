@@ -6,20 +6,55 @@
 
 Options +FollowSymlinks
 
-# Prevent Directoy listing 
+# Prevent Directory listing.
 Options -Indexes
 
-# Prevent Direct Access to files
-<FilesMatch "\.(tpl|ini|log)">
- Order deny,allow
- Deny from all
+# Prevent Apache from returning a 404 error as the result of a rewrite when the directory with the same name does not exist.
+Options -MultiViews
+
+# Use UTF-8 encoding for anything served as `text/html` or `text/plain`.
+AddDefaultCharset utf-8
+
+# Force UTF-8 for certain file formats.
+<IfModule mod_mime.c>
+  AddCharset utf-8 .atom .css .js .json .jsonld .rss .vtt .webapp .xml
+</IfModule>
+
+# Prevent Direct Access to files.
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|in[ci]|ini|tpl|log|psd|sh|sql|sw[op])|~)$">
+# Apache < 2.3
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+  Satisfy All
+</IfModule>
+# Apache ≥ 2.3
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
 </FilesMatch>
 
-# Apache Gzip for js and css
+# Apache Gzip for js and css.
 <IfModule mod_deflate.c>
 <FilesMatch "\.(js|css)$">
- SetOutputFilter DEFLATE
+  SetOutputFilter DEFLATE
 </FilesMatch>
+</IfModule>
+
+# Force Internet Explorer to render pages in the highest available mode.
+<IfModule mod_headers.c>
+  Header set X-UA-Compatible "IE=edge"
+  # mod_headers cannot match based on the content-type, however this header should be sent only for HTML pages and not for the other resources.
+  <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    Header unset X-UA-Compatible
+  </FilesMatch>
+</IfModule>
+
+# Prevent some browsers from MIME-sniffing the response.
+# This reduces exposure to drive-by download attacks and cross-origin data leaks, and should be left uncommented,
+# especially if the web server is serving user-uploaded content or content that could potentially be treated as executable by the browser.
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
 </IfModule>
 
 # SEO URL Settings
