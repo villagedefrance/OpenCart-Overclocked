@@ -34,14 +34,7 @@ AddDefaultCharset utf-8
 </IfModule>
 </FilesMatch>
 
-# Apache Gzip for js and css.
-<IfModule mod_deflate.c>
-<FilesMatch "\.(js|css)$">
-  SetOutputFilter DEFLATE
-</FilesMatch>
-</IfModule>
-
-# Force Internet Explorer to render pages in the highest available mode.
+# Force IE to render pages in the highest available mode.
 <IfModule mod_headers.c>
   Header set X-UA-Compatible "IE=edge"
   # mod_headers cannot match based on the content-type, however this header should be sent only for HTML pages and not for the other resources.
@@ -55,6 +48,74 @@ AddDefaultCharset utf-8
 # especially if the web server is serving user-uploaded content or content that could potentially be treated as executable by the browser.
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Remove `ETags` as resources are sent with far-future expires headers.
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+
+# `FileETag None` doesn't work in all cases.
+FileETag None
+
+# Remove `Last-Modified` from headers.
+<ifModule mod_headers.c>
+  Header unset Last-Modified
+</ifModule>
+
+# Enable Apache Gzip.
+<ifModule mod_gzip.c>
+  mod_gzip_on Yes
+  mod_gzip_dechunk Yes
+  mod_gzip_item_include file .(html?|txt|css|js|php|pl)$
+  mod_gzip_item_include handler ^cgi-script$
+  mod_gzip_item_include mime ^text/.*
+  mod_gzip_item_include mime ^application/x-javascript.*
+  mod_gzip_item_exclude mime ^image/.*
+  mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+
+# Enable Compress, if Apache Gzip doesn't work.
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+   
+<IfModule mod_deflate.c>
+<FilesMatch "\.(txt|css|js|php|pl)$">
+  SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+
+# Serve resources with far-future expires headers.
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresDefault                          "access plus 1 month"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/json          "access plus 0 seconds"
+  ExpiresByType application/ld+json       "access plus 0 seconds"
+  ExpiresByType application/xml           "access plus 0 seconds"
+  ExpiresByType text/xml                  "access plus 0 seconds"
+  ExpiresByType image/x-icon              "access plus 1 week"
+  ExpiresByType text/x-component          "access plus 1 month"
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType video/mp4                 "access plus 1 month"
+  ExpiresByType video/ogg                 "access plus 1 month"
+  ExpiresByType video/webm                "access plus 1 month"
+  ExpiresByType application/atom+xml      "access plus 1 hour"
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+  ExpiresByType application/x-font-ttf    "access plus 1 month"
+  ExpiresByType font/opentype             "access plus 1 month"
 </IfModule>
 
 # SEO URL Settings
