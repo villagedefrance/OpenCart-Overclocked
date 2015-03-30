@@ -712,11 +712,11 @@ class ControllerAccountReturn extends Controller {
 	public function captcha() {
 		$this->load->library('captcha');
 
+		$font = $this->config->get('config_captcha_font');
+
 		$captcha = new Captcha();
 
 		$this->session->data['captcha'] = $captcha->getCode();
-
-		$font = $this->config->get('config_captcha_font');
 
 		$captcha->showImage($font);
 	}

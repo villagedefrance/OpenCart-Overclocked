@@ -593,10 +593,8 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 
 <script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#captcha-image').load(function(event) { 
-		$(event.target).fadeIn(100);
-	});
+$('#captcha-image').load(function(event) { 
+	$(event.target).fadeIn(100);
 });
 //--></script>
 
