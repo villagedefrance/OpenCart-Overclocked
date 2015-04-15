@@ -101,7 +101,7 @@ class ModelTotalCoupon extends Model {
 
 		$this->load->model('checkout/coupon');
 
-		$coupon_info = $this->model_checkout_coupon->getCoupon($code);
+		$coupon_info = $this->model_checkout_coupon->getCoupon($code, 1);
 
 		if ($coupon_info) {
 			$this->model_checkout_coupon->redeem($coupon_info['coupon_id'], $order_info['order_id'], $order_info['customer_id'], $order_total['value']);

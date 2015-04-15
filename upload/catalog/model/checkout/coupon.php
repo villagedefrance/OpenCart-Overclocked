@@ -1,7 +1,7 @@
 <?php
 class ModelCheckoutCoupon extends Model {
 
-	public function getCoupon($code) {
+	public function getCoupon($code, $noverify = 0) {
 		$status = true;
 
 		$coupon_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon WHERE code = '" . $this->db->escape($code) . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
@@ -75,7 +75,7 @@ class ModelCheckoutCoupon extends Model {
 			$status = false;
 		}
 
-		if ($status) {
+		if ($status || $noverify) {
 			return array(
 				'coupon_id'     	=> $coupon_query->row['coupon_id'],
 				'code'          		=> $coupon_query->row['code'],
