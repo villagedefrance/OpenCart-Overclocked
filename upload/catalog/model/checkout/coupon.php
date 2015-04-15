@@ -1,31 +1,37 @@
 <?php
 class ModelCheckoutCoupon extends Model {
 
-	public function getCoupon($code, $noverify = 0) {
+	public function getCoupon($code, $limits = true, $verify = true) {
 		$status = true;
 
-		$coupon_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon WHERE code = '" . $this->db->escape($code) . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+		if ($limits && $verify) {
+ 			$coupon_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon WHERE code = '" . $this->db->escape($code) . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) AND status = '1'");
+ 		} else {
+ 			$coupon_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "coupon WHERE code = '" . $this->db->escape($code) . "' AND status = '1'");
+		}
 
 		if ($coupon_query->num_rows) {
-			if ($coupon_query->row['total'] >= $this->cart->getSubTotal()) {
-				$status = false;
-			}
-
-			$coupon_history_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "coupon_history ch WHERE ch.coupon_id = '" . (int)$coupon_query->row['coupon_id'] . "'");
-
-			if ($coupon_query->row['uses_total'] > 0 && ($coupon_history_query->row['total'] >= $coupon_query->row['uses_total'])) {
-				$status = false;
-			}
-
-			if ($coupon_query->row['logged'] && !$this->customer->getId()) {
-				$status = false;
-			}
-
-			if ($this->customer->getId()) {
-				$coupon_history_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "coupon_history ch WHERE ch.coupon_id = '" . (int)$coupon_query->row['coupon_id'] . "' AND ch.customer_id = '" . (int)$this->customer->getId() . "'");
-
-				if ($coupon_query->row['uses_customer'] > 0 && ($coupon_history_query->row['total'] >= $coupon_query->row['uses_customer'])) {
+			if ($limits && $verify) {
+				if ($coupon_query->row['total'] > $this->cart->getSubTotal()) {
 					$status = false;
+				}
+
+				$coupon_history_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "coupon_history ch WHERE ch.coupon_id = '" . (int)$coupon_query->row['coupon_id'] . "'");
+
+				if ($coupon_query->row['uses_total'] > 0 && ($coupon_history_query->row['total'] >= $coupon_query->row['uses_total'])) {
+					$status = false;
+				}
+
+				if ($coupon_query->row['logged'] && !$this->customer->getId()) {
+					$status = false;
+				}
+
+				if ($this->customer->getId()) {
+					$coupon_history_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "coupon_history ch WHERE ch.coupon_id = '" . (int)$coupon_query->row['coupon_id'] . "' AND ch.customer_id = '" . (int)$this->customer->getId() . "'");
+
+					if ($coupon_query->row['uses_customer'] > 0 && ($coupon_history_query->row['total'] >= $coupon_query->row['uses_customer'])) {
+						$status = false;
+					}
 				}
 			}
 
@@ -66,7 +72,7 @@ class ModelCheckoutCoupon extends Model {
 					}
 				}
 
-				if (!$product_data) {
+				if (!$product_data && $verify) {
 					$status = false;
 				}
 			}
@@ -75,7 +81,7 @@ class ModelCheckoutCoupon extends Model {
 			$status = false;
 		}
 
-		if ($status || $noverify) {
+		if ($status) {
 			return array(
 				'coupon_id'     	=> $coupon_query->row['coupon_id'],
 				'code'          		=> $coupon_query->row['code'],
