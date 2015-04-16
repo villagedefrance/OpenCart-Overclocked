@@ -171,7 +171,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
 				}
 
 			} else {
-
 				if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
 					$json['error']['firstname'] = $this->language->get('error_firstname');
 				}
@@ -217,7 +216,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
 					// VAT Validation
 					$this->load->helper('vat');
 
-					if ($this->config->get('config_vat') && !empty($this->request->post['tax_id']) && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
+					if ($this->config->get('config_vat') && isset($this->request->post['tax_id']) && $this->request->post['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
 						$json['error']['tax_id'] = $this->language->get('error_vat');
 					}
 				}

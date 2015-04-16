@@ -16,7 +16,7 @@ class ControllerModuleCategory extends Controller {
 		}
 
 		// Categories
-		if (isset($this->request->get['path'])) {
+		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$parts = explode('_', (string)$this->request->get['path']);
 		} else {
 			$parts = array();
@@ -42,7 +42,7 @@ class ControllerModuleCategory extends Controller {
 		$categories = $this->model_catalog_category->getCategories(0);
 
 		foreach ($categories as $category) {
-			$total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id']));
+			$total = $this->model_catalog_product->getTotalProducts(array('filter_category_id' => $category['category_id'], 'filter_sub_category' => true));
 
 			$children_data = array();
 
@@ -55,8 +55,6 @@ class ControllerModuleCategory extends Controller {
 				);
 
 				$product_total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts($data) : 0;
-
-				$total += $product_total;
 
 				$children_data[] = array(
 					'category_id' 	=> $child['category_id'],

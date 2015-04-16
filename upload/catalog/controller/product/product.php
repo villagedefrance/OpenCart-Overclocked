@@ -18,7 +18,21 @@ class ControllerProductProduct extends Controller {
 
 		$this->load->model('catalog/category');
 
-		if (isset($this->request->get['path'])) {
+		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
+			$url = '';
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
 			$path = '';
 
 			$parts = explode('_', (string)$this->request->get['path']);
@@ -37,7 +51,7 @@ class ControllerProductProduct extends Controller {
 				if ($category_info) {
 					$this->data['breadcrumbs'][] = array(
 						'text'		=> $category_info['name'],
-						'href'		=> $this->url->link('product/category', 'path=' . $path),
+						'href'		=> $this->url->link('product/category', 'path=' . $path . $url),
 						'separator' => $this->language->get('text_separator')
 					);
 				}
@@ -244,7 +258,6 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_stock'] = $this->language->get('text_stock');
 			$this->data['text_price'] = $this->language->get('text_price');
 			$this->data['text_tax'] = $this->language->get('text_tax');
-			$this->data['text_discount'] = $this->language->get('text_discount');
 			$this->data['text_option'] = $this->language->get('text_option');
 			$this->data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
 			$this->data['text_write'] = $this->language->get('text_write');
@@ -383,6 +396,8 @@ class ControllerProductProduct extends Controller {
 						'color'	=> $color['color']
 					);
 				}
+			} else {
+				$this->data['colors'] = false;
 			}
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -707,8 +722,6 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
-
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
 
@@ -728,6 +741,8 @@ class ControllerProductProduct extends Controller {
 				'common/footer',
 				'common/header'
 			);
+
+			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
 
 			$this->response->setOutput($this->render());
 		}
@@ -855,12 +870,12 @@ class ControllerProductProduct extends Controller {
 
 		$json = array();
 
-		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
+		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->config->get('config_review_status')) {
+			if (empty($this->request->post['name']) || (utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
 				$json['error'] = $this->language->get('error_name');
 			}
 
-			if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
+			if (empty($this->request->post['text']) || (utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
 				$json['error'] = $this->language->get('error_text');
 			}
 

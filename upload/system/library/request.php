@@ -26,6 +26,7 @@ class Request {
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
 				unset($data[$key]);
+
 				$data[$this->clean($key)] = $this->clean($value);
 			}
 		} else {
@@ -33,6 +34,14 @@ class Request {
 		}
 
 		return $data;
+	}
+
+	public function isSecure() {
+		if (isset($this->server['HTTPS']) && (($this->server['HTTPS'] == 'on') || ($this->server['HTTPS'] == '1'))) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

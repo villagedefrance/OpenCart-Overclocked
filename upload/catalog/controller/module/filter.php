@@ -3,7 +3,7 @@ class ControllerModuleFilter extends Controller {
 	private $_name = 'filter';
 
 	protected function index($setting) {
-		if (isset($this->request->get['path'])) {
+		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$parts = explode('_', (string)$this->request->get['path']);
 		} else {
 			$parts = array();

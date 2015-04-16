@@ -540,15 +540,23 @@
           </tr>
           <tr>
             <td class="left"><?php echo $entry_coupon; ?></td>
-            <td class="left"><input type="text" name="coupon" value="" /></td>
+            <td class="left"><input type="text" name="coupon" value="<?php echo $coupon; ?>" /></td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_voucher; ?></td>
-            <td class="left"><input type="text" name="voucher" value="" /></td>
+            <td class="left">
+              <input type="text" name="voucher" value="<?php echo $voucher; ?>" />
+              <input type="hidden" name="current_voucher" value="<?php echo $current_voucher; ?>" />
+              <input type="hidden" name="current_voucher_value" value="<?php echo $current_voucher_value; ?>" />
+            </td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_reward; ?></td>
-            <td class="left"><input type="text" name="reward" value="" /></td>
+            <td class="left">
+              <input type="text" name="reward" value="<?php echo $reward; ?>" />
+              <input type="hidden" name="current_reward" value="<?php echo $current_reward; ?>" />
+              <input type="hidden" name="current_credit" value="<?php echo $current_credit; ?>" />
+            </td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_order_status; ?></td>
@@ -638,7 +646,7 @@ $('input[name=\'customer\']').catcomplete({
 
 		html = '<option value="0"><?php echo $text_none; ?></option>';
 
-		for (i in  ui.item['address']) {
+		for (i in ui.item['address']) {
 			html += '<option value="' + ui.item['address'][i]['address_id'] + '">' + ui.item['address'][i]['firstname'] + ' ' + ui.item['address'][i]['lastname'] + ', ' + ui.item['address'][i]['address_1'] + ', ' + ui.item['address'][i]['city'] + ', ' + ui.item['address'][i]['country'] + '</option>';
 		}
 
@@ -657,7 +665,7 @@ $('input[name=\'customer\']').catcomplete({
    	}
 });
 
-$('select[id=\'customer_group_id\']').live('change', function() {
+$('select[id=\'customer_group_id\']').bind('change', function() {
 	$('input[name=\'customer_group_id\']').attr('value', this.value);
 
 	var customer_group = [];
@@ -1444,7 +1452,7 @@ $('#button-product, #button-voucher, #button-update').live('click', function() {
 				$('#product').html(html);
 
 			} else {
-				html  = '</tr>';
+				html  = '<tr>';
 				html += '  <td colspan="6" class="center"><?php echo $text_no_results; ?></td>';
 				html += '</tr>';
 
@@ -1487,7 +1495,7 @@ $('#button-product, #button-voucher, #button-update').live('click', function() {
 				$('#voucher').html(html);
 
 			} else {
-				html  = '</tr>';
+				html  = '<tr>';
 				html += '  <td colspan="6" class="center"><?php echo $text_no_results; ?></td>';
 				html += '</tr>';
 
@@ -1559,7 +1567,7 @@ $('#button-product, #button-voucher, #button-update').live('click', function() {
 				$('#total').html(html);
 
 			} else {
-				html  = '</tr>';
+				html  = '<tr>';
 				html += '  <td colspan="5" class="center"><?php echo $text_no_results; ?></td>';
 				html += '</tr>';
 

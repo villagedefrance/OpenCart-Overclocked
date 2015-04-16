@@ -3,6 +3,10 @@ class ControllerAccountVoucher extends Controller {
 	private $error = array();
 
 	public function index() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/voucher', '', 'SSL'), 301);
+		}
+
 		$this->language->load('account/voucher');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -155,7 +159,7 @@ class ControllerAccountVoucher extends Controller {
 		if (isset($this->request->post['amount'])) {
 			$this->data['amount'] = $this->request->post['amount'];
 		} else {
-			$this->data['amount'] = $this->currency->format(25, $this->config->get('config_currency'), false, false);
+			$this->data['amount'] = $this->currency->format($this->config->get('config_voucher_min'), '', '', false);
 		}
 
 		if (isset($this->request->post['agree'])) {
@@ -245,7 +249,7 @@ class ControllerAccountVoucher extends Controller {
 			$this->error['to_name'] = $this->language->get('error_to_name');
 		}
 
-		if ((utf8_strlen($this->request->post['to_email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['to_email'])) {
+		if ((utf8_strlen($this->request->post['to_email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['to_email'])) {
 			$this->error['to_email'] = $this->language->get('error_email');
 		}
 
@@ -253,7 +257,7 @@ class ControllerAccountVoucher extends Controller {
 			$this->error['from_name'] = $this->language->get('error_from_name');
 		}
 
-		if ((utf8_strlen($this->request->post['from_email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['from_email'])) {
+		if ((utf8_strlen($this->request->post['from_email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['from_email'])) {
 			$this->error['from_email'] = $this->language->get('error_email');
 		}
 

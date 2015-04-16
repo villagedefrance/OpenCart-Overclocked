@@ -3,6 +3,10 @@ class ControllerCheckoutExpressCheckout extends Controller {
     private $error = array();
 
 	public function index() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('checkout/checkout_express', '', 'SSL'));
+		}
+
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 	  		$this->redirect($this->url->link('checkout/cart'));

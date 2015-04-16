@@ -223,9 +223,9 @@ class Cart {
 					}
 
 					// Stock
-					if (!$product_query->row['quantity'] || ($product_query->row['quantity'] < $quantity)) {
-						$stock = false;
-					}
+					if (!$product_query->row['quantity'] || ($product_query->row['quantity'] < $quantity) || ($product_query->row['quantity'] < $discount_quantity)) {
+ 						$stock = false;
+ 					}
 
 					$recurring = false;
 					$recurring_frequency = 0;

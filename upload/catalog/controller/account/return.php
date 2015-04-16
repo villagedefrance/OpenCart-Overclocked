@@ -298,8 +298,6 @@ class ControllerAccountReturn extends Controller {
 
 			$this->data['continue'] = $this->url->link('account/return', '', 'SSL');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';
 			} else {
@@ -317,11 +315,17 @@ class ControllerAccountReturn extends Controller {
 				'common/header'
 			);
 
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
 			$this->response->setOutput($this->render());
 		}
 	}
 
 	public function insert() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/return/insert', '', 'SSL'), 301);
+		}
+
 		$this->language->load('account/return');
 
 		$this->load->model('account/return');
@@ -603,6 +607,10 @@ class ControllerAccountReturn extends Controller {
 	}
 
 	public function success() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/return/success', '', 'SSL'));
+		}
+
 		$this->language->load('account/return');
 
 		$this->document->setTitle($this->language->get('heading_title'));

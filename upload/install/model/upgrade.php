@@ -166,7 +166,8 @@ class ModelUpgrade extends Model {
 
 				// Charset
 				if (isset($table['option']['CHARSET']) && isset($table['option']['COLLATE'])) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET `" . $table['option']['CHARSET'] . "` COLLATE `" . $table['option']['COLLATE'] . "`");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` CONVERT TO CHARACTER SET `" . $table['option']['CHARSET'] . "` COLLATE `" . $table['option']['COLLATE'] . "`");
+ 					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET `" . $table['option']['CHARSET'] . "` COLLATE `" . $table['option']['COLLATE'] . "`");
 				}
 
 				$i = 0;
@@ -304,7 +305,7 @@ class ModelUpgrade extends Model {
 			}
 		}
 
-		// Update any additional table -----------
+		// Update any additional table ----->
 		// Settings
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
 
@@ -326,7 +327,7 @@ class ModelUpgrade extends Model {
 		}
 
 		// Update the customer group table
-		if (in_array('name', $table_old_data[DB_PREFIX . 'customer_group'])) {
+		if (isset($table_old_data[DB_PREFIX . 'customer_group']) && in_array('name', $table_old_data[DB_PREFIX . 'customer_group'])) {
 			// Customer Group 'name' field moved to new customer_group_description table. Need to loop through and move over.
 			$customer_group_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_group");
 
@@ -351,8 +352,13 @@ class ModelUpgrade extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "customer_ban_ip SET ip = '" . $this->db->escape($result['ip']) . "'");
 			}
 
-			// drop unused table
+			// Drop unused table
 			$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "customer_ip_blacklist");
+		}
+
+		// Product tag table to product description tag
+		if (isset($table_old_data[DB_PREFIX . 'product_tag']) && !in_array('tag', $table_old_data[DB_PREFIX . 'product_description'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product_description pd SET tag = (SELECT GROUP_CONCAT(DISTINCT pt.tag ORDER BY pt.product_tag_id) FROM " . DB_PREFIX . "product_tag pt WHERE pd.product_id = pt.product_id AND pd.language_id = pt.language_id GROUP BY pt.product_id, pt.language_id)");
 		}
 
 		// Sort the categories to take advantage of the nested set model

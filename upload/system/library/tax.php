@@ -28,21 +28,21 @@ final class Tax {
 	public function setShippingAddress($country_id, $zone_id) {
 		$this->shipping_address = array(
 			'country_id'	=> $country_id,
-			'zone_id'    	=> $zone_id
+			'zone_id'		=> $zone_id
 		);
 	}
 
 	public function setPaymentAddress($country_id, $zone_id) {
 		$this->payment_address = array(
-			'country_id' => $country_id,
-			'zone_id'    	=> $zone_id
+			'country_id'	=> $country_id,
+			'zone_id'		=> $zone_id
 		);
 	}
 
 	public function setStoreAddress($country_id, $zone_id) {
 		$this->store_address = array(
-			'country_id' => $country_id,
-			'zone_id'    	=> $zone_id
+			'country_id'	=> $country_id,
+			'zone_id'		=> $zone_id
 		);
 	}
 
@@ -83,6 +83,8 @@ final class Tax {
 
 		if ($this->customer->isLogged()) {
 			$customer_group_id = $this->customer->getCustomerGroupId();
+		} elseif (isset($this->session->data['guest']['customer_group_id'])) {
+			$customer_group_id = $this->session->data['guest']['customer_group_id'];
 		} else {
 			$customer_group_id = $this->config->get('config_customer_group_id');
 		}

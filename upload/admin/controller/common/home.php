@@ -497,6 +497,12 @@ class ControllerCommonHome extends Controller {
 	}
 
 	public function login() {
+		if ($this->config->get('config_secure') && !$this->request->isSecure() && strpos(HTTPS_SERVER, 'https') === 0) {
+			$this->user->logout();
+
+			return $this->redirect($this->url->link('common/login', '', 'SSL'));
+		}
+
 		$route = '';
 
 		if (isset($this->request->get['route'])) {

@@ -81,8 +81,6 @@ class ControllerInformationInformation extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found'); 
-
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
 
@@ -102,6 +100,8 @@ class ControllerInformationInformation extends Controller {
 				'common/footer',
 				'common/header'
 			);
+
+			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
 
 			$this->response->setOutput($this->render());
 		}

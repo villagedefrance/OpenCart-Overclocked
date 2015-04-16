@@ -7,6 +7,10 @@ class ControllerAffiliateRegister extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('affiliate/register', '', 'SSL'), 301);
+		}
+
 		$this->language->load('affiliate/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -238,7 +242,7 @@ class ControllerAffiliateRegister extends Controller {
 		}
 
 		if (isset($this->request->post['zone_id'])) {
-			$this->data['zone_id'] = $this->request->post['zone_id'];
+			$this->data['zone_id'] = (int)$this->request->post['zone_id'];
 		} else {
 			$this->data['zone_id'] = '';
 		}
@@ -366,7 +370,7 @@ class ControllerAffiliateRegister extends Controller {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
@@ -398,8 +402,8 @@ class ControllerAffiliateRegister extends Controller {
 			$this->error['country'] = $this->language->get('error_country');
 		}
 
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-			$this->error['zone'] = $this->language->get('error_zone');
+		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
+ 			$this->error['zone'] = $this->language->get('error_zone');
 		}
 
 		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {

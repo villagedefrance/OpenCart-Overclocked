@@ -133,7 +133,7 @@ class ModelAccountCustomer extends Model {
 	}
 
 	public function getCustomers($data = array()) {
-		$sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cg.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group cg ON (c.customer_group_id = cg.customer_group_id) ";
+		$sql = "SELECT *, CONCAT(c.firstname, ' ', c.lastname) AS name, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) ";
 
 		$implode = array();
 
@@ -146,7 +146,7 @@ class ModelAccountCustomer extends Model {
 		}
 
 		if (isset($data['filter_customer_group_id']) && !is_null($data['filter_customer_group_id'])) {
-			$implode[] = "cg.customer_group_id = '" . $this->db->escape($data['filter_customer_group_id']) . "'";
+			$implode[] = "cgd.customer_group_id = '" . $this->db->escape($data['filter_customer_group_id']) . "'";
 		}
 
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {

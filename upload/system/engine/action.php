@@ -8,7 +8,7 @@ final class Action {
 	public function __construct($route, $args = array()) {
 		$path = '';
 
-		$parts = explode('/', str_replace('../', '', (string)$route));
+		$parts = explode('/', preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route));
 
 		foreach ($parts as $part) {
 			$path .= $part;
@@ -19,8 +19,8 @@ final class Action {
 				continue;
 			}
 
-			if (is_file(DIR_APPLICATION . 'controller/' . str_replace(array('../', '..\\', '..'), '', $path) . '.php')) {
-				$this->file = DIR_APPLICATION . 'controller/' . str_replace(array('../', '..\\', '..'), '', $path) . '.php';
+			if (is_file(DIR_APPLICATION . 'controller/' . $path . '.php')) {
+				$this->file = DIR_APPLICATION . 'controller/' . $path . '.php';
 				$this->class = 'Controller' . preg_replace('/[^a-zA-Z0-9]/', '', $path);
 				array_shift($parts);
 				break; 

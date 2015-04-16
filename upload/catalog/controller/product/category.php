@@ -49,7 +49,7 @@ class ControllerProductCategory extends Controller {
 			'separator' => false
 		);
 
-		if (isset($this->request->get['path'])) {
+		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -147,7 +147,7 @@ class ControllerProductCategory extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'  	=> $category_info['name'],
-				'href'   	=> $this->url->link('product/category', 'path=' . $this->request->get['path']),
+				'href'   	=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -201,6 +201,10 @@ class ControllerProductCategory extends Controller {
 					'name'	=> $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
 					'href'  	=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$this->data['products'] = array();
@@ -431,7 +435,7 @@ class ControllerProductCategory extends Controller {
 		} else {
 			$url = '';
 
-			if (isset($this->request->get['path'])) {
+			if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
 			} 
 
@@ -471,8 +475,6 @@ class ControllerProductCategory extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
-
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
 
@@ -492,6 +494,8 @@ class ControllerProductCategory extends Controller {
 				'common/footer',
 				'common/header'
 			);
+
+			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
 
 			$this->response->setOutput($this->render());
 		}

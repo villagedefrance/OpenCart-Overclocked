@@ -7,6 +7,10 @@ class ControllerAccountRegister extends Controller {
 			$this->redirect($this->url->link('account/account', '', 'SSL'));
 		}
 
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('account/register', '', 'SSL'), 301);
+		}
+
 		$this->language->load('account/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -290,7 +294,7 @@ class ControllerAccountRegister extends Controller {
 		}
 
 		if (isset($this->request->post['zone_id'])) {
-			$this->data['zone_id'] = $this->request->post['zone_id'];
+			$this->data['zone_id'] = (int)$this->request->post['zone_id'];
 		} elseif (isset($this->session->data['shipping_zone_id'])) {
 			$this->data['zone_id'] = $this->session->data['shipping_zone_id'];
 		} else {
@@ -372,7 +376,7 @@ class ControllerAccountRegister extends Controller {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
@@ -425,18 +429,20 @@ class ControllerAccountRegister extends Controller {
 			}
 
 			// VAT Validation
-			$this->load->helper('vat');
+			if ($customer_group && $customer_group['tax_id_display']) {
+				$this->load->helper('vat');
 
-			if ($this->config->get('config_vat') && $this->request->post['tax_id'] && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
-				$this->error['tax_id'] = $this->language->get('error_vat');
+				if ($this->config->get('config_vat') && $this->request->post['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
+					$this->error['tax_id'] = $this->language->get('error_vat');
+				}
 			}
 		}
 
-		if ($this->request->post['country_id'] == '') {
+		if ($this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
 			$this->error['country'] = $this->language->get('error_country');
 		}
 
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
+		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
 			$this->error['zone'] = $this->language->get('error_zone');
 		}
 

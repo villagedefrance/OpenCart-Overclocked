@@ -171,6 +171,8 @@ class Mail {
 				if (substr($this->hostname, 0, 3) == 'tls') {
 					fputs($handle, 'STARTTLS' . $this->crlf);
 
+					$reply = '';
+
 					while ($line = fgets($handle, 515)) {
 						$reply .= $line;
 
@@ -185,7 +187,7 @@ class Mail {
 					}
 				}
 
-				if (!empty($this->username)  && !empty($this->password)) {
+				if (!empty($this->username) && !empty($this->password)) {
 					fputs($handle, 'EHLO ' . getenv('SERVER_NAME') . $this->crlf);
 
 					$reply = '';
