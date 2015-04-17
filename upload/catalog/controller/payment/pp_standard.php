@@ -26,6 +26,8 @@ class ControllerPaymentPPStandard extends Controller {
 
 			$this->data['products'] = array();
 
+			$subtotal = 0;
+
 			foreach ($this->cart->getProducts() as $product) {
 				$option_data = array();
 
@@ -44,10 +46,14 @@ class ControllerPaymentPPStandard extends Controller {
 					);
 				}
 
+				$price = $this->currency->format($product['price'], $order_info['currency_code'], false, false);
+
+				$subtotal += $price * $product['quantity'];
+
 				$this->data['products'][] = array(
 					'name'     	=> $product['name'],
 					'model'    	=> $product['model'],
-					'price'    	=> $this->currency->format($product['price'], $order_info['currency_code'], false, false),
+					'price'    	=> $price,
 					'quantity' 	=> $product['quantity'],
 					'option'   	=> $option_data,
 					'weight'   	=> $product['weight']
@@ -56,7 +62,7 @@ class ControllerPaymentPPStandard extends Controller {
 
 			$this->data['discount_amount_cart'] = 0;
 
-			$total = $this->currency->format($order_info['total'] - $this->cart->getSubTotal(), $order_info['currency_code'], false, false);
+			$total = $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) - $subtotal;
 
 			if ($total > 0) {
 				$this->data['products'][] = array(
@@ -130,6 +136,7 @@ class ControllerPaymentPPStandard extends Controller {
 				$curl = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');
 			}
 
+			curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 			curl_setopt($curl, CURLOPT_POST, true);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

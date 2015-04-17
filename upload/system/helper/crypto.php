@@ -34,7 +34,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *
- *
  * The function is providing, at least at the systems tested :), 
  * $len bytes of entropy under any PHP installation or operating system.
  * The execution time should be at most 10-20 ms in any system.
@@ -113,7 +112,7 @@ function hash_rand($algo = 'md5', $len = 12) {
 		$bytes = ($total > $hash_len) ? $hash_len : $total;
 		$total -= $bytes;
 
-		//collect any entropy available from the PHP system and filesystem
+		// Collect any entropy available from the PHP system and filesystem
 		$entropy = rand() . uniqid(mt_rand(), true) . $SSLstr;
 		$entropy .= implode('', fstat(fopen( __FILE__, 'r')));
 		$entropy .= memory_get_usage() . getmypid();

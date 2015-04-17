@@ -1242,7 +1242,7 @@ class ControllerSaleOrder extends Controller {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || (!preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email']))) {
+		if ((utf8_strlen($this->request->post['email']) > 96) || (!preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email']))) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
@@ -1312,6 +1312,8 @@ class ControllerSaleOrder extends Controller {
 
 				if ($product_info && $product_info['shipping']) {
 					$shipping = true;
+
+					break;
 				}
 			}
 		}
@@ -2129,7 +2131,7 @@ class ControllerSaleOrder extends Controller {
 
 			$order_info = $this->model_sale_order->getOrder($this->request->get['order_id']);
 
-			if ($order_info && $order_info['customer_id']) {
+			if ($order_info && $order_info['customer_id'] && ($order_info['reward'] > 0)) {
 				$this->load->model('sale/customer');
 
 				$reward_total = $this->model_sale_customer->getTotalCustomerRewardsByOrderId($this->request->get['order_id']);

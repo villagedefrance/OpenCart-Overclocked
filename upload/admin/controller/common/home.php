@@ -65,7 +65,7 @@ class ControllerCommonHome extends Controller {
 			$this->data['error_install'] = '';
 		}
 
-		// Check image directory is writable
+		// Check image directory is writeable
 		$file = DIR_IMAGE . 'test';
 		$handle = fopen($file, 'a+');
 		fwrite($handle, '');
@@ -79,7 +79,7 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
-		// Check image cache directory is writable
+		// Check image cache directory is writeable
 		$file = DIR_IMAGE . 'cache/test';
 		$handle = fopen($file, 'a+');
 		fwrite($handle, '');
@@ -93,21 +93,21 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
-		// Check cache directory is writable
+		// Check cache directory is writeable
 		$file = DIR_CACHE . 'test';
 		$handle = fopen($file, 'a+');
 		fwrite($handle, '');
 		fclose($handle);
 
 		if (!file_exists($file)) {
-			$this->data['error_cache'] = sprintf($this->language->get('error_image_cache'), DIR_CACHE);
+			$this->data['error_cache'] = sprintf($this->language->get('error_cache'), DIR_CACHE);
 		} else {
 			$this->data['error_cache'] = '';
 
 			unlink($file);
 		}
 
-		// Check download directory is writable
+		// Check download directory is writeable
 		$file = DIR_DOWNLOAD . 'test';
 		$handle = fopen($file, 'a+');
 		fwrite($handle, '');
@@ -121,7 +121,7 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
-		// Check logs directory is writable
+		// Check logs directory is writeable
 		$file = DIR_LOGS . 'test';
 		$handle = fopen($file, 'a+');
 		fwrite($handle, '');

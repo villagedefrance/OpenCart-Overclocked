@@ -166,11 +166,11 @@ class ControllerPaymentPPProUK extends Controller {
 
 		$response = curl_exec($curl);
 
-		curl_close($curl);
-
 		if (!$response) {
 			$this->log->write('DoDirectPayment failed: ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
 		}
+
+		curl_close($curl);
 
 		$response_info = array();
 

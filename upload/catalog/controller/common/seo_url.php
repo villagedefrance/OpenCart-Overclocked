@@ -51,21 +51,25 @@ class ControllerCommonSeoUrl extends Controller {
 							$this->request->get['route'] = $query->row['query'];
 						} else {
 							$this->request->get['route'] = 'error/not_found';
+
+							break;
 						}
 					}
 				}
 			}
 
-			if (isset($this->request->get['product_id'])) {
-				$this->request->get['route'] = 'product/product';
-			} elseif (isset($this->request->get['path'])) {
-				$this->request->get['route'] = 'product/category';
-			} elseif (isset($this->request->get['manufacturer_id'])) {
-				$this->request->get['route'] = 'product/manufacturer/info';
-			} elseif (isset($this->request->get['information_id'])) {
-				$this->request->get['route'] = 'information/information';
-			} elseif (isset($this->request->get['news_id'])) {
-				$this->request->get['route'] = 'information/news';
+			if (!isset($this->request->get['route'])) {
+				if (isset($this->request->get['product_id'])) {
+					$this->request->get['route'] = 'product/product';
+				} elseif (isset($this->request->get['path'])) {
+					$this->request->get['route'] = 'product/category';
+				} elseif (isset($this->request->get['manufacturer_id'])) {
+					$this->request->get['route'] = 'product/manufacturer/info';
+				} elseif (isset($this->request->get['information_id'])) {
+					$this->request->get['route'] = 'information/information';
+				} elseif (isset($this->request->get['news_id'])) {
+					$this->request->get['route'] = 'information/news';
+				}
 			}
 
 			if (isset($this->request->get['route'])) {

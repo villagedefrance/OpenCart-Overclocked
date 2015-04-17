@@ -195,7 +195,7 @@ class ControllerProductCategory extends Controller {
 					'filter_sub_category'	=> true
 				);
 
-				$product_total = $this->model_catalog_product->getTotalProducts($data);
+				$product_total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts($data) : 0;
 
 				$this->data['categories'][] = array(
 					'name'	=> $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),

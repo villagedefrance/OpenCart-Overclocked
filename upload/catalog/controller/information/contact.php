@@ -11,13 +11,14 @@ class ControllerInformationContact extends Controller {
 			unset($this->session->data['captcha']);
 
 			// Log mail
-			$mail_log = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) : " . $this->request->post['enquiry'];
+			$mail_log  = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n");
+			$mail_log .= $this->request->post['enquiry'] . "\n\n";
 
 			$mail_file = DIR_SYSTEM . 'mails/mails.txt';
 
 			$handle = fopen($mail_file, 'a+');
 
-			fwrite($handle, date('Y-m-d G:i:s') . ' - ' . print_r($mail_log, true) . "\n");
+			fwrite($handle, date('Y-m-d G:i:s') . ' - ' . print_r($mail_log, true));
 
 			fclose($handle);
 
@@ -242,19 +243,19 @@ class ControllerInformationContact extends Controller {
 	}
 
 	protected function validate() {
-		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
+		if (!isset($this->request->post['name']) || (utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
-		if (!preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		if (!isset($this->request->post['email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if ((utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
+		if (!isset($this->request->post['enquiry']) || (utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
 			$this->error['enquiry'] = $this->language->get('error_enquiry');
 		}
 
-		if (empty($this->session->data['captcha']) || ($this->session->data['captcha'] != strtolower($this->request->post['captcha']))) {
+		if (!isset($this->request->post['captcha']) || empty($this->session->data['captcha']) || ($this->session->data['captcha'] != strtolower($this->request->post['captcha']))) {
 			$this->error['captcha'] = $this->language->get('error_captcha');
 		}
 

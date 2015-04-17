@@ -52,6 +52,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_logged'] = sprintf($this->language->get('text_logged'), $this->url->link('account/account', '', 'SSL'), $this->customer->getFirstName(), $this->url->link('account/logout', '', 'SSL'));
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
+		$this->data['text_ie_warning'] = $this->language->get('text_ie_warning');
 
 		$this->data['home'] = $this->url->link('common/home');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
@@ -138,7 +139,7 @@ class ControllerCommonHeader extends Controller {
 							'filter_sub_category'	=> true
 						);
 
-						$product_total = $this->model_catalog_product->getTotalProducts($data);
+						$product_total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts($data) : 0;
 
 						$children_data[] = array(
 							'name'	=> $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),

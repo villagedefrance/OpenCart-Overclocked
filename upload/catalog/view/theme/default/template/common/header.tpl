@@ -2,8 +2,8 @@
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <head>
 <meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="index, follow" />
 <meta name="generator" content="<?php echo $version; ?>" />
 <?php if ($description) { ?>
@@ -34,16 +34,6 @@
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
-<!--[if IE 7]>
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/ie7.css" />
-<![endif]-->
-<!--[if lt IE 7]>
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/ie6.css" />
-<script type="text/javascript" src="catalog/view/javascript/DD_belatedPNG_0.0.8a-min.js"></script>
-<script type="text/javascript">
-DD_belatedPNG.fix('#logo img');
-</script>
-<![endif]-->
 <?php if ($stores) { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -139,3 +129,13 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google
   <div class="warning"><?php echo $error ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
 <div id="notification"></div>
+
+<script type="text/javascript"><!--
+function getIEVersion() {
+    var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
+    return match ? parseInt(match[1]) : undefined;
+}
+if (getIEVersion() < 9) {
+	$('#notification').prepend('<div class="warning"><?php echo $text_ie_warning; ?></div>');
+}
+//--></script>

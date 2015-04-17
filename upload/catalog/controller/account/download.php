@@ -8,6 +8,14 @@ class ControllerAccountDownload extends Controller {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 
+		if (!$this->customer->isSecure() || $this->customer->loginExpired()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('account/download', '', 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
 		$this->language->load('account/download');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -137,8 +145,6 @@ class ControllerAccountDownload extends Controller {
 
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found'); 
-
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
 
@@ -159,12 +165,22 @@ class ControllerAccountDownload extends Controller {
 				'common/header'
 			);
 
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
 			$this->response->setOutput($this->render());
 		}
 	}
 
 	public function download() {
 		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/download', '', 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
+		if (!$this->customer->isSecure() || $this->customer->loginExpired()) {
+			$this->customer->logout();
+
 			$this->session->data['redirect'] = $this->url->link('account/download', '', 'SSL');
 
 			$this->redirect($this->url->link('account/login', '', 'SSL'));

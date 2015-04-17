@@ -170,10 +170,10 @@ class ModelSaleOrder extends Model {
 		$affiliate_id = 0;
 		$commission = 0;
 
-		if (!empty($this->request->post['affiliate_id'])) {
+		if (!empty($data['affiliate_id'])) {
 			$this->load->model('sale/affiliate');
 
-			$affiliate_info = $this->model_sale_affiliate->getAffiliate($this->request->post['affiliate_id']);
+			$affiliate_info = $this->model_sale_affiliate->getAffiliate($data['affiliate_id']);
 
 			if ($affiliate_info) {
 				$affiliate_id = $affiliate_info['affiliate_id'];
@@ -353,10 +353,10 @@ class ModelSaleOrder extends Model {
 		$affiliate_id = 0;
 		$commission = 0;
 
-		if (!empty($this->request->post['affiliate_id'])) {
+		if (!empty($data['affiliate_id'])) {
 			$this->load->model('sale/affiliate');
 
-			$affiliate_info = $this->model_sale_affiliate->getAffiliate($this->request->post['affiliate_id']);
+			$affiliate_info = $this->model_sale_affiliate->getAffiliate($data['affiliate_id']);
 
 			if ($affiliate_info) {
 				$affiliate_id = $affiliate_info['affiliate_id'];
@@ -710,7 +710,7 @@ class ModelSaleOrder extends Model {
 		}
 
 		if (!empty($data['filter_date_modified'])) {
-			$sql .= " AND DATE(o.date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
+			$sql .= " AND DATE(date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
 		}
 
 		if (!empty($data['filter_total'])) {
@@ -807,7 +807,7 @@ class ModelSaleOrder extends Model {
 
 			$subject = sprintf($language->get('text_subject'), $order_info['store_name'], $order_id);
 
-			$message = $language->get('text_order') . ' ' . $order_id . "\n";
+			$message  = $language->get('text_order') . ' ' . $order_id . "\n";
 			$message .= $language->get('text_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n\n";
 
 			$order_status_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$data['order_status_id'] . "' AND language_id = '" . (int)$order_info['language_id'] . "'");
@@ -819,7 +819,7 @@ class ModelSaleOrder extends Model {
 
 			if ($order_info['customer_id']) {
 				$message .= $language->get('text_link') . "\n";
-				$message .= html_entity_decode($order_info['store_url'] . 'index.php?route=account/order/info&order_id=' . $order_id, ENT_QUOTES, 'UTF-8') . "\n\n";
+				$message .= html_entity_decode(($this->config->get('config_secure') ? str_replace('http://', 'https://', $order_info['store_url']) : $order_info['store_url']) . 'index.php?route=account/order/info&order_id=' . $order_id, ENT_QUOTES, 'UTF-8') . "\n\n";
 			}
 
 			if ($data['comment']) {

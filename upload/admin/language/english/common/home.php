@@ -24,7 +24,7 @@ $_['text_day']                    			= 'Today';
 $_['text_week']                     		= 'This Week';
 $_['text_month']                    		= 'This Month';
 $_['text_year']                     		= 'This Year';
-$_['text_order']                    		= 'Total Orders';
+$_['text_order']                    		= 'Completed Orders';
 $_['text_customer']                 		= 'Total Customers';
 
 // Tab

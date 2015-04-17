@@ -95,6 +95,9 @@ class Cart {
 										'weight'              	=> $option_value_query->row['weight'],
 										'weight_prefix'     	=> $option_value_query->row['weight_prefix']
 									);
+								} else {
+									$this->remove($key);
+									continue 2;
 								}
 
 							} elseif ($option_query->row['type'] == 'checkbox' && is_array($option_value)) {
@@ -141,6 +144,9 @@ class Cart {
 											'weight'              	=> $option_value_query->row['weight'],
 											'weight_prefix'   		=> $option_value_query->row['weight_prefix']
 										);
+									} else {
+										$this->remove($key);
+										continue 3;
 									}
 								}
 
@@ -163,6 +169,9 @@ class Cart {
 									'weight_prefix'   			=> ''
 								);
 							}
+						} else {
+							$this->remove($key);
+							continue 2;
 						}
 					}
 
@@ -361,6 +370,11 @@ class Cart {
 
 	public function clear() {
 		$this->session->data['cart'] = array();
+
+		if (isset($this->session->data['customer_id'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '' WHERE customer_id = '" . (int)$this->session->data['customer_id'] . "'");
+		}
+
 		$this->data = array();
 	}
 

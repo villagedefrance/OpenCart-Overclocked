@@ -40,7 +40,26 @@ class Affiliate {
 		$affiliate_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1' AND approved = '1'");
 
 		if ($affiliate_query->num_rows) {
+			// Create affiliate login cookie if HTTPS
+			if ($this->config->get('config_secure')) {
+				if ($this->request->isSecure()) {
+					// Create a cookie and restrict it to HTTPS pages
+					$this->session->data['affiliate_cookie'] = hash_rand('md5');
+
+					setcookie('affiliate', $this->session->data['affiliate_cookie'], 0, '/', '', true, true);
+				} else {
+					return false;
+				}
+			}
+
+			// Regenerate session id
+			$this->session->regenerateId();
+
+			// Token used to protect affiliate functions against CSRF
+			$this->setToken();
+
 			$this->session->data['affiliate_id'] = $affiliate_query->row['affiliate_id'];
+			$this->session->data['affiliate_login_time'] = time();
 
 			$this->affiliate_id = $affiliate_query->row['affiliate_id'];
 			$this->firstname = $affiliate_query->row['firstname'];
@@ -60,6 +79,8 @@ class Affiliate {
 	public function logout() {
 		unset($this->session->data['affiliate_id']);
 		unset($this->session->data['affiliate_cookie']);
+		unset($this->session->data['affiliate_token']);
+		unset($this->session->data['affiliate_login_time']);
 
 		$this->affiliate_id = '';
 		$this->firstname = '';
@@ -105,6 +126,26 @@ class Affiliate {
 
 	public function getCode() {
 		return $this->code;
+	}
+
+	public function isSecure() {
+		if (!$this->config->get('config_secure') || ($this->request->isSecure() && isset($this->request->cookie['affiliate']) && isset($this->session->data['affiliate_cookie']) && $this->request->cookie['affiliate'] == $this->session->data['affiliate_cookie'])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function setToken() {
+		$this->session->data['affiliate_token'] = hash_rand('md5');
+	}
+
+	public function loginExpired($age = 900) {
+		if (isset($this->session->data['affiliate_login_time']) && (time() - $this->session->data['affiliate_login_time'] < $age)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
 ?>
