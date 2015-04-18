@@ -36,7 +36,14 @@ final class DBMySQLi {
 
 				return $result;
 			} else {
-				return true;
+				// When MySQLi returns boolean true instead of a result object
+				// http://www.php.net/manual/en/mysqli.query.php
+				$result = new stdClass();
+				$result->num_rows = 0;
+				$result->row = array();
+				$result->rows = array();
+
+				return $result;
 			}
 		} else {
 			trigger_error('Error: ' . $this->link->error . '<br />Error No: ' . $this->link->errno . '<br />' . $sql);

@@ -49,7 +49,6 @@ $_['text_localisation']             	= 'Localisation';
 $_['text_location']             		= 'Locations';
 $_['text_logged']               		= 'You are logged in as <span><b>%s</b></span>';
 $_['text_logout']                    	= 'Logout';
-$_['text_manager']                	= 'Updates';
 $_['text_manufacturer']         	= 'Manufacturers';
 $_['text_menu']                  		= 'Menus';
 $_['text_module']                  	= 'Modules';

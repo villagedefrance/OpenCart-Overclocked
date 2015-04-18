@@ -777,6 +777,8 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$this->data['store_url'] = HTTPS_CATALOG;
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$this->data['store_url'] = HTTPS_CATALOG;
 		} else {
 			$this->data['store_url'] = HTTP_CATALOG;
 		}
@@ -2437,7 +2439,7 @@ class ControllerSaleOrder extends Controller {
 
 			if (!isset($json['error'])) {
 				if (is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
-					$file = basename($filename) . '.' . md5(mt_rand());
+					$file = basename($filename) . '.' . hash_rand('md5');
 
 					$json['file'] = $file;
 
@@ -2457,6 +2459,8 @@ class ControllerSaleOrder extends Controller {
 		$this->data['title'] = $this->language->get('heading_title');
 
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+			$this->data['base'] = HTTPS_SERVER;
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
 		} else {
 			$this->data['base'] = HTTP_SERVER;
@@ -2674,6 +2678,8 @@ class ControllerSaleOrder extends Controller {
 		$this->data['title'] = $this->language->get('heading_title');
 
 		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+			$this->data['base'] = HTTPS_SERVER;
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
 		} else {
 			$this->data['base'] = HTTP_SERVER;

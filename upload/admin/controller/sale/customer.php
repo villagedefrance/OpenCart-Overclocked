@@ -1102,7 +1102,7 @@ class ControllerSaleCustomer extends Controller {
 		$customer_info = $this->model_sale_customer->getCustomer($customer_id);
 
 		if ($customer_info) {
-			$token = md5(mt_rand());
+			$token = hash_rand('md5');
 
 			$this->model_sale_customer->editToken($customer_id, $token);
 
@@ -1117,9 +1117,9 @@ class ControllerSaleCustomer extends Controller {
 			$store_info = $this->model_setting_store->getStore($store_id);
 
 			if ($store_info) {
-				$this->redirect($store_info['url'] . 'index.php?route=account/login&token=' . $token);
+				$this->redirect(($this->config->get('config_secure') ? $store_info['ssl'] : $store_info['url']) . 'index.php?route=account/login&token=' . $token);
 			} else {
-				$this->redirect(HTTP_CATALOG . 'index.php?route=account/login&token=' . $token);
+				$this->redirect(($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=account/login&token=' . $token);
 			}
 
 		} else {
