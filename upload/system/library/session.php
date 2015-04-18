@@ -9,7 +9,6 @@ class Session {
 			ini_set('session.cookie_httponly', 'On');
 
 			session_set_cookie_params(0, '/');
-
 			session_start();
 		}
 
@@ -18,6 +17,10 @@ class Session {
 
 	function getId() {
 		return session_id();
+	}
+
+	public function regenerateId() {
+		session_regenerate_id(true);
 	}
 }
 ?>
