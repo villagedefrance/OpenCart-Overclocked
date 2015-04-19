@@ -15,7 +15,24 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		// Validate minimum quantity requirements.
 		$products = $this->cart->getProducts();
 
+		foreach ($products as $product) {
+			$product_total = 0;
+
+			foreach ($products as $product_2) {
+				if ($product_2['product_id'] == $product['product_id']) {
+					$product_total += $product_2['quantity'];
+				}
+			}
+
+			if ($product['minimum'] > $product_total) {
+				$this->redirect($this->url->link('checkout/cart'));
+				break;
+			}
+		}
+
 		$this->language->load('checkout/checkout_express');
+
+		$this->document->setTitle($this->language->get('heading_express'));
 
         // Coupon session
         if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
@@ -143,22 +160,6 @@ class ControllerCheckoutExpressCheckout extends Controller {
         } else {
             $this->data['reward'] = '';
         }
-
-		foreach ($products as $product) {
-			$product_total = 0;
-
-			foreach ($products as $product_2) {
-				if ($product_2['product_id'] == $product['product_id']) {
-					$product_total += $product_2['quantity'];
-				}
-			}
-
-			if ($product['minimum'] > $product_total) {
-				$this->redirect($this->url->link('checkout/cart'));
-			}
-		}
-
-		$this->document->setTitle($this->language->get('heading_express'));
 
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');

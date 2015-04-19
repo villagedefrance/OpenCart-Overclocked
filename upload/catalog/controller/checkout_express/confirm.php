@@ -276,7 +276,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 				foreach ($this->session->data['vouchers'] as $voucher) {
 					$voucher_data[] = array(
 						'description'			=> $voucher['description'],
-						'code'					=> substr(md5(mt_rand()), 0, 10),
+						'code'					=> substr(hash_rand('md5'), 0, 10),
 						'to_name'				=> $voucher['to_name'],
 						'to_email'				=> $voucher['to_email'],
 						'from_name'			=> $voucher['from_name'],
@@ -350,11 +350,19 @@ class ControllerCheckoutExpressConfirm extends Controller {
 			// Language
 			$this->data['text_checkout_confirm'] = $this->language->get('text_checkout_confirm');
 
-			if ($this->cart->hasShipping()) {
-				if ($this->customer->isLogged()) {
-					$this->load->model('account/address');
+			if ($this->customer->isLogged()) {
+				$this->load->model('account/address');
 
+				if (isset($this->session->data['shipping_address_id'])) {
 					$ship_address = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);
+				} elseif (isset($this->session->data['payment_address_id'])) {
+					$ship_address = $this->model_account_address->getAddress($this->session->data['payment_address_id']);
+				} else {
+					$customer_id = $this->customer->getId();
+
+					$address_id = $this->model_account_address->getDefaultAddressId($customer_id);
+
+					$ship_address = $this->model_account_address->getAddress($address_id);
 				}
 
 				$this->data['shipping_firstname'] = $ship_address['firstname'];

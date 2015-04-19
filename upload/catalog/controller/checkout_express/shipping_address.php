@@ -123,12 +123,12 @@ class ControllerCheckoutExpressShippingAddress extends Controller {
 				$this->load->model('account/address');
 
 				// Get address
-				$a = $this->model_account_address->getAddresses();
-				$a = reset($a);
-				$a = $a['address_id'];
+				$customer_id = $this->customer->getId();
+
+				$address_id = $this->model_account_address->getDefaultAddressId($customer_id);
 
 				if (empty($this->request->post['address_id'])) {
-					$this->request->post['address_id'] = $a;
+					$this->request->post['address_id'] = $this->model_account_address->getAddress($address_id);
 				}
 
 				if (!$json) {

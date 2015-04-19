@@ -123,7 +123,7 @@ $('.checkout-heading a').live('click', function() {
 });
 
 <?php if (!$logged) { ?> 
-$(document).ready(function() {
+	$(document).ready(function() {
 	<?php if (isset($quickconfirm)) { ?>
 		quickConfirm();
 	<?php } else { ?>
@@ -141,43 +141,50 @@ $(document).ready(function() {
 			}
 		});
 	<?php } ?>
-});
-<?php } elseif ($logged && $express_billing) { ?>
-$(document).ready(function() {
-	<?php if (isset($quickconfirm)) { ?>
-		quickConfirm();
-	<?php } else { ?>
-		$.ajax({
-			url: 'index.php?route=checkout_express/payment_address',
-			dataType: 'html',
-			success: function(html) {
-				$('#payment-address .checkout-content').html(html);
-				$('#payment-address .checkout-content').fadeIn(100);
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
-		});
-	<?php } ?>
-});
+	});
 <?php } else { ?>
-$(document).ready(function() {
-	<?php if (isset($quickconfirm)) { ?>
-		quickConfirm();
+    <?php if ($express_billing) { ?>
+		$(document).ready(function() {
+		<?php if (isset($quickconfirm)) { ?>
+			quickConfirm();
+		<?php } else { ?>
+			$.ajax({
+				url: 'index.php?route=checkout_express/payment_address',
+				dataType: 'html',
+				success: function(html) {
+					$('#payment-address .checkout-content').html(html);
+					$('#payment-address .checkout-content').fadeIn(100);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		<?php } ?>
+		});
 	<?php } else { ?>
-		$.ajax({
-			url: 'index.php?route=checkout_express/shipping_address',
-			dataType: 'html',
-			success: function(html) {
-				$('#shipping-address .checkout-content').html(html);
-				$('#shipping-address .checkout-content').fadeIn(100);
-			},
-			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-			}
+		$(document).ready(function() {
+		<?php if (isset($quickconfirm)) { ?>
+			quickConfirm();
+		<?php } else { ?>
+			$.ajax({
+				url: 'index.php?route=checkout_express/<?php if ($shipping_required) { ?>shipping_address<?php } else { ?>payment_method<?php } ?>',
+				dataType: 'html',
+				success: function(html) {
+				<?php if ($shipping_required) { ?>
+					$('#shipping-address .checkout-content').html(html);
+					$('#shipping-address .checkout-content').fadeIn(100);
+				<?php } else { ?>
+					$('#payment-method .checkout-content').html(html);
+					$('#payment-method .checkout-content').fadeIn(100);
+				<?php } ?>
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		<?php } ?>
 		});
 	<?php } ?>
-});
 <?php } ?>
 
 // Checkout Express
@@ -562,7 +569,6 @@ $('#button-payment-address').live('click', function() {
 					}
 				});
 			<?php } ?>
-
 				$.ajax({
 					url: 'index.php?route=checkout_express/payment_address',
 					dataType: 'html',
