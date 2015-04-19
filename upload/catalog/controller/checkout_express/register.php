@@ -133,7 +133,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		$json = array();
 
-		// Validate if customer is already logged out.
+		// Validate if customer is already logged in.
 		if ($this->customer->isLogged()) {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
@@ -250,7 +250,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 					$json['error']['country'] = $this->language->get('error_country');
 				}
 
-				if ($this->request->post['zone_id'] == '') {
+				if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
 					$json['error']['zone'] = $this->language->get('error_zone');
 				}
 			}

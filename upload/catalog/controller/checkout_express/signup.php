@@ -364,13 +364,12 @@ class ControllerCheckoutExpressSignup extends Controller {
   	}
 
   	private function validate() {
+		$this->load->model('checkout/checkout_express');
 		$this->load->model('checkout/checkout_tools');
 
 		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
       		$this->error['email'] = $this->language->get('error_email');
     	}
-
-		$this->load->model('checkout/checkout_express');
 
     	if ($this->model_checkout_checkout_express->getTotalCustomersByEmail($this->request->post['email'])) {
       		$this->error['warning'] = $this->language->get('error_exists');

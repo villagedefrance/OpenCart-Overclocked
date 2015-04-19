@@ -50,7 +50,7 @@ class ControllerCheckoutExpressLogin extends Controller {
 			$this->load->model('checkout/checkout_express');
 			$this->load->model('checkout/checkout_tools');
 
-            if (!isset($this->request->post['password'])) {
+			if (!isset($this->request->post['password'])) {
 				$this->request->post['password'] = '';
 
 				if (!$this->request->post['email']) {
@@ -60,8 +60,9 @@ class ControllerCheckoutExpressLogin extends Controller {
 				if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 					$json['error']['warning'] = $this->language->get('error_email');
 				}
+			}
 
-            } elseif (!$this->request->post['password']) {
+            if (!$this->request->post['password'] && $this->request->post['email']) {
                 $customer_name = $this->model_checkout_checkout_express->getCustomerByEmail($this->request->post['email']);
 
                 if ($customer_name) {

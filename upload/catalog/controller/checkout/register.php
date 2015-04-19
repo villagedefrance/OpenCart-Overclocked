@@ -112,7 +112,7 @@ class ControllerCheckoutRegister extends Controller {
 
 		$json = array();
 
-		// Validate if customer is already logged out.
+		// Validate if customer is already logged in.
 		if ($this->customer->isLogged()) {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
