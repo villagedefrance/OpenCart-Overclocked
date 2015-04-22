@@ -26,7 +26,6 @@ class ControllerSaleContact extends Controller {
 		$this->data['entry_product'] = $this->language->get('entry_product');
 		$this->data['entry_subject'] = $this->language->get('entry_subject');
 		$this->data['entry_message'] = $this->language->get('entry_message');
-		$this->data['entry_template'] = $this->language->get('entry_template');
 
 		$this->data['button_send'] = $this->language->get('button_send');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
