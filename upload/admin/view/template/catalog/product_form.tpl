@@ -93,6 +93,10 @@
             <td><input type="text" name="price" value="<?php echo $price; ?>" /></td>
           </tr>
           <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_cost; ?></td>
+            <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
+          </tr>
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_tax_class; ?></td>
             <td><select name="tax_class_id">
               <option value="0"><?php echo $text_none; ?></option>

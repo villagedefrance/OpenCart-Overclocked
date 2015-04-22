@@ -10,7 +10,7 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div style="float:right;">
-  <?php if ($shipping_required) { ?>
+  <?php if ($logged && $shipping_required) { ?>
     <a href="<?php echo $express_address; ?>" title="<?php echo $text_your_address; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/address.png" alt="<?php echo $text_your_address; ?>" /></a>
   <?php } ?>
     <a href="<?php echo $express_cart; ?>" title="<?php echo $text_cart; ?>" style="margin-left:25px;"><img src="catalog/view/theme/<?php echo $template; ?>/image/cart.png" alt="<?php echo $text_cart; ?>" /></a>
@@ -203,7 +203,7 @@ $('#button-express').live('click', function() {
 			$('.wait').remove();
         },
         success: function(json) {
-            $('.warning, .error').remove();
+            $('.attention, .warning, .error').remove();
 
             if (json['name']) {
                 $('.wait').remove();
@@ -225,7 +225,7 @@ $('#button-express').live('click', function() {
                         $('.wait').remove();
                     },
                     success: function(html) {
-                        $('.warning, .error').remove();
+                        $('.attention, .warning, .error').remove();
 
                         $('#payment-address .checkout-content').html(html);
 
@@ -270,7 +270,7 @@ $('#button-account').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(html) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			$('#payment-address .checkout-content').html(html);
 
@@ -302,7 +302,7 @@ $('#button-login').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(json) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			if (json['redirect']) {
 				location = json['redirect'];
@@ -334,7 +334,7 @@ $('#button-register').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(json) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			if (json['redirect']) {
 				location = json['redirect'];
@@ -493,7 +493,7 @@ $('#button-payment-address').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(json) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			if (json['redirect']) {
 				location = json['redirect'];
@@ -610,7 +610,7 @@ $('#button-shipping-address').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(json) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			if (json['redirect']) {
 				location = json['redirect'];
@@ -706,7 +706,7 @@ $('#button-shipping-method').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(json) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			if (json['redirect']) {
 				location = json['redirect'];
@@ -754,7 +754,7 @@ $('#button-payment-method').live('click', function() {
 			$('.wait').remove();
 		},
 		success: function(json) {
-			$('.warning, .error').remove();
+			$('.attention, .warning, .error').remove();
 
 			if (json['redirect']) {
 				location = json['redirect'];

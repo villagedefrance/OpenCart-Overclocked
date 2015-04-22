@@ -605,6 +605,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_price'] = $this->language->get('entry_price');
+		$this->data['entry_cost'] = $this->language->get('entry_cost');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
 		$this->data['entry_palette'] = $this->language->get('entry_palette');
@@ -872,6 +873,14 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['price'] = $product_info['price'];
 		} else {
 			$this->data['price'] = '';
+		}
+
+		if (isset($this->request->post['cost'])) {
+			$this->data['cost'] = $this->request->post['cost'];
+		} elseif (!empty($product_info)) {
+			$this->data['cost'] = $product_info['cost'];
+		} else {
+			$this->data['cost'] = '';
 		}
 
 		$this->load->model('localisation/tax_class');

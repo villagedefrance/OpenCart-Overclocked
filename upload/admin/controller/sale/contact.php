@@ -26,6 +26,7 @@ class ControllerSaleContact extends Controller {
 		$this->data['entry_product'] = $this->language->get('entry_product');
 		$this->data['entry_subject'] = $this->language->get('entry_subject');
 		$this->data['entry_message'] = $this->language->get('entry_message');
+		$this->data['entry_template'] = $this->language->get('entry_template');
 
 		$this->data['button_send'] = $this->language->get('button_send');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -118,6 +119,7 @@ class ControllerSaleContact extends Controller {
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
+
 						$results = $this->model_sale_customer->getCustomers($customer_data);
 
 						foreach ($results as $result) {
@@ -131,6 +133,7 @@ class ControllerSaleContact extends Controller {
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
+
 						$results = $this->model_sale_customer->getCustomers($customer_data);
 
 						foreach ($results as $result) {
@@ -145,6 +148,7 @@ class ControllerSaleContact extends Controller {
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
+
 						$results = $this->model_sale_customer->getCustomers($customer_data);
 
 						foreach ($results as $result) {
@@ -169,6 +173,7 @@ class ControllerSaleContact extends Controller {
 						);
 
 						$email_total = $this->model_sale_affiliate->getTotalAffiliates($affiliate_data);
+
 						$results = $this->model_sale_affiliate->getAffiliates($affiliate_data);
 
 						foreach ($results as $result) {
@@ -189,6 +194,7 @@ class ControllerSaleContact extends Controller {
 					case 'product':
 						if (isset($this->request->post['product'])) {
 							$email_total = $this->model_sale_order->getTotalEmailsByProductsOrdered($this->request->post['product']);
+
 							$results = $this->model_sale_order->getEmailsByProductsOrdered($this->request->post['product'], ($page - 1) * 10, 10);
 
 							foreach ($results as $result) {

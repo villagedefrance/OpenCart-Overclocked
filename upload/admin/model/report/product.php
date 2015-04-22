@@ -94,5 +94,69 @@ class ModelReportProduct extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getProfit($data = array()) {
+		$sql = "SELECT YEAR(o.date_added) AS year, MONTHNAME(o.date_added) AS month, SUM(op.price * op.quantity) AS price, SUM(op.cost * op.quantity) AS cost, SUM(op.price * op.quantity - op.cost * op.quantity) AS profit, o.date_added FROM " . DB_PREFIX . "order_product op LEFT JOIN `" . DB_PREFIX . "order` o ON (op.order_id = o.order_id)";
+
+		if (!empty($data['filter_order_status_id'])) {
+			$sql .= " WHERE o.order_status_id = '" . (int)$data['filter_order_status_id'] . "'";
+		} else {
+			$sql .= " WHERE o.order_status_id > '0'";
+		}
+
+		if (!empty($data['filter_date_start'])) {
+			$sql .= " AND DATE(o.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";
+		}
+
+		if (!empty($data['filter_date_end'])) {
+			$sql .= " AND DATE(o.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
+		}
+
+		$sql .= " GROUP BY YEAR(o.date_added), MONTH(o.date_added) ORDER BY YEAR(o.date_added), MONTH(o.date_added) ASC";
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}			
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}	
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getTotalProfit($data) {
+		$sql = "SELECT COUNT(*), YEAR(o.date_added), MONTHNAME(o.date_added) FROM " . DB_PREFIX . "order_product op LEFT JOIN `" . DB_PREFIX . "order` o ON (op.order_id = o.order_id)";
+
+		if (!empty($data['filter_order_status_id'])) {
+			$sql .= " WHERE o.order_status_id = '" . (int)$data['filter_order_status_id'] . "'";
+		} else {
+			$sql .= " WHERE o.order_status_id > '0'";
+		}
+
+		if (!empty($data['filter_date_start'])) {
+			$sql .= " AND DATE(o.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";
+		}
+
+		if (!empty($data['filter_date_end'])) {
+			$sql .= " AND DATE(o.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
+		}
+
+		$sql .= " GROUP BY YEAR(o.date_added), MONTH(o.date_added)";
+
+		$query = $this->db->query($sql);
+
+		if ($query->num_rows) {
+			return $query->num_rows;
+		} else {
+			return 0;
+		}
+	}
 }
 ?>

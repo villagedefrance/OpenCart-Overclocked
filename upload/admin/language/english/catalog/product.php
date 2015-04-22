@@ -57,6 +57,7 @@ $_['entry_model']            		= 'Model:';
 $_['entry_image']            		= 'Image:';
 $_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique</span>';
 $_['entry_price']            		= 'Price:';
+$_['entry_cost']            		= 'Cost:';
 $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
 $_['entry_palette']       		= 'Color Palette:';
@@ -86,7 +87,7 @@ $_['entry_manufacturer']     	= 'Manufacturer:';
 $_['entry_filter']           		= 'Filters:';
 $_['entry_download']         	= 'Downloads:';
 $_['entry_related']          		= 'Related Products:';
-$_['entry_points']           		= 'Points<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points leave as 0.</span>';
+$_['entry_points']           		= 'Points<br /><span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points, leave as 0.</span>';
 $_['entry_option']           		= 'Option';
 $_['entry_required']         		= 'Required';
 

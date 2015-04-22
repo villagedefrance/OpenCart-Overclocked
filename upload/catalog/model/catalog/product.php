@@ -25,6 +25,7 @@ class ModelCatalogProduct extends Model {
 				'model'            		=> $query->row['model'],
 				'image'            		=> $query->row['image'],
 				'price'            		=> $query->row['discount'] ? $query->row['discount'] : $query->row['price'],
+				'cost'						=> $query->row['cost'],
 				'tax_class_id'     		=> $query->row['tax_class_id'],
 				'date_available'   		=> $query->row['date_available'],
 				'palette_id'     			=> $query->row['palette_id'],
@@ -183,6 +184,7 @@ class ModelCatalogProduct extends Model {
 			'p.model',
 			'p.quantity',
 			'p.price',
+			'p.cost',
 			'rating',
 			'p.sort_order',
 			'p.date_added'

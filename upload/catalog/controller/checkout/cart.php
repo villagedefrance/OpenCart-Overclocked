@@ -302,6 +302,7 @@ class ControllerCheckoutCart extends Controller {
 					'stock'               		=> ($product['stock']) ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
 					'reward'              	=> ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               		=> $price,
+					'cost' 					=> $product['cost'],
 					'total'               		=> $total,
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
 					'remove'              	=> $this->url->link('checkout/cart', 'remove=' . $product['key']),
