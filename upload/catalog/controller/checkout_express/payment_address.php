@@ -92,6 +92,8 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 
 		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
+		$this->data['shipping_required'] = $this->cart->hasShipping();
+
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 
@@ -265,7 +267,6 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 					$this->session->data['payment_address_id'] = $this->model_account_address->addAddress($this->request->post);
 					$this->session->data['payment_country_id'] = $this->request->post['country_id'];
 					$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
-					$this->session->data['payment_postcode'] = $this->request->post['postcode'];
 
 					unset($this->session->data['payment_method']);
 					unset($this->session->data['payment_methods']);

@@ -10,7 +10,7 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <div style="float:right;">
-  <?php if ($logged && $shipping_required) { ?>
+  <?php if ($shipping_required) { ?>
     <a href="<?php echo $express_address; ?>" title="<?php echo $text_your_address; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/address.png" alt="<?php echo $text_your_address; ?>" /></a>
   <?php } ?>
     <a href="<?php echo $express_cart; ?>" title="<?php echo $text_cart; ?>" style="margin-left:25px;"><img src="catalog/view/theme/<?php echo $template; ?>/image/cart.png" alt="<?php echo $text_cart; ?>" /></a>
@@ -485,11 +485,11 @@ $('#button-payment-address').live('click', function() {
 		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'password\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select'),
 		dataType: 'json',
 		beforeSend: function() {
-			$('#button-payment-address').attr('disabled', false);
-			$('#button-payment-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
-		},	
-		complete: function() {
 			$('#button-payment-address').attr('disabled', true);
+			$('#button-payment-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
+		},
+		complete: function() {
+			$('#button-payment-address').attr('disabled', false);
 			$('.wait').remove();
 		},
 		success: function(json) {
@@ -562,14 +562,14 @@ $('#button-payment-address').live('click', function() {
 				});
 			<?php } else { ?>
 				$.ajax({
-					url: 'index.php?route=checkout_express/shipping_method',
+					url: 'index.php?route=checkout_express/payment_method',
 					dataType: 'html',
 					success: function(html) {
-						$('#shipping-method .checkout-content').html(html);
+						$('#payment-method .checkout-content').html(html);
 
 						$('#payment-address .checkout-content').fadeOut(100);
 
-						$('#shipping-method .checkout-content').fadeIn(500);
+						$('#payment-method .checkout-content').fadeIn(500);
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -602,11 +602,11 @@ $('#button-shipping-address').live('click', function() {
 		data: $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'password\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address select'),
 		dataType: 'json',
 		beforeSend: function() {
-			$('#button-shipping-address').attr('disabled', false);
+			$('#button-shipping-address').attr('disabled', true);
 			$('#button-shipping-address').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
-			$('#button-shipping-address').attr('disabled', true);
+			$('#button-shipping-address').attr('disabled', false);
 			$('.wait').remove();
 		},
 		success: function(json) {
@@ -616,7 +616,7 @@ $('#button-shipping-address').live('click', function() {
 				location = json['redirect'];
 			} else if (json['error']) {
 				if (json['error']['warning']) {
-					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display:none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
+					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display:none;">' + json['error']['warning'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
 
 					$('.warning').fadeIn(500);
 				}
@@ -698,11 +698,11 @@ $('#button-shipping-method').live('click', function() {
 		data: $('#shipping-method input[type=\'radio\']:checked, #shipping-method textarea'),
 		dataType: 'json',
 		beforeSend: function() {
-			$('#button-shipping-method').attr('disabled', false);
+			$('#button-shipping-method').attr('disabled', true);
 			$('#button-shipping-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
-			$('#button-shipping-method').attr('disabled', true);
+			$('#button-shipping-method').attr('disabled', false);
 			$('.wait').remove();
 		},
 		success: function(json) {
@@ -746,11 +746,11 @@ $('#button-payment-method').live('click', function() {
 		data: $('#payment-method input[type=\'radio\']:checked, #payment-method input[type=\'checkbox\']:checked, #payment-method textarea'),
 		dataType: 'json',
 		beforeSend: function() {
-			$('#button-payment-method').attr('disabled', false);
+			$('#button-payment-method').attr('disabled', true);
 			$('#button-payment-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
-			$('#button-payment-method').attr('disabled', true);
+			$('#button-payment-method').attr('disabled', false);
 			$('.wait').remove();
 		},
 		success: function(json) {

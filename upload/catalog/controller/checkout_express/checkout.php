@@ -212,6 +212,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->data['button_reward'] = $this->language->get('button_reward');
 
 		$this->data['logged'] = $this->customer->isLogged();
+
 		$this->data['shipping_required'] = $this->cart->hasShipping();
 
 		$this->data['express_billing'] = $this->config->get('config_express_billing');

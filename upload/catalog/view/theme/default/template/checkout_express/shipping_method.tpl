@@ -42,6 +42,13 @@
   <br />
   <br />
 </div>
+<div class="buttons">
+  <div class="left">
+    <input type="button" value="<?php echo $button_express_go; ?>" id="button-shipping-method" class="button" />
+	&nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="modify-address" onclick="$('#shipping-method .checkout-content').fadeOut(100); $('#shipping-address .checkout-content').fadeIn(500);" style="text-decoration:none;"><?php echo $text_your_address; ?></a>
+  </div>
+</div>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
@@ -51,11 +58,3 @@ $(document).ready(function() {
    	}
 });
 //--></script> 
-
-<div class="buttons">
-  <div class="left">
-    <input type="button" value="<?php echo $button_express_go; ?>" id="button-shipping-method" class="button" />
-	&nbsp;&nbsp;&nbsp;&nbsp;
-    <a id="modify-address" onclick="$('#shipping-method .checkout-content').fadeOut(100); $('#shipping-address .checkout-content').fadeIn(500);" style="text-decoration:none;"><?php echo $text_your_address; ?></a>
-  </div>
-</div>
