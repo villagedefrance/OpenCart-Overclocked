@@ -97,7 +97,6 @@ class ControllerReportProductProfit extends Controller {
 				'month'					=> $result['month'],
 				'price'					=> $this->currency->format($result['price'], $this->config->get('config_currency')),
 				'cost'						=> $this->currency->format($result['cost'], $this->config->get('config_currency')),
-				'color_profit'			=> ($result['profit'] > 0) ? '#D6FFA3' : '#FFA3A4',
 				'percent_profit'		=> ($result['cost'] > 0) ? number_format(($result['profit'] * 100) / $result['cost'], 2) . '%' : '',
 				'profit'					=> $this->currency->format($result['profit'], $this->config->get('config_currency'))
 			);
@@ -106,8 +105,6 @@ class ControllerReportProductProfit extends Controller {
 			$cost += $result['cost'];
 			$profit += $result['profit'];
 		}
-
-		$this->data['color_profit'] = ($profit > 0) ? '#D6FFA3' : '#FFA3A4';
 
 		$this->data['total_price'] = $this->currency->format($price, $this->config->get('config_currency'));
 		$this->data['total_cost'] = $this->currency->format($cost, $this->config->get('config_currency'));

@@ -10,6 +10,7 @@ class Amazon {
 		$this->registry = $registry;
 
 		$this->token = $registry->get('config')->get('openbay_amazon_token');
+
 		$this->encPass = $registry->get('config')->get('openbay_amazon_enc_string1');
 		$this->encSalt = $registry->get('config')->get('openbay_amazon_enc_string2');
 	}
@@ -26,9 +27,11 @@ class Amazon {
 		/* Is called from front-end? */
 		if (!defined('HTTPS_CATALOG')) {
 			$this->load->model('openbay/amazon_order');
+
 			$amazonOrderId = $this->model_openbay_amazon_order->getAmazonOrderId($orderId);
 
 			$this->load->library('log');
+
 			$logger = new Log('amazon_stocks.log');
 			$logger->write('orderNew() called with order id: ' . $orderId);
 
@@ -111,53 +114,53 @@ class Amazon {
 		}
 
 		$this->load->model('openbay/amazon');
-		
+
 		$log = new Log('amazon.log');
 		$log->write('Called bulkUpdateOrders method');
-		
+
 		$request = array(
-			'orders' => array(),
+			'orders' => array()
 		);
-		
+
 		foreach ($orders as $order) {
 			$amazon_order = $this->getOrder($order['order_id']);
 			$amazon_order_products = $this->model_openbay_amazon->getAmazonOrderedProducts($order['order_id']);
-			
+
 			$products = array();
-			
+
 			foreach ($amazon_order_products as $amazon_order_product) {
 				$products[] = array(
 					'amazon_order_item_id' => $amazon_order_product['amazon_order_item_id'],
-					'quantity' => $amazon_order_product['quantity'],
+					'quantity' => $amazon_order_product['quantity']
 				);
 			}
-			
+
 			$order_info = array(
-				'amazon_order_id' => $amazon_order['amazon_order_id'],
-				'status' => $order['status'],
-				'products' => $products,
+				'amazon_order_id'	=> $amazon_order['amazon_order_id'],
+				'status' 				=> $order['status'],
+				'products' 			=> $products
 			);
-			
+
 			if ($order['status'] == 'shipped' && !empty($order['carrier'])) {
 				if ($order['carrier_from_list']) {
 					$order_info['carrier_id'] = $order['carrier'];
 				} else {
 					$order_info['carrier_name'] = $order['carrier'];
 				}
-				
+
 				$order_info['tracking'] = $order['tracking'];
 			}
-			
+
 			$request['orders'][] = $order_info;
 		}
-		
+
 		$log->write('order/bulkUpdate call: ' . print_r($request, 1));
-		
+
 		$response = $this->callWithResponse('order/bulkUpdate', $request);
 
 		$log->write('order/bulkUpdate response: ' . $response);
 	}
-	
+
 	public function updateOrder($orderId, $orderStatusString, $courier_id = '', $courierFromList = true, $tracking_no = '') {
 		if ($this->config->get('amazon_status') != 1) {
 			return;
@@ -180,6 +183,7 @@ class Amazon {
 		$log->write("Order's $amazonOrderId status changed to $orderStatusString");
 
 		$this->load->model('openbay/amazon');
+
 		$amazonOrderProducts = $this->model_openbay_amazon->getAmazonOrderedProducts($orderId);
 
 		$requestNode = new SimpleXMLElement('<Request/>');
@@ -289,8 +293,9 @@ class Amazon {
 			CURLOPT_TIMEOUT => 2,
 			CURLOPT_SSL_VERIFYPEER => 0,
 			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt),
+			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt)
 		);
+
 		$ch = curl_init();
 
 		curl_setopt_array($ch, $defaults);
@@ -311,18 +316,19 @@ class Amazon {
 		$crypt = $this->encrypt($argString, $token, true);
 
 		$defaults = array(
-			CURLOPT_POST            => 1,
-			CURLOPT_HEADER          => 0,
-			CURLOPT_URL             => $this->server . $method,
-			CURLOPT_USERAGENT       => 'OpenBay Pro for Amazon/Opencart',
-			CURLOPT_FRESH_CONNECT   => 1,
-			CURLOPT_RETURNTRANSFER  => 1,
-			CURLOPT_FORBID_REUSE    => 1,
-			CURLOPT_TIMEOUT         => 30,
-			CURLOPT_SSL_VERIFYPEER  => 0,
-			CURLOPT_SSL_VERIFYHOST  => 0,
-			CURLOPT_POSTFIELDS      => 'token=' . $this->token . '&data=' . rawurlencode($crypt),
+			CURLOPT_POST => 1,
+			CURLOPT_HEADER => 0,
+			CURLOPT_URL => $this->server . $method,
+			CURLOPT_USERAGENT => 'OpenBay Pro for Amazon/Opencart',
+			CURLOPT_FRESH_CONNECT => 1,
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_FORBID_REUSE => 1,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_SSL_VERIFYPEER => 0,
+			CURLOPT_SSL_VERIFYHOST => 0,
+			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt)
 		);
+
 		$ch = curl_init();
 
 		curl_setopt_array($ch, $defaults);
@@ -337,6 +343,7 @@ class Amazon {
 	public function decryptArgs($crypt, $isBase64 = true) {
 		if ($isBase64) {
 			$crypt = base64_decode($crypt, true);
+
 			if (!$crypt) {
 				return false;
 			}
@@ -349,13 +356,15 @@ class Amazon {
 	}
 
 	private function encrypt($msg, $k, $base64 = false) {
-		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', ''))
+		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
 			return false;
+		}
 
 		$iv = mcrypt_create_iv(32, MCRYPT_RAND);
 
-		if (mcrypt_generic_init($td, $k, $iv) !== 0)
+		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
 			return false;
+		}
 
 		$msg = mcrypt_generic($td, $msg);
 		$msg = $iv . $msg;
@@ -410,7 +419,6 @@ class Amazon {
 		$dk = '';
 
 		for ($block = 1; $block <= $kb; $block++) {
-
 			$ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
 
 			for ($i = 1; $i < $c; $i++)
@@ -426,8 +434,9 @@ class Amazon {
 		return $this->server;
 	}
 
-	public function putStockUpdateBulk($product_id_array, $endInactive = false){
+	public function putStockUpdateBulk($product_id_array, $endInactive = false) {
 		$this->load->library('log');
+
 		$logger = new Log('amazon_stocks.log');
 		$logger->write('Updating stock using putStockUpdateBulk()');
 
@@ -437,8 +446,7 @@ class Amazon {
 			$amazonRows = $this->getLinkedSkus($product_id);
 
 			foreach ($amazonRows as $amazonRow) {
-				$productRow = $this->db->query("SELECT quantity, status FROM `" . DB_PREFIX . "product`
-					WHERE `product_id` = '" . (int)$product_id . "'")->row;
+				$productRow = $this->db->query("SELECT quantity, status FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "'")->row;
 
 				if (!empty($productRow)) {
 					if ($endInactive && $productRow['status'] == '0') {
@@ -452,7 +460,9 @@ class Amazon {
 
 		if (!empty($quantityData)) {
 			$logger->write('Quantity data to be sent:' . print_r($quantityData, true));
+
 			$response = $this->updateQuantities($quantityData);
+
 			$logger->write('Submit to API. Response: ' . print_r($response, true));
 		} else {
 			$logger->write('No quantity data need to be posted.');
@@ -464,12 +474,7 @@ class Amazon {
 	}
 
 	public function getOrderdProducts($orderId) {
-		return $this->db->query("SELECT `op`.`product_id`, `p`.`quantity` as `quantity_left`
-			FROM `" . DB_PREFIX . "order_product` as `op`
-			LEFT JOIN `" . DB_PREFIX . "product` as `p`
-			ON `p`.`product_id` = `op`.`product_id`
-			WHERE `op`.`order_id` = '" . (int)$orderId . "'
-			")->rows;
+		return $this->db->query("SELECT `op`.`product_id`, `p`.`quantity` as `quantity_left` FROM `" . DB_PREFIX . "order_product` as `op` LEFT JOIN `" . DB_PREFIX . "product` as `p` ON `p`.`product_id` = `op`.`product_id` WHERE `op`.`order_id` = '" . (int)$orderId . "'")->rows;
 	}
 
 	public function osProducts($order_id){
@@ -483,15 +488,7 @@ class Amazon {
 			if (!empty($product_query->row)) {
 				if (isset($product_query->row['has_option']) && ($product_query->row['has_option'] == 1)) {
 					$pOption_query = $this->db->query("
-						SELECT `oo`.`product_option_value_id`
-						FROM `" . DB_PREFIX . "order_option` `oo`
-							LEFT JOIN `" . DB_PREFIX . "product_option_value` `pov` ON (`pov`.`product_option_value_id` = `oo`.`product_option_value_id`)
-							LEFT JOIN `" . DB_PREFIX . "option` `o` ON (`o`.`option_id` = `pov`.`option_id`)
-						WHERE `oo`.`order_product_id` = '" . (int)$order_product['order_product_id'] . "'
-						AND `oo`.`order_id` = '" . (int)$order_id . "'
-						AND ((`o`.`type` = 'radio') OR (`o`.`type` = 'select') OR (`o`.`type` = 'image'))
-						ORDER BY `oo`.`order_option_id`
-						ASC");
+						SELECT `oo`.`product_option_value_id` FROM `" . DB_PREFIX . "order_option` `oo` LEFT JOIN `" . DB_PREFIX . "product_option_value` `pov` ON (`pov`.`product_option_value_id` = `oo`.`product_option_value_id`) LEFT JOIN `" . DB_PREFIX . "option` `o` ON (`o`.`option_id` = `pov`.`option_id`) WHERE `oo`.`order_product_id` = '" . (int)$order_product['order_product_id'] . "' AND `oo`.`order_id` = '" . (int)$order_id . "' AND ((`o`.`type` = 'radio') OR (`o`.`type` = 'select') OR (`o`.`type` = 'image')) ORDER BY `oo`.`order_option_id` ASC");
 
 					if ($pOption_query->num_rows != 0) {
 						$pOptions = array();
@@ -501,6 +498,7 @@ class Amazon {
 						}
 
 						$var = implode(':', $pOptions);
+
 						$qtyLeftRow = $this->db->query("SELECT `stock` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '" . (int)$order_product['product_id'] . "' AND `var` = '" . $this->db->escape($var) . "'")->row;
 
 						if (empty($qtyLeftRow)) {
@@ -520,10 +518,7 @@ class Amazon {
 	}
 
 	public function validate() {
-		if ($this->config->get('amazon_status') != 0 &&
-			$this->config->get('openbay_amazon_token') != '' &&
-			$this->config->get('openbay_amazon_enc_string1') != '' &&
-			$this->config->get('openbay_amazon_enc_string2') != ''){
+		if ($this->config->get('amazon_status') != 0 && $this->config->get('openbay_amazon_token') != '' && $this->config->get('openbay_amazon_enc_string1') != '' && $this->config->get('openbay_amazon_enc_string2') != '') {
 			return true;
 		} else {
 			return false;
@@ -543,7 +538,7 @@ class Amazon {
 	public function getOrder($orderId) {
 		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazon_order` WHERE `order_id` = '".(int)$orderId."' LIMIT 1");
 
-		if ($qry->num_rows > 0){
+		if ($qry->num_rows > 0) {
 			return $qry->row;
 		} else {
 			return false;
@@ -597,8 +592,8 @@ class Amazon {
 			$attributes = $tab->attributes();
 
 			$tabs[] = array(
-				'id' => (string)$attributes['id'],
-				'name' => (string)$tab->name,
+				'id'			=> (string)$attributes['id'],
+				'name'	=> (string)$tab->name
 			);
 		}
 
@@ -610,14 +605,14 @@ class Amazon {
 				$attributes = $field->attributes();
 
 				$fields[] = array(
-					'name' => (string)$attributes['name'],
-					'title' => (string)$field->title,
-					'definition' => (string)$field->definition,
-					'accepted' => (array)$field->accepted,
-					'type' => (string)$type,
-					'child' => false,
-					'order' => isset($attributes['order']) ? (string)$attributes['order'] : '',
-					'tab' => (string)$attributes['tab'],
+					'name'		=> (string)$attributes['name'],
+					'title'			=> (string)$field->title,
+					'definition'	=> (string)$field->definition,
+					'accepted'	=> (array)$field->accepted,
+					'type'			=> (string)$type,
+					'child'			=> false,
+					'order'		=> isset($attributes['order']) ? (string)$attributes['order'] : '',
+					'tab'			=> (string)$attributes['tab']
 				);
 			}
 
@@ -625,15 +620,15 @@ class Amazon {
 				$attributes = $field->attributes();
 
 				$fields[] = array(
-					'name' => (string)$attributes['name'],
-					'title' => (string)$field->title,
-					'definition' => (string)$field->definition,
-					'accepted' => (array)$field->accepted,
-					'type' => (string)$type,
-					'child' => true,
-					'parent' => (array)$field->parent,
-					'order' => isset($attributes['order']) ? (string)$attributes['order'] : '',
-					'tab' => (string)$attributes['tab'],
+					'name'		=> (string)$attributes['name'],
+					'title'			=> (string)$field->title,
+					'definition'	=> (string)$field->definition,
+					'accepted'	=> (array)$field->accepted,
+					'type'			=> (string)$type,
+					'child'			=> true,
+					'parent'		=> (array)$field->parent,
+					'order'		=> isset($attributes['order']) ? (string)$attributes['order'] : '',
+					'tab'			=> (string)$attributes['tab']
 				);
 			}
 		}
@@ -645,9 +640,9 @@ class Amazon {
 		usort($fields, array('Amazon','compareFields'));
 
 		return array(
-			'category' => $category,
-			'fields' => $fields,
-			'tabs' => $tabs,
+			'category'	=> $category,
+			'fields'		=> $fields,
+			'tabs'			=> $tabs
 		);
 	}
 

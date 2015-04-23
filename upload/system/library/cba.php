@@ -328,6 +328,7 @@ class CBA {
 		$url_params['PurchaseContractId'] = $parameters['contract_id'];
 
 		$i = 1;
+
 		foreach ($parameters['products'] as $product) {
 			$url_params['PurchaseItems.PurchaseItem.' . $i . '.MerchantId'] = $this->getMerchantId();
 			$url_params['PurchaseItems.PurchaseItem.' . $i . '.MerchantItemId'] = $product['model'];
@@ -339,6 +340,7 @@ class CBA {
 		}
 
 		$response = $this->getResponse('GET', $url_params);
+
 		$xml = simplexml_load_string($response);
 
 		if (isset($xml->ResponseMetadata->RequestId)) {
@@ -363,6 +365,7 @@ class CBA {
 		}
 
 		$response = $this->getResponse('GET', $url_params);
+
 		$xml = simplexml_load_string($response);
 
 		if (isset($xml->ResponseMetadata->RequestId)) {
@@ -439,7 +442,7 @@ class CBA {
 			CURLOPT_SSL_VERIFYPEER => 0,
 			CURLOPT_SSL_VERIFYHOST => 0,
 			CURLOPT_BINARYTRANSFER => 1,
-			CURLOPT_POSTFIELDS => $post_data,
+			CURLOPT_POSTFIELDS => $post_data
 		);
 
 		$ch = curl_init();
@@ -447,6 +450,8 @@ class CBA {
 		curl_setopt_array($ch, $defaults);
 
 		$response = curl_exec($ch);
+
+		curl_close($ch);
 
 		return $response;
 	}
@@ -483,11 +488,13 @@ class CBA {
 			CURLOPT_TIMEOUT => 0,
 			CURLOPT_SSL_VERIFYPEER => 0,
 			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POST => $http_method == 'POST' ? 1 : 0,
+			CURLOPT_POST => $http_method == 'POST' ? 1 : 0
 		);
 
 		$ch = curl_init();
+
 		curl_setopt_array($ch, $curl_options);
+
 		$response = curl_exec($ch);
 
 		curl_close($ch);
@@ -501,19 +508,21 @@ class CBA {
 
 	public function getParametersAsString(array $parameters) {
 		$query_parameters = array();
+
 		foreach ($parameters as $key => $value) {
 			$query_parameters[] = $key . '=' . $this->urlencode($value);
 		}
+
 		return implode('&', $query_parameters);
 	}
 
 	private function getCommonParameters() {
 		return array(
-			'SignatureMethod' => 'HmacSHA256',
-			'AWSAccessKeyId' => $this->getAccessKey(),
-			'SignatureVersion' => '2',
-			'Timestamp' => date('c'),
-			'Version' => '2010-08-31',
+			'SignatureMethod'	=> 'HmacSHA256',
+			'AWSAccessKeyId'	=> $this->getAccessKey(),
+			'SignatureVersion'		=> '2',
+			'Timestamp'				=> date('c'),
+			'Version'					=> '2010-08-31'
 		);
 	}
 

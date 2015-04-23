@@ -51,7 +51,7 @@
 			    <td class="right"><?php echo $product['price']; ?></td>
 			    <td class="right"><?php echo $product['cost']; ?></td>
 			    <td class="right"><?php echo $product['percent_profit']; ?></td>
-                <td class="right" style="background-color:<?php echo $product['color_profit']; ?>"><?php echo $product['profit']; ?></td>
+                <td class="right"><?php echo $product['profit']; ?></td>
               </tr>
             <?php } ?>
             <tr>
@@ -66,7 +66,7 @@
 		      <td class="right"><?php echo $total_price; ?></td>
 		      <td class="right"><?php echo $total_cost; ?></td>
 		      <td class="right"><?php echo $total_percent_profit; ?></td>
-		      <td class="right" style="background-color:<?php echo $color_profit; ?>"><?php echo $total_profit; ?></td>
+		      <td class="right"><?php echo $total_profit; ?></td>
 		    </tr>
           <?php } else { ?>
             <tr>

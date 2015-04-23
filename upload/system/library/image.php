@@ -147,7 +147,7 @@ class Image {
 
 		$this->info['width'] = $bottom_x - $top_x;
 		$this->info['height'] = $bottom_y - $top_y;
-	} 
+	}
 
 	public function rotate($degree, $color = 'FFFFFF') {
 		$rgb = $this->html2rgb($color);

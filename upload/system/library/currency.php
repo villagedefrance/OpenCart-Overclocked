@@ -117,7 +117,7 @@ class Currency {
 		}
 
 		return $value * ($to / $from);
-	} 
+	}
 
 	public function getId($currency = '') {
 		if (!$currency) {
