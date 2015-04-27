@@ -2,35 +2,46 @@
 final class Encryption {
 	private $key;
 
-    public function __construct($key) {
-        $this->key = hash('sha256', $key, true);
-    }
+	public function __construct($key) {
+		$this->key = hash('sha256', $key, true);
+	}
 
-    public function encrypt($value) {
-        $ivsize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+	public function encrypt($value) {
+		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC);
 
-        $iv = mcrypt_create_iv($ivsize, MCRYPT_DEV_RANDOM);
+		$php_version = phpversion();
 
-        $ciphervalue = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $this->key, $value, MCRYPT_MODE_CBC, $iv);
+		if ($php_version >= '5.6') {
+			$iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_URANDOM);
+		} elseif ($php_version >= '5.3') {
+			$iv = mcrypt_create_iv($iv_size, MCRYPT_DEV_RANDOM);
+		} else {
+			$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+		}
 
-        return base64_encode($iv.$ciphervalue);
-    }
+		$encrypted = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, hash('sha256', $this->key, true), $value, MCRYPT_MODE_CBC, $iv);
 
-    public function decrypt($value) {
-        $value = base64_decode($value);
+		$encoded = base64_encode($encrypted) . '|' . base64_encode($iv);
 
-        $ivsize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+		return strtr($encoded, '+/=', '-_,');
+	}
 
-        if (strlen($value) < $ivsize) {
-            throw new Exception('Missing initialization vector!');
-        }
+	public function decrypt($value) {
+		$value = explode('|', strtr($value, '-_,', '+/=') . '|');
 
-        $iv = substr($value, 0, $ivsize);
-        $value = substr($value, $ivsize);
+		$decoded = base64_decode($value[0]);
 
-        $plainvalue = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $this->key, $value, MCRYPT_MODE_CBC, $iv);
+		$iv = base64_decode($value[1]);
 
-        return rtrim($plainvalue, "\0");
-    }
+		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC);
+
+		if (strlen($iv) !== $iv_size) {
+			return false;
+		}
+
+		$decrypted = trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, hash('sha256', $this->key, true), $decoded, MCRYPT_MODE_CBC, $iv));
+
+		return $decrypted;
+	}
 }
 ?>
