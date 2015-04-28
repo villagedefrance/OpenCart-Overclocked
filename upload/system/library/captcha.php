@@ -1,10 +1,10 @@
 <?php
 class Captcha {
-	protected $code;
-	protected $height = 172;
-	protected $width = 42;
+	private  $code;
+	private  $height = 172;
+	private  $width = 42;
 
-	function __construct() {
+	public function __construct() {
 		$this->code = null;
 
 		$word_1 = '';
@@ -23,11 +23,11 @@ class Captcha {
 		return substr($this->code, 0);
 	}
 
-	function getCode() {
+	public function getCode() {
 		return substr($this->code, 0);
 	}
 
-	function showImage($font) {
+	public function showImage($font) {
 		$dir = DIR_SYSTEM . 'library/fonts/';
 
 		if ($font) {
@@ -44,7 +44,7 @@ class Captcha {
 
 		imagefilledrectangle($image, 0, 0, 262, 42, $background);
 
-		imagettftext($image, 22, 0, 2, 30, $color, $dir.$fontfile, $this->code);
+		imagettftext($image, 22, 0, 2, 28, $color, $dir.$fontfile, html_entity_decode($this->code));
 
 		header("Content-type: image/png");
 
