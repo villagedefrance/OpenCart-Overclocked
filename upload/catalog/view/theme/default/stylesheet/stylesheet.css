@@ -1869,22 +1869,22 @@ ul.box-filter > li ul {
 /* Captcha */
 #captcha-wrap {
 	width: 270px;
-	height: 100px;
+	height: 97px;
 	background: #870500;
 	border: 1px solid #870500;
-	-moz-border-radius: 9px;
-	-webkit-border-radius: 9px;
-	-khtml-border-radius: 9px;
-	border-radius: 9px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
 	text-align: left;
 }
 #captcha-wrap .captcha-box {
 	background: #FAFAFA;
 	border: 1px solid #FAFAFA;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	border-radius: 7px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 	text-align: center;
 	padding: 0px;
 	margin: 0px;
@@ -1904,10 +1904,10 @@ ul.box-filter > li ul {
 	float: left;
 	background:#FFDC73;
 	border: 1px solid #FFDC73;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	border-radius: 7px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 	text-align: center;
 	margin: 4px;
 }
