@@ -20,7 +20,7 @@ final class Front {
 
 			if ($result) {
 				$action = $result;
-				break; 
+				break;
 			}
 		}
 
@@ -30,14 +30,21 @@ final class Front {
 	}
 
 	private function execute($action) {
+		$method = $action->getMethod();
+
+		if (substr($method, 0, 2) == '__') {
+			return false;
+		}
+
 		if (file_exists($action->getFile())) {
 			require_once($action->getFile());
 
 			$class = $action->getClass();
+
 			$controller = new $class($this->registry);
 
-			if (is_callable(array($controller, $action->getMethod()))) {
-				$action = call_user_func_array(array($controller, $action->getMethod()), $action->getArgs());
+			if (is_callable(array($controller, $method))) {
+				$action = call_user_func_array(array($controller, $method), $action->getArgs());
 			} else {
 				$action = $this->error;
 				$this->error = '';
