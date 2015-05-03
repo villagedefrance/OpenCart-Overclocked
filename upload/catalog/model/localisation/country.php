@@ -2,20 +2,20 @@
 class ModelLocalisationCountry extends Model {
 
 	public function getCountry($country_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country WHERE country_id = '" . (int)$country_id . "' AND status = '1'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND c.status = '1'");
 
 		return $query->row;
 	}
 
 	public function getCountries() {
-		$country_data = $this->cache->get('country.status');
+		$country_data = $this->cache->get('country.' . (int)$this->config->get('config_language_id'));
 
 		if (!$country_data) {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country WHERE status = '1' ORDER BY name ASC");
+			$query = $this->db->query("SELECT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY cd.name ASC");
 
 			$country_data = $query->rows;
 
-			$this->cache->set('country.status', $country_data);
+			$this->cache->set('country.' . (int)$this->config->get('config_language_id'), $country_data);
 		}
 
 		return $country_data;

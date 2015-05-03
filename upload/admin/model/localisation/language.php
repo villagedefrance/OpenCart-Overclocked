@@ -45,6 +45,15 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->cache->delete('category');
 
+		// Country
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		foreach ($query->rows as $country) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country['country_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($country['name']) . "'");
+		}
+
+		$this->cache->delete('country');
+
 		// Custom Field
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "custom_field_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -247,6 +256,9 @@ class ModelLocalisationLanguage extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "banner_image_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('category');
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "country_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('country');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "custom_field_description WHERE language_id = '" . (int)$language_id . "'");

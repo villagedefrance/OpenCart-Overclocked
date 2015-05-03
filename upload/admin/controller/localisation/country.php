@@ -401,7 +401,7 @@ class ControllerLocalisationCountry extends Controller {
 		if (isset($this->error['name'])) {
 			$this->data['error_name'] = $this->error['name'];
 		} else {
-			$this->data['error_name'] = '';
+			$this->data['error_name'] = array();
 		}
 
 		$url = ''; 
@@ -421,14 +421,14 @@ class ControllerLocalisationCountry extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -444,12 +444,16 @@ class ControllerLocalisationCountry extends Controller {
 			$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
 		}
 
-		if (isset($this->request->post['name'])) {
-			$this->data['name'] = $this->request->post['name'];
-		} elseif (!empty($country_info)) {
-			$this->data['name'] = $country_info['name'];
+		$this->load->model('localisation/language');
+
+		$this->data['languages'] = $this->model_localisation_language->getLanguages();
+
+		if (isset($this->request->post['country_description'])) {
+			$this->data['country_description'] = $this->request->post['country_description'];
+		} elseif (isset($this->request->get['country_id'])) {
+			$this->data['country_description'] = $this->model_localisation_country->getCountryDescriptions($this->request->get['country_id']);
 		} else {
-			$this->data['name'] = '';
+			$this->data['country_description'] = array();
 		}
 
 		if (isset($this->request->post['iso_code_2'])) {
@@ -506,8 +510,10 @@ class ControllerLocalisationCountry extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 128)) {
-			$this->error['name'] = $this->language->get('error_name');
+		foreach ($this->request->post['country_description'] as $language_id => $value) {
+			if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 128)) {
+				$this->error['name'][$language_id] = $this->language->get('error_name');
+			}
 		}
 
 		if (!$this->error) {

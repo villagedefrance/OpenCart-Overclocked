@@ -22,9 +22,12 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="name" value="<?php echo $name; ?>" />
-            <?php if ($error_name) { ?>
-              <span class="error"><?php echo $error_name; ?></span>
+            <td><?php foreach ($languages as $language) { ?>
+              <input type="text" name="country_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($country_description[$language['language_id']]) ? $country_description[$language['language_id']]['name'] : ''; ?>" size="40" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+              <?php if (isset($error_name[$language['language_id']])) { ?>
+                <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
+              <?php } ?>
             <?php } ?></td>
           </tr>
           <tr>

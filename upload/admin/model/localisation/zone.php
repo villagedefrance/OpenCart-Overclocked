@@ -2,7 +2,7 @@
 class ModelLocalisationZone extends Model {
 
 	public function addZone($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "zone SET country_id = '" . (int)$data['country_id'] . "', name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($data['code']) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "zone` SET country_id = '" . (int)$data['country_id'] . "', name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($data['code']) . "', status = '" . (int)$data['status'] . "'");
 
 		$zone_id = $this->db->getLastId();
 
@@ -13,28 +13,28 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function editZone($zone_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "zone SET country_id = '" . (int)$data['country_id'] . "', name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($data['code']) . "', status = '" . (int)$data['status'] . "' WHERE zone_id = '" . (int)$zone_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "zone` SET country_id = '" . (int)$data['country_id'] . "', name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($data['code']) . "', status = '" . (int)$data['status'] . "' WHERE zone_id = '" . (int)$zone_id . "'");
 
 		$this->cache->delete('zone');
 	}
 
 	public function deleteZone($zone_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$zone_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "zone` WHERE zone_id = '" . (int)$zone_id . "'");
 
 		$this->cache->delete('zone');
 	}
 
 	public function getZone($zone_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$zone_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "zone` WHERE zone_id = '" . (int)$zone_id . "'");
 
 		return $query->row;
 	}
 
 	public function getZones($data = array()) {
-		$sql = "SELECT *, z.name, c.name AS country FROM " . DB_PREFIX . "zone z LEFT JOIN " . DB_PREFIX . "country c ON (z.country_id = c.country_id)";
+		$sql = "SELECT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id)";
 
 		$sort_data = array(
-			'c.name',
+			'country',
 			'z.name',
 			'z.code',
 			'z.status'
@@ -43,7 +43,7 @@ class ModelLocalisationZone extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY c.name";
+			$sql .= " ORDER BY country";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -73,7 +73,7 @@ class ModelLocalisationZone extends Model {
 		$zone_data = $this->cache->get('zone.' . (int)$country_id);
 
 		if (!$zone_data) {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone WHERE country_id = '" . (int)$country_id . "' AND status = '1' ORDER BY name");
+			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "' AND status = '1' ORDER BY name");
 
 			$zone_data = $query->rows;
 
@@ -84,13 +84,13 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function getTotalZones() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "zone");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone`");
 
 		return $query->row['total'];
 	}
 
 	public function getTotalZonesByCountryId($country_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "zone WHERE country_id = '" . (int)$country_id . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "'");
 
 		return $query->row['total'];
 	}
