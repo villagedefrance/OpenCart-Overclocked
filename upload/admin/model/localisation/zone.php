@@ -31,10 +31,10 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function getZones($data = array()) {
-		$sql = "SELECT DISTINCT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT DISTINCT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country c ON (z.country_id = c.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$sort_data = array(
-			'country',
+			'cd.name',
 			'z.name',
 			'z.code',
 			'z.status'
@@ -43,7 +43,7 @@ class ModelLocalisationZone extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY country";
+			$sql .= " ORDER BY cd.name";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
