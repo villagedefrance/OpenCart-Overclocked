@@ -31,7 +31,7 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function getZones($data = array()) {
-		$sql = "SELECT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id)";
+		$sql = "SELECT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$sort_data = array(
 			'country',
@@ -43,7 +43,7 @@ class ModelLocalisationZone extends Model {
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY country";
+			$sql .= " ORDER BY z.name";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
@@ -73,7 +73,7 @@ class ModelLocalisationZone extends Model {
 		$zone_data = $this->cache->get('zone.' . (int)$country_id);
 
 		if (!$zone_data) {
-			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "' AND status = '1' ORDER BY name");
+			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND z.country_id = '" . (int)$country_id . "' AND z.status = '1' ORDER BY z.name ASC");
 
 			$zone_data = $query->rows;
 
@@ -90,7 +90,7 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function getTotalZonesByCountryId($country_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND z.country_id = '" . (int)$country_id . "'");
 
 		return $query->row['total'];
 	}
