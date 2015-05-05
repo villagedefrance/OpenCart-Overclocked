@@ -112,26 +112,22 @@
 	  <div class="tiles">
         <div class="tile">
 	      <div class="tile-red">
-		    <p><?php echo $text_order_today; ?> &nbsp; <?php echo $total_order_today; ?></p>
-			<a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /></a>
+		    <p><a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /><?php echo $text_order_today; ?>&nbsp;<?php echo $total_order_today; ?></a></p>
           </div>
         </div>
 		<div class="tile">
           <div class="tile-blue">
-            <p><?php echo $text_customer_today; ?> &nbsp; <?php echo $total_customer_today; ?></p>
-			<a href="<?php echo $view_customers; ?>" title=""><img src="view/image/dashboard/customer.png" alt="" /></a>
+            <p><a href="<?php echo $view_customers; ?>" title=""><img src="view/image/dashboard/customer.png" alt="" /><?php echo $text_customer_today; ?>&nbsp;<?php echo $total_customer_today; ?></a></p>
           </div>
         </div>
 		<div class="tile">
           <div class="tile-yellow">
-            <p><?php echo $text_sale_today; ?> &nbsp; <?php echo $total_sale_today; ?></p>
-			<a href="<?php echo $view_sales; ?>" title=""><img src="view/image/dashboard/sale.png" alt="" /></a>
+            <p><a href="<?php echo $view_sales; ?>" title=""><img src="view/image/dashboard/sale.png" alt="" /><?php echo $text_sale_today; ?>&nbsp;<?php echo $total_sale_today; ?></a></p>
           </div>
         </div>
 		<div class="tile">
 		  <div class="tile-green">
-            <p><?php echo $text_online; ?> &nbsp; <?php echo $total_online; ?></p>
-			<a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /></a>
+            <p><a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /><?php echo $text_online; ?>&nbsp;<?php echo $total_online; ?></a></p>
           </div>
 		</div>
 	  </div>

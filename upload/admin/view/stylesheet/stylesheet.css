@@ -854,7 +854,6 @@ table.form > tbody > tr > td {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	margin-left: 10px;
 	margin-right: 10px;
 }
 .tiles .tile .tile-blue {
@@ -882,20 +881,22 @@ table.form > tbody > tr > td {
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	margin-left: 10px;
-	margin-right: 10px;
 }
 .tiles .tile .tile-red p, .tiles .tile .tile-blue p, .tiles .tile .tile-yellow p, .tiles .tile .tile-green p {
+	padding: 15px 0px 15px 12px;
+	margin: 0;
+}
+.tiles .tile .tile-red a, .tiles .tile .tile-blue a, .tiles .tile .tile-yellow a, .tiles .tile .tile-green a {
 	color: #FFF;
 	font-size: 18px;
 	font-weight: bold;
 	text-shadow: 0 1px 1px #444;
-	padding: 15px;
-	margin: 0;
 }
 .tiles .tile .tile-red a img, .tiles .tile .tile-blue a img, .tiles .tile .tile-yellow a img, .tiles .tile .tile-green a img {
-	position: absolute;
-	top: 10px;
-	right: 20px;
+	position: relative;
+	float: left;
+	top: -5px;
+	margin-right: 8px;
 }
 /* Overview */
 .overview {
