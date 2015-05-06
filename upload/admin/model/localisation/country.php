@@ -36,14 +36,14 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountry($country_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
 
 	public function getCountries($data = array()) {
 		if ($data) {
-			$sql = "SELECT *, cd.name AS name, c.iso_code_2 AS iso_code_2, c.iso_code_3 AS iso_code_3, c.status AS status FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			$sort_data = array(
 				'name',
@@ -55,7 +55,7 @@ class ModelLocalisationCountry extends Model {
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 				$sql .= " ORDER BY " . $data['sort'];
 			} else {
-				$sql .= " ORDER BY name";
+				$sql .= " ORDER BY cd.name";
 			}
 
 			if (isset($data['order']) && ($data['order'] == 'DESC')) {

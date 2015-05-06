@@ -31,7 +31,7 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function getZones($data = array()) {
-		$sql = "SELECT DISTINCT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country c ON (z.country_id = c.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country c ON (z.country_id = c.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$sort_data = array(
 			'cd.name',
@@ -73,7 +73,7 @@ class ModelLocalisationZone extends Model {
 		$zone_data = $this->cache->get('zone.' . (int)$country_id);
 
 		if (!$zone_data) {
-			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND z.country_id = '" . (int)$country_id . "' AND z.status = '1' ORDER BY z.name ASC");
+			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "' AND status = '1' ORDER BY name");
 
 			$zone_data = $query->rows;
 
@@ -90,7 +90,7 @@ class ModelLocalisationZone extends Model {
 	}
 
 	public function getTotalZonesByCountryId($country_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND z.country_id = '" . (int)$country_id . "'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "'");
 
 		return $query->row['total'];
 	}
