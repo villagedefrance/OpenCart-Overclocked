@@ -1,34 +1,14 @@
 <?php
-class ControllerCheckoutSuccess extends Controller {
+class ControllerCheckoutFailure extends Controller {
 
 	public function index() {
 		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
-			$this->redirect($this->url->link('checkout/success', '', 'SSL'), 301);
+			$this->redirect($this->url->link('checkout/failure', '', 'SSL'), 301);
 		}
 
-		if (isset($this->session->data['order_id'])) {
-			$this->cart->clear();
-
-			unset($this->session->data['shipping_method']);
-			unset($this->session->data['shipping_methods']);
-			unset($this->session->data['payment_method']);
-			unset($this->session->data['payment_methods']);
-			unset($this->session->data['guest']);
-			unset($this->session->data['comment']);
-			unset($this->session->data['order_id']);
-			unset($this->session->data['coupon']);
-			unset($this->session->data['reward']);
-			unset($this->session->data['voucher']);
-			unset($this->session->data['vouchers']);
-			unset($this->session->data['totals']);
-		}
-
-		$this->language->load('checkout/success');
+		$this->language->load('checkout/failure');
 
 		$this->document->setTitle($this->language->get('heading_title'));
-
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -51,18 +31,14 @@ class ControllerCheckoutSuccess extends Controller {
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_success'),
-			'href'		=> $this->url->link('checkout/success'),
+			'text'		=> $this->language->get('text_failure'),
+			'href'		=> $this->url->link('checkout/failure'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		if ($this->customer->isLogged()) {
-			$this->data['text_message'] = sprintf($this->language->get('text_customer'), $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
-		} else {
-			$this->data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
-		}
+		$this->data['text_message'] = sprintf($this->language->get('text_message'), $this->url->link('information/contact'));
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 

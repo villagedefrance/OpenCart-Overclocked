@@ -3,7 +3,7 @@
 $_['heading_title']             		= 'Web Payment Software';
 
 // Link
-$_['text_web_payment_software']	= '<a onclick="window.open(\'http://www.web-payment-software.com/\');"><img src="view/image/payment/wps-logo.jpg" alt="Web Payment Software" title="Web Payment Software" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_web_payment_software']	= '<a onclick="window.open(\'http://www.web-payment-software.com/\');"><img src="view/image/payment/webpayment.png" alt="Web Payment Software" title="Web Payment Software" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']              		= 'Payment';

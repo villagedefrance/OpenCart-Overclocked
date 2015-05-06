@@ -64,7 +64,7 @@ class ControllerFeedGoogleBase extends Controller {
 			$this->data['google_base_status'] = $this->config->get('google_base_status');
 		}
 
-		$this->data['data_feed'] = HTTP_CATALOG . 'index.php?route=feed/google_base'; 
+		$this->data['data_feed'] = HTTP_CATALOG . 'index.php?route=feed/google_base';
 
 		$this->template = 'feed/google_base.tpl';
 		$this->children = array(

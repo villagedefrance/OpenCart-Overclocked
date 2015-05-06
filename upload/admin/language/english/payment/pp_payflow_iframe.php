@@ -4,7 +4,7 @@ $_['heading_title'] 					= 'PayPal Payflow Pro iFrame';
 $_['heading_refund'] 				= 'Refund';
 
 // Link
-$_['text_pp_payflow_iframe'] 		= '<a onclick="window.open(\'\');"><img src="view/image/payment/paypal.png" alt="PayPal Payflow Pro" title="PayPal Payflow Pro iFrame" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_pp_payflow_iframe'] 		= '<a onclick="window.open(\'\');"><img src="view/image/payment/paypal.png" alt="PayPal Payflow Pro" title="PayPal Payflow Pro iFrame" style="border:1px solid #EEEEEE;" /></a>';
 
 // Table columns
 $_['column_transaction_id'] 		= 'Transaction ID';

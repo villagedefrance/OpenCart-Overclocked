@@ -13,6 +13,7 @@
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
@@ -21,45 +22,49 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="authorizenet_merchant" value="<?php echo $authorizenet_merchant; ?>" />
+            <td><input type="text" name="authorizenet_sim_merchant" value="<?php echo $authorizenet_sim_merchant; ?>" />
             <?php if ($error_merchant) { ?>
               <span class="error"><?php echo $error_merchant; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_key ?></td>
-            <td><input type="text" name="authorizenet_key" value="<?php echo $authorizenet_key; ?>" />
+            <td><span class="required">*</span> <?php echo $entry_key; ?></td>
+            <td><input type="text" name="authorizenet_sim_key" value="<?php echo $authorizenet_sim_key; ?>" />
             <?php if ($error_key) { ?>
               <span class="error"><?php echo $error_key; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_callback; ?></td>
-            <td><textarea cols="40" rows="5"><?php echo $callback; ?></textarea></td>
+            <td><textarea cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_md5; ?></td>
+            <td><input type="text" name="authorizenet_sim_md5" value="<?php echo $authorizenet_sim_md5; ?>" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_test; ?></td>
-            <td><?php if ($authorizenet_test) { ?>
-              <input type="radio" name="authorizenet_test" value="1" checked="checked" />
+            <td><?php if ($authorizenet_sim_test) { ?>
+              <input type="radio" name="authorizenet_sim_test" value="1" checked="checked" />
               <?php echo $text_yes; ?>
-              <input type="radio" name="authorizenet_test" value="0" />
+              <input type="radio" name="authorizenet_sim_test" value="0" />
               <?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="authorizenet_test" value="1" />
+              <input type="radio" name="authorizenet_sim_test" value="1" />
               <?php echo $text_yes; ?>
-              <input type="radio" name="authorizenet_test" value="0" checked="checked" />
+              <input type="radio" name="authorizenet_sim_test" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_total; ?></td>
-            <td><input type="text" name="authorizenet_total" value="<?php echo $authorizenet_total; ?>" /></td>
+            <td><input type="text" name="authorizenet_sim_total" value="<?php echo $authorizenet_sim_total; ?>" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_order_status; ?></td>
-            <td><select name="authorizenet_order_status_id">
+            <td><select name="authorizenet_sim_order_status_id">
               <?php foreach ($order_statuses as $order_status) { ?>
-                <?php if ($order_status['order_status_id'] == $authorizenet_order_status_id) { ?>
+                <?php if ($order_status['order_status_id'] == $authorizenet_sim_order_status_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
                 <?php } else { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
@@ -69,10 +74,10 @@
           </tr>
           <tr>
             <td><?php echo $entry_geo_zone; ?></td>
-            <td><select name="authorizenet_geo_zone_id">
+            <td><select name="authorizenet_sim_geo_zone_id">
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
-                <?php if ($geo_zone['geo_zone_id'] == $authorizenet_geo_zone_id) { ?>
+                <?php if ($geo_zone['geo_zone_id'] == $authorizenet_sim_geo_zone_id) { ?>
                   <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
                 <?php } else { ?>
                   <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
@@ -82,8 +87,8 @@
           </tr>
           <tr>
             <td><?php echo $entry_status; ?></td>
-            <td><select name="authorizenet_status">
-              <?php if ($authorizenet_status) { ?>
+            <td><select name="authorizenet_sim_status">
+              <?php if ($authorizenet_sim_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
@@ -94,7 +99,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="authorizenet_sort_order" value="<?php echo $authorizenet_sort_order; ?>" size="1" /></td>
+            <td><input type="text" name="authorizenet_sim_sort_order" value="<?php echo $authorizenet_sim_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </form>

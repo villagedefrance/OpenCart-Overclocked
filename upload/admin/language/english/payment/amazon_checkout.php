@@ -3,7 +3,7 @@
 $_['heading_title'] 					= 'Amazon Payments';
 
 // Link
-$_['text_amazon_checkout'] 		= '<a onclick="window.open(\'http://go.amazonservices.com/UKCBASPOpenCart.html\');"><img src="view/image/payment/amazon.png" alt="Amazon Payments" title="Amazon Payments" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_amazon_checkout'] 		= '<a onclick="window.open(\'http://go.amazonservices.com/UKCBASPOpenCart.html\');"><img src="view/image/payment/amazon.png" alt="Amazon Payments" title="Amazon Payments" style="border:1px solid #EEEEEE;" /></a>';
 $_['text_amazon_join'] 				= '<a href="http://go.amazonservices.com/UKCBASPOpenCart.html" title="Click here to join Amazon Payments">Click here to create your Amazon Payments account</a>';
 
 // Text

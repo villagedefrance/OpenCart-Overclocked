@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'PayPoint';
 
 // Link
-$_['text_paypoint']      		= '<a onclick="window.open(\'https://www.paypoint.net/partners/opencart\');"><img src="view/image/payment/paypoint.png" alt="PayPoint" title="PayPoint" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_paypoint']      		= '<a onclick="window.open(\'https://www.paypoint.net/partners/opencart\');"><img src="view/image/payment/paypoint.png" alt="PayPoint" title="PayPoint" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text
 $_['text_payment']       	= 'Payment';
