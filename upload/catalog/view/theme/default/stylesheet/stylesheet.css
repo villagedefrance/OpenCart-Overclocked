@@ -944,9 +944,7 @@ ul.box-category > li ul > li > a.active {
 }
 .box-account > ul > li {}
 .box-account > ul > li:hover {}
-.box-account > ul > li + li {
-	border-top: 1px solid #E7E7E7;
-}
+.box-account > ul > li + li {}
 .box-account > ul > li > a {
 	text-decoration: none;
 	background: none;
