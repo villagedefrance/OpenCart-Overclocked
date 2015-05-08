@@ -26,7 +26,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_restore; ?></td>
-            <td><input type="file" name="import" /></td>
+            <td><input type="file" name="import" class="custom-input-class" /></td>
           </tr>
         </table>
       </form>
@@ -51,4 +51,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="view/javascript/jquery/sfi/js/jquery.simplefileinput.min.js"></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+    $('.custom-input-class').simpleFileInput({
+		placeholder: '<?php echo $text_restore; ?>',
+		buttonText: 'Select',
+		allowedExts: ['sql'],
+		width: 282
+	});
+});
+//--></script>
+
 <?php echo $footer; ?>

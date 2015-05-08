@@ -6,6 +6,7 @@ $_['heading_restore']  	= 'Database Restore';
 $_['heading_backup'] 	= 'Database Backup';
 
 // Text
+$_['text_restore']			= 'Select a SQL file';
 $_['text_backup'] 		= 'Download Backup';
 $_['text_success']   		= 'Success: You have successfully imported your <b>Database File</b>!';
 

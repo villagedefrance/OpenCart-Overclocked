@@ -7,6 +7,8 @@ class ControllerToolBackup extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
+
 		$this->load->model('tool/backup');
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->user->hasPermission('modify', 'tool/backup')) {
@@ -33,6 +35,7 @@ class ControllerToolBackup extends Controller {
 		$this->data['heading_restore'] = $this->language->get('heading_restore');
 		$this->data['heading_backup'] = $this->language->get('heading_backup');
 
+		$this->data['text_restore'] = $this->language->get('text_restore');
 		$this->data['text_select_all'] = $this->language->get('text_select_all');
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 

@@ -7,6 +7,7 @@ $_['heading_import'] 	= 'Import';
 
 // Text
 $_['text_success']		= 'Success: You have successfully imported your CSV file!';
+$_['text_import']			= 'Select a CSV file';
 
 // Entry
 $_['entry_export']		= 'Export a CSV file:';

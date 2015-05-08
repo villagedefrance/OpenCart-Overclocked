@@ -25,7 +25,7 @@
         <table class="form">
           <tr>
             <td width="20%"><?php echo $entry_import; ?></td>
-            <td width="50%"><input type="file" name="csv_import" /></td>
+            <td width="50%"><input type="file" name="csv_import" class="custom-input-class" /></td>
             <td width="30%"><a onclick="$('#csv-import').submit();" class="button"><?php echo $button_import; ?></a></td>
           </tr>
         </table>
@@ -47,4 +47,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="view/javascript/jquery/sfi/js/jquery.simplefileinput.min.js"></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+    $('.custom-input-class').simpleFileInput({
+		placeholder: '<?php echo $text_import; ?>',
+		buttonText: 'Select',
+		allowedExts: ['csv'],
+		width: 282
+	});
+});
+//--></script>
+
 <?php echo $footer; ?>

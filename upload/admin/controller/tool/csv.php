@@ -7,6 +7,8 @@ class ControllerToolCSV extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
+
 		$this->load->model('tool/csv');
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
@@ -33,6 +35,8 @@ class ControllerToolCSV extends Controller {
 
 		$this->data['heading_export'] = $this->language->get('heading_export');
 		$this->data['heading_import'] = $this->language->get('heading_import');
+
+		$this->data['text_import'] = $this->language->get('text_import');
 
 		$this->data['entry_export'] = $this->language->get('entry_export');
 		$this->data['entry_import'] = $this->language->get('entry_import');
