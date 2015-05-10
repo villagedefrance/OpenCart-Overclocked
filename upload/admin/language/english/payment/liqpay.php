@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'LIQPAY';
 
 // Link
-$_['text_liqpay']				= '';
+$_['text_liqpay']				= '<a onclick="window.open(\'https://www.liqpay.com/en\');"><img src="view/image/payment/liqpay.png" alt="LIQPAY" title="LIQPAY" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment';

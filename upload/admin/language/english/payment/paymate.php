@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'Paymate';
 
 // Link
-$_['text_paymate']	     	= '';
+$_['text_paymate']	     	= '<a onclick="window.open(\'https://www.paymate.com/cms/\');"><img src="view/image/payment/paymate.png" alt="Paymate" title="Paymate" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment';

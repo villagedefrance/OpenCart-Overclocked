@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'Payza';
 
 // Link
-$_['text_payza']      		= '';
+$_['text_payza']      		= '<a onclick="window.open(\'https://www.payza.com/\');"><img src="view/image/payment/payza.png" alt="Payza" title="Payza" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment';

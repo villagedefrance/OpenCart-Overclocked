@@ -3,7 +3,7 @@
 $_['heading_title']		      		= 'Moneybookers (Skrill)';
 
 // Link
-$_['text_moneybookers']	      	= '<a onclick="window.open(\'https://www.moneybookers.com/partners/?p=OpenCart\');"><img src="view/image/payment/moneybookers.png" alt="Moneybookers" title="Moneybookers" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_moneybookers']	      	= '<a onclick="window.open(\'https://www.skrill.com/en/home/\');"><img src="view/image/payment/moneybookers.png" alt="Moneybookers" title="Moneybookers" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 					
 $_['text_payment']		      		= 'Payment';
