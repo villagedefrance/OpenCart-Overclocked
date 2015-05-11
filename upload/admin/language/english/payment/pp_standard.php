@@ -3,7 +3,7 @@
 $_['heading_title']						= 'PayPal Standard';
 
 // Link
-$_['text_pp_standard']					= '<a onclick="window.open(\'https://www.paypal.com/uk/mrb/pal=W9TBB5DTD6QJW\');"><img src="view/image/payment/paypal.png" alt="PayPal Payments Standard" title="PayPal Payments Standard" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_pp_standard']					= '<a onclick="window.open(\'https://www.paypal.com/\');"><img src="view/image/payment/paypal.png" alt="PayPal Payments Standard" title="PayPal Payments Standard" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text
 $_['text_payment']						= 'Payment';

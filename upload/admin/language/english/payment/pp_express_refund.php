@@ -4,7 +4,7 @@ $_['heading_title']             	= 'Refund Transaction';
 
 // Text
 $_['text_pp_express']        	= 'PayPal Express Checkout';
-$_['text_current_refunds']  	= 'Refunds have already been done for this transaction. The max refund is';
+$_['text_current_refunds']  	= 'Refunds have already been done for this transaction. The max refund is ';
 
 // Button
 $_['btn_cancel']                	= 'Cancel';

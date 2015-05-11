@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'WorldPay';
 
 // Link
-$_['text_worldpay']			= '';
+$_['text_worldpay']			= '<a onclick="window.open(\'http://www.worldpay.com/\');"><img src="view/image/payment/worldpay.png" alt="WorldPay" title="WorldPay" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment';

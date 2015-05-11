@@ -3,7 +3,7 @@
 $_['heading_title']      		= '2Checkout';
 
 // Link
-$_['text_twocheckout']		= '<a onclick="window.open(\'https://www.2checkout.com/2co/affiliate?affiliate=1596408\');"><img src="view/image/payment/2checkout.png" alt="2Checkout" title="2Checkout" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_twocheckout']		= '<a onclick="window.open(\'https://www.2checkout.com/\');"><img src="view/image/payment/2checkout.png" alt="2Checkout" title="2Checkout" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment';

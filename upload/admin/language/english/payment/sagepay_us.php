@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'Sage Payment Solutions (US)';
 
 // Link
-$_['text_sagepay']       	= '<a onclick="window.open(\'https://support.sagepay.com/apply/default.aspx?PartnerID=E511AF91-E4A0-42DE-80B0-09C981A3FB61\');"><img src="view/image/payment/sagepay.png" alt="SagePay" title="SagePay" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_sagepay_us']		= '<a onclick="window.open(\'http://www.sagepay.co.uk/\');"><img src="view/image/payment/sagepay.png" alt="SagePay" title="SagePay" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment'; 
