@@ -46,10 +46,10 @@ class ModelLocalisationCountry extends Model {
 			$sql = "SELECT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			$sort_data = array(
-				'name',
-				'iso_code_2',
-				'iso_code_3',
-				'status'
+				'cd.name',
+				'c.iso_code_2',
+				'c.iso_code_3',
+				'c.status'
 			);
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {

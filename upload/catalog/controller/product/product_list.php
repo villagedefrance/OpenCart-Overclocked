@@ -92,7 +92,7 @@ class ControllerProductProductList extends Controller {
 		$this->data['ptotal'] = 0;
 		$this->data['pcount'] = 1;
 
-		$results = $this->model_catalog_product->getListProducts();
+		$results = $this->model_catalog_product->getProducts(0);
 
 		foreach ($results as $result) {
 			$this->data['products'][] = array(

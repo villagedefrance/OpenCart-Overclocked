@@ -25,7 +25,7 @@
             <ul>
               <?php $j = $i + ceil(count($category['manufacturer']) / 4); ?>
               <?php for (; $i < $j; $i++) { ?>
-                <?php if (isset($category['manufacturer'][$i])) { ?>
+                <?php if (isset($category['manufacturer'][$i]) && ($category['manufacturer'][$i]['status'])) { ?>
                   <?php if ($category['manufacturer'][$i]['image']) { ?>
                     <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title="<?php echo $category['manufacturer'][$i]['name']; ?>"><img src="<?php echo $category['manufacturer'][$i]['image']; ?>" alt="" /></a></li>
                   <?php } else { ?>

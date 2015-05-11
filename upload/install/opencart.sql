@@ -2017,9 +2017,9 @@ CREATE TABLE `oc_location` (
 DROP TABLE IF EXISTS `oc_manufacturer`;
 CREATE TABLE `oc_manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `sort_order` int(3) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`manufacturer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -2027,13 +2027,39 @@ CREATE TABLE `oc_manufacturer` (
 -- Dumping data for table `oc_manufacturer`
 --
 
-INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
-(5, 'HTC', 'data/demo/htc_logo.jpg', 0),
-(6, 'Palm', 'data/demo/palm_logo.jpg', 0),
-(7, 'Hewlett-Packard', 'data/demo/hp_logo.jpg', 0),
-(8, 'Apple', 'data/demo/apple_logo.jpg', 0),
-(9, 'Canon', 'data/demo/canon_logo.jpg', 0),
-(10, 'Sony', 'data/demo/sony_logo.jpg', 0);
+INSERT INTO `oc_manufacturer` (`manufacturer_id`, `image`, `sort_order`, `status`) VALUES
+(5, 'data/demo/htc_logo.jpg', 0, 1),
+(6, 'data/demo/palm_logo.jpg', 0, 1),
+(7, 'data/demo/hp_logo.jpg', 0, 1),
+(8, 'data/demo/apple_logo.jpg', 0, 1),
+(9, 'data/demo/canon_logo.jpg', 0, 1),
+(10, 'data/demo/sony_logo.jpg', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_manufacturer_description`
+--
+
+DROP TABLE IF EXISTS `oc_manufacturer_description`;
+CREATE TABLE `oc_manufacturer_description` (
+  `manufacturer_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`manufacturer_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_manufacturer_description`
+--
+
+INSERT INTO `oc_manufacturer_description` (`manufacturer_id`, `language_id`, `name`) VALUES
+(5, 1, 'HTC'),
+(6, 1, 'Palm'),
+(7, 1, 'Hewlett-Packard'),
+(8, 1, 'Apple'),
+(9, 1, 'Canon'),
+(10, 1, 'Sony');
 
 -- --------------------------------------------------------
 

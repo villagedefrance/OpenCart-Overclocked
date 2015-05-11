@@ -35,7 +35,7 @@ class ControllerProductManufacturer extends Controller {
 
 		$this->data['categories'] = array();
 
-		$results = $this->model_catalog_manufacturer->getManufacturers();
+		$results = $this->model_catalog_manufacturer->getManufacturers(0);
 
 		foreach ($results as $result) {
 			if ($result['image'] && $this->config->get('config_manufacturer_image')) {
@@ -57,6 +57,7 @@ class ControllerProductManufacturer extends Controller {
 			$this->data['categories'][$key]['manufacturer'][] = array(
 				'image'	=> $image,
 				'name' 	=> $result['name'],
+				'status' 	=> $result['status'],
 				'href' 		=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}

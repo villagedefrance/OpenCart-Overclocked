@@ -26,9 +26,12 @@
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-          <td><input type="text" name="name" value="<?php echo $name; ?>" size="40" />
-          <?php if ($error_name) { ?>
-            <span class="error"><?php echo $error_name; ?></span>
+          <td><?php foreach ($languages as $language) { ?>
+            <input type="text" name="manufacturer_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($manufacturer_description[$language['language_id']]) ? $manufacturer_description[$language['language_id']]['name'] : ''; ?>" size="40" />
+            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+            <?php if (isset($error_name[$language['language_id']])) { ?>
+              <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
+            <?php } ?>
           <?php } ?></td>
         </tr>
         <tr>
@@ -74,6 +77,18 @@
         <tr>
           <td><?php echo $entry_sort_order; ?></td>
           <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="1" /></td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_status; ?></td>
+          <td><select name="status">
+            <?php if ($status) { ?>
+              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+              <option value="0"><?php echo $text_disabled; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_enabled; ?></option>
+              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+            <?php } ?>
+          </select></td>
         </tr>
       </table>
       </div>

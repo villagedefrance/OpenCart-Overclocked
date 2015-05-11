@@ -210,7 +210,7 @@ class ControllerLocalisationCountry extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'cd.name';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -337,10 +337,10 @@ class ControllerLocalisationCountry extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
-		$this->data['sort_iso_code_2'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=iso_code_2' . $url, 'SSL');
-		$this->data['sort_iso_code_3'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=iso_code_3' . $url, 'SSL');
-		$this->data['sort_status'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
+		$this->data['sort_name'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=cd.name' . $url, 'SSL');
+		$this->data['sort_iso_code_2'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=c.iso_code_2' . $url, 'SSL');
+		$this->data['sort_iso_code_3'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=c.iso_code_3' . $url, 'SSL');
+		$this->data['sort_status'] = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . '&sort=c.status' . $url, 'SSL');
 
 		$url = '';
 
