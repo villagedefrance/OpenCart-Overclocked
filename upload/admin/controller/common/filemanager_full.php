@@ -101,29 +101,29 @@ class ControllerCommonFileManagerFull extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
-		$ext = utf8_substr(strrchr($this->request->get['image'], '.'), 1);
-
-        if (strtolower($ext) == 'pdf') {
-            $this->request->get['image'] = 'pdf.png';
-        }
-
-		if (strtolower($ext) == 'flv') {
-            $this->request->get['image'] = 'flv.png';
-        }
-
-		if (strtolower($ext) == 'swf') {
-            $this->request->get['image'] = 'swf.png';
-        }
-
-		if (strtolower($ext) == 'zip') {
-            $this->request->get['image'] = 'zip.png';
-        }
-
-		if (strtolower($ext) == 'rar') {
-            $this->request->get['image'] = 'rar.png';
-        }
-
 		if (isset($this->request->get['image'])) {
+			$ext = utf8_substr(strrchr($this->request->get['image'], '.'), 1);
+
+			if (strtolower($ext) == 'pdf') {
+				$this->request->get['image'] = 'pdf.png';
+			}
+
+			if (strtolower($ext) == 'flv') {
+				$this->request->get['image'] = 'flv.png';
+			}
+
+			if (strtolower($ext) == 'swf') {
+				$this->request->get['image'] = 'swf.png';
+			}
+
+			if (strtolower($ext) == 'zip') {
+				$this->request->get['image'] = 'zip.png';
+			}
+
+			if (strtolower($ext) == 'rar') {
+				$this->request->get['image'] = 'rar.png';
+			}
+
 			$this->response->setOutput(htmlspecialchars($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100), ENT_QUOTES, 'UTF-8'));
 		}
 	}
