@@ -51,6 +51,21 @@ class ControllerUpgrade extends Controller {
 			}
 		}
 
+		if (DB_DRIVER == 'mysqli') {
+			$link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+			if (mysqli_connect_errno()) {
+				$this->error['warning'] = 'Error database connect: "' . mysqli_connect_error() . '"';
+				exit();
+			}
+
+			if (!mysqli_ping($link)) {
+				$this->error['warning'] = 'Error database server: "' . mysqli_error($link) . '"';
+			}
+
+			mysqli_close($link);
+		}
+
 		if (!$this->error) {
 			return true;
 		} else {

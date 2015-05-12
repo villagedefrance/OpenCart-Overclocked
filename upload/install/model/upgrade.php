@@ -18,7 +18,7 @@ class ModelUpgrade extends Model {
 		$status = false;
 
 		// Get only the create statements
-		foreach($lines as $line) {
+		foreach ($lines as $line) {
 			// Set any prefix
 			$line = str_replace("CREATE TABLE `oc_", "CREATE TABLE `" . DB_PREFIX, $line);
 
@@ -80,7 +80,7 @@ class ModelUpgrade extends Model {
 			}
 
 			if ($match) {
-				foreach($match[1] as $primary) {
+				foreach ($match[1] as $primary) {
 					$primary_data[] = $primary;
 				}
 			}
@@ -91,13 +91,13 @@ class ModelUpgrade extends Model {
 
 			preg_match_all('#key\s*`\w[\w\d]*`\s*\(.*\)#i', $sql, $match);
 
-			foreach($match[0] as $key) {
+			foreach ($match[0] as $key) {
 				preg_match_all('#`(\w[\w\d]*)`#', $key, $match);
 
 				$indexes[] = $match;
 			}
 
-			foreach($indexes as $index) {
+			foreach ($indexes as $index) {
 				$key = '';
 
 				foreach($index[1] as $field) {
@@ -114,7 +114,7 @@ class ModelUpgrade extends Model {
 
 			preg_match_all('#(\w+)=(\w+)#', $sql, $option);
 
-			foreach(array_keys($option[0]) as $key) {
+			foreach (array_keys($option[0]) as $key) {
 				$option_data[$option[1][$key]] = $option[2][$key];
 			}
 
@@ -175,10 +175,10 @@ class ModelUpgrade extends Model {
 				foreach ($table['field'] as $field) {
 					// If field is not found create it
 					if (!in_array($field['name'], $table_old_data[$table['name']])) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` ADD `" . $field['name'] . "` " . $field['type'];
+						$sql = "ALTER TABLE `" . $table['name'] . "` ADD `" . $field['name'] . "` `" . $field['type'] . "`";
 
 						if ($field['size']) {
-							$sql .= "(" . $field['size'] . ")";
+							$sql .= "(`" . $field['size'] . "`)";
 						}
 
 						if ($field['collation']) {
@@ -203,10 +203,10 @@ class ModelUpgrade extends Model {
 
 					} else {
 						// Remove auto increment from all fields
-						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']);
+						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` `" . strtoupper($field['type']) . "`";
 
 						if ($field['size']) {
-							$sql .= "(" . $field['size'] . ")";
+							$sql .= "(`" . $field['size'] . "`)";
 						}
 
 						if ($field['collation']) {
@@ -258,7 +258,7 @@ class ModelUpgrade extends Model {
 				}
 
 				if ($primary_data) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD PRIMARY KEY(" . implode(',', $primary_data) . ")");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD PRIMARY KEY(`" . implode(',', $primary_data) . "`)");
 				}
 
 				// Add the new indexes
@@ -270,17 +270,17 @@ class ModelUpgrade extends Model {
 					}
 
 					if ($index_data) {
-						$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD INDEX (" . implode(',', $index_data) . ")");
+						$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD INDEX (`" . implode(',', $index_data) . "`)");
 					}
 				}
 
 				// Add auto increment to primary keys again
 				foreach ($table['field'] as $field) {
 					if ($field['autoincrement']) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']);
+						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` `" . strtoupper($field['type']) . "`";
 
 						if ($field['size']) {
-							$sql .= "(" . $field['size'] . ")";
+							$sql .= "(`" . $field['size'] . "`)";
 						}
 
 						if ($field['collation']) {
@@ -305,7 +305,7 @@ class ModelUpgrade extends Model {
 			}
 		}
 
-		// Update any additional table ----->
+		// ----- Update any additional table ----- //
 		// Settings
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
 
@@ -326,6 +326,22 @@ class ModelUpgrade extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `value` = '1000', `key` = 'config_voucher_max', `group` = 'config', store_id = '0'");
 		}
 
+		// Update the country table
+		if (isset($table_old_data[DB_PREFIX . 'country']) && in_array('name', $table_old_data[DB_PREFIX . 'country'])) {
+			// Country 'name' field moved to new country_description table. Need to loop through and move over.
+			$country_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country");
+
+			foreach ($country_query->rows as $country) {
+				$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language`");
+
+				foreach ($language_query->rows as $language) {
+					$this->db->query("REPLACE INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country['country_id'] . "', language_id = '" . (int)$language['language_id'] . "', name = '" . $this->db->escape($country['name']) . "'");
+				}
+			}
+
+			$this->db->query("ALTER TABLE " . DB_PREFIX . "country DROP name");
+		}
+
 		// Update the customer group table
 		if (isset($table_old_data[DB_PREFIX . 'customer_group']) && in_array('name', $table_old_data[DB_PREFIX . 'customer_group'])) {
 			// Customer Group 'name' field moved to new customer_group_description table. Need to loop through and move over.
@@ -340,6 +356,22 @@ class ModelUpgrade extends Model {
 			}
 
 			$this->db->query("ALTER TABLE " . DB_PREFIX . "customer_group DROP name");
+		}
+
+		// Update the manufacturer table
+		if (isset($table_old_data[DB_PREFIX . 'manufacturer']) && in_array('name', $table_old_data[DB_PREFIX . 'manufacturer'])) {
+			// Manufacturer 'name' field moved to new manufacturer_description table. Need to loop through and move over.
+			$manufacturer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "manufacturer");
+
+			foreach ($manufacturer_query->rows as $manufacturer) {
+				$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language`");
+
+				foreach ($language_query->rows as $language) {
+					$this->db->query("REPLACE INTO " . DB_PREFIX . "manufacturer_description SET country_id = '" . (int)$manufacturer['manufacturer_id'] . "', language_id = '" . (int)$language['language_id'] . "', name = '" . $this->db->escape($manufacturer['name']) . "'");
+				}
+			}
+
+			$this->db->query("ALTER TABLE " . DB_PREFIX . "manufacturer DROP name");
 		}
 
 		// Move blacklisted ip to ban ip table

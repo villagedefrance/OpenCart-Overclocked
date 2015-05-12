@@ -15,6 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
 	  <div class="buttons">
+        <a onclick="$('#csv-import').submit();" class="button-save"><?php echo $button_import; ?></a>
+        <a onclick="$('#csv-export').submit();" class="button-save"><?php echo $button_export; ?></a>
         <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
@@ -24,9 +26,8 @@
         <h2><?php echo $heading_import; ?></h2>
         <table class="form">
           <tr>
-            <td width="20%"><?php echo $entry_import; ?></td>
-            <td width="50%"><input type="file" name="csv_import" class="custom-input-class" /></td>
-            <td width="30%"><a onclick="$('#csv-import').submit();" class="button"><?php echo $button_import; ?></a></td>
+            <td><?php echo $entry_import; ?></td>
+            <td><input type="file" name="csv_import" class="custom-input-class" /></td>
           </tr>
         </table>
       </form>
@@ -34,13 +35,12 @@
         <h2><?php echo $heading_export; ?></h2>
         <table class="form">
           <tr>
-            <td width="20%"><?php echo $entry_export; ?></td>
-            <td width="50%"><select name="csv_export">
+            <td><?php echo $entry_export; ?></td>
+            <td><select name="csv_export">
               <?php foreach ($tables as $table) { ?>
                 <option value="<?php echo $table; ?>"><?php echo $table; ?></option>
               <?php } ?>
             </select></td>
-            <td width="30%"><a onclick="$('#csv-export').submit();" class="button"><?php echo $button_export; ?></a></td>
           </tr>
         </table>
       </form>
