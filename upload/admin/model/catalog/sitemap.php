@@ -20,7 +20,7 @@ class ModelCatalogSitemap extends Model {
 	}
 
 	public function getAllManufacturers($store_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m.manufacturer_id = m2s.manufacturer_id) WHERE m2s.store_id = '" . (int)$store_id . "' ORDER BY m.sort_order, LCASE(m.name)");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "manufacturer m  LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (m.manufacturer_id = md.manufacturer_id) LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m.manufacturer_id = m2s.manufacturer_id) WHERE md.language_id = '" . (int)$this->config->get('config_language_id') . "' AND m2s.store_id = '" . (int)$store_id . "' AND m.status = '1' ORDER BY m.sort_order, LCASE(md.name)");
 
 		return $query->rows;
 	}
