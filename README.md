@@ -12,8 +12,8 @@ Opencart Overclocked Edition is based originally on Opencart v1.5.6.4 but most s
 Many extra features have also been added, most of them in response to user feedback from the Opencart Forum.
 
 Main Scripts:
-- jQuery 1.11.2.
-- jQuery UI 1.11.2.
+- jQuery 1.11.3.
+- jQuery UI 1.11.4.
 - CKEditor 4.4.7 Full.
 - jQuery Flot 0.8.2.
 - ...
@@ -41,6 +41,20 @@ New in v1.6.4.0:
 - Improved Captcha.
 - Improved Dashboard.
 - Bug fixes ...
+
+New in v1.6.5.0:
+- All fixes from Community Edition RC1/2 applied.
+- Database CSV Import/Export.
+- Updated System files.
+- New Profit report.
+- New Encryption library, using CBC.
+- Bug fixes ...
+
+Coming soon in 1.7.0.0:
+- Multi-language Manufacturers.
+- Multi-language Countries.
+- Latest jQuery & jQuery UI.
+- ...
 
 TODO:
 - Add filter product images by colour (in progress ...).
