@@ -47,7 +47,6 @@ New in v1.6.5.0:
 - Database CSV Import/Export.
 - Updated System files.
 - New Profit report.
-- New Encryption library, using CBC.
 - Bug fixes ...
 
 Coming soon in 1.7.0.0:
