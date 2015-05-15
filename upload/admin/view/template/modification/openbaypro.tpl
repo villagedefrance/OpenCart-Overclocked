@@ -11,7 +11,7 @@
       <div class="buttons"><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
-        <p><?php echo $text_installed ?></p>
+        <p><?php echo $text_installed; ?></p>
     </div>
   </div>
 </div>

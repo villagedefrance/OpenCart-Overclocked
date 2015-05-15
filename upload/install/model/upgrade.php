@@ -305,8 +305,9 @@ class ModelUpgrade extends Model {
 			}
 		}
 
-		// ----- Update any additional table ----- //
-		// Settings
+		// Update any additional table
+		// --------------------------
+		// Add serialized to Setting
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
 
 		foreach ($query->rows as $setting) {

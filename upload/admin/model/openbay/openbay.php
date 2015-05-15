@@ -178,14 +178,12 @@ class ModelOpenbayOpenbay extends Model {
 
 								if (@ftp_chdir($connection, $location)) {
 									$dirLevel++;
-
 								} else {
 									if (@ftp_mkdir($connection, $location)) {
 										$updatelog .= "Created directory: " . $dir . "\n";
 
 										ftp_chdir($connection, $location);
 										$dirLevel++;
-
 									} else {
 										$updatelog .= "FAILED TO CREATE DIRECTORY: " . $dir . "\n";
 									}
@@ -445,7 +443,7 @@ class ModelOpenbayOpenbay extends Model {
 		if ($content_type == 'json') {
 			$encoding = mb_detect_encoding($result);
 
-			/* some json data may have BOM due to php not handling types correctly */
+			/* Some json data may have BOM due to php not handling types correctly */
 			if ($encoding == 'UTF-8') {
 				$result = preg_replace('/[^(\x20-\x7F)]*/', '', $result);
 			}
@@ -496,7 +494,7 @@ class ModelOpenbayOpenbay extends Model {
 			$sql .= " LEFT JOIN `" . DB_PREFIX . "ebay_listing` `ebay` ON (`p`.`product_id` = `ebay`.`product_id`)";
 
 			if ($data['filter_market_id'] == 0) {
-				$sql .= " LEFT JOIN (SELECT product_id, IF( SUM( `status` ) = 0, 0, 1 ) AS 'listing_status' FROM " . DB_PREFIX . "ebay_listing GROUP BY product_id ) ebay2 ON (p.product_id = ebay2.product_id)";
+				$sql .= " LEFT JOIN (SELECT product_id, IF(SUM(`status`) = 0, 0, 1) AS 'listing_status' FROM " . DB_PREFIX . "ebay_listing GROUP BY product_id) ebay2 ON (p.product_id = ebay2.product_id)";
 			}
 		}
 

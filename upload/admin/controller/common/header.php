@@ -72,6 +72,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_logout'] = $this->language->get('text_logout');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_menu'] = $this->language->get('text_menu');
+		$this->data['text_modification'] = $this->language->get('text_modification');
 		$this->data['text_module'] = $this->language->get('text_module');
 		$this->data['text_news'] = $this->language->get('text_news');
 		$this->data['text_offer'] = $this->language->get('text_offer');
@@ -196,6 +197,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['manufacturer'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['menu'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['modification'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['offer'] = $this->url->link('sale/offer', 'token=' . $this->session->data['token'], 'SSL');
