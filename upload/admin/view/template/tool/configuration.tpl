@@ -174,6 +174,18 @@
         <td><?php echo $image_data . '/'; ?></td>
         <td><?php echo is_writable($image_data) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
+      <tr>
+        <td><?php echo $vqmod; ?></td>
+        <td><?php echo is_writable($vqmod) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $vqcache . '/'; ?></td>
+        <td><?php echo is_writable($vqcache) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $vqmod_xml . '/'; ?></td>
+        <td><?php echo is_writable($vqmod_xml) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+	  </tr>
     </table>
   </div>
   </div>

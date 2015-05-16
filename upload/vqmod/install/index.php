@@ -131,12 +131,12 @@ $changes += $result['changes'];
 
 // Output result to user
 if (!$changes) {
-	die('VQMOD ALREADY INSTALLED!');
+	die('VQMOD ALREADY INSTALLED! >>> GO TO: ' . $opencart_path . $admin . '/index.php TO LOG BACK IN.');
 }
 
 if ($writes != 4) {
-	die('ONE OR MORE FILES COULD NOT BE WRITTEN!');
+	die('VQMOD HAS BEEN REPAIRED! ONE OR MORE FILES COULD NOT BE WRITTEN. >>> GO TO: ' . $opencart_path . $admin . '/index.php TO LOG BACK IN.');
 }
 
-die('VQMOD HAS BEEN INSTALLED ON YOUR SYSTEM!');
+die('VQMOD HAS BEEN INSTALLED ON YOUR SYSTEM! >>> GO TO: ' . $opencart_path . $admin . '/index.php TO LOG BACK IN.');
 ?>

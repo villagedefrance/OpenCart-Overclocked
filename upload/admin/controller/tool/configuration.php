@@ -94,6 +94,11 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['image_cache'] = DIR_IMAGE . 'cache';
 		$this->data['image_data'] = DIR_IMAGE . 'data';
 
+		// VQMod folders
+		$this->data['vqmod'] = DIR_VQMOD;
+		$this->data['vqcache'] = DIR_VQMOD . 'vqcache';
+		$this->data['vqmod_xml'] = DIR_VQMOD . 'xml';
+
 		// Template
 		$this->data['templates'] = array();
 
