@@ -16,6 +16,7 @@ $_['text_install_file']				= '3. Please make sure you have set the correct permi
 $_['text_install_directory'] 	= '4. Please make sure you have set the correct permissions on the directories list below.';
 $_['text_db_connection']		= '1. Please enter your database connection details.';
 $_['text_db_administration']	= '2. Please enter a username and password for the administration.';
+$_['text_db_option']				= '3. Select advanced options.';
 $_['text_congratulation']		= 'Congratulations! You have successfully installed OpenCart Overclocked Edition.';
 $_['text_setting']					= 'PHP Settings';
 $_['text_current']					= 'Current Settings';
@@ -45,6 +46,7 @@ $_['text_off']						= 'Off';
 $_['text_writable']				= 'Writable';
 $_['text_unwritable']				= 'Unwritable';
 $_['text_missing']					= 'Missing';
+$_['text_rewrite']					= 'Yes, activate.';
 $_['text_forget']					= 'Don\'t forget to delete your installation directory!';
 $_['text_shop']					= 'Go to your Online Shop';
 $_['text_login']					= 'Login to your Administration';
@@ -64,6 +66,7 @@ $_['entry_db_prefix']				= 'Prefix';
 $_['entry_username']			= 'Username';
 $_['entry_password']			= 'Password';
 $_['entry_email']					= 'E-Mail';
+$_['entry_rewrite']				= 'Activate Seo-url Rewrite';
 
 // Error
 $_['error_php_version']			= 'Warning: You need to use PHP5.2 or above for OpenCart OCE to work!';

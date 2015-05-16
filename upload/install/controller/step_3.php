@@ -94,10 +94,12 @@ class ControllerStep3 extends Controller {
 		$this->data['text_finished'] = $this->language->get('text_finished');
 		$this->data['text_db_connection'] = $this->language->get('text_db_connection');
 		$this->data['text_db_administration'] = $this->language->get('text_db_administration');
+		$this->data['text_db_option'] = $this->language->get('text_db_option');
 		$this->data['text_mysqli'] = $this->language->get('text_mysqli');
 		$this->data['text_mysql'] = $this->language->get('text_mysql');
 		$this->data['text_mpdo'] = $this->language->get('text_mpdo');
 		$this->data['text_pgsql'] = $this->language->get('text_pgsql');
+		$this->data['text_rewrite'] = $this->language->get('text_rewrite');
 
 		$this->data['entry_db_driver'] = $this->language->get('entry_db_driver');
 		$this->data['entry_db_hostname'] = $this->language->get('entry_db_hostname');
@@ -108,6 +110,7 @@ class ControllerStep3 extends Controller {
 		$this->data['entry_username'] = $this->language->get('entry_username');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_rewrite'] = $this->language->get('entry_rewrite');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
@@ -226,6 +229,13 @@ class ControllerStep3 extends Controller {
 		$this->data['mysql'] = extension_loaded('mysql');
 		$this->data['pdo'] = extension_loaded('pdo');
 		$this->data['pgsql'] = extension_loaded('pgsql');
+
+		// Activate Seo Urls
+		if (isset($this->request->post['rewrite'])) {
+			$this->data['rewrite'] = $this->request->post['rewrite'];
+		} else {
+			$this->data['rewrite'] = '0';
+		}
 
 		$this->data['back'] = $this->url->link('step_2');
 

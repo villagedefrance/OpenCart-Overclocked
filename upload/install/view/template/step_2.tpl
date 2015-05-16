@@ -285,6 +285,22 @@
             <span class="bad"><?php echo $text_unwritable; ?></span>
           <?php } ?></td>
         </tr>
+        <tr>
+          <td><?php echo $vqmod . '/'; ?></td>
+          <td><?php if (is_writable($vqmod)) { ?>
+            <span class="good"><?php echo $text_writable; ?></span>
+          <?php } else { ?>
+            <span class="bad"><?php echo $text_unwritable; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $vqmod_xml . '/'; ?></td>
+          <td><?php if (is_writable($vqmod_xml)) { ?>
+            <span class="good"><?php echo $text_writable; ?></span>
+          <?php } else { ?>
+            <span class="bad"><?php echo $text_unwritable; ?></span>
+          <?php } ?></td>
+        </tr>
       </table>
     </fieldset>
     <div class="buttons">

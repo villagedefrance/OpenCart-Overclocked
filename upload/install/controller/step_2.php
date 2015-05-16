@@ -89,6 +89,8 @@ class ControllerStep2 extends Controller {
 		$this->data['image'] = DIR_OPENCART . 'image';
 		$this->data['image_cache'] = DIR_OPENCART . 'image/cache';
 		$this->data['image_data'] = DIR_OPENCART . 'image/data';
+		$this->data['vqmod'] = DIR_OPENCART . 'vqmod';
+		$this->data['vqmod_xml'] = DIR_OPENCART . 'vqmod/xml';
 
 		$this->data['back'] = $this->url->link('step_1');
 

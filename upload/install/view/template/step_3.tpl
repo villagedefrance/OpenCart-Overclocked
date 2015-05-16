@@ -120,6 +120,15 @@
       </tr>
     </table>
     </fieldset>
+    <p><?php echo $text_db_option; ?></p>
+    <fieldset>
+    <table class="form">
+      <tr>
+        <td><?php echo $entry_rewrite; ?></td>
+        <td><input type="checkbox" name="rewrite" value="1" /> <?php echo $text_rewrite; ?></td>
+      </tr>
+    </table>
+    </fieldset>
     <div class="buttons">
       <div class="left"><a href="<?php echo $back; ?>" class="button"><?php echo $button_back; ?></a></div>
       <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>

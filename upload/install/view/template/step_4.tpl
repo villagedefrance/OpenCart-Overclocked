@@ -9,14 +9,14 @@
   </ul>
 </div>
 <div id="content">
-  <div class="warning"><?php echo $text_forget; ?></div>
-  <p><?php echo $text_congratulation; ?></p>
+  <div class="attention"><?php echo $text_forget; ?></div>
+  <p style="text-align:center;"><b><?php echo $text_congratulation; ?></b></p>
   <div class="success">
     <div><a href="../"><img src="view/image/screenshot_1.png" alt="" /></a><br />
-      <a href="../">Go to your Online Shop</a>
+      <a href="../"><?php echo $text_shop; ?></a>
 	</div>
     <div><a href="../admin/"><img src="view/image/screenshot_2.png" alt="" /></a><br />
-      <a href="../admin/">Login to your Administration</a>
+      <a href="../admin/"><?php echo $text_login; ?></a>
 	</div>
   </div>
 </div>

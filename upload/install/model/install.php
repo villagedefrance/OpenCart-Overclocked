@@ -49,6 +49,42 @@ class ModelInstall extends Model {
 
 			$db->query("UPDATE " . $data['db_prefix'] . "product SET `viewed` = '0'");
 		}
+
+		if (isset($data['rewrite'])) {
+			if (function_exists('apache_get_modules')) {
+				$modules = apache_get_modules();
+
+				$mod_rewrite = in_array('mod_rewrite', $modules);
+			} else {
+                $mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
+            }
+
+            $db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
+
+            if ($mod_rewrite && file_exists('../.htaccess.txt')) {
+                $file = fopen('../.htaccess.txt', 'a');
+
+                if ($file) {
+					$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), 'install'), '/.\\');
+                
+					if (strlen($path) > 1) {
+						$path .= '/';
+					}
+
+					if (!$path) {
+						$path = '/';
+					}
+
+					fwrite($file, 'RewriteBase ' . $path);
+
+					fclose($file);
+
+					rename('../.htaccess.txt', '../.htaccess');
+
+                    $db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
+                }
+            }
+		}
 	}
 }
 ?>
