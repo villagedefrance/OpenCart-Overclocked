@@ -127,7 +127,7 @@ class ModelLocalisationLanguage extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "manufacturer_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		foreach ($query->rows as $manufacturer) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer_description SET manufacturer_id = '" . (int)$manufacturer['manufacturer_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($country['name']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer_description SET manufacturer_id = '" . (int)$manufacturer['manufacturer_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($manufacturer['name']) . "'");
 		}
 
 		$this->cache->delete('manufacturer');
