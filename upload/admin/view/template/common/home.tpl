@@ -5,9 +5,6 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
   <?php } ?>
   </div>
-  <?php if ($error_install) { ?>
-    <div class="warning"><?php echo $error_install; ?></div>
-  <?php } ?>
   <?php if ($error_image) { ?>
     <div class="warning"><?php echo $error_image; ?></div>
   <?php } ?>

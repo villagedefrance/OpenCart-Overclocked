@@ -96,6 +96,7 @@ class ControllerToolConfiguration extends Controller {
 
 		// VQMod folders
 		$this->data['vqmod'] = DIR_VQMOD;
+		$this->data['vqlogs'] = DIR_VQMOD . 'logs';
 		$this->data['vqcache'] = DIR_VQMOD . 'vqcache';
 		$this->data['vqmod_xml'] = DIR_VQMOD . 'xml';
 

@@ -179,8 +179,20 @@
         <td><?php echo is_writable($vqmod) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
       </tr>
       <tr>
+        <td><?php echo $vqlogs . '/'; ?></td>
+        <td><?php if (is_dir($vqlogs)) { ?>
+          <?php echo is_writable($vqlogs) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?>
+        <?php } else { ?>
+		  <?php echo '<span style="color:#A0A0A0;">Not Installed</span>'; ?>
+        <?php } ?></td>
+      </tr>
+      <tr>
         <td><?php echo $vqcache . '/'; ?></td>
-        <td><?php echo is_writable($vqcache) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?></td>
+        <td><?php if (is_dir($vqcache)) { ?>
+          <?php echo is_writable($vqcache) ? '<span style="color:#5DC15E;">Writable</span>' : '<span style="color:#DE5954;">Not Writable</span>'; ?>
+        <?php } else { ?>
+		  <?php echo '<span style="color:#A0A0A0;">Not Installed</span>'; ?>
+        <?php } ?></td>
       </tr>
       <tr>
         <td><?php echo $vqmod_xml . '/'; ?></td>
