@@ -18,6 +18,12 @@ class ControllerSettingSetting extends Controller {
 				$this->model_localisation_currency->updateCurrencies();
 			}
 
+			if ($this->config->get('config_seo_url')) {
+				$this->load->model('tool/system');
+
+				$this->model_tool_system->setupRewrite();
+			}
+
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->post['apply'])) {
