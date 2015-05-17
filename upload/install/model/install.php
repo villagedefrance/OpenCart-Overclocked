@@ -47,7 +47,10 @@ class ModelInstall extends Model {
 			$db->query("DELETE FROM " . $data['db_prefix'] . "setting WHERE `key` = 'config_encryption'");
 			$db->query("INSERT INTO " . $data['db_prefix'] . "setting SET `group` = 'config', `key` = 'config_encryption', `value` = '" . $db->escape(md5(mt_rand())) . "'");
 
-			$db->query("UPDATE " . $data['db_prefix'] . "product SET `viewed` = '0'");
+			$db->query("DELETE FROM " . $data['db_prefix'] . "setting WHERE `key` = 'config_maintenance'");
+			$db->query("INSERT INTO " . $data['db_prefix'] . "setting SET `group` = 'config', `key` = 'config_maintenance', `value` = '" . $db->escape($data['maintenance']) . "'");
+
+			$db->query("UPDATE " . $data['db_prefix'] . "product SET viewed = '0'");
 		}
 
 		if (isset($data['rewrite'])) {
@@ -60,14 +63,14 @@ class ModelInstall extends Model {
 			}
 
             if (!$mod_rewrite) {
-				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
+				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
 			}
 
-            if ($mod_rewrite && file_exists('../.htaccess.txt') && !file_exists('../.htaccess')) {
+            if ($mod_rewrite && file_exists('../.htaccess.txt')) {
                 $file = fopen('../.htaccess.txt', 'a');
 
                 if ($file) {
-					$data = file_get_contents('../.htaccess.txt');
+					$document = file_get_contents('../.htaccess.txt');
 
 					$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/.\\');
 
@@ -79,9 +82,9 @@ class ModelInstall extends Model {
 						$path = '/';
 					}
 
-					$data = str_replace('RewriteBase /', 'RewriteBase ' . $path, $data);
+					$document = str_replace('RewriteBase /', 'RewriteBase ' . $path, $document);
 
-					file_put_contents('../.htaccess.txt', $data);
+					file_put_contents('../.htaccess.txt', $document);
 
 					fclose($file);
 

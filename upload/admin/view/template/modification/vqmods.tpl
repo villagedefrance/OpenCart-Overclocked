@@ -220,7 +220,8 @@
     </form>
   <?php } else { ?>
     <br />
-    <fieldset><?php echo $text_first_install; ?></fieldset><br /><br />
+    <div class="attention"><?php echo $text_first_install; ?></div>
+    <br />
     <div class="tooltip"><?php echo $vqmod_installation_error; ?></div>
   <?php } ?>
   </div>

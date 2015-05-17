@@ -9,9 +9,9 @@
   </ul>
 </div>
 <div id="content">
+  <div class="success"><b><?php echo $text_congratulation; ?></b></div>
   <div class="attention"><?php echo $text_forget; ?></div>
-  <p style="text-align:center;"><b><?php echo $text_congratulation; ?></b></p>
-  <div class="success">
+  <div class="finalize">
     <div><a href="../"><img src="view/image/screenshot_1.png" alt="" /></a><br />
       <a href="../"><?php echo $text_shop; ?></a>
 	</div>

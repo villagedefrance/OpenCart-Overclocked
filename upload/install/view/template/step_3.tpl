@@ -125,7 +125,11 @@
     <table class="form">
       <tr>
         <td><?php echo $entry_rewrite; ?></td>
-        <td><input type="checkbox" name="rewrite" value="1" /> <?php echo $text_rewrite; ?></td>
+        <td><input type="checkbox" name="rewrite" value="1" /> <?php echo $text_activate; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $entry_maintenance; ?></td>
+        <td><input type="checkbox" name="maintenance" value="1" /> <?php echo $text_activate; ?></td>
       </tr>
     </table>
     </fieldset>

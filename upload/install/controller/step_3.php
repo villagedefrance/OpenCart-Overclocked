@@ -99,7 +99,7 @@ class ControllerStep3 extends Controller {
 		$this->data['text_mysql'] = $this->language->get('text_mysql');
 		$this->data['text_mpdo'] = $this->language->get('text_mpdo');
 		$this->data['text_pgsql'] = $this->language->get('text_pgsql');
-		$this->data['text_rewrite'] = $this->language->get('text_rewrite');
+		$this->data['text_activate'] = $this->language->get('text_activate');
 
 		$this->data['entry_db_driver'] = $this->language->get('entry_db_driver');
 		$this->data['entry_db_hostname'] = $this->language->get('entry_db_hostname');
@@ -111,6 +111,7 @@ class ControllerStep3 extends Controller {
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_rewrite'] = $this->language->get('entry_rewrite');
+		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
@@ -230,11 +231,17 @@ class ControllerStep3 extends Controller {
 		$this->data['pdo'] = extension_loaded('pdo');
 		$this->data['pgsql'] = extension_loaded('pgsql');
 
-		// Activate Seo Urls
+		// Advanced Options
 		if (isset($this->request->post['rewrite'])) {
 			$this->data['rewrite'] = $this->request->post['rewrite'];
 		} else {
 			$this->data['rewrite'] = '0';
+		}
+
+		if (isset($this->request->post['maintenance'])) {
+			$this->data['maintenance'] = $this->request->post['maintenance'];
+		} else {
+			$this->data['maintenance'] = '';
 		}
 
 		$this->data['back'] = $this->url->link('step_2');

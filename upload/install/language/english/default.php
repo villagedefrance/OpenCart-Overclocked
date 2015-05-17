@@ -46,8 +46,8 @@ $_['text_off']						= 'Off';
 $_['text_writable']				= 'Writable';
 $_['text_unwritable']				= 'Unwritable';
 $_['text_missing']					= 'Missing';
-$_['text_rewrite']					= 'Yes, activate.';
-$_['text_forget']					= 'For security reasons, the installation directory will be automatically deleted upon login!';
+$_['text_activate']				= 'Yes, activate';
+$_['text_forget']					= 'For security reasons, the <b>install</b> directory will be automatically deleted once logged-in.';
 $_['text_shop']					= 'Go to your Online Shop';
 $_['text_login']					= 'Login to your Administration';
 $_['text_project']					= 'Project Homepage';
@@ -67,6 +67,7 @@ $_['entry_username']			= 'Username';
 $_['entry_password']			= 'Password';
 $_['entry_email']					= 'E-Mail';
 $_['entry_rewrite']				= 'Activate Seo-url Rewrite';
+$_['entry_maintenance']		= 'Activate Maintenance mode';
 
 // Error
 $_['error_php_version']			= 'Warning: You need to use PHP5.2 or above for OpenCart OCE to work!';

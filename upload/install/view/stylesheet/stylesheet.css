@@ -203,6 +203,17 @@ label {
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
 }
+.success {
+	padding: 10px 10px 10px 33px;
+	margin-bottom: 15px;
+	background: #EAF7D9 url('../image/good.png') 10px center no-repeat;
+	border: 1px solid #BBDF8D;
+	color: #444;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
 .required, .error, .bad {
 	color: #CC2626;
 }
@@ -288,21 +299,27 @@ a.button:hover, input.button:hover, input.button-cart:hover {
 	color: #111;
 }
 /* Success */
-.success {
+.finalize {
+	background: transparent;
 	margin-bottom: 15px;
+	padding: 20px 0px;
 	overflow: auto;
 }
-.success div {
+.finalize div {
 	float: left;
 	width: 50%;
 	text-align: center;
 }
-.success img {
-	background: #FFF;
+.finalize img {
 	width: 270px;
+	background: #FFF;
 	border: 1px solid #DDD;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 5px;
 	padding: 5px;
-	margin-bottom: 3px;
 }
 /* Footer */
 #footer {
