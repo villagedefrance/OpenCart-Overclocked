@@ -59,7 +59,9 @@ class ModelInstall extends Model {
 				$mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
 			}
 
-            $db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
+            if (!$mod_rewrite) {
+				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
+			}
 
             if ($mod_rewrite && file_exists('../.htaccess.txt') && !file_exists('../.htaccess')) {
                 $file = fopen('../.htaccess.txt', 'a');
