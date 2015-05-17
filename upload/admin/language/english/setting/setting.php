@@ -161,7 +161,7 @@ $_['entry_fraud_status']       			= 'MaxMind Fraud Order Status:<br /><span clas
 $_['entry_secure']               			= 'Use SSL:<br /><span class="help">To use SSL check with your host if a SSL certificate is installed and added the SSL URL to the catalog and admin config files.</span>';
 $_['entry_shared']               			= 'Use Shared Sessions:<br /><span class="help">Try to share the session cookie between stores so the cart can be passed between different domains.</span>';
 $_['entry_robots']             			= 'Robots:<br /><span class="help">A list of web crawler user agents that shared sessions will not be used with. Use separate lines for each user agent.</span>';
-$_['entry_seo_url']              			= 'Use SEO URLs:<br /><span class="help">To use SEO URLs apache module mod-rewrite must be installed and you need to rename the htaccess.txt to .htaccess.</span>';
+$_['entry_seo_url']              			= 'Use SEO URLs:<br /><span class="help">To use SEO URLs apache module mod-rewrite must be installed. If Yes is selected, the "htaccess.txt" file will be automatically converted to ".htaccess".</span>';
 $_['entry_file_max_size']				= 'Maximum File Size:<br /><span class="help">Set upload file size limit for images in library.</span>';
 $_['entry_file_extension_allowed'] 	= 'Allowed File Extensions:<br /><span class="help">Add which file extensions are allowed to be uploaded. Use a new line for each value.</span>';
 $_['entry_file_mime_allowed']  		= 'Allowed File Mime Types:<br /><span class="help">Add which file mime types are allowed to be uploaded. Use a new line for each value.</span>';

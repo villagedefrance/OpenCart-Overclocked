@@ -56,17 +56,19 @@ class ModelInstall extends Model {
 
 				$mod_rewrite = in_array('mod_rewrite', $modules);
 			} else {
-                $mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
-            }
+				$mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
+			}
 
             $db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
 
-            if ($mod_rewrite && file_exists('../.htaccess.txt')) {
+            if ($mod_rewrite && file_exists('../.htaccess.txt') && !file_exists('../.htaccess')) {
                 $file = fopen('../.htaccess.txt', 'a');
 
                 if ($file) {
-					$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), 'install'), '/.\\');
-                
+					$data = file_get_contents('../.htaccess.txt');
+
+					$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/.\\');
+
 					if (strlen($path) > 1) {
 						$path .= '/';
 					}
@@ -75,7 +77,9 @@ class ModelInstall extends Model {
 						$path = '/';
 					}
 
-					fwrite($file, 'RewriteBase ' . $path);
+					$data = str_replace('RewriteBase /', 'RewriteBase ' . $path, $data);
+
+					file_put_contents('../.htaccess.txt', $data);
 
 					fclose($file);
 

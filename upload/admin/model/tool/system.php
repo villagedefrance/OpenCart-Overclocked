@@ -38,11 +38,17 @@ class ModelToolSystem extends Model {
 
 		$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
 
-		if ($mod_rewrite && file_exists('../.htaccess.txt')) {
+		if ($mod_rewrite && file_exists('../.htaccess.txt') && !file_exists('../.htaccess')) {
 			$file = fopen('../.htaccess.txt', 'a');
 
 			if ($file) {
-				$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/.\\');
+				$data = file_get_contents('../.htaccess.txt');
+
+				$root = rtrim(HTTPS_SERVER, '/');
+
+				$folder = substr(strrchr($root, '/'), 1);
+
+				$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/' . $folder . '.\\');
 
 				if (strlen($path) > 1) {
 					$path .= '/';
@@ -52,7 +58,9 @@ class ModelToolSystem extends Model {
 					$path = '/';
 				}
 
-				fwrite($file, 'RewriteBase ' . $path);
+				$data = str_replace('RewriteBase /', 'RewriteBase ' . $path, $data);
+
+				file_put_contents('../.htaccess.txt', $data);
 
 				fclose($file);
 
