@@ -40,7 +40,7 @@ class ModelToolSystem extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
 		}
 
-		if ($mod_rewrite && file_exists('../.htaccess.txt') && !file_exists('../.htaccess')) {
+		if ($mod_rewrite && file_exists('../.htaccess.txt')) {
 			$file = fopen('../.htaccess.txt', 'a');
 
 			if ($file) {
@@ -65,9 +65,13 @@ class ModelToolSystem extends Model {
 				file_put_contents('../.htaccess.txt', $data);
 
 				fclose($file);
+			}
 
+			if (!file_exists('../.htaccess')) {
 				rename('../.htaccess.txt', '../.htaccess');
+			}
 
+			if (file_exists('../.htaccess')) {
 				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
 			}
 		}
