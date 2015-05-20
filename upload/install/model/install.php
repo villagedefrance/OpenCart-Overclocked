@@ -62,37 +62,33 @@ class ModelInstall extends Model {
 				$mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
 			}
 
-            if (!$mod_rewrite) {
-				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
+			if ($mod_rewrite && file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
+				$file = fopen('../.htaccess.txt', 'a');
+
+				$document = file_get_contents('../.htaccess.txt');
+
+				$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/.\\');
+
+				if (strlen($path) > 1) {
+					$path .= '/';
+				}
+
+				if (!$path) {
+					$path = '/';
+				}
+
+				$document = str_replace('RewriteBase /', 'RewriteBase ' . $path, $document);
+
+				file_put_contents('../.htaccess.txt', $document);
+
+				fclose($file);
+
+				clearstatcache();
+
+				rename('../.htaccess.txt', '../.htaccess');
+
+				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
 			}
-
-            if ($mod_rewrite && file_exists('../.htaccess.txt')) {
-                $file = fopen('../.htaccess.txt', 'a');
-
-                if ($file) {
-					$document = file_get_contents('../.htaccess.txt');
-
-					$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/.\\');
-
-					if (strlen($path) > 1) {
-						$path .= '/';
-					}
-
-					if (!$path) {
-						$path = '/';
-					}
-
-					$document = str_replace('RewriteBase /', 'RewriteBase ' . $path, $document);
-
-					file_put_contents('../.htaccess.txt', $document);
-
-					fclose($file);
-
-					rename('../.htaccess.txt', '../.htaccess');
-
-                    $db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
-                }
-            }
 		}
 	}
 }

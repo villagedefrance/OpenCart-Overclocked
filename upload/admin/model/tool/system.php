@@ -10,6 +10,8 @@ class ModelToolSystem extends Model {
 			return unlink($dir);
 		}
 
+		clearstatcache();
+
 		foreach (scandir($dir) as $item) {
 			if ($item == '.' || $item == '..') {
 				continue;
@@ -27,26 +29,14 @@ class ModelToolSystem extends Model {
 		return rmdir($dir);
 	}
 
-	public function setupRewrite() {
-		if (function_exists('apache_get_modules')) {
-			$modules = apache_get_modules();
+	public function setupSeo() {
+		if (!file_exists('../.htaccess')) {
+			if (file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
+				$file = fopen('../.htaccess.txt', 'a');
 
-			$mod_rewrite = in_array('mod_rewrite', $modules);
-		} else {
-			$mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
-		}
-
-		if (!$mod_rewrite) {
-			$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '0' WHERE `key` = 'config_seo_url'");
-		}
-
-		if ($mod_rewrite && file_exists('../.htaccess.txt')) {
-			$file = fopen('../.htaccess.txt', 'a');
-
-			if ($file) {
 				$data = file_get_contents('../.htaccess.txt');
 
-				$root = rtrim(HTTPS_SERVER, '/');
+				$root = rtrim(HTTP_SERVER, '/');
 
 				$folder = substr(strrchr($root, '/'), 1);
 
@@ -65,14 +55,10 @@ class ModelToolSystem extends Model {
 				file_put_contents('../.htaccess.txt', $data);
 
 				fclose($file);
-			}
 
-			if (!file_exists('../.htaccess')) {
+				clearstatcache();
+
 				rename('../.htaccess.txt', '../.htaccess');
-			}
-
-			if (file_exists('../.htaccess')) {
-				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
 			}
 		}
 	}

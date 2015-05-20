@@ -123,10 +123,12 @@
     <p><?php echo $text_db_option; ?></p>
     <fieldset>
     <table class="form">
+    <?php if ($htaccess) { ?>
       <tr>
         <td><?php echo $entry_rewrite; ?></td>
         <td><input type="checkbox" name="rewrite" value="1" /> <?php echo $text_activate; ?></td>
       </tr>
+    <?php } ?>
       <tr>
         <td><?php echo $entry_maintenance; ?></td>
         <td><input type="checkbox" name="maintenance" value="1" /> <?php echo $text_activate; ?></td>

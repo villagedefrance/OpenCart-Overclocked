@@ -232,6 +232,12 @@ class ControllerStep3 extends Controller {
 		$this->data['pgsql'] = extension_loaded('pgsql');
 
 		// Advanced Options
+		if (file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
+			$this->data['htaccess'] = true;
+		} else {
+			$this->data['htaccess'] = false;
+		}
+
 		if (isset($this->request->post['rewrite'])) {
 			$this->data['rewrite'] = $this->request->post['rewrite'];
 		} else {

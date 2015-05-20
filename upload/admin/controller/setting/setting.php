@@ -21,7 +21,7 @@ class ControllerSettingSetting extends Controller {
 			if ($this->config->get('config_seo_url')) {
 				$this->load->model('tool/system');
 
-				$this->model_tool_system->setupRewrite();
+				$this->model_tool_system->setupSeo();
 			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
