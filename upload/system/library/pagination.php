@@ -6,10 +6,10 @@ class Pagination {
 	public $num_links = 10;
 	public $url = '';
 	public $text = 'Showing {start} to {end} of {total} ({pages} Pages)';
-	public $text_first = '|&lt;';
-	public $text_last = '&gt;|';
-	public $text_next = '&gt;';
-	public $text_prev = '&lt;';
+	public $text_first = '&laquo;';
+	public $text_last = '&raquo;';
+	public $text_next = '&rsaquo;';
+	public $text_prev = '&lsaquo;';
 	public $style_links = 'links';
 	public $style_results = 'results';
 
@@ -29,8 +29,9 @@ class Pagination {
 		}
 
 		$num_links = $this->num_links;
+
 		$num_pages = ceil($total / $limit);
-		
+
 		$this->url = str_replace('%7Bpage%7D', '{page}', $this->url);
 
 		$output = '';

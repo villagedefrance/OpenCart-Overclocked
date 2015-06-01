@@ -42,7 +42,7 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'		=> $news_info['title'],
-				'href'		=> $this->url->link('information/news_list', 'news_id=' . $this->request->get['news_id']),
+				'href'		=> $this->url->link('information/news_list', 'news_id=' . $news_id),
 				'separator' 	=> $this->language->get('text_separator')
 			);
 
@@ -88,7 +88,7 @@ class ControllerInformationNews extends Controller {
 			$this->data['news'] = $this->url->link('information/news_list');
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->model_catalog_news->updateViewed($this->request->get['news_id']);
+			$this->model_catalog_news->updateViewed($news_id);
 
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
@@ -117,7 +117,7 @@ class ControllerInformationNews extends Controller {
 
 	     	$this->data['breadcrumbs'][] = array(
 				'text'		=> $this->language->get('text_error'),
-				'href'		=> $this->url->link('information/news'),
+				'href'		=> $this->url->link('information/news_list', 'news_id=' . $news_id),
 				'separator' => $this->language->get('text_separator')
 			);
 

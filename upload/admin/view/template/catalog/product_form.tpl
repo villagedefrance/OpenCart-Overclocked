@@ -96,6 +96,18 @@
             <td><?php echo $entry_cost; ?></td>
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
           </tr>
+		  <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_back_order; ?></td>
+            <td><select name="back_order">
+              <?php if ($back_order) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_tax_class; ?></td>
             <td><select name="tax_class_id">

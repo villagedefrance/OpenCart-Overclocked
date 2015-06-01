@@ -274,6 +274,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
+			$this->data['button_back_order'] = $this->language->get('button_back_order');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_upload'] = $this->language->get('button_upload');
@@ -427,6 +428,12 @@ class ControllerProductProduct extends Controller {
 					'quantity' 	=> $discount['quantity'],
 					'price'    	=> $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')))
 				);
+			}
+
+			if ($product_info['back_order']) {
+				$this->data['is_back_order'] = $this->url->link('information/contact');
+			} else {
+				$this->data['is_back_order'] = false;
 			}
 
 			$this->data['options'] = array();

@@ -273,12 +273,16 @@
       <?php } ?>
       <div class="cart">
         <div>
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-minus.png" alt="" style="cursor:pointer;" onclick="buttonminus(<?php echo $minimum; ?>);" />
-          <input type="text" name="quantity" id="quantity" size="2" value="<?php echo $minimum; ?>" />
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-plus.png" alt="" style="cursor:pointer;" onclick="buttonplus();" />
-          <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-          &nbsp;
-          <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
+          <?php if ($is_back_order) { ?>
+            <a href="<?php echo $is_back_order; ?>" class="button"><?php echo $button_back_order; ?></a>
+          <?php } else { ?>
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-minus.png" alt="" style="cursor:pointer;" onclick="buttonminus(<?php echo $minimum; ?>);" />
+            <input type="text" name="quantity" id="quantity" size="2" value="<?php echo $minimum; ?>" />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-plus.png" alt="" style="cursor:pointer;" onclick="buttonplus();" />
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+            &nbsp;
+            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
+          <?php } ?>
           <span class="links">
             <a onclick="addToWishList('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
             <a onclick="addToCompare('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>

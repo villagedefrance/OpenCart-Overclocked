@@ -58,6 +58,7 @@ $_['entry_image']            		= 'Image:';
 $_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique</span>';
 $_['entry_price']            		= 'Price:';
 $_['entry_cost']            		= 'Cost:';
+$_['entry_back_order']          = 'Order on Request:<br /><span class="help">Select if the product is made to order or only available on request.</span>';
 $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
 $_['entry_palette']       		= 'Color Palette:';

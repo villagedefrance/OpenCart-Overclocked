@@ -606,6 +606,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_price'] = $this->language->get('entry_price');
 		$this->data['entry_cost'] = $this->language->get('entry_cost');
+		$this->data['entry_back_order'] = $this->language->get('entry_back_order');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
 		$this->data['entry_palette'] = $this->language->get('entry_palette');
@@ -881,6 +882,14 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['cost'] = $product_info['cost'];
 		} else {
 			$this->data['cost'] = '';
+		}
+
+		if (isset($this->request->post['back_order'])) {
+			$this->data['back_order'] = $this->request->post['back_order'];
+		} elseif (!empty($product_info)) {
+			$this->data['back_order'] = $product_info['back_order'];
+		} else {
+			$this->data['back_order'] = 0;
 		}
 
 		$this->load->model('localisation/tax_class');
@@ -1187,8 +1196,8 @@ class ControllerCatalogProduct extends Controller {
 
 			if ($filter_info) {
 				$this->data['product_filters'][] = array(
-					'filter_id' 	=> $filter_info['filter_id'],
-					'name'      	=> $filter_info['group'] . ' &gt; ' . $filter_info['name']
+					'filter_id'	=> $filter_info['filter_id'],
+					'name'	=> $filter_info['group'] . ' &gt; ' . $filter_info['name']
 				);
 			}
 		}

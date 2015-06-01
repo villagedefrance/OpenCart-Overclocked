@@ -126,7 +126,7 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google
 <?php } ?>
 <?php echo $header_bottom; ?>
 <?php if ($error) { ?>
-  <div class="warning"><?php echo $error ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
+  <div class="warning"><?php echo $error; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
 <div id="notification"></div>
 
