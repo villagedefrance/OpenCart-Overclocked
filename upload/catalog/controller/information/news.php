@@ -42,7 +42,7 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'		=> $news_info['title'],
-				'href'		=> $this->url->link('information/news_list', 'news_id=' . $news_id),
+				'href'		=> $this->url->link('information/news', 'news_id=' . $news_id),
 				'separator' 	=> $this->language->get('text_separator')
 			);
 
@@ -117,7 +117,7 @@ class ControllerInformationNews extends Controller {
 
 	     	$this->data['breadcrumbs'][] = array(
 				'text'		=> $this->language->get('text_error'),
-				'href'		=> $this->url->link('information/news_list', 'news_id=' . $news_id),
+				'href'		=> $this->url->link('information/news', 'news_id=' . $news_id),
 				'separator' => $this->language->get('text_separator')
 			);
 

@@ -32,6 +32,8 @@ class ModelToolSystem extends Model {
 	public function setupSeo() {
 		if (!file_exists('../.htaccess')) {
 			if (file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
+				$this->db->query("DELETE FROM " . DB_PREFIX . "setting WHERE `key` = 'config_seo_url'");
+
 				$file = fopen('../.htaccess.txt', 'a');
 
 				$data = file_get_contents('../.htaccess.txt');
@@ -59,8 +61,12 @@ class ModelToolSystem extends Model {
 				clearstatcache();
 
 				rename('../.htaccess.txt', '../.htaccess');
+
+				$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `group` = 'config', `key` = 'config_seo_url', `value` = '1'");
 			}
 		}
+
+		$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
 	}
 }
 ?>

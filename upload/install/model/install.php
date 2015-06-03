@@ -87,7 +87,7 @@ class ModelInstall extends Model {
 
 				rename('../.htaccess.txt', '../.htaccess');
 
-				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
+				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '" . (isset($data['rewrite']) ? 1 : 0) . "' WHERE `key` = 'config_seo_url'");
 			}
 		}
 	}
