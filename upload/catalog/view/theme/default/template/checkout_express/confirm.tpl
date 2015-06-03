@@ -2,29 +2,31 @@
 <div style="margin-bottom:15px;">
   <h2><?php echo $text_checkout_confirm; ?></h2>
 </div>
-<div class="left" style="margin-bottom:25px;">
-  <?php if ($shipping_firstname && $shipping_lastname && ($shipping_lastname != $shipping_firstname)) { ?>
+<div class="checkout-content">
+  <div class="left" style="margin-bottom:25px;">
+    <?php if ($shipping_firstname && $shipping_lastname && ($shipping_lastname != $shipping_firstname)) { ?>
     <?php echo $shipping_firstname; ?> <?php echo $shipping_lastname; ?><br />
     <?php if ($shipping_company) { ?><?php echo $shipping_company; ?><br /><?php } ?>
-  <?php } elseif ($shipping_firstname && $shipping_company) { ?>
-    <?php echo $shipping_firstname; ?> (<?php echo $shipping_company; ?>)<br />
-  <?php } else { ?>
-    <?php if ($shipping_firstname) { ?><?php echo $shipping_firstname; ?><br /><?php } ?>
-  <?php } ?>
-  <?php if ($shipping_address_1) { ?><?php echo $shipping_address_1; ?><br /><?php } ?>
-  <?php if ($shipping_address_2) { ?><?php echo $shipping_address_2; ?><br /><?php } ?>
-  <?php if ($shipping_city) { ?><?php echo $shipping_city; ?><br /><?php } ?>
-  <?php if ($shipping_postcode) { ?><?php echo $shipping_postcode; ?><br /><?php } ?>
-  <?php if ($shipping_zone) { ?><?php echo $shipping_zone; ?><br /><?php } ?>
-  <?php if ($shipping_country) { ?><?php echo $shipping_country; ?><?php } ?>
-</div>
-<div class="right" style="margin-bottom:25px;">
-  <?php echo $shipping_method_selected; ?>
-  <br /><br />
-  <?php echo $payment_method_selected; ?>
-  <br /><br />
-  <?php echo $order_comment; ?>
-  <br />
+    <?php } elseif ($shipping_firstname && $shipping_company) { ?>
+      <?php echo $shipping_firstname; ?> (<?php echo $shipping_company; ?>)<br />
+    <?php } else { ?>
+      <?php if ($shipping_firstname) { ?><?php echo $shipping_firstname; ?><br /><?php } ?>
+    <?php } ?>
+    <?php if ($shipping_address_1) { ?><?php echo $shipping_address_1; ?><br /><?php } ?>
+    <?php if ($shipping_address_2) { ?><?php echo $shipping_address_2; ?><br /><?php } ?>
+    <?php if ($shipping_city) { ?><?php echo $shipping_city; ?><br /><?php } ?>
+    <?php if ($shipping_postcode) { ?><?php echo $shipping_postcode; ?><br /><?php } ?>
+    <?php if ($shipping_zone) { ?><?php echo $shipping_zone; ?><br /><?php } ?>
+    <?php if ($shipping_country) { ?><?php echo $shipping_country; ?><?php } ?>
+  </div>
+  <div class="right" style="margin-bottom:25px;">
+    <?php echo $shipping_method_selected; ?>
+    <br /><br />
+    <?php echo $payment_method_selected; ?>
+    <br /><br />
+    <?php echo $order_comment; ?>
+    <br />
+  </div>
 </div>
 <div class="checkout-product">
   <table>
