@@ -8,18 +8,20 @@
 // Usage:
 //
 //   cd install
-//   php cli_install.php install --db_host localhost \
-//                               --db_user root \
-//                               --db_password pass \
-//                               --db_name opencart \
-//                               --username admin \
-//                               --password admin \
-//                               --email youremail@example.com \
-//                               --agree_tnc yes \
-//                               --http_server http://localhost/opencart
+//   php cli_install.php install 
+//		--db_host localhost \
+//		--db_user root \
+//		--db_password pass \
+//		--db_name opencart \
+//		--username admin \
+//		--password admin \
+//		--email youremail@example.com \
+//		--agree_tnc yes \
+//		--http_server http://localhost/opencart
 //
 
 ini_set('display_errors', 1);
+
 error_reporting(E_ALL);
 
 // DIR
@@ -43,10 +45,10 @@ $loader = new Loader($registry);
 $registry->set('load', $loader);
 
 function handleError($errno, $errstr, $errfile, $errline, array $errcontext) {
-	// error was suppressed with the @-operator
 	if (0 === error_reporting()) {
 		return false;
 	}
+
 	throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 }
 
@@ -150,8 +152,8 @@ function install($options) {
 function check_requirements() {
 	$error = null;
 
-	if (phpversion() < '5.0') {
-		$error = 'Warning: You need to use PHP5 or above for OpenCart to work!';
+	if (phpversion() < '5.2') {
+		$error = 'Warning: You need to use PHP5 or above for OpenCart OCE to work!';
 	}
 
 	if (!ini_get('file_uploads')) {
@@ -163,62 +165,65 @@ function check_requirements() {
 	}
 
 	if (!extension_loaded('mysql')) {
-		$error = 'Warning: MySQL extension needs to be loaded for OpenCart to work!';
+		$error = 'Warning: MySQL extension needs to be loaded for OpenCart OCE to work!';
 	}
 
 	if (!extension_loaded('gd')) {
-		$error = 'Warning: GD extension needs to be loaded for OpenCart to work!';
+		$error = 'Warning: GD extension needs to be loaded for OpenCart OCE to work!';
 	}
 
 	if (!extension_loaded('curl')) {
-		$error = 'Warning: CURL extension needs to be loaded for OpenCart to work!';
+		$error = 'Warning: Curl extension needs to be loaded for OpenCart OCE to work!';
 	}
 
 	if (!function_exists('mcrypt_encrypt')) {
-		$error = 'Warning: mCrypt extension needs to be loaded for OpenCart to work!';
+		$error = 'Warning: mCrypt extension needs to be loaded for OpenCart OCE to work!';
 	}
 
 	if (!extension_loaded('zlib')) {
-		$error = 'Warning: ZLIB extension needs to be loaded for OpenCart to work!';
+		$error = 'Warning: ZLIB extension needs to be loaded for OpenCart OCE to work!';
 	}
 
-	// iconv or mbstrings are used in the utf8 helper. Only 1 is needed but suggested to enable mbstring if iconv is not set
+	if (!extension_loaded('zip')) {
+		$error = 'Warning: ZIP extension needs to be loaded for OpenCart OCE to work!';
+	}
+
 	if (!function_exists('iconv')) {
 		if (!extension_loaded('mbstring')) {
-			$error = 'Warning: mbstring extension needs to be loaded for OpenCart to work!';
+			$error = 'Warning: mbstring extension needs to be loaded for OpenCart OCE to work!';
 		}
 	}
 
 	if (!is_writable(DIR_OPENCART . 'config.php')) {
-		$error = 'Warning: config.php needs to be writable for OpenCart to be installed!';
+		$error = 'Warning: config.php needs to be writable for OpenCart OCE to be installed!';
 	}
 
 	if (!is_writable(DIR_OPENCART . 'admin/config.php')) {
-		$error = 'Warning: admin/config.php needs to be writable for OpenCart to be installed!';
+		$error = 'Warning: admin/config.php needs to be writable for OpenCart OCE to be installed!';
 	}
 
 	if (!is_writable(DIR_SYSTEM . 'cache')) {
-		$error = 'Warning: Cache directory needs to be writable for OpenCart to work!';
+		$error = 'Warning: Cache directory needs to be writable for OpenCart OCE to work!';
 	}
 
 	if (!is_writable(DIR_SYSTEM . 'logs')) {
-		$error = 'Warning: Logs directory needs to be writable for OpenCart to work!';
-	}
-
-	if (!is_writable(DIR_OPENCART . 'image')) {
-		$error = 'Warning: Image directory needs to be writable for OpenCart to work!';
-	}
-
-	if (!is_writable(DIR_OPENCART . 'image/cache')) {
-		$error = 'Warning: Image cache directory needs to be writable for OpenCart to work!';
-	}
-
-	if (!is_writable(DIR_OPENCART . 'image/data')) {
-		$error = 'Warning: Image data directory needs to be writable for OpenCart to work!';
+		$error = 'Warning: Logs directory needs to be writable for OpenCart OCE to work!';
 	}
 
 	if (!is_writable(DIR_OPENCART . 'download')) {
-		$error = 'Warning: Download directory needs to be writable for OpenCart to work!';
+		$error = 'Warning: Download directory needs to be writable for OpenCart OCE to work!';
+	}
+
+	if (!is_writable(DIR_OPENCART . 'image')) {
+		$error = 'Warning: Image directory needs to be writable for OpenCart OCE to work!';
+	}
+
+	if (!is_writable(DIR_OPENCART . 'image/cache')) {
+		$error = 'Warning: Image cache directory needs to be writable for OpenCart OCE to work!';
+	}
+
+	if (!is_writable(DIR_OPENCART . 'image/data')) {
+		$error = 'Warning: Image data directory needs to be writable for OpenCart OCE to work!';
 	}
 
 	return array($error === null, $error);
@@ -255,6 +260,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
 	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/cache/\');' . "\n";
 	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');' . "\n";
+	$output .= 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');' . "\n";
 	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');' . "\n\n";
 
 	$output .= '// DB' . "\n";
@@ -293,6 +299,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
 	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/cache/\');' . "\n";
 	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');' . "\n";
+	$output .= 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');' . "\n";
 	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');' . "\n";
 	$output .= 'define(\'DIR_CATALOG\', \'' . DIR_OPENCART . 'catalog/\');' . "\n\n";
 
@@ -330,30 +337,34 @@ $script = array_shift($argv);
 $subcommand = array_shift($argv);
 
 switch ($subcommand) {
-case "install":
-	try {
-		$options = get_options($argv);
-		define('HTTP_OPENCART', $options['http_server']);
-		$valid = valid($options);
+	case "install":
+		try {
+			$options = get_options($argv);
 
-		if (!$valid[0]) {
-			echo "FAILED! Following inputs were missing or invalid: ";
-			echo implode(', ',  $valid[1]) . "\n\n";
+			define('HTTP_OPENCART', $options['http_server']);
+
+			$valid = valid($options);
+
+			if (!$valid[0]) {
+				echo "FAILED! The following inputs were missing or invalid: ";
+				echo implode(', ',  $valid[1]) . "\n\n";
+				exit(1);
+			}
+
+			install($options);
+
+			echo "SUCCESS: Opencart OCE was successfully installed on your server!\n";
+
+			echo "Store link: " . $options['http_server'] . "\n";
+			echo "Admin link: " . $options['http_server'] . "admin/\n\n";
+
+		} catch (ErrorException $e) {
+			echo 'FAILED!: ' . $e->getMessage() . "\n";
 			exit(1);
 		}
-		install($options);
-
-		echo "SUCCESS! Opencart successfully installed on your server\n";
-		echo "Store link: " . $options['http_server'] . "\n";
-		echo "Admin link: " . $options['http_server'] . "admin/\n\n";
-		
-	} catch (ErrorException $e) {
-		echo 'FAILED!: ' . $e->getMessage() . "\n";
-		exit(1);
-	}
-	break;
-case "usage":
-default:
+		break;
+	case "usage":
+	default:
 	echo usage();
 }
 ?>

@@ -127,7 +127,6 @@ class ControllerAccountAddress extends Controller {
 				$this->session->data['success'] = $this->language->get('text_update');
 
 				$this->redirect($this->url->link('account/address', '', 'SSL'));
-
 			}
 		}
 

@@ -4,12 +4,23 @@ $_['heading_step_1']			= 'License agreement';
 $_['heading_step_2']			= 'Pre-Installation';
 $_['heading_step_3']			= 'Configuration';
 $_['heading_step_4']			= 'Installation complete';
+$_['heading_upgrade']			= 'Upgrade';
+$_['heading_success']			= 'Upgrade complete';
 
 // Text
 $_['text_license']					= 'License';
 $_['text_installation']			= 'Pre-Installation';
 $_['text_configuration']			= 'Configuration';
 $_['text_finished']				= 'Finished';
+$_['text_upgrade']				= 'Upgrade';
+$_['text_follow_steps'] 			= 'Follow these steps carefully!';
+$_['text_clear_cookie'] 			= 'After upgrade, clear any cookies in your browser to avoid getting token errors.';
+$_['text_admin_page'] 			= 'Load the Admin page &amp; press Ctrl+F5 twice to force the browser to apply the css changes.';
+$_['text_admin_user'] 			= 'Goto Admin -> Users -> User Groups and Edit the Top Adminstrator group. Check All boxes.';
+$_['text_admin_setting'] 		= 'Goto Admin &amp; Edit the main System Settings. Update all fields, even if there is no change. Save.';
+$_['text_store_front'] 			= 'Load the Store Front &amp; press Ctrl+F5 twice to force the browser to apply the css changes.';
+$_['text_be_patient'] 			= '<b>Click "Upgrade" to install the latest version of OpenCart Overclocked Edition.</b><br /><br />The upgrade process will take a few minutes. Please be patient!';
+$_['text_success']				= 'Congratulations! You have now the latest version of OpenCart Overclocked Edition.';
 $_['text_install_php']			= '1. Please configure your PHP settings to match requirements listed below.';
 $_['text_install_extension']	= '2. Please make sure the PHP extensions listed below are installed.';
 $_['text_install_file']				= '3. Please make sure you have set the correct permissions on the files list below.';
@@ -103,6 +114,7 @@ $_['error_email']					= 'Invalid E-Mail!';
 $_['error_config']					= 'Error: Could not write to config.php please check you have set the correct permissions on: ';
 
 // Buttons
+$_['button_upgrade']			= 'Upgrade';
 $_['button_continue']			= 'Continue';
 $_['button_back']					= 'Back';
 

@@ -63,6 +63,8 @@ class ControllerCommonHome extends Controller {
 			$this->load->model('tool/system');
 
 			$this->model_tool_system->deleteDirectory('../install');
+
+			clearstatcache();
 		}
 
 		// Check image directory is writeable

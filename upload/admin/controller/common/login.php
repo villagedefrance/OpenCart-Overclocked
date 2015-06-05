@@ -90,6 +90,15 @@ class ControllerCommonLogin extends Controller {
 			$this->data['forgotten'] = '';
 		}
 
+		// Delete install directory
+		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
+			$this->load->model('tool/system');
+
+			$this->model_tool_system->deleteDirectory('../install');
+
+			clearstatcache();
+		}
+
 		$this->template = 'common/login.tpl';
 		$this->children = array(
 			'common/header',

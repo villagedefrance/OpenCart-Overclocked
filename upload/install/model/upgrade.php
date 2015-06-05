@@ -1,7 +1,10 @@
 <?php
+// ---------------------------------
+// OPENCART OCE UPGRADE SCRIPT
+// Oldest version supported is 1.3.2
+// ---------------------------------
+
 class ModelUpgrade extends Model {
-	// Upgrade script to upgrade opencart to the latest version.
-	// Oldest version supported is 1.3.2
 
 	public function mysql() {
 		// Load the sql file
@@ -11,18 +14,20 @@ class ModelUpgrade extends Model {
 			exit('Could not load sql file: ' . $file);
 		}
 
+		clearstatcache();
+
 		$string = '';
 
 		$lines = file($file);
 
 		$status = false;
 
-		// Get only the create statements
+		// Get only the Create statements
 		foreach ($lines as $line) {
 			// Set any prefix
 			$line = str_replace("CREATE TABLE `oc_", "CREATE TABLE `" . DB_PREFIX, $line);
 
-			// If line begins with create table we want to start recording
+			// If line begins with Create Table, start recording
 			if (substr($line, 0, 12) == 'CREATE TABLE') {
 				$status = true;
 			}
@@ -31,7 +36,7 @@ class ModelUpgrade extends Model {
 				$string .= $line;
 			}
 
-			// If line contains with ; we want to stop recording
+			// If line contains ';', stop recording
 			if (preg_match('/;/', $line)) {
 				$status = false;
 			}
@@ -42,10 +47,10 @@ class ModelUpgrade extends Model {
 		// Trim any spaces
 		$string = trim($string);
 
-		// Trim any ;
+		// Trim any ';'
 		$string = trim($string, ';');
 
-		// Start reading each create statement
+		// Start reading each Create statement
 		$statements = explode(';', $string);
 
 		foreach ($statements as $sql) {
@@ -155,58 +160,32 @@ class ModelUpgrade extends Model {
 		}
 
 		foreach ($table_new_data as $table) {
-			// If table is not found create it
+			// If Table is not found create it
 			if (!isset($table_old_data[$table['name']])) {
 				$this->db->query($table['sql']);
 			} else {
 				// DB Engine
 				if (isset($table['option']['ENGINE'])) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` ENGINE = `" . $table['option']['ENGINE'] . "`");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` ENGINE = " . $table['option']['ENGINE'] . "");
 				}
 
 				// Charset
 				if (isset($table['option']['CHARSET']) && isset($table['option']['COLLATE'])) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` CONVERT TO CHARACTER SET `" . $table['option']['CHARSET'] . "` COLLATE `" . $table['option']['COLLATE'] . "`");
- 					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET `" . $table['option']['CHARSET'] . "` COLLATE `" . $table['option']['COLLATE'] . "`");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` CONVERT TO CHARACTER SET " . $table['option']['CHARSET'] . " COLLATE " . $table['option']['COLLATE'] . "");
+ 					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET " . $table['option']['CHARSET'] . " COLLATE " . $table['option']['COLLATE'] . "");
 				}
 
 				$i = 0;
 
+				set_time_limit(30);
+
 				foreach ($table['field'] as $field) {
-					// If field is not found create it
+					// If Field is not found create it
 					if (!in_array($field['name'], $table_old_data[$table['name']])) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` ADD `" . $field['name'] . "` `" . $field['type'] . "`";
+						$sql = "ALTER TABLE `" . $table['name'] . "` ADD `" . $field['name'] . "` " . $field['type'] . "";
 
 						if ($field['size']) {
-							$sql .= "(`" . $field['size'] . "`)";
-						}
-
-						if ($field['collation']) {
-							$sql .= " " . $field['collation'];
-						}
-
-						if ($field['notnull']) {
-							$sql .= " " . $field['notnull'];
-						}
-
-						if ($field['default']) {
-							$sql .= " DEFAULT '" . $field['default'] . "'";
-						}
-
-						if (isset($table['field'][$i - 1])) {
-							$sql .= " AFTER `" . $table['field'][$i - 1]['name'] . "`";
-						} else {
-							$sql .= " FIRST";
-						}
-
-						$this->db->query($sql);
-
-					} else {
-						// Remove auto increment from all fields
-						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` `" . strtoupper($field['type']) . "`";
-
-						if ($field['size']) {
-							$sql .= "(`" . $field['size'] . "`)";
+							$sql .= "(" . $field['size'] . ")";
 						}
 
 						if ($field['collation']) {
@@ -233,9 +212,50 @@ class ModelUpgrade extends Model {
 					$i++;
 				}
 
+				flush();
+
+				set_time_limit(30);
+
+				foreach ($table['field'] as $field) {
+					if (in_array($field['name'], $table_old_data[$table['name']])) {
+						// Remove auto-increment from all fields
+						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']) . "";
+
+						if ($field['size']) {
+							$sql .= "(" . $field['size'] . ")";
+						}
+
+						if ($field['collation']) {
+							$sql .= " " . $field['collation'];
+						}
+
+						if ($field['notnull']) {
+							$sql .= " " . $field['notnull'];
+						}
+
+						if ($field['default']) {
+							$sql .= " DEFAULT '" . $field['default'] . "'";
+						}
+
+						if (isset($table['field'][$i - 1])) {
+							$sql .= " AFTER `" . $table['field'][$i - 1]['name'] . "`";
+						} else {
+							$sql .= " FIRST";
+						}
+
+						$this->db->query($sql);
+					}
+
+					$i++;
+				}
+
+				flush();
+
 				$status = false;
 
-				// Drop primary keys and indexes.
+				// Drop primary keys and indexes
+				set_time_limit(30);
+
 				$query = $this->db->query("SHOW INDEXES FROM `" . $table['name'] . "`");
 
 				foreach ($query->rows as $result) {
@@ -250,7 +270,7 @@ class ModelUpgrade extends Model {
 					$this->db->query("ALTER TABLE `" . $table['name'] . "` DROP PRIMARY KEY");
 				}
 
-				// Add a new primary key.
+				// Add a new primary key
 				$primary_data = array();
 
 				foreach ($table['primary'] as $primary) {
@@ -258,7 +278,7 @@ class ModelUpgrade extends Model {
 				}
 
 				if ($primary_data) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD PRIMARY KEY(`" . implode(',', $primary_data) . "`)");
+					$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD PRIMARY KEY(" . implode(',', $primary_data) . ")");
 				}
 
 				// Add the new indexes
@@ -270,17 +290,17 @@ class ModelUpgrade extends Model {
 					}
 
 					if ($index_data) {
-						$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD INDEX (`" . implode(',', $index_data) . "`)");
+						$this->db->query("ALTER TABLE `" . $table['name'] . "` ADD INDEX (" . implode(',', $index_data) . ")");
 					}
 				}
 
-				// Add auto increment to primary keys again
+				// Add auto-increment to primary keys again
 				foreach ($table['field'] as $field) {
 					if ($field['autoincrement']) {
-						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` `" . strtoupper($field['type']) . "`";
+						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']) . "";
 
 						if ($field['size']) {
-							$sql .= "(`" . $field['size'] . "`)";
+							$sql .= "(" . $field['size'] . ")";
 						}
 
 						if ($field['collation']) {
@@ -302,11 +322,16 @@ class ModelUpgrade extends Model {
 						$this->db->query($sql);
 					}
 				}
+
+				flush();
 			}
 		}
 
+		// --------------------------
 		// Update any additional table
 		// --------------------------
+		set_time_limit(30);
+
 		// Add serialized to Setting
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
 
@@ -329,7 +354,7 @@ class ModelUpgrade extends Model {
 
 		// Update the country table
 		if (isset($table_old_data[DB_PREFIX . 'country']) && in_array('name', $table_old_data[DB_PREFIX . 'country'])) {
-			// Country 'name' field moved to new country_description table. Need to loop through and move over.
+			// Country 'name' field moved to new country_description table. Need to loop through and move over
 			$country_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country");
 
 			foreach ($country_query->rows as $country) {
@@ -345,7 +370,7 @@ class ModelUpgrade extends Model {
 
 		// Update the customer group table
 		if (isset($table_old_data[DB_PREFIX . 'customer_group']) && in_array('name', $table_old_data[DB_PREFIX . 'customer_group'])) {
-			// Customer Group 'name' field moved to new customer_group_description table. Need to loop through and move over.
+			// Customer Group 'name' field moved to new customer_group_description table. Need to loop through and move over
 			$customer_group_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_group");
 
 			foreach ($customer_group_query->rows as $customer_group) {
@@ -361,7 +386,7 @@ class ModelUpgrade extends Model {
 
 		// Update the manufacturer table
 		if (isset($table_old_data[DB_PREFIX . 'manufacturer']) && in_array('name', $table_old_data[DB_PREFIX . 'manufacturer'])) {
-			// Manufacturer 'name' field moved to new manufacturer_description table. Need to loop through and move over.
+			// Manufacturer 'name' field moved to new manufacturer_description table. Need to loop through and move over
 			$manufacturer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "manufacturer");
 
 			foreach ($manufacturer_query->rows as $manufacturer) {
@@ -394,11 +419,13 @@ class ModelUpgrade extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "product_description pd SET tag = (SELECT GROUP_CONCAT(DISTINCT pt.tag ORDER BY pt.product_tag_id) FROM " . DB_PREFIX . "product_tag pt WHERE pd.product_id = pt.product_id AND pd.language_id = pt.language_id GROUP BY pt.product_id, pt.language_id)");
 		}
 
+		flush();
+
 		// Sort the categories to take advantage of the nested set model
 		$this->repairCategories(0);
 	}
 
-	// Function to repair any erroneous categories that are not in the category path table.
+	// Function to repair any erroneous categories that are not in the category path table
 	public function repairCategories($parent_id = 0) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$parent_id . "'");
 

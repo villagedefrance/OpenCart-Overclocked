@@ -81,7 +81,7 @@ class ControllerStep3 extends Controller {
 
 			fclose($file);
 
-			$this->redirect($this->url->link('step_4'));
+			$this->response->redirect($this->url->link('step_4'));
 		}
 
 		$this->document->setTitle($this->language->get('heading_step_3'));
@@ -238,6 +238,8 @@ class ControllerStep3 extends Controller {
 			$this->data['htaccess'] = false;
 		}
 
+		clearstatcache();
+
 		if (isset($this->request->post['rewrite'])) {
 			$this->data['rewrite'] = $this->request->post['rewrite'];
 		} else {
@@ -329,6 +331,8 @@ class ControllerStep3 extends Controller {
 		if (!is_writable(DIR_OPENCART . 'admin/config.php')) {
 			$this->error['warning'] = $this->language->get('error_config') . DIR_OPENCART . 'admin/config.php!';
 		}
+
+		clearstatcache();
 
 		if (!$this->error) {
 			return true;

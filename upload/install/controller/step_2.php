@@ -182,6 +182,8 @@ class ControllerStep2 extends Controller {
 			$this->error['warning'] = $this->language->get('error_imagedata_write');
 		}
 
+		clearstatcache();
+
 		if (!$this->error) {
 			return true;
 		} else {
