@@ -102,6 +102,7 @@ $_['text_system']                 	= 'System';
 $_['text_tax']                     		= 'Taxes';
 $_['text_tax_class']            		= 'Tax Classes';
 $_['text_tax_rate']               	= 'Tax Rates';
+$_['text_theme']                  	= 'Themes';
 $_['text_total']                  		= 'Totals';
 $_['text_user']                   		= 'Users';
 $_['text_user_group']            	= 'User Groups';

@@ -116,18 +116,20 @@ class ControllerProductReviewList extends Controller {
 		$this->data['lang'] = $this->language->get('code');
 
 		$this->data['button_cart'] = $this->language->get('button_cart');
+		$this->data['button_quote'] = $this->language->get('button_quote');
 		$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 		$this->data['button_compare'] = $this->language->get('button_compare');
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['compare'] = $this->url->link('product/compare');
-		$this->data['continue'] = $this->url->link('common/home');
 
 		$this->data['label'] = $this->config->get('config_offer_label');
 
 		$this->load->model('catalog/offer');
 
 		$offers = $this->model_catalog_offer->getListProductOffers(0);
+
+		$this->data['continue'] = $this->url->link('common/home');
 
 		$this->data['reviews'] = array();
 
@@ -142,7 +144,7 @@ class ControllerProductReviewList extends Controller {
 
 		$review_total = $this->model_catalog_review->getTotalReviews();
 
-		$results = $this->model_catalog_review->getAllReviews($data);
+		$results = $this->model_catalog_review->getReviews($data);
 
 		foreach ($results as $result) {
 			if ($result['image']) {
@@ -163,6 +165,12 @@ class ControllerProductReviewList extends Controller {
 				$offer = false;
 			}
 
+			if ($result['quote']) {
+				$quote = $this->url->link('information/contact');
+			} else {
+				$quote = false;
+			}
+
 			$review_total_product = $this->model_catalog_review->getTotalReviewsByProductId($result['product_id']);
 
 			$this->data['reviews'][] = array(
@@ -171,6 +179,7 @@ class ControllerProductReviewList extends Controller {
 				'offer'       		=> $offer,
 				'name'			=> $result['name'],
 				'text'				=> substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+				'quote'			=> $quote,
 				'rating'			=> $rating,
 				'author'			=> $result['author'],
 				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),

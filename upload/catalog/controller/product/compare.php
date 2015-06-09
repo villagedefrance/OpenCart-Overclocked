@@ -61,9 +61,10 @@ class ControllerProductCompare extends Controller {
 
 		$this->data['lang'] = $this->language->get('code');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_cart'] = $this->language->get('button_cart');
+		$this->data['button_quote'] = $this->language->get('button_quote');
 		$this->data['button_remove'] = $this->language->get('button_remove');
+		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
@@ -167,11 +168,18 @@ class ControllerProductCompare extends Controller {
 					$offer_label = '';
 				}
 
+				if ($product_info['quote']) {
+					$quote = $this->url->link('information/contact');
+				} else {
+					$quote = false;
+				}
+
 				$this->data['products'][$product_id] = array(
 					'product_id'   	=> $product_info['product_id'],
 					'name'         	=> $product_info['name'],
 					'thumb'        	=> $image,
 					'offer'       		=> $offer,
+					'quote'			=> $quote,
 					'price'        	=> $price,
 					'special'      	=> $special,
 					'description'  	=> utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',

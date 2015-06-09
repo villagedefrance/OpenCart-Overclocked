@@ -207,7 +207,7 @@
         </tr>
       </table>
       <br />
-      <input type="button" value="<?php echo $button_quote; ?>" id="button-quote" class="button" />
+      <input type="button" value="<?php echo $button_quotes; ?>" id="button-quote" class="button" />
     </div>
   </div>
   <?php } ?>

@@ -97,9 +97,9 @@
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
           </tr>
 		  <tr style="background:#FCFCFC;">
-            <td><?php echo $entry_back_order; ?></td>
-            <td><select name="back_order">
-              <?php if ($back_order) { ?>
+            <td><?php echo $entry_quote; ?></td>
+            <td><select name="quote">
+              <?php if ($quote) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
@@ -124,19 +124,6 @@
           <tr>
             <td><?php echo $entry_date_available; ?></td>
             <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" size="12" class="date" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_palette; ?></td>
-            <td><select name="palette_id">
-              <option value="0"><?php echo $text_none; ?></option>
-              <?php foreach ($palettes as $palette) { ?>
-                <?php if ($palette['palette_id'] == $palette_id) { ?>
-                  <option value="<?php echo $palette['palette_id']; ?>" selected="selected"><?php echo $palette['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
@@ -903,6 +890,21 @@
         </table>
       </div>
       <div id="tab-image">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_palette; ?></td>
+            <td><select name="palette_id">
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($palettes as $palette) { ?>
+                <?php if ($palette['palette_id'] == $palette_id) { ?>
+                  <option value="<?php echo $palette['palette_id']; ?>" selected="selected"><?php echo $palette['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
         <table id="images" class="list">
           <thead>
             <tr>
@@ -1692,9 +1694,6 @@ $('.time').timepicker({timeFormat: 'h:m'});
 var formblockA;
 var forminputA;
 
-var formblockB;
-var forminputB;
-
 formblockA = document.getElementById('store_ids');
 forminputA = formblockA.getElementsByTagName('input');
 
@@ -1710,6 +1709,9 @@ function select_all(name, value) {
 		}
 	}
 }
+
+var formblockB;
+var forminputB;
 
 formblockB = document.getElementById('location_ids');
 forminputB = formblockB.getElementsByTagName('input');
@@ -1741,7 +1743,7 @@ function openbayLinkStatus() {
 		url: 'index.php?route=extension/openbay/linkStatus&token=<?php echo $token; ?>&product_id=' + product_id,
 		dataType: 'html',
 		success: function(data) {
-			//add the button to nav
+			// add the button to nav
 			$('<a href="#tab-openbay"><?php echo $tab_marketplace_links; ?></a>').hide().appendTo("#tabs").fadeIn(1000);
 			$('#tab-general').before(data);
 			$('#tabs a').tabs();

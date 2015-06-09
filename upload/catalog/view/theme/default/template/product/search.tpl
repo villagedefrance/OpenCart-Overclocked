@@ -124,7 +124,11 @@
             <a href="<?php echo $product['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-view.png" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
           </div>
           <div class="cart">
-            <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
+		    <?php if ($product['quote']) { ?>
+              <a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+            <?php } else { ?>
+              <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
+            <?php } ?>
           </div>
         </div>
       <?php } ?>

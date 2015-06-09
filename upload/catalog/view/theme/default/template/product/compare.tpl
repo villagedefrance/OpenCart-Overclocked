@@ -132,7 +132,11 @@
       <tr>
         <td></td>
         <?php foreach ($products as $product) { ?>
-          <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" /></td>
+		  <?php if ($product['quote']) { ?>
+            <td><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></td>
+          <?php } else { ?>
+            <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" /></td>
+          <?php } ?>
         <?php } ?>
       </tr>
       <tr>

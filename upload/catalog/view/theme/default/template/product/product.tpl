@@ -273,8 +273,8 @@
       <?php } ?>
       <div class="cart">
         <div>
-          <?php if ($is_back_order) { ?>
-            <a href="<?php echo $is_back_order; ?>" class="button"><?php echo $button_back_order; ?></a>
+          <?php if ($is_quote) { ?>
+            <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
           <?php } else { ?>
             <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-minus.png" alt="" style="cursor:pointer;" onclick="buttonminus(<?php echo $minimum; ?>);" />
             <input type="text" name="quantity" id="quantity" size="2" value="<?php echo $minimum; ?>" />

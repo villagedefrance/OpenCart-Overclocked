@@ -90,6 +90,7 @@ class ControllerProductProductWall extends Controller {
 		$this->data['lang'] = $this->language->get('code');
 
 		$this->data['button_cart'] = $this->language->get('button_cart');
+		$this->data['button_quote'] = $this->language->get('button_quote');
 		$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 		$this->data['button_compare'] = $this->language->get('button_compare');
 		$this->data['button_continue'] = $this->language->get('button_continue');
@@ -160,6 +161,12 @@ class ControllerProductProductWall extends Controller {
 				$offer = false;
 			}
 
+			if ($result['quote']) {
+				$quote = $this->url->link('information/contact');
+			} else {
+				$quote = false;
+			}
+
 			$this->data['products'][] = array(
 				'product_id'  	=> $result['product_id'],
 				'thumb'       	=> $image,
@@ -167,6 +174,7 @@ class ControllerProductProductWall extends Controller {
 				'manufacturer'	=> $manufacturer,
 				'name'        	=> $result['name'],
 				'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+				'quote'			=> $quote,
 				'price'       		=> $price,
 				'special'			=> $special,
 				'tax'				=> $tax,

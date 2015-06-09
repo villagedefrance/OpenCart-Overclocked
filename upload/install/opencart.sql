@@ -2849,7 +2849,7 @@ CREATE TABLE `oc_product` (
   `image` varchar(255) DEFAULT NULL,
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `cost` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `back_order` tinyint(1) NOT NULL DEFAULT '0',
+  `quote` tinyint(1) NOT NULL DEFAULT '0',
   `tax_class_id` int(11) NOT NULL,
   `date_available` date NOT NULL,
   `palette_id` int(11) NOT NULL,

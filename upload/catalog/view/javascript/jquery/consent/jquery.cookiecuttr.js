@@ -21,8 +21,8 @@
  Documentation available at http://cookiecuttr.com
  
  */
-(function ($) {
-	$.cookieCuttr = function (options) {
+(function($) {
+	$.cookieCuttr = function(options) {
 		var defaults = {
 			cookieCutter: false,
 			cookieCutterDeclineOnly: false,
@@ -42,13 +42,13 @@
 			cookieDeclineButtonText: "DECLINE COOKIES",
 			cookieResetButtonText: "RESET COOKIES FOR THIS WEBSITE",
 			cookieWhatAreLinkText: "What are cookies?",
-			cookieNotificationLocationBottom: false,         
+			cookieNotificationLocationBottom: false,
 			cookiePolicyPage: false,
 			cookiePolicyPageMessage: 'Please read the information below and then choose from the following options',
 			cookieDiscreetLink: false,
 			cookieDiscreetReset: false,
 			cookieDiscreetLinkText: "Cookies?",
-			cookieDiscreetPosition: "topleft",  
+			cookieDiscreetPosition: "topleft",
 			cookieNoMessage: false,
 			cookieDomain: ""
 		};
@@ -89,12 +89,12 @@
 
 		// cookie identifier
 		var $cookieAccepted = $.cookie('cc_cookie_accept') == "cc_cookie_accept";
-		$.cookieAccepted = function () {
+		$.cookieAccepted = function() {
 			return $cookieAccepted;
 		};
 
 		var $cookieDeclined = $.cookie('cc_cookie_decline') == "cc_cookie_decline";
-		$.cookieDeclined = function () {
+		$.cookieDeclined = function() {
 			return $cookieDeclined;
 		};
 
@@ -134,7 +134,7 @@
 				} else {
 					$('body').prepend('<div class="cc-cookies cc-discreet"><a class="cc-cookie-reset" href="#" title="' + cookieResetButtonText + '">' + cookieResetButtonText + '</a></div>');
 				}
-				//add appropriate CSS depending on position chosen
+				// add appropriate CSS depending on position chosen
 				if (cookieDiscreetPosition == "topleft") {
 					$('div.cc-cookies').css("top", "0");
 					$('div.cc-cookies').css("left", "0");
@@ -232,7 +232,7 @@
 		// setting the cookies
 
 		// for top bar
-		$('.cc-cookie-accept, .cc-cookie-decline').click(function (e) {
+		$('.cc-cookie-accept, .cc-cookie-decline').click(function(e) {
 			e.preventDefault();
 			if ($(this).is('[href$=#decline]')) {
 				$.cookie("cc_cookie_accept", null, {
@@ -274,14 +274,14 @@
 				});
 			}
 
-			$(".cc-cookies").fadeOut(function () {
+			$(".cc-cookies").fadeOut(function() {
 				// reload page to activate cookies
 				location.reload();
 			});
 		});
 
-		//reset cookies
-		$('a.cc-cookie-reset').click(function (f) {
+		// reset cookies
+		$('a.cc-cookie-reset').click(function(f) {
 			f.preventDefault();
 			$.cookie("cc_cookie_accept", null, {
 				path: '/'
@@ -289,14 +289,14 @@
 			$.cookie("cc_cookie_decline", null, {
 				path: '/'
 			});
-			$(".cc-cookies").fadeOut(function () {
+			$(".cc-cookies").fadeOut(function() {
 				// reload page to activate cookies
 				location.reload();
 			});
 		});
 
-		//cookie error accept
-		$('.cc-cookies-error a.cc-cookie-accept').click(function (g) {
+		// cookie error accept
+		$('.cc-cookies-error a.cc-cookie-accept').click(function(g) {
 			g.preventDefault();
 			$.cookie("cc_cookie_accept", "cc_cookie_accept", {
 				expires: cookieExpires,

@@ -59,7 +59,11 @@
             <a href="<?php echo $review['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-view.png" alt="<?php echo $review['name']; ?>" title="<?php echo $review['name']; ?>" /></a>
           </div>
           <div class="cart">
-            <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
+		    <?php if ($review['quote']) { ?>
+              <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+            <?php } else { ?>
+              <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
+            <?php } ?>
           </div>
         </div>
       <?php } ?>

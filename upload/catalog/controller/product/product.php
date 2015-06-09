@@ -274,7 +274,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
-			$this->data['button_back_order'] = $this->language->get('button_back_order');
+			$this->data['button_quote'] = $this->language->get('button_quote');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_upload'] = $this->language->get('button_upload');
@@ -391,14 +391,14 @@ class ControllerProductProduct extends Controller {
 			if ($product_info['palette_id'] > 0) {
 				$colors = $this->model_design_palette->getPaletteColors($product_info['palette_id']);
 
-				foreach ($colors as $color) {
-					$this->data['colors'][] = array(
-						'title'		=> $color['title'],
-						'color'	=> $color['color']
-					);
+				if ($colors) {
+					foreach ($colors as $color) {
+						$this->data['colors'][] = array(
+							'title'		=> $color['title'],
+							'color'	=> $color['color']
+						);
+					}
 				}
-			} else {
-				$this->data['colors'] = false;
 			}
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -430,10 +430,10 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 
-			if ($product_info['back_order']) {
-				$this->data['is_back_order'] = $this->url->link('information/contact');
+			if ($product_info['quote']) {
+				$this->data['is_quote'] = $this->url->link('information/contact');
 			} else {
-				$this->data['is_back_order'] = false;
+				$this->data['is_quote'] = false;
 			}
 
 			$this->data['options'] = array();

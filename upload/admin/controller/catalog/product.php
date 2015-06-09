@@ -606,7 +606,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_price'] = $this->language->get('entry_price');
 		$this->data['entry_cost'] = $this->language->get('entry_cost');
-		$this->data['entry_back_order'] = $this->language->get('entry_back_order');
+		$this->data['entry_quote'] = $this->language->get('entry_quote');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
 		$this->data['entry_palette'] = $this->language->get('entry_palette');
@@ -884,12 +884,12 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['cost'] = '';
 		}
 
-		if (isset($this->request->post['back_order'])) {
-			$this->data['back_order'] = $this->request->post['back_order'];
+		if (isset($this->request->post['quote'])) {
+			$this->data['quote'] = $this->request->post['quote'];
 		} elseif (!empty($product_info)) {
-			$this->data['back_order'] = $product_info['back_order'];
+			$this->data['quote'] = $product_info['quote'];
 		} else {
-			$this->data['back_order'] = 0;
+			$this->data['quote'] = 0;
 		}
 
 		$this->load->model('localisation/tax_class');
@@ -1421,7 +1421,7 @@ class ControllerCatalogProduct extends Controller {
 				$image = 'no_image.jpg';
 			}
 
-			if (isset($product_image['palette_color_id']) && !empty($colors)) {
+			if (isset($product_image['palette_color_id']) && $product_info['palette_id'] && !empty($colors)) {
 				$palette_color_id = $product_image['palette_color_id'];
 			} else {
 				$palette_color_id = 0;
