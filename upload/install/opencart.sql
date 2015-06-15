@@ -2885,7 +2885,7 @@ CREATE TABLE `oc_product` (
 -- Dumping data for table `oc_product`
 --
 
-INSERT INTO `oc_product` (`product_id`, `model`, `image`, `price`, `cost`, `back_order`, `tax_class_id`, `date_available`, `palette_id`, `sort_order`, `status`, `quantity`, `minimum`, `subtract`, `stock_status_id`, `shipping`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `length`, `width`, `height`, `length_class_id`, `weight`, `weight_class_id`, `manufacturer_id`, `points`, `date_added`, `date_modified`, `viewed`) VALUES
+INSERT INTO `oc_product` (`product_id`, `model`, `image`, `price`, `cost`, `quote`, `tax_class_id`, `date_available`, `palette_id`, `sort_order`, `status`, `quantity`, `minimum`, `subtract`, `stock_status_id`, `shipping`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `length`, `width`, `height`, `length_class_id`, `weight`, `weight_class_id`, `manufacturer_id`, `points`, `date_added`, `date_modified`, `viewed`) VALUES
 (28, 'Product 1', 'data/demo/htc_touch_hd_1.jpg', '100.0000', '82.9900', 0, 1, '2013-02-03', 0, 0, 1, 939, 1, 1, 7, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '146.40000000', 2, 5, 200, '2013-02-03 16:06:50', '2014-04-23 17:05:48', 0),
 (29, 'Product 2', 'data/demo/palm_treo_pro_1.jpg', '279.9900', '', 0, 1, '2013-02-03', 0, 0, 1, 999, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 3, '133.00000000', 2, 6, 0, '2013-02-03 16:42:17', '2013-09-30 01:06:08', 0),
 (30, 'Product 3', 'data/demo/canon_eos_5d_1.jpg', '100.0000', '85.2000', 0, 1, '2013-02-03', 0, 0, 1, 7, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '0.00000000', 1, 9, 0, '2013-02-03 16:59:00', '2013-09-30 01:05:23', 0),
