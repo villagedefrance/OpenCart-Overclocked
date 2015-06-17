@@ -93,6 +93,7 @@ class ControllerProductSpecial extends Controller {
 		$this->data['button_quote'] = $this->language->get('button_quote');
 		$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 		$this->data['button_compare'] = $this->language->get('button_compare');
+		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['compare'] = $this->url->link('product/compare');
 
@@ -295,6 +296,8 @@ class ControllerProductSpecial extends Controller {
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
 		$this->data['limit'] = $limit;
+
+		$this->data['continue'] = $this->url->link('common/home');
 
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
