@@ -419,6 +419,62 @@ class ModelUpgrade extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "product_description pd SET tag = (SELECT GROUP_CONCAT(DISTINCT pt.tag ORDER BY pt.product_tag_id) FROM " . DB_PREFIX . "product_tag pt WHERE pd.product_id = pt.product_id AND pd.language_id = pt.language_id GROUP BY pt.product_id, pt.language_id)");
 		}
 
+		// Create system/upload directory.
+		$upload_directory = DIR_SYSTEM . 'upload/';
+
+		if (!is_dir($upload_directory)) {
+			mkdir(DIR_SYSTEM . 'upload', 0777);
+		}
+
+		clearstatcache();
+
+		flush();
+
+		// --------------------------
+		// Update the config.php files
+		// --------------------------
+		set_time_limit(30);
+
+		$output_0 = '';
+		$output_1 = '// OCE v1.7+';
+		$output_2 = 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');';
+		$output_3 = 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
+		$output_4 = '?>';
+
+		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {
+			$catalog = DIR_OPENCART . 'config.php';
+
+			$fh1 = fopen($catalog, "r+");
+
+			fseek ($fh1, -2, SEEK_END);
+
+			fwrite($fh1, $output_0 . "\n");
+			fwrite($fh1, $output_1 . "\n");
+			fwrite($fh1, $output_2 . "\n");
+			fwrite($fh1, $output_3 . "\n");
+			fwrite($fh1, $output_4);
+
+			fclose($fh1);
+		}
+
+		if (file_exists(DIR_OPENCART . 'admin/config.php') && filesize(DIR_OPENCART . 'admin/config.php') > 0) {
+			$admin = DIR_OPENCART . 'admin/config.php';
+
+			$fh2 = fopen($admin, "r+");
+
+			fseek ($fh2, -2, SEEK_END);
+
+			fwrite($fh2, $output_0 . "\n");
+			fwrite($fh2, $output_1 . "\n");
+			fwrite($fh2, $output_2 . "\n");
+			fwrite($fh2, $output_3 . "\n");
+			fwrite($fh2, $output_4);
+
+			fclose($fh2);
+		}
+
+		clearstatcache();
+
 		flush();
 
 		// Sort the categories to take advantage of the nested set model

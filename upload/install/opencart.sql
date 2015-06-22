@@ -4031,6 +4031,22 @@ INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_upload`
+--
+
+DROP TABLE IF EXISTS `oc_upload`;
+CREATE TABLE `oc_upload` (
+  `upload_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `filename` varchar(128) NOT NULL,
+  `code` varchar(32) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`upload_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_url_alias`
 --
 
@@ -8692,10 +8708,12 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4280, 71, 'O', 'Ono-i-lau', 1),
 (4281, 71, 'V', 'Vatoa', 1),
 
-(4282, 118, '', 'Bekkaa', 1),
-(4283, 118, '', 'Mount Lebanon', 1),
-(4284, 118, '', 'North Lebanon', 1),
-(4285, 118, '', 'South Lebanon', 1);
+(4282, 118, 'LB-BR', 'Beirut', 1),
+(4283, 118, 'LB-BE', 'Beqaa', 1),
+(4284, 118, 'LB-ML', 'Mount Lebanon', 1),
+(4285, 118, 'LB-NB', 'Nabatieh', 1),
+(4286, 118, 'LB-NR', 'North', 1),
+(4287, 118, 'LB-ST', 'South', 1);
 
 -- --------------------------------------------------------
 

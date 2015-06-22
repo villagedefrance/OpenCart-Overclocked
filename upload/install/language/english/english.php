@@ -82,7 +82,7 @@ $_['entry_maintenance']		= 'Activate Maintenance mode';
 
 // Error
 $_['error_php_version']			= 'Warning: You need to use PHP5.2 or above for OpenCart OCE to work!';
-$_['error_php_uploads']			= 'Warning: file_uploads needs to be enabled!';
+$_['error_php_uploads']			= 'Warning: PHP file_uploads needs to be enabled!';
 $_['error_php_session']			= 'Warning: OpenCart OCE will not work with session.auto_start enabled!';
 $_['error_php_extension']		= 'Warning: A database extension needs to be loaded in the php.ini for OpenCart OCE to work!';
 $_['error_php_gd']				= 'Warning: GD extension needs to be loaded for OpenCart OCE to work!';
@@ -95,6 +95,7 @@ $_['error_config_rename']		= 'Warning: config.php does not exist. You need to re
 $_['error_config_write']			= 'Warning: config.php needs to be writable for OpenCart OCE to be installed!';
 $_['error_cache_write']			= 'Warning: Cache directory needs to be writable for OpenCart OCE to work!';
 $_['error_logs_write']			= 'Warning: Logs directory needs to be writable for OpenCart OCE to work!';
+$_['error_upload_write']			= 'Warning: Upload directory needs to be writable for OpenCart OCE to work!';
 $_['error_download_write']		= 'Warning: Download directory needs to be writable for OpenCart OCE to work!';
 $_['error_image_write']			= 'Warning: Image directory needs to be writable for OpenCart OCE to work!';
 $_['error_imagecache_write']	= 'Warning: Image cache directory needs to be writable for OpenCart OCE to work!';

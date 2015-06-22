@@ -85,6 +85,7 @@ class ControllerStep2 extends Controller {
 
 		$this->data['cache'] = DIR_SYSTEM . 'cache';
 		$this->data['logs'] = DIR_SYSTEM . 'logs';
+		$this->data['upload'] = DIR_SYSTEM . 'upload';
 		$this->data['download'] = DIR_OPENCART . 'download';
 		$this->data['image'] = DIR_OPENCART . 'image';
 		$this->data['image_cache'] = DIR_OPENCART . 'image/cache';
@@ -164,6 +165,10 @@ class ControllerStep2 extends Controller {
 
 		if (!is_writable(DIR_SYSTEM . 'logs')) {
 			$this->error['warning'] = $this->language->get('error_logs_write');
+		}
+
+		if (!is_writable(DIR_SYSTEM . 'upload')) {
+			$this->error['warning'] = $this->language->get('error_upload_write');
 		}
 
 		if (!is_writable(DIR_OPENCART . 'download')) {

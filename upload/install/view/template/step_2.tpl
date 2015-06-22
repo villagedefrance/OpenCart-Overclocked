@@ -254,6 +254,14 @@
           <?php } ?></td>
         </tr>
         <tr>
+          <td><?php echo $upload . '/'; ?></td>
+          <td><?php if (is_writable($upload)) { ?>
+            <span class="good"><?php echo $text_writable; ?></span>
+          <?php } else { ?>
+            <span class="bad"><?php echo $text_unwritable; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><?php echo $download . '/'; ?></td>
           <td><?php if (is_writable($download)) { ?>
             <span class="good"><?php echo $text_writable; ?></span>

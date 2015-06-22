@@ -139,7 +139,7 @@ class ModelToolCSV extends Model {
             }
 
             // Handle line in one by one query
-            $sql_query_array[] = "INSERT INTO " . $table . " (". implode(',', $columns) .") VALUES (" . htmlentities(implode(",", $data)) . ")";
+            $sql_query_array[] = "INSERT INTO " . $table . " (" . implode(',', $columns) . ") VALUES (" . htmlentities(implode(",", $data)) . ")";
 	    }
 
 	    fclose($handle);

@@ -128,6 +128,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_tax_rate'] = $this->language->get('text_tax_rate');
 		$this->data['text_theme'] = $this->language->get('text_theme');
 		$this->data['text_total'] = $this->language->get('text_total');
+		$this->data['text_upload'] = $this->language->get('text_upload');
 		$this->data['text_user'] = $this->language->get('text_user');
 		$this->data['text_user_group'] = $this->language->get('text_user_group');
 		$this->data['text_users'] = $this->language->get('text_users');
@@ -243,6 +244,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['theme'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['total'] = $this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['upload'] = $this->url->link('tool/upload', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['user'] = $this->url->link('user/user', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['user_group'] = $this->url->link('user/user_permission', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['voucher'] = $this->url->link('sale/voucher', 'token=' . $this->session->data['token'], 'SSL');

@@ -76,6 +76,8 @@ class ModelToolSitemap extends Model {
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/search');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/special');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/product_list');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/product_wall');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/review_list');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=product/category_list');
 
 		$stores_pag = $this->model_catalog_sitemap->getAllStores();
@@ -94,6 +96,8 @@ class ModelToolSitemap extends Model {
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/search');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/special');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/product_list');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/product_wall');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/review_list');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=product/category_list');
 				}
 			}
@@ -309,6 +313,8 @@ class ModelToolSitemap extends Model {
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=product/search') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=product/special') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=product/product_list') . "\r";
+		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=product/product_wall') . "\r";
+		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=product/review_list') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=product/category_list') . "\r";
 
 		$stores_pag = $this->model_catalog_sitemap->getAllStores();
@@ -327,6 +333,8 @@ class ModelToolSitemap extends Model {
 					$output .= utf8_encode($store_url . 'index.php?route=product/search') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=product/special') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=product/product_list') . "\r";
+					$output .= utf8_encode($store_url . 'index.php?route=product/product_wall') . "\r";
+					$output .= utf8_encode($store_url . 'index.php?route=product/review_list') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=product/category_list') . "\r";
 				}
 			}
@@ -391,7 +399,7 @@ class ModelToolSitemap extends Model {
 
 					$manufacturers = $this->model_catalog_sitemap->getAllManufacturers($store_man['store_id']);
 
-					foreach ($manufacturers as $manufacturer) { 
+					foreach ($manufacturers as $manufacturer) {
 						$link_manufacturer = utf8_encode($store_url . 'index.php?route=product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']);
 
 						$link = $this->model_tool_seo_url->rewrite($link_manufacturer);

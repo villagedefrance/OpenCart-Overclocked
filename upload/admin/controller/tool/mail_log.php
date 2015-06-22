@@ -59,6 +59,8 @@ class ControllerToolMailLog extends Controller {
 			$this->data['mail_log'] = '';
 		}
 
+		clearstatcache();
+
 		$this->template = 'tool/mail_log.tpl';
 		$this->children = array(
 			'common/header',
@@ -76,6 +78,8 @@ class ControllerToolMailLog extends Controller {
 		$handle = fopen($file, 'w+');
 
 		fclose($handle);
+
+		clearstatcache();
 
 		$this->session->data['success'] = $this->language->get('text_success');
 

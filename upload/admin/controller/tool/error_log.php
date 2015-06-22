@@ -45,6 +45,8 @@ class ControllerToolErrorLog extends Controller {
 			$this->data['log'] = '';
 		}
 
+		clearstatcache();
+
 		$this->template = 'tool/error_log.tpl';
 		$this->children = array(
 			'common/header',
@@ -62,6 +64,8 @@ class ControllerToolErrorLog extends Controller {
 		$handle = fopen($file, 'w+');
 
 		fclose($handle);
+
+		clearstatcache();
 
 		$this->session->data['success'] = $this->language->get('text_success');
 
