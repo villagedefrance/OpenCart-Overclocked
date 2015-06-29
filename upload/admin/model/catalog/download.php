@@ -19,7 +19,7 @@ class ModelCatalogDownload extends Model {
 			$download_info = $this->getDownload($download_id);
 
 			if ($download_info) {
-				$this->db->query("UPDATE " . DB_PREFIX . "order_download SET `filename` = '" . $this->db->escape($data['filename']) . "', mask = '" . $this->db->escape($data['mask']) . "', remaining = '" . (int)$data['remaining'] . "' WHERE filename = '" . $this->db->escape($download_info['filename']) . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "order_download SET filename = '" . $this->db->escape($data['filename']) . "', mask = '" . $this->db->escape($data['mask']) . "', remaining = '" . (int)$data['remaining'] . "' WHERE filename = '" . $this->db->escape($download_info['filename']) . "'");
 			}
 		}
 

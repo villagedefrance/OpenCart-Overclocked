@@ -134,7 +134,7 @@ class UGRSR {
 	public function addFile($filename, $omit_path = false) {
 		$file = $omit_path ? $filename : $this->_path . $filename;
 
-		// If the protection isnt for a file throw an error
+		// If the protection isn't for a file throw an error
 		if (!is_file($file)) {
 			$this->_dbg('FILE [' . $file . '] IS NOT A FILE');
 			return false;

@@ -259,7 +259,9 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_price'] = $this->language->get('text_price');
 			$this->data['text_tax'] = $this->language->get('text_tax');
 			$this->data['text_option'] = $this->language->get('text_option');
+			$this->data['text_qty'] = $this->language->get('text_qty');
 			$this->data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
+			$this->data['text_or'] = $this->language->get('text_or');
 			$this->data['text_write'] = $this->language->get('text_write');
 			$this->data['text_note'] = $this->language->get('text_note');
 			$this->data['text_share'] = $this->language->get('text_share');
@@ -867,6 +869,7 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -903,6 +906,7 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -923,7 +927,7 @@ class ControllerProductProduct extends Controller {
 
 		$json = array();
 
-		if (!empty($this->request->files['file']['name'])) {
+		if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
 			$filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8')));
 
 			if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 64)) {
@@ -973,14 +977,18 @@ class ControllerProductProduct extends Controller {
 
 		if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
 			$file = basename($filename) . '.' . hash_rand('md5');
-			// Hide the uploaded file name so people can not link to it directly.
-			$json['file'] = $this->encryption->encrypt($file);
 
-			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_DOWNLOAD . $file);
+			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
+
+			// Hide the uploaded file name so people can not link to it directly.
+			$this->load->model('tool/upload');
+
+			$json['code'] = $this->model_tool_upload->addUpload($filename, $file);
 
 			$json['success'] = $this->language->get('text_upload');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

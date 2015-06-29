@@ -21,16 +21,13 @@ class ControllerToolUpload extends Controller {
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
 			foreach ($this->request->post['selected'] as $upload_id) {
-				// Remove file
+				// Remove file before deleting DB record
 				$upload_info = $this->model_tool_upload->getUpload($upload_id);
 
-				if ($upload_info && is_file(DIR_DOWNLOAD . $upload_info['filename'])) {
+				if ($upload_info && is_file(DIR_UPLOAD . $upload_info['filename'])) {
 					unlink(DIR_UPLOAD . $upload_info['filename']);
 				}
 
-				clearstatcache();
-
-				// Delete DB record
 				$this->model_tool_upload->deleteUpload($upload_id);
 			}
 
@@ -40,6 +37,10 @@ class ControllerToolUpload extends Controller {
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_filename'])) {
+				$url .= '&filter_filename=' . urlencode(html_entity_decode($this->request->get['filter_filename'], ENT_QUOTES, 'UTF-8'));
 			}
 
 			if (isset($this->request->get['filter_date_added'])) {
@@ -64,17 +65,23 @@ class ControllerToolUpload extends Controller {
 		$this->getList();
 	}
 
-	protected function getList() {
+	public function getList() {
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
 		} else {
-			$filter_name = null;
+			$filter_name = '';
+		}
+
+		if (isset($this->request->get['filter_filename'])) {
+			$filter_filename = $this->request->get['filter_filename'];
+		} else {
+			$filter_filename = '';
 		}
 
 		if (isset($this->request->get['filter_date_added'])) {
 			$filter_date_added = $this->request->get['filter_date_added'];
 		} else {
-			$filter_date_added = null;
+			$filter_date_added = '';
 		}
 
 		if (isset($this->request->get['sort'])) {
@@ -99,6 +106,10 @@ class ControllerToolUpload extends Controller {
 
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
+		if (isset($this->request->get['filter_filename'])) {
+			$url .= '&filter_filename=' . urlencode(html_entity_decode($this->request->get['filter_filename'], ENT_QUOTES, 'UTF-8'));
 		}
 
 		if (isset($this->request->get['filter_date_added'])) {
@@ -139,8 +150,9 @@ class ControllerToolUpload extends Controller {
 
 		$this->data['uploads'] = array();
 
-		$filter_data = array(
+		$data = array(
 			'filter_name'			=> $filter_name,
+			'filter_filename'		=> $filter_filename,
 			'filter_date_added'	=> $filter_date_added,
 			'sort'						=> $sort,
 			'order'					=> $order,
@@ -148,16 +160,16 @@ class ControllerToolUpload extends Controller {
 			'limit'						=> $this->config->get('config_admin_limit')
 		);
 
-		$upload_total = $this->model_tool_upload->getTotalUploads($filter_data);
+		$upload_total = $this->model_tool_upload->getTotalUploads($data);
 
-		$results = $this->model_tool_upload->getUploads($filter_data);
+		$results = $this->model_tool_upload->getUploads($data);
 
 		foreach ($results as $result) {
-			$data['uploads'][] = array(
+			$this->data['uploads'][] = array(
 				'upload_id'		=> $result['upload_id'],
 				'name'			=> $result['name'],
 				'filename'		=> $result['filename'],
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_added'	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'download'		=> $this->url->link('tool/upload/download', 'token=' . $this->session->data['token'] . '&code=' . $result['code'] . $url, 'SSL')
 			);
 		}
@@ -173,12 +185,8 @@ class ControllerToolUpload extends Controller {
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_action'] = $this->language->get('column_action');
 
-		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_date_added'] = $this->language->get('entry_date_added');
-
 		$this->data['button_download'] = $this->language->get('button_download');
 		$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_filter'] = $this->language->get('button_filter');
 
 		$this->data['token'] = $this->session->data['token'];
 
@@ -224,6 +232,10 @@ class ControllerToolUpload extends Controller {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
 
+		if (isset($this->request->get['filter_filename'])) {
+			$url .= '&filter_filename=' . urlencode(html_entity_decode($this->request->get['filter_filename'], ENT_QUOTES, 'UTF-8'));
+		}
+
 		if (isset($this->request->get['filter_date_added'])) {
 			$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
 		}
@@ -246,6 +258,7 @@ class ControllerToolUpload extends Controller {
 		$this->data['pagination'] = $pagination->render();
 
 		$this->data['filter_name'] = $filter_name;
+		$this->data['filter_filename'] = $filter_filename;
 		$this->data['filter_date_added'] = $filter_date_added;
 
 		$this->data['sort'] = $sort;
@@ -265,7 +278,11 @@ class ControllerToolUpload extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		return !$this->error;
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function download() {
@@ -295,8 +312,6 @@ class ControllerToolUpload extends Controller {
 					header('Content-Length: ' . filesize($file));
 
 					readfile($file, 'rb');
-
-					clearstatcache();
 					exit();
 
 				} else {
@@ -353,7 +368,7 @@ class ControllerToolUpload extends Controller {
 		if (!$json) {
 			if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
 				// Sanitize the filename
-				$filename = html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8');
+				$filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8')));
 
 				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 128)) {
 					$json['error'] = $this->language->get('error_filename');
@@ -405,8 +420,8 @@ class ControllerToolUpload extends Controller {
 			}
 		}
 
-		if (!$json) {
-			$file = $filename . '.' . md5(mt_rand());
+		if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
+			$file = basename($filename) . '.' . hash_rand('md5');
 
 			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
 
@@ -419,7 +434,6 @@ class ControllerToolUpload extends Controller {
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
-
 		$this->response->setOutput(json_encode($json));
 	}
 }

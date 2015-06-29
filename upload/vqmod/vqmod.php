@@ -48,7 +48,7 @@ abstract class VQMod {
 
 		self::$directorySeparator = defined('DIRECTORY_SEPARATOR') ? DIRECTORY_SEPARATOR : '/';
 
-		if (!$path){
+		if (!$path) {
 			$path = dirname(dirname(__FILE__));
 		}
 
@@ -152,6 +152,7 @@ abstract class VQMod {
 
 		if (sha1($fileData) != $fileHash) {
 			$writePath = $cacheFile;
+
 			if (!file_exists($writePath) || is_writable($writePath)) {
 				file_put_contents($writePath, $fileData, LOCK_EX);
 
@@ -446,7 +447,7 @@ abstract class VQMod {
 
 			$modParts = explode('/', $modFilePath);
 			$checkParts = explode('/', $checkFilePath);
-			
+
 			if (count($modParts) !== count($checkParts)) {
 				$return = false;
 

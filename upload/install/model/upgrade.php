@@ -430,53 +430,6 @@ class ModelUpgrade extends Model {
 
 		flush();
 
-		// --------------------------
-		// Update the config.php files
-		// --------------------------
-		set_time_limit(30);
-
-		$output_0 = '';
-		$output_1 = '// OCE v1.7+';
-		$output_2 = 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');';
-		$output_3 = 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
-		$output_4 = '?>';
-
-		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {
-			$catalog = DIR_OPENCART . 'config.php';
-
-			$fh1 = fopen($catalog, "r+");
-
-			fseek ($fh1, -2, SEEK_END);
-
-			fwrite($fh1, $output_0 . "\n");
-			fwrite($fh1, $output_1 . "\n");
-			fwrite($fh1, $output_2 . "\n");
-			fwrite($fh1, $output_3 . "\n");
-			fwrite($fh1, $output_4);
-
-			fclose($fh1);
-		}
-
-		if (file_exists(DIR_OPENCART . 'admin/config.php') && filesize(DIR_OPENCART . 'admin/config.php') > 0) {
-			$admin = DIR_OPENCART . 'admin/config.php';
-
-			$fh2 = fopen($admin, "r+");
-
-			fseek ($fh2, -2, SEEK_END);
-
-			fwrite($fh2, $output_0 . "\n");
-			fwrite($fh2, $output_1 . "\n");
-			fwrite($fh2, $output_2 . "\n");
-			fwrite($fh2, $output_3 . "\n");
-			fwrite($fh2, $output_4);
-
-			fclose($fh2);
-		}
-
-		clearstatcache();
-
-		flush();
-
 		// Sort the categories to take advantage of the nested set model
 		$this->repairCategories(0);
 	}
@@ -504,6 +457,58 @@ class ModelUpgrade extends Model {
 
 			$this->repairCategories($category['category_id']);
 		}
+
+		$this->updateConfig();
+	}
+
+	// Function to update the existing "config.php" files
+	public function updateConfig() {
+		$find = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');';
+
+		$check = 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
+define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
+
+		$output = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');
+define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
+define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
+
+		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {
+			$catalog = DIR_OPENCART . 'config.php';
+
+			$catalog_data = file_get_contents($catalog);
+
+			if (strpos($catalog_data, $check) == false) {
+				$catalog_string = implode('', file($catalog));
+
+				$fh1 = fopen($catalog, 'w');
+
+				$catalog_string = str_replace($find, $output, $catalog_string);
+
+				fwrite($fh1, $catalog_string, strlen($catalog_string));
+
+				fclose($fh1);
+			}
+		}
+
+		if (file_exists(DIR_OPENCART . 'admin/config.php') && filesize(DIR_OPENCART . 'admin/config.php') > 0) {
+			$admin = DIR_OPENCART . 'admin/config.php';
+
+			$admin_data = file_get_contents($admin);
+
+			if (strpos($admin_data, $check) == false) {
+				$admin_string = implode('', file($admin));
+
+				$fh2 = fopen($admin, 'w');
+
+				$admin_string = str_replace($find, $output, $admin_string);
+
+				fwrite($fh2, $admin_string, strlen($admin_string));
+
+				fclose($fh2);
+			}
+		}
+
+		clearstatcache();
 	}
 }
 ?>
