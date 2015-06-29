@@ -327,9 +327,13 @@ class ModelUpgrade extends Model {
 			}
 		}
 
-		// --------------------------
-		// Update any additional table
-		// --------------------------
+		$this->additionalTables();
+	}
+
+	// -----------------------------------
+	// Function to update additional tables
+	// -----------------------------------
+	public function additionalTables() {
 		set_time_limit(30);
 
 		// Add serialized to Setting
@@ -434,7 +438,9 @@ class ModelUpgrade extends Model {
 		$this->repairCategories(0);
 	}
 
+	// --------------------------------------------------------------------------------
 	// Function to repair any erroneous categories that are not in the category path table
+	// --------------------------------------------------------------------------------
 	public function repairCategories($parent_id = 0) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$parent_id . "'");
 
@@ -461,7 +467,9 @@ class ModelUpgrade extends Model {
 		$this->updateConfig();
 	}
 
+	// -----------------------------------------------
 	// Function to update the existing "config.php" files
+	// -----------------------------------------------
 	public function updateConfig() {
 		$find = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');';
 
@@ -509,6 +517,72 @@ define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
 		}
 
 		clearstatcache();
+
+		$this->updateLayouts();
+	}
+
+	// ------------------------------------
+	// Function to update the layout routes
+	// ------------------------------------
+	public function updateLayouts() {
+		// Get stores
+		$stores = array(0);
+
+		$sql = "SELECT store_id FROM " . DB_PREFIX . "store";
+
+		$query_store = $this->db->query($sql);
+
+		foreach ($query_store->rows as $store) {
+			$stores[] = $store['store_id'];
+		}
+
+		// Create News layout
+		$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout WHERE name LIKE 'News' LIMIT 1";
+
+		$query_name = $this->db->query($sql);
+
+		if ($query_name->num_rows == 0) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "layout SET name = 'News'");
+		}
+
+		// Add News routes
+		$news_routes = array('information/news', 'information/news_list');
+
+		foreach ($stores as $store_id) {
+			foreach ($news_routes as $news_route) {
+				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $news_route . "' LIMIT 1";
+
+				$query = $this->db->query($sql);
+
+				if ($query->num_rows == 0) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route SET layout_id = (SELECT DISTINCT layout_id FROM " . DB_PREFIX . "layout WHERE name = 'News'), store_id = '" . (int)$store_id . "', route = '" . $news_route . "'");
+				}
+			}
+		}
+
+		// Create Special layout
+		$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout WHERE name LIKE 'Special' LIMIT 1";
+
+		$query_name = $this->db->query($sql);
+
+		if ($query_name->num_rows == 0) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "layout SET name = 'Special'");
+		}
+
+		// Add Special routes
+		$special_routes = array('product/special');
+
+		foreach ($stores as $store_id) {
+			foreach ($special_routes as $special_route) {
+				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $special_route . "' LIMIT 1";
+
+				$query = $this->db->query($sql);
+
+				if ($query->num_rows == 0) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route SET layout_id = (SELECT DISTINCT layout_id FROM " . DB_PREFIX . "layout WHERE name = 'Special'), store_id = '" . (int)$store_id . "', route = '" . $special_route . "'");
+				}
+			}
+		}
 	}
 }
 ?>
