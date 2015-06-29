@@ -71,7 +71,7 @@ class ModelToolSystem extends Model {
 
 	// Token generator
 	public function token($length = 32) {
-		$string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		$string = str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.+_=');
 
 		$token = '';
 
