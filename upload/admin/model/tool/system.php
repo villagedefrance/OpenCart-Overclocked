@@ -68,5 +68,18 @@ class ModelToolSystem extends Model {
 
 		$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
 	}
+
+	// Token generator
+	public function token($length = 32) {
+		$string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+		$token = '';
+
+		for ($i = 0; $i < $length; $i++) {
+			$token .= $string[mt_rand(0, strlen($string) - 1)];
+		}
+
+		return $token;
+	}
 }
 ?>
