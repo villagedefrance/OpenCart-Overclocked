@@ -298,7 +298,6 @@ class ControllerProductProduct extends Controller {
 
 			if ($this->config->get('config_viewer') == 'zoomlens') {
 				$this->document->addStyle('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.css');
-
 				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleGallery.min.js');
 				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.min.js');
 
@@ -326,7 +325,6 @@ class ControllerProductProduct extends Controller {
 
 			} elseif ($this->config->get('config_viewer') == 'zoomlens') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
-
 				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
 
 				if ($product_info['image']) {
@@ -341,7 +339,6 @@ class ControllerProductProduct extends Controller {
 
 			} else {
 				$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
-				
 				$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 
 				if ($product_info['image']) {
