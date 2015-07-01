@@ -12,7 +12,8 @@ class ControllerInformationContact extends Controller {
 
 			// Log mail
 			$mail_log  = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n";
-			$mail_log .= $this->request->post['enquiry'] . "\n\n";
+			$mail_log .= $this->request->post['enquiry'] . "\n";
+			$mail_log .= "------------------------------------------------------------- \n\n";
 
 			$mail_file = DIR_SYSTEM . 'mails/mails.txt';
 
