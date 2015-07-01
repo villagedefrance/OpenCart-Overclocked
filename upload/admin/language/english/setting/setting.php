@@ -21,6 +21,7 @@ $_['text_return']                  		= 'Returns';
 $_['text_voucher']                 		= 'Vouchers';
 $_['text_administration']      			= 'Administration';
 $_['text_store_front']      				= 'Store Front';
+$_['text_colorbox']  						= 'Colorbox';
 $_['text_magnific']  						= 'Magnific';
 $_['text_zoomlens']  					= 'Zoom Lens';
 $_['text_image_resize'] 				= 'Image Dimensions';

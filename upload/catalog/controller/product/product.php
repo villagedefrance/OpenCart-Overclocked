@@ -324,7 +324,7 @@ class ControllerProductProduct extends Controller {
 				$this->data['images_offset'] = 260;
 				$this->data['lightbox'] = 'zoomlens';
 
-			} else {
+			} elseif ($this->config->get('config_viewer') == 'zoomlens') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
 
 				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
@@ -338,6 +338,27 @@ class ControllerProductProduct extends Controller {
 				$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
 				$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				$this->data['lightbox'] = 'magnific';
+
+			} else {
+				$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
+				
+				$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+
+				if ($product_info['image']) {
+					$this->data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
+				} else {
+					$this->data['popup'] = '';
+				}
+
+				if ($product_info['image']) {
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+				} else {
+					$this->data['thumb'] = '';
+				}
+
+				$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
+				$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
+				$this->data['lightbox'] = 'colorbox';
 			}
 
 			if ($product_info['image']) {

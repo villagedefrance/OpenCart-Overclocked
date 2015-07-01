@@ -16,6 +16,23 @@
   <div class="product-info">
     <?php if ($thumb || $images) { ?>
       <div class="left">
+      <?php if ($lightbox == 'colorbox') { ?>
+        <?php if ($thumb) { ?>
+          <?php if (!$label && $offers) { ?>
+            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php } ?>
+          <div class="image">
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+          </div>
+        <?php } ?>
+        <?php if ($images) { ?>
+          <div class="image-additional" style="width:<?php echo $images_offset; ?>px;">
+            <?php foreach ($images as $image) { ?>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+            <?php } ?>
+          </div>
+        <?php } ?>
+      <?php } ?>
       <?php if ($lightbox == 'magnific') { ?>
         <?php if ($thumb) { ?>
           <?php if (!$label && $offers) { ?>
@@ -455,6 +472,18 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
+
+<?php if ($lightbox == 'colorbox') { ?>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.colorbox').colorbox({
+		overlayClose: true,
+		opacity: 0.5,
+		rel: "colorbox"
+	});
+});
+//--></script> 
+<?php } ?>
 
 <?php if ($lightbox == 'magnific') { ?>
 <script type="text/javascript"><!--
