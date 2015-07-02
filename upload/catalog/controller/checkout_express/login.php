@@ -116,6 +116,7 @@ class ControllerCheckoutExpressLogin extends Controller {
 			$json['redirect'] = $this->url->link('checkout_express/checkout', '', 'SSL');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

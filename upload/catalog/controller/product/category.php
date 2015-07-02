@@ -508,7 +508,6 @@ class ControllerProductCategory extends Controller {
 			);
 
 			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
-
 			$this->response->setOutput($this->render());
 		}
 	}

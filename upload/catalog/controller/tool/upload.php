@@ -61,6 +61,8 @@ class ControllerToolUpload extends Controller {
 			$json['error'] = $this->language->get('error_upload');
 		}
 
+		clearstatcache();
+
 		if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
 			$file = basename($filename) . '.' . hash_rand('md5');
 

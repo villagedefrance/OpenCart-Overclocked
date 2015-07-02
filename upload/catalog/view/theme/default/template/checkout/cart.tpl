@@ -105,7 +105,7 @@
       </table>
     </div>
   </form>
-  <?php if ($coupon_status || $voucher_status || $reward_status || $shipping_status) { ?>
+  <?php if (!$free_cart && ($coupon_status || $voucher_status || $reward_status || $shipping_status)) { ?>
     <h2><?php echo $text_next; ?></h2>
     <div class="content">
       <p><?php echo $text_next_choice; ?></p>

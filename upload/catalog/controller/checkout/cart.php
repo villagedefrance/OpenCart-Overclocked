@@ -79,11 +79,6 @@ class ControllerCheckoutCart extends Controller {
 			$this->redirect($this->url->link('checkout/cart'));
 		}
 
-		$this->document->setTitle($this->language->get('heading_title'));
-
-		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
-		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
-
 		// Breadcrumbs
 		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
@@ -102,6 +97,11 @@ class ControllerCheckoutCart extends Controller {
 		);
 
 		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
+			$this->document->setTitle($this->language->get('heading_title'));
+
+			$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
+		
 			$points = $this->customer->getRewardPoints();
 
 			$points_total = 0;
@@ -253,7 +253,11 @@ class ControllerCheckoutCart extends Controller {
 
 				// Display prices
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')));
+					if (($product['price'] == '0.0000') && $this->config->get('config_price_free')) {
+						$price = $this->language->get('text_free');
+					} else {
+						$price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')));
+					}
 				} else {
 					$price = false;
 				}
@@ -299,8 +303,8 @@ class ControllerCheckoutCart extends Controller {
 					'model'               	=> $product['model'],
 					'option'              		=> $option_data,
 					'quantity'           		=> $product['quantity'],
-					'stock'               		=> ($product['stock']) ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-					'reward'              	=> ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
+					'stock'               		=> $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+					'reward'              	=> $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               		=> $price,
 					'cost' 					=> $product['cost'],
 					'total'               		=> $total,
@@ -326,6 +330,13 @@ class ControllerCheckoutCart extends Controller {
 						'remove'			=> $this->url->link('checkout/cart', 'remove=' . $key)
 					);
 				}
+			}
+
+			// Free Cart - Hides Coupon/Vouchers/Reward/Shipping options
+			if ($this->cart->getSubTotal() > 0) {
+				$this->data['free_cart'] = false;
+			} else {
+				$this->data['free_cart'] = true;
 			}
 
 			if (isset($this->request->post['next'])) {
@@ -469,6 +480,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->response->setOutput($this->render());
 
 		} else {
+			$this->document->setTitle($this->language->get('text_error'));
+
 			$this->data['heading_title'] = $this->language->get('heading_title');
 
 			$this->data['text_error'] = $this->language->get('text_empty');
@@ -499,6 +512,7 @@ class ControllerCheckoutCart extends Controller {
 				'common/header'
 			);
 
+			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
 			$this->response->setOutput($this->render());
 		}
 	}
@@ -693,6 +707,7 @@ class ControllerCheckoutCart extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -815,6 +830,7 @@ class ControllerCheckoutCart extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -840,6 +856,7 @@ class ControllerCheckoutCart extends Controller {
 			);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

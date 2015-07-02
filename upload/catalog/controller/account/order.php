@@ -421,12 +421,6 @@ class ControllerAccountOrder extends Controller {
 		} else {
 			$this->document->setTitle($this->language->get('text_order'));
 
-			$this->data['heading_title'] = $this->language->get('text_order');
-
-			$this->data['text_error'] = $this->language->get('text_error');
-
-			$this->data['button_continue'] = $this->language->get('button_continue');
-
 			// Breadcrumbs
 			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
 
@@ -456,9 +450,13 @@ class ControllerAccountOrder extends Controller {
 				'separator' => $this->language->get('text_separator')
 			);
 
-			$this->data['continue'] = $this->url->link('account/order', '', 'SSL');
+			$this->data['heading_title'] = $this->language->get('text_order');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+			$this->data['text_error'] = $this->language->get('text_error');
+
+			$this->data['button_continue'] = $this->language->get('button_continue');
+
+			$this->data['continue'] = $this->url->link('account/order', '', 'SSL');
 
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
@@ -480,6 +478,7 @@ class ControllerAccountOrder extends Controller {
 				'common/header'
 			);
 
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 			$this->response->setOutput($this->render());
 		}
 	}

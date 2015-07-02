@@ -129,8 +129,6 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
-
 			// Template
 			$this->data['template'] = $this->config->get('config_template');
 
@@ -151,6 +149,7 @@ class ControllerInformationNews extends Controller {
 				'common/header'
 			);
 
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
 			$this->response->setOutput($this->render());
 		}
 	}

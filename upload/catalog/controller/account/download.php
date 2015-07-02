@@ -103,6 +103,8 @@ class ControllerAccountDownload extends Controller {
 				}
 			}
 
+			clearstatcache();
+
 			$pagination = new Pagination();
 			$pagination->total = $download_total;
 			$pagination->page = $page;
@@ -221,6 +223,8 @@ class ControllerAccountDownload extends Controller {
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
 				}
+
+				clearstatcache();
 
 			} else {
 				exit('Error: Headers already sent out!');

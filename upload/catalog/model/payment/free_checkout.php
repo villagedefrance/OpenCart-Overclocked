@@ -6,7 +6,7 @@ class ModelPaymentFreeCheckout extends Model {
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('cod_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		if ($total <= 0) {
+		if ($total <= 0.00) {
 			$free_total = 0;
 		} else {
 			$free_total = $total;
@@ -14,7 +14,7 @@ class ModelPaymentFreeCheckout extends Model {
 
 		$total_max = $this->config->get('free_checkout_total_max');
 
-		if (($this->config->get('free_checkout_total') >= 0 && $this->config->get('free_checkout_total') >= $free_total) || (!empty($total_max) && $total_max > 0 && $total_max < $free_total)) {
+		if (($this->config->get('free_checkout_total') > 0 && $this->config->get('free_checkout_total') > $free_total) || (!empty($total_max) && $total_max > 0 && $total_max < $free_total)) {
 			$status = false;
 		} elseif (!$this->config->get('free_checkout_geo_zone_id')) {
 			$status = true;

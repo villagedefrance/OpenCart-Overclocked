@@ -602,6 +602,7 @@ class ControllerCheckoutManual extends Controller {
 			$json['error']['warning'] = $this->language->get('error_permission');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

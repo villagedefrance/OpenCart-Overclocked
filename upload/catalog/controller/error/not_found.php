@@ -74,7 +74,6 @@ class ControllerErrorNotFound extends Controller {
 		);
 
 		$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
-
 		$this->response->setoutput($this->render());
 	}
 }

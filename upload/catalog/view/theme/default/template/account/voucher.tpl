@@ -66,7 +66,7 @@
       </tr>
       <tr>
         <td><span class="required">*</span> <?php echo $entry_amount; ?></td>
-        <td><input type="text" name="amount" value="<?php echo $amount; ?>" size="5" />
+        <td><input type="text" name="amount" value="<?php echo $amount; ?>" />
         <?php if ($error_amount) { ?>
           <span class="error"><?php echo $error_amount; ?></span>
         <?php } ?></td>

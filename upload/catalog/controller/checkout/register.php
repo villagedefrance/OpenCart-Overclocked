@@ -274,6 +274,7 @@ class ControllerCheckoutRegister extends Controller {
 			unset($this->session->data['payment_methods']);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

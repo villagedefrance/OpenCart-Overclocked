@@ -29,7 +29,13 @@ class ControllerCommonMaintenance extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		if ($this->request->server['SERVER_PROTOCOL'] == 'HTTP/1.1') {
+			$this->response->addHeader('HTTP/1.1 503 Service Unavailable');
+		} else {
+			$this->response->addHeader('HTTP/1.0 503 Service Unavailable');
+		}
+
+		$this->response->addHeader('Retry-After: 3600');
 
 		// Breadcrumbs
 		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
@@ -42,10 +48,9 @@ class ControllerCommonMaintenance extends Controller {
 			'separator' => false
 		);
 
-		$this->data['message'] = $this->language->get('text_message');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . '/1.1 503 Service Temporarily Unavailable');
-		$this->response->addHeader('Retry-After: ' . gmdate('D, d M Y H:i:s T', time() + 60 * 60 * 24));
+		$this->data['message'] = $this->language->get('text_message');
 
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
