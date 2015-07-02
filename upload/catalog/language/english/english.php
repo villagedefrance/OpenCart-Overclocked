@@ -19,6 +19,7 @@ $_['text_all_zones']        		= 'All Zones';
 $_['text_pagination']       		= 'Showing {start} to {end} of {total} ({pages} Pages)';
 $_['text_separator']        		= ' &gt; ';
 $_['text_offer'] 					= 'Offer!';
+$_['text_free'] 					= 'Free';
 
 // Buttons
 $_['button_add_address']    	= 'Add Address';

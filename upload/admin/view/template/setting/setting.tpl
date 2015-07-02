@@ -1061,18 +1061,6 @@
               <?php } ?>
             </select></td>
           </tr>
-		  <tr>
-            <td><?php echo $entry_captcha_font; ?></td>
-            <td><select name="config_captcha_font">
-            <?php foreach ($fontnames as $fontname) { ?>
-              <?php if ($fontname == $config_captcha_font) { ?>
-                <option value="<?php echo $fontname; ?>" selected="selected"><?php echo $fontname; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $fontname; ?>"><?php echo $fontname; ?></option>
-              <?php } ?>
-            <?php } ?>
-            </select></td>
-          </tr>
           <tr>
             <td><?php echo $entry_offer_label; ?></td>
             <td><?php if ($config_offer_label) { ?>
@@ -1086,6 +1074,32 @@
               <input type="radio" name="config_offer_label" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_price_free; ?></td>
+            <td><?php if ($config_price_free) { ?>
+              <input type="radio" name="config_price_free" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_price_free" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_price_free" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="config_price_free" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+		  <tr>
+            <td><?php echo $entry_captcha_font; ?></td>
+            <td><select name="config_captcha_font">
+            <?php foreach ($fontnames as $fontname) { ?>
+              <?php if ($fontname == $config_captcha_font) { ?>
+                <option value="<?php echo $fontname; ?>" selected="selected"><?php echo $fontname; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $fontname; ?>"><?php echo $fontname; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select></td>
           </tr>
           <tr>
             <td><?php echo $entry_news_addthis; ?></td>

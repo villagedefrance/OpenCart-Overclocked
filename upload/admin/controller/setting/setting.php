@@ -166,6 +166,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_custom_menu'] = $this->language->get('entry_custom_menu');
 		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
+		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
@@ -1002,6 +1003,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_offer_label'] = $this->request->post['config_offer_label'];
 		} else {
 			$this->data['config_offer_label'] = $this->config->get('config_offer_label');
+		}
+
+		if (isset($this->request->post['config_price_free'])) {
+			$this->data['config_price_free'] = $this->request->post['config_price_free'];
+		} else {
+			$this->data['config_price_free'] = $this->config->get('config_price_free');
 		}
 
 		$this->data['fontnames'] = array();

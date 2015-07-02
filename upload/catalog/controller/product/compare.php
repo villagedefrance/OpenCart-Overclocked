@@ -97,7 +97,11 @@ class ControllerProductCompare extends Controller {
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+					if (($product_info['price'] == '0.0000') && $this->config->get('config_price_free')) {
+						$price = $this->language->get('text_free');
+					} else {
+						$price = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+					}
 				} else {
 					$price = false;
 				}

@@ -303,38 +303,38 @@ class ControllerProductProduct extends Controller {
 
 				if ($product_info['image']) {
 					$this->data['zoom'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2);
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 230, 230);
+					$this->data['gallery_thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
+
+					$this->data['column_offset'] = 265;
+					$this->data['images_offset'] = 260;
 				} else {
 					$this->data['zoom'] = '';
-				}
-
-				if ($product_info['image']) {
-					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 230, 230);
-				} else {
 					$this->data['thumb'] = '';
-				}
-
-				if ($product_info['image']) {
-					$this->data['gallery_thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
-				} else {
 					$this->data['gallery_thumb'] = '';
+
+					$this->data['column_offset'] = 0;
+					$this->data['images_offset'] = 0;
 				}
 
-				$this->data['column_offset'] = 265;
-				$this->data['images_offset'] = 260;
 				$this->data['lightbox'] = 'zoomlens';
 
-			} elseif ($this->config->get('config_viewer') == 'zoomlens') {
+			} elseif ($this->config->get('config_viewer') == 'magnific') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
 				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+
+					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
+					$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				} else {
 					$this->data['thumb'] = '';
+
+					$this->data['column_offset'] = 0;
+					$this->data['images_offset'] = 0;
 				}
 
-				$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
-				$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				$this->data['lightbox'] = 'magnific';
 
 			} else {
@@ -349,12 +349,16 @@ class ControllerProductProduct extends Controller {
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+
+					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
+					$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				} else {
 					$this->data['thumb'] = '';
+
+					$this->data['column_offset'] = 0;
+					$this->data['images_offset'] = 0;
 				}
 
-				$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
-				$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				$this->data['lightbox'] = 'colorbox';
 			}
 
@@ -422,7 +426,11 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-				$this->data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+				if (($product_info['price'] == '0.0000') && $this->config->get('config_price_free')) {
+					$this->data['price'] = $this->language->get('text_free');
+				} else {
+					$this->data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+				}
 			} else {
 				$this->data['price'] = false;
 			}
@@ -601,7 +609,11 @@ class ControllerProductProduct extends Controller {
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
+					if (($result['price'] == '0.0000') && $this->config->get('config_price_free')) {
+						$price = $this->language->get('text_free');
+					} else {
+						$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
+					}
 				} else {
 					$price = false;
 				}

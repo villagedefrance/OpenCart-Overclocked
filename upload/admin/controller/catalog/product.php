@@ -1410,6 +1410,8 @@ class ControllerCatalogProduct extends Controller {
 
 		} else {
 			$colors = array(0);
+
+			$this->data['colors'] = $colors;
 		}
 
 		$this->data['product_images'] = array();
