@@ -129,14 +129,14 @@ $result = $u->run();
 $writes += $result['writes'];
 $changes += $result['changes'];
 
+// ---------------------
 // Output result to user
-if (!$changes) {
-	die('VQMOD ALREADY INSTALLED! >>> YOU CAN NOW LOG BACK IN.');
-}
+// ---------------------
 
-if ($writes != 4) {
-	die('VQMOD HAS BEEN REPAIRED! ONE OR MORE FILES COULD NOT BE WRITTEN. >>> YOU CAN NOW LOG BACK IN.');
-}
+// Load config.php required for redirect
+require_once($opencart_path . $admin . '/config.php');
 
-die('VQMOD HAS BEEN INSTALLED ON YOUR SYSTEM! >>> YOU CAN NOW LOG BACK IN.');
+$admin_link = html_entity_decode(HTTPS_SERVER . '/index.php', ENT_QUOTES, "UTF-8");
+
+vprintf("VQMOD HAS BEEN INSTALLED ON YOUR SYSTEM! >>> YOU CAN NOW <a href='%s'><b>LOG BACK IN</b></a>", $admin_link);
 ?>

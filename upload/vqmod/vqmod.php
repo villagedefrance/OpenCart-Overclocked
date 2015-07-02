@@ -461,7 +461,7 @@ abstract class VQMod {
 					} elseif (strpos($part, '*') !== false) {
 						$part = preg_replace_callback('~([^*]+)~', array('self', '_quotePath'), $part);
 						$part = str_replace('*', '[^/]*', $part);
-						$part = (bool) preg_match('~^' . $part . '$~', $checkParts[$k]);
+						$part = (bool)preg_match('~^' . $part . '$~', $checkParts[$k]);
 
 						if ($part) {
 							continue;
@@ -631,10 +631,10 @@ class VQModObject {
 	public function __construct(DOMNode $node, $modFile) {
 		if ($node->hasChildNodes()) {
 			foreach ($node->childNodes as $child) {
-				$name = (string) $child->nodeName;
+				$name = (string)$child->nodeName;
 
 				if (isset($this->$name)) {
-					$this->$name = (string) $child->nodeValue;
+					$this->$name = (string)$child->nodeValue;
 				}
 			}
 		}
@@ -703,7 +703,7 @@ class VQModObject {
 					} else {
 						$tmp[$offset] .= $mod['add']->getContent();
 					}
-				break;
+					break;
 
 				default:
 
@@ -1016,6 +1016,5 @@ class VQSearchNode extends VQNode {
  * VQAddNode
  * @description Object for the <add> xml tags
  */
-class VQAddNode extends VQNode {
-}
+class VQAddNode extends VQNode {}
 ?>

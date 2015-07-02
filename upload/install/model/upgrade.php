@@ -583,6 +583,25 @@ define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
 				}
 			}
 		}
+
+		$this->clearLogs();
+	}
+
+	// ---------------------------
+	// Function to clear error logs
+	// ---------------------------
+	public function clearLogs() {
+		$error_log = $this->config->get('config_error_filename');
+
+		if (file_exists(DIR_LOGS . $error_log) && filesize(DIR_LOGS . $error_log) > 0) {
+			$file = DIR_LOGS . $error_log;
+
+			$handle = fopen($file, 'w+');
+
+			fclose($handle);
+		}
+
+		clearstatcache();
 	}
 }
 ?>
