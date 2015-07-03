@@ -428,14 +428,14 @@
           <tr>
             <td><span class="required">*</span> <?php echo $entry_dimension; ?></td>
             <td>
-              <input type="text" name="usps_length" value="<?php echo $usps_length; ?>" size="4" />
-              <input type="text" name="usps_width" value="<?php echo $usps_width; ?>" size="4" />
-              <input type="text" name="usps_height" value="<?php echo $usps_height; ?>" size="4" />
-              <?php if ($error_width) { ?>
-                <span class="error"><?php echo $error_width; ?></span>
-              <?php } ?>
+              <input type="text" name="usps_length" value="<?php echo $usps_length; ?>" size="6" /> x 
+              <input type="text" name="usps_width" value="<?php echo $usps_width; ?>" size="6" /> x 
+              <input type="text" name="usps_height" value="<?php echo $usps_height; ?>" size="6" />
               <?php if ($error_length) { ?>
                 <span class="error"><?php echo $error_length; ?></span>
+              <?php } ?>
+              <?php if ($error_width) { ?>
+                <span class="error"><?php echo $error_width; ?></span>
               <?php } ?>
               <?php if ($error_height) { ?>
                 <span class="error"><?php echo $error_height; ?></span>

@@ -109,16 +109,16 @@ class ControllerShippingUsps extends Controller {
 			$this->data['error_postcode'] = '';
 		}
 
-		if (isset($this->error['width'])) {
-			$this->data['error_width'] = $this->error['width'];
-		} else {
-			$this->data['error_width'] = '';
-		}
-
 		if (isset($this->error['length'])) {
 			$this->data['error_length'] = $this->error['length'];
 		} else {
 			$this->data['error_length'] = '';
+		}
+
+		if (isset($this->error['width'])) {
+			$this->data['error_width'] = $this->error['width'];
+		} else {
+			$this->data['error_width'] = '';
 		}
 
 		if (isset($this->error['height'])) {
@@ -456,12 +456,6 @@ class ControllerShippingUsps extends Controller {
 			$this->data['usps_height'] = $this->config->get('usps_height');
 		}
 
-		if (isset($this->request->post['usps_length'])) {
-			$this->data['usps_length'] = $this->request->post['usps_length'];
-		} else {
-			$this->data['usps_length'] = $this->config->get('usps_length');
-		}
-
 		if (isset($this->request->post['usps_display_time'])) {
 			$this->data['usps_display_time'] = $this->request->post['usps_display_time'];
 		} else {
@@ -544,16 +538,16 @@ class ControllerShippingUsps extends Controller {
 			$this->error['postcode'] = $this->language->get('error_postcode');
 		}
 
+		if (!$this->request->post['usps_length']) {
+			$this->error['length'] = $this->language->get('error_length');
+		}
+
 		if (!$this->request->post['usps_width']) {
 			$this->error['width'] = $this->language->get('error_width');
 		}
 
 		if (!$this->request->post['usps_height']) {
 			$this->error['height'] = $this->language->get('error_height');
-		}
-
-		if (!$this->request->post['usps_length']) {
-			$this->error['length'] = $this->language->get('error_length');
 		}
 
 		if (!$this->error) {
