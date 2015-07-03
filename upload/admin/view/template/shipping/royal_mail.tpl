@@ -21,18 +21,18 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <div class="vtabs">
           <a href="#tab-general"><?php echo $tab_general; ?></a>
-          <a href="#tab-1st-class-standard"><?php echo $tab_1st_class_standard; ?></a>
-          <a href="#tab-1st-class-recorded"><?php echo $tab_1st_class_recorded; ?></a>
-          <a href="#tab-2nd-class-standard"><?php echo $tab_2nd_class_standard; ?></a>
-          <a href="#tab-2nd-class-recorded"><?php echo $tab_2nd_class_recorded; ?></a>
           <a href="#tab-special-delivery-500"><?php echo $tab_special_delivery_500; ?></a>
           <a href="#tab-special-delivery-1000"><?php echo $tab_special_delivery_1000; ?></a>
           <a href="#tab-special-delivery-2500"><?php echo $tab_special_delivery_2500; ?></a>
-          <a href="#tab-standard-parcels"><?php echo $tab_standard_parcels; ?></a>
-          <a href="#tab-airmail"><?php echo $tab_airmail; ?></a>
+          <a href="#tab-1st-class-signed"><?php echo $tab_1st_class_signed; ?></a>
+          <a href="#tab-2nd-class-signed"><?php echo $tab_2nd_class_signed; ?></a>
+          <a href="#tab-1st-class-standard"><?php echo $tab_1st_class_standard; ?></a>
+          <a href="#tab-2nd-class-standard"><?php echo $tab_2nd_class_standard; ?></a>
+          <a href="#tab-international-standard"><?php echo $tab_international_standard; ?></a>
+          <a href="#tab-international-tracked-signed"><?php echo $tab_international_tracked_signed; ?></a>
+          <a href="#tab-international-tracked"><?php echo $tab_international_tracked; ?></a>
           <a href="#tab-international-signed"><?php echo $tab_international_signed; ?></a>
-          <a href="#tab-airsure"><?php echo $tab_airsure; ?></a>
-          <a href="#tab-surface"><?php echo $tab_surface; ?></a>
+          <a href="#tab-international-economy"><?php echo $tab_international_economy; ?></a>
         </div>
         <div id="tab-general" class="vtabs-content">
           <table class="form">
@@ -118,97 +118,8 @@
               <td><?php echo $entry_sort_order; ?></td>
               <td><input type="text" name="royal_mail_sort_order" value="<?php echo $royal_mail_sort_order; ?>" size="1" /></td>
             </tr>
-          </table>
-        </div>
-        <div id="tab-1st-class-standard" class="vtabs-content">
-          <table class="form">
             <tr>
-              <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="royal_mail_1st_class_standard_rate" cols="40" rows="5"><?php echo $royal_mail_1st_class_standard_rate; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_insurance; ?></td>
-              <td><textarea name="royal_mail_1st_class_standard_insurance" cols="40" rows="5"><?php echo $royal_mail_1st_class_standard_insurance; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_1st_class_standard_status">
-                <?php if ($royal_mail_1st_class_standard_status) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                <?php } ?>
-              </select></td>
-            </tr>
-          </table>
-        </div>
-        <div id="tab-1st-class-recorded" class="vtabs-content">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="royal_mail_1st_class_recorded_rate" cols="40" rows="5"><?php echo $royal_mail_1st_class_recorded_rate; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_insurance; ?></td>
-              <td><textarea name="royal_mail_1st_class_recorded_insurance" cols="40" rows="5"><?php echo $royal_mail_1st_class_recorded_insurance; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_1st_class_recorded_status">
-                <?php if ($royal_mail_1st_class_recorded_status) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                <?php } ?>
-              </select></td>
-            </tr>
-          </table>
-        </div>
-        <div id="tab-2nd-class-standard" class="vtabs-content">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="royal_mail_2nd_class_standard_rate" cols="40" rows="5"><?php echo $royal_mail_2nd_class_standard_rate; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_2nd_class_standard_status">
-                <?php if ($royal_mail_2nd_class_standard_status) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                <?php } ?>
-              </select></td>
-            </tr>
-          </table>
-        </div>
-        <div id="tab-2nd-class-recorded" class="vtabs-content">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="royal_mail_2nd_class_recorded_rate" cols="40" rows="5"><?php echo $royal_mail_2nd_class_recorded_rate; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_insurance; ?></td>
-              <td><textarea name="royal_mail_2nd_class_recorded_insurance" cols="40" rows="5"><?php echo $royal_mail_2nd_class_recorded_insurance; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_2nd_class_recorded_status">
-                <?php if ($royal_mail_2nd_class_recorded_status) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                <?php } ?>
-              </select></td>
+              <td colspan="2"><?php echo $help_international; ?></td>
             </tr>
           </table>
         </div>
@@ -284,20 +195,16 @@
             </tr>
           </table>
         </div>
-        <div id="tab-standard-parcels" class="vtabs-content">
+        <div id="tab-1st-class-signed" class="vtabs-content">
           <table class="form">
             <tr>
               <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="royal_mail_standard_parcels_rate" cols="40" rows="5"><?php echo $royal_mail_standard_parcels_rate; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_insurance; ?></td>
-              <td><textarea name="royal_mail_standard_parcels_insurance" cols="40" rows="5"><?php echo $royal_mail_standard_parcels_insurance; ?></textarea></td>
+              <td><textarea name="royal_mail_1st_class_signed_rate" cols="40" rows="5"><?php echo $royal_mail_1st_class_signed_rate; ?></textarea></td>
             </tr>
             <tr>
               <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_standard_parcels_status">
-                <?php if ($royal_mail_standard_parcels_status) { ?>
+              <td><select name="royal_mail_1st_class_signed_status">
+                <?php if ($royal_mail_1st_class_signed_status) { ?>
                   <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                   <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>
@@ -308,20 +215,144 @@
             </tr>
           </table>
         </div>
-        <div id="tab-airmail" class="vtabs-content">
+        <div id="tab-2nd-class-signed" class="vtabs-content">
           <table class="form">
             <tr>
-              <td><?php echo $entry_airmail_rate_1; ?></td>
-              <td><textarea name="royal_mail_airmail_rate_1" cols="40" rows="5"><?php echo $royal_mail_airmail_rate_1; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_airmail_rate_2; ?></td>
-              <td><textarea name="royal_mail_airmail_rate_2" cols="40" rows="5"><?php echo $royal_mail_airmail_rate_2; ?></textarea></td>
+              <td><?php echo $entry_rate; ?></td>
+              <td><textarea name="royal_mail_2nd_class_signed_rate" cols="40" rows="5"><?php echo $royal_mail_2nd_class_signed_rate; ?></textarea></td>
             </tr>
             <tr>
               <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_airmail_status">
-                <?php if ($royal_mail_airmail_status) { ?>
+              <td><select name="royal_mail_2nd_class_signed_status">
+                <?php if ($royal_mail_2nd_class_signed_status) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
+          </table>
+        </div>
+        <div id="tab-1st-class-standard" class="vtabs-content">
+          <table class="form">
+            <tr>
+              <td><?php echo $entry_rate; ?></td>
+              <td><textarea name="royal_mail_1st_class_standard_rate" cols="40" rows="5"><?php echo $royal_mail_1st_class_standard_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_status; ?></td>
+              <td><select name="royal_mail_1st_class_standard_status">
+                <?php if ($royal_mail_1st_class_standard_status) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
+          </table>
+        </div>
+        <div id="tab-2nd-class-standard" class="vtabs-content">
+          <table class="form">
+            <tr>
+              <td><?php echo $entry_rate; ?></td>
+              <td><textarea name="royal_mail_2nd_class_standard_rate" cols="40" rows="5"><?php echo $royal_mail_2nd_class_standard_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_status; ?></td>
+              <td><select name="royal_mail_2nd_class_standard_status">
+                <?php if ($royal_mail_2nd_class_standard_status) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
+          </table>
+        </div>
+        <div id="tab-international-standard" class="vtabs-content">
+          <table class="form">
+            <tr>
+              <td><?php echo $entry_rate_eu; ?></td>
+              <td><textarea name="royal_mail_international_standard_eu_rate" cols="40" rows="5"><?php echo $royal_mail_international_standard_eu_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_zone_1; ?></td>
+              <td><textarea name="royal_mail_international_standard_zone_1_rate" cols="40" rows="5"><?php echo $royal_mail_international_standard_zone_1_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_zone_2; ?></td>
+              <td><textarea name="royal_mail_international_standard_zone_2_rate" cols="40" rows="5"><?php echo $royal_mail_international_standard_zone_2_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_status; ?></td>
+              <td><select name="royal_mail_international_standard_status">
+                <?php if ($royal_mail_international_standard_status) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
+          </table>
+        </div>
+        <div id="tab-international-tracked-signed" class="vtabs-content">
+          <table class="form">
+            <tr>
+              <td><?php echo $entry_rate_eu; ?></td>
+              <td><textarea name="royal_mail_international_tracked_signed_eu_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_signed_eu_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_zone_1; ?></td>
+              <td><textarea name="royal_mail_international_tracked_signed_zone_1_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_signed_zone_1_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_zone_2; ?></td>
+              <td><textarea name="royal_mail_international_tracked_signed_zone_2_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_signed_zone_2_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_status; ?></td>
+              <td><select name="royal_mail_international_tracked_signed_status">
+                <?php if ($royal_mail_international_tracked_signed_status) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
+          </table>
+        </div>
+        <div id="tab-international-tracked" class="vtabs-content">
+          <table class="form">
+            <tr>
+              <td><?php echo $entry_rate_eu; ?></td>
+              <td><textarea name="royal_mail_international_tracked_eu_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_eu_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_non_eu; ?></td>
+              <td><textarea name="royal_mail_international_tracked_non_eu_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_non_eu_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_zone_1; ?></td>
+              <td><textarea name="royal_mail_international_tracked_zone_1_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_zone_1_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_rate_zone_2; ?></td>
+              <td><textarea name="royal_mail_international_tracked_zone_2_rate" cols="40" rows="5"><?php echo $royal_mail_international_tracked_zone_2_rate; ?></textarea></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_status; ?></td>
+              <td><select name="royal_mail_international_tracked_status">
+                <?php if ($royal_mail_international_tracked_status) { ?>
                   <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                   <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>
@@ -335,20 +366,16 @@
         <div id="tab-international-signed" class="vtabs-content">
           <table class="form">
             <tr>
-              <td><?php echo $entry_international_signed_rate_1; ?></td>
-              <td><textarea name="royal_mail_international_signed_rate_1" cols="40" rows="5"><?php echo $royal_mail_international_signed_rate_1; ?></textarea></td>
+              <td><?php echo $entry_rate_eu; ?></td>
+              <td><textarea name="royal_mail_international_signed_eu_rate" cols="40" rows="5"><?php echo $royal_mail_international_signed_eu_rate; ?></textarea></td>
             </tr>
             <tr>
-              <td><?php echo $entry_international_signed_insurance_1; ?></td>
-              <td><textarea name="royal_mail_international_signed_insurance_1" cols="40" rows="5"><?php echo $royal_mail_international_signed_insurance_1; ?></textarea></td>
+              <td><?php echo $entry_rate_zone_1; ?></td>
+              <td><textarea name="royal_mail_international_signed_zone_1_rate" cols="40" rows="5"><?php echo $royal_mail_international_signed_zone_1_rate; ?></textarea></td>
             </tr>
             <tr>
-              <td><?php echo $entry_international_signed_rate_2; ?></td>
-              <td><textarea name="royal_mail_international_signed_rate_2" cols="40" rows="5"><?php echo $royal_mail_international_signed_rate_2; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_international_signed_insurance_2; ?></td>
-              <td><textarea name="royal_mail_international_signed_insurance_2" cols="40" rows="5"><?php echo $royal_mail_international_signed_insurance_2; ?></textarea></td>
+              <td><?php echo $entry_rate_zone_2; ?></td>
+              <td><textarea name="royal_mail_international_signed_zone_2_rate" cols="40" rows="5"><?php echo $royal_mail_international_signed_zone_2_rate; ?></textarea></td>
             </tr>
             <tr>
               <td><?php echo $entry_status; ?></td>
@@ -364,48 +391,16 @@
             </tr>
           </table>
         </div>
-        <div id="tab-airsure" class="vtabs-content">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_airsure_rate_1; ?></td>
-              <td><textarea name="royal_mail_airsure_rate_1" cols="40" rows="5"><?php echo $royal_mail_airsure_rate_1; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_airsure_insurance_1; ?></td>
-              <td><textarea name="royal_mail_airsure_insurance_1" cols="40" rows="5"><?php echo $royal_mail_airsure_insurance_1; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_airsure_rate_2; ?></td>
-              <td><textarea name="royal_mail_airsure_rate_2" cols="40" rows="5"><?php echo $royal_mail_airsure_rate_2; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_airsure_insurance_2; ?></td>
-              <td><textarea name="royal_mail_airsure_insurance_2" cols="40" rows="5"><?php echo $royal_mail_airsure_insurance_2; ?></textarea></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_airsure_status">
-                <?php if ($royal_mail_airsure_status) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                <?php } ?>
-              </select></td>
-            </tr>
-          </table>
-        </div>
-        <div id="tab-surface" class="vtabs-content">
+        <div id="tab-international-economy" class="vtabs-content">
           <table class="form">
             <tr>
               <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="royal_mail_surface_rate" cols="40" rows="5"><?php echo $royal_mail_surface_rate; ?></textarea></td>
+              <td><textarea name="royal_mail_international_economy_rate" cols="40" rows="5"><?php echo $royal_mail_international_economy_rate; ?></textarea></td>
             </tr>
             <tr>
               <td><?php echo $entry_status; ?></td>
-              <td><select name="royal_mail_surface_status">
-                <?php if ($royal_mail_surface_status) { ?>
+              <td><select name="royal_mail_international_economy_status">
+                <?php if ($royal_mail_international_economy_status) { ?>
                   <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                   <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>
