@@ -28,7 +28,7 @@ class Captcha {
 	}
 
 	public function showImage($font) {
-		$dir = DIR_SYSTEM . 'library/fonts/';
+		$dir = DIR_SYSTEM . 'fonts/';
 
 		if ($font) {
 			$fontfile = $font . ".ttf";

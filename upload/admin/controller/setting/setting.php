@@ -1013,7 +1013,7 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['fontnames'] = array();
 
-		$fonts = glob(DIR_SYSTEM . 'library/fonts/*.ttf');
+		$fonts = glob(DIR_SYSTEM . 'fonts/*.ttf');
 
 		if ($fonts) {
 			foreach ($fonts as $font) {
