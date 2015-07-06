@@ -29,14 +29,15 @@
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
     <table class="list">
       <thead>
-      <tr>
-        <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-        <td class="left"><?php echo $column_image; ?></td>
-        <td class="left"><?php echo $column_name; ?></td>
-        <td class="left"><?php echo $column_sort_order; ?></td>
-		<td class="left"><?php echo $column_status; ?></td>
-        <td class="right"><?php echo $column_action; ?></td>
-      </tr>
+        <tr>
+          <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+          <td class="left"><?php echo $column_id; ?></td>
+          <td class="left"><?php echo $column_image; ?></td>
+          <td class="left"><?php echo $column_name; ?></td>
+          <td class="left"><?php echo $column_sort_order; ?></td>
+		  <td class="left"><?php echo $column_status; ?></td>
+          <td class="right"><?php echo $column_action; ?></td>
+        </tr>
       </thead>
       <tbody>
       <?php if ($categories) { ?>
@@ -47,6 +48,7 @@
             <?php } else { ?>
               <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" />
             <?php } ?></td>
+            <td class="center"><?php echo $category['category_id']; ?></td>
             <td class="center"><img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
             <td class="left"><?php echo $category['name']; ?></td>
             <td class="center"><?php echo $category['sort_order']; ?></td>
@@ -62,7 +64,7 @@
         <?php } ?>
       <?php } else { ?>
         <tr>
-          <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+          <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
         </tr>
       <?php } ?>
       </tbody>

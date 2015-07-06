@@ -41,6 +41,7 @@ $_['column_store']				= 'Stores';
 $_['column_layout']				= 'Layout Override';
 
 // Column List
+$_['column_id']					= 'Id';
 $_['column_name']				= 'Product Name';
 $_['column_model']				= 'Model';
 $_['column_status']				= 'Status';

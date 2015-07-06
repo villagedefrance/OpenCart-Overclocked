@@ -403,11 +403,11 @@ class ControllerCatalogProduct extends Controller {
 
 			$this->data['products'][] = array(
 				'product_id'	=> $result['product_id'],
+				'image'      	=> $image,
 				'name'       	=> $result['name'],
 				'model'      	=> $result['model'],
 				'price'    	=> $result['price'],
 				'special' 		=> $special,
-				'image'      	=> $image,
 				'quantity'   	=> $result['quantity'],
 				'status'     	=> $result['status'],
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
@@ -421,6 +421,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
+		$this->data['column_id'] = $this->language->get('column_id');
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_model'] = $this->language->get('column_model');

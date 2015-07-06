@@ -31,6 +31,7 @@
         <thead>
         <tr>
           <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+          <td class="left"><?php echo $column_id; ?></td>
           <td class="left"><?php echo $column_image; ?></td>
           <td class="left"><?php if ($sort == 'pd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
@@ -63,11 +64,12 @@
         <tbody>
           <tr class="filter">
             <td></td>
+			<td></td>
             <td></td>
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
-            <td class="right"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="8" /></td>
-            <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" style="text-align:right;" /></td>
+            <td class="right"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="10" /></td>
+            <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" size="10" /></td>
             <td class="center"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
@@ -91,6 +93,7 @@
               <?php } else { ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
               <?php } ?></td>
+			  <td class="center"><?php echo $product['product_id']; ?></td>
               <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $product['name']; ?></td>
               <td class="left"><?php echo $product['model']; ?></td>
@@ -119,7 +122,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="9"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
         </tbody>
