@@ -36,6 +36,8 @@ $_['entry_fax']             		= 'Fax:';
 $_['entry_newsletter']     	 	= 'Newsletter:';
 $_['entry_customer_group']  	= 'Customer Group:';
 $_['entry_status']          		= 'Status:';
+$_['entry_approved']			= 'Approved:';
+$_['entry_safe']					= 'Safe:<br /><span class="help">Set to Enable to avoid this customer from being caught by the anti-fraud system</span>';
 $_['entry_password']        	= 'Password:';
 $_['entry_confirm']         		= 'Confirm:';
 $_['entry_company']         	= 'Company:';

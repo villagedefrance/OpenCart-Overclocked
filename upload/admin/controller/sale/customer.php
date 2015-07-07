@@ -645,6 +645,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_approved'] = $this->language->get('entry_approved');
+		$this->data['entry_safe'] = $this->language->get('entry_safe');
 		$this->data['entry_company'] = $this->language->get('entry_company');
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
 		$this->data['entry_tax_id'] = $this->language->get('entry_tax_id');
@@ -904,6 +906,22 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['status'] = $customer_info['status'];
 		} else {
 			$this->data['status'] = 1;
+		}
+
+		if (isset($this->request->post['approved'])) {
+			$this->data['approved'] = $this->request->post['approved'];
+		} elseif (!empty($customer_info)) {
+			$this->data['approved'] = $customer_info['approved'];
+		} else {
+			$this->data['approved'] = true;
+		}
+
+		if (isset($this->request->post['safe'])) {
+			$this->data['safe'] = $this->request->post['safe'];
+		} elseif (!empty($customer_info)) {
+			$this->data['safe'] = $customer_info['safe'];
+		} else {
+			$this->data['safe'] = 0;
 		}
 
 		if (isset($this->request->post['password'])) {
@@ -1366,6 +1384,7 @@ class ControllerSaleCustomer extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1387,6 +1406,7 @@ class ControllerSaleCustomer extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1428,6 +1448,7 @@ class ControllerSaleCustomer extends Controller {
 
 		array_multisort($sort_order, SORT_ASC, $json);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1453,6 +1474,7 @@ class ControllerSaleCustomer extends Controller {
 			);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1465,6 +1487,7 @@ class ControllerSaleCustomer extends Controller {
 			$json = $this->model_sale_customer->getAddress($this->request->get['address_id']);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

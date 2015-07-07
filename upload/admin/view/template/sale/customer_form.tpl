@@ -120,6 +120,30 @@
                 <?php } ?>
               </select></td>
             </tr>
+            <tr>
+              <td><?php echo $entry_approved; ?></td>
+              <td><select name="approved">
+                <?php if ($approved) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_safe; ?></td>
+              <td><select name="safe">
+                <?php if ($safe) { ?>
+                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                  <option value="0"><?php echo $text_disabled; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_enabled; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <?php } ?>
+              </select></td>
+            </tr>
           </table>
         </div>
         <?php $address_row = 1; ?>

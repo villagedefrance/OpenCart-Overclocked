@@ -60,6 +60,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_filemanager'] = $this->language->get('text_filemanager');
 		$this->data['text_filter'] = $this->language->get('text_filter');
 		$this->data['text_footer'] = $this->language->get('text_footer');
+		$this->data['text_fraud'] = $this->language->get('text_fraud');
 		$this->data['text_front'] = $this->language->get('text_front');
 		$this->data['text_geo_zone'] = $this->language->get('text_geo_zone');
 		$this->data['text_help'] = $this->language->get('text_help');
@@ -188,6 +189,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['filemanager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['filter'] = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['fraud'] = $this->url->link('extension/fraud', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['footer'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['geo_zone'] = $this->url->link('localisation/geo_zone', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['home'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');

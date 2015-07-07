@@ -414,7 +414,7 @@ class ModelUpgrade extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "customer_ban_ip SET ip = '" . $this->db->escape($result['ip']) . "'");
 			}
 
-			// Drop unused table
+			// Drop unused tables
 			$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "customer_ip_blacklist");
 		}
 
@@ -423,7 +423,25 @@ class ModelUpgrade extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "product_description pd SET tag = (SELECT GROUP_CONCAT(DISTINCT pt.tag ORDER BY pt.product_tag_id) FROM " . DB_PREFIX . "product_tag pt WHERE pd.product_id = pt.product_id AND pd.language_id = pt.language_id GROUP BY pt.product_id, pt.language_id)");
 		}
 
-		// Create system/upload directory.
+		// Add 'safe' to customer table
+		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "customer'");
+
+		if ($query->num_rows) {
+			if (isset($table_old_data[DB_PREFIX . 'customer']) && !in_array('safe', $table_old_data[DB_PREFIX . 'customer'])) {
+				$this->db->query("ALTER TABLE " . DB_PREFIX . "customer ADD COLUMN safe tinyint(1) NOT NULL AFTER approved");
+
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer");
+
+				foreach ($query->rows as $result) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "customer SET safe = '1'");
+				}
+			}
+		}
+
+		// Delete unused order_fraud table
+		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "order_fraud");
+
+		// Create system/upload directory
 		$upload_directory = DIR_SYSTEM . 'upload/';
 
 		if (!is_dir($upload_directory)) {

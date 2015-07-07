@@ -38,6 +38,7 @@ $_['text_extension']              	= 'Extensions';
 $_['text_feed']                   		= 'Feeds';
 $_['text_filemanager'] 				= 'File Manager';
 $_['text_filter']                  		= 'Filters';
+$_['text_fraud']						= 'Anti Fraud';
 $_['text_footer']						= 'Footers';
 $_['text_front']                   		= 'Store Front';
 $_['text_geo_zone']              	= 'Geo Zones';

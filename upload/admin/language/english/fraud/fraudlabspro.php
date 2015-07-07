@@ -1,0 +1,58 @@
+<?php
+// Heading
+$_['heading_title']					= 'FraudLabs Pro';
+
+// Text
+$_['text_fraud']						= 'Anti-Fraud';
+$_['text_success']					= 'Success: You have modified <b>FraudLabs Pro</b> !';
+$_['text_edit']							= 'Settings';
+$_['text_signup']						= 'FraudLabsPro is a fraud detection service. If you don\'t have a API key you can <a href="http://www.fraudlabspro.com/plan?ref=1730" target="_blank"><u>sign up here</u></a>.';
+$_['text_rules']						= 'Validation Rules';
+$_['text_testing']						= 'Testing';
+$_['text_fraudlabspro_id']			= 'FraudLabs Pro ID<br /><span class="help">Unique identifier to identify a transaction screened by FraudLabs Pro system.</span>';
+$_['text_transaction_id']			= 'Transaction ID<br /><span class="help">Click the link to view the details fraud analysis.</span>';
+$_['text_score']						= 'FraudLabsPro Score<br /><span class="help">Risk score, 0 (low risk) - 100 (high risk).</span>';
+$_['text_status']						= 'FraudLabs Pro Status<br /><span class="help">FraudLabs Pro status.</span>';
+$_['text_ip_address']				= 'IP Address';
+$_['text_ip_net_speed']				= 'IP Net Speed<br /><span class="help">Connection speed.</span>';
+$_['text_ip_isp_name']				= 'IP ISP Name<br /><span class="help">Estimated ISP of the IP address.</span>';
+$_['text_ip_usage_type']			= 'IP Usage Type<br /><span class="help">Estimated usage type of the IP address. E.g, ISP, Commercial, Residential.</span>';
+$_['text_ip_domain']					= 'IP Domain<br /><span class="help">Estimated domain name of the IP address.</span>';
+$_['text_ip_time_zone']				= 'IP Time Zone<br /><span class="help">Estimated time zone of the IP address.</span>';
+$_['text_ip_location']				= 'IP Location<br /><span class="help">Estimated location of the IP address.</span>';
+$_['text_ip_distance']				= 'IP Distance<br /><span class="help">Distance from IP address to Billing Location.</span>';
+$_['text_ip_latitude']				= 'IP Latitude<br /><span class="help">Estimated latitude of the IP address.</span>';
+$_['text_ip_longitude']				= 'IP Longitude<br /><span class="help">Estimated longitude of the IP address.</span>';
+$_['text_risk_country']				= 'High Risk Country<br /><span class="help">Whether IP address or billing address country is in the latest high risk list.</span>';
+$_['text_free_email']					= 'Free Email<br /><span class="help">Whether e-mail is from free e-mail provider.</span>';
+$_['text_ship_forward']				= 'Ship Forward<br /><span class="help">Whether shipping address is in database of known mail drops.</span>';
+$_['text_using_proxy']				= 'Using Proxy<br /><span class="help">Whether IP address is from Anonymous Proxy Server.</span>';
+$_['text_bin_found']					= 'BIN Found<br /><span class="help">Whether the BIN information matches our BIN list.</span>';
+$_['text_email_blacklist']			= 'Email Blacklist<br /><span class="help">Whether the email address is in our blacklist database.</span>';
+$_['text_credit_card_blacklist']	= 'Credit Card Blacklist<br /><span class="help">Whether the credit card is in our blacklist database.</span>';
+$_['text_message']					= 'Message<br /><span class="help">FraudLabs Pro error message description.</span>';
+$_['text_credits']						= 'Balance<br /><span class="help">Balance of queries in your account after this transaction.</span>';
+$_['text_error']						= 'Error:';
+$_['text_flp_upgrade']				= '<a href="http://www.fraudlabspro.com/plan" target="_blank">[Upgrade]</a>';
+$_['text_flp_merchant_area']		= 'Please login to <a href="http://www.fraudlabspro.com/login" target="_blank">FraudLabs Pro Merchant Area</a> for more information about this order.';
+$_['text_comment_approve']		= 'Approved using FraudLabs Pro.';
+$_['text_comment_reject']			= 'Rejected using FraudLabs Pro.';
+
+// Entry
+$_['entry_status']					= 'Status';
+$_['entry_key']						= 'API Key';
+$_['entry_score']						= 'Risk Score';
+$_['entry_order_status']			= 'Order Status<br /><span class="help">Orders that have a score over your set risk score will be assigned this order status and will not be allowed to reach the complete status automatically.</span>';
+$_['entry_review_status']			= 'Review Status<br /><span class="help">Orders that marked as review by FraudLabs Pro will be assigned this order status.</span>';
+$_['entry_approve_status']		= 'Approve Status<br /><span class="help">Orders that marked as approve by FraudLabs Pro will be assigned this order status.</span>';
+$_['entry_reject_status']			= 'Reject Status<br /><span class="help">Orders that marked as reject by FraudLabs Pro will be assigned this order status.</span>';
+$_['entry_simulate_ip']				= 'Simulate IP<br /><span class="help">Simulate the visitor IP address for testing. Leave blank for production run.</span>';
+
+// Button
+$_['button_approve']				= 'Approve';
+$_['button_reject']					= 'Reject';
+
+// Error
+$_['error_permission']				= 'Warning: You do not have permission to modify <b>FraudLabs Pro</b> !';
+$_['error_key']							= 'License Key Required!';
+?>
