@@ -28,6 +28,7 @@
         <thead>
           <tr>
             <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td class="left"><?php echo $column_id; ?></td>
 			<td class="left"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'md.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
@@ -56,6 +57,7 @@
             <?php } else { ?>
               <input type="checkbox" name="selected[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" />
             <?php } ?></td>
+            <td class="center"><?php echo $manufacturer['manufacturer_id']; ?></td>
 			<td class="center"><img src="<?php echo $manufacturer['image']; ?>" alt="<?php echo $manufacturer['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
             <td class="left"><?php echo $manufacturer['name']; ?></td>
             <td class="center"><?php echo $manufacturer['sort_order']; ?></td>
@@ -71,7 +73,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>
