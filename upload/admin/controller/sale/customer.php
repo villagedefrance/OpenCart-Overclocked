@@ -646,7 +646,6 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_approved'] = $this->language->get('entry_approved');
-		$this->data['entry_safe'] = $this->language->get('entry_safe');
 		$this->data['entry_company'] = $this->language->get('entry_company');
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
 		$this->data['entry_tax_id'] = $this->language->get('entry_tax_id');
@@ -914,14 +913,6 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['approved'] = $customer_info['approved'];
 		} else {
 			$this->data['approved'] = true;
-		}
-
-		if (isset($this->request->post['safe'])) {
-			$this->data['safe'] = $this->request->post['safe'];
-		} elseif (!empty($customer_info)) {
-			$this->data['safe'] = $customer_info['safe'];
-		} else {
-			$this->data['safe'] = 0;
 		}
 
 		if (isset($this->request->post['password'])) {

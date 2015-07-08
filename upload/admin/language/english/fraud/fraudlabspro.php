@@ -5,7 +5,7 @@ $_['heading_title']					= 'FraudLabs Pro';
 // Text
 $_['text_fraud']						= 'Anti-Fraud';
 $_['text_success']					= 'Success: You have modified <b>FraudLabs Pro</b> !';
-$_['text_edit']							= 'Settings';
+$_['text_edit']							= 'Edit';
 $_['text_signup']						= 'FraudLabsPro is a fraud detection service. If you don\'t have a API key you can <a href="http://www.fraudlabspro.com/plan?ref=1730" target="_blank"><u>sign up here</u></a>.';
 $_['text_rules']						= 'Validation Rules';
 $_['text_testing']						= 'Testing';

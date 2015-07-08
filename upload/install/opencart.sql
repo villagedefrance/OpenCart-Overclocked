@@ -1297,7 +1297,6 @@ CREATE TABLE `oc_customer` (
   `ip` varchar(40) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL,
   `approved` tinyint(1) NOT NULL,
-  `safe` tinyint(1) NOT NULL,
   `token` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`)

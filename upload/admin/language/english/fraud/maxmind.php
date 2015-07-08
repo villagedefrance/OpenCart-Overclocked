@@ -5,7 +5,7 @@ $_['heading_title']						= 'MaxMind';
 // Text
 $_['text_fraud']							= 'Anti-Fraud';
 $_['text_success']						= 'Success: You have modified <b>MaxMind</b> !';
-$_['text_edit']								= 'Settings';
+$_['text_edit']								= 'Edit';
 $_['text_signup']							= 'MaxMind is a fraud detection service. If you don\'t have a license key you can <a href="http://www.maxmind.com/?rId=opencart" target="_blank"><u>sign up here</u></a>.';
 $_['text_country_match']				= 'Country Match:';
 $_['text_country_code']				= 'Country Code:';

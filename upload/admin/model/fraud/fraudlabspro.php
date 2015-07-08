@@ -56,7 +56,16 @@ class ModelFraudFraudLabsPro extends Model {
 		");
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "order_status (`language_id`, `name`) VALUES (1, 'Fraud');");
+		$status_fraud_id = $this->db->getLastId();
+
 		$this->db->query("INSERT INTO " . DB_PREFIX . "order_status (`language_id`, `name`) VALUES (1, 'Fraud Review');");
+		$status_fraud_review_id = $this->db->getLastId();
+
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_score', '80', '0');");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_order_status_id', '" . $status_fraud_id . "', '0');");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_review_status_id', '" . $status_fraud_review_id . "', '0');");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_approve_status_id', '2', '0');");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_reject_status_id', '8', '0');");
 
 		$this->cache->delete('order_status.' . (int)$this->config->get('config_language_id'));
 	}
