@@ -446,7 +446,7 @@ class ControllerSaleCustomer extends Controller {
 				'email'          		=> $result['email'],
 				'customer_group' 	=> $result['customer_group'],
 				'status'         		=> $result['status'],
-				'approved'       	=> $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'approved'       	=> $result['approved'],
 				'ip'             		=> $result['ip'],
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'selected'       		=> isset($this->request->post['selected']) && in_array($result['customer_id'], $this->request->post['selected']),

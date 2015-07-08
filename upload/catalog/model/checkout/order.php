@@ -175,6 +175,23 @@ class ModelCheckoutOrder extends Model {
 				}
 			}
 
+			// Anti-Fraud
+			$this->load->model('setting/extension');
+
+			$extensions = $this->model_setting_extension->getExtensions('fraud');
+
+			foreach ($extensions as $extension) {
+				if ($this->config->get($extension['code'] . '_status')) {
+					$this->load->model('fraud/' . $extension['code']);
+
+					$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
+
+					if ($fraud_status_id) {
+						$order_status_id = $fraud_status_id;
+					}
+				}
+			}
+
 			// Ban IP
 			$status = false;
 
@@ -194,23 +211,6 @@ class ModelCheckoutOrder extends Model {
 
 			if ($status) {
 				$order_status_id = $this->config->get('config_order_status_id');
-			}
-
-			// Anti-Fraud
-			$this->load->model('extension/extension');
-
-			$extensions = $this->model_extension_extension->getExtensions('fraud');
-
-			foreach ($extensions as $extension) {
-				if ($this->config->get($extension['code'] . '_status')) {
-					$this->load->model('fraud/' . $extension['code']);
-
-					$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
-
-					if ($fraud_status_id) {
-						$order_status_id = $fraud_status_id;
-					}
-				}
 			}
 
 			// Auto Invoice Number
@@ -635,14 +635,20 @@ class ModelCheckoutOrder extends Model {
 		$order_info = $this->getOrder($order_id);
 
 		if ($order_info && $order_info['order_status_id']) {
-			// Fraud Detection
-			if ($this->config->get('config_fraud_detection')) {
-				$this->load->model('checkout/fraud');
+			// Anti-Fraud
+			$this->load->model('setting/extension');
 
-				$risk_score = $this->model_checkout_fraud->getFraudScore($order_info);
+			$extensions = $this->model_setting_extension->getExtensions('fraud');
 
-				if ($risk_score > $this->config->get('config_fraud_score')) {
-					$order_status_id = $this->config->get('config_fraud_status_id');
+			foreach ($extensions as $extension) {
+				if ($this->config->get($extension['code'] . '_status')) {
+					$this->load->model('fraud/' . $extension['code']);
+
+					$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
+
+					if ($fraud_status_id) {
+						$order_status_id = $fraud_status_id;
+					}
 				}
 			}
 

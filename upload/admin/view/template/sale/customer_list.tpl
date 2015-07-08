@@ -130,7 +130,7 @@
             <?php } else { ?>
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
             <?php } ?>
-            <td class="center"><?php echo $customer['approved']; ?></td>
+            <td class="center"><?php echo $customer['approved'] ? '<img src="view/image/success.png" alt="<?php echo $text_yes; ?>" />' : '<img src="view/image/warning.png" alt="<?php echo $text_no; ?>" />'; ?></td>
             <td class="center"><?php echo $customer['ip']; ?></td>
             <td class="center"><?php echo $customer['date_added']; ?></td>
             <td class="left"><select onchange="((this.value !== '') ? window.open('index.php?route=sale/customer/login&token=<?php echo $token; ?>&customer_id=<?php echo $customer['customer_id']; ?>&store_id=' + this.value) : null); this.value = '';">
