@@ -1403,6 +1403,7 @@ class ControllerSaleOrder extends Controller {
 			);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1783,213 +1784,331 @@ class ControllerSaleOrder extends Controller {
 
 			$this->data['order_status_id'] = $order_info['order_status_id'];
 
-			// Fraud
-			$this->load->model('sale/fraud');
+			// Anti-Fraud
+			$fraud_status = false;
 
-			$fraud_info = $this->model_sale_fraud->getFraud($order_info['order_id']);
+			$this->load->model('setting/extension');
 
-			if ($fraud_info) {
-				$this->data['country_match'] = $fraud_info['country_match'];
+			$extensions = $this->model_setting_extension->getExtensions('fraud');
 
-				if ($fraud_info['country_code']) {
-					$this->data['country_code'] = $fraud_info['country_code'];
-				} else {
-					$this->data['country_code'] = '';
+			if ($extensions) {
+				foreach ($extensions as $extension) {
+					if ($this->config->get($extension['code'] . '_status')) {
+						$fraud_status = true;
+						break;
+					}
+
+					if ($fraud_status) {
+						$this->load->model('fraud/' . $extension['code']);
+
+						$fraud_info = $this->{'model_fraud_' . $extension['code']}->getOrder($order_info['order_id']);
+
+						if ($fraud_info) {
+							if ($fraud_info['country_match']) {
+								$this->data['country_match'] = $fraud_info['country_match'];
+							} else {
+								$this->data['country_match'] = '';
+							}
+
+							if ($fraud_info['country_code']) {
+								$this->data['country_code'] = $fraud_info['country_code'];
+							} else {
+								$this->data['country_code'] = '';
+							}
+
+							if ($fraud_info['high_risk_country']) {
+								$this->data['high_risk_country'] = $fraud_info['high_risk_country'];
+							} else {
+								$this->data['high_risk_country'] = '';
+							}
+
+							if ($fraud_info['distance']) {
+								$this->data['distance'] = $fraud_info['distance'];
+							} else {
+								$this->data['distance'] = '';
+							}
+
+							if ($fraud_info['ip_region']) {
+								$this->data['ip_region'] = $fraud_info['ip_region'];
+							} else {
+								$this->data['ip_region'] = '';
+							}
+
+							if ($fraud_info['ip_city']) {
+								$this->data['ip_city'] = $fraud_info['ip_city'];
+							} else {
+								$this->data['ip_city'] = '';
+							}
+
+							if ($fraud_info['ip_latitude']) {
+								$this->data['ip_latitude'] = $fraud_info['ip_latitude'];
+							} else {
+								$this->data['ip_latitude'] = '';
+							}
+
+							if ($fraud_info['ip_longitude']) {
+								$this->data['ip_longitude'] = $fraud_info['ip_longitude'];
+							} else {
+								$this->data['ip_longitude'] = '';
+							}
+
+							if ($fraud_info['ip_isp']) {
+								$this->data['ip_isp'] = $fraud_info['ip_isp'];
+							} else {
+								$this->data['ip_isp'] = '';
+							}
+
+							if ($fraud_info['ip_org']) {
+								$this->data['ip_org'] = $fraud_info['ip_org'];
+							} else {
+								$this->data['ip_org'] = '';
+							}
+
+							if ($fraud_info['ip_asnum']) {
+								$this->data['ip_asnum'] = $fraud_info['ip_asnum'];
+							} else {
+								$this->data['ip_asnum'] = '';
+							}
+
+							if ($fraud_info['ip_user_type']) {
+								$this->data['ip_user_type'] = $fraud_info['ip_user_type'];
+							} else {
+								$this->data['ip_user_type'] = '';
+							}
+
+							if ($fraud_info['ip_country_confidence']) {
+								$this->data['ip_country_confidence'] = $fraud_info['ip_country_confidence'];
+							} else {
+								$this->data['ip_country_confidence'] = '';
+							}
+
+							if ($fraud_info['ip_region_confidence']) {
+								$this->data['ip_region_confidence'] = $fraud_info['ip_region_confidence'];
+							} else {
+								$this->data['ip_region_confidence'] = '';
+							}
+
+							if ($fraud_info['ip_city_confidence']) {
+								$this->data['ip_city_confidence'] = $fraud_info['ip_city_confidence'];
+							} else {
+								$this->data['ip_city_confidence'] = '';
+							}
+
+							if ($fraud_info['ip_postal_confidence']) {
+								$this->data['ip_postal_confidence'] = $fraud_info['ip_postal_confidence'];
+							} else {
+								$this->data['ip_postal_confidence'] = '';
+							}
+
+							if ($fraud_info['ip_postal_code']) {
+								$this->data['ip_postal_code'] = $fraud_info['ip_postal_code'];
+							} else {
+								$this->data['ip_postal_code'] = '';
+							}
+
+							if ($fraud_info['ip_accuracy_radius']) {
+								$this->data['ip_accuracy_radius'] = $fraud_info['ip_accuracy_radius'];
+							} else {
+								$this->data['ip_accuracy_radius'] = '';
+							}
+
+							if ($fraud_info['ip_net_speed_cell']) {
+								$this->data['ip_net_speed_cell'] = $fraud_info['ip_net_speed_cell'];
+							} else {
+								$this->data['ip_net_speed_cell'] = '';
+							}
+
+							if ($fraud_info['ip_metro_code']) {
+								$this->data['ip_metro_code'] = $fraud_info['ip_metro_code'];
+							} else {
+								$this->data['ip_metro_code'] = '';
+							}
+
+							if ($fraud_info['ip_area_code']) {
+								$this->data['ip_area_code'] = $fraud_info['ip_area_code'];
+							} else {
+								$this->data['ip_area_code'] = '';
+							}
+
+							if ($fraud_info['ip_time_zone']) {
+								$this->data['ip_time_zone'] = $fraud_info['ip_time_zone'];
+							} else {
+								$this->data['ip_time_zone'] = '';
+							}
+
+							if ($fraud_info['ip_region_name']) {
+								$this->data['ip_region_name'] = $fraud_info['ip_region_name'];
+							} else {
+								$this->data['ip_region_name'] = '';
+							}
+
+							if ($fraud_info['ip_domain']) {
+								$this->data['ip_domain'] = $fraud_info['ip_domain'];
+							} else {
+								$this->data['ip_domain'] = '';
+							}
+
+							if ($fraud_info['ip_country_name']) {
+								$this->data['ip_country_name'] = $fraud_info['ip_country_name'];
+							} else {
+								$this->data['ip_country_name'] = '';
+							}
+
+							if ($fraud_info['ip_continent_code']) {
+								$this->data['ip_continent_code'] = $fraud_info['ip_continent_code'];
+							} else {
+								$this->data['ip_continent_code'] = '';
+							}
+
+							if ($fraud_info['ip_corporate_proxy']) {
+								$this->data['ip_corporate_proxy'] = $fraud_info['ip_corporate_proxy'];
+							} else {
+								$this->data['ip_corporate_proxy'] = '';
+							}
+
+							if ($fraud_info['anonymous_proxy']) {
+								$this->data['anonymous_proxy'] = $fraud_info['anonymous_proxy'];
+							} else {
+								$this->data['anonymous_proxy'] = '';
+							}
+
+							if ($fraud_info['proxy_score']) {
+								$this->data['proxy_score'] = $fraud_info['proxy_score'];
+							} else {
+								$this->data['proxy_score'] = '';
+							}
+
+							if ($fraud_info['is_trans_proxy']) {
+								$this->data['is_trans_proxy'] = $fraud_info['is_trans_proxy'];
+							} else {
+								$this->data['is_trans_proxy'] = '';
+							}
+
+							if ($fraud_info['free_mail']) {
+								$this->data['free_mail'] = $fraud_info['free_mail'];
+							} else {
+								$this->data['free_mail'] = '';
+							}
+
+							if ($fraud_info['carder_email']) {
+								$this->data['carder_email'] = $fraud_info['carder_email'];
+							} else {
+								$this->data['carder_email'] = '';
+							}
+
+							if ($fraud_info['high_risk_username']) {
+								$this->data['high_risk_username'] = $fraud_info['high_risk_username'];
+							} else {
+								$this->data['high_risk_username'] = '';
+							}
+
+							if ($fraud_info['high_risk_password']) {
+								$this->data['high_risk_password'] = $fraud_info['high_risk_password'];
+							} else {
+								$this->data['high_risk_password'] = '';
+							}
+
+							if ($fraud_info['bin_match']) {
+								$this->data['bin_match'] = $fraud_info['bin_match'];
+							} else {
+								$this->data['bin_match'] = '';
+							}
+
+							if ($fraud_info['bin_country']) {
+								$this->data['bin_country'] = $fraud_info['bin_country'];
+							} else {
+								$this->data['bin_country'] = '';
+							}
+
+							if ($fraud_info['bin_name_match']) {
+								$this->data['bin_name_match'] = $fraud_info['bin_name_match'];
+							} else {
+								$this->data['bin_name_match'] = '';
+							}
+
+							if ($fraud_info['bin_name']) {
+								$this->data['bin_name'] = $fraud_info['bin_name'];
+							} else {
+								$this->data['bin_name'] = '';
+							}
+
+							if ($fraud_info['bin_phone_match']) {
+								$this->data['bin_phone_match'] = $fraud_info['bin_phone_match'];
+							} else {
+								$this->data['bin_phone_match'] = '';
+							}
+
+							if ($fraud_info['bin_phone']) {
+								$this->data['bin_phone'] = $fraud_info['bin_phone'];
+							} else {
+								$this->data['bin_phone'] = '';
+							}
+
+							if ($fraud_info['customer_phone_in_billing_location']) {
+								$this->data['customer_phone_in_billing_location'] = $fraud_info['customer_phone_in_billing_location'];
+							} else {
+								$this->data['customer_phone_in_billing_location'] = '';
+							}
+
+							if ($fraud_info['ship_forward']) {
+								$this->data['ship_forward'] = $fraud_info['ship_forward'];
+							} else {
+								$this->data['ship_forward'] = '';
+							}
+
+							if ($fraud_info['city_postal_match']) {
+								$this->data['city_postal_match'] = $fraud_info['city_postal_match'];
+							} else {
+								$this->data['city_postal_match'] = '';
+							}
+
+							if ($fraud_info['ship_city_postal_match']) {
+								$this->data['ship_city_postal_match'] = $fraud_info['ship_city_postal_match'];
+							} else {
+								$this->data['ship_city_postal_match'] = '';
+							}
+
+							if ($fraud_info['score']) {
+								$this->data['score'] = $fraud_info['score'];
+							} else {
+								$this->data['score'] = '';
+							}
+
+							if ($fraud_info['explanation']) {
+								$this->data['explanation'] = $fraud_info['explanation'];
+							} else {
+								$this->data['explanation'] = '';
+							}
+
+							if ($fraud_info['risk_score']) {
+								$this->data['risk_score'] = $fraud_info['risk_score'];
+							} else {
+								$this->data['risk_score'] = '';
+							}
+
+							if ($fraud_info['queries_remaining']) {
+								$this->data['queries_remaining'] = $fraud_info['queries_remaining'];
+							} else {
+								$this->data['queries_remaining'] = '';
+							}
+
+							if ($fraud_info['maxmind_id']) {
+								$this->data['maxmind_id'] = $fraud_info['maxmind_id'];
+							} else {
+								$this->data['maxmind_id'] = '';
+							}
+
+							if ($fraud_info['error']) {
+								$this->data['error'] = $fraud_info['error'];
+							} else {
+								$this->data['error'] = '';
+							}
+						}
+					}
 				}
-
-				$this->data['high_risk_country'] = $fraud_info['high_risk_country'];
-				$this->data['distance'] = $fraud_info['distance'];
-
-				if ($fraud_info['ip_region']) {
-					$this->data['ip_region'] = $fraud_info['ip_region'];
-				} else {
-					$this->data['ip_region'] = '';
-				}
-
-				if ($fraud_info['ip_city']) {
-					$this->data['ip_city'] = $fraud_info['ip_city'];
-				} else {
-					$this->data['ip_city'] = '';
-				}
-
-				$this->data['ip_latitude'] = $fraud_info['ip_latitude'];
-				$this->data['ip_longitude'] = $fraud_info['ip_longitude'];
-
-				if ($fraud_info['ip_isp']) {
-					$this->data['ip_isp'] = $fraud_info['ip_isp'];
-				} else {
-					$this->data['ip_isp'] = '';
-				}
-
-				if ($fraud_info['ip_org']) {
-					$this->data['ip_org'] = $fraud_info['ip_org'];
-				} else {
-					$this->data['ip_org'] = '';
-				}
-
-				$this->data['ip_asnum'] = $fraud_info['ip_asnum'];
-
-				if ($fraud_info['ip_user_type']) {
-					$this->data['ip_user_type'] = $fraud_info['ip_user_type'];
-				} else {
-					$this->data['ip_user_type'] = '';
-				}
-
-				if ($fraud_info['ip_country_confidence']) {
-					$this->data['ip_country_confidence'] = $fraud_info['ip_country_confidence'];
-				} else {
-					$this->data['ip_country_confidence'] = '';
-				}
-
-				if ($fraud_info['ip_region_confidence']) {
-					$this->data['ip_region_confidence'] = $fraud_info['ip_region_confidence'];
-				} else {
-					$this->data['ip_region_confidence'] = '';
-				}
-
-				if ($fraud_info['ip_city_confidence']) {
-					$this->data['ip_city_confidence'] = $fraud_info['ip_city_confidence'];
-				} else {
-					$this->data['ip_city_confidence'] = '';
-				}
-
-				if ($fraud_info['ip_postal_confidence']) {
-					$this->data['ip_postal_confidence'] = $fraud_info['ip_postal_confidence'];
-				} else {
-					$this->data['ip_postal_confidence'] = '';
-				}
-
-				if ($fraud_info['ip_postal_code']) {
-					$this->data['ip_postal_code'] = $fraud_info['ip_postal_code'];
-				} else {
-					$this->data['ip_postal_code'] = '';
-				}
-
-				$this->data['ip_accuracy_radius'] = $fraud_info['ip_accuracy_radius'];
-
-				if ($fraud_info['ip_net_speed_cell']) {
-					$this->data['ip_net_speed_cell'] = $fraud_info['ip_net_speed_cell'];
-				} else {
-					$this->data['ip_net_speed_cell'] = '';
-				}
-
-				$this->data['ip_metro_code'] = $fraud_info['ip_metro_code'];
-				$this->data['ip_area_code'] = $fraud_info['ip_area_code'];
-
-				if ($fraud_info['ip_time_zone']) {
-					$this->data['ip_time_zone'] = $fraud_info['ip_time_zone'];
-				} else {
-					$this->data['ip_time_zone'] = '';
-				}
-
-				if ($fraud_info['ip_region_name']) {
-					$this->data['ip_region_name'] = $fraud_info['ip_region_name'];
-				} else {
-					$this->data['ip_region_name'] = '';
-				}
-
-				if ($fraud_info['ip_domain']) {
-					$this->data['ip_domain'] = $fraud_info['ip_domain'];
-				} else {
-					$this->data['ip_domain'] = '';
-				}
-
-				if ($fraud_info['ip_country_name']) {
-					$this->data['ip_country_name'] = $fraud_info['ip_country_name'];
-				} else {
-					$this->data['ip_country_name'] = '';
-				}
-
-				if ($fraud_info['ip_continent_code']) {
-					$this->data['ip_continent_code'] = $fraud_info['ip_continent_code'];
-				} else {
-					$this->data['ip_continent_code'] = '';
-				}
-
-				if ($fraud_info['ip_corporate_proxy']) {
-					$this->data['ip_corporate_proxy'] = $fraud_info['ip_corporate_proxy'];
-				} else {
-					$this->data['ip_corporate_proxy'] = '';
-				}
-
-				$this->data['anonymous_proxy'] = $fraud_info['anonymous_proxy'];
-				$this->data['proxy_score'] = $fraud_info['proxy_score'];
-
-				if ($fraud_info['is_trans_proxy']) {
-					$this->data['is_trans_proxy'] = $fraud_info['is_trans_proxy'];
-				} else {
-					$this->data['is_trans_proxy'] = '';
-				}
-
-				$this->data['free_mail'] = $fraud_info['free_mail'];
-				$this->data['carder_email'] = $fraud_info['carder_email'];
-
-				if ($fraud_info['high_risk_username']) {
-					$this->data['high_risk_username'] = $fraud_info['high_risk_username'];
-				} else {
-					$this->data['high_risk_username'] = '';
-				}
-
-				if ($fraud_info['high_risk_password']) {
-					$this->data['high_risk_password'] = $fraud_info['high_risk_password'];
-				} else {
-					$this->data['high_risk_password'] = '';
-				}
-
-				$this->data['bin_match'] = $fraud_info['bin_match'];
-
-				if ($fraud_info['bin_country']) {
-					$this->data['bin_country'] = $fraud_info['bin_country'];
-				} else {
-					$this->data['bin_country'] = '';
-				}
-
-				$this->data['bin_name_match'] = $fraud_info['bin_name_match'];
-
-				if ($fraud_info['bin_name']) {
-					$this->data['bin_name'] = $fraud_info['bin_name'];
-				} else {
-					$this->data['bin_name'] = '';
-				}
-
-				$this->data['bin_phone_match'] = $fraud_info['bin_phone_match'];
-
-				if ($fraud_info['bin_phone']) {
-					$this->data['bin_phone'] = $fraud_info['bin_phone'];
-				} else {
-					$this->data['bin_phone'] = '';
-				}
-
-				if ($fraud_info['customer_phone_in_billing_location']) {
-					$this->data['customer_phone_in_billing_location'] = $fraud_info['customer_phone_in_billing_location'];
-				} else {
-					$this->data['customer_phone_in_billing_location'] = '';
-				}
-
-				$this->data['ship_forward'] = $fraud_info['ship_forward'];
-
-				if ($fraud_info['city_postal_match']) {
-					$this->data['city_postal_match'] = $fraud_info['city_postal_match'];
-				} else {
-					$this->data['city_postal_match'] = '';
-				}
-
-				if ($fraud_info['ship_city_postal_match']) {
-					$this->data['ship_city_postal_match'] = $fraud_info['ship_city_postal_match'];
-				} else {
-					$this->data['ship_city_postal_match'] = '';
-				}
-
-				$this->data['score'] = $fraud_info['score'];
-				$this->data['explanation'] = $fraud_info['explanation'];
-				$this->data['risk_score'] = $fraud_info['risk_score'];
-				$this->data['queries_remaining'] = $fraud_info['queries_remaining'];
-				$this->data['maxmind_id'] = $fraud_info['maxmind_id'];
-				$this->data['error'] = $fraud_info['error'];
-
-			} else {
-				$this->data['maxmind_id'] = '';
 			}
+
+			$this->data['fraud_status'] = $fraud_status;
 
 			if ($this->hasAction('payment/' . $order_info['payment_code'] . '/orderAction') == true) {
 				$this->data['payment_action'] = $this->getChild('payment/' . $order_info['payment_code'] . '/orderAction');
@@ -2058,6 +2177,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2089,6 +2209,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2117,6 +2238,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2152,6 +2274,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2180,6 +2303,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2215,6 +2339,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2243,6 +2368,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2450,6 +2576,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

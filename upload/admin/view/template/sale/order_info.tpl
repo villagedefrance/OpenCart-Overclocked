@@ -18,13 +18,13 @@
     <div class="vtabs">
       <a href="#tab-order"><?php echo $tab_order; ?></a>
       <a href="#tab-payment"><?php echo $tab_payment; ?></a>
-      <?php if ($shipping_method) { ?>
+    <?php if ($shipping_method) { ?>
       <a href="#tab-shipping"><?php echo $tab_shipping; ?></a>
-      <?php } ?>
+    <?php } ?>
       <a href="#tab-product"><?php echo $tab_product; ?></a><a href="#tab-history"><?php echo $tab_history; ?></a>
-      <?php if ($maxmind_id) { ?>
+    <?php if ($fraud_status) { ?>
       <a href="#tab-fraud"><?php echo $tab_fraud; ?></a>
-      <?php } ?>
+    <?php } ?>
     </div>
     <div id="tab-order" class="vtabs-content">
       <table class="form">
@@ -406,7 +406,7 @@
         </tr>
       </table>
     </div>
-    <?php if ($maxmind_id) { ?>
+    <?php if ($fraud_status) { ?>
       <div id="tab-fraud" class="vtabs-content">
       <table class="form">
         <?php if ($country_match) { ?>

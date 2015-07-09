@@ -175,25 +175,39 @@ class ModelCheckoutOrder extends Model {
 				}
 			}
 
+			$status = false;
+
 			// Anti-Fraud
+			$fraud_status = false;
+
 			$this->load->model('setting/extension');
 
 			$extensions = $this->model_setting_extension->getExtensions('fraud');
 
-			foreach ($extensions as $extension) {
-				if ($this->config->get($extension['code'] . '_status')) {
-					$this->load->model('fraud/' . $extension['code']);
+			if ($extensions) {
+				foreach ($extensions as $extension) {
+					if ($this->config->get($extension['code'] . '_status')) {
+						$fraud_status = true;
+						break;
+					}
 
-					$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
+					if ($fraud_status) {
+						$this->load->model('fraud/' . $extension['code']);
 
-					if ($fraud_status_id) {
-						$order_status_id = $fraud_status_id;
+						$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
+
+						if ($fraud_status_id) {
+							$order_status_id = $fraud_status_id;
+						}
 					}
 				}
+
+			} else {
+				$status = true;
 			}
 
 			// Ban IP
-			$status = false;
+			$this->load->model('account/customer');
 
 			if ($order_info['customer_id']) {
 				$results = $this->model_account_customer->getIps($order_info['customer_id']);
@@ -201,10 +215,10 @@ class ModelCheckoutOrder extends Model {
 				foreach ($results as $result) {
 					if ($this->model_account_customer->isBanIp($result['ip'])) {
 						$status = true;
-
 						break;
 					}
 				}
+
 			} else {
 				$status = $this->model_account_customer->isBanIp($order_info['ip']);
 			}
@@ -635,26 +649,38 @@ class ModelCheckoutOrder extends Model {
 		$order_info = $this->getOrder($order_id);
 
 		if ($order_info && $order_info['order_status_id']) {
+			$status = false;
+
 			// Anti-Fraud
+			$fraud_status = false;
+
 			$this->load->model('setting/extension');
 
 			$extensions = $this->model_setting_extension->getExtensions('fraud');
 
-			foreach ($extensions as $extension) {
-				if ($this->config->get($extension['code'] . '_status')) {
-					$this->load->model('fraud/' . $extension['code']);
+			if ($extensions) {
+				foreach ($extensions as $extension) {
+					if ($this->config->get($extension['code'] . '_status')) {
+						$fraud_status = true;
+						break;
+					}
 
-					$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
+					if ($fraud_status) {
+						$this->load->model('fraud/' . $extension['code']);
 
-					if ($fraud_status_id) {
-						$order_status_id = $fraud_status_id;
+						$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
+
+						if ($fraud_status_id) {
+							$order_status_id = $fraud_status_id;
+						}
 					}
 				}
+
+			} else {
+				$status = true;
 			}
 
 			// Ban IP
-			$status = false;
-
 			$this->load->model('account/customer');
 
 			if ($order_info['customer_id']) {

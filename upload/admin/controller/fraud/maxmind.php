@@ -89,6 +89,8 @@ class ControllerFraudMaxMind extends Controller {
 			$this->data['maxmind_score'] = $this->request->post['maxmind_score'];
 		} else {
 			$this->data['maxmind_score'] = $this->config->get('maxmind_score');
+		} else {
+			$this->data['maxmind_score'] = '80';
 		}
 
 		$this->load->model('localisation/order_status');

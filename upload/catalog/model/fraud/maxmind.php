@@ -4,12 +4,10 @@ class ModelFraudMaxMind extends Model {
 	public function check($data) {
 		$risk_score = 0;
 
-		$fraud_info = $this->getFraud($data['order_id']);
+		$fraud_info = $this->getFraud($data['order_id']); 
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$order_id . "'");
-
-		if ($query->num_rows) {
-			$risk_score = $query->row['risk_score'];
+		if ($fraud_info) {
+			$risk_score = $fraud_info['risk_score'];
 		} else {
 			/* maxmind api >> http://www.maxmind.com/app/ccv */
 			/* paypal api >> https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_IPNandPDTVariables */
@@ -380,8 +378,18 @@ class ModelFraudMaxMind extends Model {
 		}
 
 		if ($risk_score > $this->config->get('maxmind_score') && $this->config->get('maxmind_key')) {
-			return $this->config->get('maxmind_order_status_id');
+			$fraud_status_id = $this->config->get('maxmind_order_status_id');
+		} else {
+			$fraud_status_id = 0;
 		}
+
+		return $fraud_status_id;
+	}
+
+	public function getFraud($order_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$data['order_id'] . "'");
+
+		return $query->row;
 	}
 }
 ?>
