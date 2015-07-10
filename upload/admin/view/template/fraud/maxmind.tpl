@@ -23,7 +23,7 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="maxmind_key" value="" size="40" />
+            <td><input type="text" name="maxmind_key" value="<?php echo $maxmind_key; ?>" size="50" />
             <?php if ($error_key) { ?>
               <span class="error"><?php echo $error_key; ?></span>
             <?php } ?>
@@ -31,7 +31,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_score; ?><br /><span class="help"><?php echo $help_score; ?></span></td>
-            <td><input type="text" name="maxmind_score" value="" /></td>
+            <td><input type="text" name="maxmind_score" value="<?php echo $maxmind_score; ?>" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_order_status; ?><br /><span class="help"><?php echo $help_order_status; ?></span></td>

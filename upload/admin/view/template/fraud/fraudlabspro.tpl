@@ -23,7 +23,7 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="fraudlabspro_key" value="" size="40" />
+            <td><input type="text" name="fraudlabspro_key" value="<?php echo $fraudlabspro_key; ?>" size="50" />
             <?php if ($error_key) { ?>
               <span class="error"><?php echo $error_key; ?></span>
             <?php } ?>
@@ -31,7 +31,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_score; ?></td>
-            <td><input type="text" name="fraudlabspro_score" value="" /></td>
+            <td><input type="text" name="fraudlabspro_score" value="<?php echo $fraudlabspro_score; ?>" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_order_status; ?></td>
@@ -99,7 +99,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_simulate_ip; ?></td>
-            <td><input type="text" name="fraudlabspro_simulate_ip" value="" /></td>
+            <td><input type="text" name="fraudlabspro_simulate_ip" value="<?php echo $fraudlabspro_simulate_ip; ?>" /></td>
           </tr>
 		</table>
       </form>

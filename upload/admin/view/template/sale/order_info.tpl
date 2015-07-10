@@ -814,6 +814,18 @@
           <td><?php echo $text_flp_link; ?></td>
           <td><a onclick="window.open('https://www.fraudlabspro.com/merchant/transaction-details/<?php echo $flp_id; ?>/');" title=""><?php echo $flp_id; ?></a></td>
         </tr>
+        <tr style="background:#EEE;">
+          <td id="flp_action">
+            <?php if (strtolower($flp_status) == 'review') { ?>
+              <form id="review-action" method="post">
+                <a id="button-flp-approve" class="button">Approve</a>
+                <a id="button-flp-reject" class="button">Reject</a>
+                <input type="hidden" id="flp_id" name="flp_id" value="<?php echo $flp_id; ?>" />
+                <input type="hidden" id="new_flp_status" name="new_flp_status" value="" />
+              </form>
+            <?php } ?>
+          </td>
+        </tr>
         <tr>
           <td></td>
           <td><a href="<?php echo $fraud_fraudlabspro; ?>" class="button"><?php echo $button_fraudlabspro; ?></a></td>
@@ -1081,6 +1093,19 @@ $('#button-history').live('click', function() {
 
 			$('#order-status').html($('select[name=\'order_status_id\'] option:selected').text());
 		}
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$("#button-flp-approve").click(function() {
+		$("#new_flp_status").val("APPROVE");
+		$("#review-action").submit();
+	});
+	$("#button-flp-reject").click(function() {
+		$("#new_flp_status").val("REJECT");
+		$("#review-action").submit();
 	});
 });
 //--></script>

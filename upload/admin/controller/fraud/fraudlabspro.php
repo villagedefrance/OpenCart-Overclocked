@@ -90,7 +90,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 
 		if (isset($this->request->post['fraudlabspro_score'])) {
 			$this->data['fraudlabspro_score'] = $this->request->post['fraudlabspro_score'];
-		} else {
+		} elseif ($this->config->get('fraudlabspro_score')) {
 			$this->data['fraudlabspro_score'] = $this->config->get('fraudlabspro_score');
 		} else {
 			$this->data['fraudlabspro_score'] = '80';

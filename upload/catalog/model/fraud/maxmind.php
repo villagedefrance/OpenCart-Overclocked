@@ -387,7 +387,7 @@ class ModelFraudMaxMind extends Model {
 	}
 
 	public function getFraud($order_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$data['order_id'] . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$data['order_id'] . "'");
 
 		return $query->row;
 	}

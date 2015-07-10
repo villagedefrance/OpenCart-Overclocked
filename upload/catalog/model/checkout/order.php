@@ -177,6 +177,23 @@ class ModelCheckoutOrder extends Model {
 
 			$status = false;
 
+			// Ban IP
+			$this->load->model('account/customer');
+
+			if ($order_info['customer_id']) {
+				$results = $this->model_account_customer->getIps($order_info['customer_id']);
+
+				foreach ($results as $result) {
+					if ($this->model_account_customer->isBanIp($result['ip'])) {
+						$status = true;
+						break;
+					}
+				}
+
+			} else {
+				$status = $this->model_account_customer->isBanIp($order_info['ip']);
+			}
+
 			// Anti-Fraud
 			$fraud_status = false;
 
@@ -204,23 +221,6 @@ class ModelCheckoutOrder extends Model {
 
 			} else {
 				$status = true;
-			}
-
-			// Ban IP
-			$this->load->model('account/customer');
-
-			if ($order_info['customer_id']) {
-				$results = $this->model_account_customer->getIps($order_info['customer_id']);
-
-				foreach ($results as $result) {
-					if ($this->model_account_customer->isBanIp($result['ip'])) {
-						$status = true;
-						break;
-					}
-				}
-
-			} else {
-				$status = $this->model_account_customer->isBanIp($order_info['ip']);
 			}
 
 			if ($status) {
@@ -651,6 +651,23 @@ class ModelCheckoutOrder extends Model {
 		if ($order_info && $order_info['order_status_id']) {
 			$status = false;
 
+			// Ban IP
+			$this->load->model('account/customer');
+
+			if ($order_info['customer_id']) {
+				$results = $this->model_account_customer->getIps($order_info['customer_id']);
+
+				foreach ($results as $result) {
+					if ($this->model_account_customer->isBanIp($result['ip'])) {
+						$status = true;
+						break;
+					}
+				}
+
+			} else {
+				$status = $this->model_account_customer->isBanIp($order_info['ip']);
+			}
+
 			// Anti-Fraud
 			$fraud_status = false;
 
@@ -678,23 +695,6 @@ class ModelCheckoutOrder extends Model {
 
 			} else {
 				$status = true;
-			}
-
-			// Ban IP
-			$this->load->model('account/customer');
-
-			if ($order_info['customer_id']) {
-				$results = $this->model_account_customer->getIps($order_info['customer_id']);
-
-				foreach ($results as $result) {
-					if ($this->model_account_customer->isBanIp($result['ip'])) {
-						$status = true;
-						break;
-					}
-				}
-
-			} else {
-				$status = $this->model_account_customer->isBanIp($order_info['ip']);
 			}
 
 			if ($status) {

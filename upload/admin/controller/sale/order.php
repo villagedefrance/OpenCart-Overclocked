@@ -1745,7 +1745,7 @@ class ControllerSaleOrder extends Controller {
 
 			if ($extensions) {
 				foreach ($extensions as $extension) {
-					if ($extension['code'] == 'maxmind' && $this->config->get('maxmind_status')) {
+					if ($extension['code'] == 'maxmind' && $this->config->get($extension['code'] . '_status')) {
 						$fraud_maxmind = true;
 
 						$this->language->load('sale/order_maxmind');
@@ -1808,7 +1808,7 @@ class ControllerSaleOrder extends Controller {
 
 						$this->load->model('fraud/' . $extension['code']);
 
-						$fraud_info = $this->{'model_fraud_' . $extension['code']}->getOrder($order_info['order_id']);
+						$fraud_info = $this->{'model_fraud_' . $extension['code']}->getOrder($this->request->get['order_id']);
 
 						if ($fraud_info) {
 							if ($fraud_info['country_match']) {
@@ -2113,8 +2113,8 @@ class ControllerSaleOrder extends Controller {
 						}
 					}
 
-					if ($extension['code'] == 'fraudlabspro' && $this->config->get('fraudlabspro_status')) {
-						$fraud_maxmind = true;
+					if ($extension['code'] == 'fraudlabspro' && $this->config->get($extension['code'] . '_status')) {
+						$fraud_fraudlabspro = true;
 
 						$this->language->load('sale/order_fraudlabspro');
 
@@ -2148,7 +2148,7 @@ class ControllerSaleOrder extends Controller {
 
 						$this->load->model('fraud/' . $extension['code']);
 
-						$fraudlabs_info = $this->{'model_fraud_' . $extension['code']}->getOrder($order_info['order_id']);
+						$fraudlabs_info = $this->{'model_fraud_' . $extension['code']}->getOrder($this->request->get['order_id']);
 
 						if ($fraudlabs_info) {
 							if ($fraudlabs_info['ip_address']) {
@@ -2277,6 +2277,55 @@ class ControllerSaleOrder extends Controller {
 							} else {
 								$this->data['flp_id'] = '';
 								$this->data['flp_link'] = '';
+							}
+
+							// Action of the Approve/Reject button click
+							if (isset($_POST['flp_id'])) {
+								$flp_status = $_POST['new_flp_status'];
+
+								$this->data['flp_status'] = $flp_status;
+								
+								// Feedback FLP status to server
+								$fraudlabspro_key = $this->config->get('fraudlabspro_key');
+								
+								for ($i = 0; $i < 3; $i++) {
+									$result = @file_get_contents('https://api.fraudlabspro.com/v1/order/feedback?key=' . $fraudlabspro_key . '&format=json&id=' . $_POST['flp_id'] . '&action=' . $flp_status);
+
+									if ($result) {
+										break;
+									}
+								}
+
+								// Update fraud status into table
+								$this->db->query("UPDATE " . DB_PREFIX . "fraudlabspro SET fraudlabspro_status = '" . $flp_status . "' WHERE order_id = " . $this->request->get['order_id']);
+								
+								// Update history record
+								if (strtolower($flp_status) == 'approve') {
+									if (!($new_order_status = $this->config->get('fraudlabspro_approve_order_status'))) {
+										$new_order_status = 1;
+									}
+								
+									$data_temp = array(
+										'order_status_id'	=> $new_order_status,
+										'notify'				=> 0,
+										'comment'			=> ''
+									);
+									
+									$this->model_sale_order->addOrderHistory($this->request->get['order_id'], $data_temp);
+
+								} elseif (strtolower($flp_status) == "reject") {
+									if (!($new_order_status = $this->config->get('fraudlabspro_reject_order_status'))) {
+										$new_order_status = 1;
+									}
+
+									$data_temp = array(
+										'order_status_id'	=>$new_order_status,
+										'notify'				=> 0,
+										'comment'			=>''
+									);
+
+									$this->model_sale_order->addOrderHistory($this->request->get['order_id'], $data_temp);
+								}
 							}
 						}
 					}
