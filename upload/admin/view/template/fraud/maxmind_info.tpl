@@ -1,4 +1,4 @@
-<table class="list">
+<table class="form">
   <?php if ($country_match) { ?>
   <tr>
     <td><?php echo $text_country_match; ?></td>

@@ -30,11 +30,11 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_score; ?><br /><span class="help"><?php echo $help_score; ?></span></td>
+            <td><?php echo $entry_score; ?></td>
             <td><input type="text" name="maxmind_score" value="<?php echo $maxmind_score; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_order_status; ?><br /><span class="help"><?php echo $help_order_status; ?></span></td>
+            <td><?php echo $entry_order_status; ?></td>
             <td><select name="maxmind_order_status_id">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $maxmind_order_status_id) { ?>

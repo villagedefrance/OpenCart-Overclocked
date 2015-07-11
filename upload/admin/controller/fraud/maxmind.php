@@ -36,9 +36,6 @@ class ControllerFraudMaxMind extends Controller {
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
-		$this->data['help_score'] = $this->language->get('help_score');
-		$this->data['help_order_status'] = $this->language->get('help_order_status');
-
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -461,10 +458,6 @@ class ControllerFraudMaxMind extends Controller {
 			$this->data['error'] = $fraud_info['error'];
 
 			$this->template = 'fraud/maxmind_info.tpl';
-			$this->children = array(
-				'common/header',
-				'common/footer'
-			);
 
 			$this->response->setOutput($this->render());
 		}

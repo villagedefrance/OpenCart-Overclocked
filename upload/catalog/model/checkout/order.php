@@ -204,17 +204,13 @@ class ModelCheckoutOrder extends Model {
 			if ($extensions) {
 				foreach ($extensions as $extension) {
 					if ($this->config->get($extension['code'] . '_status')) {
-						$fraud_status = true;
-						break;
-					}
-
-					if ($fraud_status) {
 						$this->load->model('fraud/' . $extension['code']);
 
 						$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
 
 						if ($fraud_status_id) {
 							$order_status_id = $fraud_status_id;
+							break;
 						}
 					}
 				}
@@ -678,17 +674,13 @@ class ModelCheckoutOrder extends Model {
 			if ($extensions) {
 				foreach ($extensions as $extension) {
 					if ($this->config->get($extension['code'] . '_status')) {
-						$fraud_status = true;
-						break;
-					}
-
-					if ($fraud_status) {
 						$this->load->model('fraud/' . $extension['code']);
 
 						$fraud_status_id = $this->{'model_fraud_' . $extension['code']}->check($order_info);
 
 						if ($fraud_status_id) {
 							$order_status_id = $fraud_status_id;
+							break;
 						}
 					}
 				}

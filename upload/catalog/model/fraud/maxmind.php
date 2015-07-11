@@ -2,8 +2,6 @@
 class ModelFraudMaxMind extends Model {
 
 	public function check($data) {
-		$risk_score = 0;
-
 		$fraud_info = $this->getFraud($data['order_id']); 
 
 		if ($fraud_info) {
@@ -380,14 +378,14 @@ class ModelFraudMaxMind extends Model {
 		if ($risk_score > $this->config->get('maxmind_score') && $this->config->get('maxmind_key')) {
 			$fraud_status_id = $this->config->get('maxmind_order_status_id');
 		} else {
-			$fraud_status_id = 0;
+			$fraud_status_id = $this->config->get('config_order_status_id');
 		}
 
 		return $fraud_status_id;
 	}
 
 	public function getFraud($order_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$data['order_id'] . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$data['order_id'] . "'");
 
 		return $query->row;
 	}

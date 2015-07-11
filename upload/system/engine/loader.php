@@ -14,6 +14,19 @@ final class Loader {
 		$this->registry->set($key, $value);
 	}
 
+	public function model($model) {
+		$file  = DIR_APPLICATION . 'model/' . $model . '.php';
+		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
+
+		if (file_exists($file)) {
+			include_once($file);
+			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
+		} else {
+			trigger_error('Error: Could not load model ' . $model . '!');
+			exit(); 
+		}
+	}
+
 	public function library($library) {
 		$file = DIR_SYSTEM . 'library/' . $library . '.php';
 
@@ -32,19 +45,6 @@ final class Loader {
 			include_once($file);
 		} else {
 			trigger_error('Error: Could not load helper ' . $helper . '!');
-			exit(); 
-		}
-	}
-
-	public function model($model) {
-		$file  = DIR_APPLICATION . 'model/' . $model . '.php';
-		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
-
-		if (file_exists($file)) {
-			include_once($file);
-			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
-		} else {
-			trigger_error('Error: Could not load model ' . $model . '!');
 			exit(); 
 		}
 	}

@@ -1,6 +1,6 @@
-<table class="list">
+<table class="form">
   <tr>
-    <td style="text-align:center; background-color:#ab1b1c; border:1px solid #ab1b1c;" colspan="2"><img src="https://www.fraudlabspro.com/images/logo_200.png" alt="FraudLabs Pro" /></td>
+    <td style="text-align:center; background-color:#AB1B1C; border:1px solid #AB1B1C;" colspan="2"><img src="https://www.fraudlabspro.com/images/logo_200.png" alt="FraudLabs Pro" /></td>
   </tr>
   <tr>
     <td><?php echo $text_transaction_id; ?></td>
@@ -8,17 +8,17 @@
   </tr>
   <tr>
     <td><?php echo $text_score; ?></td>
-    <td><strong><?php echo $flp_score; ?></strong></td>
+    <td><span style="font-size:2em; font-weight:bold;"><?php echo $flp_score; ?></span></td>
   </tr>
   <tr>
     <td><?php echo $text_status; ?></td>
     <td id="flp_status">
       <?php if (strtolower($flp_status) == 'approve') { ?>
-        <span style="font-weight:bold; color:#5CB85C;"><?php echo $flp_status; ?></span>
+        <span style="font-size:2em; font-weight:bold; color:#0F0;"><?php echo $flp_status; ?></span>
       <?php } elseif (strtolower($flp_status) == 'review') { ?>
-        <span style="font-weight:bold; color:#F0AD4E;"><?php echo $flp_status; ?></span>
+        <span style="font-size:2em; font-weight:bold; color:#FF7F27;"><?php echo $flp_status; ?></span>
 	  <?php } else { ?>
-        <span style="font-weight:bold; color:#D9534F;"><?php echo $flp_status; ?></span>
+        <span style="font-size:2em; font-weight:bold; color:#F00;"><?php echo $flp_status; ?></span>
       <?php } ?>
     </td>
   </tr>
@@ -92,22 +92,21 @@
   </tr>
   <tr>
     <td><?php echo $text_credits; ?></td>
-    <td><?php echo $flp_credits . ' ' . $text_flp_upgrade; ?></td>
+    <td><span style="font-size:1.5em; font-weight:bold;"><?php echo $flp_credits; ?></span> &nbsp;&nbsp; <?php echo $text_flp_upgrade; ?></td>
   </tr>
   <tr>
     <td><?php echo $text_message; ?></td>
     <td><?php echo $flp_message; ?></td>
   </tr>
 <?php if (strtolower($flp_status) == 'review') { ?>
-  <tr style="background-color:#FCFCFC;">
+  <tr style="background:#FCFCFC;">
+    <td></td>
     <td id="flp_action">
       <form id="review-action" method="post">
-	    <div align="center">
-	      <button type="button" id="button-flp-approve" class="button"><?php echo $button_approve; ?></button>
-	      <button type="button" id="button-flp-reject" class="button"><?php echo $button_reject; ?></button>
-	    </div>
-	    <input type="hidden" id="flp_id" name="flp_id" value="<?php echo $flp_id; ?>" />
-	    <input type="hidden" id="new_status" name="new_status" value="" />
+        <a id="button-flp-approve" class="button"><?php echo $button_approve; ?></a>
+        <a id="button-flp-reject" class="button"><?php echo $button_reject; ?></a>
+        <input type="hidden" id="flp_id" name="flp_id" value="<?php echo $flp_id; ?>" />
+        <input type="hidden" id="new_flp_status" name="new_flp_status" value="" />
       </form>
     </td>
   </tr>
@@ -122,9 +121,7 @@
       $("#new_status").val("APPROVE");
       $("#review-action").submit();
     });
-  });
 
-  $(document).ready(function() {
     $("#button-flp-reject").click(function() {
       $("#new_status").val("REJECT");
       $("#review-action").submit();

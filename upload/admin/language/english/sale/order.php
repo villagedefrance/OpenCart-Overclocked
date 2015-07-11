@@ -67,10 +67,6 @@ $_['text_credit_remove']          		= 'Remove Credit';
 $_['text_credit_removed']       		= 'Success: Account credit removed!';
 $_['text_upload']                     		= 'Your file was successfully uploaded!';
 
-// Tab (Fraud)
-$_['tab_maxmind']                  		= 'MaxMind';
-$_['tab_fraudlabspro']                  	= 'FraudLabsPro';
-
 // Delivery Note
 $_['text_delivery_note']             	= 'Delivery Note';
 $_['text_shipping_collection']       	= 'Collection / Shipping Company';

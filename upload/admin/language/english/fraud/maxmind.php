@@ -60,13 +60,11 @@ $_['text_error']							= 'Error:';
 
 // Entry
 $_['entry_key']							= 'MaxMind License Key';
-$_['entry_score']							= 'Risk Score';
-$_['entry_order_status']				= 'Order Status';
+$_['entry_score']							= 'Risk Score<br /><span class="help">The higher the score the more likely the order is fraudulent. Set a score between 0 - 100.</span>';
+$_['entry_order_status']				= 'Order Status<br /><span class="help">Orders that have a score over your set risk score will be assigned this order status and will not be allowed to reach the complete status automatically.</span>';
 $_['entry_status']						= 'Status';
 
 // Help
-$_['help_score']							= 'The higher the score the more likely the order is fraudulent. Set a score between 0 - 100.';
-$_['help_order_status']					= 'Orders that have a score over your set risk score will be assigned this order status and will not be allowed to reach the complete status automatically.';
 $_['help_country_match']				= 'Whether country of IP address matches billing address country (mismatch = higher risk).';
 $_['help_country_code']				= 'Country Code of the IP address.';
 $_['help_high_risk_country']			= 'Whether IP address or billing address country is in Ghana, Nigeria, or Vietnam.';

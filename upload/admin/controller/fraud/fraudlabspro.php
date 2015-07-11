@@ -180,7 +180,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 
 		// Action of the Approve/Reject button click
 		if (isset($_POST['flp_id'])) {
-			$flp_status = $_POST['new_status'];
+			$flp_status = $_POST['new_flp_status'];
 
 			$this->data['flp_status'] = $flp_status;
 
@@ -208,7 +208,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 
 				$this->model_fraud_fraudlabspro->addOrderHistory($this->request->get['order_id'], $data_temp);
 
-			} elseif (strtolower($flp_status) == "reject") {
+			} elseif (strtolower($flp_status) == 'reject') {
 				$data_temp = array(
 					'order_status_id'	=> $this->config->get('fraudlabspro_reject_status_id'),
 					'notify'				=> 0,
@@ -233,6 +233,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 			$this->data['text_transaction_id'] = $this->language->get('text_transaction_id');
 			$this->data['text_score'] = $this->language->get('text_score');
 			$this->data['text_status'] = $this->language->get('text_status');
+			$this->data['text_ip_address'] = $this->language->get('text_ip_address');
 			$this->data['text_ip_net_speed'] = $this->language->get('text_ip_net_speed');
 			$this->data['text_ip_isp_name'] = $this->language->get('text_ip_isp_name');
 			$this->data['text_ip_usage_type'] = $this->language->get('text_ip_usage_type');
@@ -294,7 +295,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 			}
 
 			if ($fraud_info['ip_country']) {
-				$this->data['flp_ip_location'] = $this->fix_case($fraud_info['ip_continent']) . ", " . $fraud_info['ip_country'] . ", " . $fraud_info['ip_region'] . ", " . $fraud_info['ip_city'] . " <a href=\"http://www.geolocation.com/" . $fraud_info['ip_address'] . "\" target=\"_blank\">[Map]</a>";
+				$this->data['flp_ip_location'] = $this->fix_case($fraud_info['ip_continent']) . ", " . $fraud_info['ip_country'] . ", " . $fraud_info['ip_region'] . ", " . $fraud_info['ip_city'] . " &nbsp;&nbsp; <a href=\"http://www.geolocation.com/" . $fraud_info['ip_address'] . "\" target=\"_blank\"><b>[ Map ]</b></a>";
 			} else {
 				$this->data['flp_ip_location'] = '-';
 			}
@@ -392,10 +393,6 @@ class ControllerFraudFraudLabsPro extends Controller {
 			}
 
 			$this->template = 'fraud/fraudlabspro_info.tpl';
-			$this->children = array(
-				'common/header',
-				'common/footer'
-			);
 
 			$this->response->setOutput($this->render());
 		}
