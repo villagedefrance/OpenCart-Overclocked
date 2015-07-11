@@ -14,6 +14,12 @@ final class Loader {
 		$this->registry->set($key, $value);
 	}
 
+	public function controller($route, $args = array()) {
+		$action = new Action($route, $args);
+
+		return $action->execute($this->registry);
+	}
+
 	public function model($model) {
 		$file  = DIR_APPLICATION . 'model/' . $model . '.php';
 		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
