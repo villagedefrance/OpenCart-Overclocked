@@ -118,12 +118,12 @@
 <script type="text/javascript"><!--
   $(document).ready(function() {
     $("#button-flp-approve").click(function() {
-      $("#new_status").val("APPROVE");
+      $("#new_flp_status").val("APPROVE");
       $("#review-action").submit();
     });
 
     $("#button-flp-reject").click(function() {
-      $("#new_status").val("REJECT");
+      $("#new_flp_status").val("REJECT");
       $("#review-action").submit();
     });
   });

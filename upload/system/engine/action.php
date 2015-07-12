@@ -42,29 +42,6 @@ final class Action {
 		}
 	}
 
-	public function execute($registry) {
-		// Stop any magical methods being called
-		if (substr($this->method, 0, 2) == '__') {
-			return false;
-		}
-
-		if (is_file($this->file)) {
-			include_once($this->file);
-
-			$class = $this->class;
-
-			$controller = new $class($registry);
-
-			if (is_callable(array($controller, $this->method))) {
-				return call_user_func(array($controller, $this->method), $this->args);
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
-
 	public function getFile() {
 		return $this->file;
 	}

@@ -93,8 +93,12 @@ class ModelFraudFraudLabsPro extends Model {
 
 		if ($store_info) {
 			$url = $store_info['ssl'];
-		} else {
+		} elseif ($this->config->get('config_secure') && $this->request->isSecure()) {
 			$url = HTTPS_CATALOG;
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$url = HTTPS_CATALOG;
+		} else {
+			$url = HTTP_CATALOG;
 		}
 
 		if (isset($this->session->data['cookie'])) {

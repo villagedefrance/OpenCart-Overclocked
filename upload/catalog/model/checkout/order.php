@@ -195,8 +195,6 @@ class ModelCheckoutOrder extends Model {
 			}
 
 			// Anti-Fraud
-			$fraud_status = false;
-
 			$this->load->model('setting/extension');
 
 			$extensions = $this->model_setting_extension->getExtensions('fraud');
@@ -665,8 +663,6 @@ class ModelCheckoutOrder extends Model {
 			}
 
 			// Anti-Fraud
-			$fraud_status = false;
-
 			$this->load->model('setting/extension');
 
 			$extensions = $this->model_setting_extension->getExtensions('fraud');

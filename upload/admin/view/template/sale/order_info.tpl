@@ -403,7 +403,8 @@
         <tr>
           <td><?php echo $entry_comment; ?></td>
           <td><textarea name="comment" cols="40" rows="8" style="width:100%"></textarea>
-          <div style="margin-top:10px; text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div></td>
+            <div style="margin-top:10px; text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div>
+          </td>
         </tr>
       </table>
     </div>
@@ -670,19 +671,6 @@ $('#button-history').live('click', function() {
 
 			$('#order-status').html($('select[name=\'order_status_id\'] option:selected').text());
 		}
-	});
-});
-//--></script>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$("#button-flp-approve").click(function() {
-		$("#new_flp_status").val("APPROVE");
-		$("#review-action").submit();
-	});
-	$("#button-flp-reject").click(function() {
-		$("#new_flp_status").val("REJECT");
-		$("#review-action").submit();
 	});
 });
 //--></script>

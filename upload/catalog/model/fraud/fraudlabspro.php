@@ -26,27 +26,11 @@ class ModelFraudFraudLabsPro extends Model {
 			return;
 		}
 
-		$ip = $_SERVER['REMOTE_ADDR'];
-
-		// Detect client IP is store is behind CloudFlare protection.
-		if (isset($_SERVER['HTTP_CF_CONNECTING_IP']) && filter_var($_SERVER['HTTP_CF_CONNECTING_IP'], FILTER_VALIDATE_IP)) {
-			$ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
-		}
-
-		// Get real client IP is they are behind proxy server.
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && filter_var($_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP)) {
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}
-
 		// Overwrite client IP if simulate IP is provided.
 		if (filter_var($this->config->get('fraudlabspro_simulate_ip'), FILTER_VALIDATE_IP)) {
 			$ip = $this->config->get('fraudlabspro_simulate_ip');
-		}
-
-		if (isset($ip)) {
-			$true_ip = $ip;
 		} else {
-			$true_ip = $data['ip'];
+			$ip = $data['ip'];
 		}
 
 		$fraud_status_id = $this->config->get('config_order_status_id');
@@ -56,9 +40,10 @@ class ModelFraudFraudLabsPro extends Model {
 		if ($fraud_info) {
 			$fraud_status_id = $data['order_status_id'];
 		} else {
+
 			$request['key'] = $this->config->get('fraudlabspro_key');
 
-			$request['ip'] = $true_ip;
+			$request['ip'] = $ip;
 			$request['bill_city'] = $data['payment_city'];
 			$request['bill_state'] = $data['payment_zone'];
 			$request['bill_country'] = $data['payment_iso_code_2'];
@@ -77,7 +62,7 @@ class ModelFraudFraudLabsPro extends Model {
 			$request['email_hash'] = $this->hashIt($data['email']);
 			$request['amount'] = $this->currency->format($data['total'], $data['currency_code'], $data['currency_value'], false);
 			$request['quantity'] = 1;
-			$request['currency'] =$data['currency_code'];
+			$request['currency'] = $data['currency_code'];
 			$request['user_order_id'] = $data['order_id'];
 			$request['format'] = 'json';
 
@@ -106,7 +91,7 @@ class ModelFraudFraudLabsPro extends Model {
 					is_high_risk_country = '" . $this->db->escape($json->is_high_risk_country) . "',
 					distance_in_km = '" . $this->db->escape($json->distance_in_km) . "',
 					distance_in_mile = '" . $this->db->escape($json->distance_in_mile) . "',
-					ip_address = '" .  $ip . "',
+					ip_address = '" . $this->db->escape($ip) . "',
 					ip_country = '" . $this->db->escape($json->ip_country) . "',
 					ip_region = '" . $this->db->escape($json->ip_region) . "',
 					ip_city = '" . $this->db->escape($json->ip_city) . "',
@@ -146,8 +131,8 @@ class ModelFraudFraudLabsPro extends Model {
 					fraudlabspro_id = '" . $this->db->escape($json->fraudlabspro_id) . "',
 					fraudlabspro_error = '" . $this->db->escape($json->fraudlabspro_error_code) . "',
 					fraudlabspro_message = '" . $this->db->escape($json->fraudlabspro_message) . "',
-					fraudlabspro_credits = '" .  $this->db->escape($json->fraudlabspro_credits) . "',
-					api_key = '" .  $this->config->get('fraudlabspro_key') . "'
+					fraudlabspro_credits = '" . $this->db->escape($json->fraudlabspro_credits) . "',
+					api_key = '" . $this->config->get('fraudlabspro_key') . "'
 				");
 
 				$risk_score = (int)$json->fraudlabspro_score;
