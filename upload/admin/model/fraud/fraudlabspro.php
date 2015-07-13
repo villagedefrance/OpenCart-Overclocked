@@ -92,13 +92,9 @@ class ModelFraudFraudLabsPro extends Model {
 		$store_info = $this->model_setting_store->getStore($store_id);
 
 		if ($store_info) {
-			$url = $store_info['ssl'];
-		} elseif ($this->config->get('config_secure') && $this->request->isSecure()) {
-			$url = HTTPS_CATALOG;
-		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
-			$url = HTTPS_CATALOG;
+			$url = $this->config->get('config_secure') ? $store_info['ssl'] : $store_info['url'];
 		} else {
-			$url = HTTP_CATALOG;
+			$url = $this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG;
 		}
 
 		if (isset($this->session->data['cookie'])) {
@@ -109,17 +105,17 @@ class ModelFraudFraudLabsPro extends Model {
 				curl_setopt($curl, CURLOPT_PORT, 443);
 			}
 
-			curl_setopt($curl, CURLOPT_HEADER, false);
-			curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+			curl_setopt($curl, CURLOPT_HEADER, 0);
 			curl_setopt($curl, CURLOPT_USERAGENT, $this->request->server['HTTP_USER_AGENT']);
-			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($curl, CURLOPT_FORBID_REUSE, false);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_URL, $url . 'index.php?route=sale/order/history&order_id=' . $order_id);
-			curl_setopt($curl, CURLOPT_POST, true);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
 			curl_setopt($curl, CURLOPT_COOKIE, session_name() . '=' . $this->session->data['cookie'] . ';');
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($curl, CURLOPT_FORBID_REUSE, 0);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_URL, $url . 'index.php?route=sale/order/history&order_id=' . $order_id);
+			curl_setopt($curl, CURLOPT_POST, 1);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+			curl_setopt($curl, CURLINFO_HEADER_OUT, 1);
 
 			$json = curl_exec($curl);
 

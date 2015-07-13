@@ -19,13 +19,6 @@ class ModelFraudFraudLabsPro extends Model {
 			return;
 		}
 
-		$screened_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "fraudlabspro WHERE order_id = '" . (int)$data['order_id'] . "'");
-
-		// Do not call FraudLabs Pro API if order is already screened.
-		if ($screened_query->num_rows) {
-			return;
-		}
-
 		// Overwrite client IP if simulate IP is provided.
 		if (filter_var($this->config->get('fraudlabspro_simulate_ip'), FILTER_VALIDATE_IP)) {
 			$ip = $this->config->get('fraudlabspro_simulate_ip');
@@ -37,10 +30,7 @@ class ModelFraudFraudLabsPro extends Model {
 
 		$fraud_info = $this->getFraud($data['order_id']);
 
-		if ($fraud_info) {
-			$fraud_status_id = $data['order_status_id'];
-		} else {
-
+		if (empty($fraud_info)) {
 			$request['key'] = $this->config->get('fraudlabspro_key');
 
 			$request['ip'] = $ip;
@@ -74,10 +64,6 @@ class ModelFraudFraudLabsPro extends Model {
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
 			curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
-			curl_setopt($curl, CURLOPT_FAILONERROR, 1);
-			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-			curl_setopt($curl, CURLOPT_ENCODING , 'gzip, deflate');
-			curl_setopt($curl, CURLOPT_TIMEOUT, 30);
 
 			$response = curl_exec($curl);
 
@@ -158,6 +144,9 @@ class ModelFraudFraudLabsPro extends Model {
 					$fraud_status_id = $this->config->get('fraudlabspro_reject_status_id');
 				}
 			}
+
+		} else {
+			$fraud_status_id = $data['order_status_id'];
 		}
 
 		return $fraud_status_id;
@@ -165,7 +154,7 @@ class ModelFraudFraudLabsPro extends Model {
 
 	public function getFraud($order_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "fraudlabspro WHERE order_id = '" . (int)$order_id . "'");
-	
+
 		return $query->row;
 	}
 }

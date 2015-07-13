@@ -14,11 +14,11 @@
     <td><?php echo $text_status; ?></td>
     <td id="flp_status">
       <?php if (strtolower($flp_status) == 'approve') { ?>
-        <span style="font-size:2em; font-weight:bold; color:#0F0;"><?php echo $flp_status; ?></span>
+        <span style="font-size:2em; font-weight:bold; color:#5DC15E;"><?php echo $flp_status; ?></span>
       <?php } elseif (strtolower($flp_status) == 'review') { ?>
-        <span style="font-size:2em; font-weight:bold; color:#FF7F27;"><?php echo $flp_status; ?></span>
+        <span style="font-size:2em; font-weight:bold; color:#F2B155;"><?php echo $flp_status; ?></span>
 	  <?php } else { ?>
-        <span style="font-size:2em; font-weight:bold; color:#F00;"><?php echo $flp_status; ?></span>
+        <span style="font-size:2em; font-weight:bold; color:#DE5954;"><?php echo $flp_status; ?></span>
       <?php } ?>
     </td>
   </tr>

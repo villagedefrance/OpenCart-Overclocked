@@ -194,6 +194,10 @@ class ModelCheckoutOrder extends Model {
 				$status = $this->model_account_customer->isBanIp($order_info['ip']);
 			}
 
+			if ($status) {
+				$order_status_id = $this->config->get('config_order_status_id');
+			}
+
 			// Anti-Fraud
 			$this->load->model('setting/extension');
 
@@ -212,13 +216,6 @@ class ModelCheckoutOrder extends Model {
 						}
 					}
 				}
-
-			} else {
-				$status = true;
-			}
-
-			if ($status) {
-				$order_status_id = $this->config->get('config_order_status_id');
 			}
 
 			// Auto Invoice Number
@@ -662,6 +659,10 @@ class ModelCheckoutOrder extends Model {
 				$status = $this->model_account_customer->isBanIp($order_info['ip']);
 			}
 
+			if ($status) {
+				$order_status_id = $this->config->get('config_order_status_id');
+			}
+
 			// Anti-Fraud
 			$this->load->model('setting/extension');
 
@@ -680,13 +681,6 @@ class ModelCheckoutOrder extends Model {
 						}
 					}
 				}
-
-			} else {
-				$status = true;
-			}
-
-			if ($status) {
-				$order_status_id = $this->config->get('config_order_status_id');
 			}
 
 			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");

@@ -93,7 +93,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 		} elseif ($this->config->get('fraudlabspro_score')) {
 			$this->data['fraudlabspro_score'] = $this->config->get('fraudlabspro_score');
 		} else {
-			$this->data['fraudlabspro_score'] = '80';
+			$this->data['fraudlabspro_score'] = '50';
 		}
 
 		$this->load->model('localisation/order_status');
