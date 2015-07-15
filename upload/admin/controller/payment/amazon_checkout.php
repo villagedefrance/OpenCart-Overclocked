@@ -3,10 +3,12 @@ class ControllerPaymentAmazonCheckout extends Controller {
 	private $errors = array();
 
 	public function index() {
+		$this->language->load('payment/amazon_checkout');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
 		$this->load->model('setting/setting');
 		$this->load->model('payment/amazon_checkout');
-
-		$this->language->load('payment/amazon_checkout');
 
 		$this->load->library('cba');
 
@@ -38,8 +40,6 @@ class ControllerPaymentAmazonCheckout extends Controller {
 				$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
 			}
 		}
-
-		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -95,6 +95,8 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->data['text_amazon_join'] = $this->language->get('text_amazon_join');
 
+		$this->data['errors'] = $this->errors;
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -115,9 +117,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['errors'] = $this->errors;
-
-		$this->data['action'] = $this->url->link('payment/bank_transfer', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('payment/amazon_checkout', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token']);
 

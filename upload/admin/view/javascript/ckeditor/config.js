@@ -11,23 +11,27 @@ CKEDITOR.editorConfig = function(config) {
 	config.filebrowserBrowseUrl = 'index.php?route=common/filemanager';
 	config.filebrowserImageBrowseUrl = 'index.php?route=common/filemanager';
 	config.filebrowserFlashBrowseUrl = 'index.php?route=common/filemanager';
-	config.filebrowserUploadUrl = 'index.php?route=common/filemanager';
-	config.filebrowserImageUploadUrl = 'index.php?route=common/filemanager';
-	config.filebrowserFlashUploadUrl = 'index.php?route=common/filemanager';
 
-	config.filebrowserWindowWidth = '850';
-	config.filebrowserWindowHeight = '500';
+	config.filebrowserWindowWidth = '800';
+	config.filebrowserWindowHeight = '480';
 
 	config.enterMode = CKEDITOR.ENTER_BR;
 	config.shiftEnterMode = CKEDITOR.ENTER_P;
 
+	config.htmlEncodeOutput = false;
+	config.resize_enabled = true;
+	config.allowedContent = true;
+
 	config.extraPlugins = 'codemirror';
 	config.codemirror = {
-		theme: 'default',
+		theme: 'vibrant-ink',
 		mode: 'htmlmixed',
 		lineNumbers: true,
+		styleActiveLine: true,
 		matchBrackets: true,
-		highlightActiveLine: false,
+		autoCloseBrackets: false,
+		autoCloseTags: false,
+		highlightMatches: true,
 		enableSearchTools: true,
 		showSearchButton: true,
 		showFormatButton: false,

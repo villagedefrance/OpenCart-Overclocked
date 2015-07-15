@@ -3,7 +3,7 @@
 $_['heading_title']					= 'FraudLabs Pro';
 
 // Text
-$_['text_fraud']						= 'Anti-Fraud';
+$_['text_fraud']						= 'Fraud';
 $_['text_success']					= 'Success: You have modified <b>FraudLabs Pro</b> !';
 $_['text_edit']							= 'Edit';
 $_['text_signup']						= 'FraudLabsPro is a fraud detection service. If you don\'t have a API key you can <a href="http://www.fraudlabspro.com/plan?ref=670" target="_blank"><u>sign up here</u></a>.';
@@ -34,7 +34,7 @@ $_['text_message']					= 'Message<br /><span class="help">FraudLabs Pro error me
 $_['text_credits']						= 'Balance<br /><span class="help">Balance of queries in your account after this transaction.</span>';
 $_['text_error']						= 'Error:';
 $_['text_flp_upgrade']				= '<a href="http://www.fraudlabspro.com/plan" target="_blank"><b>[ Upgrade ]</b></a>';
-$_['text_flp_merchant_area']		= 'Please login to <a href="http://www.fraudlabspro.com/login" target="_blank">FraudLabs Pro Merchant Area</a> for more information about this order.';
+$_['text_flp_merchant_area']		= 'Please login to <a href="https://www.fraudlabspro.com/merchant/login" target="_blank">FraudLabs Pro Merchant Area</a> for more information about this order.';
 $_['text_comment_approve']		= 'Approved using FraudLabs Pro.';
 $_['text_comment_reject']			= 'Rejected using FraudLabs Pro.';
 

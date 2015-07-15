@@ -147,8 +147,8 @@ $(document).ready(function() {
 
 				tr.each(function(index, domEle) {
 					dd = $(domEle).attr('directory');
-					dd = dd.replace(/\//g, ""); 
-					dd = dd.replace(" ", ""); 
+					dd = dd.replace(/\//g, "");
+					dd = dd.replace(" ", "");
 
 					$(domEle).attr('id', dd);
 				});
@@ -172,7 +172,7 @@ $(document).ready(function() {
 	});
 
 	$('#column-right a').live('dblclick', function() {
-		<?php if ($fckeditor !== false) { ?>
+		<?php if ($fckeditor) { ?>
 			window.opener.CKEDITOR.tools.callFunction(<?php echo $fckeditor; ?>, '<?php echo $directory; ?>' + $(this).find('input[name=\'image\']').attr('value'));
 			self.close();
 		<?php } else { ?>

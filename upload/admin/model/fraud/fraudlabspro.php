@@ -55,25 +55,24 @@ class ModelFraudFraudLabsPro extends Model {
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "order_status (`language_id`, `name`) VALUES (1, 'Fraud');");
-		$status_fraud_id = $this->db->getLastId();
+		// Order Status
+		$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language`");
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "order_status (`language_id`, `name`) VALUES (1, 'Fraud Review');");
-		$status_fraud_review_id = $this->db->getLastId();
+		foreach ($language_query->rows as $language) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_status SET language_id = '" . (int)$language['language_id'] . "', name = 'Fraud'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_status SET language_id = '" . (int)$language['language_id'] . "', name = 'Fraud Review'");
+		}
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_order_status_id', '" . $status_fraud_id . "', '0');");
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_review_status_id', '" . $status_fraud_review_id . "', '0');");
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_approve_status_id', '2', '0');");
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `group`, `key`, `value`, `serialized`) VALUES ('0', 'fraudlabspro', 'fraudlabspro_reject_status_id', '8', '0');");
+		$this->cache->delete('order_status');
 
-		$this->cache->delete('order_status.' . (int)$this->config->get('config_language_id'));
+		$this->addSettings();
 	}
 
 	public function uninstall() {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "order_status WHERE name = 'Fraud'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "order_status WHERE name = 'Fraud Review'");
 
-		$this->cache->delete('order_status.' . (int)$this->config->get('config_language_id'));
+		$this->cache->delete('order_status');
 
 		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "fraudlabspro");
 	}
@@ -123,6 +122,25 @@ class ModelFraudFraudLabsPro extends Model {
 		}
 
 		return $json;
+	}
+
+	public function addSettings() {
+		$this->load->model('localisation/order_status');
+
+		$order_statuses = $this->model_localisation_order_status->getOrderStatuses();
+
+		foreach ($order_statuses as $order_status) {
+			if ($order_status['name'] == 'Fraud') {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `group` = 'fraudlabspro', `key` = 'fraudlabspro_order_status_id', `value` = '" . (int)$order_status['order_status_id'] . "'");
+			}
+
+			if ($order_status['name'] == 'Fraud Review') {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `group` = 'fraudlabspro', `key` = 'fraudlabspro_review_status_id', `value` = '" . (int)$order_status['order_status_id'] . "'");
+			}
+		}
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `group` = 'fraudlabspro', `key` = 'fraudlabspro_approve_status_id', `value` = '" . $this->config->get('config_order_status_id') . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `group` = 'fraudlabspro', `key` = 'fraudlabspro_reject_status_id', `value` = '8'");
 	}
 }
 ?>

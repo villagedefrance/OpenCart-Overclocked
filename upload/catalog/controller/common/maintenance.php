@@ -37,19 +37,6 @@ class ControllerCommonMaintenance extends Controller {
 
 		$this->response->addHeader('Retry-After: 3600');
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
-
-		$this->document->breadcrumbs = array();
-
-		$this->document->breadcrumbs[] = array(
-			'text'		=> $this->language->get('text_maintenance'),
-			'href'		=> $this->url->link('common/maintenance'),
-			'separator' => false
-		);
-
-		$this->data['heading_title'] = $this->language->get('heading_title');
-
 		$this->data['message'] = $this->language->get('text_message');
 
 		// Template
