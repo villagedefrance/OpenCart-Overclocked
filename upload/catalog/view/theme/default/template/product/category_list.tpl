@@ -10,14 +10,12 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
-  <div class="category-page">
+  <div class="tier-page">
     <div class="left">
       <?php foreach ($categories as $category_1) { ?>
         <?php if ($category_1['count'] <= $cattotal1) { ?>
           <ul>
-            <li class="head">
-              <a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a>
-            </li>
+            <li class="head"><a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a></li>
           </ul>
           <?php if ($category_1['children']) { ?>
             <ul>
@@ -41,9 +39,7 @@
       <?php foreach ($categories as $category_1) { ?>
         <?php if ($category_1['count'] > $cattotal1 && $category_1['count'] <= $cattotal2) { ?>
           <ul>
-            <li class="head">
-              <a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a>
-            </li>
+            <li class="head"><a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a></li>
           </ul>
           <?php if ($category_1['children']) { ?>
             <ul>
@@ -67,9 +63,7 @@
       <?php foreach ($categories as $category_1) { ?>
         <?php if ($category_1['count'] > $cattotal2) { ?>
           <ul>
-            <li class="head">
-              <a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a>
-            </li>
+            <li class="head"><a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a></li>
           </ul>
           <?php if ($category_1['children']) { ?>
             <ul>

@@ -8,7 +8,7 @@ $_['text_checkout']   				= 'Checkout';
 
 $_['text_product_list']    			= 'Product List';
 $_['text_product_wall']    			= 'Product Wall';
-$_['text_category_list']     		= 'Categories';
+$_['text_category_list']     		= 'Category List';
 $_['text_manufacturer'] 			= 'Manufacturers';
 $_['text_special']      				= 'Special Offers';
 $_['text_review_list'] 				= 'Reviews';

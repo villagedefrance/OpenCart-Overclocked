@@ -990,108 +990,51 @@ ul.box-filter > li ul {
 	float: right;
 	width: 49%;
 }
-/* Category page */
-.category-page {
+/* List Pages */
+.tier-page {
 	overflow: auto;
 	margin-top: 10px;
 	margin-bottom: 30px;
 	width: 100%;
 }
-.category-page ul { 
-	list-style: url('../image/bullet-3.png');
-	margin-bottom: 5px;
-	padding-left: 5px;
-}
-.category-page ul li { 
-	margin-left: 15px;
-}
-.category-page ul li.head {
-	background: #F4F4F4;
-	list-style: none;
-	margin-bottom: 3px;
-	margin-left: 0px;
-	padding: 5px;
-}
-.category-page ul li.head a {
-	text-decoration: none;
-	font-size: 13px;
-	font-weight: bold;
-}
-.category-page ul li.head a:hover {
-	text-decoration: underline;
-}
-.category-page ul li a {
-	text-decoration: none;
-	font-size: 13px;
-}
-.category-page ul li a:hover {
-	color: #0D6D98;
-}
-.category-page ul li ul { 
-	list-style: url('../image/arrow-right.png');
-	margin-bottom: 5px;
-	padding-left: 10px;
-}
-.category-page div.left {
-	float: left;
-	width: 30%;
-	margin-left: 5px;
-}
-.category-page div.middle {
-	float: left;
-	width: 30%;
-	margin-left: 5px;
-}
-.category-page div.right {
-	float: left;
-	width: 30%;
-	margin-left: 5px;
-}
-/* Product page */
-.product-page {
-	overflow: auto;
-	margin-top: 10px;
-	margin-bottom: 30px;
-	width: 100%;
-}
-.product-page ul { 
+.tier-page ul { 
 	list-style: url('../image/bullet-3.png'); 
 }
-.product-page li {
+.tier-page ul li {
 	text-decoration: none;
 }
-.product-page li a {
+.tier-page ul li a, .tier-page ul li a:hover {
 	text-decoration: none;
 	font-size: 13px;
 }
-.product-page li a:hover {
+.tier-page ul li a:hover {
+	color: #333;
+}
+.tier-page ul li.head, .tier-page div.head {
+	list-style: none;
+	background: #F4F4F4;
+	margin-bottom: 3px;
+	margin-left: -15px;
+	padding: 5px 5px 5px 10px;
+}
+.tier-page ul li.head a, .tier-page div.head a {
+	text-decoration: none;
 	font-size: 13px;
-	color: #0D6D98;
-}
-.product-page div.left {
-	float: left;
-	width: 30%;
-	margin-left: 10px;
-}
-.product-page div.left .head {
-	margin: 10px 5px;
 	font-weight: bold;
 }
-.product-page div.middle {
+.tier-page ul li.head a:hover {
+	color: #333;
+}
+.tier-page ul li ul { 
+	list-style: url('../image/arrow-right.png');
+	margin-bottom: 5px;
+	margin-left: -10px;
+}
+.tier-page .left, .tier-page .middle, .tier-page .right {
 	float: left;
-	width: 30%;
-	margin-left: 10px;
+	width: 31%;
 }
-.product-page div.middle .head {
-	margin: 10px 5px;
-	font-weight: bold;
-}
-.product-page div.right {
-	float: left;
-	width: 30%;
-	margin-left: 10px;
-}
-.product-page div.right .head {
+.tier-page .left div.head, .tier-page .middle div.head, .tier-page .right div.head {
 	margin: 10px 5px;
 	font-weight: bold;
 }

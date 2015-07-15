@@ -11,7 +11,7 @@
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
   <h2><?php echo $ptotal; ?> <?php echo $text_total_products; ?> <?php echo $text_in; ?> <?php echo $ctotal; ?> <?php echo $text_total_categories; ?></h2>	
-  <div class="product-page">
+  <div class="tier-page">
     <div class="left">
       <div class="head"><?php echo $text_title_product; ?> 1 <?php echo $text_to; ?> <?php echo $tritotal1; ?></div>
       <ul>
