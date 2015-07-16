@@ -29,7 +29,7 @@
 
 <script type="text/javascript"><!--
 $('#camera_wrap<?php echo $module; ?>').camera({
-	height: '40%',
+	height: '<?php echo $ratio; ?>%',
 	fx: 'random',
 	playPause: false,
 	thumbnails: true,

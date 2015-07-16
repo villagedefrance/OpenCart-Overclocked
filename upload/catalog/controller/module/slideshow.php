@@ -27,6 +27,15 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['width'] = $setting['width'];
 		$this->data['height'] = $setting['height'];
 
+		// Calculate image ratio
+		$image_ratio = ($setting['height'] * 100) / $setting['width'];
+
+		if ($image_ratio > 0) {
+			$this->data['ratio'] = round($image_ratio, 0, PHP_ROUND_HALF_UP);
+		} else {
+			$this->data['ratio'] = '33';
+		}
+
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
 
