@@ -1,46 +1,42 @@
 <?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
-    <div class="slideshow">
-      <div id="slideshow<?php echo $module; ?>" class="nivoSlider" style="margin-left:auto; margin-right:auto; width:<?php echo $width; ?>px; height:<?php echo $height; ?>px;">
-      <?php foreach ($banners as $banner) { ?>
-        <?php if ($banner['link']) { ?>
-          <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a>
-        <?php } else { ?>
-          <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" />
-        <?php } ?>
+  <div class="box-content" style="margin:0px; padding:0px; overflow:hidden;">
+    <div class="camera_<?php echo $scheme; ?>_skin camera_wrap" id="camera_wrap<?php echo $module; ?>">
+    <?php foreach ($banners as $banner) { ?>
+      <?php if ($banner['link']) { ?>
+        <div data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>" data-link="<?php echo $banner['link']; ?>"></div>
+      <?php } else { ?>
+        <div data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>"></div>
       <?php } ?>
-      </div>
-    </div>
+    <?php } ?>
+  </div>
   </div>
 </div>
 <?php } else { ?>
-  <div style="margin-bottom:20px;">
-    <div class="slideshow">
-      <div id="slideshow<?php echo $module; ?>" class="nivoSlider" style="margin-left:auto; margin-right:auto; width:<?php echo $width; ?>px; height:<?php echo $height; ?>px;">
-      <?php foreach ($banners as $banner) { ?>
-        <?php if ($banner['link']) { ?>
-          <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a>
-        <?php } else { ?>
-          <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" />
-        <?php } ?>
+<div style="padding:0px 0px 15px 0px; overflow:hidden;">
+  <div class="camera_<?php echo $scheme; ?>_skin camera_wrap" id="camera_wrap<?php echo $module; ?>">
+    <?php foreach ($banners as $banner) { ?>
+      <?php if ($banner['link']) { ?>
+        <div data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>" data-link="<?php echo $banner['link']; ?>"></div>
+      <?php } else { ?>
+        <div data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>"></div>
       <?php } ?>
-      </div>
-    </div>
+    <?php } ?>
   </div>
+</div>
 <?php } ?>
 
 <script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#slideshow<?php echo $module; ?>').nivoSlider({
-		effect: '<?php echo $effect; ?>',
-		animSpeed: 500,
-		pauseTime: <?php echo $delay; ?>,
-		pauseOnHover: <?php echo $pause; ?>,
-		directionNav: <?php echo $arrows; ?>,
-		directionNavHide: <?php echo $autohide; ?>,
-		controlNav: <?php echo $controls; ?>
-	});
+$('#camera_wrap<?php echo $module; ?>').camera({
+	height: '40%',
+	fx: 'random',
+	playPause: false,
+	thumbnails: true,
+	overlayer: true,
+	loader: true,
+	hover: true,
+	time: 6000,
+	transPeriod: 1000
 });
-//--></script>
+--></script>

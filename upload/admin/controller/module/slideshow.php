@@ -4,19 +4,19 @@ class ControllerModuleSlideshow extends Controller {
 	private $_name = 'slideshow';
 
 	public function index() {
-		$this->language->load('module/' . $this->_name);
+		$this->load->language('module/slideshow');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting($this->_name, $this->request->post);
+			$this->model_setting_setting->editSetting('slideshow', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->post['apply'])) {
-				$this->redirect($this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
+				$this->redirect($this->url->link('module/slideshow', 'token=' . $this->session->data['token'], 'SSL'));
 			} else {
 				$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
 			}
@@ -27,9 +27,7 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no']	= $this->language->get('text_no');
-		$this->data['text_true'] = $this->language->get('text_true');
-		$this->data['text_false'] = $this->language->get('text_false');
+		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -39,16 +37,10 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-
-		$this->data['entry_pause'] = $this->language->get('entry_pause');
-		$this->data['entry_arrows'] = $this->language->get('entry_arrows');
-		$this->data['entry_autohide'] = $this->language->get('entry_autohide');
-		$this->data['entry_controls'] = $this->language->get('entry_controls');
+		$this->data['entry_skin'] = $this->language->get('entry_skin');
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
-		$this->data['entry_effect']  = $this->language->get('entry_effect');
-		$this->data['entry_delay']  = $this->language->get('entry_delay');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -75,26 +67,61 @@ class ControllerModuleSlideshow extends Controller {
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text'   	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+       		'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text'  	=> $this->language->get('text_module'),
-			'href'  	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+       		'text'		=> $this->language->get('text_module'),
+			'href'		=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => ' :: '
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+       		'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('module/slideshow', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => ' :: '
    		);
 
-		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('module/slideshow', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Skins
+		$this->data['skins'] = array();
+
+		$this->data['skins'][] = array('skin' => 'amber','title' => 'Amber');
+		$this->data['skins'][] = array('skin' => 'ash','title' => 'Ash');
+		$this->data['skins'][] = array('skin' => 'azure','title' => 'Azure');
+		$this->data['skins'][] = array('skin' => 'beige','title' => 'Beige');
+		$this->data['skins'][] = array('skin' => 'black','title' => 'Black');
+		$this->data['skins'][] = array('skin' => 'blue','title' => 'Blue');
+		$this->data['skins'][] = array('skin' => 'brown','title' => 'Brown');
+		$this->data['skins'][] = array('skin' => 'burgundy','title' => 'Burgundy');
+		$this->data['skins'][] = array('skin' => 'charcoal','title' => 'Charcoal');
+		$this->data['skins'][] = array('skin' => 'chocolate','title' => 'Chocolate');
+		$this->data['skins'][] = array('skin' => 'coffee','title' => 'Coffee');
+		$this->data['skins'][] = array('skin' => 'cyan','title' => 'Cyan');
+		$this->data['skins'][] = array('skin' => 'fuchsia','title' => 'Fuchsia');
+		$this->data['skins'][] = array('skin' => 'gold','title' => 'Gold');
+		$this->data['skins'][] = array('skin' => 'green','title' => 'Green');
+		$this->data['skins'][] = array('skin' => 'grey','title' => 'Grey');
+		$this->data['skins'][] = array('skin' => 'indigo','title' => 'Indigo');
+		$this->data['skins'][] = array('skin' => 'khaki','title' => 'Khaki');
+		$this->data['skins'][] = array('skin' => 'lime','title' => 'Lime');
+		$this->data['skins'][] = array('skin' => 'magenta','title' => 'Magenta');
+		$this->data['skins'][] = array('skin' => 'maroon','title' => 'Maroon');
+		$this->data['skins'][] = array('skin' => 'orange','title' => 'Orange');
+		$this->data['skins'][] = array('skin' => 'olive','title' => 'Olive');
+		$this->data['skins'][] = array('skin' => 'pink','title' => 'Pink');
+		$this->data['skins'][] = array('skin' => 'pistachio','title' => 'Pistachio');
+		$this->data['skins'][] = array('skin' => 'red','title' => 'Red');
+		$this->data['skins'][] = array('skin' => 'tangerine','title' => 'Tangerine');
+		$this->data['skins'][] = array('skin' => 'turquoise','title' => 'Turquoise');
+		$this->data['skins'][] = array('skin' => 'violet','title' => 'Violet');
+		$this->data['skins'][] = array('skin' => 'white','title' => 'White');
+		$this->data['skins'][] = array('skin' => 'yellow','title' => 'Yellow');
 
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {
@@ -123,36 +150,18 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
 		}
 
-		if (isset($this->request->post[$this->_name . '_pause'])) {
-			$this->data[$this->_name . '_pause'] = $this->request->post[$this->_name . '_pause'];
+		if (isset($this->request->post[$this->_name . '_skin'])) {
+			$this->data[$this->_name . '_skin'] = $this->request->post[$this->_name . '_skin'];
 		} else {
-			$this->data[$this->_name . '_pause'] = $this->config->get($this->_name . '_pause');
-		}
-
-		if (isset($this->request->post[$this->_name . '_arrows'])) {
-			$this->data[$this->_name . '_arrows'] = $this->request->post[$this->_name . '_arrows'];
-		} else {
-			$this->data[$this->_name . '_arrows'] = $this->config->get($this->_name . '_arrows');
-		}
-
-		if (isset($this->request->post[$this->_name . '_autohide'])) {
-			$this->data[$this->_name . '_autohide'] = $this->request->post[$this->_name . '_autohide'];
-		} else {
-			$this->data[$this->_name . '_autohide'] = $this->config->get($this->_name . '_autohide');
-		}
-
-		if (isset($this->request->post[$this->_name . '_controls'])) {
-			$this->data[$this->_name . '_controls'] = $this->request->post[$this->_name . '_controls'];
-		} else {
-			$this->data[$this->_name . '_controls'] = $this->config->get($this->_name . '_controls');
+			$this->data[$this->_name . '_skin'] = $this->config->get($this->_name . '_skin');
 		}
 
 		$this->data['modules'] = array();
 
-		if (isset($this->request->post[$this->_name . '_module'])) {
-			$this->data['modules'] = $this->request->post[$this->_name . '_module'];
-		} elseif ($this->config->get($this->_name . '_module')) {
-			$this->data['modules'] = $this->config->get($this->_name . '_module');
+		if (isset($this->request->post['slideshow_module'])) {
+			$this->data['modules'] = $this->request->post['slideshow_module'];
+		} elseif ($this->config->get('slideshow_module')) { 
+			$this->data['modules'] = $this->config->get('slideshow_module');
 		}
 
 		$this->load->model('design/layout');
@@ -163,7 +172,7 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['banners'] = $this->model_design_banner->getBanners();
 
-		$this->template = 'module/' . $this->_name . '.tpl';
+		$this->template = 'module/slideshow.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -173,12 +182,12 @@ class ControllerModuleSlideshow extends Controller {
 	}
 
 	private function validate() {
-		if (!$this->user->hasPermission('modify', 'module/' . $this->_name)) {
+		if (!$this->user->hasPermission('modify', 'module/slideshow')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (isset($this->request->post[$this->_name . '_module'])) {
-			foreach ($this->request->post[$this->_name . '_module'] as $key => $value) {
+		if (isset($this->request->post['slideshow_module'])) {
+			foreach ($this->request->post['slideshow_module'] as $key => $value) {
 				if (!$value['width'] || !$value['height']) {
 					$this->error['dimension'][$key] = $this->language->get('error_dimension');
 				}
