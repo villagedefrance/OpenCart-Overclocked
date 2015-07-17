@@ -226,7 +226,7 @@
 	margin: 10px 0px;
 	text-align: left;
 	text-indent: -9999px;
-	height: 8px;
+	height: 10px;
 	width: 32px;
 }
 .camera_wrap .camera_pag .camera_pag_ul li > span {
@@ -234,22 +234,22 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	height: 8px;
+	height: 10px;
 	width: 32px;
 }
 .camera_wrap .camera_pag .camera_pag_ul li:first-child {
 	border: 0px;
-	-moz-border-radius: 2px 0 0 2px;
-    -webkit-border-radius: 2px 0 0 2px;
-    -khtml-border-radius: 2px 0 0 2px;
-    border-radius: 2px 0 0 2px;
+	-moz-border-radius: 4px 0 0 4px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -khtml-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
 }
 .camera_wrap .camera_pag .camera_pag_ul li:last-child {
 	border: 0px;
-	-moz-border-radius: 0px 2px 2px 0;
-    -webkit-border-radius: 0px 2px 2px 0;
-    -khtml-border-radius: 0px 2px 2px 0;
-    border-radius: 0px 2px 2px 0;
+	-moz-border-radius: 0px 4px 4px 0;
+    -webkit-border-radius: 0px 4px 4px 0;
+    -khtml-border-radius: 0px 4px 4px 0;
+    border-radius: 0px 4px 4px 0;
 }
 .camera_commands_emboss .camera_pag .camera_pag_ul li {
 	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
@@ -416,13 +416,22 @@
 	border-color: 1px solid #222;
 }
 .camera_wrap .camera_pag .camera_pag_ul li {
-	background: #ddd;
+	background: #222;
+	background: rgba(34,34,34,0.1);
 }
 .camera_wrap .camera_pag .camera_pag_ul li:hover > span {
-	background: #ddd;
+	background: #222;
+	background: rgba(34,34,34,0.2);
+	-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
 }
 .camera_wrap .camera_pag .camera_pag_ul li.cameracurrent > span {
-	background: #777;
+	-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
 }
 .camera_pag_ul li img {
 	border: 4px solid #fff;
@@ -438,23 +447,22 @@
     border-top-color: #ddd;
 }
 .camera_prevThumbs, .camera_nextThumbs, .camera_prev, .camera_next, .camera_commands, .camera_thumbs_cont {
-	background: #ddd;
-	background: rgba(221,221,221,0.8);
-	border: 0px;
-	-moz-border-radius: 27px;
-    -webkit-border-radius: 27px;
-    -khtml-border-radius: 27px;
-    border-radius: 27px;
+	background: transparent;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
 }
 .camera_prevThumbs:hover, .camera_nextThumbs:hover, .camera_prev:hover, .camera_next:hover, .camera_commands:hover, .camera_thumbs_cont:hover {
-	background: #bbb;
-	background: rgba(187,187,187,0.8);
+	transform: scale(1.5);
 }
 .camera_thumb {
 	height: 75px;
 	width: 190px;
 }
 /*AMBER SKIN*/
+.camera_amber_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FFBF00;
+}
 .camera_amber_skin .camera_prevThumbs div {
 	background-position: -160px -160px;
 }
@@ -474,6 +482,9 @@
 	background-position: -120px -160px;
 }
 /*ASH SKIN*/
+.camera_ash_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #B2BEB5;
+}
 .camera_ash_skin .camera_prevThumbs div {
 	background-position: -160px -200px;
 }
@@ -493,6 +504,9 @@
 	background-position: -120px -200px;
 }
 /*AZURE SKIN*/
+.camera_azure_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #007FFF;
+}
 .camera_azure_skin .camera_prevThumbs div {
 	background-position: -160px -240px;
 }
@@ -512,6 +526,9 @@
 	background-position: -120px -240px;
 }
 /*BEIGE SKIN*/
+.camera_beige_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #F5F5DC;
+}
 .camera_beige_skin .camera_prevThumbs div {
 	background-position: -160px -120px;
 }
@@ -531,6 +548,9 @@
 	background-position: -120px -120px;
 }
 /*BLACK SKIN*/
+.camera_black_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #000;
+}
 .camera_black_skin .camera_prevThumbs div {
 	background-position: -160px -40px;
 }
@@ -550,6 +570,9 @@
 	background-position: -120px -40px;
 }
 /*BLUE SKIN*/
+.camera_blue_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #0000FF;
+}
 .camera_blue_skin .camera_prevThumbs div {
 	background-position: -160px -280px;
 }
@@ -569,6 +592,9 @@
 	background-position: -120px -280px;
 }
 /*BROWN SKIN*/
+.camera_brown_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #964B00;
+}
 .camera_brown_skin .camera_prevThumbs div {
 	background-position: -160px -320px;
 }
@@ -588,6 +614,9 @@
 	background-position: -120px -320px;
 }
 /*BURGUNDY SKIN*/
+.camera_burgundy_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #800020;
+}
 .camera_burgundy_skin .camera_prevThumbs div {
 	background-position: -160px -360px;
 }
@@ -607,6 +636,9 @@
 	background-position: -120px -360px;
 }
 /*CHARCOAL SKIN*/
+.camera_charcoal_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #36454F;
+}
 .camera_charcoal_skin .camera_prevThumbs div {
 	background-position: -160px -400px;
 }
@@ -626,6 +658,9 @@
 	background-position: -120px -400px;
 }
 /*CHOCOLATE SKIN*/
+.camera_chocolate_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #D2691E;
+}
 .camera_chocolate_skin .camera_prevThumbs div {
 	background-position: -160px -440px;
 }
@@ -645,6 +680,9 @@
 	background-position: -120px -440px;
 }
 /*COFFEE SKIN*/
+.camera_coffee_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #6F4E37;
+}
 .camera_coffee_skin .camera_prevThumbs div {
 	background-position: -160px -480px;
 }
@@ -664,6 +702,9 @@
 	background-position: -120px -480px;
 }
 /*CYAN SKIN*/
+.camera_cyan_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #00FFFF;
+}
 .camera_cyan_skin .camera_prevThumbs div {
 	background-position: -160px -520px;
 }
@@ -683,6 +724,9 @@
 	background-position: -120px -520px;
 }
 /*FUCHSIA SKIN*/
+.camera_fuchsia_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FF00FF;
+}
 .camera_fuchsia_skin .camera_prevThumbs div {
 	background-position: -160px -560px;
 }
@@ -702,6 +746,9 @@
 	background-position: -120px -560px;
 }
 /*GOLD SKIN*/
+.camera_gold_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FFD700;
+}
 .camera_gold_skin .camera_prevThumbs div {
 	background-position: -160px -600px;
 }
@@ -721,6 +768,9 @@
 	background-position: -120px -600px;
 }
 /*GREEN SKIN*/
+.camera_green_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #00FF00;
+}
 .camera_green_skin .camera_prevThumbs div {
 	background-position: -160px -640px;
 }
@@ -740,6 +790,9 @@
 	background-position: -120px -640px;
 }
 /*GREY SKIN*/
+.camera_grey_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #808080;
+}
 .camera_grey_skin .camera_prevThumbs div {
 	background-position: -160px -680px;
 }
@@ -759,6 +812,9 @@
 	background-position: -120px -680px;
 }
 /*INDIGO SKIN*/
+.camera_indigo_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #4B0082;
+}
 .camera_indigo_skin .camera_prevThumbs div {
 	background-position: -160px -720px;
 }
@@ -778,6 +834,9 @@
 	background-position: -120px -720px;
 }
 /*KHAKI SKIN*/
+.camera_khaki_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #BDB76B;
+}
 .camera_khaki_skin .camera_prevThumbs div {
 	background-position: -160px -760px;
 }
@@ -797,6 +856,9 @@
 	background-position: -120px -760px;
 }
 /*LIME SKIN*/
+.camera_lime_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #CCFF00;
+}
 .camera_lime_skin .camera_prevThumbs div {
 	background-position: -160px -800px;
 }
@@ -816,6 +878,9 @@
 	background-position: -120px -800px;
 }
 /*MAGENTA SKIN*/
+.camera_magenta_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #CA1F7B;
+}
 .camera_magenta_skin .camera_prevThumbs div {
 	background-position: -160px -840px;
 }
@@ -835,6 +900,9 @@
 	background-position: -120px -840px;
 }
 /*MAROON SKIN*/
+.camera_maroon_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #800000;
+}
 .camera_maroon_skin .camera_prevThumbs div {
 	background-position: -160px -880px;
 }
@@ -854,6 +922,9 @@
 	background-position: -120px -880px;
 }
 /*ORANGE SKIN*/
+.camera_orange_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FF7F00;
+}
 .camera_orange_skin .camera_prevThumbs div {
 	background-position: -160px -920px;
 }
@@ -873,6 +944,9 @@
 	background-position: -120px -920px;
 }
 /*OLIVE SKIN*/
+.camera_olive_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #808000;
+}
 .camera_olive_skin .camera_prevThumbs div {
 	background-position: -160px -1080px;
 }
@@ -892,6 +966,9 @@
 	background-position: -120px -1080px;
 }
 /*PINK SKIN*/
+.camera_pink_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FFC0CB;
+}
 .camera_pink_skin .camera_prevThumbs div {
 	background-position: -160px -960px;
 }
@@ -911,6 +988,9 @@
 	background-position: -120px -960px;
 }
 /*PISTACHIO SKIN*/
+.camera_pistachio_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #93C572;
+}
 .camera_pistachio_skin .camera_prevThumbs div {
 	background-position: -160px -1040px;
 }
@@ -930,6 +1010,9 @@
 	background-position: -120px -1040px;
 }
 /*RED SKIN*/
+.camera_red_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FF0000;
+}
 .camera_red_skin .camera_prevThumbs div {
 	background-position: -160px -1000px;
 }
@@ -949,6 +1032,9 @@
 	background-position: -120px -1000px;
 }
 /*TANGERINE SKIN*/
+.camera_tangerine_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #F28500;
+}
 .camera_tangerine_skin .camera_prevThumbs div {
 	background-position: -160px -1120px;
 }
@@ -968,6 +1054,9 @@
 	background-position: -120px -1120px;
 }
 /*TURQUOISE SKIN*/
+.camera_turquoise_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #40E0D0;
+}
 .camera_turquoise_skin .camera_prevThumbs div {
 	background-position: -160px -1160px;
 }
@@ -987,6 +1076,9 @@
 	background-position: -120px -1160px;
 }
 /*VIOLET SKIN*/
+.camera_violet_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #7F00FF;
+}
 .camera_violet_skin .camera_prevThumbs div {
 	background-position: -160px -1200px;
 }
@@ -1006,6 +1098,9 @@
 	background-position: -120px -1200px;
 }
 /*WHITE SKIN*/
+.camera_white_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FFF;
+}
 .camera_white_skin .camera_prevThumbs div {
 	background-position: -160px -80px;
 }
@@ -1025,6 +1120,9 @@
 	background-position: -120px -80px;
 }
 /*YELLOW SKIN*/
+.camera_yellow_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: #FFFF00;
+}
 .camera_yellow_skin .camera_prevThumbs div {
 	background-position: -160px -1240px;
 }
