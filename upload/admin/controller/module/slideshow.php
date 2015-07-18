@@ -38,6 +38,9 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_skin'] = $this->language->get('entry_skin');
+		$this->data['entry_playpause'] = $this->language->get('entry_playpause');
+		$this->data['entry_pagination'] = $this->language->get('entry_pagination');
+		$this->data['entry_thumbnails'] = $this->language->get('entry_thumbnails');
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
@@ -154,6 +157,24 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data[$this->_name . '_skin'] = $this->request->post[$this->_name . '_skin'];
 		} else {
 			$this->data[$this->_name . '_skin'] = $this->config->get($this->_name . '_skin');
+		}
+
+		if (isset($this->request->post[$this->_name . '_playpause'])) {
+			$this->data[$this->_name . '_playpause'] = $this->request->post[$this->_name . '_playpause'];
+		} else {
+			$this->data[$this->_name . '_playpause'] = $this->config->get($this->_name . '_playpause');
+		}
+
+		if (isset($this->request->post[$this->_name . '_pagination'])) {
+			$this->data[$this->_name . '_pagination'] = $this->request->post[$this->_name . '_pagination'];
+		} else {
+			$this->data[$this->_name . '_pagination'] = $this->config->get($this->_name . '_pagination');
+		}
+
+		if (isset($this->request->post[$this->_name . '_thumbnails'])) {
+			$this->data[$this->_name . '_thumbnails'] = $this->request->post[$this->_name . '_thumbnails'];
+		} else {
+			$this->data[$this->_name . '_thumbnails'] = $this->config->get($this->_name . '_thumbnails');
 		}
 
 		$this->data['modules'] = array();

@@ -51,6 +51,36 @@
               <?php } ?>
             </select></td>
           </tr>
+		  <tr>
+            <td><?php echo $entry_playpause; ?></td>
+            <td><?php if ($slideshow_playpause) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_playpause" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_playpause" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_playpause" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_playpause" value="0" checked="checked" />
+            <?php } ?></td>
+          </tr>
+		  <tr>
+            <td><?php echo $entry_pagination; ?></td>
+            <td><?php if ($slideshow_pagination) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_pagination" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_pagination" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_pagination" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_pagination" value="0" checked="checked" />
+            <?php } ?></td>
+          </tr>
+		  <tr>
+            <td><?php echo $entry_thumbnails; ?></td>
+            <td><?php if ($slideshow_thumbnails) { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_thumbnails" value="1" checked="checked" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_thumbnails" value="0" />
+            <?php } else { ?>
+              <?php echo $text_yes; ?><input type="radio" name="slideshow_thumbnails" value="1" />
+              <?php echo $text_no; ?><input type="radio" name="slideshow_thumbnails" value="0" checked="checked" />
+            <?php } ?></td>
+          </tr>
         </table>
         <table id="module" class="list">
           <thead>

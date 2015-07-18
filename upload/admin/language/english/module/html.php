@@ -18,7 +18,7 @@ $_['tab_code']         			= 'Code';
 
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
-$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
 
 $_['entry_code']       			= 'Html Code:<br /><span class="help">Use "Source" to enter or paste a script. Enter any other content directly in the text editor.</span>';
 

@@ -14,7 +14,7 @@ $_['text_column_right']      	= 'Column Right';
 
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
-$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
 $_['entry_headline']         		= 'Headline Page Link:<br /><span class="help">Headline page button link will be displayed at the bottom of the list.</span>';
 
 $_['entry_limit']            		= 'Limit';

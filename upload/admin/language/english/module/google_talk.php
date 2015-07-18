@@ -14,7 +14,7 @@ $_['text_column_right']   		= 'Column Right';
 
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
-$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
 
 $_['entry_code']          		= 'Google Hangout Code:<br /><span class="help">Go to <a onclick="window.open(\'https://developers.google.com/+/hangouts/button\');"><u>Create a Google Hangout chatback badge</u></a> and copy &amp; paste the generated code into the text box.</span>';
 

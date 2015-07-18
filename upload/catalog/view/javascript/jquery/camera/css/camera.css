@@ -307,7 +307,7 @@
 	width: 40px;
 }
 .camera_commands {
-	right: 41px;
+	right: 54px;
 }
 .camera_commands > .camera_play {
 	background: url(../images/camera_skins.png) no-repeat -80px 0;
@@ -416,12 +416,12 @@
 	border-color: 1px solid #222;
 }
 .camera_wrap .camera_pag .camera_pag_ul li {
-	background: #222;
-	background: rgba(34,34,34,0.1);
+	background: #333;
+	background: rgba(51,51,51,0.05);
 }
 .camera_wrap .camera_pag .camera_pag_ul li:hover > span {
-	background: #222;
-	background: rgba(34,34,34,0.2);
+	background: #333;
+	background: rgba(51,51,51,0.1);
 	-moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     -khtml-border-radius: 4px;
@@ -447,13 +447,18 @@
     border-top-color: #ddd;
 }
 .camera_prevThumbs, .camera_nextThumbs, .camera_prev, .camera_next, .camera_commands, .camera_thumbs_cont {
-	background: transparent;
-	transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
+	background: #333;
+	background: rgba(51,51,51,0.05);
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+	border-radius: 27px;
+	-moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+    -khtml-border-radius: 27px;
 }
 .camera_prevThumbs:hover, .camera_nextThumbs:hover, .camera_prev:hover, .camera_next:hover, .camera_commands:hover, .camera_thumbs_cont:hover {
-	transform: scale(1.5);
+	transform: scale(1.2);
 }
 .camera_thumb {
 	height: 75px;

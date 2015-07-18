@@ -22,7 +22,20 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->data['scheme'] = $this->config->get($this->_name . '_skin');
+		$this->data['camera_theme'] = $this->config->get($this->_name . '_skin');
+
+		$option_playpause = $this->config->get($this->_name . '_playpause');
+		$option_pagination = $this->config->get($this->_name . '_pagination');
+		$option_thumbnails = $this->config->get($this->_name . '_thumbnails');
+
+		$this->data['camera_playpause'] = $option_playpause ? 'true' : 'false';
+		$this->data['camera_pagination'] = $option_pagination ? 'true' : 'false';
+
+		if ($option_pagination && $option_thumbnails) {
+			$this->data['camera_thumbnails'] = 'true';
+		} else {
+			$this->data['camera_thumbnails'] = 'false';
+		}
 
 		$this->data['width'] = $setting['width'];
 		$this->data['height'] = $setting['height'];
@@ -31,7 +44,7 @@ class ControllerModuleSlideshow extends Controller {
 		$image_ratio = ($setting['height'] * 100) / $setting['width'];
 
 		if ($image_ratio > 0) {
-			$this->data['ratio'] = round($image_ratio, 0, PHP_ROUND_HALF_UP);
+			$this->data['ratio'] = round($image_ratio, 0);
 		} else {
 			$this->data['ratio'] = '33';
 		}

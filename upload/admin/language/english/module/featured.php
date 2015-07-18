@@ -18,7 +18,7 @@ $_['tab_options'] 					= 'Options';
 
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
-$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
 
 $_['entry_product']       		= 'Add Products';
 

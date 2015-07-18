@@ -14,8 +14,11 @@ $_['text_column_right']  		= 'Column Right';
 
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
-$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title. Theme Style must be enabled.</span>';
+$_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
 $_['entry_skin']    				= 'Colour Theme:';
+$_['entry_playpause'] 			= 'Show Play/Pause:';
+$_['entry_pagination'] 			= 'Show Pagination:';
+$_['entry_thumbnails'] 			= 'Show Thumbnails:<br /><span class="help">Note: Pagination must be enabled in order to display thumbnails.</span>';
 
 $_['entry_banner']        		= 'Banner';
 $_['entry_dimension']     		= 'Dimension (W x H)';
