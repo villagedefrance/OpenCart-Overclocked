@@ -3,7 +3,7 @@ class ControllerModuleBanner extends Controller {
 	private $error = array();
 	private $_name = 'banner';
 	private $_plugin = 'Cycle Lite';
-	private $_version = 'v1.0.1 (OCE)';
+	private $_version = 'v1.0.0';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);

@@ -24,9 +24,12 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->data['slick_theme'] = $this->config->get($this->_name . '_skin');
 
-		$this->data['show'] = $setting['show'];
+		if ($setting['show']) {
+			$this->data['show'] = $setting['show'];
+		} else {
+			$this->data['show'] = 3;
+		}
 
-		// Autoscroll
 		if ($setting['auto']) {
 			$this->data['auto'] = 'true';
 		} else {

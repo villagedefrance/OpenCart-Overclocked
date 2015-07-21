@@ -16,14 +16,14 @@ $_['text_auto']   					= 'Auto:';
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
 $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
-$_['entry_skin']    				= 'Colour Theme:';
+$_['entry_skin']    				= 'Custom Colour:';
 
 $_['entry_banner']        		= 'Banner';
 $_['entry_image']         		= 'Image (W x H)';
 $_['entry_width']         		= 'Width';
 $_['entry_height']        		= 'Height';
 $_['entry_show']        			= 'Show';
-$_['entry_auto']           		= 'Auto Scroll';
+$_['entry_auto']           		= 'Auto';
 $_['entry_layout']        		= 'Layout';
 $_['entry_position']      		= 'Position';
 $_['entry_status']        		= 'Status';

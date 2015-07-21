@@ -221,18 +221,12 @@
 .slick_amber_skin .slick-next > span {
 	background-position: -40px -160px;
 }
-.slick_amber_skin .slick-prev:hover, .slick_amber_skin .slick-prev:focus, .slick_amber_skin .slick-next:hover, .slick_amber_skin .slick-next:focus {
-	border: 1px solid #FFBF00;
-}
 /*ASH SKIN*/
 .slick_ash_skin .slick-prev > span {
 	background-position: 0 -200px;
 }
 .slick_ash_skin .slick-next > span {
 	background-position: -40px -200px;
-}
-.slick_amber_skin .slick-prev:hover, .slick_amber_skin .slick-prev:focus, .slick_amber_skin .slick-next:hover, .slick_amber_skin .slick-next:focus {
-	border: 1px solid #FFBF00;
 }
 /*AZURE SKIN*/
 .slick_azure_skin .slick-prev > span {

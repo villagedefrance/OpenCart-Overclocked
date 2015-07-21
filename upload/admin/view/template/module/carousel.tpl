@@ -38,6 +38,7 @@
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             </td>
           </tr>
+        <?php } ?>
           <tr>
             <td><?php echo $entry_skin; ?></td>
             <td><select name="carousel_skin">
@@ -50,7 +51,6 @@
               <?php } ?>
             </select></td>
           </tr>
-        <?php } ?>
         </table>
         <table id="module" class="list">
           <thead>
