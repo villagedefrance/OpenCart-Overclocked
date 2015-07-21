@@ -39,6 +39,52 @@
             </td>
           </tr>
         <?php } ?>
+          <tr>
+            <td><?php echo $entry_timeout; ?></td>
+            <td><select name="banner_timeout">
+              <?php if (isset($banner_timeout)) { $selected = "selected"; ?>
+                <option value="3000" <?php if ($banner_timeout == '3000') { echo $selected; } ?>>3000</option>
+                <option value="4000" <?php if ($banner_timeout == '4000') { echo $selected; } ?>>4000</option>
+                <option value="5000" <?php if ($banner_timeout == '5000') { echo $selected; } ?>>5000</option>
+                <option value="6000" <?php if ($banner_timeout == '6000') { echo $selected; } ?>>6000</option>
+                <option value="7000" <?php if ($banner_timeout == '7000') { echo $selected; } ?>>7000</option>
+                <option value="8000" <?php if ($banner_timeout == '8000') { echo $selected; } ?>>8000</option>
+                <option value="9000" <?php if ($banner_timeout == '9000') { echo $selected; } ?>>9000</option>
+              <?php } else { ?>
+                <option value="3000">3000</option>
+                <option value="4000">4000</option>
+                <option value="5000">5000</option>
+                <option value="6000">6000</option>
+                <option value="7000">7000</option>
+                <option value="8000">8000</option>
+                <option value="9000">9000</option>
+              <?php } ?>
+            </select> ms</td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_speed; ?></td>
+            <td><select name="banner_speed">
+              <?php if (isset($banner_timeout)) { $selected = "selected"; ?>
+                <option value="500" <?php if ($banner_speed == '500') { echo $selected; } ?>>500</option>
+                <option value="600" <?php if ($banner_speed == '600') { echo $selected; } ?>>600</option>
+                <option value="700" <?php if ($banner_speed == '700') { echo $selected; } ?>>700</option>
+                <option value="800" <?php if ($banner_speed == '800') { echo $selected; } ?>>800</option>
+                <option value="900" <?php if ($banner_speed == '900') { echo $selected; } ?>>900</option>
+                <option value="1000" <?php if ($banner_speed == '1000') { echo $selected; } ?>>1000</option>
+                <option value="1100" <?php if ($banner_speed == '1100') { echo $selected; } ?>>1100</option>
+                <option value="1200" <?php if ($banner_speed == '1200') { echo $selected; } ?>>1200</option>
+              <?php } else { ?>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+                <option value="1000">1000</option>
+                <option value="1100">1100</option>
+                <option value="1200">1200</option>
+              <?php } ?>
+            </select> ms</td>
+          </tr>
         </table>
         <table id="module" class="list">
           <thead>
@@ -144,7 +190,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="7"></td>
+              <td colspan="7" style="text-align:center; color:#444; font-size:10px;">Powered by <?php echo $banner_plugin; ?> <?php echo $banner_version; ?></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>

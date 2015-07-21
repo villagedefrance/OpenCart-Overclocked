@@ -24,7 +24,7 @@
 		loaderBgColor			: '#222222', 
 		loaderOpacity			: .8, // 0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1
 		loaderPadding			: 2, // how many empty pixels you want to display between the loader and its background
-		loaderStroke			: 7, // the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter
+		loaderStroke			: 7, // the thickness of both the pie loader and the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter
 		minHeight				: '200px', // you can also leave it blank
 		navigation				: true, // true or false, to display or not the navigation buttons
 		navigationHover		: true, // if true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always
@@ -68,7 +68,7 @@
 	var opts = $.extend({}, defaults, opts);
 	var wrap = $(this).addClass('camera_wrap');
 
-	wrap.wrapInner('<div class="camera_src" />').wrapInner('<div class="camera_fakehover" />');
+	wrap.wrapInner('<div class="camera_src">').wrapInner('<div class="camera_fakehover">');
 
 	var fakeHover = $('.camera_fakehover',wrap);
 	var fakeHoverSelector = ('.camera_fakehover',wrap);
@@ -106,18 +106,18 @@
 	}
 
 	if (opts.thumbnails == true) {
-		wrap.append('<div class="camera_thumbs_cont" />');
+		wrap.append('<div class="camera_thumbs_cont">');
 	}
 
 	if (opts.thumbnails == true && opts.pagination != true) {
 		$('.camera_thumbs_cont',wrap).wrap(
-			'<div />'
+			'<div>'
 		).wrap(
-			'<div class="camera_thumbs" />'
+			'<div class="camera_thumbs">'
 		).wrap(
-			'<div />'
+			'<div>'
 		).wrap(
-			'<div class="camera_command_wrap" />'
+			'<div class="camera_command_wrap">'
 		);
 	}
 
@@ -128,7 +128,7 @@
 	wrap.append('<div class="camera_loader"></div>');
 
 	$('.camera_caption',wrap).each(function() {
-		$(this).wrapInner('<div />');
+		$(this).wrapInner('<div>');
 	});
 
 	var pieID = 'pie_'+wrap.index(),
@@ -197,12 +197,12 @@
 
 	var amountSlide = allImg.length;
 
-	$(content).append('<div class="cameraContents" />');
+	$(content).append('<div class="cameraContents">');
 
 	var loopMove;
 
 	for (loopMove=0;loopMove<amountSlide;loopMove++) {
-		$('.cameraContents',content).append('<div class="cameraContent" />');
+		$('.cameraContents',content).append('<div class="cameraContent">');
 		if (allLinks[loopMove] != '') {
 			// only for Wordpress plugin
 			var dataBox = $('> div ',elem).eq(loopMove).attr('data-box');
@@ -221,13 +221,13 @@
 		$(this).appendTo(cont);
 	});
 
-	target.append('<div class="cameraCont" />');
+	target.append('<div class="cameraCont">');
 
 	var cameraCont = $('.cameraCont',wrap);
 
 	var loop;
 	for (loop=0;loop<amountSlide;loop++) {
-		cameraCont.append('<div class="cameraSlide cameraSlide_'+loop+'" />');
+		cameraCont.append('<div class="cameraSlide cameraSlide_'+loop+'">');
 		var div = $('> div:eq('+loop+')',elem);
 		target.find('.cameraSlide_'+loop).clone(div);
 	}
@@ -266,7 +266,7 @@
 		thumbnailVisible();
 	});
 
-	cameraCont.append('<div class="cameraSlide cameraSlide_'+loop+'" />');
+	cameraCont.append('<div class="cameraSlide cameraSlide_'+loop+'">');
 
 	var started;
 
@@ -552,7 +552,7 @@
 
 	if (elem.length != 0) {
 		var selector = $('.cameraSlide',target);
-		selector.wrapInner('<div class="camerarelative" />');
+		selector.wrapInner('<div class="camerarelative">');
 		var navSlide;
 		var barDirection = opts.barDirection;
 		var camera_thumbs_wrap = wrap;
@@ -727,11 +727,11 @@
 	}
 
 	if (loader != 'pie') {
-		barContainer.append('<span class="camera_bar_cont" />');
+		barContainer.append('<span class="camera_bar_cont">');
 		$('.camera_bar_cont',barContainer)
 			.animate({opacity:opts.loaderOpacity},0)
 			.css({'position':'absolute', 'left':0, 'right':0, 'top':0, 'bottom':0, 'background-color':opts.loaderBgColor})
-			.append('<span id="'+pieID+'" />');
+			.append('<span id="'+pieID+'">');
 		$('#'+pieID).animate({opacity:0},0);
 		var canvas = $('#'+pieID);
 		canvas.css({'position':'absolute', 'background-color':opts.loaderColor});
@@ -801,7 +801,7 @@
 	}
 
 	if ($(pagination).length) {
-		$(pagination).append('<ul class="camera_pag_ul" />');
+		$(pagination).append('<ul class="camera_pag_ul">');
 		var li;
 		for (li = 0; li < amountSlide; li++) {
 			$('.camera_pag_ul',wrap).append('<li class="pag_nav_'+li+'" style="position:relative; z-index:1002"><span><span>'+li+'</span></span></li>');
@@ -836,7 +836,7 @@
 				if ($('> div', elem).eq(i).attr('data-thumb')!='') {
 					var thumbUrl = $('> div', elem).eq(i).attr('data-thumb'), newImg = new Image();
 					newImg.src = thumbUrl;
-					$('ul',thumbs).append('<li class="pix_thumb pix_thumb_'+i+'" />');
+					$('ul',thumbs).append('<li class="pix_thumb pix_thumb_'+i+'">');
 					$('li.pix_thumb_'+i,thumbs).append($(newImg).attr('class','camera_thumb'));
 				}
 			});
@@ -1302,7 +1302,7 @@
 			while (cycle < blocks) {
 				arr.push(cycle);
 				delay.push(cycle);
-				cameraCont.append('<div class="cameraappended" style="display:none; overflow:hidden; position:absolute; z-index:1000" />');
+				cameraCont.append('<div class="cameraappended" style="display:none; overflow:hidden; position:absolute; z-index:1000">');
 				var tApp = $('.cameraappended:eq('+cycle+')',target);
 				if (fx == 'scrollLeft' || fx == 'scrollRight' || fx == 'scrollTop' || fx == 'scrollBottom' || fx == 'scrollHorz') {
 					selector.eq(slideI).clone().show().appendTo(tApp);

@@ -28,16 +28,18 @@
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('#camera_wrap<?php echo $module; ?>').camera({
-	height: '<?php echo $ratio; ?>%',
-	fx: 'random',
-	playPause: <?php echo $camera_playpause; ?>,
-	pagination: <?php echo $camera_pagination; ?>,
-	thumbnails: <?php echo $camera_thumbnails; ?>,
-	overlayer: true,
-	loader: true,
-	hover: true,
-	time: 6000,
-	transPeriod: 1000
-});
+jQuery(document).ready(function($) {
+	$('#camera_wrap<?php echo $module; ?>').camera({
+		height: '<?php echo $ratio; ?>%',
+		fx: 'random',
+		playPause: <?php echo $camera_playpause; ?>,
+		pagination: <?php echo $camera_pagination; ?>,
+		thumbnails: <?php echo $camera_thumbnails; ?>,
+		overlayer: true,
+		loader: true,
+		hover: true,
+		time: 6000,
+		transPeriod: 1000
+	});
+})(jQuery);
 --></script>

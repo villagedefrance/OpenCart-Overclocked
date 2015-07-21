@@ -9,6 +9,11 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.css');
+
+		$this->document->addScript('catalog/view/javascript/jquery/slick/slick.min.js');
+		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.1.3.js');
+
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
 		$this->data['title'] = $this->config->get($this->_name . '_title' . $this->config->get('config_language_id'));
@@ -17,27 +22,19 @@ class ControllerModuleCarousel extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$this->data['slick_theme'] = $this->config->get($this->_name . '_skin');
+
+		$this->data['show'] = $setting['show'];
+
+		// Autoscroll
+		if ($setting['auto']) {
+			$this->data['auto'] = 'true';
+		} else {
+			$this->data['auto'] = 'false';
+		}
+
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
-
-		if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/carousel.css')) {
-			$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/carousel.css');
-		} else {
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/carousel.css');
-		}
-
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.jcarousel.min.js');
-
-		$this->data['limit'] = $setting['limit'];
-		$this->data['scroll'] = $setting['scroll'];
-
-		if (isset($setting['auto'])) {
-			$this->data['auto'] = $this->data['scroll'] * 3;
-		} else {
-			$this->data['auto'] = 0;
-		}
-
-		$this->data['wrap'] = 'circular';
 
 		$this->data['banners'] = array();
 

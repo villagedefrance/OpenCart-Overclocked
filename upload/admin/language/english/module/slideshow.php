@@ -18,7 +18,7 @@ $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the 
 $_['entry_skin']    				= 'Colour Theme:';
 $_['entry_playpause'] 			= 'Show Play/Pause:';
 $_['entry_pagination'] 			= 'Show Pagination:';
-$_['entry_thumbnails'] 			= 'Show Thumbnails:<br /><span class="help">Note: Pagination must be enabled in order to display thumbnails.</span>';
+$_['entry_thumbnails'] 			= 'Show Thumbnails:<br /><span class="help">Pagination must be enabled in order to display thumbnails.</span>';
 
 $_['entry_banner']        		= 'Banner';
 $_['entry_dimension']     		= 'Dimension (W x H)';

@@ -15,6 +15,8 @@ $_['text_column_right']   		= 'Column Right';
 // Entry
 $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from active template.</span>';
 $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
+$_['entry_timeout']				= 'Duration:';
+$_['entry_speed']    				= 'Speed:';
 
 $_['entry_banner']        		= 'Banner';
 $_['entry_dimension']     		= 'Dimension (W x H)';

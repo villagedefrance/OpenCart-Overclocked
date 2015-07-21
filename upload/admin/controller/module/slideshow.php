@@ -2,6 +2,8 @@
 class ControllerModuleSlideshow extends Controller {
 	private $error = array();
 	private $_name = 'slideshow';
+	private $_plugin = 'Camera';
+	private $_version = 'v1.3.4';
 
 	public function index() {
 		$this->load->language('module/slideshow');
@@ -94,37 +96,41 @@ class ControllerModuleSlideshow extends Controller {
 		// Skins
 		$this->data['skins'] = array();
 
-		$this->data['skins'][] = array('skin' => 'amber','title' => 'Amber');
-		$this->data['skins'][] = array('skin' => 'ash','title' => 'Ash');
-		$this->data['skins'][] = array('skin' => 'azure','title' => 'Azure');
-		$this->data['skins'][] = array('skin' => 'beige','title' => 'Beige');
-		$this->data['skins'][] = array('skin' => 'black','title' => 'Black');
-		$this->data['skins'][] = array('skin' => 'blue','title' => 'Blue');
-		$this->data['skins'][] = array('skin' => 'brown','title' => 'Brown');
-		$this->data['skins'][] = array('skin' => 'burgundy','title' => 'Burgundy');
-		$this->data['skins'][] = array('skin' => 'charcoal','title' => 'Charcoal');
-		$this->data['skins'][] = array('skin' => 'chocolate','title' => 'Chocolate');
-		$this->data['skins'][] = array('skin' => 'coffee','title' => 'Coffee');
-		$this->data['skins'][] = array('skin' => 'cyan','title' => 'Cyan');
-		$this->data['skins'][] = array('skin' => 'fuchsia','title' => 'Fuchsia');
-		$this->data['skins'][] = array('skin' => 'gold','title' => 'Gold');
-		$this->data['skins'][] = array('skin' => 'green','title' => 'Green');
-		$this->data['skins'][] = array('skin' => 'grey','title' => 'Grey');
-		$this->data['skins'][] = array('skin' => 'indigo','title' => 'Indigo');
-		$this->data['skins'][] = array('skin' => 'khaki','title' => 'Khaki');
-		$this->data['skins'][] = array('skin' => 'lime','title' => 'Lime');
-		$this->data['skins'][] = array('skin' => 'magenta','title' => 'Magenta');
-		$this->data['skins'][] = array('skin' => 'maroon','title' => 'Maroon');
-		$this->data['skins'][] = array('skin' => 'orange','title' => 'Orange');
-		$this->data['skins'][] = array('skin' => 'olive','title' => 'Olive');
-		$this->data['skins'][] = array('skin' => 'pink','title' => 'Pink');
-		$this->data['skins'][] = array('skin' => 'pistachio','title' => 'Pistachio');
-		$this->data['skins'][] = array('skin' => 'red','title' => 'Red');
-		$this->data['skins'][] = array('skin' => 'tangerine','title' => 'Tangerine');
-		$this->data['skins'][] = array('skin' => 'turquoise','title' => 'Turquoise');
-		$this->data['skins'][] = array('skin' => 'violet','title' => 'Violet');
-		$this->data['skins'][] = array('skin' => 'white','title' => 'White');
-		$this->data['skins'][] = array('skin' => 'yellow','title' => 'Yellow');
+		$this->data['skins'][] = array('skin' => 'amber','color' => '#FFBF00','title' => 'Amber');
+		$this->data['skins'][] = array('skin' => 'ash','color' => '#B2BEB5','title' => 'Ash');
+		$this->data['skins'][] = array('skin' => 'azure','color' => '#007FFF','title' => 'Azure');
+		$this->data['skins'][] = array('skin' => 'beige','color' => '#F5F5DC','title' => 'Beige');
+		$this->data['skins'][] = array('skin' => 'black','color' => '#000000','title' => 'Black');
+		$this->data['skins'][] = array('skin' => 'blue','color' => '#0000FF','title' => 'Blue');
+		$this->data['skins'][] = array('skin' => 'brown','color' => '#964B00','title' => 'Brown');
+		$this->data['skins'][] = array('skin' => 'burgundy','color' => '#800020','title' => 'Burgundy');
+		$this->data['skins'][] = array('skin' => 'charcoal','color' => '#36454F','title' => 'Charcoal');
+		$this->data['skins'][] = array('skin' => 'chocolate','color' => '#D2691E','title' => 'Chocolate');
+		$this->data['skins'][] = array('skin' => 'coffee','color' => '#6F4E37','title' => 'Coffee');
+		$this->data['skins'][] = array('skin' => 'cyan','color' => '#00FFFF','title' => 'Cyan');
+		$this->data['skins'][] = array('skin' => 'fuchsia','color' => '#FF00FF','title' => 'Fuchsia');
+		$this->data['skins'][] = array('skin' => 'gold','color' => '#FFD700','title' => 'Gold');
+		$this->data['skins'][] = array('skin' => 'green','color' => '#00FF00','title' => 'Green');
+		$this->data['skins'][] = array('skin' => 'grey','color' => '#808080','title' => 'Grey');
+		$this->data['skins'][] = array('skin' => 'indigo','color' => '#4B0082','title' => 'Indigo');
+		$this->data['skins'][] = array('skin' => 'khaki','color' => '#BDB76B','title' => 'Khaki');
+		$this->data['skins'][] = array('skin' => 'lime','color' => '#CCFF00','title' => 'Lime');
+		$this->data['skins'][] = array('skin' => 'magenta','color' => '#CA1F7B','title' => 'Magenta');
+		$this->data['skins'][] = array('skin' => 'maroon','color' => '#800000','title' => 'Maroon');
+		$this->data['skins'][] = array('skin' => 'orange','color' => '#FF7F00','title' => 'Orange');
+		$this->data['skins'][] = array('skin' => 'olive','color' => '#808000','title' => 'Olive');
+		$this->data['skins'][] = array('skin' => 'pink','color' => '#FFC0CB','title' => 'Pink');
+		$this->data['skins'][] = array('skin' => 'pistachio','color' => '#93C572','title' => 'Pistachio');
+		$this->data['skins'][] = array('skin' => 'red','color' => '#FF0000','title' => 'Red');
+		$this->data['skins'][] = array('skin' => 'tangerine','color' => '#F28500','title' => 'Tangerine');
+		$this->data['skins'][] = array('skin' => 'turquoise','color' => '#40E0D0','title' => 'Turquoise');
+		$this->data['skins'][] = array('skin' => 'violet','color' => '#7F00FF','title' => 'Violet');
+		$this->data['skins'][] = array('skin' => 'white','color' => '#FFFFFF','title' => 'White');
+		$this->data['skins'][] = array('skin' => 'yellow','color' => '#FFFF00','title' => 'Yellow');
+
+		// Plugin
+		$this->data[$this->_name . '_plugin'] = $this->_plugin;
+		$this->data[$this->_name . '_version'] = $this->_version;
 
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {

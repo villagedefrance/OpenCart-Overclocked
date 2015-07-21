@@ -38,15 +38,27 @@
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             </td>
           </tr>
+          <tr>
+            <td><?php echo $entry_skin; ?></td>
+            <td><select name="carousel_skin">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($carousel_skin == $skin['skin']) { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
         <?php } ?>
         </table>
         <table id="module" class="list">
           <thead>
             <tr>
               <td class="left"><?php echo $entry_banner; ?></td>
-              <td class="left"><?php echo $entry_limit; ?></td>
-              <td class="left"><?php echo $entry_scroll; ?></td>
-              <td class="left"><?php echo $entry_image; ?></td>
+              <td class="left"><span class="required">*</span> <?php echo $entry_image; ?></td>
+              <td class="left"><?php echo $entry_show; ?></td>
+              <td class="left"><?php echo $entry_auto; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
               <td class="left"><?php echo $entry_status; ?></td>
@@ -68,20 +80,24 @@
                 <?php } ?>
               </select></td>
               <td class="left">
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][limit]" value="<?php echo $module['limit']; ?>" size="1" />
-              </td>
-              <td class="left">
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][scroll]" value="<?php echo $module['scroll']; ?>" size="1" />
-                &nbsp; <?php echo $entry_auto; ?> 
-                <input type="checkbox" name="carousel_module[<?php echo $module_row; ?>][auto]" value="1" <?php if (isset($module['auto'])) { echo 'checked="checked"'; } ?> />
-              </td>
-              <td class="left">
                 <input type="text" name="carousel_module[<?php echo $module_row; ?>][width]" value="<?php echo $module['width']; ?>" size="3" /> x 
                 <input type="text" name="carousel_module[<?php echo $module_row; ?>][height]" value="<?php echo $module['height']; ?>" size="3" /> px
                 <?php if (isset($error_image[$module_row])) { ?>
                   <span class="error"><?php echo $error_image[$module_row]; ?></span>
                 <?php } ?>
               </td>
+              <td class="left">
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show]" value="<?php echo $module['show']; ?>" size="2" />
+              </td>
+              <td class="left"><select name="carousel_module[<?php echo $module_row; ?>][auto]">
+                <?php if ($module['auto']) { ?>
+                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                  <option value="0"><?php echo $text_no; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_yes; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                <?php } ?>
+              </select></td>
               <td class="left"><select name="carousel_module[<?php echo $module_row; ?>][layout_id]">
                 <?php foreach ($layouts as $layout) { ?>
                   <?php if ($layout['layout_id'] == $module['layout_id']) { ?>
@@ -144,7 +160,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="8"></td>
+              <td colspan="8" style="text-align:center; color:#444; font-size:10px;">Powered by <?php echo $carousel_plugin; ?> <?php echo $carousel_version; ?></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>
@@ -165,14 +181,17 @@ function addModule() {
 	html += '      <option value="<?php echo $banner['banner_id']; ?>"><?php echo $banner['name']; ?></option>';
 	<?php } ?>
 	html += '    </select></td>';
-	html += '    <td class="left"><input type="text" name="carousel_module[' + module_row + '][limit]" value="5" size="1" /></td>';
-	html += '    <td class="left"><input type="text" name="carousel_module[' + module_row + '][scroll]" value="1" size="1" />';
-	html += '      &nbsp; <?php echo $text_auto; ?> <input type="checkbox" name="carousel_module[' + module_row + '][auto]" value="1" />';
-	html += '    </td>';
 	html += '    <td class="left">';
 	html += '      <input type="text" name="carousel_module[' + module_row + '][width]" value="120" size="3" /> x ';
 	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
+    html += '    <td class="left">';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show]" value="3" size="2" />';
+	html += '    </td>';
+	html += '    <td class="left"><select name="carousel_module[' + module_row + '][auto]">';
+	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';
+	html += '      <option value="0"><?php echo $text_no; ?></option>';
+	html += '    </select></td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][layout_id]">';
 	<?php foreach ($layouts as $layout) { ?>
 	html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';

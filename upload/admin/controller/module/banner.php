@@ -2,6 +2,8 @@
 class ControllerModuleBanner extends Controller {
 	private $error = array();
 	private $_name = 'banner';
+	private $_plugin = 'Cycle Lite';
+	private $_version = 'v1.0.1 (OCE)';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -37,6 +39,8 @@ class ControllerModuleBanner extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
+		$this->data['entry_timeout'] = $this->language->get('entry_timeout');
+		$this->data['entry_speed'] = $this->language->get('entry_speed');
 
 		$this->data['entry_banner'] = $this->language->get('entry_banner');
 		$this->data['entry_dimension'] = $this->language->get('entry_dimension');
@@ -88,6 +92,10 @@ class ControllerModuleBanner extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
+		// Plugin
+		$this->data[$this->_name . '_plugin'] = $this->_plugin;
+		$this->data[$this->_name . '_version'] = $this->_version;
+
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {
 			$this->data[$this->_name . '_theme'] = $this->request->post[$this->_name . '_theme'];
@@ -113,6 +121,18 @@ class ControllerModuleBanner extends Controller {
 			$this->data[$this->_name . '_title'] = $this->request->post[$this->_name . '_title'];
 		} else {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
+		}
+
+		if (isset($this->request->post[$this->_name . '_timeout'])) {
+			$this->data[$this->_name . '_timeout'] = $this->request->post[$this->_name . '_timeout'];
+		} else {
+			$this->data[$this->_name . '_timeout'] = $this->config->get($this->_name . '_timeout' );
+		}
+
+		if (isset($this->request->post[$this->_name . '_speed'])) {
+			$this->data[$this->_name . '_speed'] = $this->request->post[$this->_name . '_speed'];
+		} else {
+			$this->data[$this->_name . '_speed'] = $this->config->get($this->_name . '_speed');
 		}
 
 		$this->data['modules'] = array();

@@ -44,9 +44,9 @@
             <td><select name="slideshow_skin">
               <?php foreach ($skins as $skin) { ?>
                 <?php if ($slideshow_skin == $skin['skin']) { ?>
-                  <option value="<?php echo $skin['skin']; ?>" selected="selected"><?php echo $skin['title']; ?></option>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
                 <?php } else { ?>
-                  <option value="<?php echo $skin['skin']; ?>"><?php echo $skin['title']; ?></option>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
                 <?php } ?>
               <?php } ?>
             </select></td>
@@ -86,7 +86,7 @@
           <thead>
             <tr>
               <td class="left"><?php echo $entry_banner; ?></td>
-              <td class="left"><?php echo $entry_dimension; ?></td>
+              <td class="left"><span class="required">*</span> <?php echo $entry_dimension; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
               <td class="left"><?php echo $entry_status; ?></td>
@@ -176,7 +176,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="6"></td>
+              <td colspan="6" style="text-align:center; color:#444; font-size:10px;">Powered by <?php echo $slideshow_plugin; ?> <?php echo $slideshow_version; ?></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>

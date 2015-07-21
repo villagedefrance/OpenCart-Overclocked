@@ -33,7 +33,9 @@ $(document).ready(function() {
 });
 var banner = function() {
 	$('#banner<?php echo $module; ?>').cycle({
-		pause:  <?php echo $pause; ?>,
+		timeout: <?php echo $timeout; ?>,
+		speed: <?php echo $speed; ?>,
+		pause: <?php echo $pause; ?>,
 		before: function(current, next) {
 			$(next).parent().height($(next).outerHeight());
 		}

@@ -1,0 +1,439 @@
+/* Slider */
+.slick-slider {
+    position: relative;
+    display: block;
+    -moz-box-sizing: border-box;
+	box-sizing: border-box;
+    -webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+	touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0 55px;
+    padding: 0;
+}
+.slick-list:focus {
+    outline: none;
+}
+.slick-list.dragging {
+    cursor: pointer;
+    cursor: hand;
+}
+.slick-slider .slick-track, .slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before, .slick-track:after {
+    display: table;
+    content: '';
+}
+.slick-track:after {
+    clear: both;
+}
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 40px;
+	margin-left: 25px;
+}
+[dir='rtl'] .slick-slide {
+    float: right;
+	margin-right: 25px;
+}
+.slick-slide img {
+    display: block;
+	background: transparent;
+}
+.slick-slide.slick-loading img {
+    display: none;
+}
+.slick-slide.dragging img {
+    pointer-events: none;
+}
+.slick-initialized .slick-slide {
+    display: block;
+}
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+.slick-vertical .slick-slide {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+.slick-arrow .slick-hidden {
+    display: none;
+}
+/*----------- OCE Theme -----------*/
+.slick-loading .slick-list {
+    background: #FFF url(images/ajax-loader.gif) center center no-repeat;
+}
+/* Arrows */
+.slick-prev, .slick-next {
+	position: absolute;
+    top: 40%;
+    background: #333;
+	background: rgba(51,51,51,0.05);
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+	border-radius: 27px;
+	-moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+    -khtml-border-radius: 27px;
+	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+    transform: scale(1.1);
+}
+/* Previous */
+.slick-prev {
+    left: 10px;
+	width: 40px;
+	display: block;
+}
+.slick-prev > span {
+	background: url(images/slick_skins.png) no-repeat 0 0;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+[dir='rtl'] .slick-prev {
+    right: 10px;
+    left: auto;
+	width: 40px;
+	display: block;
+}
+[dir='rtl'] .slick-prev > span {
+	background: url(images/slick_skins.png) no-repeat -40px 0;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+/* Next */
+.slick-next {
+    right: 10px;
+	width: 40px;
+	display: block;
+}
+.slick-next > span {
+	background: url(images/slick_skins.png) no-repeat -40px 0;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+[dir='rtl'] .slick-next {
+    left: 10px;
+	right: auto;
+	width: 40px;
+	display: block;
+}
+[dir='rtl'] .slick-next > span {
+    background: url(images/slick_skins.png) no-repeat 0 0;
+	display: block;
+	height: 40px;
+	width: 40px;
+}
+/* Dots */
+.slick-slider {
+    margin-bottom: 30px;
+}
+.slick-dots {
+    position: absolute;
+    bottom: -45px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+.slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.slick-dots li button:hover, .slick-dots li button:focus {
+    outline: none;
+}
+.slick-dots li button:hover:before, .slick-dots li button:focus:before {
+    opacity: 1;
+}
+.slick-dots li button:before {
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    opacity: .25;
+    color: black;
+}
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: black;
+}
+/*AMBER SKIN*/
+.slick_amber_skin .slick-prev > span {
+	background-position: 0 -160px;
+}
+.slick_amber_skin .slick-next > span {
+	background-position: -40px -160px;
+}
+.slick_amber_skin .slick-prev:hover, .slick_amber_skin .slick-prev:focus, .slick_amber_skin .slick-next:hover, .slick_amber_skin .slick-next:focus {
+	border: 1px solid #FFBF00;
+}
+/*ASH SKIN*/
+.slick_ash_skin .slick-prev > span {
+	background-position: 0 -200px;
+}
+.slick_ash_skin .slick-next > span {
+	background-position: -40px -200px;
+}
+.slick_amber_skin .slick-prev:hover, .slick_amber_skin .slick-prev:focus, .slick_amber_skin .slick-next:hover, .slick_amber_skin .slick-next:focus {
+	border: 1px solid #FFBF00;
+}
+/*AZURE SKIN*/
+.slick_azure_skin .slick-prev > span {
+	background-position: 0 -240px;
+}
+.slick_azure_skin .slick-next > span {
+	background-position: -40px -240px;
+}
+/*BEIGE SKIN*/
+.slick_beige_skin .slick-prev > span {
+	background-position: 0 -120px;
+}
+.slick_beige_skin .slick-next > span {
+	background-position: -40px -120px;
+}
+/*BLACK SKIN*/
+.slick_black_skin .slick-prev > span {
+	background-position: 0 -40px;
+}
+.slick_black_skin .slick-next > span {
+	background-position: -40px -40px;
+}
+/*BLUE SKIN*/
+.slick_blue_skin .slick-prev > span {
+	background-position: 0 -280px;
+}
+.slick_blue_skin .slick-next > span {
+	background-position: -40px -280px;
+}
+/*BROWN SKIN*/
+.slick_brown_skin .slick-prev > span {
+	background-position: 0 -320px;
+}
+.slick_brown_skin .slick-next > span {
+	background-position: -40px -320px;
+}
+/*BURGUNDY SKIN*/
+.slick_burgundy_skin .slick-prev > span {
+	background-position: 0 -360px;
+}
+.slick_burgundy_skin .slick-next > span {
+	background-position: -40px -360px;
+}
+/*CHARCOAL SKIN*/
+.slick_charcoal_skin .slick-prev > span {
+	background-position: 0 -400px;
+}
+.slick_charcoal_skin .slick-next > span {
+	background-position: -40px -400px;
+}
+/*CHOCOLATE SKIN*/
+.slick_chocolate_skin .slick-prev > span {
+	background-position: 0 -440px;
+}
+.slick_chocolate_skin .slick-next > span {
+	background-position: -40px -440px;
+}
+/*COFFEE SKIN*/
+.slick_coffee_skin .slick-prev > span {
+	background-position: 0 -480px;
+}
+.slick_coffee_skin .slick-next > span {
+	background-position: -40px -480px;
+}
+/*CYAN SKIN*/
+.slick_cyan_skin .slick-prev > span {
+	background-position: 0 -520px;
+}
+.slick_cyan_skin .slick-next > span {
+	background-position: -40px -520px;
+}
+/*FUCHSIA SKIN*/
+.slick_fuchsia_skin .slick-prev > span {
+	background-position: 0 -560px;
+}
+.slick_fuchsia_skin .slick-next > span {
+	background-position: -40px -560px;
+}
+/*GOLD SKIN*/
+.slick_gold_skin .slick-prev > span {
+	background-position: 0 -600px;
+}
+.slick_gold_skin .slick-next > span {
+	background-position: -40px -600px;
+}
+/*GREEN SKIN*/
+.slick_green_skin .slick-prev > span {
+	background-position: 0 -640px;
+}
+.slick_green_skin .slick-next > span {
+	background-position: -40px -640px;
+}
+/*GREY SKIN*/
+.slick_grey_skin .slick-prev > span {
+	background-position: 0 -680px;
+}
+.slick_grey_skin .slick-next > span {
+	background-position: -40px -680px;
+}
+/*INDIGO SKIN*/
+.slick_indigo_skin .slick-prev > span {
+	background-position: 0 -720px;
+}
+.slick_indigo_skin .slick-next > span {
+	background-position: -40px -720px;
+}
+/*KHAKI SKIN*/
+.slick_khaki_skin .slick-prev > span {
+	background-position: 0 -760px;
+}
+.slick_khaki_skin .slick-next > span {
+	background-position: -40px -760px;
+}
+/*LIME SKIN*/
+.slick_lime_skin .slick-prev > span {
+	background-position: 0 -800px;
+}
+.slick_lime_skin .slick-next > span {
+	background-position: -40px -800px;
+}
+/*MAGENTA SKIN*/
+.slick_magenta_skin .slick-prev > span {
+	background-position: 0 -840px;
+}
+.slick_magenta_skin .slick-next > span {
+	background-position: -40px -840px;
+}
+/*MAROON SKIN*/
+.slick_maroon_skin .slick-prev > span {
+	background-position: 0 -880px;
+}
+.slick_maroon_skin .slick-next > span {
+	background-position: -40px -880px;
+}
+/*ORANGE SKIN*/
+.slick_orange_skin .slick-prev > span {
+	background-position: 0 -920px;
+}
+.slick_orange_skin .slick-next > span {
+	background-position: -40px -920px;
+}
+/*OLIVE SKIN*/
+.slick_olive_skin .slick-prev > span {
+	background-position: 0 -1080px;
+}
+.slick_olive_skin .slick-next > span {
+	background-position: -40px -1080px;
+}
+/*PINK SKIN*/
+.slick_pink_skin .slick-prev > span {
+	background-position: 0 -960px;
+}
+.slick_pink_skin .slick-next > span {
+	background-position: -40px -960px;
+}
+/*PISTACHIO SKIN*/
+.slick_pistachio_skin .slick-prev > span {
+	background-position: 0 -1040px;
+}
+.slick_pistachio_skin .slick-next > span {
+	background-position: -40px -1040px;
+}
+/*RED SKIN*/
+.slick_red_skin .slick-prev > span {
+	background-position: 0 -1000px;
+}
+.slick_red_skin .slick-next > span {
+	background-position: -40px -1000px;
+}
+/*TANGERINE SKIN*/
+.slick_tangerine_skin .slick-prev > span {
+	background-position: 0 -1120px;
+}
+.slick_tangerine_skin .slick-next > span {
+	background-position: -40px -1120px;
+}
+/*TURQUOISE SKIN*/
+.slick_turquoise_skin .slick-prev > span {
+	background-position: 0 -1160px;
+}
+.slick_turquoise_skin .slick-next > span {
+	background-position: -40px -1160px;
+}
+/*VIOLET SKIN*/
+.slick_violet_skin .slick-prev > span {
+	background-position: 0 -1200px;
+}
+.slick_violet_skin .slick-next > span {
+	background-position: -40px -1200px;
+}
+/*WHITE SKIN*/
+.slick_white_skin .slick-prev > span {
+	background-position: 0 -80px;
+}
+.slick_white_skin .slick-next > span {
+	background-position: -40px -80px;
+}
+/*YELLOW SKIN*/
+.slick_yellow_skin .slick-prev > span {
+	background-position: 0 -1240px;
+}
+.slick_yellow_skin .slick-next > span {
+	background-position: -40px -1240px;
+}

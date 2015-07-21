@@ -9,6 +9,8 @@ class ControllerModuleBanner extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->document->addScript('catalog/view/javascript/jquery/cycle/jquery.cycle.min.js');
+
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
 		$this->data['title'] = $this->config->get($this->_name . '_title' . $this->config->get('config_language_id'));
@@ -17,12 +19,21 @@ class ControllerModuleBanner extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->load->model('design/banner');
-		$this->load->model('tool/image');
+		$this->data['timeout'] = $this->config->get($this->_name . '_timeout');
+		$this->data['speed'] = $this->config->get($this->_name . '_speed');
 
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.cycle.js');
+		if (!$this->data['timeout']) {
+			$this->data['timeout'] = 4000;
+		}
+
+		if (!$this->data['speed']) {
+			$this->data['speed'] = 1000;
+		}
 
 		$this->data['pause'] = $setting['pause'];
+
+		$this->load->model('design/banner');
+		$this->load->model('tool/image');
 
 		$this->data['banners'] = array();
 

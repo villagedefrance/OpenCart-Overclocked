@@ -1,36 +1,47 @@
-<?php if($theme) { ?>
+<?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content" style="list-style:none;">
-    <div id="carousel<?php echo $module; ?>">
-      <ul class="jcarousel-skin-opencart">
+  <div class="box-content">
+    <div class="slick_<?php echo $slick_theme; ?>_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
-        <li><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" title="<?php echo $banner['title']; ?>" /></a></li>
+        <?php if ($banner['link']) { ?>
+          <div styl><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
+        <?php } else { ?>
+          <div><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></div>
+        <?php } ?>
       <?php } ?>
-      </ul>
     </div>
   </div>
 </div>
 <?php } else { ?>
-  <div style="margin-bottom:20px; list-style:none;">
-    <div id="carousel<?php echo $module; ?>">
-      <ul class="jcarousel-skin-opencart">
+  <div style="margin-bottom:15px;">
+    <div class="slick_<?php echo $slick_theme; ?>_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
-        <li><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" title="<?php echo $banner['title']; ?>" /></a></li>
+        <?php if ($banner['link']) { ?>
+          <div><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
+        <?php } else { ?>
+          <div><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></div>
+        <?php } ?>
       <?php } ?>
-      </ul>
     </div>
   </div>
 <?php } ?>
 
 <script type="text/javascript"><!--
-jQuery(document).ready(function() {
-	jQuery('#carousel<?php echo $module; ?> ul').jcarousel({
-		vertical: false,
-		visible: <?php echo $limit; ?>,
-		scroll: <?php echo $scroll; ?>,
-		auto: <?php echo $auto; ?>,
-		wrap: '<?php echo $wrap; ?>'
+jQuery(document).ready(function($) {
+	$('#carousel<?php echo $module; ?>').slick({
+		arrows: true,
+		prevArrow: '<a class="slick-prev"><span></span></a>',
+		nextArrow: '<a class="slick-next"><span></span></a>',
+		autoplay: <?php echo $auto; ?>,
+		autoplaySpeed: 5000,
+		pauseOnHover: true,
+		slidesToShow: <?php echo $show; ?>,
+		slidesToScroll: 1,
+		easing: 'easeInOutExpo',
+		infinite: true,
+		speed: 800,
+		rtl: false
 	});
-});
-//--></script>
+})(jQuery);
+--></script>
