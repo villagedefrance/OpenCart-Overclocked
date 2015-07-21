@@ -112,10 +112,9 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	overflow: hidden;
-	margin: -18px 0 0 -18px;
 	width: 36px;
 	height: 36px;
+	margin: -18px 0 0 -18px;
 	overflow: hidden;
 	z-index: 3;
 }
@@ -464,6 +463,10 @@
 	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
 }
 .camera_prevThumbs:hover, .camera_nextThumbs:hover, .camera_prev:hover, .camera_next:hover, .camera_commands:hover, .camera_thumbs_cont:hover {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
 	transform: scale(1.1);
 }
 .camera_thumb {

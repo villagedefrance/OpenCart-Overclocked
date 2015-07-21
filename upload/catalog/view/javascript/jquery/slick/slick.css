@@ -65,6 +65,7 @@
 .slick-slide img {
     display: block;
 	background: transparent;
+	outline: 0;
 }
 .slick-slide.slick-loading img {
     display: none;
@@ -74,6 +75,7 @@
 }
 .slick-initialized .slick-slide {
     display: block;
+	outline: 0;
 }
 .slick-loading .slick-slide {
     visibility: hidden;
@@ -109,7 +111,11 @@
 	cursor: pointer;
 }
 .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
-    transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
 }
 /* Previous */
 .slick-prev {
