@@ -5,7 +5,7 @@
     <div class="slick_<?php echo $slick_theme; ?>_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
-          <div styl><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
+          <div><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
         <?php } else { ?>
           <div><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></div>
         <?php } ?>
