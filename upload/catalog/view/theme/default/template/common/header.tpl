@@ -30,7 +30,6 @@
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.11.4.custom.min.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/common.js"></script>
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
@@ -56,7 +55,7 @@ $(document).ready(function() {
 <?php } ?>
 <?php if ($cookie_consent) { ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/cookiecuttr.css" />
-<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.cookie-1.4.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookiecuttr.js"></script>
 <script type="text/javascript"><!--
 $(document).ready(function() {

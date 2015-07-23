@@ -12,7 +12,7 @@ class ControllerModuleCarousel extends Controller {
 		$this->document->addStyle('catalog/view/javascript/jquery/slick/slick.css');
 
 		$this->document->addScript('catalog/view/javascript/jquery/slick/slick.min.js');
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.1.3.js');
+		$this->document->addScript('catalog/view/javascript/jquery/jquery.easing.min.js');
 
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');

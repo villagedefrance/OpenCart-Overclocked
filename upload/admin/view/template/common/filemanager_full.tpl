@@ -4,7 +4,7 @@
 
 <script type="text/javascript" src="view/javascript/jquery/ui/external/jquery.bgiframe-2.1.2.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie-1.4.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/plugins/jquery.tree.cookie.js"></script>
 <script type="text/javascript" src="view/javascript/plupload/js/plupload.full.min.js"></script>
 <script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
