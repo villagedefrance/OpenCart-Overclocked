@@ -544,6 +544,30 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	public function getOrdersCustomersGroup($customer_id) {
+		$query = $this->db->query("SELECT *, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND customer_id = '" . (int)$customer_id . "'"); 
+
+		return $query->row['customer_group'];
+	}
+
+	public function getTotalCustomersOrders($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE customer_id = '" . (int)$customer_id . "' AND order_status_id > '0'");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalCustomersOrdersMissed($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE customer_id = '" . (int)$customer_id . "' AND order_status_id = '0'");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalCustomersReturns($customer_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return` WHERE customer_id = '" . (int)$customer_id . "'");
+
+		return $query->row['total'];
+	}
+
 	public function getIpsByCustomerId($customer_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$customer_id . "'");
 

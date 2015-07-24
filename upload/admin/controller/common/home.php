@@ -37,9 +37,12 @@ class ControllerCommonHome extends Controller {
 		$this->data['tab_customer'] = $this->language->get('tab_customer');
 		$this->data['tab_review'] = $this->language->get('tab_review');
 		$this->data['tab_affiliate'] = $this->language->get('tab_affiliate');
+		$this->data['tab_return'] = $this->language->get('tab_return');
+		$this->data['tab_upload'] = $this->language->get('tab_upload');
 
 		$this->data['column_order'] = $this->language->get('column_order');
 		$this->data['column_customer'] = $this->language->get('column_customer');
+		$this->data['column_conversion'] = $this->language->get('column_conversion');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_total'] = $this->language->get('column_total');
@@ -48,12 +51,20 @@ class ControllerCommonHome extends Controller {
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_email'] = $this->language->get('column_email');
 		$this->data['column_customer_group'] = $this->language->get('column_customer_group');
+		$this->data['column_orders_passed'] = $this->language->get('column_orders_passed');
+		$this->data['column_orders_missed'] = $this->language->get('column_orders_missed');
 		$this->data['column_product'] = $this->language->get('column_product');
+		$this->data['column_model'] = $this->language->get('column_model');
 		$this->data['column_author'] = $this->language->get('column_author');
 		$this->data['column_rating'] = $this->language->get('column_rating');
+		$this->data['column_rating_total'] = $this->language->get('column_rating_total');
 		$this->data['column_affiliate'] = $this->language->get('column_affiliate');
 		$this->data['column_newsletter'] = $this->language->get('column_newsletter');
 		$this->data['column_approved'] = $this->language->get('column_approved');
+		$this->data['column_return_id'] = $this->language->get('column_return_id');
+		$this->data['column_return_history'] = $this->language->get('column_return_history');
+		$this->data['column_upload_id'] = $this->language->get('column_upload_id');
+		$this->data['column_filename'] = $this->language->get('column_filename');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['entry_range'] = $this->language->get('entry_range');
@@ -178,7 +189,7 @@ class ControllerCommonHome extends Controller {
 
 		$this->load->model('sale/customer');
 
-		$this->data['total_customer'] = $this->model_sale_customer->getTotalCustomers();
+		$this->data['total_customer'] = $this->model_sale_customer->getTotalCustomers(0);
 		$this->data['total_customer_approval'] = $this->model_sale_customer->getTotalCustomersAwaitingApproval();
 
 		$this->load->model('catalog/review');
@@ -188,7 +199,7 @@ class ControllerCommonHome extends Controller {
 
 		$this->load->model('sale/affiliate');
 
-		$this->data['total_affiliate'] = $this->model_sale_affiliate->getTotalAffiliates();
+		$this->data['total_affiliate'] = $this->model_sale_affiliate->getTotalAffiliates(0);
 		$this->data['total_affiliate_approval'] = $this->model_sale_affiliate->getTotalAffiliatesAwaitingApproval();
 
 		if ($this->config->get('config_affiliate_disable')) {
@@ -197,12 +208,26 @@ class ControllerCommonHome extends Controller {
 			$this->data['allow_affiliate'] = true;
 		}
 
+		$this->load->model('sale/return');
+
+		$this->data['total_return'] = $this->model_sale_return->getTotalReturns(0);
+
+		if ($this->config->get('config_return_disable')) {
+			$this->data['allow_return'] = false;
+		} else {
+			$this->data['allow_return'] = true;
+		}
+
+		$this->load->model('tool/upload');
+
+		$this->data['total_upload'] = $this->model_tool_upload->getTotalUploads(0);
+
 		// Overview Links
 		$this->data['view_reviews'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['view_affiliates'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Today
-		$this->data['total_order'] = $this->model_sale_order->getTotalOrders();
+		$this->data['total_order'] = $this->model_sale_order->getTotalOrders(0);
 
 		$order_today = $this->model_sale_order->getTotalOrders(array('filter_date_added' => date('Y-m-d')));
 
@@ -232,7 +257,7 @@ class ControllerCommonHome extends Controller {
 
 		$this->load->model('report/online');
 
-		$this->data['total_online'] = $this->model_report_online->getTotalCustomersOnline();
+		$this->data['total_online'] = $this->model_report_online->getTotalCustomersOnline(0);
 
 		$this->data['view_online'] = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -256,19 +281,31 @@ class ControllerCommonHome extends Controller {
 				'href'	=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
 			);
 
+			$customer_group = $this->model_sale_customer->getOrdersCustomersGroup($result['customer_id']);
+
+			$orders_total = $this->model_sale_customer->getTotalCustomersOrders($result['customer_id']);
+			$orders_missed = $this->model_sale_customer->getTotalCustomersOrdersMissed($result['customer_id']);
+
+			$orders_passed = $orders_total - $orders_missed;
+			$orders_conversion = ($orders_passed * 100) / $orders_total;
+
 			$this->data['orders'][] = array(
-				'order_id'   		=> $result['order_id'],
-				'customer'   	=> $result['customer'],
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'status'     		=> $result['status'],
-				'total'      		=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-				'action'     		=> $action
+				'order_id'   			=> $result['order_id'],
+				'customer'   		=> $result['customer'],
+				'customer_group'	=> $result['customer_id'] ? $customer_group : $this->language->get('text_guest'),
+				'passed'				=> ((int)$orders_passed > 0) ? '<span class="passed">' . (int)$orders_passed . '</span>' : '<span class="disabled">' . (int)$orders_passed . '</span>',
+				'missed'				=> ((int)$orders_missed > 0) ? '<span class="missed">' . (int)$orders_missed . '</span>' : '<span class="disabled">' . (int)$orders_missed . '</span>',
+				'conversion'			=> round($orders_conversion, 2) . '%',
+				'date_added' 		=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'status'     			=> $result['status'],
+				'total'      			=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'action'     			=> $action
 			);
 		}
 
 		// Tab Customers
 		$this->data['customers'] = array();
-		
+
 		$data = array(
 			'sort'  	=> 'c.date_added',
 			'order' 	=> 'DESC',
@@ -285,7 +322,21 @@ class ControllerCommonHome extends Controller {
 				'text'	=> $this->language->get('text_edit'),
 				'href'	=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $customer_result['customer_id'], 'SSL')
 			);
-			
+
+			$action_passed = array();
+
+			$action_passed[] = array(
+				'text'	=> $this->language->get('text_view'),
+				'href'	=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&filter_email=' . $customer_result['email'] . '&filter_customer=' . $customer_result['name'], 'SSL')
+			);
+
+			$action_missed = array();
+
+			$action_missed[] = array(
+				'text'	=> $this->language->get('text_view'),
+                'href'	=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&filter_email=' . $customer_result['email'] . '&filter_order_status_id=0', 'SSL')
+			);
+
 			$this->data['customers'][] = array(
 				'customer_id' 		=> $customer_result['customer_id'],
 				'name'           		=> $customer_result['name'],
@@ -295,6 +346,10 @@ class ControllerCommonHome extends Controller {
 				'approved'       	=> $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'newsletter'     	=> $customer_result['newsletter'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($customer_result['date_added'])),
+				'orders_passed'	=> $this->model_sale_customer->getTotalCustomersOrders($customer_result['customer_id']),
+				'orders_missed'	=> $this->model_sale_customer->getTotalCustomersOrdersMissed($customer_result['customer_id']),
+				'action_passed'	=> $action_passed,
+				'action_missed'	=> $action_missed,
 				'action'         		=> $action
 			);
 		}
@@ -319,15 +374,23 @@ class ControllerCommonHome extends Controller {
 				'href'	=> $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $review_result['review_id'], 'SSL')
 			);
 
+			$action_reviewed = array();
+
+			$action_reviewed[] = array(
+				'text'	=> $this->language->get('text_view'),
+                'href'	=> $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&filter_review=' . $review_result['review_id'] . '&filter_order_status_id=0', 'SSL')
+			);
+
 			$this->data['reviews'][] = array(
-				'review_id'  	=> $review_result['review_id'],
-				'name'       		=> $review_result['name'],
-				'author'     		=> $review_result['author'],
-				'rating'     		=> $review_result['rating'],
-				'status'     		=> $review_result['status'],
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($review_result['date_added'])),
-				'selected'   		=> isset($this->request->post['selected']) && in_array($review_result['review_id'], $this->request->post['selected']),
-				'action'     		=> $action
+				'review_id'			=> $review_result['review_id'],
+				'name'       			=> $review_result['name'],
+				'author'     			=> $review_result['author'],
+				'rating'     			=> $review_result['rating'],
+				'status'     			=> $review_result['status'],
+				'date_added' 		=> date($this->language->get('date_format_time'), strtotime($review_result['date_added'])),
+				'reviews_total' 	=> $this->model_catalog_review->getTotalProductReviews($review_result['product_id']),
+				'action_reviewed'	=> $action_reviewed,
+				'action'     			=> $action
 			);
 		}
 
@@ -359,8 +422,82 @@ class ControllerCommonHome extends Controller {
 				'status'       	=> $affiliate_result['status'],
 				'approved'     	=> $affiliate_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($affiliate_result['date_added'])),
-				'selected'     	=> isset($this->request->post['selected']) && in_array($affiliate_result['affiliate_id'], $this->request->post['selected']),
 				'action'       	=> $action
+			);
+		}
+
+		// Tab Returns
+		$this->data['returns'] = array();
+
+		$data = array(
+			'sort'		=> 'r.date_added',
+			'order'	=> 'DESC',
+			'start'	=> 0,
+			'limit'		=> 10
+		);
+
+		$return_results = $this->model_sale_return->getReturns($data);
+ 
+    	foreach ($return_results as $return_result) {
+			$action = array();
+
+			$action[] = array(
+				'text'	=> $this->language->get('text_view'),
+				'href'	=> $this->url->link('sale/return/info', 'token=' . $this->session->data['token'] . '&return_id=' . $return_result['return_id'], 'SSL')
+			);
+
+			$action[] = array(
+				'text'	=> $this->language->get('text_edit'),
+				'href'	=> $this->url->link('sale/return/update', 'token=' . $this->session->data['token'] . '&return_id=' . $return_result['return_id'], 'SSL')
+			);
+
+			$action_return = array();
+
+			$action_return[] = array(
+				'text'	=> $this->language->get('text_view'),
+				'href'	=> $this->url->link('sale/return', 'token=' . $this->session->data['token'] . '&filter_email=' . $return_result['email'], 'SSL')
+			);
+
+			$this->data['returns'][] = array(
+				'return_id'			=> $return_result['return_id'],
+				'order_id'			=> $return_result['order_id'],
+				'customer'			=> $return_result['customer'],
+				'product'				=> $return_result['product'],
+				'status'				=> $return_result['status'],
+				'date_added'		=> date($this->language->get('date_format_short'), strtotime($return_result['date_added'])),
+				'date_modified'	=> date($this->language->get('date_format_short'), strtotime($return_result['date_modified'])),
+                'return_history'	=> $this->model_sale_customer->getTotalCustomersReturns($return_result['customer_id']),
+				'action_return'		=> $action_return,
+				'action'				=> $action
+			);
+		}
+
+		// Tab Uploads
+		$this->data['uploads'] = array();
+
+		$data = array(
+			'sort'		=> 'date_added',
+			'order'	=> 'DESC',
+			'start'	=> 0,
+			'limit'		=> 10
+		);
+
+		$upload_results = $this->model_tool_upload->getUploads($data);
+
+		foreach ($upload_results as $upload_result) {
+			$action = array();
+
+			$action[] = array(
+				'text'	=> $this->language->get('text_download'),
+				'href'	=> $this->url->link('tool/upload/download', 'token=' . $this->session->data['token'] . '&code=' . $upload_result['code'], 'SSL')
+			);
+
+			$this->data['uploads'][] = array(
+				'upload_id'		=> $upload_result['upload_id'],
+				'name'			=> $upload_result['name'],
+				'filename'		=> $upload_result['filename'],
+				'date_added'	=> date($this->language->get('date_format_time'), strtotime($upload_result['date_added'])),
+				'action'			=> $action
 			);
 		}
 

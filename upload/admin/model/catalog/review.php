@@ -30,12 +30,13 @@ class ModelCatalogReview extends Model {
 		return $query->row;
 	}
 
-	public function getReviews($data = array()) { 
-		$sql = "SELECT r.review_id, pd.name, r.author, r.date_added, r.rating, r.status FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product_description pd ON (r.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+	public function getReviews($data = array()) {
+		$sql = "SELECT r.review_id, pd.name, r.author, r.product_id, r.date_added, r.rating, r.status FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product_description pd ON (r.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$sort_data = array(
 			'pd.name',
 			'r.author',
+			'r.product_id',
 			'r.date_added',
 			'r.rating',
 			'r.status'
@@ -78,6 +79,12 @@ class ModelCatalogReview extends Model {
 
 	public function getTotalReviewsAwaitingApproval() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "review WHERE status = '0'");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalProductReviews ($product_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "review WHERE product_id = '" . (int)$product_id . "'");
 
 		return $query->row['total'];
 	}

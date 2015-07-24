@@ -142,6 +142,10 @@
           <?php if ($affiliates && $allow_affiliate) { ?>
             <a href="#tab-latest-affiliate"><?php echo $tab_affiliate; ?></a>
           <?php } ?>
+          <?php if ($returns && $allow_return) { ?>
+            <a href="#tab-latest-return"><?php echo $tab_return; ?></a>
+          <?php } ?>
+          <a href="#tab-latest-upload"><?php echo $tab_upload; ?></a>
         </div>
         <div id="tab-latest-order" class="htabs-content">
           <table class="list">
@@ -149,6 +153,8 @@
               <tr>
                 <td class="left"><?php echo $column_order; ?></td>
                 <td class="left"><?php echo $column_customer; ?></td>
+				<td class="left"><?php echo $column_customer_group; ?></td>
+                <td class="left" colspan="3"><?php echo $column_conversion; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_total; ?></td>
@@ -161,7 +167,11 @@
               <tr>
                 <td class="center"><?php echo $order['order_id']; ?></td>
                 <td class="left"><?php echo $order['customer']; ?></td>
-                <td class="left"><?php echo $order['date_added']; ?></td>
+				<td class="center"><?php echo $order['customer_group']; ?></td>
+				<td class="center"><?php echo $order['passed']; ?></td>
+				<td class="center"><?php echo $order['missed']; ?></td>
+				<td class="center"><?php echo $order['conversion']; ?></td>
+                <td class="center"><?php echo $order['date_added']; ?></td>
                 <td class="center"><?php echo $order['status']; ?></td>
                 <td class="right"><?php echo $order['total']; ?></td>
                 <td class="right"><?php foreach ($order['action'] as $action) { ?>
@@ -171,7 +181,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="10"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>
@@ -189,6 +199,8 @@
                 <td class="left"><?php echo $column_newsletter; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
+				<td class="left"><?php echo $column_orders_passed; ?></td>
+				<td class="left"><?php echo $column_orders_missed; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
@@ -198,7 +210,7 @@
               <tr>
                 <td class="left"><?php echo $customer['name']; ?></td>
                 <td class="left"><?php echo $customer['email']; ?></td>
-                <td class="left"><?php echo $customer['customer_group']; ?></td>
+                <td class="center"><?php echo $customer['customer_group']; ?></td>
                 <td class="center"><?php echo $customer['approved']; ?></td>
                 <td class="center"><?php echo $customer['newsletter']; ?></td>
                 <?php if ($customer['status'] == 1) { ?>
@@ -207,6 +219,24 @@
                   <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                 <?php } ?>
                 <td class="center"><?php echo $customer['date_added']; ?></td>
+				<td class="right"><?php echo $customer['orders_passed']; ?> &nbsp;&nbsp;
+                <?php foreach ($customer['action_passed'] as $action_passed) { ?>
+                  <?php if ($customer['orders_passed'] > 0) { ?>
+                    <a href="<?php echo $action_passed['href']; ?>" title="<?php echo $action_passed['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                  <?php } else { ?>
+                    <img src="view/image/view-inactive.png" alt="" />
+                  <?php } ?>
+                <?php } ?>
+                </td>
+                <td class="right"><?php echo $customer['orders_missed']; ?> &nbsp;&nbsp;
+                <?php foreach ($customer['action_missed'] as $action_missed) { ?>
+                  <?php if ($customer['orders_missed'] > 0) { ?>
+                    <a href="<?php echo $action_missed['href']; ?>" title="<?php echo $action_missed['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                  <?php } else { ?>
+                    <img src="view/image/view-inactive.png" alt="" />
+                  <?php } ?>
+                <?php } ?>
+                </td>
                 <td class="right"><?php foreach ($customer['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
@@ -214,7 +244,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="10"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>
@@ -231,6 +261,7 @@
                 <td class="left"><?php echo $column_rating; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="right"><?php echo $column_rating_total; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
@@ -247,6 +278,15 @@
                   <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                 <?php } ?>
                 <td class="center"><?php echo $review['date_added']; ?></td>
+                <td class="right"><?php echo $review['reviews_total']; ?> &nbsp;&nbsp;
+                <?php foreach ($review['action_reviewed'] as $action_reviewed) { ?>
+                  <?php if ($review['reviews_total'] > 0) { ?>
+                    <a href="<?php echo $action_reviewed['href']; ?>" title="<?php echo $action_reviewed['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                  <?php } else { ?>
+                    <img src="view/image/view-inactive.png" alt="" />
+                  <?php } ?>
+                  <?php } ?>
+                </td>
                 <td class="right"><?php foreach ($review['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
@@ -254,7 +294,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
           </tbody>
@@ -295,6 +335,90 @@
             <?php } else { ?>
               <tr>
                 <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <?php } ?>
+		<?php if ($returns && $allow_return) { ?>
+        <div id="tab-latest-return" class="htabs-content">  
+          <table class="list">
+            <thead>
+              <tr>
+                <td class="left"><?php echo $column_return_id; ?></td>
+                <td class="left"><?php echo $column_order; ?></td>
+                <td class="left"><?php echo $column_customer; ?></td>
+                <td class="left"><?php echo $column_product; ?></td>
+                <td class="left"><?php echo $column_status; ?></td>
+                <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="right"><?php echo $column_return_history; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php if ($returns) { ?>
+              <?php foreach ($returns as $return) { ?>
+              <tr>
+                <td class="center"><?php echo $return['return_id']; ?></td>
+                <td class="center"><?php echo $return['order_id']; ?></td>
+                <td class="left"><?php echo $return['customer']; ?></td>
+                <td class="left"><?php echo $return['product']; ?></td>
+				<td class="center"><?php echo $return['status']; ?></td>
+                <td class="center"><?php echo $return['date_added']; ?></td>
+                <td class="right"><?php echo $return['return_history']; ?> &nbsp;&nbsp;
+                <?php foreach ($return['action_return'] as $action_return) { ?>
+                  <?php if ($return['return_history'] > 0) { ?>
+                    <a href="<?php echo $action_return['href']; ?>" title="<?php echo $action_return['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                  <?php } else { ?>
+                    <img src="view/image/view-inactive.png" alt="" />
+                  <?php } ?>
+                <?php } ?>
+                </td>
+                <td class="right">
+                  <?php foreach ($return['action'] as $action) { ?>
+                    <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                  <?php } ?>
+                </td>
+              </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+              </tr>
+            <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <?php } ?>
+        <?php if ($uploads) { ?>
+		<div id="tab-latest-upload" class="htabs-content">
+          <table class="list">
+            <thead>
+              <tr>
+                <td class="left"><?php echo $column_upload_id; ?></td>
+                <td class="left"><?php echo $column_name; ?></td>
+				<td class="left"><?php echo $column_filename; ?></td>
+                <td class="left"><?php echo $column_date_added; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php if ($uploads) { ?>
+              <?php foreach ($uploads as $upload) { ?>
+              <tr>
+                <td class="center"><?php echo $upload['upload_id']; ?></td>
+                <td class="left"><?php echo $upload['name']; ?></td>
+				<td class="left"><?php echo $upload['filename']; ?></td>
+                <td class="center"><?php echo $upload['date_added']; ?></td>
+                <td class="right"><?php foreach ($upload['action'] as $action) { ?>
+                  <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
+                <?php } ?></td>
+              </tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>

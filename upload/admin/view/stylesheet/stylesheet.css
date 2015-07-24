@@ -591,7 +591,7 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	text-align: center;
 	margin-right: 10px;
 }
-.list tbody tr td span.enabled {
+.list tbody tr td span.enabled, .list tbody tr td span.passed {
 	background: #5DC15E;
 	padding: 2px 12px;
 	color: #FFF;
@@ -603,6 +603,16 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 }
 .list tbody tr td span.disabled {
 	background: #A0A0A0;
+	padding: 2px 12px;
+	color: #FFF;
+	border: 0px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+.list tbody tr td span.missed {
+	background: #DE5954;
 	padding: 2px 12px;
 	color: #FFF;
 	border: 0px;

@@ -130,6 +130,7 @@
 	display: block;
 	height: 40px;
 	width: 40px;
+	pointer-events: auto;
 }
 [dir='rtl'] .slick-prev {
     right: 10px;
@@ -141,6 +142,7 @@
 	display: block;
 	height: 40px;
 	width: 40px;
+	pointer-events: auto;
 }
 /* Next */
 .slick-next {
@@ -152,6 +154,7 @@
 	display: block;
 	height: 40px;
 	width: 40px;
+	pointer-events: auto;
 }
 [dir='rtl'] .slick-next {
     left: 10px;
@@ -163,6 +166,7 @@
 	display: block;
 	height: 40px;
 	width: 40px;
+	pointer-events: auto;
 }
 /* Dots */
 .slick-slider {
