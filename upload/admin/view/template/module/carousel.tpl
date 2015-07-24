@@ -55,7 +55,7 @@
             <tr>
               <td class="left"><?php echo $entry_banner; ?></td>
               <td class="left"><span class="required">*</span> <?php echo $entry_image; ?></td>
-              <td class="left"><?php echo $entry_show; ?></td>
+              <td class="left"><span class="required">*</span> <?php echo $entry_show; ?></td>
               <td class="left"><?php echo $entry_auto; ?></td>
               <td class="left"><?php echo $entry_layout; ?></td>
               <td class="left"><?php echo $entry_position; ?></td>
@@ -89,6 +89,9 @@
                 <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_800]" value="<?php echo $module['show_800']; ?>" size="2" /> @ 800px<br />
                 <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_600]" value="<?php echo $module['show_600']; ?>" size="2" /> @ 600px<br />
                 <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_360]" value="<?php echo $module['show_360']; ?>" size="2" /> @ 360px
+				<?php if (isset($error_show[$module_row])) { ?>
+                  <span class="error"><?php echo $error_show[$module_row]; ?></span>
+                <?php } ?>
               </td>
               <td class="left"><select name="carousel_module[<?php echo $module_row; ?>][auto]">
                 <?php if ($module['auto']) { ?>

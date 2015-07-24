@@ -251,14 +251,14 @@
     border-radius: 0px 4px 4px 0;
 }
 .camera_commands_emboss .camera_pag .camera_pag_ul li {
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
 }
 .camera_commands_emboss .camera_pag .camera_pag_ul li:hover > span {
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px -1px rgba(0,0,0,0.2);
 }
 .camera_wrap .camera_pag .camera_pag_ul li.cameracurrent > span {
 	-moz-box-shadow: 0;
@@ -417,9 +417,9 @@
 .camera_wrap .camera_pag .camera_pag_ul li {
 	background: #333;
 	background: rgba(51,51,51,0.05);
-	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
-	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 2px 2px -2px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 2px 2px -2px rgba(0,0,0,0.2);
+	box-shadow: 0px 1px 0px rgba(255,255,255,1), inset 0px 2px 2px -2px rgba(0,0,0,0.2);
 }
 .camera_wrap .camera_pag .camera_pag_ul li:hover > span {
 	background: #333;

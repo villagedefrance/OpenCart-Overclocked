@@ -39,7 +39,7 @@ jQuery(document).ready(function() {
 		slidesToScroll: 1,
 		infinite: true,
 		speed: 800,
-		easing: 'linear',
+		easing: 'easeInOutExpo',
 		mobileFirst: true,
 		swipe: true,
 		rtl: false,

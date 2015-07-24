@@ -3,7 +3,7 @@ class ControllerModuleCarousel extends Controller {
 	private $error = array();
 	private $_name = 'carousel';
 	private $_plugin = 'Slick';
-	private $_version = 'v1.5.6';
+	private $_version = 'v1.5.7';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -69,6 +69,12 @@ class ControllerModuleCarousel extends Controller {
 			$this->data['error_image'] = $this->error['image'];
 		} else {
 			$this->data['error_image'] = array();
+		}
+
+		if (isset($this->error['show'])) {
+			$this->data['error_show'] = $this->error['show'];
+		} else {
+			$this->data['error_show'] = array();
 		}
 
   		$this->data['breadcrumbs'] = array();
@@ -201,6 +207,22 @@ class ControllerModuleCarousel extends Controller {
 			foreach ($this->request->post[$this->_name . '_module'] as $key => $value) {
 				if (!$value['width'] || !$value['height']) {
 					$this->error['image'][$key] = $this->language->get('error_image');
+				}
+
+				if (!$value['show_1024'] || $value['show_1024'] == 0 || $value['show_1024'] > 10) {
+					$this->error['show'][$key] = $this->language->get('error_show');
+				}
+
+				if (!$value['show_800'] || $value['show_800'] == 0 || $value['show_800'] > 10) {
+					$this->error['show'][$key] = $this->language->get('error_show');
+				}
+
+				if (!$value['show_600'] || $value['show_600'] == 0 || $value['show_600'] > 10) {
+					$this->error['show'][$key] = $this->language->get('error_show');
+				}
+
+				if (!$value['show_360'] || $value['show_360'] == 0 || $value['show_360'] > 10) {
+					$this->error['show'][$key] = $this->language->get('error_show');
 				}
 			}
 		}

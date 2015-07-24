@@ -98,7 +98,7 @@
 /* Arrows */
 .slick-prev, .slick-next {
 	position: absolute;
-    top: 40%;
+    top: 35%;
     background: #333;
 	background: rgba(51,51,51,0.05);
 	transition: all 0.2s ease-in-out;
