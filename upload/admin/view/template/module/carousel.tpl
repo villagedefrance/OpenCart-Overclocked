@@ -30,15 +30,13 @@
               <?php echo $text_no; ?><input type="radio" name="carousel_theme" value="0" checked="checked" />
             <?php } ?></td>
           </tr>
-        <?php foreach ($languages as $language) { ?>
           <tr>
             <td><?php echo $entry_title; ?></td>
-            <td>
+            <td><?php foreach ($languages as $language) { ?>
               <input type="text" name="carousel_title<?php echo $language['language_id']; ?>" id="carousel_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'carousel_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-            </td>
+            <?php } ?></td>
           </tr>
-        <?php } ?>
           <tr>
             <td><?php echo $entry_skin; ?></td>
             <td><select name="carousel_skin">
@@ -87,7 +85,10 @@
                 <?php } ?>
               </td>
               <td class="left">
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show]" value="<?php echo $module['show']; ?>" size="2" />
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_1024]" value="<?php echo $module['show_1024']; ?>" size="2" /> @ 1024px<br />
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_800]" value="<?php echo $module['show_800']; ?>" size="2" /> @ 800px<br />
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_600]" value="<?php echo $module['show_600']; ?>" size="2" /> @ 600px<br />
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_360]" value="<?php echo $module['show_360']; ?>" size="2" /> @ 360px
               </td>
               <td class="left"><select name="carousel_module[<?php echo $module_row; ?>][auto]">
                 <?php if ($module['auto']) { ?>
@@ -186,7 +187,10 @@ function addModule() {
 	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
     html += '    <td class="left">';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show]" value="3" size="2" />';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show_1024]" value="4" size="2" /> @ 1024px<br />';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show_800]" value="3" size="2" /> @ 800px<br />';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show_600]" value="2" size="2" /> @ 600px<br />';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show_360]" value="1" size="2" /> @ 360px';
 	html += '    </td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][auto]">';
 	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';

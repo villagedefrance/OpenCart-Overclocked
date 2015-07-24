@@ -43,15 +43,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme1" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title1<?php echo $language['language_id']; ?>" id="html_title1<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title1' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code1" cols="40" rows="10"><?php echo isset(${'html_code1'}) ? ${'html_code1'} : ''; ?></textarea></td>
@@ -70,15 +68,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme2" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title2<?php echo $language['language_id']; ?>" id="html_title2<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title2' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code2" cols="40" rows="10"><?php echo isset(${'html_code2'}) ? ${'html_code2'} : ''; ?></textarea></td>
@@ -97,15 +93,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme3" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title3<?php echo $language['language_id']; ?>" id="html_title3<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title3' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code3" cols="40" rows="10"><?php echo isset(${'html_code3'}) ? ${'html_code3'} : ''; ?></textarea></td>
@@ -124,15 +118,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme4" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title4<?php echo $language['language_id']; ?>" id="html_title4<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title4' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code4" cols="40" rows="10"><?php echo isset(${'html_code4'}) ? ${'html_code4'} : ''; ?></textarea></td>
@@ -151,15 +143,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme5" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title5<?php echo $language['language_id']; ?>" id="html_title5<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title5' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code5" cols="40" rows="10"><?php echo isset(${'html_code5'}) ? ${'html_code5'} : ''; ?></textarea></td>
@@ -178,15 +168,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme6" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title6<?php echo $language['language_id']; ?>" id="html_title6<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title6' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code6" cols="40" rows="10"><?php echo isset(${'html_code6'}) ? ${'html_code6'} : ''; ?></textarea></td>
@@ -205,15 +193,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme7" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title7<?php echo $language['language_id']; ?>" id="html_title7<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title7' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code7" cols="40" rows="10"><?php echo isset(${'html_code7'}) ? ${'html_code7'} : ''; ?></textarea></td>
@@ -232,15 +218,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme8" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title8<?php echo $language['language_id']; ?>" id="html_title8<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title8' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code8" cols="40" rows="10"><?php echo isset(${'html_code8'}) ? ${'html_code8'} : ''; ?></textarea></td>
@@ -259,15 +243,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme9" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title9<?php echo $language['language_id']; ?>" id="html_title9<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title9' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code9" cols="40" rows="10"><?php echo isset(${'html_code9'}) ? ${'html_code9'} : ''; ?></textarea></td>
@@ -286,15 +268,13 @@
                 <?php echo $text_no; ?><input type="radio" name="html_theme10" value="0" checked="checked" />
               <?php } ?></td>
             </tr>
-          <?php foreach ($languages as $language) { ?>
             <tr>
               <td><?php echo $entry_title; ?></td>
-              <td>
+              <td><?php foreach ($languages as $language) { ?>
                 <input type="text" name="html_title10<?php echo $language['language_id']; ?>" id="html_title10<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title10' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              </td>
+              <?php } ?></td>
             </tr>
-          <?php } ?>
             <tr>
               <td><?php echo $entry_code; ?></td>
               <td><textarea name="html_code10" cols="40" rows="10"><?php echo isset(${'html_code10'}) ? ${'html_code10'} : ''; ?></textarea></td>

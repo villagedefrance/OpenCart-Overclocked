@@ -35,15 +35,13 @@
               <?php echo $text_no; ?><input type="radio" name="featured_theme" value="0" checked="checked" />
             <?php } ?></td>
           </tr>
-        <?php foreach ($languages as $language) { ?>
           <tr>
             <td><?php echo $entry_title; ?></td>
-            <td>
+            <td><?php foreach ($languages as $language) { ?>
               <input type="text" name="featured_title<?php echo $language['language_id']; ?>" id="featured_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'featured_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-            </td>
+            <?php } ?></td>
           </tr>
-        <?php } ?>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_product; ?></td>
             <td><input type="text" name="product" value="" size="30" /></td>

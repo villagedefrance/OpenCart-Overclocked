@@ -28,7 +28,7 @@
 <?php } ?>
 
 <script type="text/javascript"><!--
-jQuery(document).ready(function($) {
+jQuery(document).ready(function() {
 	$('#camera_wrap<?php echo $module; ?>').camera({
 		height: '<?php echo $ratio; ?>%',
 		fx: 'random',

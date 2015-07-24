@@ -24,17 +24,12 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->data['slick_theme'] = $this->config->get($this->_name . '_skin');
 
-		if ($setting['show']) {
-			$this->data['show'] = $setting['show'];
-		} else {
-			$this->data['show'] = 3;
-		}
+		$this->data['show_1024'] = $setting['show_1024'] ? $setting['show_1024'] : 4;
+		$this->data['show_800'] = $setting['show_800'] ? $setting['show_800'] : 3;
+		$this->data['show_600'] = $setting['show_600'] ? $setting['show_600'] : 2;
+		$this->data['show_360'] = $setting['show_360'] ? $setting['show_360'] : 1;
 
-		if ($setting['auto']) {
-			$this->data['auto'] = 'true';
-		} else {
-			$this->data['auto'] = 'false';
-		}
+		$this->data['auto'] = $setting['auto'] ? 'true' : 'false';
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
