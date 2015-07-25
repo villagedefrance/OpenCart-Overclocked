@@ -109,24 +109,28 @@
 	  <div class="tiles">
         <div class="tile">
 	      <div class="tile-red">
-		    <p><a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /><?php echo $text_order_today; ?>&nbsp;<?php echo $total_order_today; ?></a></p>
+		    <p><span><?php echo $total_order_today; ?></span>
+            <a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /><br /><?php echo $text_order_today; ?></a></p>
           </div>
         </div>
-		<div class="tile">
+        <div class="tile">
           <div class="tile-blue">
-            <p><a href="<?php echo $view_customers; ?>" title=""><img src="view/image/dashboard/customer.png" alt="" /><?php echo $text_customer_today; ?>&nbsp;<?php echo $total_customer_today; ?></a></p>
+            <p><span><?php echo $total_customer_today; ?></span>
+            <a href="<?php echo $view_customers; ?>" title=""><img src="view/image/dashboard/customer.png" alt="" /><br /><?php echo $text_customer_today; ?></a></p>
           </div>
         </div>
-		<div class="tile">
+        <div class="tile">
           <div class="tile-yellow">
-            <p><a href="<?php echo $view_sales; ?>" title=""><img src="view/image/dashboard/sale.png" alt="" /><?php echo $text_sale_today; ?>&nbsp;<?php echo $total_sale_today; ?></a></p>
+            <p><span><?php echo $total_sale_today; ?></span>
+            <a href="<?php echo $view_sales; ?>" title=""><img src="view/image/dashboard/sale.png" alt="" /><br /><?php echo $text_sale_today; ?></a></p>
           </div>
         </div>
-		<div class="tile">
-		  <div class="tile-green">
-            <p><a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /><?php echo $text_online; ?>&nbsp;<?php echo $total_online; ?></a></p>
-          </div>
-		</div>
+        <div class="tile">
+          <div class="tile-green">
+            <p><span><?php echo $total_online; ?></span>
+            <a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /><br /><?php echo $text_online; ?></a></p>
+		  </div>
+        </div>
 	  </div>
       <div class="latest">
         <div class="dashboard-heading"><?php echo $text_latest; ?></div>
@@ -145,7 +149,9 @@
           <?php if ($returns && $allow_return) { ?>
             <a href="#tab-latest-return"><?php echo $tab_return; ?></a>
           <?php } ?>
-          <a href="#tab-latest-upload"><?php echo $tab_upload; ?></a>
+          <?php if ($uploads) { ?>
+            <a href="#tab-latest-upload"><?php echo $tab_upload; ?></a>
+          <?php } ?>
         </div>
         <div id="tab-latest-order" class="htabs-content">
           <table class="list">
@@ -195,8 +201,8 @@
                 <td class="left"><?php echo $column_customer; ?></td>
                 <td class="left"><?php echo $column_email; ?></td>
                 <td class="left"><?php echo $column_customer_group; ?></td>
-                <td class="left"><?php echo $column_approved; ?></td>
                 <td class="left"><?php echo $column_newsletter; ?></td>
+                <td class="left"><?php echo $column_approved; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
 				<td class="left"><?php echo $column_orders_passed; ?></td>
@@ -211,29 +217,29 @@
                 <td class="left"><?php echo $customer['name']; ?></td>
                 <td class="left"><?php echo $customer['email']; ?></td>
                 <td class="center"><?php echo $customer['customer_group']; ?></td>
-                <td class="center"><?php echo $customer['approved']; ?></td>
                 <td class="center"><?php echo $customer['newsletter']; ?></td>
+                <td class="center"><?php echo $customer['approved']; ?></td>
                 <?php if ($customer['status'] == 1) { ?>
                   <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
                 <?php } else { ?>
                   <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                 <?php } ?>
                 <td class="center"><?php echo $customer['date_added']; ?></td>
-				<td class="right"><?php echo $customer['orders_passed']; ?> &nbsp;&nbsp;
+				<td class="center"><?php echo $customer['orders_passed']; ?>
                 <?php foreach ($customer['action_passed'] as $action_passed) { ?>
                   <?php if ($customer['orders_passed'] > 0) { ?>
-                    <a href="<?php echo $action_passed['href']; ?>" title="<?php echo $action_passed['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                    <a href="<?php echo $action_passed['href']; ?>" title="<?php echo $action_passed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
                   <?php } else { ?>
-                    <img src="view/image/view-inactive.png" alt="" />
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
                   <?php } ?>
                 <?php } ?>
                 </td>
-                <td class="right"><?php echo $customer['orders_missed']; ?> &nbsp;&nbsp;
+                <td class="center"><?php echo $customer['orders_missed']; ?> &nbsp;&nbsp;
                 <?php foreach ($customer['action_missed'] as $action_missed) { ?>
                   <?php if ($customer['orders_missed'] > 0) { ?>
-                    <a href="<?php echo $action_missed['href']; ?>" title="<?php echo $action_missed['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                    <a href="<?php echo $action_missed['href']; ?>" title="<?php echo $action_missed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
                   <?php } else { ?>
-                    <img src="view/image/view-inactive.png" alt="" />
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
                   <?php } ?>
                 <?php } ?>
                 </td>
@@ -261,7 +267,7 @@
                 <td class="left"><?php echo $column_rating; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
-                <td class="right"><?php echo $column_rating_total; ?></td>
+                <td class="left"><?php echo $column_rating_total; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
@@ -278,12 +284,12 @@
                   <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                 <?php } ?>
                 <td class="center"><?php echo $review['date_added']; ?></td>
-                <td class="right"><?php echo $review['reviews_total']; ?> &nbsp;&nbsp;
-                <?php foreach ($review['action_reviewed'] as $action_reviewed) { ?>
-                  <?php if ($review['reviews_total'] > 0) { ?>
-                    <a href="<?php echo $action_reviewed['href']; ?>" title="<?php echo $action_reviewed['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                <td class="center"><?php echo $review['rating_total']; ?>
+                <?php foreach ($review['action_rated'] as $action_rated) { ?>
+                  <?php if ($review['rating_total'] > 0) { ?>
+                    <a href="<?php echo $action_rated['href']; ?>" title="<?php echo $action_rated['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
                   <?php } else { ?>
-                    <img src="view/image/view-inactive.png" alt="" />
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
                   <?php } ?>
                   <?php } ?>
                 </td>
@@ -308,6 +314,8 @@
               <tr>
                 <td class="left"><?php echo $column_affiliate; ?></td>
                 <td class="left"><?php echo $column_email; ?></td>
+                <td class="left"><?php echo $column_tracking; ?></td>
+                <td class="left"><?php echo $column_balance; ?></td>
                 <td class="left"><?php echo $column_approved; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
@@ -320,6 +328,8 @@
               <tr>
                 <td class="left"><?php echo $affiliate['name']; ?></td>
                 <td class="left"><?php echo $affiliate['email']; ?></td>
+                <td class="left"><?php echo $affiliate['code']; ?></td>
+                <td class="center"><?php echo $affiliate['balance']; ?></td>
                 <td class="center"><?php echo $affiliate['approved']; ?></td>
                 <?php if ($affiliate['status'] == 1) { ?>
                   <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
@@ -334,7 +344,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>
@@ -352,7 +362,7 @@
                 <td class="left"><?php echo $column_product; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
-                <td class="right"><?php echo $column_return_history; ?></td>
+                <td class="left"><?php echo $column_return_history; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
@@ -366,12 +376,12 @@
                 <td class="left"><?php echo $return['product']; ?></td>
 				<td class="center"><?php echo $return['status']; ?></td>
                 <td class="center"><?php echo $return['date_added']; ?></td>
-                <td class="right"><?php echo $return['return_history']; ?> &nbsp;&nbsp;
+                <td class="center"><?php echo $return['return_history']; ?>
                 <?php foreach ($return['action_return'] as $action_return) { ?>
                   <?php if ($return['return_history'] > 0) { ?>
-                    <a href="<?php echo $action_return['href']; ?>" title="<?php echo $action_return['text']; ?>"><img src="view/image/view-active.png" alt="" /></a>
+                    <a href="<?php echo $action_return['href']; ?>" title="<?php echo $action_return['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
                   <?php } else { ?>
-                    <img src="view/image/view-inactive.png" alt="" />
+                    <a title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
                   <?php } ?>
                 <?php } ?>
                 </td>
@@ -465,7 +475,6 @@ function getSalesChart(range) {
             		ticks: json['xaxis']
 				}
 			}
-
 			$.plot($('#report'), [json['order'], json['customer']], option);
 		},
         error: function(xhr, ajaxOptions, thrownError) {

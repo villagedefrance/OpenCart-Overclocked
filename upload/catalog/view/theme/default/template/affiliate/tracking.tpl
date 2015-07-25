@@ -15,7 +15,7 @@
     <textarea cols="40" rows="1"><?php echo $code; ?></textarea>
   </p>
   <p><?php echo $text_generator; ?><br />
-    <input type="text" name="product" value="" />
+    <input type="text" name="product" value="" size="40" />
   </p>
   <p><?php echo $text_link; ?><br />
     <textarea name="link" cols="40" rows="5"></textarea>

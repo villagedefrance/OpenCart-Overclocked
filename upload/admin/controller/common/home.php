@@ -59,6 +59,8 @@ class ControllerCommonHome extends Controller {
 		$this->data['column_rating'] = $this->language->get('column_rating');
 		$this->data['column_rating_total'] = $this->language->get('column_rating_total');
 		$this->data['column_affiliate'] = $this->language->get('column_affiliate');
+		$this->data['column_tracking'] = $this->language->get('column_tracking');
+		$this->data['column_balance'] = $this->language->get('column_balance');
 		$this->data['column_newsletter'] = $this->language->get('column_newsletter');
 		$this->data['column_approved'] = $this->language->get('column_approved');
 		$this->data['column_return_id'] = $this->language->get('column_return_id');
@@ -342,9 +344,9 @@ class ControllerCommonHome extends Controller {
 				'name'           		=> $customer_result['name'],
 				'email'          		=> $customer_result['email'],
 				'customer_group' 	=> $customer_result['customer_group'],
-				'status'         		=> $customer_result['status'],
-				'approved'       	=> $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'newsletter'     	=> $customer_result['newsletter'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'approved'       	=> $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'status'         		=> $customer_result['status'],
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($customer_result['date_added'])),
 				'orders_passed'	=> $this->model_sale_customer->getTotalCustomersOrders($customer_result['customer_id']),
 				'orders_missed'	=> $this->model_sale_customer->getTotalCustomersOrdersMissed($customer_result['customer_id']),
@@ -374,23 +376,23 @@ class ControllerCommonHome extends Controller {
 				'href'	=> $this->url->link('catalog/review/update', 'token=' . $this->session->data['token'] . '&review_id=' . $review_result['review_id'], 'SSL')
 			);
 
-			$action_reviewed = array();
+			$action_rated = array();
 
-			$action_reviewed[] = array(
+			$action_rated[] = array(
 				'text'	=> $this->language->get('text_view'),
                 'href'	=> $this->url->link('catalog/review', 'token=' . $this->session->data['token'] . '&filter_review=' . $review_result['review_id'] . '&filter_order_status_id=0', 'SSL')
 			);
 
 			$this->data['reviews'][] = array(
-				'review_id'			=> $review_result['review_id'],
-				'name'       			=> $review_result['name'],
-				'author'     			=> $review_result['author'],
-				'rating'     			=> $review_result['rating'],
-				'status'     			=> $review_result['status'],
-				'date_added' 		=> date($this->language->get('date_format_time'), strtotime($review_result['date_added'])),
-				'reviews_total' 	=> $this->model_catalog_review->getTotalProductReviews($review_result['product_id']),
-				'action_reviewed'	=> $action_reviewed,
-				'action'     			=> $action
+				'review_id'		=> $review_result['review_id'],
+				'name'       		=> $review_result['name'],
+				'author'     		=> $review_result['author'],
+				'rating'     		=> $review_result['rating'],
+				'status'     		=> $review_result['status'],
+				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($review_result['date_added'])),
+				'rating_total' 	=> $this->model_catalog_review->getTotalProductReviews($review_result['product_id']),
+				'action_rated'	=> $action_rated,
+				'action'     		=> $action
 			);
 		}
 
@@ -418,6 +420,7 @@ class ControllerCommonHome extends Controller {
 				'affiliate_id' 	=> $affiliate_result['affiliate_id'],
 				'name'         	=> $affiliate_result['name'],
 				'email'        	=> $affiliate_result['email'],
+				'code'        	=> $affiliate_result['code'],
 				'balance'      	=> $this->currency->format($affiliate_result['balance'], $this->config->get('config_currency')),
 				'status'       	=> $affiliate_result['status'],
 				'approved'     	=> $affiliate_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
@@ -464,8 +467,7 @@ class ControllerCommonHome extends Controller {
 				'customer'			=> $return_result['customer'],
 				'product'				=> $return_result['product'],
 				'status'				=> $return_result['status'],
-				'date_added'		=> date($this->language->get('date_format_short'), strtotime($return_result['date_added'])),
-				'date_modified'	=> date($this->language->get('date_format_short'), strtotime($return_result['date_modified'])),
+				'date_added'		=> date($this->language->get('date_format_time'), strtotime($return_result['date_added'])),
                 'return_history'	=> $this->model_sale_customer->getTotalCustomersReturns($return_result['customer_id']),
 				'action_return'		=> $action_return,
 				'action'				=> $action

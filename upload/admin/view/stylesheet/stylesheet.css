@@ -739,6 +739,7 @@ table.form > tbody > tr > td {
 .htabs a.selected {
 	background: #FFF;
 	padding-bottom: 7px;
+	outline: 0;
 }
 /* Vtabs */
 .vtabs {
@@ -779,6 +780,7 @@ table.form > tbody > tr > td {
 .vtabs a.selected {
 	background: #FFF;
 	padding-right: 15px;
+	outline: 0;
 }
 .vtabs a img, .vtabs span img {
 	position: relative;
@@ -849,17 +851,23 @@ table.form > tbody > tr > td {
 /* Tiles */
 .tiles {
 	width: 100%;
+	border: none;
 	display: inline-block;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+	padding: 0;
 }
 .tiles .tile {
 	position: relative;
 	float: left;
 	width: 25%;
-	min-height: 50px;
+	min-height: 70px;
+	border: 0;
 }
 .tiles .tile .tile-red {
 	background: #DE5954;
+	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -868,24 +876,33 @@ table.form > tbody > tr > td {
 }
 .tiles .tile .tile-blue {
 	background: #4691D2;
+	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	margin-left: 10px;
 	margin-right: 10px;
+	margin-left: 10px;
 }
 .tiles .tile .tile-yellow {
 	background: #F2B155;
+	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	margin-left: 10px;
 	margin-right: 10px;
+	margin-left: 10px;
 }
 .tiles .tile .tile-green {
 	background: #5DC15E;
+	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -893,7 +910,20 @@ table.form > tbody > tr > td {
 	margin-left: 10px;
 }
 .tiles .tile .tile-red p, .tiles .tile .tile-blue p, .tiles .tile .tile-yellow p, .tiles .tile .tile-green p {
-	padding: 15px 0px 15px 12px;
+	padding: 10px 12px;
+}
+.tiles .tile .tile-red span, .tiles .tile .tile-blue span, .tiles .tile .tile-yellow span, .tiles .tile .tile-green span {
+	position: relative;
+	float: right;
+	top: 10px;
+	color: #FFF;
+	font-size: 32px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px #444;
+}
+.tiles .tile .tile-red img, .tiles .tile .tile-blue img, .tiles .tile .tile-yellow img, .tiles .tile .tile-green img {
+	text-align: left;
+	padding: 0;
 	margin: 0;
 }
 .tiles .tile .tile-red a, .tiles .tile .tile-blue a, .tiles .tile .tile-yellow a, .tiles .tile .tile-green a {
@@ -902,17 +932,11 @@ table.form > tbody > tr > td {
 	font-weight: bold;
 	text-shadow: 0 1px 1px #444;
 }
-.tiles .tile .tile-red a img, .tiles .tile .tile-blue a img, .tiles .tile .tile-yellow a img, .tiles .tile .tile-green a img {
-	position: relative;
-	float: left;
-	top: -5px;
-	margin-right: 8px;
-}
 /* Overview */
 .overview {
 	float: left;
 	width: 38%;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 .overview table {
 	width: 100%;
@@ -924,7 +948,7 @@ table.form > tbody > tr > td {
 .statistic {
 	float: right;
 	width: 60%;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 /* Range */
 .range {
