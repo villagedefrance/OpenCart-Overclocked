@@ -93,12 +93,12 @@ class ControllerReportProductProfit extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['products'][] = array(
-				'year'						=> $result['year'],
-				'month'					=> $result['month'],
-				'price'					=> $this->currency->format($result['price'], $this->config->get('config_currency')),
-				'cost'						=> $this->currency->format($result['cost'], $this->config->get('config_currency')),
-				'percent_profit'		=> ($result['cost'] > 0) ? number_format(($result['profit'] * 100) / $result['cost'], 2) . '%' : '',
-				'profit'					=> $this->currency->format($result['profit'], $this->config->get('config_currency'))
+				'year'					=> $result['year'],
+				'month'				=> $result['month'],
+				'price'				=> $this->currency->format($result['price'], $this->config->get('config_currency')),
+				'cost'					=> $this->currency->format($result['cost'], $this->config->get('config_currency')),
+				'percent_profit'	=> ($result['cost'] > 0) ? number_format(($result['profit'] * 100) / $result['cost'], 2) . '%' : '100%',
+				'profit'				=> $this->currency->format($result['profit'], $this->config->get('config_currency'))
 			);
 
 			$price += $result['price'];
@@ -108,7 +108,7 @@ class ControllerReportProductProfit extends Controller {
 
 		$this->data['total_price'] = $this->currency->format($price, $this->config->get('config_currency'));
 		$this->data['total_cost'] = $this->currency->format($cost, $this->config->get('config_currency'));
-		$this->data['total_percent_profit'] = ($cost > 0) ? number_format(($profit * 100) / $cost, 2) . '%' : '';
+		$this->data['total_percent_profit'] = ($cost > 0) ? number_format(($profit * 100) / $cost, 2) . '%' : '100%';
 		$this->data['total_profit'] = $this->currency->format($profit, $this->config->get('config_currency'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');

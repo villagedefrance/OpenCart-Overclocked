@@ -29,6 +29,9 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_week'] = $this->language->get('text_week');
 		$this->data['text_month'] = $this->language->get('text_month');
 		$this->data['text_year'] = $this->language->get('text_year');
+		$this->data['text_topseller'] = $this->language->get('text_topseller');
+		$this->data['text_topview'] = $this->language->get('text_topview');
+		$this->data['text_topcustomer'] = $this->language->get('text_topcustomer');
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
@@ -503,6 +506,118 @@ class ControllerCommonHome extends Controller {
 			);
 		}
 
+		// Top 5 Data report
+		$data_reports = array(
+			'order'	=> 'DESC',
+			'start'	=> 0,
+			'limit'		=> 5
+		);
+
+		// Best Seller report
+		$this->language->load('report/product_purchased');
+
+		$this->load->model('report/product');
+
+		$this->data['sellers'] = array();
+
+		$purchased_results = $this->model_report_product->getPurchased($data_reports);
+
+		foreach ($purchased_results as $purchased_result) {
+			$product_purchased_length = strlen(utf8_decode($purchased_result['name']));
+
+			if ($product_purchased_length > 24) {
+				$product_purchased = substr(strip_tags($purchased_result['name']), 0, 24) . '..';
+			} else {
+				$product_purchased = $purchased_result['name'];
+			}
+
+			$model_purchased_length = strlen(utf8_decode($purchased_result['model']));
+
+			if ($model_purchased_length > 12) {
+				$model_purchased = substr(strip_tags($purchased_result['model']), 0, 12) . '..';
+			} else {
+				$model_purchased = $purchased_result['model'];
+			}
+
+			$this->data['sellers'][] = array(
+				'name'		=> $product_purchased,
+				'model'		=> $model_purchased,
+				'quantity'	=> $purchased_result['quantity'],
+				'total'			=> $this->currency->format($purchased_result['total'], $this->config->get('config_currency')),
+				'href'			=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $purchased_result['product_id'], 'SSL')
+			);
+		}
+
+		// Most Viewed report
+		$this->language->load('report/product_viewed');
+
+		$this->load->model('report/product');
+
+		$this->data['views'] = array();
+
+		$product_views_total = $this->model_report_product->getTotalProductViews();
+
+		$viewed_results = $this->model_report_product->getProductsViewed($data_reports);
+
+		foreach ($viewed_results as $viewed_result) {
+			$product_viewed_length = strlen(utf8_decode($viewed_result['name']));
+
+			if ($product_viewed_length > 24) {
+				$product_viewed = substr(strip_tags($viewed_result['name']), 0, 24) . '..';
+			} else {
+				$product_viewed = $viewed_result['name'];
+			}
+
+			$model_viewed_length = strlen(utf8_decode($viewed_result['model']));
+
+			if ($model_viewed_length > 12) {
+				$model_viewed = substr(strip_tags($viewed_result['model']), 0, 12) . '..';
+			} else {
+				$model_viewed = $viewed_result['model'];
+			}
+
+			if ($viewed_result['viewed']) {
+				$percent = round($viewed_result['viewed'] / (int)$product_views_total * 100, 2);
+			} else {
+				$percent = 0;
+			}
+
+			$this->data['views'][] = array(
+				'name'		=> $product_viewed,
+				'model'		=> $model_viewed,
+				'viewed'		=> $viewed_result['viewed'],
+				'percent'		=> $percent . '%',
+				'href'			=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $viewed_result['product_id'], 'SSL')
+			);
+		}
+
+		// Best Customer report
+		$this->language->load('report/customer_order');
+
+		$this->load->model('report/customer');
+
+		$this->data['clients'] = array();
+
+		$client_results = $this->model_report_customer->getOrders($data_reports);
+
+		foreach ($client_results as $client_result) {
+			$client_length = strlen(utf8_decode($client_result['customer']));
+
+			if ($client_length > 24) {
+				$client = substr(strip_tags($client_result['customer']), 0, 24) . '..';
+			} else {
+				$client = $client_result['customer'];
+			}
+
+			$this->data['clients'][] = array(
+				'customer'	=> $client,
+				'orders'		=> $client_result['orders'],
+				'products'	=> $client_result['products'],
+				'total'			=> $this->currency->format($client_result['total'], $this->config->get('config_currency')),
+				'href'			=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $client_result['customer_id'], 'SSL')
+			);
+		}
+
 		// Currency auto-update
 		if ($this->config->get('config_currency_auto')) {
 			$this->load->model('localisation/currency');
@@ -562,6 +677,7 @@ class ControllerCommonHome extends Controller {
 					$data['xaxis'][] = array($i, date('H', mktime($i, 0, 0, date('n'), date('j'), date('Y'))));
 				}
 				break;
+				default:
 			case 'week':
 				$date_start = strtotime('-' . date('w') . ' days');
 
@@ -631,7 +747,6 @@ class ControllerCommonHome extends Controller {
 					$data['xaxis'][] = array($i, date('M', mktime(0, 0, 0, $i, 1, date('Y'))));
 				}
 				break;
-			default:
 		}
 
 		$this->response->setOutput(json_encode($data));

@@ -55,11 +55,11 @@
               </tr>
             <?php } ?>
             <tr>
-		      <td class="left" colspan="2" style="background-color:#F8F8F8;"></td>
-		      <td class="right" style="background-color:#F8F8F8;"><b><?php echo $text_total; ?> <?php echo $column_price; ?></b></td>
-		      <td class="right" style="background-color:#F8F8F8;"><b><?php echo $text_total; ?> <?php echo $column_cost; ?></b></td>
-		      <td class="right" style="background-color:#F8F8F8;"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%)</b></td>
-		      <td class="right" style="background-color:#F8F8F8;"><b><?php echo $text_total; ?> <?php echo $column_profit; ?></b></td>
+		      <td class="left" colspan="2" style="background-color:#FAFAFA;"></td>
+		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_price; ?></b></td>
+		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_cost; ?></b></td>
+		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%)</b></td>
+		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_profit; ?></b></td>
             </tr>
 			<tr>
 		      <td class="left" colspan="2"></td>

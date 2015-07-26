@@ -352,7 +352,7 @@
         </div>
         <?php } ?>
 		<?php if ($returns && $allow_return) { ?>
-        <div id="tab-latest-return" class="htabs-content">  
+        <div id="tab-latest-return" class="htabs-content">
           <table class="list">
             <thead>
               <tr>
@@ -436,6 +436,101 @@
         </div>
         <?php } ?>
       </div>
+      <div class="tops">
+        <div class="tiers">
+          <div class="dashboard-heading-left"><?php echo $text_topseller; ?></div>
+          <div class="dashboard-content-left">
+            <table class="list" style="margin-bottom:10px;">
+			<thead>
+              <tr>
+                <td class="left"><?php echo $column_product; ?></td>
+                <td class="left"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
+				<td class="right"><img src="view/image/dashboard/top-total.png" alt="" title="" /></td>
+                <td class="right"><img src="view/image/dashboard/top-price.png" alt="" title="" /></td>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if ($sellers) { ?>
+                <?php foreach ($sellers as $seller) { ?>
+                  <tr>
+                    <td class="left"><a href="<?php echo $seller['href']; ?>" title=""><?php echo $seller['name']; ?></a></td>
+                    <td class="left"><?php echo $seller['model']; ?></td>
+                    <td class="right"><?php echo $seller['quantity']; ?></td>
+                    <td class="right"><?php echo $seller['total']; ?></td>
+                  </tr>
+                <?php } ?>
+              <?php } else { ?>
+                <tr>
+                  <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tiers">
+          <div class="dashboard-heading-middle"><?php echo $text_topview; ?></div>
+          <div class="dashboard-content-middle">
+            <table class="list" style="margin-bottom:10px;">
+			<thead>
+              <tr>
+                <td class="left"><?php echo $column_product; ?></td>
+                <td class="left"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
+				<td class="right"><img src="view/image/dashboard/top-viewed.png" alt="" title="" /></td>
+                <td class="right"><img src="view/image/dashboard/top-percent.png" alt="" title="" /></td>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if ($views) { ?>
+                <?php foreach ($views as $view) { ?>
+                  <tr>
+                    <td class="left"><a href="<?php echo $view['href']; ?>" title=""><?php echo $view['name']; ?></a></td>
+                    <td class="left"><?php echo $view['model']; ?></td>
+                    <td class="right"><?php echo $view['viewed']; ?></td>
+                    <td class="right"><?php echo $view['percent']; ?></td>
+                  </tr>
+                <?php } ?>
+              <?php } else { ?>
+                <tr>
+                  <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tiers">
+          <div class="dashboard-heading-right"><?php echo $text_topcustomer; ?></div>
+          <div class="dashboard-content-right">
+            <table class="list" style="margin-bottom:10px;">
+			<thead>
+              <tr>
+                <td class="left"><?php echo $column_customer; ?></td>
+                <td class="right"><img src="view/image/dashboard/top-order.png" alt="" title="" /></td>
+				<td class="right"><img src="view/image/dashboard/top-product.png" alt="" title="" /></td>
+                <td class="right"><img src="view/image/dashboard/top-price.png" alt="" title="" /></td>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if ($clients) { ?>
+                <?php foreach ($clients as $client) { ?>
+                  <tr>
+                    <td class="left"><a href="<?php echo $client['href']; ?>" title=""><?php echo $client['customer']; ?></a></td>
+                    <td class="right"><?php echo $client['orders']; ?></td>
+                    <td class="right"><?php echo $client['products']; ?></td>
+                    <td class="right"><?php echo $client['total']; ?></td>
+                  </tr>
+                <?php } ?>
+              <?php } else { ?>
+                <tr>
+                  <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -444,8 +539,8 @@
 <script type="text/javascript" src="view/javascript/jquery/flot/excanvas.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script> 
-<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.resize.min.js"></script> 
+<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.resize.min.js"></script>
 
 <script type="text/javascript"><!--
 function getSalesChart(range) {
@@ -483,9 +578,9 @@ function getSalesChart(range) {
 	});
 }
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	getSalesChart($('#range').val());
-});
+})(jQuery);
 //--></script>
 
 <script type="text/javascript"><!--
