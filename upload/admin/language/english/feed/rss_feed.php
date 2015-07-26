@@ -1,10 +1,10 @@
 <?php
 // Heading
-$_['heading_title']         	= 'Product RSS Feed';
+$_['heading_title']         	= 'RSS Product Feed';
 
 // Text
-$_['text_feed']         		= 'Product RSS Feeds';
-$_['text_success']      		= 'Success: You have successfully modified <b>Product RSS Feed</b> !';
+$_['text_feed']         		= 'RSS Product Feeds';
+$_['text_success']      		= 'Success: You have successfully modified <b>RSS Product Feed</b> !';
 
 // Entry
 $_['entry_status']      		= 'Status:';
@@ -20,6 +20,6 @@ $_['button_save']      		= 'Save';
 $_['button_cancel']      	= 'Cancel';
 
 // Error
-$_['error_permission'] 		= 'Warning: You do not have permission to modify <b>Product RSS Feed</b> !';
+$_['error_permission'] 		= 'Warning: You do not have permission to modify <b>RSS Product Feed</b> !';
 $_['error_integer']     		= 'Field must be an integer!';
 ?>
