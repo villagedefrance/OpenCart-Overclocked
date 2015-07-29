@@ -97,28 +97,22 @@ class ControllerCommonHeader extends Controller {
 			$this->data['search'] = '';
 		}
 
-		// Cookie Consent
-		$this->data['cookie_consent'] = $this->config->get('config_cookie_consent');
-
-		$privacy = $this->config->get('config_cookie_privacy');
-
-		if (isset($privacy)) {
-			$cookie_privacy = $this->url->link('information/information', 'information_id=' . $privacy);
-		} else {
-			$cookie_privacy = $this->url->link('information/contact');
-		}
-
-		$this->data['cookie_message'] = sprintf($this->language->get('text_cookie_message'), $cookie_privacy);
-		$this->data['cookie_yes'] = $this->language->get('text_cookie_yes');
-		$this->data['cookie_no'] = $this->language->get('text_cookie_no');
-
 		// Rss
 		$this->data['rss'] = $this->config->get('rss_feed_status');
 
-		// Menu
-		$this->data['custom_menu'] = $this->config->get('config_custom_menu');
+		// Theme
+		$this->data['theme'] = array();
 
-		if (!$this->data['custom_menu']) {
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Menu
+		if (empty($theme) || (isset($theme['category_menu']))) {
 			$this->load->model('catalog/category');
 			$this->load->model('catalog/product');
 
@@ -167,9 +161,6 @@ class ControllerCommonHeader extends Controller {
 			'module/currency',
 			'module/cart'
 		);
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/header.tpl';

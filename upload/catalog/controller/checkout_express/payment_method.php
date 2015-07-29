@@ -45,6 +45,9 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 		}
 
 		if (!empty($payment_address)) {
+			// Template
+			$this->data['template'] = $this->config->get('config_template');
+
 			// Totals
 			$total_data = array();
 			$total = 0;
@@ -211,9 +214,6 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 		} else {
 			$this->data['agree'] = '';
 		}
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/payment_method.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/checkout_express/payment_method.tpl';

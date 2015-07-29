@@ -201,6 +201,7 @@ class ControllerPaymentPPPro extends Controller {
 			$json['error'] = $response_info['L_LONGMESSAGE0'];
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

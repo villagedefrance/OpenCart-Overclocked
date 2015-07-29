@@ -29,6 +29,9 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$this->data['checkout_method'] = $this->config->get('pp_pro_iframe_checkout_method');
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_pro_iframe.tpl';
 		} else {
@@ -64,14 +67,14 @@ class ControllerPaymentPPProIframe extends Controller {
 			$this->data['error_connection'] = $this->language->get('error_connection');
 		}
 
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
-
 		if (file_exists(DIR_APPLICATION . 'view/theme/' . $this->config->get('config_template') . '/stylesheet/stylesheet.css')) {
 			$this->data['stylesheet'] = '/catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/stylesheet.css';
 		} else {
 			$this->data['stylesheet'] = '/catalog/view/theme/default/stylesheet/stylesheet.css';
 		}
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe_body.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_pro_iframe_body.tpl';
@@ -188,6 +191,7 @@ class ControllerPaymentPPProIframe extends Controller {
 						$this->model_payment_pp_pro_iframe->addTransaction($paypal_transaction_data);
 
 						$this->model_checkout_order->confirm($order_id, $order_status_id);
+
 					} else {
 						$this->model_checkout_order->update($order_id, $order_status_id);
 					}

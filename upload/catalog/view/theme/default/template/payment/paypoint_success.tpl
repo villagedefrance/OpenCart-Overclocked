@@ -15,10 +15,8 @@
   <p><?php echo $text_success; ?></p>
   <p><?php echo $text_success_wait; ?></p>
 </div>
-
 <script type="text/javascript"><!--
 setTimeout('location = \'<?php echo $continue; ?>\';', 2500);
 //--></script>
-
 </body>
 </html>

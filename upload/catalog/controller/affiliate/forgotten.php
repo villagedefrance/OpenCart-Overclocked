@@ -50,9 +50,18 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -91,9 +100,6 @@ class ControllerAffiliateForgotten extends Controller {
 
 		$this->data['action'] = $this->url->link('affiliate/forgotten', '', 'SSL');
 		$this->data['back'] = $this->url->link('affiliate/login', '', 'SSL');
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/forgotten.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/affiliate/forgotten.tpl';

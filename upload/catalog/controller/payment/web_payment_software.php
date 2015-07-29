@@ -89,20 +89,20 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 
 		curl_close($curl);
 
-		//If in test mode strip results to only contain xml data
+		// If in test mode strip results to only contain xml data
 		if ($this->config->get('web_payment_software_mode') == 'test') {
 			$end_index = strpos($response, '</WebPaymentSoftwareResponse>');
 			$debug = substr($response, $end_index + 30);
 			$response = substr($response, 0, $end_index)  .'</WebPaymentSoftwareResponse>';
 		}
 
-		//get response xml
+		// Get response xml
 		$xml = simplexml_load_string($response);
 
-		//create object to use as json
+		// Create object to use as json
 		$json = array();
 
-		//If successful log transaction in opencart system
+		// If successful log transaction in opencart system
 		if ('00' === (string)$xml->response_code) {
 			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('config_order_status_id'));
 
@@ -152,6 +152,7 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 			$json['error'] = (string)$xml->response_text;
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

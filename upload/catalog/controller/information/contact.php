@@ -13,7 +13,7 @@ class ControllerInformationContact extends Controller {
 			// Log mail
 			$mail_log  = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n";
 			$mail_log .= $this->request->post['enquiry'] . "\n";
-			$mail_log .= "------------------------------------------------------------- \n\n";
+			$mail_log .= "------------------------------------------------------------- \n";
 
 			$mail_file = DIR_SYSTEM . 'mails/mails.txt';
 
@@ -42,9 +42,18 @@ class ControllerInformationContact extends Controller {
 			$this->redirect($this->url->link('information/contact/success'));
 		}
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -84,13 +93,11 @@ class ControllerInformationContact extends Controller {
 			$this->data['map_location'] = $map_location;
 			$this->data['map_latitude'] = $this->config->get('config_latitude');
 			$this->data['map_longitude'] = $this->config->get('config_longitude');
-
 			$this->data['map'] = true;
 		} else {
 			$this->data['map_location'] = '';
 			$this->data['map_latitude'] = '';
 			$this->data['map_longitude'] = '';
-
 			$this->data['map'] = false;
 		}
 
@@ -167,8 +174,7 @@ class ControllerInformationContact extends Controller {
 			fclose($handle);
 		}
 
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
+		clearstatcache();
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/contact.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/information/contact.tpl';
@@ -195,9 +201,18 @@ class ControllerInformationContact extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -219,9 +234,6 @@ class ControllerInformationContact extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['continue'] = $this->url->link('common/home');
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/success.tpl';

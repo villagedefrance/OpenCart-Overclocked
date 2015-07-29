@@ -64,6 +64,9 @@ class ControllerPaymentPaypoint extends Controller {
 
 		$this->data['options'] = 'test_status=' . $status . ',dups=false,cb_post=false';
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paypoint.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/paypoint.tpl';
 		} else {
@@ -150,6 +153,9 @@ class ControllerPaymentPaypoint extends Controller {
 
 				$this->data['continue'] = $this->url->link('checkout/success');
 
+				// Template
+				$this->data['template'] = $this->config->get('config_template');
+
 				if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paypoint_success.tpl')) {
 					$this->template = $this->config->get('config_template') . '/template/payment/paypoint_success.tpl';
 				} else {
@@ -171,6 +177,9 @@ class ControllerPaymentPaypoint extends Controller {
 
 			} else {
 				$this->data['continue'] = $this->url->link('checkout/cart');
+
+				// Template
+				$this->data['template'] = $this->config->get('config_template');
 
 				if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paypoint_failure.tpl')) {
 					$this->template = $this->config->get('config_template') . '/template/payment/paypoint_failure.tpl';

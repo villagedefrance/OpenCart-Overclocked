@@ -7,9 +7,18 @@ class ControllerInformationNews extends Controller {
 
 		$this->load->model('catalog/news');
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -55,7 +64,6 @@ class ControllerInformationNews extends Controller {
 			$this->data['description'] = html_entity_decode($news_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['viewed'] = sprintf($this->language->get('text_viewed'), $news_info['viewed']);
 
-			// Overclocked
 			if ($this->config->get('config_addthis')) {
 				$this->data['addthis'] = $this->config->get('config_addthis');
 			} else {
@@ -89,9 +97,6 @@ class ControllerInformationNews extends Controller {
 			$this->data['continue'] = $this->url->link('common/home');
 
 			$this->model_catalog_news->updateViewed($news_id);
-
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/news.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/information/news.tpl';

@@ -18,9 +18,18 @@ class ControllerAffiliateAccount extends Controller {
 
 		$this->language->load('affiliate/account');
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -61,9 +70,6 @@ class ControllerAffiliateAccount extends Controller {
 		$this->data['payment'] = $this->url->link('affiliate/payment', '', 'SSL');
 		$this->data['tracking'] = $this->url->link('affiliate/tracking', '', 'SSL');
 		$this->data['transaction'] = $this->url->link('affiliate/transaction', '', 'SSL');
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/account.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/affiliate/account.tpl';

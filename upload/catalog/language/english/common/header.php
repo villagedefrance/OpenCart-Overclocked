@@ -9,9 +9,6 @@ $_['text_logged']         			= 'You are logged in as <a href="%s">%s</a> <b>(</b
 $_['text_account']        		= 'My Account';
 $_['text_checkout']       		= 'Checkout';
 
-// Scripts
+// Script
 $_['text_ie_warning'] 			= 'Your version of Internet Explorer is too old and will not display the page correctly!';
-$_['text_cookie_message'] 	= '<span class="consent">We use cookies on this website. Please read our <a href="%s" title="Cookie Policy">Cookie Policy</a> for details.</span>';
-$_['text_cookie_yes']        	= 'Accept Cookies';
-$_['text_cookie_no']       		= 'Decline Cookies';
 ?>

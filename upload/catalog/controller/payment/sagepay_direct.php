@@ -175,6 +175,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 			$data['CustomerName'] = substr($order_info['firstname'] . ' ' . $order_info['lastname'], 0, 100);
 			$data['DeliveryPhone'] = substr($order_info['telephone'], 0, 20);
+
 		} else {
 			$data['DeliveryFirstnames'] = $order_info['payment_firstname'];
 			$data['DeliverySurname'] = $order_info['payment_lastname'];
@@ -274,6 +275,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 			$json['error'] = $data['StatusDetail'];
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

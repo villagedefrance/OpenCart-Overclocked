@@ -21,9 +21,10 @@ class ControllerAmazonusProduct extends Controller {
 
 		if ($incomingToken != $this->config->get('openbay_amazonus_token')) {
 			$logger->write("Error - Incorrect token: " . $this->request->post['token']);
-			ob_get_clean();
-			$this->response->setOutput("tokens did not match");
 
+			ob_get_clean();
+
+			$this->response->setOutput("tokens did not match");
 			return;
 		}
 
@@ -31,9 +32,10 @@ class ControllerAmazonusProduct extends Controller {
 
 		if (!$data) {
 			$logger->write("Error - Failed to decrypt received data.");
-			ob_get_clean();
-			$this->response->setOutput("failed to decrypt");
 
+			ob_get_clean();
+
+			$this->response->setOutput("failed to decrypt");
 			return;
 		}
 
@@ -47,6 +49,7 @@ class ControllerAmazonusProduct extends Controller {
 			$message = 'Product was not submited to amazonus properly. Please try again or contact OpenBay.';
 
 			$this->model_openbay_amazonus_product->setSubmitError($decodedData['insertion_id'], $message);
+
 		} else {
 			$status = (array)$status;
 
@@ -88,6 +91,7 @@ class ControllerAmazonusProduct extends Controller {
 		}
 
 		$logger->write("Data processed successfully.");
+
 		ob_get_clean();
 
 		$this->response->setOutput("ok");
@@ -131,7 +135,7 @@ class ControllerAmazonusProduct extends Controller {
 			$product_id = trim((string)$dataXml->product_id);
 
 			if ($product_id === "all") {
-				$all_rows = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazonus_product`")->rows;
+				$all_rows = $this->db->query("SELECT * FROM " . DB_PREFIX . "amazonus_product")->rows;
 
 				$response = array();
 
@@ -144,7 +148,7 @@ class ControllerAmazonusProduct extends Controller {
 				return;
 
 			} else {
-				$response = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazonus_product` WHERE `product_id` = '" . (int)$product_id . "'")->rows;
+				$response = $this->db->query("SELECT * FROM " . DB_PREFIX . "amazonus_product WHERE product_id = '" . (int)$product_id . "'")->rows;
 
 				$this->response->setOutput(print_r($response, true));
 				return;

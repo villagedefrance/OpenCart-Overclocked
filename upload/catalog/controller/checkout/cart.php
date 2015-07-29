@@ -79,9 +79,18 @@ class ControllerCheckoutCart extends Controller {
 			$this->redirect($this->url->link('checkout/cart'));
 		}
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -457,9 +466,6 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->data['checkout_buttons'] = array();
 
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/cart.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/checkout/cart.tpl';
 			} else {
@@ -480,10 +486,20 @@ class ControllerCheckoutCart extends Controller {
 			$this->response->setOutput($this->render());
 
 		} else {
-			$this->document->setTitle($this->language->get('text_error'));
-
 			$this->data['heading_title'] = $this->language->get('heading_title');
 
+			// Theme
+			$this->data['theme'] = array();
+
+			$this->load->model('setting/theme');
+
+			$theme = $this->model_setting_theme->getTheme();
+
+			$this->data['theme'] = $theme;
+
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Not found
 			$this->data['text_error'] = $this->language->get('text_empty');
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
@@ -491,9 +507,6 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['continue'] = $this->url->link('common/home');
 
 			unset($this->session->data['success']);
-
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';

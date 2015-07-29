@@ -20,9 +20,18 @@ class ControllerAccountDownload extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -116,9 +125,6 @@ class ControllerAccountDownload extends Controller {
 
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/download.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/account/download.tpl';
 			} else {
@@ -141,14 +147,23 @@ class ControllerAccountDownload extends Controller {
 		} else {
 			$this->data['heading_title'] = $this->language->get('heading_title');
 
+			// Theme
+			$this->data['theme'] = array();
+
+			$this->load->model('setting/theme');
+
+			$theme = $this->model_setting_theme->getTheme();
+
+			$this->data['theme'] = $theme;
+
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Not found
 			$this->data['text_error'] = $this->language->get('text_empty');
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
-
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';

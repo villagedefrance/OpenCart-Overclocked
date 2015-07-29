@@ -165,15 +165,16 @@ class ControllerAmazonusOrder extends Controller {
 			$this->db->query("
 				INSERT INTO " . DB_PREFIX . "customer
 				SET firstname = '" . $this->db->escape($customerData['firstname']) . "',
-					lastname = '" . $this->db->escape($customerData['lastname']) . "',
-					email = '" . $this->db->escape($customerData['email']) . "',
-					telephone = '" . $this->db->escape($customerData['telephone']) . "',
-					fax = '" . $this->db->escape($customerData['fax']) . "',
-					newsletter = '" . (int)$customerData['newsletter'] . "',
-					customer_group_id = '" . (int)$customerData['customer_group_id'] . "',
-					password = '',
-					status = '" . (int)$customerData['status'] . "',
-					date_added = NOW()");
+				lastname = '" . $this->db->escape($customerData['lastname']) . "',
+				email = '" . $this->db->escape($customerData['email']) . "',
+				telephone = '" . $this->db->escape($customerData['telephone']) . "',
+				fax = '" . $this->db->escape($customerData['fax']) . "',
+				newsletter = '" . (int)$customerData['newsletter'] . "',
+				customer_group_id = '" . (int)$customerData['customer_group_id'] . "',
+				password = '',
+				status = '" . (int)$customerData['status'] . "',
+				date_added = NOW()
+			");
 
 			$customer_id = $this->db->getLastId();
 		}
@@ -322,7 +323,7 @@ class ControllerAmazonusOrder extends Controller {
 
 		$this->model_openbay_amazonus_order->acknowledgeOrder($orderId);
 
-		// send an email to the administrator about the sale
+		// Send an email to the administrator about the sale
 		if ($this->config->get('openbay_amazonus_notify_admin') == 1) {
 			$this->openbay->newOrderAdminNotify($orderId, $orderStatus);
 		}

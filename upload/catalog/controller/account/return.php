@@ -21,9 +21,18 @@ class ControllerAccountReturn extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -98,9 +107,6 @@ class ControllerAccountReturn extends Controller {
 
 		$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
-
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_list.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/return_list.tpl';
 		} else {
@@ -151,9 +157,18 @@ class ControllerAccountReturn extends Controller {
 		if ($return_info) {
 			$this->document->setTitle($this->language->get('text_return'));
 
-			// Breadcrumbs
-			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+			// Theme
+			$this->data['theme'] = array();
 
+			$this->load->model('setting/theme');
+
+			$theme = $this->model_setting_theme->getTheme();
+
+			$this->data['theme'] = $theme;
+
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
@@ -243,9 +258,6 @@ class ControllerAccountReturn extends Controller {
 
 			$this->data['continue'] = $this->url->link('account/return', $url, 'SSL');
 
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_info.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/account/return_info.tpl';
 			} else {
@@ -268,9 +280,18 @@ class ControllerAccountReturn extends Controller {
 		} else {
 			$this->document->setTitle($this->language->get('text_return'));
 
-			// Breadcrumbs
-			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+			// Theme
+			$this->data['theme'] = array();
 
+			$this->load->model('setting/theme');
+
+			$theme = $this->model_setting_theme->getTheme();
+
+			$this->data['theme'] = $theme;
+
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
@@ -329,7 +350,6 @@ class ControllerAccountReturn extends Controller {
 			);
 
 			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
-
 			$this->response->setOutput($this->render());
 		}
 	}
@@ -353,12 +373,21 @@ class ControllerAccountReturn extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
-
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
+		// Theme
+		$this->data['theme'] = array();
+
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -599,9 +628,6 @@ class ControllerAccountReturn extends Controller {
 
 		$this->data['back'] = $this->url->link('account/account', '', 'SSL');
 
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
-
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/return_form.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/return_form.tpl';
 		} else {
@@ -631,9 +657,18 @@ class ControllerAccountReturn extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -655,9 +690,6 @@ class ControllerAccountReturn extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['continue'] = $this->url->link('common/home');
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/success.tpl';

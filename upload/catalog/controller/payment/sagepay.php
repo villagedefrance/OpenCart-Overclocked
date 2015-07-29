@@ -72,6 +72,7 @@ class ControllerPaymentSagepay extends Controller {
 			}
 
 			$data['DeliveryPhone'] = $order_info['telephone'];
+
 		} else {
 			$data['DeliveryFirstnames'] = $order_info['payment_firstname'];
 			$data['DeliverySurname'] = $order_info['payment_lastname'];
@@ -110,6 +111,9 @@ class ControllerPaymentSagepay extends Controller {
 		}
 
 		$this->data['crypt'] = base64_encode($this->simpleXor(utf8_decode(implode('&', $crypt_data)), $password));
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/sagepay.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/sagepay.tpl';

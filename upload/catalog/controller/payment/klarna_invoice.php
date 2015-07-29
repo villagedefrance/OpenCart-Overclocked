@@ -152,6 +152,9 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				$this->data['klarna_fee'] = '';
 			}
 
+			// Template
+			$this->data['template'] = $this->config->get('config_template');
+
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/klarna_invoice.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/payment/klarna_invoice.tpl';
 			} else {
@@ -436,6 +439,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

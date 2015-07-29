@@ -70,6 +70,10 @@ class ControllerCheckoutConfirm extends Controller {
 		}
 
 		if (!$redirect) {
+			// Template
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Totals
 			$total_data = array();
 			$total = 0;
 			$taxes = $this->cart->getTaxes();
@@ -424,9 +428,6 @@ class ControllerCheckoutConfirm extends Controller {
 		} else {
 			$this->data['redirect'] = $redirect;
 		}
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/confirm.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/checkout/confirm.tpl';

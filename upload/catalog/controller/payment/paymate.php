@@ -34,6 +34,9 @@ class ControllerPaymentPaymate extends Controller {
 
 		$this->data['return'] = $this->url->link('payment/paymate/callback', 'hash=' . md5($order_info['order_id'] . $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) . $order_info['currency_code'] . $this->config->get('paymate_password')));
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paymate.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/paymate.tpl';
 		} else {
@@ -71,9 +74,18 @@ class ControllerPaymentPaymate extends Controller {
 		}
 
 		if ($error) {
-			// Breadcrumbs
-			$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+			// Theme
+			$this->data['theme'] = array();
 
+			$this->load->model('setting/theme');
+
+			$theme = $this->model_setting_theme->getTheme();
+
+			$this->data['theme'] = $theme;
+
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(

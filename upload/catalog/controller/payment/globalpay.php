@@ -84,6 +84,9 @@ class ControllerPaymentGlobalpay extends Controller {
 
 		$this->data['response_url'] = HTTPS_SERVER . 'index.php?route=payment/globalpay/notify';
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/globalpay.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/globalpay.tpl';
 		} else {
@@ -267,6 +270,9 @@ class ControllerPaymentGlobalpay extends Controller {
 				$this->data['text_link'] = sprintf($this->language->get('text_link'), $this->url->link('checkout/checkout', '', 'SSL'));
 			}
 		}
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/globalpay_response.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/globalpay_response.tpl';

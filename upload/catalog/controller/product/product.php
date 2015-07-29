@@ -5,9 +5,18 @@ class ControllerProductProduct extends Controller {
 	public function index() {
 		$this->language->load('product/product');
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -296,7 +305,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->load->model('tool/image');
 
-			if ($this->config->get('config_viewer') == 'zoomlens') {
+			if ($theme['default_viewer'] == 'zoomlens') {
 				$this->document->addStyle('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.css');
 				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleGallery.min.js');
 				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.min.js');
@@ -319,7 +328,7 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'zoomlens';
 
-			} elseif ($this->config->get('config_viewer') == 'magnific') {
+			} elseif ($theme['default_viewer'] == 'magnific') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
 				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
 
@@ -672,9 +681,6 @@ class ControllerProductProduct extends Controller {
 
 			$this->model_catalog_product->updateViewed($this->request->get['product_id']);
 
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
-
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/product/product.tpl';
 			} else {
@@ -751,8 +757,6 @@ class ControllerProductProduct extends Controller {
 				'separator' => $this->language->get('text_separator')
 			);
 
-			$this->document->setTitle($this->language->get('text_error'));
-
 			$this->data['heading_title'] = $this->language->get('text_error');
 
 			$this->data['text_error'] = $this->language->get('text_error');
@@ -789,6 +793,18 @@ class ControllerProductProduct extends Controller {
 	public function review() {
 		$this->language->load('product/product');
 
+		// Theme
+		$this->data['theme'] = array();
+
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Review
 		$this->load->model('catalog/review');
 
 		$this->data['text_latest'] = $this->language->get('text_latest');

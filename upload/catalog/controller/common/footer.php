@@ -4,6 +4,18 @@ class ControllerCommonFooter extends Controller {
 	protected function index() {
 		$this->language->load('common/footer');
 
+		// Theme
+		$this->data['theme'] = array();
+
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Custom Footer
 		$this->load->model('design/footer');
 
 		$total_footers = $this->model_design_footer->getTotalFooters();
@@ -132,11 +144,6 @@ class ControllerCommonFooter extends Controller {
 
 			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer);
 		}
-
-		$this->data['back_to_top'] = $this->config->get('config_back_to_top');
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/footer.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/footer.tpl';

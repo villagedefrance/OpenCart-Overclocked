@@ -365,9 +365,9 @@
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
-          <tr>
-            <td colspan="2"><?php echo $info_express; ?></td>
-          </tr>
+        </table>
+        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
+        <table class="form">
 		  <tr>
             <td><?php echo $entry_express_name; ?></td>
             <td><?php if ($config_express_name) { ?>
@@ -525,23 +525,6 @@
         </table>
       </div>
       <div id="tab-option">
-        <h2><?php echo $text_items; ?></h2>
-        <table class="form">
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
-            <td><input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" />
-            <?php if ($error_catalog_limit) { ?>
-              <span class="error"><?php echo $error_catalog_limit; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_admin_limit; ?></td>
-            <td><input type="text" name="config_admin_limit" value="<?php echo $config_admin_limit; ?>" size="3" />
-            <?php if ($error_admin_limit) { ?>
-              <span class="error"><?php echo $error_admin_limit; ?></span>
-            <?php } ?></td>
-          </tr>
-        </table>
         <h2><?php echo $text_product; ?></h2>
         <table class="form">
           <tr>
@@ -921,7 +904,24 @@
         </table>
       </div>
 	  <div id="tab-preference">
-		<h2><?php echo $text_administration; ?></h2>
+		<h2><?php echo $text_items; ?></h2>
+        <table class="form">
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
+            <td><input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" />
+            <?php if ($error_catalog_limit) { ?>
+              <span class="error"><?php echo $error_catalog_limit; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_admin_limit; ?></td>
+            <td><input type="text" name="config_admin_limit" value="<?php echo $config_admin_limit; ?>" size="3" />
+            <?php if ($error_admin_limit) { ?>
+              <span class="error"><?php echo $error_admin_limit; ?></span>
+            <?php } ?></td>
+          </tr>
+        </table>
+		<h2><?php echo $text_forms; ?></h2>
         <table class="form">
           <tr>
 		    <td><?php echo $entry_pagination_hi; ?></td>
@@ -988,78 +988,8 @@
             <?php } ?></td>
           </tr>
         </table>
-        <h2><?php echo $text_store_front; ?></h2>
+		<h2><?php echo $text_product; ?></h2>
         <table class="form">
-          <tr>
-            <td><?php echo $entry_breadcrumbs; ?></td>
-            <td><?php if ($config_breadcrumbs) { ?>
-              <input type="radio" name="config_breadcrumbs" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_breadcrumbs" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_breadcrumbs" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_breadcrumbs" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_manufacturer_name; ?></td>
-            <td><?php if ($config_manufacturer_name) { ?>
-              <input type="radio" name="config_manufacturer_name" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_manufacturer_name" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_manufacturer_name" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_manufacturer_name" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_manufacturer_image; ?></td>
-            <td><?php if ($config_manufacturer_image) { ?>
-              <input type="radio" name="config_manufacturer_image" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_manufacturer_image" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_manufacturer_image" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_manufacturer_image" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_custom_menu; ?></td>
-            <td><?php if ($config_custom_menu) { ?>
-              <input type="radio" name="config_custom_menu" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_custom_menu" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_custom_menu" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_custom_menu" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_viewer; ?></td>
-            <td><select name="config_viewer">
-              <?php if (isset($config_viewer)) { $selected = "selected"; ?>
-                <option value="colorbox" <?php if ($config_viewer == 'colorbox') {echo $selected;} ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
-                <option value="magnific" <?php if ($config_viewer == 'magnific') {echo $selected;} ?>><?php echo $text_magnific; ?></option>
-                <option value="zoomlens" <?php if ($config_viewer == 'zoomlens') {echo $selected;} ?>><?php echo $text_zoomlens; ?></option>
-              <?php } else { ?>
-                <option value="colorbox"><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
-                <option value="magnific"><?php echo $text_magnific; ?></option>
-                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
-              <?php } ?>
-            </select></td>
-          </tr>
           <tr>
             <td><?php echo $entry_offer_label; ?></td>
             <td><?php if ($config_offer_label) { ?>
@@ -1088,7 +1018,10 @@
               <?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
-		  <tr>
+        </table>
+		<h2><?php echo $text_captcha; ?></h2>
+        <table class="form">
+          <tr>
             <td><?php echo $entry_captcha_font; ?></td>
             <td><select name="config_captcha_font">
             <?php foreach ($fontnames as $fontname) { ?>
@@ -1100,6 +1033,9 @@
             <?php } ?>
             </select></td>
           </tr>
+        </table>
+		<h2><?php echo $text_news; ?></h2>
+        <table class="form">
           <tr>
             <td><?php echo $entry_news_addthis; ?></td>
             <td><?php if ($config_news_addthis) { ?>
@@ -1117,46 +1053,6 @@
           <tr>
             <td><?php echo $entry_news_chars; ?></td>
             <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> <?php echo $text_characters; ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_cookie_consent; ?></td>
-            <td><?php if ($config_cookie_consent) { ?>
-              <input type="radio" name="config_cookie_consent" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_cookie_consent" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_cookie_consent" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_cookie_consent" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_cookie_privacy; ?></td>
-            <td><select name="config_cookie_privacy">
-              <?php foreach ($informations as $information) { ?>
-                <?php if ($information['information_id'] == $config_cookie_privacy) { ?>
-                  <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_back_to_top; ?></td>
-            <td><?php if ($config_back_to_top) { ?>
-              <input type="radio" name="config_back_to_top" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_back_to_top" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_back_to_top" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_back_to_top" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
           </tr>
         </table>
       </div>

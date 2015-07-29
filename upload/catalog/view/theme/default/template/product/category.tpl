@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<?php if (!$hidecrumbs) { ?>
+<?php if ($theme['breadcrumbs']) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" style="display:inline;">

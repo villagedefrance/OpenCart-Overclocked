@@ -79,6 +79,9 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_payflow_iframe.tpl';
 		} else {
@@ -90,6 +93,9 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 	public function pp_return() {
 		$this->data['checkout_success'] = $this->url->link('checkout/success');
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_return.tpl';
@@ -103,6 +109,9 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 	public function pp_cancel() {
 		$this->data['url'] = $this->url->link('checkout/checkout');
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_cancel.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_cancel.tpl';
 		} else {
@@ -114,6 +123,9 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 	public function pp_error() {
 		$this->data['url'] = $this->url->link('checkout/checkout');
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_error.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_payflow_iframe_error.tpl';

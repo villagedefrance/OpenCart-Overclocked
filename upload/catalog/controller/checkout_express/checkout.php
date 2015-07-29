@@ -164,9 +164,18 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		// Theme
+		$this->data['theme'] = array();
 
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
@@ -223,9 +232,6 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		if (isset($this->request->get['quickconfirm'])) {
 			$this->data['quickconfirm'] = $this->request->get['quickconfirm'];
 		}
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/checkout.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/checkout_express/checkout.tpl';

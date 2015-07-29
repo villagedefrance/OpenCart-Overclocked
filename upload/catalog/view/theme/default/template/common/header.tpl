@@ -53,7 +53,7 @@ $(document).ready(function() {
 });
 //--></script>
 <?php } ?>
-<?php if ($cookie_consent) { ?>
+<?php if ($theme['cookie_consent']) { ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/cookiecuttr.css" />
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery.cookie-1.4.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookiecuttr.js"></script>
@@ -64,9 +64,9 @@ $(document).ready(function() {
     cookiePolicyPage: true,
     cookieAcceptButton: true,
     cookieDeclineButton: true,
-    cookiePolicyPageMessage: '<?php echo $cookie_message; ?>',
-    cookieAcceptButtonText: '<?php echo $cookie_yes; ?>',
-    cookieDeclineButtonText: '<?php echo $cookie_no; ?>',
+    cookiePolicyPageMessage: '<?php echo $theme['cookie_message']; ?>',
+    cookieAcceptButtonText: '<?php echo $theme['cookie_yes']; ?>',
+    cookieDeclineButtonText: '<?php echo $theme['cookie_no']; ?>',
     cookieExpires: 365
   });
 });
@@ -110,7 +110,7 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google
     <?php } ?>
   </div>
 </div>
-<?php if ($categories && !$custom_menu) { ?>
+<?php if ($categories && $theme['category_menu']) { ?>
   <div id="menu">
     <ul>
     <?php foreach ($categories as $category) { ?>

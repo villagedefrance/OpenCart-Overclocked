@@ -1,4 +1,4 @@
-<?php if ($back_to_top) { ?>
+<?php if ($theme['back_to_top']) { ?>
   <p id="backtotop" style="display:block;">
     <a href="#" title=""><span></span></a>
   </p>
@@ -111,7 +111,7 @@ Please donate via PayPal to donate@opencart.com
 //-->
 <div id="powered"><?php echo $powered; ?></div>
 </div>
-<?php if ($back_to_top) { ?>
+<?php if ($theme['back_to_top']) { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#backtotop').hide();

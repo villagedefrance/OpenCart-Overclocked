@@ -165,15 +165,16 @@ class ControllerAmazonOrder extends Controller {
 			$this->db->query("
 				INSERT INTO " . DB_PREFIX . "customer
 				SET firstname = '" . $this->db->escape($customerData['firstname']) . "',
-					lastname = '" . $this->db->escape($customerData['lastname']) . "',
-					email = '" . $this->db->escape($customerData['email']) . "',
-					telephone = '" . $this->db->escape($customerData['telephone']) . "',
-					fax = '" . $this->db->escape($customerData['fax']) . "',
-					newsletter = '" . (int)$customerData['newsletter'] . "',
-					customer_group_id = '" . (int)$customerData['customer_group_id'] . "',
-					password = '',
-					status = '" . (int)$customerData['status'] . "',
-					date_added = NOW()");
+				lastname = '" . $this->db->escape($customerData['lastname']) . "',
+				email = '" . $this->db->escape($customerData['email']) . "',
+				telephone = '" . $this->db->escape($customerData['telephone']) . "',
+				fax = '" . $this->db->escape($customerData['fax']) . "',
+				newsletter = '" . (int)$customerData['newsletter'] . "',
+				customer_group_id = '" . (int)$customerData['customer_group_id'] . "',
+				password = '',
+				status = '" . (int)$customerData['status'] . "',
+				date_added = NOW()
+			");
 
 			$customer_id = $this->db->getLastId();
 		}

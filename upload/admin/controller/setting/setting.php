@@ -46,7 +46,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
 		$this->data['text_location'] = $this->language->get('text_location');
-		$this->data['text_items'] = $this->language->get('text_items');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_account'] = $this->language->get('text_account');
@@ -56,11 +55,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
-		$this->data['text_administration'] = $this->language->get('text_administration');
-		$this->data['text_store_front'] = $this->language->get('text_store_front');
-		$this->data['text_colorbox'] = $this->language->get('text_colorbox');
-		$this->data['text_magnific'] = $this->language->get('text_magnific');
-		$this->data['text_zoomlens'] = $this->language->get('text_zoomlens');
+		$this->data['text_items'] = $this->language->get('text_items');
+		$this->data['text_forms'] = $this->language->get('text_forms');
+		$this->data['text_captcha'] = $this->language->get('text_captcha');
+		$this->data['text_news'] = $this->language->get('text_news');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
@@ -126,8 +124,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_express_coupon'] = $this->language->get('entry_express_coupon');
 		$this->data['entry_express_voucher'] = $this->language->get('entry_express_voucher');
 		$this->data['entry_express_point'] = $this->language->get('entry_express_point');
-		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
-		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
 		$this->data['entry_review'] = $this->language->get('entry_review');
 		$this->data['entry_download'] = $this->language->get('entry_download');
@@ -155,23 +151,17 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
 		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
 		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
+		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
+		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_pagination_hi'] = $this->language->get('entry_pagination_hi');
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
-		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
-		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
-		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
-		$this->data['entry_custom_menu'] = $this->language->get('entry_custom_menu');
-		$this->data['entry_viewer'] = $this->language->get('entry_viewer');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
-		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
-		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
-		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -283,28 +273,16 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_voucher_max'] = '';
 		}
 
-		if (isset($this->error['ftp_host'])) {
-			$this->data['error_ftp_host'] = $this->error['ftp_host'];
+		if (isset($this->error['catalog_limit'])) {
+			$this->data['error_catalog_limit'] = $this->error['catalog_limit'];
 		} else {
-			$this->data['error_ftp_host'] = '';
+			$this->data['error_catalog_limit'] = '';
 		}
 
-		if (isset($this->error['ftp_port'])) {
-			$this->data['error_ftp_port'] = $this->error['ftp_port'];
+		if (isset($this->error['admin_limit'])) {
+			$this->data['error_admin_limit'] = $this->error['admin_limit'];
 		} else {
-			$this->data['error_ftp_port'] = '';
-		}
-
-		if (isset($this->error['ftp_username'])) {
-			$this->data['error_ftp_username'] = $this->error['ftp_username'];
-		} else {
-			$this->data['error_ftp_username'] = '';
-		}
-
-		if (isset($this->error['ftp_password'])) {
-			$this->data['error_ftp_password'] = $this->error['ftp_password'];
-		} else {
-			$this->data['error_ftp_password'] = '';
+			$this->data['error_admin_limit'] = '';
 		}
 
 		if (isset($this->error['preference_pagination'])) {
@@ -385,22 +363,34 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_image_cart'] = '';
 		}
 
+		if (isset($this->error['ftp_host'])) {
+			$this->data['error_ftp_host'] = $this->error['ftp_host'];
+		} else {
+			$this->data['error_ftp_host'] = '';
+		}
+
+		if (isset($this->error['ftp_port'])) {
+			$this->data['error_ftp_port'] = $this->error['ftp_port'];
+		} else {
+			$this->data['error_ftp_port'] = '';
+		}
+
+		if (isset($this->error['ftp_username'])) {
+			$this->data['error_ftp_username'] = $this->error['ftp_username'];
+		} else {
+			$this->data['error_ftp_username'] = '';
+		}
+
+		if (isset($this->error['ftp_password'])) {
+			$this->data['error_ftp_password'] = $this->error['ftp_password'];
+		} else {
+			$this->data['error_ftp_password'] = '';
+		}
+
 		if (isset($this->error['error_filename'])) {
 			$this->data['error_error_filename'] = $this->error['error_filename'];
 		} else {
 			$this->data['error_error_filename'] = '';
-		}
-
-		if (isset($this->error['catalog_limit'])) {
-			$this->data['error_catalog_limit'] = $this->error['catalog_limit'];
-		} else {
-			$this->data['error_catalog_limit'] = '';
-		}
-
-		if (isset($this->error['admin_limit'])) {
-			$this->data['error_admin_limit'] = $this->error['admin_limit'];
-		} else {
-			$this->data['error_admin_limit'] = '';
 		}
 
 		if (isset($this->error['file_max_size'])) {
@@ -745,18 +735,6 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Options
-		if (isset($this->request->post['config_catalog_limit'])) {
-			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
-		} else {
-			$this->data['config_catalog_limit'] = $this->config->get('config_catalog_limit');
-		}
-
-		if (isset($this->request->post['config_admin_limit'])) {
-			$this->data['config_admin_limit'] = $this->request->post['config_admin_limit'];
-		} else {
-			$this->data['config_admin_limit'] = $this->config->get('config_admin_limit');
-		}
-
 		if (isset($this->request->post['config_product_count'])) {
 			$this->data['config_product_count'] = $this->request->post['config_product_count'];
 		} else {
@@ -940,6 +918,18 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Preference
+		if (isset($this->request->post['config_catalog_limit'])) {
+			$this->data['config_catalog_limit'] = $this->request->post['config_catalog_limit'];
+		} else {
+			$this->data['config_catalog_limit'] = $this->config->get('config_catalog_limit');
+		}
+
+		if (isset($this->request->post['config_admin_limit'])) {
+			$this->data['config_admin_limit'] = $this->request->post['config_admin_limit'];
+		} else {
+			$this->data['config_admin_limit'] = $this->config->get('config_admin_limit');
+		}
+
 		if (isset($this->request->post['config_pagination_hi'])) {
 			$this->data['config_pagination_hi'] = $this->request->post['config_pagination_hi'];
 		} else {
@@ -962,36 +952,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_autocomplete_product'] = $this->request->post['config_autocomplete_product'];
 		} else {
 			$this->data['config_autocomplete_product'] = $this->config->get('config_autocomplete_product');
-		}
-
-		if (isset($this->request->post['config_breadcrumbs'])) {
-			$this->data['config_breadcrumbs'] = $this->request->post['config_breadcrumbs'];
-		} else {
-			$this->data['config_breadcrumbs'] = $this->config->get('config_breadcrumbs');
-		}
-
-		if (isset($this->request->post['config_manufacturer_name'])) {
-			$this->data['config_manufacturer_name'] = $this->request->post['config_manufacturer_name'];
-		} else {
-			$this->data['config_manufacturer_name'] = $this->config->get('config_manufacturer_name');
-		}
-
-		if (isset($this->request->post['config_manufacturer_image'])) {
-			$this->data['config_manufacturer_image'] = $this->request->post['config_manufacturer_image'];
-		} else {
-			$this->data['config_manufacturer_image'] = $this->config->get('config_manufacturer_image');
-		}
-
-		if (isset($this->request->post['config_custom_menu'])) {
-			$this->data['config_custom_menu'] = $this->request->post['config_custom_menu'];
-		} else {
-			$this->data['config_custom_menu'] = $this->config->get('config_custom_menu');
-		}
-
-		if (isset($this->request->post['config_viewer'])) {
-			$this->data['config_viewer'] = $this->request->post['config_viewer'];
-		} else {
-			$this->data['config_viewer'] = $this->config->get('config_viewer');
 		}
 
 		if (isset($this->request->post['config_offer_label'])) {
@@ -1032,26 +992,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_news_chars'] = $this->request->post['config_news_chars'];
 		} else {
 			$this->data['config_news_chars'] = $this->config->get('config_news_chars');
-		}
-
-		if (isset($this->request->post['config_cookie_consent'])) {
-			$this->data['config_cookie_consent'] = $this->request->post['config_cookie_consent'];
-		} else {
-			$this->data['config_cookie_consent'] = $this->config->get('config_cookie_consent');
-		}
-
-		$this->data['informations'] = $this->model_catalog_information->getInformationPages();
-
-		if (isset($this->request->post['config_cookie_privacy'])) {
-			$this->data['config_cookie_privacy'] = $this->request->post['config_cookie_privacy'];
-		} else {
-			$this->data['config_cookie_privacy'] = $this->config->get('config_cookie_privacy');
-		}
-
-		if (isset($this->request->post['config_back_to_top'])) {
-			$this->data['config_back_to_top'] = $this->request->post['config_back_to_top'];
-		} else {
-			$this->data['config_back_to_top'] = $this->config->get('config_back_to_top');
 		}
 
 		$this->load->model('tool/image');
@@ -1478,6 +1418,14 @@ class ControllerSettingSetting extends Controller {
 			$this->error['voucher_max'] = $this->language->get('error_voucher_max');
 		}
 
+		if (!$this->request->post['config_catalog_limit']) {
+			$this->error['catalog_limit'] = $this->language->get('error_limit');
+		}
+
+		if (!$this->request->post['config_admin_limit']) {
+			$this->error['admin_limit'] = $this->language->get('error_limit');
+		}
+
 		if (!$this->request->post['config_pagination_hi'] && !$this->request->post['config_pagination_lo']) {
 			$this->error['preference_pagination'] = $this->language->get('error_preference_pagination');
 		}
@@ -1550,14 +1498,6 @@ class ControllerSettingSetting extends Controller {
 
 		if (!$this->request->post['config_error_filename']) {
 			$this->error['error_filename'] = $this->language->get('error_error_filename');
-		}
-
-		if (!$this->request->post['config_catalog_limit']) {
-			$this->error['catalog_limit'] = $this->language->get('error_limit');
-		}
-
-		if (!$this->request->post['config_admin_limit']) {
-			$this->error['admin_limit'] = $this->language->get('error_limit');
 		}
 
 		if ($this->request->post['config_file_max_size'] < 100000) {

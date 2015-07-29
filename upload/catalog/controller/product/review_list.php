@@ -5,8 +5,6 @@ class ControllerProductReviewList extends Controller {
 	public function index() {
 		$this->language->load('product/review_list');
 
-		$this->document->setTitle($this->language->get('heading_title'));
-
 		$this->load->model('catalog/product');
 		$this->load->model('catalog/review');
 		$this->load->model('tool/image');
@@ -53,10 +51,21 @@ class ControllerProductReviewList extends Controller {
 			$this->document->setTitle($this->language->get('heading_title'));
 		}
 
-		// Breadcrumbs
-		$this->data['hidecrumbs'] = $this->config->get('config_breadcrumbs');
+		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
-      	$this->data['breadcrumbs'] = array();
+		// Theme
+		$this->data['theme'] = array();
+
+		$this->load->model('setting/theme');
+
+		$theme = $this->model_setting_theme->getTheme();
+
+		$this->data['theme'] = $theme;
+
+		$this->data['template'] = $this->config->get('config_template');
+
+		// Breadcrumbs
+		$this->data['breadcrumbs'] = array();
 
       	$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('text_home'),
@@ -101,8 +110,6 @@ class ControllerProductReviewList extends Controller {
 		} else {
 			$this->data['heading_title'] = $this->language->get('heading_title');
 		}
-
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
 		$this->data['text_empty'] = $this->language->get('text_empty');
 		$this->data['text_compare'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare'])) ? count($this->session->data['compare']) : 0);
@@ -338,9 +345,6 @@ class ControllerProductReviewList extends Controller {
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
 		$this->data['limit'] = $limit;
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/review_list.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/product/review_list.tpl';

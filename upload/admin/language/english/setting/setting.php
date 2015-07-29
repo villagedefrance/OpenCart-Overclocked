@@ -11,7 +11,6 @@ $_['text_hide']                    			= 'Hide';
 $_['text_location']                    	= 'Map &amp; Location';
 $_['text_checkout']             			= 'Checkout';
 $_['text_express']             			= 'Express Checkout';
-$_['text_items']                    		= 'Items';
 $_['text_product']                 		= 'Products';
 $_['text_tax']                     			= 'Taxes';
 $_['text_stock']                   		= 'Stock';
@@ -19,11 +18,10 @@ $_['text_account']                 		= 'Account';
 $_['text_affiliate']               			= 'Affiliates';
 $_['text_return']                  		= 'Returns';
 $_['text_voucher']                 		= 'Vouchers';
-$_['text_administration']      			= 'Administration';
-$_['text_store_front']      				= 'Store Front';
-$_['text_colorbox']  						= 'Colorbox';
-$_['text_magnific']  						= 'Magnific';
-$_['text_zoomlens']  					= 'Zoom Lens';
+$_['text_items']                    		= 'Items';
+$_['text_forms']      						= 'Forms';
+$_['text_captcha']      					= 'Captcha';
+$_['text_news']      						= 'News';
 $_['text_image_resize'] 				= 'Image Dimensions';
 $_['text_image_manager']    			= 'File Manager';
 $_['text_browse']                  		= 'Browse';
@@ -34,7 +32,7 @@ $_['text_mail']                    			= 'Mail';
 $_['text_smtp']                    		= 'SMTP';
 
 // Info
-$_['info_express']             			= 'Express Checkout will take customers through a faster checkout experience. At first, a quick yet complete, semi-automatic registration questionnaire will provide all the data required for an accelerated checkout. On return, the simplified login will make the process even faster. Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will not be possible.';
+$_['info_express']             			= 'Enable Express Checkout to offer a faster checkout experience to your customers.<br />At first, a quick semi-automatic registration questionnaire will provide all the data required for an accelerated checkout. On return, the simplified login will make the ordering process even faster.<br />Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
 
 // Entry
 $_['entry_name']                   		= 'Store Name:';
@@ -80,8 +78,6 @@ $_['entry_express_newsletter'] 		= 'Newsletter Subscription:';
 $_['entry_express_coupon'] 			= 'Display Coupons:';
 $_['entry_express_voucher'] 			= 'Display Vouchers';
 $_['entry_express_point'] 				= 'Display Reward Points:';
-$_['entry_catalog_limit'] 	   			= 'Default Items Per Page (Catalog):<br /><span class="help">Determines how many catalog items are shown per page (products, categories, etc)</span>';
-$_['entry_admin_limit']   	  			= 'Default Items Per Page (Admin):<br /><span class="help">Determines how many admin items are shown per page (orders, customers, etc)</span>';
 $_['entry_product_count']     		= 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the storefront header category menu. Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';
 $_['entry_review']       	    			= 'Allow Reviews:<br /><span class="help">Enable/Disable new review entry and display of existing reviews.</span>';
 $_['entry_download']          			= 'Allow Downloads:';
@@ -109,25 +105,19 @@ $_['entry_return_status']     			= 'Return Status:<br /><span class="help">Set t
 $_['entry_return_disable']				= 'Disable Returns:<br /><span class="help">Caution! Returns are a legal requirement in many countries. Disable only if you sell non-returnable goods, such as digital downloads.</span>';
 $_['entry_voucher_min']       			= 'Voucher Min:<br /><span class="help">Minimum amount a customer can purchase a voucher for.</span>';
 $_['entry_voucher_max']       		= 'Voucher Max:<br /><span class="help">Maximum amount a customer can purchase a voucher for.</span>';
+$_['entry_catalog_limit'] 	   			= 'Default Items Per Page (<b>Catalog</b>):<br /><span class="help">Determines how many catalog items will be displayed per page (products, categories, etc..)</span>';
+$_['entry_admin_limit']   	  			= 'Default Items Per Page (<b>Admin</b>):<br /><span class="help">Determines how many admin items will be displayed per page (orders, customers, etc..)</span>';
 $_['entry_pagination_hi'] 				= 'Enable Top Pagination:<br /><span class="help">Show pagination links at the top of all lists.</span>';
 $_['entry_pagination_lo'] 				= 'Enable Bottom Pagination:<br /><span class="help">Show pagination links at the bottom of all lists.</span>';
 $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<br /><span class="help">Use standard html selectors in Category form.</span>';
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br /><span class="help">Use standard html selectors in Product form.</span>';
-$_['entry_breadcrumbs']				= 'Hide Breadcrumbs:<br /><span class="help">If selected, the breadcrumb trail will not show on catalog pages.</span>';
-$_['entry_manufacturer_name']		= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
-$_['entry_manufacturer_image']		= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
-$_['entry_custom_menu']      		= 'Hide Default Category Menu:<br /><span class="help">Select Yes if you are using a Custom Menu, or if you don\'t need the Default Horizontal Menu.</span>';
-$_['entry_viewer']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, Product Image Thumb size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']      				= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_price_free']      				= 'Display "Free" if Zero Price :<br /><span class="help">Replaces zero prices with language variable.</span>';
 $_['entry_captcha_font']				= 'Select a Captcha Font:<br /><span class="help">Choose which TrueType Font to use for the Captcha.</span>';
 $_['entry_news_addthis'] 				= 'Show AddThis on News Pages:';
 $_['entry_news_chars']   				= 'Headlines News Character Limit:<br /><span class="help">Adjust News Story\'s length on Headlines page.</span>';
-$_['entry_cookie_consent']       		= 'Activate Cookie Consent:<br /><span class="help">If Yes, Cookie Consent banner will be enabled. Gives customers the option to opt-out of Google Analytics tracking.</span>';
-$_['entry_cookie_privacy']        		= 'Select Cookie Policy page:<br /><span class="help">Usually part of the Privacy Policy. Cookie Consent should be activated.</span>';
-$_['entry_back_to_top']				= 'Enable Scroll Back to Top:';
 $_['entry_logo']                   		= 'Store Logo:';
-$_['entry_icon']                   		= 'Icon:<br /><span class="help">The icon should be a PNG that is 16px x 16px.</span>';
+$_['entry_icon']                   		= 'Icon:<br /><span class="help">The icon should be a PNG that is 16 x 16px.</span>';
 $_['entry_image_category']      		= 'Category Image Size:';
 $_['entry_image_thumb']         		= 'Product Image Thumb Size:';
 $_['entry_image_popup']        		= 'Product Image Popup Size:';
@@ -175,7 +165,7 @@ $_['entry_google_analytics']    		= 'Google Analytics Code:<br /><span class="he
 
 // Error
 $_['error_warning']              			= 'Warning: Please check the form carefully for errors!';
-$_['error_permission']             		= 'Warning: You do not have permission to modify settings!';
+$_['error_permission']             		= 'Warning: You do not have permission to modify <b>Settings</b> !';
 $_['error_name']                   		= 'Store Name must be between 3 and 32 characters!';
 $_['error_owner']                  		= 'Store Owner must be between 3 and 64 characters!';
 $_['error_address']                		= 'Store Address must be between 10 and 256 characters!';

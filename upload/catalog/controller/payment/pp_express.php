@@ -7,10 +7,11 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_continue_action'] = $this->url->link('payment/pp_express/checkout', '', 'SSL');
 
-		/**
-		 * if there is any other paypal session data, clear it
-		 */
+		// If there is any other paypal session data, clear it
 		unset($this->session->data['paypal']);
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/pp_express.tpl';
@@ -27,26 +28,18 @@ class ControllerPaymentPPExpress extends Controller {
 		}
 
 		if ($this->customer->isLogged()) {
-			/**
-			 * If the customer is already logged in
-			 */
+			// If the customer is already logged in
 			$this->session->data['paypal']['guest'] = false;
 
 			unset($this->session->data['guest']);
 
 		} else {
 			if ($this->config->get('config_guest_checkout') && !$this->config->get('config_customer_price') && !$this->cart->hasDownload() && !$this->cart->hasRecurringProducts()) {
-				/**
-				 * If the guest checkout is allowed (config ok, no login for price and doesn't have downloads)
-				 */
+				// If the guest checkout is allowed (config ok, no login for price and doesn't have downloads)
 				$this->session->data['paypal']['guest'] = true;
 
 			} else {
-				/**
-				 * If guest checkout disabled or login is required before price or order has downloads
-				 *
-				 * Send them to the normal checkout flow.
-				 */
+				// If guest checkout disabled or login is required before price or order has downloads, send them to the normal checkout flow
 				unset($this->session->data['guest']);
 
 				$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
@@ -92,16 +85,11 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$result = $this->model_payment_pp_express->call($data);
 
-		/**
-		 * If a failed PayPal setup happens, handle it.
-		 */
+		// If a failed PayPal setup happens, handle it.
 		if (!isset($result['TOKEN'])) {
 			$this->session->data['error'] = $result['L_LONGMESSAGE0'];
-			/**
-			 * Unable to add error message to user as the session errors/success are not
-			 * used on the cart or checkout pages - need to be added?
-			 * If PayPal debug log is off then still log error to normal error log.
-			 */
+			// Unable to add error message to user as the session errors/success are not used on the cart or checkout pages - need to be added ?
+			// If PayPal debug log is off, then still log error to normal error log.
 			if ($this->config->get('pp_express_debug')) {
 				$this->log->write(serialize($result));
 			}
@@ -119,11 +107,8 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function expressReturn() {
-		/**
-		 * This is the url when PayPal has completed the auth.
-		 *
-		 * It has no output, instead it sets the data and locates to checkout
-		 */
+		// This is the url when PayPal has completed the auth.
+		// It has no output, instead it sets the data and locates to checkout
 		$this->load->model('payment/pp_express');
 
 		$data = array(
@@ -258,6 +243,7 @@ class ControllerPaymentPPExpress extends Controller {
 				}
 
 				$this->session->data['guest']['shipping_address'] = true;
+
 			} else {
 				$this->session->data['guest']['payment']['address_1'] = '';
 				$this->session->data['guest']['payment']['address_2'] = '';
@@ -284,17 +270,13 @@ class ControllerPaymentPPExpress extends Controller {
 		} else {
 			unset($this->session->data['guest']);
 
-			/**
-			 * if the user is logged in, add the address to the account and set the ID.
-			 */
+			// If the user is logged in, add the address to the account and set the ID
 			if ($this->cart->hasShipping()) {
 				$this->load->model('account/address');
 
 				$addresses = $this->model_account_address->getAddresses();
 
-				/**
-				 * Compare all of the user addresses and see if there is a match
-				 */
+				// Compare all of the user addresses and see if there is a match
 				$match = false;
 
 				foreach ($addresses as $address) {
@@ -313,9 +295,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				/**
-				 * If there is no address match add the address and set the info.
-				 */
+				// If there is no address match add the address and set the info
 				if ($match == false) {
 					$shipping_name = explode(' ', trim($result['PAYMENTREQUEST_0_SHIPTONAME']));
 					$shipping_first_name = $shipping_name[0];
@@ -519,7 +499,7 @@ class ControllerPaymentPPExpress extends Controller {
 				$price = false;
 			}
 
-			// Display prices
+			// Display totals
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				$total = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']);
 			} else {
@@ -576,9 +556,7 @@ class ControllerPaymentPPExpress extends Controller {
 		if ($this->cart->hasShipping()) {
 			$this->data['has_shipping'] = true;
 
-			/**
-			 * Shipping services
-			 */
+			// Shipping services
 			if ($this->customer->isLogged()) {
 				$this->load->model('account/address');
 
@@ -656,9 +634,7 @@ class ControllerPaymentPPExpress extends Controller {
 			$this->data['has_shipping'] = false;
 		}
 
-		/**
-		 * Product totals
-		 */
+		// Product totals
 		$this->load->model('setting/extension');
 
 		$total_data = array();
@@ -696,9 +672,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->data['totals'] = $total_data;
 
-		/**
-		 * Payment methods
-		 */
+		// Payment methods
 		if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
 			$this->load->model('account/address');
 
@@ -758,6 +732,15 @@ class ControllerPaymentPPExpress extends Controller {
 			unset($this->session->data['attention']);
 		}
 
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
+
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl';
+		} else {
+			$this->template = 'default/template/payment/pp_express_confirm.tpl';
+		}
+
 		$this->children = array(
 			'common/column_left',
 			'common/column_right',
@@ -768,15 +751,6 @@ class ControllerPaymentPPExpress extends Controller {
 			'common/footer',
 			'common/header'
 		);
-
-		// Template
-		$this->data['template'] = $this->config->get('config_template');
-
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl';
-		} else {
-			$this->template = 'default/template/payment/pp_express_confirm.tpl';
-		}
 
 		$this->response->setOutput($this->render());
 	}
@@ -849,6 +823,10 @@ class ControllerPaymentPPExpress extends Controller {
 		}
 
 		if ($redirect == '') {
+			// Template
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Totals
 			$total_data = array();
 			$total = 0;
 			$taxes = $this->cart->getTaxes();
@@ -936,11 +914,13 @@ class ControllerPaymentPPExpress extends Controller {
 			$data['payment_address_format'] = isset($payment_address['address_format']) ? $payment_address['address_format'] : '';
 
 			$data['payment_method'] = '';
+
 			if (isset($this->session->data['payment_method']['title'])) {
 				$data['payment_method'] = $this->session->data['payment_method']['title'];
 			}
 
 			$data['payment_code'] = '';
+
 			if (isset($this->session->data['payment_method']['code'])) {
 				$data['payment_code'] = $this->session->data['payment_method']['code'];
 			}
@@ -968,11 +948,13 @@ class ControllerPaymentPPExpress extends Controller {
 				$data['shipping_address_format'] = $shipping_address['address_format'];
 
 				$data['shipping_method'] = '';
+
 				if (isset($this->session->data['shipping_method']['title'])) {
 					$data['shipping_method'] = $this->session->data['shipping_method']['title'];
 				}
 
 				$data['shipping_code'] = '';
+
 				if (isset($this->session->data['shipping_method']['code'])) {
 					$data['shipping_code'] = $this->session->data['shipping_method']['code'];
 				}
@@ -1085,7 +1067,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			if (!empty($this->request->server['HTTP_X_FORWARDED_FOR'])) {
 				$data['forwarded_ip'] = $this->request->server['HTTP_X_FORWARDED_FOR'];
-			} elseif(!empty($this->request->server['HTTP_CLIENT_IP'])) {
+			} elseif (!empty($this->request->server['HTTP_CLIENT_IP'])) {
 				$data['forwarded_ip'] = $this->request->server['HTTP_CLIENT_IP'];
 			} else {
 				$data['forwarded_ip'] = '';
@@ -1160,7 +1142,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				$this->model_checkout_order->confirm($order_id, $order_status_id);
 
-				//add order to paypal table
+				// Add order to paypal table
 				$paypal_order_data = array(
 					'order_id' 			=> $order_id,
 					'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
@@ -1171,7 +1153,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				$paypal_order_id = $this->model_payment_pp_express->addOrder($paypal_order_data);
 
-				//add transaction to paypal transaction table
+				// Add transaction to paypal transaction table
 				$paypal_transaction_data = array(
 					'paypal_order_id' 			=> $paypal_order_id,
 					'transaction_id' 			=> $result['PAYMENTINFO_0_TRANSACTIONID'],
@@ -1191,7 +1173,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				$recurring_products = $this->cart->getRecurringProducts();
 
-				//loop through any products that are recurring items
+				// Loop through any products that are recurring items
 				if (!empty($recurring_products)) {
 					$this->language->load('payment/pp_express');
 
@@ -1226,7 +1208,7 @@ class ControllerPaymentPPExpress extends Controller {
 								'TRIALAMT' => $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity']
 							);
 
-							$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'].' '.$this->currency->getCode();
+							$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
 							$trial_text =  sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring_trial_cycle'], $item['recurring_trial_frequency'], $item['recurring_trial_duration']);
 
 							$data = array_merge($data, $data_trial);
@@ -1235,14 +1217,14 @@ class ControllerPaymentPPExpress extends Controller {
 							$trial_text = '';
 						}
 
-						$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false)  * $item['quantity'].' '.$this->currency->getCode();
+						$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
 						$recurring_description = $trial_text . sprintf($this->language->get('text_recurring'), $recurring_amt, $item['recurring_cycle'], $item['recurring_frequency']);
 
 						if ($item['recurring_duration'] > 0) {
 							$recurring_description .= sprintf($this->language->get('text_length'), $item['recurring_duration']);
 						} 
 
-						//create new profile and set to pending status as no payment has been made yet.
+						// Create new profile and set to pending status as no payment has been made yet.
 						$recurring_id = $this->model_checkout_recurring->create($item, $order_id, $recurring_description);
 
 						$data['PROFILEREFERENCE'] = $recurring_id;
@@ -1253,8 +1235,7 @@ class ControllerPaymentPPExpress extends Controller {
 						if (isset($result['PROFILEID'])) {
 							$this->model_checkout_recurring->addReference($recurring_id, $result['PROFILEID']);
 						} else {
-							// there was an error creating the profile, need to log and also alert admin / user
-
+							// There was an error creating the profile, need to log and also alert admin / user
 						}
 					}
 				}
@@ -1268,13 +1249,13 @@ class ControllerPaymentPPExpress extends Controller {
 			} else {
 				if ($result['L_ERRORCODE0'] == '10486') {
 					if (isset($this->session->data['paypal_redirect_count'])) {
-
 						if ($this->session->data['paypal_redirect_count'] == 2) {
 							$this->session->data['paypal_redirect_count'] = 0;
 
 							$this->session->data['error'] = $this->language->get('error_too_many_failures');
 
 							$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
+
 						} else {
 							$this->session->data['paypal_redirect_count']++;
 						}
@@ -1336,16 +1317,11 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$result = $this->model_payment_pp_express->call($data);
 
-		/**
-		 * If a failed PayPal setup happens, handle it.
-		 */
+		// If a failed PayPal setup happens, handle it
 		if (!isset($result['TOKEN'])) {
 			$this->session->data['error'] = $result['L_LONGMESSAGE0'];
-			/**
-			 * Unable to add error message to user as the session errors/success are not
-			 * used on the cart or checkout pages - need to be added?
-			 * If PayPal debug log is off then still log error to normal error log.
-			 */
+			// Unable to add error message to user as the session errors/success are not used on the cart or checkout pages - need to be added ?
+			// If PayPal debug log is off, then still log error to normal error log
 			if ($this->config->get('pp_express_debug') == 0) {
 				$this->log->write(serialize($result));
 			}
@@ -1364,9 +1340,8 @@ class ControllerPaymentPPExpress extends Controller {
 
 	public function checkoutReturn() {
 		$this->language->load('payment/pp_express');
-		/**
-		 * Get the details
-		 */
+
+		// Get the details
 		$this->load->model('payment/pp_express');
 		$this->load->model('checkout/order');
 
@@ -1395,7 +1370,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$result = $this->model_payment_pp_express->call($paypal_data);
 
 		if ($result['ACK'] == 'Success') {
-			//handle order status
+			// Handle order status
 			switch($result['PAYMENTINFO_0_PAYMENTSTATUS']) {
 				case 'Canceled_Reversal':
 					$order_status_id = $this->config->get('pp_express_canceled_reversal_status_id');
@@ -1431,7 +1406,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$this->model_checkout_order->confirm($order_id, $order_status_id);
 
-			//add order to paypal table
+			// Add order to paypal table
 			$paypal_order_data = array(
 				'order_id' 			=> $order_id,
 				'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
@@ -1442,7 +1417,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$paypal_order_id = $this->model_payment_pp_express->addOrder($paypal_order_data);
 
-			//add transaction to paypal transaction table
+			// Add transaction to paypal transaction table
 			$paypal_transaction_data = array(
 				'paypal_order_id' 			=> $paypal_order_id,
 				'transaction_id' 			=> $result['PAYMENTINFO_0_TRANSACTIONID'],
@@ -1462,7 +1437,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$recurring_products = $this->cart->getRecurringProducts();
 
-			//loop through any products that are recurring items
+			// Loop through any products that are recurring items
 			if (!empty($recurring_products)) {
 				$this->load->model('checkout/recurring');
 
@@ -1474,7 +1449,7 @@ class ControllerPaymentPPExpress extends Controller {
 					'year' 			=> 'Year'
 				);
 
-				foreach($recurring_products as $item) {
+				foreach ($recurring_products as $item) {
 					$data = array(
 						'METHOD' => 'CreateRecurringPaymentsProfile',
 						'TOKEN' => $this->session->data['paypal']['token'],
@@ -1495,7 +1470,7 @@ class ControllerPaymentPPExpress extends Controller {
 							'TRIALAMT' => $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity']
 						);
 
-						$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'].' '.$this->currency->getCode();
+						$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
 						$trial_text =  sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring_trial_cycle'], $item['recurring_trial_frequency'], $item['recurring_trial_duration']);
 
 						$data = array_merge($data, $data_trial);
@@ -1503,14 +1478,14 @@ class ControllerPaymentPPExpress extends Controller {
 						$trial_text = '';
 					}
 
-					$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false)  * $item['quantity'].' '.$this->currency->getCode();
+					$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
 					$recurring_description = $trial_text.sprintf($this->language->get('text_recurring'), $recurring_amt, $item['recurring_cycle'], $item['recurring_frequency']);
 
 					if ($item['recurring_duration'] > 0) {
 						$recurring_description .= sprintf($this->language->get('text_length'), $item['recurring_duration']);
 					}
 
-					//create new profile and set to pending status as no payment has been made yet.
+					// Create new profile and set to pending status as no payment has been made yet.
 					$recurring_id = $this->model_checkout_recurring->create($item, $order_id, $recurring_description);
 
 					$data['PROFILEREFERENCE'] = $recurring_id;
@@ -1521,8 +1496,7 @@ class ControllerPaymentPPExpress extends Controller {
 					if (isset($result['PROFILEID'])) {
 						$this->model_checkout_recurring->addReference($recurring_id, $result['PROFILEID']);
 					} else {
-						// there was an error creating the profile, need to log and also alert admin / user
-
+						// There was an error creating the profile, need to log and also alert admin / user
 					}
 				}
 			}
@@ -1559,18 +1533,30 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$this->language->load('payment/pp_express');
 
+			// Theme
+			$this->data['theme'] = array();
+
+			$this->load->model('setting/theme');
+
+			$theme = $this->model_setting_theme->getTheme();
+
+			$this->data['theme'] = $theme;
+
+			$this->data['template'] = $this->config->get('config_template');
+
+			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'href' => $this->url->link('common/home'),
-				'text' => $this->language->get('text_home'),
-				'separator' => false
+				'href'		=> $this->url->link('common/home'),
+				'text'		=> $this->language->get('text_home'),
+				'separator'	=> false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'href' => $this->url->link('checkout/cart'),
-				'text' => $this->language->get('text_cart'),
-				'separator' => $this->language->get('text_separator')
+				'href'		=> $this->url->link('checkout/cart'),
+				'text'		=> $this->language->get('text_cart'),
+				'separator'	=> $this->language->get('text_separator')
 			);
 
 			$this->data['heading_title'] = $this->language->get('error_heading_title');
@@ -1655,17 +1641,17 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 
 			if ($transaction) {
-				//transaction exists, check for cleared payment or updates etc
+				// Transaction exists, check for cleared payment or updates etc..
 				if ($this->config->get('pp_express_debug') == 1) {
 					$this->log->write('Transaction exists');
 				}
 
-				//if the transaction is pending but the new status is completed
+				// If the transaction is pending but the new status is completed
 				if ($transaction['payment_status'] != $this->request->post['payment_status']) {
 					$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = '" . $this->request->post['payment_status'] . "' WHERE `transaction_id` = '" . $this->db->escape($transaction['transaction_id']) . "' LIMIT 1");
 
 				} elseif ($transaction['payment_status'] == 'Pending' && ($transaction['pending_reason'] != $this->request->post['pending_reason'])) {
-					//payment is still pending but the pending reason has changed, update it.
+					// Payment is still pending but the pending reason has changed, update it
 					$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `pending_reason` = '" . $this->request->post['pending_reason'] . "' WHERE `transaction_id` = '" . $this->db->escape($transaction['transaction_id']) . "' LIMIT 1");
 				}
 
@@ -1675,12 +1661,12 @@ class ControllerPaymentPPExpress extends Controller {
 				}
 
 				if ($parent_transaction) {
-					//parent transaction exists
+					// Parent transaction exists
 					if ($this->config->get('pp_express_debug') == 1) {
 						$this->log->write('Parent transaction exists');
 					}
 
-					//insert new related transaction
+					// Insert new related transaction
 					$transaction = array(
 						'paypal_order_id' 		=> $parent_transaction['paypal_order_id'],
 						'transaction_id' 		=> $this->request->post['txn_id'],
@@ -1698,9 +1684,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 					$this->model_payment_pp_express->addTransaction($transaction);
 
-					/**
-					 * If there has been a refund, log this against the parent transaction.
-					 */
+					// If there has been a refund, log this against the parent transaction
 					if (isset($this->request->post['payment_status']) && $this->request->post['payment_status'] == 'Refunded') {
 						if (($this->request->post['mc_gross'] * -1) == $parent_transaction['amount']) {
 							$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = 'Refunded' WHERE `transaction_id` = '" . $this->db->escape($parent_transaction['transaction_id']) . "' LIMIT 1");
@@ -1709,9 +1693,7 @@ class ControllerPaymentPPExpress extends Controller {
 						}
 					}
 
-					/**
-					 * If the capture payment is now complete
-					 */
+					// If the capture payment is now complete
 					if (isset($this->request->post['auth_status']) && $this->request->post['auth_status'] == 'Completed' && $parent_transaction['payment_status'] == 'Pending') {
 						$captured = number_format($this->model_payment_pp_express->totalCaptured($parent_transaction['paypal_order_id']), 2);
 						$refunded = number_format($this->model_payment_pp_express->totalRefundedOrder($parent_transaction['paypal_order_id']), 2);
@@ -1746,36 +1728,31 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 
 				} else {
-					//parent transaction doesn't exists, need to investigate?
+					// Parent transaction doesn't exists, need to investigate ?
 					if ($this->config->get('pp_express_debug') == 1) {
 						$this->log->write('Parent transaction not found');
 					}
 				}
 			}
 
-			/*
-			 * Subscription payments
-			 *
-			 * profile ID should always exist if its a recurring payment transaction.
-			 *
-			 * also the reference will match a recurring payment ID
-			 */
+			// Subscription payments: profile ID should always exist if its a recurring payment transaction,
+			// .. also the reference will match a recurring payment ID
 			if (isset($this->request->post['txn_type'])) {
-				//payment
+				// Payment
 				if ($this->request->post['txn_type'] == 'recurring_payment') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
 					if ($profile != false) {
 						$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `amount` = '" . (float)$this->request->post['amount'] . "', `type` = '1'");
 
-						//as there was a payment the profile is active, ensure it is set to active (may be been suspended before)
+						// As there was a payment the profile is active, ensure it is set to active (may be been suspended before)
 						if ($profile['status'] != 1) {
 							$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 2 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "'");
 						}
 					}
 				}
 
-				//suspend
+				// Suspend
 				if ($this->request->post['txn_type'] == 'recurring_payment_suspended') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1785,7 +1762,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//suspend due to max failed
+				// Suspend due to max failed
 				if ($this->request->post['txn_type'] == 'recurring_payment_suspended_due_to_max_failed_payment') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1795,7 +1772,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//payment failed
+				// Payment failed
 				if ($this->request->post['txn_type'] == 'recurring_payment_failed') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1804,7 +1781,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//outstanding payment failed
+				// Outstanding payment failed
 				if ($this->request->post['txn_type'] == 'recurring_payment_outstanding_payment_failed') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1813,21 +1790,21 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//outstanding payment
+				// Outstanding payment
 				if ($this->request->post['txn_type'] == 'recurring_payment_outstanding_payment') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
 					if ($profile != false) {
 						$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `amount` = '" . (float)$this->request->post['amount'] . "', `type` = '2'");
 
-						//as there was a payment the profile is active, ensure it is set to active (may be been suspended before)
+						// As there was a payment the profile is active, ensure it is set to active (may be been suspended before)
 						if ($profile['status'] != 1) {
 							$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 2 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "'");
 						}
 					}
 				}
 
-				//created
+				// Created
 				if ($this->request->post['txn_type'] == 'recurring_payment_profile_created') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1840,7 +1817,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//cancelled
+				// Cancelled
 				if ($this->request->post['txn_type'] == 'recurring_payment_profile_cancel') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1850,7 +1827,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//skipped
+				// Skipped
 				if ($this->request->post['txn_type'] == 'recurring_payment_skipped') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1859,7 +1836,7 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 				}
 
-				//expired
+				// Expired
 				if ($this->request->post['txn_type'] == 'recurring_payment_expired') {
 					$profile = $this->model_account_recurring->getProfileByRef($this->request->post['recurring_payment_id']);
 
@@ -1913,7 +1890,7 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function recurringCancel() {
-		//cancel an active profile
+		// Cancel an active profile
 		$this->load->model('account/recurring');
 		$this->load->model('payment/pp_express');
 

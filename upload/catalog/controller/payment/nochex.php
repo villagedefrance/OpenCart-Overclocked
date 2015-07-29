@@ -46,6 +46,7 @@ class ControllerPaymentNochex extends Controller {
 			}
 
 			$this->data['delivery_postcode'] = $order_info['shipping_postcode'];
+
 		} else {
 			$this->data['delivery_fullname'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
 
@@ -67,6 +68,9 @@ class ControllerPaymentNochex extends Controller {
 		$this->data['cancel_url'] = $this->url->link('checkout/checkout', '', 'SSL');
 		$this->data['declined_url'] = $this->url->link('payment/nochex/callback', 'method=decline', 'SSL');
 		$this->data['callback_url'] = $this->url->link('payment/nochex/callback', 'order=' . $this->session->data['order_id'], 'SSL');
+
+		// Template
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/nochex.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/nochex.tpl';

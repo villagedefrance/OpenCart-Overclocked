@@ -9,7 +9,7 @@
   <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
 <?php echo $content_header; ?>
-<?php if (!$hidecrumbs) { ?>
+<?php if ($theme['breadcrumbs']) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -324,8 +324,8 @@ $('#button-quote').live('click', function() {
 				$.colorbox({
 					overlayClose: true,
 					opacity: 0.5,
-					width: '600px',
-					height: '400px',
+					width: '640px',
+					height: '480px',
 					href: false,
 					html: html
 				});
