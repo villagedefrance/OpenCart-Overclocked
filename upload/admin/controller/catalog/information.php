@@ -96,6 +96,74 @@ class ControllerCatalogInformation extends Controller {
 		$this->getForm();
 	}
 
+	public function enable() {
+        $this->language->load('catalog/information');
+
+        $this->document->setTitle($this->language->get('heading_title'));
+
+        $this->load->model('catalog/information');
+
+        if (isset($this->request->post['selected'])) {
+            foreach ($this->request->post['selected'] as $information_id) {
+                $this->model_catalog_information->editInformationStatus($information_id, 1);
+            }
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '';
+
+            if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+            $this->redirect($this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+        }
+
+        $this->getList();
+    }
+
+    public function disable() {
+        $this->language->load('catalog/information');
+
+        $this->document->setTitle($this->language->get('heading_title'));
+
+        $this->load->model('catalog/information');
+
+        if (isset($this->request->post['selected'])) {
+            foreach ($this->request->post['selected'] as $information_id) {
+                $this->model_catalog_information->editInformationStatus($information_id, 0);
+            }
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '';
+
+            if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+            $this->redirect($this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+        }
+
+        $this->getList();
+    }
+
 	public function delete() {
 		$this->language->load('catalog/information');
 
@@ -476,7 +544,7 @@ class ControllerCatalogInformation extends Controller {
 				$this->error['description'][$language_id] = $this->language->get('error_description');
 			}
 		}
-	
+
 		if ($this->error && !isset($this->error['warning'])) {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
@@ -521,73 +589,5 @@ class ControllerCatalogInformation extends Controller {
 			return false;
 		}
 	}
-
-	public function enable() {
-        $this->language->load('catalog/information');
-
-        $this->document->setTitle($this->language->get('heading_title'));
-
-        $this->load->model('catalog/information');
-
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $information_id) {
-                $this->model_catalog_information->editInformationStatus($information_id, 1);
-            }
-
-            $this->session->data['success'] = $this->language->get('text_success');
-
-            $url = '';
-
-            if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-            $this->redirect($this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
-
-        $this->getList();
-    }
-
-    public function disable() {
-        $this->language->load('catalog/information');
-
-        $this->document->setTitle($this->language->get('heading_title'));
-
-        $this->load->model('catalog/information');
-
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $information_id) {
-                $this->model_catalog_information->editInformationStatus($information_id, 0);
-            }
-
-            $this->session->data['success'] = $this->language->get('text_success');
-
-            $url = '';
-
-            if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-            $this->redirect($this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
-
-        $this->getList();
-    }
 }
 ?>

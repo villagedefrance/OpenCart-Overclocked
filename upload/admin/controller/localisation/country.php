@@ -448,7 +448,7 @@ class ControllerLocalisationCountry extends Controller {
 			$this->data['error_name'] = array();
 		}
 
-		$url = ''; 
+		$url = '';
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];

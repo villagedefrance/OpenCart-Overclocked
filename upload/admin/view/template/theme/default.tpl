@@ -26,7 +26,7 @@
       <div id="tabs" class="htabs">
         <a href="#tab-general"><?php echo $tab_general; ?></a>
         <a href="#tab-options"><?php echo $tab_options; ?></a>
-		<a href="#tab-credits"><?php echo $tab_credits; ?></a>
+        <a href="#tab-credits"><?php echo $tab_credits; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="default">
       <div id="tab-general">

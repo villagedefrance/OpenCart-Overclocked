@@ -213,7 +213,7 @@ class ControllerCatalogDownload extends Controller {
 			'sort'  			=> $sort,
 			'order' 			=> $order,
 			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 				=> $this->config->get('config_admin_limit')
+			'limit'				=> $this->config->get('config_admin_limit')
 		);
 
 		$download_total = $this->model_catalog_download->getTotalDownloads($data);
