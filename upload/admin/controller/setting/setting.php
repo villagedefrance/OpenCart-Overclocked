@@ -57,6 +57,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_items'] = $this->language->get('text_items');
 		$this->data['text_forms'] = $this->language->get('text_forms');
+		$this->data['text_colorbox'] = $this->language->get('text_colorbox');
+		$this->data['text_magnific'] = $this->language->get('text_magnific');
+		$this->data['text_zoomlens'] = $this->language->get('text_zoomlens');
 		$this->data['text_captcha'] = $this->language->get('text_captcha');
 		$this->data['text_news'] = $this->language->get('text_news');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
@@ -157,6 +160,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
+		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
@@ -952,6 +956,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_autocomplete_product'] = $this->request->post['config_autocomplete_product'];
 		} else {
 			$this->data['config_autocomplete_product'] = $this->config->get('config_autocomplete_product');
+		}
+
+		if (isset($this->request->post['config_lightbox'])) {
+			$this->data['config_lightbox'] = $this->request->post['config_lightbox'];
+		} else {
+			$this->data['config_lightbox'] = $this->config->get('config_lightbox');
 		}
 
 		if (isset($this->request->post['config_offer_label'])) {

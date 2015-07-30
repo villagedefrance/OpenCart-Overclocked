@@ -33,6 +33,10 @@ class ModelLocalisationZone extends Model {
 	public function getZones($data = array()) {
 		$sql = "SELECT *, z.name, cd.name AS country FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country c ON (z.country_id = c.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
+		if (isset($data['filter_name'])) {
+			$sql .= " AND cd.name = '" . $data['filter_name'] . "'";
+		}
+
 		$sort_data = array(
 			'cd.name',
 			'z.name',
@@ -85,6 +89,20 @@ class ModelLocalisationZone extends Model {
 
 	public function getTotalZones() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "zone`");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalZonesByCountryNames($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT z.name) AS total FROM `" . DB_PREFIX . "zone` z LEFT JOIN " . DB_PREFIX . "country c ON (z.country_id = c.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (z.country_id = cd.country_id)";
+
+		$sql .= " WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND cd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}

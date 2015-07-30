@@ -85,10 +85,8 @@
                 <?php } ?>
               </td>
               <td class="left">
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_1024]" value="<?php echo $module['show_1024']; ?>" size="2" /> @ 1024px<br />
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_800]" value="<?php echo $module['show_800']; ?>" size="2" /> @ 800px<br />
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_600]" value="<?php echo $module['show_600']; ?>" size="2" /> @ 600px<br />
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_360]" value="<?php echo $module['show_360']; ?>" size="2" /> @ 360px
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_max]" value="<?php echo $module['show_max']; ?>" size="2" /> Max.<br />
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_min]" value="<?php echo $module['show_min']; ?>" size="2" /> Min.
 				<?php if (isset($error_show[$module_row])) { ?>
                   <span class="error"><?php echo $error_show[$module_row]; ?></span>
                 <?php } ?>
@@ -190,10 +188,8 @@ function addModule() {
 	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
     html += '    <td class="left">';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show_1024]" value="4" size="2" /> @ 1024px<br />';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show_800]" value="3" size="2" /> @ 800px<br />';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show_600]" value="2" size="2" /> @ 600px<br />';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show_360]" value="1" size="2" /> @ 360px';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show_max]" value="4" size="2" /> Max.<br />';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show_min]" value="1" size="2" /> Min.';
 	html += '    </td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][auto]">';
 	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';

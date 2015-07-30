@@ -76,60 +76,47 @@ class ModelCatalogManufacturer extends Model {
 	}
 
 	public function getManufacturers($data = array()) {
-		if ($data) {
-			$sql = "SELECT *, md.name AS name FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (m.manufacturer_id = md.manufacturer_id) WHERE md.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT *, md.manufacturer_id, md.name AS name FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (m.manufacturer_id = md.manufacturer_id) WHERE md.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
-			if (!empty($data['filter_name'])) {
-				$sql .= " WHERE md.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
-			}
-
-			$sort_data = array(
-				'md.name',
-				'm.sort_order',
-				'm.status'
-			);
-
-			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-				$sql .= " ORDER BY " . $data['sort'];
-			} else {
-				$sql .= " ORDER BY md.name";
-			}
-
-			if (isset($data['order']) && ($data['order'] == 'DESC')) {
-				$sql .= " DESC";
-			} else {
-				$sql .= " ASC";
-			}
-
-			if (isset($data['start']) || isset($data['limit'])) {
-				if ($data['start'] < 0) {
-					$data['start'] = 0;
-				}
-
-				if ($data['limit'] < 1) {
-					$data['limit'] = 20;
-				}
-
-				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-			}
-
-			$query = $this->db->query($sql);
-
-			return $query->rows;
-
-		} else {
-			$manufacturer_data = $this->cache->get('manufacturer.' . (int)$this->config->get('config_language_id'));
-
-			if (!$manufacturer_data) {
-				$query = $this->db->query("SELECT *, md.name AS name FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (m.manufacturer_id = md.manufacturer_id) WHERE md.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY md.name ASC");
-
-				$manufacturer_data = $query->rows;
-
-				$this->cache->set('manufacturer.' . (int)$this->config->get('config_language_id'), $manufacturer_data);
-			}
-
-			return $manufacturer_data;
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND md.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
+
+		$sql .= " GROUP BY md.manufacturer_id";
+
+		$sort_data = array(
+			'md.name',
+			'm.sort_order',
+			'm.status'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY md.name";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
 	}
 
 	public function getManufacturerImage($manufacturer_id) {
@@ -176,8 +163,16 @@ class ModelCatalogManufacturer extends Model {
 		return $query->row['total'];
 	}
 
-	public function getTotalManufacturers() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "manufacturer");
+	public function getTotalManufacturers($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT m.manufacturer_id) AS total FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (m.manufacturer_id = md.manufacturer_id)";
+
+		$sql .= " WHERE md.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND md.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}

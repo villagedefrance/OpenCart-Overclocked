@@ -23,51 +23,14 @@
       <?php } else { ?>
         <div class="attention" style="margin:5px 0px 10px 0px;"><?php echo $text_not_active; ?></div>
       <?php } ?>
+      <div id="tabs" class="htabs">
+        <a href="#tab-general"><?php echo $tab_general; ?></a>
+        <a href="#tab-options"><?php echo $tab_options; ?></a>
+		<a href="#tab-credits"><?php echo $tab_credits; ?></a>
+      </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="default">
-        <h2><?php echo $text_settings; ?></h2>
+      <div id="tab-general">
         <table class="form">
-          <tr>
-            <td><?php echo $entry_breadcrumbs; ?></td>
-            <td><?php if ($default_breadcrumbs) { ?>
-              <input type="radio" name="default_breadcrumbs" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="default_breadcrumbs" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="default_breadcrumbs" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="default_breadcrumbs" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_manufacturer_name; ?></td>
-            <td><?php if ($default_manufacturer_name) { ?>
-              <input type="radio" name="default_manufacturer_name" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="default_manufacturer_name" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="default_manufacturer_name" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="default_manufacturer_name" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_manufacturer_image; ?></td>
-            <td><?php if ($default_manufacturer_image) { ?>
-              <input type="radio" name="default_manufacturer_image" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="default_manufacturer_image" value="0" />
-              <?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="default_manufacturer_image" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="default_manufacturer_image" value="0" checked="checked" />
-              <?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
           <tr>
             <td><?php echo $entry_category_menu; ?></td>
             <td><?php if ($default_category_menu) { ?>
@@ -83,18 +46,18 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_viewer; ?></td>
-            <td><select name="default_viewer">
-              <?php if (isset($default_viewer)) { $selected = "selected"; ?>
-                <option value="colorbox" <?php if ($default_viewer == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
-                <option value="magnific" <?php if ($default_viewer == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?></option>
-                <option value="zoomlens" <?php if ($default_viewer == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
-              <?php } else { ?>
-                <option value="colorbox"><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
-                <option value="magnific"><?php echo $text_magnific; ?></option>
-                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
-              <?php } ?>
-            </select></td>
+            <td><?php echo $entry_breadcrumbs; ?></td>
+            <td><?php if ($default_breadcrumbs) { ?>
+              <input type="radio" name="default_breadcrumbs" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="default_breadcrumbs" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="default_breadcrumbs" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="default_breadcrumbs" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_cookie_consent; ?></td>
@@ -137,8 +100,66 @@
             <?php } ?></td>
           </tr>
         </table>
+      </div>
+      <div id="tab-options">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_manufacturer_name; ?></td>
+            <td><?php if ($default_manufacturer_name) { ?>
+              <input type="radio" name="default_manufacturer_name" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="default_manufacturer_name" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="default_manufacturer_name" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="default_manufacturer_name" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_manufacturer_image; ?></td>
+            <td><?php if ($default_manufacturer_image) { ?>
+              <input type="radio" name="default_manufacturer_image" value="1" checked="checked" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="default_manufacturer_image" value="0" />
+              <?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="default_manufacturer_image" value="1" />
+              <?php echo $text_yes; ?>
+              <input type="radio" name="default_manufacturer_image" value="0" checked="checked" />
+              <?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+        </table>
+      </div>
+      <div id="tab-credits">
+        <table class="form">
+          <tr>
+            <td><?php echo $info_theme; ?></td>
+            <td><?php echo $text_info_theme; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $info_author; ?></td>
+            <td><?php echo $text_info_author; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $info_license; ?></td>
+            <td><?php echo $text_info_license; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $info_support; ?></td>
+            <td><?php echo $text_info_support; ?></td>
+          </tr>
+        </table>
+      </div>
       </form>
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('#tabs a').tabs();
+//--></script>
+
 <?php echo $footer; ?>

@@ -42,57 +42,48 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountries($data = array()) {
-		if ($data) {
-			$sql = "SELECT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT *, cd.country_id, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
-			$sort_data = array(
-				'cd.name',
-				'c.iso_code_2',
-				'c.iso_code_3',
-				'c.status'
-			);
-
-			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-				$sql .= " ORDER BY " . $data['sort'];
-			} else {
-				$sql .= " ORDER BY cd.name";
-			}
-
-			if (isset($data['order']) && ($data['order'] == 'DESC')) {
-				$sql .= " DESC";
-			} else {
-				$sql .= " ASC";
-			}
-
-			if (isset($data['start']) || isset($data['limit'])) {
-				if ($data['start'] < 0) {
-					$data['start'] = 0;
-				}
-
-				if ($data['limit'] < 1) {
-					$data['limit'] = 20;
-				}
-
-				$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-			}
-
-			$query = $this->db->query($sql);
-
-			return $query->rows;
-
-		} else {
-			$country_data = $this->cache->get('country.' . (int)$this->config->get('config_language_id'));
-
-			if (!$country_data) {
-				$query = $this->db->query("SELECT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY cd.name ASC");
-
-				$country_data = $query->rows;
-
-				$this->cache->set('country.' . (int)$this->config->get('config_language_id'), $country_data);
-			}
-
-			return $country_data;
+		if (isset($data['filter_name'])) {
+			$sql .= " AND cd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
+
+		$sql .= " GROUP BY cd.country_id";
+
+		$sort_data = array(
+			'cd.name',
+			'c.iso_code_2',
+			'c.iso_code_3',
+			'c.status'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY cd.name";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
 	}
 
 	public function getCountryDescriptions($country_id) {
@@ -127,8 +118,16 @@ class ModelLocalisationCountry extends Model {
 		$this->cache->delete('country');
 	}
 
-	public function getTotalCountries() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "country");
+	public function getTotalCountries($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT c.country_id) AS total FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id)";
+
+		$sql .= " WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND cd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}

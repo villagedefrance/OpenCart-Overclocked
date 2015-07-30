@@ -44,24 +44,24 @@ jQuery(document).ready(function() {
 		swipe: true,
 		rtl: false,
 		responsive: [
-		{	breakpoint: 1024,
+		{	breakpoint: 1280,
 			settings: {
-				slidesToShow: <?php echo $show_1024; ?>
+				slidesToShow: <?php echo $show_1280; ?>
 			}
 		},
-		{	breakpoint: 800,
+		{	breakpoint: 960,
 			settings: {
-				slidesToShow: <?php echo $show_800; ?>
+				slidesToShow: <?php echo $show_960; ?>
 			}
 		},
-		{ 	breakpoint: 600,
+		{ 	breakpoint: 640,
 			settings: {
-				slidesToShow: <?php echo $show_600; ?>
+				slidesToShow: <?php echo $show_640; ?>
 			}
 		},
-		{ 	breakpoint: 360,
+		{ 	breakpoint: 320,
 			settings: {
-				slidesToShow: <?php echo $show_360; ?>
+				slidesToShow: <?php echo $show_320; ?>
 			}
 		}]
 	});

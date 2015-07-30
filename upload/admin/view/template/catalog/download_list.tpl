@@ -23,7 +23,7 @@
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="download">
       <table class="list">
         <thead>
           <tr>
@@ -43,6 +43,13 @@
           </tr>
         </thead>
         <tbody>
+          <tr class="filter">
+            <td></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
+            <td></td>
+            <td></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          </tr>
 		<?php if ($downloads) { ?>
           <?php foreach ($downloads as $download) { ?>
           <tr>
@@ -52,7 +59,7 @@
               <input type="checkbox" name="selected[]" value="<?php echo $download['download_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $download['name']; ?></td>
-			<td class="left"><?php echo $download['filesize']; ?></td>
+			<td class="center"><?php echo $download['filesize']; ?></td>
             <td class="center"><?php echo $download['remaining']; ?></td>
             <td class="right"><?php foreach ($download['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -73,4 +80,52 @@
   </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+function filter() {
+	url = 'index.php?route=catalog/download&token=<?php echo $token; ?>';
+
+	var filter_name = $('input[name=\'filter_name\']').attr('value');
+
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
+
+	location = url;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+$('#form input').keydown(function(e) {
+	if (e.keyCode == 13) { filter(); }
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('input[name=\'filter_name\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.download_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'filter_name\']').val(ui.item.label);
+		return false;
+	},
+	focus: function(event, ui) {
+      	return false;
+   	}
+});
+//--></script>
+
 <?php echo $footer; ?>

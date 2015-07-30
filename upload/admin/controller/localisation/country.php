@@ -26,6 +26,10 @@ class ControllerLocalisationCountry extends Controller {
 
 			$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -68,6 +72,10 @@ class ControllerLocalisationCountry extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -116,6 +124,10 @@ class ControllerLocalisationCountry extends Controller {
 
 			$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -154,6 +166,10 @@ class ControllerLocalisationCountry extends Controller {
 
 		  	$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -188,6 +204,10 @@ class ControllerLocalisationCountry extends Controller {
 
 			$url = ''; 
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -207,6 +227,12 @@ class ControllerLocalisationCountry extends Controller {
 	}
 
 	protected function getList() {
+		if (isset($this->request->get['filter_name'])) {
+			$filter_name = $this->request->get['filter_name'];
+		} else {
+			$filter_name = null;
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -226,6 +252,10 @@ class ControllerLocalisationCountry extends Controller {
 		}
 
 		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -265,13 +295,14 @@ class ControllerLocalisationCountry extends Controller {
 		$this->data['countries'] = array();
 
 		$data = array(
-			'sort' 		=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'filter_name'	=> $filter_name,
+			'sort' 				=> $sort,
+			'order' 			=> $order,
+			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' 				=> $this->config->get('config_admin_limit')
 		);
 
-		$country_total = $this->model_localisation_country->getTotalCountries();
+		$country_total = $this->model_localisation_country->getTotalCountries($data);
 
 		$results = $this->model_localisation_country->getCountries($data);
 
@@ -310,6 +341,9 @@ class ControllerLocalisationCountry extends Controller {
 		$this->data['button_disable'] = $this->language->get('button_disable');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_filter'] = $this->language->get('button_filter');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -326,6 +360,10 @@ class ControllerLocalisationCountry extends Controller {
 		}
 
 		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
 
 		if ($order == 'ASC') {
 			$url .= '&order=DESC';
@@ -344,6 +382,10 @@ class ControllerLocalisationCountry extends Controller {
 
 		$url = '';
 
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -360,6 +402,8 @@ class ControllerLocalisationCountry extends Controller {
 		$pagination->url = $this->url->link('localisation/country', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
+
+		$this->data['filter_name'] = $filter_name;
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -587,6 +631,40 @@ class ControllerLocalisationCountry extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	public function autocomplete() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('localisation/country');
+
+			$data = array(
+				'filter_name'	=> $this->request->get['filter_name'],
+				'start'       		=> 0,
+				'limit'       		=> 20
+			);
+
+			$results = $this->model_localisation_country->getCountries($data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'country_id'	=> $result['country_id'],
+					'name'		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
 ?>

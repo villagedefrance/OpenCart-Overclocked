@@ -182,7 +182,7 @@ $('#form input').keydown(function(e) {
 <script type="text/javascript"><!--
 $('input[name=\'filter_name\']').autocomplete({
 	delay: 10,
-	source: function(request, response){
+	source: function(request, response) {
 		$.ajax({
 			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
 			dataType: 'json',

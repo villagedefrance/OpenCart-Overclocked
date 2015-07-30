@@ -96,8 +96,16 @@ class ModelCatalogDownload extends Model {
 		return $download_description_data;
 	}
 
-	public function getTotalDownloads() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "download");
+	public function getTotalDownloads($data = array()) {
+		$sql = "SELECT COUNT(DISTINCT d.download_id) AS total FROM " . DB_PREFIX . "download d LEFT JOIN " . DB_PREFIX . "download_description dd ON (d.download_id = dd.download_id)";
+
+		$sql .= " WHERE dd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND dd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		}
+
+		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}

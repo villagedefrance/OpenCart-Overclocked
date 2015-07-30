@@ -23,12 +23,12 @@
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="zone">
         <table class="list">
         <thead>
           <tr>
             <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-            <td class="left"><?php if ($sort == 'c.name') { ?>
+            <td class="left"><?php if ($sort == 'cd.name') { ?>
               <a href="<?php echo $sort_country; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_country; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_country; ?>"><?php echo $column_country; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -52,6 +52,14 @@
           </tr>
         </thead>
         <tbody>
+          <tr class="filter">
+            <td></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          </tr>
         <?php if ($zones) { ?>
           <?php foreach ($zones as $zone) { ?>
           <tr>
@@ -87,4 +95,52 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+function filter() {
+	url = 'index.php?route=localisation/zone&token=<?php echo $token; ?>';
+
+	var filter_name = $('input[name=\'filter_name\']').attr('value');
+
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
+
+	location = url;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+$('#form input').keydown(function(e) {
+	if (e.keyCode == 13) { filter(); }
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('input[name=\'filter_name\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=localisation/zone/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.country_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'filter_name\']').val(ui.item.label);
+		return false;
+	},
+	focus: function(event, ui) {
+      	return false;
+   	}
+});
+//--></script>
+
 <?php echo $footer; ?>

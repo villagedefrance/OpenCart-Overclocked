@@ -209,19 +209,11 @@ class ControllerModuleCarousel extends Controller {
 					$this->error['image'][$key] = $this->language->get('error_image');
 				}
 
-				if (!$value['show_1024'] || $value['show_1024'] == 0 || $value['show_1024'] > 10) {
+				if (!$value['show_max'] || !is_numeric($value['show_max']) || $value['show_max'] < 1 || $value['show_max'] > 10 || $value['show_max'] < $value['show_min']) {
 					$this->error['show'][$key] = $this->language->get('error_show');
 				}
 
-				if (!$value['show_800'] || $value['show_800'] == 0 || $value['show_800'] > 10) {
-					$this->error['show'][$key] = $this->language->get('error_show');
-				}
-
-				if (!$value['show_600'] || $value['show_600'] == 0 || $value['show_600'] > 10) {
-					$this->error['show'][$key] = $this->language->get('error_show');
-				}
-
-				if (!$value['show_360'] || $value['show_360'] == 0 || $value['show_360'] > 10) {
+				if (!$value['show_min'] || !is_numeric($value['show_min']) || $value['show_min'] < 1 || $value['show_min'] > 10 || $value['show_min'] > $value['show_max']) {
 					$this->error['show'][$key] = $this->language->get('error_show');
 				}
 			}

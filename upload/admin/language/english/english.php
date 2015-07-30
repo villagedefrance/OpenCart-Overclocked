@@ -18,6 +18,7 @@ $_['text_none']             		= ' --- None --- ';
 $_['text_select']          		= ' --- Please Select --- ';
 $_['text_select_all']       		= 'Select All';
 $_['text_unselect_all']      		= 'Unselect All';
+$_['text_all_countries']         	= 'All Countries';
 $_['text_all_zones']         		= 'All Zones';
 $_['text_default']        			= ' <b>(Default)</b>';
 $_['text_close']         			= 'Close';
@@ -98,7 +99,6 @@ $_['tab_design']               	= 'Design';
 $_['tab_discount']             	= 'Discount';
 $_['tab_general']              	= 'General';
 $_['tab_history']                	= 'History';
-$_['tab_fraud']                  	= 'Fraud'; // Compatibility v1.5.x & v1.6.x
 $_['tab_ftp']                     	= 'FTP';
 $_['tab_ip']                     	= 'IP Addresses';
 $_['tab_links']                 		= 'Links';
@@ -125,6 +125,9 @@ $_['tab_transaction']      		= 'Transactions';
 $_['tab_voucher']               	= 'Vouchers';
 $_['tab_voucher_history']    	= 'Voucher History';
 $_['tab_price']                   	= 'Price';
+
+// Compatibility 1.5.x & 1.6.x
+$_['tab_fraud']                  	= 'Fraud'; 
 
 // Error
 $_['error_upload_1']           	= 'Warning: The uploaded file exceeds the upload_max_filesize directive in php.ini!';

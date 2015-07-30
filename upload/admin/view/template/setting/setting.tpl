@@ -991,6 +991,20 @@
 		<h2><?php echo $text_product; ?></h2>
         <table class="form">
           <tr>
+            <td><?php echo $entry_lightbox; ?></td>
+            <td><select name="config_lightbox">
+              <?php if (isset($config_lightbox)) { $selected = "selected"; ?>
+                <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
+                <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?></option>
+                <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
+              <?php } else { ?>
+                <option value="colorbox"><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
+                <option value="magnific"><?php echo $text_magnific; ?></option>
+                <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_offer_label; ?></td>
             <td><?php if ($config_offer_label) { ?>
               <input type="radio" name="config_offer_label" value="1" checked="checked" />

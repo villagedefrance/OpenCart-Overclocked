@@ -26,6 +26,10 @@ class ControllerCatalogManufacturer extends Controller {
 
 			$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -68,6 +72,10 @@ class ControllerCatalogManufacturer extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -112,6 +120,10 @@ class ControllerCatalogManufacturer extends Controller {
 
 			$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -131,6 +143,12 @@ class ControllerCatalogManufacturer extends Controller {
 	}
 
 	protected function getList() {
+		if (isset($this->request->get['filter_name'])) {
+			$filter_name = $this->request->get['filter_name'];
+		} else {
+			$filter_name = null;
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -150,6 +168,10 @@ class ControllerCatalogManufacturer extends Controller {
 		}
 
 		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -189,13 +211,14 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['manufacturers'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'filter_name'	=> $filter_name,
+			'sort'  			=> $sort,
+			'order' 			=> $order,
+			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' 				=> $this->config->get('config_admin_limit')
 		);
 
-		$manufacturer_total = $this->model_catalog_manufacturer->getTotalManufacturers();
+		$manufacturer_total = $this->model_catalog_manufacturer->getTotalManufacturers($data);
 
 		$results = $this->model_catalog_manufacturer->getManufacturers($data);
 
@@ -241,6 +264,9 @@ class ControllerCatalogManufacturer extends Controller {
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_filter'] = $this->language->get('button_filter');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -258,6 +284,10 @@ class ControllerCatalogManufacturer extends Controller {
 
 		$url = '';
 
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
 		if ($order == 'ASC') {
 			$url .= '&order=DESC';
 		} else {
@@ -273,6 +303,10 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['sort_status'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . '&sort=m.status' . $url, 'SSL');
 
 		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -290,6 +324,8 @@ class ControllerCatalogManufacturer extends Controller {
 		$pagination->url = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
+
+		$this->data['filter_name'] = $filter_name;
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -537,6 +573,7 @@ class ControllerCatalogManufacturer extends Controller {
 
 		array_multisort($sort_order, SORT_ASC, $json);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

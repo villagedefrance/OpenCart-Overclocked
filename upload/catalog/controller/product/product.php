@@ -305,7 +305,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->load->model('tool/image');
 
-			if ($theme['default_viewer'] == 'zoomlens') {
+			if ($this->config->get('config_lightbox') == 'zoomlens') {
 				$this->document->addStyle('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.css');
 				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleGallery.min.js');
 				$this->document->addScript('catalog/view/javascript/jquery/simple-lens/jquery.simpleLens.min.js');
@@ -328,7 +328,7 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'zoomlens';
 
-			} elseif ($theme['default_viewer'] == 'magnific') {
+			} elseif ($this->config->get('config_lightbox') == 'magnific') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
 				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
 
