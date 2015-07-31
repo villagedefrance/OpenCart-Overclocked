@@ -28,8 +28,8 @@ class ControllerModuleCarousel extends Controller {
 		$show_max = $setting['show'] ? round($setting['show']) : 4;
 		$show_min = 1;
 
-		$show_960 = round($show_max / 2);
-		$show_640 = round($show_max / 3);
+		$show_960 = round($show_max / 1.33);
+		$show_640 = round($show_max / 2.33);
 
 		$this->data['show_1280'] = $show_max;
 

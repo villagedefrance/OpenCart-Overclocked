@@ -20,6 +20,7 @@ $_['text_return']                  		= 'Returns';
 $_['text_voucher']                 		= 'Vouchers';
 $_['text_items']                    		= 'Items';
 $_['text_forms']      						= 'Forms';
+$_['text_chocolat']  						= 'Chocolat';
 $_['text_colorbox']  						= 'Colorbox';
 $_['text_magnific']  						= 'Magnific';
 $_['text_zoomlens']  					= 'Zoom Lens';

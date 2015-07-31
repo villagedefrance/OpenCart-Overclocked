@@ -33,6 +33,25 @@
           </div>
         <?php } ?>
       <?php } ?>
+	  <?php if ($lightbox == 'chocolat') { ?>
+        <div id="chocolate">
+        <?php if ($thumb) { ?>
+          <?php if (!$label && $offers) { ?>
+            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php } ?>
+          <div class="image">
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="chocolat-image"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+		  </div>
+        <?php } ?>
+        <?php if ($images) { ?>
+          <div class="image-additional" style="width:<?php echo $images_offset; ?>px;">
+            <?php foreach ($images as $image) { ?>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="chocolat-image"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+            <?php } ?>
+          </div>
+        <?php } ?>
+        </div>
+      <?php } ?>
       <?php if ($lightbox == 'magnific') { ?>
         <?php if ($thumb) { ?>
           <?php if (!$label && $offers) { ?>
@@ -480,6 +499,23 @@ $(document).ready(function() {
 		overlayClose: true,
 		opacity: 0.5,
 		rel: "colorbox"
+	});
+});
+//--></script> 
+<?php } ?>
+
+<?php if ($lightbox == 'chocolat') { ?>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#chocolate').Chocolat({
+		container: window,
+		setTitle: '<?php echo $heading_title; ?>',
+        imageSelector: '.chocolat-image',
+		className: '',
+		linkImages: true,
+		imageSize: 'default',
+		overlayOpacity: 1,
+		loop: true
 	});
 });
 //--></script> 

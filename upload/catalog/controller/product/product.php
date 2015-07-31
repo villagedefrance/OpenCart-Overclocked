@@ -346,6 +346,24 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'magnific';
 
+			} elseif ($this->config->get('config_lightbox') == 'chocolat') {
+				$this->document->addStyle('catalog/view/javascript/jquery/chocolat/css/chocolat.css');
+				$this->document->addScript('catalog/view/javascript/jquery/chocolat/js/jquery.chocolat.min.js');
+
+				if ($product_info['image']) {
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+
+					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
+					$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
+				} else {
+					$this->data['thumb'] = '';
+
+					$this->data['column_offset'] = 0;
+					$this->data['images_offset'] = 0;
+				}
+
+				$this->data['lightbox'] = 'chocolat';
+
 			} else {
 				$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 				$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
