@@ -85,8 +85,7 @@
                 <?php } ?>
               </td>
               <td class="left">
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_max]" value="<?php echo $module['show_max']; ?>" size="2" /> Max.<br />
-                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show_min]" value="<?php echo $module['show_min']; ?>" size="2" /> Min.
+                <input type="text" name="carousel_module[<?php echo $module_row; ?>][show]" value="<?php echo $module['show']; ?>" size="2" />
 				<?php if (isset($error_show[$module_row])) { ?>
                   <span class="error"><?php echo $error_show[$module_row]; ?></span>
                 <?php } ?>
@@ -188,8 +187,7 @@ function addModule() {
 	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
     html += '    <td class="left">';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show_max]" value="4" size="2" /> Max.<br />';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show_min]" value="1" size="2" /> Min.';
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show]" value="4" size="2" />;
 	html += '    </td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][auto]">';
 	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';

@@ -25,8 +25,8 @@ class ControllerModuleCarousel extends Controller {
 		$this->data['slick_theme'] = $this->config->get($this->_name . '_skin');
 
 		// Responsive
-		$show_max = $setting['show_max'] ? round($setting['show_max']) : 4;
-		$show_min = $setting['show_min'] ? round($setting['show_min']) : 1;
+		$show_max = $setting['show'] ? round($setting['show']) : 4;
+		$show_min = 1;
 
 		$show_960 = round($show_max / 2);
 		$show_640 = round($show_max / 3);

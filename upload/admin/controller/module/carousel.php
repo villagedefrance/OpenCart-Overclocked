@@ -3,7 +3,7 @@ class ControllerModuleCarousel extends Controller {
 	private $error = array();
 	private $_name = 'carousel';
 	private $_plugin = 'Slick';
-	private $_version = 'v1.5.7';
+	private $_version = 'v1.5.8';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -209,11 +209,7 @@ class ControllerModuleCarousel extends Controller {
 					$this->error['image'][$key] = $this->language->get('error_image');
 				}
 
-				if (!$value['show_max'] || !is_numeric($value['show_max']) || $value['show_max'] < 1 || $value['show_max'] > 10 || $value['show_max'] < $value['show_min']) {
-					$this->error['show'][$key] = $this->language->get('error_show');
-				}
-
-				if (!$value['show_min'] || !is_numeric($value['show_min']) || $value['show_min'] < 1 || $value['show_min'] > 10 || $value['show_min'] > $value['show_max']) {
+				if (!$value['show'] || !is_numeric($value['show']) || $value['show'] < 1 || $value['show'] > 10) {
 					$this->error['show'][$key] = $this->language->get('error_show');
 				}
 			}
