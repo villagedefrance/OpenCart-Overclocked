@@ -994,13 +994,13 @@
             <td><?php echo $entry_lightbox; ?></td>
             <td><select name="config_lightbox">
               <?php if (isset($config_lightbox)) { $selected = "selected"; ?>
-                <option value="chocolat" <?php if ($config_lightbox == 'chocolat') { echo $selected; } ?>><?php echo $text_chocolat; ?></option>
                 <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
+                <option value="chocolat" <?php if ($config_lightbox == 'chocolat') { echo $selected; } ?>><?php echo $text_chocolat; ?></option>
                 <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?></option>
                 <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
               <?php } else { ?>
-                <option value="chocolat"><?php echo $text_chocolat; ?></option>
                 <option value="colorbox"><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
+                <option value="chocolat"><?php echo $text_chocolat; ?></option>
                 <option value="magnific"><?php echo $text_magnific; ?></option>
                 <option value="zoomlens"><?php echo $text_zoomlens; ?></option>
               <?php } ?>

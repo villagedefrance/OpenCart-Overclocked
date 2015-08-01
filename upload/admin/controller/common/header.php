@@ -30,7 +30,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_attribute_group'] = $this->language->get('text_attribute_group');
 		$this->data['text_backup'] = $this->language->get('text_backup');
 		$this->data['text_banner'] = $this->language->get('text_banner');
-		$this->data['text_cache'] = $this->language->get('text_cache');
+		$this->data['text_cache_manager'] = $this->language->get('text_cache_manager');
 		$this->data['text_cache_files'] = $this->language->get('text_cache_files');
 		$this->data['text_cache_images'] = $this->language->get('text_cache_images');
 		$this->data['text_catalog'] = $this->language->get('text_catalog');
@@ -57,7 +57,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_error_log'] = $this->language->get('text_error_log');
 		$this->data['text_extension'] = $this->language->get('text_extension');
 		$this->data['text_feed'] = $this->language->get('text_feed');
-		$this->data['text_filemanager'] = $this->language->get('text_filemanager');
+		$this->data['text_file_manager'] = $this->language->get('text_file_manager');
 		$this->data['text_filter'] = $this->language->get('text_filter');
 		$this->data['text_footer'] = $this->language->get('text_footer');
 		$this->data['text_fraud'] = $this->language->get('text_fraud');
@@ -72,7 +72,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_logout'] = $this->language->get('text_logout');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
-		$this->data['text_menu'] = $this->language->get('text_menu');
+		$this->data['text_menu_manager'] = $this->language->get('text_menu_manager');
 		$this->data['text_modification'] = $this->language->get('text_modification');
 		$this->data['text_module'] = $this->language->get('text_module');
 		$this->data['text_news'] = $this->language->get('text_news');
@@ -187,7 +187,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['email_log'] = $this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['filemanager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['file_manager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['filter'] = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['fraud'] = $this->url->link('extension/fraud', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['footer'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'], 'SSL');
@@ -200,7 +200,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['location'] = $this->url->link('localisation/location', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['manufacturer'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['menu'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['menu_manager'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['modification'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');

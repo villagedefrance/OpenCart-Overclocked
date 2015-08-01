@@ -26,21 +26,20 @@ class ControllerModuleCarousel extends Controller {
 
 		// Responsive
 		$show_max = $setting['show'] ? round($setting['show']) : 4;
+		$show_960 = round($show_max * 0.66, 1);
+		$show_640 = round($show_max * 0.33, 1);
 		$show_min = 1;
-
-		$show_960 = round($show_max / 1.33);
-		$show_640 = round($show_max / 2.33);
 
 		$this->data['show_1280'] = $show_max;
 
-		if ($show_960 > $show_640 && $show_960 > $show_min) {
-			$this->data['show_960'] = $show_960;
+		if ($show_960 < $show_max && $show_960 > $show_640 && $show_960 > $show_min) {
+			$this->data['show_960'] = round($show_960, 0);
 		} else {
 			$this->data['show_960'] = $show_max - 1;
 		}
 
 		if ($show_640 < $show_960 && $show_640 > $show_min) {
-			$this->data['show_640'] = $show_640;
+			$this->data['show_640'] = round($show_640, 0);
 		} else {
 			$this->data['show_640'] = $show_min + 1;
 		}

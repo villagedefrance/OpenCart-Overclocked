@@ -182,7 +182,6 @@ $(document).ready(function() {
               <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
               <li><a href="<?php echo $footer; ?>"><?php echo $text_footer; ?></a></li>
               <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
-              <li><a href="<?php echo $menu; ?>"><?php echo $text_menu; ?></a></li>
               <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
               <li><a href="<?php echo $payment_image; ?>"><?php echo $text_payment_image; ?></a></li>
             </ul>
@@ -229,14 +228,15 @@ $(document).ready(function() {
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
             </ul>
           </li>
-		  <li><a class="arrow"><?php echo $text_cache; ?></a>
+		  <li><a class="arrow"><?php echo $text_cache_manager; ?></a>
             <ul>
               <li><a href="<?php echo $cache_files; ?>"><?php echo $text_cache_files; ?></a></li>
               <li><a href="<?php echo $cache_images; ?>"><?php echo $text_cache_images; ?></a></li>
             </ul>
           </li>
           <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
-          <li><a href="<?php echo $filemanager; ?>"><?php echo $text_filemanager; ?></a></li>
+          <li><a href="<?php echo $menu_manager; ?>"><?php echo $text_menu_manager; ?></a></li>
+          <li><a href="<?php echo $file_manager; ?>"><?php echo $text_file_manager; ?></a></li>
           <li><a href="<?php echo $email_log; ?>"><?php echo $text_email_log; ?></a></li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
         </ul>

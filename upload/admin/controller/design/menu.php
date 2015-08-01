@@ -177,8 +177,8 @@ class ControllerDesignMenu extends Controller {
 
 				$count_menu_item = $this->model_design_menuitems->getTotalMenuItems($result['menu_id']);
 
-				$menu_item_add = '<a href="' . $this->url->link('design/menuitems/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button-filter">' . $this->language->get('text_menu_item_add') . '</a>';
-				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menuitems', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button-filter">' . $this->language->get('text_menu_item_view') . '</a>' : '';
+				$menu_item_add = '<a href="' . $this->url->link('design/menuitems/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '"><span class="color" style="background-color:#5DC15E; color:#FFF;">' . $this->language->get('text_menu_item_add') . '</span></a>';
+				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menuitems', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '"><span class="color" style="background-color:#4691D2; color:#FFF;">' . $this->language->get('text_menu_item_view') . '</span></a>' : '';
 
 				$this->data['menus'][] = array(
 					'menu_id' 				=> $result['menu_id'],

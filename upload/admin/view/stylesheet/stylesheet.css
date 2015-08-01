@@ -398,6 +398,9 @@ a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 2px #DDD;
+	-moz-box-shadow: 0px 1px 2px #DDD;
+	box-shadow: 0px 1px 2px #DDD;
 	text-decoration: none;
 	font-weight: bold;
 	color: #FFF;
@@ -478,9 +481,9 @@ a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-i
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: 0px 1px 1px #CCC;
-	-moz-box-shadow: 0px 1px 1px #CCC;
-	box-shadow: 0px 1px 1px #CCC;
+	-webkit-box-shadow: 0px 1px 2px #DDD;
+	-moz-box-shadow: 0px 1px 2px #DDD;
+	box-shadow: 0px 1px 2px #DDD;
 	text-decoration: none;
 	font-weight: bold;
 	color: #FFF;
@@ -493,9 +496,9 @@ input.button-form, input.button-form-install, input.button-form-edit, input.butt
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
-	-webkit-box-shadow: 0px 1px 1px #CCC;
-	-moz-box-shadow: 0px 1px 1px #CCC;
-	box-shadow: 0px 1px 1px #CCC;
+	-webkit-box-shadow: 0px 1px 2px #DDD;
+	-moz-box-shadow: 0px 1px 2px #DDD;
+	box-shadow: 0px 1px 2px #DDD;
 	text-decoration: none;
 	font-weight: bold;
 	color: #FFF;
@@ -585,7 +588,7 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	-moz-box-shadow: 0px 1px 2px #DDD;
 	box-shadow: 0px 1px 2px #DDD;
 	color: #777;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	line-height: 20px;
 	text-align: center;

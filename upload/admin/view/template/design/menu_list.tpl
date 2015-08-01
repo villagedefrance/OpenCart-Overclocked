@@ -47,8 +47,7 @@
               <td class="left"><?php echo $menu['title']; ?></td>
               <td class="left">
                 <?php echo $menu['menu_items']; ?> &nbsp; <?php echo $text_menu_items; ?>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php echo $menu['menu_item_add']; ?> &nbsp; <?php echo $menu['menu_item_view']; ?>
+                <?php echo $menu['menu_item_view']; ?> &nbsp; <?php echo $menu['menu_item_add']; ?>
               </td>
               <?php if ($menu['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>

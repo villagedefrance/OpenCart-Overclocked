@@ -1,10 +1,17 @@
-/* Magnific Popup CSS */
+/* ! Magnific Popup v0.8.9 - OverClocked Edition */
+/*  CSS RESET  */
+html, body, div, span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
 .mfp-bg {
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1042;
+	z-index: 142;
 	overflow: hidden;
 	position: fixed;
 	background: #0B0B0B;
@@ -16,7 +23,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 1043;
+	z-index: 143;
 	position: fixed;
 	outline: none !important;
 	-webkit-backface-visibility: hidden;
@@ -48,7 +55,7 @@
 	vertical-align: middle;
 	margin: 0 auto;
 	text-align: left;
-	z-index: 1045;
+	z-index: 145;
 }
 .mfp-inline-holder .mfp-content, .mfp-ajax-holder .mfp-content {
 	width: 100%;
@@ -91,7 +98,7 @@
 	margin-top: -0.8em;
 	left: 8px;
 	right: 8px;
-	z-index: 1044;
+	z-index: 144;
 }
 .mfp-preloader a {
 	color: #CCC;
@@ -115,7 +122,7 @@ button.mfp-close, button.mfp-arrow {
 	display: block;
 	outline: none;
 	padding: 0;
-	z-index: 1046;
+	z-index: 146;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
