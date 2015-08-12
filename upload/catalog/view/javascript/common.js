@@ -138,7 +138,7 @@ function addToCart(product_id, quantity) {
 		data: 'product_id=' + product_id + '&quantity=' + quantity,
 		dataType: 'json',
 		success: function(json) {
-			$('.success, .warning, .attention, .information, .error').remove();
+			$('.success, .warning, .attention, .tooltip, .error').remove();
 			if (json['redirect']) {
 				location = json['redirect'];
 			}
@@ -159,7 +159,7 @@ function addToWishList(product_id) {
 		data: 'product_id=' + product_id,
 		dataType: 'json',
 		success: function(json) {
-			$('.success, .warning, .attention, .information').remove();
+			$('.success, .warning, .attention, .tooltip').remove();
 			if (json['success']) {
 				$('#notification').html('<div class="success" style="display:none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
 				$('.success').fadeIn('slow');
@@ -177,7 +177,7 @@ function addToCompare(product_id) {
 		data: 'product_id=' + product_id,
 		dataType: 'json',
 		success: function(json) {
-			$('.success, .warning, .attention, .information').remove();
+			$('.success, .warning, .attention, .tooltip').remove();
 			if (json['success']) {
 				$('#notification').html('<div class="success" style="display:none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
 				$('.success').fadeIn('slow');

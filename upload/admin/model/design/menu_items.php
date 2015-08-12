@@ -82,7 +82,7 @@ class ModelDesignMenuItems extends Model {
 			}
 
 			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
+				$data['limit'] = 200;
 			}
 
 			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];

@@ -65,7 +65,7 @@
           <?php if ($product['rating']) { ?>
             <div class="rating"><img src="catalog/view/theme/default/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
           <?php } ?>
-          <div class="links">
+          <div class="addons">
             <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
             <a onclick="addToCompare('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
             <a href="<?php echo $product['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_view.png" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
@@ -95,7 +95,7 @@ function display(view) {
 
 		$('.product-list > div').each(function(index, element) {
 			html  = '<div class="right">';
-			html += '  <div class="links">' + $(element).find('.links').html() + '</div>';
+			html += '  <div class="addons">' + $(element).find('.addons').html() + '</div>';
 			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '</div>';
 
@@ -172,7 +172,7 @@ function display(view) {
 				html += '<div class="rating">' + rating + '</div>';
 			}
 
-			html += '<div class="links">' + $(element).find('.links').html() + '</div>';
+			html += '<div class="addons">' + $(element).find('.addons').html() + '</div>';
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
 
 			$(element).html(html);

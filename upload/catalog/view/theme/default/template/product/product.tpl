@@ -312,7 +312,7 @@
       <div class="cart">
         <div>
           <?php if ($is_quote) { ?>
-            <a href="<?php echo $is_quote; ?>" class="button" style="position:relative; top:-6px;"><?php echo $button_quote; ?></a>
+            <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
           <?php } else { ?>
             <b class="sub-prod-count" onclick="subProductCount();"></b>
             <input type="text" name="quantity" id="quantity" class="quantity-input" size="2" value="<?php echo $minimum; ?>" />

@@ -219,8 +219,8 @@ class ControllerDesignMenuItems extends Controller {
 			'filter_name'	=> $filter_name,
 			'sort'  			=> $sort,
 			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 				=> $this->config->get('config_admin_limit')
+			'start' 			=> ($page - 1) * 200,
+			'limit' 				=> 200
 		);
 
 		$menu_item_total = $this->model_design_menu_items->getTotalMenuItems($menu_id, $data);
@@ -321,7 +321,7 @@ class ControllerDesignMenuItems extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $menu_item_total;
 		$pagination->page = $page;
-		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->limit = 200;
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url . '&page={page}', 'SSL');
 

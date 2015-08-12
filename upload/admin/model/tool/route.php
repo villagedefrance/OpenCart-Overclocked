@@ -20,6 +20,7 @@ class ModelToolRoute extends Model {
 
 		// Common Pages
 		$links_data[] = array('link'	=> 'common/home', 'name' => '');
+		$links_data[] = array('link'	=> 'account/account', 'name' => '');
 		$links_data[] = array('link'	=> 'account/login', 'name' => '');
 		$links_data[] = array('link'	=> 'account/register', 'name' => '');
 		$links_data[] = array('link'	=> 'account/edit', 'name' => '');
@@ -33,6 +34,7 @@ class ModelToolRoute extends Model {
 		$links_data[] = array('link'	=> 'account/return/insert', 'name' => '');
 		$links_data[] = array('link'	=> 'account/transaction', 'name' => '');
 		$links_data[] = array('link'	=> 'account/newsletter', 'name' => '');
+		$links_data[] = array('link'	=> 'affiliate/account', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/login', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/register', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/edit', 'name' => '');
@@ -47,6 +49,7 @@ class ModelToolRoute extends Model {
 		$links_data[] = array('link'	=> 'product/product_wall', 'name' => '');
 		$links_data[] = array('link'	=> 'product/review_list', 'name' => '');
 		$links_data[] = array('link'	=> 'product/category_list', 'name' => '');
+		$links_data[] = array('link'	=> 'product/manufacturer', 'name' => '');
 		$links_data[] = array('link'	=> 'information/contact', 'name' => '');
 		$links_data[] = array('link'	=> 'information/sitemap', 'name' => '');
 		$links_data[] = array('link'	=> 'information/news_list', 'name' => '');

@@ -2,13 +2,13 @@
 <div id="content">
   <div class="box-login">
     <div class="content-login">
-    <h1><img src="view/image/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
     <?php if ($success) { ?>
       <div class="success"><?php echo $success; ?></div>
     <?php } ?>
     <?php if ($error_warning) { ?>
       <div class="warning"><?php echo $error_warning; ?></div>
     <?php } ?>
+    <h1><img src="view/image/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
     <table style="width:100%;">
       <tr>

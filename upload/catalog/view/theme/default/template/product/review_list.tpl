@@ -53,10 +53,10 @@
 		  <div class="rating">
             <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $review['rating']; ?>.png" alt="<?php echo $review['reviews']; ?>" />
           </div>
-		  <div class="links">
-            <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
-            <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
-            <a href="<?php echo $review['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-view.png" alt="<?php echo $review['name']; ?>" title="<?php echo $review['name']; ?>" /></a>
+		  <div class="addons">
+            <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
+            <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
+            <a href="<?php echo $review['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_view.png" alt="<?php echo $review['name']; ?>" title="<?php echo $review['name']; ?>" /></a>
           </div>
           <div class="cart">
 		    <?php if ($review['quote']) { ?>
@@ -96,7 +96,7 @@ function display(view) {
 				html += '<div class="rating">' + rating + '</div>';
 			}
 
-			html += '  <div class="links">' + $(element).find('.links').html() + '</div>';
+			html += '  <div class="addons">' + $(element).find('.addons').html() + '</div>';
 			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '</div>';
 
@@ -142,7 +142,6 @@ function display(view) {
 		$.totalStorage('display', 'list');
 
 	} else {
-
 		$('.review-list').attr('class', 'review-grid');
 
 		$('.review-grid > div').each(function(index, element) {
@@ -184,7 +183,7 @@ function display(view) {
 				html += '<div class="rating">' + rating + '</div>';
 			}
 
-			html += '<div class="links">' + $(element).find('.links').html() + '</div>';
+			html += '<div class="addons">' + $(element).find('.addons').html() + '</div>';
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
 
 			$(element).html(html);
