@@ -10,14 +10,6 @@ class ControllerCommonHeader extends Controller {
 			$server = $this->config->get('config_url');
 		}
 
-		if (isset($this->session->data['error']) && !empty($this->session->data['error'])) {
-			$this->data['error'] = $this->session->data['error'];
-
-			unset($this->session->data['error']);
-		} else {
-			$this->data['error'] = '';
-		}
-
 		$this->data['base'] = $server;
 		$this->data['description'] = $this->document->getDescription();
 		$this->data['keywords'] = $this->document->getKeywords();
@@ -111,52 +103,7 @@ class ControllerCommonHeader extends Controller {
 
 		$this->data['template'] = $this->config->get('config_template');
 
-		// Menu
-		if (empty($theme) || (isset($theme['category_menu']))) {
-			$this->load->model('catalog/category');
-			$this->load->model('catalog/product');
-
-			$this->data['categories'] = array();
-
-			$categories = $this->model_catalog_category->getCategories(0);
-
-			foreach ($categories as $category) {
-				if ($category['top']) {
-					// Level 2
-					$children_data = array();
-
-					$children = $this->model_catalog_category->getCategories($category['category_id']);
-
-					foreach ($children as $child) {
-						$data = array(
-							'filter_category_id' 	=> $child['category_id'],
-							'filter_sub_category'	=> true
-						);
-
-						$product_total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts($data) : 0;
-
-						$children_data[] = array(
-							'name'	=> $child['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
-							'href'  	=> $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
-						);
-					}
-
-					// Level 1
-					$this->data['categories'][] = array(
-						'name'     	=> $category['name'],
-						'children' 	=> $children_data,
-						'column'   	=> $category['column'] ? $category['column'] : 1,
-						'href'     		=> $this->url->link('product/category', 'path=' . $category['category_id'])
-					);
-				}
-			}
-
-		} else {
-			$this->data['categories'] = false;
-		}
-
 		$this->children = array(
-			'common/header_bottom',
 			'module/language',
 			'module/currency',
 			'module/cart'

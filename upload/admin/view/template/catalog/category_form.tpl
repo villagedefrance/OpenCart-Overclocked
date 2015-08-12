@@ -161,7 +161,7 @@
             <br />
             <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
         </tr>
-        <tr>
+        <tr style="display:none;">
           <td><?php echo $entry_top; ?></td>
           <td><?php if ($top) { ?>
             <input type="checkbox" name="top" value="1" checked="checked" />
@@ -169,7 +169,7 @@
             <input type="checkbox" name="top" value="1" />
           <?php } ?></td>
         </tr>
-        <tr>
+        <tr style="display:none;">
           <td><?php echo $entry_column; ?></td>
           <td><input type="text" name="column" value="<?php echo $column; ?>" size="1" /></td>
         </tr>
@@ -260,7 +260,7 @@ $('input[name=\'path\']').autocomplete({
 			success: function(json) {
 				json.unshift({
 					'category_id': 0,
-					'name':  '<?php echo $text_none; ?>'
+					'name': '<?php echo $text_none; ?>'
 				});
 
 				response($.map(json, function(item) {

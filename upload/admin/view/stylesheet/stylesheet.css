@@ -388,6 +388,46 @@ ul.menu ul {
 	padding-top: 10px;
 	overflow: auto;
 }
+/* Box Login */
+.box-login {
+	width: 400px;
+	min-height: 300px;
+	margin: 50px auto;
+}
+.box-login > .content-login {
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#E8E8E8));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: -o-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: linear-gradient(to bottom, #FCFCFC, #E8E8E8);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
+	overflow: auto;
+}
+.box-login > .content-login h1 {
+	margin: 0px 0px 10px 0px;
+	padding: 10px 8px;
+	color: #405060;
+	font-size: 16px;
+	float: left;
+}
+.box-login > .content-login h1 img {
+	margin-top: -1px;
+	margin-left: 3px;
+	margin-right: 8px;
+	float: left;
+}
+.box-login > .content-login > form {
+	min-height: 170px;
+	padding: 15px 10px;
+}
 /* Button */
 a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {
 	display: inline-block;

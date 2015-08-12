@@ -16,17 +16,6 @@ class ControllerProductManufacturer extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -47,7 +36,7 @@ class ControllerProductManufacturer extends Controller {
 		$results = $this->model_catalog_manufacturer->getManufacturers(0);
 
 		foreach ($results as $result) {
-			if ($result['image'] && $theme['manufacturer_image']) {
+			if ($result['image']) {
 				$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_brand_width'), $this->config->get('config_image_brand_height'));
 			} else {
 				$image = false;
@@ -72,6 +61,9 @@ class ControllerProductManufacturer extends Controller {
 		}
 
 		$this->data['continue'] = $this->url->link('common/home');
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/manufacturer_list.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/product/manufacturer_list.tpl';
@@ -129,17 +121,6 @@ class ControllerProductManufacturer extends Controller {
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
 		}
-
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
 
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
@@ -414,6 +395,9 @@ class ControllerProductManufacturer extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
+			// Theme
+			$this->data['template'] = $this->config->get('config_template');
+
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/manufacturer_info.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/product/manufacturer_info.tpl';
 			} else {
@@ -470,7 +454,7 @@ class ControllerProductManufacturer extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			// Template
+			// Theme
 			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {

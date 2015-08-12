@@ -18,7 +18,7 @@ html, body, div, span {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 100;
+    z-index: 600;
     background-color: #FFF;
     display: none;
 }
@@ -28,7 +28,7 @@ html, body, div, span {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 106;
+    z-index: 606;
     color: #FFF;
 }
 .chocolat-zoomable .chocolat-img {
@@ -42,7 +42,7 @@ html, body, div, span {
     top: 50% ;
     margin-left: -16px;
     margin-top: -16px;
-    z-index: 101;
+    z-index: 601;
     background: url('../images/loader.gif');
     display: none;
 }
@@ -52,7 +52,7 @@ html, body, div, span {
     height: 0px;
     left: 50%;
     top: 50%;
-    z-index: 104;
+    z-index: 604;
     text-align: left;
 }
 .chocolat-content .chocolat-img {
@@ -69,7 +69,7 @@ html, body, div, span {
     margin-top: -50px;
     cursor: pointer;
     background: url('../images/left.png') 50% 50% no-repeat;
-    z-index: 107;
+    z-index: 607;
     display: none;
 }
 .chocolat-wrapper .chocolat-right {
@@ -80,8 +80,8 @@ html, body, div, span {
     height: 100px;
     margin-top: -50px;
     cursor: pointer;
-    background: url('../images/right.png')  50% 50% no-repeat;
-    z-index: 107;
+    background: url('../images/right.png') 50% 50% no-repeat;
+    z-index: 607;
     display: none;
 }
 .chocolat-wrapper .chocolat-right.active {
@@ -98,7 +98,7 @@ html, body, div, span {
     line-height: 50px;
     height: 50px;
     overflow: hidden;
-    z-index: 107;
+    z-index: 607;
     margin-bottom: 10px;
 }
 .chocolat-wrapper .chocolat-close {
@@ -118,7 +118,7 @@ html, body, div, span {
     line-height: 40px;
     height: 40px;
     font-size: 12px;
-    z-index: 107;
+    z-index: 607;
     padding-left: 15px;
     padding-right: 15px;
     background: rgba(0, 0, 0, 0.2);
@@ -170,7 +170,7 @@ html, body, div, span {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 91;
+    z-index: 591;
 }
 .chocolat-cover .chocolat-content .chocolat-close {
     background: url('../images/close-compact.png') 0% center no-repeat;
@@ -180,20 +180,20 @@ html, body, div, span {
     background: rgba(255,255,255,0.75);
 	bottom: 0;
     left: 0;
-    z-index: 91;
+    z-index: 591;
 }
 .chocolat-cover .chocolat-content .chocolat-pagination, .chocolat-cover .chocolat-content .chocolat-description{
     padding: 0 10px;
 }
 /* no container mode*/
 body.chocolat-open>.chocolat-overlay {
-    z-index: 105;
+    z-index: 605;
 }
 body.chocolat-open>.chocolat-loader {
-    z-index: 105;
+    z-index: 605;
 }
 body.chocolat-open>.chocolat-content {
-    z-index: 107;
+    z-index: 607;
 }
 /* container mode*/
 .chocolat-in-container .chocolat-wrapper, .chocolat-in-container .chocolat-content, .chocolat-in-container .chocolat-overlay {

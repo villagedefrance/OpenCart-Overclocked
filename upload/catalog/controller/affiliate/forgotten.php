@@ -50,17 +50,6 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -101,6 +90,9 @@ class ControllerAffiliateForgotten extends Controller {
 		$this->data['action'] = $this->url->link('affiliate/forgotten', '', 'SSL');
 		$this->data['back'] = $this->url->link('affiliate/login', '', 'SSL');
 
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/forgotten.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/affiliate/forgotten.tpl';
 		} else {
@@ -122,7 +114,7 @@ class ControllerAffiliateForgotten extends Controller {
 	}
 
 	protected function validate() {
-		if (!isset($this->request->post['email'])) {
+		if (!isset($this->request->post['email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');
 		} elseif (!$this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');

@@ -72,17 +72,6 @@ class ControllerProductSearch extends Controller {
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -245,7 +234,7 @@ class ControllerProductSearch extends Controller {
 					$image = false;
 				}
 
-				if ($result['manufacturer'] && $theme['manufacturer_name']) {
+				if ($result['manufacturer']) {
 					$manufacturer = $result['manufacturer'];
 				} else {
 					$manufacturer = false;
@@ -488,6 +477,9 @@ class ControllerProductSearch extends Controller {
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
 		$this->data['limit'] = $limit;
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/search.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/product/search.tpl';

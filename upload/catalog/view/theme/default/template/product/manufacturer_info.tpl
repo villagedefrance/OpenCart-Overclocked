@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<?php if ($theme['breadcrumbs']) { ?>
+<?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -13,6 +13,7 @@
   <?php if ($products) { ?>
     <div class="product-filter">
       <div class="display"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display('grid');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a></div>
+      <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><span class="hide-phone"><?php echo $text_compare; ?></span></a></div>
       <div class="limit"><?php echo $text_limit; ?>
         <select onchange="location = this.value;">
         <?php foreach ($limits as $limits) { ?>
@@ -36,7 +37,6 @@
         </select>
       </div>
     </div>
-    <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
     <div class="product-list">
       <?php foreach ($products as $product) { ?>
         <div>

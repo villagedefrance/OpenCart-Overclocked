@@ -27,6 +27,7 @@
         <a href="#tab-local"><?php echo $tab_local; ?></a>
 		<a href="#tab-checkout"><?php echo $tab_checkout; ?></a>
         <a href="#tab-option"><?php echo $tab_option; ?></a>
+        <a href="#tab-media"><?php echo $tab_media; ?></a>
 		<a href="#tab-preference"><?php echo $tab_preference; ?></a>
         <a href="#tab-image"><?php echo $tab_image; ?></a>
         <a href="#tab-ftp"><?php echo $tab_ftp; ?></a>
@@ -178,15 +179,11 @@
           <tr>
             <td><?php echo $entry_currency_auto; ?></td>
             <td><?php if ($config_currency_auto) { ?>
-              <input type="radio" name="config_currency_auto" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_currency_auto" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_currency_auto" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_currency_auto" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_currency_auto" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_currency_auto" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_currency_auto" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_currency_auto" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -219,15 +216,11 @@
           <tr>
             <td><?php echo $entry_our_location; ?></td>
             <td><?php if ($config_our_location) { ?>
-              <input type="radio" name="config_our_location" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_our_location" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_our_location" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_our_location" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_our_location" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_our_location" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_our_location" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_our_location" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -245,15 +238,11 @@
           <tr>
             <td><?php echo $entry_contact_map; ?></td>
             <td><?php if ($config_contact_map) { ?>
-              <input type="radio" name="config_contact_map" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_contact_map" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_contact_map" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_contact_map" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_contact_map" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_contact_map" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_contact_map" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_contact_map" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -264,29 +253,21 @@
           <tr>
             <td><?php echo $entry_cart_weight; ?></td>
             <td><?php if ($config_cart_weight) { ?>
-              <input type="radio" name="config_cart_weight" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_cart_weight" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_cart_weight" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_cart_weight" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_cart_weight" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_cart_weight" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_cart_weight" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_cart_weight" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_guest_checkout; ?></td>
             <td><?php if ($config_guest_checkout) { ?>
-              <input type="radio" name="config_guest_checkout" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_guest_checkout" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_guest_checkout" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_guest_checkout" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_guest_checkout" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_guest_checkout" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_guest_checkout" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_guest_checkout" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -313,15 +294,11 @@
           <tr>
             <td><?php echo $entry_auto_invoice; ?></td>
             <td><?php if ($config_auto_invoice) { ?>
-              <input type="radio" name="config_auto_invoice" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_auto_invoice" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_auto_invoice" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_auto_invoice" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_auto_invoice" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_auto_invoice" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_auto_invoice" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_auto_invoice" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -354,15 +331,11 @@
           <tr>
             <td><?php echo $entry_express_checkout; ?></td>
             <td><?php if ($config_express_checkout) { ?>
-              <input type="radio" name="config_express_checkout" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_checkout" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_checkout" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_checkout" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_checkout" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_checkout" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_checkout" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_checkout" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -371,15 +344,11 @@
 		  <tr>
             <td><?php echo $entry_express_name; ?></td>
             <td><?php if ($config_express_name) { ?>
-              <input type="radio" name="config_express_name" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_name" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_name" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_name" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_name" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_name" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_name" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_name" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
 		  <tr>
@@ -413,57 +382,41 @@
           <tr>
             <td><?php echo $entry_express_autofill; ?></td>
             <td><?php if ($config_express_autofill) { ?>
-              <input type="radio" name="config_express_autofill" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_autofill" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_autofill" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_autofill" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_autofill" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_autofill" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_autofill" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_autofill" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_billing; ?></td>
             <td><?php if ($config_express_billing) { ?>
-              <input type="radio" name="config_express_billing" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_billing" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_billing" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_billing" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_billing" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_billing" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_billing" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_billing" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_postcode; ?></td>
             <td><?php if ($config_express_postcode) { ?>
-              <input type="radio" name="config_express_postcode" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_postcode" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_postcode" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_postcode" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_postcode" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_postcode" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_postcode" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_postcode" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_comment; ?></td>
             <td><?php if ($config_express_comment) { ?>
-              <input type="radio" name="config_express_comment" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_comment" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_comment" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_comment" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_comment" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_comment" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_comment" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_comment" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
 		  <tr>
@@ -483,29 +436,21 @@
           <tr>
             <td><?php echo $entry_express_coupon; ?></td>
             <td><?php if ($config_express_coupon) { ?>
-              <input type="radio" name="config_express_coupon" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_coupon" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_coupon" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_coupon" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_coupon" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_coupon" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_coupon" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_coupon" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_voucher; ?></td>
             <td><?php if ($config_express_voucher) { ?>
-              <input type="radio" name="config_express_voucher" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_voucher" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_voucher" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_voucher" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_express_voucher" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_express_voucher" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_express_voucher" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_voucher" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
 		  <tr>
@@ -530,43 +475,31 @@
           <tr>
             <td><?php echo $entry_product_count; ?></td>
             <td><?php if ($config_product_count) { ?>
-              <input type="radio" name="config_product_count" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_product_count" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_product_count" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_product_count" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_product_count" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_product_count" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_product_count" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_product_count" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_review; ?></td>
             <td><?php if ($config_review_status) { ?>
-              <input type="radio" name="config_review_status" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_review_status" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_review_status" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_review_status" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_review_status" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_review_status" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_review_status" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_review_status" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_download; ?></td>
             <td><?php if ($config_download) { ?>
-              <input type="radio" name="config_download" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_download" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_download" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_download" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_download" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_download" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_download" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_download" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -575,29 +508,21 @@
           <tr>
             <td><?php echo $entry_tax; ?></td>
             <td><?php if ($config_tax) { ?>
-              <input type="radio" name="config_tax" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_tax" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_tax" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_tax" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_tax" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_tax" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_tax" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_tax" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_vat; ?></td>
             <td><?php if ($config_vat) { ?>
-              <input type="radio" name="config_vat" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_vat" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_vat" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_vat" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_vat" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_vat" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_vat" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_vat" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -638,43 +563,31 @@
           <tr>
             <td><?php echo $entry_stock_display; ?></td>
             <td><?php if ($config_stock_display) { ?>
-              <input type="radio" name="config_stock_display" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_stock_display" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_stock_display" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_stock_display" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_stock_display" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_stock_display" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_stock_display" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_stock_display" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_stock_warning; ?></td>
             <td><?php if ($config_stock_warning) { ?>
-              <input type="radio" name="config_stock_warning" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_stock_warning" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_stock_warning" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_stock_warning" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_stock_warning" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_stock_warning" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_stock_warning" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_stock_warning" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_stock_checkout; ?></td>
             <td><?php if ($config_stock_checkout) { ?>
-              <input type="radio" name="config_stock_checkout" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_stock_checkout" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_stock_checkout" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_stock_checkout" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_stock_checkout" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_stock_checkout" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_stock_checkout" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_stock_checkout" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -695,15 +608,11 @@
           <tr>
             <td><?php echo $entry_customer_online; ?></td>
             <td><?php if ($config_customer_online) { ?>
-              <input type="radio" name="config_customer_online" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_online" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_online" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_online" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_customer_online" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_online" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_online" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_online" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -742,43 +651,31 @@
           <tr>
             <td><?php echo $entry_customer_price; ?></td>
             <td><?php if ($config_customer_price) { ?>
-              <input type="radio" name="config_customer_price" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_price" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_price" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_price" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_customer_price" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_price" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_price" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_price" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer_redirect; ?></td>
             <td><?php if ($config_customer_redirect) { ?>
-              <input type="radio" name="config_customer_redirect" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_redirect" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_redirect" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_redirect" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_customer_redirect" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_redirect" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_redirect" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_redirect" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer_fax; ?></td>
             <td><?php if ($config_customer_fax) { ?>
-              <input type="radio" name="config_customer_fax" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_fax" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_fax" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_fax" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_customer_fax" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_customer_fax" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_customer_fax" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_fax" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -817,29 +714,21 @@
           <tr>
             <td><?php echo $entry_affiliate_fax; ?></td>
             <td><?php if ($config_affiliate_fax) { ?>
-              <input type="radio" name="config_affiliate_fax" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_affiliate_fax" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_affiliate_fax" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_fax" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_affiliate_fax" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_affiliate_fax" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_affiliate_fax" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_fax" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
 		  <tr>
             <td><?php echo $entry_affiliate_disable; ?></td>
             <td><?php if ($config_affiliate_disable) { ?>
-              <input type="radio" name="config_affiliate_disable" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_affiliate_disable" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_affiliate_disable" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_disable" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_affiliate_disable" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_affiliate_disable" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_affiliate_disable" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_affiliate_disable" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -873,15 +762,11 @@
 		  <tr>
             <td><?php echo $entry_return_disable; ?></td>
             <td><?php if ($config_return_disable) { ?>
-              <input type="radio" name="config_return_disable" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_return_disable" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_return_disable" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_return_disable" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_return_disable" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_return_disable" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_return_disable" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_return_disable" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -901,6 +786,35 @@
               <span class="error"><?php echo $error_voucher_max; ?></span>
             <?php } ?></td>
           </tr>
+        </table>
+      </div>
+	  <div id="tab-media">
+        <h2><?php echo $text_social_media; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_facebook; ?></td>
+            <td><input name="config_facebook" type="text" size="60" value="<?php echo $config_facebook; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_twitter; ?></td>
+            <td><input name="config_twitter" type="text" size="60" value="<?php echo $config_twitter; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_google; ?></td>
+            <td><input name="config_google" type="text" size="60" value="<?php echo $config_google; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_pinterest; ?></td>
+            <td><input name="config_pinterest" type="text" size="60" value="<?php echo $config_pinterest; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_skype; ?></td>
+            <td><input name="config_skype" type="text" size="50" value="<?php echo $config_skype; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_addthis; ?></td>
+            <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
+          <tr>
         </table>
       </div>
 	  <div id="tab-preference">
@@ -926,15 +840,11 @@
           <tr>
 		    <td><?php echo $entry_pagination_hi; ?></td>
             <td><?php if ($config_pagination_hi) { ?>
-              <input type="radio" name="config_pagination_hi" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_pagination_hi" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_pagination_hi" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination_hi" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_pagination_hi" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_pagination_hi" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_pagination_hi" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination_hi" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?>
 			<?php if ($error_preference_pagination) { ?>
               <span class="error"><?php echo $error_preference_pagination; ?></span>
@@ -944,15 +854,11 @@
 		  <tr>
 		    <td><?php echo $entry_pagination_lo; ?></td>
             <td><?php if ($config_pagination_lo) { ?>
-              <input type="radio" name="config_pagination_lo" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_pagination_lo" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_pagination_lo" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination_lo" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_pagination_lo" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_pagination_lo" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_pagination_lo" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_pagination_lo" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?>
 			<?php if ($error_preference_pagination) { ?>
               <span class="error"><?php echo $error_preference_pagination; ?></span>
@@ -962,29 +868,21 @@
           <tr>
             <td><?php echo $entry_autocomplete_category; ?></td>
             <td><?php if ($config_autocomplete_category) { ?>
-              <input type="radio" name="config_autocomplete_category" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_autocomplete_category" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_autocomplete_category" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_category" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_autocomplete_category" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_autocomplete_category" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_autocomplete_category" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_category" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_autocomplete_product; ?></td>
             <td><?php if ($config_autocomplete_product) { ?>
-              <input type="radio" name="config_autocomplete_product" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_autocomplete_product" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_autocomplete_product" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_product" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_autocomplete_product" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_autocomplete_product" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_autocomplete_product" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_autocomplete_product" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -994,10 +892,10 @@
             <td><?php echo $entry_lightbox; ?></td>
             <td><select name="config_lightbox">
               <?php if (isset($config_lightbox)) { $selected = "selected"; ?>
-                <option value="colorbox" <?php if ($config_lightbox == 'colorbox') { echo $selected; } ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
-                <option value="chocolat" <?php if ($config_lightbox == 'chocolat') { echo $selected; } ?>><?php echo $text_chocolat; ?></option>
-                <option value="magnific" <?php if ($config_lightbox == 'magnific') { echo $selected; } ?>><?php echo $text_magnific; ?></option>
-                <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
+                <option value="colorbox" <?php if ($config_lightbox == 'colorbox') {echo $selected;} ?>><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
+                <option value="chocolat" <?php if ($config_lightbox == 'chocolat') {echo $selected;} ?>><?php echo $text_chocolat; ?></option>
+                <option value="magnific" <?php if ($config_lightbox == 'magnific') {echo $selected;} ?>><?php echo $text_magnific; ?></option>
+                <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') {echo $selected;} ?>><?php echo $text_zoomlens; ?></option>
               <?php } else { ?>
                 <option value="colorbox"><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
                 <option value="chocolat"><?php echo $text_chocolat; ?></option>
@@ -1009,29 +907,21 @@
           <tr>
             <td><?php echo $entry_offer_label; ?></td>
             <td><?php if ($config_offer_label) { ?>
-              <input type="radio" name="config_offer_label" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_offer_label" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_offer_label" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_offer_label" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_offer_label" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_offer_label" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_offer_label" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_offer_label" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_price_free; ?></td>
             <td><?php if ($config_price_free) { ?>
-              <input type="radio" name="config_price_free" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_price_free" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_price_free" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_price_free" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_price_free" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_price_free" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_price_free" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_price_free" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -1055,15 +945,11 @@
           <tr>
             <td><?php echo $entry_news_addthis; ?></td>
             <td><?php if ($config_news_addthis) { ?>
-              <input type="radio" name="config_news_addthis" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_news_addthis" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_news_addthis" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_news_addthis" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_news_addthis" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_news_addthis" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_news_addthis" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_news_addthis" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1238,15 +1124,11 @@
           <tr>
             <td><?php echo $entry_ftp_status; ?></td>
             <td><?php if ($config_ftp_status) { ?>
-              <input type="radio" name="config_ftp_status" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_ftp_status" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_ftp_status" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_ftp_status" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_ftp_status" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_ftp_status" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_ftp_status" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_ftp_status" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
         </table>
@@ -1295,29 +1177,21 @@
           <tr>
             <td><?php echo $entry_alert_mail; ?></td>
             <td><?php if ($config_alert_mail) { ?>
-              <input type="radio" name="config_alert_mail" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_alert_mail" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_alert_mail" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_alert_mail" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_alert_mail" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_alert_mail" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_alert_mail" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_alert_mail" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_account_mail; ?></td>
             <td><?php if ($config_account_mail) { ?>
-              <input type="radio" name="config_account_mail" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_account_mail" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_account_mail" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_account_mail" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_account_mail" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_account_mail" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_account_mail" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_account_mail" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1331,29 +1205,21 @@
           <tr>
             <td><?php echo $entry_secure; ?></td>
             <td><?php if ($config_secure) { ?>
-              <input type="radio" name="config_secure" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_secure" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_secure" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_secure" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_secure" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_secure" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_secure" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_secure" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_shared; ?></td>
             <td><?php if ($config_shared) { ?>
-              <input type="radio" name="config_shared" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_shared" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_shared" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_shared" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_shared" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_shared" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_shared" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_shared" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1363,15 +1229,11 @@
           <tr>
             <td><?php echo $entry_seo_url; ?></td>
             <td><?php if ($config_seo_url) { ?>
-              <input type="radio" name="config_seo_url" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_seo_url" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_seo_url" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_seo_url" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_seo_url" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_seo_url" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_seo_url" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_seo_url" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1392,29 +1254,21 @@
           <tr>
             <td><?php echo $entry_maintenance; ?></td>
             <td><?php if ($config_maintenance) { ?>
-              <input type="radio" name="config_maintenance" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_maintenance" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_maintenance" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_maintenance" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_maintenance" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_maintenance" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_maintenance" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_maintenance" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_password; ?></td>
             <td><?php if ($config_password) { ?>
-              <input type="radio" name="config_password" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_password" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_password" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_password" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_password" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_password" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_password" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_password" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1431,29 +1285,21 @@
           <tr>
             <td><?php echo $entry_error_display; ?></td>
             <td><?php if ($config_error_display) { ?>
-              <input type="radio" name="config_error_display" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_error_display" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_error_display" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_error_display" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_error_display" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_error_display" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_error_display" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_error_display" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_error_log; ?></td>
             <td><?php if ($config_error_log) { ?>
-              <input type="radio" name="config_error_log" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_error_log" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_error_log" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_error_log" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_error_log" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="config_error_log" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="config_error_log" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_error_log" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1463,10 +1309,6 @@
               <span class="error"><?php echo $error_error_filename; ?></span>
             <?php } ?></td>
           </tr>
-          <tr>
-            <td><?php echo $entry_addthis; ?></td>
-            <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
-          <tr>
           <tr>
             <td><?php echo $entry_google_analytics; ?></td>
             <td><textarea name="config_google_analytics" cols="40" rows="10"><?php echo $config_google_analytics; ?></textarea></td>

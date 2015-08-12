@@ -26,17 +26,6 @@ class ControllerAffiliateLogin extends Controller {
 			}
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -112,6 +101,9 @@ class ControllerAffiliateLogin extends Controller {
 		} else {
 			$this->data['password'] = '';
 		}
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/login.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/affiliate/login.tpl';

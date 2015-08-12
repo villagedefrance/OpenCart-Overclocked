@@ -5,7 +5,7 @@ class ModelDesignMenu extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "menu SET title = '" . $this->db->escape($data['title']) . "', status = '1'");
 
 		$menu_id = $this->db->getLastId();
-		
+
 		// Save and Continue
 		$this->session->data['new_menu_id'] = $menu_id;
 
@@ -52,7 +52,7 @@ class ModelDesignMenu extends Model {
 	public function getMenus($data = array()) {
 		$menu_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu ORDER BY menu_id");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu ORDER BY menu_id ASC");
 
 		foreach ($query->rows as $result) {
 			$menu_data[] = array(

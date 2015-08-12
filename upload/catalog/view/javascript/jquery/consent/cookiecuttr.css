@@ -1,5 +1,4 @@
 /* CookieCuttr by Chris Wharton (http://cookiecuttr.com) */
-
 .cc-cookies {
 	position: relative;
 	display: block;
@@ -88,15 +87,15 @@
 .cc-cookies.cc-discreet a:hover.cc-cookie-reset {
 	text-decoration: none;
 }
-
-@media screen and (max-width: 768px) {
+/* Desktop & Wide */
+@media only screen and (min-width: 640px) and (max-width: 1280px) {
 	.cc-cookies a.cc-cookie-accept, .cc-cookies a.cc-cookie-decline, .cc-cookies a.cc-cookie-reset {
 		display: block;
 		margin: 1em 0;
 	}
 }
-
-@media screen and (max-width: 480px) {
+/* Phones */
+@media screen and (max-width: 640px) {
 	.cc-cookies { 
 		position: relative; 
 		float: left;

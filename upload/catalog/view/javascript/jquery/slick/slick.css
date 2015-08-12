@@ -1,4 +1,4 @@
-/* Slider */
+/* Slick Slider */
 .slick-slider {
     position: relative;
     display: block;
@@ -91,7 +91,7 @@
 	visibility: hidden;
     display: none;
 }
-/*----------- OCE Theme -----------*/
+/*----------- OverClocked Edition -----------*/
 .slick-loading .slick-list {
     background: #FFF url(images/ajax-loader.gif) center center no-repeat;
 }

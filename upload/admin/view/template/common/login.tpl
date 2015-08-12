@@ -1,10 +1,8 @@
 <?php echo $header; ?>
 <div id="content">
-  <div class="box" style="width:400px; min-height:300px; margin-top:40px; margin-left:auto; margin-right:auto;">
-    <div class="heading">
-      <h1><img src="view/image/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
-    </div>
-    <div class="content" style="min-height:150px; overflow:hidden;">
+  <div class="box-login">
+    <div class="content-login">
+    <h1><img src="view/image/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
     <?php if ($success) { ?>
       <div class="success"><?php echo $success; ?></div>
     <?php } ?>
@@ -24,7 +22,7 @@
           <?php echo $entry_password; ?><br />
           <input type="password" name="password" value="<?php echo $password; ?>" style="margin-top:4px;" />
           <?php if ($forgotten) { ?>
-            <br />
+            <br /><br />
             <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a>
           <?php } ?>
         </td>

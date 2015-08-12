@@ -36,7 +36,6 @@ class ControllerModuleLatest extends Controller {
 		$this->data['text_content_footer'] = $this->language->get('text_content_footer');
 		$this->data['text_column_left'] = $this->language->get('text_column_left');
 		$this->data['text_column_right'] = $this->language->get('text_column_right');
-		$this->data['text_module_settings'] = $this->language->get('text_module_settings');
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');

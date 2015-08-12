@@ -62,7 +62,7 @@ class ControllerCheckoutExpressShippingAddress extends Controller {
 
 		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/shipping_address.tpl')) {
@@ -79,22 +79,22 @@ class ControllerCheckoutExpressShippingAddress extends Controller {
 
 		$json = array();
 
-		// Validate if customer is logged in.
+		// Validate if customer is logged in
 		if (!$this->customer->isLogged()) {
 			$json['redirect'] = $this->url->link('checkout_express/checkout', '', 'SSL');
 		}
 
-		// Validate if shipping is required. If not the customer should not have reached this page.
+		// Validate if shipping is required. If not the customer should not have reached this page
 		if (!$this->cart->hasShipping()) {
 			$json['redirect'] = $this->url->link('checkout_express/checkout', '', 'SSL');
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirements.
+		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {

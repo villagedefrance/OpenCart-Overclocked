@@ -29,7 +29,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$this->data['checkout_method'] = $this->config->get('pp_pro_iframe_checkout_method');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe.tpl')) {
@@ -73,7 +73,7 @@ class ControllerPaymentPPProIframe extends Controller {
 			$this->data['stylesheet'] = '/catalog/view/theme/default/stylesheet/stylesheet.css';
 		}
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro_iframe_body.tpl')) {

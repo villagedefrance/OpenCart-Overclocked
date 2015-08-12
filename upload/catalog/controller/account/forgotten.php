@@ -65,17 +65,6 @@ class ControllerAccountForgotten extends Controller {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -116,6 +105,9 @@ class ControllerAccountForgotten extends Controller {
 		$this->data['action'] = $this->url->link('account/forgotten', '', 'SSL');
 		$this->data['back'] = $this->url->link('account/login', '', 'SSL');
 
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/forgotten.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/forgotten.tpl';
 		} else {
@@ -137,7 +129,7 @@ class ControllerAccountForgotten extends Controller {
 	}
 
 	protected function validate() {
-		if (!isset($this->request->post['email'])) {
+		if (!isset($this->request->post['email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');
 		} elseif (!$this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_email');

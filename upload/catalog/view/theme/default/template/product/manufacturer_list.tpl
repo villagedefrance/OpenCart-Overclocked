@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<?php if ($theme['breadcrumbs']) { ?>
+<?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -26,7 +26,7 @@
               <?php $j = $i + ceil(count($category['manufacturer']) / 4); ?>
               <?php for (; $i < $j; $i++) { ?>
                 <?php if (isset($category['manufacturer'][$i]) && ($category['manufacturer'][$i]['status'])) { ?>
-                  <?php if ($category['manufacturer'][$i]['image']) { ?>
+                  <?php if ($category['manufacturer'][$i]['image'] && $this->config->get('default_manufacturer_image')) { ?>
                     <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title="<?php echo $category['manufacturer'][$i]['name']; ?>"><img src="<?php echo $category['manufacturer'][$i]['image']; ?>" alt="" /></a></li>
                   <?php } else { ?>
                     <li><a href="<?php echo $category['manufacturer'][$i]['href']; ?>" title=""><?php echo $category['manufacturer'][$i]['name']; ?></a></li>

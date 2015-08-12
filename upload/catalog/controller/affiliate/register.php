@@ -28,17 +28,6 @@ class ControllerAffiliateRegister extends Controller {
 			$this->redirect($this->url->link('affiliate/success'));
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -346,6 +335,9 @@ class ControllerAffiliateRegister extends Controller {
 		} else {
 			$this->data['agree'] = false;
 		}
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/register.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/affiliate/register.tpl';

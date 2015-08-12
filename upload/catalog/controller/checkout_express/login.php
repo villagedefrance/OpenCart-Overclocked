@@ -21,7 +21,7 @@ class ControllerCheckoutExpressLogin extends Controller {
 
 		$this->data['forgotten'] = $this->url->link('account/forgotten', '', 'SSL');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/login.tpl')) {

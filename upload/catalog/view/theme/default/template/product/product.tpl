@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<?php if ($theme['breadcrumbs']) { ?>
+<?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
       <?php echo $breadcrumb['separator']; ?>
@@ -115,12 +115,14 @@
             <?php } ?>
           <?php } ?>
         <?php } ?>
-        <?php if ($colors) { ?>
+      </div>
+      <?php if ($colors) { ?>
+        <div class="color-range">
           <?php foreach ($colors as $color) { ?>
             <span class="color" style="background-color:#<?php echo $color['color']; ?>;"></span>
           <?php } ?><br />
-        <?php } ?>
-      </div>
+        </div>
+      <?php } ?>
       <?php if ($price) { ?>
         <div class="price"><?php echo $text_price; ?>
           <?php if (!$special) { ?>
@@ -310,18 +312,17 @@
       <div class="cart">
         <div>
           <?php if ($is_quote) { ?>
-            <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
+            <a href="<?php echo $is_quote; ?>" class="button" style="position:relative; top:-6px;"><?php echo $button_quote; ?></a>
           <?php } else { ?>
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-minus.png" alt="" style="cursor:pointer;" onclick="buttonminus(<?php echo $minimum; ?>);" />
-            <input type="text" name="quantity" id="quantity" size="2" value="<?php echo $minimum; ?>" />
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/quantity-plus.png" alt="" style="cursor:pointer;" onclick="buttonplus();" />
+            <b class="sub-prod-count" onclick="subProductCount();"></b>
+            <input type="text" name="quantity" id="quantity" class="quantity-input" size="2" value="<?php echo $minimum; ?>" />
+            <b class="add-prod-count" onclick="addProductCount();"></b>
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-            &nbsp;
             <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
           <?php } ?>
-          <span class="links">
-            <a onclick="addToWishList('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
-            <a onclick="addToCompare('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
+          <span>
+            <a onclick="addToWishList('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
+            <a onclick="addToCompare('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
           </span>
         </div>
         <?php if ($minimum > 1) { ?>
@@ -552,23 +553,6 @@ $(document).ready(function() {
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('#quantity').parent().children().css('vertical-align', 'middle');
-
-function buttonminus(a) {
-	var b = document.getElementById("quantity");
-	if (b.value > a) {
-		document.getElementById("quantity").value--;
-	} else {
-		document.getElementById("quantity").value=a;
-	}
-}
-
-function buttonplus() {
-	document.getElementById("quantity").value++;
-}
-//--></script>
-
-<script type="text/javascript"><!--
 $('select[name="profile_id"], input[name="quantity"]').change(function() {
 	$.ajax({
 		url: 'index.php?route=product/product/getRecurringDescription',
@@ -611,11 +595,8 @@ $('#button-cart').bind('click', function() {
 
 			if (json['success']) {
 				$('#notification').html('<div class="success" style="display:none;">' + json['success'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#cart-total').html(json['total']);
-
 				$('html, body').animate({ scrollTop:0 }, 800);
 			}
 		}

@@ -39,7 +39,7 @@ class ControllerCommonMaintenance extends Controller {
 
 		$this->data['message'] = $this->language->get('text_message');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/maintenance.tpl')) {

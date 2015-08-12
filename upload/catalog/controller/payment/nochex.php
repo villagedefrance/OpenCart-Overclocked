@@ -69,7 +69,7 @@ class ControllerPaymentNochex extends Controller {
 		$this->data['declined_url'] = $this->url->link('payment/nochex/callback', 'method=decline', 'SSL');
 		$this->data['callback_url'] = $this->url->link('payment/nochex/callback', 'order=' . $this->session->data['order_id'], 'SSL');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/nochex.tpl')) {
@@ -106,7 +106,7 @@ class ControllerPaymentNochex extends Controller {
 			$this->redirect($this->url->link('checkout/cart'));
 		}
 
-		// Fraud Verification Step.
+		// Fraud Verification Step
 		$request = '';
 
 		foreach ($this->request->post as $key => $value) {

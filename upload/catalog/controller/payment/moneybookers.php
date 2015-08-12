@@ -48,7 +48,7 @@ class ControllerPaymentMoneybookers extends Controller {
 
 		$this->data['order_id'] = $this->session->data['order_id'];
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/moneybookers.tpl')) {

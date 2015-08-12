@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+<?php echo $content_header; ?>
 <?php if ($attention) { ?>
   <div class="attention"><?php echo $attention; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
@@ -8,8 +9,7 @@
 <?php if ($error_warning) { ?>
   <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
-<?php echo $content_header; ?>
-<?php if ($theme['breadcrumbs']) { ?>
+<?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>

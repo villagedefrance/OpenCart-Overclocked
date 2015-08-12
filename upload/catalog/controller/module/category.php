@@ -15,6 +15,9 @@ class ControllerModuleCategory extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$this->load->model('catalog/category');
+		$this->load->model('catalog/product');
+
 		// Categories
 		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$parts = explode('_', (string)$this->request->get['path']);
@@ -33,9 +36,6 @@ class ControllerModuleCategory extends Controller {
 		} else {
 			$this->data['child_id'] = 0;
 		}
-
-		$this->load->model('catalog/category');
-		$this->load->model('catalog/product');
 
 		$this->data['categories'] = array();
 

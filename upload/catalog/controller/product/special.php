@@ -35,17 +35,6 @@ class ControllerProductSpecial extends Controller {
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -132,7 +121,7 @@ class ControllerProductSpecial extends Controller {
 				$image = false;
 			}
 
-			if ($result['manufacturer'] && $theme['manufacturer_name']) {
+			if ($result['manufacturer']) {
 				$manufacturer = $result['manufacturer'];
 			} else {
 				$manufacturer = false;
@@ -311,6 +300,9 @@ class ControllerProductSpecial extends Controller {
 		$this->data['limit'] = $limit;
 
 		$this->data['continue'] = $this->url->link('common/home');
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/special.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/product/special.tpl';

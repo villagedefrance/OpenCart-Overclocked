@@ -25,17 +25,6 @@ class ControllerProductCompare extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -226,6 +215,9 @@ class ControllerProductCompare extends Controller {
 		}
 
 		$this->data['continue'] = $this->url->link('common/home');
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/compare.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/product/compare.tpl';

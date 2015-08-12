@@ -38,17 +38,6 @@ class ControllerProductCategory extends Controller {
 			$limit = $this->config->get('config_catalog_limit');
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -239,7 +228,7 @@ class ControllerProductCategory extends Controller {
 					$image = false;
 				}
 
-				if ($result['manufacturer'] && $theme['manufacturer_name']) {
+				if ($result['manufacturer']) {
 					$manufacturer = $result['manufacturer'];
 				} else {
 					$manufacturer = false;
@@ -431,6 +420,9 @@ class ControllerProductCategory extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
+			// Theme
+			$this->data['template'] = $this->config->get('config_template');
+
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/category.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/product/category.tpl';
 			} else {
@@ -491,7 +483,7 @@ class ControllerProductCategory extends Controller {
 
 			$this->data['continue'] = $this->url->link('common/home');
 
-			// Template
+			// Theme
 			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {

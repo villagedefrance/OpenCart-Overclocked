@@ -1,12 +1,12 @@
 <table class="form">
   <tr>
     <td style="text-align:center; background-color:#AB1B1C; border:1px solid #AB1B1C;" colspan="2">
-      <a href="http://www.fraudlabspro.com" target="_blank"><img src="view/image/fraud/fraudlabspro.png" alt="FraudLabs Pro Secured Seal" style="border:none;" /></a>
+      <a onclick="window.open('http://www.fraudlabspro.com');"><img src="view/image/fraud/fraudlabspro.png" alt="FraudLabs Pro" /></a>
     </td>
   </tr>
   <tr>
     <td><?php echo $text_transaction_id; ?></td>
-    <td><a href="https://www.fraudlabspro.com/merchant/transaction/<?php echo $flp_id; ?>?filter=" target="_blank"><?php echo $flp_id; ?></a></td>
+    <td><a onclick="window.open('https://www.fraudlabspro.com/merchant/transaction/<?php echo $flp_id; ?>?filter=');"><?php echo $flp_id; ?></a></td>
   </tr>
   <tr>
     <td><?php echo $text_score; ?></td>

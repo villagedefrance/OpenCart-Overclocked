@@ -34,7 +34,7 @@ class ControllerPaymentPaymate extends Controller {
 
 		$this->data['return'] = $this->url->link('payment/paymate/callback', 'hash=' . md5($order_info['order_id'] . $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) . $order_info['currency_code'] . $this->config->get('paymate_password')));
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paymate.tpl')) {
@@ -74,17 +74,6 @@ class ControllerPaymentPaymate extends Controller {
 		}
 
 		if ($error) {
-			// Theme
-			$this->data['theme'] = array();
-
-			$this->load->model('setting/theme');
-
-			$theme = $this->model_setting_theme->getTheme();
-
-			$this->data['theme'] = $theme;
-
-			$this->data['template'] = $this->config->get('config_template');
-
 			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
@@ -119,6 +108,9 @@ class ControllerPaymentPaymate extends Controller {
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['continue'] = $this->url->link('common/home');
+
+			// Theme
+			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/common/success.tpl';

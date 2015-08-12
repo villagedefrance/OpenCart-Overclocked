@@ -1,6 +1,7 @@
 <?php
 class ControllerDesignFooter extends Controller {
 	private $error = array();
+	private $_name = 'footer';
 
 	public function index() {
 		$this->language->load('design/footer');
@@ -299,6 +300,7 @@ class ControllerDesignFooter extends Controller {
 		$this->data['text_position'] = $this->language->get('text_position');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_link'] = $this->language->get('text_link');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_select_all'] = $this->language->get('text_select_all');
@@ -342,6 +344,9 @@ class ControllerDesignFooter extends Controller {
 			$this->data['error_footer_route'] = array();
 		}
 
+		$this->document->addScript('view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+		$this->document->addStyle('view/javascript/jquery/colorbox/colorbox.css');
+
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {
@@ -377,6 +382,8 @@ class ControllerDesignFooter extends Controller {
 		}
 
 		$this->data['cancel'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+		$this->data['text_info'] = sprintf($this->language->get('text_info'), $this->url->link('design/footer/info', 'token=' . $this->session->data['token'], 'SSL'));
 
 		if (isset($this->request->get['footer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$footer_info = $this->model_design_footer->getFooter($this->request->get['footer_id']);
@@ -487,6 +494,38 @@ class ControllerDesignFooter extends Controller {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public function info() {
+		$this->language->load('design/' . $this->_name);
+
+		$language = $this->language->get('code');
+		$direction = $this->language->get('direction');
+		$info_title = $this->language->get('info_title');
+
+		$this->load->model('tool/route');
+
+		$routes = $this->model_tool_route->getRoutes(0);
+
+		if ($routes) {
+			$output  = '<html dir="' . $direction . '" lang="' . $language . '">' . "\n";
+			$output .= '<head>' . "\n";
+			$output .= '  <title>' . $info_title . '</title>' . "\n";
+			$output .= '  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' . "\n";
+			$output .= '  <meta name="robots" content="noindex">' . "\n";
+			$output .= '</head>' . "\n";
+			$output .= '<body>' . "\n";
+			$output .= '  <h1>' . $info_title . '</h1>' . "\n";
+			$output .= '  <ul style="list-style:square outside none;">';
+			foreach ($routes as $route) {
+				$output .= '    <li>' . $route['link'] . '  ' . $route['name'] . '</li>' . "\n";
+			}
+			$output .= '  </ul>';
+			$output .= '  </body>' . "\n";
+			$output .= '</html>' . "\n";
+
+			$this->response->setOutput($output);
 		}
 	}
 }

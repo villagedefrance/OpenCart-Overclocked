@@ -539,9 +539,6 @@
 <script type="text/javascript" src="view/javascript/jquery/flot/excanvas.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/flot/jquery.flot.resize.min.js"></script>
-
 <script type="text/javascript"><!--
 function getSalesChart(range) {
 	$.ajax({

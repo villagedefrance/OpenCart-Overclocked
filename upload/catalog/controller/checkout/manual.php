@@ -580,7 +580,7 @@ class ControllerCheckoutManual extends Controller {
 				$json['error']['warning'] = $this->language->get('error_warning');
 			}
 
-			// Reset everything.
+			// Reset everything
 			$this->cart->clear();
 			$this->customer->logout();
 

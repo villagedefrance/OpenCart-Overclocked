@@ -26,7 +26,7 @@
 	z-index: 0;
 }
 .camera_wrap img {
-	max-width: none!important;
+	max-width: none;
 }
 .camera_fakehover {
 	position: relative;
@@ -103,8 +103,8 @@
 	text-decoration: none;
 }
 .camera_loader {
-    background: #FFF url(../images/camera-loader.gif) no-repeat center;
-	background: rgba(255,255,255,0.9) url(../images/camera-loader.gif) no-repeat center;
+    background: #FFF url(../images/camera-loader.gif) center no-repeat;
+	background: rgba(255,255,255,0.9) url(../images/camera-loader.gif) center no-repeat;
 	border: 1px solid #FFF;
 	-webkit-border-radius: 18px;
 	-moz-border-radius: 18px;
@@ -173,7 +173,7 @@
 	z-index: 10;
 }
 .camera_prevThumbs div {
-	background: url(../images/camera_skins.png) no-repeat -160px 0;
+	background: url(../images/camera_skins.png) -160px 0 no-repeat;
 	display: block;
 	margin-top: -20px;
 	position: absolute;
@@ -192,7 +192,7 @@
 	z-index: 10;
 }
 .camera_nextThumbs div {
-	background: url(../images/camera_skins.png) no-repeat -190px 0;
+	background: url(../images/camera_skins.png) -190px 0 no-repeat;
 	display: block;
 	position: absolute;
 	top: 50%;

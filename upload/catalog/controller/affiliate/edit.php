@@ -23,17 +23,6 @@ class ControllerAffiliateEdit extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -256,6 +245,9 @@ class ControllerAffiliateEdit extends Controller {
 		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
 		$this->data['back'] = $this->url->link('affiliate/account', '', 'SSL');
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/affiliate/edit.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/affiliate/edit.tpl';

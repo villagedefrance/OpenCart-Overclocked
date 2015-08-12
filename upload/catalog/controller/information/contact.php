@@ -42,17 +42,6 @@ class ControllerInformationContact extends Controller {
 			$this->redirect($this->url->link('information/contact/success'));
 		}
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -160,14 +149,14 @@ class ControllerInformationContact extends Controller {
 
 		$directory = DIR_SYSTEM . 'mails/';
 
-		// Create directory if it does not exist.
+		// Create directory if it does not exist
 		if (!is_dir($directory)) {
 			mkdir(DIR_SYSTEM . 'mails', 0777);
 		}
 
 		$mail_file = DIR_SYSTEM . 'mails/mails.txt';
 
-		// Create file if it does not exist.
+		// Create file if it does not exist
 		if (!file_exists($mail_file)) {
 			$handle = fopen($mail_file, 'w+');
 
@@ -175,6 +164,9 @@ class ControllerInformationContact extends Controller {
 		}
 
 		clearstatcache();
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/contact.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/information/contact.tpl';
@@ -201,17 +193,6 @@ class ControllerInformationContact extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -234,6 +215,9 @@ class ControllerInformationContact extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['continue'] = $this->url->link('common/home');
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/success.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/success.tpl';

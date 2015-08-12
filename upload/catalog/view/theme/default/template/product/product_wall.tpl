@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<?php if ($theme['breadcrumbs']) { ?>
+<?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -13,6 +13,7 @@
   <?php if ($products) { ?>
     <div class="product-filter">
       <div class="display"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display('grid');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a></div>
+      <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><span class="hide-phone"><?php echo $text_compare; ?></span></a></div>
       <div class="limit"><?php echo $text_limit; ?>
         <select onchange="location = this.value;">
         <?php foreach ($limits as $limits) { ?>
@@ -36,7 +37,6 @@
         </select>
       </div>
     </div>
-    <div class="product-compare"><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></div>
     <div class="product-list">
       <?php foreach ($products as $product) { ?>
         <div>
@@ -46,7 +46,7 @@
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
           <?php } ?>
-          <div class="manufacturer"><?php echo $product['manufacturer']; ?></div>
+          <div class="manufacturer"><?php echo $this->config->get('default_manufacturer_name') ? $product['manufacturer'] : ""; ?></div>
           <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
           <div class="description"><?php echo $product['description']; ?></div>
           <?php if ($product['price']) { ?>
@@ -66,9 +66,9 @@
             <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
           <?php } ?>
           <div class="links">
-            <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
-            <a onclick="addToCompare('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
-            <a href="<?php echo $product['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/add-view.png" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
+            <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
+            <a onclick="addToCompare('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
+            <a href="<?php echo $product['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_view.png" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
           </div>
           <div class="cart">
 		    <?php if ($product['quote']) { ?>
@@ -139,7 +139,6 @@ function display(view) {
 		$.totalStorage('display', 'list');
 
 	} else {
-
 		$('.product-list').attr('class', 'product-grid');
 
 		$('.product-grid > div').each(function(index, element) {

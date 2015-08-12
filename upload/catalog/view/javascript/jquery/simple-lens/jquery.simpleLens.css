@@ -39,8 +39,8 @@
 	top: 0;
 	left: 0;
 	background-color: #3BB2D6;
-	filter: alpha(opacity=20);
 	opacity: 0.2;
+	filter: alpha(opacity=20);
 	zoom: 1;
 	cursor: none;
 	z-index: 10;

@@ -241,7 +241,6 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_stock_display'] = $this->language->get('entry_stock_display');
 		$this->data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
-		$this->data['entry_ajax_cart'] = $this->language->get('entry_ajax_cart');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -316,6 +315,12 @@ class ControllerSettingStore extends Controller {
 		} else {
 			$this->data['error_title'] = '';
 		} 
+
+		if (isset($this->error['catalog_limit'])) {
+			$this->data['error_catalog_limit'] = $this->error['catalog_limit'];
+		} else {
+			$this->data['error_catalog_limit'] = '';
+		}
 
 		if (isset($this->error['customer_group_display'])) {
 			$this->data['error_customer_group_display'] = $this->error['customer_group_display'];
@@ -393,12 +398,6 @@ class ControllerSettingStore extends Controller {
 			$this->data['error_image_cart'] = $this->error['image_cart'];
 		} else {
 			$this->data['error_image_cart'] = '';
-		}
-
-		if (isset($this->error['catalog_limit'])) {
-			$this->data['error_catalog_limit'] = $this->error['catalog_limit'];
-		} else {
-			$this->data['error_catalog_limit'] = '';
 		}
 
 		$this->data['breadcrumbs'] = array();
@@ -989,6 +988,10 @@ class ControllerSettingStore extends Controller {
 			$this->error['title'] = $this->language->get('error_title');
 		}
 
+		if (!$this->request->post['config_catalog_limit']) {
+			$this->error['catalog_limit'] = $this->language->get('error_limit');
+		}
+
 		if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {
 			$this->error['customer_group_display'] = $this->language->get('error_customer_group_display');
 		}
@@ -1039,10 +1042,6 @@ class ControllerSettingStore extends Controller {
 
 		if (!$this->request->post['config_image_cart_width'] || !$this->request->post['config_image_cart_height']) {
 			$this->error['image_cart'] = $this->language->get('error_image_cart');
-		}
-
-		if (!$this->request->post['config_catalog_limit']) {
-			$this->error['catalog_limit'] = $this->language->get('error_limit');
 		}
 
 		if ($this->error && !isset($this->error['warning'])) {

@@ -15,8 +15,6 @@ class ModelSettingTheme extends Model {
 
 			return $theme_data;
 		}
-
-		clearstatcache();
 	}
 }
 ?>

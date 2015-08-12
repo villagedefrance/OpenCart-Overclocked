@@ -9,6 +9,8 @@ $_['header_links'] 			= 'Block Links';
 $_['text_success']  			= 'Success: You have modified <b>Footers</b> !';
 $_['text_default']  			= 'Default';
 $_['text_position']			= 'Position';
+$_['text_link']           		= 'Internal Links:<br /><span class="help">External links require a complete Url, including the "http://".</span>';
+$_['text_info']           		= 'Click <a class="colorbox" href="%s" title="List of internal links"><b>Here</b></a> to see a list of internal links.';
 
 // Column
 $_['column_name']   		= 'Block Name';
@@ -26,6 +28,9 @@ $_['entry_title']       		= 'Link Title';
 $_['entry_route']       		= 'Address (Url)';
 $_['entry_external_link']	= 'External Link';
 $_['entry_sort_order']		= 'Sort Order';
+
+// Info
+$_['info_title']					= 'List of internal links';
 
 // Error
 $_['error_permission']		= 'Warning: You do not have permission to modify <b>Footers</b> !';

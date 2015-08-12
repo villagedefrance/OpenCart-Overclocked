@@ -5,7 +5,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 		$redirect = '';
 
 		if ($this->cart->hasShipping()) {
-			// Validate if shipping address has been set.
+			// Validate if shipping address has been set
 			$this->load->model('account/address');
 
 			if ($this->customer->isLogged() && isset($this->session->data['shipping_address_id'])) {
@@ -16,7 +16,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 				$redirect = $this->url->link('checkout_express/checkout', '', 'SSL');
 			}
 
-			// Validate if shipping method has been set.
+			// Validate if shipping method has been set
 			if (!isset($this->session->data['shipping_method'])) {
 				$redirect = $this->url->link('checkout_express/checkout', '', 'SSL');
 			}
@@ -26,7 +26,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 			unset($this->session->data['shipping_methods']);
 		}
 
-		// Validate if payment address has been set.
+		// Validate if payment address has been set
 		$this->load->model('account/address');
 
 		if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
@@ -51,17 +51,17 @@ class ControllerCheckoutExpressConfirm extends Controller {
 			$redirect = $this->url->link('checkout_express/checkout', '', 'SSL');
 		}
 
-		// Validate if payment method has been set.
+		// Validate if payment method has been set
 		if (!isset($this->session->data['payment_method'])) {
 			$redirect = $this->url->link('checkout_express/checkout', '', 'SSL');
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$redirect = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirements.
+		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {
@@ -80,9 +80,6 @@ class ControllerCheckoutExpressConfirm extends Controller {
 		}
 
 		if (!$redirect) {
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
-
 			// Totals
 			$total_data = array();
 			$total = 0;
@@ -498,6 +495,9 @@ class ControllerCheckoutExpressConfirm extends Controller {
 		} else {
 			$this->data['redirect'] = $redirect;
 		}
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/confirm.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/checkout_express/confirm.tpl';

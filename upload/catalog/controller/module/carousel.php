@@ -25,26 +25,17 @@ class ControllerModuleCarousel extends Controller {
 		$this->data['slick_theme'] = $this->config->get($this->_name . '_skin');
 
 		// Responsive
-		$show_max = $setting['show'] ? round($setting['show']) : 4;
-		$show_960 = round($show_max * 0.66, 1);
-		$show_640 = round($show_max * 0.33, 1);
-		$show_min = 1;
+		$show_max = round($setting['show']);
 
-		$this->data['show_1280'] = $show_max;
+		$show_1280 = ($show_max > 4) ? ($show_max - 1) : $show_max;
+		$show_960 = ($show_1280 > 3) ? ($show_1280 - 1) : $show_1280;
+		$show_640 = ($show_960 > 2) ? ($show_960 - 1) : $show_960;
+		$show_320 = ($show_640 > 1) ? ($show_640 - 1) : $show_640;
 
-		if ($show_960 < $show_max && $show_960 > $show_640 && $show_960 > $show_min) {
-			$this->data['show_960'] = round($show_960, 0);
-		} else {
-			$this->data['show_960'] = $show_max - 1;
-		}
-
-		if ($show_640 < $show_960 && $show_640 > $show_min) {
-			$this->data['show_640'] = round($show_640, 0);
-		} else {
-			$this->data['show_640'] = $show_min + 1;
-		}
-
-		$this->data['show_320'] = $show_min;
+		$this->data['show_1280'] = $show_1280;
+		$this->data['show_960'] = $show_960;
+		$this->data['show_640'] = $show_640;
+		$this->data['show_320'] = $show_320;
 
 		// Auto
 		$this->data['auto'] = $setting['auto'] ? 'true' : 'false';

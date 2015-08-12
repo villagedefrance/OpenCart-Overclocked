@@ -77,7 +77,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$this->data['comment'] = '';
 		}
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/shipping_method.tpl')) {
@@ -94,12 +94,12 @@ class ControllerCheckoutShippingMethod extends Controller {
 
 		$json = array();
 
-		// Validate if shipping is required. If not the customer should not have reached this page.
+		// Validate if shipping is required. If not the customer should not have reached this page
 		if (!$this->cart->hasShipping()) {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
 
-		// Validate if shipping address has been set.
+		// Validate if shipping address has been set
 		$this->load->model('account/address');
 
 		if ($this->customer->isLogged() && isset($this->session->data['shipping_address_id'])) {
@@ -112,12 +112,12 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirements.
+		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {

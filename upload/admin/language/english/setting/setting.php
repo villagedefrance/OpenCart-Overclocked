@@ -8,7 +8,8 @@ $_['text_required']                    	= 'Required';
 $_['text_choice']                    		= 'Customer\'s choice';
 $_['text_automatic']                    	= 'Automatic';
 $_['text_hide']                    			= 'Hide';
-$_['text_location']                    	= 'Map &amp; Location';
+$_['text_social_media']					= 'Social Medias';
+$_['text_location']						= 'Map &amp; Location';
 $_['text_checkout']             			= 'Checkout';
 $_['text_express']             			= 'Express Checkout';
 $_['text_product']                 		= 'Products';
@@ -82,7 +83,7 @@ $_['entry_express_newsletter'] 		= 'Newsletter Subscription:';
 $_['entry_express_coupon'] 			= 'Display Coupons:';
 $_['entry_express_voucher'] 			= 'Display Vouchers';
 $_['entry_express_point'] 				= 'Display Reward Points:';
-$_['entry_product_count']     		= 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the storefront header category menu. Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';
+$_['entry_product_count']     		= 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the category module.<br />Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';
 $_['entry_review']       	    			= 'Allow Reviews:<br /><span class="help">Enable/Disable new review entry and display of existing reviews.</span>';
 $_['entry_download']          			= 'Allow Downloads:';
 $_['entry_tax']                   			= 'Display Prices With Tax:';
@@ -109,6 +110,12 @@ $_['entry_return_status']     			= 'Return Status:<br /><span class="help">Set t
 $_['entry_return_disable']				= 'Disable Returns:<br /><span class="help">Caution! Returns are a legal requirement in many countries. Disable only if you sell non-returnable goods, such as digital downloads.</span>';
 $_['entry_voucher_min']       			= 'Voucher Min:<br /><span class="help">Minimum amount a customer can purchase a voucher for.</span>';
 $_['entry_voucher_max']       		= 'Voucher Max:<br /><span class="help">Maximum amount a customer can purchase a voucher for.</span>';
+$_['entry_facebook']						= 'Url Facebook page:';
+$_['entry_twitter']						= 'Url Twitter page:';
+$_['entry_google']						= 'Url Google+ page:';
+$_['entry_pinterest']						= 'Url Pinterest page:';
+$_['entry_skype']							= 'Skype Name:';
+$_['entry_addthis']    					= 'AddThis Publisher ID:<br /><span class="help">Login to your <a onclick="window.open(\'http://www.addthis.com/\');" title=""><u>AddThis</u></a> account and enter your Publisher ID into this field.</span>';
 $_['entry_catalog_limit'] 	   			= 'Default Items Per Page (<b>Catalog</b>):<br /><span class="help">Determines how many catalog items will be displayed per page (products, categories, etc..)</span>';
 $_['entry_admin_limit']   	  			= 'Default Items Per Page (<b>Admin</b>):<br /><span class="help">Determines how many admin items will be displayed per page (orders, customers, etc..)</span>';
 $_['entry_pagination_hi'] 				= 'Enable Top Pagination:<br /><span class="help">Show pagination links at the top of all lists.</span>';
@@ -165,7 +172,6 @@ $_['entry_compression']        		= 'Output Compression Level:<br /><span class="
 $_['entry_error_display']       			= 'Display Errors:';
 $_['entry_error_log']           			= 'Log Errors:';
 $_['entry_error_filename']     			= 'Error Log Filename:';
-$_['entry_addthis']    					= 'AddThis Publisher ID:<br /><span class="help">Login to your <a href="http://www.addthis.com/" target="_blank"><u>AddThis</u></a> account and enter your Publisher ID into this field.</span>';
 $_['entry_google_analytics']    		= 'Google Analytics Code:<br /><span class="help">Login to your <a href="http://www.google.com/analytics/" target="_blank"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
 
 // Error

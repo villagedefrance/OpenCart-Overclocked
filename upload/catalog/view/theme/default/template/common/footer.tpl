@@ -1,10 +1,11 @@
-<?php if ($theme['back_to_top']) { ?>
+<?php if ($this->config->get('default_back_to_top')) { ?>
   <p id="backtotop" style="display:block;">
     <a href="#" title=""><span></span></a>
   </p>
 <?php } ?>
-<div id="footer">
-  <?php if ($footer_block_exist) { ?>
+<div id="footer-holder" class="footer-<?php echo $this->config->get('default_footer_theme') ? 'light' : 'dark'; ?>">
+  <div id="footer">
+  <?php if ($footer_blocks) { ?>
     <div class="column">
       <?php foreach ($footer_blocks as $footer_block) { ?>
         <?php if (($footer_block['position'] == 1) && $footer_block['status']) { ?>
@@ -61,49 +62,38 @@
         <?php } ?>
       <?php } ?>
     </div>
-  <?php } else { ?>
-    <?php if ($informations) { ?>
-    <div class="column">
-      <h3><?php echo $text_information; ?></h3>
-      <ul>
-        <?php foreach ($informations as $information) { ?>
-          <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
+    <div class="big-column">
+      <?php if ($this->config->get('default_footer_location')) { ?>
+        <p class='icon-location' title='Location'><?php echo $company; ?><br /><?php echo $address; ?></p>
+      <?php } ?>
+      <?php if ($this->config->get('default_footer_phone')) { ?>
+        <p class='icon-phone' title='Phone'><?php echo $telephone; ?></p>
+      <?php } ?>
+      <?php if ($this->config->get('default_footer_email')) { ?>
+        <p class='icon-mail' title='Email'><?php echo $email; ?></p>
+      <?php } ?>
+      <span>
+        <?php if ($this->config->get('default_footer_skype') && $skype) { ?>
+          <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+          <a onclick="window.open('skype:<?php echo $skype; ?>?chat');" class="icon-skype" title="Skype"></a>
+          <style>#skypedetectionswf{ display: none; }</style>
         <?php } ?>
-      </ul>
-    </div>
-    <?php } ?>
-    <div class="column">
-      <h3><?php echo $text_service; ?></h3>
-      <ul>
-        <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
-        <li><a href="<?php echo $search; ?>"><?php echo $text_search; ?></a></li>
-	    <?php if ($allow_return) { ?>
-        <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-	    <?php } ?>
-        <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-      </ul>
-    </div>
-    <div class="column">
-      <h3><?php echo $text_extra; ?></h3>
-      <ul>
-        <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-        <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
-        <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
-	    <?php if ($allow_affiliate) { ?>
-        <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
-	    <?php } ?>
-      </ul>
-    </div>
-    <div class="column">
-      <h3><?php echo $text_account; ?></h3>
-      <ul>
-        <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-        <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-        <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
-        <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
-      </ul>
-    </div>
+        <?php if ($this->config->get('default_footer_pinterest') && $pinterest) { ?>
+          <a onclick="window.open('<?php echo $pinterest; ?>');" class="icon-pinterest" title="Pinterest"></a>
+        <?php } ?>
+        <?php if ($this->config->get('default_footer_google') && $google) { ?>
+          <a onclick="window.open('<?php echo $google; ?>');" class="icon-google" title="Google+"></a>
+        <?php } ?>
+        <?php if ($this->config->get('default_footer_twitter') && $twitter) { ?>
+          <a onclick="window.open('<?php echo $twitter; ?>');" class="icon-twitter" title="Twitter"></a>
+        <?php } ?>
+        <?php if ($this->config->get('default_footer_facebook') && $facebook) { ?>
+          <a onclick="window.open('<?php echo $facebook; ?>');" class="icon-facebook" title="Facebook"></a>
+        <?php } ?>
+      </span>
+	</div>
   <?php } ?>
+  </div>
 </div>
 <!--
 OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but it's generally accepted practise to make a small donation.
@@ -111,7 +101,7 @@ Please donate via PayPal to donate@opencart.com
 //-->
 <div id="powered"><?php echo $powered; ?></div>
 </div>
-<?php if ($theme['back_to_top']) { ?>
+<?php if ($this->config->get('default_back_to_top')) { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#backtotop').hide();
@@ -124,9 +114,7 @@ $(document).ready(function() {
 			}
 		});
 		$('#backtotop a').click(function() {
-			$('body,html').animate({
-				scrollTop: 0
-			}, 800);
+			$('body,html').animate({ scrollTop: 0 }, 800);
 			return false;
 		});
 	});

@@ -9,7 +9,6 @@ class ControllerDesignMenu extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('design/menu');
-		$this->load->model('design/menuitems');
 
 		$this->getList();
 	}
@@ -86,7 +85,6 @@ class ControllerDesignMenu extends Controller {
 		$this->language->load('design/' . $this->_name);
 
 		$this->load->model('design/menu');
-		$this->load->model('design/menuitems');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -136,17 +134,8 @@ class ControllerDesignMenu extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->load->model('setting/extension');
-
-		$extensions = $this->model_setting_extension->getInstalled('module');
-
-		foreach ($extensions as $key => $value) {
-			if ($value = 'menu' && file_exists(DIR_APPLICATION . 'controller/module/menu.php')) {
-				$this->data['module'] = $this->url->link('module/menu', 'token=' . $this->session->data['token'], 'SSL');
-			} else {
-				$this->data['module'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
-			}
-		}
+		$this->data['module_vertical'] = $this->url->link('module/menu_vertical', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['module_horizontal'] = $this->url->link('module/menu_horizontal', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['insert'] = $this->url->link('design/menu/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/menu/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -162,9 +151,11 @@ class ControllerDesignMenu extends Controller {
 			'limit'		=> $this->config->get('config_admin_limit')
 		);
 
+		$this->load->model('design/menu_items');
+
 		$menu_total = $this->model_design_menu->getTotalMenus();
 
-		$menu_data = $this->model_design_menu->getMenus($data); 
+		$menu_data = $this->model_design_menu->getMenus($data);
 
 		if ($menu_data) {
 			foreach ($menu_data as $result) {
@@ -172,13 +163,13 @@ class ControllerDesignMenu extends Controller {
 
 				$action[] = array(
 					'text'	=> $this->language->get('text_menu_edit'),
-					'href'	=> $this->url->link('design/menu/update', 'token=' . $this->session->data['token'] .  '&menu_id=' . $result['menu_id'] . $url, 'SSL')
+					'href'	=> $this->url->link('design/menu/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL')
 				);
 
-				$count_menu_item = $this->model_design_menuitems->getTotalMenuItems($result['menu_id']);
+				$count_menu_item = $this->model_design_menu_items->getTotalMenuItems($result['menu_id'], $data);
 
-				$menu_item_add = '<a href="' . $this->url->link('design/menuitems/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '"><span class="color" style="background-color:#5DC15E; color:#FFF;">' . $this->language->get('text_menu_item_add') . '</span></a>';
-				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menuitems', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '"><span class="color" style="background-color:#4691D2; color:#FFF;">' . $this->language->get('text_menu_item_view') . '</span></a>' : '';
+				$menu_item_add = '<a href="' . $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '"><span class="color" style="background-color:#5DC15E; color:#FFF;">' . $this->language->get('text_menu_item_add') . '</span></a>';
+				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '"><span class="color" style="background-color:#4691D2; padding:0px 14px; color:#FFF;">' . $this->language->get('text_menu_item_view') . '</span></a>' : '';
 
 				$this->data['menus'][] = array(
 					'menu_id' 				=> $result['menu_id'],
@@ -205,9 +196,10 @@ class ControllerDesignMenu extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
-		$this->data['button_module'] = $this->language->get('button_module');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_vertical'] = $this->language->get('button_vertical');
+		$this->data['button_horizontal'] = $this->language->get('button_horizontal');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -343,11 +335,11 @@ class ControllerDesignMenu extends Controller {
 	}
 
 	private function validateForm() {
-		if (!$this->user->hasPermission('modify', 'design/menu')) { 
-			$this->error['warning'] = $this->language->get('error_permission'); 
-		} 
+		if (!$this->user->hasPermission('modify', 'design/menu')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
 
-		if ((utf8_strlen($this->request->post['title']) < 1) || (utf8_strlen($this->request->post['title']) > 255)) { 
+		if ((utf8_strlen($this->request->post['title']) < 1) || (utf8_strlen($this->request->post['title']) > 255)) {
 			$this->error['title'] = $this->language->get('error_title');
 		}
 

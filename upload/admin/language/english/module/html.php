@@ -5,7 +5,6 @@ $_['heading_title']    			= 'Html';
 // Text
 $_['text_module']         		= 'Modules';
 $_['text_success']        		= 'Success: You have modified <b>Html</b> !';
-$_['text_header_bottom']    	= 'Header Bottom';
 $_['text_content_header']    	= 'Content Header';
 $_['text_content_top']    		= 'Content Top';
 $_['text_content_bottom'] 	= 'Content Bottom';

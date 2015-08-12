@@ -39,6 +39,10 @@
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
               <?php } ?></td>
             </tr>
+            <tr>
+              <td><?php echo $text_link; ?></td>
+              <td><?php echo $text_info; ?></td>
+          </tr>
           </table>
           </div>
         <?php } ?>
@@ -184,6 +188,20 @@ function addRoute() {
 //--></script>
 
 <script type="text/javascript"><!--
+$('#tabs a').tabs();
+$('#languages a').tabs();
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.colorbox').colorbox({
+		width: 640,
+		height: 480
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
 var formblock;
 var forminput;
 
@@ -202,11 +220,6 @@ function select_all(name, value) {
 		}
 	}
 }
-//--></script>
-
-<script type="text/javascript"><!--
-$('#tabs a').tabs();
-$('#languages a').tabs();
 //--></script>
 
 <?php echo $footer; ?>

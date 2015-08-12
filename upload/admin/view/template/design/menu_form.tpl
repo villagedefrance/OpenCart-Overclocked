@@ -22,7 +22,7 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-            <td><input type="text" name="title" size="50" value="<?php echo $title; ?>" />
+            <td><input type="text" name="title" size="40" value="<?php echo $title; ?>" />
             <?php if (isset($error_title)) { ?>
               <span class="error"><?php echo $error_title; ?></span>
             <?php } ?></td>
@@ -77,10 +77,10 @@
 <script type="text/javascript"><!--
 var formblock;
 var forminput;
- 
+
 formblock = document.getElementById('store_ids');
 forminput = formblock.getElementsByTagName('input');
- 
+
 function select_all(name, value) {
 	for (i = 0; i < forminput.length; i++) {
 		var regex = new RegExp(name, "i");
@@ -93,6 +93,6 @@ function select_all(name, value) {
 		}
 	}
 }
-//--></script> 
+//--></script>
 
 <?php echo $footer; ?>

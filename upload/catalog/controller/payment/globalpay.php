@@ -84,7 +84,7 @@ class ControllerPaymentGlobalpay extends Controller {
 
 		$this->data['response_url'] = HTTPS_SERVER . 'index.php?route=payment/globalpay/notify';
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/globalpay.tpl')) {
@@ -271,7 +271,7 @@ class ControllerPaymentGlobalpay extends Controller {
 			}
 		}
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/globalpay_response.tpl')) {

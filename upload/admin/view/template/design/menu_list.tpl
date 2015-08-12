@@ -15,7 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $module; ?>';" class="button"><?php echo $button_module; ?></a>
+        <a onclick="location = '<?php echo $module_horizontal; ?>';" class="button"><?php echo $button_horizontal; ?></a>
+        <a onclick="location = '<?php echo $module_vertical; ?>';" class="button"><?php echo $button_vertical; ?></a>
         <a onclick="location = '<?php echo $insert; ?>'" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
@@ -47,7 +48,7 @@
               <td class="left"><?php echo $menu['title']; ?></td>
               <td class="left">
                 <?php echo $menu['menu_items']; ?> &nbsp; <?php echo $text_menu_items; ?>
-                <?php echo $menu['menu_item_view']; ?> &nbsp; <?php echo $menu['menu_item_add']; ?>
+                <?php echo $menu['menu_item_add']; ?> &nbsp; <?php echo $menu['menu_item_view']; ?>
               </td>
               <?php if ($menu['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>

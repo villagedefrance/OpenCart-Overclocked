@@ -39,17 +39,6 @@ class ControllerAccountWishList extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Theme
-		$this->data['theme'] = array();
-
-		$this->load->model('setting/theme');
-
-		$theme = $this->model_setting_theme->getTheme();
-
-		$this->data['theme'] = $theme;
-
-		$this->data['template'] = $this->config->get('config_template');
-
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -165,6 +154,9 @@ class ControllerAccountWishList extends Controller {
 
 		$this->data['continue'] = $this->url->link('account/account', '', 'SSL');
 
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/wishlist.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/account/wishlist.tpl';
 		} else {
@@ -215,7 +207,7 @@ class ControllerAccountWishList extends Controller {
 				$json['success'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));
 			}
 
-			$json['total'] = sprintf($this->language->get('text_wishlist'), (isset($this->session->data['wishlist']) ? count($this->session->data['wishlist']) : 0));
+			$json['total'] = sprintf($this->language->get('text_wishlist'), isset($this->session->data['wishlist']) ? count($this->session->data['wishlist']) : 0);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

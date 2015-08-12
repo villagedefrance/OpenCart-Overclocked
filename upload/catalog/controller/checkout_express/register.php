@@ -113,7 +113,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		$this->data['shipping_required'] = $this->cart->hasShipping();
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/register.tpl')) {
@@ -133,17 +133,17 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		$json = array();
 
-		// Validate if customer is already logged in.
+		// Validate if customer is already logged in
 		if ($this->customer->isLogged()) {
 			$json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirements.
+		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {

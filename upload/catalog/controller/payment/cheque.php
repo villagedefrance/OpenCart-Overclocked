@@ -16,7 +16,7 @@ class ControllerPaymentCheque extends Controller {
 
 		$this->data['continue'] = $this->url->link('checkout/success');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/cheque.tpl')) {
@@ -33,7 +33,7 @@ class ControllerPaymentCheque extends Controller {
 
 		$this->load->model('checkout/order');
 
-		$comment  = $this->language->get('text_payable') . "\n";
+		$comment = $this->language->get('text_payable') . "\n";
 		$comment .= $this->config->get('cheque_payable') . "\n\n";
 		$comment .= $this->language->get('text_address') . "\n";
 		$comment .= $this->config->get('config_address') . "\n\n";

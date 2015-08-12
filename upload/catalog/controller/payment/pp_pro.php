@@ -79,7 +79,7 @@ class ControllerPaymentPPPro extends Controller {
 			);
 		}
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_pro.tpl')) {

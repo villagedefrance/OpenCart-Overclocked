@@ -315,11 +315,6 @@
                 <?php } ?>
               </select></td>
               <td class="left"><select name="html_module[<?php echo $module_row; ?>][position]">
-                <?php if ($module['position'] == 'header_bottom') { ?>
-                  <option value="header_bottom" selected="selected"><?php echo $text_header_bottom; ?></option>
-                <?php } else { ?>
-                  <option value="header_bottom"><?php echo $text_header_bottom; ?></option>
-                <?php } ?>
                 <?php if ($module['position'] == 'content_header') { ?>
                   <option value="content_header" selected="selected"><?php echo $text_content_header; ?></option>
                 <?php } else { ?>
@@ -456,7 +451,6 @@ function addModule() {
 	<?php } ?>
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="html_module[' + module_row + '][position]">';
-    html += '      <option value="header_bottom"><?php echo $text_header_bottom; ?></option>';
 	html += '      <option value="content_header"><?php echo $text_content_header; ?></option>';
 	html += '      <option value="content_top"><?php echo $text_content_top; ?></option>';
 	html += '      <option value="content_bottom"><?php echo $text_content_bottom; ?></option>';

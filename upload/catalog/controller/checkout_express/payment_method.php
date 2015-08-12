@@ -45,9 +45,6 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 		}
 
 		if (!empty($payment_address)) {
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
-
 			// Totals
 			$total_data = array();
 			$total = 0;
@@ -215,6 +212,9 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 			$this->data['agree'] = '';
 		}
 
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout_express/payment_method.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/checkout_express/payment_method.tpl';
 		} else {
@@ -229,7 +229,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 
 		$json = array();
 
-		// Validate if payment address has been set.
+		// Validate if payment address has been set
 		$this->load->model('account/address');
 
 		if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
@@ -256,12 +256,12 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 			$json['redirect'] = $this->url->link('checkout_express/checkout', '', 'SSL');
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
-		// Validate minimum quantity requirements.
+		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {

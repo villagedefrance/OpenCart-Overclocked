@@ -77,6 +77,17 @@ class ControllerCommonContentHeader extends Controller {
 			}
 		}
 
+		// Session errors
+		if (isset($this->session->data['error']) && !empty($this->session->data['error'])) {
+			$this->data['error'] = $this->session->data['error'];
+
+			unset($this->session->data['error']);
+		} else {
+			$this->data['error'] = '';
+		}
+
+		$this->data['template'] = $this->config->get('config_template');
+
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_header.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/content_header.tpl';
 		} else {

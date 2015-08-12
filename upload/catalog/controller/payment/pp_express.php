@@ -10,7 +10,7 @@ class ControllerPaymentPPExpress extends Controller {
 		// If there is any other paypal session data, clear it
 		unset($this->session->data['paypal']);
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express.tpl')) {
@@ -732,7 +732,7 @@ class ControllerPaymentPPExpress extends Controller {
 			unset($this->session->data['attention']);
 		}
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/pp_express_confirm.tpl')) {
@@ -822,10 +822,10 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 		}
 
-		if ($redirect == '') {
-			// Template
-			$this->data['template'] = $this->config->get('config_template');
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
+		if ($redirect == '') {
 			// Totals
 			$total_data = array();
 			$total = 0;
@@ -1533,17 +1533,6 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$this->language->load('payment/pp_express');
 
-			// Theme
-			$this->data['theme'] = array();
-
-			$this->load->model('setting/theme');
-
-			$theme = $this->model_setting_theme->getTheme();
-
-			$this->data['theme'] = $theme;
-
-			$this->data['template'] = $this->config->get('config_template');
-
 			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
@@ -1570,6 +1559,9 @@ class ControllerPaymentPPExpress extends Controller {
 			unset($this->session->data['success']);
 
 			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
+			// Theme
+			$this->data['template'] = $this->config->get('config_template');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';

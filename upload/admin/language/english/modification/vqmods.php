@@ -34,18 +34,18 @@ $_['button_clear']				= 'Clear';
 $_['button_download_log']		= 'Download Log';
 $_['button_vqcache_dump']	= 'VQCache Dump';
 
-// Text Highlighting
+// Highlight
 $_['highlight']						= '<span class="highlight">%s</span>';
 
 // Use Errors
 $_['error_delete']					= 'Warning: Unable to delete VQMod script!';
 $_['error_filetype']				= 'Warning: Invalid filetype!  Please only upload .xml files.';
 $_['error_install']					= 'Warning: Unable to install VQMod script!';
-$_['error_invalid_xml']			= 'Warning: VQMod script XML syntax is invalid!  Please contact the author for support.';
-$_['error_log_size']				= 'Warning: Your VQMod error log is %sMBs.  The limit for VQmods is 6MB.  You can download the error log by FTP or by clicking the "Download Log" button in the Error Log tab.  Otherwise consider clearing it.';
+$_['error_invalid_xml']			= 'Warning: VQMod script XML syntax is invalid! Please contact the author for support.';
+$_['error_log_size']				= 'Warning: Your VQMod error log is %sMBs. The limit for VQmods is 6MB. You can download the error log by FTP or by clicking the "Download Log" button in the Error Log tab. Otherwise consider clearing it.';
 $_['error_log_download']		= 'Warning: No error logs available for download!';
 $_['error_modded_file']			= 'Warning: VQMod script attempts to mod file "%s" which does not appear to exist!';
-$_['error_move']					= 'Warning: Unable to save file on server.  Please check directory permissions.';
+$_['error_move']					= 'Warning: Unable to save file on server. Please check directory permissions.';
 $_['error_permission']			= 'Warning: You do not have permission to modify <b>VQmods</b> !';
 $_['error_uninstall']				= 'Warning: Unable to uninstall VQMod script!';
 $_['error_vqmod_opencart']	= 'Warning: "vqmod_opencart.xml" is required for VQMod to function properly!';
@@ -65,10 +65,10 @@ $_['error_error_log_write']						= 'Unable to write to VQMod error log!  Please 
 $_['error_error_logs_write']					= 'Unable to write to VQMod error log!  Please set "<span class="error-install">/vqmod/logs</span>" directory permissions to 755 or 777 and try again.';
 $_['error_opencart_version']					= 'OpenCart 1.5.x or later is required to use VQmods!';
 $_['error_opencart_xml']						= 'Required file "<span class="error-install">/vqmod/xml/vqmod_opencart.xml</span>" does not appear to exist! <br />Please install the latest OpenCart-compatible version of VQMod from <a onclick="window.open(\'https://github.com/vqmod/vqmod/releases\');">https://github.com/vqmod/vqmod/releases</a> and try again.';
-$_['error_opencart_xml_disabled']			= 'Warning: "<span class="error-install">vqmod_opencart.xml</span>" is disabled!  VQmod scripts will not function!';
+$_['error_opencart_xml_disabled']			= 'Warning: "<span class="error-install">vqmod_opencart.xml</span>" is disabled! VQmod scripts will not function!';
 $_['error_opencart_xml_version']				= 'You appear to be using a version of "<span class="error-install">vqmod_opencart.xml</span>" that is out-of-date for your OpenCart version! <br />Please install the latest OpenCart-compatible version of VQMod from <a onclick="window.open(\'https://github.com/vqmod/vqmod/releases\');">https://github.com/vqmod/vqmod/releases</a> and try again.';
 $_['error_vqcache_dir']							= 'Required directory "<span class="error-install">/vqmod/vqcache</span>" does not appear to exist! <br /><br />Please install the latest OpenCart-compatible version of VQMod from <a onclick="window.open(\'https://github.com/vqmod/vqmod/releases\');">https://github.com/vqmod/vqmod/releases</a>.';
-$_['error_vqcache_install_link']				= 'VQMod&#8482; has been detected on your system but does not appear to be installed!  Please run the VQmods installer <a href="%s" class="button">Install VQMod</a>';
+$_['error_vqcache_install_link']				= 'VQMod&#8482; has been detected on your system but does not appear to be installed! Please run the VQmods installer <a href="%s" class="button">Install VQMod</a>';
 $_['error_vqcache_write']						= 'Unable to write to "<span class="error-install">/vqmod/vqcache</span>" directory!  Set permissions to 755 or 777 and try again.';
 $_['error_vqcache_files_missing']			= 'VQMod&#8482; does not appear to be properly generating VQCache files!';
 $_['error_vqmod_core']							= 'Required file "<span class="error-install">vqmod.php</span>" is missing! <br />Please install the latest OpenCart-compatible version of VQMod from <a onclick="window.open(\'https://github.com/vqmod/vqmod/releases\');">https://github.com/vqmod/vqmod/releases</a> and try again.';
@@ -113,7 +113,7 @@ $_['tab_settings']					= 'Settings';
 $_['tab_about']					= 'About';
 
 // Text
-$_['text_autodetect']			= 'VQMod&#8482; appears to be installed at the following path.  Press <b>Save</b> to confirm path and complete installation.';
+$_['text_autodetect']			= 'VQMod&#8482; appears to be installed at the following path. Press <b>Save</b> to confirm the path and complete installation.';
 $_['text_autodetect_fail']		= 'Unable to detect VQMod&#8482; installation. <br />Please download and install the <a onclick="window.open(\'https://github.com/vqmod/vqmod/releases\');">latest version</a> or enter the non-standard server installation path.';
 $_['text_cachetime']				= '%s seconds';
 $_['text_delete']					= 'Delete';
@@ -121,7 +121,7 @@ $_['text_disable']					= 'Disable';
 $_['text_disabled']				= 'Disabled';
 $_['text_enable']					= 'Enable';
 $_['text_enabled']				= 'Enabled';
-$_['text_first_install']			= 'When Installing <b>VQmod&#8482;</b> for the first time, you will be <b>logged out of your Administration</b> and redirected to a blank page with a <b>confirmation message</b>.<br />You will have to <b>log back in</b> into your Administration <b>after install</b>.';
+$_['text_first_install']			= 'When Installing (or repairing) <b>VQmod&#8482;</b>, you will be <b>logged out of your Administration</b> and redirected to a success page. You will then have to <b>log back in</b> into your Administration.';
 $_['text_getxml']					= 'Select an XML file';
 $_['text_modification']			= 'Modification';
 $_['text_no_results']				= 'No VQmod Scripts were found!';
@@ -131,7 +131,7 @@ $_['text_unavailable']			= '&mdash;';
 $_['text_upload']					= 'Upload';
 $_['text_upload_help']			= 'Please select a valid VQMod .xml file from your local library.';
 $_['text_usecache_help']		= 'useCache is deprecated as of VQMod&#8482; 2.1.7';
-$_['text_vqcache_help']		= 'Clears the content of the VQCache directory and deletes "mods.cache" file.  Note: Some system files will still remain even after clearing the cache.';
+$_['text_vqcache_help']		= 'Clears the content of the VQCache directory and deletes "mods.cache" file. Note: Some system files will still remain even after clearing the cache.';
 
 // About
 $_['text_vqm_version']			= 'VQmods Version:';
@@ -150,7 +150,7 @@ $_['text_vqmod_license']		= 'VQmod&#8482; License:';
 
 // Version
 $_['vqmods_description']		= '<b>VQmods</b> is a VQmod&#8482; File Manager for Opencart, based on the original <b>VQmod Manager</b> by Ryan (rph), and integrating the latest <b>VQmod&#8482;</b> Core Files!';
-$_['vqmods_version']			= '2.0.0 - Overclocked Edition';
+$_['vqmods_version']			= '2.1.0 - Overclocked Edition';
 $_['vqmods_author']				= 'Villagedefrance';
 $_['vqmods_support']			= 'contact@villagedefrance.net';
 $_['vqmods_license']				= 'GNU General Public License';

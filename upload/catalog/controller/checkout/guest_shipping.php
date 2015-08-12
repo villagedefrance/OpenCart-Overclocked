@@ -83,7 +83,7 @@ class ControllerCheckoutGuestShipping extends Controller {
 
 		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/guest_shipping.tpl')) {

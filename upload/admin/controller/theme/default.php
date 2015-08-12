@@ -30,19 +30,30 @@ class ControllerThemeDefault extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_light'] = $this->language->get('text_light');
+		$this->data['text_dark'] = $this->language->get('text_dark');
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_active'] = $this->language->get('text_active');
 		$this->data['text_not_active'] = $this->language->get('text_not_active');
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_footer'] = $this->language->get('tab_footer');
 		$this->data['tab_options'] = $this->language->get('tab_options');
 		$this->data['tab_credits'] = $this->language->get('tab_credits');
 
-		$this->data['entry_category_menu'] = $this->language->get('entry_category_menu');
 		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
 		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
 		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
+		$this->data['entry_footer_theme'] = $this->language->get('entry_footer_theme');
+		$this->data['entry_footer_location'] = $this->language->get('entry_footer_location');
+		$this->data['entry_footer_phone'] = $this->language->get('entry_footer_phone');
+		$this->data['entry_footer_email'] = $this->language->get('entry_footer_email');
+		$this->data['entry_footer_facebook'] = $this->language->get('entry_footer_facebook');
+		$this->data['entry_footer_twitter'] = $this->language->get('entry_footer_twitter');
+		$this->data['entry_footer_google'] = $this->language->get('entry_footer_google');
+		$this->data['entry_footer_pinterest'] = $this->language->get('entry_footer_pinterest');
+		$this->data['entry_footer_skype'] = $this->language->get('entry_footer_skype');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
 
@@ -101,51 +112,101 @@ class ControllerThemeDefault extends Controller {
 			$this->data['active'] = false;
 		}
 
-		// Settings
-		if (isset($this->request->post['default_category_menu'])) {
-			$this->data['default_category_menu'] = $this->request->post['default_category_menu'];
+		// General
+		if (isset($this->request->post[$this->_name . '_breadcrumbs'])) {
+			$this->data[$this->_name . '_breadcrumbs'] = $this->request->post[$this->_name . '_breadcrumbs'];
 		} else {
-			$this->data['default_category_menu'] = $this->config->get('default_category_menu');
+			$this->data[$this->_name . '_breadcrumbs'] = $this->config->get($this->_name . '_breadcrumbs');
 		}
 
-		if (isset($this->request->post['default_breadcrumbs'])) {
-			$this->data['default_breadcrumbs'] = $this->request->post['default_breadcrumbs'];
+		if (isset($this->request->post[$this->_name . '_cookie_consent'])) {
+			$this->data[$this->_name . '_cookie_consent'] = $this->request->post[$this->_name . '_cookie_consent'];
 		} else {
-			$this->data['default_breadcrumbs'] = $this->config->get('default_breadcrumbs');
-		}
-
-		if (isset($this->request->post['default_cookie_consent'])) {
-			$this->data['default_cookie_consent'] = $this->request->post['default_cookie_consent'];
-		} else {
-			$this->data['default_cookie_consent'] = $this->config->get('default_cookie_consent');
+			$this->data[$this->_name . '_cookie_consent'] = $this->config->get($this->_name . '_cookie_consent');
 		}
 
 		$this->load->model('catalog/information');
 
 		$this->data['informations'] = $this->model_catalog_information->getInformationPages();
 
-		if (isset($this->request->post['default_cookie_privacy'])) {
-			$this->data['default_cookie_privacy'] = $this->request->post['default_cookie_privacy'];
+		if (isset($this->request->post[$this->_name . '_cookie_privacy'])) {
+			$this->data[$this->_name . '_cookie_privacy'] = $this->request->post[$this->_name . '_cookie_privacy'];
 		} else {
-			$this->data['default_cookie_privacy'] = $this->config->get('default_cookie_privacy');
+			$this->data[$this->_name . '_cookie_privacy'] = $this->config->get($this->_name . '_cookie_privacy');
 		}
 
-		if (isset($this->request->post['default_back_to_top'])) {
-			$this->data['default_back_to_top'] = $this->request->post['default_back_to_top'];
+		if (isset($this->request->post[$this->_name . '_back_to_top'])) {
+			$this->data[$this->_name . '_back_to_top'] = $this->request->post[$this->_name . '_back_to_top'];
 		} else {
-			$this->data['default_back_to_top'] = $this->config->get('default_back_to_top');
+			$this->data[$this->_name . '_back_to_top'] = $this->config->get($this->_name . '_back_to_top');
 		}
 
-		if (isset($this->request->post['default_manufacturer_name'])) {
-			$this->data['default_manufacturer_name'] = $this->request->post['default_manufacturer_name'];
+		// Footer
+		if (isset($this->request->post[$this->_name . '_footer_theme'])) {
+			$this->data[$this->_name . '_footer_theme'] = $this->request->post[$this->_name . '_footer_theme'];
 		} else {
-			$this->data['default_manufacturer_name'] = $this->config->get('default_manufacturer_name');
+			$this->data[$this->_name . '_footer_theme'] = $this->config->get($this->_name . '_footer_theme');
 		}
 
-		if (isset($this->request->post['default_manufacturer_image'])) {
-			$this->data['default_manufacturer_image'] = $this->request->post['default_manufacturer_image'];
+		if (isset($this->request->post[$this->_name . '_footer_location'])) {
+			$this->data[$this->_name . '_footer_location'] = $this->request->post[$this->_name . '_footer_location'];
 		} else {
-			$this->data['default_manufacturer_image'] = $this->config->get('default_manufacturer_image');
+			$this->data[$this->_name . '_footer_location'] = $this->config->get($this->_name . '_footer_location');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_phone'])) {
+			$this->data[$this->_name . '_footer_phone'] = $this->request->post[$this->_name . '_footer_phone'];
+		} else {
+			$this->data[$this->_name . '_footer_phone'] = $this->config->get($this->_name . '_footer_phone');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_email'])) {
+			$this->data[$this->_name . '_footer_email'] = $this->request->post[$this->_name . '_footer_email'];
+		} else {
+			$this->data[$this->_name . '_footer_email'] = $this->config->get($this->_name . '_footer_email');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_facebook'])) {
+			$this->data[$this->_name . '_footer_facebook'] = $this->request->post[$this->_name . '_footer_facebook'];
+		} else {
+			$this->data[$this->_name . '_footer_facebook'] = $this->config->get($this->_name . '_footer_facebook');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_twitter'])) {
+			$this->data[$this->_name . '_footer_twitter'] = $this->request->post[$this->_name . '_footer_twitter'];
+		} else {
+			$this->data[$this->_name . '_footer_twitter'] = $this->config->get($this->_name . '_footer_twitter');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_google'])) {
+			$this->data[$this->_name . '_footer_google'] = $this->request->post[$this->_name . '_footer_google'];
+		} else {
+			$this->data[$this->_name . '_footer_google'] = $this->config->get($this->_name . '_footer_google');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_pinterest'])) {
+			$this->data[$this->_name . '_footer_pinterest'] = $this->request->post[$this->_name . '_footer_pinterest'];
+		} else {
+			$this->data[$this->_name . '_footer_pinterest'] = $this->config->get($this->_name . '_footer_pinterest');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_skype'])) {
+			$this->data[$this->_name . '_footer_skype'] = $this->request->post[$this->_name . '_footer_skype'];
+		} else {
+			$this->data[$this->_name . '_footer_skype'] = $this->config->get($this->_name . '_footer_skype');
+		}
+
+		// Options
+		if (isset($this->request->post[$this->_name . '_manufacturer_name'])) {
+			$this->data[$this->_name . '_manufacturer_name'] = $this->request->post[$this->_name . '_manufacturer_name'];
+		} else {
+			$this->data[$this->_name . '_manufacturer_name'] = $this->config->get($this->_name . '_manufacturer_name');
+		}
+
+		if (isset($this->request->post[$this->_name . '_manufacturer_image'])) {
+			$this->data[$this->_name . '_manufacturer_image'] = $this->request->post[$this->_name . '_manufacturer_image'];
+		} else {
+			$this->data[$this->_name . '_manufacturer_image'] = $this->config->get($this->_name . '_manufacturer_image');
 		}
 
 		$this->template = 'theme/' . $this->_name . '.tpl';

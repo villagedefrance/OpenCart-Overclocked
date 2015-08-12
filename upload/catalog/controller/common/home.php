@@ -8,7 +8,7 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['heading_title'] = $this->config->get('config_title');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/home.tpl')) {

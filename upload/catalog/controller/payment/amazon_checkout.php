@@ -52,7 +52,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$this->data['cart'] = $this->url->link('checkout/cart');
 		$this->data['text_cart'] = $this->language->get('text_cart');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/amazon_checkout_address.tpl')) {
@@ -108,7 +108,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$this->data['continue'] = $this->url->link('payment/amazon_checkout/confirm', '', 'SSL');
 		$this->data['back'] = $this->url->link('payment/amazon_checkout/address', '', 'SSL');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/amazon_checkout_payment.tpl')) {
@@ -155,7 +155,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			$this->redirect($this->url->link('common/home'));
 		}
 
-		// Validate cart has products and has stock.
+		// Validate cart has products and has stock
 		if (!empty($this->session->data['vouchers']) || !$this->cart->hasProducts() || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$this->redirect($this->url->link('checkout/cart'));
 		}
@@ -170,7 +170,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
 
-		// Validate minimum quantity requirments.
+		// Validate minimum quantity requirments
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {
@@ -509,7 +509,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->data['text_back'] = $this->language->get('text_back');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/amazon_checkout_confirm.tpl')) {
@@ -693,7 +693,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		unset($this->session->data['voucher']);
 		unset($this->session->data['vouchers']);
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/amazon_checkout_success.tpl')) {
@@ -725,7 +725,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->data['text_payment_failed'] = $this->language->get('text_payment_failed');
 
-		// Template
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/amazon_checkout_failure.tpl')) {

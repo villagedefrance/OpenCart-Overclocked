@@ -6,6 +6,9 @@ class ControllerCommonHome extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.min.js');
+		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.resize.min.js');
+
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_overview'] = $this->language->get('text_overview');
