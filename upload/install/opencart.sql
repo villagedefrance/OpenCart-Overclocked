@@ -3261,7 +3261,7 @@ INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `pale
 (52, 49, 'data/demo/samsung_tab_4.jpg', 0, 0),
 (53, 49, 'data/demo/samsung_tab_3.jpg', 0, 0),
 (54, 49, 'data/demo/samsung_tab_2.jpg', 0, 0),
-(55, 42, 'data/demo/canon_logo.jpg', 0, 0),
+(55, 42, 'data/demo/manufacturer/canon.png', 0, 0),
 (56, 42, 'data/demo/hp_1.jpg', 0, 0),
 (57, 42, 'data/demo/compaq_presario.jpg', 0, 0),
 (58, 42, 'data/demo/canon_eos_5d_1.jpg', 0, 0),
