@@ -2295,6 +2295,72 @@ INSERT INTO `oc_menu_item_description` (`menu_item_id`, `language_id`, `menu_id`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_menu_item_path`
+--
+
+DROP TABLE IF EXISTS `oc_menu_item_path`;
+CREATE TABLE `oc_menu_item_path` (
+  `menu_item_id` int(11) NOT NULL,
+  `path_id` int(11) NOT NULL,
+  `level` int(11) NOT NULL,
+  PRIMARY KEY (`menu_item_id`,`path_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_menu_item_path`
+--
+
+INSERT INTO `oc_menu_item_path` (`menu_item_id`, `path_id`, `level`) VALUES
+(1, 1, 0),
+(2, 2, 1),
+(2, 1, 0),
+(3, 3, 1),
+(3, 1, 0),
+(4, 4, 1),
+(4, 1, 0),
+(5, 1, 0),
+(5, 5, 1),
+(6, 1, 0),
+(6, 6, 1),
+(7, 7, 1),
+(7, 1, 0),
+(8, 8, 1),
+(8, 1, 0),
+(9, 1, 0),
+(9, 9, 1),
+(10, 10, 0),
+(11, 11, 1),
+(11, 10, 0),
+(12, 10, 0),
+(12, 12, 1),
+(13, 10, 0),
+(13, 13, 1),
+(14, 14, 1),
+(14, 10, 0),
+(15, 10, 0),
+(15, 15, 1),
+(16, 16, 1),
+(16, 10, 0),
+(17, 17, 0),
+(18, 18, 1),
+(18, 17, 0),
+(19, 17, 0),
+(19, 19, 1),
+(20, 17, 0),
+(20, 20, 1),
+(21, 21, 0),
+(22, 21, 0),
+(22, 22, 1),
+(23, 21, 0),
+(23, 23, 1),
+(24, 24, 1),
+(24, 21, 0),
+(25, 25, 1),
+(25, 21, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_menu_to_store`
 --
 

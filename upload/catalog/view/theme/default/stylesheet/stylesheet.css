@@ -821,7 +821,7 @@ a.button-add {
 }
 .box-product .price {
 	display: block;
-	color: #333;
+	color: #555;
 	font-size: 14px;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #FFF;
@@ -1175,7 +1175,7 @@ ul.box-filter > li ul {
 .product-list .price {
 	float: right;
 	height: 50px;
-	color: #333;
+	color: #555;
 	font-size: 14px;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #FFF;
@@ -1246,7 +1246,7 @@ ul.box-filter > li ul {
 }
 .product-grid .price {
 	display: block;
-	color: #333;
+	color: #555;
 	font-size: 14px;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #FFF;

@@ -67,7 +67,11 @@ class ModelInstall extends Model {
 
 				$document = file_get_contents('../.htaccess.txt');
 
-				$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/.\\');
+				$root = rtrim(HTTP_SERVER, '/');
+
+				$folder = substr(strrchr($root, '/'), 1);
+
+				$path = rtrim(rtrim(dirname($_SERVER['SCRIPT_NAME']), ''), '/' . $folder . '.\\');
 
 				if (strlen($path) > 1) {
 					$path .= '/';
@@ -83,11 +87,11 @@ class ModelInstall extends Model {
 
 				fclose($file);
 
-				clearstatcache();
-
 				rename('../.htaccess.txt', '../.htaccess');
 
-				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '" . (isset($data['rewrite']) ? 1 : 0) . "' WHERE `key` = 'config_seo_url'");
+				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '" . (isset($data['rewrite']) ? 1 : 0) . "' WHERE `group` = 'config' AND `key` = 'config_seo_url'");
+
+				clearstatcache();
 			}
 		}
 	}

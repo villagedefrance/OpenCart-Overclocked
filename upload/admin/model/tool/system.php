@@ -30,7 +30,9 @@ class ModelToolSystem extends Model {
 	}
 
 	public function setupSeo() {
-		if (!file_exists('../.htaccess')) {
+		if (file_exists('../.htaccess')) {
+			return;
+		} else {
 			if (file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
 				$file = fopen('../.htaccess.txt', 'a');
 
@@ -56,13 +58,13 @@ class ModelToolSystem extends Model {
 
 				fclose($file);
 
-				clearstatcache();
-
 				rename('../.htaccess.txt', '../.htaccess');
 
-				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `key` = 'config_seo_url'");
+				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `group` = 'config' AND `key` = 'config_seo_url'");
 			}
 		}
+
+		clearstatcache();
 	}
 
 	// Token generator

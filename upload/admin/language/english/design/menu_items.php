@@ -3,6 +3,8 @@
 $_['heading_title']          		= 'Menu Items';
 
 // Text
+$_['text_success']    			= 'Success: You have modified <b>Menu Items</b> !';
+$_['text_repair_success']    	= 'Success: You have repaired all <b>Menu Items</b> !';
 $_['text_insert_success']    	= 'Success: Your new <b>Menu Item</b> has been created !';
 $_['text_update_success']    	= 'Success: You have modified a <b>Menu Item</b> !';
 $_['text_delete_success']    	= 'Success: You have Deleted a <b>Menu Item</b> !';

@@ -8,7 +8,6 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/menu');
 		$this->load->model('design/menu_items');
 
 		$this->getList();
@@ -19,7 +18,6 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/menu');
 		$this->load->model('design/menu_items');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
@@ -67,7 +65,6 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/menu');
 		$this->load->model('design/menu_items');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
@@ -113,7 +110,6 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('design/menu');
 		$this->load->model('design/menu_items');
 
 		if (isset($this->request->post['selected']) && $this->validateDelete()) {
@@ -147,7 +143,43 @@ class ControllerDesignMenuItems extends Controller {
 		$this->getList();
 	}
 
-	private function getList() {
+	public function repair() {
+		$this->language->load('design/' . $this->_name);
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('design/menu_items');
+
+		if ($this->validateRepair()) {
+			$this->model_design_menu_items->repairMenuItems();
+
+			$this->session->data['success'] = $this->language->get('text_repair_success');
+
+			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->redirect($this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'] . $url, 'SSL'));
+		}
+
+		$this->getList();
+	}
+
+	protected function getList() {
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
 		} else {
@@ -157,7 +189,7 @@ class ControllerDesignMenuItems extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'mi.sort_order, name';
+			$sort = 'name, mi.sort_order';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -206,7 +238,11 @@ class ControllerDesignMenuItems extends Controller {
       		'separator' => ' :: '
    		);
 
+		$this->data['back'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['enabled'] = $this->url->link('design/menu_items/enable', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
+		$this->data['disabled'] = $this->url->link('design/menu_items/disable', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
+		$this->data['repair'] = $this->url->link('design/menu_items/repair', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/menu_items/delete', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
 
 		// Pagination
@@ -219,13 +255,13 @@ class ControllerDesignMenuItems extends Controller {
 			'filter_name'	=> $filter_name,
 			'sort'  			=> $sort,
 			'order' 			=> $order,
-			'start' 			=> ($page - 1) * 200,
-			'limit' 				=> 200
+			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' 				=> $this->config->get('config_admin_limit')
 		);
 
 		$menu_item_total = $this->model_design_menu_items->getTotalMenuItems($menu_id, $data);
 
-		$results = $this->model_design_menu_items->getMenuItems(0, $menu_id, $data);
+		$results = $this->model_design_menu_items->getMenuItems($menu_id, $data);
 
 		foreach ($results as $result) {
 			$action = array();
@@ -238,7 +274,7 @@ class ControllerDesignMenuItems extends Controller {
 			$this->data['menu_items'][] = array(
 				'menu_item_id'	=> $result['menu_item_id'],
 				'name'			=> $result['name'],
-				'external'		=> $result['external'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'external'		=> $result['external_link'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'sort_order'		=> $result['sort_order'],
 				'status'			=> $result['status'],
 				'selected'		=> isset($this->request->post['selected']) && in_array($result['menu_item_id'], $this->request->post['selected']),
@@ -261,12 +297,13 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_back'] = $this->language->get('button_back');
+		$this->data['button_enable'] = $this->language->get('button_enable');
+        $this->data['button_disable'] = $this->language->get('button_disable');
 		$this->data['button_insert'] = $this->language->get('button_insert');
+		$this->data['button_repair'] = $this->language->get('button_repair');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 
 		$this->data['token'] = $this->session->data['token'];
-
-		$this->data['back'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['menu_id'] = $menu_id;
 
@@ -321,7 +358,7 @@ class ControllerDesignMenuItems extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $menu_item_total;
 		$pagination->page = $page;
-		$pagination->limit = 200;
+		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url . '&page={page}', 'SSL');
 
@@ -341,7 +378,7 @@ class ControllerDesignMenuItems extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function getForm() {
+	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_none'] = $this->language->get('text_none');
@@ -439,9 +476,7 @@ class ControllerDesignMenuItems extends Controller {
 			$this->data['menu_item_description'] = array();
 		}
 
-		$data = array();
-
-		$menu_items = $this->model_design_menu_items->getMenuItems(0, $menu_id, $data);
+		$menu_items = $this->model_design_menu_items->getMenuItems($menu_id, 0);
 
 		// Remove own Id from list
 		if (!empty($menu_item_info)) {
@@ -505,7 +540,7 @@ class ControllerDesignMenuItems extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function validateForm() {
+	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'design/menu_items')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -527,7 +562,7 @@ class ControllerDesignMenuItems extends Controller {
 		}
 	}
 
-	private function validateDelete() {
+	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'design/menu_items')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -538,6 +573,94 @@ class ControllerDesignMenuItems extends Controller {
 			return false;
 		}
 	}
+
+	protected function validateRepair() {
+		if (!$this->user->hasPermission('modify', 'design/menu_items')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function enable() {
+        $this->language->load('design/' . $this->_name);
+
+        $this->document->setTitle($this->language->get('heading_title'));
+
+        $this->load->model('design/menu_items');
+
+        if (isset($this->request->post['selected'])) {
+            foreach ($this->request->post['selected'] as $menu_item_id) {
+                $this->model_design_menu_items->editMenuItemStatus($menu_item_id, 1);
+            }
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
+
+			$this->redirect($this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'] . $url, 'SSL'));
+        }
+
+        $this->getList();
+    }
+
+    public function disable() {
+        $this->language->load('design/' . $this->_name);
+
+        $this->document->setTitle($this->language->get('heading_title'));
+
+        $this->load->model('design/menu_items');
+
+        if (isset($this->request->post['selected'])) {
+            foreach ($this->request->post['selected'] as $menu_item_id) {
+                $this->model_design_menu_items->editMenuItemStatus($menu_item_id, 0);
+            }
+
+            $this->session->data['success'] = $this->language->get('text_success');
+
+            $url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
+
+            $this->redirect($this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'] . $url, 'SSL'));
+        }
+
+        $this->getList();
+    }
 
 	public function info() {
 		$this->language->load('design/' . $this->_name);
