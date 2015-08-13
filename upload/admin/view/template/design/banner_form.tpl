@@ -59,22 +59,22 @@
         <tbody id="image-row<?php echo $image_row; ?>">
           <tr>
             <td class="left"><?php foreach ($languages as $language) { ?>
-            <input type="text" name="banner_image[<?php echo $image_row; ?>][banner_image_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($banner_image['banner_image_description'][$language['language_id']]) ? $banner_image['banner_image_description'][$language['language_id']]['title'] : ''; ?>" />
-            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-            <?php if (isset($error_banner_image[$image_row][$language['language_id']])) { ?>
-              <span class="error"><?php echo $error_banner_image[$image_row][$language['language_id']]; ?></span>
-            <?php } ?>
+              <input type="text" name="banner_image[<?php echo $image_row; ?>][banner_image_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($banner_image['banner_image_description'][$language['language_id']]) ? $banner_image['banner_image_description'][$language['language_id']]['title'] : ''; ?>" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+              <?php if (isset($error_banner_image[$image_row][$language['language_id']])) { ?>
+                <span class="error"><?php echo $error_banner_image[$image_row][$language['language_id']]; ?></span>
+              <?php } ?>
             <?php } ?></td>
             <td class="left"><input type="text" name="banner_image[<?php echo $image_row; ?>][link]" value="<?php echo $banner_image['link']; ?>" size="40" /></td>
 		    <td class="center"><select name="banner_image[<?php echo $image_row; ?>][external_link]">
-            <?php if ($banner_image['external_link']) { ?>
-              <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-              <option value="0"><?php echo $text_no; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_yes; ?></option>
-              <option value="0" selected="selected"><?php echo $text_no; ?></option>
-            <?php } ?>
-          </select></td>
+              <?php if ($banner_image['external_link']) { ?>
+                <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                <option value="0"><?php echo $text_no; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_yes; ?></option>
+                <option value="0" selected="selected"><?php echo $text_no; ?></option>
+              <?php } ?>
+            </select></td>
             <td class="center"><div class="image"><img src="<?php echo $banner_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
               <input type="hidden" name="banner_image[<?php echo $image_row; ?>][image]" value="<?php echo $banner_image['image']; ?>" id="image<?php echo $image_row; ?>"  />
               <br />
