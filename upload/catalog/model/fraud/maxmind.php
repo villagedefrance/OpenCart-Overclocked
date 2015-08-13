@@ -2,13 +2,19 @@
 class ModelFraudMaxMind extends Model {
 
 	public function check($data) {
-		$fraud_info = $this->getFraud($data['order_id']); 
+		$risk_score = 0;
 
-		if ($fraud_info) {
-			$risk_score = $fraud_info['risk_score'];
+		$order_id = $data['order_id'];
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "maxmind WHERE order_id = '" . (int)$order_id . "'");
+		
+		if ($query->num_rows) {
+			$risk_score = $query->row['risk_score'];
 		} else {
-			/* maxmind api >> http://www.maxmind.com/app/ccv */
-			/* paypal api >> https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_IPNandPDTVariables */
+			/* maxmind api
+			http://www.maxmind.com/app/ccv */
+			/* paypal api
+			https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_html_IPNandPDTVariables */
 
 			$request = 'i=' . urlencode($data['ip']);
 			$request .= '&city=' . urlencode($data['payment_city']);
@@ -17,7 +23,7 @@ class ModelFraudMaxMind extends Model {
 			$request .= '&country=' . urlencode($data['payment_country']);
 			$request .= '&domain=' . urlencode(utf8_substr(strrchr($data['email'], '@'), 1));
 			$request .= '&custPhone=' . urlencode($data['telephone']);
-			$request .= '&license_key=' . urlencode($this->config->get('config_fraud_key'));
+			$request .= '&license_key=' . urlencode($this->config->get('maxmind_key'));
 
 			if ($data['shipping_method']) {
 				$request .= '&shipAddr=' . urlencode($data['shipping_address_1']);
@@ -52,7 +58,6 @@ class ModelFraudMaxMind extends Model {
 			$risk_score = 0;
 
 			if ($response) {
-				$order_id = $data['order_id'];
 				$customer_id = $data['customer_id'];
 
 				$data = array();
