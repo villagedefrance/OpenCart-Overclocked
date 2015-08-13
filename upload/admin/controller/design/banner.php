@@ -294,6 +294,9 @@ class ControllerDesignBanner extends Controller {
 
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_link'] = $this->language->get('text_link');
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
@@ -302,6 +305,7 @@ class ControllerDesignBanner extends Controller {
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_link'] = $this->language->get('entry_link');
+		$this->data['entry_external_link'] = $this->language->get('entry_external_link');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
@@ -330,6 +334,9 @@ class ControllerDesignBanner extends Controller {
 		} else {
 			$this->data['error_banner_image'] = array();
 		}
+
+		$this->document->addScript('view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+		$this->document->addStyle('view/javascript/jquery/colorbox/colorbox.css');
 
 		$url = '';
 
@@ -366,6 +373,8 @@ class ControllerDesignBanner extends Controller {
 		}
 
 		$this->data['cancel'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+		$this->data['text_info'] = sprintf($this->language->get('text_info'), $this->url->link('design/banner/info', 'token=' . $this->session->data['token'], 'SSL'));
 
 		if (isset($this->request->get['banner_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$banner_info = $this->model_design_banner->getBanner($this->request->get['banner_id']);
@@ -413,6 +422,7 @@ class ControllerDesignBanner extends Controller {
 			$this->data['banner_images'][] = array(
 				'banner_image_description' => $banner_image['banner_image_description'],
 				'link'              		=> $banner_image['link'],
+				'external_link'		=> $banner_image['external_link'],
 				'image'            	=> $image,
 				'thumb'          		=> $this->model_tool_image->resize($image, 100, 100)
 			);
@@ -464,6 +474,38 @@ class ControllerDesignBanner extends Controller {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public function info() {
+		$this->language->load('design/banner');
+
+		$language = $this->language->get('code');
+		$direction = $this->language->get('direction');
+		$info_title = $this->language->get('info_title');
+
+		$this->load->model('tool/route');
+
+		$routes = $this->model_tool_route->getRoutes(0);
+
+		if ($routes) {
+			$output  = '<html dir="' . $direction . '" lang="' . $language . '">' . "\n";
+			$output .= '<head>' . "\n";
+			$output .= '  <title>' . $info_title . '</title>' . "\n";
+			$output .= '  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' . "\n";
+			$output .= '  <meta name="robots" content="noindex">' . "\n";
+			$output .= '</head>' . "\n";
+			$output .= '<body>' . "\n";
+			$output .= '  <h1>' . $info_title . '</h1>' . "\n";
+			$output .= '  <ul style="list-style:square outside none;">';
+			foreach ($routes as $route) {
+				$output .= '    <li>' . $route['link'] . '  ' . $route['name'] . '</li>' . "\n";
+			}
+			$output .= '  </ul>';
+			$output .= '  </body>' . "\n";
+			$output .= '</html>' . "\n";
+
+			$this->response->setOutput($output);
 		}
 	}
 }

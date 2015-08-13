@@ -42,7 +42,7 @@
             <tr>
               <td><?php echo $text_link; ?></td>
               <td><?php echo $text_info; ?></td>
-          </tr>
+            </tr>
           </table>
           </div>
         <?php } ?>

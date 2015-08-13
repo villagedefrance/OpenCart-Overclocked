@@ -39,12 +39,17 @@
             <?php } ?>
           </select></td>
         </tr>
+        <tr>
+          <td><?php echo $text_link; ?></td>
+          <td><?php echo $text_info; ?></td>
+        </tr>
       </table>
       <table id="images" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $entry_title; ?></td>
             <td class="left"><?php echo $entry_link; ?></td>
+            <td class="left"><?php echo $entry_external_link; ?></td>
             <td class="left"><?php echo $entry_image; ?></td>
             <td></td>
           </tr>
@@ -61,7 +66,16 @@
             <?php } ?>
             <?php } ?></td>
             <td class="left"><input type="text" name="banner_image[<?php echo $image_row; ?>][link]" value="<?php echo $banner_image['link']; ?>" size="40" /></td>
-            <td class="left"><div class="image"><img src="<?php echo $banner_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
+		    <td class="center"><select name="banner_image[<?php echo $image_row; ?>][external_link]">
+            <?php if ($banner_image['external_link']) { ?>
+              <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+              <option value="0"><?php echo $text_no; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_yes; ?></option>
+              <option value="0" selected="selected"><?php echo $text_no; ?></option>
+            <?php } ?>
+          </select></td>
+            <td class="center"><div class="image"><img src="<?php echo $banner_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
               <input type="hidden" name="banner_image[<?php echo $image_row; ?>][image]" value="<?php echo $banner_image['image']; ?>" id="image<?php echo $image_row; ?>"  />
               <br />
               <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
@@ -73,7 +87,7 @@
         <?php } ?>
         <tfoot>
           <tr>
-            <td colspan="3"></td>
+            <td colspan="4"></td>
             <td class="center"><a onclick="addImage();" class="button"><?php echo $button_add_banner; ?></a></td>
           </tr>
         </tfoot>
@@ -88,25 +102,38 @@ var image_row = <?php echo $image_row; ?>;
 
 function addImage() {
 	html  = '<tbody id="image-row' + image_row + '">';
-	html += '<tr>';
-	html += '	<td class="left">';
+	html += '  <tr>';
+	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '	<input type="text" name="banner_image[' + image_row + '][banner_image_description][<?php echo $language['language_id']; ?>][title]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
+	html += '      <input type="text" name="banner_image[' + image_row + '][banner_image_description][<?php echo $language['language_id']; ?>][title]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
 	<?php } ?>
-	html += '	</td>';
-	html += '	<td class="left"><input type="text" name="banner_image[' + image_row + '][link]" value="" size="40" /></td>';
-	html += '	<td class="left"><div class="image">';
+	html += '    </td>';
+	html += '    <td class="left"><input type="text" name="banner_image[' + image_row + '][link]" value="" size="40" /></td>';
+    html += '    <td class="center"><select name="banner_image[' + image_row + '][external_link]">';
+    html += '      <option value="1"><?php echo $text_yes; ?></option>';
+    html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
+    html += '    </select></td>';
+	html += '    <td class="center"><div class="image">';
 	html += '	  <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="banner_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
 	html += '	  <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
-	html += '	</div></td>';
-	html += '	<td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
-	html += '</tr>';
+	html += '    </div></td>';
+	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
 	html += '</tbody>';
 
 	$('#images tfoot').before(html);
 
 	image_row++;
 };
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.colorbox').colorbox({
+		width: 640,
+		height: 480
+	});
+});
 //--></script>
 
 <script type="text/javascript"><!--

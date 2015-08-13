@@ -58,10 +58,20 @@ class ControllerModuleSlideshow extends Controller {
 			$results = $this->model_design_banner->getBanner($setting['banner_id']);
 
 			foreach ($results as $result) {
+				if (!empty($result['link'])) {
+					if ($result['external_link']) {
+						$image_link = html_entity_decode($result['link'], ENT_QUOTES, 'UTF-8');
+					} else {
+						$image_link = $this->url->link($result['link']);
+					}
+				} else {
+					$image_link = '';
+				}
+
 				if (file_exists(DIR_IMAGE . $result['image'])) {
 					$this->data['banners'][] = array(
 						'title'		=> $result['title'],
-						'link'		=> $result['link'],
+						'link'		=> $image_link,
 						'image'	=> $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 					);
 				}

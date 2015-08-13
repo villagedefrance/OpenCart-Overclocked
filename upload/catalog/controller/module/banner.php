@@ -41,9 +41,19 @@ class ControllerModuleBanner extends Controller {
 
 		foreach ($results as $result) {
 			if (file_exists(DIR_IMAGE . $result['image'])) {
+				if (!empty($result['link'])) {
+					if ($result['external_link']) {
+						$image_link = html_entity_decode($result['link'], ENT_QUOTES, 'UTF-8');
+					} else {
+						$image_link = $this->url->link($result['link']);
+					}
+				} else {
+					$image_link = '';
+				}
+
 				$this->data['banners'][] = array(
 					'title' 		=> $result['title'],
-					'link'  		=> $result['link'],
+					'link'  		=> $image_link,
 					'image'	=> $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);
 			}
