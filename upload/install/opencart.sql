@@ -242,23 +242,23 @@ CREATE TABLE `oc_banner_image` (
 -- Dumping data for table `oc_banner_image`
 --
 
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`) VALUES
-(78, 7, '', 'data/demo/banners/iPhone6.jpg'),
-(79, 7, '', 'data/demo/banners/MacBookAir.jpg'),
-(83, 6, '', 'data/demo/banners/SpecialOffer.png'),
-(91, 8, '', 'data/demo/manufacturer/nintendo.png'),
-(89, 8, '', 'data/demo/manufacturer/harley.png'),
-(90, 8, '', 'data/demo/manufacturer/nfl.png'),
-(88, 8, '', 'data/demo/manufacturer/disney.png'),
-(86, 8, '', 'data/demo/manufacturer/cocacola.png'),
-(87, 8, '', 'data/demo/manufacturer/dell.png'),
-(84, 8, '', 'data/demo/manufacturer/burgerking.png'),
-(85, 8, 'index.php?route=product/manufacturer/info&amp;manufacturer_id=9', 'data/demo/manufacturer/canon.png'),
-(82, 6, '', 'data/demo/banners/FreeShipping.png'),
-(92, 8, '', 'data/demo/manufacturer/redbull.png'),
-(93, 8, '', 'data/demo/manufacturer/shell.png'),
-(94, 8, 'index.php?route=product/manufacturer/info&amp;manufacturer_id=10', 'data/demo/manufacturer/sony.png'),
-(95, 8, '', 'data/demo/manufacturer/starbucks.png');
+INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `link`, `external_link`, `image`) VALUES
+(78, 7, '', 0, 'data/demo/banners/iPhone6.jpg'),
+(79, 7, '', 0, 'data/demo/banners/MacBookAir.jpg'),
+(83, 6, '', 0, 'data/demo/banners/SpecialOffer.png'),
+(91, 8, '', 0, 'data/demo/manufacturer/nintendo.png'),
+(89, 8, '', 0, 'data/demo/manufacturer/harley.png'),
+(90, 8, '', 0, 'data/demo/manufacturer/nfl.png'),
+(88, 8, '', 0, 'data/demo/manufacturer/disney.png'),
+(86, 8, '', 0, 'data/demo/manufacturer/cocacola.png'),
+(87, 8, '', 0, 'data/demo/manufacturer/dell.png'),
+(84, 8, '', 0, 'data/demo/manufacturer/burgerking.png'),
+(85, 8, 'product/manufacturer/info&amp;manufacturer_id=9', 0, 'data/demo/manufacturer/canon.png'),
+(82, 6, '', 0, 'data/demo/banners/FreeShipping.png'),
+(92, 8, '', 0, 'data/demo/manufacturer/redbull.png'),
+(93, 8, '', 0, 'data/demo/manufacturer/shell.png'),
+(94, 8, 'product/manufacturer/info&amp;manufacturer_id=10', 0, 'data/demo/manufacturer/sony.png'),
+(95, 8, '', 0, 'data/demo/manufacturer/starbucks.png');
 
 -- --------------------------------------------------------
 
