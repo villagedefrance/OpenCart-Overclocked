@@ -8917,7 +8917,9 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4284, 118, 'LB-ML', 'Mount Lebanon', 1),
 (4285, 118, 'LB-NB', 'Nabatieh', 1),
 (4286, 118, 'LB-NR', 'North', 1),
-(4287, 118, 'LB-ST', 'South', 1);
+(4287, 118, 'LB-ST', 'South', 1),
+
+(4288, 99, 'TS', 'Telangana', 1);
 
 -- --------------------------------------------------------
 
