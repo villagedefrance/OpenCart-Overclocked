@@ -1,97 +1,97 @@
 <?php if ($this->config->get('default_back_to_top')) { ?>
-  <p id="backtotop" style="display:block;">
-    <a href="#" title=""><span></span></a>
-  </p>
+<p id="backtotop" style="display:block;">
+  <a href="#" title=""><span></span></a>
+</p>
 <?php } ?>
 <div id="footer-holder" class="footer-<?php echo $this->config->get('default_footer_theme') ? 'light' : 'dark'; ?>">
   <div id="footer">
   <?php if ($footer_blocks) { ?>
-    <div class="column">
-      <?php foreach ($footer_blocks as $footer_block) { ?>
-        <?php if (($footer_block['position'] == 1) && $footer_block['status']) { ?>
-          <h3><?php echo $footer_block['name']; ?></h3>
-          <ul>
-            <?php foreach ($footer_routes as $footer_route) { ?>
-              <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
-                <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
-              <?php } ?>
-            <?php } ?>
-          </ul>
-        <?php } ?>
-      <?php } ?>
-    </div>
-    <div class="column">
-      <?php foreach ($footer_blocks as $footer_block) { ?>
-        <?php if (($footer_block['position'] == 2) && $footer_block['status']) { ?>
-          <h3><?php echo $footer_block['name']; ?></h3>
-          <ul>
-            <?php foreach ($footer_routes as $footer_route) { ?>
-              <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
-                <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
-              <?php } ?>
-            <?php } ?>
-          </ul>
-        <?php } ?>
-      <?php } ?>
-    </div>
-    <div class="column">
-      <?php foreach ($footer_blocks as $footer_block) { ?>
-        <?php if (($footer_block['position'] == 3) && $footer_block['status']) { ?>
-          <h3><?php echo $footer_block['name']; ?></h3>
-          <ul>
-            <?php foreach ($footer_routes as $footer_route) { ?>
-              <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
-                <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
-              <?php } ?>
-            <?php } ?>
-          </ul>
-        <?php } ?>
-      <?php } ?>
-    </div>
-    <div class="column">
-      <?php foreach ($footer_blocks as $footer_block) { ?>
-        <?php if (($footer_block['position'] == 4) && $footer_block['status']) { ?>
-          <h3><?php echo $footer_block['name']; ?></h3>
-          <ul>
-            <?php foreach ($footer_routes as $footer_route) { ?>
-              <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
-                <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
-              <?php } ?>
-            <?php } ?>
-          </ul>
-        <?php } ?>
-      <?php } ?>
-    </div>
-    <div class="big-column">
-      <?php if ($this->config->get('default_footer_location')) { ?>
-        <p class='icon-location' title='Location'><?php echo $company; ?><br /><?php echo $address; ?></p>
-      <?php } ?>
-      <?php if ($this->config->get('default_footer_phone')) { ?>
-        <p class='icon-phone' title='Phone'><?php echo $telephone; ?></p>
-      <?php } ?>
-      <?php if ($this->config->get('default_footer_email')) { ?>
-        <p class='icon-mail' title='Email'><?php echo $email; ?></p>
-      <?php } ?>
-      <span>
-        <?php if ($this->config->get('default_footer_skype') && $skype) { ?>
-          <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
-          <a onclick="window.open('skype:<?php echo $skype; ?>?chat');" class="icon-skype" title="Skype"></a>
-          <style>#skypedetectionswf{ display: none; }</style>
-        <?php } ?>
-        <?php if ($this->config->get('default_footer_pinterest') && $pinterest) { ?>
-          <a onclick="window.open('<?php echo $pinterest; ?>');" class="icon-pinterest" title="Pinterest"></a>
-        <?php } ?>
-        <?php if ($this->config->get('default_footer_google') && $google) { ?>
-          <a onclick="window.open('<?php echo $google; ?>');" class="icon-google" title="Google+"></a>
-        <?php } ?>
-        <?php if ($this->config->get('default_footer_twitter') && $twitter) { ?>
-          <a onclick="window.open('<?php echo $twitter; ?>');" class="icon-twitter" title="Twitter"></a>
-        <?php } ?>
-        <?php if ($this->config->get('default_footer_facebook') && $facebook) { ?>
-          <a onclick="window.open('<?php echo $facebook; ?>');" class="icon-facebook" title="Facebook"></a>
-        <?php } ?>
-      </span>
-	</div>
+  <div class="column-one" style="width:<?php echo $column_width; ?>;">
+  <?php foreach ($footer_blocks as $footer_block) { ?>
+  <?php if (($footer_block['position'] == 1) && $footer_block['status']) { ?>
+  <h3><?php echo $footer_block['name']; ?></h3>
+  <ul>
+  <?php foreach ($footer_routes as $footer_route) { ?>
+  <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
+  <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  <?php } ?>
+  <?php } ?>
+  </div>
+  <div class="column-two" style="width:<?php echo $column_width; ?>;">
+  <?php foreach ($footer_blocks as $footer_block) { ?>
+  <?php if (($footer_block['position'] == 2) && $footer_block['status']) { ?>
+  <h3><?php echo $footer_block['name']; ?></h3>
+  <ul>
+  <?php foreach ($footer_routes as $footer_route) { ?>
+  <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
+  <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  <?php } ?>
+  <?php } ?>
+  </div>
+  <div class="column-three" style="width:<?php echo $column_width; ?>;">
+  <?php foreach ($footer_blocks as $footer_block) { ?>
+  <?php if (($footer_block['position'] == 3) && $footer_block['status']) { ?>
+  <h3><?php echo $footer_block['name']; ?></h3>
+  <ul>
+  <?php foreach ($footer_routes as $footer_route) { ?>
+  <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
+  <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  <?php } ?>
+  <?php } ?>
+  </div>
+  <div class="column-four" style="width:<?php echo $column_width; ?>;">
+  <?php foreach ($footer_blocks as $footer_block) { ?>
+  <?php if (($footer_block['position'] == 4) && $footer_block['status']) { ?>
+  <h3><?php echo $footer_block['name']; ?></h3>
+  <ul>
+  <?php foreach ($footer_routes as $footer_route) { ?>
+  <?php if ($footer_route['footer_id'] == $footer_block['footer_id']) { ?>
+  <li><a href="<?php echo $footer_route['route']; ?>"><?php echo $footer_route['title']; ?></a></li>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  <?php } ?>
+  <?php } ?>
+  </div>
+  <div class="big-column">
+  <?php if ($this->config->get('default_footer_location')) { ?>
+  <p class='icon-location' title='Location'><?php echo $company; ?><br /><?php echo $address; ?></p>
+  <?php } ?>
+  <?php if ($this->config->get('default_footer_phone')) { ?>
+  <p class='icon-phone' title='Phone'><?php echo $telephone; ?></p>
+  <?php } ?>
+  <?php if ($this->config->get('default_footer_email')) { ?>
+  <p class='icon-mail' title='Email'><?php echo $email; ?></p>
+  <?php } ?>
+  <span>
+  <?php if ($this->config->get('default_footer_skype') && $skype) { ?>
+  <script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>
+  <a onclick="window.open('skype:<?php echo $skype; ?>?chat');" class="icon-skype" title="Skype"></a>
+  <style>#skypedetectionswf{ display: none; }</style>
+  <?php } ?>
+  <?php if ($this->config->get('default_footer_pinterest') && $pinterest) { ?>
+  <a onclick="window.open('<?php echo $pinterest; ?>');" class="icon-pinterest" title="Pinterest"></a>
+  <?php } ?>
+  <?php if ($this->config->get('default_footer_google') && $google) { ?>
+  <a onclick="window.open('<?php echo $google; ?>');" class="icon-google" title="Google+"></a>
+  <?php } ?>
+  <?php if ($this->config->get('default_footer_twitter') && $twitter) { ?>
+  <a onclick="window.open('<?php echo $twitter; ?>');" class="icon-twitter" title="Twitter"></a>
+  <?php } ?>
+  <?php if ($this->config->get('default_footer_facebook') && $facebook) { ?>
+  <a onclick="window.open('<?php echo $facebook; ?>');" class="icon-facebook" title="Facebook"></a>
+  <?php } ?>
+  </span>
+  </div>
   <?php } ?>
   </div>
 </div>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 			}
 		});
 		$('#backtotop a').click(function() {
-			$('body,html').animate({ scrollTop: 0 }, 800);
+			$('body,html').animate({scrollTop:0}, 800);
 			return false;
 		});
 	});

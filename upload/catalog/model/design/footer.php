@@ -40,5 +40,11 @@ class ModelDesignFooter extends Model {
 
 		return $query->row['total'];
 	}
+
+	public function getFooterMaxPosition() {
+		$query = $this->db->query("SELECT MAX(position) AS position FROM " . DB_PREFIX . "footer WHERE status = '1'");
+
+		return $query->row['position'];
+	}
 }
 ?>

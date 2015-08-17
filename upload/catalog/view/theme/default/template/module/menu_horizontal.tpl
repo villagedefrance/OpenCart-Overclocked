@@ -21,9 +21,9 @@
   <?php for (; $i < $j; $i++) { ?>
   <?php if (isset($category['children'][$i])) { ?>
   <?php if ($category['children'][$i]['href']) { ?>
-  <li><a<?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> href="<?php echo $category['children'][$i]['href']; ?>" title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
+  <li><a <?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> href="<?php echo $category['children'][$i]['href']; ?>" title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
   <?php } else { ?>
-  <li><a<?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
+  <li><a <?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
   <?php } ?>
   <?php } ?>
   <?php } ?>
@@ -36,9 +36,9 @@
   <?php for (; $i < $j; $i++) { ?>
   <?php if (isset($category['children'][$i])) { ?>
   <?php if ($category['children'][$i]['href']) { ?>
-  <li><a<?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> href="<?php echo $category['children'][$i]['href']; ?>" title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
+  <li><a <?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> href="<?php echo $category['children'][$i]['href']; ?>" title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
   <?php } else { ?>
-  <li><a<?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
+  <li><a <?php echo $i == (count($category['children']) - 1) ? " class='last-submenu-item'" : ''; ?> title=""><span><?php echo $category['children'][$i]['name']; ?></span></a></li>
   <?php } ?>
   <?php } ?>
   <?php } ?>
@@ -49,34 +49,51 @@
   <?php } ?>
   </li>
   <?php } ?>
-    </ul>
-  </div>
-  </div>
-  <div id="menu-phone">
-  <div id="menu-phone-button"><img src="catalog/view/theme/default/image/menu-button-<?php echo $menu_theme; ?>.png" alt="" />
-    <select id="menu-phone-select" name="phone-select" onchange="location=this.value">
-      <?php foreach ($menu_horizontal as $category) { ?>
-        <?php if ($category['href']) { ?>
-          <option value="<?php echo $category['href']; ?>" title=""><?php echo $category['name']; ?></option>
-          <?php if ($category['children']) { ?>
-            <?php foreach ($category['children'] as $children) { ?>
-              <?php if ($children['href']) { ?>
-                <option value="<?php echo $children['href']; ?>" title=""> &#8226; <?php echo $children['name']; ?></option>
-              <?php } ?>
-            <?php } ?>
-          <?php } ?>
-        <?php } else { ?>
-          <option value="" title=""><?php echo $category['name']; ?></option>
-        <?php } ?>
-      <?php } ?>
-    </select>
-  </div>
+  </ul>
   </div>
 <?php } ?>
+</div>
+<!-- Menu Phone -->
+<div style="margin-bottom:10px;">
+<?php if ($menu_horizontal) { ?>
+  <div id="menu-holder" class="menu-<?php echo $menu_theme; ?>">
+    <div id="menu-phone">
+    <ul>
+      <li><a href="<?php echo $home; ?>" title=""><span class="home-icon"></span></a></li>
+      <?php foreach ($menu_horizontal as $category) { ?>
+        <?php if ($category['href']) { ?>
+          <li><a href="<?php echo $category['href']; ?>" title=""><?php echo $category['name']; ?></a></li>
+          <?php if ($category['children']) { ?>
+            <ul>
+            <?php foreach ($category['children'] as $children) { ?>
+              <?php if ($children['href']) { ?>
+                <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
+              <?php } ?>
+            <?php } ?>
+            </ul>
+          <?php } ?>
+        <?php } else { ?>
+          <li><a title=""><?php echo $category['name']; ?></a></li>
+          <?php if ($category['children']) { ?>
+            <ul>
+            <?php foreach ($category['children'] as $children) { ?>
+              <?php if ($children['href']) { ?>
+                <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
+              <?php } ?>
+            <?php } ?>
+            </ul>
+          <?php } ?>
+        <?php } ?>
+      <?php } ?>
+    </ul>
+    </div>
+  </div>
+<?php } ?>
+</div>
 <script type="text/javascript"><!--
-$('#menu-phone-button').live('click', function(e) {
+$('#menu-holder').prepend('<div id="menu-trigger"><img src="catalog/view/theme/default/image/menu-button-<?php echo $menu_theme; ?>.png" alt="" style="padding:3px 15px;" /></div>');
+$('#menu-trigger').live('click', function(e) {
 	e.preventDefault();
-    $('#menu-phone-select').fadeIn(300);
+    $('#menu-phone').slideToggle();
 });
 //--></script>
-</div>
