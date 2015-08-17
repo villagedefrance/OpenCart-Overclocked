@@ -41,6 +41,7 @@ class ControllerThemeDefault extends Controller {
 		$this->data['tab_options'] = $this->language->get('tab_options');
 		$this->data['tab_credits'] = $this->language->get('tab_credits');
 
+		$this->data['entry_widescreen'] = $this->language->get('entry_widescreen');
 		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
 		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
 		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
@@ -113,6 +114,12 @@ class ControllerThemeDefault extends Controller {
 		}
 
 		// General
+		if (isset($this->request->post[$this->_name . '_widescreen'])) {
+			$this->data[$this->_name . '_widescreen'] = $this->request->post[$this->_name . '_widescreen'];
+		} else {
+			$this->data[$this->_name . '_widescreen'] = $this->config->get($this->_name . '_widescreen');
+		}
+
 		if (isset($this->request->post[$this->_name . '_breadcrumbs'])) {
 			$this->data[$this->_name . '_breadcrumbs'] = $this->request->post[$this->_name . '_breadcrumbs'];
 		} else {

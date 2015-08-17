@@ -24,8 +24,6 @@ class ControllerCommonFooter extends Controller {
 			$this->data['column_width'] = '72%';
 		}
 
-		$this->data['max_position'] = $max_position;
-
 		$routes = $this->model_design_footer->getFooterRoutes(0);
 
 		if ($routes) {

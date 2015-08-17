@@ -303,16 +303,12 @@ class ControllerProductProduct extends Controller {
 					$this->data['zoom'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2);
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 230, 230);
 					$this->data['gallery_thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'));
-
 					$this->data['column_offset'] = 265;
-					$this->data['images_offset'] = 260;
 				} else {
 					$this->data['zoom'] = '';
 					$this->data['thumb'] = '';
 					$this->data['gallery_thumb'] = '';
-
 					$this->data['column_offset'] = 0;
-					$this->data['images_offset'] = 0;
 				}
 
 				$this->data['lightbox'] = 'zoomlens';
@@ -323,14 +319,10 @@ class ControllerProductProduct extends Controller {
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-
 					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
-					$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				} else {
 					$this->data['thumb'] = '';
-
 					$this->data['column_offset'] = 0;
-					$this->data['images_offset'] = 0;
 				}
 
 				$this->data['lightbox'] = 'magnific';
@@ -341,14 +333,10 @@ class ControllerProductProduct extends Controller {
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-
 					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
-					$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				} else {
 					$this->data['thumb'] = '';
-
 					$this->data['column_offset'] = 0;
-					$this->data['images_offset'] = 0;
 				}
 
 				$this->data['lightbox'] = 'chocolat';
@@ -365,14 +353,10 @@ class ControllerProductProduct extends Controller {
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-
 					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
-					$this->data['images_offset'] = $this->config->get('config_image_thumb_width') + 30;
 				} else {
 					$this->data['thumb'] = '';
-
 					$this->data['column_offset'] = 0;
-					$this->data['images_offset'] = 0;
 				}
 
 				$this->data['lightbox'] = 'colorbox';

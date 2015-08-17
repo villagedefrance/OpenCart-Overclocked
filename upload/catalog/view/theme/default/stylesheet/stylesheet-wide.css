@@ -1270,6 +1270,7 @@ ul.box-filter > li ul {
 }
 /* Product info */
 .product-info {
+	width: 100%;
 	overflow: auto;
 	margin-bottom: 20px;
 }
@@ -1278,6 +1279,7 @@ ul.box-filter > li ul {
 }
 .product-info > .right {
 	min-height: 250px;
+	min-width: 285px;
 	margin-left: 15px;
 }
 .product-info .image {
@@ -1447,8 +1449,9 @@ ul.box-filter > li ul {
 }
 .product-info .cart div > span {
 	display: inline-block;
-	margin-left: 15px;
+	margin-left: 10px;
 	padding-top: 0px;
+	line-height: 32px;
 	color: #999;
 }
 .product-info .cart .minimum {
@@ -2676,10 +2679,6 @@ a.icon-skype:hover {
 		line-height: 21px;
 		margin-top: 0px;
 		background: #FFF;
-		border-top: 1px solid #B6B6B6;
-		border-left: 1px solid #B6B6B6;
-		border-bottom: 1px solid #E1E1E1;
-		border-right: 1px solid #E1E1E1;
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
 		-khtml-border-radius: 2px;
@@ -2693,10 +2692,6 @@ a.icon-skype:hover {
 		line-height: 21px;
 		margin-top: 0px;
 		background: #FFF;
-		border-top: 1px solid #B6B6B6;
-		border-left: 1px solid #B6B6B6;
-		border-bottom: 1px solid #E1E1E1;
-		border-right: 1px solid #E1E1E1;
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
 		-khtml-border-radius: 2px;

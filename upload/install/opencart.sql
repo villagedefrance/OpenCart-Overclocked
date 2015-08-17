@@ -4023,6 +4023,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (618, 0, 'default', 'default_back_to_top', '1', 0),
 (617, 0, 'default', 'default_cookie_privacy', '3', 0),
 (616, 0, 'default', 'default_cookie_consent', '0', 0),
+(1885, 0, 'default', 'default_widescreen', '0', 0),
 (615, 0, 'default', 'default_breadcrumbs', '1', 0),
 (628, 0, 'default', 'default_manufacturer_name', '0', 0),
 (629, 0, 'default', 'default_manufacturer_image', '1', 0),
