@@ -282,6 +282,7 @@ class ModelShippingUsps extends Model {
 
 				if (isset($country[$address['iso_code_2']])) {
 					$xml  = '<IntlRateV2Request USERID="' . $this->config->get('usps_user_id') . '">';
+					$xml .= '	<Revision>2</Revision>';
 					$xml .= '	<Package ID="1">';
 					$xml .= '		<Pounds>' . $pounds . '</Pounds>';
 					$xml .= '		<Ounces>' . $ounces . '</Ounces>';
@@ -303,9 +304,8 @@ class ModelShippingUsps extends Model {
 					$xml .= '		<Width>' . $this->config->get('usps_width') . '</Width>';
 					$xml .= '		<Length>' . $this->config->get('usps_length') . '</Length>';
 					$xml .= '		<Height>' . $this->config->get('usps_height') . '</Height>';
-
-					// Calculate girth based on usps calculation
-					$xml .= '		<Girth>' . (round(((float)$this->config->get('usps_length') + (float)$this->config->get('usps_width') * 2 + (float)$this->config->get('usps_height') * 2), 1)) . '</Girth>';
+					$xml .= '		<Girth>' . $this->config->get('usps_girth') . '</Girth>';
+					$xml .= '		<OriginZip>' . substr($this->config->get('usps_postcode'), 0, 5) . '</OriginZip>';
 					$xml .= '		<CommercialFlag>N</CommercialFlag>';
 					$xml .= '	</Package>';
 					$xml .= '</IntlRateV2Request>';

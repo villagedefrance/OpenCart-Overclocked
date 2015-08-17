@@ -780,8 +780,8 @@ a.button-add {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	margin-bottom: 5px;
-	padding: 7px 10px;
+	margin-bottom: 3px;
+	padding: 7px 10px 11px 10px;
 }
 .box .box-content {
 	background: #FFF;
