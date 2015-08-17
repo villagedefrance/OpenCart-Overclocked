@@ -8,7 +8,7 @@ class ModelUpgrade extends Model {
 
 	public function mysql() {
 		// Load the sql file
-		$file = DIR_APPLICATION . 'opencart.sql';
+		$file = DIR_APPLICATION . 'opencart-clean.sql';
 
 		if (!file_exists($file)) {
 			exit('Could not load sql file: ' . $file);

@@ -104,23 +104,6 @@ CREATE TABLE `oc_attribute` (
   PRIMARY KEY (`attribute_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_attribute`
---
-
-INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
-(1, 6, 1),
-(2, 6, 5),
-(3, 6, 3),
-(4, 3, 1),
-(5, 3, 2),
-(6, 3, 3),
-(7, 3, 4),
-(8, 3, 5),
-(9, 3, 6),
-(10, 3, 7),
-(11, 3, 8);
-
 -- --------------------------------------------------------
 
 --
@@ -135,23 +118,6 @@ CREATE TABLE `oc_attribute_description` (
   PRIMARY KEY (`attribute_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_attribute_description`
---
-
-INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
-(1, 1, 'Description'),
-(2, 1, 'No. of Cores'),
-(4, 1, 'test 1'),
-(5, 1, 'test 2'),
-(6, 1, 'test 3'),
-(7, 1, 'test 4'),
-(8, 1, 'test 5'),
-(9, 1, 'test 6'),
-(10, 1, 'test 7'),
-(11, 1, 'test 8'),
-(3, 1, 'Clockspeed');
-
 -- --------------------------------------------------------
 
 --
@@ -164,16 +130,6 @@ CREATE TABLE `oc_attribute_group` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`attribute_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_attribute_group`
---
-
-INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
-(3, 2),
-(4, 1),
-(5, 3),
-(6, 4);
 
 -- --------------------------------------------------------
 
@@ -189,16 +145,6 @@ CREATE TABLE `oc_attribute_group_description` (
   PRIMARY KEY (`attribute_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_attribute_group_description`
---
-
-INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
-(3, 1, 'Memory'),
-(4, 1, 'Technical'),
-(5, 1, 'Motherboard'),
-(6, 1, 'Processor');
-
 -- --------------------------------------------------------
 
 --
@@ -212,15 +158,6 @@ CREATE TABLE `oc_banner` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`banner_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_banner`
---
-
-INSERT INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
-(6, 'Special Offers', 1),
-(7, 'Apple Products', 1),
-(8, 'Manufacturers', 1);
 
 -- --------------------------------------------------------
 
@@ -238,28 +175,6 @@ CREATE TABLE `oc_banner_image` (
   PRIMARY KEY (`banner_image_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_banner_image`
---
-
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `link`, `external_link`, `image`) VALUES
-(78, 7, '', 0, 'data/demo/banners/iPhone6.jpg'),
-(79, 7, '', 0, 'data/demo/banners/MacBookAir.jpg'),
-(83, 6, '', 0, 'data/demo/banners/SpecialOffer.png'),
-(91, 8, '', 0, 'data/demo/manufacturer/nintendo.png'),
-(89, 8, '', 0, 'data/demo/manufacturer/harley.png'),
-(90, 8, '', 0, 'data/demo/manufacturer/nfl.png'),
-(88, 8, '', 0, 'data/demo/manufacturer/disney.png'),
-(86, 8, '', 0, 'data/demo/manufacturer/cocacola.png'),
-(87, 8, '', 0, 'data/demo/manufacturer/dell.png'),
-(84, 8, '', 0, 'data/demo/manufacturer/burgerking.png'),
-(85, 8, 'product/manufacturer/info&amp;manufacturer_id=9', 0, 'data/demo/manufacturer/canon.png'),
-(82, 6, '', 0, 'data/demo/banners/FreeShipping.png'),
-(92, 8, '', 0, 'data/demo/manufacturer/redbull.png'),
-(93, 8, '', 0, 'data/demo/manufacturer/shell.png'),
-(94, 8, 'product/manufacturer/info&amp;manufacturer_id=10', 0, 'data/demo/manufacturer/sony.png'),
-(95, 8, '', 0, 'data/demo/manufacturer/starbucks.png');
-
 -- --------------------------------------------------------
 
 --
@@ -274,28 +189,6 @@ CREATE TABLE `oc_banner_image_description` (
   `title` varchar(64) NOT NULL,
   PRIMARY KEY (`banner_image_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_banner_image_description`
---
-
-INSERT INTO `oc_banner_image_description` (`banner_image_id`, `language_id`, `banner_id`, `title`) VALUES
-(78, 1, 7, 'iPhone6'),
-(88, 1, 8, 'Disney'),
-(87, 1, 8, 'Dell'),
-(86, 1, 8, 'Coca Cola'),
-(85, 1, 8, 'Canon'),
-(84, 1, 8, 'Burger King'),
-(79, 1, 7, 'MacBookAir'),
-(83, 1, 6, 'Special Offer'),
-(82, 1, 6, 'Free Shipping'),
-(89, 1, 8, 'Harley Davidson'),
-(90, 1, 8, 'NFL'),
-(91, 1, 8, 'Nintendo'),
-(92, 1, 8, 'Red Bull'),
-(93, 1, 8, 'Shell'),
-(94, 1, 8, 'Sony'),
-(95, 1, 8, 'Starbucks');
 
 -- --------------------------------------------------------
 
@@ -318,50 +211,6 @@ CREATE TABLE `oc_category` (
   KEY `parent_id` (`parent_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_category`
---
-
-INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(25, '', 0, 1, 1, 3, 1, '2009-01-31 01:04:25', '2011-05-30 12:14:55'),
-(27, '', 20, 0, 0, 2, 1, '2009-01-31 01:55:34', '2010-08-22 06:32:15'),
-(20, 'data/demo/compaq_presario.jpg', 0, 1, 1, 1, 1, '2009-01-05 21:49:43', '2015-08-12 12:18:37'),
-(24, '', 0, 1, 1, 5, 1, '2009-01-20 02:36:26', '2011-05-30 12:15:18'),
-(18, 'data/demo/hp_2.jpg', 0, 1, 0, 2, 1, '2009-01-05 21:49:15', '2011-05-30 12:13:55'),
-(17, '', 0, 1, 1, 4, 1, '2009-01-03 21:08:57', '2011-05-30 12:15:11'),
-(28, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:12', '2010-08-22 06:32:46'),
-(26, '', 20, 0, 0, 1, 1, '2009-01-31 01:55:14', '2010-08-22 06:31:45'),
-(29, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:37', '2010-08-22 06:32:39'),
-(30, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:59', '2010-08-22 06:33:00'),
-(31, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:24', '2010-08-22 06:33:06'),
-(32, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:34', '2010-08-22 06:33:12'),
-(33, '', 0, 1, 1, 6, 1, '2009-02-03 14:17:55', '2011-05-30 12:15:25'),
-(34, 'data/demo/ipod_touch_4.jpg', 0, 1, 4, 7, 1, '2009-02-03 14:18:11', '2011-05-30 12:15:31'),
-(35, '', 28, 0, 0, 0, 1, '2010-09-17 10:06:48', '2010-09-18 14:02:42'),
-(36, '', 28, 0, 0, 0, 1, '2010-09-17 10:07:13', '2010-09-18 14:02:55'),
-(37, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:39', '2011-04-22 01:55:08'),
-(38, '', 34, 0, 0, 0, 1, '2010-09-18 14:03:51', '2010-09-18 14:03:51'),
-(39, '', 34, 0, 0, 0, 1, '2010-09-18 14:04:17', '2011-04-22 01:55:20'),
-(40, '', 34, 0, 0, 0, 1, '2010-09-18 14:05:36', '2010-09-18 14:05:36'),
-(41, '', 34, 0, 0, 0, 1, '2010-09-18 14:05:49', '2011-04-22 01:55:30'),
-(42, '', 34, 0, 0, 0, 1, '2010-09-18 14:06:34', '2010-11-07 20:31:04'),
-(43, '', 34, 0, 0, 0, 1, '2010-09-18 14:06:49', '2011-04-22 01:55:40'),
-(44, '', 34, 0, 0, 0, 1, '2010-09-21 15:39:21', '2010-11-07 20:30:55'),
-(45, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:16', '2011-04-26 08:52:11'),
-(46, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:31', '2011-04-26 08:52:23'),
-(47, '', 34, 0, 0, 0, 1, '2010-11-07 11:13:16', '2010-11-07 11:13:16'),
-(48, '', 34, 0, 0, 0, 1, '2010-11-07 11:13:33', '2010-11-07 11:13:33'),
-(49, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:04', '2010-11-07 11:14:04'),
-(50, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:23', '2011-04-22 01:16:01'),
-(51, '', 34, 0, 0, 0, 1, '2010-11-07 11:14:38', '2011-04-22 01:16:13'),
-(52, '', 34, 0, 0, 0, 1, '2010-11-07 11:16:09', '2011-04-22 01:54:57'),
-(53, '', 34, 0, 0, 0, 1, '2010-11-07 11:28:53', '2011-04-22 01:14:36'),
-(54, '', 34, 0, 0, 0, 1, '2010-11-07 11:29:16', '2011-04-22 01:16:50'),
-(55, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:32', '2010-11-08 10:31:32'),
-(56, '', 34, 0, 0, 0, 1, '2010-11-08 10:31:50', '2011-04-22 01:16:37'),
-(57, '', 0, 1, 1, 3, 1, '2011-04-26 08:53:16', '2011-05-30 12:15:05'),
-(58, '', 52, 0, 0, 0, 1, '2011-05-08 13:44:16', '2011-05-08 13:44:16');
-
 -- --------------------------------------------------------
 
 --
@@ -379,50 +228,6 @@ CREATE TABLE `oc_category_description` (
   PRIMARY KEY (`category_id`,`language_id`),
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_category_description`
---
-
-INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES
-(28, 1, 'Monitors', '', '', ''),
-(33, 1, 'Cameras', '', '', ''),
-(32, 1, 'Web Cameras', '', '', ''),
-(31, 1, 'Scanners', '', '', ''),
-(30, 1, 'Printers', '', '', ''),
-(29, 1, 'Mice and Trackballs', '', '', ''),
-(27, 1, 'Mac', '', '', ''),
-(26, 1, 'PC', '', '', ''),
-(17, 1, 'Software', '', '', ''),
-(25, 1, 'Components', '', '', ''),
-(24, 1, 'Phones &amp; PDAs', '', '', ''),
-(20, 1, 'Desktops', '&lt;p&gt;Example of category description text&lt;/p&gt;\r\n', 'Example of category description', ''),
-(35, 1, 'test 1', '', '', ''),
-(36, 1, 'test 2', '', '', ''),
-(37, 1, 'test 5', '', '', ''),
-(38, 1, 'test 4', '', '', ''),
-(39, 1, 'test 6', '', '', ''),
-(40, 1, 'test 7', '', '', ''),
-(41, 1, 'test 8', '', '', ''),
-(42, 1, 'test 9', '', '', ''),
-(43, 1, 'test 11', '', '', ''),
-(34, 1, 'MP3 Players', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', '', ''),
-(18, 1, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', '', ''),
-(44, 1, 'test 12', '', '', ''),
-(45, 1, 'Windows', '', '', ''),
-(46, 1, 'Macs', '', '', ''),
-(47, 1, 'test 15', '', '', ''),
-(48, 1, 'test 16', '', '', ''),
-(49, 1, 'test 17', '', '', ''),
-(50, 1, 'test 18', '', '', ''),
-(51, 1, 'test 19', '', '', ''),
-(52, 1, 'test 20', '', '', ''),
-(53, 1, 'test 21', '', '', ''),
-(54, 1, 'test 22', '', '', ''),
-(55, 1, 'test 23', '', '', ''),
-(56, 1, 'test 24', '', '', ''),
-(57, 1, 'Tablets', '', '', ''),
-(58, 1, 'test 25', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -451,83 +256,6 @@ CREATE TABLE `oc_category_path` (
   PRIMARY KEY (`category_id`,`path_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_category_path`
---
-
-INSERT INTO `oc_category_path` (`category_id`, `path_id`, `level`) VALUES
-(25, 25, 0),
-(28, 25, 0),
-(28, 28, 1),
-(35, 25, 0),
-(35, 28, 1),
-(35, 35, 2),
-(36, 25, 0),
-(36, 28, 1),
-(36, 36, 2),
-(29, 25, 0),
-(29, 29, 1),
-(30, 25, 0),
-(30, 30, 1),
-(31, 25, 0),
-(31, 31, 1),
-(32, 25, 0),
-(32, 32, 1),
-(20, 20, 0),
-(27, 20, 0),
-(27, 27, 1),
-(26, 20, 0),
-(26, 26, 1),
-(24, 24, 0),
-(18, 18, 0),
-(45, 18, 0),
-(45, 45, 1),
-(46, 18, 0),
-(46, 46, 1),
-(17, 17, 0),
-(33, 33, 0),
-(34, 34, 0),
-(37, 34, 0),
-(37, 37, 1),
-(38, 34, 0),
-(38, 38, 1),
-(39, 34, 0),
-(39, 39, 1),
-(40, 34, 0),
-(40, 40, 1),
-(41, 34, 0),
-(41, 41, 1),
-(42, 34, 0),
-(42, 42, 1),
-(43, 34, 0),
-(43, 43, 1),
-(44, 34, 0),
-(44, 44, 1),
-(47, 34, 0),
-(47, 47, 1),
-(48, 34, 0),
-(48, 48, 1),
-(49, 34, 0),
-(49, 49, 1),
-(50, 34, 0),
-(50, 50, 1),
-(51, 34, 0),
-(51, 51, 1),
-(52, 34, 0),
-(52, 52, 1),
-(58, 34, 0),
-(58, 52, 1),
-(58, 58, 2),
-(53, 34, 0),
-(53, 53, 1),
-(54, 34, 0),
-(54, 54, 1),
-(55, 34, 0),
-(55, 55, 1),
-(56, 34, 0),
-(56, 56, 1),
-(57, 57, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -554,50 +282,6 @@ CREATE TABLE `oc_category_to_store` (
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_category_to_store`
---
-
-INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
-(17, 0),
-(18, 0),
-(20, 0),
-(24, 0),
-(25, 0),
-(26, 0),
-(27, 0),
-(28, 0),
-(29, 0),
-(30, 0),
-(31, 0),
-(32, 0),
-(33, 0),
-(34, 0),
-(35, 0),
-(36, 0),
-(37, 0),
-(38, 0),
-(39, 0),
-(40, 0),
-(41, 0),
-(42, 0),
-(43, 0),
-(44, 0),
-(45, 0),
-(46, 0),
-(47, 0),
-(48, 0),
-(49, 0),
-(50, 0),
-(51, 0),
-(52, 0),
-(53, 0),
-(54, 0),
-(55, 0),
-(56, 0),
-(57, 0),
-(58, 0);
 
 -- --------------------------------------------------------
 
@@ -1207,15 +891,6 @@ CREATE TABLE `oc_coupon` (
   PRIMARY KEY (`coupon_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_coupon`
---
-
-INSERT INTO `oc_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
-(4, '-10% Discount', '2222', 'P', '10.0000', 0, 0, '0.0000', '2014-01-01', '2020-01-01', 10, '10', 0, '2009-01-27 13:55:03'),
-(5, 'Free Shipping', '3333', 'P', '0.0000', 0, 1, '100.0000', '2014-01-01', '2014-02-01', 10, '10', 0, '2009-03-14 21:13:53'),
-(6, '-10.00 Discount', '1111', 'F', '10.0000', 0, 0, '10.0000', '2014-01-01', '2020-01-01', 100000, '10000', 0, '2009-03-14 21:15:18');
-
 -- --------------------------------------------------------
 
 --
@@ -1601,32 +1276,22 @@ CREATE TABLE `oc_extension` (
 --
 
 INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
-(23, 'payment', 'cod'),
-(22, 'total', 'shipping'),
-(57, 'total', 'sub_total'),
-(58, 'total', 'tax'),
-(59, 'total', 'total'),
-(410, 'module', 'banner'),
-(426, 'module', 'carousel'),
-(390, 'total', 'credit'),
-(387, 'shipping', 'flat'),
-(349, 'total', 'handling'),
-(350, 'total', 'low_order_fee'),
-(389, 'total', 'coupon'),
-(413, 'module', 'category'),
-(411, 'module', 'affiliate'),
-(408, 'module', 'account'),
-(393, 'total', 'reward'),
-(398, 'total', 'voucher'),
-(407, 'payment', 'free_checkout'),
-(427, 'module', 'featured'),
-(419, 'module', 'slideshow'),
-(428, 'module', 'tagcloud'),
-(429, 'module', 'menu_horizontal'),
-(430, 'module', 'menu_vertical'),
-(431, 'theme', 'default'),
-(433, 'module', 'news'),
-(432, 'module', 'latest');
+(1, 'total', 'shipping'),
+(2, 'total', 'sub_total'),
+(3, 'total', 'tax'),
+(4, 'total', 'total'),
+(5, 'module', 'banner'),
+(6, 'module', 'carousel'),
+(7, 'shipping', 'flat'),
+(8, 'module', 'affiliate'),
+(9, 'module', 'account'),
+(10, 'module', 'featured'),
+(11, 'module', 'slideshow'),
+(12, 'module', 'tagcloud'),
+(13, 'module', 'menu_horizontal'),
+(14, 'module', 'menu_vertical'),
+(15, 'theme', 'default'),
+(16, 'module', 'news');
 
 -- --------------------------------------------------------
 
@@ -1698,16 +1363,6 @@ CREATE TABLE `oc_footer` (
   PRIMARY KEY (`footer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_footer`
---
-
-INSERT INTO `oc_footer` (`footer_id`, `position`, `status`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 2, 1),
-(4, 3, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -1721,16 +1376,6 @@ CREATE TABLE `oc_footer_description` (
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`footer_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_footer_description`
---
-
-INSERT INTO `oc_footer_description` (`footer_id`, `language_id`, `name`) VALUES
-(1, 1, 'Browse'),
-(2, 1, 'Explore'),
-(3, 1, 'News'),
-(4, 1, 'Information');
 
 -- --------------------------------------------------------
 
@@ -1748,25 +1393,6 @@ CREATE TABLE `oc_footer_route` (
   PRIMARY KEY (`footer_route_id`,`footer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_footer_route`
---
-
-INSERT INTO `oc_footer_route` (`footer_route_id`, `footer_id`, `route`, `external_link`, `sort_order`) VALUES
-(29, 1, 'product/special ', 0, 4),
-(28, 1, 'product/manufacturer ', 0, 3),
-(27, 1, 'product/product_wall', 0, 2),
-(26, 1, 'product/category_list ', 0, 1),
-(12, 4, 'information/contact', 0, 1),
-(25, 2, 'information/sitemap', 0, 2),
-(24, 2, 'product/search', 0, 1),
-(31, 3, 'information/news_list ', 0, 3),
-(13, 4, 'information/information&amp;information_id=5', 0, 2),
-(14, 4, 'information/information&amp;information_id=3', 0, 3),
-(15, 4, 'information/information&amp;information_id=6', 0, 4),
-(16, 4, 'information/information&amp;information_id=4', 0, 5),
-(30, 1, 'product/review_list ', 0, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -1782,25 +1408,6 @@ CREATE TABLE `oc_footer_route_description` (
   PRIMARY KEY (`footer_route_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_footer_route_description`
---
-
-INSERT INTO `oc_footer_route_description` (`footer_route_id`, `language_id`, `footer_id`, `title`) VALUES
-(28, 1, 1, 'All Brands'),
-(27, 1, 1, 'All Products'),
-(26, 1, 1, 'All Categories'),
-(12, 1, 4, 'Contact us'),
-(25, 1, 2, 'Site map'),
-(24, 1, 2, 'Search'),
-(31, 1, 3, 'Newsletter'),
-(13, 1, 4, 'Terms &amp; Conditions'),
-(14, 1, 4, 'Privacy policy'),
-(15, 1, 4, 'Delivery information'),
-(16, 1, 4, 'About us'),
-(29, 1, 1, 'All Offers'),
-(30, 1, 1, 'All Reviews');
-
 -- --------------------------------------------------------
 
 --
@@ -1813,16 +1420,6 @@ CREATE TABLE `oc_footer_to_store` (
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`footer_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_footer_to_store`
---
-
-INSERT INTO `oc_footer_to_store` (`footer_id`, `store_id`) VALUES
-(1, 0),
-(2, 0),
-(3, 0),
-(4, 0);
 
 -- --------------------------------------------------------
 
@@ -1840,14 +1437,6 @@ CREATE TABLE `oc_geo_zone` (
   PRIMARY KEY (`geo_zone_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_geo_zone`
---
-
-INSERT INTO `oc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`, `date_added`) VALUES
-(3, 'UK VAT Zone', 'UK VAT', '2014-02-26 22:33:24', '2013-01-06 23:26:25'),
-(4, 'UK Shipping', 'UK Shipping Zones', '2014-12-15 15:18:13', '2013-06-23 01:14:53');
-
 -- --------------------------------------------------------
 
 --
@@ -1862,16 +1451,6 @@ CREATE TABLE `oc_information` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`information_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_information`
---
-
-INSERT INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
-(3, 1, 3, 1),
-(4, 1, 1, 1),
-(5, 1, 4, 1),
-(6, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1889,16 +1468,6 @@ CREATE TABLE `oc_information_description` (
   `description` text NOT NULL,
   PRIMARY KEY (`information_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_information_description`
---
-
-INSERT INTO `oc_information_description` (`information_id`, `language_id`, `title`, `meta_description`, `meta_keyword`, `description`) VALUES
-(4, 1, 'About Us', '', '', '&lt;p&gt;\r\n  About Us&lt;/p&gt;\r\n'),
-(5, 1, 'Terms &amp; Conditions', '', '', '&lt;p&gt;\r\n  Terms &amp;amp; Conditions&lt;/p&gt;\r\n'),
-(3, 1, 'Privacy Policy', '', '', '&lt;p&gt;\r\n  Privacy Policy&lt;/p&gt;\r\n'),
-(6, 1, 'Delivery Information', '', '', '&lt;p&gt;\r\n  Delivery Information&lt;/p&gt;\r\n');
 
 -- --------------------------------------------------------
 
@@ -1926,16 +1495,6 @@ CREATE TABLE `oc_information_to_store` (
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`information_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_information_to_store`
---
-
-INSERT INTO `oc_information_to_store` (`information_id`, `store_id`) VALUES
-(3, 0),
-(4, 0),
-(5, 0),
-(6, 0);
 
 -- --------------------------------------------------------
 
@@ -2113,18 +1672,6 @@ CREATE TABLE `oc_manufacturer` (
   PRIMARY KEY (`manufacturer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_manufacturer`
---
-
-INSERT INTO `oc_manufacturer` (`manufacturer_id`, `image`, `sort_order`, `status`) VALUES
-(5, '', 0, 1),
-(6, '', 0, 1),
-(7, 'data/demo/manufacturer/hp.png', 0, 1),
-(8, 'data/demo/manufacturer/apple.png', 0, 1),
-(9, 'data/demo/manufacturer/canon.png', 0, 1),
-(10, 'data/demo/manufacturer/sony.png', 0, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -2139,18 +1686,6 @@ CREATE TABLE `oc_manufacturer_description` (
   PRIMARY KEY (`manufacturer_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_manufacturer_description`
---
-
-INSERT INTO `oc_manufacturer_description` (`manufacturer_id`, `language_id`, `name`) VALUES
-(5, 1, 'HTC'),
-(6, 1, 'Palm'),
-(7, 1, 'Hewlett-Packard'),
-(8, 1, 'Apple'),
-(9, 1, 'Canon'),
-(10, 1, 'Sony');
-
 -- --------------------------------------------------------
 
 --
@@ -2163,18 +1698,6 @@ CREATE TABLE `oc_manufacturer_to_store` (
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`manufacturer_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_manufacturer_to_store`
---
-
-INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
-(5, 0),
-(6, 0),
-(7, 0),
-(8, 0),
-(9, 0),
-(10, 0);
 
 -- --------------------------------------------------------
 
@@ -2189,13 +1712,6 @@ CREATE TABLE `oc_menu` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`menu_id`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_menu`
---
-
-INSERT INTO `oc_menu` (`menu_id`, `title`, `status`) VALUES
-(1, 'Default Menu', 1);
 
 -- --------------------------------------------------------
 
@@ -2215,37 +1731,6 @@ CREATE TABLE `oc_menu_item` (
   PRIMARY KEY (`menu_item_id`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_menu_item`
---
-
-INSERT INTO `oc_menu_item` (`menu_item_id`, `menu_id`, `parent_id`, `menu_item_link`, `external_link`, `sort_order`, `status`) VALUES
-(1, 1, 0, 'product/category_list', 0, 1, 1),
-(2, 1, 1, 'product/category&path=20', 0, 1, 1),
-(3, 1, 1, 'product/category&path=18', 0, 2, 1),
-(4, 1, 1, 'product/category&path=25', 0, 3, 1),
-(5, 1, 1, 'product/category&path=57', 0, 4, 1),
-(6, 1, 1, 'product/category&path=17', 0, 5, 1),
-(7, 1, 1, 'product/category&path=24', 0, 6, 1),
-(8, 1, 1, 'product/category&path=33', 0, 7, 1),
-(9, 1, 1, 'product/category&path=34', 0, 8, 1),
-(10, 1, 0, 'product/manufacturer', 0, 2, 1),
-(11, 1, 10, 'product/manufacturer/info&manufacturer_id=8', 0, 1, 1),
-(12, 1, 10, 'product/manufacturer/info&manufacturer_id=9', 0, 2, 1),
-(13, 1, 10, 'product/manufacturer/info&manufacturer_id=7', 0, 3, 1),
-(14, 1, 10, 'product/manufacturer/info&manufacturer_id=5', 0, 4, 1),
-(15, 1, 10, 'product/manufacturer/info&manufacturer_id=6', 0, 5, 1),
-(16, 1, 10, 'product/manufacturer/info&manufacturer_id=10', 0, 6, 1),
-(17, 1, 0, '', 0, 4, 1),
-(18, 1, 17, 'information/sitemap', 0, 2, 1),
-(19, 1, 17, 'information/contact', 0, 3, 1),
-(20, 1, 17, 'information/news_list', 0, 1, 1),
-(21, 1, 0, '', 0, 3, 1),
-(22, 1, 21, 'account/account', 0, 1, 1),
-(23, 1, 21, 'account/edit ', 0, 2, 1),
-(24, 1, 21, 'account/password', 0, 3, 1),
-(25, 1, 21, 'account/download', 0, 4, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -2263,37 +1748,6 @@ CREATE TABLE `oc_menu_item_description` (
   PRIMARY KEY (`menu_item_id`,`language_id`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_menu_item_description`
---
-
-INSERT INTO `oc_menu_item_description` (`menu_item_id`, `language_id`, `menu_id`, `menu_item_name`, `meta_description`, `meta_keyword`) VALUES
-(1, 1, 1, 'Categories', '', ''),
-(2, 1, 1, 'Desktops', '', ''),
-(3, 1, 1, 'Laptops &amp; Notebooks', '', ''),
-(4, 1, 1, 'Components', '', ''),
-(5, 1, 1, 'Tablets', '', ''),
-(6, 1, 1, 'Softwares', '', ''),
-(7, 1, 1, 'Phones &amp; PDA''s', '', ''),
-(8, 1, 1, 'Cameras', '', ''),
-(9, 1, 1, 'MP3 Players', '', ''),
-(10, 1, 1, 'Brands', '', ''),
-(11, 1, 1, 'Apple', '', ''),
-(12, 1, 1, 'Canon', '', ''),
-(13, 1, 1, 'Hewlett Packard', '', ''),
-(14, 1, 1, 'HTC', '', ''),
-(15, 1, 1, 'Palm', '', ''),
-(16, 1, 1, 'Sony', '', ''),
-(17, 1, 1, 'Services', '', ''),
-(18, 1, 1, 'Site map', '', ''),
-(19, 1, 1, 'Contact us', '', ''),
-(20, 1, 1, 'Latest news', '', ''),
-(21, 1, 1, 'Accounts', '', ''),
-(22, 1, 1, 'Account', '', ''),
-(24, 1, 1, 'Change password', '', ''),
-(23, 1, 1, 'Update details', '', ''),
-(25, 1, 1, 'View downloads', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -2308,58 +1762,6 @@ CREATE TABLE `oc_menu_item_path` (
   PRIMARY KEY (`menu_item_id`,`path_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_menu_item_path`
---
-
-INSERT INTO `oc_menu_item_path` (`menu_item_id`, `path_id`, `level`) VALUES
-(1, 1, 0),
-(2, 2, 1),
-(2, 1, 0),
-(3, 3, 1),
-(3, 1, 0),
-(4, 4, 1),
-(4, 1, 0),
-(5, 1, 0),
-(5, 5, 1),
-(6, 1, 0),
-(6, 6, 1),
-(7, 7, 1),
-(7, 1, 0),
-(8, 8, 1),
-(8, 1, 0),
-(9, 1, 0),
-(9, 9, 1),
-(10, 10, 0),
-(11, 11, 1),
-(11, 10, 0),
-(12, 10, 0),
-(12, 12, 1),
-(13, 10, 0),
-(13, 13, 1),
-(14, 14, 1),
-(14, 10, 0),
-(15, 10, 0),
-(15, 15, 1),
-(16, 16, 1),
-(16, 10, 0),
-(17, 17, 0),
-(18, 18, 1),
-(18, 17, 0),
-(19, 17, 0),
-(19, 19, 1),
-(20, 17, 0),
-(20, 20, 1),
-(21, 21, 0),
-(22, 21, 0),
-(22, 22, 1),
-(23, 21, 0),
-(23, 23, 1),
-(24, 24, 1),
-(24, 21, 0),
-(25, 25, 1),
-(25, 21, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -2372,13 +1774,6 @@ CREATE TABLE `oc_menu_to_store` (
   `store_id` int(11) NOT NULL,
   PRIMARY KEY (`menu_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_menu_to_store`
---
-
-INSERT INTO `oc_menu_to_store` (`menu_id`, `store_id`) VALUES
-(1, 0);
 
 -- --------------------------------------------------------
 
@@ -2528,23 +1923,6 @@ CREATE TABLE `oc_option` (
   PRIMARY KEY (`option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_option`
---
-
-INSERT INTO `oc_option` (`option_id`, `type`, `sort_order`) VALUES
-(1, 'radio', 2),
-(2, 'checkbox', 3),
-(4, 'text', 4),
-(5, 'select', 1),
-(6, 'textarea', 5),
-(7, 'file', 6),
-(8, 'date', 7),
-(9, 'time', 8),
-(10, 'datetime', 9),
-(11, 'select', 1),
-(12, 'date', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -2558,23 +1936,6 @@ CREATE TABLE `oc_option_description` (
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`option_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_option_description`
---
-
-INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
-(1, 1, 'Radio'),
-(2, 1, 'Checkbox'),
-(4, 1, 'Text'),
-(6, 1, 'Textarea'),
-(8, 1, 'Date'),
-(7, 1, 'File'),
-(5, 1, 'Select'),
-(9, 1, 'Time'),
-(10, 1, 'Date &amp; Time'),
-(12, 1, 'Delivery Date'),
-(11, 1, 'Size');
 
 -- --------------------------------------------------------
 
@@ -2591,26 +1952,6 @@ CREATE TABLE `oc_option_value` (
   PRIMARY KEY (`option_value_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_option_value`
---
-
-INSERT INTO `oc_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
-(43, 1, '', 3),
-(32, 1, '', 1),
-(45, 2, '', 4),
-(44, 2, '', 3),
-(42, 5, '', 4),
-(41, 5, '', 3),
-(39, 5, '', 1),
-(40, 5, '', 2),
-(31, 1, '', 2),
-(23, 2, '', 1),
-(24, 2, '', 2),
-(46, 11, '', 1),
-(47, 11, '', 2),
-(48, 11, '', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -2625,26 +1966,6 @@ CREATE TABLE `oc_option_value_description` (
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`option_value_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_option_value_description`
---
-
-INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
-(43, 1, 1, 'Large'),
-(32, 1, 1, 'Small'),
-(45, 1, 2, 'Checkbox 4'),
-(44, 1, 2, 'Checkbox 3'),
-(31, 1, 1, 'Medium'),
-(42, 1, 5, 'Yellow'),
-(41, 1, 5, 'Green'),
-(39, 1, 5, 'Red'),
-(40, 1, 5, 'Blue'),
-(23, 1, 2, 'Checkbox 1'),
-(24, 1, 2, 'Checkbox 2'),
-(48, 1, 11, 'Large'),
-(47, 1, 11, 'Medium'),
-(46, 1, 11, 'Small');
 
 -- --------------------------------------------------------
 
@@ -2943,14 +2264,6 @@ CREATE TABLE `oc_palette` (
   PRIMARY KEY (`palette_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_palette`
---
-
-INSERT INTO `oc_palette` (`palette_id`, `name`) VALUES
-(1, 'Black &amp; White'),
-(2, 'Apple iPods');
-
 -- --------------------------------------------------------
 
 --
@@ -2965,20 +2278,6 @@ CREATE TABLE `oc_palette_color` (
   `color` varchar(6) NOT NULL,
   PRIMARY KEY (`palette_color_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_palette_color`
---
-
-INSERT INTO `oc_palette_color` (`palette_color_id`, `palette_id`, `title`, `color`) VALUES
-(1, 1, 'White', 'FCFCFC'),
-(2, 1, 'Black', '111111'),
-(3, 2, 'Turquoise', '5AB8B8'),
-(4, 2, 'Teal', '78CA99'),
-(5, 2, 'Silver', 'C7CDCD'),
-(6, 2, 'Scarlet', 'A01532'),
-(7, 2, 'Violet', '7A79BD'),
-(8, 2, 'Black', '333333');
 
 -- --------------------------------------------------------
 
@@ -2995,14 +2294,6 @@ CREATE TABLE `oc_payment_image` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`payment_image_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_payment_image`
---
-
-INSERT INTO `oc_payment_image` (`payment_image_id`, `name`, `payment`, `image`, `status`) VALUES
-(1, 'Free Checkout', 'free_checkout', 'data/payment/free-140.png', 1),
-(2, 'Cash on Delivery', 'cod', 'data/payment/cod-140.png', 1);
 
 -- --------------------------------------------------------
 
@@ -3049,31 +2340,6 @@ CREATE TABLE `oc_product` (
   PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product`
---
-
-INSERT INTO `oc_product` (`product_id`, `model`, `image`, `price`, `cost`, `quote`, `tax_class_id`, `date_available`, `palette_id`, `sort_order`, `status`, `quantity`, `minimum`, `subtract`, `stock_status_id`, `shipping`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `length`, `width`, `height`, `length_class_id`, `weight`, `weight_class_id`, `manufacturer_id`, `points`, `date_added`, `date_modified`, `viewed`) VALUES
-(28, 'Product 1', 'data/demo/htc_touch_hd_1.jpg', '100.0000', '82.9900', 0, 1, '2013-02-03', 0, 0, 1, 939, 1, 1, 7, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '146.40000000', 2, 5, 200, '2013-02-03 16:06:50', '2014-04-23 17:05:48', 0),
-(29, 'Product 2', 'data/demo/palm_treo_pro_1.jpg', '279.9900', '0.0000', 0, 1, '2013-02-03', 0, 0, 1, 999, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 3, '133.00000000', 2, 6, 0, '2013-02-03 16:42:17', '2013-09-30 01:06:08', 1),
-(30, 'Product 3', 'data/demo/canon_eos_5d_1.jpg', '100.0000', '85.2000', 0, 1, '2013-02-03', 0, 0, 1, 7, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '0.00000000', 1, 9, 0, '2013-02-03 16:59:00', '2013-09-30 01:05:23', 4),
-(31, 'Product 4', 'data/demo/nikon_d300_1.jpg', '80.0000', '75.0000', 0, 1, '2013-02-03', 0, 0, 1, 1000, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 3, '0.00000000', 1, 0, 0, '2013-02-03 17:00:10', '2013-09-30 01:06:00', 0),
-(32, 'Product 5', 'data/demo/ipod_touch_1.jpg', '100.0000', '88.9950', 0, 1, '2013-02-03', 0, 0, 1, 999, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '5.00000000', 1, 8, 0, '2013-02-03 17:07:26', '2013-09-30 01:07:22', 0),
-(33, 'Product 6', 'data/demo/samsung_syncmaster_941bw.jpg', '200.0000', '199.0000', 0, 1, '2013-02-03', 0, 0, 1, 1000, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '5.00000000', 1, 0, 0, '2013-02-03 17:08:31', '2013-09-30 01:06:29', 0),
-(34, 'Product 7', 'data/demo/ipod_shuffle_1.jpg', '100.0000', '0.0000', 0, 1, '2013-02-03', 2, 0, 1, 1000, 1, 1, 6, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '5.00000000', 1, 8, 0, '2013-02-03 18:07:54', '2013-09-30 01:07:17', 0),
-(35, 'Product 8', '', '100.0000', '90.0000', 0, 1, '2013-02-03', 0, 0, 1, 1000, 1, 1, 5, 0, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '5.00000000', 1, 0, 0, '2013-02-03 18:08:31', '2013-09-30 01:06:17', 0),
-(36, 'Product 9', 'data/demo/ipod_nano_1.jpg', '100.0000', '86.2500', 0, 1, '2013-02-03', 2, 0, 1, 994, 1, 1, 6, 0, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '5.00000000', 1, 8, 100, '2013-02-03 18:09:19', '2015-03-21 15:26:54', 0),
-(40, 'product 11', 'data/demo/iphone_1.jpg', '101.0000', '0.0000', 0, 1, '2013-02-03', 0, 0, 1, 970, 1, 1, 5, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '10.00000000', 1, 8, 0, '2013-02-03 21:07:12', '2014-04-23 17:06:06', 0),
-(41, 'Product 14', 'data/demo/imac_1.jpg', '100.0000', '0.0000', 0, 1, '2013-02-03', 0, 0, 1, 977, 1, 1, 5, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '5.00000000', 1, 8, 0, '2013-02-03 21:07:26', '2014-04-23 17:06:30', 2),
-(42, 'Product 15', 'data/demo/apple_cinema_30.jpg', '100.0000', '0.0000', 0, 1, '2013-02-04', 0, 0, 1, 990, 2, 1, 5, 1, '', '', '', '', '', '', '', '1.00000000', '2.00000000', '3.00000000', 1, '12.50000000', 1, 8, 400, '2013-02-03 21:07:37', '2013-09-30 00:46:19', 0),
-(43, 'Product 16', 'data/demo/macbook_1.jpg', '500.0000', '459.9900', 0, 1, '2013-02-03', 0, 0, 1, 929, 1, 1, 5, 0, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '0.00000000', 1, 8, 0, '2013-02-03 21:07:49', '2013-09-30 01:05:46', 0),
-(44, 'Product 17', 'data/demo/macbook_air_1.jpg', '1000.0000', '910.0000', 0, 1, '2013-02-03', 0, 0, 1, 1000, 1, 1, 5, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '0.00000000', 1, 8, 0, '2013-02-03 21:08:00', '2013-09-30 01:05:53', 1),
-(45, 'Product 18', 'data/demo/macbook_pro_1.jpg', '2000.0000', '0.0000', 0, 1, '2013-02-03', 0, 0, 1, 998, 1, 1, 5, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '0.00000000', 1, 8, 0, '2013-02-03 21:08:17', '2013-09-15 22:22:01', 0),
-(46, 'Product 19', 'data/demo/sony_vaio_1.jpg', '1000.0000', '0.0000', 0, 1, '2013-02-03', 0, 0, 1, 1000, 1, 1, 5, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 2, '0.00000000', 1, 10, 0, '2013-02-03 21:08:29', '2013-09-30 01:06:39', 2),
-(47, 'Product 21', 'data/demo/hp_1.jpg', '100.0000', '0.0000', 0, 1, '2013-02-03', 0, 0, 1, 1000, 1, 0, 5, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '1.00000000', 1, 7, 400, '2013-02-03 21:08:40', '2013-09-30 01:05:28', 0),
-(48, 'product 20', 'data/demo/ipod_classic_1.jpg', '100.0000', '0.0000', 0, 1, '2013-02-08', 2, 0, 1, 995, 1, 1, 5, 1, 'test 1', '', '', '', '', '', 'test 2', '0.00000000', '0.00000000', '0.00000000', 2, '1.00000000', 1, 8, 0, '2013-02-08 17:21:51', '2015-03-21 15:26:02', 2),
-(49, 'SAM1', 'data/demo/samsung_tab_1.jpg', '199.9900', '0.0000', 0, 1, '2013-04-25', 0, 1, 1, 0, 1, 1, 8, 1, '', '', '', '', '', '', '', '0.00000000', '0.00000000', '0.00000000', 1, '0.00000000', 1, 0, 0, '2013-04-26 08:57:34', '2013-09-30 01:06:23', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -3088,17 +2354,6 @@ CREATE TABLE `oc_product_attribute` (
   `text` text NOT NULL,
   PRIMARY KEY (`product_id`,`attribute_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_attribute`
---
-
-INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
-(43, 2, 1, '1'),
-(47, 4, 1, '16GB'),
-(43, 4, 1, '8gb'),
-(42, 3, 1, '100mhz'),
-(47, 2, 1, '4');
 
 -- --------------------------------------------------------
 
@@ -3119,31 +2374,6 @@ CREATE TABLE `oc_product_description` (
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product_description`
---
-
-INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`, `tag`) VALUES
-(35, 1, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', '', ''),
-(48, 1, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', ''),
-(40, 1, 'iPhone', '&lt;p&gt;iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', '', 'Apple, iPhone, smartphone, phone'),
-(28, 1, 'HTC Touch HD', '&lt;p&gt;HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n\r\n&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n\r\n&lt;ul&gt;\r\n	&lt;li&gt;Processor Qualcomm® MSM 7201A™ 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;Windows Mobile® 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;Device Control via HTC TouchFLO™ 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;Bluetooth® 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;Wi-Fi®: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;HTC ExtUSB™ (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;Expansion Slot: microSD™ memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', 'HD, smartphone'),
-(44, 1, 'MacBook Air', '&lt;div&gt;\r\n	MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don&amp;rsquo;t lose inches and pounds overnight. It&amp;rsquo;s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;/div&gt;\r\n', '', '', ''),
-(45, 1, 'MacBook Pro', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Latest Intel mobile architecture&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Leading-edge graphics&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Designed for life on the road&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Connect. Create. Communicate.&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Next-generation wireless&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', ''),
-(29, 1, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', ''),
-(36, 1, 'iPod Nano', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Video in your pocket.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Sleek and colorful.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;iTunes.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Available as a free download, iTunes makes it easy to browse and buy millions of songs, movies, TV shows, audiobooks, and games and download free podcasts all at the iTunes Store. And you can import your own music, manage your whole media library, and sync your iPod or iPhone with ease.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', '', ''),
-(46, 1, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', '', ''),
-(47, 1, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you&amp;#39;re at the office&lt;/p&gt;\r\n', '', '', ''),
-(32, 1, 'iPod Touch', '&lt;p&gt;\r\n	&lt;strong&gt;Revolutionary multi-touch interface.&lt;/strong&gt;&lt;br /&gt;\r\n	iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Gorgeous 3.5-inch widescreen display.&lt;/strong&gt;&lt;br /&gt;\r\n	Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Music downloads straight from iTunes.&lt;/strong&gt;&lt;br /&gt;\r\n	Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Surf the web with Wi-Fi.&lt;/strong&gt;&lt;br /&gt;\r\n	Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in&lt;br /&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', '', '', ''),
-(41, 1, 'iMac', '&lt;div&gt;Just when you thought iMac had everything, now there´s even more. More powerful Intel Core 2 Duo processors. And more memory standard. Combine this with Mac OS X Leopard and iLife ´08, and it´s more all-in-one than ever. iMac packs amazing performance into a stunningly slim space.&lt;/div&gt;\r\n', '', '', 'Apple, iMac, Intel'),
-(33, 1, 'Samsung SyncMaster 941BW', '&lt;div&gt;\r\n	Imagine the advantages of going big without slowing down. The big 19&amp;quot; 941BW monitor combines wide aspect ratio with fast pixel response time, for bigger images, more room to work and crisp motion. In addition, the exclusive MagicBright 2, MagicColor and MagicTune technologies help deliver the ideal image in every situation, while sleek, narrow bezels and adjustable stands deliver style just the way you want it. With the Samsung 941BW widescreen analog/digital LCD monitor, it&amp;#39;s not hard to imagine.&lt;/div&gt;\r\n', '', '', ''),
-(34, 1, 'iPod Shuffle', '&lt;div&gt;\r\n	&lt;strong&gt;Born to be worn.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Clip on the worlds most wearable music player and take up to 240 songs with you anywhere. Choose from five colors including four new hues to make your musical fashion statement.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Random meets rhythm.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With iTunes autofill, iPod shuffle can deliver a new musical experience every time you sync. For more randomness, you can shuffle songs during playback with the slide of a switch.&lt;/p&gt;\r\n	&lt;strong&gt;Everything is easy.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Charge and sync with the included USB dock. Operate the iPod shuffle controls with one hand. Enjoy up to 12 hours straight of skip-free music playback.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', '', ''),
-(43, 1, 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', '', ''),
-(31, 1, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', ''),
-(49, 1, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', '', ''),
-(42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there&amp;#39;s no limit to what you can achieve. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it&amp;#39;s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple&amp;#39;s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br /&gt;\r\n	&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170&amp;deg; horizontal; 170&amp;deg; vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br /&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br /&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50&amp;deg; to 95&amp;deg; F (10&amp;deg; to 35&amp;deg; C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40&amp;deg; to 116&amp;deg; F (-40&amp;deg; to 47&amp;deg; C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO &amp;#39;03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br /&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', 'Apple, Monitor, HD'),
-(30, 1, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -3163,15 +2393,6 @@ CREATE TABLE `oc_product_discount` (
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_discount`
---
-
-INSERT INTO `oc_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(440, 42, 1, 30, 1, '66.0000', '0000-00-00', '0000-00-00'),
-(439, 42, 1, 20, 1, '77.0000', '0000-00-00', '0000-00-00'),
-(438, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -3203,73 +2424,6 @@ CREATE TABLE `oc_product_image` (
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product_image`
---
-
-INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `palette_color_id`, `sort_order`) VALUES
-(1, 30, 'data/demo/canon_eos_5d_2.jpg', 0, 0),
-(2, 47, 'data/demo/hp_3.jpg', 0, 0),
-(3, 28, 'data/demo/htc_touch_hd_2.jpg', 0, 0),
-(4, 41, 'data/demo/imac_3.jpg', 0, 0),
-(5, 40, 'data/demo/iphone_6.jpg', 0, 0),
-(6, 36, 'data/demo/ipod_nano_2.jpg', 5, 0),
-(7, 34, 'data/demo/ipod_shuffle_5.jpg', 0, 0),
-(8, 34, 'data/demo/ipod_shuffle_4.jpg', 0, 0),
-(9, 32, 'data/demo/ipod_touch_7.jpg', 0, 0),
-(10, 32, 'data/demo/ipod_touch_6.jpg', 0, 0),
-(11, 32, 'data/demo/ipod_touch_5.jpg', 0, 0),
-(12, 43, 'data/demo/macbook_5.jpg', 0, 0),
-(13, 43, 'data/demo/macbook_4.jpg', 0, 0),
-(14, 44, 'data/demo/macbook_air_4.jpg', 0, 0),
-(15, 44, 'data/demo/macbook_air_2.jpg', 0, 0),
-(16, 45, 'data/demo/macbook_pro_2.jpg', 0, 0),
-(17, 45, 'data/demo/macbook_pro_3.jpg', 0, 0),
-(18, 31, 'data/demo/nikon_d300_3.jpg', 0, 0),
-(19, 31, 'data/demo/nikon_d300_2.jpg', 0, 0),
-(20, 29, 'data/demo/palm_treo_pro_3.jpg', 0, 0),
-(21, 46, 'data/demo/sony_vaio_5.jpg', 0, 0),
-(22, 46, 'data/demo/sony_vaio_4.jpg', 0, 0),
-(23, 48, 'data/demo/ipod_classic_3.jpg', 0, 0),
-(24, 40, 'data/demo/iphone_2.jpg', 0, 0),
-(25, 40, 'data/demo/iphone_5.jpg', 0, 0),
-(26, 30, 'data/demo/canon_eos_5d_3.jpg', 0, 0),
-(27, 47, 'data/demo/hp_2.jpg', 0, 0),
-(28, 28, 'data/demo/htc_touch_hd_3.jpg', 0, 0),
-(29, 41, 'data/demo/imac_2.jpg', 0, 0),
-(30, 40, 'data/demo/iphone_3.jpg', 0, 0),
-(31, 40, 'data/demo/iphone_4.jpg', 0, 0),
-(32, 48, 'data/demo/ipod_classic_2.jpg', 8, 0),
-(33, 36, 'data/demo/ipod_nano_4.jpg', 8, 0),
-(34, 36, 'data/demo/ipod_nano_5.jpg', 0, 0),
-(35, 34, 'data/demo/ipod_shuffle_2.jpg', 0, 0),
-(36, 34, 'data/demo/ipod_shuffle_3.jpg', 0, 0),
-(37, 32, 'data/demo/ipod_touch_2.jpg', 0, 0),
-(38, 32, 'data/demo/ipod_touch_3.jpg', 0, 0),
-(39, 32, 'data/demo/ipod_touch_4.jpg', 0, 0),
-(40, 43, 'data/demo/macbook_2.jpg', 0, 0),
-(41, 43, 'data/demo/macbook_3.jpg', 0, 0),
-(42, 44, 'data/demo/macbook_air_3.jpg', 0, 0),
-(43, 45, 'data/demo/macbook_pro_4.jpg', 0, 0),
-(44, 31, 'data/demo/nikon_d300_4.jpg', 0, 0),
-(45, 31, 'data/demo/nikon_d300_5.jpg', 0, 0),
-(46, 29, 'data/demo/palm_treo_pro_2.jpg', 0, 0),
-(47, 46, 'data/demo/sony_vaio_2.jpg', 0, 0),
-(48, 46, 'data/demo/sony_vaio_3.jpg', 0, 0),
-(49, 49, 'data/demo/samsung_tab_7.jpg', 0, 0),
-(50, 49, 'data/demo/samsung_tab_6.jpg', 0, 0),
-(51, 49, 'data/demo/samsung_tab_5.jpg', 0, 0),
-(52, 49, 'data/demo/samsung_tab_4.jpg', 0, 0),
-(53, 49, 'data/demo/samsung_tab_3.jpg', 0, 0),
-(54, 49, 'data/demo/samsung_tab_2.jpg', 0, 0),
-(55, 42, 'data/demo/manufacturer/canon.png', 0, 0),
-(56, 42, 'data/demo/hp_1.jpg', 0, 0),
-(57, 42, 'data/demo/compaq_presario.jpg', 0, 0),
-(58, 42, 'data/demo/canon_eos_5d_1.jpg', 0, 0),
-(59, 42, 'data/demo/canon_eos_5d_2.jpg', 0, 0),
-(60, 48, 'data/demo/ipod_classic_4.jpg', 8, 0),
-(61, 36, 'data/demo/ipod_nano_3.jpg', 5, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -3285,24 +2439,6 @@ CREATE TABLE `oc_product_option` (
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_option`
---
-
-INSERT INTO `oc_product_option` (`product_option_id`, `product_id`, `option_id`, `option_value`, `required`) VALUES
-(224, 35, 11, '', 1),
-(225, 47, 12, '2014-04-22', 1),
-(223, 42, 2, '', 1),
-(217, 42, 5, '', 1),
-(209, 42, 6, '', 1),
-(218, 42, 1, '', 1),
-(208, 42, 4, 'test', 1),
-(219, 42, 8, '2014-02-20', 1),
-(222, 42, 7, '', 1),
-(221, 42, 9, '22:25', 1),
-(220, 42, 10, '2014-02-20 22:25', 1),
-(226, 30, 5, '', 1);
 
 -- --------------------------------------------------------
 
@@ -3327,28 +2463,6 @@ CREATE TABLE `oc_product_option_value` (
   `weight_prefix` varchar(1) NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_option_value`
---
-
-INSERT INTO `oc_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
-(1, 217, 42, 5, 41, 100, 0, '1.0000', '+', 0, '+', '1.00000000', '+'),
-(6, 218, 42, 1, 31, 146, 1, '20.0000', '+', 2, '-', '20.00000000', '+'),
-(7, 218, 42, 1, 43, 300, 1, '30.0000', '+', 3, '+', '30.00000000', '+'),
-(5, 218, 42, 1, 32, 96, 1, '10.0000', '+', 1, '+', '10.00000000', '+'),
-(4, 217, 42, 5, 39, 92, 1, '4.0000', '+', 0, '+', '4.00000000', '+'),
-(2, 217, 42, 5, 42, 200, 1, '2.0000', '+', 0, '+', '2.00000000', '+'),
-(3, 217, 42, 5, 40, 300, 0, '3.0000', '+', 0, '+', '3.00000000', '+'),
-(8, 223, 42, 2, 23, 48, 1, '10.0000', '+', 0, '+', '10.00000000', '+'),
-(10, 223, 42, 2, 44, 2696, 1, '30.0000', '+', 0, '+', '30.00000000', '+'),
-(9, 223, 42, 2, 24, 194, 1, '20.0000', '+', 0, '+', '20.00000000', '+'),
-(11, 223, 42, 2, 45, 3998, 1, '40.0000', '+', 0, '+', '40.00000000', '+'),
-(12, 224, 35, 11, 46, 0, 1, '5.0000', '+', 0, '+', '0.00000000', '+'),
-(13, 224, 35, 11, 47, 10, 1, '10.0000', '+', 0, '+', '0.00000000', '+'),
-(14, 224, 35, 11, 48, 15, 1, '15.0000', '+', 0, '+', '0.00000000', '+'),
-(16, 226, 30, 5, 40, 5, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
-(15, 226, 30, 5, 39, 2, 1, '0.0000', '+', 0, '+', '0.00000000', '+');
 
 -- --------------------------------------------------------
 
@@ -3390,16 +2504,6 @@ CREATE TABLE `oc_product_related` (
   PRIMARY KEY (`product_id`,`related_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product_related`
---
-
-INSERT INTO `oc_product_related` (`product_id`, `related_id`) VALUES
-(40, 42),
-(41, 42),
-(42, 40),
-(42, 41);
-
 -- --------------------------------------------------------
 
 --
@@ -3414,31 +2518,6 @@ CREATE TABLE `oc_product_reward` (
   `points` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_reward_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_reward`
---
-
-INSERT INTO `oc_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
-(515, 42, 1, 100),
-(519, 47, 1, 300),
-(379, 28, 1, 400),
-(329, 43, 1, 600),
-(339, 29, 1, 0),
-(343, 48, 1, 0),
-(335, 40, 1, 0),
-(539, 30, 1, 200),
-(331, 44, 1, 700),
-(333, 45, 1, 800),
-(337, 31, 1, 0),
-(425, 35, 1, 0),
-(345, 33, 1, 0),
-(347, 46, 1, 0),
-(545, 41, 1, 0),
-(351, 36, 1, 0),
-(353, 34, 1, 0),
-(355, 32, 1, 0),
-(521, 49, 1, 1000);
 
 -- --------------------------------------------------------
 
@@ -3459,15 +2538,6 @@ CREATE TABLE `oc_product_special` (
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product_special`
---
-
-INSERT INTO `oc_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
-(419, 42, 1, 1, '90.0000', '0000-00-00', '0000-00-00'),
-(439, 30, 1, 2, '90.0000', '0000-00-00', '0000-00-00'),
-(438, 30, 1, 1, '80.0000', '0000-00-00', '0000-00-00');
-
 -- --------------------------------------------------------
 
 --
@@ -3486,24 +2556,6 @@ CREATE TABLE `oc_product_tag` (
   KEY `tag` (`tag`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product_tag`
---
-
-INSERT INTO `oc_product_tag` (`product_tag_id`, `product_id`, `language_id`, `tag`) VALUES
-(1, 42, 1, 'Apple'),
-(2, 42, 1, 'monitor'),
-(3, 42, 1, 'HD'),
-(4, 28, 1, 'HD'),
-(5, 28, 1, 'smartphone'),
-(6, 40, 1, 'Apple'),
-(7, 40, 1, 'iPhone'),
-(8, 40, 1, 'smartphone'),
-(9, 40, 1, 'phone'),
-(10, 41, 1, 'Apple'),
-(11, 41, 1, 'iMac'),
-(12, 41, 1, 'Intel');
-
 -- --------------------------------------------------------
 
 --
@@ -3517,42 +2569,6 @@ CREATE TABLE `oc_product_to_category` (
   PRIMARY KEY (`product_id`,`category_id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_to_category`
---
-
-INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
-(28, 20),
-(28, 24),
-(29, 20),
-(29, 24),
-(30, 20),
-(30, 33),
-(31, 33),
-(32, 34),
-(33, 20),
-(33, 28),
-(34, 34),
-(35, 20),
-(36, 34),
-(40, 20),
-(40, 24),
-(41, 27),
-(42, 20),
-(42, 28),
-(43, 18),
-(43, 20),
-(44, 18),
-(44, 20),
-(45, 18),
-(46, 18),
-(46, 20),
-(47, 18),
-(47, 20),
-(48, 20),
-(48, 34),
-(49, 57);
 
 -- --------------------------------------------------------
 
@@ -3594,31 +2610,6 @@ CREATE TABLE `oc_product_to_location` (
   PRIMARY KEY (`product_id`,`location_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_product_to_location`
---
-
-INSERT INTO `oc_product_to_location` (`product_id`, `location_id`) VALUES
-(28, 0),
-(29, 0),
-(30, 0),
-(31, 0),
-(32, 0),
-(33, 0),
-(34, 0),
-(35, 0),
-(36, 0),
-(40, 0),
-(41, 0),
-(42, 0),
-(43, 0),
-(44, 0),
-(45, 0),
-(46, 0),
-(47, 0),
-(48, 0),
-(49, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -3631,31 +2622,6 @@ CREATE TABLE `oc_product_to_store` (
   `store_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_product_to_store`
---
-
-INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
-(28, 0),
-(29, 0),
-(30, 0),
-(31, 0),
-(32, 0),
-(33, 0),
-(34, 0),
-(35, 0),
-(36, 0),
-(40, 0),
-(41, 0),
-(42, 0),
-(43, 0),
-(44, 0),
-(45, 0),
-(46, 0),
-(47, 0),
-(48, 0),
-(49, 0);
 
 -- --------------------------------------------------------
 
@@ -3862,39 +2828,14 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (5, 0, 'total', 'total_sort_order', '9', 0),
 (6, 0, 'total', 'total_status', '1', 0),
 (7, 0, 'tax', 'tax_sort_order', '5', 0),
-(8, 0, 'free_checkout', 'free_checkout_sort_order', '1', 0),
-(1882, 0, 'cod', 'cod_geo_zone_id', '0', 0),
-(1881, 0, 'cod', 'cod_order_status_id', '1', 0),
-(1880, 0, 'cod', 'cod_total_max', '', 0),
-(1879, 0, 'cod', 'cod_total', '0.01', 0),
 (14, 0, 'shipping', 'shipping_status', '1', 0),
 (15, 0, 'shipping', 'shipping_estimator', '1', 0),
-(27, 0, 'coupon', 'coupon_sort_order', '4', 0),
-(28, 0, 'coupon', 'coupon_status', '1', 0),
-(34, 0, 'flat', 'flat_sort_order', '1', 0),
-(35, 0, 'flat', 'flat_status', '1', 0),
-(36, 0, 'flat', 'flat_geo_zone_id', '0', 0),
-(37, 0, 'flat', 'flat_tax_class_id', '9', 0),
-(587, 0, 'carousel', 'carousel_module', 'a:1:{i:0;a:9:{s:9:"banner_id";s:1:"8";s:5:"width";s:3:"100";s:6:"height";s:3:"100";s:4:"show";s:1:"7";s:4:"auto";s:1:"1";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"-1";}}', 1),
-(1866, 0, 'featured', 'featured_addproduct', '0', 0),
-(1867, 0, 'featured', 'featured_module', 'a:1:{i:0;a:6:{s:11:"image_width";s:3:"120";s:12:"image_height";s:3:"120";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}}', 1),
-(1865, 0, 'featured', 'featured_viewproduct', '1', 0),
-(41, 0, 'flat', 'flat_cost', '5.00', 0),
-(42, 0, 'credit', 'credit_sort_order', '7', 0),
-(43, 0, 'credit', 'credit_status', '1', 0),
-(53, 0, 'reward', 'reward_sort_order', '2', 0),
-(54, 0, 'reward', 'reward_status', '1', 0),
 (137, 0, 'affiliate', 'affiliate_theme', '1', 0),
 (138, 0, 'affiliate', 'affiliate_title1', '', 0),
 (139, 0, 'affiliate', 'affiliate_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:2:"10";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(149, 0, 'category', 'category_theme', '1', 0),
-(150, 0, 'category', 'category_title1', '', 0),
-(151, 0, 'category', 'category_module', 'a:2:{i:0;a:4:{s:9:"layout_id";s:1:"3";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:1;a:4:{s:9:"layout_id";s:1:"2";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
 (134, 0, 'account', 'account_theme', '1', 0),
 (135, 0, 'account', 'account_title1', '', 0),
 (136, 0, 'account', 'account_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"6";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(94, 0, 'voucher', 'voucher_sort_order', '8', 0),
-(95, 0, 'voucher', 'voucher_status', '1', 0),
 (1817, 0, 'config', 'config_google_analytics', '', 0),
 (1816, 0, 'config', 'config_error_filename', 'error.txt', 0),
 (1815, 0, 'config', 'config_error_log', '1', 0),
@@ -3949,33 +2890,10 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (1801, 0, 'config', 'config_account_mail', '0', 0),
 (1802, 0, 'config', 'config_alert_emails', '', 0),
 (1803, 0, 'config', 'config_secure', '0', 0),
-(103, 0, 'free_checkout', 'free_checkout_status', '1', 0),
-(104, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
-(578, 0, 'slideshow', 'slideshow_module', 'a:1:{i:0;a:7:{s:9:"banner_id";s:1:"7";s:5:"width";s:4:"1140";s:6:"height";s:3:"380";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(588, 0, 'banner', 'banner_theme', '0', 0),
-(589, 0, 'banner', 'banner_title1', '', 0),
-(590, 0, 'banner', 'banner_timeout', '3000', 0),
-(591, 0, 'banner', 'banner_speed', '500', 0),
-(592, 0, 'banner', 'banner_module', 'a:1:{i:0;a:8:{s:9:"banner_id";s:1:"6";s:5:"width";s:3:"190";s:6:"height";s:3:"190";s:5:"pause";s:1:"1";s:9:"layout_id";s:1:"3";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"3";}}', 1),
 (1804, 0, 'config', 'config_shared', '0', 0),
 (1805, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
 (1807, 0, 'config', 'config_file_max_size', '2048000', 0),
 (1806, 0, 'config', 'config_seo_url', '0', 0),
-(585, 0, 'carousel', 'carousel_title1', '', 0),
-(1864, 0, 'featured', 'featured_review', '0', 0),
-(1863, 0, 'featured', 'featured_point', '0', 0),
-(1862, 0, 'featured', 'featured_reward', '0', 0),
-(1861, 0, 'featured', 'featured_model', '0', 0),
-(1860, 0, 'featured', 'featured_brand', '0', 0),
-(577, 0, 'slideshow', 'slideshow_thumbnails', '1', 0),
-(572, 0, 'slideshow', 'slideshow_theme', '0', 0),
-(573, 0, 'slideshow', 'slideshow_title1', '', 0),
-(574, 0, 'slideshow', 'slideshow_skin', 'cyan', 0),
-(575, 0, 'slideshow', 'slideshow_playpause', '1', 0),
-(576, 0, 'slideshow', 'slideshow_pagination', '1', 0),
-(171, 0, 'tagcloud', 'tagcloud_theme', '0', 0),
-(172, 0, 'tagcloud', 'tagcloud_title1', '', 0),
-(173, 0, 'tagcloud', 'tagcloud_module', 'a:1:{i:0;a:9:{s:6:"random";s:1:"1";s:5:"limit";s:2:"25";s:13:"min_font_size";s:2:"12";s:13:"max_font_size";s:2:"27";s:11:"font_weight";s:6:"normal";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
 (1687, 0, 'config', 'config_currency', 'USD', 0),
 (1688, 0, 'config', 'config_currency_auto', '1', 0),
 (1689, 0, 'config', 'config_length_class_id', '1', 0),
@@ -4003,15 +2921,6 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (1758, 0, 'config', 'config_captcha_font', 'Recaptcha', 0),
 (1757, 0, 'config', 'config_price_free', '1', 0),
 (1756, 0, 'config', 'config_offer_label', '0', 0),
-(586, 0, 'carousel', 'carousel_skin', 'cyan', 0),
-(584, 0, 'carousel', 'carousel_theme', '0', 0),
-(593, 0, 'menu_horizontal', 'menu_horizontal_theme', 'light', 0),
-(594, 0, 'menu_horizontal', 'menu_horizontal_column_limit', '6', 0),
-(595, 0, 'menu_horizontal', 'menu_horizontal_column_number', '2', 0),
-(596, 0, 'menu_horizontal', 'menu_horizontal_module', 'a:13:{i:0;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"6";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:1;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:2:"10";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:2;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"3";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:3;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"7";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:4;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"8";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:5;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"4";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:6;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:7;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:2:"11";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:8;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"5";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:9;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:2:"13";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:10;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"2";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:11;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:1:"9";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:12;a:7:{s:7:"menu_id";s:1:"1";s:4:"home";s:1:"1";s:9:"layout_id";s:2:"12";s:8:"position";s:14:"content_header";s:9:"direction";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(597, 0, 'menu_vertical', 'menu_vertical_theme', '1', 0),
-(598, 0, 'menu_vertical', 'menu_vertical_title1', '', 0),
-(599, 0, 'menu_vertical', 'menu_vertical_module', 'a:2:{i:0;a:6:{s:7:"menu_id";s:1:"1";s:9:"layout_id";s:1:"9";s:8:"position";s:11:"column_left";s:9:"direction";s:3:"ltr";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:1;a:6:{s:7:"menu_id";s:1:"1";s:9:"layout_id";s:2:"12";s:8:"position";s:11:"column_left";s:9:"direction";s:3:"ltr";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}}', 1),
 (627, 0, 'default', 'default_footer_skype', '0', 0),
 (626, 0, 'default', 'default_footer_pinterest', '0', 0),
 (625, 0, 'default', 'default_footer_google', '0', 0),
@@ -4028,7 +2937,6 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (615, 0, 'default', 'default_breadcrumbs', '1', 0),
 (628, 0, 'default', 'default_manufacturer_name', '0', 0),
 (629, 0, 'default', 'default_manufacturer_image', '1', 0),
-(1859, 0, 'featured', 'featured_product', '43,42,49,46,28', 0),
 (1755, 0, 'config', 'config_lightbox', 'chocolat', 0),
 (1754, 0, 'config', 'config_autocomplete_product', '0', 0),
 (1753, 0, 'config', 'config_autocomplete_category', '0', 0),
@@ -4088,17 +2996,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (1676, 0, 'config', 'config_email', 'your@store.com', 0),
 (1675, 0, 'config', 'config_address', 'Address', 0),
 (1674, 0, 'config', 'config_owner', 'Your Name', 0),
-(1673, 0, 'config', 'config_name', 'Your Store', 0),
-(1858, 0, 'featured', 'product', '', 0),
-(1857, 0, 'featured', 'featured_title1', '', 0),
-(1856, 0, 'featured', 'featured_theme', '1', 0),
-(1875, 0, 'latest', 'latest_title1', '', 0),
-(1876, 0, 'latest', 'latest_viewproduct', '0', 0),
-(1877, 0, 'latest', 'latest_addproduct', '0', 0),
-(1878, 0, 'latest', 'latest_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"3";s:11:"image_width";s:3:"130";s:12:"image_height";s:3:"130";s:9:"layout_id";s:1:"5";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(1874, 0, 'latest', 'latest_theme', '1', 0),
-(1883, 0, 'cod', 'cod_status', '1', 0),
-(1884, 0, 'cod', 'cod_sort_order', '2', 0);
+(1673, 0, 'config', 'config_name', 'Your Store', 0);
 
 -- --------------------------------------------------------
 
@@ -4268,21 +3166,6 @@ CREATE TABLE `oc_url_alias` (
   KEY `keyword` (`keyword`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_url_alias`
---
-
-INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
-(1, 'product_id=48', 'ipod-classic'),
-(11, 'category_id=20', 'desktops'),
-(3, 'category_id=26', 'pc'),
-(4, 'category_id=27', 'mac'),
-(10, 'manufacturer_id=8', 'apple'),
-(6, 'information_id=4', 'about-us'),
-(7, 'product_id=42', 'test'),
-(8, 'category_id=34', 'mp3-players'),
-(9, 'category_id=36', 'Normal');
-
 -- --------------------------------------------------------
 
 --
@@ -4380,14 +3263,6 @@ CREATE TABLE `oc_voucher_theme` (
   PRIMARY KEY (`voucher_theme_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `oc_voucher_theme`
---
-
-INSERT INTO `oc_voucher_theme` (`voucher_theme_id`, `image`) VALUES
-(7, 'data/demo/vouchers/gift-voucher-birthday.jpg'),
-(6, 'data/demo/vouchers/gift-voucher-xmas.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -4401,14 +3276,6 @@ CREATE TABLE `oc_voucher_theme_description` (
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`voucher_theme_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_voucher_theme_description`
---
-
-INSERT INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
-(6, 1, 'Christmas'),
-(7, 1, 'Birthday');
 
 -- --------------------------------------------------------
 
@@ -8939,14 +7806,5 @@ CREATE TABLE `oc_zone_to_geo_zone` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`zone_to_geo_zone_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_zone_to_geo_zone`
---
-
-INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
-(65, 222, 0, 4, '2010-12-15 15:18:13', '0000-00-00 00:00:00'),
-(66, 222, 0, 3, '2014-04-21 16:36:23', '0000-00-00 00:00:00'),
-(67, 254, 0, 3, '2014-04-21 16:36:23', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------

@@ -4,11 +4,21 @@ class ModelInstall extends Model {
 	public function database($data) {
 		$db = new DB($data['db_driver'], $data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_database']);
 
-		$file = DIR_APPLICATION . 'opencart.sql';
+		if (isset($data['demo_data'])) {
+			$file = DIR_APPLICATION . 'opencart-clean.sql';
 
-		if (!file_exists($file)) {
-			exit('Could not load sql file: ' . $file);
+			if (!file_exists($file)) {
+				exit('Could not load sql file: ' . $file);
+			}
+		} else {
+			$file = DIR_APPLICATION . 'opencart.sql';
+
+			if (!file_exists($file)) {
+				exit('Could not load sql file: ' . $file);
+			}
 		}
+
+		clearstatcache();
 
 		$lines = file($file);
 

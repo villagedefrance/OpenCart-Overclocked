@@ -46,11 +46,19 @@ form {
 	margin: 0;
 }
 fieldset {
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#ECECEC));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: -o-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: linear-gradient(to bottom, #FCFCFC, #ECECEC);
 	border: 1px solid #DBDBDB;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+	overflow: auto;
 	padding: 10px;
 	margin-bottom: 20px;
 }
@@ -267,6 +275,13 @@ a.button:hover, input.button:hover, input.button-cart:hover {
 }
 /* Buttons */
 .buttons {
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#ECECEC));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: -o-linear-gradient(top, #FCFCFC, #ECECEC);
+	background-image: linear-gradient(to bottom, #FCFCFC, #ECECEC);
 	border: 1px solid #DBDBDB;
 	padding: 5px;
 	margin-bottom: 20px;

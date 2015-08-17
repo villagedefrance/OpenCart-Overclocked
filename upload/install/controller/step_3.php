@@ -102,6 +102,7 @@ class ControllerStep3 extends Controller {
 		$this->data['text_mpdo'] = $this->language->get('text_mpdo');
 		$this->data['text_pgsql'] = $this->language->get('text_pgsql');
 		$this->data['text_activate'] = $this->language->get('text_activate');
+		$this->data['text_remove'] = $this->language->get('text_remove');
 
 		$this->data['entry_db_driver'] = $this->language->get('entry_db_driver');
 		$this->data['entry_db_hostname'] = $this->language->get('entry_db_hostname');
@@ -114,6 +115,7 @@ class ControllerStep3 extends Controller {
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_rewrite'] = $this->language->get('entry_rewrite');
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
+		$this->data['entry_demo_data'] = $this->language->get('entry_demo_data');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
@@ -252,6 +254,12 @@ class ControllerStep3 extends Controller {
 			$this->data['maintenance'] = $this->request->post['maintenance'];
 		} else {
 			$this->data['maintenance'] = '';
+		}
+
+		if (isset($this->request->post['demo_data'])) {
+			$this->data['demo_data'] = $this->request->post['demo_data'];
+		} else {
+			$this->data['demo_data'] = '';
 		}
 
 		$this->data['back'] = $this->url->link('step_2');

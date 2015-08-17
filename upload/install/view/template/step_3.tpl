@@ -55,7 +55,7 @@
       </tr>
       <tr>
         <td><span class="required">* </span><?php echo $entry_db_hostname; ?></td>
-        <td><input type="text" name="db_hostname" value="<?php echo $db_hostname; ?>" />
+        <td><input type="text" name="db_hostname" value="<?php echo $db_hostname; ?>" size="30" />
         <br />
         <?php if ($error_db_hostname) { ?>
           <span class="required"><?php echo $error_db_hostname; ?></span>
@@ -63,7 +63,7 @@
       </tr>
       <tr>
         <td><span class="required">* </span><?php echo $entry_db_username; ?></td>
-        <td><input type="text" name="db_username" value="<?php echo $db_username; ?>" />
+        <td><input type="text" name="db_username" value="<?php echo $db_username; ?>" size="30" />
         <br />
         <?php if ($error_db_username) { ?>
           <span class="required"><?php echo $error_db_username; ?></span>
@@ -71,11 +71,11 @@
       </tr>
       <tr>
         <td><?php echo $entry_db_password; ?></td>
-        <td><input type="text" name="db_password" value="<?php echo $db_password; ?>" /></td>
+        <td><input type="text" name="db_password" value="<?php echo $db_password; ?>" size="30" /></td>
       </tr>
       <tr>
         <td><span class="required">* </span><?php echo $entry_db_database; ?></td>
-        <td><input type="text" name="db_database" value="<?php echo $db_database; ?>" />
+        <td><input type="text" name="db_database" value="<?php echo $db_database; ?>" size="30" />
         <br />
         <?php if ($error_db_database) { ?>
           <span class="required"><?php echo $error_db_database; ?></span>
@@ -83,7 +83,7 @@
       </tr>
       <tr>
         <td><?php echo $entry_db_prefix; ?></td>
-        <td><input type="text" name="db_prefix" value="<?php echo $db_prefix; ?>" />
+        <td><input type="text" name="db_prefix" value="<?php echo $db_prefix; ?>" size="30" />
         <br />
         <?php if ($error_db_prefix) { ?>
           <span class="required"><?php echo $error_db_prefix; ?></span>
@@ -96,7 +96,7 @@
     <table class="form">
       <tr>
         <td><span class="required">* </span><?php echo $entry_username; ?></td>
-        <td><input type="text" name="username" value="<?php echo $username; ?>" />
+        <td><input type="text" name="username" value="<?php echo $username; ?>" size="30" />
         <br />
         <?php if ($error_username) { ?>
           <span class="required"><?php echo $error_username; ?></span>
@@ -104,7 +104,7 @@
       </tr>
       <tr>
         <td><span class="required">* </span><?php echo $entry_password; ?></td>
-        <td><input type="text" name="password" value="<?php echo $password; ?>" />
+        <td><input type="text" name="password" value="<?php echo $password; ?>" size="30" />
         <br />
         <?php if ($error_password) { ?>
           <span class="required"><?php echo $error_password; ?></span>
@@ -112,7 +112,7 @@
       </tr>
       <tr>
         <td><span class="required">* </span><?php echo $entry_email; ?></td>
-        <td><input type="text" name="email" value="<?php echo $email; ?>" />
+        <td><input type="text" name="email" value="<?php echo $email; ?>" size="30" />
         <br />
         <?php if ($error_email) { ?>
           <span class="required"><?php echo $error_email; ?></span>
@@ -132,6 +132,10 @@
       <tr>
         <td><?php echo $entry_maintenance; ?></td>
         <td><input type="checkbox" name="maintenance" value="1" /> <?php echo $text_activate; ?></td>
+      </tr>
+      <tr>
+        <td><?php echo $entry_demo_data; ?></td>
+        <td><input type="checkbox" name="demo_data" value="1" /> <?php echo $text_remove; ?></td>
       </tr>
     </table>
     </fieldset>
