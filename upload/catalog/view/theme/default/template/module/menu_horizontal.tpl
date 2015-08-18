@@ -51,45 +51,45 @@
   <?php } ?>
   </ul>
   </div>
-<?php } ?>
-</div>
-<!-- Menu Phone -->
-<div style="margin-bottom:10px;">
-<?php if ($menu_horizontal) { ?>
-  <div id="menu-holder" class="menu-<?php echo $menu_theme; ?>">
-    <div id="menu-phone">
-    <ul>
-      <li><a href="<?php echo $home; ?>" title=""><span class="home-icon"></span></a></li>
-      <?php foreach ($menu_horizontal as $category) { ?>
-        <?php if ($category['href']) { ?>
-          <li><a href="<?php echo $category['href']; ?>" title=""><?php echo $category['name']; ?></a></li>
-          <?php if ($category['children']) { ?>
-            <ul>
-            <?php foreach ($category['children'] as $children) { ?>
-              <?php if ($children['href']) { ?>
-                <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
-              <?php } ?>
-            <?php } ?>
-            </ul>
-          <?php } ?>
-        <?php } else { ?>
-          <li><a title=""><?php echo $category['name']; ?></a></li>
-          <?php if ($category['children']) { ?>
-            <ul>
-            <?php foreach ($category['children'] as $children) { ?>
-              <?php if ($children['href']) { ?>
-                <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
-              <?php } ?>
-            <?php } ?>
-            </ul>
-          <?php } ?>
-        <?php } ?>
-      <?php } ?>
-    </ul>
-    </div>
+  <!-- Menu Phone -->
+  <div id="menu-phone">
+  <ul>
+  <li><a href="<?php echo $home; ?>" title=""><span class="home-icon"></span></a></li>
+  <?php foreach ($menu_horizontal as $category) { ?>
+  <?php if ($category['href']) { ?>
+  <li><a href="<?php echo $category['href']; ?>" title=""><?php echo $category['name']; ?></a></li>
+  <?php if ($category['children']) { ?>
+  <li>
+  <ul>
+  <?php foreach ($category['children'] as $children) { ?>
+  <?php if ($children['href']) { ?>
+  <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  </li>
+  <?php } ?>
+  <?php } else { ?>
+  <li><a title=""><?php echo $category['name']; ?></a></li>
+  <?php if ($category['children']) { ?>
+  <li>
+  <ul>
+  <?php foreach ($category['children'] as $children) { ?>
+  <?php if ($children['href']) { ?>
+  <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  </li>
+  <?php } ?>
+  <?php } ?>
+  <?php } ?>
+  </ul>
+  </div>
   </div>
 <?php } ?>
 </div>
+
 <script type="text/javascript"><!--
 $('#menu-holder').prepend('<div id="menu-trigger"><img src="catalog/view/theme/default/image/menu-button-<?php echo $menu_theme; ?>.png" alt="" style="padding:3px 15px;" /></div>');
 $('#menu-trigger').live('click', function(e) {

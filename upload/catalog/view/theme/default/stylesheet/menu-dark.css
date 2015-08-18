@@ -215,7 +215,7 @@
         top: -8px;
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-bottom: 8px solid #444;
+        border-bottom: 8px solid #555;
     }
     #menu-phone > ul {
         position: static;
@@ -227,7 +227,7 @@
 		list-style: none;
     }
     #menu-phone > ul > li > ul {
-        margin: 0px 0px 5px 5px;
+        margin: 0px 0px 5px 0px;
         box-shadow: none;
 		list-style: none;
     }

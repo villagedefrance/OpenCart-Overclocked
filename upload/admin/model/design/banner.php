@@ -11,7 +11,7 @@ class ModelDesignBanner extends Model {
 
 		if (isset($data['banner_image'])) {
 			foreach ($data['banner_image'] as $banner_image) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "banner_image SET banner_id = '" . (int)$banner_id . "', link = '" .  $this->db->escape(html_entity_decode($banner_image['link'], ENT_QUOTES, 'UTF-8')) . "', external_link = '" . (int)$banner_image['external_link'] . "', image = '" .  $this->db->escape($banner_image['image']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "banner_image SET banner_id = '" . (int)$banner_id . "', link = '" .  $this->db->escape($banner_image['link']) . "', external_link = '" . (int)$banner_image['external_link'] . "', image = '" .  $this->db->escape($banner_image['image']) . "'");
 
 				$banner_image_id = $this->db->getLastId();
 
@@ -30,7 +30,7 @@ class ModelDesignBanner extends Model {
 
 		if (isset($data['banner_image'])) {
 			foreach ($data['banner_image'] as $banner_image) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "banner_image SET banner_id = '" . (int)$banner_id . "', link = '" .  $this->db->escape(html_entity_decode($banner_image['link'], ENT_QUOTES, 'UTF-8')) . "', external_link = '" . (int)$banner_image['external_link'] . "', image = '" .  $this->db->escape($banner_image['image']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "banner_image SET banner_id = '" . (int)$banner_id . "', link = '" .  $this->db->escape($banner_image['link'], ENT_QUOTES, 'UTF-8') . "', external_link = '" . (int)$banner_image['external_link'] . "', image = '" .  $this->db->escape($banner_image['image']) . "'");
 
 				$banner_image_id = $this->db->getLastId();
 

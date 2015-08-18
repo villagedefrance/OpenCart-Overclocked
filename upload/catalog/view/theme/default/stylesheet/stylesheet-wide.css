@@ -376,7 +376,7 @@ samp, small {
 	width: 216px;
 	height: 31px;
 	background: #FFF;
-	border: 1px solid #E7E7E7;
+	border: 1px solid #DFDFDF;
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
@@ -403,7 +403,7 @@ samp, small {
 	padding: 8px 0 8px 8px;
 	width: 208px;
 	height: 15px;
-	color: #BBB;
+	color: #999;
 	border: none;
 	transition: all 0.3s;
 	-webkit-transition: all 0.3s;
@@ -2185,7 +2185,7 @@ ul.box-filter > li ul {
 /* Sitemap */
 .sitemap-info {
 	overflow: auto;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 .sitemap-info .left {
 	float: left;
@@ -2195,17 +2195,37 @@ ul.box-filter > li ul {
 	float: left;
 	width: 48%;
 }
-.sitemap-info .left ul, .sitemap-info .right ul {
+.sitemap-info .left a, .sitemap-info .right a {
+	color: #333;
+	font-size: 13px;
+	text-decoration: none;
+}
+.sitemap-info .left a:hover, .sitemap-info .right a:hover {
+	color: #38B0E3;
+}
+.sitemap-info .left > ul, .sitemap-info .right > ul {
 	list-style: url('../image/bullet-3.png');
 	margin-bottom: 5px;
 }
-.sitemap-info .left ul li ul, .sitemap-info .right ul li ul {
+.sitemap-info .left > ul > li, .sitemap-info .right > ul > li {
+	margin: 2px 0px;
+}
+.sitemap-info .left > ul > li.last-line, .sitemap-info .right > ul > li.last-line {
+	margin-bottom: 10px;
+}
+.sitemap-info .left > ul > li ul, .sitemap-info .right > ul > li ul {
 	list-style: url('../image/arrow-right.png');
 	margin-bottom: 5px;
 }
-.sitemap-info .left ul li ul li ul {
+.sitemap-info .left > ul > li ul > li, .sitemap-info .right > ul > li ul > li {
+	margin: 2px 0px;
+}
+.sitemap-info .left > ul > li ul > li ul {
 	list-style: url('../image/arrow-right.png');
 	margin-bottom: 5px;
+}
+.sitemap-info .left > ul > li ul > li ul > li, .sitemap-info .right > ul > li ul > li ul > li {
+	margin: 2px 0px;
 }
 /* Promo */
 .promo-large {

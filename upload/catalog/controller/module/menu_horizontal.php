@@ -45,9 +45,9 @@ class ControllerModuleMenuHorizontal extends Controller {
 		foreach ($menu_items as $menu_item) {
 			if (!empty($menu_item['menu_item_link'])) {
 				if ($menu_item['external_link']) {
-					$href = html_entity_decode($menu_item['menu_item_link'], ENT_QUOTES, 'UTF-8');
+					$href = html_entity_decode(str_replace('&', '&amp;', $menu_item['menu_item_link']), ENT_QUOTES, 'UTF-8');
 				} else {
-					$href = $this->url->link($menu_item['menu_item_link']);
+					$href = $this->url->link(str_replace('&', '&amp;', $menu_item['menu_item_link']));
 				}
 			} else {
 				$href = '';
@@ -60,9 +60,9 @@ class ControllerModuleMenuHorizontal extends Controller {
 			foreach ($children as $child) {
 				if (!empty($child['menu_item_link'])) {
 					if ($child['external_link']) {
-						$child_href = html_entity_decode($child['menu_item_link'], ENT_QUOTES, 'UTF-8');
+						$child_href = html_entity_decode(str_replace('&', '&amp;', $child['menu_item_link']), ENT_QUOTES, 'UTF-8');
 					} else {
-						$child_href = $this->url->link($child['menu_item_link']);
+						$child_href = $this->url->link(str_replace('&', '&amp;', $child['menu_item_link']));
 					}
 				} else {
 					$child_href = '';
