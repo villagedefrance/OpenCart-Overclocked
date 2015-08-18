@@ -2,7 +2,7 @@
 class ModelDesignMenuItems extends Model {
 
 	public function addMenuItem($menu_id, $data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item SET menu_id = '" . (int)$menu_id . "', parent_id = '" . (int)$data['parent_id'] . "', menu_item_link = '" . $this->db->escape(html_entity_decode($data['link'], ENT_QUOTES, 'UTF-8')) . "', external_link = '" . (int)$data['external_link'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '1'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item SET menu_id = '" . (int)$menu_id . "', parent_id = '" . (int)$data['parent_id'] . "', menu_item_link = '" . $this->db->escape($data['link']) . "', external_link = '" . (int)$data['external_link'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '1'");
 
 		$menu_item_id = $this->db->getLastId();
 
@@ -30,7 +30,7 @@ class ModelDesignMenuItems extends Model {
 	} 
 
 	public function editMenuItem($menu_item_id, $menu_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "menu_item SET menu_id = '" . (int)$menu_id . "', parent_id = '" . (int)$data['parent_id'] . "', menu_item_link = '" . $this->db->escape(html_entity_decode($data['link'], ENT_QUOTES, 'UTF-8')) . "', external_link = '" . (int)$data['external_link'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "' WHERE menu_item_id = '" . (int)$menu_item_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "menu_item SET menu_id = '" . (int)$menu_id . "', parent_id = '" . (int)$data['parent_id'] . "', menu_item_link = '" . $this->db->escape($data['link']) . "', external_link = '" . (int)$data['external_link'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "' WHERE menu_item_id = '" . (int)$menu_item_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item_description WHERE menu_item_id = '" . (int)$menu_item_id . "'");
 

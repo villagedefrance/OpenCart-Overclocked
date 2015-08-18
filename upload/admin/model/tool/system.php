@@ -58,16 +58,9 @@ class ModelToolSystem extends Model {
 
 				fclose($file);
 
-				unlink('../.htaccess.txt');
-
 				rename('../.htaccess.txt', '../.htaccess');
 
 				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `group` = 'config' AND `key` = 'config_seo_url'");
-
-				// Check again, as sometimes renaming fails the first time
-				if (file_exists('../.htaccess.txt') {
-					rename('../.htaccess.txt', '../.htaccess');
-				}
 			}
 		}
 
