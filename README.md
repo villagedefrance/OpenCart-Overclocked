@@ -24,22 +24,27 @@ Latest Scripts:
 - jQuery UI 1.11.4.
 - CKEditor 4.5.1 Full.
 - jQuery Flot 0.8.2.
+- Camera 1.3.4.
+- Slick 1.5.8.
 - ...
 
 Main Features:
+- Custom Menu System.
+- Custom Footer System.
+- Responsive Default Theme.
+- Template Option Control System.
 - "Save and Continue" for all essential Admin forms.
+- "Filter Name" for all essential Admin forms.
 - Full Page Image Manager, with multi-uploads.
-- Preference Tab in Setting, for extra options.
-- Configuration Page: displays the hosting server settings.
-- Database Page: optimize, repair tables and convert storage engine.
-- Auto-complete optional for Product and Category Forms.
-- Zoom Lens viewer for product images (optional).
-- Opencart favicon for Admin.
-- Cache Managers.
-- News / Blog.
+- Cache Managers for Files and Images.
+- Integrated News (Blog).
 - ... and more!
 
-Coming soon in 1.7.0.0:
+New in 1.7.0.0 (Current Release):
+- Custom Menu System.
+- Custom Footer System.
+- Responsive Default Theme.
+- Template Control System.
 - VQmod and VQmanager.
 - Improved Upgrade script.
 - Improved Install script.
@@ -53,7 +58,7 @@ Coming soon in 1.7.0.0:
 - Bug fixes ...
 - ...
 
-New in v1.6.5.0 (Current Release):
+New in v1.6.5.0:
 - All fixes from Community Edition RC1/2 applied.
 - Database CSV Import/Export.
 - Updated System files.
@@ -64,7 +69,6 @@ New in v1.6.4.0:
 - Express Checkout.
 - All Product Wall page.
 - Custom Payment labels.
-- Import/Export tables (CSV).
 - Contact us Email log.
 - Improved Installer.
 - Improved Captcha.

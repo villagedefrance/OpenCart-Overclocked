@@ -1,21 +1,22 @@
-/////////////////////////////////
-///       OpenCart V1.5.x     ///
-///    Install Instructions   ///
-///  http://www.opencart.com  ///
-/////////////////////////////////
+// ---------------------------------------
+//  OpenCart v1.7.0 - OverClocked Edition
+//  Install Instructions
+//  http://www.opencart.com
+//  http://villagedefrance.net
+// ---------------------------------------
 
 
 NOTE: THIS IS FOR NEW INSTALL ONLY!
-IF UPGRADING YOUR EXISTING CART, BE SURE TO READ THE UPGRADE.TXT FILE INSTEAD
+IF UPGRADING YOUR EXISTING CART, BE SURE TO READ THE UPGRADE.TXT FILE INSTEAD.
 
 
--------
+---------
 INSTALL
--------
+---------
 These instructions are for a manual installation using FTP, cPanel or other web hosting Control Panel.
 
 - Linux Install -
-
+---------------
 1. Upload all the files and folders to your server from the "Upload" folder. This can be to anywhere of your choice. e.g. /public_html or /public_html/store
 
 2. Rename config-dist.php to config.php and admin/config-dist.php to admin/config.php
@@ -31,7 +32,7 @@ These instructions are for a manual installation using FTP, cPanel or other web 
 
 		If 0755 does not work try 0777.
 
-4. Make sure you have installed a MySQL Database which has a user assigned to it
+4. Make sure you have installed a MySQL Database which has a user assigned to it.
 	DO NOT USE YOUR ROOT USERNAME AND ROOT PASSWORD
 
 5. Visit the store homepage e.g. http://www.example.com or http://www.example.com/store/
@@ -42,7 +43,7 @@ These instructions are for a manual installation using FTP, cPanel or other web 
 
 
 - Windows Install -
-
+-------------------
 1. Upload all the files and folders to your server from the "Upload" folder. This can be to anywhere of your choice. e.g. /wwwroot/store or /wwwroot
 
 2. Rename config-dist.php to config.php and admin/config-dist.php to admin/config.php
@@ -56,7 +57,7 @@ These instructions are for a manual installation using FTP, cPanel or other web 
 		config.php
 		admin/config.php
 
-4. Make sure you have installed a MySQL Database which has a user assigned to it
+4. Make sure you have installed a MySQL Database which has a user assigned to it.
 	DO NOT USE YOUR ROOT USERNAME AND ROOT PASSWORD
 
 5. You should be taken to the installer page. Follow the onscreen instructions.
@@ -66,7 +67,7 @@ These instructions are for a manual installation using FTP, cPanel or other web 
 
 
 - Local Install -
-
+---------------
 There are many all-in-one webservers out there and most of them should work with OpenCart out of the box. Some examples...
 
 http://www.apachefriends.org/en/xampp.html
