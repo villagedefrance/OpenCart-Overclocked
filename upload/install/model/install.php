@@ -95,6 +95,8 @@ class ModelInstall extends Model {
 
 				file_put_contents('../.htaccess.txt', $document);
 
+				fflush($file);
+
 				fclose($file);
 
 				rename('../.htaccess.txt', '../.htaccess');

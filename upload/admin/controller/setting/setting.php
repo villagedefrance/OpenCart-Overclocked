@@ -535,7 +535,7 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_zone_id'] = $this->config->get('config_zone_id');
 		}
-		
+
 		if (isset($this->request->post['config_language'])) {
 			$this->data['config_language'] = $this->request->post['config_language'];
 		} else {

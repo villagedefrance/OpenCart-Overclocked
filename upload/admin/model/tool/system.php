@@ -33,10 +33,20 @@ class ModelToolSystem extends Model {
 		if (file_exists('../.htaccess')) {
 			return;
 		} else {
-			if (file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
+			if (function_exists('apache_get_modules')) {
+				$modules = apache_get_modules();
+
+				$mod_rewrite = in_array('mod_rewrite', $modules);
+			} else {
+				$mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
+			}
+
+			if ($mod_rewrite && file_exists('../.htaccess.txt')) {
+				chmod('../.htaccess.txt', 0777);
+
 				$file = fopen('../.htaccess.txt', 'a');
 
-				$data = file_get_contents('../.htaccess.txt');
+				$document = file_get_contents('../.htaccess.txt');
 
 				$root = rtrim(HTTP_SERVER, '/');
 
@@ -52,15 +62,15 @@ class ModelToolSystem extends Model {
 					$path = '/';
 				}
 
-				$data = str_replace('RewriteBase /', 'RewriteBase ' . $path, $data);
+				$document = str_replace('RewriteBase /', 'RewriteBase ' . $path, $document);
 
-				file_put_contents('../.htaccess.txt', $data);
+				file_put_contents('../.htaccess.txt', $document);
+
+				fflush($file);
 
 				fclose($file);
 
 				rename('../.htaccess.txt', '../.htaccess');
-
-				$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '1' WHERE `group` = 'config' AND `key` = 'config_seo_url'");
 			}
 		}
 

@@ -58,9 +58,9 @@
         </tr>
         <tr>
           <td><?php echo $text_phpversion; ?></td>
-          <td>5.2+</td>
+          <td>5.3+</td>
           <td><?php echo phpversion(); ?></td>
-          <td><?php echo (phpversion() >= '5.2') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+          <td><?php echo (phpversion() >= '5.3') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
         </tr>
         <tr>
           <td><?php echo $text_registerglobals; ?></td>

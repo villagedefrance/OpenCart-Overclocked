@@ -83,7 +83,7 @@ $_['entry_maintenance']		= 'Activate Maintenance mode ?';
 $_['entry_demo_data']			= 'Remove Demo Data ?';
 
 // Error
-$_['error_php_version']			= 'Warning: You need to use PHP5.2 or above for OpenCart OCE to work!';
+$_['error_php_version']			= 'Warning: You need to use PHP 5.3 or above for OpenCart OCE to work!';
 $_['error_php_uploads']			= 'Warning: PHP file_uploads needs to be enabled!';
 $_['error_php_session']			= 'Warning: OpenCart OCE will not work with session.auto_start enabled!';
 $_['error_php_extension']		= 'Warning: A database extension needs to be loaded in the php.ini for OpenCart OCE to work!';
