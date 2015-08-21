@@ -68,6 +68,7 @@ $(document).ready(function() {
 			}
 		},
 		selected: 'top',
+		opened: ['top'],
 		ui: {
 			theme_name: 'apple',
 			animation: 60
@@ -87,28 +88,24 @@ $(document).ready(function() {
 		callback: {
 			beforedata: function(NODE, TREE_OBJ) {
 				if (NODE == false) {
-					TREE_OBJ.settings.data.opts.static = [ {
+					TREE_OBJ.settings.data.opts.static = [{
 						data: 'image',
 						attributes: {
 							'id': 'top',
 							'directory': ''
 						},
 						state: 'closed'
-					} ];
-
-					return { 'directory': '' }
-
+					}];
+					return {'directory': ''}
 				} else {
 					TREE_OBJ.settings.data.opts.static = false;
-
-					return { 'directory': $(NODE).attr('directory') }
+					return {'directory': $(NODE).attr('directory')}
 				}
 			},
 			onselect: function(NODE, TREE_OBJ) {
 				var dr;
 				var tree = $.tree.focused('#column-left a');
 				window.dr = $(tree.selected).attr('directory');
-
 				$.ajax({
 					url: 'index.php?route=common/filemanager_full/files&token=<?php echo $token; ?>',
 					type: 'post',
@@ -116,7 +113,6 @@ $(document).ready(function() {
 					dataType: 'json',
 					success: function(json) {
 						html = '<div>';
-
 						if (json) {
 							if (json.length == 0) {
 								html += '<div class="feedback"><?php echo $text_no_file_found; ?></div>';
@@ -126,7 +122,6 @@ $(document).ready(function() {
 								}
 							}
 						}
-
 						html += '</div>';
 
 						$('#column-right').html(html);
@@ -154,7 +149,6 @@ $(document).ready(function() {
 					dd = $(domEle).attr('directory');
 					dd = dd.replace(/\//g, "");
 					dd = dd.replace(" ", "");
-
 					$(domEle).attr('id', dd);
 				});
 
@@ -188,15 +182,15 @@ $(document).ready(function() {
 	});
 
 	$('#toolset button:first').button({
-        icons: { primary:'ui-icon-plus' }
+        icons: {primary: 'ui-icon-plus'}
 	}).next().button({
-		icons: { primary:'ui-icon-minus' }
+		icons: {primary: 'ui-icon-minus'}
 	}).next().button({
-		icons: { primary:'ui-icon-pencil' }
+		icons: {primary: 'ui-icon-pencil'}
 	}).next().button({
-		icons: { primary:'ui-icon-grip-dotted-horizontal' }
+		icons: {primary: 'ui-icon-grip-dotted-horizontal'}
 	}).next().button({
-		icons: { primary:'ui-icon-image' }
+		icons: {primary: 'ui-icon-image'}
 	});
 
 	$('#btnExpand').click(function() {
@@ -735,7 +729,7 @@ $(document).ready(function() {
 					max_file_size: '25mb',
 					chunk_size: '1mb',
 					unique_names: false,
-					resize: { height:600, width:800, quality:90 },
+					resize: { quality: 100, crop: false },
 					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,gif,png,zip,rar,pdf,flv,swf" } ],
 					flash_swf_url: 'view/javascript/plupload/js/Moxie.swf',
 					silverlight_xap_url: 'view/javascript/plupload/js/Moxie.xap'
