@@ -30,7 +30,8 @@ function vat_validation($prefix, $number) {
 		'RO' => 'RO', //Romania
 		'SK' => 'SK', //Slovakia
 		'CZ' => 'CZ', //Czech Republic
-		'SI' => 'SI'  //Slovenia
+		'SI' => 'SI', //Slovenia
+		'HR' => 'HR' //Croatia
 	);
 
 	$number = str_replace(' ', '', $number);
