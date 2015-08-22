@@ -206,7 +206,7 @@
 		filter: alpha(opacity=100);
         box-shadow: none;
 		display: none;
-		z-index: 680;
+		z-index: 550;
     }
     #menu-phone:after {
         content: "";
@@ -248,7 +248,7 @@
 		color: #111;
 		font-size: 14px;
 		text-decoration: none;
-		z-index: 700;
+		z-index: 555;
     }
 	#menu-phone > ul > li ul > li a {
         display: block;
@@ -257,7 +257,7 @@
 		color: #111;
 		font-size: 14px;
 		text-decoration: none;
-		z-index: 700;
+		z-index: 555;
     }
     #menu-phone > ul > li a:hover, #menu-phone > ul > li ul > li a:hover {
         color: #38B0E3;

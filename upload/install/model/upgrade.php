@@ -476,12 +476,16 @@ class ModelUpgrade extends Model {
 	public function updateConfig() {
 		$find = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');';
 
-		$check = 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
-define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
-
-		$output = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');
+		$check = '
 define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
-define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
+define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
+';
+
+		$output = '
+define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');
+define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
+define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
+';
 
 		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {
 			$catalog = DIR_OPENCART . 'config.php';

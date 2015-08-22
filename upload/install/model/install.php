@@ -101,7 +101,8 @@ class ModelInstall extends Model {
 
 				rename('../.htaccess.txt', '../.htaccess');
 
-				$db->query("UPDATE " . $data['db_prefix'] . "setting SET `value` = '" . (isset($data['rewrite']) ? 1 : 0) . "' WHERE `group` = 'config' AND `key` = 'config_seo_url'");
+				$db->query("DELETE FROM " . $data['db_prefix'] . "setting WHERE `key` = 'config_seo_url'");
+				$db->query("INSERT INTO " . $data['db_prefix'] . "setting SET `group` = 'config', `key` = 'config_seo_url', `value` = '" . (isset($data['rewrite']) ? 1 : 0) . "'");
 
 				clearstatcache();
 			}

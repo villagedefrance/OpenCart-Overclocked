@@ -185,10 +185,12 @@ samp, small {
     border-radius: 3px;
 	margin-top: 3px;
 	padding-top: 2px;
+	z-index: 575;
 }
 #language-selector {
 	margin-top: 8px;
-	cursor: default;
+	cursor: pointer;
+	z-index: 575;
 }
 .language-selected {
 	color: #777;
@@ -227,10 +229,12 @@ samp, small {
     border-radius: 3px;
 	margin-top: 3px;
 	padding-top: 2px;
+	z-index: 575;
 }
 #currency-selector {
 	margin-top: 8px;
-	cursor: default;
+	cursor: pointer;
+	z-index: 575;
 }
 .currency-selected {
 	color: #777;
@@ -2703,6 +2707,7 @@ a.icon-skype:hover {
 		-webkit-border-radius: 2px;
 		-khtml-border-radius: 2px;
 		border-radius: 2px;
+		z-index: 575;
 	}
 	#language {
 		margin-right: 12px;
@@ -2716,6 +2721,7 @@ a.icon-skype:hover {
 		-webkit-border-radius: 2px;
 		-khtml-border-radius: 2px;
 		border-radius: 2px;
+		z-index: 575;
 	}
 	/* Content */
 	#content .content .left, #content .content .right {
