@@ -6,7 +6,7 @@ $_['heading_title']					= 'FraudLabs Pro';
 $_['text_fraud']						= 'Fraud';
 $_['text_success']					= 'Success: You have modified <b>FraudLabs Pro</b> !';
 $_['text_edit']							= 'Edit';
-$_['text_signup']						= 'FraudLabsPro is a fraud detection service. If you don\'t have a API key you can <a href="http://www.fraudlabspro.com/plan?ref=670" target="_blank"><u>sign up here</u></a>.';
+$_['text_signup']						= 'FraudLabsPro is a fraud detection service. If you don\'t have a API key you can <a onclick="window.open(\'http://www.fraudlabspro.com/plan?ref=670\');"><u>sign up here</u></a>.';
 $_['text_rules']						= 'Validation Rules';
 $_['text_testing']						= 'Testing';
 $_['text_fraudlabspro_id']			= 'FraudLabs Pro ID<br /><span class="help">Unique identifier to identify a transaction screened by FraudLabs Pro system.</span>';
@@ -33,8 +33,8 @@ $_['text_credit_card_blacklist']	= 'Credit Card Blacklist<br /><span class="help
 $_['text_message']					= 'Message<br /><span class="help">FraudLabs Pro error message description.</span>';
 $_['text_credits']						= 'Balance<br /><span class="help">Balance of queries in your account after this transaction.</span>';
 $_['text_error']						= 'Error:';
-$_['text_flp_upgrade']				= '<a href="http://www.fraudlabspro.com/plan" target="_blank"><b>[ Upgrade ]</b></a>';
-$_['text_flp_merchant_area']		= 'Please login to <a href="https://www.fraudlabspro.com/merchant/login" target="_blank">FraudLabs Pro Merchant Area</a> for more information about this order.';
+$_['text_flp_upgrade']				= '<a onclick="window.open(\'http://www.fraudlabspro.com/plan\');"><b>[ Upgrade ]</b></a>';
+$_['text_flp_merchant_area']		= 'Please login to <a onclick="window.open(\'https://www.fraudlabspro.com/merchant/login\');">FraudLabs Pro Merchant Area</a> for more information about this order.';
 $_['text_comment_approve']		= 'Approved using FraudLabs Pro.';
 $_['text_comment_reject']			= 'Rejected using FraudLabs Pro.';
 

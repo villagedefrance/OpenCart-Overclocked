@@ -47,13 +47,15 @@
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_status; ?></td>
-            <td><?php if ($fraudlabspro_status) { ?>
-              <?php echo $text_yes; ?><input type="radio" name="fraudlabspro_status" value="1" checked="checked" />
-              <?php echo $text_no; ?><input type="radio" name="fraudlabspro_status" value="0" />
-            <?php } else { ?>
-              <?php echo $text_yes; ?><input type="radio" name="fraudlabspro_status" value="1" />
-              <?php echo $text_no; ?><input type="radio" name="fraudlabspro_status" value="0" checked="checked" />
-            <?php } ?></td>
+            <td><select name="fraudlabspro_status">
+              <?php if ($fraudlabspro_status) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <?php } ?>
+            </select></td>
           </tr>
         </table>
 		<h2><?php echo $text_rules; ?></h2>
