@@ -346,12 +346,6 @@ class ControllerProductProduct extends Controller {
 				$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 
 				if ($product_info['image']) {
-					$this->data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
-				} else {
-					$this->data['popup'] = '';
-				}
-
-				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 					$this->data['column_offset'] = $this->config->get('config_image_thumb_width') + 35;
 				} else {

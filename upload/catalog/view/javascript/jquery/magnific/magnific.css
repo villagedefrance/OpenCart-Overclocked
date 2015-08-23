@@ -291,7 +291,7 @@ img.mfp-img {
 	width: auto;
 	height: auto;
 	z-index: -1;
-	background: rgba(0,0,0,0.6);
+	background: rgba(255,255,255,1);
 	-moz-box-shadow: 0 0 8px rgba(0,0,0,0.6);
 	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.6);
 	box-shadow: 0 0 8px rgba(0,0,0,0.6);

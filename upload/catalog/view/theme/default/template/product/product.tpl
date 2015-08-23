@@ -502,7 +502,7 @@ $(document).ready(function() {
 		rel: "colorbox"
 	});
 });
-//--></script> 
+//--></script>
 <?php } ?>
 
 <?php if ($lightbox == 'chocolat') { ?>
@@ -519,7 +519,7 @@ $(document).ready(function() {
 		loop: true
 	});
 });
-//--></script> 
+//--></script>
 <?php } ?>
 
 <?php if ($lightbox == 'magnific') { ?>
