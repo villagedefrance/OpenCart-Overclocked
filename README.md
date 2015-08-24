@@ -4,6 +4,8 @@ OpenCart-Overclocked
 Opencart Overclocked - Community Edition
 -----------------------------------------
 
+For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
+
 Description:
 
 Opencart Overclocked Edition is a community project aimed at making Opencart Shopping Cart faster, richer, leaner and even more user friendly. 
@@ -74,6 +76,12 @@ New in v1.6.4.0:
 - Improved Captcha.
 - Improved Dashboard.
 - Bug fixes ...
+
+Coming soon in v1.7.1.0:
+- Improved File Managers.
+- Improved Customer Accounts.
+- Improved Affiliate Accounts.
+- ...
 
 TODO:
 - Add filter product images by colour (in progress ...).
