@@ -13,14 +13,13 @@ class ControllerPaymentPPProIframe extends Controller {
 			$hosted_button_id = $this->constructButtonData($order_info);
 
 			if ($this->config->get('pp_pro_iframe_test')) {
-				$this->data['url'] = 'https://securepayments.sandbox.paypal.com/cgi-bin/webscr';
+				$this->data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			} else {
-				$this->data['url'] = 'https://securepayments.paypal.com/cgi-bin/webscr';
+				$this->data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			}
 
 			if ($hosted_button_id) {
 				$this->data['code'] = $hosted_button_id;
-
 				$this->data['error_connection'] = '';
 			} else {
 				$this->data['error_connection'] = $this->language->get('error_connection');
@@ -57,9 +56,9 @@ class ControllerPaymentPPProIframe extends Controller {
 			$this->data['code'] = $hosted_button_id;
 
 			if ($this->config->get('pp_pro_iframe_test')) {
-				$this->data['url'] = 'https://securepayments.sandbox.paypal.com/cgi-bin/webscr';
+				$this->data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			} else {
-				$this->data['url'] = 'https://securepayments.paypal.com/cgi-bin/webscr';
+				$this->data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
 			}
 
 			$this->data['error_connection'] = '';
