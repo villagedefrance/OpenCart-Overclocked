@@ -40,7 +40,8 @@ class ModelPaymentPPStandard extends Model {
 			'PHP',
 			'TWD',
 			'THB',
-			'TRY'
+			'TRY',
+			'RUB'
 		);
 
 		if (!in_array(strtoupper($this->currency->getCode()), $currencies)) {
