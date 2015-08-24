@@ -1,8 +1,59 @@
+<?php if (!$logged) { ?>
 <?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading"><?php echo $title; ?></div>
   <div class="box-content">
-    <?php if ($logged) { ?>
+    <div style="text-align:left; padding:5px;">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-account">
+        <p>
+          <?php echo $entry_email_address; ?><br />
+          <input type="text" name="email" /><br />
+          <br />
+          <?php echo $entry_password; ?><br />
+          <input type="password" name="password" /><br />
+        </p>
+        <p style="text-align:center;">
+          <a onclick="$('#module-account').submit();" class="button"><?php echo $button_login; ?></a>
+        </p>
+      </form>
+      <div style="margin-top:15px; text-align:center;">
+        <div><a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
+        <div><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } else { ?>
+<div style="margin-bottom:20px;">
+  <div>
+    <div style="text-align:left; padding:5px;">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-account">
+        <p>
+          <?php echo $entry_email_address; ?><br />
+          <input type="text" name="email" /><br />
+          <br />
+          <?php echo $entry_password; ?><br />
+          <input type="password" name="password" /><br />
+        </p>
+        <p style="text-align:center;">
+          <a onclick="$('#module-account').submit();" class="button"><?php echo $button_login; ?></a>
+        </p>
+      </form>
+      <div style="margin-top:15px; text-align:center;">
+        <div><a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
+        <div><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<?php } ?>
+<?php if ($logged && $mode != 0) { ?>
+<?php if ($theme) { ?>
+<div class="box">
+  <div class="box-heading"><?php echo $title; ?></div>
+  <div class="box-content">
+    <?php if ($mode == 2) { ?>
       <div class="box-information">
         <ul>
           <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
@@ -27,26 +78,12 @@
         </ul>
       </div>
       <div style="text-align:center; padding:10px 0px;">
-        <a href="index.php?route=account/logout" class="button"><?php echo $button_logout; ?></a>
+        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
-    <?php } else { ?>
-      <div style="text-align:left; padding:5px;">
-        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module_account">
-          <p>
-            <?php echo $entry_email_address; ?><br />
-            <input type="text" name="email" /><br />
-            <br />
-            <?php echo $entry_password; ?><br />
-            <input type="password" name="password" /><br />
-          </p>
-          <p style="text-align:center;">
-            <a onclick="$('#module_account').submit();" class="button"><?php echo $button_login; ?></a>
-          </p>
-        </form>
-        <div style="margin-top:15px; text-align:center;">
-          <div><a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
-          <div><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></div>
-        </div>
+    <?php } ?>
+	<?php if ($mode == 1) { ?>
+      <div style="text-align:center; padding:10px 0px;">
+        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
   </div>
@@ -54,7 +91,7 @@
 <?php } else { ?>
 <div style="margin-bottom:20px;">
   <div>
-    <?php if ($logged) { ?>
+    <?php if ($mode == 2) { ?>
       <div class="box-information">
         <ul>
           <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
@@ -67,7 +104,7 @@
           <?php if ($reward) { ?>
           <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
           <?php } ?>
-          <?php if ($allow_return) { ?>
+		  <?php if ($allow_return) { ?>
           <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
 		  <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
 		  <?php } ?>
@@ -79,34 +116,21 @@
         </ul>
       </div>
       <div style="text-align:center; padding:10px 0px;">
-        <a href="index.php?route=account/logout" class="button"><?php echo $button_logout; ?></a>
+        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
-    <?php } else { ?>
-      <div style="text-align:left; padding:5px;">
-        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module_account">
-          <p>
-            <?php echo $entry_email_address; ?><br />
-            <input type="text" name="email" /><br />
-            <br />
-            <?php echo $entry_password; ?><br />
-            <input type="password" name="password" /><br />
-          </p>
-          <p style="text-align:center;">
-            <a onclick="$('#module_account').submit();" class="button"><?php echo $button_login; ?></a>
-          </p>
-        </form>
-        <div style="margin-top:15px; text-align:center;">
-          <div><a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
-          <div><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></div>
-        </div>
+    <?php } ?>
+	<?php if ($mode == 1) { ?>
+      <div style="text-align:center; padding:10px 0px;">
+        <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
   </div>
 </div>
 <?php } ?>
-
+<?php } ?>
+	
 <script type="text/javascript"><!--
-$('#module_account input').keydown(function(e) {
-	if (e.keyCode == 13) { $('#module_account').submit(); }
+$('#module-account input').keydown(function(e) {
+	if (e.keyCode == 13) { $('#module-account').submit(); }
 });
 //--></script>

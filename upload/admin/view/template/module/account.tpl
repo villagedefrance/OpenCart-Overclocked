@@ -37,6 +37,20 @@
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
           </tr>
+		  <tr>
+            <td><?php echo $entry_mode; ?></td>
+            <td><select name="account_mode">
+              <?php if (isset($account_mode)) { $selected = "selected"; ?>
+                <option value="0" <?php if ($account_mode == '0') {echo $selected;} ?>><?php echo $text_hidden; ?></option>
+                <option value="1" <?php if ($account_mode == '1') {echo $selected;} ?>><?php echo $text_compact; ?></option>
+                <option value="2" <?php if ($account_mode == '2') {echo $selected;} ?>><?php echo $text_complete; ?></option>
+              <?php } else { ?>
+                <option value="0"><?php echo $text_hidden; ?></option>
+                <option value="1"><?php echo $text_compact; ?></option>
+                <option value="2"><?php echo $text_complete; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
         </table>
         <table id="module" class="list">
           <thead>

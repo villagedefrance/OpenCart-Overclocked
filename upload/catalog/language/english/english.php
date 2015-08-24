@@ -41,6 +41,7 @@ $_['button_change_address']	= 'Change Address';
 $_['button_reviews']      	  	= 'Reviews';
 $_['button_write']          		= 'Write Review';
 $_['button_login']          		= 'Login';
+$_['button_logout']          		= 'Logout';
 $_['button_update']      	   	= 'Update';
 $_['button_remove']         	= 'Remove';
 $_['button_reorder']       	 	= 'Reorder';

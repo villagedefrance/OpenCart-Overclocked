@@ -9,7 +9,7 @@ class ControllerAffiliateAccount extends Controller {
 		}
 
 		if (!$this->affiliate->isSecure()) {
-			$this->customer->logout();
+			$this->affiliate->logout();
 
 			$this->session->data['redirect'] = $this->url->link('affiliate/account', '', 'SSL');
 
@@ -17,6 +17,8 @@ class ControllerAffiliateAccount extends Controller {
 		}
 
 		$this->language->load('affiliate/account');
+
+		$this->document->setTitle($this->language->get('heading_title'));
 
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
@@ -33,7 +35,13 @@ class ControllerAffiliateAccount extends Controller {
 			'separator' => $this->language->get('text_separator')
 		);
 
-		$this->document->setTitle($this->language->get('heading_title'));
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -46,19 +54,26 @@ class ControllerAffiliateAccount extends Controller {
 		$this->data['text_tracking'] = $this->language->get('text_tracking');
 		$this->data['text_transaction'] = $this->language->get('text_transaction');
 
-		if (isset($this->session->data['success'])) {
-			$this->data['success'] = $this->session->data['success'];
-
-			unset($this->session->data['success']);
-		} else {
-			$this->data['success'] = '';
-		}
-
 		$this->data['edit'] = $this->url->link('affiliate/edit', '', 'SSL');
 		$this->data['password'] = $this->url->link('affiliate/password', '', 'SSL');
 		$this->data['payment'] = $this->url->link('affiliate/payment', '', 'SSL');
 		$this->data['tracking'] = $this->url->link('affiliate/tracking', '', 'SSL');
 		$this->data['transaction'] = $this->url->link('affiliate/transaction', '', 'SSL');
+
+		$this->data['button_logout'] = $this->language->get('button_logout');
+
+		$this->data['logout'] = $this->url->link('affiliate/logout', '', 'SSL');
+
+		// Account Header
+		if ($this->affiliate->isLogged()) {
+			$this->data['firstname'] = $this->affiliate->getFirstName();
+			$this->data['lastname'] = $this->affiliate->getLastName();
+			$this->data['email'] = $this->affiliate->getEmail();
+		} else {
+			$this->data['firstname'] = '';
+			$this->data['lastname'] = '';
+			$this->data['email'] = '';
+		}
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');

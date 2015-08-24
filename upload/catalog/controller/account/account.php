@@ -73,6 +73,10 @@ class ControllerAccountAccount extends Controller {
 		$this->data['recurring'] = $this->url->link('account/recurring', '', 'SSL');
 		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
 
+		$this->data['button_logout'] = $this->language->get('button_logout');
+
+		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
+
 		// Rewards
 		if ($this->config->get('reward_status')) {
 			$this->data['reward'] = $this->url->link('account/reward', '', 'SSL');
@@ -99,25 +103,13 @@ class ControllerAccountAccount extends Controller {
 		}
 
 		// Account Header
-		$this->load->model('account/customer');
-
-		$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
-
-		if (isset($customer_info)) {
-			$this->data['firstname'] = $customer_info['firstname'];
+		if ($this->customer->isLogged()) {
+			$this->data['firstname'] = $this->customer->getFirstName();
+			$this->data['lastname'] = $this->customer->getLastName();
+			$this->data['email'] = $this->customer->getEmail();
 		} else {
 			$this->data['firstname'] = '';
-		}
-
-		if (isset($customer_info)) {
-			$this->data['lastname'] = $customer_info['lastname'];
-		} else {
 			$this->data['lastname'] = '';
-		}
-
-		if (isset($customer_info)) {
-			$this->data['email'] = $customer_info['email'];
-		} else {
 			$this->data['email'] = '';
 		}
 

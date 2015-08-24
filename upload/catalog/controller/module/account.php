@@ -17,6 +17,8 @@ class ControllerModuleAccount extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$this->data['mode'] = $this->config->get($this->_name . '_mode');
+
 		$this->data['code'] = $this->customer->getId();
 
 		$this->data['text_register'] = $this->language->get('text_register');
@@ -42,9 +44,6 @@ class ControllerModuleAccount extends Controller {
 		$this->data['entry_email_address'] = $this->language->get('entry_email_address');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 
-		$this->data['button_login'] = $this->language->get('button_login');
-		$this->data['button_logout'] = $this->language->get('button_logout');
-
 		$this->data['logged'] = $this->customer->isLogged();
 		$this->data['register'] = $this->url->link($this->_name . '/register', '', 'SSL');
 		$this->data['login'] = $this->url->link($this->_name . '/login', '', 'SSL');
@@ -62,6 +61,13 @@ class ControllerModuleAccount extends Controller {
 		$this->data['transaction'] = $this->url->link($this->_name . '/transaction', '', 'SSL');
 		$this->data['recurring'] = $this->url->link($this->_name . '/recurring', '', 'SSL');
 		$this->data['newsletter'] = $this->url->link($this->_name . '/newsletter', '', 'SSL');
+
+		$this->data['button_login'] = $this->language->get('button_login');
+		$this->data['button_logout'] = $this->language->get('button_logout');
+
+		$this->data['action'] = $this->url->link($this->_name . '/login', '', 'SSL');
+
+		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
 
 		// Reward
 		if ($this->config->get('reward_status')) {
@@ -88,20 +94,20 @@ class ControllerModuleAccount extends Controller {
 			$this->data['profile_exist'] = false;
 		}
 
-		$this->data['action'] = $this->url->link($this->_name . '/login', '', 'SSL');
-
 		$this->data['module'] = $module++;
 
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl';
-		} else {
-			$this->template = 'default/template/module/' . $this->_name . '.tpl';
-		}
+		if (!$this->customer->isLogged() || ($this->customer->isLogged() && $this->config->get($this->_name . '_mode') > 0)) {
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) {
+				$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl';
+			} else {
+				$this->template = 'default/template/module/' . $this->_name . '.tpl';
+			}
 
-		$this->render();
+			$this->render();
+		}
 	}
 }
 ?>

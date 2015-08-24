@@ -28,6 +28,9 @@ class ControllerModuleAffiliate extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_hidden'] = $this->language->get('text_hidden');
+		$this->data['text_compact'] = $this->language->get('text_compact');
+		$this->data['text_complete'] = $this->language->get('text_complete');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -37,6 +40,7 @@ class ControllerModuleAffiliate extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
+		$this->data['entry_mode'] = $this->language->get('entry_mode');
 
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
@@ -104,6 +108,12 @@ class ControllerModuleAffiliate extends Controller {
 			$this->data[$this->_name . '_title'] = $this->request->post[$this->_name . '_title'];
 		} else {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
+		}
+
+		if (isset($this->request->post[$this->_name . '_mode'])) {
+			$this->data[$this->_name . '_mode'] = $this->request->post[$this->_name . '_mode'];
+		} else {
+			$this->data[$this->_name . '_mode'] = $this->config->get($this->_name . '_mode' );
 		}
 
 		$this->data['modules'] = array();
