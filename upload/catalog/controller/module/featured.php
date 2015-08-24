@@ -136,7 +136,7 @@ class ControllerModuleFeatured extends Controller {
 					'points' 			=> $product_info['points'],
 					'price'   	  		=> $price,
 					'special' 	 		=> $special,
-					'minimum'		=> $product_info['minimum'] > 0 ? $product_info['minimum'] : 1,
+					'minimum'		=> ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
 					'rating'     		=> (int)$rating,
 					'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'href'    	 		=> $this->url->link('product/product', 'product_id=' . $product_info['product_id'])

@@ -436,7 +436,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if ($this->config->get('config_tax')) {
-				$this->data['tax'] = $this->currency->format((float)$product_info['special']) ? $product_info['special'] : $product_info['price'];
+				$this->data['tax'] = $this->currency->format((float)$product_info['special'] ? $product_info['special'] : $product_info['price']);
 			} else {
 				$this->data['tax'] = false;
 			}
@@ -504,7 +504,7 @@ class ControllerProductProduct extends Controller {
 				}
 			}
 
-			if ($product_info['minimum']) {
+			if ($product_info['minimum'] > 1) {
 				$this->data['minimum'] = $product_info['minimum'];
 			} else {
 				$this->data['minimum'] = 1;

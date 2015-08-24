@@ -146,7 +146,7 @@ class ControllerProductProductWall extends Controller {
 			}
 
 			if ($this->config->get('config_tax')) {
-				$tax = $this->currency->format((float)$result['special']) ? $result['special'] : $result['price'];
+				$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
 			} else {
 				$tax = false;
 			}

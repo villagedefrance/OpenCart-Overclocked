@@ -82,7 +82,7 @@ class ControllerModuleBestSeller extends Controller {
 				'name'   		=> $result['name'],
 				'price'   	 	=> $price,
 				'special' 		=> $special,
-				'minimum'	=> $result['minimum'] > 0 ? $result['minimum'] : 1,
+				'minimum'	=> ($result['minimum'] > 0) ? $result['minimum'] : 1,
 				'rating'    	=> (int)$rating,
 				'reviews'    	=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 				'href'    	   	=> $this->url->link('product/product', 'product_id=' . $result['product_id'])

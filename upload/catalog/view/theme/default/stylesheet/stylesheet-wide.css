@@ -1315,7 +1315,11 @@ ul.box-filter > li ul {
 	color: #4D4D4D;
 }
 .product-info .description span {
+	color: #222;
+}
+.product-info .description a {
 	color: #38B0E3;
+	text-decoration: none;
 }
 .product-info .color-range {
 	border-bottom: 1px solid #E7E7E7;
@@ -1339,10 +1343,6 @@ ul.box-filter > li ul {
 	line-height: 20px;
 	text-align: center;
 	margin: 5px 10px 5px 0px;
-}
-.product-info .description a {
-	color: #4D4D4D;
-	text-decoration: none;
 }
 .product-info .price {
 	border-bottom: 1px solid #E7E7E7;
