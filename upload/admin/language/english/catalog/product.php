@@ -62,7 +62,7 @@ $_['entry_cost']            		= 'Average Cost:';
 $_['entry_quote']          		= 'Request a Quote:<br /><span class="help">Select if the product is made to order or only available on request.</span>';
 $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
-$_['entry_palette']       		= 'Color Palette:<br /><span class="help">Select a palette in order to attribute colors to additional product images.<br />Click "Apply" to activate.</span>';
+$_['entry_palette']       		= 'Color Palette:<br /><span class="help">Select a specific palette for this product.<br />Click "Apply" to activate.</span>';
 $_['entry_sort_order']       	= 'Sort Order:';
 $_['entry_status']           		= 'Status:';
 $_['entry_quantity']         		= 'Total Quantity in Stock:';

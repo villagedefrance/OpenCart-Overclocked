@@ -69,6 +69,7 @@ $(document).ready(function() {
           <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
           <li><a href="<?php echo $filter; ?>"><?php echo $text_filter; ?></a></li>
           <li><a href="<?php echo $profile; ?>"><?php echo $text_profile; ?></a></li>
+          <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
           <li><a class="arrow"><?php echo $text_attribute; ?></a>
             <ul>
               <li><a href="<?php echo $attribute; ?>"><?php echo $text_attribute; ?></a></li>
@@ -182,7 +183,6 @@ $(document).ready(function() {
               <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
               <li><a href="<?php echo $footer; ?>"><?php echo $text_footer; ?></a></li>
               <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
-              <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
               <li><a href="<?php echo $payment_image; ?>"><?php echo $text_payment_image; ?></a></li>
             </ul>
           </li>

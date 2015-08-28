@@ -22,7 +22,7 @@ $_['link_seo_product']			= 'Products';
 $_['link_seo_manufacturer']	= 'Manufacturers';
 $_['link_seo_information'] 		= 'Informations';
 $_['link_seo_news']				= 'News';
-		
+
 // Success
 $_['success_url_status']		= 'SEO URL\'s are activated in the Store Settings.';
 

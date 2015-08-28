@@ -2961,24 +2961,52 @@ DROP TABLE IF EXISTS `oc_palette_color`;
 CREATE TABLE `oc_palette_color` (
   `palette_color_id` int(11) NOT NULL AUTO_INCREMENT,
   `palette_id` int(11) NOT NULL,
-  `title` varchar(64) NOT NULL,
   `color` varchar(6) NOT NULL,
-  PRIMARY KEY (`palette_color_id`)
+  PRIMARY KEY (`palette_color_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `oc_palette_color`
 --
 
-INSERT INTO `oc_palette_color` (`palette_color_id`, `palette_id`, `title`, `color`) VALUES
-(1, 1, 'White', 'FCFCFC'),
-(2, 1, 'Black', '111111'),
-(3, 2, 'Turquoise', '5AB8B8'),
-(4, 2, 'Teal', '78CA99'),
-(5, 2, 'Silver', 'C7CDCD'),
-(6, 2, 'Scarlet', 'A01532'),
-(7, 2, 'Violet', '7A79BD'),
-(8, 2, 'Black', '333333');
+INSERT INTO `oc_palette_color` (`palette_color_id`, `palette_id`, `color`) VALUES
+(1, 1, 'FCFCFC'),
+(2, 1, '111111'),
+(3, 2, '5AB8B8'),
+(4, 2, '78CA99'),
+(5, 2, 'C7CDCD'),
+(6, 2, 'A01532'),
+(7, 2, '7A79BD'),
+(8, 2, '333333');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_palette_color_description`
+--
+
+DROP TABLE IF EXISTS `oc_palette_color_description`;
+CREATE TABLE `oc_palette_color_description` (
+  `palette_color_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `palette_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  PRIMARY KEY (`palette_color_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_palette_color_description`
+--
+
+INSERT INTO `oc_palette_color_description` (`palette_color_id`, `language_id`, `palette_id`, `title`) VALUES
+(1, 1, 1, 'White'),
+(2, 1, 1, 'Black'),
+(3, 1, 2, 'Turquoise'),
+(4, 1, 2, 'Teal'),
+(5, 1, 2, 'Silver'),
+(6, 1, 2, 'Scarlet'),
+(7, 1, 2, 'Violet'),
+(8, 1, 2, 'Black');
 
 -- --------------------------------------------------------
 
@@ -3099,6 +3127,21 @@ INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`,
 (43, 4, 1, '8gb'),
 (42, 3, 1, '100mhz'),
 (47, 2, 1, '4');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_product_color`
+--
+
+DROP TABLE IF EXISTS `oc_product_color`;
+CREATE TABLE `oc_product_color` (
+  `product_color_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `palette_color_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_color_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 

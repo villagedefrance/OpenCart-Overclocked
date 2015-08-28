@@ -594,6 +594,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
 		$this->data['column_store'] = $this->language->get('column_store');
 		$this->data['column_layout'] = $this->language->get('column_layout');
+		$this->data['column_status'] = $this->language->get('column_status');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
@@ -609,7 +610,6 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_quote'] = $this->language->get('entry_quote');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
-		$this->data['entry_palette'] = $this->language->get('entry_palette');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
@@ -632,15 +632,16 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
 		$this->data['entry_weight'] = $this->language->get('entry_weight');
 
+		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
 		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_category'] = $this->language->get('entry_category');
-		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
 		$this->data['entry_filter'] = $this->language->get('entry_filter');
 		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_related'] = $this->language->get('entry_related');
 		$this->data['entry_points'] = $this->language->get('entry_points');
 		$this->data['entry_option'] = $this->language->get('entry_option');
 		$this->data['entry_required'] = $this->language->get('entry_required');
+		$this->data['entry_palette'] = $this->language->get('entry_palette');
 
 		// Compatibility 1.5.X
 		$this->data['entry_attribute'] = $this->language->get('entry_attribute');
@@ -681,6 +682,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_add_color'] = $this->language->get('button_add_color');
 		$this->data['button_add_attribute'] = $this->language->get('button_add_attribute');
 		$this->data['button_add_option'] = $this->language->get('button_add_option');
 		$this->data['button_add_option_value'] = $this->language->get('button_add_option_value');
@@ -693,6 +695,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_data'] = $this->language->get('tab_data');
 		$this->data['tab_links'] = $this->language->get('tab_links');
+		$this->data['tab_colors'] = $this->language->get('tab_colors');
 		$this->data['tab_attribute'] = $this->language->get('tab_attribute');
 		$this->data['tab_option'] = $this->language->get('tab_option');
 		$this->data['tab_profile'] = $this->language->get('tab_profile');
@@ -912,18 +915,6 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['date_available'] = date('Y-m-d', time() - 86400);
 		}
 
-		$this->load->model('design/palette');
-
-		$this->data['palettes'] = $this->model_design_palette->getPalettes(0);
-
-		if (isset($this->request->post['palette_id'])) {
-			$this->data['palette_id'] = $this->request->post['palette_id'];
-		} elseif (!empty($product_info)) {
-			$this->data['palette_id'] = $product_info['palette_id'];
-		} else {
-			$this->data['palette_id'] = 0;
-		}
-
 		if (isset($this->request->post['sort_order'])) {
 			$this->data['sort_order'] = $this->request->post['sort_order'];
 		} elseif (!empty($product_info)) {
@@ -1109,6 +1100,34 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['weight_class_id'] = $this->config->get('config_weight_class_id');
 		}
 
+		// Manufacturer
+		$this->load->model('catalog/manufacturer');
+
+		$this->data['manufacturers'] = $this->model_catalog_manufacturer->getManufacturers();
+
+		if (isset($this->request->post['manufacturer_id'])) {
+			$this->data['manufacturer_id'] = $this->request->post['manufacturer_id'];
+		} elseif (!empty($product_info)) {
+			$this->data['manufacturer_id'] = $product_info['manufacturer_id'];
+		} else {
+			$this->data['manufacturer_id'] = 0;
+		}
+
+		if (isset($this->request->post['manufacturer'])) {
+			$this->data['manufacturer'] = $this->request->post['manufacturer'];
+		} elseif (!empty($product_info)) {
+			$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
+
+			if ($manufacturer_info) {
+				$this->data['manufacturer'] = $manufacturer_info['name'];
+			} else {
+				$this->data['manufacturer'] = '';
+			}
+
+		} else {
+			$this->data['manufacturer'] = '';
+		}
+
 		// Stores
 		$this->load->model('setting/store');
 
@@ -1146,34 +1165,6 @@ class ControllerCatalogProduct extends Controller {
 					'name'        	=> $category_info['path'] ? $category_info['path'] . ' &gt; ' : '' . $category_info['name']
 				);
 			}
-		}
-
-		// Manufacturer
-		$this->load->model('catalog/manufacturer');
-
-		$this->data['manufacturers'] = $this->model_catalog_manufacturer->getManufacturers();
-
-		if (isset($this->request->post['manufacturer_id'])) {
-			$this->data['manufacturer_id'] = $this->request->post['manufacturer_id'];
-		} elseif (!empty($product_info)) {
-			$this->data['manufacturer_id'] = $product_info['manufacturer_id'];
-		} else {
-			$this->data['manufacturer_id'] = 0;
-		}
-
-		if (isset($this->request->post['manufacturer'])) {
-			$this->data['manufacturer'] = $this->request->post['manufacturer'];
-		} elseif (!empty($product_info)) {
-			$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
-
-			if ($manufacturer_info) {
-				$this->data['manufacturer'] = $manufacturer_info['name'];
-			} else {
-				$this->data['manufacturer'] = '';
-			}
-
-		} else {
-			$this->data['manufacturer'] = '';
 		}
 
 		// Filters
@@ -1250,6 +1241,49 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
+		// Colors
+		$this->load->model('catalog/palette');
+
+		$this->data['palettes'] = $this->model_catalog_palette->getPalettes(0);
+
+		if (isset($this->request->post['palette_id'])) {
+			$this->data['palette_id'] = $this->request->post['palette_id'];
+		} elseif (!empty($product_info)) {
+			$this->data['palette_id'] = $product_info['palette_id'];
+		} else {
+			$this->data['palette_id'] = 0;
+		}
+
+		if (isset($product_info['palette_id'])) {
+			$this->data['colors'] = $this->model_catalog_palette->getPaletteColorsByPaletteId($product_info['palette_id']);
+		} else {
+			$this->data['colors'] = $this->model_catalog_palette->getPaletteColors();
+		}
+
+		if (isset($this->request->post['product_color'])) {
+			$product_colors = $this->request->post['product_color'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$product_colors = $this->model_catalog_product->getProductColors($this->request->get['product_id']);
+		} else {
+			$product_colors = array();
+		}
+
+		$this->data['product_colors'] = array();
+
+		foreach ($product_colors as $product_color_id) {
+			$palette_colors = $this->model_catalog_palette->getPaletteColorsByColorId($product_color_id);
+
+			if ($palette_colors) {
+				foreach ($palette_colors as $palette_color) {
+					$this->data['product_colors'][] = array(
+						'palette_color_id'	=> $palette_color['palette_color_id'],
+						'color'				=> $palette_color['color'],
+						'title'					=> $palette_color['title']
+					);
+				}
+			}
+		}
+
 		// Attributes
 		$this->load->model('catalog/attribute');
 
@@ -1268,9 +1302,9 @@ class ControllerCatalogProduct extends Controller {
 
 			if ($attribute_info) {
 				$this->data['product_attributes'][] = array(
+					'product_attribute_description' => $product_attribute['product_attribute_description'],
 					'attribute_id'      	=> $product_attribute['attribute_id'],
-					'name'            	=> $attribute_info['name'],
-					'product_attribute_description' => $product_attribute['product_attribute_description']
+					'name'            	=> $attribute_info['name']
 				);
 			}
 		}
@@ -1395,23 +1429,18 @@ class ControllerCatalogProduct extends Controller {
 			$product_images = array();
 		}
 
+		$this->data['palette_colors'] = array();
+
 		if (isset($product_info['palette_id'])) {
-			$this->data['colors'] = array();
+			$palette_colors = $this->model_catalog_palette->getPaletteColorsByPaletteId($product_info['palette_id']);
 
-			$colors = $this->model_design_palette->getPaletteColors($product_info['palette_id']);
-
-			foreach ($colors as $color) {
-				$this->data['colors'][] = array(
-					'palette_color_id'	=> $color['palette_color_id'],
-					'title'					=> $color['title'],
-					'color'				=> $color['color']
+			foreach ($palette_colors as $palette_color) {
+				$this->data['palette_colors'][] = array(
+					'palette_color_id'	=> $palette_color['palette_color_id'],
+					'title'			=> $palette_color['title'],
+					'color'		=> $palette_color['color']
 				);
 			}
-
-		} else {
-			$colors = array(0);
-
-			$this->data['colors'] = $colors;
 		}
 
 		$this->data['product_images'] = array();
@@ -1423,7 +1452,7 @@ class ControllerCatalogProduct extends Controller {
 				$image = 'no_image.jpg';
 			}
 
-			if (isset($product_image['palette_color_id']) && $product_info['palette_id'] && !empty($colors)) {
+			if (isset($product_image['palette_color_id']) && $product_info['palette_id'] && !empty($palette_colors)) {
 				$palette_color_id = $product_image['palette_color_id'];
 			} else {
 				$palette_color_id = 0;

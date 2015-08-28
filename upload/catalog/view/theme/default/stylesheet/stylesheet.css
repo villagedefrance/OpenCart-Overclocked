@@ -161,32 +161,6 @@ samp, small {
 	line-height: 17px;
 	margin-right: 23px;
 }
-#language img {
-	margin-right: 5px;
-	cursor: pointer;
-}
-#language a {
-	display: block;
-	color: #777;
-	font-size: 11px;
-	text-decoration: none;
-	white-space: nowrap;
-	padding: 4px 10px;
-}
-#language a:hover {
-	color: #38B0E3;
-}
-#language-option {
-	background: #FFF;
-	border: 1px solid #DDD;
-	-moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
-	margin-top: 3px;
-	padding-top: 2px;
-	z-index: 575;
-}
 #language-selector {
 	margin-top: 8px;
 	cursor: pointer;
@@ -198,29 +172,7 @@ samp, small {
 	background: url('../image/arrow-dropdown.png') 100% 50% no-repeat;
 	padding: 0px 17px 0px 10px;
 }
-.language-selected img {
-	float: left;
-	margin: 3px 6px 0px 0px;
-}
-/* Header Currency */
-#currency {
-	float: right;
-	font-size: 11px;
-	line-height: 17px;
-	margin-right: 13px;
-}
-#currency a {
-	display: block;
-	color: #777;
-	font-size: 11px;
-	text-decoration: none;
-	white-space: nowrap;
-	padding: 4px 10px;
-}
-#currency a:hover {
-	color: #38B0E3;
-}
-#currency-option {
+#language-option {
 	background: #FFF;
 	border: 1px solid #DDD;
 	-moz-border-radius: 3px;
@@ -229,7 +181,26 @@ samp, small {
     border-radius: 3px;
 	margin-top: 3px;
 	padding-top: 2px;
-	z-index: 575;
+	z-index: 585;
+}
+#language-option a {
+	display: block;
+	color: #777;
+	font-size: 11px;
+	text-decoration: none;
+	white-space: nowrap;
+	padding: 4px 10px;
+	cursor: pointer;
+}
+#language-option a:hover {
+	color: #38B0E3;
+}
+/* Header Currency */
+#currency {
+	float: right;
+	font-size: 11px;
+	line-height: 17px;
+	margin-right: 13px;
 }
 #currency-selector {
 	margin-top: 8px;
@@ -242,9 +213,28 @@ samp, small {
 	background: url('../image/arrow-dropdown.png') 100% 50% no-repeat;
 	padding: 0px 17px 0px 10px;
 }
-#currency a b {
-	color: #333;
+#currency-option {
+	background: #FFF;
+	border: 1px solid #DDD;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+	margin-top: 3px;
+	padding-top: 2px;
+	z-index: 585;
+}
+#currency-option a {
+	display: block;
+	color: #777;
+	font-size: 11px;
 	text-decoration: none;
+	white-space: nowrap;
+	padding: 4px 10px;
+	cursor: pointer;
+}
+#currency-option a:hover {
+	color: #38B0E3;
 }
 /* Header cart */
 #header #cart {

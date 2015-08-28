@@ -2274,9 +2274,23 @@ DROP TABLE IF EXISTS `oc_palette_color`;
 CREATE TABLE `oc_palette_color` (
   `palette_color_id` int(11) NOT NULL AUTO_INCREMENT,
   `palette_id` int(11) NOT NULL,
-  `title` varchar(64) NOT NULL,
   `color` varchar(6) NOT NULL,
   PRIMARY KEY (`palette_color_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_palette_color_description`
+--
+
+DROP TABLE IF EXISTS `oc_palette_color_description`;
+CREATE TABLE `oc_palette_color_description` (
+  `palette_color_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `palette_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  PRIMARY KEY (`palette_color_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -2353,6 +2367,21 @@ CREATE TABLE `oc_product_attribute` (
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL,
   PRIMARY KEY (`product_id`,`attribute_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_product_color`
+--
+
+DROP TABLE IF EXISTS `oc_product_color`;
+CREATE TABLE `oc_product_color` (
+  `product_color_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `palette_color_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_color_id`),
+  KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------

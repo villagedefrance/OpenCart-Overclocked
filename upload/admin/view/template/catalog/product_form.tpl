@@ -22,6 +22,7 @@
       <a href="#tab-general"><?php echo $tab_general; ?></a>
       <a href="#tab-data"><?php echo $tab_data; ?></a>
       <a href="#tab-links"><?php echo $tab_links; ?></a>
+      <a href="#tab-colors"><?php echo $tab_colors; ?></a>
       <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
       <a href="#tab-option"><?php echo $tab_option; ?></a>
       <a href="#tab-profile"><?php echo $tab_profile; ?></a>
@@ -290,6 +291,26 @@
       </div>
       <div id="tab-links">
         <table class="form">
+        <?php if ($autocomplete_off) { ?>
+          <tr>
+            <td><?php echo $entry_manufacturer; ?></td>
+            <td><select name="manufacturer_id">
+              <option value="0" selected="selected"><?php echo $text_none; ?></option>
+              <?php foreach ($manufacturers as $manufacturer) { ?>
+                <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
+                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>"><?php echo $manufacturer['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        <?php } else { ?>
+          <tr>
+            <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
+            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
+          </tr>
+        <?php } ?>
           <tr>
             <td><?php echo $entry_store; ?></td>
             <td><div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
@@ -358,26 +379,6 @@
                 </div>
               <?php } ?>
             </div></td>
-          </tr>
-        <?php } ?>
-        <?php if ($autocomplete_off) { ?>
-          <tr>
-            <td><?php echo $entry_manufacturer; ?></td>
-            <td><select name="manufacturer_id">
-              <option value="0" selected="selected"><?php echo $text_none; ?></option>
-              <?php foreach ($manufacturers as $manufacturer) { ?>
-                <?php if ($manufacturer['manufacturer_id'] == $manufacturer_id) { ?>
-                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>" selected="selected"><?php echo $manufacturer['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $manufacturer['manufacturer_id']; ?>"><?php echo $manufacturer['name']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-        <?php } else { ?>
-          <tr>
-            <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
           </tr>
         <?php } ?>
         <?php if ($autocomplete_off) { ?>
@@ -513,6 +514,55 @@
             </div></td>
           </tr>
         <?php } ?>
+        </table>
+      </div>
+      <div id="tab-colors">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_palette; ?></td>
+            <td><select name="palette_id">
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($palettes as $palette) { ?>
+                <?php if ($palette['palette_id'] == $palette_id) { ?>
+                  <option value="<?php echo $palette['palette_id']; ?>" selected="selected"><?php echo $palette['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
+        <table id="colors" class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $column_palette_color_id; ?></td>
+            <td></td>
+          </tr>
+        </thead>
+        <?php $color_row = 0; ?>
+        <?php foreach ($product_colors as $product_color) { ?>
+        <tbody id="color-row<?php echo $color_row; ?>">
+          <tr>
+            <td class="left"><select name="product_color[<?php echo $color_row; ?>][palette_color_id]">
+              <?php foreach ($colors as $color) { ?>
+			    <?php if ($product_color['palette_color_id'] == $color['palette_color_id']) { ?>
+                  <option value="<?php echo $color['palette_color_id']; ?>" selected="selected"><?php echo $color['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+			</select></td>
+            <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+          </tr>
+        </tbody>
+        <?php $color_row++; ?>
+        <?php } ?>
+        <tfoot>
+          <tr>
+            <td colspan="1"></td>
+            <td class="center"><a onclick="addColor();" class="button"><?php echo $button_add_color; ?></a></td>
+          </tr>
+        </tfoot>
         </table>
       </div>
       <div id="tab-attribute">
@@ -890,21 +940,6 @@
         </table>
       </div>
       <div id="tab-image">
-        <table class="form">
-          <tr>
-            <td><?php echo $entry_palette; ?></td>
-            <td><select name="palette_id">
-              <option value="0"><?php echo $text_none; ?></option>
-              <?php foreach ($palettes as $palette) { ?>
-                <?php if ($palette['palette_id'] == $palette_id) { ?>
-                  <option value="<?php echo $palette['palette_id']; ?>" selected="selected"><?php echo $palette['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-        </table>
         <table id="images" class="list">
           <thead>
             <tr>
@@ -928,12 +963,12 @@
               <?php if ($palette_id) { ?>
               <td class="center"><select name="product_image[<?php echo $image_row; ?>][palette_color_id]">
                 <option value=""><?php echo $text_none; ?></option>
-                <?php if ($colors) { ?>
-                  <?php foreach ($colors as $color) { ?>
-                    <?php if ((isset($product_image['palette_color_id'])) && $product_image['palette_color_id'] == $color['palette_color_id']) { ?>
-                      <option value="<?php echo $color['palette_color_id']; ?>" selected="selected"><?php echo $color['title']; ?></option>
+                <?php if ($palette_colors) { ?>
+                  <?php foreach ($palette_colors as $palette_color) { ?>
+                    <?php if ((isset($product_image['palette_color_id'])) && $product_image['palette_color_id'] == $palette_color['palette_color_id']) { ?>
+                      <option value="<?php echo $palette_color['palette_color_id']; ?>" selected="selected"><?php echo $palette_color['title']; ?></option>
                     <?php } else { ?>
-                      <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>
+                      <option value="<?php echo $palette_color['palette_color_id']; ?>"><?php echo $palette_color['title']; ?></option>
                     <?php } ?>
                   <?php } ?>
                 <?php } ?>
@@ -1303,6 +1338,28 @@ getRelated();
 <?php } ?>
 
 <script type="text/javascript"><!--
+var color_row = <?php echo $color_row; ?>;
+
+function addColor() {
+	html  = '<tbody id="color-row' + color_row + '">';
+	html += '  <tr>';
+	html += '    <td class="left"><select name="product_color[' + color_row + '][palette_color_id]">';
+	html += '      <option value=""><?php echo $text_none; ?></option>';
+	<?php foreach ($colors as $color) { ?>
+	html += '      <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>';
+	<?php } ?>
+	html += '    </select></td>';
+	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
+	html += '</tbody>';
+
+	$('#colors tfoot').before(html);
+
+	color_row++;
+}
+//--></script>
+
+<script type="text/javascript"><!--
 var attribute_row = <?php echo $attribute_row; ?>;
 
 function addAttribute() {
@@ -1542,26 +1599,20 @@ var profile_row = <?php echo $profile_row; ?>;
 
 function addProfile() {
 	html  = '<tbody id="profile-row' + profile_row + '">';
-	html += '<tr>';
-	html += '  <td class="left">';
-	html += '    <select name="product_profiles[' + profile_row + '][profile_id]">';
-	html += '    <option value=""><?php echo $text_none; ?></option>';
+	html += '  <tr>';
+	html += '    <td class="left"><select name="product_profiles[' + profile_row + '][profile_id]">';
+	html += '      <option value=""><?php echo $text_none; ?></option>';
 	<?php foreach ($profiles as $profile) { ?>
 	html += '      <option value="<?php echo $profile['profile_id']; ?>"><?php echo $profile['name']; ?></option>';
 	<?php } ?>
-	html += '    </select>';
-	html += '  </td>';
-	html += '  <td class="left">';
-	html += '    <select name="product_profiles[' + profile_row + '][customer_group_id]">';
+	html += '    </select></td>';
+	html += '    <td class="left"><select name="product_profiles[' + profile_row + '][customer_group_id]">';
 	<?php foreach ($customer_groups as $customer_group) { ?>
 	html += '      <option value="<?php echo $customer_group['customer_group_id']; ?>"><?php echo addslashes($customer_group['name']); ?></option>';
 	<?php } ?>
-	html += '    </select>';
-	html += '  </td>';
-	html += '  <td class="center">';
-	html += '    <a onclick="$(\'#profile-row' + profile_row + '\').remove()" class="button-delete"><?php echo $button_remove; ?></a>';
-	html += '  </td>';
-	html += '</tr>';
+	html += '    </select></td>';
+	html += '    <td class="center"><a onclick="$(\'#profile-row' + profile_row + '\').remove()" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
 	html += '</tbody>';
 
 	$('#profile tfoot').before(html);
@@ -1668,9 +1719,9 @@ function addImage() {
 	<?php if ($palette_id) { ?>
 	html += '    <td class="center"><select name="product_image[' + image_row + '][palette_color_id]">';
     html += '      <option value=""><?php echo $text_none; ?></option>';
-    <?php if ($colors) { ?>
-	<?php foreach ($colors as $color) { ?>
-	html += '      <option value="<?php echo $color['palette_color_id']; ?>"><?php echo addslashes($color['title']); ?></option>';
+    <?php if ($palette_colors) { ?>
+	<?php foreach ($palette_colors as $palette_color) { ?>
+	html += '      <option value="<?php echo $palette_color['palette_color_id']; ?>"><?php echo addslashes($palette_color['title']); ?></option>';
 	<?php } ?>
 	<?php } ?>
 	html += '    </select></td>';

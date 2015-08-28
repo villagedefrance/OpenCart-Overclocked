@@ -452,6 +452,34 @@ class ModelCatalogProduct extends Model {
 		return $query->rows;
 	}
 
+	public function getProductColors($product_id) {
+		$product_color_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_color WHERE product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$product_color_data[] = $result['palette_color_id'];
+		}
+
+		return $product_color_data;
+	}
+
+	public function getPaletteColorsByColorId($palette_color_id) {
+		$palette_colors_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "palette_color pc LEFT JOIN " . DB_PREFIX . "palette_color_description pcd ON (pc.palette_color_id = pcd.palette_color_id) WHERE pcd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND pc.palette_color_id = '" . (int)$palette_color_id . "' GROUP BY pc.palette_color_id ORDER BY pcd.title ASC");
+
+		foreach ($query->rows as $result) {
+			$palette_colors_data[] = array(
+				'palette_color_id'	=> $result['palette_color_id'],
+				'color'				=> $result['color'],
+				'title'					=> $result['title']
+			);
+		}
+
+		return $palette_colors_data;
+	}
+
 	public function getProductImages($product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
 

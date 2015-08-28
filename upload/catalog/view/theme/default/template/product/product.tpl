@@ -116,13 +116,6 @@
           <?php } ?>
         <?php } ?>
       </div>
-      <?php if ($colors) { ?>
-        <div class="color-range">
-          <?php foreach ($colors as $color) { ?>
-            <span class="color" style="background-color:#<?php echo $color['color']; ?>;"></span>
-          <?php } ?><br />
-        </div>
-      <?php } ?>
       <?php if ($price) { ?>
         <div class="price"><?php echo $text_price; ?>
           <?php if (!$special) { ?>
@@ -161,6 +154,13 @@
           <span id="profile-description"></span>
           <br />
           <br />
+        </div>
+      <?php } ?>
+      <?php if ($product_colors) { ?>
+        <div class="color-range">
+          <?php foreach ($product_colors as $product_color) { ?>
+            <span class="color" style="background-color:#<?php echo $product_color['color']; ?>;"></span>
+          <?php } ?><br />
         </div>
       <?php } ?>
       <?php if ($options) { ?>

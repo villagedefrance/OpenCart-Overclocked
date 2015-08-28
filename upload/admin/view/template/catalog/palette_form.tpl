@@ -41,7 +41,13 @@
       <?php foreach ($palette_colors as $palette_color) { ?>
       <tbody id="color-row<?php echo $color_row; ?>">
         <tr>
-          <td class="left"><input type="text" name="palette_color[<?php echo $color_row; ?>][title]" value="<?php echo $palette_color['title']; ?>" size="30" />
+          <td class="left"><?php foreach ($languages as $language) { ?>
+            <input type="text" name="palette_color[<?php echo $color_row; ?>][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($palette_color['palette_color_description'][$language['language_id']]) ? $palette_color['palette_color_description'][$language['language_id']]['title'] : ''; ?>" />
+            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+            <?php if (isset($error_palette_color[$color_row][$language['language_id']])) { ?>
+              <span class="error"><?php echo $error_palette_color[$color_row][$language['language_id']]; ?></span>
+            <?php } ?>
+          <?php } ?></td>
           <?php if (isset($error_title[$color_row])) { ?>
             <span class="error"><?php echo $error_title[$color_row]; ?></span>
           <?php } ?></td>
@@ -72,7 +78,11 @@ var color_row = <?php echo $color_row; ?>;
 function addColor() {
 	html  = '<tbody id="color-row' + color_row + '">';
 	html += '  <tr>';
-	html += '    <td class="left"><input type="text" name="palette_color[' + color_row + '][title]" value="" size="30" /></td>';
+	html += '    <td class="left">';
+	<?php foreach ($languages as $language) { ?>
+	html += '      <input type="text" name="palette_color[' + color_row + '][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
+	<?php } ?>
+	html += '    </td>';
 	html += '    <td class="left">#<input type="text" name="palette_color[' + color_row + '][color]" value="" size="7" maxlength="6" /><span class="color" style="background-color:#F8F8F8;">?</span></td>';
 	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

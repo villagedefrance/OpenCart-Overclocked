@@ -333,6 +333,8 @@ class ControllerToolSeoUrlManager extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -390,8 +392,6 @@ class ControllerToolSeoUrlManager extends Controller {
 		if (isset($this->request->get['url_alias_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$url_info = $this->model_tool_seo_url_manager->getUrl($this->request->get['url_alias_id']);
 		}
-
-		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->post['query'])) {
 			$this->data['query'] = $this->request->post['query'];

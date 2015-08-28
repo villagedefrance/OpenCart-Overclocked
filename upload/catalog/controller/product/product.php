@@ -388,6 +388,7 @@ class ControllerProductProduct extends Controller {
 				$this->data['stock'] = $this->language->get('text_instock');
 			}
 
+			// Location
 			$this->load->model('localisation/location');
 
 			$this->data['locations'] = array();
@@ -402,23 +403,28 @@ class ControllerProductProduct extends Controller {
 				}
 			}
 
-			$this->load->model('design/palette');
+			// Color
+			$this->data['product_colors'] = array();
 
-			$this->data['colors'] = array();
+			$product_colors = $this->model_catalog_product->getProductColors($this->request->get['product_id']);
 
-			if ($product_info['palette_id'] > 0) {
-				$colors = $this->model_design_palette->getPaletteColors($product_info['palette_id']);
+			if ($product_colors) {
+				foreach ($product_colors as $product_color_id) {
+					$palette_colors = $this->model_catalog_product->getPaletteColorsByColorId($product_color_id);
 
-				if ($colors) {
-					foreach ($colors as $color) {
-						$this->data['colors'][] = array(
-							'title'		=> $color['title'],
-							'color'	=> $color['color']
-						);
+					if ($palette_colors) {
+						foreach ($palette_colors as $palette_color) {
+							$this->data['product_colors'][] = array(
+								'palette_color_id'	=> $palette_color['palette_color_id'],
+								'color'				=> $palette_color['color'],
+								'title'					=> $palette_color['title']
+							);
+						}
 					}
 				}
 			}
 
+			// Price
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				if (($product_info['price'] == '0.0000') && $this->config->get('config_price_free')) {
 					$this->data['price'] = $this->language->get('text_free');
