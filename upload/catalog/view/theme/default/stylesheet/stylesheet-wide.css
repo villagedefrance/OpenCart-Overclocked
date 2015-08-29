@@ -717,18 +717,20 @@ a.button-add {
 	height: 30px;
 	line-height: 16px;
 	border-bottom: 1px solid #DDD;
+	margin-bottom: 32px;
 }
 .htabs a {
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
+	color: #111;
 	font-size: 13px;
 	font-weight: bold;
-	color: #111;
 	text-align: center;
 	text-decoration: none;
 	border-top: 1px solid #DDD;
 	border-left: 1px solid #DDD;
 	border-right: 1px solid #DDD;
+	border-bottom: 1px solid transparent;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#FFF));
 	background-image: -webkit-linear-gradient(top, #EEE, #FFF);
@@ -738,16 +740,15 @@ a.button-add {
 	background-image: linear-gradient(to bottom, #EEE, #FFF);
 	padding: 7px 15px 6px 15px;
 	margin-right: 2px;
+	margin-bottom: 0;
 	display: none;
 }
 .htabs a.selected {
-	padding-bottom: 7px;
 	background: #FFF;
+	border-bottom: 1px solid #FFF;
+	outline: 0;
 }
 .tab-content {
-	border-left: 1px solid #DDD;
-	border-right: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
 	padding: 10px;
 	margin-bottom: 20px;
 	z-index: 2;
@@ -1270,29 +1271,36 @@ ul.box-filter > li ul {
 }
 .product-info > .left {
 	float: left;
+	min-height: 250px;
 }
 .product-info > .right {
+	float: left;
+	min-width: 290px;
 	min-height: 250px;
-	min-width: 285px;
 	margin-left: 15px;
 }
-.product-info .image {
+.product-info > .left + .right {
+	display: inline-block;
+}
+.product-info > .left .image {
 	float: left;
+	width: auto;
 	border: 1px solid #E7E7E7;
 	text-align: center;
 	margin-bottom: 20px;
 	padding: 10px;
 }
-.product-info .image-additional {
-	overflow: hidden;
-	clear: both;
+.product-info > .left .image-additional {
+	clear: left;
+	max-width: 260px;
+	overflow: auto;
 }
-.product-info .image-additional a {
+.product-info > .left .image-additional a {
 	float: left;
 	display: block;
 	margin: 0px 10px 10px 0px;
 }
-.product-info .image-additional img {
+.product-info > .left .image-additional img {
 	border: 1px solid #E7E7E7;
 	padding: 2px;
 }
@@ -1445,8 +1453,13 @@ ul.box-filter > li ul {
 	display: inline-block;
 	margin-left: 10px;
 	padding-top: 0px;
+	padding-right: 10px;
 	line-height: 32px;
 	color: #999;
+}
+.product-info .cart div > span img {
+	vertical-align: middle;
+	cursor: pointer;
 }
 .product-info .cart .minimum {
 	margin-top: 5px;
