@@ -415,7 +415,8 @@
       <div id="add-review">
         <h2 id="review-title"><?php echo $text_write; ?></h2>
         <div class="review-element">
-          <input type="text" name="name" value="" placeholder="<?php echo $entry_name; ?>" size="30" />
+          <label for="name" class="hidden"></label>
+          <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
         </div>
         <div class="review-element">
           <textarea name="text" cols="40" rows="3" placeholder="<?php echo $entry_review; ?>"></textarea>

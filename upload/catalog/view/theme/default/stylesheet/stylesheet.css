@@ -1496,10 +1496,34 @@ ul.box-filter > li ul {
 .sub-prod-count:hover {
 	background: #EDEDED url('../image/minus.png') center center no-repeat;
 }
+/* Add Review */
+#add-review {
+	float: left;
+	width: 48%;
+	min-width: 275px;
+	display: block;
+}
+#add-review textarea {
+	width: 270px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	resize: vertical;
+}
+#add-review div.review-element {
+	margin-bottom: 10px;
+}
+#add-review .review-rating {
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
 /* Reviews */
 #review {
 	float: right;
-	width: 50%;
+	width: 48%;
+	min-width: 275px;
+	display: block;
 }
 #review .content {
 	background: #FFF;
@@ -1627,26 +1651,6 @@ ul.box-filter > li ul {
 .review-grid .addons {
 	display: inline-block;
 	margin: 4px auto;
-}
-/* Add Review */
-#add-review {
-	float: left;
-	width: 45%;
-}
-#add-review textarea {
-	width: 270px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-	resize: vertical;
-}
-#add-review div.review-element {
-	margin-bottom: 10px;
-}
-#add-review .review-rating {
-	margin-top: 15px;
-	margin-bottom: 10px;
 }
 /* Attribute */
 .attribute {
@@ -1779,10 +1783,12 @@ ul.box-filter > li ul {
 .login-content .left {
 	float: left;
 	width: 48%;
+	min-width: 270px;
 }
 .login-content .right {
 	float: right;
-	width: 48%
+	width: 48%;
+	min-width: 270px;
 }
 .login-content .left .content, .login-content .right .content {
 	min-height: 190px;
@@ -2703,23 +2709,35 @@ a.icon-skype:hover {
 		width: 100%;
 	}
 	#content .content .right {
-		float: left;
 		clear: left;
+		float: left;
 	}
 	#return-product .content .return-product, #return-product .content .return-detail {
 		width: 100%;
 	}
 	#return-product .content .return-detail {
-		float: left;
 		clear: left;
+		float: left;
+	}
+	/* Reviews */
+	#review {
+		float: left;
+	}
+	#add-review {
+		clear: left;
+	}
+	/* Login */
+	.login-content .right {
+		clear: left;
+		float: left;
 	}
 	/* Footer */
 	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
 		clear: left;
 	}
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
-		float: left;
 		clear: left;
+		float: left;
 		margin-top: 15px;
 		margin-left: 15px;
 	}
