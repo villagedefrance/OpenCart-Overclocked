@@ -2183,17 +2183,21 @@ ul.box-filter > li ul {
 	float: right;
 }
 /* Contact */
-.content .contact-info {
+.contact-info {
 	width: 100%;
 	overflow: auto;
 }
-.content .contact-info .info-left {
+.contact-info .info-left {
 	float: left;
-	width: 33%;
+	width: 57%;
+	min-width: 270px;
+	margin-right: 15px;
 }
-.content .contact-info .info-right {
+.contact-info .info-right {
 	float: left;
-	width: 65%;
+	width: 37%;
+	min-width: 270px;
+	margin-left: 15px;
 }
 /* Sitemap */
 .sitemap-info {
@@ -2730,6 +2734,10 @@ a.icon-skype:hover {
 	.login-content .right {
 		clear: left;
 		float: left;
+	}
+	/* Contact */
+	.contact-info .info-right {
+		clear: left;
 	}
 	/* Footer */
 	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {

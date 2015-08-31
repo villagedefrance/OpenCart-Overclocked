@@ -13,47 +13,18 @@
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <div class="content">
       <div class="contact-info">
-        <?php if (!$hide_location) { ?>
         <div class="info-left">
-          <h2><?php echo $text_location; ?></h2>
-          <br />
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/address.png" alt="" /> &nbsp; <b><?php echo $store; ?></b><br />
-          <?php echo $address; ?><br />
-          <br />
-          <?php if ($telephone) { ?>
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" /> &nbsp; <?php echo $telephone; ?><br />
-            <br />
-          <?php } ?>
-          <?php if ($fax) { ?>
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
-			<br />
-          <?php } ?>
-          <?php if ($map) { ?>
-           <br />
-           <br />
-           <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" /> &nbsp <b><?php echo $text_geolocation; ?></b>
-           <br />
-           <br />
-           <i><?php echo $text_latitude; ?></i> <?php echo $map_latitude; ?> <i>&deg; N</i>
-           <br />
-		   <br />
-           <i><?php echo $text_longitude; ?></i> <?php echo $map_longitude; ?> <i>&deg; E</i>
-           <br />
-          <?php } ?>
-        </div>
-        <?php } ?>
-        <div class="info-right">
           <h2><?php echo $text_contact; ?></h2>
           <br />
           <b><?php echo $entry_name; ?></b><br />
-          <input type="text" name="name" size="35" value="<?php echo $name; ?>" />
+          <input type="text" name="name" size="30" value="<?php echo $name; ?>" />
           <br />
           <?php if ($error_name) { ?>
             <span class="error"><?php echo $error_name; ?></span>
           <?php } ?>
           <br />
           <b><?php echo $entry_email; ?></b><br />
-          <input type="text" name="email" size="45" value="<?php echo $email; ?>" />
+          <input type="text" name="email" size="40" value="<?php echo $email; ?>" />
           <br />
           <?php if ($error_email) { ?>
             <span class="error"><?php echo $error_email; ?></span>
@@ -86,6 +57,35 @@
             <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>
           </div>
         </div>
+        <?php if (!$hide_location) { ?>
+        <div class="info-right">
+          <h2><?php echo $text_location; ?></h2>
+          <br />
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/address.png" alt="" /> &nbsp; <b><?php echo $store; ?></b><br />
+          <?php echo $address; ?><br />
+          <br />
+          <?php if ($telephone) { ?>
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" /> &nbsp; <?php echo $telephone; ?><br />
+            <br />
+          <?php } ?>
+          <?php if ($fax) { ?>
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
+			<br />
+          <?php } ?>
+          <?php if ($map) { ?>
+           <br />
+           <br />
+           <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" /> &nbsp <b><?php echo $text_geolocation; ?></b>
+           <br />
+           <br />
+           <i><?php echo $text_latitude; ?></i> <?php echo $map_latitude; ?> <i>&deg; N</i>
+           <br />
+		   <br />
+           <i><?php echo $text_longitude; ?></i> <?php echo $map_longitude; ?> <i>&deg; E</i>
+           <br />
+          <?php } ?>
+        </div>
+        <?php } ?>
       </div>
       <?php if ($map) { ?>
         <div id="contact-map"></div>
