@@ -71,7 +71,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_service; ?></td>
-            <td><div class="scrollbox">
+            <td><div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
               <?php $class = 'odd'; ?>
               <?php foreach ($services as $service) { ?>
                 <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
@@ -200,6 +200,29 @@
               <input type="radio" name="fedex_display_weight" value="0" checked="checked" />
               <?php echo $text_no; ?>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_dimension; ?></td>
+            <td>
+              <input type="text" name="fedex_length" value="<?php echo $fedex_length; ?>" size="4" /> x 
+              <input type="text" name="fedex_width" value="<?php echo $fedex_width; ?>" size="4" /> x 
+              <input type="text" name="fedex_height" value="<?php echo $fedex_height; ?>" size="4" />
+              <?php if ($error_dimension) { ?>
+                <span class="error"><?php echo $error_dimension; ?></span>
+              <?php } ?>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_length_class; ?></td>
+            <td><select name="fedex_length_class_id">
+              <?php foreach ($length_classes as $length_class) { ?>
+                <?php if ($length_class['length_class_id'] == $fedex_length_class_id) { ?>
+                  <option value="<?php echo $length_class['length_class_id']; ?>" selected="selected"><?php echo $length_class['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
           </tr>
           <tr>
             <td><?php echo $entry_weight_class; ?></td>
