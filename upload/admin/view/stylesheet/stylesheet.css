@@ -676,7 +676,7 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	padding: 5px;
 	background-color: #EEE;
 }
-/* Table */
+/* Table form */
 table.form {
 	width: 100%;
 	border-collapse: collapse;
@@ -693,6 +693,20 @@ table.form > tbody > tr > td {
 /* Table Image */
 table.form tr td div.image, .list tbody tr td div.image {
 	text-align: center;
+}
+/* Table tool */
+table.tool {
+	width: 100%;
+	cellpadding: 5px;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+table.tool > tr {
+	text-align: left;
+	padding: 10px;
+}
+table.tool > tr > td {
+	color: #111;
 }
 /* Htabs */
 .htabs {

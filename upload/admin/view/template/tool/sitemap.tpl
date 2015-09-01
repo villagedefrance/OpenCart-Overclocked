@@ -31,7 +31,7 @@
         <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $text_create; ?></div>
       <?php } ?>
       <h2><?php echo $text_sitemaps; ?></h2>
-      <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
+      <div style="border:1px solid #DDD; padding:10px; margin-bottom:15px;">
         <table width="100%" cellpadding="5px">
           <tr>
             <th align="left"><?php echo $text_head_type; ?></th>
@@ -107,7 +107,7 @@
       </div>
       <?php if ($sitemapxml) { ?>
         <h2><?php echo $text_submit; ?></h2>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
+        <div style="border:1px solid #DDD; padding:10px; margin-bottom:15px;">
           <table width="100%">
             <tr>
               <td>
@@ -117,7 +117,7 @@
                 <a onclick="window.open('<?php echo $baiduweb; ?>');" title="Baidu Webmaster Tools"><img src="view/image/engines/baidu-web.gif" alt="Baidu" /></a> &nbsp;
               </td>
             </tr>
-            <tr style="background:#FFF;">
+            <tr>
               <td style="padding:10px;"><?php echo $text_publish; ?></td>
             </tr>
           </table>

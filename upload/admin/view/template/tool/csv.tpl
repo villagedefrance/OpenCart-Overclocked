@@ -22,20 +22,21 @@
       </div>
     </div>
     <div class="content">
+      <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_csv; ?></div>
       <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="csv-import">
         <h2><?php echo $heading_import; ?></h2>
-        <table class="form">
+        <table class="tool">
           <tr>
-            <td><?php echo $entry_import; ?></td>
+            <td width="20%"><?php echo $entry_import; ?></td>
             <td><input type="file" name="csv_import" class="custom-input-class" /></td>
           </tr>
         </table>
       </form>
       <form action="<?php echo $csv_export; ?>" method="post" enctype="multipart/form-data" id="csv-export">
         <h2><?php echo $heading_export; ?></h2>
-        <table class="form">
+        <table class="tool">
           <tr>
-            <td><?php echo $entry_export; ?></td>
+            <td width="20%"><?php echo $entry_export; ?></td>
             <td><select name="csv_export">
               <?php foreach ($tables as $table) { ?>
                 <option value="<?php echo $table; ?>"><?php echo $table; ?></option>

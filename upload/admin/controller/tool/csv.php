@@ -41,6 +41,8 @@ class ControllerToolCSV extends Controller {
 		$this->data['entry_export'] = $this->language->get('entry_export');
 		$this->data['entry_import'] = $this->language->get('entry_import');
 
+		$this->data['help_csv'] = $this->language->get('help_csv');
+
 		$this->data['button_export'] = $this->language->get('button_export');
 		$this->data['button_import'] = $this->language->get('button_import');
 		$this->data['button_refresh'] = $this->language->get('button_refresh');

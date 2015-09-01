@@ -102,6 +102,9 @@ select {
 	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	box-shadow: inset 0 2px 0 -1px #EDEDED;
 }
+input.large-field, select.large-field {
+	width: 300px;
+}
 label {
 	cursor: pointer;
 }
@@ -509,9 +512,6 @@ table.form > * > * > td {
 }
 table.form td {
 	padding: 4px;
-}
-input.large-field, select.large-field {
-	width: 300px;
 }
 table.list {
 	border-collapse: collapse;

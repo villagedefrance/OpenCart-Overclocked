@@ -31,8 +31,8 @@
       <?php } ?>
       <form action="<?php echo $database; ?>" method="post" enctype="multipart/form-data" id="form" name="database">
         <h2><?php echo $text_optimize; ?></h2>
-        <table class="form">
-          <tr style="text-align:left;">
+        <table class="tool">
+          <tr>
             <td width="20%"><b><?php echo $text_optimize; ?></b></td>
             <td width="55%"><?php echo $text_help_optimize; ?></td>
             <td width="25%">
@@ -41,8 +41,8 @@
           </tr>
         </table>
         <h2><?php echo $text_repair; ?></h2>
-        <table class="form">
-          <tr style="text-align:left;">
+        <table class="tool">
+          <tr>
             <td width="20%"><b><?php echo $text_repair; ?></b></td>
             <td width="55%"><?php echo $text_help_repair; ?></td>
             <td width="25%">
@@ -51,8 +51,8 @@
           </tr>
         </table>
 		<h2><?php echo $text_engine; ?></h2>
-        <table class="form">
-          <tr style="text-align:left;">
+        <table class="tool">
+          <tr>
             <td width="20%"><b><?php echo $text_table_engine; ?></b></td>
 		  <?php if (!$engine) { ?>
 			<td width="55%"><?php echo $text_help_myisam; ?></td>
