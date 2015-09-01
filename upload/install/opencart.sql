@@ -8964,7 +8964,12 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 
 (4304, 71, 'K', 'Cikobla', 1),
 (4305, 71, 'O', 'Ono-i-lau', 1),
-(4306, 71, 'V', 'Vatoa', 1);
+(4306, 71, 'V', 'Vatoa', 1),
+
+(4307, 174, 'SBE', 'Saint-Beno&icirc;t', 1),
+(4308, 174, 'SDE', 'Saint-Denis', 1),
+(4309, 174, 'SPA', 'Saint-Paul', 1),
+(4310, 174, 'SPI', 'Saint-Pierre', 1);
 
 -- --------------------------------------------------------
 
