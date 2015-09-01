@@ -1496,6 +1496,20 @@ ul.box-filter > li ul {
 .sub-prod-count:hover {
 	background: #EDEDED url('../image/minus.png') center center no-repeat;
 }
+/* Tags */
+.tags {
+	display: inline-block;
+	width: 100%;
+	padding-top: 10px;
+	border-top: 1px solid #E7E7E7;
+	font-size: 13px;
+}
+.tags a {
+	text-decoration: none;
+}
+.tags a:hover {
+	color: #444;
+}
 /* Add Review */
 #add-review {
 	float: left;

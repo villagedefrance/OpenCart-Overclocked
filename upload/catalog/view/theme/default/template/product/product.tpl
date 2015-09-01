@@ -333,7 +333,8 @@
         <div class="review">
           <div class="rating">
             <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;&nbsp;
-            <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $text_write; ?></a>
+            <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;&nbsp;
+            <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_comment.png" alt="<?php echo $text_write; ?>" title="<?php echo $text_write; ?>" /></a>
           </div>
           <div class="share">
             <div class="addthis_toolbox addthis_default_style">
