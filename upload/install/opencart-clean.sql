@@ -724,7 +724,7 @@ INSERT INTO `oc_country_description` (`country_id`, `language_id`, `name`) VALUE
 (113, 1, 'Korea, Republic of'),
 (114, 1, 'Kuwait'),
 (115, 1, 'Kyrgyzstan'),
-(116, 1, 'Lao People''s Democratic Republic'),
+(116, 1, 'Lao People&#39;s Democratic Republic'),
 (117, 1, 'Latvia'),
 (118, 1, 'Lebanon'),
 (119, 1, 'Lesotho'),
