@@ -23,18 +23,18 @@
     <div class="content">
       <form action="<?php echo $restore; ?>" method="post" enctype="multipart/form-data" id="restore">
         <h2><?php echo $heading_restore; ?></h2>
-        <table class="form">
+        <table class="tool">
           <tr>
-            <td><?php echo $entry_restore; ?></td>
+            <td width="20%"><?php echo $entry_restore; ?></td>
             <td><input type="file" name="import" class="custom-input-class" /></td>
           </tr>
         </table>
       </form>
       <form action="<?php echo $backup; ?>" method="post" enctype="multipart/form-data" id="backup">
         <h2><?php echo $heading_backup; ?></h2>
-        <table class="form">
+        <table class="tool">
           <tr>
-            <td><?php echo $entry_backup; ?></td>
+            <td width="20%"><?php echo $entry_backup; ?></td>
             <td><div class="scrollbox" style="height:220px; margin-bottom:5px;">
               <?php $class='odd'; ?>
               <?php foreach ($tables as $table) { ?>
@@ -43,7 +43,7 @@
                   <input type="checkbox" name="backup[]" value="<?php echo $table; ?>" checked="checked" />
                 <?php echo $table; ?></div>
               <?php } ?>
-            </div><br />
+            </div>
             <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a></td>
           </tr>
         </table>
