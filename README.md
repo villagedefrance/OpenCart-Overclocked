@@ -42,7 +42,15 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-New in 1.7.0.0 (Current Release):
+New in 1.7.1.0 (Current Release):
+- Added Colours for Product.
+- Improved File Managers.
+- Improved Customer Accounts.
+- Improved Affiliate Accounts.
+- Better Responsive Stylesheets.
+- Bug fixes ...
+
+New in 1.7.0.0:
 - Custom Menu System.
 - Custom Footer System.
 - Responsive Default Theme.
@@ -77,14 +85,9 @@ New in v1.6.4.0:
 - Improved Dashboard.
 - Bug fixes ...
 
-Coming soon in v1.7.1.0:
-- Improved File Managers.
-- Improved Customer Accounts.
-- Improved Affiliate Accounts.
-- ...
 
 TODO:
-- Add filter product images by colour (in progress ...).
+- Add filter product images by colour (still in progress ...).
 - Add some more features ...
 
 WANT TO CONTRIBUTE?
