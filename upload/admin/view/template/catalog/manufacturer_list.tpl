@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="manufacturer">
@@ -29,7 +29,7 @@
           <tr>
             <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
             <td class="left"><?php echo $column_id; ?></td>
-			<td class="left"><?php echo $column_image; ?></td>
+            <td class="left"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'md.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
@@ -40,7 +40,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
             <?php } ?></td>
-			<td class="left"><?php if ($sort == 'm.status') { ?>
+            <td class="left"><?php if ($sort == 'm.status') { ?>
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
@@ -67,10 +67,10 @@
               <input type="checkbox" name="selected[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" />
             <?php } ?></td>
             <td class="center"><?php echo $manufacturer['manufacturer_id']; ?></td>
-			<td class="center"><img src="<?php echo $manufacturer['image']; ?>" alt="<?php echo $manufacturer['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
+            <td class="center"><img src="<?php echo $manufacturer['image']; ?>" alt="<?php echo $manufacturer['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
             <td class="left"><?php echo $manufacturer['name']; ?></td>
             <td class="center"><?php echo $manufacturer['sort_order']; ?></td>
-			<?php if ($manufacturer['status'] == 1) { ?>
+            <?php if ($manufacturer['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
@@ -90,7 +90,7 @@
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

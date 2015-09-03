@@ -16,13 +16,13 @@
       <h1><img src="view/image/information.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').attr('action', '<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-		<a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
+        <a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -65,7 +65,7 @@
               <td class="left"><?php echo $information['title']; ?></td>
               <td class="center"><?php echo $information['sort_order']; ?></td>
               <td class="center"><?php echo $information['bottom']; ?></td>
-			  <?php if ($information['status'] == 1) { ?>
+              <?php if ($information['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
@@ -85,7 +85,7 @@
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

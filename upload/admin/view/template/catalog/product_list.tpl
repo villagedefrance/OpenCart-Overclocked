@@ -16,14 +16,14 @@
       <h1><img src="view/image/product.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').attr('action', '<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-		<a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
+        <a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').attr('action', '<?php echo $copy; ?>'); $('#form').submit();" class="button"><?php echo $button_copy; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -64,7 +64,7 @@
         <tbody>
           <tr class="filter">
             <td></td>
-			<td></td>
+            <td></td>
             <td></td>
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
@@ -93,7 +93,7 @@
               <?php } else { ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
               <?php } ?></td>
-			  <td class="center"><?php echo $product['product_id']; ?></td>
+              <td class="center"><?php echo $product['product_id']; ?></td>
               <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $product['name']; ?></td>
               <td class="left"><?php echo $product['model']; ?></td>
@@ -130,7 +130,7 @@
       </form>
       <?php if ($navigation_lo) { ?>
         <div class="pagination"><?php echo $pagination; ?></div>
-	  <?php } ?>
+      <?php } ?>
     </div>
   </div>
 </div>

@@ -17,12 +17,12 @@
       <div class="buttons">
         <a onclick="location='<?php echo $module; ?>';" class="button"><?php echo $button_module; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
-		<a onclick="$('form').attr('action', '<?php echo $reset; ?>'); $('form').submit();" class="button-repair"><?php echo $button_reset; ?></a>
+        <a onclick="$('form').attr('action', '<?php echo $reset; ?>'); $('form').submit();" class="button-repair"><?php echo $button_reset; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="newslist">
@@ -91,9 +91,9 @@
           </tbody>
         </table>
       </form>
-	<?php if ($navigation_lo) { ?>
+    <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="download">
@@ -50,7 +50,7 @@
             <td></td>
             <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
-		<?php if ($downloads) { ?>
+        <?php if ($downloads) { ?>
           <?php foreach ($downloads as $download) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($download['selected']) { ?>
@@ -59,7 +59,7 @@
               <input type="checkbox" name="selected[]" value="<?php echo $download['download_id']; ?>" />
             <?php } ?></td>
             <td class="left"><?php echo $download['name']; ?></td>
-			<td class="center"><?php echo $download['filesize']; ?></td>
+            <td class="center"><?php echo $download['filesize']; ?></td>
             <td class="center"><?php echo $download['remaining']; ?></td>
             <td class="right"><?php foreach ($download['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -76,7 +76,7 @@
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
   </div>
   </div>
 </div>
