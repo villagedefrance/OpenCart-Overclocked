@@ -20,6 +20,8 @@ class ModelCatalogPalette extends Model {
 				}
 			}
 		}
+
+		$this->cache->delete('palette');
 	}
 
 	public function editPalette($palette_id, $data) {
@@ -39,12 +41,16 @@ class ModelCatalogPalette extends Model {
 				}
 			}
 		}
+
+		$this->cache->delete('palette');
 	}
 
 	public function deletePalette($palette_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "palette WHERE palette_id = '" . (int)$palette_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "palette_color WHERE palette_id = '" . (int)$palette_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "palette_color_description WHERE palette_id = '" . (int)$palette_id . "'");
+
+		$this->cache->delete('palette');
 	}
 
 	public function getPalette($palette_id) {

@@ -54,7 +54,7 @@ class ModelCatalogManufacturer extends Model {
 				$manufacturer_data = $query->rows;
 
 				$this->cache->set('manufacturer.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id'), $manufacturer_data);
-			} 
+			}
 
 			return $manufacturer_data;
 		}

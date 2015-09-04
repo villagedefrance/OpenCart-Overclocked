@@ -15,7 +15,7 @@ body, td, th, input, textarea, select, a {
 }
 h1, .welcome {
 	color: #636E75;
-	font-family: tahoma, Geneva, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	margin-top: 0px;
 	margin-bottom: 20px;
 	font-size: 32px;
@@ -1519,6 +1519,7 @@ ul.box-filter > li ul {
 }
 #add-review textarea {
 	width: 270px;
+	font-family: Arial, Helvetica, sans-serif;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;

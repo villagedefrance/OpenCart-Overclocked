@@ -177,7 +177,7 @@ class ModelLocalisationLanguage extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "palette_color_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		foreach ($query->rows as $palette_color) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "palette_color_description SET palette_color_id = '" . (int)$palette_color['palette_color_id'] . "', palette_id = '" . (int)$palette_color['palette_id'] . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($palette_color['title']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "palette_color_description SET palette_color_id = '" . (int)$palette_color['palette_color_id'] . "', language_id = '" . (int)$language_id . "', palette_id = '" . (int)$palette_color['palette_id'] . "', title = '" . $this->db->escape($palette_color['title']) . "'");
 		}
 
 		$this->cache->delete('palette');
