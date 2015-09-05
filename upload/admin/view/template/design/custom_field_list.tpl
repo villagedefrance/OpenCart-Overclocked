@@ -28,22 +28,22 @@
           <td class="left"><?php if ($sort == 'cfd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'cf.type') { ?>
             <a href="<?php echo $sort_type; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_type; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_type; ?>"><?php echo $column_type; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_type; ?>"><?php echo $column_type; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'cf.location') { ?>
             <a href="<?php echo $sort_location; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_location; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_location; ?>"><?php echo $column_location; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_location; ?>"><?php echo $column_location; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'cf.sort_order') { ?>
             <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="right"><?php echo $column_action; ?></td>
         </tr>

@@ -36,27 +36,27 @@
           <td class="left"><?php if ($sort == 'pd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'p.model') { ?>
             <a href="<?php echo $sort_model; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_model; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_model; ?>"><?php echo $column_model; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_model; ?>"><?php echo $column_model; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'p.price') { ?>
             <a href="<?php echo $sort_price; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_price; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_price; ?>"><?php echo $column_price; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_price; ?>"><?php echo $column_price; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'p.quantity') { ?>
             <a href="<?php echo $sort_quantity; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_quantity; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'p.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="right"><?php echo $column_action; ?></td>
         </tr>

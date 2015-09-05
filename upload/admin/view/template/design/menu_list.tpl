@@ -25,20 +25,20 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="list">
-          <thead>
-            <tr>
-              <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
-              <td class="left"><?php echo $column_title; ?></td>
-              <td class="left"><?php echo $column_menu_items; ?></td>
-              <td class="left"><?php echo $column_status; ?></td>
-              <td class="right"><?php echo $column_action; ?></td>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if ($menus) { ?>
-            <?php foreach ($menus as $menu) { ?>
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="list">
+        <thead>
+          <tr>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td class="left"><?php echo $column_title; ?></td>
+            <td class="left"><?php echo $column_menu_items; ?></td>
+            <td class="left"><?php echo $column_status; ?></td>
+            <td class="right"><?php echo $column_action; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+        <?php if ($menus) { ?>
+          <?php foreach ($menus as $menu) { ?>
             <tr>
               <td style="text-align:center;"><?php if ($menu['selected']) { ?>
                 <input type="checkbox" name="selected[]" value="<?php echo $menu['menu_id']; ?>" checked="checked" />
@@ -61,15 +61,15 @@
                 <?php } ?>
               </td>
             </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
-            </tr>
           <?php } ?>
-          </tbody>
-        </table>
-      </form>
+        <?php } else { ?>
+          <tr>
+            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+          </tr>
+        <?php } ?>
+        </tbody>
+      </table>
+    </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
 	<?php } ?>

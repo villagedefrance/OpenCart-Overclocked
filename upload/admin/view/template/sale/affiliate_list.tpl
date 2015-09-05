@@ -32,28 +32,28 @@
           <td class="left"><?php if ($sort == 'name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'c.email') { ?>
             <a href="<?php echo $sort_email; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_email; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php echo $column_balance; ?></td>
           <td class="left"><?php if ($sort == 'c.approved') { ?>
             <a href="<?php echo $sort_approved; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_approved; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_approved; ?>"><?php echo $column_approved; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_approved; ?>"><?php echo $column_approved; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'c.date_added') { ?>
             <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="left"><?php if ($sort == 'c.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
-            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+            <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
           <td class="right"><?php echo $column_action; ?></td>
         </tr>

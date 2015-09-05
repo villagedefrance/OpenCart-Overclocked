@@ -31,37 +31,37 @@
               <td class="left"><?php if ($sort == 'v.code') { ?>
                 <a href="<?php echo $sort_code; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_code; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="left"><?php if ($sort == 'v.from_name') { ?>
                 <a href="<?php echo $sort_from; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_from; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_from; ?>"><?php echo $column_from; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_from; ?>"><?php echo $column_from; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="left"><?php if ($sort == 'v.to_name') { ?>
                 <a href="<?php echo $sort_to; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_to; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_to; ?>"><?php echo $column_to; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_to; ?>"><?php echo $column_to; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="left"><?php if ($sort == 'v.amount') { ?>
                 <a href="<?php echo $sort_amount; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_amount; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_amount; ?>"><?php echo $column_amount; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_amount; ?>"><?php echo $column_amount; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="left"><?php if ($sort == 'theme') { ?>
                 <a href="<?php echo $sort_theme; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_theme; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_theme; ?>"><?php echo $column_theme; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_theme; ?>"><?php echo $column_theme; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="left"><?php if ($sort == 'v.date_added') { ?>
                 <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="left"><?php if ($sort == 'v.status') { ?>
                 <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
               <?php } else { ?>
-                <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+                <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>

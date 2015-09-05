@@ -31,27 +31,27 @@
             <td class="left"><?php if ($sort == 'cgd.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'cg.approval') { ?>
               <a href="<?php echo $sort_approval; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_approval; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_approval; ?>"><?php echo $column_approval; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_approval; ?>"><?php echo $column_approval; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'cg.company_id_display') { ?>
               <a href="<?php echo $sort_company_id_display; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_company_id; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_company_id_display; ?>"><?php echo $column_company_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_company_id_display; ?>"><?php echo $column_company_id; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'cg.tax_id_display') { ?>
               <a href="<?php echo $sort_tax_id_display; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_tax_id; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_tax_id_display; ?>"><?php echo $column_tax_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_tax_id_display; ?>"><?php echo $column_tax_id; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'cg.sort_order') { ?>
               <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>

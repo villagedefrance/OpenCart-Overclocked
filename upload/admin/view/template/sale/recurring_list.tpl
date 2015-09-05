@@ -26,32 +26,32 @@
             <td width="10" class="left"><?php if ($sort == 'or.order_recurring_id') { ?>
               <a href="<?php echo $sort_order_recurring; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_order_recurring; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_order_recurring; ?>"><?php echo $entry_order_recurring; ?></a>
+              <a href="<?php echo $sort_order_recurring; ?>"><?php echo $entry_order_recurring; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'or.order_id') { ?>
               <a href="<?php echo $sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_order_id; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_order; ?>"><?php echo $entry_order_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_order; ?>"><?php echo $entry_order_id; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'or.profile_reference') { ?>
               <a href="<?php echo $sort_payment_reference; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_payment_reference; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_payment_reference; ?>"><?php echo $entry_payment_reference; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_payment_reference; ?>"><?php echo $entry_payment_reference; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'customer') { ?>
               <a href="<?php echo $sort_customer; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_customer; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_customer; ?>"><?php echo $entry_customer; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_customer; ?>"><?php echo $entry_customer; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'or.created') { ?>
               <a href="<?php echo $sort_created; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_date_created; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_created; ?>"><?php echo $entry_date_created; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_created; ?>"><?php echo $entry_date_created; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'or.status') { ?>
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $entry_status; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_status; ?>"><?php echo $entry_status; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_status; ?>"><?php echo $entry_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php echo $entry_action; ?></td>
           </tr>
