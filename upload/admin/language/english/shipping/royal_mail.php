@@ -22,7 +22,7 @@ $_['entry_status']				= 'Status';
 $_['entry_sort_order']			= 'Sort Order';
 
 // help
-$_['help_international']			= '<p><u>Royal Mail Shipping services and prices guides are available here:</u></p><p><a href="http://www.royalmail.com/international-zones" target="_blank">http://www.royalmail.com/international-zones</a></p><p><a href="http://www.royalmail.com/sites/default/files/RM_OurPrices_Mar2014a.pdf" target="_blank">http://www.royalmail.com/sites/default/files/RM_OurPrices_Mar2014a.pdf</a></p><p><a href="http://www.royalmail.com/sites/default/files/RoyalMail_International_TrackedCoverage_Jan2014.pdf" target="_blank">http://www.royalmail.com/sites/default/files/RoyalMail_International_TrackedCoverage_Jan2014.pdf</a></p>';
+$_['help_international']			= '<p><u>Royal Mail Shipping services and prices are available here:</u></p><p><a onclick="window.open(\'http://www.royalmail.com/international-zones\');" title="www.royalmail.com">www.royalmail.com > international zones</a></p><p><a onclick="window.open(\'http://www.royalmail.com/sites/default/files/RM_OurPrices_Mar2014a.pdf\');" title="Prices">www.royalmail.com > Our Prices March 2014 PDF</a></p><p><a onclick="window.open(\'http://www.royalmail.com/sites/default/files/RoyalMail_International_TrackedCoverage_Jan2014.pdf\');" title="Tracking">www.royalmail.com > Tracking Coverage January 2014 PDF</a></p>';
 
 // Tab
 $_['tab_special_delivery_500']			= 'Special Delivery<br />Next Day (&pound;500)';
