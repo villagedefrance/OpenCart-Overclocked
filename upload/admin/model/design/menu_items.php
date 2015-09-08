@@ -16,7 +16,7 @@ class ModelDesignMenuItems extends Model {
 		// MySQL Hierarchical Data Closure Table Pattern
 		$level = 0;
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE path_id = '" . (int)$menu_item_id . "' ORDER BY level ASC");
 
 		foreach ($query->rows as $result) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_path SET menu_item_id = '" . (int)$menu_item_id . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
