@@ -3,7 +3,8 @@
 $_['heading_title']     		= 'Special Offers';
 
 // Text
-$_['text_empty']        		= 'There are no special offer products to list.';
+$_['text_error']				= 'Product not found!';
+$_['text_empty']        		= 'There are no products on special offer.';
 $_['text_quantity']     		= 'Qty:';
 $_['text_manufacturer'] 	= 'Brand:';
 $_['text_model']        		= 'Product Code:';

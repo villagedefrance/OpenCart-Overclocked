@@ -6,7 +6,6 @@ class ControllerProductCategory extends Controller {
 
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
-		$this->load->model('tool/image');
 
 		if (isset($this->request->get['filter'])) {
 			$filter = $this->request->get['filter'];
@@ -26,16 +25,16 @@ class ControllerProductCategory extends Controller {
 			$order = 'ASC';
 		}
 
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
+		}
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
 		}
 
 		// Breadcrumbs
@@ -50,6 +49,10 @@ class ControllerProductCategory extends Controller {
 		if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 			$url = '';
 
+			if (isset($this->request->get['filter'])) {
+				$url .= '&filter=' . $this->request->get['filter'];
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -60,6 +63,10 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$path = '';
@@ -99,6 +106,8 @@ class ControllerProductCategory extends Controller {
 
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
+			$this->load->model('tool/image');
+
 			$this->data['heading_title'] = $category_info['name'];
 
 			$this->data['text_refine'] = $this->language->get('text_refine');
@@ -125,8 +134,12 @@ class ControllerProductCategory extends Controller {
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			// Set the last category breadcrumb	
+			// Set the last category breadcrumb
 			$url = '';
+
+			if (isset($this->request->get['filter'])) {
+				$url .= '&filter=' . $this->request->get['filter'];
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -136,12 +149,12 @@ class ControllerProductCategory extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$this->data['breadcrumbs'][] = array(
@@ -297,10 +310,6 @@ class ControllerProductCategory extends Controller {
 				$url .= '&filter=' . $this->request->get['filter'];
 			}
 
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
-			}
-
 			$this->data['sorts'] = array();
 
 			$this->data['sorts'][] = array(
@@ -359,6 +368,14 @@ class ControllerProductCategory extends Controller {
 				'href'  	=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.model&order=DESC' . $url)
 			);
 
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
 			$url = '';
 
 			if (isset($this->request->get['filter'])) {
@@ -385,6 +402,10 @@ class ControllerProductCategory extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $value)
 				);
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';
@@ -447,7 +468,7 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['path']) && !is_array($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
-			} 
+			}
 
 			if (isset($this->request->get['filter'])) {
 				$url .= '&filter=' . $this->request->get['filter'];
@@ -461,12 +482,12 @@ class ControllerProductCategory extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$this->data['breadcrumbs'][] = array(

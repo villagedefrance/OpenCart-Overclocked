@@ -11,7 +11,7 @@ class ModelDesignMenuItems extends Model {
 
 		foreach ($data['menu_item_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_description SET menu_item_id = '" . (int)$menu_item_id . "', language_id = '" . (int)$language_id . "', menu_id = '" . (int)$menu_id . "', menu_item_name = '" . $this->db->escape($value['name']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
-		} 
+		}
 
 		// MySQL Hierarchical Data Closure Table Pattern
 		$level = 0;
@@ -27,7 +27,7 @@ class ModelDesignMenuItems extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_path SET menu_item_id = '" . (int)$menu_item_id . "', path_id = '" . (int)$menu_item_id . "', `level` = '" . (int)$level . "'");
 
 		$this->cache->delete('menu_items');
-	} 
+	}
 
 	public function editMenuItem($menu_item_id, $menu_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "menu_item SET menu_id = '" . (int)$menu_id . "', parent_id = '" . (int)$data['parent_id'] . "', menu_item_link = '" . $this->db->escape($data['link']) . "', external_link = '" . (int)$data['external_link'] . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "' WHERE menu_item_id = '" . (int)$menu_item_id . "'");
@@ -106,7 +106,7 @@ class ModelDesignMenuItems extends Model {
 
 		foreach ($query->rows as $result) {
 			$this->deleteMenuItem($result['menu_item_id']);
-		} 
+		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item WHERE menu_item_id = '" . (int)$menu_item_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item_description WHERE menu_item_id = '" . (int)$menu_item_id . "'");

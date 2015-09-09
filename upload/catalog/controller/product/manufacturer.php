@@ -90,7 +90,6 @@ class ControllerProductManufacturer extends Controller {
 
 		$this->load->model('catalog/manufacturer');
 		$this->load->model('catalog/product');
-		$this->load->model('tool/image');
 
 		if (isset($this->request->get['manufacturer_id'])) {
 			$manufacturer_id = (int)$this->request->get['manufacturer_id'];
@@ -110,16 +109,16 @@ class ControllerProductManufacturer extends Controller {
 			$order = 'ASC';
 		}
 
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
+		}
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
 		}
 
 		// Breadcrumbs
@@ -144,6 +143,8 @@ class ControllerProductManufacturer extends Controller {
 
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
+			$this->load->model('tool/image');
+
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -154,12 +155,12 @@ class ControllerProductManufacturer extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$this->data['breadcrumbs'][] = array(
@@ -280,10 +281,6 @@ class ControllerProductManufacturer extends Controller {
 
 			$url = '';
 
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
-			}
-
 			$this->data['sorts'] = array();
 
 			$this->data['sorts'][] = array(
@@ -342,6 +339,14 @@ class ControllerProductManufacturer extends Controller {
 				'href'  	=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&sort=p.model&order=DESC' . $url)
 			);
 
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -364,6 +369,10 @@ class ControllerProductManufacturer extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url . '&limit=' . $value)
 				);
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';
@@ -432,12 +441,12 @@ class ControllerProductManufacturer extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$this->data['breadcrumbs'][] = array(

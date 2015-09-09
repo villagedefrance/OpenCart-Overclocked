@@ -9,6 +9,7 @@
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
+  <?php if ($products) { ?>
   <h1><?php echo $heading_title; ?></h1>
   <h2><?php echo $ptotal; ?> <?php echo $text_total_products; ?> <?php echo $text_in; ?> <?php echo $ctotal; ?> <?php echo $text_total_categories; ?></h2>	
   <div class="tier-page">
@@ -45,6 +46,9 @@
       </ul>
     </div>
   </div>
+  <?php } else { ?>
+    <div class="content"><?php echo $text_empty; ?></div>
+  <?php } ?>
   <div class="buttons">
     <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
   </div>

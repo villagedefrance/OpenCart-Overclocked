@@ -3,6 +3,7 @@
 $_['heading_title'] 		= 'Reviews';
 
 // Text
+$_['text_error']        	= 'Review not found!';
 $_['text_empty']        	= 'There are no reviews to list.';
 $_['text_reviews'] 		= 'Based on %s reviews.';
 $_['text_compare']      	= 'Product Compare (%s)';

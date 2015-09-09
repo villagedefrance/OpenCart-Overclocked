@@ -6,7 +6,6 @@ class ControllerProductSearch extends Controller {
 
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
-		$this->load->model('tool/image');
 
 		if (isset($this->request->get['search'])) {
 			$search = $this->request->get['search'];
@@ -52,16 +51,16 @@ class ControllerProductSearch extends Controller {
 			$order = 'ASC';
 		}
 
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
+		}
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
 		}
 
 		if (isset($this->request->get['search'])) {
@@ -71,6 +70,8 @@ class ControllerProductSearch extends Controller {
 		}
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
+
+		$this->load->model('tool/image');
 
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
@@ -111,12 +112,12 @@ class ControllerProductSearch extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$url .= '&limit=' . $this->request->get['limit'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
 		}
 
 		$this->data['breadcrumbs'][] = array(
@@ -293,7 +294,7 @@ class ControllerProductSearch extends Controller {
 					'tax'         		=> $tax,
 					'rating'      		=> $result['rating'],
 					'reviews'     	=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'        		=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'href'        		=> $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
 
@@ -317,10 +318,6 @@ class ControllerProductSearch extends Controller {
 
 			if (isset($this->request->get['sub_category'])) {
 				$url .= '&sub_category=' . $this->request->get['sub_category'];
-			}
-
-			if (isset($this->request->get['limit'])) {
-				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
 			$this->data['sorts'] = array();
@@ -381,6 +378,14 @@ class ControllerProductSearch extends Controller {
 				'href'  	=> $this->url->link('product/search', 'sort=p.model&order=DESC' . $url)
 			);
 
+			if (isset($this->request->get['limit'])) {
+				$url .= '&limit=' . $this->request->get['limit'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
 			$url = '';
 
 			if (isset($this->request->get['search'])) {
@@ -423,6 +428,10 @@ class ControllerProductSearch extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/search', $url . '&limit=' . $value)
 				);
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

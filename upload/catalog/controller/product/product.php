@@ -184,7 +184,7 @@ class ControllerProductProduct extends Controller {
 
 			if (isset($this->request->get['path'])) {
 				$url .= '&path=' . $this->request->get['path'];
-			} 
+			}
 
 			if (isset($this->request->get['filter'])) {
 				$url .= '&filter=' . $this->request->get['filter'];
