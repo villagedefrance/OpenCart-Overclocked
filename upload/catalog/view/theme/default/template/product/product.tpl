@@ -315,7 +315,7 @@
             <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
           <?php } else { ?>
             <b class="sub-prod-count" onclick="subProductCount();"></b>
-            <input type="text" name="quantity" id="quantity" class="quantity-input" size="2" value="<?php echo $minimum; ?>" />
+            <input type="text" name="quantity" id="quantity" class="quantity-input" size="2" value="<?php echo $minimum; ?>" readonly="readonly" />
             <b class="add-prod-count" onclick="addProductCount();"></b>
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
