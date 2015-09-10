@@ -252,10 +252,6 @@ class ControllerProductProductWall extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -278,10 +274,6 @@ class ControllerProductProductWall extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/product_wall', $url . '&limit=' . $value)
 				);
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

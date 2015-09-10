@@ -382,10 +382,6 @@ class ControllerProductSearch extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			$url = '';
 
 			if (isset($this->request->get['search'])) {
@@ -428,10 +424,6 @@ class ControllerProductSearch extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/search', $url . '&limit=' . $value)
 				);
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

@@ -343,10 +343,6 @@ class ControllerProductManufacturer extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -369,10 +365,6 @@ class ControllerProductManufacturer extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url . '&limit=' . $value)
 				);
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

@@ -372,10 +372,6 @@ class ControllerProductCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			$url = '';
 
 			if (isset($this->request->get['filter'])) {
@@ -402,10 +398,6 @@ class ControllerProductCategory extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $value)
 				);
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

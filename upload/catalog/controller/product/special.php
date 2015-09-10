@@ -250,10 +250,6 @@ class ControllerProductSpecial extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			$url = '';
 
 			if (isset($this->request->get['sort'])) {
@@ -276,10 +272,6 @@ class ControllerProductSpecial extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/special', $url . '&limit=' . $value)
 				);
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

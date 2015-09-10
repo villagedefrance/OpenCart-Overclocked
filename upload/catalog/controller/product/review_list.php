@@ -258,10 +258,6 @@ class ControllerProductReviewList extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
 			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
@@ -292,10 +288,6 @@ class ControllerProductReviewList extends Controller {
 					'value' 	=> $value,
 					'href'  	=> $this->url->link('product/review_list', $url . '&limit=' . $value)
 				);
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
 			}
 
 			$url = '';

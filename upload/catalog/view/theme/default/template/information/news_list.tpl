@@ -53,15 +53,12 @@
       <?php } ?>
     </div>
     <div class="pagination"><?php echo $pagination; ?></div>
-    <div class="buttons">
-      <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
-    </div>
   <?php } else { ?>
-    <div style="margin:20px auto;"><?php echo $text_no_results; ?></div>
-    <div class="buttons">
-      <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
-    </div>
-  <?php }?>
+    <div class="content"><?php echo $text_no_results; ?></div>
+  <?php } ?>
+  <div class="buttons">
+    <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
+  </div>
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
@@ -111,7 +108,6 @@ function display(view) {
 		$.totalStorage('display', 'list');
 
 	} else {
-
 		$('.product-list').attr('class', 'product-grid');
 
 		$('.product-grid > div').each(function(index, element) {

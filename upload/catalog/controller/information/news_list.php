@@ -24,19 +24,17 @@ class ControllerInformationNewsList extends Controller {
 			$order = 'DESC';
 		}
 
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$limit = $this->request->get['limit'];
 		} else {
 			$limit = $this->config->get('config_catalog_limit');
 		}
 
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
 
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
@@ -46,6 +44,12 @@ class ControllerInformationNewsList extends Controller {
 			'href'		=> $this->url->link('common/home'),
 			'separator' => false
       	);
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
+
+		$this->load->model('tool/image');
 
 		$url = '';
 
@@ -61,12 +65,12 @@ class ControllerInformationNewsList extends Controller {
 			$url .= '&order=' . $this->request->get['order'];
 		}
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
-
 		if (isset($this->request->get['limit'])) {
 			$url .= '&limit=' . $this->request->get['limit'];
+		}
+
+		if (isset($this->request->get['page'])) {
+			$url .= '&page=' . $this->request->get['page'];
 		}
 
 		$this->data['breadcrumbs'][] = array(
@@ -74,8 +78,6 @@ class ControllerInformationNewsList extends Controller {
 			'href'		=> $this->url->link('information/news_list', $url),
 			'separator' => $this->language->get('text_separator')
 		);
-
-		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -92,8 +94,6 @@ class ControllerInformationNewsList extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		$this->data['continue'] = $this->url->link('common/home');
-
-		$this->load->model('tool/image');
 
 		$this->data['news_data'] = array();
 
@@ -145,10 +145,6 @@ class ControllerInformationNewsList extends Controller {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
 
-		if (isset($this->request->get['limit'])) {
-			$url .= '&limit=' . $this->request->get['limit'];
-		}
-
 		$this->data['sorts'] = array();
 
 		$this->data['sorts'][] = array(
@@ -186,6 +182,10 @@ class ControllerInformationNewsList extends Controller {
 			'value' 	=> 'n.viewed-DESC',
 			'href'  	=> $this->url->link('information/news_list', 'sort=n.viewed&order=DESC' . $url)
 		);
+
+		if (isset($this->request->get['limit'])) {
+			$url .= '&limit=' . $this->request->get['limit'];
+		}
 
 		$url = '';
 

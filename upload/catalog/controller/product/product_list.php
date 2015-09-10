@@ -17,9 +17,9 @@ class ControllerProductProductList extends Controller {
 			'separator' => false
       	);
 
-		$categories_1 = $this->model_catalog_category->getCategories(0);
+		$categories_list = $this->model_catalog_category->getCategories(0);
 
-		if ($categories_1) {
+		if ($categories_list) {
 			$this->document->setTitle($this->language->get('heading_title'));
 
 			$this->data['heading_title'] = $this->language->get('heading_title');
@@ -46,7 +46,7 @@ class ControllerProductProductList extends Controller {
 			$this->data['ctotal2'] = 0;
 			$this->data['ctotal3'] = 0;
 
-			foreach ($categories_1 as $category_1) {
+			foreach ($categories_list as $category_1) {
 				$level_2_data = array();
 
 				$categories_2 = $this->model_catalog_category->getCategories($category_1['category_id']);
