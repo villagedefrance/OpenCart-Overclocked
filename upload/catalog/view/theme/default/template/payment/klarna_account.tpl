@@ -18,7 +18,7 @@
           <?php } ?></td>
           <td><label for="plan-id<?php echo $payment_option['code']; ?>"><?php echo $payment_option['title']; ?></label></td>
           <td style="width:1%;"><?php if ($iso_code_3 == 'NLD') { ?>
-            <img src="catalog/view/theme/default/image/klarna_nld_banner.png" alt="" />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/klarna_nld_banner.png" alt="" />
           <?php } ?></td>
         </tr>
       <?php } ?>
