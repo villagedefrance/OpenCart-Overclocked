@@ -22,6 +22,7 @@ CKEDITOR.editorConfig = function(config) {
 	config.resize_enabled = true;
 	config.allowedContent = true;
 
+	config.extraPlugins = 'simplebutton';
 	config.extraPlugins = 'codemirror';
 	config.codemirror = {
 		theme: 'vibrant-ink',
