@@ -53,10 +53,23 @@ $(document).ready(function() {
 <body>
 <div id="container">
   <div id="header">
-    <div class="div1">
-      <div class="div2"><img src="view/image/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
+    <div class="static">
+      <div class="image"><img src="view/image/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
       <?php if ($logged) { ?>
-        <div class="div3"><img src="view/image/lock.png" alt="" style="position:relative; top:3px;" />&nbsp;<?php echo $logged; ?></div>
+        <div id="store-selector">
+          <a onclick="window.open('<?php echo $store; ?>');" title=""><img src="view/image/dashboard/store.png" alt="<?php echo $text_front; ?>" /></a>
+          <?php if ($stores) { ?>
+            <div id="store-option" style="display:none;">
+              <a onclick="window.open('<?php echo $store; ?>');" title=""><?php echo $text_front; ?></a>
+              <?php foreach ($stores as $store) { ?>
+                <?php $store_href = $store['href']; ?>
+                <a onclick="window.open('<?php echo $store_href; ?>');" title=""><?php echo $store['name']; ?></a>
+              <?php } ?>
+            </div>
+          <?php } ?>
+        </div>
+        <div class="user-logout"><a href="<?php echo $logout; ?>" title=""><img src="view/image/dashboard/logout.png" alt="<?php echo $text_logout; ?>" /></a></div>
+        <div class="user-status"><img src="view/image/lock.png" alt="" />&nbsp;<?php echo $logged; ?></div>
       <?php } ?>
     </div>
     <?php if ($logged) { ?>
@@ -299,17 +312,17 @@ $(document).ready(function() {
           <li><a onclick="window.open('http://forum.opencart.com');" title=""><?php echo $text_support; ?></a></li>
         </ul>
       </li>
-      <li class="right"><a href="<?php echo $logout; ?>" class="top"><?php echo $text_logout; ?></a></li>
-      <li id="store" class="right"><a onclick="window.open('<?php echo $store; ?>');" title=""><?php echo $text_front; ?></a>
-      <?php if ($stores) { ?>
-        <ul>
-        <?php foreach ($stores as $store) { ?>
-          <li><a onclick="window.open('<?php echo $store['href']; ?>');" title=""><?php echo $store['name']; ?></a></li>
-        <?php } ?>
-        </ul>
-      <?php } ?>
-      </li>
 	</ul>
   </div>
   <?php } ?>
 </div>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#store-selector').hover(function() {
+		$('#store-option').css('margin-left', '-180px').slideDown(200);
+	}, function() {
+		$('#store-option').css('margin-left', '-180px').slideUp(200);
+	});
+});
+//--></script>

@@ -196,6 +196,7 @@ samp, small {
 	cursor: pointer;
 }
 #language-option a:hover {
+	background: #FCFCFC;
 	color: #38B0E3;
 }
 /* Header Currency */
@@ -237,6 +238,7 @@ samp, small {
 	cursor: pointer;
 }
 #currency-option a:hover {
+	background: #FCFCFC;
 	color: #38B0E3;
 }
 /* Header cart */
