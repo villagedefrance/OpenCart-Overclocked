@@ -66,28 +66,28 @@
             <td><div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
               <?php $class = 'even'; ?>
               <div class="<?php echo $class; ?>">
-              <?php if (in_array(0, $information_store)) { ?>
-                <input type="checkbox" name="information_store[]" value="0" checked="checked" />
-                <?php echo $text_default; ?>
-              <?php } else { ?>
-                <input type="checkbox" name="information_store[]" value="0" />
-                <?php echo $text_default; ?>
-              <?php } ?>
+                <?php if (in_array(0, $information_store)) { ?>
+                  <input type="checkbox" name="information_store[]" value="0" checked="checked" />
+                  <?php echo $text_default; ?>
+                <?php } else { ?>
+                  <input type="checkbox" name="information_store[]" value="0" />
+                  <?php echo $text_default; ?>
+                <?php } ?>
               </div>
               <?php foreach ($stores as $store) { ?>
                 <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
                 <div class="<?php echo $class; ?>">
-                <?php if (in_array($store['store_id'], $information_store)) { ?>
-                  <input type="checkbox" name="information_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
-                  <?php echo $store['name']; ?>
-                <?php } else { ?>
-                  <input type="checkbox" name="information_store[]" value="<?php echo $store['store_id']; ?>" />
-                  <?php echo $store['name']; ?>
-                <?php } ?>
+                  <?php if (in_array($store['store_id'], $information_store)) { ?>
+                    <input type="checkbox" name="information_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                    <?php echo $store['name']; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="information_store[]" value="<?php echo $store['store_id']; ?>" />
+                    <?php echo $store['name']; ?>
+                  <?php } ?>
                 </div>
               <?php } ?>
             </div>
-			<a onclick="select_all('information_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('information_store', '0');"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
 			</td>
           </tr>
           <tr>
@@ -177,27 +177,6 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
 });
 <?php } ?>
-//--></script>
-
-<script type="text/javascript"><!--
-var formblock;
-var forminput;
-
-formblock = document.getElementById('store_ids');
-forminput = formblock.getElementsByTagName('input');
-
-function select_all(name, value) {
-	for (i = 0; i < forminput.length; i++) {
-		var regex = new RegExp(name, "i");
-		if (regex.test(forminput[i].getAttribute('name'))) {
-			if (value == '1') {
-				forminput[i].checked = true;
-			} else {
-				forminput[i].checked = false;
-			}
-		}
-	}
-}
 //--></script>
 
 <script type="text/javascript"><!--

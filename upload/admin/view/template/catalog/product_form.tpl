@@ -217,7 +217,7 @@
                 </div>
               <?php } ?>
             </div>
-			<a onclick="select_all('product_location', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('product_location', '0');"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
             </td>
           </tr>
           <tr>
@@ -337,7 +337,7 @@
                 </div>
               <?php } ?>
             </div>
-			<a onclick="select_all('product_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('product_store', '0');"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
             </td>
           </tr>
         <?php if ($autocomplete_off) { ?>
@@ -1334,7 +1334,7 @@ function getRelated() {
 
 getProducts();
 getRelated();
-//--></script> 
+//--></script>
 <?php } ?>
 
 <script type="text/javascript"><!--
@@ -1746,46 +1746,6 @@ $('.datetime').datetimepicker({
 	timeFormat: 'h:m'
 });
 $('.time').timepicker({timeFormat: 'h:m'});
-//--></script>
-
-<script type="text/javascript"><!--
-var formblockA;
-var forminputA;
-
-formblockA = document.getElementById('store_ids');
-forminputA = formblockA.getElementsByTagName('input');
-
-function select_all(name, value) {
-	for (i = 0; i < forminputA.length; i++) {
-		var regex = new RegExp(name, "i");
-		if (regex.test(forminputA[i].getAttribute('name'))) {
-			if (value == '1') {
-				forminputA[i].checked = true;
-			} else {
-				forminputA[i].checked = false;
-			}
-		}
-	}
-}
-
-var formblockB;
-var forminputB;
-
-formblockB = document.getElementById('location_ids');
-forminputB = formblockB.getElementsByTagName('input');
-
-function select_all(name, value) {
-	for (i = 0; i < forminputB.length; i++) {
-		var regex = new RegExp(name, "i");
-		if (regex.test(forminputB[i].getAttribute('name'))) {
-			if (value == '1') {
-				forminputB[i].checked = true;
-			} else {
-				forminputB[i].checked = false;
-			}
-		}
-	}
-}
 //--></script>
 
 <script type="text/javascript"><!--

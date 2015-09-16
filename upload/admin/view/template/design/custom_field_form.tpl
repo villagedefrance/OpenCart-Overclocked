@@ -29,7 +29,7 @@
               <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
             <?php } ?>
           <?php } ?></td>
-        </tr>       
+        </tr>
         <tr>
           <td><?php echo $entry_type; ?></td>
           <td><select name="type">
@@ -91,7 +91,7 @@
         <tr id="display-value">
           <td><?php echo $entry_value; ?></td>
           <td><input type="text" name="value" value="<?php echo $value; ?>" /></td>
-        </tr> 
+        </tr>
         <tr>
           <td><?php echo $entry_required; ?></td>
           <td><?php if ($required) { ?>
@@ -105,7 +105,7 @@
             <input type="radio" name="required" value="0" checked="checked" />
             <?php echo $text_no; ?>
           <?php } ?></td>
-        </tr>              
+        </tr>
         <tr>
           <td><?php echo $entry_location; ?></td>
           <td><select name="location">
@@ -123,18 +123,18 @@
             <option value="payment_address" selected><?php echo $text_payment_address; ?></option>
           <?php } else { ?>
             <option value="payment_address"><?php echo $text_payment_address; ?></option>
-          <?php } ?>  
+          <?php } ?>
           <?php if ($location == 'shipping_address') { ?>
             <option value="shipping_address" selected><?php echo $text_shipping_address; ?></option>
           <?php } else { ?>
             <option value="shipping_address"><?php echo $text_shipping_address; ?></option>
-          <?php } ?>                                
+          <?php } ?>
           </select></td>
-        </tr>    
+        </tr>
         <tr>
           <td><?php echo $entry_position; ?></td>
           <td><input type="text" name="position" value="<?php echo $position; ?>" /></td>
-        </tr>                              
+        </tr>
         <tr>
           <td><?php echo $entry_sort_order; ?></td>
           <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="1" /></td>

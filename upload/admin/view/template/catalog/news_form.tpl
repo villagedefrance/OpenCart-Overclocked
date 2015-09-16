@@ -85,7 +85,7 @@
                     </div>
                   <?php } ?>
                 </div>
-                <a onclick="select_all('news_store', '1');"><?php echo $text_select_all; ?></a> | <a onclick="select_all('news_store', '0');"><?php echo $text_unselect_all; ?></a>
+                <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
               </td>
             </tr>
             <tr>
@@ -158,27 +158,6 @@ function image_upload(field, thumb) {
 		modal: false
 	});
 };
-//--></script>
-
-<script type="text/javascript"><!--
-var formblock;
-var forminput;
- 
-formblock = document.getElementById('store_ids');
-forminput = formblock.getElementsByTagName('input');
- 
-function select_all(name, value) {
-	for (i = 0; i < forminput.length; i++) {
-		var regex = new RegExp(name, "i");
-		if (regex.test(forminput[i].getAttribute('name'))) {
-			if (value == '1') {
-				forminput[i].checked = true;
-			} else {
-				forminput[i].checked = false;
-			}
-		}
-	}
-}
 //--></script>
 
 <script type="text/javascript"><!--

@@ -40,21 +40,21 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-              <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" />
+              <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
               <?php if ($error_firstname) { ?>
                 <span class="error"><?php echo $error_firstname; ?></span>
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-              <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
+              <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
               <?php if ($error_lastname) { ?>
                 <span class="error"><?php echo $error_lastname; ?></span>
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-              <td><input type="text" name="email" value="<?php echo $email; ?>" size="50" />
+              <td><input type="text" name="email" value="<?php echo $email; ?>" size="40" />
               <?php if ($error_email) { ?>
                 <span class="error"><?php echo $error_email; ?></span>
               <?php  } ?></td>
@@ -141,14 +141,14 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][firstname]" value="<?php echo $address['firstname']; ?>" />
+              <td><input type="text" name="address[<?php echo $address_row; ?>][firstname]" value="<?php echo $address['firstname']; ?>" size="30" />
               <?php if (isset($error_address_firstname[$address_row])) { ?>
                 <span class="error"><?php echo $error_address_firstname[$address_row]; ?></span>
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][lastname]" value="<?php echo $address['lastname']; ?>" />
+              <td><input type="text" name="address[<?php echo $address_row; ?>][lastname]" value="<?php echo $address['lastname']; ?>" size="30" />
               <?php if (isset($error_address_lastname[$address_row])) { ?>
                 <span class="error"><?php echo $error_address_lastname[$address_row]; ?></span>
               <?php } ?></td>
@@ -236,7 +236,7 @@
           <table class="form">
             <tr>
               <td><?php echo $entry_comment; ?></td>
-              <td><textarea name="comment" cols="40" rows="8" style="width:98%;"></textarea></td>
+              <td><textarea name="comment" cols="40" rows="8" style="width:99%;"></textarea></td>
             </tr>
             <tr>
               <td colspan="2" style="text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></td>
@@ -397,11 +397,11 @@ function addAddress() {
 	html += '  <table class="form">';
 	html += '    <tr>';
 	html += '	   <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>';
-	html += '	   <td><input type="text" name="address[' + address_row + '][firstname]" value="" /></td>';
+	html += '	   <td><input type="text" name="address[' + address_row + '][firstname]" value="" size="30" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][lastname]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][lastname]" value="" size="30" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><?php echo $entry_company; ?></td>';
@@ -465,7 +465,7 @@ function addAddress() {
 
 	$('select[name=\'customer_group_id\']').trigger('change');
 }
-//--></script> 
+//--></script>
 
 <script type="text/javascript"><!--
 $('#history .pagination a').live('click', function() {

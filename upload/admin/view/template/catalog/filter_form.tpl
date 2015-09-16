@@ -29,7 +29,7 @@
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
               <?php } ?>
             <?php } ?></td>
-          </tr>		  
+          </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
             <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="1" /></td>

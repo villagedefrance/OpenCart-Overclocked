@@ -66,7 +66,7 @@
           <td><?php echo $entry_frequency; ?></td>
           <td><select name="frequency">
             <?php foreach ($frequencies as $key => $title) { ?>
-              <?php if ($frequency == $key) { ?>    
+              <?php if ($frequency == $key) { ?>
                 <option value="<?php echo $key; ?>" selected="selected"><?php echo $title; ?></option>
               <?php } else { ?>
                 <option value="<?php echo $key; ?>"><?php echo $title; ?></option>
@@ -102,7 +102,7 @@
           <td><?php echo $entry_trial_frequency; ?></td>
           <td><select name="trial_frequency">
             <?php foreach ($frequencies as $key => $title) { ?>
-              <?php if ($trial_frequency == $key) { ?>    
+              <?php if ($trial_frequency == $key) { ?>
                 <option value="<?php echo $key; ?>" selected="selected"><?php echo $title; ?></option>
               <?php } else { ?>
                 <option value="<?php echo $key; ?>"><?php echo $title; ?></option>
