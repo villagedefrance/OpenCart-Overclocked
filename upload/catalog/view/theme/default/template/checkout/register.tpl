@@ -25,12 +25,12 @@
   <br />
   <h2><?php echo $text_your_password; ?></h2>
   <span class="required">*</span> <?php echo $entry_password; ?><br />
-  <input type="password" name="password" id="password1" value="" class="large-field" />
+  <input type="password" name="password" id="password1" value="" size="30" />
   <span id="check" class="hidden"></span>
   <br />
   <br />
   <span class="required">*</span> <?php echo $entry_confirm; ?> <br />
-  <input type="password" name="confirm" id="password2" value="" class="large-field" />&nbsp;
+  <input type="password" name="confirm" id="password2" value="" size="30" />&nbsp;
   <span id="password-info" class="hidden"></span>
   <br />
   <br />

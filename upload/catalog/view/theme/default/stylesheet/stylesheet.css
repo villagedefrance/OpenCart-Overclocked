@@ -500,6 +500,9 @@ samp, small {
 	font-family: Arial, Helvetica, sans-serif;
 	display: block;
 }
+.hidden {
+	display: none;
+}
 /* Table */
 table.form {
 	width: 100%;
