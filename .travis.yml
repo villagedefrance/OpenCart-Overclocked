@@ -9,6 +9,9 @@ php:
   - hhvm
 
 # Commands to be run before your environment runs.
+before_install:
+  - php /home/travis/.phpenv/versions/5.3.26/bin/composer.phar self-update
+
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
