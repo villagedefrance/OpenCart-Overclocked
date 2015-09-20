@@ -515,6 +515,13 @@ table.form > * > * > td {
 table.form td {
 	padding: 4px;
 }
+table.form td input span.check img, table.form td input span.match {
+	display: inline-block;
+	padding-top: 6px;
+}
+table.form td span.hidden {
+	display: none;
+}
 table.list {
 	border-collapse: collapse;
 	width: 100%;

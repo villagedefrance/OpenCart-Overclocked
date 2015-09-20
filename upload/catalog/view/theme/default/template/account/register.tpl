@@ -146,20 +146,18 @@
       <tr>
         <td><span class="required">*</span> <?php echo $entry_password; ?></td>
         <td><input type="password" name="password" id="password1" value="<?php echo $password; ?>" />
+        <span id="check" class="hidden"></span>
         <?php if ($error_password) { ?>
           <span class="error"><?php echo $error_password; ?></span>
         <?php } ?></td>
       </tr>
       <tr>
         <td><span class="required">*</span> <?php echo $entry_confirm; ?></td>
-        <td><input type="password" name="confirm" id="password2" value="<?php echo $confirm; ?>" />
+        <td><input type="password" name="confirm" id="password2" value="<?php echo $confirm; ?>" />&nbsp;
+        <span id="password-info" class="hidden"></span>
         <?php if ($error_confirm) { ?>
           <span class="error"><?php echo $error_confirm; ?></span>
         <?php } ?></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><div id="pass-info" style="line-height:16px;"></div></td>
       </tr>
     </table>
   </div>
@@ -294,20 +292,52 @@ $('select[name=\'country_id\']').trigger('change');
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
+    $('#password1').on('keyup', function() {
+        $('#check').html(checkStrength($('#password1').val()));
+    });
+
+    function checkStrength(password1) {
+		var strength = 0;
+
+		if (password1.length < 4) {
+			$('#check').removeClass().addClass('short');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-short.png" alt="" />';
+		}
+
+		if (password1.length > 4) { strength += 1; };
+		if (password1.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) { strength += 1; };
+		if (password1.match(/([a-zA-Z])/) && password1.match(/([0-9])/)) { strength += 1; };
+		if (password1.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) { strength += 1; };
+		if (password1.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,",%,&,@,#,$,^,*,?,_,~])/)) { strength += 1; };
+
+		if (strength < 2) {
+			$('#check').removeClass().addClass('weak');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-weak.png" alt="" />';
+		} else if (strength == 2) {
+			$('#check').removeClass().addClass('good');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-good.png" alt="" />';
+		} else {
+			$('#check').removeClass().addClass('strong');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-strong.png" alt="" />';
+		}
+	}
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
     var password1 = $('#password1');
     var password2 = $('#password2');
-    var passwordsInfo = $('#pass-info');
+    var passwordInfo = $('#password-info');
 
-    passwordStrengthCheck(password1, password2, passwordsInfo);
-});
-
-function passwordStrengthCheck(password1, password2, passwordsInfo) {
-	$(password2).on('keyup', function(e) {
+	$(password2).on('keyup', function() {
 		if (password1.val() === password2.val()) {
-			passwordsInfo.removeClass().addClass('match').html('<?php echo $text_match; ?>');
+			passwordInfo.removeClass('hidden').addClass('match').html('<?php echo $text_match; ?>');
+		} else {
+			passwordInfo.removeClass('match').addClass('hidden').html('<?php echo $text_match; ?>');
 		}
 	});
-}
+});
 //--></script>
 
 <script type="text/javascript"><!--

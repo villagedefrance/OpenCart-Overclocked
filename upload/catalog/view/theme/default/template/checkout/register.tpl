@@ -26,13 +26,12 @@
   <h2><?php echo $text_your_password; ?></h2>
   <span class="required">*</span> <?php echo $entry_password; ?><br />
   <input type="password" name="password" id="password1" value="" class="large-field" />
+  <span id="check" class="hidden"></span>
   <br />
   <br />
   <span class="required">*</span> <?php echo $entry_confirm; ?> <br />
-  <input type="password" name="confirm" id="password2" value="" class="large-field" />
-  <br />
-  <br />
-  <div id="pass-info" style="line-height:16px;"></div>
+  <input type="password" name="confirm" id="password2" value="" class="large-field" />&nbsp;
+  <span id="password-info" class="hidden"></span>
   <br />
   <br />
   <br />
@@ -221,20 +220,52 @@ $('#payment-address select[name=\'country_id\']').trigger('change');
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
+    $('#password1').on('keyup', function() {
+        $('#check').html(checkStrength($('#password1').val()));
+    });
+
+    function checkStrength(password1) {
+		var strength = 0;
+
+		if (password1.length < 4) {
+			$('#check').removeClass().addClass('short');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-short.png" alt="" />';
+		}
+
+		if (password1.length > 4) { strength += 1; };
+		if (password1.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) { strength += 1; };
+		if (password1.match(/([a-zA-Z])/) && password1.match(/([0-9])/)) { strength += 1; };
+		if (password1.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) { strength += 1; };
+		if (password1.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,",%,&,@,#,$,^,*,?,_,~])/)) { strength += 1; };
+
+		if (strength < 2) {
+			$('#check').removeClass().addClass('weak');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-weak.png" alt="" />';
+		} else if (strength == 2) {
+			$('#check').removeClass().addClass('good');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-good.png" alt="" />';
+		} else {
+			$('#check').removeClass().addClass('strong');
+			return '<img src="catalog/view/theme/<?php echo $template; ?>/image/account/password-strong.png" alt="" />';
+		}
+	}
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
     var password1 = $('#password1');
     var password2 = $('#password2');
-    var passwordsInfo = $('#pass-info');
+    var passwordInfo = $('#password-info');
 
-    passwordStrengthCheck(password1, password2, passwordsInfo);
-});
-
-function passwordStrengthCheck(password1, password2, passwordsInfo) {
-	$(password2).on('keyup', function(e) {
+	$(password2).on('keyup', function() {
 		if (password1.val() === password2.val()) {
-			passwordsInfo.removeClass().addClass('match').html('<?php echo $text_match; ?>');
+			passwordInfo.removeClass('hidden').addClass('match').html('<?php echo $text_match; ?>');
+		} else {
+			passwordInfo.removeClass('match').addClass('hidden').html('<?php echo $text_match; ?>');
 		}
 	});
-}
+});
 //--></script>
 
 <script type="text/javascript"><!--
