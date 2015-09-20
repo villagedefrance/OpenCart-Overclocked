@@ -51,7 +51,8 @@
             </tr>
             <tr>
               <td><?php echo $entry_meta_description; ?></td>
-              <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea></td>
+              <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="155" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
+              <span id="remaining<?php echo $language['language_id']; ?>"></span></td>
             </tr>
             <tr>
               <td><?php echo $entry_meta_keyword; ?></td>
@@ -1047,6 +1048,20 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+});
+
+$(document).ready(function() {
+    $('#meta-description<?php echo $language['language_id']; ?>').val('');
+    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+        var limit = $(this).data("limit");
+        var remain = limit - $(this).val().length;
+        if (remain <= 0) {
+            $(this).val($(this).val().substring(0, limit));
+        }
+        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+    });
+
+	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
 });
 <?php } ?>
 //--></script>

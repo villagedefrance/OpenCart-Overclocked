@@ -23,7 +23,7 @@ $_['column_action']          	= 'Action';
 
 // Entry
 $_['entry_title']         			= 'News Headline:';
-$_['entry_meta_description'] 	= 'News Meta Description:';
+$_['entry_meta_description'] 	= 'News Meta Description:<br /><span class="help">SEO importance: High<br />The optimal number of characters is around 155, including spaces.</span>';
 $_['entry_description']      	= 'News Main Content:';
 $_['entry_store']            		= 'News Stores:<br /><span class="help">Select Store(s) where this News is to appear.</span>';
 $_['entry_keyword']        		= 'News SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';

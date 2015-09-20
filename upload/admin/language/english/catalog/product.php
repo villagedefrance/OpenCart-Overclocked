@@ -49,8 +49,8 @@ $_['column_action']				= 'Action';
 
 // Entry
 $_['entry_name']             		= 'Product Name:';
-$_['entry_meta_description'] 	= 'Meta Tag Description:';
-$_['entry_meta_keyword'] 	= 'Meta Tag Keywords:';
+$_['entry_meta_description'] 	= 'Meta Tag Description:<br /><span class="help">SEO importance: High<br />The optimal number of characters is around 155, including spaces.</span>';
+$_['entry_meta_keyword'] 	= 'Meta Tag Keywords:<br /><span class="help">SEO importance: Low<br />Usually ignored by search engines.</span>';
 $_['entry_description']      	= 'Description:';
 $_['entry_tag']          	 		= 'Product Tags:<br /><span class="help">Comma separated</span>';
 

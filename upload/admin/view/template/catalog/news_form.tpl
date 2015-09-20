@@ -22,99 +22,100 @@
         <a href="#tab-general"><?php echo $tab_general; ?></a>
         <a href="#tab-data"><?php echo $tab_data; ?></a>
       </div>
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="newsform">
-        <div id="tab-general">
-          <div id="languages" class="htabs">
-            <?php foreach ($languages as $language) { ?>
-              <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
-            <?php } ?>
-          </div>
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <div id="tab-general">
+        <div id="languages" class="htabs">
           <?php foreach ($languages as $language) { ?>
-            <div id="language<?php echo $language['language_id']; ?>">
-              <table class="form">
-                <tr>
-                  <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-                  <td><input name="news_description[<?php echo $language['language_id']; ?>][title]" size="80" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" />
-                    <?php if (isset($error_title[$language['language_id']])) { ?>
-                      <span class="error"><?php echo $error_title[$language['language_id']]; ?></span>
-                    <?php } ?>
-                  </td>
-                </tr>
-                <tr>
-                  <td><?php echo $entry_meta_description; ?></td>
-                  <td><textarea name="news_description[<?php echo $language['language_id']; ?>][meta_description]" cols="40" rows="5"><?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['meta_description'] : ''; ?></textarea></td>
-                </tr>
-                <tr>
-                  <td><span class="required">*</span> <?php echo $entry_description; ?></td>
-                  <td><textarea name="news_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['description'] : ''; ?></textarea>
-                    <?php if (isset($error_description[$language['language_id']])) { ?>
-                      <span class="error"><?php echo $error_description[$language['language_id']]; ?></span>
-                    <?php } ?>
-                  </td>
-                </tr>
-              </table>
-            </div>
+            <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
           <?php } ?>
-		</div>
-		<div id="tab-data">
+        </div>
+        <?php foreach ($languages as $language) { ?>
+        <div id="language<?php echo $language['language_id']; ?>">
           <table class="form">
             <tr>
-              <td><?php echo $entry_store; ?></td>
-              <td>
-                <div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
-                  <?php $class = 'even'; ?>
-                  <div class="<?php echo $class; ?>">
-                    <?php if (in_array(0, $news_store)) { ?>
-                      <input type="checkbox" name="news_store[]" value="0" checked="checked" />
-                      <?php echo $text_default; ?>
-                    <?php } else { ?>
-                      <input type="checkbox" name="news_store[]" value="0" />
-                      <?php echo $text_default; ?>
-                    <?php } ?>
-                  </div>
-                  <?php foreach ($stores as $store) { ?>
-                    <?php $class=($class=='even' ? 'odd' : 'even'); ?>
-                    <div class="<?php echo $class; ?>">
-                      <?php if (in_array($store['store_id'], $news_store)) { ?>
-                        <input type="checkbox" name="news_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
-                        <?php echo $store['name']; ?>
-                      <?php } else { ?>
-                        <input type="checkbox" name="news_store[]" value="<?php echo $store['store_id']; ?>" />
-                        <?php echo $store['name']; ?>
-                      <?php } ?>
-                    </div>
-                  <?php } ?>
-                </div>
-                <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
-              </td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_keyword; ?></td>
-              <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_image; ?></td>
-              <td>
-                <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
-                <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-                <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_status; ?></td>
-              <td><select name="status">
-                <?php if ($status) { ?>
-                  <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                  <option value="0"><?php echo $text_disabled; ?></option>
-                <?php } else { ?>
-                  <option value="1"><?php echo $text_enabled; ?></option>
-                  <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <td><span class="required">*</span> <?php echo $entry_title; ?></td>
+              <td><input name="news_description[<?php echo $language['language_id']; ?>][title]" size="80" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" />
+                <?php if (isset($error_title[$language['language_id']])) { ?>
+                  <span class="error"><?php echo $error_title[$language['language_id']]; ?></span>
                 <?php } ?>
-              </select></td>
+              </td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_meta_description; ?></td>
+              <td><textarea name="news_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="155" cols="40" rows="5"><?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
+              <span id="remaining<?php echo $language['language_id']; ?>"></span></td>
+            </tr>
+            <tr>
+              <td><span class="required">*</span> <?php echo $entry_description; ?></td>
+              <td><textarea name="news_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['description'] : ''; ?></textarea>
+                <?php if (isset($error_description[$language['language_id']])) { ?>
+                  <span class="error"><?php echo $error_description[$language['language_id']]; ?></span>
+                <?php } ?>
+              </td>
             </tr>
           </table>
         </div>
+        <?php } ?>
+      </div>
+      <div id="tab-data">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_store; ?></td>
+            <td>
+              <div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
+                <?php $class = 'even'; ?>
+                <div class="<?php echo $class; ?>">
+                  <?php if (in_array(0, $news_store)) { ?>
+                    <input type="checkbox" name="news_store[]" value="0" checked="checked" />
+                    <?php echo $text_default; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="news_store[]" value="0" />
+                    <?php echo $text_default; ?>
+                  <?php } ?>
+                </div>
+                <?php foreach ($stores as $store) { ?>
+                  <?php $class=($class=='even' ? 'odd' : 'even'); ?>
+                  <div class="<?php echo $class; ?>">
+                    <?php if (in_array($store['store_id'], $news_store)) { ?>
+                      <input type="checkbox" name="news_store[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+                      <?php echo $store['name']; ?>
+                    <?php } else { ?>
+                      <input type="checkbox" name="news_store[]" value="<?php echo $store['store_id']; ?>" />
+                      <?php echo $store['name']; ?>
+                    <?php } ?>
+                  </div>
+                <?php } ?>
+              </div>
+              <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_keyword; ?></td>
+            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_image; ?></td>
+            <td>
+              <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+                <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+                <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_status; ?></td>
+            <td><select name="status">
+              <?php if ($status) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
+      </div>
       </form>
     </div>
   </div>
@@ -128,6 +129,20 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 	filebrowserBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserImageBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>',
 	filebrowserFlashBrowseUrl: 'index.php?route=common/filemanager&token=<?php echo $token; ?>'
+});
+
+$(document).ready(function() {
+    $('#meta-description<?php echo $language['language_id']; ?>').val('');
+    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+        var limit = $(this).data("limit");
+        var remain = limit - $(this).val().length;
+        if (remain <= 0) {
+            $(this).val($(this).val().substring(0, limit));
+        }
+        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+    });
+
+	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
 });
 <?php } ?>
 //--></script>
