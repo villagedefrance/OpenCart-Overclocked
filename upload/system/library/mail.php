@@ -49,27 +49,27 @@ class Mail {
 	public function send() {
 		if (!$this->to) {
 			trigger_error('Error: E-Mail to required!');
-			exit(); 
+			exit();
 		}
 
 		if (!$this->from) {
 			trigger_error('Error: E-Mail from required!');
-			exit(); 
+			exit();
 		}
 
 		if (!$this->sender) {
 			trigger_error('Error: E-Mail sender required!');
-			exit(); 
+			exit();
 		}
 
 		if (!$this->subject) {
 			trigger_error('Error: E-Mail subject required!');
-			exit(); 
+			exit();
 		}
 
 		if ((!$this->text) && (!$this->html)) {
 			trigger_error('Error: E-Mail message required!');
-			exit(); 
+			exit();
 		}
 
 		if (is_array($this->to)) {
@@ -155,7 +155,7 @@ class Mail {
 
 			if (!$handle) {
 				trigger_error('Error: ' . $errstr . ' (' . $errno . ')');
-				exit(); 
+				exit();
 
 			} else {
 				if (substr(PHP_OS, 0, 3) != 'WIN') {
@@ -164,7 +164,7 @@ class Mail {
 
 				while ($line = fgets($handle, 515)) {
 					if (substr($line, 3, 1) == ' ') {
-						break; 
+						break;
 					}
 				}
 
@@ -177,13 +177,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if (substr($reply, 0, 3) != 220) {
 						trigger_error('Error: STARTTLS not accepted from server!');
-						exit(); 
+						exit();
 					}
 				}
 
@@ -196,13 +196,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if (substr($reply, 0, 3) != 250) {
 						trigger_error('Error: EHLO not accepted from server!');
-						exit(); 
+						exit();
 					}
 
 					fputs($handle, 'AUTH LOGIN' . $this->crlf);
@@ -213,13 +213,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if (substr($reply, 0, 3) != 334) {
 						trigger_error('Error: AUTH LOGIN not accepted from server!');
-						exit(); 
+						exit();
 					}
 
 					fputs($handle, base64_encode($this->username) . $this->crlf);
@@ -230,13 +230,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if (substr($reply, 0, 3) != 334) {
 						trigger_error('Error: Username not accepted from server!');
-						exit(); 
+						exit();
 					}
 
 					fputs($handle, base64_encode($this->password) . $this->crlf);
@@ -247,13 +247,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if (substr($reply, 0, 3) != 235) {
 						trigger_error('Error: Password not accepted from server!');
-						exit(); 
+						exit();
 					}
 
 				} else {
@@ -265,13 +265,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if (substr($reply, 0, 3) != 250) {
 						trigger_error('Error: HELO not accepted from server!');
-						exit(); 
+						exit();
 					}
 				}
 
@@ -287,13 +287,13 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break; 
+						break;
 					}
 				}
 
 				if (substr($reply, 0, 3) != 250) {
 					trigger_error('Error: MAIL FROM not accepted from server!');
-					exit(); 
+					exit();
 				}
 
 				if (!is_array($this->to)) {
@@ -305,13 +305,13 @@ class Mail {
 						$reply .= $line;
 
 						if (substr($line, 3, 1) == ' ') {
-							break; 
+							break;
 						}
 					}
 
 					if ((substr($reply, 0, 3) != 250) && (substr($reply, 0, 3) != 251)) {
 						trigger_error('Error: RCPT TO not accepted from server!');
-						exit(); 
+						exit();
 					}
 
 				} else {
@@ -324,13 +324,13 @@ class Mail {
 							$reply .= $line;
 
 							if (substr($line, 3, 1) == ' ') {
-								break; 
+								break;
 							}
 						}
 
 						if ((substr($reply, 0, 3) != 250) && (substr($reply, 0, 3) != 251)) {
 							trigger_error('Error: RCPT TO not accepted from server!');
-							exit(); 
+							exit();
 						}
 					}
 				}
@@ -343,13 +343,13 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break; 
+						break;
 					}
 				}
 
 				if (substr($reply, 0, 3) != 354) {
 					trigger_error('Error: DATA not accepted from server!');
-					exit(); 
+					exit();
 				}
 
 				// According to rfc 821 we should not send more than 1000 including the CRLF
@@ -378,13 +378,13 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break; 
+						break;
 					}
 				}
 
 				if (substr($reply, 0, 3) != 250) {
 					trigger_error('Error: DATA not accepted from server!');
-					exit(); 
+					exit();
 				}
 
 				fputs($handle, 'QUIT' . $this->crlf);
@@ -395,13 +395,13 @@ class Mail {
 					$reply .= $line;
 
 					if (substr($line, 3, 1) == ' ') {
-						break; 
+						break;
 					}
 				}
 
 				if (substr($reply, 0, 3) != 221) {
 					trigger_error('Error: QUIT not accepted from server!');
-					exit(); 
+					exit();
 				}
 
 				fclose($handle);
