@@ -6,8 +6,6 @@ Opencart Overclocked - Community Edition
 
 For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
 
-[![Build Status](https://travis-ci.org/philippemarion/villagedefrance/OpenCart-Overclocked.svg?branch=master)](https://travis-ci.org/philippemarion/villagedefrance/OpenCart-Overclocked)
-
 Description:
 
 Opencart Overclocked Edition is a community project aimed at making Opencart Shopping Cart faster, richer, leaner and even more user friendly. 
@@ -26,7 +24,7 @@ So feel free to post your comments or get in touch.
 Latest Scripts:
 - jQuery 1.11.3.
 - jQuery UI 1.11.4.
-- CKEditor 4.5.1 Full.
+- CKEditor 4.5.3 Full.
 - jQuery Flot 0.8.2.
 - Camera 1.3.4.
 - Slick 1.5.8.
