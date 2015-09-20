@@ -6,6 +6,8 @@ Opencart Overclocked - Community Edition
 
 For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
 
+[![Build Status](https://travis-ci.org/philippemarion/villagedefrance/OpenCart-Overclocked.svg?branch=master)](https://travis-ci.org/philippemarion/villagedefrance/OpenCart-Overclocked)
+
 Description:
 
 Opencart Overclocked Edition is a community project aimed at making Opencart Shopping Cart faster, richer, leaner and even more user friendly. 

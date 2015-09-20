@@ -1,0 +1,33 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7
+
+sudo: false
+
+services:
+  - memcached
+
+before_script:
+  - composer install
+
+script:
+  - ./phpunit --phpunit.xml
+
+notifications:
+  slack:
+    rooms:
+      - villagedefrance:imG24gHBpopWp15HMV9j#OpenCart-Overclocked
+
+  irc:
+    skip_join: true
+    on_success: change
+    channels:
+      - "irc.freenode.org#OpenCart-Overclocked"
+    template:
+      - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "Overclocked Edition Build details: %{build_url}"
