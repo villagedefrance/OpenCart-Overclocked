@@ -1,6 +1,6 @@
 <?php
 // Version
-define('VERSION', '1.7.1');
+define('VERSION', '1.7.2 RC1');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -119,7 +119,6 @@ $registry->set('request', $request);
 // Response
 $response = new Response();
 $response->addHeader('Content-Type: text/html; charset=utf-8');
-$response->addHeader('X-Frame-Options: SAMEORIGIN');
 $response->setCompression($config->get('config_compression'));
 $registry->set('response', $response);
 
