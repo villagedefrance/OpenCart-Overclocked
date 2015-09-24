@@ -412,6 +412,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
+		$this->data['show_dob'] = $this->config->get('config_customer_dob');
+
 		$this->data['customers'] = array();
 
 		$data = array(
@@ -440,10 +442,17 @@ class ControllerSaleCustomer extends Controller {
 				'href'	=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
 			);
 
+			if ($this->config->get('config_customer_dob')) {
+				$customer_age = date_diff(date_create($result['date_of_birth']), date_create('today'))->y;
+			} else {
+				$customer_age = '';
+			}
+
 			$this->data['customers'][] = array(
 				'customer_id'    	=> $result['customer_id'],
 				'name'           		=> $result['name'],
 				'email'          		=> $result['email'],
+				'age'					=> $customer_age,
 				'customer_group' 	=> $result['customer_group'],
 				'status'         		=> $result['status'],
 				'approved'       	=> $result['approved'],
@@ -629,6 +638,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_add_ban_ip'] = $this->language->get('text_add_ban_ip');
 		$this->data['text_remove_ban_ip'] = $this->language->get('text_remove_ban_ip');
+		$this->data['text_female'] = $this->language->get('text_female');
+		$this->data['text_male'] = $this->language->get('text_male');
 
 		$this->data['column_ip'] = $this->language->get('column_ip');
 		$this->data['column_total'] = $this->language->get('column_total');
@@ -640,6 +651,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_gender'] = $this->language->get('entry_gender');
+		$this->data['entry_date_of_birth'] = $this->language->get('entry_date_of_birth');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
@@ -713,6 +726,12 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['error_telephone'] = $this->error['telephone'];
 		} else {
 			$this->data['error_telephone'] = '';
+		}
+
+		if (isset($this->error['date_of_birth'])) {
+			$this->data['error_date_of_birth'] = $this->error['date_of_birth'];
+		} else {
+			$this->data['error_date_of_birth'] = '';
 		}
 
 		if (isset($this->error['password'])) {
@@ -871,12 +890,34 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['telephone'] = '';
 		}
 
+		$this->data['show_fax'] = $this->config->get('config_customer_fax');
+
 		if (isset($this->request->post['fax'])) {
 			$this->data['fax'] = $this->request->post['fax'];
 		} elseif (!empty($customer_info)) {
 			$this->data['fax'] = $customer_info['fax'];
 		} else {
 			$this->data['fax'] = '';
+		}
+
+		$this->data['show_gender'] = $this->config->get('config_customer_gender');
+
+		if (isset($this->request->post['gender'])) {
+			$this->data['gender'] = $this->request->post['gender'];
+		} elseif (isset($customer_info)) {
+			$this->data['gender'] = $customer_info['gender'];
+		} else {
+			$this->data['gender'] = '';
+		}
+
+		$this->data['show_dob'] = $this->config->get('config_customer_dob');
+
+		if (isset($this->request->post['date_of_birth'])) {
+			$this->data['date_of_birth'] = $this->request->post['date_of_birth'];
+		} elseif (isset($customer_info)) {
+			$this->data['date_of_birth'] = date('Y-m-d', strtotime($customer_info['date_of_birth']));
+		} else {
+			$this->data['date_of_birth'] = '0000-00-00';
 		}
 
 		if (isset($this->request->post['newsletter'])) {
@@ -1005,6 +1046,14 @@ class ControllerSaleCustomer extends Controller {
 
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
+		}
+
+		if (isset($this->request->post['date_of_birth']) && (utf8_strlen($this->request->post['date_of_birth']) == 10)) {
+			if ($this->request->post['date_of_birth'] != date('Y-m-d', strtotime($this->request->post['date_of_birth']))) {
+				$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
+			}
+		} else {
+			$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
 		}
 
 		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {

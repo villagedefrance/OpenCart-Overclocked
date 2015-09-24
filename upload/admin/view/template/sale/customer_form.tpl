@@ -66,10 +66,33 @@
                 <span class="error"><?php echo $error_telephone; ?></span>
               <?php  } ?></td>
             </tr>
+            <?php if ($show_fax) { ?>
             <tr>
               <td><?php echo $entry_fax; ?></td>
               <td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
             </tr>
+            <?php } ?>
+            <?php if ($show_gender) { ?>
+            <tr>
+              <td><?php echo $entry_gender; ?></td>
+              <td><?php if ($gender) { ?>
+                <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
+                <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>
+              <?php } else { ?>
+                <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
+                <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>
+              <?php } ?></td>
+            </tr>
+            <?php } ?>
+            <?php if ($show_dob) { ?>
+            <tr>
+              <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
+              <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
+		      <?php if ($error_date_of_birth) { ?>
+                <span class="error"><?php echo $error_date_of_birth; ?></span>
+              <?php } ?></td>
+            </tr>
+            <?php } ?>
             <tr>
               <td><?php echo $entry_password; ?></td>
               <td><input type="password" name="password" value="<?php echo $password; ?>"  />
@@ -631,6 +654,12 @@ function removeBanIP(ip) {
 		}
 	});
 };
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#date-of-birth').datepicker({dateFormat: 'yy-mm-dd'});
+});
 //--></script>
 
 <script type="text/javascript"><!--

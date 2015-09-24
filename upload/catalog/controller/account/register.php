@@ -74,6 +74,8 @@ class ControllerAccountRegister extends Controller {
 		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_female'] = $this->language->get('text_female');
+		$this->data['text_male'] = $this->language->get('text_male');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_match'] = $this->language->get('text_match');
@@ -83,6 +85,8 @@ class ControllerAccountRegister extends Controller {
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_gender'] = $this->language->get('entry_gender');
+		$this->data['entry_date_of_birth'] = $this->language->get('entry_date_of_birth');
 		$this->data['entry_company'] = $this->language->get('entry_company');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
@@ -127,6 +131,12 @@ class ControllerAccountRegister extends Controller {
 			$this->data['error_telephone'] = $this->error['telephone'];
 		} else {
 			$this->data['error_telephone'] = '';
+		}
+
+		if (isset($this->error['date_of_birth'])) {
+			$this->data['error_date_of_birth'] = $this->error['date_of_birth'];
+		} else {
+			$this->data['error_date_of_birth'] = '';
 		}
 
 		if (isset($this->error['password'])) {
@@ -183,8 +193,6 @@ class ControllerAccountRegister extends Controller {
 			$this->data['error_zone'] = '';
 		}
 
-		$this->data['hide_fax'] = $this->config->get('config_customer_fax');
-
 		$this->data['action'] = $this->url->link('account/register', '', 'SSL');
 
 		if (isset($this->request->post['firstname'])) {
@@ -211,10 +219,28 @@ class ControllerAccountRegister extends Controller {
 			$this->data['telephone'] = '';
 		}
 
+		$this->data['show_fax'] = $this->config->get('config_customer_fax');
+
 		if (isset($this->request->post['fax'])) {
 			$this->data['fax'] = $this->request->post['fax'];
 		} else {
 			$this->data['fax'] = '';
+		}
+
+		$this->data['show_gender'] = $this->config->get('config_customer_gender');
+
+		if (isset($this->request->post['gender'])) {
+			$this->data['gender'] = $this->request->post['gender'];
+		} else {
+			$this->data['gender'] = '';
+		}
+
+		$this->data['show_dob'] = $this->config->get('config_customer_dob');
+
+		if (isset($this->request->post['date_of_birth'])) {
+			$this->data['date_of_birth'] = $this->request->post['date_of_birth'];
+		} else {
+			$this->data['date_of_birth'] = '0000-00-00';
 		}
 
 		if (isset($this->request->post['company'])) {
@@ -384,6 +410,16 @@ class ControllerAccountRegister extends Controller {
 
 		if (!isset($this->request->post['telephone']) || (utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
+		}
+
+		if ($this->config->get('config_customer_dob')) {
+			if (isset($this->request->post['date_of_birth']) && (utf8_strlen($this->request->post['date_of_birth']) == 10)) {
+				if ($this->request->post['date_of_birth'] != date('Y-m-d', strtotime($this->request->post['date_of_birth']))) {
+					$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
+				}
+			} else {
+				$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
+			}
 		}
 
 		// Customer Group

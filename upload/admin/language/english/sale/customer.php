@@ -10,6 +10,8 @@ $_['text_wait']             		= 'Please Wait!';
 $_['text_balance']          		= 'Balance:';
 $_['text_add_ban_ip']       	= 'Add Ban IP';
 $_['text_remove_ban_ip']    	= 'Remove Ban IP';
+$_['text_female']    				= 'Female';
+$_['text_male']    				= 'Male';
 
 // Column
 $_['column_name']           	= 'Customer Name';
@@ -33,6 +35,8 @@ $_['entry_lastname']        		= 'Last Name:';
 $_['entry_email']           		= 'E-Mail:';
 $_['entry_telephone']       		= 'Telephone:';
 $_['entry_fax']             		= 'Fax:';
+$_['entry_gender']      			= 'Gender:';
+$_['entry_date_of_birth']		= 'Date of Birth:';
 $_['entry_newsletter']     	 	= 'Newsletter:';
 $_['entry_customer_group']  	= 'Customer Group:';
 $_['entry_status']          		= 'Status:';
@@ -62,6 +66,7 @@ $_['error_firstname']       		= 'First Name must be between 1 and 32 characters!
 $_['error_lastname']        		= 'Last Name must be between 1 and 32 characters!';
 $_['error_email']           		= 'E-Mail Address does not appear to be valid!';
 $_['error_telephone']       		= 'Telephone must be between 3 and 32 characters!';
+$_['error_date_of_birth']		= 'Date of Birth is required and must be valid!';
 $_['error_password']        		= 'Password must be between 4 and 20 characters!';
 $_['error_confirm']         		= 'Password and password confirmation do not match!';
 $_['error_company_id']      	= 'Company ID required!';

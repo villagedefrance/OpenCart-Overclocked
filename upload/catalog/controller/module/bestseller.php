@@ -17,6 +17,7 @@ class ControllerModuleBestSeller extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$this->data['text_from'] = $this->language->get('text_from');
 		$this->data['text_offer'] = $this->language->get('text_offer');
 
 		$this->data['lang'] = $this->language->get('code');
@@ -76,16 +77,17 @@ class ControllerModuleBestSeller extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'product_id'	=> $result['product_id'],
-				'thumb'  		=> $image,
-				'offer'			=> $offer,
-				'name'   		=> $result['name'],
-				'price'   	 	=> $price,
-				'special' 		=> $special,
-				'minimum'	=> ($result['minimum'] > 0) ? $result['minimum'] : 1,
-				'rating'    	=> (int)$rating,
-				'reviews'    	=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-				'href'    	   	=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
+				'product_id'		=> $result['product_id'],
+				'thumb'  			=> $image,
+				'offer'				=> $offer,
+				'name'   			=> $result['name'],
+				'price'   	 		=> $price,
+				'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
+				'special' 			=> $special,
+				'minimum'		=> ($result['minimum'] > 0) ? $result['minimum'] : 1,
+				'rating'    		=> (int)$rating,
+				'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+				'href'    	   		=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
 			);
 		}
 

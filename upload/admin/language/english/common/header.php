@@ -7,6 +7,7 @@ $_['text_confirm']			     		= 'Delete/Uninstall cannot be undone! Are you sure y
 
 // Text
 $_['text_affiliate']                  	= 'Affiliates';
+$_['text_age_zone']              	= 'Age Zones';
 $_['text_attribute']                	= 'Attributes';
 $_['text_attribute_group']      	= 'Attribute Groups';
 $_['text_backup']                		= 'Backup / Restore';

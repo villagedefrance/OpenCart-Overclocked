@@ -74,6 +74,7 @@ $_['button_add_option_value'] 	= 'Add Option Value';
 $_['button_add_discount']   		= 'Add Discount';
 $_['button_add_special']     		= 'Add Special';
 $_['button_add_image']        		= 'Add Image';
+$_['button_add_age_zone']      	= 'Add Age Zone';
 $_['button_add_geo_zone']      	= 'Add Geo Zone';
 $_['button_add_history']        	= 'Add History';
 $_['button_add_transaction'] 	= 'Add Transaction';

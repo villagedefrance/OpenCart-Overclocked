@@ -12,6 +12,8 @@ $_['text_newsletter']      		= 'Newsletter';
 $_['text_your_password']   	= 'Your Password';
 $_['text_match']  				= '<span style="color:#46A020;">Password match!</span>';
 $_['text_agree']           		= 'I have read and agree to the <a class="colorbox" href="%s" title="%s"><b>%s</b></a>';
+$_['text_female']    				= 'Female';
+$_['text_male']    				= 'Male';
 
 // Entry
 $_['entry_firstname']      		= 'First Name:';
@@ -19,6 +21,8 @@ $_['entry_lastname']       		= 'Last Name:';
 $_['entry_email']          		= 'E-Mail:';
 $_['entry_telephone']      		= 'Telephone:';
 $_['entry_fax']            			= 'Fax:';
+$_['entry_gender']      			= 'Gender:';
+$_['entry_date_of_birth']		= 'Date of Birth:';
 $_['entry_company']        		= 'Company:';
 $_['entry_customer_group'] 	= 'Business Type:';
 $_['entry_company_id']     	= 'Company ID:';
@@ -39,6 +43,7 @@ $_['error_firstname']      		= 'First Name must be between 1 and 32 characters!'
 $_['error_lastname']       		= 'Last Name must be between 1 and 32 characters!';
 $_['error_email']          			= 'E-Mail Address does not appear to be valid!';
 $_['error_telephone']      		= 'Telephone must be between 3 and 32 characters!';
+$_['error_date_of_birth']		= 'Date of Birth is required and must be valid!';
 $_['error_password']       		= 'Password must be between 4 and 20 characters!';
 $_['error_confirm']        		= 'Password confirmation does not match password!';
 $_['error_company_id']     		= 'Company ID required!';

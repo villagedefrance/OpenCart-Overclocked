@@ -67,12 +67,16 @@ class ControllerAccountEdit extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
+		$this->data['text_female'] = $this->language->get('text_female');
+		$this->data['text_male'] = $this->language->get('text_male');
 
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_gender'] = $this->language->get('entry_gender');
+		$this->data['entry_date_of_birth'] = $this->language->get('entry_date_of_birth');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_back'] = $this->language->get('button_back');
@@ -107,7 +111,11 @@ class ControllerAccountEdit extends Controller {
 			$this->data['error_telephone'] = '';
 		}
 
-		$this->data['hide_fax'] = $this->config->get('config_customer_fax');
+		if (isset($this->error['date_of_birth'])) {
+			$this->data['error_date_of_birth'] = $this->error['date_of_birth'];
+		} else {
+			$this->data['error_date_of_birth'] = '';
+		}
 
 		$this->data['action'] = $this->url->link('account/edit', 'customer_token=' . $this->session->data['customer_token'], 'SSL');
 
@@ -147,12 +155,34 @@ class ControllerAccountEdit extends Controller {
 			$this->data['telephone'] = '';
 		}
 
+		$this->data['show_fax'] = $this->config->get('config_customer_fax');
+
 		if (isset($this->request->post['fax'])) {
 			$this->data['fax'] = $this->request->post['fax'];
 		} elseif (isset($customer_info)) {
 			$this->data['fax'] = $customer_info['fax'];
 		} else {
 			$this->data['fax'] = '';
+		}
+
+		$this->data['show_gender'] = $this->config->get('config_customer_gender');
+
+		if (isset($this->request->post['gender'])) {
+			$this->data['gender'] = $this->request->post['gender'];
+		} elseif (isset($customer_info)) {
+			$this->data['gender'] = $customer_info['gender'];
+		} else {
+			$this->data['gender'] = '';
+		}
+
+		$this->data['show_dob'] = $this->config->get('config_customer_dob');
+
+		if (isset($this->request->post['date_of_birth'])) {
+			$this->data['date_of_birth'] = $this->request->post['date_of_birth'];
+		} elseif (isset($customer_info)) {
+			$this->data['date_of_birth'] = date('Y-m-d', strtotime($customer_info['date_of_birth']));
+		} else {
+			$this->data['date_of_birth'] = '0000-00-00';
 		}
 
 		$this->data['back'] = $this->url->link('account/account', '', 'SSL');
@@ -199,6 +229,16 @@ class ControllerAccountEdit extends Controller {
 
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
+		}
+
+		if ($this->config->get('config_customer_dob')) {
+			if (isset($this->request->post['date_of_birth']) && (utf8_strlen($this->request->post['date_of_birth']) == 10)) {
+				if ($this->request->post['date_of_birth'] != date('Y-m-d', strtotime($this->request->post['date_of_birth']))) {
+					$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
+				}
+			} else {
+				$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
+			}
 		}
 
 		if (!$this->error) {

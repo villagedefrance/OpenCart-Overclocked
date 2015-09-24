@@ -147,6 +147,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_price'] = $this->language->get('entry_customer_price');
 		$this->data['entry_customer_redirect'] = $this->language->get('entry_customer_redirect');
 		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
+		$this->data['entry_customer_gender'] = $this->language->get('entry_customer_gender');
+		$this->data['entry_customer_dob'] = $this->language->get('entry_customer_dob');
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
@@ -859,6 +861,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_customer_fax'] = $this->request->post['config_customer_fax'];
 		} else {
 			$this->data['config_customer_fax'] = $this->config->get('config_customer_fax');
+		}
+
+		if (isset($this->request->post['config_customer_gender'])) {
+			$this->data['config_customer_gender'] = $this->request->post['config_customer_gender'];
+		} else {
+			$this->data['config_customer_gender'] = $this->config->get('config_customer_gender');
+		}
+
+		if (isset($this->request->post['config_customer_dob'])) {
+			$this->data['config_customer_dob'] = $this->request->post['config_customer_dob'];
+		} else {
+			$this->data['config_customer_dob'] = $this->config->get('config_customer_dob');
 		}
 
 		if (isset($this->request->post['config_account_id'])) {

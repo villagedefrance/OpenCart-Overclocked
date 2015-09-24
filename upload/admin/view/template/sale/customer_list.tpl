@@ -122,7 +122,7 @@
             <?php } else { ?>
               <input type="checkbox" name="selected[]" value="<?php echo $customer['customer_id']; ?>" />
             <?php } ?></td>
-            <td class="left"><?php echo $customer['name']; ?></td>
+            <td class="left"><?php echo $customer['name']; ?><?php if ($show_dob) { ?> (<?php echo $customer['age']; ?>)<?php } ?></td>
             <td class="left"><?php echo $customer['email']; ?></td>
             <td class="left"><?php echo $customer['customer_group']; ?></td>
             <?php if ($customer['status'] == 1) { ?>

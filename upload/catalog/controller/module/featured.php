@@ -17,6 +17,7 @@ class ControllerModuleFeatured extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$this->data['text_from'] = $this->language->get('text_from');
 		$this->data['text_model'] = $this->language->get('text_model');
 		$this->data['text_reward'] = $this->language->get('text_reward');
 		$this->data['text_points'] = $this->language->get('text_points');
@@ -135,6 +136,7 @@ class ControllerModuleFeatured extends Controller {
 					'reward' 			=> $product_info['reward'],
 					'points' 			=> $product_info['points'],
 					'price'   	  		=> $price,
+					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
 					'special' 	 		=> $special,
 					'minimum'		=> ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
 					'rating'     		=> (int)$rating,

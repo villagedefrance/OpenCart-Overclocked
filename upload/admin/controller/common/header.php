@@ -26,6 +26,7 @@ class ControllerCommonHeader extends Controller {
 
 		// Text
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
+		$this->data['text_age_zone'] = $this->language->get('text_age_zone');
 		$this->data['text_attribute'] = $this->language->get('text_attribute');
 		$this->data['text_attribute_group'] = $this->language->get('text_attribute_group');
 		$this->data['text_backup'] = $this->language->get('text_backup');
@@ -163,6 +164,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());
 
 			$this->data['affiliate'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['age_zone'] = $this->url->link('localisation/age_zone', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['attribute'] = $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['attribute_group'] = $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');

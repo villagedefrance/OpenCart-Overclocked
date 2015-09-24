@@ -93,6 +93,22 @@ CREATE TABLE `oc_affiliate_transaction` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_age_zone`
+--
+
+DROP TABLE IF EXISTS `oc_age_zone`;
+CREATE TABLE `oc_age_zone` (
+  `age_zone_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `age` int(2) NOT NULL,
+  `date_modified` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`age_zone_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_attribute`
 --
 
@@ -979,6 +995,8 @@ CREATE TABLE `oc_customer` (
   `email` varchar(96) NOT NULL,
   `telephone` varchar(32) NOT NULL,
   `fax` varchar(32) NOT NULL,
+  `gender` varchar(32) NOT NULL,
+  `date_of_birth` date NOT NULL,
   `password` varchar(40) NOT NULL,
   `salt` varchar(9) NOT NULL,
   `cart` text,
@@ -7824,6 +7842,23 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4308, 174, 'SDE', 'Saint-Denis', 1),
 (4309, 174, 'SPA', 'Saint-Paul', 1),
 (4310, 174, 'SPI', 'Saint-Pierre', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_zone_to_age_zone`
+--
+
+DROP TABLE IF EXISTS `oc_zone_to_age_zone`;
+CREATE TABLE `oc_zone_to_age_zone` (
+  `zone_to_age_zone_id` int(11) NOT NULL AUTO_INCREMENT,
+  `country_id` int(11) NOT NULL,
+  `zone_id` int(11) NOT NULL DEFAULT '0',
+  `age_zone_id` int(11) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`zone_to_age_zone_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 

@@ -761,6 +761,8 @@ class ControllerSaleAffiliate extends Controller {
 			$this->data['telephone'] = '';
 		}
 
+		$this->data['show_fax'] = $this->config->get('config_affiliate_fax');
+
 		if (isset($this->request->post['fax'])) {
 			$this->data['fax'] = $this->request->post['fax'];
 		} elseif (!empty($affiliate_info)) {

@@ -679,6 +679,26 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_customer_gender; ?></td>
+            <td><?php if ($config_customer_gender) { ?>
+              <input type="radio" name="config_customer_gender" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_gender" value="0" /><?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_customer_gender" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_gender" value="0" checked="checked" /><?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_customer_dob; ?></td>
+            <td><?php if ($config_customer_dob) { ?>
+              <input type="radio" name="config_customer_dob" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_dob" value="0" /><?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_customer_dob" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_customer_dob" value="0" checked="checked" /><?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_account; ?></td>
             <td><select name="config_account_id">
               <option value="0"><?php echo $text_none; ?></option>
