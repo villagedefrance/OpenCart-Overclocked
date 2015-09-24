@@ -454,6 +454,8 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->data['action'] = $this->url->link('payment/pp_express/expressConfirm', '', 'SSL');
 
+		$this->load->model('tool/upload');
+
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {
@@ -481,14 +483,18 @@ class ControllerPaymentPPExpress extends Controller {
 				if ($option['type'] != 'file') {
 					$value = $option['option_value'];
 				} else {
-					$filename = $this->encryption->decrypt($option['option_value']);
+					$upload_info = $this->model_tool_upload->getUploadByCode($option['option_value']);
 
-					$value = utf8_substr($filename, 0, utf8_strrpos($filename, '.'));
+					if ($upload_info) {
+						$value = $upload_info['name'];
+					} else {
+						$value = '';
+					}
 				}
 
 				$option_data[] = array(
-					'name' => $option['name'],
-					'value' => (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
+					'name'  => $option['name'],
+					'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
 				);
 			}
 
