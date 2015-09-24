@@ -254,6 +254,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_discount'] = $this->language->get('text_discount');
 			$this->data['text_location'] = $this->language->get('text_location');
 			$this->data['text_stock'] = $this->language->get('text_stock');
+			$this->data['text_from'] = $this->language->get('text_from');
 			$this->data['text_price'] = $this->language->get('text_price');
 			$this->data['text_tax'] = $this->language->get('text_tax');
 			$this->data['text_option'] = $this->language->get('text_option');
@@ -417,6 +418,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			// Price
+			$this->data['price_option']	= $this->model_catalog_product->hasOptionPriceIncrease($this->request->get['product_id']);
+
 			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 				if (($product_info['price'] == '0.0000') && $this->config->get('config_price_free')) {
 					$this->data['price'] = $this->language->get('text_free');
@@ -629,15 +632,16 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'product_id'	=> $result['product_id'],
-					'thumb'  		=> $image,
-					'offer'			=> $offer,
-					'name'    	=> $result['name'],
-					'price'   	 	=> $price,
-					'special' 	 	=> $special,
-					'rating'    	=> $rating,
-					'reviews'    	=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'    	 	=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'product_id'		=> $result['product_id'],
+					'thumb'  			=> $image,
+					'offer'				=> $offer,
+					'name'    		=> $result['name'],
+					'price'   	 		=> $price,
+					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
+					'special' 	 		=> $special,
+					'rating'    		=> $rating,
+					'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'href'    	 		=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
 

@@ -20,6 +20,7 @@
             <td class="left"><?php echo $column_customer; ?></td>
             <td class="left"><?php echo $column_url; ?></td>
             <td class="left"><?php echo $column_referer; ?></td>
+            <td class="left"><?php echo $column_user_agent; ?></td>
             <td class="left"><?php echo $column_date_added; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
@@ -31,16 +32,20 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
           <?php if ($customers) { ?>
             <?php foreach ($customers as $customer) { ?>
             <tr>
-              <td class="left"><a onclick="window.open('http://whatismyipaddress.com/ip/<?php echo $customer['ip']; ?>');" title=""><?php echo $customer['ip']; ?></a></td>
+              <td class="left"><a onclick="window.open('http://whatismyipaddress.com/ip/<?php echo $customer['ip']; ?>');"><?php echo $customer['ip']; ?></a></td>
               <td class="left"><?php echo $customer['customer']; ?></td>
-              <td class="left"><a href="<?php echo $customer['url']; ?>" target="_blank"><?php echo implode('<br />', str_split($customer['url'], 30)); ?></a></td>
+              <td class="left"><a onclick="window.open('<?php echo $customer['url']; ?>');"><?php echo implode('<br />', str_split($customer['url'], 30)); ?></a></td>
               <td class="left"><?php if ($customer['referer']) { ?>
-                <a href="<?php echo $customer['referer']; ?>" target="_blank"><?php echo implode('<br />', str_split($customer['referer'], 30)); ?></a>
+                <a onclick="window.open('<?php echo $customer['referer']; ?>');"><?php echo implode('<br />', str_split($customer['referer'], 30)); ?></a>
+              <?php } ?></td>
+              <td class="left"><?php if ($customer['user_agent']) { ?>
+                <?php echo implode('<br />', str_split($customer['user_agent'], 30)); ?>
               <?php } ?></td>
               <td class="left"><?php echo $customer['date_added']; ?></td>
               <td class="right"><?php foreach ($customer['action'] as $action) { ?>
@@ -50,7 +55,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
         </tbody>

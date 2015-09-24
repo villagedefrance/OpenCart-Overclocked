@@ -118,6 +118,9 @@
       </div>
       <?php if ($price) { ?>
         <div class="price"><?php echo $text_price; ?>
+          <?php if ($price_option) { ?>
+            <span class="from"><?php echo $text_from; ?></span>&nbsp;
+          <?php } ?>
           <?php if (!$special) { ?>
             <?php echo $price; ?>
           <?php } else { ?>
@@ -464,6 +467,9 @@
           <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
           <?php if ($product['price']) { ?>
             <div class="price">
+              <?php if ($product['price_option']) { ?>
+                <span class="from"><?php echo $text_from; ?></span><br />
+              <?php } ?>
               <?php if (!$product['special']) { ?>
                 <?php echo $product['price']; ?>
               <?php } else { ?>

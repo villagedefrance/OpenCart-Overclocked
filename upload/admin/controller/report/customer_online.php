@@ -95,6 +95,7 @@ class ControllerReportCustomerOnline extends Controller {
 				'customer'   	=> $customer,
 				'url'        		=> $result['url'],
 				'referer'    		=> $result['referer'],
+				'user_agent'	=> $result['user_agent'],
 				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'action'     		=> $action
 			);
@@ -108,6 +109,7 @@ class ControllerReportCustomerOnline extends Controller {
 		$this->data['column_customer'] = $this->language->get('column_customer');
 		$this->data['column_url'] = $this->language->get('column_url');
 		$this->data['column_referer'] = $this->language->get('column_referer');
+		$this->data['column_user_agent'] = $this->language->get('column_user_agent');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_action'] = $this->language->get('column_action');
 

@@ -440,6 +440,25 @@ class ModelCatalogProduct extends Model {
 		return $product_option_data;
 	}
 
+	public function hasOptionPriceIncrease($product_id) {
+		$option_data = $this->getProductOptions($product_id);
+
+		if (is_array($option_data)) {
+			foreach ($option_data as $option) {
+				if (is_array($option['option_value'])) {
+					foreach ($option['option_value'] as $value) {
+						if ($value['price'] > 1) {
+							return true;
+						}
+					}
+				}
+			}
+
+		} else {
+			return false;
+		}
+	}
+
 	public function getProductDiscounts($product_id) {
 		if ($this->customer->isLogged()) {
 			$customer_group_id = $this->customer->getCustomerGroupId();

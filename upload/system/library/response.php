@@ -79,7 +79,7 @@ class Response {
 			$start = $start[1] + $start[0];
 			$total_time = round(($finish - $start), 4);
 
-			$output = str_replace('</body>', '<div style="clear:left; padding:10px 30px;">Generated in ' . $total_time . ' seconds.</div></body>', $output);
+			$output = str_replace('</body>', '<div style="clear:left; padding:10px 30px;">' . $total_time . '</div></body>', $output);
 
 			echo $output;
 		}

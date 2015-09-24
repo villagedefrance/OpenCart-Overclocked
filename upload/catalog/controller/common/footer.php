@@ -94,7 +94,13 @@ class ControllerCommonFooter extends Controller {
 				$referer = '';
 			}
 
-			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer);
+			if (isset($this->request->server['HTTP_USER_AGENT'])) {
+				$user_agent = $this->request->server['HTTP_USER_AGENT'];
+			} else {
+				$user_agent = '';
+			}
+
+			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer, $user_agent);
 		}
 
 		// Theme

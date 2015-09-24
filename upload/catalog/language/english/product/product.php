@@ -8,6 +8,7 @@ $_['text_reward']       		= 'Reward Points:';
 $_['text_points']       		= 'Price in reward points:';
 $_['text_stock']        		= 'Availability:';
 $_['text_instock']      		= 'In Stock';
+$_['text_from']        		= 'from';
 $_['text_price']        		= 'Price:';
 $_['text_tax']          		= 'Ex Tax:';
 $_['text_discount']     		= '%s or more %s';

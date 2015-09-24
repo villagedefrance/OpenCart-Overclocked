@@ -53,7 +53,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['shopping_cart'] = $this->url->link('checkout/cart');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
-		// Daniel's robot detector
+		// Robot detector
 		$status = true;
 
 		if (isset($this->request->server['HTTP_USER_AGENT'])) {
@@ -67,7 +67,7 @@ class ControllerCommonHeader extends Controller {
 			}
 		}
 
-		// A dirty hack to try to set a cookie for the multi-store feature
+		// Multi-store cookie
 		$this->load->model('setting/store');
 
 		$this->data['stores'] = array();

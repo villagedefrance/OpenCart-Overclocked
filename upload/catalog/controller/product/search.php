@@ -141,6 +141,7 @@ class ControllerProductSearch extends Controller {
 		$this->data['text_quantity'] = $this->language->get('text_quantity');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_model'] = $this->language->get('text_model');
+		$this->data['text_from'] = $this->language->get('text_from');
 		$this->data['text_price'] = $this->language->get('text_price');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_points'] = $this->language->get('text_points');
@@ -290,6 +291,7 @@ class ControllerProductSearch extends Controller {
 					'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
 					'quote'			=> $quote,
 					'price'       		=> $price,
+					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
 					'special'     		=> $special,
 					'tax'         		=> $tax,
 					'rating'      		=> $result['rating'],
