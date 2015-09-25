@@ -8,6 +8,8 @@ class ControllerCheckoutExpressRegister extends Controller {
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
     	$this->data['text_your_address'] = $this->language->get('text_your_address');
     	$this->data['text_your_password'] = $this->language->get('text_your_password');
+		$this->data['text_female'] = $this->language->get('text_female');
+		$this->data['text_male'] = $this->language->get('text_male');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_yes'] = $this->language->get('text_yes');
@@ -18,6 +20,8 @@ class ControllerCheckoutExpressRegister extends Controller {
     	$this->data['entry_email'] = $this->language->get('entry_email');
     	$this->data['entry_telephone'] = $this->language->get('entry_telephone');
     	$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_gender'] = $this->language->get('entry_gender');
+		$this->data['entry_date_of_birth'] = $this->language->get('entry_date_of_birth');
 		$this->data['entry_company'] = $this->language->get('entry_company');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
@@ -52,6 +56,8 @@ class ControllerCheckoutExpressRegister extends Controller {
 			$this->data['firstname'] = '';
 		}
 
+		$this->data['gender'] = 0;
+
         if ($this->config->get('config_express_password')) {
 			$this->data['password'] = $this->model_checkout_checkout_tools->generatePassword();
 		} else {
@@ -60,7 +66,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		$this->data['customer_groups'] = array();
 
-		if (is_array($this->config->get('config_customer_group_display')) && file_exists('catalog/model/account/customer_group.php')) {
+		if (is_array($this->config->get('config_customer_group_display'))) {
 			$this->load->model('account/customer_group');
 
 			$customer_groups = $this->model_account_customer_group->getCustomerGroups();
@@ -180,6 +186,16 @@ class ControllerCheckoutExpressRegister extends Controller {
             if ($this->config->get('config_express_phone') == 2) {
 				if ((utf8_strlen($this->request->post['telephone']) < 1) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 					$json['error']['telephone'] = $this->language->get('error_telephone');
+				}
+			}
+
+			if ($this->config->get('config_customer_dob')) {
+				if (isset($this->request->post['date_of_birth']) && (utf8_strlen($this->request->post['date_of_birth']) == 10)) {
+					if ($this->request->post['date_of_birth'] != date('Y-m-d', strtotime($this->request->post['date_of_birth']))) {
+						$json['error']['date_of_birth'] = $this->language->get('error_date_of_birth');
+					}
+				} else {
+					$json['error']['date_of_birth'] = $this->language->get('error_date_of_birth');
 				}
 			}
 

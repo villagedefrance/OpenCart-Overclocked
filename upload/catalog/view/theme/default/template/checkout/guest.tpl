@@ -16,12 +16,28 @@
   <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="large-field" />
   <br />
   <br />
-  <?php if (!$hide_fax) { ?>
+  <?php if ($show_fax) { ?>
     <?php echo $entry_fax; ?><br />
     <input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />
+  <br />
+  <br />
   <?php } ?>
+  <?php if ($show_gender) { ?>
+    <?php echo $entry_gender; ?><br />
+    <?php if ($gender) { ?>
+      <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
+      <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>
+    <?php } else { ?>
+      <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
+      <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>
+    <?php } ?>
   <br />
   <br />
+  <?php } ?>
+  <?php if ($show_dob) { ?>
+  <span class="required">*</span> <?php echo $entry_date_of_birth; ?><br />
+  <input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
+  <?php } ?>
 </div>
 <div class="right">
   <h2><?php echo $text_your_address; ?></h2>
@@ -195,4 +211,10 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 });
 
 $('#payment-address select[name=\'country_id\']').trigger('change');
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#date-of-birth').datepicker({dateFormat: 'yy-mm-dd'});
+});
 //--></script>

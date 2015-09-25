@@ -26,6 +26,24 @@
     <br />
     <br />
   </span>
+  <span <?php echo ($this->config->get('config_customer_gender') == 0) ? 'style="display:none;"' : ''; ?>>
+    <?php echo $entry_gender; ?><br />
+    <?php if ($gender) { ?>
+      <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
+      <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>
+    <?php } else { ?>
+      <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
+      <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>
+    <?php } ?>
+  <br />
+  <br />
+  </span>
+  <span <?php echo ($this->config->get('config_customer_dob') == 0) ? 'style="display:none;"' : ''; ?>>
+  <span class="required">*</span> <?php echo $entry_date_of_birth; ?><br />
+  <input type="text" name="date_of_birth" value="" id="date-of-birth" size="12" />
+  <br />
+  <br />
+  </span>
   <?php if ($this->config->get('config_express_newsletter') == 2) { ?>
     <input type="checkbox" name="newsletter" value="1" checked="true" id="newsletter" />
     <label for="newsletter"><?php echo $entry_express_newsletter; ?></label>
@@ -228,6 +246,12 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 });
 
 $('#payment-address select[name=\'country_id\']').trigger('change');
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#date-of-birth').datepicker({dateFormat: 'yy-mm-dd'});
+});
 //--></script>
 
 <script type="text/javascript"><!--

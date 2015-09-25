@@ -269,6 +269,8 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['view_online'] = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'], 'SSL');
 
+		$this->data['show_dob'] = $this->config->get('config_customer_dob');
+
 		// Tab Orders
 		$this->data['orders'] = array();
 
@@ -345,11 +347,18 @@ class ControllerCommonHome extends Controller {
                 'href'	=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . '&filter_email=' . $customer_result['email'] . '&filter_order_status_id=0', 'SSL')
 			);
 
+			if ($this->config->get('config_customer_dob')) {
+				$customer_age = date_diff(date_create($customer_result['date_of_birth']), date_create('today'))->y;
+			} else {
+				$customer_age = '';
+			}
+
 			$this->data['customers'][] = array(
 				'customer_id' 		=> $customer_result['customer_id'],
 				'name'           		=> $customer_result['name'],
+				'age'					=> $customer_age,
 				'email'          		=> $customer_result['email'],
-				'customer_group' 	=> $customer_result['customer_group'],
+				'customer_group' 	=> $customer_result['customer_group'] ? $customer_result['customer_group'] : $this->language->get('text_guest'),
 				'newsletter'     	=> $customer_result['newsletter'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'approved'       	=> $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'status'         		=> $customer_result['status'],

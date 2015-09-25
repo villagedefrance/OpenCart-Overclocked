@@ -168,7 +168,7 @@ class ModelSaleCustomer extends Model {
 				$store_url = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=account/login';
 			}
 
-			$message  = sprintf($this->language->get('text_approve_welcome'), $store_name) . "\n\n";
+			$message = sprintf($this->language->get('text_approve_welcome'), $store_name) . "\n\n";
 			$message .= $this->language->get('text_approve_login') . "\n";
 			$message .= $store_url . "\n\n";
 			$message .= $this->language->get('text_approve_services') . "\n\n";
@@ -270,6 +270,16 @@ class ModelSaleCustomer extends Model {
 		}
 
 		return $address_data;
+	}
+
+	public function getCustomerDateOfBirth($customer_id) {
+		$query = $this->db->query("SELECT date_of_birth FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+
+		if ($query->row) {
+			return $query->row;
+		} else {
+			return false;
+		}
 	}
 
 	public function getTotalCustomers($data = array()) {
@@ -395,7 +405,7 @@ class ModelSaleCustomer extends Model {
 				$store_name = $this->config->get('config_name');
 			}
 
-			$message  = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
+			$message = sprintf($this->language->get('text_transaction_received'), $this->currency->format($amount, $this->config->get('config_currency'))) . "\n\n";
 			$message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($customer_id)));
 
 			// HTML Mail
@@ -547,7 +557,11 @@ class ModelSaleCustomer extends Model {
 	public function getOrdersCustomersGroup($customer_id) {
 		$query = $this->db->query("SELECT *, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND customer_id = '" . (int)$customer_id . "'"); 
 
-		return $query->row['customer_group'];
+		if (isset($query->row['customer_group'])) {
+			return $query->row['customer_group'];
+		} else {
+			return false;
+		}
 	}
 
 	public function getTotalCustomersOrders($customer_id) {

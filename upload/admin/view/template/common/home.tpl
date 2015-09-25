@@ -214,7 +214,7 @@
             <?php if ($customers) { ?>
               <?php foreach ($customers as $customer) { ?>
               <tr>
-                <td class="left"><?php echo $customer['name']; ?></td>
+                <td class="left"><?php echo $customer['name']; ?><?php if ($show_dob) { ?> (<?php echo $customer['age']; ?>)<?php } ?></td>
                 <td class="left"><?php echo $customer['email']; ?></td>
                 <td class="center"><?php echo $customer['customer_group']; ?></td>
                 <td class="center"><?php echo $customer['newsletter']; ?></td>

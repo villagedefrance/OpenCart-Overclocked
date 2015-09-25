@@ -16,11 +16,28 @@
   <input type="text" name="telephone" value="" class="large-field" />
   <br />
   <br />
-  <?php if (!$hide_fax) { ?>
+  <?php if ($show_fax) { ?>
     <?php echo $entry_fax; ?><br />
     <input type="text" name="fax" value="" class="large-field" />
-  <?php } ?>
   <br />
+  <br />
+  <?php } ?>
+  <?php if ($show_gender) { ?>
+    <?php echo $entry_gender; ?><br />
+    <?php if ($gender) { ?>
+      <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
+      <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>
+    <?php } else { ?>
+      <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
+      <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>
+    <?php } ?>
+  <br />
+  <br />
+  <?php } ?>
+  <?php if ($show_dob) { ?>
+  <span class="required">*</span> <?php echo $entry_date_of_birth; ?><br />
+  <input type="text" name="date_of_birth" value="" id="date-of-birth" size="12" />
+  <?php } ?>
   <br />
   <br />
   <h2><?php echo $text_your_password; ?></h2>
@@ -265,6 +282,12 @@ $(document).ready(function() {
 			passwordInfo.removeClass('match').addClass('hidden').html('<?php echo $text_match; ?>');
 		}
 	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#date-of-birth').datepicker({dateFormat: 'yy-mm-dd'});
 });
 //--></script>
 
