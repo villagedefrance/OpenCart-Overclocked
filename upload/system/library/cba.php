@@ -468,6 +468,7 @@ class CBA {
 		$string_to_sign .= "/cba/api/purchasecontract/\n";
 
 		uksort($parameters, 'strcmp');
+
 		$string_to_sign .= $this->getParametersAsString($parameters);
 
 		$parameters['Signature'] = base64_encode(hash_hmac('sha256', $string_to_sign, $this->getSecretKey(), true));

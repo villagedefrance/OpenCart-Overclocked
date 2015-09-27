@@ -218,7 +218,7 @@ final class Ebay {
 	}
 
 	public function removeItemByProductId($product_id) {
-		$this->log('removeItemByProductId() - ID: '.$product_id.'');
+		$this->log('removeItemByProductId() - ID: ' . $product_id . '');
 
 		$this->db->query("UPDATE `" . DB_PREFIX . "ebay_listing` SET `status` = '0' WHERE `product_id` = '" . (int)$product_id . "'");
 
@@ -380,7 +380,7 @@ final class Ebay {
 		$msg = serialize($msg);
 		$iv  = mcrypt_create_iv(32, MCRYPT_RAND);
 
-		if (mcrypt_generic_init($td, $k, $iv) !== 0) { 
+		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
 			return false;
 		}
 
@@ -535,7 +535,7 @@ final class Ebay {
 	}
 
 	public function orderNew($order_id) {
-		$this->log('orderNew() - Order id:'.$order_id.' passed');
+		$this->log('orderNew() - Order id:' . $order_id . ' passed');
 
 		if (!$this->isEbayOrder($order_id)) {
 			if ($this->openbay->addonLoad('openstock') == true) {
@@ -637,7 +637,7 @@ final class Ebay {
 			}
 
 			if ($sku == null) {
-				$this->log('putStockUpdate() - Listing stock: ' . $listing['qty'].', new stock: ' . $stock);
+				$this->log('putStockUpdate() - Listing stock: ' . $listing['qty'] . ', new stock: ' . $stock);
 
 				if ($stock <= 0) {
 					if ($this->config->get('ebay_disable_nostock') == 1) {
@@ -666,7 +666,7 @@ final class Ebay {
 						// other variations have stock
 						$variantStock = true;
 
-						$this->log('Another variation has stock (SKU: '.$var['sku'].')');
+						$this->log('Another variation has stock (SKU: ' . $var['sku'] . ')');
 						break;
 					}
 				}
@@ -700,7 +700,7 @@ final class Ebay {
 				}
 			}
 
-			$this->log('putStockUpdate() - Listing not active, item id: '. $item_id .', status returned: ' . $listing['statusActual']);
+			$this->log('putStockUpdate() - Listing not active, item id: ' . $item_id . ', status returned: ' . $listing['statusActual']);
 		}
 	}
 
@@ -957,29 +957,29 @@ final class Ebay {
 			}
 
 		} else {
-			//if not, is there an old link?
+			// if not, is there an old link?
 			$old_item_id = $this->getEndedEbayItemId($product_id);
 			$this->log('productUpdateListen() - Got item: ' . $old_item_id);
 
 			if ($old_item_id != false) {
-				//yes, check if its a multi variant listing
+				// yes, check if its a multi variant listing
 				if ($this->openbay->addonLoad('openstock') && (isset($data['has_option']) && $data['has_option'] == 1)) {
-					//yes, mutli variant listing
+					// yes, multi variant listing
 					$this->log('productUpdateListen() - multi variant items relist not supported');
 				} else {
 					$this->log('productUpdateListen() - Normal item, checking stock(' . $data['quantity'] . ') > 0');
-					//no, its a normal item, is there now stock?
+					// no, its a normal item, is there now stock?
 					if ($data['quantity'] > 0) {
-						//yes, is relist setting yes?
+						// yes, is relist setting yes?
 						if ($this->config->get('openbaypro_relistitems') == 1) {
-							//relist item with new stock
+							// relist item with new stock
 							$this->relistItem($old_item_id, $product_id, $data['quantity']);
 						}
 					}
 				}
 
 			} else {
-				//no - list has never existed
+				// no - list has never existed
 				$this->log('productUpdateListen() - no active or previous item ids');
 			}
 		}
@@ -1116,7 +1116,7 @@ final class Ebay {
 
 		if ($qry->num_rows) {
 			foreach ($qry->rows as $img) {
-				$this->log('Image: '.$img['name']);
+				$this->log('Image: ' . $img['name']);
 
 				// check if the supersize version exists
 				$img_large = str_replace(array('$_1.JPG', '$_01.JPG'), '$_57.JPG', $img['image_original']);
@@ -1140,8 +1140,8 @@ final class Ebay {
 
 				$handle = @fopen($img_used,'r');
 
-				if ($handle !== false){
-					if (!@copy($img_used, $img['image_new'])){
+				if ($handle !== false) {
+					if (!@copy($img_used, $img['image_new'])) {
 						$this->log('getImages() - FAILED COPY: ' . $img_used);
 					} else {
 						$this->log('getImages() - Copy OK : ' . $img_used);

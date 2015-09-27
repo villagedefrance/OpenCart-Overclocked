@@ -571,7 +571,7 @@ class Amazon {
 			"UPS",
 			"UPS Mail Innovations",
 			"USPS",
-			"YamatoTransport",
+			"YamatoTransport"
 		);
 	}
 

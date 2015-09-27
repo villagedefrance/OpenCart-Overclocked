@@ -217,7 +217,7 @@ class ControllerModificationVQmods extends Controller {
 		// Action Buttons
 		$this->data['action'] = $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['refresh'] = $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['close'] = $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['close'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['clear_log'] = $this->url->link('modification/vqmods/clear_log', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['clear_vqcache'] = $this->url->link('modification/vqmods/clear_vqcache', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['download_log'] = $this->url->link('modification/vqmods/download_log', 'token=' . $this->session->data['token'], 'SSL');

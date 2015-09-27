@@ -431,7 +431,7 @@ class Amazonus {
 		return $this->server;
 	}
 
-	public function putStockUpdateBulk($productIdArray, $endInactive = false){
+	public function putStockUpdateBulk($productIdArray, $endInactive = false) {
 		$this->load->library('log');
 
 		$logger = new Log('amazonus_stocks.log');
@@ -474,7 +474,7 @@ class Amazonus {
 		return $this->db->query("SELECT `op`.`product_id`, `p`.`quantity` as `quantity_left` FROM `" . DB_PREFIX . "order_product` as `op` LEFT JOIN `" . DB_PREFIX . "product` as `p` ON `p`.`product_id` = `op`.`product_id` WHERE `op`.`order_id` = '" . (int)$orderId . "'")->rows;
 	}
 
-	public function osProducts($order_id){
+	public function osProducts($order_id) {
 		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		$passArray = array();
@@ -513,7 +513,7 @@ class Amazonus {
 		return $passArray;
 	}
 
-	public function validate(){
+	public function validate() {
 		if ($this->config->get('amazonus_status') != 0 && $this->config->get('openbay_amazonus_token') != '' && $this->config->get('openbay_amazonus_enc_string1') != '' && $this->config->get('openbay_amazonus_enc_string2') != '') {
 			return true;
 		} else {
@@ -567,7 +567,7 @@ class Amazonus {
 			"UPS",
 			"UPS Mail Innovations",
 			"USPS",
-			"YamatoTransport",
+			"YamatoTransport"
 		);
 	}
 
