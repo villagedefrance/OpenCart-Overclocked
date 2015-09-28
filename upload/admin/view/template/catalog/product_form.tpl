@@ -111,6 +111,10 @@
             </select></td>
           </tr>
           <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_age_minimum; ?></td>
+            <td><input type="text" name="age_minimum" value="<?php echo $age_minimum; ?>" size="2" maxlength="2" /></td>
+          </tr>
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_tax_class; ?></td>
             <td><select name="tax_class_id">
               <option value="0"><?php echo $text_none; ?></option>

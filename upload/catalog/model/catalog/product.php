@@ -27,6 +27,7 @@ class ModelCatalogProduct extends Model {
 				'price'            		=> $query->row['discount'] ? $query->row['discount'] : $query->row['price'],
 				'cost'						=> $query->row['cost'],
 				'quote'					=> $query->row['quote'],
+				'age_minimum'			=> $query->row['age_minimum'],
 				'tax_class_id'     		=> $query->row['tax_class_id'],
 				'date_available'   		=> $query->row['date_available'],
 				'palette_id'     			=> $query->row['palette_id'],

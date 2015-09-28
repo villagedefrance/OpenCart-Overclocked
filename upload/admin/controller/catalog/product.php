@@ -608,6 +608,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_price'] = $this->language->get('entry_price');
 		$this->data['entry_cost'] = $this->language->get('entry_cost');
 		$this->data['entry_quote'] = $this->language->get('entry_quote');
+		$this->data['entry_age_minimum'] = $this->language->get('entry_age_minimum');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
@@ -893,6 +894,14 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['quote'] = $product_info['quote'];
 		} else {
 			$this->data['quote'] = 0;
+		}
+
+		if (isset($this->request->post['age_minimum'])) {
+			$this->data['age_minimum'] = $this->request->post['age_minimum'];
+		} elseif (!empty($product_info)) {
+			$this->data['age_minimum'] = $product_info['age_minimum'];
+		} else {
+			$this->data['age_minimum'] = 12;
 		}
 
 		$this->load->model('localisation/tax_class');

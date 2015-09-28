@@ -1090,7 +1090,7 @@ CREATE TABLE `oc_customer_group_description` (
 
 INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
 (1, 1, 'Default', 'Default'),
-(2, 1, 'Guest', 'Guest Checkout');
+(2, 1, 'Guest', 'Guest');
 
 -- --------------------------------------------------------
 
@@ -2344,6 +2344,7 @@ CREATE TABLE `oc_product` (
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `cost` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `quote` tinyint(1) NOT NULL DEFAULT '0',
+  `age_minimum` int(2) NOT NULL,
   `tax_class_id` int(11) NOT NULL,
   `date_available` date NOT NULL,
   `palette_id` int(11) NOT NULL,

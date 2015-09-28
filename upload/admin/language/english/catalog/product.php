@@ -60,6 +60,7 @@ $_['entry_keyword']          	= 'SEO Keyword:<br /><span class="help">Do not use
 $_['entry_price']            		= 'Price:';
 $_['entry_cost']            		= 'Average Cost:';
 $_['entry_quote']          		= 'Request a Quote:<br /><span class="help">Select if the product is made to order or only available on request.</span>';
+$_['entry_age_minimum']		= 'Minimum Age:<br /><span class="help">Minimum age a customer must be to be able to purchase this product.</span>';
 $_['entry_tax_class']        	= 'Tax Class:';
 $_['entry_date_available']   	= 'Date Available:';
 $_['entry_palette']       		= 'Color Palette:<br /><span class="help">Select a specific palette for this product.<br />Click "Apply" to activate.</span>';
