@@ -31,7 +31,7 @@
         <div class="content">
           <p><?php echo $text_i_am_returning_customer; ?></p>
           <b><?php echo $entry_email; ?></b><br />
-          <input type="text" name="email" value="<?php echo $email; ?>" size="30" />
+          <input type="text" name="email" value="<?php echo $email; ?>" size="25" />
           <br />
           <br />
           <b><?php echo $entry_password; ?></b><br />

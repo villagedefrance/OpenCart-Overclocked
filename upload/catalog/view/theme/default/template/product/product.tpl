@@ -14,6 +14,11 @@
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
   <div class="product-info">
+    <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
+      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_restriction; ?></div>
+    <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
+      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_minimum; ?></div>
+    <?php } ?>
     <?php if ($thumb || $images) { ?>
       <div class="left">
       <?php if ($lightbox == 'colorbox') { ?>
@@ -316,6 +321,11 @@
         <div>
           <?php if ($is_quote) { ?>
             <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
+          <?php } ?>
+          <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
+            <p class="hidden"></p>
+          <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
+            <p class="hidden"></p>
           <?php } else { ?>
             <b class="sub-prod-count" onclick="subProductCount();"></b>
             <input type="text" name="quantity" id="quantity" class="quantity-input" size="2" value="<?php echo $minimum; ?>" readonly="readonly" />

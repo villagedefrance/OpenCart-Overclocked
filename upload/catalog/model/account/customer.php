@@ -207,6 +207,16 @@ class ModelAccountCustomer extends Model {
 		return $query->rows;
 	}
 
+	public function getCustomerDateOfBirth($customer_id) {
+		$query = $this->db->query("SELECT date_of_birth FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+
+		if ($query->row['date_of_birth']) {
+			return $query->row['date_of_birth'];
+		} else {
+			return false;
+		}
+	}
+
 	public function getTotalCustomersByEmail($email) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 

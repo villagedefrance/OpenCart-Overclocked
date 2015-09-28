@@ -275,8 +275,8 @@ class ModelSaleCustomer extends Model {
 	public function getCustomerDateOfBirth($customer_id) {
 		$query = $this->db->query("SELECT date_of_birth FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 
-		if ($query->row) {
-			return $query->row;
+		if ($query->row['date_of_birth']) {
+			return $query->row['date_of_birth'];
 		} else {
 			return false;
 		}

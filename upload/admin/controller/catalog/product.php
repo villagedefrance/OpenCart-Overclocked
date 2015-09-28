@@ -901,7 +901,7 @@ class ControllerCatalogProduct extends Controller {
 		} elseif (!empty($product_info)) {
 			$this->data['age_minimum'] = $product_info['age_minimum'];
 		} else {
-			$this->data['age_minimum'] = 12;
+			$this->data['age_minimum'] = 0;
 		}
 
 		$this->load->model('localisation/tax_class');

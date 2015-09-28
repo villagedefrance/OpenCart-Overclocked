@@ -260,6 +260,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_option'] = $this->language->get('text_option');
 			$this->data['text_qty'] = $this->language->get('text_qty');
 			$this->data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
+			$this->data['text_age_minimum'] = sprintf($this->language->get('text_age_minimum'), $product_info['age_minimum']);
+			$this->data['text_age_restriction'] = sprintf($this->language->get('text_age_restriction'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
 			$this->data['text_or'] = $this->language->get('text_or');
 			$this->data['text_write'] = $this->language->get('text_write');
 			$this->data['text_note'] = $this->language->get('text_note');
@@ -452,6 +454,34 @@ class ControllerProductProduct extends Controller {
 					'price'    	=> $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')))
 				);
 			}
+
+			// Minimum age
+			$this->data['dob'] = $this->config->get('config_customer_dob');
+			$this->data['age_minimum'] = $product_info['age_minimum'];
+
+			$age_logged = false;
+			$age_checked = false;
+
+			if ($this->config->get('config_customer_dob') && ($product_info['age_minimum'] > 0)) {
+				if ($this->customer->isLogged() && $this->customer->isSecure()) {
+					$age_logged = true;
+
+					$this->load->model('account/customer');
+
+					$date_of_birth = $this->model_account_customer->getCustomerDateOfBirth($this->customer->getId());
+
+					if ($date_of_birth && ($date_of_birth != '0000-00-00')) {
+						$customer_age = date_diff(date_create($date_of_birth), date_create('today'))->y;
+
+						if ($customer_age >= $product_info['age_minimum']) {
+							$age_checked = true;
+						}
+					}
+				}
+			}
+
+			$this->data['age_logged'] = $age_logged;
+			$this->data['age_checked'] = $age_checked;
 
 			if ($product_info['quote']) {
 				$this->data['is_quote'] = $this->url->link('information/contact');
