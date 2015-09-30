@@ -104,6 +104,7 @@ class ControllerReportCustomerOnline extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_tracking'] = $this->language->get('text_tracking');
 
 		$this->data['column_ip'] = $this->language->get('column_ip');
 		$this->data['column_customer'] = $this->language->get('column_customer');
@@ -114,6 +115,8 @@ class ControllerReportCustomerOnline extends Controller {
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_filter'] = $this->language->get('button_filter');
+
+		$this->data['tracking'] = $this->config->get('config_customer_online');
 
 		$this->data['token'] = $this->session->data['token'];
 
