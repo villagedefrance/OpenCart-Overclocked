@@ -2,7 +2,7 @@
 // Text
 $_['text_search']       		= 'Search';
 $_['text_brand']        		= 'Brand';
-$_['text_manufacturer'] 	= 'Brand:';
+$_['text_manufacturer'] 	= 'Manufacturer:';
 $_['text_model']        		= 'Product Code:';
 $_['text_reward']       		= 'Reward Points:';
 $_['text_points']       		= 'Price in reward points:';
@@ -18,6 +18,7 @@ $_['text_qty']          		= 'Qty:';
 $_['text_minimum']      		= 'This product has a minimum quantity of %s';
 $_['text_age_minimum'] 	= 'You must be <b>%s or over</b> to purchase this product!';
 $_['text_age_restriction']	= 'This product has a minimum age restriction. Please <a href="%s">Login</a> or <a href="%s">Register</a>.';
+$_['text_age_band']			= 'Age Band:';
 $_['text_or']           			= '- OR -';
 $_['text_reviews']      		= '%s reviews';
 $_['text_write']        		= 'Write a review';

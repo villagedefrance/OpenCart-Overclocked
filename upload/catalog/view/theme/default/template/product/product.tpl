@@ -106,7 +106,10 @@
           <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
         <?php } ?>
         <span><?php echo $text_stock; ?></span> <?php echo $stock; ?><br />
-		<?php if ($locations) { ?>
+        <?php if ($age_minimum > 0) { ?>
+          <span><?php echo $text_age_band; ?></span> <?php echo $age_minimum; ?>+<br />
+        <?php } ?>
+        <?php if ($locations) { ?>
           <span><?php echo $text_location; ?></span>&nbsp;
           <?php for ($i = 0; $i < count($locations); $i++) { ?>
             <?php if ($i < (count($locations) - 1)) { ?>

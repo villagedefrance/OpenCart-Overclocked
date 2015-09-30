@@ -262,6 +262,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_minimum'] = sprintf($this->language->get('text_minimum'), $product_info['minimum']);
 			$this->data['text_age_minimum'] = sprintf($this->language->get('text_age_minimum'), $product_info['age_minimum']);
 			$this->data['text_age_restriction'] = sprintf($this->language->get('text_age_restriction'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+			$this->data['text_age_band'] = $this->language->get('text_age_band');
 			$this->data['text_or'] = $this->language->get('text_or');
 			$this->data['text_write'] = $this->language->get('text_write');
 			$this->data['text_note'] = $this->language->get('text_note');
@@ -486,6 +487,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['age_logged'] = $age_logged;
 			$this->data['age_checked'] = $age_checked;
 
+			// Quote
 			if ($product_info['quote']) {
 				$this->data['is_quote'] = $this->url->link('information/contact');
 			} else {
