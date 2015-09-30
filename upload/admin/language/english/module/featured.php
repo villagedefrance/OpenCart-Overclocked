@@ -29,7 +29,7 @@ $_['entry_point'] 					= 'Show Points:<span class="help">(if any)</span>';
 $_['entry_review'] 				= 'Show Product Star Rating:<span class="help">(if any)</span>';
 
 $_['entry_viewproduct'] 		= 'Show View Product Button:';
-$_['entry_addproduct'] 			= 'Show Add to Cart Button:';
+$_['entry_addproduct'] 			= 'Show Add to Cart Button:<br /><span class="help">Not recommended if some products have age restrictions.</span>';
 
 $_['entry_image']         		= 'Image (W x H)';
 $_['entry_layout']        		= 'Layout';

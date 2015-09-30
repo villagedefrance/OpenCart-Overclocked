@@ -17,7 +17,7 @@ $_['entry_theme']   				= 'Theme Style:<br /><span class="help">Apply style from
 $_['entry_title']    				= 'Custom Title:<br /><span class="help">Overrides the default module title.<br />Theme Style must be enabled.</span>';
 
 $_['entry_viewproduct'] 		= 'Show View Product Button:';
-$_['entry_addproduct'] 			= 'Show Add to Cart Button:';
+$_['entry_addproduct'] 			= 'Show Add to Cart Button:<br /><span class="help">Not recommended if some products have age restrictions.</span>';
 
 $_['entry_limit']         			= 'Limit';
 $_['entry_image']         		= 'Image (W x H)';
