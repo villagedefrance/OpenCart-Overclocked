@@ -130,6 +130,7 @@ class ControllerProductCategory extends Controller {
 			$this->data['lang'] = $this->language->get('code');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
+			$this->data['button_login'] = $this->language->get('button_login');
 			$this->data['button_quote'] = $this->language->get('button_quote');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');
@@ -173,6 +174,7 @@ class ControllerProductCategory extends Controller {
 			$this->data['description'] = html_entity_decode($category_info['description'], ENT_QUOTES, 'UTF-8');
 
 			$this->data['compare'] = $this->url->link('product/compare');
+			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
 			$url = '';
 
@@ -193,8 +195,10 @@ class ControllerProductCategory extends Controller {
 			}
 
 			$this->data['label'] = $this->config->get('config_offer_label');
+			$this->data['dob'] = $this->config->get('config_customer_dob');
 
 			$this->load->model('catalog/offer');
+			$this->load->model('account/customer');
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
@@ -282,6 +286,26 @@ class ControllerProductCategory extends Controller {
 					$offer = false;
 				}
 
+				// Minimum age
+				$age_logged = false;
+				$age_checked = false;
+
+				if ($this->config->get('config_customer_dob') && ($result['age_minimum'] > 0)) {
+					if ($this->customer->isLogged() && $this->customer->isSecure()) {
+						$age_logged = true;
+
+						$date_of_birth = $this->model_account_customer->getCustomerDateOfBirth($this->customer->getId());
+
+						if ($date_of_birth && ($date_of_birth != '0000-00-00')) {
+							$customer_age = date_diff(date_create($date_of_birth), date_create('today'))->y;
+
+							if ($customer_age >= $result['age_minimum']) {
+								$age_checked = true;
+							}
+						}
+					}
+				}
+
 				if ($result['quote']) {
 					$quote = $this->url->link('information/contact');
 				} else {
@@ -295,6 +319,9 @@ class ControllerProductCategory extends Controller {
 					'manufacturer'	=> $manufacturer,
 					'name'        	=> $result['name'],
 					'description' 	=> utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+					'age_minimum'	=> ($result['age_minimum'] > 0) ? (int)$result['age_minimum'] : '',
+					'age_logged' 	=> $age_logged,
+					'age_checked'	=> $age_checked,
 					'quote'			=> $quote,
 					'price'       		=> $price,
 					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),

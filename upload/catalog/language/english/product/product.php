@@ -17,7 +17,7 @@ $_['text_option']       		= 'Available Options';
 $_['text_qty']          		= 'Qty:';
 $_['text_minimum']      		= 'This product has a minimum quantity of %s';
 $_['text_age_minimum'] 	= 'You must be <b>%s or over</b> to purchase this product!';
-$_['text_age_restriction']	= 'This product has a minimum age restriction. Please <a href="%s">Login</a> or <a href="%s">Register</a> to purchase it.';
+$_['text_age_restriction']	= 'This product has a minimum age restriction. Please <a href="%s">Login</a> or <a href="%s">Register</a>.';
 $_['text_or']           			= '- OR -';
 $_['text_reviews']      		= '%s reviews';
 $_['text_write']        		= 'Write a review';

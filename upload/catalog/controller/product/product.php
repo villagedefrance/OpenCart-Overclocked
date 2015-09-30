@@ -277,6 +277,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
 			$this->data['button_cart'] = $this->language->get('button_cart');
+			$this->data['button_login'] = $this->language->get('button_login');
 			$this->data['button_quote'] = $this->language->get('button_quote');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_compare'] = $this->language->get('button_compare');
@@ -479,6 +480,8 @@ class ControllerProductProduct extends Controller {
 					}
 				}
 			}
+
+			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
 			$this->data['age_logged'] = $age_logged;
 			$this->data['age_checked'] = $age_checked;

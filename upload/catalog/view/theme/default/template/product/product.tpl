@@ -323,7 +323,7 @@
             <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
           <?php } ?>
           <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
-            <p class="hidden"></p>
+            <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
           <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
             <p class="hidden"></p>
           <?php } else { ?>

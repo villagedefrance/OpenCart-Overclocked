@@ -61,6 +61,11 @@
           <div class="cart">
 		    <?php if ($review['quote']) { ?>
               <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+            <?php } ?>
+            <?php if ($dob && $review['age_minimum'] && !$review['age_logged']) { ?>
+              <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
+            <?php } elseif ($dob && $review['age_minimum'] && !$review['age_checked']) { ?>
+              <p class="hidden"></p>
             <?php } else { ?>
               <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
             <?php } ?>
