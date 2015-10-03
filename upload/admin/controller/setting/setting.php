@@ -1576,7 +1576,7 @@ class ControllerSettingSetting extends Controller {
 			$this->error['file_max_size'] = $this->language->get('error_file_max_size');
 		}
 
-		if ($this->request->post['seo_url'] && !file_exists('../.htaccess')) {
+		if ($this->request->post['config_seo_url'] && !file_exists('../.htaccess')) {
 			$this->load->model('tool/system');
 
 			$this->model_tool_system->setupSeo();
