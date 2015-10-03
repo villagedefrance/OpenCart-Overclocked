@@ -18,7 +18,7 @@ class ControllerSettingSetting extends Controller {
 				$this->model_localisation_currency->updateCurrencies();
 			}
 
-			if (isset($this->request->post['seo_url'])) {
+			if ($this->config->get('config_seo_url') && !file_exists('../.htaccess')) {
 				$this->load->model('tool/system');
 
 				$this->model_tool_system->setupSeo();
@@ -1574,6 +1574,12 @@ class ControllerSettingSetting extends Controller {
 
 		if ($this->request->post['config_file_max_size'] < 100000) {
 			$this->error['file_max_size'] = $this->language->get('error_file_max_size');
+		}
+
+		if ($this->request->post['seo_url'] && !file_exists('../.htaccess')) {
+			$this->load->model('tool/system');
+
+			$this->model_tool_system->setupSeo();
 		}
 
 		if ((utf8_strlen($this->request->post['config_encryption']) < 3) || (utf8_strlen($this->request->post['config_encryption']) > 32)) {
