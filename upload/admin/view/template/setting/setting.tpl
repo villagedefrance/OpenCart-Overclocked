@@ -27,11 +27,11 @@
         <a href="#tab-local"><?php echo $tab_local; ?></a>
 		<a href="#tab-checkout"><?php echo $tab_checkout; ?></a>
         <a href="#tab-option"><?php echo $tab_option; ?></a>
-        <a href="#tab-media"><?php echo $tab_media; ?></a>
 		<a href="#tab-preference"><?php echo $tab_preference; ?></a>
         <a href="#tab-image"><?php echo $tab_image; ?></a>
         <a href="#tab-ftp"><?php echo $tab_ftp; ?></a>
         <a href="#tab-mail"><?php echo $tab_mail; ?></a>
+        <a href="#tab-media"><?php echo $tab_media; ?></a>
         <a href="#tab-server"><?php echo $tab_server; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -284,10 +284,6 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_order_edit; ?></td>
-            <td><input type="text" name="config_order_edit" value="<?php echo $config_order_edit; ?>" size="3" /></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_invoice_prefix; ?></td>
             <td><input type="text" name="config_invoice_prefix" value="<?php echo $config_invoice_prefix; ?>" /></td>
           </tr>
@@ -300,6 +296,10 @@
               <input type="radio" name="config_auto_invoice" value="1" /><?php echo $text_yes; ?>
               <input type="radio" name="config_auto_invoice" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_order_edit; ?></td>
+            <td><input type="text" name="config_order_edit" value="<?php echo $config_order_edit; ?>" size="3" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_order_status; ?></td>
@@ -365,6 +365,16 @@
               <?php } ?>
             </select></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_express_autofill; ?></td>
+            <td><?php if ($config_express_autofill) { ?>
+              <input type="radio" name="config_express_autofill" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_autofill" value="0" /><?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_express_autofill" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_express_autofill" value="0" checked="checked" /><?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
 		  <tr>
             <td><?php echo $entry_express_phone; ?></td>
             <td><select name="config_express_phone">
@@ -378,16 +388,6 @@
                 <option value="2"><?php echo $text_required; ?></option>
               <?php } ?>
             </select></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_express_autofill; ?></td>
-            <td><?php if ($config_express_autofill) { ?>
-              <input type="radio" name="config_express_autofill" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_express_autofill" value="0" /><?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_express_autofill" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_express_autofill" value="0" checked="checked" /><?php echo $text_no; ?>
-            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_billing; ?></td>
@@ -808,35 +808,6 @@
           </tr>
         </table>
       </div>
-	  <div id="tab-media">
-        <h2><?php echo $text_social_media; ?></h2>
-        <table class="form">
-          <tr>
-            <td><?php echo $entry_facebook; ?></td>
-            <td><input name="config_facebook" type="text" size="60" value="<?php echo $config_facebook; ?>" /></td>
-          <tr>
-          <tr>
-            <td><?php echo $entry_twitter; ?></td>
-            <td><input name="config_twitter" type="text" size="60" value="<?php echo $config_twitter; ?>" /></td>
-          <tr>
-          <tr>
-            <td><?php echo $entry_google; ?></td>
-            <td><input name="config_google" type="text" size="60" value="<?php echo $config_google; ?>" /></td>
-          <tr>
-          <tr>
-            <td><?php echo $entry_pinterest; ?></td>
-            <td><input name="config_pinterest" type="text" size="60" value="<?php echo $config_pinterest; ?>" /></td>
-          <tr>
-          <tr>
-            <td><?php echo $entry_skype; ?></td>
-            <td><input name="config_skype" type="text" size="50" value="<?php echo $config_skype; ?>" /></td>
-          <tr>
-          <tr>
-            <td><?php echo $entry_addthis; ?></td>
-            <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
-          <tr>
-        </table>
-      </div>
 	  <div id="tab-preference">
 		<h2><?php echo $text_items; ?></h2>
         <table class="form">
@@ -1220,57 +1191,44 @@
           </tr>
         </table>
       </div>
-      <div id="tab-server">
+	  <div id="tab-media">
+        <h2><?php echo $text_social_media; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_secure; ?></td>
-            <td><?php if ($config_secure) { ?>
-              <input type="radio" name="config_secure" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_secure" value="0" /><?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_secure" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_secure" value="0" checked="checked" /><?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
+            <td><?php echo $entry_facebook; ?></td>
+            <td><input name="config_facebook" type="text" size="60" value="<?php echo $config_facebook; ?>" /></td>
           <tr>
-            <td><?php echo $entry_shared; ?></td>
-            <td><?php if ($config_shared) { ?>
-              <input type="radio" name="config_shared" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_shared" value="0" /><?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_shared" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_shared" value="0" checked="checked" /><?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
           <tr>
-            <td><?php echo $entry_robots; ?></td>
-            <td><textarea name="config_robots" cols="40" rows="5"><?php echo $config_robots; ?></textarea></td>
-          </tr>
+            <td><?php echo $entry_twitter; ?></td>
+            <td><input name="config_twitter" type="text" size="60" value="<?php echo $config_twitter; ?>" /></td>
           <tr>
-            <td><?php echo $entry_seo_url; ?></td>
-            <td><?php if ($config_seo_url) { ?>
-              <input type="radio" name="config_seo_url" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_seo_url" value="0" /><?php echo $text_no; ?>
-            <?php } else { ?>
-              <input type="radio" name="config_seo_url" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_seo_url" value="0" checked="checked" /><?php echo $text_no; ?>
-            <?php } ?></td>
-          </tr>
           <tr>
-            <td><?php echo $entry_file_max_size; ?></td>
-            <td><input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" /> bytes
-            <?php if ($error_file_max_size) { ?>
-              <span class="error"><?php echo $error_file_max_size; ?></span>
-            <?php } ?></td>
-          </tr>
+            <td><?php echo $entry_google; ?></td>
+            <td><input name="config_google" type="text" size="60" value="<?php echo $config_google; ?>" /></td>
           <tr>
-            <td><?php echo $entry_file_extension_allowed; ?></td>
-            <td><textarea name="config_file_extension_allowed" cols="40" rows="5"><?php echo $config_file_extension_allowed; ?></textarea></td>
-          </tr>
           <tr>
-            <td><?php echo $entry_file_mime_allowed; ?></td>
-            <td><textarea name="config_file_mime_allowed" cols="60" rows="5"><?php echo $config_file_mime_allowed; ?></textarea></td>
+            <td><?php echo $entry_pinterest; ?></td>
+            <td><input name="config_pinterest" type="text" size="60" value="<?php echo $config_pinterest; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_skype; ?></td>
+            <td><input name="config_skype" type="text" size="50" value="<?php echo $config_skype; ?>" /></td>
+          <tr>
+          <tr>
+            <td><?php echo $entry_addthis; ?></td>
+            <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
+          <tr>
+        </table>
+        <h2><?php echo $text_analytic; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_google_analytics; ?></td>
+            <td><textarea name="config_google_analytics" cols="40" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
           </tr>
+        </table>
+      </div>
+      <div id="tab-server">
+        <table class="form">
           <tr>
             <td><?php echo $entry_maintenance; ?></td>
             <td><?php if ($config_maintenance) { ?>
@@ -1282,13 +1240,13 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_password; ?></td>
-            <td><?php if ($config_password) { ?>
-              <input type="radio" name="config_password" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_password" value="0" /><?php echo $text_no; ?>
+            <td><?php echo $entry_seo_url; ?></td>
+            <td><?php if ($config_seo_url) { ?>
+              <input type="radio" name="config_seo_url" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_seo_url" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="config_password" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="config_password" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="config_seo_url" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_seo_url" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1329,9 +1287,60 @@
               <span class="error"><?php echo $error_error_filename; ?></span>
             <?php } ?></td>
           </tr>
+        </table>
+        <h2><?php echo $text_security; ?></h2>
+        <table class="form">
           <tr>
-            <td><?php echo $entry_google_analytics; ?></td>
-            <td><textarea name="config_google_analytics" cols="40" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
+            <td><?php echo $entry_secure; ?></td>
+            <td><?php if ($config_secure) { ?>
+              <input type="radio" name="config_secure" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_secure" value="0" /><?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_secure" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_secure" value="0" checked="checked" /><?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_shared; ?></td>
+            <td><?php if ($config_shared) { ?>
+              <input type="radio" name="config_shared" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_shared" value="0" /><?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_shared" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_shared" value="0" checked="checked" /><?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_robots; ?></td>
+            <td><textarea name="config_robots" cols="40" rows="5"><?php echo $config_robots; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_password; ?></td>
+            <td><?php if ($config_password) { ?>
+              <input type="radio" name="config_password" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_password" value="0" /><?php echo $text_no; ?>
+            <?php } else { ?>
+              <input type="radio" name="config_password" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="config_password" value="0" checked="checked" /><?php echo $text_no; ?>
+            <?php } ?></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_upload; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_file_max_size; ?></td>
+            <td><input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" /> bytes
+            <?php if ($error_file_max_size) { ?>
+              <span class="error"><?php echo $error_file_max_size; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_file_extension_allowed; ?></td>
+            <td><textarea name="config_file_extension_allowed" cols="40" rows="5"><?php echo $config_file_extension_allowed; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_file_mime_allowed; ?></td>
+            <td><textarea name="config_file_mime_allowed" cols="60" rows="5"><?php echo $config_file_mime_allowed; ?></textarea></td>
           </tr>
         </table>
       </div>

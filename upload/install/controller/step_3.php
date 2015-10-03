@@ -35,8 +35,9 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_DRIVER\', \'' . addslashes($this->request->post['db_driver']) . '\');' . "\n";
 			$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($this->request->post['db_hostname']) . '\');' . "\n";
 			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_username']) . '\');' . "\n";
-			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($this->request->post['db_password']) . '\');' . "\n";
+			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes(html_entity_decode($this->request->post['db_password'], ENT_QUOTES, 'UTF-8')) . '\');' . "\n";
 			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_database']) . '\');' . "\n";
+			$output .= 'define(\'DB_PORT\', \'' . addslashes($this->request->post['db_port']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 			$output .= '?>';
 
@@ -76,8 +77,9 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_DRIVER\', \'' . addslashes($this->request->post['db_driver']) . '\');' . "\n";
 			$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($this->request->post['db_hostname']) . '\');' . "\n";
 			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_username']) . '\');' . "\n";
-			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($this->request->post['db_password']) . '\');' . "\n";
+			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes(html_entity_decode($this->request->post['db_password'], ENT_QUOTES, 'UTF-8')) . '\');' . "\n";
 			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_database']) . '\');' . "\n";
+			$output .= 'define(\'DB_PORT\', \'' . addslashes($this->request->post['db_port']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 			$output .= '?>';
 
@@ -113,6 +115,7 @@ class ControllerStep3 extends Controller {
 		$this->data['entry_db_username'] = $this->language->get('entry_db_username');
 		$this->data['entry_db_password'] = $this->language->get('entry_db_password');
 		$this->data['entry_db_database'] = $this->language->get('entry_db_database');
+		$this->data['entry_db_port'] = $this->language->get('entry_db_port');
 		$this->data['entry_db_prefix'] = $this->language->get('entry_db_prefix');
 		$this->data['entry_username'] = $this->language->get('entry_username');
 		$this->data['entry_password'] = $this->language->get('entry_password');
@@ -152,6 +155,12 @@ class ControllerStep3 extends Controller {
 			$this->data['error_db_database'] = $this->error['db_database'];
 		} else {
 			$this->data['error_db_database'] = '';
+		}
+
+		if (isset($this->error['db_port'])) {
+			$this->data['error_db_port'] = $this->error['db_port'];
+		} else {
+			$this->data['error_db_port'] = '';
 		}
 
 		if (isset($this->error['db_prefix'])) {
@@ -208,6 +217,12 @@ class ControllerStep3 extends Controller {
 			$this->data['db_database'] = html_entity_decode($this->request->post['db_database']);
 		} else {
 			$this->data['db_database'] = '';
+		}
+
+		if (isset($this->request->post['db_port'])) {
+			$this->data['db_port'] = $this->request->post['db_port'];
+		} else {
+			$this->data['db_port'] = 3306;
 		}
 
 		if (isset($this->request->post['db_prefix'])) {
@@ -290,13 +305,17 @@ class ControllerStep3 extends Controller {
 			$this->error['db_database'] = $this->language->get('error_db_database');
 		}
 
+		if (!$this->request->post['db_port']) {
+			$this->error['db_port'] = $this->language->get('error_db_port');
+		}
+
 		if ($this->request->post['db_prefix'] && preg_match('/[^a-z0-9_]/', $this->request->post['db_prefix'])) {
 			$this->error['db_prefix'] = $this->language->get('error_db_prefix');
 		}
 
 		if ($this->request->post['db_driver'] == 'mysql') {
 			if (function_exists('mysql_connect')) {
-				if (!$connection = @mysql_connect($this->request->post['db_hostname'], $this->request->post['db_username'], $this->request->post['db_password'])) {
+				if (!$connection = @mysql_connect($this->request->post['db_hostname'], $this->request->post['db_username'], html_entity_decode($this->request->post['db_password'], ENT_QUOTES, 'UTF-8'))) {
 					$this->error['warning'] = $this->language->get('error_db_connect');
 				} else {
 					if (!@mysql_select_db($this->request->post['db_database'], $connection)) {
@@ -313,7 +332,7 @@ class ControllerStep3 extends Controller {
 
 		if ($this->request->post['db_driver'] == 'mysqli') {
 			if (function_exists('mysqli_connect')) {
-				$connection = new mysqli($this->request->post['db_hostname'], $this->request->post['db_username'], $this->request->post['db_password'], $this->request->post['db_database']);
+				$connection = new mysqli($this->request->post['db_hostname'], $this->request->post['db_username'], html_entity_decode($this->request->post['db_password'], ENT_QUOTES, 'UTF-8'), $this->request->post['db_database'], $this->request->post['db_port']);
 
 				if (mysqli_connect_error()) {
 					$this->error['warning'] = $this->language->get('error_db_connect');
@@ -323,6 +342,14 @@ class ControllerStep3 extends Controller {
 
 			} else {
 				$this->error['db_driver'] = $this->language->get('error_db_mysqli');
+			}
+		}
+
+		if ($this->request->post['db_driver'] == 'mpdo') {
+			try {
+				new mPDO($this->request->post['db_hostname'], $this->request->post['db_username'], $this->request->post['db_password'], $this->request->post['db_database'], $this->request->post['db_port']);
+			} catch(Exception $e) {
+				$this->error['warning'] = $e->getMessage();
 			}
 		}
 
@@ -336,7 +363,7 @@ class ControllerStep3 extends Controller {
 
 		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
-		} 
+		}
 
 		if (!is_writable(DIR_OPENCART . 'config.php')) {
 			$this->error['warning'] = $this->language->get('error_config') . DIR_OPENCART . 'config.php!';

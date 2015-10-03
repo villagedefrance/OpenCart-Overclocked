@@ -485,6 +485,8 @@ define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
 define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');
 define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
 define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
+
+define(\'DB_PORT\', \'3306\');
 ';
 
 		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {

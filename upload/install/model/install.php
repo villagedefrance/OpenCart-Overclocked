@@ -2,7 +2,7 @@
 class ModelInstall extends Model {
 
 	public function database($data) {
-		$db = new DB($data['db_driver'], $data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_database']);
+		$db = new DB($data['db_driver'], $data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_database'], $data['db_port']);
 
 		if (isset($data['demo_data'])) {
 			$file = DIR_APPLICATION . 'opencart-clean.sql';

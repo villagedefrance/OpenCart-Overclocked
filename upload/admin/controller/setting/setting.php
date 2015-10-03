@@ -18,7 +18,7 @@ class ControllerSettingSetting extends Controller {
 				$this->model_localisation_currency->updateCurrencies();
 			}
 
-			if ($this->config->get('config_seo_url')) {
+			if (isset($this->request->post['seo_url'])) {
 				$this->load->model('tool/system');
 
 				$this->model_tool_system->setupSeo();
@@ -45,7 +45,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_automatic'] = $this->language->get('text_automatic');
 		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
-		$this->data['text_social_media'] = $this->language->get('text_social_media');
 		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_tax'] = $this->language->get('text_tax');
@@ -72,6 +71,10 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_mail'] = $this->language->get('text_mail');
 		$this->data['text_smtp'] = $this->language->get('text_smtp');
+		$this->data['text_social_media'] = $this->language->get('text_social_media');
+		$this->data['text_analytic'] = $this->language->get('text_analytic');
+		$this->data['text_security'] = $this->language->get('text_security');
+		$this->data['text_upload'] = $this->language->get('text_upload');
 
 		$this->data['info_express'] = $this->language->get('info_express');
 
@@ -80,11 +83,11 @@ class ControllerSettingSetting extends Controller {
 		$this->data['tab_local'] = $this->language->get('tab_local');
 		$this->data['tab_checkout'] = $this->language->get('tab_checkout');
 		$this->data['tab_option'] = $this->language->get('tab_option');
-		$this->data['tab_media'] = $this->language->get('tab_media');
 		$this->data['tab_preference'] = $this->language->get('tab_preference');
 		$this->data['tab_image'] = $this->language->get('tab_image');
 		$this->data['tab_ftp'] = $this->language->get('tab_ftp');
 		$this->data['tab_mail'] = $this->language->get('tab_mail');
+		$this->data['tab_media'] = $this->language->get('tab_media');
 		$this->data['tab_server'] = $this->language->get('tab_server');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
@@ -113,9 +116,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
-		$this->data['entry_order_edit'] = $this->language->get('entry_order_edit');
 		$this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
 		$this->data['entry_auto_invoice'] = $this->language->get('entry_auto_invoice');
+		$this->data['entry_order_edit'] = $this->language->get('entry_order_edit');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
 		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
@@ -159,12 +162,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
 		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
 		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
-		$this->data['entry_facebook'] = $this->language->get('entry_facebook');
-		$this->data['entry_twitter'] = $this->language->get('entry_twitter');
-		$this->data['entry_google'] = $this->language->get('entry_google');
-		$this->data['entry_pinterest'] = $this->language->get('entry_pinterest');
-		$this->data['entry_skype'] = $this->language->get('entry_skype');
-		$this->data['entry_addthis'] = $this->language->get('entry_addthis');
 		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_pagination_hi'] = $this->language->get('entry_pagination_hi');
@@ -207,21 +204,27 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_alert_mail'] = $this->language->get('entry_alert_mail');
 		$this->data['entry_account_mail'] = $this->language->get('entry_account_mail');
 		$this->data['entry_alert_emails'] = $this->language->get('entry_alert_emails');
-		$this->data['entry_secure'] = $this->language->get('entry_secure');
-		$this->data['entry_shared'] = $this->language->get('entry_shared');
-		$this->data['entry_robots'] = $this->language->get('entry_robots');
-		$this->data['entry_file_max_size'] = $this->language->get('entry_file_max_size');
-		$this->data['entry_file_extension_allowed'] = $this->language->get('entry_file_extension_allowed');
-		$this->data['entry_file_mime_allowed'] = $this->language->get('entry_file_mime_allowed');
+		$this->data['entry_facebook'] = $this->language->get('entry_facebook');
+		$this->data['entry_twitter'] = $this->language->get('entry_twitter');
+		$this->data['entry_google'] = $this->language->get('entry_google');
+		$this->data['entry_pinterest'] = $this->language->get('entry_pinterest');
+		$this->data['entry_skype'] = $this->language->get('entry_skype');
+		$this->data['entry_addthis'] = $this->language->get('entry_addthis');
+		$this->data['entry_google_analytics'] = $this->language->get('entry_google_analytics');
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
-		$this->data['entry_password'] = $this->language->get('entry_password');
-		$this->data['entry_encryption'] = $this->language->get('entry_encryption');
 		$this->data['entry_seo_url'] = $this->language->get('entry_seo_url');
+		$this->data['entry_encryption'] = $this->language->get('entry_encryption');
 		$this->data['entry_compression'] = $this->language->get('entry_compression');
 		$this->data['entry_error_display'] = $this->language->get('entry_error_display');
 		$this->data['entry_error_log'] = $this->language->get('entry_error_log');
 		$this->data['entry_error_filename'] = $this->language->get('entry_error_filename');
-		$this->data['entry_google_analytics'] = $this->language->get('entry_google_analytics');
+		$this->data['entry_secure'] = $this->language->get('entry_secure');
+		$this->data['entry_shared'] = $this->language->get('entry_shared');
+		$this->data['entry_robots'] = $this->language->get('entry_robots');
+		$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_file_max_size'] = $this->language->get('entry_file_max_size');
+		$this->data['entry_file_extension_allowed'] = $this->language->get('entry_file_extension_allowed');
+		$this->data['entry_file_mime_allowed'] = $this->language->get('entry_file_mime_allowed');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -639,14 +642,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_checkout_id'] = $this->config->get('config_checkout_id');
 		}
 
-		if (isset($this->request->post['config_order_edit'])) {
-			$this->data['config_order_edit'] = $this->request->post['config_order_edit'];
-		} elseif ($this->config->get('config_order_edit')) {
-			$this->data['config_order_edit'] = $this->config->get('config_order_edit');
-		} else {
-			$this->data['config_order_edit'] = 7;
-		}
-
 		if (isset($this->request->post['config_invoice_prefix'])) {
 			$this->data['config_invoice_prefix'] = $this->request->post['config_invoice_prefix'];
 		} elseif ($this->config->get('config_invoice_prefix')) {
@@ -659,6 +654,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_auto_invoice'] = $this->request->post['config_auto_invoice'];
 		} else {
 			$this->data['config_auto_invoice'] = $this->config->get('config_auto_invoice');
+		}
+
+		if (isset($this->request->post['config_order_edit'])) {
+			$this->data['config_order_edit'] = $this->request->post['config_order_edit'];
+		} elseif ($this->config->get('config_order_edit')) {
+			$this->data['config_order_edit'] = $this->config->get('config_order_edit');
+		} else {
+			$this->data['config_order_edit'] = 7;
 		}
 
 		if (isset($this->request->post['config_order_status_id'])) {
@@ -690,6 +693,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_express_name'] = $this->config->get('config_express_name');
 		}
 
+		if (isset($this->request->post['config_express_autofill'])) {
+			$this->data['config_express_autofill'] = $this->request->post['config_express_autofill'];
+		} else {
+			$this->data['config_express_autofill'] = $this->config->get('config_express_autofill');
+		}
+
 		if (isset($this->request->post['config_express_phone'])) {
 			$this->data['config_express_phone'] = $this->request->post['config_express_phone'];
 		} else {
@@ -700,12 +709,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_express_billing'] = $this->request->post['config_express_billing'];
 		} else {
 			$this->data['config_express_billing'] = $this->config->get('config_express_billing');
-		}
-
-		if (isset($this->request->post['config_express_autofill'])) {
-			$this->data['config_express_autofill'] = $this->request->post['config_express_autofill'];
-		} else {
-			$this->data['config_express_autofill'] = $this->config->get('config_express_autofill');
 		}
 
 		if (isset($this->request->post['config_express_postcode'])) {
@@ -943,43 +946,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_voucher_max'] = $this->request->post['config_voucher_max'];
 		} else {
 			$this->data['config_voucher_max'] = $this->config->get('config_voucher_max');
-		}
-
-		// Media
-		if (isset($this->request->post['config_facebook'])) {
-			$this->data['config_facebook'] = $this->request->post['config_facebook'];
-		} else {
-			$this->data['config_facebook'] = $this->config->get('config_facebook');
-		}
-
-		if (isset($this->request->post['config_twitter'])) {
-			$this->data['config_twitter'] = $this->request->post['config_twitter'];
-		} else {
-			$this->data['config_twitter'] = $this->config->get('config_twitter');
-		}
-
-		if (isset($this->request->post['config_google'])) {
-			$this->data['config_google'] = $this->request->post['config_google'];
-		} else {
-			$this->data['config_google'] = $this->config->get('config_google');
-		}
-
-		if (isset($this->request->post['config_pinterest'])) {
-			$this->data['config_pinterest'] = $this->request->post['config_pinterest'];
-		} else {
-			$this->data['config_pinterest'] = $this->config->get('config_pinterest');
-		}
-
-		if (isset($this->request->post['config_skype'])) {
-			$this->data['config_skype'] = $this->request->post['config_skype'];
-		} else {
-			$this->data['config_skype'] = $this->config->get('config_skype');
-		}
-
-		if (isset($this->request->post['config_addthis'])) {
-			$this->data['config_addthis'] = $this->request->post['config_addthis'];
-		} else {
-			$this->data['config_addthis'] = $this->config->get('config_addthis');
 		}
 
 		// Preference
@@ -1344,6 +1310,49 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_alert_emails'] = $this->config->get('config_alert_emails');
 		}
 
+		// Media
+		if (isset($this->request->post['config_facebook'])) {
+			$this->data['config_facebook'] = $this->request->post['config_facebook'];
+		} else {
+			$this->data['config_facebook'] = $this->config->get('config_facebook');
+		}
+
+		if (isset($this->request->post['config_twitter'])) {
+			$this->data['config_twitter'] = $this->request->post['config_twitter'];
+		} else {
+			$this->data['config_twitter'] = $this->config->get('config_twitter');
+		}
+
+		if (isset($this->request->post['config_google'])) {
+			$this->data['config_google'] = $this->request->post['config_google'];
+		} else {
+			$this->data['config_google'] = $this->config->get('config_google');
+		}
+
+		if (isset($this->request->post['config_pinterest'])) {
+			$this->data['config_pinterest'] = $this->request->post['config_pinterest'];
+		} else {
+			$this->data['config_pinterest'] = $this->config->get('config_pinterest');
+		}
+
+		if (isset($this->request->post['config_skype'])) {
+			$this->data['config_skype'] = $this->request->post['config_skype'];
+		} else {
+			$this->data['config_skype'] = $this->config->get('config_skype');
+		}
+
+		if (isset($this->request->post['config_addthis'])) {
+			$this->data['config_addthis'] = $this->request->post['config_addthis'];
+		} else {
+			$this->data['config_addthis'] = $this->config->get('config_addthis');
+		}
+
+		if (isset($this->request->post['config_google_analytics'])) {
+			$this->data['config_google_analytics'] = $this->request->post['config_google_analytics'];
+		} else {
+			$this->data['config_google_analytics'] = $this->config->get('config_google_analytics');
+		}
+
 		// Server
 		if (isset($this->request->post['config_secure'])) {
 			$this->data['config_secure'] = $this->request->post['config_secure'];
@@ -1363,10 +1372,10 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_robots'] = $this->config->get('config_robots');
 		}
 
-		if (isset($this->request->post['config_seo_url'])) {
-			$this->data['config_seo_url'] = $this->request->post['config_seo_url'];
+		if (isset($this->request->post['config_password'])) {
+			$this->data['config_password'] = $this->request->post['config_password'];
 		} else {
-			$this->data['config_seo_url'] = $this->config->get('config_seo_url');
+			$this->data['config_password'] = $this->config->get('config_password');
 		}
 
 		if (isset($this->request->post['config_file_max_size'])) {
@@ -1395,10 +1404,10 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_maintenance'] = $this->config->get('config_maintenance');
 		}
 
-		if (isset($this->request->post['config_password'])) {
-			$this->data['config_password'] = $this->request->post['config_password'];
+		if (isset($this->request->post['config_seo_url'])) {
+			$this->data['config_seo_url'] = $this->request->post['config_seo_url'];
 		} else {
-			$this->data['config_password'] = $this->config->get('config_password');
+			$this->data['config_seo_url'] = $this->config->get('config_seo_url');
 		}
 
 		if (isset($this->request->post['config_encryption'])) {
@@ -1429,12 +1438,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_error_filename'] = $this->request->post['config_error_filename'];
 		} else {
 			$this->data['config_error_filename'] = $this->config->get('config_error_filename');
-		}
-
-		if (isset($this->request->post['config_google_analytics'])) {
-			$this->data['config_google_analytics'] = $this->request->post['config_google_analytics'];
-		} else {
-			$this->data['config_google_analytics'] = $this->config->get('config_google_analytics');
 		}
 
 		$this->template = 'setting/setting.tpl';

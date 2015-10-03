@@ -2,8 +2,8 @@
 final class DBMySQLi {
 	private $link;
 
-	public function __construct($hostname, $username, $password, $database) {
-		$this->link = new mysqli($hostname, $username, $password, $database);
+	public function __construct($hostname, $username, $password, $database, $port = '3306') {
+		$this->link = new mysqli($hostname, $username, $password, $database, $port);
 
 		if (mysqli_connect_error()) {
 			trigger_error('Error: Could not make a database link (' . $this->link->connect_errno . ') ' . $this->link->connect_error);
@@ -35,9 +35,8 @@ final class DBMySQLi {
 				$query->close();
 
 				return $result;
+
 			} else {
-				// When MySQLi returns boolean true instead of a result object
-				// http://www.php.net/manual/en/mysqli.query.php
 				$result = new stdClass();
 				$result->num_rows = 0;
 				$result->row = array();
@@ -45,6 +44,7 @@ final class DBMySQLi {
 
 				return $result;
 			}
+
 		} else {
 			trigger_error('Error: ' . $this->link->error . '<br />Error No: ' . $this->link->errno . '<br />' . $sql);
 			exit();

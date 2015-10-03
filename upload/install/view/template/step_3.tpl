@@ -82,8 +82,16 @@
         <?php } ?></td>
       </tr>
       <tr>
+        <td><span class="required">* </span><?php echo $entry_db_port; ?></td>
+        <td><input type="text" name="db_port" value="<?php echo $db_port; ?>" size="10" />
+        <br />
+        <?php if ($error_db_port) { ?>
+          <span class="required"><?php echo $error_db_port; ?></span>
+        <?php } ?></td>
+      </tr>
+      <tr>
         <td><?php echo $entry_db_prefix; ?></td>
-        <td><input type="text" name="db_prefix" value="<?php echo $db_prefix; ?>" size="30" />
+        <td><input type="text" name="db_prefix" value="<?php echo $db_prefix; ?>" size="10" />
         <br />
         <?php if ($error_db_prefix) { ?>
           <span class="required"><?php echo $error_db_prefix; ?></span>
