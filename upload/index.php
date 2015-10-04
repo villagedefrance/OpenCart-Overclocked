@@ -37,7 +37,7 @@ $config = new Config();
 $registry->set('config', $config);
 
 // Database
-$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
 $registry->set('db', $db);
 
 // Store
@@ -73,7 +73,7 @@ if (!$store_query->num_rows) {
 $url = new Url($config->get('config_url'), $config->get('config_secure') ? $config->get('config_ssl') : $config->get('config_url'));
 $registry->set('url', $url);
 
-// Log
+// Error Handler
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
@@ -109,7 +109,6 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	return true;
 }
 
-// Error Handler
 set_error_handler('error_handler');
 
 // Request
@@ -147,8 +146,8 @@ if (isset($session->data['language']) && array_key_exists($session->data['langua
 	$detect = '';
 
 	if (isset($request->server['HTTP_ACCEPT_LANGUAGE']) && $request->server['HTTP_ACCEPT_LANGUAGE']) {
-		$browser_languages = explode(',', $request->server['HTTP_ACCEPT_LANGUAGE']);
-		$browser_languages = preg_replace(array('/;.*/','/\s/'), '', $browser_languages);
+		$browser_accept = explode(',', $request->server['HTTP_ACCEPT_LANGUAGE']);
+		$browser_languages = preg_replace(array('/;.*/','/\s/'), '', $browser_accept);
 
 		foreach ($browser_languages as $browser_language) {
 			foreach ($languages as $key => $value) {

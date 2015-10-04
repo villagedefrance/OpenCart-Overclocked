@@ -1,7 +1,7 @@
 <?php
 // Version
 define('VERSION', '1.7.2 RC1');
-define('REVISION', '2015-09-24');
+define('REVISION', '2015-10-04');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -35,7 +35,7 @@ $config = new Config();
 $registry->set('config', $config);
 
 // Database
-$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
 $registry->set('db', $db);
 
 // Settings
@@ -53,7 +53,7 @@ foreach ($query->rows as $setting) {
 $url = new Url(HTTP_SERVER, $config->get('config_secure') ? HTTPS_SERVER : HTTP_SERVER);
 $registry->set('url', $url);
 
-// Log
+// Error Handler
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
@@ -89,7 +89,6 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	return true;
 }
 
-// Error Handler
 set_error_handler('error_handler');
 
 // Request
