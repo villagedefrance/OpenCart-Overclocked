@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerToolErrorLog extends Controller {
 	private $error = array();
 
@@ -10,6 +10,7 @@ class ControllerToolErrorLog extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['button_clear'] = $this->language->get('button_clear');
+		$this->data['button_download'] = $this->language->get('button_download');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		if (isset($this->session->data['success'])) {
@@ -35,6 +36,7 @@ class ControllerToolErrorLog extends Controller {
 		);
 
 		$this->data['clear'] = $this->url->link('tool/error_log/clear', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['download'] = $this->url->link('tool/error_log/download', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$file = DIR_LOGS . $this->config->get('config_error_filename');
@@ -54,6 +56,36 @@ class ControllerToolErrorLog extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
+	}
+
+	public function download() {
+		$file = DIR_LOGS . $this->config->get('config_error_filename');
+
+		clearstatcache();
+
+		if (file_exists($file) && is_file($file)) {
+			if (!headers_sent()) {
+				if (filesize($file) > 0) {
+					header('Content-Type: application/octet-stream');
+					header('Content-Description: File Transfer');
+					header('Content-Disposition: attachment; filename=' . $this->config->get('config_name') . '_' . date('Y-m-d_H-i-s', time()) . '_error.log');
+					header('Content-Transfer-Encoding: binary');
+					header('Expires: 0');
+					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+					header('Pragma: public');
+					header('Content-Length: ' . filesize($file));
+
+					readfile($file, 'rb');
+					exit();
+				}
+
+			} else {
+				exit('Error: Headers already sent out!');
+			}
+
+		} else {
+			$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));
+		}
 	}
 
 	public function clear() {

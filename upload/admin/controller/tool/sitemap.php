@@ -140,7 +140,7 @@ class ControllerToolSitemap extends Controller {
 			$this->data['text_text'] = $this->language->get('text_text');
 			$this->data['text_nametext'] = $this->language->get('text_nametext');
 			$this->data['text_sizetext'] = round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i];
-			$this->data['text_datetext'] = sprintf($this->language->get('text_datetext'), date ("d-m-Y H:i:s", filemtime($filetext)));
+			$this->data['text_datetext'] = sprintf($this->language->get('text_datetext'), date("d-m-Y H:i:s", filemtime($filetext)));
 			$this->data['checktext'] = HTTP_CATALOG . "sitemap.txt";
 		} else {
 			$this->data['sitemaptext'] = '';
@@ -167,7 +167,7 @@ class ControllerToolSitemap extends Controller {
 			$this->data['text_xml'] = $this->language->get('text_xml');
 			$this->data['text_namexml'] = $this->language->get('text_namexml');
 			$this->data['text_sizexml'] = round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i];
-			$this->data['text_datexml'] = sprintf($this->language->get('text_datexml'), date ("d-m-Y H:i:s", filemtime($filexml)));
+			$this->data['text_datexml'] = sprintf($this->language->get('text_datexml'), date("d-m-Y H:i:s", filemtime($filexml)));
 		} else {
 			$this->data['sitemapxml'] = '';
 			$this->data['text_xml'] = $this->language->get('text_xml');
@@ -199,12 +199,14 @@ class ControllerToolSitemap extends Controller {
 			$this->data['text_gzip'] = $this->language->get('text_gzip');
 			$this->data['text_namegzip'] = $this->language->get('text_namegzip');
 			$this->data['text_sizegzip'] = round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i];
-			$this->data['text_dategzip'] = sprintf($this->language->get('text_dategzip'), date ("d-m-Y H:i:s", filemtime($FileRead)));
+			$this->data['text_dategzip'] = sprintf($this->language->get('text_dategzip'), date("d-m-Y H:i:s", filemtime($FileRead)));
 		} else {
 			$this->data['sitemapgzip'] = '';
 			$this->data['text_gzip'] = $this->language->get('text_gzip');
 			$this->data['text_nogzip'] = $this->language->get('text_nogzip');
 		}
+
+		clearstatcache();
 
 		$this->template = 'tool/' . $this->_name . '.tpl';
 		$this->children = array(
@@ -278,7 +280,7 @@ class ControllerToolSitemap extends Controller {
 					header('Content-Length: ' . filesize($file));
 
 					readfile($file, 'rb');
-					exit;
+					exit();
 
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
@@ -288,6 +290,7 @@ class ControllerToolSitemap extends Controller {
 				exit('Error: Headers already sent out!');
 			}
 
+			clearstatcache();
 		} else {
 			$this->redirect($this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
 		}
@@ -310,12 +313,13 @@ class ControllerToolSitemap extends Controller {
 					header('Content-Length: ' . filesize($file));
 
 					readfile($file, 'rb');
-					exit;
+					exit();
 
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
 				}
 
+				clearstatcache();
 			} else {
 				exit('Error: Headers already sent out!');
 			}
@@ -342,12 +346,13 @@ class ControllerToolSitemap extends Controller {
 					header('Content-Length: ' . filesize($file));
 
 					readfile($file, 'rb');
-					exit;
+					exit();
 
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
 				}
 
+				clearstatcache();
 			} else {
 				exit('Error: Headers already sent out!');
 			}
