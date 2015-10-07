@@ -22,7 +22,7 @@
           </tr>
         <?php } ?>
         <tr>
-          <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+          <td class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a><?php echo $product['age_minimum']; ?>
           <?php foreach ($product['option'] as $option) { ?>
             <br />
             &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>

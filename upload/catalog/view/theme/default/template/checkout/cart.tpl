@@ -57,7 +57,7 @@
                 <?php } ?>
               </td>
               <td class="name">
-                <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+                <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a><?php echo $product['age_minimum']; ?>
                 <?php if (!$product['stock']) { ?>
                   <span class="stock">***</span>
                 <?php } ?>

@@ -99,7 +99,7 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
-		
+
 			$points = $this->customer->getRewardPoints();
 
 			$points_total = 0;
@@ -305,6 +305,7 @@ class ControllerCheckoutCart extends Controller {
 					'reward'              	=> $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               		=> $price,
 					'cost' 					=> $product['cost'],
+					'age_minimum'			=> ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
 					'total'               		=> $total,
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
 					'remove'              	=> $this->url->link('checkout/cart', 'remove=' . $product['key']),

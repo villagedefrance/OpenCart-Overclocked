@@ -488,7 +488,6 @@ define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
 
 // DB PORT
 define(\'DB_PORT\', \'3306\');
-
 ';
 
 		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {

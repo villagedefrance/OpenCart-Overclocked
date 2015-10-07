@@ -13,40 +13,34 @@
       <div class="overview">
         <div class="dashboard-heading"><?php echo $text_overview; ?></div>
         <div class="dashboard-content">
-          <table>
+          <table class="list" style="margin-bottom:10px;">
             <tr>
-              <td><b><?php echo $text_total_offers; ?></b></td>
-              <td><b><?php echo $total_offers; ?></b></td>
+              <td class="left"><b><?php echo $text_total_offers; ?></b></td>
+              <td class="right"><b><?php echo $total_offers; ?></b></td>
+            </tr>
+            <tr>
+              <td class="left"><?php echo $text_total_p2p; ?></td>
+              <td class="right"><?php echo $total_p2p; ?></td>
+            </tr>
+            <tr>
+              <td class="left"><?php echo $text_total_p2c; ?></td>
+              <td class="right"><?php echo $total_p2c; ?></td>
+            </tr>
+            <tr>
+              <td class="left"><?php echo $text_total_c2p; ?></td>
+              <td class="right"><?php echo $total_c2p; ?></td>
+            </tr>
+            <tr>
+              <td class="left"><?php echo $text_total_c2c; ?></td>
+              <td class="right"><?php echo $total_c2c; ?></td>
             </tr>
 			<tr>
-              <td colspan="2" style="display:block; border-bottom:1px dotted #555; margin:5px 0px;"></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_p2p; ?></td>
-              <td><?php echo $total_p2p; ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_p2c; ?></td>
-              <td><?php echo $total_p2c; ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_c2p; ?></td>
-              <td><?php echo $total_c2p; ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $text_total_c2c; ?></td>
-              <td><?php echo $total_c2c; ?></td>
+              <td class="left"><b><?php echo $text_total_discount; ?></b></td>
+              <td class="right"><b><?php echo $total_discount; ?></b></td>
             </tr>
 			<tr>
-              <td colspan="2" style="display:block; border-bottom:1px dotted #555; margin-bottom:5px; margin-top:25px;"></td>
-            </tr>
-			<tr>
-              <td><b><?php echo $text_total_discount; ?></b></td>
-              <td><b><?php echo $total_discount; ?></b></td>
-            </tr>
-			<tr>
-              <td><b><?php echo $text_total_special; ?></b></td>
-              <td><b><?php echo $total_special; ?></b></td>
+              <td class="left"><b><?php echo $text_total_special; ?></b></td>
+              <td class="right"><b><?php echo $total_special; ?></b></td>
             </tr>
           </table>
         </div>
@@ -54,7 +48,7 @@
       <div class="statistic">
         <div class="dashboard-heading"><?php echo $text_quicklinks; ?></div>
         <div class="dashboard-content">
-          <table class="list" style="margin-bottom:0px;">
+          <table class="list" style="margin-bottom:10px;">
             <tr>
               <td><?php echo $text_p2p; ?></td>
               <td class="right"><a href="<?php echo $link_p2p; ?>" class="button-form"><?php echo $button_view; ?></a></td>
@@ -73,7 +67,7 @@
             </tr>
           </table>
           <?php if ($error_offers) { ?>
-            <div class="warning" style="margin:5px 0px 0px 0px;"><?php echo $error_offers; ?></div>
+            <div class="attention" style="margin:5px 0px 0px 0px;"><?php echo $error_offers; ?></div>
           <?php } ?>
 		  <?php if ($success_offers) { ?>
             <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $success_offers; ?></div>

@@ -282,6 +282,8 @@ class Cart {
 						'stock'                		=> $stock,
 						'price'                		=> ($price + $option_price),
 						'cost' 						=> $product_query->row['cost'],
+						'quote'						=> $product_query->row['quote'],
+						'age_minimum'				=> $product_query->row['age_minimum'],
 						'total'                 		=> ($price + $option_price) * $quantity,
 						'reward'                		=> $reward * $quantity,
 						'points'                		=> $product_query->row['points'] ? ($product_query->row['points'] + $option_points) * $quantity : 0,

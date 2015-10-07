@@ -67,6 +67,14 @@ class ControllerCheckoutConfirm extends Controller {
 				$redirect = $this->url->link('checkout/cart');
 				break;
 			}
+
+			// Validate minimum age
+			if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
+				if (!$this->customer->isLogged() || !$this->customer->isSecure()) {
+					$redirect($this->url->link('checkout/login', '', 'SSL'));
+					break;
+				}
+			}
 		}
 
 		if (!$redirect) {
@@ -398,6 +406,7 @@ class ControllerCheckoutConfirm extends Controller {
 					'quantity'				=> $product['quantity'],
 					'subtract'           		=> $product['subtract'],
 					'price'               		=> $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
+					'age_minimum'			=> ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
 					'total'               		=> $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
 					'recurring'				=> $product['recurring'],

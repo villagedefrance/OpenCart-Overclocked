@@ -45,5 +45,5 @@ $_['text_no_results'] 		= 'There are no offers to display at this time.';
 $_['success_offers']			= 'Extension "Totals/Offers" is Enabled and set to appear in position %s in the Shopping Cart.';
 
 // Error
-$_['error_offers']				= 'WARNING: Extension "Totals/Offers" must be Installed and Enabled!';
+$_['error_offers']				= 'IMPORTANT: Extension "Totals/Offers" must be Installed and Enabled!';
 ?>

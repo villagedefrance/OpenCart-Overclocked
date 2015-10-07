@@ -31,6 +31,13 @@ class ControllerCheckoutCheckout extends Controller {
 			if ($product['minimum'] > $product_total) {
 				$this->redirect($this->url->link('checkout/cart'));
 			}
+
+			// Validate minimum age
+			if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
+				if (!$this->customer->isLogged() || !$this->customer->isSecure()) {
+					$this->redirect($this->url->link('checkout/login', '', 'SSL'));
+				}
+			}
 		}
 
 		$this->language->load('checkout/checkout');
