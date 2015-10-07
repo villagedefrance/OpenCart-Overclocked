@@ -139,6 +139,7 @@ class ControllerModuleFeatured extends Controller {
 					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
 					'special' 	 		=> $special,
 					'minimum'		=> ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
+					'age_minimum'	=> ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
 					'rating'     		=> (int)$rating,
 					'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'href'    	 		=> $this->url->link('product/product', 'product_id=' . $product_info['product_id'])

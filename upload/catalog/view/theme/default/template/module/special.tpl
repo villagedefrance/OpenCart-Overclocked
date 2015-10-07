@@ -24,6 +24,9 @@
           <?php } ?>
           </div>
         <?php } ?>
+        <?php if ($product['age_minimum']) { ?>
+          <span class="help">(<?php echo $product['age_minimum']; ?>+)</span>
+        <?php } ?>
         <?php if ($product['rating']) { ?>
           <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
         <?php } ?>
@@ -61,6 +64,9 @@
             <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
           <?php } ?>
           </div>
+        <?php } ?>
+        <?php if ($product['age_minimum']) { ?>
+          <span class="help">(<?php echo $product['age_minimum']; ?>+)</span>
         <?php } ?>
         <?php if ($product['rating']) { ?>
           <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>

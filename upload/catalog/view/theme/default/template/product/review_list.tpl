@@ -46,7 +46,12 @@
 		  <?php if ($review['thumb']) { ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
           <?php } ?>
-          <div class="name"><a href="<?php echo $review['href']; ?>"><?php echo $review['name']; ?></a></div>
+          <div class="name">
+            <a href="<?php echo $review['href']; ?>"><?php echo $review['name']; ?></a>
+            <?php if ($review['age_minimum']) { ?>
+              <span class="help">(<?php echo $review['age_minimum']; ?>+)</span>
+            <?php } ?>
+          </div>
           <div class="text">&#8220;<?php echo $review['text']; ?>&#8221;</div>
           <div class="author"><?php echo $review['author']; ?></div>
           <div class="date"><?php echo $review['date_added']; ?></div>

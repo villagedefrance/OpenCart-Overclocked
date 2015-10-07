@@ -116,6 +116,9 @@
                 <br />
                 <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
               <?php } ?>
+              <?php if ($product['age_minimum']) { ?>
+                <span class="help">(<?php echo $product['age_minimum']; ?>+)</span>
+              <?php } ?>
             </div>
           <?php } ?>
           <?php if ($product['rating']) { ?>
