@@ -12,7 +12,9 @@
     <div class="heading">
       <h1><img src="view/image/log.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $clear; ?>" class="button"><?php echo $button_clear; ?></a>
+        <?php if ($mail_log) { ?>
+          <a href="<?php echo $clear; ?>" class="button"><?php echo $button_clear; ?></a>
+        <?php } ?>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
