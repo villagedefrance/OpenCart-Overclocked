@@ -474,59 +474,85 @@ class ModelUpgrade extends Model {
 	// Function to update the existing "config.php" files
 	// -----------------------------------------------
 	public function updateConfig() {
-		$find = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');';
+		set_time_limit(30);
 
-		$check = '
-define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
-define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
-';
+		$upload = 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');';
+		$vqmod = 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');';
+		$port = 'define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
-		$output = '
+		$check_upload = 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');';
+		$check_vqmod = 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
+		$check_port = 'define(\'DB_PORT\', \'3306\');';
+
+		$output_upload = '
+define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');
+define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');';
+
+		$output_vqmod = '
 define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');
-define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');
-define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');
+define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');';
 
-// DB PORT
+		$output_port = '
 define(\'DB_PORT\', \'3306\');
-';
+define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
-		if (file_exists(DIR_OPENCART . 'config.php') && filesize(DIR_OPENCART . 'config.php') > 0) {
-			$catalog = DIR_OPENCART . 'config.php';
+		// Catalog
+		if (file_exists('../config.php') && filesize('../config.php') > 0) {
+			$catalog = '../config.php';
 
 			$catalog_data = file_get_contents($catalog);
 
-			if (strpos($catalog_data, $check) == false) {
-				$catalog_string = implode('', file($catalog));
+			$catalog_string = implode('', file($catalog));
 
-				$fh1 = fopen($catalog, 'w');
+			$fh1 = fopen($catalog, 'w');
 
-				$catalog_string = str_replace($find, $output, $catalog_string);
-
-				fwrite($fh1, $catalog_string, strlen($catalog_string));
-
-				fclose($fh1);
+			if (strpos($catalog_data, $check_upload) == false) {
+				$catalog_string .= str_replace($upload, $output_upload, $catalog_string);
 			}
+
+			if (strpos($catalog_data, $check_vqmod) == false) {
+				$catalog_string .= str_replace($vqmod, $output_vqmod, $catalog_string);
+			}
+
+			if (strpos($catalog_data, $check_port) == false) {
+				$catalog_string .= str_replace($port, $output_port, $catalog_string);
+			}
+
+			fwrite($fh1, $catalog_string, strlen($catalog_string));
+
+			fclose($fh1);
 		}
 
-		if (file_exists(DIR_OPENCART . 'admin/config.php') && filesize(DIR_OPENCART . 'admin/config.php') > 0) {
-			$admin = DIR_OPENCART . 'admin/config.php';
+		// Admin
+		if (file_exists('../admin/config.php') && filesize('../admin/config.php') > 0) {
+			$admin = '../admin/config.php';
 
 			$admin_data = file_get_contents($admin);
 
-			if (strpos($admin_data, $check) == false) {
-				$admin_string = implode('', file($admin));
+			$admin_string = implode('', file($admin));
 
-				$fh2 = fopen($admin, 'w');
+			$fh2 = fopen($admin, 'w');
 
-				$admin_string = str_replace($find, $output, $admin_string);
-
-				fwrite($fh2, $admin_string, strlen($admin_string));
-
-				fclose($fh2);
+			if (strpos($admin_data, $check_upload) == false) {
+				$admin_string .= str_replace($upload, $output_upload, $admin_string);
 			}
+
+			if (strpos($admin_data, $check_vqmod) == false) {
+				$admin_string .= str_replace($vqmod, $output_vqmod, $admin_string);
+			}
+
+			if (strpos($admin_data, $check_port) == false) {
+				$admin_string .= str_replace($port, $output_port, $admin_string);
+			}
+
+			fwrite($fh2, $admin_string, strlen($admin_string));
+
+			fclose($fh2);
 		}
 
 		clearstatcache();
+
+		flush();
 
 		$this->updateLayouts();
 	}
