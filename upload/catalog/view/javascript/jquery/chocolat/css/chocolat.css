@@ -1,13 +1,8 @@
-/* jQuery Chocolat v0.4.9 - OverClocked Edition */
-/*  CSS RESET  */
-html, body, div, span {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-}
+/* ----------------------------------------------*/
+/* jQuery Chocolat v0.4.10 - OverClocked Edition */
+/* ----------------------------------------------*/
 .chocolat-zoomable.chocolat-zoomed .chocolat-img {
-    cursor : zoom-out;
+    cursor: zoom-out;
 }
 .chocolat-open {
     overflow: hidden;
@@ -21,6 +16,7 @@ html, body, div, span {
     z-index: 600;
     background-color: #FFF;
     display: none;
+    opacity: 0.8;
 }
 .chocolat-wrapper {
     height: 100%;
@@ -32,7 +28,7 @@ html, body, div, span {
     color: #FFF;
 }
 .chocolat-zoomable .chocolat-img {
-    cursor : zoom-in;
+    cursor: zoom-in;
 }
 .chocolat-loader {
     height: 32px;
@@ -62,10 +58,10 @@ html, body, div, span {
 }
 .chocolat-wrapper .chocolat-left {
     position: absolute;
-	top: 50%;
     left: 0;
     width: 50px;
     height: 100px;
+    top: 50%;
     margin-top: -50px;
     cursor: pointer;
     background: url('../images/left.png') 50% 50% no-repeat;
@@ -74,10 +70,10 @@ html, body, div, span {
 }
 .chocolat-wrapper .chocolat-right {
     position: absolute;
-    top: 50%;
     right: 0;
     width: 50px;
     height: 100px;
+    top: 50%;
     margin-top: -50px;
     cursor: pointer;
     background: url('../images/right.png') 50% 50% no-repeat;
@@ -132,17 +128,17 @@ html, body, div, span {
     border-right: 1px solid rgba(255, 255, 255, 0.3);
 }
 .chocolat-wrapper .chocolat-pagination {
+    float: right;
     display: inline-block;
     padding-left: 15px;
     padding-right: 15px;
     margin-right: 15px;
-    float: right;
 }
 .chocolat-wrapper .chocolat-fullscreen {
-	background: url('../images/fullscreen.png') 50% 50% no-repeat;
-    display: block;
     width: 16px;
     height: 40px;
+    background: url('../images/fullscreen.png') 50% 50% no-repeat;
+    display: block;
     margin: auto;
     cursor: pointer;
     float: right;
@@ -163,26 +159,26 @@ html, body, div, span {
     background: url('../images/right-compact.png') 100% 50% no-repeat;
 }
 .chocolat-cover .chocolat-content .chocolat-left {
-    left: 0px;
+    left: 0;
     background: url('../images/left-compact.png') 0% 50% no-repeat;
 }
 .chocolat-cover .chocolat-content .chocolat-top {
-    position: fixed;
     top: 0;
     left: 0;
+    position: fixed;
     z-index: 591;
 }
 .chocolat-cover .chocolat-content .chocolat-close {
     background: url('../images/close-compact.png') 0% center no-repeat;
 }
 .chocolat-cover .chocolat-content .chocolat-bottom {
+    bottom: 0;
+    left: 0;
     position: fixed;
     background: rgba(255,255,255,0.75);
-	bottom: 0;
-    left: 0;
     z-index: 591;
 }
-.chocolat-cover .chocolat-content .chocolat-pagination, .chocolat-cover .chocolat-content .chocolat-description{
+.chocolat-cover .chocolat-content .chocolat-pagination, .chocolat-cover .chocolat-content .chocolat-description {
     padding: 0 10px;
 }
 /* no container mode*/
@@ -199,7 +195,7 @@ body.chocolat-open>.chocolat-content {
 .chocolat-in-container .chocolat-wrapper, .chocolat-in-container .chocolat-content, .chocolat-in-container .chocolat-overlay {
     position: absolute;
 }
-.chocolat-in-container{
+.chocolat-in-container {
     position: relative;
 }
 /* uncomment to hide controls when zoomed-in */

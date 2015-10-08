@@ -533,9 +533,9 @@ $(document).ready(function() {
 		container: window,
 		setTitle: '<?php echo $heading_title; ?>',
         imageSelector: '.chocolat-image',
-		className: '',
+		className: '.chocolat-open',
 		linkImages: true,
-		imageSize: 'default',
+		imageSize: 'native',
 		overlayOpacity: 1,
 		loop: true
 	});

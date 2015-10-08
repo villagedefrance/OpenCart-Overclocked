@@ -3,7 +3,14 @@ class ControllerFeedRSSFeed extends Controller {
 	private $_name = 'rss_feed';
 
 	public function index() {
-		if ($this->config->get($this->_name . '_status')) {
+		if ($this->config->get('rss_feed_status')) {
+			$output = '<?xml version="1.0" encoding="UTF-8" ?>';
+			$output .= '<rss version="2.0">';
+			$output .= '<channel>';
+			$output .= '<title><![CDATA[' . $this->config->get('config_name') . ']]></title>';
+			$output .= '<description><![CDATA[' . $this->config->get('config_meta_description') . ']]></description>';
+			$output .= '<language><![CDATA[' . $this->language->get('code') . ']]></language>';
+			$output .= '<link><![CDATA[' . HTTP_SERVER . ']]></link>';
 
 			$this->load->model('catalog/product');
 			$this->load->model('localisation/currency');
@@ -27,14 +34,6 @@ class ControllerFeedRSSFeed extends Controller {
 			} else {
 				$currency = $this->currency->getCode();
 			}
-
-			$output = '<?xml version="1.0" encoding="UTF-8" ?>';
-			$output .= '<rss version="2.0">';
-			$output .= '<channel>';
-			$output .= '<title><![CDATA[' . $this->config->get('config_name') . ']]></title>';
-			$output .= '<description><![CDATA[' . $this->config->get('config_meta_description') . ']]></description>';
-			$output .= '<language><![CDATA[' . $this->language->get('code') . ']]></language>';
-			$output .= '<link><![CDATA[' . HTTP_SERVER . ']]></link>';
 
 			foreach ($products as $product) {
 				if ($product['description']) {

@@ -104,9 +104,6 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google
     </div>
   	<?php echo $language; ?>
   	<?php echo $currency; ?>
-    <?php if ($rss) { ?>
-      <a onclick="window.open('/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>');" class="rss"><img src="catalog/view/theme/<?php echo $template; ?>/image/rss.png" alt="Subscribe" title="Rss" /></a>
-    <?php } ?>
   </div>
 </div>
 <script type="text/javascript"><!--

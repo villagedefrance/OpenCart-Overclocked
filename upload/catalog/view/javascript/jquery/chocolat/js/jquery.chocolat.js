@@ -1,26 +1,28 @@
-/* jQuery Chocolat v0.4.9 - OverClocked Edition */
+/* ----------------------------------------------*/
+/* jQuery Chocolat v0.4.10 - OverClocked Edition */
+/* ----------------------------------------------*/
 ;(function($, window, document, undefined) {
     var calls = 0;
     var defaults = {
-        container         	: window, // window or jquery object or jquery selector, or element
-        imageSelector		: '.chocolat-image',
-        className			: '',
-        imageSize			: 'default', // 'default', 'contain', 'cover' or 'native'
-        initialZoomState	: null,
-        fullScreen			: false,
-        loop					: false,
-        linkImages			: true,
-        duration				: 300,
-        setTitle				: '',
-        separator2			: '/',
-        setIndex				: 0,
-        firstImage			: 0,
-        lastImage			: false,
-        currentImage		: false,
-        initialized			: false,
-        timer					: false,
-        timerDebounce	: false,
-        images				: []
+        container : window, // window or jquery object or jquery selector, or element
+        imageSelector : '.chocolat-image',
+        className : '',
+        imageSize : 'default', // 'default', 'contain', 'cover' or 'native'
+        initialZoomState : null,
+        fullScreen : false,
+        loop : false,
+        linkImages : true,
+        duration : 300,
+        setTitle : '',
+        separator2 : '/',
+        setIndex : 0,
+        firstImage : 0,
+        lastImage : false,
+        currentImage : false,
+        initialized : false,
+        timer : false,
+        timerDebounce : false,
+        images : []
     };
 
     function Chocolat(element, settings) {
@@ -29,12 +31,22 @@
         this.settings = settings;
         this._defaults = defaults;
         this.elems = {};
+        this.element = element;
+
+        this._cssClasses = [
+            'chocolat-open',
+            'chocolat-mobile',
+            'chocolat-in-container',
+            'chocolat-cover',
+            'chocolat-zoomable',
+            'chocolat-zoomed'
+        ];
 
         if (!this.settings.setTitle && element.data('chocolat-title')) {
             this.settings.setTitle = element.data('chocolat-title');
         }
 
-        element.find(this.settings.imageSelector).each(function() {
+        this.element.find(this.settings.imageSelector).each(function() {
             that.settings.images.push({
                 title : $(this).attr('title'),
                 src : $(this).attr('href'),
@@ -43,16 +55,15 @@
             });
         });
 
-        element.find(this.settings.imageSelector).each(function(i) {
-            $(this).off('click').on('click', function(event) {
+        this.element.find(this.settings.imageSelector).each(function(i) {
+            $(this).off('click.chocolat').on('click.chocolat', function(e) {
                 that.init(i);
-                event.preventDefault();
+                e.preventDefault();
             });
         });
 
         return this;
     }
-
     $.extend(Chocolat.prototype, {
         init : function(i) {
             if (!this.settings.initialized) {
@@ -76,6 +87,7 @@
 
             imgLoader.onload = function() { def.resolve(imgLoader); };
             imgLoader.src = this.settings.images[i].src;
+
             return def;
         },
         load : function(i) {
@@ -90,7 +102,6 @@
             }
 
             this.elems.overlay.fadeIn(800);
-
             this.settings.timer = setTimeout(function() {
                 if (typeof that.elems != 'undefined') {
                     $.proxy(that.elems.loader.fadeIn(), that);
@@ -109,7 +120,6 @@
 			});
 
             var nextIndex = i + 1;
-
             if (typeof this.settings.images[nextIndex] != 'undefined') {
                 this.preload(nextIndex);
             }
@@ -124,8 +134,8 @@
             this.description();
             this.pagination();
             this.arrows();
-            this.storeImgSize(imgLoader, i);
 
+            this.storeImgSize(imgLoader, i);
             fitting = this.fit(i, that.settings.container);
 
             return this.center(
@@ -138,18 +148,17 @@
         },
         center : function(width, height, left, top, duration) {
             return this.elems.content
-			.css('overflow', 'visible')
-			.animate({
-				'width': width,
-				'height': height,
-				'left': left,
-				'top': top
-			}, duration)
-			.promise();
+                .css('overflow', 'visible')
+                .animate({
+                    'width' :width,
+                    'height' :height,
+                    'left' :left,
+                    'top' :top
+                }, duration)
+                .promise();
         },
         appear : function(i) {
             var that = this;
-
             clearTimeout(this.settings.timer);
 
             this.elems.loader.stop().fadeOut(300, function() {
@@ -185,14 +194,13 @@
                 height = imgHeight;
                 width = imgWidth;
             } else {
-                if (imgRatio>holderGlobalRatio) {
+                if (imgRatio > holderGlobalRatio) {
                     height = holderGlobalHeight;
                     width = height / imgRatio;
                 } else {
                     width = holderGlobalWidth;
                     height = width * imgRatio;
                 }
-
                 if (this.settings.imageSize === 'default' && (width >= imgWidth || height >= imgHeight)) {
                     width = imgWidth;
                     height = imgHeight;
@@ -224,7 +232,7 @@
                 return this.load(requestedImage);
             }
         },
-        arrows : function() {
+        arrows: function() {
             if (this.settings.loop) {
                 $([this.elems.left[0],this.elems.right[0]]).addClass('active');
             } else if (this.settings.linkImages) {
@@ -246,7 +254,6 @@
         },
         description : function() {
             var that = this;
-
             this.elems.description.html(that.settings.images[that.settings.currentImage].title);
         },
         pagination : function() {
@@ -279,9 +286,8 @@
             ];
 
             var that = this;
-
             var def = $.when($(els).fadeOut(200)).done(function() {
-                that.elems.domContainer.removeClass('chocolat-open chocolat-mobile chocolat-in-container chocolat-cover');
+                that.elems.domContainer.removeClass(that._cssClasses.join(' '));
             });
 
             this.settings.currentImage = false;
@@ -289,10 +295,26 @@
 
             return def;
         },
-        getOutMarginW : function() {
-            var left  = this.elems.left.outerWidth(true);
-            var right = this.elems.right.outerWidth(true);
+        destroy : function() {
+            this.element.removeData();
+            this.element.find(this.settings.imageSelector).off('click.chocolat');
 
+            if (!this.settings.initialized) {
+                return;
+            }
+
+            if (this.settings.fullscreenOpen) {
+                this.exitFullScreen();
+            }
+
+            this.settings.currentImage = false;
+            this.settings.initialized = false;
+            this.elems.domContainer.removeClass(this._cssClasses.join(' '));
+            this.elems.wrapper.remove();
+        },
+        getOutMarginW : function() {
+            var left = this.elems.left.outerWidth(true);
+            var right = this.elems.right.outerWidth(true);
             return left + right;
         },
         getOutMarginH : function() {
@@ -460,7 +482,6 @@
                         return that.close();
                 });
             }
-
             this.elems.wrapper.find('.chocolat-img')
                 .off('click.chocolat')
                 .on('click.chocolat', function(e) {
@@ -475,7 +496,6 @@
                 if (that.settings.initialZoomState === null) {
                     return;
                 }
-
                 if (that.elems.img.is(':animated')) {
                     return;
                 }
@@ -491,14 +511,12 @@
                 var coord = [e.pageX - width/2 - pos.left, e.pageY - height/2 - pos.top];
 
                 var mvtX = 0;
-
                 if (imgWidth > width) {
                     mvtX = coord[0] / (width / 2);
                     mvtX = ((imgWidth - width + 0)/ 2) * mvtX;
                 }
 
                 var mvtY = 0;
-
                 if (imgHeight > height) {
                     mvtY = coord[1] / (height / 2);
                     mvtY = ((imgHeight - height + 0) / 2) * mvtY;
@@ -520,7 +538,6 @@
                 if (!that.settings.initialized) {
                     return;
                 }
-
                 that.debounce(50, function() {
                     fitting = that.fit(that.settings.currentImage, that.settings.container);
                     that.center(fitting.width, fitting.height, fitting.left, fitting.top, 0);
@@ -568,8 +585,8 @@
 
             this.settings.imageSize = this.settings.initialZoomState;
             this.settings.initialZoomState = null;
-            this.elems.img.animate({'margin': 0}, duration);
 
+            this.elems.img.animate({'margin': 0}, duration);
             this.elems.domContainer.removeClass('chocolat-zoomed');
 
             fitting = this.fit(this.settings.currentImage, this.settings.container);
@@ -587,14 +604,12 @@
         },
         debounce: function(duration, callback) {
             clearTimeout(this.settings.timerDebounce);
-
             this.settings.timerDebounce = setTimeout(function() {
                 callback();
             }, duration);
         },
         api: function() {
             var that = this;
-
             return {
                 open : function(i) {
                     i = parseInt(i) || 0;
@@ -609,8 +624,7 @@
                 prev : function() {
                     return that.change(-1);
                 },
-				// open alias
-                goto : function(i) {
+                goto : function(i) { // open alias
                     return that.open(i);
                 },
                 current : function() {
@@ -618,6 +632,9 @@
                 },
                 place : function() {
                     return that.place(that.settings.currentImage, that.settings.duration);
+                },
+                destroy : function() {
+                    return that.destroy();
                 },
                 set : function(property, value) {
                     that.settings[property] = value;
