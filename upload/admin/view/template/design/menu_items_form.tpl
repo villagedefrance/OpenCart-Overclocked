@@ -76,15 +76,15 @@
           <tr>
             <td><?php echo $entry_external_link; ?></td>
             <td><?php if ($external_link) { ?>
-              <input type="radio" name="external_link" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="external_link" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="external_link" value="1" id="external_link-on" class="radio" checked />
+              <label for="external_link-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="external_link" value="0" id="external_link-off" class="radio" />
+			  <label for="external_link-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="external_link" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="external_link" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="external_link" value="1" id="external_link-on" class="radio" />
+              <label for="external_link-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="external_link" value="0" id="external_link-off" class="radio" checked />
+              <label for="external_link-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>

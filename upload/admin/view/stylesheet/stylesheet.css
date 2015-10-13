@@ -40,6 +40,86 @@ input[type='text'], input[type='password'], textarea {
 	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	box-shadow: inset 0 2px 0 -1px #EDEDED;
 }
+input.checkbox:not(old), input.radio:not(old) {
+	display: none;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+input.checkbox:not(old) + label, input.radio:not(old) + label {
+	display: inline-block;
+	margin-left: 0px;
+	line-height: 16px;
+}
+input.checkbox:not(old) + label > span, input.radio:not(old) + label > span {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 1px 5px 1px 1px;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
+	vertical-align: bottom;
+}
+input.checkbox:not(old):checked + label > span, input.radio:not(old):checked + label > span {
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
+}
+input.checkbox:not(old):checked + label > span:before {
+	content: '✓';
+	display: block;
+	width: 12px;
+	color: #46719F;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 12px;
+	text-align: center;
+	text-shadow: 0 0 1px #62A1D7;
+}
+input.radio:not(old):checked + label > span > span {
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 1px;
+	border: 1px solid #46719F;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #62A1D7;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#62A1D7), to(#4691D2));
+	background-image: -webkit-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: -moz-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: -ms-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: -o-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: linear-gradient(to bottom, #62A1D7, #4691D2);
+}
+label {
+  cursor: pointer;
+}
 textarea.log {
 	width: 99%;
 	height: 360px;
@@ -83,9 +163,6 @@ a img {
 form {
 	margin: 0;
 	padding: 0;
-}
-label {
-	cursor: pointer;
 }
 samp, small {
 	font-size: 10px;

@@ -15,8 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/country.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="$('form').attr('action', '<?php echo $enable; ?>'); $('form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-        <a onclick="$('form').attr('action', '<?php echo $disable; ?>'); $('form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
+        <a onclick="$('form').attr('action','<?php echo $enable; ?>'); $('form').submit();" class="button-save"><?php echo $button_enable; ?></a>
+        <a onclick="$('form').attr('action','<?php echo $disable; ?>'); $('form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
@@ -29,7 +29,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'cd.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
@@ -66,9 +67,11 @@
           <?php foreach ($countries as $country) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($country['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" id="<?php echo $country['country_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $country['country_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $country['country_id']; ?>" id="<?php echo $country['country_id']; ?>" class="checkbox" />
+              <label for="<?php echo $country['country_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $country['name']; ?></td>
             <td class="left"><?php echo $country['iso_code_2']; ?></td>

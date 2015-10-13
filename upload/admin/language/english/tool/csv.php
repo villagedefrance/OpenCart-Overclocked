@@ -22,8 +22,7 @@ $_['button_cancel']		= 'Cancel';
 // Help
 $_['help_csv']				= 'The Import/Export CSV Tool allows you to mass edit individual database table by exporting them into a spreadsheet, using the standard CSV format.<br />
 <b>Important!</b> Editing tables this way is easy and quick, but keep in mind that some columns values are common to more than one table in your database.<br />
-All changes must be consistent, otherwise the integrity of your database will be compromised.<br />
-In NO circumstances you should change the ID numbers in tables!';
+All changes must be consistent, otherwise the integrity of your database will be compromised, and in NO circumstances you should edit the ID numbers in tables!';
 
 // Error
 $_['error_permission']	= 'Warning: You do not have permission to modify <b>Import / Export</b>!';

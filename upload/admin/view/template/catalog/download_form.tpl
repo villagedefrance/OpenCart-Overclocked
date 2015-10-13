@@ -51,11 +51,10 @@
         <?php if ($download_id) { ?>
         <tr>
           <td><?php echo $entry_update; ?></td>
-          <td><?php if ($update) { ?>
-            <input type="checkbox" name="update" value="1" checked="checked" />
-          <?php } else { ?>
-            <input type="checkbox" name="update" value="1" />
-          <?php } ?></td>
+          <td>
+            <input type="checkbox" name="update" value="1" id="push" class="checkbox" />
+            <label for="push"><span></span></label>
+          </td>
         </tr>
         <?php } ?>
       </table>

@@ -30,29 +30,29 @@
         <tr>
           <td><?php echo $entry_backend; ?></td>
           <td><?php if ($backend) { ?>
-            <input type="radio" name="backend" value="1" checked="checked" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="backend" value="0" />
-            <?php echo $text_no; ?>
+            <input type="radio" name="backend" value="1" id="backend-on" class="radio" checked />
+            <label for="backend-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="backend" value="0" id="backend-off" class="radio" />
+			<label for="backend-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } else { ?>
-            <input type="radio" name="backend" value="1" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="backend" value="0" checked="checked" />
-            <?php echo $text_no; ?>
+            <input type="radio" name="backend" value="1" id="backend-on" class="radio" />
+            <label for="backend-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="backend" value="0" id="backend-off" class="radio" checked />
+            <label for="backend-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_frontend; ?></td>
           <td><?php if ($frontend) { ?>
-            <input type="radio" name="frontend" value="1" checked="checked" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="frontend" value="0" />
-            <?php echo $text_no; ?>
+            <input type="radio" name="frontend" value="1" id="frontend-on" class="radio" checked />
+            <label for="frontend-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="frontend" value="0" id="frontend-off" class="radio" />
+            <label for="frontend-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } else { ?>
-            <input type="radio" name="frontend" value="1" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="frontend" value="0" checked="checked" />
-            <?php echo $text_no; ?>
+            <input type="radio" name="frontend" value="1" id="frontend-on" class="radio" />
+            <label for="frontend-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="frontend" value="0" id="frontend-off" class="radio" checked />
+            <label for="frontend-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } ?></td>
         </tr>
       </table>

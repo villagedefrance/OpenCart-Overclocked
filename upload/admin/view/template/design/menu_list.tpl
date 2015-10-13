@@ -29,7 +29,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_title; ?></td>
             <td class="left"><?php echo $column_menu_items; ?></td>
             <td class="left"><?php echo $column_status; ?></td>
@@ -41,9 +42,11 @@
           <?php foreach ($menus as $menu) { ?>
             <tr>
               <td style="text-align:center;"><?php if ($menu['selected']) { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $menu['menu_id']; ?>" checked="checked" />
+                <input type="checkbox" name="selected[]" value="<?php echo $menu['menu_id']; ?>" id="<?php echo $menu['menu_id']; ?>" class="checkbox" checked />
+                <label for="<?php echo $menu['menu_id']; ?>"><span></span></label>
               <?php } else { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $menu['menu_id']; ?>" />
+                <input type="checkbox" name="selected[]" value="<?php echo $menu['menu_id']; ?>" id="<?php echo $menu['menu_id']; ?>" class="checkbox" />
+                <label for="<?php echo $menu['menu_id']; ?>"><span></span></label>
               <?php } ?></td>
               <td class="left"><?php echo $menu['title']; ?></td>
               <td class="left">

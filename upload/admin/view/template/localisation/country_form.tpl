@@ -45,15 +45,15 @@
           <tr>
             <td><?php echo $entry_postcode_required; ?></td>
             <td><?php if ($postcode_required) { ?>
-              <input type="radio" name="postcode_required" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="postcode_required" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="postcode_required" value="1" id="postcode_required-on" class="radio" checked />
+              <label for="postcode_required-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="postcode_required" value="0" id="postcode_required-off" class="radio" />
+              <label for="postcode_required-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="postcode_required" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="postcode_required" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="postcode_required" value="1" id="postcode_required-on" class="radio" />
+              <label for="postcode_required-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="postcode_required" value="0" id="postcode_required-off" class="radio" checked />
+              <label for="postcode_required-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>

@@ -27,7 +27,8 @@
         <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
@@ -49,13 +50,13 @@
           <?php if ($locations) { ?>
             <?php foreach ($locations as $location) { ?>
               <tr>
-                <td style="text-align:center;">
-                  <?php if ($location['selected']) { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $location['location_id']; ?>" checked="checked" />
-                  <?php } else { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $location['location_id']; ?>" />
-                  <?php } ?>
-                </td>
+                <td style="text-align:center;"><?php if ($location['selected']) { ?>
+                  <input type="checkbox" name="selected[]" value="<?php echo $location['location_id']; ?>" id="<?php echo $location['location_id']; ?>" class="checkbox" checked />
+                  <label for="<?php echo $location['location_id']; ?>"><span></span></label>
+                <?php } else { ?>
+                  <input type="checkbox" name="selected[]" value="<?php echo $location['location_id']; ?>" id="<?php echo $location['location_id']; ?>" class="checkbox" />
+                  <label for="<?php echo $location['location_id']; ?>"><span></span></label>
+                <?php } ?></td>
                 <td class="center"><img src="<?php echo $location['image']; ?>" alt="<?php echo $location['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
                 <td class="left"><?php echo $location['name']; ?></td>
                 <td class="left"><?php echo $location['address']; ?></td>

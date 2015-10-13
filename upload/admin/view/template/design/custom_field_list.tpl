@@ -24,7 +24,8 @@
       <table class="list">
       <thead>
         <tr>
-          <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+          <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+          <label for="check-all"><span></span></label></td>
           <td class="left"><?php if ($sort == 'cfd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
           <?php } else { ?>
@@ -52,10 +53,12 @@
       <?php if ($custom_fields) { ?>
         <?php foreach ($custom_fields as $custom_field) { ?>
         <tr>
-          <td style="text-align: center;"><?php if ($custom_field['selected']) { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $custom_field['custom_field_id']; ?>" checked="checked" />
+          <td style="text-align:center;"><?php if ($custom_field['selected']) { ?>
+            <input type="checkbox" name="selected[]" value="<?php echo $custom_field['custom_field_id']; ?>" id="<?php echo $custom_field['custom_field_id']; ?>" class="checkbox" checked />
+            <label for="<?php echo $custom_field['custom_field_id']; ?>"><span></span></label>
           <?php } else { ?>
-            <input type="checkbox" name="selected[]" value="<?php echo $custom_field['custom_field_id']; ?>" />
+            <input type="checkbox" name="selected[]" value="<?php echo $custom_field['custom_field_id']; ?>" id="<?php echo $custom_field['custom_field_id']; ?>" class="checkbox" />
+            <label for="<?php echo $custom_field['custom_field_id']; ?>"><span></span></label>
           <?php } ?></td>
           <td class="left"><?php echo $custom_field['name']; ?></td>
           <td class="left"><?php echo $custom_field['type']; ?></td>

@@ -15,8 +15,8 @@
   <div class="heading">
     <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
     <div class="buttons">
-      <a onclick="$('#form').attr('action', '<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
-      <a onclick="$('#form').attr('action', '<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
+      <a onclick="$('#form').attr('action','<?php echo $enabled; ?>'); $('#form').submit();" class="button-save"><?php echo $button_enable; ?></a>
+      <a onclick="$('#form').attr('action','<?php echo $disabled; ?>'); $('#form').submit();" class="button-cancel"><?php echo $button_disable; ?></a>
       <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
       <a href="<?php echo $repair; ?>" class="button-repair"><?php echo $button_repair; ?></a>
       <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
@@ -30,7 +30,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_id; ?></td>
             <td class="left"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'cd1.name') { ?>
@@ -65,9 +66,11 @@
           <?php foreach ($categories as $category) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($category['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" id="<?php echo $category['category_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $category['category_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" id="<?php echo $category['category_id']; ?>" class="checkbox" />
+              <label for="<?php echo $category['category_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="center"><?php echo $category['category_id']; ?></td>
             <td class="center"><img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>

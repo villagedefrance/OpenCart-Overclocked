@@ -27,7 +27,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'dd.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
@@ -54,9 +55,11 @@
           <?php foreach ($downloads as $download) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($download['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $download['download_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $download['download_id']; ?>" id="<?php echo $download['download_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $download['download_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $download['download_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $download['download_id']; ?>" id="<?php echo $download['download_id']; ?>" class="checkbox" />
+              <label for="<?php echo $download['download_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $download['name']; ?></td>
             <td class="center"><?php echo $download['filesize']; ?></td>

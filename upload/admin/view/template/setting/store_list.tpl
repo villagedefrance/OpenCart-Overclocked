@@ -24,7 +24,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_url; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
@@ -35,9 +36,11 @@
           <?php foreach ($stores as $store) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($store['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $store['store_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $store['store_id']; ?>" id="<?php echo $store['store_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $store['store_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $store['store_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $store['store_id']; ?>" id="<?php echo $store['store_id']; ?>" class="checkbox" />
+              <label for="<?php echo $store['store_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $store['name']; ?></td>
             <td class="left"><?php echo $store['url']; ?></td>

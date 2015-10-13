@@ -27,7 +27,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_size; ?></td>
           </tr>
@@ -37,9 +38,11 @@
           <?php foreach ($cache_images as $cache_image) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($cache_image['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $cache_image['name']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $cache_image['name']; ?>" id="<?php echo $cache_image['name']; ?>" class="checkbox" checked />
+              <label for="<?php echo $cache_image['name']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $cache_image['name']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $cache_image['name']; ?>" id="<?php echo $cache_image['name']; ?>" class="checkbox" />
+              <label for="<?php echo $cache_image['name']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $cache_image['name']; ?></td>
             <td class="left"><?php echo $cache_image['size']; ?></td>

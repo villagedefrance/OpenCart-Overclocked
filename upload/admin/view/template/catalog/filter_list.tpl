@@ -27,7 +27,8 @@
       <table class="list">
         <thead>
         <tr>
-          <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+          <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+          <label for="check-all"><span></span></label></td>
           <td class="left"><?php if ($sort == 'fgd.name') { ?>
             <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_group; ?></a>
           <?php } else { ?>
@@ -46,9 +47,11 @@
           <?php foreach ($filters as $filter) { ?>
             <tr>
               <td style="text-align:center;"><?php if ($filter['selected']) { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $filter['filter_group_id']; ?>" checked="checked" />
+                <input type="checkbox" name="selected[]" value="<?php echo $filter['filter_group_id']; ?>" id="<?php echo $filter['filter_group_id']; ?>" class="checkbox" checked />
+                <label for="<?php echo $filter['filter_group_id']; ?>"><span></span></label>
               <?php } else { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $filter['filter_group_id']; ?>" />
+                <input type="checkbox" name="selected[]" value="<?php echo $filter['filter_group_id']; ?>" id="<?php echo $filter['filter_group_id']; ?>" class="checkbox" />
+                <label for="<?php echo $filter['filter_group_id']; ?>"><span></span></label>
               <?php } ?></td>
               <td class="left"><?php echo $filter['name']; ?></td>
               <td class="center"><?php echo $filter['sort_order']; ?></td>

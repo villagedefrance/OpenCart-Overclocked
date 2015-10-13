@@ -45,7 +45,8 @@
         <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'url_alias_id') { ?>
               <a href="<?php echo $sort_url_alias_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_url_alias_id; ?></a>
             <?php } else { ?>
@@ -64,13 +65,13 @@
           <?php if ($seo_urls) { ?>
             <?php foreach ($seo_urls as $seo_url) { ?>
               <tr>
-                <td style="text-align:center;">
-                  <?php if ($seo_url['selected']) { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $seo_url['url_alias_id']; ?>" checked="checked" />
-                  <?php } else { ?>
-                    <input type="checkbox" name="selected[]" value="<?php echo $seo_url['url_alias_id']; ?>" />
-                  <?php } ?>
-                </td>
+                <td style="text-align:center;"><?php if ($seo_url['selected']) { ?>
+                  <input type="checkbox" name="selected[]" value="<?php echo $seo_url['url_alias_id']; ?>" id="<?php echo $seo_url['url_alias_id']; ?>" class="checkbox" checked />
+                  <label for="<?php echo $seo_url['url_alias_id']; ?>"><span></span></label>
+                <?php } else { ?>
+                  <input type="checkbox" name="selected[]" value="<?php echo $seo_url['url_alias_id']; ?>" id="<?php echo $seo_url['url_alias_id']; ?>" class="checkbox" />
+                  <label for="<?php echo $seo_url['url_alias_id']; ?>"><span></span></label>
+                <?php } ?></td>
                 <td class="left"><?php echo $seo_url['url_alias_id']; ?></td>
                 <td class="left"><?php echo $seo_url['query']; ?></td>
                 <td class="left"><?php echo $seo_url['keyword']; ?></td>

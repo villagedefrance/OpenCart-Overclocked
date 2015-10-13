@@ -27,7 +27,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'ip') { ?>
               <a href="<?php echo $sort_ip; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_ip; ?></a>
             <?php } else { ?>
@@ -42,9 +43,11 @@
           <?php foreach ($customer_ban_ips as $customer_ban_ip) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($customer_ban_ip['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>" id="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>" id="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>" class="checkbox" />
+              <label for="<?php echo $customer_ban_ip['customer_ban_ip_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $customer_ban_ip['ip']; ?></td>
             <td class="right"><?php if ($customer_ban_ip['total']) { ?>

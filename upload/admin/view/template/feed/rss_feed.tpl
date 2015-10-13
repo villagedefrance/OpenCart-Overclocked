@@ -44,15 +44,33 @@
         </tr>
         <tr>
           <td><?php echo $entry_show_price; ?></td>
-          <td><input type="checkbox" name="rss_feed_show_price" value="1" <?php echo $rss_feed_show_price == 1 ? ' checked="checked"' : ''; ?> /></td>
+          <td><?php if ($rss_feed_show_price == 1) { ?>
+            <input type="checkbox" name="rss_feed_show_price" value="1" id="show-price" class="checkbox" checked />
+            <label for="show-price"><span></span></label>
+          <?php } else { ?>
+            <input type="checkbox" name="rss_feed_show_price" value="0" id="show-price" class="checkbox" />
+            <label for="show-price"><span></span></label>
+          <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_include_tax; ?></td>
-          <td><input type="checkbox" name="rss_feed_include_tax" value="1" <?php echo $rss_feed_include_tax == 1 ? ' checked="checked"' : ''; ?> /></td>
+          <td><?php if ($rss_feed_include_tax == 1) { ?>
+            <input type="checkbox" name="rss_feed_include_tax" value="1" id="include-tax" class="checkbox" checked />
+            <label for="include-tax"><span></span></label>
+          <?php } else { ?>
+            <input type="checkbox" name="rss_feed_include_tax" value="0" id="include-tax" class="checkbox" />
+            <label for="include-tax"><span></span></label>
+          <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_show_image; ?></td>
-          <td><input type="checkbox" name="rss_feed_show_image" value="1" <?php echo $rss_feed_show_image == 1 ? ' checked="checked"' : ''; ?> /></td>
+          <td><?php if ($rss_feed_show_image == 1) { ?>
+            <input type="checkbox" name="rss_feed_show_image" value="1" id="show-image" class="checkbox" checked />
+            <label for="show-image"><span></span></label>
+          <?php } else { ?>
+            <input type="checkbox" name="rss_feed_show_image" value="0" id="show-image" class="checkbox" />
+            <label for="show-image"><span></span></label>
+          <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_image_size; ?></td>

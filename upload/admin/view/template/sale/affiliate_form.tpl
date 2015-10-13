@@ -167,23 +167,23 @@
           <tr>
             <td><?php echo $entry_payment; ?></td>
             <td><?php if ($payment == 'cheque') { ?>
-              <input type="radio" name="payment" value="cheque" id="cheque" checked="checked" />
+              <input type="radio" name="payment" value="cheque" id="cheque" class="checkbox" checked />
             <?php } else { ?>
-              <input type="radio" name="payment" value="cheque" id="cheque" />
+              <input type="radio" name="payment" value="cheque" id="cheque" class="checkbox" />
             <?php } ?>
-            <label for="cheque"><?php echo $text_cheque; ?></label>
+            <label for="cheque"><span></span><?php echo $text_cheque; ?></label>
             <?php if ($payment == 'paypal') { ?>
-              <input type="radio" name="payment" value="paypal" id="paypal" checked="checked" />
+              <input type="radio" name="payment" value="paypal" id="paypal" class="checkbox" checked />
             <?php } else { ?>
-              <input type="radio" name="payment" value="paypal" id="paypal" />
+              <input type="radio" name="payment" value="paypal" id="paypal" class="checkbox" />
             <?php } ?>
-            <label for="paypal"><?php echo $text_paypal; ?></label>
+            <label for="paypal"><span></span><?php echo $text_paypal; ?></label>
             <?php if ($payment == 'bank') { ?>
-              <input type="radio" name="payment" value="bank" id="bank" checked="checked" />
+              <input type="radio" name="payment" value="bank" id="bank" class="checkbox" checked />
             <?php } else { ?>
-              <input type="radio" name="payment" value="bank" id="bank" />
+              <input type="radio" name="payment" value="bank" id="bank" class="checkbox" />
             <?php } ?>
-            <label for="bank"><?php echo $text_bank; ?></label></td>
+            <label for="bank"><span></span><?php echo $text_bank; ?></label></td>
           </tr>
           </tbody>
           <tbody id="payment-cheque" class="payment">

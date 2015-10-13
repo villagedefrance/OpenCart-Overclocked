@@ -56,15 +56,15 @@
           <tr>
             <td><?php echo $entry_logged; ?></td>
             <td><?php if ($logged) { ?>
-              <input type="radio" name="logged" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="logged" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="logged" value="1" id="logged-on" class="radio" checked />
+              <label for="logged-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="logged" value="0" id="logged-off" class="radio" />
+			  <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="logged" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="logged" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="logged" value="1" id="logged-on" class="radio" />
+              <label for="logged-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="logged" value="0" id="logged-off" class="radio" checked />
+              <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
 		  <tr>

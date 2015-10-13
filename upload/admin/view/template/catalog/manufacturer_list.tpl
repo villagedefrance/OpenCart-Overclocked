@@ -27,7 +27,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_id; ?></td>
             <td class="left"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'md.name') { ?>
@@ -62,9 +63,11 @@
           <?php foreach ($manufacturers as $manufacturer) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($manufacturer['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" id="<?php echo $manufacturer['manufacturer_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $manufacturer['manufacturer_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" id="<?php echo $manufacturer['manufacturer_id']; ?>" class="checkbox" />
+              <label for="<?php echo $manufacturer['manufacturer_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="center"><?php echo $manufacturer['manufacturer_id']; ?></td>
             <td class="center"><img src="<?php echo $manufacturer['image']; ?>" alt="<?php echo $manufacturer['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>

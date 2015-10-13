@@ -398,7 +398,10 @@
         </tr>
         <tr>
           <td><?php echo $entry_notify; ?></td>
-          <td><input type="checkbox" name="notify" value="1" /></td>
+          <td>
+            <input type="checkbox" name="notify" value="1" id="notify" class="checkbox" />
+            <label for="notify"><span></span></label>
+          </td>
         </tr>
         <tr>
           <td><?php echo $entry_comment; ?></td>

@@ -97,10 +97,12 @@
           </tr>
           <tr>
             <td><?php echo $entry_bottom; ?></td>
-            <td><?php if ($bottom) { ?>
-              <input type="checkbox" name="bottom" value="1" checked="checked" />
+            <td><?php if ($bottom == 1) { ?>
+              <input type="checkbox" name="bottom" value="1" id="bottom-on" class="checkbox" checked />
+              <label for="bottom-on"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="bottom" value="1" />
+              <input type="checkbox" name="bottom" value="1" id="bottom-off" class="checkbox" />
+              <label for="bottom-off"><span></span></label>
             <?php } ?></td>
           </tr>
           <tr>

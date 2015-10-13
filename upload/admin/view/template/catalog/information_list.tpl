@@ -29,7 +29,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'id.title') { ?>
               <a href="<?php echo $sort_title; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_title; ?></a>
             <?php } else { ?>
@@ -58,9 +59,11 @@
           <?php foreach ($informations as $information) { ?>
             <tr>
               <td style="text-align:center;"><?php if ($information['selected']) { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $information['information_id']; ?>" checked="checked" />
+                <input type="checkbox" name="selected[]" value="<?php echo $information['information_id']; ?>" id="<?php echo $information['information_id']; ?>" class="checkbox" checked />
+                <label for="<?php echo $information['information_id']; ?>"><span></span></label>
               <?php } else { ?>
-                <input type="checkbox" name="selected[]" value="<?php echo $information['information_id']; ?>" />
+                <input type="checkbox" name="selected[]" value="<?php echo $information['information_id']; ?>" id="<?php echo $information['information_id']; ?>" class="checkbox" />
+                <label for="<?php echo $information['information_id']; ?>"><span></span></label>
               <?php } ?></td>
               <td class="left"><?php echo $information['title']; ?></td>
               <td class="center"><?php echo $information['sort_order']; ?></td>

@@ -29,7 +29,8 @@
       <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="center"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'nd.title') { ?>
               <a href="<?php echo $sort_title; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_title; ?> (<?php echo $totalnews; ?>)</a>
@@ -60,13 +61,13 @@
           <?php foreach ($news as $news_story) { ?>
             <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
             <tr class="<?php echo $class; ?>">
-              <td class="center">
-                <?php if ($news_story['selected']) { ?>
-                  <input type="checkbox" name="selected[]" value="<?php echo $news_story['news_id']; ?>" checked="checked" />
-                <?php } else { ?>
-                  <input type="checkbox" name="selected[]" value="<?php echo $news_story['news_id']; ?>" />
-                <?php } ?>
-              </td>
+              <td class="center"><?php if ($news_story['selected']) { ?>
+                <input type="checkbox" name="selected[]" value="<?php echo $news_story['news_id']; ?>" id="<?php echo $news_story['news_id']; ?>" class="checkbox" checked />
+                <label for="<?php echo $news_story['news_id']; ?>"><span></span></label>
+              <?php } else { ?>
+                <input type="checkbox" name="selected[]" value="<?php echo $news_story['news_id']; ?>" id="<?php echo $news_story['news_id']; ?>" class="checkbox" />
+                <label for="<?php echo $news_story['news_id']; ?>"><span></span></label>
+              <?php } ?></td>
               <td class="center"><img src="<?php echo $news_story['image']; ?>" alt="<?php echo $news_story['title']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $news_story['title']; ?></td>
               <td class="left"><?php echo $news_story['date_added']; ?></td>

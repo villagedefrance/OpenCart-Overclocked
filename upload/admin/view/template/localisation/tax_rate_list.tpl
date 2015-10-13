@@ -27,13 +27,14 @@
         <table class="list">
         <thead>
           <tr>
-            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
             <td class="left"><?php if ($sort == 'tr.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="right"><?php if ($sort == 'tr.rate') { ?>
+            <td class="left"><?php if ($sort == 'tr.rate') { ?>
               <a href="<?php echo $sort_rate; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_rate; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_rate; ?>"><?php echo $column_rate; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -66,16 +67,18 @@
           <?php foreach ($tax_rates as $tax_rate) { ?>
           <tr>
             <td style="text-align:center;"><?php if ($tax_rate['selected']) { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $tax_rate['tax_rate_id']; ?>" checked="checked" />
+              <input type="checkbox" name="selected[]" value="<?php echo $tax_rate['tax_rate_id']; ?>" id="<?php echo $tax_rate['tax_rate_id']; ?>" class="checkbox" checked />
+              <label for="<?php echo $tax_rate['tax_rate_id']; ?>"><span></span></label>
             <?php } else { ?>
-              <input type="checkbox" name="selected[]" value="<?php echo $tax_rate['tax_rate_id']; ?>" />
+              <input type="checkbox" name="selected[]" value="<?php echo $tax_rate['tax_rate_id']; ?>" id="<?php echo $tax_rate['tax_rate_id']; ?>" class="checkbox" />
+              <label for="<?php echo $tax_rate['tax_rate_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $tax_rate['name']; ?></td>
             <td class="right"><?php echo $tax_rate['rate']; ?></td>
-            <td class="left"><?php echo $tax_rate['type']; ?></td>
-            <td class="left"><?php echo $tax_rate['geo_zone']; ?></td>
-            <td class="left"><?php echo $tax_rate['date_added']; ?></td>
-            <td class="left"><?php echo $tax_rate['date_modified']; ?></td>
+            <td class="center"><?php echo $tax_rate['type']; ?></td>
+            <td class="center"><?php echo $tax_rate['geo_zone']; ?></td>
+            <td class="center"><?php echo $tax_rate['date_added']; ?></td>
+            <td class="center"><?php echo $tax_rate['date_modified']; ?></td>
             <td class="right"><?php foreach ($tax_rate['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
