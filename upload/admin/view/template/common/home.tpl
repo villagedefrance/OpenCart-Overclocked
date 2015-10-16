@@ -135,7 +135,7 @@
       <div class="latest">
         <div class="dashboard-heading"><?php echo $text_latest; ?></div>
         <div class="dashboard-content">
-        <div id="latest_tabs" class="htabs">
+        <div id="latest-tabs" class="htabs">
           <a href="#tab-latest-order"><?php echo $tab_order; ?></a>
           <?php if ($customers) { ?>
             <a href="#tab-latest-customer"><?php echo $tab_customer; ?></a>
@@ -582,7 +582,7 @@ jQuery(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#latest_tabs a').tabs();
+	$('#latest-tabs a').tabs();
 });
 //--></script>
 

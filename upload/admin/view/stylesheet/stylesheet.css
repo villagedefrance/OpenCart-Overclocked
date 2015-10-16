@@ -6,8 +6,6 @@ html {
 body {
 	height: 100%;
 	background: #FFF;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	margin: 0;
 	padding: 0;
 }
@@ -217,6 +215,79 @@ body > #container {
 	outline: 0;
 	z-index: 75;
 }
+/* Header Device */
+#user-device {
+	position: relative;
+	top: 12px;
+	float: right;
+	color: #FFF;
+	font-size: 12px;
+	line-height: 20px;
+	text-decoration: none;
+	padding: 0px 30px 0px 10px;
+	cursor: pointer;
+	outline: 0;
+	z-index: 75;
+}
+#show-device {
+	position: relative;
+	top: -3px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+	z-index: 85;
+}
+#show-device .device {
+	display: inline-block;
+	color: #777;
+	font-size: 12px;
+	text-decoration: none;
+	white-space: nowrap;
+	line-height: 22px;
+	padding: 0px 6px;
+}
+/* Header Date & Time */
+#date-time {
+	position: relative;
+	top: 12px;
+	float: right;
+	color: #FFF;
+	font-size: 12px;
+	line-height: 20px;
+	text-decoration: none;
+	padding: 0px 10px 0px 10px;
+	cursor: pointer;
+	outline: 0;
+	z-index: 75;
+}
+#show-time {
+	position: relative;
+	top: -3px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+	z-index: 85;
+}
+#show-time .date, .time {
+	display: inline-block;
+	color: #777;
+	font-size: 12px;
+	text-decoration: none;
+	white-space: nowrap;
+	line-height: 22px;
+	padding: 0px 6px;
+}
+#show-time .time span {
+	padding-left: 1px;
+	padding-right: 1px;
+	margin: 0px;
+}
 /* Header Store */
 #store-selector {
 	position: relative;
@@ -226,7 +297,7 @@ body > #container {
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
-	padding: 0px 30px 0px 20px;
+	padding: 0px 10px 0px 20px;
 	cursor: pointer;
 	outline: 0;
 	z-index: 75;

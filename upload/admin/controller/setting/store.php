@@ -116,7 +116,6 @@ class ControllerSettingStore extends Controller {
 		);
 
 		$this->data['insert'] = $this->url->link('setting/store/insert', 'token=' . $this->session->data['token'], 'SSL');
-
 		$this->data['delete'] = $this->url->link('setting/store/delete', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['stores'] = array();
@@ -211,6 +210,8 @@ class ControllerSettingStore extends Controller {
 		$this->data['text_shipping'] = $this->language->get('text_shipping');
 		$this->data['text_payment'] = $this->language->get('text_payment');
 
+		$this->data['info_express'] = $this->language->get('info_express');
+
 		$this->data['entry_url'] = $this->language->get('entry_url');
 		$this->data['entry_ssl'] = $this->language->get('entry_ssl');
 		$this->data['entry_name'] = $this->language->get('entry_name');
@@ -237,6 +238,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
+		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_stock_display'] = $this->language->get('entry_stock_display');
@@ -676,6 +678,14 @@ class ControllerSettingStore extends Controller {
 			$this->data['config_guest_checkout'] = $store_info['config_guest_checkout'];
 		} else {
 			$this->data['config_guest_checkout'] = '';
+		}
+
+		if (isset($this->request->post['config_express_checkout'])) {
+			$this->data['config_express_checkout'] = $this->request->post['config_express_checkout'];
+		} elseif (isset($store_info['config_express_checkout'])) {
+			$this->data['config_express_checkout'] = $store_info['config_express_checkout'];
+		} else {
+			$this->data['config_express_checkout'] = '';
 		}
 
 		if (isset($this->request->post['config_checkout_id'])) {

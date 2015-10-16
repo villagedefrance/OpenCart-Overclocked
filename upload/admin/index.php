@@ -140,8 +140,11 @@ $registry->set('length', new Length($registry));
 // User
 $registry->set('user', new User($registry));
 
-//OpenBay Pro
+// OpenBay Pro
 $registry->set('openbay', new Openbay($registry));
+
+// Browser Agent
+$registry->set('browser', new Browser($registry));
 
 // Front Controller
 $controller = new Front($registry);

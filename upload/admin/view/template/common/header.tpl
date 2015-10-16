@@ -55,6 +55,21 @@ $(document).ready(function() {
   <div id="header">
     <div class="static">
       <div class="image"><img src="view/image/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
+      <div id="user-device"><img src="view/image/dashboard/<?php echo $device; ?>.png" alt="" />
+        <div id="show-device" style="display:none;">
+          <div class="device">
+            <?php echo $agent_platform; ?><br />
+            <?php echo $agent_browser; ?> <?php echo $agent_version; ?><br />
+			<?php echo $agent_mobile; ?>
+          </div>
+        </div>
+      </div>
+      <div id="date-time"><img src="view/image/dashboard/calendar.png" alt="" />
+        <div id="show-time" style="display:none;">
+          <div class="date"><?php echo $date_format; ?></div><br />
+          <div class="time"><span id="hour"></span>:<span id="minute"></span>:<span id="second"></span></div>
+        </div>
+      </div>
       <?php if ($logged) { ?>
         <div id="store-selector">
           <a onclick="window.open('<?php echo $store; ?>');" title=""><img src="view/image/dashboard/store.png" alt="<?php echo $text_front; ?>" /></a>
@@ -324,5 +339,58 @@ $(document).ready(function() {
 	}, function() {
 		$('#store-option').css('margin-left', '-180px').slideUp(200);
 	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#user-device').hover(function() {
+		$('#show-device').css('margin-left', '-150px').slideDown(200);
+	}, function() {
+		$('#show-device').css('margin-left', '-150px').slideUp(200);
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#date-time').hover(function() {
+		$('#show-time').css('margin-left', '-150px').slideDown(200);
+	}, function() {
+		$('#show-time').css('margin-left', '-150px').slideUp(200);
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	function time() {
+		var now = new Date();
+		var offset = <?php echo $time_offset; ?>;
+
+		var outHour = now.getHours()+offset;
+		if (outHour < 10) { 
+			document.getElementById('hour').innerHTML="0"+outHour;
+		} else {
+			document.getElementById('hour').innerHTML=outHour;
+		}
+
+		var outMin = now.getMinutes();
+		if (outMin < 10)	{
+			document.getElementById('minute').innerHTML="0"+outMin;
+		} else {
+			document.getElementById('minute').innerHTML=outMin;
+		}
+
+		var outSec = now.getSeconds();
+		if (outSec < 10) {
+			document.getElementById('second').innerHTML="0"+outSec;
+		} else {
+			document.getElementById('second').innerHTML=outSec;
+		}
+	}
+
+	time();
+	setInterval(function() {time();}, 1000);
 });
 //--></script>

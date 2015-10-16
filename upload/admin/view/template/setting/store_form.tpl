@@ -326,6 +326,23 @@
 			  <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+        </table>
+        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_express_checkout; ?></td>
+            <td><?php if ($config_express_checkout) { ?>
+              <input type="radio" name="config_express_checkout" value="1" id="express-checkout-on" class="radio" checked />
+              <label for="express-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_express_checkout" value="0" id="express-checkout-off" class="radio" />
+              <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_express_checkout" value="1" id="express-checkout-on" class="radio" />
+              <label for="express-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_express_checkout" value="0" id="express-checkout-off" class="radio" checked />
+              <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
           <tr>
             <td><?php echo $entry_checkout; ?></td>
             <td><select name="config_checkout_id">

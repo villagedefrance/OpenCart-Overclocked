@@ -24,6 +24,38 @@ class ControllerCommonHeader extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		// User Agent
+		$this->data['agent_platform'] = $this->browser->getPlatform();
+		$this->data['agent_browser'] = $this->browser->getBrowser();
+		$this->data['agent_version'] = $this->browser->getBrowserVersion();
+		$this->data['agent_mobile'] = $this->browser->getMobile();
+
+		$medium = $this->browser->getMedium();
+
+		if ($medium == 'mobile') {
+			$this->data['device'] = 'phone';
+		} elseif ($medium == 'pad') {
+			$this->data['device'] = 'tablet';
+		} else {
+			$this->data['device'] = 'desktop';
+		}
+
+		// Date & Time
+		$date = $this->config->get('config_date_format');
+
+		switch ($date) {
+			case "short":
+			$date_format = date($this->language->get('date_format_short')) . "\n";
+			break;
+			case "long":
+			$date_format = date($this->language->get('date_format_long')) . "\n";
+			break;
+		}
+
+		$this->data['date_format'] = $date_format;
+
+		$this->data['time_offset'] = $this->config->get('config_time_offset');
+
 		// Text
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_age_zone'] = $this->language->get('text_age_zone');

@@ -209,8 +209,11 @@ $registry->set('length', new Length($registry));
 // Cart
 $registry->set('cart', new Cart($registry));
 
-//OpenBay Pro
+// OpenBay Pro
 $registry->set('openbay', new Openbay($registry));
+
+// Browser Agent
+$registry->set('browser', new Browser($registry));
 
 // Encryption
 $registry->set('encryption', new Encryption($config->get('config_encryption')));

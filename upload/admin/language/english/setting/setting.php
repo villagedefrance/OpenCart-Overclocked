@@ -8,6 +8,7 @@ $_['text_required']                    	= 'Required';
 $_['text_choice']                    		= 'Customer\'s choice';
 $_['text_automatic']                    	= 'Automatic';
 $_['text_hide']                    			= 'Hide';
+$_['text_datetime']						= 'Date &amp; Time';
 $_['text_location']						= 'Map &amp; Location';
 $_['text_checkout']             			= 'Checkout';
 $_['text_express']             			= 'Express Checkout';
@@ -61,6 +62,8 @@ $_['entry_currency']            			= 'Currency:<br /><span class="help">Change t
 $_['entry_currency_auto']       		= 'Auto Update Currency:<br /><span class="help">Set your store to automatically update currencies daily.</span>';
 $_['entry_length_class']       			= 'Length Class:';
 $_['entry_weight_class']       			= 'Weight Class:';
+$_['entry_date_format']				= 'Date format:<br /><span class="help">Select a date format from the active language definitions.</span>';
+$_['entry_time_offset']					= 'Local Time Offset:<br /><span class="help">Offset the server\'s time by increments of 1 hour.</span>';
 $_['entry_our_location']       			= 'Hide Store Location:<br /><span class="help">Remove "Our Location" block from the Contact page.</span>';
 $_['entry_location'] 						= 'Enter/Select Address:<br /><span class="help">Auto-completed as you type.</span>';
 $_['entry_latitude'] 						= 'Address Latitude:<br /><span class="help">Generated automatically from address selected.</span>';

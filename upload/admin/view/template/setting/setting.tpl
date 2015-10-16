@@ -215,6 +215,75 @@
             </select></td>
           </tr>
         </table>
+        <h2><?php echo $text_datetime; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_date_format; ?></td>
+            <td><select name="config_date_format">
+              <?php foreach ($date_formats as $date_format) { ?>
+                <?php if ($config_date_format == $date_format['format']) { ?>
+                  <option value="<?php echo $date_format['format']; ?>" selected="selected"><?php echo $date_format['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $date_format['format']; ?>"><?php echo $date_format['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_time_offset; ?></td>
+            <td><select name="config_time_offset">
+              <?php if (isset($config_time_offset)) { $selected = "selected"; ?>
+                <option value="+11" <?php if ($config_time_offset == '+11') { echo $selected; } ?>> +11</option>
+                <option value="+10" <?php if ($config_time_offset == '+10') { echo $selected; } ?>> +10</option>
+                <option value="+9" <?php if ($config_time_offset == '+9') { echo $selected; } ?>> +9</option>
+                <option value="+8" <?php if ($config_time_offset == '+8') { echo $selected; } ?>> +8</option>
+                <option value="+7" <?php if ($config_time_offset == '+7') { echo $selected; } ?>> +7</option>
+                <option value="+6" <?php if ($config_time_offset == '+6') { echo $selected; } ?>> +6</option>
+                <option value="+5" <?php if ($config_time_offset == '+5') { echo $selected; } ?>> +5</option>
+                <option value="+4" <?php if ($config_time_offset == '+4') { echo $selected; } ?>> +4</option>
+                <option value="+3" <?php if ($config_time_offset == '+3') { echo $selected; } ?>> +3</option>
+                <option value="+2" <?php if ($config_time_offset == '+2') { echo $selected; } ?>> +2</option>
+                <option value="+1" <?php if ($config_time_offset == '+1') { echo $selected; } ?>> +1</option>
+                <option value="+0" <?php if ($config_time_offset == '+0') { echo $selected; } ?>> 0</option>
+                <option value="-1" <?php if ($config_time_offset == '-1') { echo $selected; } ?>> -1</option>
+                <option value="-2" <?php if ($config_time_offset == '-2') { echo $selected; } ?>> -2</option>
+                <option value="-3" <?php if ($config_time_offset == '-3') { echo $selected; } ?>> -3</option>
+                <option value="-4" <?php if ($config_time_offset == '-4') { echo $selected; } ?>> -4</option>
+                <option value="-5" <?php if ($config_time_offset == '-5') { echo $selected; } ?>> -5</option>
+                <option value="-6" <?php if ($config_time_offset == '-6') { echo $selected; } ?>> -6</option>
+                <option value="-7" <?php if ($config_time_offset == '-7') { echo $selected; } ?>> -7</option>
+                <option value="-8" <?php if ($config_time_offset == '-8') { echo $selected; } ?>> -8</option>
+                <option value="-9" <?php if ($config_time_offset == '-9') { echo $selected; } ?>> -9</option>
+                <option value="-10" <?php if ($config_time_offset == '-10') { echo $selected; } ?>> -10</option>
+                <option value="-11" <?php if ($config_time_offset == '-11') { echo $selected; } ?>> -11</option>
+              <?php } else { ?>
+                <option value="+11"> +11</option>
+                <option value="+10"> +10</option>
+                <option value="+9"> +9</option>
+                <option value="+8"> +8</option>
+                <option value="+7"> +7</option>
+                <option value="+6"> +6</option>
+                <option value="+5"> +5</option>
+                <option value="+4"> +4</option>
+                <option value="+3"> +3</option>
+                <option value="+2"> +2</option>
+                <option value="+1"> +1</option>
+                <option value="+0" selected> 0</option>
+                <option value="-1"> -1</option>
+                <option value="-2"> -2</option>
+                <option value="-3"> -3</option>
+                <option value="-4"> -4</option>
+                <option value="-5"> -5</option>
+                <option value="-6"> -6</option>
+                <option value="-7"> -7</option>
+                <option value="-8"> -8</option>
+                <option value="-9"> -9</option>
+                <option value="-10"> -10</option>
+                <option value="-11"> -11</option>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
         <h2><?php echo $text_location; ?></h2>
         <table class="form">
           <tr>

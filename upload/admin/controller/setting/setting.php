@@ -45,6 +45,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_automatic'] = $this->language->get('text_automatic');
 		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
+		$this->data['text_datetime'] = $this->language->get('text_datetime');
 		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_tax'] = $this->language->get('text_tax');
@@ -108,6 +109,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
+		$this->data['entry_date_format'] = $this->language->get('entry_date_format');
+		$this->data['entry_time_offset'] = $this->language->get('entry_time_offset');
 		$this->data['entry_our_location'] = $this->language->get('entry_our_location');
 		$this->data['entry_location'] = $this->language->get('entry_location');
 		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
@@ -592,6 +595,23 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
+
+		$this->data['date_formats'] = array();
+
+		$this->data['date_formats'][] = array('format' => 'short', 'title' => $this->language->get('date_format_short'));
+		$this->data['date_formats'][] = array('format' => 'long', 'title' => $this->language->get('date_format_long'));
+
+		if (isset($this->request->post['config_date_format'])) {
+			$this->data['config_date_format'] = $this->request->post['config_date_format'];
+		} else {
+			$this->data['config_date_format'] = $this->config->get('config_date_format');
+		}
+
+		if (isset($this->request->post['config_time_offset'])) {
+			$this->data['config_time_offset'] = $this->request->post['config_time_offset'];
+		} else {
+			$this->data['config_time_offset'] = $this->config->get('config_time_offset');
+		}
 
 		if (isset($this->request->post['config_our_location'])) {
 			$this->data['config_our_location'] = $this->request->post['config_our_location'];

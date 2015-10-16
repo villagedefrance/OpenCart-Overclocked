@@ -21,6 +21,9 @@ $_['column_name']             			= 'Store Name';
 $_['column_url']	               			= 'Store URL';
 $_['column_action']                		= 'Action';
 
+// Info
+$_['info_express']             			= 'Express Checkout: Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
+
 // Entry
 $_['entry_url']                    			= 'Store URL:<br /><span class="help">Include the full URL to your store. Make sure to add \'/\' at the end. Example: http://www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.</span>';
 $_['entry_ssl']                    			= 'SSL URL:<br /><span class="help">SSL URL to your store. Make sure to add \'/\' at the end. Example: https://www.yourdomain.com/path/<br /><br />Don\'t use directories to create a new store. You should always point another domain or sub domain to your hosting.</span>';
@@ -48,6 +51,7 @@ $_['entry_customer_price']         	= 'Login Display Prices:<br /><span class="h
 $_['entry_account']                		= 'Account Terms:<br /><span class="help">Forces people to agree to terms before an account can be created.</span>';
 $_['entry_cart_weight']            		= 'Display Weight on Cart Page:';
 $_['entry_guest_checkout']     		= 'Guest Checkout:<br /><span class="help">Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.</span>';
+$_['entry_express_checkout'] 		= 'Express Checkout:<br /><span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
 $_['entry_checkout']               		= 'Checkout Terms:<br /><span class="help">Forces people to agree to terms before an a customer can checkout.</span>';
 $_['entry_order_status']         		= 'Order Status:<br /><span class="help">Set the default order status when an order is processed.</span>';
 $_['entry_stock_display']          		= 'Display Stock:<br /><span class="help">Display stock quantity on the product page.</span>';
