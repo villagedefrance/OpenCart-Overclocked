@@ -146,11 +146,21 @@
         <td><input type="checkbox" name="demo_data" value="1" /> <?php echo $text_remove; ?></td>
       </tr>
     </table>
+    <p id="progress" style="display:none;"></p>
     </fieldset>
-    <div class="buttons">
+    <div id="start" class="buttons">
       <div class="left"><a href="<?php echo $back; ?>" class="button"><?php echo $button_back; ?></a></div>
-      <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>
+      <div class="right"><input type="submit" value="<?php echo $button_install; ?>" class="button" onclick="return progress()" /></div>
     </div>
   </form>
 </div>
+
+<script type="text/javascript"><!--
+function progress() {
+	document.getElementById('start').style.display='none';
+    document.getElementById('progress').style.display='block';
+    return true;
+}
+//--></script>
+
 <?php echo $footer; ?>

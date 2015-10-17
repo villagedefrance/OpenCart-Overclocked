@@ -22,10 +22,20 @@
       </ol>
 	  <br />
 	  <p><?php echo $text_be_patient; ?></p>
+      <p id="progress" style="display:none;"></p>
     </fieldset>
-    <div class="buttons">
-      <div class="right"><input type="submit" value="<?php echo $button_upgrade; ?>" id="loader" class="button" /></div>
+    <div id="start" class="buttons">
+      <div class="right"><input type="submit" value="<?php echo $button_upgrade; ?>" class="button" onclick="return progress()" /></div>
     </div>
   </form>
 </div>
+
+<script type="text/javascript"><!--
+function progress() {
+	document.getElementById('start').style.display='none';
+    document.getElementById('progress').style.display='block';
+    return true;
+}
+//--></script>
+
 <?php echo $footer; ?> 

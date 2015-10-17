@@ -59,22 +59,22 @@ $(document).ready(function() {
         <div id="show-device" style="display:none;">
           <div class="device">
             <?php echo $agent_platform; ?><br />
-            <?php echo $agent_browser; ?> <?php echo $agent_version; ?><br />
+            <?php echo $agent_browser; ?> rv:<?php echo $agent_version; ?><br />
 			<?php echo $agent_mobile; ?>
           </div>
         </div>
       </div>
       <div id="date-time"><img src="view/image/dashboard/calendar.png" alt="" />
         <div id="show-time" style="display:none;">
-          <div class="date"><?php echo $date_format; ?></div><br />
-          <div class="time"><span id="hour"></span>:<span id="minute"></span>:<span id="second"></span></div>
+          <div class="sysdate"><?php echo $date_format; ?></div><br />
+          <div class="systime"><span id="hour"></span>:<span id="minute"></span>:<span id="second"></span></div>
         </div>
       </div>
       <?php if ($logged) { ?>
         <div id="store-selector">
           <a onclick="window.open('<?php echo $store; ?>');" title=""><img src="view/image/dashboard/store.png" alt="<?php echo $text_front; ?>" /></a>
           <?php if ($stores) { ?>
-            <div id="store-option" style="display:none;">
+            <div id="show-store" style="display:none;">
               <a onclick="window.open('<?php echo $store; ?>');" title=""><?php echo $text_front; ?></a>
               <?php foreach ($stores as $store) { ?>
                 <?php $store_href = $store['href']; ?>
@@ -335,9 +335,9 @@ $(document).ready(function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#store-selector').hover(function() {
-		$('#store-option').css('margin-left', '-180px').slideDown(200);
+		$('#show-store').css('margin-left', '-180px').slideDown(200);
 	}, function() {
-		$('#store-option').css('margin-left', '-180px').slideUp(200);
+		$('#show-store').css('margin-left', '-180px').slideUp(200);
 	});
 });
 //--></script>

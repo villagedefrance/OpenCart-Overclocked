@@ -6,9 +6,7 @@ class ControllerUpgrade extends Controller {
 		$this->document->setTitle($this->language->get('heading_upgrade'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->load->model('upgrade');
-
-			$this->model_upgrade->mysql();
+			$this->initialize();
 
 			$this->data['heading_success'] = $this->language->get('heading_success');
 
@@ -60,13 +58,59 @@ class ControllerUpgrade extends Controller {
 		}
 	}
 
+	public function initialize() {
+		$status = false;
+
+		// Check if the sql file exists
+		$file = DIR_APPLICATION . 'opencart-clean.sql';
+
+		if (!file_exists($file)) {
+			exit('Could not load sql file: ' . $file);
+		} else {
+			$status = true;
+		}
+
+		clearstatcache();
+
+		$this->load->model('upgrade');
+
+		if ($status) {
+			$step1 = false;
+			$step2 = false;
+			$step3 = false;
+			$step4 = false;
+			$step5 = false;
+
+			$this->model_upgrade->dataTables($step1);
+
+			if ($step1) {
+				$this->model_upgrade->additionalTables($step2);
+			}
+
+			if ($step2) {
+				$this->model_upgrade->repairCategories(0, $step3);
+			}
+
+			if ($step3) {
+				$this->model_upgrade->updateConfig($step4);
+			}
+
+			if ($step4) {
+				$this->model_upgrade->updateLayouts($step5);
+			}
+
+		} else {
+			return;
+		}
+	}
+
 	private function validate() {
 		if (DB_DRIVER == 'mysql') {
 			if (!$connection = @mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD)) {
 				$this->error['warning'] = $this->language->get('error_db_connect');
 			} else {
 				if (!mysql_select_db(DB_DATABASE, $connection)) {
-					$this->error['warning'] = 'Error: Database "'. DB_DATABASE . '" does not exist!';
+					$this->error['warning'] = 'Error: Database "' . DB_DATABASE . '" does not exist!';
 				}
 
 				mysql_close($connection);

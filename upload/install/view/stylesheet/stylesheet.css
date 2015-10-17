@@ -3,27 +3,25 @@ html {
 	margin: 0;
 	padding: 0;
 }
-* {
-	font-family: Arial, Verdana, sans-serif;
-}
 body {
 	background: #F6F6F6 url('../image/background.png');
 	padding: 0px;
 	margin: 0px;
 }
 body, p, td, th, input, textarea, select {
-	color: #777;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 13px;
+	color: #777;
 	text-decoration: none;
 }
 option {
-	color: #111;
 	font-size: 13px;
+	color: #111;
 	text-decoration: none;
 }
 #container > h1 {
 	background: url('../image/heading.png') repeat-y;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 26px;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -187,6 +185,13 @@ label {
 	min-height: 350px;
 	margin-bottom: 20px;
 	overflow: hidden;
+}
+/* Progress */
+#progress {
+	background: url('../image/progress.gif') center no-repeat;
+	text-align: center;
+	width: inherit;
+	height: 32px;
 }
 /* Message */
 .warning {

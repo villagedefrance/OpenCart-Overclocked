@@ -4,11 +4,11 @@ function getURLVar(urlVarName) {
 
 	if (urlHalves[1]) {
 		var urlVars = urlHalves[1].split('&');
-	
+
 		for (var i = 0; i <= (urlVars.length); i++) {
 			if (urlVars[i]) {
 				var urlVarPair = urlVars[i].split('=');
-	
+
 				if (urlVarPair[0] && urlVarPair[0] == urlVarName.toLowerCase()) {
 					urlVarValue = urlVarPair[1];
 				}

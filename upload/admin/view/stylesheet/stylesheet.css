@@ -175,7 +175,7 @@ body > #container {
 }
 /* Header */
 #header {
-	min-width: 900px;
+	min-width: 800px;
 }
 #header .static {
 	height: 56px;
@@ -213,7 +213,7 @@ body > #container {
 	padding-left: 20px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 75;
+	z-index: 175;
 }
 /* Header Device */
 #user-device {
@@ -227,7 +227,7 @@ body > #container {
 	padding: 0px 30px 0px 10px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 75;
+	z-index: 175;
 }
 #show-device {
 	position: relative;
@@ -238,7 +238,7 @@ body > #container {
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-	z-index: 85;
+	z-index: 185;
 }
 #show-device .device {
 	display: inline-block;
@@ -246,7 +246,6 @@ body > #container {
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
-	line-height: 22px;
 	padding: 0px 6px;
 }
 /* Header Date & Time */
@@ -261,7 +260,7 @@ body > #container {
 	padding: 0px 10px 0px 10px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 75;
+	z-index: 175;
 }
 #show-time {
 	position: relative;
@@ -272,21 +271,19 @@ body > #container {
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-	z-index: 85;
+	z-index: 185;
 }
-#show-time .date, .time {
+#show-time .sysdate, .systime {
 	display: inline-block;
 	color: #777;
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
-	line-height: 22px;
 	padding: 0px 6px;
 }
-#show-time .time span {
-	padding-left: 1px;
-	padding-right: 1px;
+#show-time .systime span {
 	margin: 0px;
+	padding: 0px;
 }
 /* Header Store */
 #store-selector {
@@ -300,9 +297,9 @@ body > #container {
 	padding: 0px 10px 0px 20px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 75;
+	z-index: 175;
 }
-#store-option {
+#show-store {
 	position: relative;
 	top: -3px;
 	background: #FFF;
@@ -311,9 +308,9 @@ body > #container {
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-	z-index: 85;
+	z-index: 185;
 }
-#store-option a {
+#show-store a {
 	display: block;
 	color: #777;
 	font-size: 12px;
@@ -322,7 +319,7 @@ body > #container {
 	padding: 0px 6px;
 	cursor: pointer;
 }
-#store-option a:hover {
+#show-store a:hover {
 	background: #E4EEF7;
 	color: #547C96;
 }
@@ -426,14 +423,11 @@ ul.menu ul {
 /* Content */
 #content {
 	background: #FFF url('../image/background.png') 0px 1px repeat-x;
-	padding: 10px 30px 128px 30px;
-	min-width: 900px;
+	padding: 10px 30px 0px 30px;
+	min-width: 800px;
 }
 /* Breadcrumbs */
 .breadcrumb {
-	color: #777;
-	font-size: 14px;
-	line-height: 14px;
 	padding: 0px 3px;
 	margin-bottom: 10px;
 }
@@ -512,7 +506,7 @@ ul.menu ul {
 	color: #555;
 	font-size: 11px;
 	font-weight: normal;
-	font-family: Verdana, Geneva, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	display: block;
 }
 .icon {
@@ -566,12 +560,12 @@ ul.menu ul {
 	padding-top: 7px;
 	float: right;
 }
-.box > .heading .bell {
+.box > .heading .event {
 	padding-top: 10px;
 	margin-right: 10px;
 	float: right;
 }
-.box > .heading .bell a {
+.box > .heading .event a {
 	margin-left: 10px;
 }
 .box > .content h2 {
@@ -1293,7 +1287,6 @@ table.tool > tr > td {
 	text-align: center;
 	background: #FFF url('../image/footer.png') repeat-x;
 	padding-top: 38px;
-	margin-top: -128px;
 	clear: both;
 }
 #footer a {

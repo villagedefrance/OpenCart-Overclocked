@@ -8,7 +8,7 @@ class ControllerStep3 extends Controller {
 
 			$this->model_install->database($this->request->post);
 
-			$output  = '<?php' . "\n";
+			$output = '<?php' . "\n";
 			$output .= '// HTTP' . "\n";
 			$output .= 'define(\'HTTP_SERVER\', \'' . HTTP_OPENCART . '\');' . "\n";
 			$output .= 'define(\'HTTP_IMAGE\', \'' . HTTP_OPENCART . 'image/\');' . "\n\n";
@@ -47,7 +47,7 @@ class ControllerStep3 extends Controller {
 
 			fclose($file);
 
-			$output  = '<?php' . "\n";
+			$output = '<?php' . "\n";
 			$output .= '// HTTP' . "\n";
 			$output .= 'define(\'HTTP_SERVER\', \'' . HTTP_OPENCART . 'admin/\');' . "\n";
 			$output .= 'define(\'HTTP_IMAGE\', \'' . HTTP_OPENCART . 'image/\');' . "\n";
@@ -124,7 +124,7 @@ class ControllerStep3 extends Controller {
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
 		$this->data['entry_demo_data'] = $this->language->get('entry_demo_data');
 
-		$this->data['button_continue'] = $this->language->get('button_continue');
+		$this->data['button_install'] = $this->language->get('button_install');
 		$this->data['button_back'] = $this->language->get('button_back');
 
 		if (isset($this->error['warning'])) {

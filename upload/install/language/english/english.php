@@ -119,6 +119,7 @@ $_['error_email']					= 'Invalid E-Mail!';
 $_['error_config']					= 'Error: Could not write to config.php please check you have set the correct permissions on: ';
 
 // Buttons
+$_['button_install']				= 'Install';
 $_['button_upgrade']			= 'Upgrade';
 $_['button_continue']			= 'Continue';
 $_['button_back']					= 'Back';
@@ -268,7 +269,7 @@ $_['text_terms'] = '<h3>GNU GENERAL PUBLIC LICENSE</h3>
         <p>Conveying under any other circumstances is permitted solely under
           the conditions stated below.  Sublicensing is not allowed; section 10
           makes it unnecessary.</p>
-        <h4><a id="section3"></a>3. Protecting Users\' Legal Rights From Anti-Circumvention Law.</h4>
+        <h4><a id="section3"></a>3. Protecting User\'s Legal Rights From Anti-Circumvention Law.</h4>
         <p>No covered work shall be deemed part of an effective technological
           measure under any applicable law fulfilling obligations under article
           11 of the WIPO copyright treaty adopted on 20 December 1996, or

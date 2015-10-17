@@ -6,7 +6,7 @@
 
 class ModelUpgrade extends Model {
 
-	public function mysql() {
+	public function dataTables($step1) {
 		// Load the sql file
 		$file = DIR_APPLICATION . 'opencart-clean.sql';
 
@@ -327,13 +327,15 @@ class ModelUpgrade extends Model {
 			}
 		}
 
-		$this->additionalTables();
+		$step1 = true;
+
+		return $step1;
 	}
 
 	// -----------------------------------
 	// Function to update additional tables
 	// -----------------------------------
-	public function additionalTables() {
+	public function additionalTables($step2) {
 		set_time_limit(30);
 
 		// Add serialized to Setting
@@ -437,14 +439,15 @@ class ModelUpgrade extends Model {
 
 		flush();
 
-		// Sort the categories to take advantage of the nested set model
-		$this->repairCategories(0);
+		$step2 = true;
+
+		return $step2;
 	}
 
 	// --------------------------------------------------------------------------------
 	// Function to repair any erroneous categories that are not in the category path table
 	// --------------------------------------------------------------------------------
-	public function repairCategories($parent_id = 0) {
+	public function repairCategories($parent_id = 0, $step3) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$parent_id . "'");
 
 		foreach ($query->rows as $category) {
@@ -467,13 +470,15 @@ class ModelUpgrade extends Model {
 			$this->repairCategories($category['category_id']);
 		}
 
-		$this->updateConfig();
+		$step3 = true;
+
+		return $step3;
 	}
 
 	// -----------------------------------------------
 	// Function to update the existing "config.php" files
 	// -----------------------------------------------
-	public function updateConfig() {
+	public function updateConfig($step4) {
 		set_time_limit(30);
 
 		$upload = 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');';
@@ -554,13 +559,15 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 		flush();
 
-		$this->updateLayouts();
+		$step4 = true;
+
+		return $step4;
 	}
 
 	// ------------------------------------
 	// Function to update the layout routes
 	// ------------------------------------
-	public function updateLayouts() {
+	public function updateLayouts($step5) {
 		// Get stores
 		$stores = array(0);
 
@@ -619,6 +626,10 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 				}
 			}
 		}
+
+		$step5 = true;
+
+		return $step5;
 	}
 }
 ?>

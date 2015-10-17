@@ -3,7 +3,7 @@
 	clear: both;
 	position: relative;
 	height: 33px;
-	min-width: 900px;
+	min-width: 800px;
 	background-color: #5A5A5A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#5A5A5A), to(#444));
 	background-image: -webkit-linear-gradient(top, #5A5A5A, #444);
@@ -33,7 +33,7 @@
 	border-radius: 0px 0px 0px 3px;
 	float: left;
 	width: 25%;
-	height: 367px;
+	height: 467px;
 	margin-bottom: 9px;
 	padding-top: 5px;
 	overflow: auto;
@@ -48,7 +48,7 @@
 	border-radius: 0px 0px 3px 0px;
 	float: right;
 	width: 73%;
-	height: 400px;
+	height: 500px;
 	margin-bottom: 15px;
 	padding-bottom: 5px;
 	overflow: auto;

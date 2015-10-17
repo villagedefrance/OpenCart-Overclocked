@@ -23,16 +23,16 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/home.png" alt="" /> <?php echo $heading_title; ?></h1>
-      <div class="bell">
+      <div class="event">
         <?php if ($mail_log_status) { ?>
-           <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-on.png" alt="" title="" /></a>
+           <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-on.png" alt="" /></a>
         <?php } else { ?>
-           <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-off.png" alt="" title="" /></a>
+           <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-off.png" alt="" /></a>
         <?php } ?>
         <?php if ($error_log_status) { ?>
-           <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-on.png" alt="" title="" /></a>
+           <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-on.png" alt="" /></a>
         <?php } else { ?>
-           <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-off.png" alt="" title="" /></a>
+           <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-off.png" alt="" /></a>
         <?php } ?>
       </div>
     </div>
