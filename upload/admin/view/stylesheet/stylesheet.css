@@ -169,10 +169,6 @@ samp, small {
 #container {
 	height: 100%;
 }
-body > #container {
-	height: auto;
-	min-height: 100%;
-}
 /* Header */
 #header {
 	min-width: 800px;
@@ -231,7 +227,7 @@ body > #container {
 }
 #show-device {
 	position: absolute;
-	top: 32px;
+	top: 34px;
 	right: 20px;
 	background: #FFF;
 	text-align: center;
@@ -241,7 +237,7 @@ body > #container {
     -khtml-border-radius: 3px;
     border-radius: 3px;
 	min-width: 150px;
-	z-index: 8;
+	z-index: 9;
 }
 #show-device .device {
 	display: inline-block;
@@ -267,7 +263,7 @@ body > #container {
 }
 #show-time {
 	position: absolute;
-	top: 32px;
+	top: 34px;
 	right: 0px;
 	background: #FFF;
 	text-align: center;
@@ -277,7 +273,7 @@ body > #container {
     -khtml-border-radius: 3px;
     border-radius: 3px;
 	min-width: 150px;
-	z-index: 8;
+	z-index: 9;
 }
 #show-time .sysdate, .systime {
 	display: inline-block;
@@ -307,7 +303,7 @@ body > #container {
 }
 #show-store {
 	position: absolute;
-	top: 32px;
+	top: 34px;
 	right: 0px;
 	background: #FFF;
 	border: 1px solid #CCC;
@@ -318,7 +314,7 @@ body > #container {
 	min-width: 150px;
 	height: 60px;
 	overflow: auto;
-	z-index: 8;
+	z-index: 9;
 }
 #show-store a {
 	display: block;
@@ -607,6 +603,7 @@ ul.menu ul {
 	width: 360px;
 	min-height: 300px;
 	margin: 50px auto;
+	padding: 0px;
 }
 .box-login > .content-login {
 	background-color: #FCFCFC;

@@ -333,30 +333,30 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
+	$('.menu').hover(function() {
+		$('#show-time').hide(120);
+		$('#show-device').hide(120);
+	});
+
+	$('.user-logout').hover(function() {
+		$('#show-time').hide(120);
+		$('#show-device').hide(120);
+	});
+
 	$('#store-selector').hover(function() {
-		$('#show-store').fadeIn(120);
-	}, function() {
-		$('#show-store').fadeOut(120);
+		$('#show-store').slideToggle(120);
+		$('#show-time').hide(120);
+		$('#show-device').hide(120);
 	});
-});
-//--></script>
 
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#user-device').hover(function() {
-		$('#show-device').fadeIn(120);
-	}, function() {
-		$('#show-device').fadeOut(120);
+	$('#date-time').click(function() {
+		$('#show-time').slideToggle(120);
+		$('#show-device').hide(120);
 	});
-});
-//--></script>
 
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#date-time').hover(function() {
-		$('#show-time').fadeIn(120);
-	}, function() {
-		$('#show-time').fadeOut(120);
+	$('#user-device').click(function() {
+		$('#show-device').slideToggle(120);
+		$('#show-time').hide(120);
 	});
 });
 //--></script>
