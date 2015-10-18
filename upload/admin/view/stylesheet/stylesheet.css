@@ -169,6 +169,10 @@ samp, small {
 #container {
 	height: 100%;
 }
+body > #container {
+	height: auto;
+	min-height: 100%;
+}
 /* Header */
 #header {
 	min-width: 800px;

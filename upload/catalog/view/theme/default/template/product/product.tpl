@@ -38,24 +38,22 @@
           </div>
         <?php } ?>
       <?php } ?>
-	  <?php if ($lightbox == 'chocolat') { ?>
-        <div id="chocolate">
+	  <?php if ($lightbox == 'swipebox') { ?>
         <?php if ($thumb) { ?>
           <?php if (!$label && $offers) { ?>
             <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <div class="image">
-            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="chocolat-image"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox" rel="swipe"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
 		  </div>
         <?php } ?>
         <?php if ($images) { ?>
           <div class="image-additional">
             <?php foreach ($images as $image) { ?>
-              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="chocolat-image"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="swipebox" rel="swipe"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
             <?php } ?>
           </div>
         <?php } ?>
-        </div>
       <?php } ?>
       <?php if ($lightbox == 'magnific') { ?>
         <?php if ($thumb) { ?>
@@ -526,18 +524,17 @@ $(document).ready(function() {
 //--></script>
 <?php } ?>
 
-<?php if ($lightbox == 'chocolat') { ?>
+<?php if ($lightbox == 'swipebox') { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#chocolate').Chocolat({
-		container: window,
-		setTitle: '<?php echo $heading_title; ?>',
-        imageSelector: '.chocolat-image',
-		className: '.chocolat-open',
-		linkImages: true,
-		imageSize: 'native',
-		overlayOpacity: 1,
-		loop: true
+	$('.swipebox').swipebox({
+		useCSS: true,
+		useSVG: true,
+		initialIndexOnArray: 0,
+		hideCloseButtonOnMobile: false,
+		hideBarsDelay: 0,
+		videoMaxWidth: 800,
+		loopAtEnd: true
 	});
 });
 //--></script>

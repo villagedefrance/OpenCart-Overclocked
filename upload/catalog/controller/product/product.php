@@ -328,9 +328,9 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'magnific';
 
-			} elseif ($this->config->get('config_lightbox') == 'chocolat') {
-				$this->document->addStyle('catalog/view/javascript/jquery/chocolat/css/chocolat.css');
-				$this->document->addScript('catalog/view/javascript/jquery/chocolat/js/jquery.chocolat.min.js');
+			} elseif ($this->config->get('config_lightbox') == 'swipebox') {
+				$this->document->addStyle('catalog/view/javascript/jquery/swipebox/css/swipebox.min.css');
+				$this->document->addScript('catalog/view/javascript/jquery/swipebox/js/jquery.swipebox.min.js');
 
 				if ($product_info['image']) {
 					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
@@ -338,7 +338,7 @@ class ControllerProductProduct extends Controller {
 					$this->data['thumb'] = '';
 				}
 
-				$this->data['lightbox'] = 'chocolat';
+				$this->data['lightbox'] = 'swipebox';
 
 			} else {
 				$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
