@@ -67,7 +67,6 @@ class ControllerCommonHome extends Controller {
 		$this->data['column_affiliate'] = $this->language->get('column_affiliate');
 		$this->data['column_tracking'] = $this->language->get('column_tracking');
 		$this->data['column_balance'] = $this->language->get('column_balance');
-		$this->data['column_newsletter'] = $this->language->get('column_newsletter');
 		$this->data['column_approved'] = $this->language->get('column_approved');
 		$this->data['column_return_id'] = $this->language->get('column_return_id');
 		$this->data['column_return_history'] = $this->language->get('column_return_history');
@@ -359,7 +358,6 @@ class ControllerCommonHome extends Controller {
 				'age'					=> $customer_age,
 				'email'          		=> $customer_result['email'],
 				'customer_group' 	=> $customer_result['customer_group'] ? $customer_result['customer_group'] : $this->language->get('text_guest'),
-				'newsletter'     	=> $customer_result['newsletter'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'approved'       	=> $customer_result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'status'         		=> $customer_result['status'],
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($customer_result['date_added'])),

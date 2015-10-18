@@ -213,7 +213,7 @@ body > #container {
 	padding-left: 20px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 175;
+	z-index: 7;
 }
 /* Header Device */
 #user-device {
@@ -227,18 +227,21 @@ body > #container {
 	padding: 0px 30px 0px 10px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 175;
+	z-index: 7;
 }
 #show-device {
-	position: relative;
-	top: -3px;
+	position: absolute;
+	top: 32px;
+	right: 20px;
 	background: #FFF;
+	text-align: center;
 	border: 1px solid #CCC;
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-	z-index: 185;
+	min-width: 150px;
+	z-index: 8;
 }
 #show-device .device {
 	display: inline-block;
@@ -260,18 +263,21 @@ body > #container {
 	padding: 0px 10px 0px 10px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 175;
+	z-index: 7;
 }
 #show-time {
-	position: relative;
-	top: -3px;
+	position: absolute;
+	top: 32px;
+	right: 0px;
 	background: #FFF;
+	text-align: center;
 	border: 1px solid #CCC;
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-	z-index: 185;
+	min-width: 150px;
+	z-index: 8;
 }
 #show-time .sysdate, .systime {
 	display: inline-block;
@@ -297,18 +303,22 @@ body > #container {
 	padding: 0px 10px 0px 20px;
 	cursor: pointer;
 	outline: 0;
-	z-index: 175;
+	z-index: 7;
 }
 #show-store {
-	position: relative;
-	top: -3px;
+	position: absolute;
+	top: 32px;
+	right: 0px;
 	background: #FFF;
 	border: 1px solid #CCC;
 	-moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     border-radius: 3px;
-	z-index: 185;
+	min-width: 150px;
+	height: 60px;
+	overflow: auto;
+	z-index: 8;
 }
 #show-store a {
 	display: block;
@@ -423,13 +433,16 @@ ul.menu ul {
 /* Content */
 #content {
 	background: #FFF url('../image/background.png') 0px 1px repeat-x;
-	padding: 10px 30px 0px 30px;
-	min-width: 800px;
+	padding: 10px 30px 128px 30px;
+	min-width: 740px;
 }
 /* Breadcrumbs */
 .breadcrumb {
+	display: inline-block;
+	width: 100%;
 	padding: 0px 3px;
-	margin-bottom: 10px;
+	margin: 0px 0px 10px 0px;
+	z-index: 25;
 }
 .breadcrumb a {
 	color: #555;
@@ -591,7 +604,7 @@ ul.menu ul {
 }
 /* Box Login */
 .box-login {
-	width: 400px;
+	width: 360px;
 	min-height: 300px;
 	margin: 50px auto;
 }
@@ -1281,12 +1294,14 @@ table.tool > tr > td {
 /* Footer */
 #footer {
 	position: relative;
+	min-width: 800px;
 	height: 90px;
 	color: #333;
 	font-size: 12px;
 	text-align: center;
 	background: #FFF url('../image/footer.png') repeat-x;
 	padding-top: 38px;
+	margin-top: -128px;
 	clear: both;
 }
 #footer a {

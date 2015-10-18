@@ -58,16 +58,15 @@ $(document).ready(function() {
       <div id="user-device"><img src="view/image/dashboard/<?php echo $device; ?>.png" alt="" />
         <div id="show-device" style="display:none;">
           <div class="device">
-            <?php echo $agent_platform; ?><br />
+            <?php echo $agent_platform; ?> (<?php echo $device; ?>)<br />
             <?php echo $agent_browser; ?> rv:<?php echo $agent_version; ?><br />
-			<?php echo $agent_mobile; ?>
           </div>
         </div>
       </div>
       <div id="date-time"><img src="view/image/dashboard/calendar.png" alt="" />
         <div id="show-time" style="display:none;">
           <div class="sysdate"><?php echo $date_format; ?></div><br />
-          <div class="systime"><span id="hour"></span>:<span id="minute"></span>:<span id="second"></span></div>
+          <div class="systime"><span id="hour"></span> : <span id="minute"></span> : <span id="second"></span></div>
         </div>
       </div>
       <?php if ($logged) { ?>
@@ -335,9 +334,9 @@ $(document).ready(function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#store-selector').hover(function() {
-		$('#show-store').css('margin-left', '-180px').slideDown(200);
+		$('#show-store').fadeIn(120);
 	}, function() {
-		$('#show-store').css('margin-left', '-180px').slideUp(200);
+		$('#show-store').fadeOut(120);
 	});
 });
 //--></script>
@@ -345,9 +344,9 @@ $(document).ready(function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#user-device').hover(function() {
-		$('#show-device').css('margin-left', '-150px').slideDown(200);
+		$('#show-device').fadeIn(120);
 	}, function() {
-		$('#show-device').css('margin-left', '-150px').slideUp(200);
+		$('#show-device').fadeOut(120);
 	});
 });
 //--></script>
@@ -355,9 +354,9 @@ $(document).ready(function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#date-time').hover(function() {
-		$('#show-time').css('margin-left', '-150px').slideDown(200);
+		$('#show-time').fadeIn(120);
 	}, function() {
-		$('#show-time').css('margin-left', '-150px').slideUp(200);
+		$('#show-time').fadeOut(120);
 	});
 });
 //--></script>

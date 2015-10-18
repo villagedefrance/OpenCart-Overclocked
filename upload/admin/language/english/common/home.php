@@ -61,7 +61,6 @@ $_['column_rating_total']   			= 'Reviews Total';
 $_['column_affiliate']           			= 'Affiliate';
 $_['column_tracking']           			= 'Code';
 $_['column_balance']           			= 'Balance';
-$_['column_newsletter']     			= 'Newsletter';
 $_['column_approved']       			= 'Approved';
 $_['column_return_id']      				= 'Return ID';
 $_['column_return_history']  			= 'History';

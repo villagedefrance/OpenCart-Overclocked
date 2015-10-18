@@ -28,7 +28,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['agent_platform'] = $this->browser->getPlatform();
 		$this->data['agent_browser'] = $this->browser->getBrowser();
 		$this->data['agent_version'] = $this->browser->getBrowserVersion();
-		$this->data['agent_mobile'] = $this->browser->getMobile();
 
 		$medium = $this->browser->getMedium();
 

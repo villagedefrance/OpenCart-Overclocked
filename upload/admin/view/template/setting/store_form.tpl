@@ -623,7 +623,7 @@ function image_upload(field, thumb) {
 			}
 		},
 		bgiframe: false,
-		width: 800,
+		width: 760,
 		height: 400,
 		resizable: false,
 		modal: false

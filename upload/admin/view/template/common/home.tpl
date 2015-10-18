@@ -201,7 +201,6 @@
                 <td class="left"><?php echo $column_customer; ?></td>
                 <td class="left"><?php echo $column_email; ?></td>
                 <td class="left"><?php echo $column_customer_group; ?></td>
-                <td class="left"><?php echo $column_newsletter; ?></td>
                 <td class="left"><?php echo $column_approved; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
@@ -217,7 +216,6 @@
                 <td class="left"><?php echo $customer['name']; ?><?php if ($show_dob) { ?> (<?php echo $customer['age']; ?>)<?php } ?></td>
                 <td class="left"><?php echo $customer['email']; ?></td>
                 <td class="center"><?php echo $customer['customer_group']; ?></td>
-                <td class="center"><?php echo $customer['newsletter']; ?></td>
                 <td class="center"><?php echo $customer['approved']; ?></td>
                 <?php if ($customer['status'] == 1) { ?>
                   <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
@@ -250,7 +248,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="10"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="9"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>

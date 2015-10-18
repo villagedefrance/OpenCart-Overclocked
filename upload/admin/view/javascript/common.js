@@ -17,6 +17,7 @@ function getURLVar(key) {
 	}
 }
 
+// Menu Route
 $(document).ready(function() {
 	route = getURLVar('route');
 	if (!route) {

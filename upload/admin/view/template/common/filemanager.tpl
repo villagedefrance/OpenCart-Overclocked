@@ -711,7 +711,7 @@ $(document).ready(function() {
 
 		$('#uploadMulti').dialog({
 			height: '355',
-			width: '760',
+			width: '750',
 			modal: true,
 			resizable: false,
 			create: function(event, ui) {

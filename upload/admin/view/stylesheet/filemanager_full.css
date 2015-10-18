@@ -3,7 +3,7 @@
 	clear: both;
 	position: relative;
 	height: 33px;
-	min-width: 800px;
+	min-width: 730px;
 	background-color: #5A5A5A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#5A5A5A), to(#444));
 	background-image: -webkit-linear-gradient(top, #5A5A5A, #444);
@@ -21,7 +21,7 @@
 #files-menu a {
 	color: #FFF;
 	padding-left: 27px;
-	margin-right: 15px;
+	margin-right: 12px;
 }
 #column-left {
 	background: #FFF;
@@ -33,7 +33,7 @@
 	border-radius: 0px 0px 0px 3px;
 	float: left;
 	width: 25%;
-	height: 467px;
+	height: 367px;
 	margin-bottom: 9px;
 	padding-top: 5px;
 	overflow: auto;
@@ -48,7 +48,7 @@
 	border-radius: 0px 0px 3px 0px;
 	float: right;
 	width: 73%;
-	height: 500px;
+	height: 400px;
 	margin-bottom: 15px;
 	padding-bottom: 5px;
 	overflow: auto;
