@@ -24,6 +24,7 @@
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.11.4.custom.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
 <script type="text/javascript" src="view/javascript/common.js"></script>
 <?php foreach ($scripts as $script) { ?>
@@ -333,30 +334,22 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('.menu').hover(function() {
-		$('#show-time').hide(120);
-		$('#show-device').hide(120);
-	});
-
-	$('.user-logout').hover(function() {
-		$('#show-time').hide(120);
-		$('#show-device').hide(120);
-	});
-
 	$('#store-selector').hover(function() {
-		$('#show-store').slideToggle(120);
-		$('#show-time').hide(120);
-		$('#show-device').hide(120);
+		$('#show-store').show(150);
+	}, function() {
+		$('#show-store').hide(150);
 	});
 
-	$('#date-time').click(function() {
-		$('#show-time').slideToggle(120);
-		$('#show-device').hide(120);
+	$('#date-time').hover(function() {
+		$('#show-time').show(150);
+	}, function() {
+		$('#show-time').hide(150);
 	});
 
-	$('#user-device').click(function() {
-		$('#show-device').slideToggle(120);
-		$('#show-time').hide(120);
+	$('#user-device').hover(function() {
+		$('#show-device').show(150);
+	}, function() {
+		$('#show-device').hide(150);
 	});
 });
 //--></script>

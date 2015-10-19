@@ -87,8 +87,7 @@ html.swipebox-html.swipebox-touch {
 #swipebox-slider .slide-loading {
 	background: url(../img/loader.gif) no-repeat center center;
 }
-#swipebox-bottom-bar,
-#swipebox-top-bar {
+#swipebox-bottom-bar, #swipebox-top-bar {
 	-webkit-transition: 0.5s;
 	transition: 0.5s;
 	position: absolute;
@@ -194,71 +193,47 @@ html.swipebox-html.swipebox-touch {
 	opacity: 1;
 }
 @-webkit-keyframes rightSpring {
-  0% {
-    left: 0;
-  }
-  50% {
-    left: -30px;
-  }
-  100% {
-    left: 0;
-  }
+	0% { left: 0; }
+	50% { left: -30px; }
+	100% { left: 0; }
 }
 @keyframes rightSpring {
-  0% {
-    left: 0;
-  }
-  50% {
-    left: -30px;
-  }
-  100% {
-    left: 0;
-  }
+	0% { left: 0; }
+	50% { left: -30px; }
+	100% { left: 0; }
 }
 @-webkit-keyframes leftSpring {
-  0% {
-    left: 0;
-  }
-  50% {
-    left: 30px;
-  }
-  100% {
-    left: 0;
-  }
+	0% { left: 0; }
+	50% { left: 30px; }
+	100% { left: 0; }
 }
 @keyframes leftSpring {
-  0% {
-    left: 0;
-  }
-  50% {
-    left: 30px;
-  }
-  100% {
-    left: 0;
-  }
+	0% { left: 0; }
+	50% { left: 30px; }
+	100% { left: 0; }
 }
 @media screen and (min-width: 800px) {
-  #swipebox-close {
-    right: 10px;
-  }
-  #swipebox-arrows {
-    width: 92%;
-    max-width: 800px;
-  }
+	#swipebox-close {
+		right: 10px;
+	}
+	#swipebox-arrows {
+		width: 92%;
+		max-width: 800px;
+	}
 }
 /* Skin 
 --------------------------*/
 #swipebox-overlay {
-  background: #0d0d0d;
+	background: #0D0D0D;
 }
 #swipebox-bottom-bar, #swipebox-top-bar {
-  text-shadow: 1px 1px 1px black;
-  background: #000;
-  opacity: 0.95;
+	text-shadow: 1px 1px 1px #000;
+	background: #000;
+	opacity: 0.95;
 }
 #swipebox-top-bar {
-  color: white !important;
-  font-size: 15px;
-  line-height: 43px;
-  font-family: Helvetica, Arial, sans-serif;
+	color: #FFF;
+	font-size: 15px;
+	line-height: 43px;
+	font-family: Helvetica, Arial, sans-serif;
 }

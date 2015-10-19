@@ -231,7 +231,7 @@ body > #container {
 }
 #show-device {
 	position: absolute;
-	top: 34px;
+	top: 34;
 	right: 20px;
 	background: #FFF;
 	text-align: center;
@@ -267,7 +267,7 @@ body > #container {
 }
 #show-time {
 	position: absolute;
-	top: 34px;
+	top: 34;
 	right: 0px;
 	background: #FFF;
 	text-align: center;
@@ -307,7 +307,7 @@ body > #container {
 }
 #show-store {
 	position: absolute;
-	top: 34px;
+	top: 34;
 	right: 0px;
 	background: #FFF;
 	border: 1px solid #CCC;

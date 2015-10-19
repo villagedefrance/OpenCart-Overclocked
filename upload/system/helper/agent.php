@@ -34,6 +34,7 @@ $platforms = array (
 	'ppc mac'			=> 'Power PC Mac',
 	'freebsd'				=> 'FreeBSD',
 	'ppc'					=> 'Macintosh',
+	'android'				=> 'Android',
 	'linux'					=> 'Linux',
 	'debian'				=> 'Debian',
 	'sunos'				=> 'Sun Solaris',
@@ -47,8 +48,7 @@ $platforms = array (
 	'bsdi'					=> 'BSDi',
 	'openbsd'			=> 'OpenBSD',
 	'gnu'					=> 'GNU/Linux',
-	'unix'					=> 'Unknown Unix OS',
-	'android'				=> 'Android'
+	'unix'					=> 'Unknown Unix OS'
 );
 
 $browsers = array(
@@ -92,14 +92,14 @@ $browsers = array(
 );
 
 $pads = array(
-	'ipad'					=> 'iPad',
-	'android'				=> 'Android',
+	'ipad'					=> 'Apple iPad',
 	'kindle'				=> 'Kindle',
 	'kobo'					=> 'Kobo',
 	'nook'					=> 'Nook',
 	'playbook'			=> 'PlayBook',
 	'silk'					=> 'Silk',
 	'touchpad'			=> 'TouchPad',
+	'android'				=> 'Android',
 	'tablet'				=> 'Tablet',
 	'xoom' 				=> 'Xoom'
 );
@@ -114,7 +114,6 @@ $mobiles = array(
 	'palm'					=> 'Palm',
 	'ipod'					=> 'Apple iPod Touch',
 	'iphone'				=> 'Apple iPhone',
-	'ipad'					=> 'Apple iPad',
 	'sony'					=> 'Sony Ericsson',
 	'ericsson'			=> 'Sony Ericsson',
 	'blackberry'			=> 'BlackBerry',
@@ -155,7 +154,6 @@ $mobiles = array(
 	'huawey'				=> 'Huawey',
 
 	// Operating Systems
-	'android'				=> 'Android',
 	'symbian'			=> 'Symbian',
 	'symbianos'			=> 'SymbianOS',
 	'elaine'				=> 'Palm',
@@ -164,6 +162,7 @@ $mobiles = array(
 	'windows ce'		=> 'Windows CE',
 	'windows phone'	=> 'Windows Phone',
 	'webos'				=> 'WebOS',
+	'android'				=> 'Android',
 
 	// Browsers
 	'obigo'				=> 'Obigo',
