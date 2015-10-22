@@ -1038,6 +1038,22 @@ table.tool > tr > td {
 .scrollbox div.odd {
 	background: #E4EEF7;
 }
+/* Progress Bar */
+.progress-bar {
+	border: 1px solid #46719F;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #62A1D7;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#62A1D7), to(#4691D2));
+	background-image: -webkit-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: -moz-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: -ms-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: -o-linear-gradient(top, #62A1D7, #4691D2);
+	background-image: linear-gradient(to bottom, #62A1D7, #4691D2);
+	height: 14px;
+}
 /* Pagination */
 .pagination {
 	display: inline-block;

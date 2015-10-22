@@ -54,26 +54,21 @@
                 <td class="right"><?php echo $product['profit']; ?></td>
               </tr>
             <?php } ?>
-            <tr>
-		      <td class="left" colspan="2" style="background-color:#FAFAFA;"></td>
-		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_price; ?></b></td>
-		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_cost; ?></b></td>
-		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%)</b></td>
-		      <td class="right" style="background-color:#FAFAFA;"><b><?php echo $text_total; ?> <?php echo $column_profit; ?></b></td>
-            </tr>
-			<tr>
-		      <td class="left" colspan="2"></td>
-		      <td class="right"><?php echo $total_price; ?></td>
-		      <td class="right"><?php echo $total_cost; ?></td>
-		      <td class="right"><?php echo $total_percent_profit; ?></td>
-		      <td class="right"><?php echo $total_profit; ?></td>
-		    </tr>
           <?php } else { ?>
             <tr>
               <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
         </tbody>
+        <tfoot>
+          <tr style="background:#FAFAFA;">
+            <td class="left" colspan="2"></td>
+		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> :</b> <?php echo $total_price; ?></td>
+		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> :</b> <?php echo $total_cost; ?></td>
+		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%) :</b> <?php echo $total_percent_profit; ?></td>
+		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> :</b> <?php echo $total_profit; ?></td>
+          </tr>
+        </tfoot>
       </table>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
