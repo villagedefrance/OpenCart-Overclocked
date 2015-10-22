@@ -7743,19 +7743,24 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4220, 117, '0681817', 'Zilupe, Zilupes novads', 1),
 (4221, 117, '0681801', 'Zilupes novads', 1),
 
-(4222, 43, 'Arica y Parinacota', 'AP', 1),
-(4223, 43, 'Los Rios', 'LR', 1),
+(4222, 43, 'AP', 'Arica y Parinacota', 1),
+(4223, 43, 'LR', 'Los Rios', 1),
 
-(4224, 220, 'Kharkivs''ka Oblast''', '63', 1),
+(4224, 220, '63', 'Kharkivs''ka Oblast''', 1),
 
-(4225, 118, 'Beirut', 'LB-BR', 1),
-(4226, 118, 'Bekaa', 'LB-BE', 1),
-(4227, 118, 'Mount Lebanon', 'LB-ML', 1),
-(4228, 118, 'Nabatieh', 'LB-NB', 1),
-(4229, 118, 'North', 'LB-NR', 1),
-(4230, 118, 'South', 'LB-ST', 1),
+(4225, 118, 'LB-BR', 'Beirut', 1),
+(4226, 118, 'LB-BE', 'Bekaa', 1),
+(4227, 118, 'LB-ML', 'Mount Lebanon', 1),
+(4228, 118, 'LB-NB', 'Nabatieh', 1),
+(4229, 118, 'LB-NR', 'North', 1),
+(4230, 118, 'LB-ST', 'South', 1),
 
-(4231, 99, 'Telangana', 'TS', 1),
+(4231, 99, 'TS', 'Telangana', 1),
+
+(4246, 100, 'KR', 'Kepulauan Riau', 1),
+(4247, 100, 'KU', 'Kalimantan Utara', 1),
+(4248, 100, 'PB', 'Papua Barat', 1),
+(4249, 100, 'SB', 'Sulawesi Barat', 1),
 
 (4250, 257, 'CE', 'Ceuta', 1),
 (4251, 257, 'ML', 'Melilla', 1),
