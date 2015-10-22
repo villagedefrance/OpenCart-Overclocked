@@ -891,7 +891,7 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	padding: 5px;
 	background-color: #EEE;
 }
-/* Table form */
+/* Table Form */
 table.form {
 	width: 100%;
 	border-collapse: collapse;
@@ -909,7 +909,7 @@ table.form > tbody > tr > td {
 table.form tr td div.image, .list tbody tr td div.image {
 	text-align: center;
 }
-/* Table tool */
+/* Table Tool */
 table.tool {
 	width: 100%;
 	cellpadding: 5px;
@@ -922,6 +922,27 @@ table.tool > tr {
 }
 table.tool > tr > td {
 	color: #111;
+}
+/* Table Report */
+table.report {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+table.report > tbody > tr {
+	background: #FAFAFA;
+}
+table.report > tbody > tr > td {
+	color: #111;
+	padding: 10px;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+}
+table.report > tbody > tr > td:first-child {
+	border-left: 1px solid #DDD;
+}
+table.report > tbody > tr > td:last-child {
+	border-right: 1px solid #DDD;
 }
 /* Htabs */
 .htabs {

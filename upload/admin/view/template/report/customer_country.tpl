@@ -27,7 +27,7 @@
           <tbody>
             <?php foreach ($countries as $country) { ?>
               <tr>
-                <td class="left"><?php echo $country['country_id']; ?></td>
+                <td class="center"><?php echo $country['country_id']; ?></td>
                 <td class="left"><?php echo $country['country']; ?></td>
                 <td class="center"><?php echo $country['customers']; ?></td>
                 <td class="center"><?php echo number_format(($country['customers'] / $total_store_customers) * 100, 0); ?> %</td>

@@ -9,13 +9,13 @@ class ControllerReportAffiliateCommission extends Controller {
 		if (isset($this->request->get['filter_date_start'])) {
 			$filter_date_start = $this->request->get['filter_date_start'];
 		} else {
-			$filter_date_start = '';
+			$filter_date_start = date('Y-01-01', time());
 		}
 
 		if (isset($this->request->get['filter_date_end'])) {
 			$filter_date_end = $this->request->get['filter_date_end'];
 		} else {
-			$filter_date_end = '';
+			$filter_date_end = date('Y-m-d', time());
 		}
 
 		if (isset($this->request->get['page'])) {
