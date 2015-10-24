@@ -12,6 +12,7 @@ $_['text_add_ban_ip']       	= 'Add Ban IP';
 $_['text_remove_ban_ip']    	= 'Remove Ban IP';
 $_['text_female']    				= 'Female';
 $_['text_male']    				= 'Male';
+$_['text_no_purchases'] 		= 'No Purchases!';
 
 // Column
 $_['column_name']           	= 'Customer Name';
@@ -22,12 +23,22 @@ $_['column_login']          		= 'Login into Store';
 $_['column_approved']       	= 'Approved';
 $_['column_date_added']     	= 'Date Added';
 $_['column_comment']        	= 'Comment';
+$_['column_order_id']			= 'Order ID';
+$_['column_customer']			= 'Customer';
+$_['column_product']			= 'Product';
+$_['column_model']				= 'Model';
+$_['column_price']				= 'Unit Price';
+$_['column_quantity']			= 'Quantity';
+$_['column_total_price']		= 'Total Price';
 $_['column_description']    	= 'Description';
 $_['column_amount']         	= 'Amount';
 $_['column_points']         		= 'Points';
 $_['column_ip']             		= 'IP';
 $_['column_total']          		= 'Total Accounts';
 $_['column_action']         		= 'Action';
+
+// Tab
+$_['tab_purchase']         		= 'Purchases';
 
 // Entry
 $_['entry_firstname']       		= 'First Name:';

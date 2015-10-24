@@ -449,11 +449,32 @@ class ControllerCatalogCategory extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['category_id'])) {
+			$category_name = $this->model_catalog_category->getCategory($this->request->get['category_id']);
+
+			if (isset($category_name['path'])) {
+				$category_title = $category_name['path'] . ' > ' . $category_name['name'];
+			} else {
+				$category_title = $category_name['name'];
+			}
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $category_title,
+				'href'		=> $this->url->link('catalog/category/update', 'token=' . $this->session->data['token'] . '&category_id=' . $this->request->get['category_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['category_title'] = $category_title;
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['category_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['category_id'])) {
 			$this->data['action'] = $this->url->link('catalog/category/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

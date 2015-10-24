@@ -34,11 +34,10 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-              <td><input name="news_description[<?php echo $language['language_id']; ?>][title]" size="80" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" />
-                <?php if (isset($error_title[$language['language_id']])) { ?>
-                  <span class="error"><?php echo $error_title[$language['language_id']]; ?></span>
-                <?php } ?>
-              </td>
+              <td><input type="text" name="news_description[<?php echo $language['language_id']; ?>][title]" size="60" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" />
+              <?php if (isset($error_title[$language['language_id']])) { ?>
+                <span class="error"><?php echo $error_title[$language['language_id']]; ?></span>
+              <?php } ?></td>
             </tr>
             <tr>
               <td><?php echo $entry_meta_description; ?></td>

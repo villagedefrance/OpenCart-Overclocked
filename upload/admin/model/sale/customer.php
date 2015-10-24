@@ -358,6 +358,7 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	// History
 	public function addHistory($customer_id, $comment) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "customer_history SET customer_id = '" . (int)$customer_id . "', `comment` = '" . $this->db->escape(strip_tags($comment)) . "', date_added = NOW()");
 	} 
@@ -382,6 +383,7 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	// Transaction
 	public function addTransaction($customer_id, $description = '', $amount = '', $order_id = 0) {
 		$customer_info = $this->getCustomer($customer_id);
 
@@ -472,6 +474,7 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	// Reward
 	public function addReward($customer_id, $description = '', $points = '', $order_id = 0) {
 		$customer_info = $this->getCustomer($customer_id);
 
@@ -554,6 +557,91 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	// Order
+	public function getCustomerPurchasedProducts($customer_id, $data = array()) {
+		$sql = "SELECT o.order_id, o.currency_code, o.currency_value, o.date_added, op.* FROM " . DB_PREFIX . "order_product op LEFT JOIN `" . DB_PREFIX . "order` o ON (o.order_id = op.order_id) WHERE o.order_status_id > '0' AND o.customer_id = '" . (int)$customer_id . "'";
+
+		$sort_data = array(
+			'o.order_id',
+			'o.date_added',
+			'op.name',
+			'op.price',
+			'op.model',
+			'op.quantity',
+			'op.total'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY o.order_id";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getTotalCustomerPurchasedProducts($customer_id, $data = array()) {
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_product op LEFT JOIN `" . DB_PREFIX . "order` o ON (op.order_id = o.order_id) WHERE o.order_status_id > '0' AND o.customer_id = '" . (int)$customer_id . "'";
+
+		$sort_data = array(
+			'o.order_id',
+			'o.date_added',
+			'op.name',
+			'op.price',
+			'op.model',
+			'op.quantity',
+			'op.total'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY o.order_id";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
 	public function getOrdersCustomersGroup($customer_id) {
 		$query = $this->db->query("SELECT *, cgd.name AS customer_group FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (c.customer_group_id = cgd.customer_group_id) WHERE cgd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND customer_id = '" . (int)$customer_id . "'"); 
 
@@ -582,6 +670,7 @@ class ModelSaleCustomer extends Model {
 		return $query->row['total'];
 	}
 
+	// Ip
 	public function getIpsByCustomerId($customer_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$customer_id . "'");
 

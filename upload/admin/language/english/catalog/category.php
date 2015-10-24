@@ -24,8 +24,8 @@ $_['column_action']          	= 'Action';
 
 // Entry
 $_['entry_name']             		= 'Category Name:';
-$_['entry_meta_description'] 	= 'Meta Tag Description:<br /><span class="help">SEO importance: High<br />The optimal number of characters is around 155, including spaces.</span>';
-$_['entry_meta_keyword'] 	= 'Meta Tag Keywords:<br /><span class="help">SEO importance: Low<br />Usually ignored by search engines.</span>';
+$_['entry_meta_description'] 	= 'Meta Tag Description:<br /><span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
+$_['entry_meta_keyword'] 	= 'Meta Tag Keywords:<br /><span class="help">Usually ignored by search engines.<br />SEO importance: Low.</span>';
 $_['entry_description']      	= 'Description:';
 $_['entry_parent']           		= 'Parent:';
 $_['entry_filter']           		= 'Filters:';

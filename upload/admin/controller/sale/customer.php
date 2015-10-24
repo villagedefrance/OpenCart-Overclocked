@@ -686,6 +686,7 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_address'] = $this->language->get('tab_address');
 		$this->data['tab_history'] = $this->language->get('tab_history');
+		$this->data['tab_purchase'] = $this->language->get('tab_purchase');
 		$this->data['tab_transaction'] = $this->language->get('tab_transaction');
 		$this->data['tab_reward'] = $this->language->get('tab_reward');
 		$this->data['tab_ip'] = $this->language->get('tab_ip');
@@ -840,11 +841,26 @@ class ControllerSaleCustomer extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['customer_id'])) {
+			$customer_name = $this->model_sale_customer->getCustomer($this->request->get['customer_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $customer_name['firstname'] . ' ' . $customer_name['lastname'],
+				'href'		=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['customer_title'] = $customer_name['firstname'] . ' ' . $customer_name['lastname'];
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['customer_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['customer_id'])) {
 			$this->data['action'] = $this->url->link('sale/customer/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -1270,6 +1286,113 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['pagination'] = $pagination->render();
 
 		$this->template = 'sale/customer_history.tpl';
+
+		$this->response->setOutput($this->render());
+	}
+
+	public function purchase() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->data['error_warning'] = $this->language->get('error_permission');
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->request->get['customer_id'])) {
+			$customer_id = $this->request->get['customer_id'];
+		} else {
+			$customer_id = 0;
+		}
+
+		if (isset($this->request->get['sort'])) {
+			$sort = $this->request->get['sort'];
+		} else {
+			$sort = 'o.order_id';
+		}
+
+		if (isset($this->request->get['order'])) {
+			$order = $this->request->get['order'];
+		} else {
+			$order = 'DESC';
+		}
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}
+
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
+
+		$this->data['purchases'] = array();
+
+		$data = array(
+			'sort'		=> $sort,
+			'order'	=> $order,
+			'start'	=> ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'		=> $this->config->get('config_admin_limit')
+		);
+
+		$purchase_total = $this->model_sale_customer->getTotalCustomerPurchasedProducts($customer_id, $data);
+
+		$results = $this->model_sale_customer->getCustomerPurchasedProducts($customer_id, $data);
+
+		foreach ($results as $result) {
+			$action = array();
+
+			$action[] = array(
+				'text'	=> $this->language->get('text_view'),
+				'href'	=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
+			);
+
+			$this->data['purchases'][] = array(
+				'order_id'		=> $result['order_id'],
+				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'product_id'		=> $result['product_id'],
+				'product_href'	=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'], 'SSL'),
+				'name'			=> $result['name'],
+				'model'        	=> $result['model'],
+				'price'        	=> $this->currency->format($result['price'], $result['currency_code'], $result['currency_value']),
+				'quantity'		=> $result['quantity'],
+				'total'				=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'selected'		=> isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
+				'action'			=> $action
+			);
+		}
+
+		$this->data['text_no_purchases'] = $this->language->get('text_no_purchases');
+
+		$this->data['column_order_id'] = $this->language->get('column_order_id');
+		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_product'] = $this->language->get('column_product');
+		$this->data['column_model'] = $this->language->get('column_model');
+		$this->data['column_price'] = $this->language->get('column_price');
+		$this->data['column_quantity'] = $this->language->get('column_quantity');
+		$this->data['column_total_price'] = $this->language->get('column_total_price');
+		$this->data['column_action'] = $this->language->get('column_action');
+
+		$this->data['token'] = $this->session->data['token'];
+
+		$this->data['customer_id'] = $customer_id;
+
+		$pagination = new Pagination();
+		$pagination->total = $purchase_total;
+		$pagination->page = $page;
+		$pagination->limit = $this->config->get('config_admin_limit');
+		$pagination->text = $this->language->get('text_pagination');
+		$pagination->url = $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
+
+		$this->data['pagination'] = $pagination->render();
+
+		$this->data['sort'] = $sort;
+		$this->data['order'] = $order;
+
+		$this->template = 'sale/customer_purchase.tpl';
 
 		$this->response->setOutput($this->render());
 	}

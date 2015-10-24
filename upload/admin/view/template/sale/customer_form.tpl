@@ -10,7 +10,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/customer.png" alt="" /> <?php echo $customer_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
@@ -22,6 +22,7 @@
       <a href="#tab-general"><?php echo $tab_general; ?></a>
 	  <?php if ($customer_id) { ?>
         <a href="#tab-history"><?php echo $tab_history; ?></a>
+        <a href="#tab-purchase"><?php echo $tab_purchase; ?></a>
         <a href="#tab-transaction"><?php echo $tab_transaction; ?></a>
         <a href="#tab-reward"><?php echo $tab_reward; ?></a>
       <?php } ?>
@@ -265,6 +266,9 @@
               <td colspan="2" style="text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></td>
             </tr>
           </table>
+        </div>
+        <div id="tab-purchase">
+          <div id="purchase"></div>
         </div>
         <div id="tab-transaction">
           <table class="form">
@@ -520,6 +524,15 @@ $('#button-history').bind('click', function() {
 		}
 	});
 });
+//--></script>
+
+<script type="text/javascript"><!--
+$('#purchase .pagination a').live('click', function() {
+	$('#purchase').load(this.href);
+	return false;
+});
+
+$('#purchase').load('index.php?route=sale/customer/purchase&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
 //--></script>
 
 <script type="text/javascript"><!--
