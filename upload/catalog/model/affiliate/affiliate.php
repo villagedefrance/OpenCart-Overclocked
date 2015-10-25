@@ -8,7 +8,7 @@ class ModelAffiliateAffiliate extends Model {
 
 		$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
 
-		$message  = sprintf($this->language->get('text_welcome'), $this->config->get('config_name')) . "\n\n";
+		$message = sprintf($this->language->get('text_welcome'), $this->config->get('config_name')) . "\n\n";
 		$message .= $this->language->get('text_approval') . "\n";
 		$message .= $this->url->link('affiliate/login', '', 'SSL') . "\n\n";
 		$message .= $this->language->get('text_services') . "\n\n";

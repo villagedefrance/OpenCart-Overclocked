@@ -703,11 +703,26 @@ class ControllerSaleAffiliate extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'    	=> $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['affiliate_id'])) {
+			$affiliate_name = $this->model_sale_affiliate->getAffiliate($this->request->get['affiliate_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $affiliate_name['firstname'] . ' ' . $affiliate_name['lastname'],
+				'href'		=> $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $this->request->get['affiliate_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['affiliate_title'] = $affiliate_name['firstname'] . ' ' . $affiliate_name['lastname'];
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['affiliate_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['affiliate_id'])) {
 			$this->data['action'] = $this->url->link('sale/affiliate/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

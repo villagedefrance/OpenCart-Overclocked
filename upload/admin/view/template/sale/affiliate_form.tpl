@@ -10,7 +10,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/customer.png" alt="" /> <?php echo $affiliate_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
@@ -29,21 +29,21 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-            <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="50" />
+            <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
             <?php if ($error_firstname) { ?>
               <span class="error"><?php echo $error_firstname; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-            <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="50" />
+            <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
             <?php if ($error_lastname) { ?>
               <span class="error"><?php echo $error_lastname; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="email" value="<?php echo $email; ?>" size="50" />
+            <td><input type="text" name="email" value="<?php echo $email; ?>" size="40" />
             <?php if ($error_email) { ?>
               <span class="error"><?php echo $error_email; ?></span>
             <?php } ?></td>
@@ -63,22 +63,22 @@
            <?php } ?>
           <tr>
             <td><?php echo $entry_company; ?></td>
-            <td><input type="text" name="company" value="<?php echo $company; ?>" size="50" /></td>
+            <td><input type="text" name="company" value="<?php echo $company; ?>" size="40" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_website; ?></td>
-            <td><input type="text" name="website" value="<?php echo $website; ?>" size="50" /></td>
+            <td><input type="text" name="website" value="<?php echo $website; ?>" size="40" /></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-            <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" size="50" />
+            <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" size="40" />
             <?php if ($error_address_1) { ?>
               <span class="error"><?php echo $error_address_1; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_address_2; ?></td>
-            <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" size="50" /></td>
+            <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" size="40" /></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_city; ?></td>
@@ -120,14 +120,14 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_code; ?></td>
-            <td><input type="code" name="code" value="<?php echo $code; ?>"  />
+            <td><input type="code" name="code" value="<?php echo $code; ?>" />
             <?php if ($error_code) { ?>
               <span class="error"><?php echo $error_code; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_password; ?></td>
-            <td><input type="password" name="password" value="<?php echo $password; ?>"  />
+            <td><input type="password" name="password" value="<?php echo $password; ?>" />
             <?php if ($error_password) { ?>
               <span class="error"><?php echo $error_password; ?></span>
             <?php } ?></td>
@@ -189,19 +189,19 @@
           <tbody id="payment-cheque" class="payment">
           <tr>
             <td><?php echo $entry_cheque; ?></td>
-            <td><input type="text" name="cheque" value="<?php echo $cheque; ?>" size="50" /></td>
+            <td><input type="text" name="cheque" value="<?php echo $cheque; ?>" size="40" /></td>
           </tr>
           </tbody>
           <tbody id="payment-paypal" class="payment">
           <tr>
             <td><?php echo $entry_paypal; ?></td>
-            <td><input type="text" name="paypal" value="<?php echo $paypal; ?>" size="50" /></td>
+            <td><input type="text" name="paypal" value="<?php echo $paypal; ?>" size="40" /></td>
           </tr>
           </tbody>
           <tbody id="payment-bank" class="payment">
           <tr>
             <td><?php echo $entry_bank_name; ?></td>
-            <td><input type="text" name="bank_name" value="<?php echo $bank_name; ?>" size="50" /></td>
+            <td><input type="text" name="bank_name" value="<?php echo $bank_name; ?>" size="40" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_bank_branch_number; ?></td>
