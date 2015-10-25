@@ -431,11 +431,26 @@ class ControllerCatalogNews extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'text'		=> $this->language->get('heading_title'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['news_id'])) {
+			$news_name = $this->model_catalog_news->getNewsStory($this->request->get['news_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $news_name['title'],
+				'href'		=> $this->url->link('catalog/news/update', 'token=' . $this->session->data['token'] . '&news_id=' . $this->request->get['news_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['news_title'] = $news_name['title'];
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['news_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['news_id'])) {
 			$this->data['action'] = $this->url->link('catalog/news/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

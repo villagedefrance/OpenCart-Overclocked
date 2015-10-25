@@ -398,11 +398,26 @@ class ControllerCatalogManufacturer extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['manufacturer_id'])) {
+			$manufacturer_name = $this->model_catalog_manufacturer->getManufacturer($this->request->get['manufacturer_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $manufacturer_name['name'],
+				'href'		=> $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $this->request->get['manufacturer_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['manufacturer_title'] = $manufacturer_name['name'];
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['manufacturer_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['manufacturer_id'])) {
 			$this->data['action'] = $this->url->link('catalog/manufacturer/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

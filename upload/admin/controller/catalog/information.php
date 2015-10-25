@@ -435,11 +435,26 @@ class ControllerCatalogInformation extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['information_id'])) {
+			$information_name = $this->model_catalog_information->getInformation($this->request->get['information_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $information_name['title'],
+				'href'		=> $this->url->link('catalog/information/update', 'token=' . $this->session->data['token'] . '&information_id=' . $this->request->get['information_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['information_title'] = $information_name['title'];
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['manufacturer_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['information_id'])) {
 			$this->data['action'] = $this->url->link('catalog/information/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

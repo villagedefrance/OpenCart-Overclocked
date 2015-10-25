@@ -452,17 +452,17 @@ class ControllerCatalogCategory extends Controller {
 		if (isset($this->request->get['category_id'])) {
 			$category_name = $this->model_catalog_category->getCategory($this->request->get['category_id']);
 
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $category_name['name'],
+				'href'		=> $this->url->link('catalog/category/update', 'token=' . $this->session->data['token'] . '&category_id=' . $this->request->get['category_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
 			if (isset($category_name['path'])) {
 				$category_title = $category_name['path'] . ' > ' . $category_name['name'];
 			} else {
 				$category_title = $category_name['name'];
 			}
-
-			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $category_title,
-				'href'		=> $this->url->link('catalog/category/update', 'token=' . $this->session->data['token'] . '&category_id=' . $this->request->get['category_id'] . $url, 'SSL'),
-				'separator' => ' :: '
-			);
 
 			$this->data['category_title'] = $category_title;
 
