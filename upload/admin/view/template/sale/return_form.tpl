@@ -33,7 +33,8 @@
           </tr>
           <tr>
             <td><?php echo $entry_date_ordered; ?></td>
-            <td><input type="text" name="date_ordered" value="<?php echo $date_ordered; ?>" class="date" /></td>
+            <td><input type="text" name="date_ordered" value="<?php echo $date_ordered; ?>" class="date" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer; ?></td>

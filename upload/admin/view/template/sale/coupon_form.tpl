@@ -126,11 +126,13 @@
           </tr>
           <tr>
             <td><?php echo $entry_date_start; ?></td>
-            <td><input type="text" name="date_start" value="<?php echo $date_start; ?>" size="12" id="date-start" /></td>
+            <td><input type="text" name="date_start" value="<?php echo $date_start; ?>" id="date-start" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
           </tr>
           <tr>
             <td><?php echo $entry_date_end; ?></td>
-            <td><input type="text" name="date_end" value="<?php echo $date_end; ?>" size="12" id="date-end" /></td>
+            <td><input type="text" name="date_end" value="<?php echo $date_end; ?>" id="date-end" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
           </tr>
           <tr>
             <td><?php echo $entry_uses_total; ?></td>

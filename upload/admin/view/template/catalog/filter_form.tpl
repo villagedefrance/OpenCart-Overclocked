@@ -39,7 +39,7 @@
         <thead>
           <tr>
             <td class="left"><span class="required">*</span> <?php echo $entry_name ?></td>
-            <td class="right"><?php echo $entry_sort_order; ?></td>
+            <td class="left"><?php echo $entry_sort_order; ?></td>
             <td></td>
           </tr>
         </thead>
@@ -55,7 +55,7 @@
                 <span class="error"><?php echo $error_filter[$filter_row][$language['language_id']]; ?></span>
               <?php } ?>
             <?php } ?></td>
-            <td class="right"><input type="text" name="filter[<?php echo $filter_row; ?>][sort_order]" value="<?php echo $filter['sort_order']; ?>" size="1" /></td>
+            <td class="center"><input type="text" name="filter[<?php echo $filter_row; ?>][sort_order]" value="<?php echo $filter['sort_order']; ?>" size="1" /></td>
             <td class="center"><a onclick="$('#filter-row<?php echo $filter_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
@@ -81,10 +81,11 @@ function addFilter() {
 	html += '  <tr>';
 	html += '    <td class="left"><input type="hidden" name="filter[' + filter_row + '][filter_id]" value="" />';
 	<?php foreach ($languages as $language) { ?>
-	html += '  	   <input type="text" name="filter[' + filter_row + '][filter_description][<?php echo $language['language_id']; ?>][name]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
+	html += '      <input type="text" name="filter[' + filter_row + '][filter_description][<?php echo $language['language_id']; ?>][name]" value="" />';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
 	<?php } ?>
 	html += '    </td>';
-	html += '    <td class="right"><input type="text" name="filter[' + filter_row + '][sort_order]" value="" size="1" /></td>';
+	html += '    <td class="center"><input type="text" name="filter[' + filter_row + '][sort_order]" value="" size="1" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#filter-row' + filter_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';

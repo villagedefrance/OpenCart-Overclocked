@@ -51,7 +51,7 @@ $_['entry_date_of_birth']		= 'Date of Birth:';
 $_['entry_newsletter']     	 	= 'Newsletter:';
 $_['entry_customer_group']  	= 'Customer Group:';
 $_['entry_status']          		= 'Status:';
-$_['entry_approved']			= 'Approved:<br /><span class="help">Changing the approval status here will not send a confirmation email to the customer.</span>';
+$_['entry_approved']			= 'Approved:<span class="help">Changing the approval status here will not send a confirmation email to the customer.</span>';
 $_['entry_password']        	= 'Password:';
 $_['entry_confirm']         		= 'Confirm:';
 $_['entry_company']         	= 'Company:';
@@ -66,8 +66,8 @@ $_['entry_zone']            		= 'Region / State:';
 $_['entry_default']         		= 'Default Address:';
 $_['entry_comment']         	= 'Comment:';
 $_['entry_description']     		= 'Description:';
-$_['entry_amount']          		= 'Amount:';
-$_['entry_points']          		= 'Points:<br /><span class="help">Use minus to remove points</span>';
+$_['entry_amount']          		= 'Amount:<span class="help">Enter an amount without the currency symbol.</span>';
+$_['entry_points']          		= 'Points:<span class="help">Enter a negative number to remove points.</span>';
 
 // Error
 $_['error_warning']         		= 'Warning: Please check the form carefully for errors!';

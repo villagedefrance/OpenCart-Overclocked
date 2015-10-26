@@ -129,7 +129,8 @@
           </tr>
           <tr>
             <td><?php echo $entry_date_available; ?></td>
-            <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" size="12" class="date" /></td>
+            <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" class="date" size="12" />
+			<span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
@@ -659,19 +660,22 @@
               <?php if ($product_option['type'] == 'date') { ?>
               <tr>
                 <td><?php echo $entry_option_value; ?></td>
-                <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" class="date" /></td>
-              </tr>
-              <?php } ?>
-              <?php if ($product_option['type'] == 'datetime') { ?>
-              <tr>
-                <td><?php echo $entry_option_value; ?></td>
-                <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" class="datetime" /></td>
+                <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" class="date" size="12" />
+                <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
               </tr>
               <?php } ?>
               <?php if ($product_option['type'] == 'time') { ?>
               <tr>
                 <td><?php echo $entry_option_value; ?></td>
-                <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" class="time" /></td>
+                <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" class="time" size="12" />
+                <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
+              </tr>
+              <?php } ?>
+              <?php if ($product_option['type'] == 'datetime') { ?>
+              <tr>
+                <td><?php echo $entry_option_value; ?></td>
+                <td><input type="text" name="product_option[<?php echo $option_row; ?>][option_value]" value="<?php echo $product_option['option_value']; ?>" class="datetime" />
+                <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
               </tr>
               <?php } ?>
             </table>
@@ -863,8 +867,10 @@
             <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][quantity]" value="<?php echo $product_discount['quantity']; ?>" size="2" /></td>
             <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][priority]" value="<?php echo $product_discount['priority']; ?>" size="2" /></td>
             <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][price]" value="<?php echo $product_discount['price']; ?>" /></td>
-            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_start]" value="<?php echo $product_discount['date_start']; ?>" class="date" /></td>
-            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_end]" value="<?php echo $product_discount['date_end']; ?>" class="date" /></td>
+            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_start]" value="<?php echo $product_discount['date_start']; ?>" class="date" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
+            <td class="left"><input type="text" name="product_discount[<?php echo $discount_row; ?>][date_end]" value="<?php echo $product_discount['date_end']; ?>" class="date" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
             <td class="center"><a onclick="$('#discount-row<?php echo $discount_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
@@ -905,8 +911,10 @@
             </select></td>
             <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][priority]" value="<?php echo $product_special['priority']; ?>" size="2" /></td>
             <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][price]" value="<?php echo $product_special['price']; ?>" /></td>
-            <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_start]" value="<?php echo $product_special['date_start']; ?>" class="date" /></td>
-            <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_end]" value="<?php echo $product_special['date_end']; ?>" class="date" /></td>
+            <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_start]" value="<?php echo $product_special['date_start']; ?>" class="date" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
+            <td class="left"><input type="text" name="product_special[<?php echo $special_row; ?>][date_end]" value="<?php echo $product_special['date_end']; ?>" class="date" size="12" />
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
             <td class="center"><a onclick="$('#special-row<?php echo $special_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
@@ -1497,21 +1505,24 @@ $('input[name=\'option\']').catcomplete({
 		if (ui.item.type == 'date') {
 			html += '    <tr>';
 			html += '      <td><?php echo $entry_option_value; ?></td>';
-			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="date" /></td>';
-			html += '    </tr>';
-		}
-
-		if (ui.item.type == 'datetime') {
-			html += '    <tr>';
-			html += '      <td><?php echo $entry_option_value; ?></td>';
-			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="datetime" /></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="date" size="12" />';
+            html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 			html += '    </tr>';
 		}
 
 		if (ui.item.type == 'time') {
 			html += '    <tr>';
 			html += '      <td><?php echo $entry_option_value; ?></td>';
-			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="time" /></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="time" size="12" />';
+			html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
+			html += '    </tr>';
+		}
+
+		if (ui.item.type == 'datetime') {
+			html += '    <tr>';
+			html += '      <td><?php echo $entry_option_value; ?></td>';
+			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="datetime" />';
+            html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td></td>';
 			html += '    </tr>';
 		}
 
@@ -1556,13 +1567,11 @@ $('input[name=\'option\']').catcomplete({
 		$('#option-' + option_row).trigger('click');
 
 		$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-
+        $('.time').timepicker({timeFormat: 'h:m'});
 		$('.datetime').datetimepicker({
 			dateFormat: 'yy-mm-dd',
 			timeFormat: 'h:m'
 		});
-
-		$('.time').timepicker({timeFormat: 'h:m'});
 
 		option_row++;
 
@@ -1654,8 +1663,10 @@ function addDiscount() {
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][quantity]" value="" size="2" /></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][priority]" value="" size="2" /></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][price]" value="" /></td>';
-	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_start]" value="" class="date" /></td>';
-	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_end]" value="" class="date" /></td>';
+	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_start]" value="" class="date" size="12" />';
+    html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
+	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_end]" value="" class="date" size="12" />';
+    html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 	html += '    <td class="center"><a onclick="$(\'#discount-row' + discount_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
@@ -1681,8 +1692,10 @@ function addSpecial() {
 	html += '    </select></td>';
 	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][priority]" value="" size="2" /></td>';
 	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][price]" value="" /></td>';
-	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_start]" value="" class="date" /></td>';
-	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_end]" value="" class="date" /></td>';
+	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_start]" value="" class="date" size="12" />';
+    html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
+	html += '    <td class="left"><input type="text" name="product_special[' + special_row + '][date_end]" value="" class="date" size="12" />';
+    html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 	html += '    <td class="center"><a onclick="$(\'#special-row' + special_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
@@ -1760,11 +1773,11 @@ function addImage() {
 
 <script type="text/javascript"><!--
 $('.date').datepicker({dateFormat: 'yy-mm-dd'});
+$('.time').timepicker({timeFormat: 'h:m'});
 $('.datetime').datetimepicker({
 	dateFormat: 'yy-mm-dd',
 	timeFormat: 'h:m'
 });
-$('.time').timepicker({timeFormat: 'h:m'});
 //--></script>
 
 <script type="text/javascript"><!--
@@ -1780,7 +1793,6 @@ function openbayLinkStatus() {
 		url: 'index.php?route=extension/openbay/linkStatus&token=<?php echo $token; ?>&product_id=' + product_id,
 		dataType: 'html',
 		success: function(data) {
-			// add the button to nav
 			$('<a href="#tab-openbay"><?php echo $tab_marketplace_links; ?></a>').hide().appendTo("#tabs").fadeIn(1000);
 			$('#tab-general').before(data);
 			$('#tabs a').tabs();

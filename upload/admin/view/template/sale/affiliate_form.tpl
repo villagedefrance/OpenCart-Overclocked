@@ -171,13 +171,13 @@
             <?php } else { ?>
               <input type="radio" name="payment" value="cheque" id="cheque" class="checkbox" />
             <?php } ?>
-            <label for="cheque"><span></span><?php echo $text_cheque; ?></label>
+            <label for="cheque"><span></span><?php echo $text_cheque; ?></label> &nbsp;&nbsp;
             <?php if ($payment == 'paypal') { ?>
               <input type="radio" name="payment" value="paypal" id="paypal" class="checkbox" checked />
             <?php } else { ?>
               <input type="radio" name="payment" value="paypal" id="paypal" class="checkbox" />
             <?php } ?>
-            <label for="paypal"><span></span><?php echo $text_paypal; ?></label>
+            <label for="paypal"><span></span><?php echo $text_paypal; ?></label> &nbsp;&nbsp;
             <?php if ($payment == 'bank') { ?>
               <input type="radio" name="payment" value="bank" id="bank" class="checkbox" checked />
             <?php } else { ?>

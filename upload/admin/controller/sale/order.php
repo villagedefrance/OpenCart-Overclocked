@@ -1545,17 +1545,31 @@ class ControllerSaleOrder extends Controller {
 				'separator' => false
 			);
 
-			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('heading_title'),
-				'href' 		=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-				'separator' => ' :: '
-			);
+			if (isset($this->request->get['order_id'])) {
+				$this->data['breadcrumbs'][] = array(
+					'text'		=> $this->language->get('heading_title') . ' :: N&deg;' . (int)$this->request->get['order_id'],
+					'href'		=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'] . $url, 'SSL'),
+					'separator' => ' :: '
+				);
+
+				$this->data['order_title'] = $this->language->get('heading_title') . ' N&deg;' . (int)$this->request->get['order_id'];
+
+			} else {
+				$this->data['breadcrumbs'][] = array(
+					'text'		=> $this->language->get('heading_title'),
+					'href'		=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+					'separator' => ' :: '
+				);
+
+				$this->data['order_title'] = $this->language->get('heading_title');
+			}
+
+			$this->data['cancel'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 			$this->data['delivery_note'] = $this->url->link('sale/order/delivery_note', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL'); 
 			$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
-			$this->data['cancel'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-			$this->data['order_id'] = $this->request->get['order_id'];
+			$this->data['order_id'] = (int)$this->request->get['order_id'];
 
 			if ($order_info['invoice_no']) {
 				$this->data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];

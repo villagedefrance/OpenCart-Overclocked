@@ -77,11 +77,15 @@
             <tr>
               <td><?php echo $entry_gender; ?></td>
               <td><?php if ($gender) { ?>
-                <input type="radio" name="gender" value="1" checked="checked" /><?php echo $text_female; ?>
-                <input type="radio" name="gender" value="0" /><?php echo $text_male; ?>
+			    <input type="radio" name="gender" value="1" id="gender-on" class="radio" checked />
+                <label for="gender-on"><span><span></span></span><?php echo $text_female; ?></label>
+                <input type="radio" name="gender" value="0" id="gender-off" class="radio" />
+			    <label for="gender-off"><span><span></span></span><?php echo $text_male; ?></label>
               <?php } else { ?>
-                <input type="radio" name="gender" value="1" /><?php echo $text_female; ?>
-                <input type="radio" name="gender" value="0" checked="checked" /><?php echo $text_male; ?>
+                <input type="radio" name="gender" value="1" id="gender-on" class="radio" />
+                <label for="gender-on"><span><span></span></span><?php echo $text_female; ?></label>
+                <input type="radio" name="gender" value="0" id="gender-off" class="radio" checked />
+			    <label for="gender-off"><span><span></span></span><?php echo $text_male; ?></label>
               <?php } ?></td>
             </tr>
             <?php } ?>
@@ -89,6 +93,7 @@
             <tr>
               <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
               <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
+              <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span>
 		      <?php if ($error_date_of_birth) { ?>
                 <span class="error"><?php echo $error_date_of_birth; ?></span>
               <?php } ?></td>

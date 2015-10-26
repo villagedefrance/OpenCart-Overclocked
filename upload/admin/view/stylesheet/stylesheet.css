@@ -817,17 +817,14 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 .list tbody tr:hover td {
 	background-color: #FFFFCB;
 }
-.list .left {
-	text-align: left;
-	padding: 7px;
-}
-.list .right {
-	text-align: right;
-	padding: 7px;
-}
-.list .center {
-	text-align: center;
-	padding: 7px;
+.list tbody tr td span.form-icon {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	line-height: 22px;
+	vertical-align: middle;
+	margin: 0px;
+	padding: 0px;
 }
 .list tbody tr td span.color {
 	display: block;
@@ -879,6 +876,18 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 	-khtml-border-radius: 2px;
 	border-radius: 2px;
 }
+.list .left {
+	text-align: left;
+	padding: 7px;
+}
+.list .right {
+	text-align: right;
+	padding: 7px;
+}
+.list .center {
+	text-align: center;
+	padding: 7px;
+}
 .list .asc {
 	background: url('../image/asc.png') right center no-repeat;
 	padding-right: 15px;
@@ -905,6 +914,15 @@ table.form > tbody > tr > td {
 	padding: 10px;
 	border-bottom: 1px dotted #CCC;
 }
+table.form > tbody > tr > td span.form-icon {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	line-height: 22px;
+	vertical-align: middle;
+	margin: 0px;
+	padding: 0px;
+}
 /* Table Image */
 table.form tr td div.image, .list tbody tr td div.image {
 	text-align: center;
@@ -930,19 +948,43 @@ table.report {
 	margin-bottom: 10px;
 }
 table.report > tbody > tr {
-	background: #FAFAFA;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #EEE, #FFF);
+	background-image: -moz-linear-gradient(top, #EEE, #FFF);
+	background-image: -ms-linear-gradient(top, #EEE, #FFF);
+	background-image: -o-linear-gradient(top, #EEE, #FFF);
+	background-image: linear-gradient(to bottom, #EEE, #FFF);
 }
 table.report > tbody > tr > td {
 	color: #111;
 	padding: 10px;
 	border-top: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #E6E6E6;
 }
 table.report > tbody > tr > td:first-child {
-	border-left: 1px solid #DDD;
+	border-left: 1px solid #DFDFDF;
 }
 table.report > tbody > tr > td:last-child {
-	border-right: 1px solid #DDD;
+	border-right: 1px solid #DFDFDF;
+}
+table.report > tbody > tr > td.left {
+	text-align: left;
+}
+table.report > tbody > tr > td.right {
+	text-align: right;
+}
+table.report > tbody > tr > td.center {
+	text-align: center;
+}
+table.report > tbody > tr > td span.form-icon {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	line-height: 22px;
+	vertical-align: middle;
+	margin: 0px;
+	padding: 0px;
 }
 /* Htabs */
 .htabs {

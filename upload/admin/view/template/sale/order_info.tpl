@@ -7,14 +7,19 @@
   </div>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/order.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/order.png" alt="" /> <?php echo $order_title; ?></h1>
       <div class="buttons">
-        <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button"><?php echo $button_delivery_note; ?></a>
-        <a onclick="window.open('<?php echo $invoice; ?>');" class="button"><?php echo $button_invoice; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
+    <table class="report">
+      <tr>
+        <td><img src="view/image/print-preview.png" alt="" /></td>
+        <td class="right"><a onclick="window.open('<?php echo $delivery_note; ?>');" class="button"><?php echo $button_delivery_note; ?></a></td>
+        <td class="right"><a onclick="window.open('<?php echo $invoice; ?>');" class="button"><?php echo $button_invoice; ?></a></td>
+      </tr>
+    </table>
     <div class="vtabs">
       <a href="#tab-order"><?php echo $tab_order; ?></a>
       <a href="#tab-payment"><?php echo $tab_payment; ?></a>

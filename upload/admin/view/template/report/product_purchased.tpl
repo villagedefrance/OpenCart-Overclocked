@@ -15,20 +15,22 @@
     <?php } ?>
       <table class="report">
         <tr>
-          <td><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /></td>
-          <td><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /></td>
-          <td><?php echo $entry_status; ?>
-          <select name="filter_order_status_id">
-          <option value="0"><?php echo $text_all_status; ?></option>
-          <?php foreach ($order_statuses as $order_status) { ?>
-            <?php if ($order_status['order_status_id'] == $filter_order_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-            <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+          <td><img src="view/image/filter.png" alt="" /></td>
+          <td class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" />
+          <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
+          <td class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" />
+          <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
+          <td class="left"><?php echo $entry_status; ?> <select name="filter_order_status_id">
+            <option value="0"><?php echo $text_all_status; ?></option>
+            <?php foreach ($order_statuses as $order_status) { ?>
+              <?php if ($order_status['order_status_id'] == $filter_order_status_id) { ?>
+                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+              <?php } ?>
             <?php } ?>
-          <?php } ?>
           </select></td>
-          <td style="text-align:right;"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
         </tr>
       </table>
       <table class="list">
