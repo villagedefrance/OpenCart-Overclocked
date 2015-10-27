@@ -329,7 +329,6 @@
         </table>
       </div>
       <div id="tab-checkout">
-        <h2><?php echo $text_checkout; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_cart_weight; ?></td>
@@ -595,7 +594,6 @@
         </table>
       </div>
       <div id="tab-option">
-        <h2><?php echo $text_product; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_product_count; ?></td>
@@ -880,6 +878,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_picklist_status; ?></td>
+            <td><?php if ($config_picklist_status) { ?>
+			  <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" checked />
+              <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_picklist_status" value="0" id="picklist_status-off" class="radio" />
+			  <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" />
+              <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_picklist_status" value="0" id="picklist_status-off" class="radio" checked />
+			  <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_account; ?></td>
             <td><select name="config_account_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -1002,7 +1014,6 @@
         </table>
       </div>
 	  <div id="tab-preference">
-		<h2><?php echo $text_items; ?></h2>
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
@@ -1425,7 +1436,6 @@
         </table>
       </div>
 	  <div id="tab-media">
-        <h2><?php echo $text_social_media; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_facebook; ?></td>

@@ -8,6 +8,7 @@ $_['text_success']      		= 'Success: You have modified <b>Users</b> !';
 // Column
 $_['column_user_id']   		= 'ID';
 $_['column_username']   	= 'Username';
+$_['column_user_group']	= 'Group';
 $_['column_email']   			= 'E-mail';
 $_['column_date_added'] 	= 'Date Added';
 $_['column_status']     		= 'Status';

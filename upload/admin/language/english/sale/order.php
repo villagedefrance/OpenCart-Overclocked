@@ -14,6 +14,7 @@ $_['text_store_url']                		= 'Store Url:';
 $_['text_customer']                   	= 'Customer:';
 $_['text_customer_group']         	= 'Customer Group:';
 $_['text_email']                       		= 'E-Mail:';
+$_['text_phone']                 			= 'Phone:';
 $_['text_telephone']                 	= 'Telephone:';
 $_['text_fax']                          	= 'Fax:';
 $_['text_shipping_method']        	= 'Shipping Method:';
@@ -45,6 +46,7 @@ $_['text_country']                		= 'Country:';
 $_['text_download']               		= 'Order Downloads';
 $_['text_invoice']                 		= 'Invoice';
 $_['text_to']                         		= 'To';
+$_['text_deliver_to']              		= 'Deliver To';
 $_['text_ship_to']              			= 'Ship To (if different address)';
 $_['text_missing']                 		= 'Missing Orders';
 $_['text_default']                  		= 'Default';
@@ -67,7 +69,8 @@ $_['text_credit_remove']          		= 'Remove Credit';
 $_['text_credit_removed']       		= 'Success: Account credit removed!';
 $_['text_upload']                     		= 'Your file was successfully uploaded!';
 
-// Delivery Note
+$_['text_pick_list']             			= 'Pick List';
+$_['text_shipping_label']             	= 'Shipping Label';
 $_['text_delivery_note']             	= 'Delivery Note';
 $_['text_shipping_collection']       	= 'Collection / Shipping Company';
 $_['text_customer_reception']     	= 'Reception / Customer';
@@ -80,9 +83,6 @@ $_['text_reception_name']           	= 'Print Name :';
 $_['text_reception_sign']            	= 'Signature :';
 $_['text_reception_date']         		= 'Date :';
 $_['text_reception_condition']    	= 'Shipment condition :';
-
-// Button
-$_['button_delivery_note']            	= 'Print Delivery Note';
 
 // Column
 $_['column_order_id']            		= 'Order ID';
@@ -100,6 +100,8 @@ $_['column_filename']            		= 'Filename';
 $_['column_remaining']            		= 'Remaining Downloads';
 $_['column_comment']             		= 'Comment';
 $_['column_notify']                   	= 'Customer Notified';
+$_['column_status_picked']			= 'Picked';
+$_['column_status_backordered']	= 'Back-order';
 $_['column_action']                   	= 'Action';
 
 // Entry
@@ -141,6 +143,18 @@ $_['entry_payment']                		= 'Payment Method:';
 $_['entry_coupon']                  	 	= 'Coupon:';
 $_['entry_voucher']               		= 'Voucher:';
 $_['entry_reward']                 		= 'Reward:';
+
+// Info
+$_['info_picklist_enabled'] 				= 'The Pick List is <b>Enabled</b> in your Settings. Customers are able to track progress on their order.';
+$_['info_picklist_disabled'] 				= 'The Pick List is <b>Disabled</b> in your Settings. Customers will NOT be able to track progress on their order.';
+
+// Button
+$_['button_pick_list']            		= 'Print Pick List';
+$_['button_shipping_label'] 			= 'Print Shipping Label';
+$_['button_delivery_note']            	= 'Print Delivery Note';
+
+// Tab
+$_['tab_pick_list']							= 'Pick List';
 
 // Error
 $_['error_warning']                  		= 'Warning: Please check the form carefully for errors!';

@@ -13,13 +13,13 @@
       </div>
     </div>
     <div class="content">
-    <table class="report">
-      <tr>
-        <td><img src="view/image/print-preview.png" alt="" /></td>
-        <td class="right"><a onclick="window.open('<?php echo $delivery_note; ?>');" class="button"><?php echo $button_delivery_note; ?></a></td>
-        <td class="right"><a onclick="window.open('<?php echo $invoice; ?>');" class="button"><?php echo $button_invoice; ?></a></td>
-      </tr>
-    </table>
+    <div class="report">
+      <div class="left"><img src="view/image/print-preview.png" alt="" /></div>
+      <div class="right"><a onclick="window.open('<?php echo $invoice; ?>');" class="button-filter"><?php echo $button_invoice; ?></a></div>
+      <div class="right"><a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-filter"><?php echo $button_delivery_note; ?></a></div>
+      <div class="right"><a onclick="window.open('<?php echo $pick_list; ?>');" class="button-filter"><?php echo $button_pick_list; ?></a></div>
+      <div class="right"><a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-filter"><?php echo $button_shipping_label; ?></a></div>
+    </div>
     <div class="vtabs">
       <a href="#tab-order"><?php echo $tab_order; ?></a>
       <a href="#tab-payment"><?php echo $tab_payment; ?></a>
@@ -27,6 +27,7 @@
       <a href="#tab-shipping"><?php echo $tab_shipping; ?></a>
     <?php } ?>
       <a href="#tab-product"><?php echo $tab_product; ?></a>
+      <a href="#tab-picklist"><?php echo $tab_pick_list; ?></a>
 	  <a href="#tab-history"><?php echo $tab_history; ?></a>
     <?php foreach ($tabs as $tab) { ?>
       <a href="#tab-<?php echo $tab['code']; ?>"><?php echo $tab['title']; ?></a>
@@ -49,7 +50,7 @@
           <td><?php if ($invoice_no) { ?>
             <?php echo $invoice_no; ?>
           <?php } else { ?>
-            <span id="invoice"><a id="invoice-generate" class="button-form"><?php echo $text_generate; ?></a></span>
+            <span id="invoice"><a id="invoice-generate" class="button-save"><?php echo $text_generate; ?></a></span>
           <?php } ?></td>
         </tr>
         <tr>
@@ -58,7 +59,7 @@
         </tr>
         <tr>
           <td><?php echo $text_store_url; ?></td>
-          <td><a href="<?php echo $store_url; ?>" target="_blank"><u><?php echo $store_url; ?></u></a></td>
+          <td><a onclick="window.open('<?php echo $store_url; ?>');"><u><?php echo $store_url; ?></u></a></td>
         </tr>
         <?php if ($customer) { ?>
         <tr>
@@ -96,9 +97,9 @@
           <td><?php echo $total; ?>
             <?php if ($credit && $customer) { ?>
               <?php if (!$credit_total) { ?>
-                <span id="credit" style="margin-left:25px;"><a id="credit-add" class="button-form"><?php echo $text_credit_add; ?></a></span>
+                <span id="credit" style="margin-left:25px;"><a id="credit-add" class="button-delete"><?php echo $text_credit_add; ?></a></span>
               <?php } else { ?>
-                <span id="credit" style="margin-left:25px;"><a id="credit-remove" class="button-form"><?php echo $text_credit_remove; ?></a></span>
+                <span id="credit" style="margin-left:25px;"><a id="credit-remove" class="button-repair"><?php echo $text_credit_remove; ?></a></span>
               <?php } ?>
             <?php } ?>
           </td>
@@ -108,9 +109,9 @@
           <td><?php echo $text_reward; ?></td>
           <td><?php echo $reward; ?>
             <?php if (!$reward_total) { ?>
-              <span id="reward" style="margin-left:25px;"><a id="reward-add" class="button-form"><?php echo $text_reward_add; ?></a></span>
+              <span id="reward" style="margin-left:25px;"><a id="reward-add" class="button-delete"><?php echo $text_reward_add; ?></a></span>
             <?php } else { ?>
-              <span id="reward" style="margin-left:25px;"><a id="reward-remove" class="button-form"><?php echo $text_reward_remove; ?></a></span>
+              <span id="reward" style="margin-left:25px;"><a id="reward-remove" class="button-repair"><?php echo $text_reward_remove; ?></a></span>
             <?php } ?>
           </td>
         </tr>
@@ -136,9 +137,9 @@
           <td><?php echo $text_commission; ?></td>
           <td><?php echo $commission; ?>
             <?php if (!$commission_total) { ?>
-              <span id="commission" style="margin-left:25px;"><a id="commission-add" class="button-form"><?php echo $text_commission_add; ?></a></span>
+              <span id="commission" style="margin-left:25px;"><a id="commission-add" class="button-delete"><?php echo $text_commission_add; ?></a></span>
             <?php } else { ?>
-              <span id="commission" style="margin-left:25px;"><a id="commission-remove" class="button-form"><?php echo $text_commission_remove; ?></a></span>
+              <span id="commission" style="margin-left:25px;"><a id="commission-remove" class="button-repair"><?php echo $text_commission_remove; ?></a></span>
             <?php } ?>
           </td>
         </tr>
@@ -348,7 +349,6 @@
             <td class="left"></td>
             <td class="right">1</td>
             <td class="right"><?php echo $voucher['amount']; ?></td>
-            <td class="right"><?php echo $voucher['amount']; ?></td>
           </tr>
         <?php } ?>
         </tbody>
@@ -382,6 +382,58 @@
         </tbody>
       </table>
       <?php } ?>
+    </div>
+    <div id="tab-picklist" class="vtabs-content">
+	  <div id="show-tooltip" style="display:block;">
+        <?php if ($picklist_status) { ?>
+          <div id="tooltip" class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_picklist_enabled; ?></div>
+        <?php } else { ?>
+          <div id="tooltip" class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_picklist_disabled; ?></div>
+        <?php } ?>
+      </div>
+      <table class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $column_product; ?></td>
+            <td class="left"><?php echo $column_model; ?></td>
+            <td class="left"><?php echo $column_quantity; ?></td>
+            <td class="left"><?php echo $column_status_picked; ?></td>
+            <td class="left"><?php echo $column_status_backordered; ?></td>
+            <td class="center"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($products as $product) { ?>
+            <tr class="pick-list-row">
+              <td class="left">
+                <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+                <?php foreach ($product['option'] as $option) { ?><br />
+                  <?php if ($option['type'] != 'file') { ?>
+                    &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
+                  <?php } else { ?>
+                    &nbsp;<small> - <?php echo $option['name']; ?>: <a href="<?php echo $option['href']; ?>" title=""><?php echo $option['value']; ?></a></small>
+                  <?php } ?>
+                <?php } ?>
+              </td>
+              <td class="left"><?php echo $product['model']; ?></td>
+              <td class="center"><?php echo $product['quantity']; ?></td>
+              <td class="center">
+                <?php if ($product['picked'] == '1') { ?>
+                  <input type="checkbox" class="status-picked" name="pick-<?php echo $product['product_id']; ?>" checked />
+                <?php } else { ?>
+                  <input type="checkbox" class="status-picked" name="pick-<?php echo $product['product_id']; ?>" />
+                <?php } ?>
+                <input type="hidden" name="<?php echo $product['href_picked']; ?>" value="<?php echo $product['backordered']; ?>" />
+              </td>
+              <td class="left">
+                <input type="text" value="<?php echo $product['backordered']; ?>" name="pick-<?php echo $product['product_id']; ?>" class="status-backordered" maxlength="255" style="width:98%;" />
+                <input type="hidden" name="<?php echo $product['href_backordered']; ?>" />
+              </td>
+			  <td id="pick-<?php echo $product['product_id']; ?>"></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
     </div>
     <div id="tab-history" class="vtabs-content">
       <div id="history"></div>
@@ -422,6 +474,14 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#tooltip').hover(function() {
+		$('#show-tooltip').fadeOut(1000);
+	});
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $('#invoice-generate').live('click', function() {
@@ -636,6 +696,71 @@ $('#commission-remove').live('click', function() {
 
 				$('#commission').html('<a id="commission-add" class="button-form"><?php echo $text_commission_add; ?></a>');
 			}
+		}
+	});
+});
+
+$('.status-picked').on('click', function(event) {
+	setComplete(event.target, false);
+});
+
+$('.status-backordered').on('focusout', function(event) {
+	setNotComplete(event.target, false);
+});
+
+function setComplete(obj, init) {
+	var id = obj.name;
+	var element = $("[id='" + id + "']");
+	var backorder = $(':input:eq(' + ($(':input').index(obj) + 2) + ')');
+	var href = $(obj).next().attr('name');
+
+	if ($(obj).prop('checked')) {
+		if (!init) {
+			$.get(href, {pick: 'true'}, function(data) { });
+		}
+
+		$(backorder).val('');
+		$(element).removeClass('staged');
+		$(element).removeClass('delayed');
+		$(element).addClass('picked');
+	} else {
+		$.get(href, {pick: 'false'}).done(function(data) { });
+		$(element).removeClass('picked');
+		$(element).addClass('staged');
+	}
+}
+
+function setNotComplete(obj, init) {
+	var id = obj.name;
+	var element = $("[id='" + id + "']");
+	var href = $(obj).next().attr('name');
+	var pick = $(':input:eq(' + ($(':input').index(obj) - 2) + ')');
+
+	if ($(obj).val().length > 0) {
+		if (!init) {
+			$.get(href, {backorder: $(obj).val()}).done(function(data) { });
+		}
+
+		$(pick).attr('checked', false);
+		$(element).removeClass('staged');
+		$(element).removeClass('picked');
+		$(element).addClass('delayed');
+	} else if ($(obj).val().length == 0) {
+		$.get(href, {backorder: ''}).done(function(data) { });
+		$(element).removeClass('delayed');
+		$(element).addClass('staged');
+	}
+}
+
+$(function() {
+	$('.status-picked').each(function(index, obj) {
+		if ($(obj).prop('checked')) {
+			setComplete(obj, true);
+		}
+	});
+	$('.status-backordered').each(function(index, obj) {
+		if ($(obj).val().length > 0) {
+			setNotComplete(obj, true);
 		}
 	});
 });

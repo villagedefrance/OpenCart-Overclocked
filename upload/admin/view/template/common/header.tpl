@@ -274,6 +274,7 @@ $(document).ready(function() {
           <li><a class="arrow"><?php echo $text_sale; ?></a>
             <ul>
               <li><a href="<?php echo $report_sale_order; ?>"><?php echo $text_report_sale_order; ?></a></li>
+              <li><a href="<?php echo $report_sale_profit; ?>"><?php echo $text_report_sale_profit; ?></a></li>
               <li><a href="<?php echo $report_sale_tax; ?>"><?php echo $text_report_sale_tax; ?></a></li>
               <li><a href="<?php echo $report_sale_shipping; ?>"><?php echo $text_report_sale_shipping; ?></a></li>
               <li><a href="<?php echo $report_sale_return; ?>"><?php echo $text_report_sale_return; ?></a></li>
@@ -282,18 +283,17 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_product; ?></a>
             <ul>
-              <li><a href="<?php echo $report_product_profit; ?>"><?php echo $text_report_product_profit; ?></a></li>
               <li><a href="<?php echo $report_product_viewed; ?>"><?php echo $text_report_product_viewed; ?></a></li>
               <li><a href="<?php echo $report_product_purchased; ?>"><?php echo $text_report_product_purchased; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo $text_customer; ?></a>
             <ul>
-              <li><a href="<?php echo $report_customer_online; ?>"><?php echo $text_report_customer_online; ?></a></li>
               <li><a href="<?php echo $report_customer_order; ?>"><?php echo $text_report_customer_order; ?></a></li>
               <li><a href="<?php echo $report_customer_reward; ?>"><?php echo $text_report_customer_reward; ?></a></li>
               <li><a href="<?php echo $report_customer_credit; ?>"><?php echo $text_report_customer_credit; ?></a></li>
               <li><a href="<?php echo $report_customer_country; ?>"><?php echo $text_report_customer_country; ?></a></li>
+              <li><a href="<?php echo $report_customer_online; ?>"><?php echo $text_report_customer_online; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo $text_affiliate; ?></a>

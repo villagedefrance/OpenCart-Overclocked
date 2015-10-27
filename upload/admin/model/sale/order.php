@@ -83,7 +83,7 @@ class ModelSaleOrder extends Model {
 
 		if (isset($data['order_product'])) {
 			foreach ($data['order_product'] as $order_product) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$order_product['product_id'] . "', name = '" . $this->db->escape($order_product['name']) . "', model = '" . $this->db->escape($order_product['model']) . "', quantity = '" . (int)$order_product['quantity'] . "', price = '" . (float)$order_product['price'] . "', total = '" . (float)$order_product['total'] . "', tax = '" . (float)$order_product['tax'] . "', reward = '" . (int)$order_product['reward'] . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$order_product['product_id'] . "', name = '" . $this->db->escape($order_product['name']) . "', model = '" . $this->db->escape($order_product['model']) . "', quantity = '" . (int)$order_product['quantity'] . "', price = '" . (float)$order_product['price'] . "', total = '" . (float)$order_product['total'] . "', tax = '" . (float)$order_product['tax'] . "', reward = '" . (int)$order_product['reward'] . "', picked = '" . (isset($order_product['picked']) ? (int)$order_product['picked'] : 0) . "', backordered = '" . $this->db->escape($order_product['backordered']) . "'");
 
 				$order_product_id = $this->db->getLastId();
 
@@ -253,7 +253,7 @@ class ModelSaleOrder extends Model {
 
 		if (isset($data['order_product'])) {
 			foreach ($data['order_product'] as $order_product) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_product_id = '" . (int)$order_product['order_product_id'] . "', order_id = '" . (int)$order_id . "', product_id = '" . (int)$order_product['product_id'] . "', name = '" . $this->db->escape($order_product['name']) . "', model = '" . $this->db->escape($order_product['model']) . "', quantity = '" . (int)$order_product['quantity'] . "', price = '" . (float)$order_product['price'] . "', total = '" . (float)$order_product['total'] . "', tax = '" . (float)$order_product['tax'] . "', reward = '" . (int)$order_product['reward'] . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_product_id = '" . (int)$order_product['order_product_id'] . "', order_id = '" . (int)$order_id . "', product_id = '" . (int)$order_product['product_id'] . "', name = '" . $this->db->escape($order_product['name']) . "', model = '" . $this->db->escape($order_product['model']) . "', quantity = '" . (int)$order_product['quantity'] . "', price = '" . (float)$order_product['price'] . "', total = '" . (float)$order_product['total'] . "', tax = '" . (float)$order_product['tax'] . "', reward = '" . (int)$order_product['reward'] . "', picked = '" . (isset($order_product['picked']) ? (int)$order_product['picked'] : 0) . "', backordered = '" . $this->db->escape($order_product['backordered']) . "'");
 
 				$order_product_id = $this->db->getLastId();
 
@@ -770,6 +770,23 @@ class ModelSaleOrder extends Model {
 		return $query->row['total'];
 	}
 
+	public function setPicked($order_product_id, $pick_status) {
+		if ($pick_status) {
+			$this->db->query("UPDATE " . DB_PREFIX . "order_product SET picked = '1' WHERE order_product_id = '" . (int)$order_product_id . "'");
+			$this->setBackOrdered($order_product_id, "");
+		} else {
+			$this->db->query("UPDATE " . DB_PREFIX . "order_product SET picked = '0' WHERE order_product_id = '" . (int)$order_product_id . "'");
+		}
+	}
+
+	public function setBackOrdered($order_product_id, $backorder) {
+		$this->db->query("UPDATE  " . DB_PREFIX . "order_product SET backordered = '" . $this->db->escape($backorder) . "' WHERE order_product_id = '" . (int)$order_product_id . "'");
+
+		if (!empty($backorder) || strlen($backorder) > 0) {
+			$this->setPicked($order_product_id, false);
+		}
+	}
+
 	public function createInvoiceNo($order_id) {
 		$order_info = $this->getOrder($order_id);
 
@@ -813,7 +830,7 @@ class ModelSaleOrder extends Model {
 
 			$subject = sprintf($language->get('text_subject'), $order_info['store_name'], $order_id);
 
-			$message  = $language->get('text_order') . ' ' . $order_id . "\n";
+			$message = $language->get('text_order') . ' ' . $order_id . "\n";
 			$message .= $language->get('text_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n\n";
 
 			$order_status_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$data['order_status_id'] . "' AND language_id = '" . (int)$order_info['language_id'] . "'");

@@ -1,6 +1,7 @@
 <?php
 // Heading
 $_['heading_title']         		= 'Order History';
+$_['heading_title_pick_list']	= 'Order Picking';
 
 // Column
 $_['column_name']           	= 'Product Name';
@@ -12,6 +13,11 @@ $_['column_action']         		= 'Action';
 $_['column_date_added']     	= 'Date Added';
 $_['column_status']         		= 'Status';
 $_['column_comment']        	= 'Comment';
+$_['column_order_picked']		= 'Picked';
+$_['column_order_none']		= 'Pending';
+
+// Button
+$_['button_pick']            		= 'Pick List';
 
 // Text
 $_['text_account']          		= 'Account';
@@ -28,6 +34,7 @@ $_['text_payment_address'] 	= 'Payment Address';
 $_['text_payment_method']	= 'Payment Method:';
 $_['text_products']        	 	= 'Products:';
 $_['text_total']            		= 'Total:';
+$_['text_order_pick_list']		= 'Order Picking';
 $_['text_comment']          	= 'Order Comments';
 $_['text_history']          		= 'Order History';
 $_['text_success']          		= 'You have successfully added the products from order ID #%s to your cart!';

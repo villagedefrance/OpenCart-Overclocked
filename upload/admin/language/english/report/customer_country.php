@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']   			= 'Customers Countries';
+$_['heading_title']   			= 'Customer Countries Report';
 
 // Column
 $_['column_country_id']	= 'Id';

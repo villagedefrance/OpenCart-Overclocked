@@ -36,6 +36,11 @@
           <?php } else { ?>
             <a href="<?php echo $sort_username; ?>"><?php echo $column_username; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
+          <td class="left"><?php if ($sort == 'user_group') { ?>
+            <a href="<?php echo $sort_user_group; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_user_group; ?></a>
+          <?php } else { ?>
+            <a href="<?php echo $sort_user_group; ?>"><?php echo $column_user_group; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+          <?php } ?></td>
           <td class="left"><?php if ($sort == 'email') { ?>
             <a href="<?php echo $sort_email; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_email; ?></a>
           <?php } else { ?>
@@ -67,6 +72,7 @@
             <?php } ?></td>
             <td class="center"><?php echo $user['user_id']; ?></td>
             <td class="left"><?php echo $user['username']; ?></td>
+			<td class="left"><?php echo $user['group_name']; ?></td>
 			<td class="left"><?php echo $user['email']; ?></td>
             <td class="center"><?php echo $user['date_added']; ?></td>
             <?php if ($user['status'] == 1) { ?>
@@ -81,7 +87,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

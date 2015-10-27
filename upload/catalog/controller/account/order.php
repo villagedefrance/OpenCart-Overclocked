@@ -92,6 +92,7 @@ class ControllerAccountOrder extends Controller {
 		$this->data['text_total'] = $this->language->get('text_total');
 		$this->data['text_empty'] = $this->language->get('text_empty');
 
+		$this->data['button_pick'] = $this->language->get('button_pick');
 		$this->data['button_view'] = $this->language->get('button_view');
 		$this->data['button_reorder'] = $this->language->get('button_reorder');
 		$this->data['button_continue'] = $this->language->get('button_continue');
@@ -119,10 +120,13 @@ class ControllerAccountOrder extends Controller {
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'products'   	=> ($product_total + $voucher_total),
 				'total'      		=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'picklist'   		=> $this->url->link('account/order/picklist', 'order_id=' . $result['order_id'], 'SSL'),
 				'href'       		=> $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
 				'reorder'    		=> $this->url->link('account/order', 'order_id=' . $result['order_id'], 'SSL')
 			);
 		}
+
+		$this->data['picklist_status'] = $this->config->get('config_picklist_status');
 
 		$pagination = new Pagination();
 		$pagination->total = $order_total;
@@ -156,6 +160,192 @@ class ControllerAccountOrder extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
+	}
+
+	public function picklist() {
+		$this->language->load('account/order');
+
+		if (isset($this->request->get['order_id'])) {
+			$order_id = $this->request->get['order_id'];
+		} else {
+			$order_id = 0;
+		}
+
+		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
+		if (!$this->customer->isSecure()) {
+			$this->customer->logout();
+
+			$this->session->data['redirect'] = $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL');
+
+			$this->redirect($this->url->link('account/login', '', 'SSL'));
+		}
+
+		$this->load->model('account/order');
+
+		$order_info = $this->model_account_order->getOrder($order_id);
+
+		if ($order_info) {
+			$this->document->setTitle($this->language->get('heading_title_pick_list'));
+
+			$this->data['breadcrumbs'] = array();
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('text_home'),
+				'href'		=> $this->url->link('common/home'),
+				'separator' => false
+			);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('text_account'),
+				'href'		=> $this->url->link('account/account', '', 'SSL'),
+				'separator' => $this->language->get('text_separator')
+			);
+
+			$url = '';
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('account/order', $url, 'SSL'),
+				'separator' => $this->language->get('text_separator')
+			);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('text_order_pick_list'),
+				'href'		=> $this->url->link('account/order/picklist', 'order_id=' . $this->request->get['order_id'] . $url, 'SSL'),
+				'separator' => $this->language->get('text_separator')
+			);
+
+			$this->data['heading_title'] = $this->language->get('heading_title_pick_list');
+
+			$this->data['text_comment'] = $this->language->get('text_comment');
+
+			$this->data['column_name'] = $this->language->get('column_name');
+			$this->data['column_model'] = $this->language->get('column_model');
+			$this->data['column_quantity'] = $this->language->get('column_quantity');
+			$this->data['column_status'] = $this->language->get('column_status');
+			$this->data['column_order_picked'] = $this->language->get('column_order_picked');
+			$this->data['column_order_none'] = $this->language->get('column_order_none');
+
+			$this->data['button_return'] = $this->language->get('button_return');
+			$this->data['button_continue'] = $this->language->get('button_continue');
+
+			$this->data['products'] = array();
+
+			$products = $this->model_account_order->getOrderProducts($this->request->get['order_id']);
+
+			foreach ($products as $product) {
+				$option_data = array();
+
+				if ($product['backordered'] > 0) {
+					$this->data['backorder'] = nl2br($product['backordered']);
+				} else {
+					$this->data['backorder'] = '';
+				}
+
+				$this->data['products'][] = array(
+					'name'			=> $product['name'],
+					'model'			=> $product['model'],
+					'option'			=> $option_data,
+					'quantity'		=> $product['quantity'],
+					'price'			=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'total'				=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'return'			=> $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL'),
+					'picked'			=> $product['picked'],
+					'backordered'	=> $product['backordered']
+				);
+			}
+
+			$this->data['picklist_status'] = $this->config->get('config_picklist_status');
+
+			$this->data['continue'] = $this->url->link('account/order', '', 'SSL');
+
+			// Theme
+			$this->data['template'] = $this->config->get('config_template');
+
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/order_picklist.tpl')) {
+				$this->template = $this->config->get('config_template') . '/template/account/order_picklist.tpl';
+			} else {
+				$this->template = 'default/template/account/order_picklist.tpl';
+			}
+
+			$this->children = array(
+				'common/column_left',
+				'common/column_right',
+				'common/content_header',
+				'common/content_top',
+				'common/content_bottom',
+				'common/content_footer',
+				'common/footer',
+				'common/header'
+			);
+
+			$this->response->setOutput($this->render());
+
+		} else {
+			$this->document->setTitle($this->language->get('text_order'));
+
+			$this->data['heading_title'] = $this->language->get('text_order');
+
+			$this->data['text_error'] = $this->language->get('text_error');
+
+			$this->data['button_continue'] = $this->language->get('button_continue');
+
+			$this->data['breadcrumbs'] = array();
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('text_home'),
+				'href'		=> $this->url->link('common/home'),
+				'separator' => false
+			);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('text_account'),
+				'href'		=> $this->url->link('account/account', '', 'SSL'),
+				'separator' => $this->language->get('text_separator')
+			);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('account/order', '', 'SSL'),
+				'separator' => $this->language->get('text_separator')
+			);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('text_order'),
+				'href'		=> $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL'),
+				'separator' => $this->language->get('text_separator')
+			);
+
+			$this->data['continue'] = $this->url->link('account/order', '', 'SSL');
+
+			// Theme
+			$this->data['template'] = $this->config->get('config_template');
+
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/error/not_found.tpl')) {
+				$this->template = $this->config->get('config_template') . '/template/error/not_found.tpl';
+			} else {
+				$this->template = 'default/template/error/not_found.tpl';
+			}
+
+			$this->children = array(
+				'common/column_left',
+				'common/column_right',
+				'common/content_header',
+				'common/content_top',
+				'common/content_bottom',
+				'common/content_footer',
+				'common/footer',
+				'common/header'
+			);
+
+			$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function info() {
@@ -361,6 +551,8 @@ class ControllerAccountOrder extends Controller {
 					'return'   	=> $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL')
 				);
 			}
+
+			$this->data['picklist_status'] = $this->config->get('config_picklist_status');
 
 			// Voucher
 			$this->data['vouchers'] = array();

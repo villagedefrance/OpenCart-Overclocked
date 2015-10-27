@@ -1,8 +1,8 @@
 <?php
-class ControllerReportProductProfit extends Controller {
+class ControllerReportSaleProfit extends Controller {
 
 	public function index() {
-		$this->language->load('report/product_profit');
+		$this->language->load('report/sale_profit');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -34,14 +34,10 @@ class ControllerReportProductProfit extends Controller {
 
 		if (isset($this->request->get['filter_date_start'])) {
 			$url .= '&filter_date_start=' . $this->request->get['filter_date_start'];
-		} else {
-			$url .= '&filter_date_start=' . date('Y-01-01', time());
 		}
 
 		if (isset($this->request->get['filter_date_end'])) {
 			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
-		} else {
-			$url .= '&filter_date_end=' . date('Y-m-d', time());
 		}
 
 		if (isset($this->request->get['filter_order_status_id'])) {
@@ -62,7 +58,7 @@ class ControllerReportProductProfit extends Controller {
 
    		$this->data['breadcrumbs'][] = array(
        		'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('report/product_profit', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'href'		=> $this->url->link('report/sale_profit', 'token=' . $this->session->data['token'] . $url, 'SSL'),
       		'separator' => ' :: '
    		);
 
@@ -154,7 +150,7 @@ class ControllerReportProductProfit extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('report/product_profit', 'token=' . $this->session->data['token'] . $url . '&page={page}');
+		$pagination->url = $this->url->link('report/sale_profit', 'token=' . $this->session->data['token'] . $url . '&page={page}');
 
 		$this->data['pagination'] = $pagination->render();
 
@@ -162,7 +158,7 @@ class ControllerReportProductProfit extends Controller {
 		$this->data['filter_date_end'] = $filter_date_end;
 		$this->data['filter_order_status_id'] = $filter_order_status_id;
 
-		$this->template = 'report/product_profit.tpl';
+		$this->template = 'report/sale_profit.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'

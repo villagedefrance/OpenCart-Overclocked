@@ -60,6 +60,7 @@ class ModelUserUser extends Model {
 		$sort_data = array(
 			'user_id',
 			'username',
+			'user_group_id',
 			'email',
 			'date_added',
 			'status'
@@ -92,6 +93,12 @@ class ModelUserUser extends Model {
 		$query = $this->db->query($sql);
 
 		return $query->rows;
+	}
+
+	public function getUserGroup($user_id, $user_group_id) {
+		$query = $this->db->query("SELECT ug.name AS name FROM " . DB_PREFIX . "user_group ug LEFT JOIN `" . DB_PREFIX . "user` u ON (ug.user_group_id = u.user_group_id) WHERE ug.user_group_id = '" . (int)$user_group_id . "' AND u.user_id = '" . (int)$user_id . "'");
+
+		return $query->row['name'];
 	}
 
 	public function getTotalUsers() {

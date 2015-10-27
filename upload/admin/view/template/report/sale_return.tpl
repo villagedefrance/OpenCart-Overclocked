@@ -13,35 +13,31 @@
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <table class="report">
-        <tr>
-          <td><img src="view/image/filter.png" alt="" /></td>
-          <td class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" />
-          <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
-          <td class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" />
-          <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
-          <td class="left"><?php echo $entry_group; ?> <select name="filter_group">
-            <?php foreach ($groups as $groups) { ?>
-              <?php if ($groups['value'] == $filter_group) { ?>
-                <option value="<?php echo $groups['value']; ?>" selected="selected"><?php echo $groups['text']; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $groups['value']; ?>"><?php echo $groups['text']; ?></option>
-              <?php } ?>
+      <div class="report">
+        <div class="left"><img src="view/image/filter.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_group; ?> <select name="filter_group">
+          <?php foreach ($groups as $groups) { ?>
+            <?php if ($groups['value'] == $filter_group) { ?>
+              <option value="<?php echo $groups['value']; ?>" selected="selected"><?php echo $groups['text']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $groups['value']; ?>"><?php echo $groups['text']; ?></option>
             <?php } ?>
-          </select></td>
-          <td class="left"><?php echo $entry_status; ?> <select name="filter_return_status_id">
-            <option value="0"><?php echo $text_all_status; ?></option>
-            <?php foreach ($return_statuses as $return_status) { ?>
-              <?php if ($return_status['return_status_id'] == $filter_return_status_id) { ?>
-                <option value="<?php echo $return_status['return_status_id']; ?>" selected="selected"><?php echo $return_status['name']; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $return_status['return_status_id']; ?>"><?php echo $return_status['name']; ?></option>
-              <?php } ?>
+          <?php } ?>
+        </select></div>
+        <div class="left"><?php echo $entry_status; ?> <select name="filter_return_status_id">
+          <option value="0"><?php echo $text_all_status; ?></option>
+          <?php foreach ($return_statuses as $return_status) { ?>
+            <?php if ($return_status['return_status_id'] == $filter_return_status_id) { ?>
+              <option value="<?php echo $return_status['return_status_id']; ?>" selected="selected"><?php echo $return_status['name']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $return_status['return_status_id']; ?>"><?php echo $return_status['name']; ?></option>
             <?php } ?>
-          </select></td>
-          <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
-        </tr>
-      </table>
+          <?php } ?>
+        </select></div>
+        <div class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></div>
+      </div>
       <table class="list">
         <thead>
           <tr>

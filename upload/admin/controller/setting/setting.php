@@ -46,17 +46,15 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
 		$this->data['text_datetime'] = $this->language->get('text_datetime');
-		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_product'] = $this->language->get('text_product');
+		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_account'] = $this->language->get('text_account');
-		$this->data['text_checkout'] = $this->language->get('text_checkout');
 		$this->data['text_express'] = $this->language->get('text_express');
 		$this->data['text_stock'] = $this->language->get('text_stock');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
-		$this->data['text_items'] = $this->language->get('text_items');
 		$this->data['text_forms'] = $this->language->get('text_forms');
 		$this->data['text_colorbox'] = $this->language->get('text_colorbox');
 		$this->data['text_swipebox'] = $this->language->get('text_swipebox');
@@ -72,7 +70,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_mail'] = $this->language->get('text_mail');
 		$this->data['text_smtp'] = $this->language->get('text_smtp');
-		$this->data['text_social_media'] = $this->language->get('text_social_media');
 		$this->data['text_analytic'] = $this->language->get('text_analytic');
 		$this->data['text_security'] = $this->language->get('text_security');
 		$this->data['text_upload'] = $this->language->get('text_upload');
@@ -155,6 +152,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_fax'] = $this->language->get('entry_customer_fax');
 		$this->data['entry_customer_gender'] = $this->language->get('entry_customer_gender');
 		$this->data['entry_customer_dob'] = $this->language->get('entry_customer_dob');
+		$this->data['entry_picklist_status'] = $this->language->get('entry_picklist_status');
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_commission'] = $this->language->get('entry_commission');
@@ -896,6 +894,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_customer_dob'] = $this->request->post['config_customer_dob'];
 		} else {
 			$this->data['config_customer_dob'] = $this->config->get('config_customer_dob');
+		}
+
+		if (isset($this->request->post['config_picklist_status'])) {
+			$this->data['config_picklist_status'] = $this->request->post['config_picklist_status'];
+		} else {
+			$this->data['config_picklist_status'] = $this->config->get('config_picklist_status');
 		}
 
 		if (isset($this->request->post['config_account_id'])) {

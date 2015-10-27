@@ -201,11 +201,18 @@ class ControllerUserUser extends Controller {
 				'href'	=> $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $result['user_id'] . $url, 'SSL')
 			);
 
+			if ($result['user_id'] && $result['user_group_id']) {
+				$group_name = $this->model_user_user->getUserGroup($result['user_id'], $result['user_group_id']);
+			} else {
+				$group_name = '';
+			}
+
 			$this->data['users'][] = array(
 				'user_id'    		=> $result['user_id'],
 				'username'   	=> $result['username'],
+				'group_name'	=> $group_name,
 				'email'   			=> $result['email'],
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'status'     		=> $result['status'],
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['user_id'], $this->request->post['selected']),
 				'action'     		=> $action
@@ -220,6 +227,7 @@ class ControllerUserUser extends Controller {
 
 		$this->data['column_user_id'] = $this->language->get('column_user_id');
 		$this->data['column_username'] = $this->language->get('column_username');
+		$this->data['column_user_group'] = $this->language->get('column_user_group');
 		$this->data['column_email'] = $this->language->get('column_email');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_status'] = $this->language->get('column_status');
@@ -256,6 +264,7 @@ class ControllerUserUser extends Controller {
 
 		$this->data['sort_user_id'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=user_id' . $url, 'SSL');
 		$this->data['sort_username'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=username' . $url, 'SSL');
+		$this->data['sort_user_group'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=user_group' . $url, 'SSL');
 		$this->data['sort_email'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=email' . $url, 'SSL');
 		$this->data['sort_date_added'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=date_added' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('user/user', 'token=' . $this->session->data['token'] . '&sort=status' . $url, 'SSL');
@@ -369,7 +378,7 @@ class ControllerUserUser extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
+			'text'		=> $this->language->get('text_home'),
 			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);

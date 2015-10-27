@@ -13,16 +13,12 @@
 	<?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <table class="report">
-        <tr>
-          <td><img src="view/image/filter.png" alt="" /></td>
-          <td class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" />
-          <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
-          <td class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" />
-          <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
-          <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
-        </tr>
-      </table>
+      <div class="report">
+        <div class="left"><img src="view/image/filter.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></div>
+      </div>
       <table class="list">
         <thead>
           <tr>
