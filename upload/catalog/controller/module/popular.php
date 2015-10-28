@@ -23,6 +23,7 @@ class ControllerModulePopular extends Controller {
 		$this->data['lang'] = $this->language->get('code');
 
 		$this->data['button_view'] = $this->language->get('button_view');
+		$this->data['button_quote'] = $this->language->get('button_quote');
 		$this->data['button_cart'] = $this->language->get('button_cart');
 
 		$this->data['viewproduct'] = $this->config->get($this->_name . '_viewproduct');
@@ -76,11 +77,18 @@ class ControllerModulePopular extends Controller {
 				$offer = false;
 			}
 
+			if ($result['quote']) {
+				$quote = $this->url->link('information/quote', '', 'SSL');
+			} else {
+				$quote = false;
+			}
+
 			$this->data['products'][] = array(
 				'product_id' 	=> $result['product_id'],
 				'thumb'   		=> $image,
 				'offer'				=> $offer,
 				'name'    		=> $result['name'],
+				'quote'			=> $quote,
 				'price'   	 		=> $price,
 				'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
 				'special' 			=> $special,

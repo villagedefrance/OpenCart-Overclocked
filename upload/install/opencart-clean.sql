@@ -2873,6 +2873,8 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (136, 0, 'account', 'account_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"6";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
 (1817, 0, 'config', 'config_google_analytics', '', 0),
 (1816, 0, 'config', 'config_error_filename', 'error.txt', 0),
+(9, 0, 'config', 'config_mail_filename', 'mail.txt', 0),
+(10, 0, 'config', 'config_quote_filename', 'quote.txt', 0),
 (1815, 0, 'config', 'config_error_log', '1', 0),
 (1814, 0, 'config', 'config_error_display', '1', 0),
 (1811, 0, 'config', 'config_password', '1', 0),

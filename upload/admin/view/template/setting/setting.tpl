@@ -787,7 +787,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_customer_group_display; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_customer_group_display; ?></td>
             <td><div class="scrollbox">
               <?php $class = 'odd'; ?>
               <?php foreach ($customer_groups as $customer_group) { ?>
@@ -1313,38 +1313,6 @@
       <div id="tab-ftp">
         <table class="form">
           <tr>
-            <td><?php echo $entry_ftp_host; ?></td>
-            <td><input type="text" name="config_ftp_host" value="<?php echo $config_ftp_host; ?>" size="30" />
-            <?php if ($error_ftp_host) { ?>
-              <span class="error"><?php echo $error_ftp_host; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_ftp_port; ?></td>
-            <td><input type="text" name="config_ftp_port" value="<?php echo $config_ftp_port; ?>" />
-            <?php if ($error_ftp_port) { ?>
-              <span class="error"><?php echo $error_ftp_port; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_ftp_username; ?></td>
-            <td><input type="text" name="config_ftp_username" value="<?php echo $config_ftp_username; ?>" size="30" />
-            <?php if ($error_ftp_username) { ?>
-              <span class="error"><?php echo $error_ftp_username; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_ftp_password; ?></td>
-            <td><input type="text" name="config_ftp_password" value="<?php echo $config_ftp_password; ?>" />
-            <?php if ($error_ftp_password) { ?>
-              <span class="error"><?php echo $error_ftp_password; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_ftp_root; ?></td>
-            <td><input type="text" name="config_ftp_root" value="<?php echo $config_ftp_root; ?>" /></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_ftp_status; ?></td>
             <td><?php if ($config_ftp_status) { ?>
 			  <input type="radio" name="config_ftp_status" value="1" id="ftp-status-on" class="radio" checked />
@@ -1357,6 +1325,38 @@
               <input type="radio" name="config_ftp_status" value="0" id="ftp-status-off" class="radio" checked />
 			  <label for="ftp-status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_ftp_host; ?></td>
+            <td><input type="text" name="config_ftp_host" value="<?php echo $config_ftp_host; ?>" size="30" />
+            <?php if ($error_ftp_host) { ?>
+              <span class="error"><?php echo $error_ftp_host; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_ftp_port; ?></td>
+            <td><input type="text" name="config_ftp_port" value="<?php echo $config_ftp_port; ?>" />
+            <?php if ($error_ftp_port) { ?>
+              <span class="error"><?php echo $error_ftp_port; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_ftp_username; ?></td>
+            <td><input type="text" name="config_ftp_username" value="<?php echo $config_ftp_username; ?>" size="30" />
+            <?php if ($error_ftp_username) { ?>
+              <span class="error"><?php echo $error_ftp_username; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_ftp_password; ?></td>
+            <td><input type="text" name="config_ftp_password" value="<?php echo $config_ftp_password; ?>" />
+            <?php if ($error_ftp_password) { ?>
+              <span class="error"><?php echo $error_ftp_password; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_ftp_root; ?></td>
+            <td><input type="text" name="config_ftp_root" value="<?php echo $config_ftp_root; ?>" /></td>
           </tr>
         </table>
       </div>
@@ -1501,7 +1501,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_encryption; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_encryption; ?></td>
             <td><input type="text" name="config_encryption" value="<?php echo $config_encryption; ?>" size="42" />
             <?php if ($error_encryption) { ?>
               <span class="error"><?php echo $error_encryption; ?></span>
@@ -1544,6 +1544,20 @@
             <td><input type="text" name="config_error_filename" value="<?php echo $config_error_filename; ?>" />
             <?php if ($error_error_filename) { ?>
               <span class="error"><?php echo $error_error_filename; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_mail_filename; ?></td>
+            <td><input type="text" name="config_mail_filename" value="<?php echo $config_mail_filename; ?>" />
+            <?php if ($error_mail_filename) { ?>
+              <span class="error"><?php echo $error_mail_filename; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_quote_filename; ?></td>
+            <td><input type="text" name="config_quote_filename" value="<?php echo $config_quote_filename; ?>" />
+            <?php if ($error_quote_filename) { ?>
+              <span class="error"><?php echo $error_quote_filename; ?></span>
             <?php } ?></td>
           </tr>
         </table>
@@ -1599,7 +1613,7 @@
         <h2><?php echo $text_upload; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_file_max_size; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_file_max_size; ?></td>
             <td><input type="text" name="config_file_max_size" value="<?php echo $config_file_max_size; ?>" /> bytes
             <?php if ($error_file_max_size) { ?>
               <span class="error"><?php echo $error_file_max_size; ?></span>

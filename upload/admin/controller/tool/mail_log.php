@@ -10,6 +10,7 @@ class ControllerToolMailLog extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['button_clear'] = $this->language->get('button_clear');
+		$this->data['button_download'] = $this->language->get('button_download');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		if (isset($this->session->data['success'])) {
@@ -35,18 +36,19 @@ class ControllerToolMailLog extends Controller {
 		);
 
 		$this->data['clear'] = $this->url->link('tool/mail_log/clear', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['download'] = $this->url->link('tool/mail_log/download', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
-		$directory = DIR_SYSTEM . 'mails/';
+		// Create directory if it does not exist
+		$directory = DIR_SYSTEM . 'logs/';
 
-		// Create directory if it does not exist.
 		if (!is_dir($directory)) {
-			mkdir(DIR_SYSTEM . 'mails', 0777);
+			mkdir(DIR_SYSTEM . 'logs', 0777);
 		}
 
-		$mail_file = DIR_SYSTEM . 'mails/mails.txt';
+		// Create file if it does not exist
+		$mail_file = DIR_LOGS . $this->config->get('config_mail_filename');
 
-		// Create file if it does not exist.
 		if (!file_exists($mail_file)) {
 			$handle = fopen($mail_file, 'w+');
 
@@ -70,10 +72,40 @@ class ControllerToolMailLog extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
+	public function download() {
+		$file = DIR_LOGS . $this->config->get('config_mail_filename');
+
+		clearstatcache();
+
+		if (file_exists($file) && is_file($file)) {
+			if (!headers_sent()) {
+				if (filesize($file) > 0) {
+					header('Content-Type: application/octet-stream');
+					header('Content-Description: File Transfer');
+					header('Content-Disposition: attachment; filename=' . str_replace(' ', '_', $this->config->get('config_name')) . '_' . date('Y-m-d_H-i-s', time()) . '_mail.log');
+					header('Content-Transfer-Encoding: binary');
+					header('Expires: 0');
+					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+					header('Pragma: public');
+					header('Content-Length: ' . filesize($file));
+
+					readfile($file, 'rb');
+					exit();
+				}
+
+			} else {
+				exit('Error: Headers already sent out!');
+			}
+
+		} else {
+			$this->redirect($this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL'));
+		}
+	}
+
 	public function clear() {
 		$this->language->load('tool/mail_log');
 
-		$file = DIR_SYSTEM . 'mails/mails.txt';
+		$file = DIR_LOGS . $this->config->get('config_mail_filename');
 
 		$handle = fopen($file, 'w+');
 

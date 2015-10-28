@@ -301,7 +301,7 @@ class ControllerProductSearch extends Controller {
 				}
 
 				if ($result['quote']) {
-					$quote = $this->url->link('information/contact');
+					$quote = $this->url->link('information/quote', '', 'SSL');
 				} else {
 					$quote = false;
 				}

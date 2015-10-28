@@ -25,6 +25,8 @@ class ControllerReportCustomerCountry extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+
 		$this->data['column_country_id'] = $this->language->get('column_country_id');
 		$this->data['column_country'] = $this->language->get('column_country');
 		$this->data['column_customers'] = $this->language->get('column_customers');

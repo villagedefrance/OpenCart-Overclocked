@@ -3,14 +3,14 @@
 $_['heading_title']  		= 'Contact Us';
 
 // Text 
-$_['text_location']  		= 'Our Location';
 $_['text_contact']   		= 'Contact Form';
 $_['text_message'] 		= '<p>Your enquiry has been successfully sent to the store owner!</p>';
+$_['text_location']  		= 'Our Location';
 $_['text_geolocation']	= 'GPS Coordinates';
 $_['text_latitude'] 		= 'Latitude:';
 $_['text_longitude'] 		= 'Longitude:';
 
-// Entry Fields
+// Entry
 $_['entry_name']     		= 'Your Name:';
 $_['entry_email']    		= 'E-Mail Address:';
 $_['entry_enquiry']  		= 'Enquiry:';

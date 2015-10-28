@@ -12,7 +12,7 @@
     <div class="heading">
       <h1><img src="view/image/log.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <?php if ($mail_log) { ?>
+        <?php if ($quote_log) { ?>
           <a href="<?php echo $clear; ?>" class="button"><?php echo $button_clear; ?></a>
           <a href="<?php echo $download; ?>" class="button-save"><?php echo $button_download; ?></a>
         <?php } ?>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-       <textarea wrap="off" class="log"><?php echo $mail_log; ?></textarea>
+       <textarea wrap="off" class="log"><?php echo $quote_log; ?></textarea>
     </div>
   </div>
 </div>

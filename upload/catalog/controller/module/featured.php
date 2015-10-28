@@ -26,6 +26,7 @@ class ControllerModuleFeatured extends Controller {
 		$this->data['lang'] = $this->language->get('code');
 
 		$this->data['button_view'] = $this->language->get('button_view');
+		$this->data['button_quote'] = $this->language->get('button_quote');
 		$this->data['button_cart'] = $this->language->get('button_cart');
 
 		$this->data['brand'] = $this->config->get($this->_name . '_brand');
@@ -126,6 +127,12 @@ class ControllerModuleFeatured extends Controller {
 					$offer = false;
 				}
 
+				if ($product_info['quote']) {
+					$quote = $this->url->link('information/quote', '', 'SSL');
+				} else {
+					$quote = false;
+				}
+
 				$this->data['products'][] = array(
 					'product_id'		=> $product_info['product_id'],
 					'thumb'   	 	=> $image,
@@ -135,6 +142,7 @@ class ControllerModuleFeatured extends Controller {
 					'model' 			=> $product_info['model'],
 					'reward' 			=> $product_info['reward'],
 					'points' 			=> $product_info['points'],
+					'quote'			=> $quote,
 					'price'   	  		=> $price,
 					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
 					'special' 	 		=> $special,

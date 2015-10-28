@@ -42,18 +42,21 @@ class ControllerCommonHeader extends Controller {
 		// Date & Time
 		$date = $this->config->get('config_date_format');
 
-		switch ($date) {
-			case "short":
-			$date_format = date($this->language->get('date_format_short')) . "\n";
-			break;
-			case "long":
-			$date_format = date($this->language->get('date_format_long')) . "\n";
-			break;
+		if ($date && $date == "long") {
+			$this->data['date_format'] = date($this->language->get('date_format_long')) . "\n";
+		} elseif ($date && $date == "short") {
+			$this->data['date_format'] = date($this->language->get('date_format_short')) . "\n";
+		} else {
+			$this->data['date_format'] = date('d-m-Y') . "\n";
 		}
 
-		$this->data['date_format'] = $date_format;
+		$time = $this->config->get('config_time_offset');
 
-		$this->data['time_offset'] = $this->config->get('config_time_offset');
+		if ($time) {
+			$this->data['time_offset'] = $this->config->get('config_time_offset');
+		} else {
+			$this->data['time_offset'] = '0';
+		}
 
 		// Text
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
@@ -124,6 +127,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_payment_image'] = $this->language->get('text_payment_image');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_profile'] = $this->language->get('text_profile');
+		$this->data['text_quote_log'] = $this->language->get('text_quote_log');
 		$this->data['text_recurring_profile'] = $this->language->get('text_recurring_profile');
 		$this->data['text_reports'] = $this->language->get('text_reports');
 		$this->data['text_report_sale_order'] = $this->language->get('text_report_sale_order');
@@ -250,6 +254,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['payment_image'] = $this->url->link('design/payment', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['product'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['profile'] = $this->url->link('catalog/profile', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['quote_log'] = $this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['recurring_profile'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_sale_order'] = $this->url->link('report/sale_order', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_sale_tax'] = $this->url->link('report/sale_tax', 'token=' . $this->session->data['token'], 'SSL');

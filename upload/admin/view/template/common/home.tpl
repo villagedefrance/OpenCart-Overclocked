@@ -29,6 +29,11 @@
         <?php } else { ?>
            <a href="<?php echo $open_mail_log; ?>" title=""><img src="view/image/email-off.png" alt="" /></a>
         <?php } ?>
+        <?php if ($quote_log_status) { ?>
+           <a href="<?php echo $open_quote_log; ?>" title=""><img src="view/image/quote-on.png" alt="" /></a>
+        <?php } else { ?>
+           <a href="<?php echo $open_quote_log; ?>" title=""><img src="view/image/quote-off.png" alt="" /></a>
+        <?php } ?>
         <?php if ($error_log_status) { ?>
            <a href="<?php echo $open_error_log; ?>" title=""><img src="view/image/bell-on.png" alt="" /></a>
         <?php } else { ?>

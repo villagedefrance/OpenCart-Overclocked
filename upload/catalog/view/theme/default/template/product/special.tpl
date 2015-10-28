@@ -77,15 +77,16 @@
             <a href="<?php echo $product['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_view.png" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
           </div>
           <div class="cart">
-		    <?php if ($product['quote']) { ?>
-              <a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
-            <?php } ?>
             <?php if ($dob && $product['age_minimum'] && !$product['age_logged']) { ?>
               <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
             <?php } elseif ($dob && $product['age_minimum'] && !$product['age_checked']) { ?>
               <p class="hidden"></p>
             <?php } else { ?>
-              <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
+              <?php if ($product['quote']) { ?>
+                <a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+              <?php } else { ?>
+                <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
+              <?php } ?>
             <?php } ?>
           </div>
         </div>

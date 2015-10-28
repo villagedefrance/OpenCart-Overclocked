@@ -13,18 +13,18 @@
       </div>
     </div>
     <div class="content">
-      <?php if ($countries) { ?>
-        <table class="list">
-          <thead>
-            <tr>
-              <td class="left"><?php echo $column_country_id; ?></td>
-              <td class="left"><?php echo $column_country; ?></td>
-              <td class="left"><?php echo $column_customers; ?></td>
-              <td class="left"><?php echo $column_ratio; ?></td>
-              <td class="left"><?php echo $column_graph; ?></td>
-            </tr>
-          </thead>
-          <tbody>
+      <table class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $column_country_id; ?></td>
+            <td class="left"><?php echo $column_country; ?></td>
+            <td class="left"><?php echo $column_customers; ?></td>
+            <td class="left"><?php echo $column_ratio; ?></td>
+            <td class="left"><?php echo $column_graph; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if ($countries) { ?>
             <?php foreach ($countries as $country) { ?>
               <tr>
                 <td class="center"><?php echo $country['country_id']; ?></td>
@@ -34,9 +34,13 @@
                 <td class="left"><div class="progress-bar" style="width:<?php echo (($country['customers'] / $total_store_customers) * 300); ?>px;"></div></td>
               </tr>
             <?php } ?>
-          </tbody>
-        </table>
-      <?php } ?>
+          <?php } else { ?>
+            <tr>
+              <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
 	</div>
   </div>
 </div>

@@ -3946,6 +3946,8 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (95, 0, 'voucher', 'voucher_status', '1', 0),
 (1817, 0, 'config', 'config_google_analytics', '', 0),
 (1816, 0, 'config', 'config_error_filename', 'error.txt', 0),
+(9, 0, 'config', 'config_mail_filename', 'mail.txt', 0),
+(10, 0, 'config', 'config_quote_filename', 'quote.txt', 0),
 (1815, 0, 'config', 'config_error_log', '1', 0),
 (1814, 0, 'config', 'config_error_display', '1', 0),
 (1811, 0, 'config', 'config_password', '1', 0),

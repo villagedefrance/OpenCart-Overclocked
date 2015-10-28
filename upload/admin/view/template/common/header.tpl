@@ -266,6 +266,7 @@ $(document).ready(function() {
           <li><a href="<?php echo $menu_manager; ?>"><?php echo $text_menu_manager; ?></a></li>
           <li><a href="<?php echo $file_manager; ?>"><?php echo $text_file_manager; ?></a></li>
           <li><a href="<?php echo $email_log; ?>"><?php echo $text_email_log; ?></a></li>
+          <li><a href="<?php echo $quote_log; ?>"><?php echo $text_quote_log; ?></a></li>
           <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
         </ul>
       </li>

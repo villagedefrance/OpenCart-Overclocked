@@ -9,6 +9,8 @@ Disallow: /system/
 # Files
 Disallow: /php.ini
 Disallow: /config.php
+Disallow: /user.php
+Disallow: /user_permission.php
 Disallow: /address.php
 Disallow: /account.php
 Disallow: /cart.php
@@ -26,7 +28,14 @@ Disallow: /success.php
 Disallow: /pagination.php
 Disallow: /password.php
 Disallow: /search.php
+Disallow: /upload.php
+Disallow: /error_log.php
+Disallow: /mail_log.php
+Disallow: /quote_log.php
 Disallow: /edit.php
+Disallow: /not_found.php
+Disallow: /permission.php
+Disallow: /maintenance.php
 
 # Sitemap
 

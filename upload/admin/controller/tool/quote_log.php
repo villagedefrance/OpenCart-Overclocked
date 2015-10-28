@@ -1,9 +1,9 @@
-<?php
-class ControllerToolErrorLog extends Controller {
+<?php 
+class ControllerToolQuoteLog extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('tool/error_log');
+		$this->language->load('tool/quote_log');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -31,12 +31,12 @@ class ControllerToolErrorLog extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'		=> $this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['clear'] = $this->url->link('tool/error_log/clear', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['download'] = $this->url->link('tool/error_log/download', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['clear'] = $this->url->link('tool/quote_log/clear', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['download'] = $this->url->link('tool/quote_log/download', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Create directory if it does not exist
@@ -47,17 +47,23 @@ class ControllerToolErrorLog extends Controller {
 		}
 
 		// Create file if it does not exist
-		$error_file = DIR_LOGS . $this->config->get('config_error_filename');
+		$quote_file = DIR_LOGS . $this->config->get('config_quote_filename');
 
-		if (file_exists($error_file)) {
-			$this->data['error_log'] = file_get_contents($error_file, FILE_USE_INCLUDE_PATH, null);
+		if (!file_exists($quote_file)) {
+			$handle = fopen($quote_file, 'w+');
+
+			fclose($handle);
+		}
+
+		if (file_exists($quote_file)) {
+			$this->data['quote_log'] = file_get_contents($quote_file, FILE_USE_INCLUDE_PATH, null);
 		} else {
-			$this->data['error_log'] = '';
+			$this->data['quote_log'] = '';
 		}
 
 		clearstatcache();
 
-		$this->template = 'tool/error_log.tpl';
+		$this->template = 'tool/quote_log.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -66,8 +72,8 @@ class ControllerToolErrorLog extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function download() {
-		$file = DIR_LOGS . $this->config->get('config_error_filename');
+		public function download() {
+		$file = DIR_LOGS . $this->config->get('config_quote_filename');
 
 		clearstatcache();
 
@@ -76,7 +82,7 @@ class ControllerToolErrorLog extends Controller {
 				if (filesize($file) > 0) {
 					header('Content-Type: application/octet-stream');
 					header('Content-Description: File Transfer');
-					header('Content-Disposition: attachment; filename=' . str_replace(' ', '_', $this->config->get('config_name')) . '_' . date('Y-m-d_H-i-s', time()) . '_error.log');
+					header('Content-Disposition: attachment; filename=' . str_replace(' ', '_', $this->config->get('config_name')) . '_' . date('Y-m-d_H-i-s', time()) . '_quote.log');
 					header('Content-Transfer-Encoding: binary');
 					header('Expires: 0');
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -92,14 +98,14 @@ class ControllerToolErrorLog extends Controller {
 			}
 
 		} else {
-			$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->redirect($this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}
 
 	public function clear() {
-		$this->language->load('tool/error_log');
+		$this->language->load('tool/quote_log');
 
-		$file = DIR_LOGS . $this->config->get('config_error_filename');
+		$file = DIR_LOGS . $this->config->get('config_quote_filename');
 
 		$handle = fopen($file, 'w+');
 
@@ -109,7 +115,7 @@ class ControllerToolErrorLog extends Controller {
 
 		$this->session->data['success'] = $this->language->get('text_success');
 
-		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));
+		$this->redirect($this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 }
 ?>

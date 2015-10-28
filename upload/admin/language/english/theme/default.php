@@ -25,11 +25,11 @@ $_['entry_footer_theme'] 			= 'Footer Theme:<br /><span class="help">Choose betw
 $_['entry_footer_location'] 		= 'Display Address:';
 $_['entry_footer_phone'] 			= 'Display Telephone:';
 $_['entry_footer_email'] 			= 'Display Email:';
-$_['entry_footer_facebook'] 		= 'Display Facebook:';
-$_['entry_footer_twitter'] 			= 'Display Twitter:';
-$_['entry_footer_google'] 			= 'Display Google+:';
-$_['entry_footer_pinterest']		= 'Display Pinterest:';
-$_['entry_footer_skype'] 			= 'Display Skype:';
+$_['entry_footer_facebook'] 		= 'Display Facebook:<br /><span class="help">Link must be defined in store Settings.</span>';
+$_['entry_footer_twitter'] 			= 'Display Twitter:<br /><span class="help">Link must be defined in store Settings.</span>';
+$_['entry_footer_google'] 			= 'Display Google+:<br /><span class="help">Link must be defined in store Settings.</span>';
+$_['entry_footer_pinterest']		= 'Display Pinterest:<br /><span class="help">Link must be defined in store Settings.</span>';
+$_['entry_footer_skype'] 			= 'Display Skype:<br /><span class="help">Link must be defined in store Settings.</span>';
 $_['entry_manufacturer_name']	= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
 $_['entry_manufacturer_image']	= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
 
@@ -41,9 +41,9 @@ $_['info_support'] 					= 'Support';
 
 // Text Info
 $_['text_info_theme'] 				= 'Default - OverClocked Edition';
-$_['text_info_author'] 				= 'OpenCart, "overclocked" by Villagedefrance';
-$_['text_info_license'] 				= 'GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007';
-$_['text_info_support'] 				= 'http://forum.opencart.com<br />http://villagedefrance.net';
+$_['text_info_author'] 				= 'OpenCart, OverClocked Edition by Villagedefrance';
+$_['text_info_license'] 				= '<a onclick="window.open(\'http://www.gnu.org/licenses/gpl-3.0.en.html\');">GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007</a>';
+$_['text_info_support'] 				= '<a onclick="window.open(\'http://villagedefrance.net/index.php\');">www.villagedefrance.net</a>';
 
 // Error
 $_['error_warning']              		= 'Warning: Please check the form carefully for errors!';

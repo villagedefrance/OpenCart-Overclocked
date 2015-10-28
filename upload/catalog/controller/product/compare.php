@@ -171,7 +171,7 @@ class ControllerProductCompare extends Controller {
 				}
 
 				if ($product_info['quote']) {
-					$quote = $this->url->link('information/contact');
+					$quote = $this->url->link('information/quote', '', 'SSL');
 				} else {
 					$quote = false;
 				}

@@ -1,29 +1,33 @@
 <?php
-class ControllerInformationContact extends Controller {
+class ControllerInformationQuote extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('information/contact');
+		$this->language->load('information/quote');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			unset($this->session->data['captcha']);
 
-			// Log mail
-			$mail_log = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n";
-			$mail_log .= $this->request->post['enquiry'] . "\n";
-			$mail_log .= "------------------------------------------------------------- \n";
+			// Log quote
+			$quote_log = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n";
+			$quote_log .= sprintf($this->language->get('email_product'), $this->request->post['product']) . "\n\n";
+			$quote_log .= $this->request->post['enquiry'] . "\n\n";
+			$quote_log .= "------------------------------------------------------------- \n";
 
-			$mail_file = DIR_LOGS . $this->config->get('config_mail_filename');
+			$quote_file = DIR_LOGS . $this->config->get('config_quote_filename');
 
-			$handle = fopen($mail_file, 'a+');
+			$handle = fopen($quote_file, 'a+');
 
-			fwrite($handle, date('Y-m-d G:i:s') . ' - ' . print_r($mail_log, true));
+			fwrite($handle, date('Y-m-d G:i:s') . ' - ' . print_r($quote_log, true));
 
 			fclose($handle);
 
 			// Send mail
+			$message = sprintf($this->language->get('email_product'), $this->request->post['product']) . "\n\n";
+			$message .= strip_tags(html_entity_decode($this->request->post['enquiry'], ENT_QUOTES, 'UTF-8')) . "\n";
+
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
@@ -36,10 +40,10 @@ class ControllerInformationContact extends Controller {
 			$mail->setFrom($this->request->post['email']);
 			$mail->setSender($this->request->post['name']);
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
-			$mail->setText(strip_tags(html_entity_decode($this->request->post['enquiry'], ENT_QUOTES, 'UTF-8')));
+			$mail->setText($message);
 			$mail->send();
 
-			$this->redirect($this->url->link('information/contact/success', '', 'SSL'));
+			$this->redirect($this->url->link('information/quote/success', '', 'SSL'));
 		}
 
 		// Breadcrumbs
@@ -53,42 +57,22 @@ class ControllerInformationContact extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('information/contact', '', 'SSL'),
+			'href'		=> $this->url->link('information/quote', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_contact'] = $this->language->get('text_contact');
+		$this->data['text_quote'] = $this->language->get('text_quote');
 		$this->data['text_location'] = $this->language->get('text_location');
-		$this->data['text_geolocation'] = $this->language->get('text_geolocation');
-		$this->data['text_latitude'] = $this->language->get('text_latitude');
-		$this->data['text_longitude'] = $this->language->get('text_longitude');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_product'] = $this->language->get('entry_product');
 		$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
 		$this->data['hide_location'] = $this->config->get('config_our_location');
-
-		$map_location = $this->config->get('config_location');
-		$map_display = $this->config->get('config_contact_map');
-
-		if (isset($map_display) && !empty($map_location)) {
-			$this->document->addScript('catalog/view/javascript/gmap/gmap3.min.js');
-			$this->document->addScript('catalog/view/javascript/gmap/gmap3.infobox.js');
-
-			$this->data['map_location'] = $map_location;
-			$this->data['map_latitude'] = $this->config->get('config_latitude');
-			$this->data['map_longitude'] = $this->config->get('config_longitude');
-			$this->data['map'] = true;
-		} else {
-			$this->data['map_location'] = '';
-			$this->data['map_latitude'] = '';
-			$this->data['map_longitude'] = '';
-			$this->data['map'] = false;
-		}
 
 		if (isset($this->error['name'])) {
 			$this->data['error_name'] = $this->error['name'];
@@ -100,6 +84,12 @@ class ControllerInformationContact extends Controller {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
+		}
+
+		if (isset($this->error['product'])) {
+			$this->data['error_product'] = $this->error['product'];
+		} else {
+			$this->data['error_product'] = '';
 		}
 
 		if (isset($this->error['enquiry'])) {
@@ -116,12 +106,14 @@ class ControllerInformationContact extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
-		$this->data['action'] = $this->url->link('information/contact', '', 'SSL');
+		$this->data['action'] = $this->url->link('information/quote', '', 'SSL');
 
 		$this->data['store'] = $this->config->get('config_name');
 		$this->data['address'] = nl2br($this->config->get('config_address'));
 		$this->data['telephone'] = $this->config->get('config_telephone');
 		$this->data['fax'] = $this->config->get('config_fax');
+
+		$this->load->model('catalog/product');
 
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
@@ -133,6 +125,33 @@ class ControllerInformationContact extends Controller {
 			$this->data['email'] = $this->request->post['email'];
 		} else {
 			$this->data['email'] = $this->customer->getEmail();
+		}
+
+		$this->data['products'] = array();
+
+		$results = $this->model_catalog_product->getProducts(0);
+
+		foreach ($results as $result) {
+			if ($result['model']) {
+				$model = $result['model'];
+			} else {
+				$model = false;
+			}
+
+			if ($result['quote']) {
+				$this->data['products'][] = array(
+					'product_id'  	=> $result['product_id'],
+					'name'        	=> $result['name'],
+					'quote'			=> $result['quote'],
+					'model'			=> $model
+				);
+			}
+		}
+
+		if (isset($this->request->post['product'])) {
+			$this->data['product'] = $this->request->post['product'];
+		} else {
+			$this->data['product'] = '';
 		}
 
 		if (isset($this->request->post['enquiry'])) {
@@ -155,10 +174,10 @@ class ControllerInformationContact extends Controller {
 		}
 
 		// Create file if it does not exist
-		$mail_file = DIR_LOGS . $this->config->get('config_mail_filename');
+		$quote_file = DIR_LOGS . $this->config->get('config_quote_filename');
 
-		if (!file_exists($mail_file)) {
-			$handle = fopen($mail_file, 'w+');
+		if (!file_exists($quote_file)) {
+			$handle = fopen($quote_file, 'w+');
 
 			fclose($handle);
 		}
@@ -168,10 +187,10 @@ class ControllerInformationContact extends Controller {
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/contact.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/information/contact.tpl';
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/quote.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/information/quote.tpl';
 		} else {
-			$this->template = 'default/template/information/contact.tpl';
+			$this->template = 'default/template/information/quote.tpl';
 		}
 
 		$this->children = array(
@@ -189,7 +208,7 @@ class ControllerInformationContact extends Controller {
 	}
 
 	public function success() {
-		$this->language->load('information/contact');
+		$this->language->load('information/quote');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -204,7 +223,7 @@ class ControllerInformationContact extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('information/contact', '', 'SSL'),
+			'href'		=> $this->url->link('information/quote', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -246,6 +265,10 @@ class ControllerInformationContact extends Controller {
 
 		if (!isset($this->request->post['email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
+		}
+
+		if (!isset($this->request->post['product'])) {
+			$this->error['product'] = $this->language->get('error_product');
 		}
 
 		if (!isset($this->request->post['enquiry']) || (utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {

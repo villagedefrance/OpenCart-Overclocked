@@ -180,7 +180,7 @@
             <?php if ($option['type'] == 'select') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <select name="option[<?php echo $option['product_option_id']; ?>]">
@@ -199,7 +199,7 @@
             <?php if ($option['type'] == 'radio') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <?php foreach ($option['option_value'] as $option_value) { ?>
@@ -217,7 +217,7 @@
             <?php if ($option['type'] == 'checkbox') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <?php foreach ($option['option_value'] as $option_value) { ?>
@@ -235,7 +235,7 @@
             <?php if ($option['type'] == 'image') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <table class="option-image">
@@ -257,7 +257,7 @@
             <?php if ($option['type'] == 'text') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <input type="text" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['option_value']; ?>" />
@@ -267,7 +267,7 @@
             <?php if ($option['type'] == 'textarea') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <textarea name="option[<?php echo $option['product_option_id']; ?>]" cols="40" rows="5"><?php echo $option['option_value']; ?></textarea>
@@ -277,7 +277,7 @@
             <?php if ($option['type'] == 'file') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <input type="button" value="<?php echo $button_upload; ?>" id="button-option-<?php echo $option['product_option_id']; ?>" class="button">
@@ -288,30 +288,30 @@
             <?php if ($option['type'] == 'date') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <input type="text" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['option_value']; ?>" class="date" />
               </div>
               <br />
             <?php } ?>
-            <?php if ($option['type'] == 'datetime') { ?>
-              <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
-                <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
-                <?php } ?>
-                <b><?php echo $option['name']; ?>:</b><br />
-                <input type="text" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['option_value']; ?>" class="datetime" />
-              </div>
-              <br />
-            <?php } ?>
             <?php if ($option['type'] == 'time') { ?>
               <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
                 <?php if ($option['required']) { ?>
-                  <span class="required">*</span>
+                  <span class="required">* </span>
                 <?php } ?>
                 <b><?php echo $option['name']; ?>:</b><br />
                 <input type="text" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['option_value']; ?>" class="time" />
+              </div>
+              <br />
+            <?php } ?>
+            <?php if ($option['type'] == 'datetime') { ?>
+              <div id="option-<?php echo $option['product_option_id']; ?>" class="option">
+                <?php if ($option['required']) { ?>
+                  <span class="required">* </span>
+                <?php } ?>
+                <b><?php echo $option['name']; ?>:</b><br />
+                <input type="text" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['option_value']; ?>" class="datetime" />
               </div>
               <br />
             <?php } ?>
@@ -320,9 +320,6 @@
       <?php } ?>
       <div class="cart">
         <div>
-          <?php if ($is_quote) { ?>
-            <a href="<?php echo $is_quote; ?>" class="button"><?php echo $button_quote; ?></a>
-          <?php } ?>
           <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
             <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
           <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
@@ -332,7 +329,11 @@
             <input type="text" name="quantity" id="quantity" class="quantity-input" size="2" value="<?php echo $minimum; ?>" readonly="readonly" />
             <b class="add-prod-count" onclick="addProductCount();"></b>
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-            <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
+            <?php if ($is_quote) { ?>
+              <a href="<?php echo $is_quote; ?>" class="button" style="margin-left:15px;"><?php echo $button_quote; ?></a>
+            <?php } else { ?>
+              <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
+            <?php } ?>
           <?php } ?>
           <span>
             <a onclick="addToWishList('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>

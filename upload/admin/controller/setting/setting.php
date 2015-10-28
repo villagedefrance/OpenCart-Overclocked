@@ -189,12 +189,12 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_image_newsthumb'] = $this->language->get('entry_image_newsthumb');
 		$this->data['entry_image_newspopup'] = $this->language->get('entry_image_newspopup');
 		$this->data['entry_image_cart'] = $this->language->get('entry_image_cart');
+		$this->data['entry_ftp_status'] = $this->language->get('entry_ftp_status');
 		$this->data['entry_ftp_host'] = $this->language->get('entry_ftp_host');
 		$this->data['entry_ftp_port'] = $this->language->get('entry_ftp_port');
 		$this->data['entry_ftp_username'] = $this->language->get('entry_ftp_username');
 		$this->data['entry_ftp_password'] = $this->language->get('entry_ftp_password');
 		$this->data['entry_ftp_root'] = $this->language->get('entry_ftp_root');
-		$this->data['entry_ftp_status'] = $this->language->get('entry_ftp_status');
 		$this->data['entry_mail_protocol'] = $this->language->get('entry_mail_protocol');
 		$this->data['entry_mail_parameter'] = $this->language->get('entry_mail_parameter');
 		$this->data['entry_smtp_host'] = $this->language->get('entry_smtp_host');
@@ -219,6 +219,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_error_display'] = $this->language->get('entry_error_display');
 		$this->data['entry_error_log'] = $this->language->get('entry_error_log');
 		$this->data['entry_error_filename'] = $this->language->get('entry_error_filename');
+		$this->data['entry_mail_filename'] = $this->language->get('entry_mail_filename');
+		$this->data['entry_quote_filename'] = $this->language->get('entry_quote_filename');
 		$this->data['entry_secure'] = $this->language->get('entry_secure');
 		$this->data['entry_shared'] = $this->language->get('entry_shared');
 		$this->data['entry_robots'] = $this->language->get('entry_robots');
@@ -409,6 +411,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_error_filename'] = $this->error['error_filename'];
 		} else {
 			$this->data['error_error_filename'] = '';
+		}
+
+		if (isset($this->error['mail_filename'])) {
+			$this->data['error_mail_filename'] = $this->error['mail_filename'];
+		} else {
+			$this->data['error_mail_filename'] = '';
+		}
+
+		if (isset($this->error['quote_filename'])) {
+			$this->data['error_quote_filename'] = $this->error['quote_filename'];
+		} else {
+			$this->data['error_quote_filename'] = '';
 		}
 
 		if (isset($this->error['file_max_size'])) {
@@ -1229,6 +1243,12 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// FTP
+		if (isset($this->request->post['config_ftp_status'])) {
+			$this->data['config_ftp_status'] = $this->request->post['config_ftp_status'];
+		} else {
+			$this->data['config_ftp_status'] = $this->config->get('config_ftp_status');
+		}
+
 		if (isset($this->request->post['config_ftp_host'])) {
 			$this->data['config_ftp_host'] = $this->request->post['config_ftp_host'];
 		} elseif ($this->config->get('config_ftp_host')) {
@@ -1261,12 +1281,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_ftp_root'] = $this->request->post['config_ftp_root'];
 		} else {
 			$this->data['config_ftp_root'] = $this->config->get('config_ftp_root');
-		}
-
-		if (isset($this->request->post['config_ftp_status'])) {
-			$this->data['config_ftp_status'] = $this->request->post['config_ftp_status'];
-		} else {
-			$this->data['config_ftp_status'] = $this->config->get('config_ftp_status');
 		}
 
 		// Mail
@@ -1464,6 +1478,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_error_filename'] = $this->config->get('config_error_filename');
 		}
 
+		if (isset($this->request->post['config_mail_filename'])) {
+			$this->data['config_mail_filename'] = $this->request->post['config_mail_filename'];
+		} else {
+			$this->data['config_mail_filename'] = $this->config->get('config_mail_filename');
+		}
+
+		if (isset($this->request->post['config_quote_filename'])) {
+			$this->data['config_quote_filename'] = $this->request->post['config_quote_filename'];
+		} else {
+			$this->data['config_quote_filename'] = $this->config->get('config_quote_filename');
+		}
+
 		$this->template = 'setting/setting.tpl';
 		$this->children = array(
 			'common/header',
@@ -1592,8 +1618,16 @@ class ControllerSettingSetting extends Controller {
 			}
 		}
 
-		if (!$this->request->post['config_error_filename']) {
+		if (!$this->request->post['config_error_filename'] && preg_match('/\.txt$/i', $this->request->post['config_error_filename'])) {
 			$this->error['error_filename'] = $this->language->get('error_error_filename');
+		}
+
+		if (!$this->request->post['config_mail_filename'] && preg_match('/\.txt$/i', $this->request->post['config_mail_filename'])) {
+			$this->error['mail_filename'] = $this->language->get('error_mail_filename');
+		}
+
+		if (!$this->request->post['config_quote_filename'] && preg_match('/\.txt$/i', $this->request->post['config_quote_filename'])) {
+			$this->error['quote_filename'] = $this->language->get('error_quote_filename');
 		}
 
 		if ($this->request->post['config_file_max_size'] < 100000) {

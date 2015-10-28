@@ -59,6 +59,7 @@ $_['button_backup']          	= 'Backup';
 $_['button_restore']        		= 'Restore';
 $_['button_repair']        		= 'Repair';
 $_['button_upload']       		= 'Upload';
+$_['button_download']			= 'Download';
 $_['button_submit']          	= 'Submit';
 $_['button_invoice']          	= 'Print Invoice';
 $_['button_add_address']       	= 'Add Address';

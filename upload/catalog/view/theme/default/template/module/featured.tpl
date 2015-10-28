@@ -46,7 +46,11 @@
           <div style="padding:2px 0px;"><a href="<?php echo $product['href']; ?>" class="button"><?php echo $button_view; ?></a></div>
         <?php } ?>
         <?php if ($addproduct) { ?>
-          <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
+          <?php if ($product['quote']) { ?>
+            <div class="cart"><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></div>
+          <?php } else { ?>
+            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
+          <?php } ?>
         <?php } ?>
       </div>
     <?php } ?>
@@ -99,7 +103,11 @@
           <div style="padding:2px 0px;"><a href="<?php echo $product['href']; ?>" class="button"><?php echo $button_view; ?></a></div>
         <?php } ?>
         <?php if ($addproduct) { ?>
-          <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
+          <?php if ($product['quote']) { ?>
+            <div class="cart"><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></div>
+          <?php } else { ?>
+            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
+          <?php } ?>
         <?php } ?>
       </div>
     <?php } ?>

@@ -489,7 +489,7 @@ class ControllerProductProduct extends Controller {
 
 			// Quote
 			if ($product_info['quote']) {
-				$this->data['is_quote'] = $this->url->link('information/contact');
+				$this->data['is_quote'] = $this->url->link('information/quote', '', 'SSL');
 			} else {
 				$this->data['is_quote'] = false;
 			}

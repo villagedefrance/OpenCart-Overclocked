@@ -155,6 +155,7 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
+		// Error log
 		$error_log_file = DIR_LOGS . $this->config->get('config_error_filename');
 
 		if (file_exists($error_log_file)) {
@@ -165,8 +166,19 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['open_error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
 
+		// Quote log
+		$quote_log_file = DIR_LOGS . $this->config->get('config_quote_filename');
+
+		if (file_exists($quote_log_file)) {
+			$this->data['quote_log_status'] = file_get_contents($quote_log_file, FILE_USE_INCLUDE_PATH, null);
+		} else {
+			$this->data['quote_log_status'] = '';
+		}
+
+		$this->data['open_quote_log'] = $this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Email log
-		$email_log_file = DIR_SYSTEM . 'mails/mails.txt';
+		$email_log_file = DIR_LOGS . $this->config->get('config_mail_filename');
 
 		if (file_exists($email_log_file)) {
 			$this->data['mail_log_status'] = file_get_contents($email_log_file, FILE_USE_INCLUDE_PATH, null);
