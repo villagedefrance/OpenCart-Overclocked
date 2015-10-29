@@ -11,8 +11,8 @@ class ControllerInformationContact extends Controller {
 			unset($this->session->data['captcha']);
 
 			// Log mail
-			$mail_log = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n";
-			$mail_log .= $this->request->post['enquiry'] . "\n";
+			$mail_log = $this->request->post['name'] . " ( " . $this->request->post['email'] . " ) :\n\n";
+			$mail_log .= $this->request->post['enquiry'] . "\n\n";
 			$mail_log .= "------------------------------------------------------------- \n";
 
 			$mail_file = DIR_LOGS . $this->config->get('config_mail_filename');

@@ -158,5 +158,31 @@ class ModelReportProduct extends Model {
 			return 0;
 		}
 	}
+
+	public function getProducts($data = array()) {
+		$sql = "SELECT p.product_id, p.cost, p.price, pd.name AS name FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.price > '0' ORDER BY pd.name ASC";
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+
+	public function getTotalProducts() {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product");
+
+		return $query->row['total'];
+	}
 }
 ?>

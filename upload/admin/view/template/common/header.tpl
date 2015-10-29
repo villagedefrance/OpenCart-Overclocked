@@ -284,6 +284,7 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_product; ?></a>
             <ul>
+              <li><a href="<?php echo $report_product_markup; ?>"><?php echo $text_report_product_markup; ?></a></li>
               <li><a href="<?php echo $report_product_viewed; ?>"><?php echo $text_report_product_viewed; ?></a></li>
               <li><a href="<?php echo $report_product_purchased; ?>"><?php echo $text_report_product_purchased; ?></a></li>
             </ul>
