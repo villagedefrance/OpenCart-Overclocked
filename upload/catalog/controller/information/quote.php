@@ -65,12 +65,17 @@ class ControllerInformationQuote extends Controller {
 
 		$this->data['text_quote'] = $this->language->get('text_quote');
 		$this->data['text_location'] = $this->language->get('text_location');
+		$this->data['text_file_upload'] = $this->language->get('text_file_upload');
+		$this->data['text_file_size'] = sprintf($this->language->get('text_file_size'), $this->config->get('config_file_max_size'));
+		$this->data['text_none'] = $this->language->get('text_none');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_product'] = $this->language->get('entry_product');
 		$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
+
+		$this->data['button_upload'] = $this->language->get('button_upload');
 
 		$this->data['hide_location'] = $this->config->get('config_our_location');
 
@@ -84,12 +89,6 @@ class ControllerInformationQuote extends Controller {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
-		}
-
-		if (isset($this->error['product'])) {
-			$this->data['error_product'] = $this->error['product'];
-		} else {
-			$this->data['error_product'] = '';
 		}
 
 		if (isset($this->error['enquiry'])) {
@@ -267,10 +266,6 @@ class ControllerInformationQuote extends Controller {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if (!isset($this->request->post['product'])) {
-			$this->error['product'] = $this->language->get('error_product');
-		}
-
 		if (!isset($this->request->post['enquiry']) || (utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
 			$this->error['enquiry'] = $this->language->get('error_enquiry');
 		}
@@ -296,6 +291,76 @@ class ControllerInformationQuote extends Controller {
 		$this->session->data['captcha'] = $captcha->getCode();
 
 		$captcha->showImage($font);
+	}
+
+	public function upload() {
+		$this->language->load('information/quote');
+
+		$json = array();
+
+		if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {
+			$filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8')));
+
+			if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 64)) {
+				$json['error'] = $this->language->get('error_filename');
+			}
+
+			// Allowed file extension types
+			$allowed = array();
+
+			$filetypes = explode("\n", str_replace(array("\r\n", "\r"), "\n", $this->config->get('config_file_extension_allowed')));
+
+			foreach ($filetypes as $filetype) {
+				$allowed[] = trim($filetype);
+			}
+
+			if (!in_array(substr(strrchr($filename, '.'), 1), $allowed)) {
+				$json['error'] = $this->language->get('error_filetype');
+			}
+
+			// Allowed file mime types
+			$allowed = array();
+
+			$filetypes = explode("\n", str_replace(array("\r\n", "\r"), "\n", $this->config->get('config_file_mime_allowed')));
+
+			foreach ($filetypes as $filetype) {
+				$allowed[] = trim($filetype);
+			}
+
+			if (!in_array($this->request->files['file']['type'], $allowed)) {
+				$json['error'] = $this->language->get('error_filetype');
+			}
+
+			// Check to see if any PHP files are trying to be uploaded
+ 			$content = file_get_contents($this->request->files['file']['tmp_name']);
+
+			if (preg_match('/\<\?php/i', $content)) {
+				$json['error'] = $this->language->get('error_filetype');
+ 			}
+
+			if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
+				$json['error'] = $this->language->get('error_upload_' . $this->request->files['file']['error']);
+			}
+
+		} else {
+			$json['error'] = $this->language->get('error_upload');
+		}
+
+		if (!$json && is_uploaded_file($this->request->files['file']['tmp_name']) && file_exists($this->request->files['file']['tmp_name'])) {
+			$file = basename($filename) . '.' . hash_rand('md5');
+
+			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
+
+			// Hide the uploaded file name so people can not link to it directly.
+			$this->load->model('tool/upload');
+
+			$json['code'] = $this->model_tool_upload->addUpload($filename, $file);
+
+			$json['success'] = $this->language->get('text_upload');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
 ?>

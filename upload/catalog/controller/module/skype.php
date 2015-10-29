@@ -1,6 +1,6 @@
-<?php
-class ControllerModuleGoogleTalk extends Controller {
-	private $_name = 'google_talk';
+<?php  
+class ControllerModuleSkype extends Controller {
+	private $_name = 'skype';
 
 	protected function index($setting) {
 		static $module = 0;
@@ -17,7 +17,9 @@ class ControllerModuleGoogleTalk extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->data['code'] = html_entity_decode($this->config->get($this->_name . '_code'), ENT_QUOTES, 'UTF-8');
+		$this->data['skypename'] = $this->config->get($this->_name . '_skypename');
+
+		$this->data['mode'] = $setting['mode'];
 
 		$this->data['module'] = $module++;
 

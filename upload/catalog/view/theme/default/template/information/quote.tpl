@@ -32,8 +32,9 @@
           <br />
           <b><?php echo $entry_product; ?></b><br />
           <select name="product">
+            <option value="0"><?php echo $text_none; ?></option>
             <?php foreach ($products as $product) { ?>
-              <?php if ($product == $product['name']) { ?>
+              <?php if ($product['name'] == $product) { ?>
                 <option value="<?php echo $product['name']; ?>" selected="selected"> <?php echo $product['name']; ?> </option>
               <?php } else { ?>
                 <option value="<?php echo $product['name']; ?>"> <?php echo $product['name']; ?> </option>
@@ -41,10 +42,7 @@
             <?php } ?>
           </select>
           <br />
-		  <?php if ($error_product) { ?>
-            <span class="error"><?php echo $error_product; ?></span>
-          <?php } ?>
-          <br />
+		  <br />
           <b><?php echo $entry_enquiry; ?></b><br />
           <textarea name="enquiry" cols="40" rows="10" style="width:99%;"><?php echo $enquiry; ?></textarea>
           <br />
@@ -72,29 +70,75 @@
             <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>
           </div>
         </div>
-        <?php if (!$hide_location) { ?>
         <div class="info-right">
-          <h2><?php echo $text_location; ?></h2>
+          <h2><?php echo $text_file_upload; ?></h2>
           <br />
-          <img src="catalog/view/theme/<?php echo $template; ?>/image/location/address.png" alt="" /> &nbsp; <b><?php echo $store; ?></b><br />
-          <?php echo $address; ?><br />
+          <div id="quote-file-upload">
+            <input type="button" value="<?php echo $button_upload; ?>" id="button-quote-upload" class="button">
+            <input type="hidden" name="quote_file" value="" />
+          </div>
           <br />
-          <?php if ($telephone) { ?>
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" /> &nbsp; <?php echo $telephone; ?><br />
+		  <?php echo $text_file_size; ?>
+          <br />
+          <br />
+          <br />
+          <br />
+          <?php if (!$hide_location) { ?>
+            <h2><?php echo $text_location; ?></h2>
+            <br />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/address.png" alt="" /> &nbsp; <b><?php echo $store; ?></b><br />
+            <?php echo $address; ?><br />
+            <br />
+            <?php if ($telephone) { ?>
+              <img src="catalog/view/theme/<?php echo $template; ?>/image/location/phone.png" alt="" /> &nbsp; <?php echo $telephone; ?><br />
+              <br />
+            <?php } ?>
+            <?php if ($fax) { ?>
+              <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
+			  <br />
+            <?php } ?>
             <br />
           <?php } ?>
-          <?php if ($fax) { ?>
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
-			<br />
-          <?php } ?>
+          <br />
         </div>
-        <?php } ?>
       </div>
     </div>
   </form>
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
+
+<script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
+
+<script type="text/javascript"><!--
+new AjaxUpload('#button-quote-upload', {
+	action: 'index.php?route=information/quote/upload',
+	name: 'file',
+	autoSubmit: true,
+	responseType: 'json',
+	onSubmit: function(file, extension) {
+		$('#button-quote-upload').after('<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" class="loading" style="padding-left:5px;" />');
+		$('#button-quote-upload').attr('disabled', true);
+	},
+	onComplete: function(file, json) {
+		$('#button-quote-upload').attr('disabled', false);
+
+		$('.error').remove();
+
+		if (json['success']) {
+			alert(json['success']);
+
+			$('input[name=\'quote_file\']').attr('value', json['file']);
+		}
+
+		if (json['error']) {
+			$('#quote-file-upload').after('<span class="error">' + json['error'] + '</span>');
+		}
+
+		$('.loading').remove();
+	}
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $('#captcha-image').load(function(event) { 

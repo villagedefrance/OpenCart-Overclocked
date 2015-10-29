@@ -178,7 +178,7 @@ $_['entry_secure']               			= 'Use SSL:<br /><span class="help">To use S
 $_['entry_shared']               			= 'Use Shared Sessions:<br /><span class="help">Try to share the session cookie between stores so the cart can be passed between different domains.</span>';
 $_['entry_robots']             			= 'Robots:<br /><span class="help">A list of web crawler user agents that shared sessions will not be used with. Use separate lines for each user agent.</span>';
 $_['entry_password']					= 'Allow Forgotten Password:<br /><span class="help">Allow forgotten password to be used for the admin. This will be disabled automatically if the system detects a hack attempt.</span>';
-$_['entry_file_max_size']				= 'Maximum File Size:<br /><span class="help">Set upload file size limit for images in library.</span>';
+$_['entry_file_max_size']				= 'Maximum File Size:<br /><span class="help">Set the upload file size limit.</span>';
 $_['entry_file_extension_allowed'] 	= 'Allowed File Extensions:<br /><span class="help">Add which file extensions are allowed to be uploaded. Use a new line for each value.</span>';
 $_['entry_file_mime_allowed']  		= 'Allowed File Mime Types:<br /><span class="help">Add which file mime types are allowed to be uploaded. Use a new line for each value.</span>';
 

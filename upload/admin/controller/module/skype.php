@@ -1,7 +1,7 @@
 <?php
-class ControllerModuleGoogleTalk extends Controller {
+class ControllerModuleSkype extends Controller {
 	private $error = array();
-	private $_name = 'google_talk';
+	private $_name = 'skype';
 
 	public function index() {
 		$this->language->load('module/' . $this->_name);
@@ -28,6 +28,8 @@ class ControllerModuleGoogleTalk extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_call'] = $this->language->get('text_call');
+		$this->data['text_chat'] = $this->language->get('text_chat');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -38,8 +40,9 @@ class ControllerModuleGoogleTalk extends Controller {
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 
-		$this->data['entry_code'] = $this->language->get('entry_code');
+		$this->data['entry_skypename'] = $this->language->get('entry_skypename');
 
+		$this->data['entry_mode'] = $this->language->get('entry_mode');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -57,23 +60,23 @@ class ControllerModuleGoogleTalk extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
- 		if (isset($this->error['code'])) {
-			$this->data['error_code'] = $this->error['code'];
+ 		if (isset($this->error['skypename'])) {
+			$this->data['error_skypename'] = $this->error['skypename'];
 		} else {
-			$this->data['error_code'] = '';
+			$this->data['error_skypename'] = '';
 		}
 
   		$this->data['breadcrumbs'] = array();
 
    		$this->data['breadcrumbs'][] = array(
-       		'text'   	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+       		'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
-       		'text'  	=> $this->language->get('text_module'),
-			'href' 		=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+       		'text'		=> $this->language->get('text_module'),
+			'href'		=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
       		'separator' => ' :: '
    		);
 
@@ -114,10 +117,10 @@ class ControllerModuleGoogleTalk extends Controller {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
 		}
 
-		if (isset($this->request->post[$this->_name . '_code'])) {
-			$this->data[$this->_name . '_code'] = $this->request->post[$this->_name . '_code'];
+		if (isset($this->request->post[$this->_name . '_skypename'])) {
+			$this->data[$this->_name . '_skypename'] = $this->request->post[$this->_name . '_skypename'];
 		} else {
-			$this->data[$this->_name . '_code'] = $this->config->get($this->_name . '_code');
+			$this->data[$this->_name . '_skypename'] = $this->config->get($this->_name . '_skypename');
 		}
 
 		$this->data['modules'] = array();
@@ -146,8 +149,8 @@ class ControllerModuleGoogleTalk extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post[$this->_name . '_code']) {
-			$this->error['code'] = $this->language->get('error_code');
+		if (!$this->request->post[$this->_name . '_skypename']) {
+			$this->error['skypename'] = $this->language->get('error_skypename');
 		}
 
 		if (!$this->error) {

@@ -141,6 +141,20 @@ class ControllerCommonHome extends Controller {
 			unlink($file);
 		}
 
+		// Check upload directory is writeable
+		$file = DIR_UPLOAD . 'test';
+		$handle = fopen($file, 'a+');
+		fwrite($handle, '');
+		fclose($handle);
+
+		if (!file_exists($file)) {
+			$this->data['error_upload'] = sprintf($this->language->get('error_upload'), DIR_UPLOAD);
+		} else {
+			$this->data['error_upload'] = '';
+
+			unlink($file);
+		}
+
 		// Check logs directory is writeable
 		$file = DIR_LOGS . 'test';
 		$handle = fopen($file, 'a+');

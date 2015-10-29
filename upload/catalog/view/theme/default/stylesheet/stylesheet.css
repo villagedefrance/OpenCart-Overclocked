@@ -2226,15 +2226,16 @@ ul.box-filter > li ul {
 }
 .contact-info .info-left {
 	float: left;
-	width: 57%;
+	width: 56%;
 	min-width: 270px;
+	margin-left: 5px;
 	margin-right: 15px;
 }
 .contact-info .info-right {
 	float: left;
-	width: 37%;
+	width: 36%;
 	min-width: 270px;
-	margin-left: 15px;
+	margin-left: 25px;
 }
 /* Sitemap */
 .sitemap-info {
