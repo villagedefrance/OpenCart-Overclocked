@@ -84,6 +84,7 @@
           </ul>
         </li>
         <li class="last-line"><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+        <li class="last-line"><a href="<?php echo $quote; ?>"><?php echo $text_quote; ?></a></li>
         <li class="last-line"><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
       </ul>
     </div>
