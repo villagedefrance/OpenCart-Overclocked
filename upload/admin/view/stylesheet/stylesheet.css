@@ -581,6 +581,11 @@ ul.menu ul {
 .box > .heading .event a {
 	margin-left: 10px;
 }
+.box > .content {
+	min-height: 300px;
+	padding-top: 10px;
+	overflow: auto;
+}
 .box > .content h2 {
 	color: #FF802B;
 	font-size: 15px;
@@ -596,11 +601,6 @@ ul.menu ul {
 	line-height: 25px;
 	border-bottom: 1px dotted #444;
 	padding: 0px 0px 5px 1px;
-}
-.box > .content {
-	min-height: 300px;
-	padding-top: 10px;
-	overflow: auto;
 }
 /* Box Report */
 .box > .content .report {
@@ -624,11 +624,6 @@ ul.menu ul {
 	border-radius: 2px;
 	margin-bottom: 10px;
 }
-.box > .content .report .left {
-	float: left;
-	margin: 0px 25px 0px 10px;
-	text-align: left;
-}
 .box > .content .report .right {
 	float: right;
 	margin: 0px 10px 0px 25px;
@@ -638,6 +633,11 @@ ul.menu ul {
 	float: left;
 	margin: 0px 25px 0px 10px;
 	text-align: center;
+}
+.box > .content .report .left {
+	float: left;
+	margin: 0px 25px 0px 10px;
+	text-align: left;
 }
 .box > .content .report .left img {
 	position: relative;
@@ -1117,7 +1117,7 @@ table.tool > tr > td {
 	background: #E4EEF7;
 }
 /* Progress Bar */
-.progress-bar {
+.progress-bar-blue {
 	border: 1px solid #46719F;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -1130,6 +1130,21 @@ table.tool > tr > td {
 	background-image: -ms-linear-gradient(top, #62A1D7, #4691D2);
 	background-image: -o-linear-gradient(top, #62A1D7, #4691D2);
 	background-image: linear-gradient(to bottom, #62A1D7, #4691D2);
+	height: 14px;
+}
+.progress-bar-red {
+	border: 1px solid #CE5954;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+	background-color: #E3726E;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#E3726E), to(#DE5954));
+	background-image: -webkit-linear-gradient(top, #E3726E, #DE5954);
+	background-image: -moz-linear-gradient(top, #E3726E, #DE5954);
+	background-image: -ms-linear-gradient(top, #E3726E, #DE5954);
+	background-image: -o-linear-gradient(top, #E3726E, #DE5954);
+	background-image: linear-gradient(to bottom, #E3726E, #DE5954);
 	height: 14px;
 }
 /* Pagination */

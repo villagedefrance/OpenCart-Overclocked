@@ -31,7 +31,7 @@
                 <td class="left"><?php echo $country['country']; ?></td>
                 <td class="center"><?php echo $country['customers']; ?></td>
                 <td class="center"><?php echo number_format(($country['customers'] / $total_store_customers) * 100, 0); ?> %</td>
-                <td class="left"><div class="progress-bar" style="width:<?php echo (($country['customers'] / $total_store_customers) * 300); ?>px;"></div></td>
+                <td class="left"><div class="progress-bar-blue" style="width:<?php echo (($country['customers'] / $total_store_customers) * 300); ?>px;"></div></td>
               </tr>
             <?php } ?>
           <?php } else { ?>

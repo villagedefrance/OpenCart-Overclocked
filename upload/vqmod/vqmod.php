@@ -599,7 +599,7 @@ class VQModLog {
 		}
 
 		if (VQMod::$fileModding) {
-			$this->_logs[$hash]['log'][] = PHP_EOL . 'File Name    : ' . VQMod::$fileModding;
+			$this->_logs[$hash]['log'][] = PHP_EOL . 'File Name : ' . VQMod::$fileModding;
 		}
 
 		$this->_logs[$hash]['log'][] = $data;
