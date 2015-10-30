@@ -51,7 +51,7 @@ $_['column_action']				= 'Action';
 $_['entry_name']             		= 'Product Name:';
 $_['entry_meta_description'] 	= 'Meta Tag Description:<br /><span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
 $_['entry_meta_keyword'] 	= 'Meta Tag Keywords:<br /><span class="help">Usually ignored by search engines.<br />SEO importance: Low.</span>';
-$_['entry_description']      	= 'Description:';
+$_['entry_description']      	= 'Product Description:';
 $_['entry_tag']          	 		= 'Product Tags:<br /><span class="help">Comma separated</span>';
 
 $_['entry_model']            		= 'Model:';
@@ -132,7 +132,7 @@ $_['text_length_year']       	= 'Year';
 
 // Error
 $_['error_permission']       		= 'Warning: You do not have permission to modify <b>Products</b> !';
-$_['error_warning']          		= 'Warning: Please check the form carefully for errors!'; 
+$_['error_warning']          		= 'Warning: Please check the form carefully for errors!';
 $_['error_name']             		= 'Product Name must be greater than 3 and less than 255 characters!';
 $_['error_model']            		= 'Product Model must be greater than 3 and less than 64 characters!';
 ?>

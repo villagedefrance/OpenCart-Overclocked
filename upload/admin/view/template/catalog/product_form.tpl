@@ -44,7 +44,7 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-              <td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" size="50" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" />
+              <td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" size="40" />
               <?php if (isset($error_name[$language['language_id']])) { ?>
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
               <?php } ?></td>

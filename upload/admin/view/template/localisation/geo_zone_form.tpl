@@ -22,14 +22,14 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="name" value="<?php echo $name; ?>" />
+            <td><input type="text" name="name" value="<?php echo $name; ?>" size="30" />
             <?php if ($error_name) { ?>
               <span class="error"><?php echo $error_name; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_description; ?></td>
-            <td><input type="text" name="description" value="<?php echo $description; ?>" />
+            <td><input type="text" name="description" value="<?php echo $description; ?>" size="40" />
             <?php if ($error_description) { ?>
               <span class="error"><?php echo $error_description; ?></span>
             <?php } ?></td>

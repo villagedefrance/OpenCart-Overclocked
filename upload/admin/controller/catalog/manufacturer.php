@@ -352,6 +352,8 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
+		$this->data['entry_description'] = $this->language->get('entry_description');
+
 		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_image'] = $this->language->get('entry_image');
@@ -363,6 +365,9 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_data'] = $this->language->get('tab_data');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -393,8 +398,8 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -431,14 +436,6 @@ class ControllerCatalogManufacturer extends Controller {
 
 		if (isset($this->request->get['manufacturer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($this->request->get['manufacturer_id']);
-		}
-
-		if (isset($this->request->post['name'])) {
-			$this->data['name'] = $this->request->post['name'];
-		} elseif (!empty($manufacturer_info)) {
-			$this->data['name'] = $manufacturer_info['name'];
-		} else {
-			$this->data['name'] = '';
 		}
 
 		$this->load->model('localisation/language');
@@ -527,6 +524,10 @@ class ControllerCatalogManufacturer extends Controller {
 			if ((utf8_strlen($value['name']) < 2) || (utf8_strlen($value['name']) > 128)) {
 				$this->error['name'][$language_id] = $this->language->get('error_name');
 			}
+		}
+
+		if ($this->error && !isset($this->error['warning'])) {
+			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
 		if (!$this->error) {

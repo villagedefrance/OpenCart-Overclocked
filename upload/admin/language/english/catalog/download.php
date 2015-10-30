@@ -21,7 +21,7 @@ $_['entry_update']     		= 'Push to Previous Customers:<br /><span class="help">
 
 // Error
 $_['error_permission'] 		= 'Warning: You do not have permission to modify <b>Downloads</b> !';
-$_['error_name']       		= 'Download Name must be between 3 and 64 characters!';
+$_['error_name']       		= 'Download Name must be between 3 and 128 characters!';
 $_['error_upload']    			= 'Upload required!';
 $_['error_filename']  			= 'File Name must be between 3 and 128 characters!';
 $_['error_exists']     			= 'File does not exist!';
