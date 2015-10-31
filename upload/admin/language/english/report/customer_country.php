@@ -11,7 +11,4 @@ $_['column_graph']    		= 'Graph';
 
 // Button
 $_['button_exit'] 				= 'Exit';
-
-// Error
-$_['error_permission']        = 'Warning: You do not have permission to access <b>Customer Countries Report</b> !';
 ?>

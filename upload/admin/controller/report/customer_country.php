@@ -7,10 +7,6 @@ class ControllerReportCustomerCountry extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		if (!$this->user->hasPermission('access', 'report/customer_country')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
 		} else {
@@ -115,12 +111,6 @@ class ControllerReportCustomerCountry extends Controller {
 		$this->load->model('sale/customer');
 
 		$this->data['total_store_customers'] = $this->model_sale_customer->getTotalCustomers(0);
-
-		if (isset($this->error['warning'])) {
-			$this->data['error_warning'] = $this->error['warning'];
-		} else {
-			$this->data['error_warning'] = '';
-		}
 
 		$url = '';
 

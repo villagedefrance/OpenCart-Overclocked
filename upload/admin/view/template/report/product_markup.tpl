@@ -103,6 +103,11 @@ function filter() {
 //--></script>
 
 <script type="text/javascript"><!--
+$('#print-report').prepend('<a class="print-preview">Print this page</a>');
+$('a.print-preview').printPreview();
+//--></script>
+
+<script type="text/javascript"><!--
 $('#form input').keydown(function(e) {
 	if (e.keyCode == 13) { filter(); }
 });
