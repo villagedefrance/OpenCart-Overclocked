@@ -19,7 +19,7 @@ $_['column_action']      	= 'Action';
 
 // Entry
 $_['entry_name']         		= 'Manufacturer\'s Name:';
-$_['entry_definition']			= 'Manufacturer\'s Description:';
+$_['entry_description']		= 'Manufacturer\'s Description:';
 
 $_['entry_store']        		= 'Stores:';
 $_['entry_keyword']      	= 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
