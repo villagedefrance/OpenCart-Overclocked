@@ -170,9 +170,11 @@ class ControllerCommonHome extends Controller {
 		}
 
 		// Error log
-		$error_log_file = DIR_LOGS . $this->config->get('config_error_filename');
+		$error_filename = $this->config->get('config_error_filename');
 
-		if (file_exists($error_log_file)) {
+		$error_log_file = DIR_LOGS . $error_filename;
+
+		if (!empty($error_filename) && preg_match('/\.txt$/i', $error_filename) && file_exists($error_log_file)) {
 			$this->data['error_log_status'] = file_get_contents($error_log_file, FILE_USE_INCLUDE_PATH, null);
 		} else {
 			$this->data['error_log_status'] = '';
@@ -181,9 +183,11 @@ class ControllerCommonHome extends Controller {
 		$this->data['open_error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Quote log
-		$quote_log_file = DIR_LOGS . $this->config->get('config_quote_filename');
+		$quote_filename = $this->config->get('config_quote_filename');
 
-		if (file_exists($quote_log_file)) {
+		$quote_log_file = DIR_LOGS . $quote_filename;
+
+		if (!empty($quote_filename) && preg_match('/\.txt$/i', $quote_filename) && file_exists($quote_log_file)) {
 			$this->data['quote_log_status'] = file_get_contents($quote_log_file, FILE_USE_INCLUDE_PATH, null);
 		} else {
 			$this->data['quote_log_status'] = '';
@@ -192,15 +196,19 @@ class ControllerCommonHome extends Controller {
 		$this->data['open_quote_log'] = $this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Email log
-		$email_log_file = DIR_LOGS . $this->config->get('config_mail_filename');
+		$mail_filename = $this->config->get('config_mail_filename');
 
-		if (file_exists($email_log_file)) {
-			$this->data['mail_log_status'] = file_get_contents($email_log_file, FILE_USE_INCLUDE_PATH, null);
+		$mail_log_file = DIR_LOGS . $mail_filename;
+
+		if (!empty($mail_filename) && preg_match('/\.txt$/i', $mail_filename) && file_exists($mail_log_file)) {
+			$this->data['mail_log_status'] = file_get_contents($mail_log_file, FILE_USE_INCLUDE_PATH, null);
 		} else {
 			$this->data['mail_log_status'] = '';
 		}
 
 		$this->data['open_mail_log'] = $this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL');
+
+		clearstatcache();
 
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();

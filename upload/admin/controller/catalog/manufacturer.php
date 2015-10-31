@@ -352,7 +352,7 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_description'] = $this->language->get('entry_description');
+		$this->data['entry_definition'] = $this->language->get('entry_definition');
 
 		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');

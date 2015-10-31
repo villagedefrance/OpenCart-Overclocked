@@ -16,7 +16,7 @@
     <?php if ($search) { ?>
       <input type="text" name="search" value="<?php echo $search; ?>" />
     <?php } else { ?>
-      <input type="text" name="search" value="<?php echo $search; ?>" onclick="this.value='';" onkeydown="this.style.color='000000'" style="color:#999;" />
+      <input type="text" name="search" value="<?php echo $search; ?>" onclick="this.value='';" onkeydown="this.style.color='111111'" style="color:#555;" />
     <?php } ?>
     <select name="category_id">
       <option value="0"><?php echo $text_category; ?></option>
@@ -214,19 +214,19 @@ function display(view) {
 			var offer = $(element).find('.promo-medium').html();
 
 			if (offer != null) {
-				html += '<div class="promo-medium">' + $(element).find('.promo-medium').html() + '</div>';
+				html += '  <div class="promo-medium">' + $(element).find('.promo-medium').html() + '</div>';
 			}
 
 			var image = $(element).find('.image').html();
 
 			if (image != null) {
-				html += '<div class="image">' + image + '</div>';
+				html += '  <div class="image">' + image + '</div>';
 			}
 
 			var price = $(element).find('.price').html();
 
 			if (price != null) {
-				html += '<div class="price">' + price + '</div>';
+				html += '  <div class="price">' + price + '</div>';
 			}
 
 			html += '  <div class="manufacturer">' + $(element).find('.manufacturer').html() + '</div>';
@@ -236,7 +236,7 @@ function display(view) {
 			var rating = $(element).find('.rating').html();
 
 			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
+				html += '  <div class="rating">' + rating + '</div>';
 			}
 
 			html += '</div>';

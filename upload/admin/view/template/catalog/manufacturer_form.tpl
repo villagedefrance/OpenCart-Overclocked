@@ -40,8 +40,8 @@
               <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $entry_description; ?></td>
-              <td><textarea name="manufacturer_description[<?php echo $language['language_id']; ?>][description]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($manufacturer_description[$language['language_id']]) ? $manufacturer_description[$language['language_id']]['description'] : ''; ?></textarea></td>
+              <td><?php echo $entry_definition; ?></td>
+              <td><textarea name="manufacturer_description[<?php echo $language['language_id']; ?>][definition]" id="description<?php echo $language['language_id']; ?>"><?php echo isset($manufacturer_description[$language['language_id']]) ? $manufacturer_description[$language['language_id']]['definition'] : ''; ?></textarea></td>
             </tr>
           </table>
         </div>
