@@ -9,15 +9,15 @@
   </ul>
 </div>
 <div id="content">
-<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-	<div class="terms">
+  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+    <div class="terms">
       <?php echo $text_terms; ?>
     </div>
-	<div class="buttons">
+    <div class="buttons">
       <div class="right">
         <input type="submit" value="<?php echo $button_continue; ?>" class="button" />
       </div>
-	</div>
-</form>
+    </div>
+  </form>
 </div>
 <?php echo $footer; ?>

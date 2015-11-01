@@ -2,13 +2,13 @@
 final class DBPostgre {
 	private $link;
 
-	public function __construct($hostname, $username, $password, $database) {
-		if (!$this->link = pg_connect('hostname=' . $hostname . ' username=' . $username . ' password='	. $password . ' database=' . $database)) {
+	public function __construct($hostname, $port = '5432', $username, $password, $database) {
+		if (!$this->link = @pg_connect('host=' . $hostname . ' port=' . $port . ' user=' . $username . ' password=' . $password . ' dbname=' . $database)) {
 			trigger_error('Error: Could not make a database link using ' . $username . '@' . $hostname);
 			exit();
 		}
 
-		if (!mysql_select_db($database, $this->link)) {
+		if (!@pg_connect($database, $this->link)) {
 			trigger_error('Error: Could not connect to database ' . $database);
 			exit();
 		}
@@ -27,12 +27,13 @@ final class DBPostgre {
 
 				while ($result = pg_fetch_assoc($resource)) {
 					$data[$i] = $result;
+
 					$i++;
 				}
 
 				pg_free_result($resource);
 
-				$query = new stdClass();
+				$query = new \stdClass();
 				$query->row = isset($data[0]) ? $data[0] : array();
 				$query->rows = $data;
 				$query->num_rows = $i;
@@ -40,11 +41,9 @@ final class DBPostgre {
 				unset($data);
 
 				return $query;
-
 			} else {
 				return true;
 			}
-
 		} else {
 			trigger_error('Error: ' . pg_result_error($this->link) . '<br />' . $sql);
 			exit();

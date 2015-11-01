@@ -347,9 +347,26 @@ class ControllerStep3 extends Controller {
 
 		if ($this->request->post['db_driver'] == 'mpdo') {
 			try {
-				new mPDO($this->request->post['db_hostname'], $this->request->post['db_username'], $this->request->post['db_password'], $this->request->post['db_database'], $this->request->post['db_port']);
+				new \PDO("mysql:host=" . $this->request->post['db_hostname'] . ";port=" . $this->request->post['db_port'] . ";dbname=" . $this->request->post['db_database'], $this->request->post['db_username'], $this->request->post['db_password'], array(\PDO::ATTR_PERSISTENT => true));
 			} catch(Exception $e) {
 				$this->error['warning'] = $e->getMessage();
+			}
+		}
+
+		if ($this->request->post['db_driver'] == 'pgsql') {
+			if (function_exists('pg_connect')) {
+				if (!$connection = @pg_connect('host=' . $this->request->post['db_hostname'] . ' user=' . $this->request->post['db_username'] . ' password=' . $this->request->post['db_password'] . ' dbname=' . $this->request->post['db_database'] . ' connect_timeout=5')) {
+					$this->error['warning'] = $this->language->get('error_db_connect');
+				} else {
+					if (!@pg_connect('dbname=' . $this->request->post['db_database'] . ' ' . $connection)) {
+						$this->error['warning'] = $this->language->get('error_db_not_exist');
+					}
+
+					pg_close($connection);
+				}
+
+			} else {
+				$this->error['db_driver'] = $this->language->get('error_db_pgsql');
 			}
 		}
 

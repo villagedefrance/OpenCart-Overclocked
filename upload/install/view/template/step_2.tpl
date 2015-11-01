@@ -17,10 +17,10 @@
     <fieldset>
       <table>
         <tr>
-          <th width="35%" style="text-align:left;"><b><?php echo $text_setting; ?></b></th>
-          <th width="25%" style="text-align:left;"><b><?php echo $text_current; ?></b></th>
-          <th width="25%" style="text-align:left;"><b><?php echo $text_required; ?></b></th>
-          <th width="15%" style="text-align:center;"><b><?php echo $text_status; ?></b></th>
+          <th width="35%" style="text-align:left;"><?php echo $text_setting; ?></th>
+          <th width="25%" style="text-align:left;"><?php echo $text_current; ?></th>
+          <th width="25%" style="text-align:left;"><?php echo $text_required; ?></th>
+          <th width="15%" style="text-align:center;"><?php echo $text_status; ?></th>
         </tr>
         <tr>
           <td><?php echo $text_version; ?></td>
@@ -94,10 +94,10 @@
     <fieldset>
       <table>
         <tr>
-          <th width="35%" style="text-align:left;"><b><?php echo $text_extension; ?></b></th>
-          <th width="25%" style="text-align:left;"><b><?php echo $text_current; ?></b></th>
-          <th width="25%" style="text-align:left;"><b><?php echo $text_required; ?></b></th>
-          <th width="15%" style="text-align:center;"><b><?php echo $text_status; ?></b></th>
+          <th width="35%" style="text-align:left;"><?php echo $text_extension; ?></th>
+          <th width="25%" style="text-align:left;"><?php echo $text_current; ?></th>
+          <th width="25%" style="text-align:left;"><?php echo $text_required; ?></th>
+          <th width="15%" style="text-align:center;"><?php echo $text_status; ?></th>
         </tr>
         <tr>
           <td><?php echo $text_db; ?></td>
@@ -205,8 +205,8 @@
     <fieldset>
       <table>
         <tr>
-          <th style="text-align:left;"><b><?php echo $text_file; ?></b></th>
-          <th style="text-align:left;"><b><?php echo $text_status; ?></b></th>
+          <th style="text-align:left;"><?php echo $text_file; ?></th>
+          <th style="text-align:left;"><?php echo $text_status; ?></th>
         </tr>
         <tr>
           <td><?php echo $config_catalog; ?></td>
@@ -234,8 +234,8 @@
     <fieldset>
       <table>
         <tr>
-          <th style="text-align:left;"><b><?php echo $text_directory; ?></b></th>
-          <th style="text-align:left;"><b><?php echo $text_status; ?></b></th>
+          <th style="text-align:left;"><?php echo $text_directory; ?></th>
+          <th style="text-align:left;"><?php echo $text_status; ?></th>
         </tr>
         <tr>
           <td><?php echo $cache . '/'; ?></td>

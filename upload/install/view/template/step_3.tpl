@@ -146,6 +146,8 @@
         <td><input type="checkbox" name="demo_data" value="1" /> <?php echo $text_remove; ?></td>
       </tr>
     </table>
+	<br />
+	<br />
     <p id="progress" style="display:none;"></p>
     </fieldset>
     <div id="start" class="buttons">
