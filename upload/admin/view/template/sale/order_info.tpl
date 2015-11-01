@@ -426,7 +426,7 @@
                 <input type="hidden" name="<?php echo $product['href_picked']; ?>" value="<?php echo $product['backordered']; ?>" />
               </td>
               <td class="left">
-                <input type="text" value="<?php echo $product['backordered']; ?>" name="pick-<?php echo $product['product_id']; ?>" class="status-backordered" maxlength="255" style="width:98%;" />
+                <input type="text" value="<?php echo $product['backordered']; ?>" name="pick-<?php echo $product['product_id']; ?>" class="status-backordered" maxlength="255" style="width:97%;" />
                 <input type="hidden" name="<?php echo $product['href_backordered']; ?>" />
               </td>
 			  <td id="pick-<?php echo $product['product_id']; ?>"></td>

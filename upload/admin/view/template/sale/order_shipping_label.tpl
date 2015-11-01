@@ -14,13 +14,7 @@
   <?php } ?>
   <table class="store" style="width:380px;">
     <tr>
-      <td>
-        <?php echo $order['store_name']; ?><br />
-        <?php echo $order['store_address']; ?><br />
-        <?php echo $order['store_telephone']; ?><br />
-        <?php echo $order['store_email']; ?><br />
-        <?php echo $order['store_url']; ?>
-      </td>
+      <td><?php echo $order['store_url']; ?></td>
     </tr>
   </table>
   <table class="address" style="width:380px;">

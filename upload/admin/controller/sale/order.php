@@ -2339,6 +2339,8 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_email'] = $this->language->get('text_email');
 		$this->data['text_phone'] = $this->language->get('text_phone');
 
+		$this->data['column_comment'] = $this->language->get('column_comment');
+
 		$this->load->model('sale/order');
 
 		$this->load->model('setting/setting');
@@ -2358,16 +2360,6 @@ class ControllerSaleOrder extends Controller {
 
 			if ($order_info) {
 				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
-
-				if ($store_info) {
-					$store_address = $store_info['config_address'];
-					$store_email = $store_info['config_email'];
-					$store_telephone = $store_info['config_telephone'];
-				} else {
-					$store_address = $this->config->get('config_address');
-					$store_email = $this->config->get('config_email');
-					$store_telephone = $this->config->get('config_telephone');
-				}
 
 				if ($order_info['shipping_address_format']) {
 					$format = $order_info['shipping_address_format'];
@@ -2405,11 +2397,7 @@ class ControllerSaleOrder extends Controller {
 
 				$this->data['orders'][] = array(
 					'order_id'	         		=> $order_id,
-					'store_name'         		=> $order_info['store_name'],
 					'store_url'          			=> rtrim($order_info['store_url'], '/'),
-					'store_address'     		=> nl2br($store_address),
-					'store_email'        		=> $store_email,
-					'store_telephone'    		=> $store_telephone,
 					'email'              			=> $order_info['email'],
 					'telephone'          		=> $order_info['telephone'],
 					'shipping_address'   		=> $shipping_address,
