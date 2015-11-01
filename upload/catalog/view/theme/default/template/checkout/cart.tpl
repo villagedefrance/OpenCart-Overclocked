@@ -25,6 +25,11 @@
   </h1>
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
     <div class="cart-info">
+    <?php if ($dob && $age_minimum > 0 && !$age_logged) { ?>
+      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_restriction; ?></div>
+    <?php } elseif ($dob && $age_minimum > 0 && !$age_checked) { ?>
+      <div class="attention" style="margin:0px 0px 15px 0px;"><?php echo $text_age_minimum; ?></div>
+    <?php } ?>
       <table>
         <thead>
           <tr>
@@ -222,7 +227,13 @@
     </table>
   </div>
   <div class="buttons">
-    <div class="right"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
+    <?php if ($age_minimum == 0) { ?>
+      <div class="right"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
+    <?php } elseif ($dob && $age_minimum > 0 && $age_checked) { ?>
+      <div class="right"><a href="<?php echo $checkout; ?>" class="button"><?php echo $button_checkout; ?></a></div>
+    <?php } else { ?>
+      <a href="<?php echo $login_register; ?>" class="button"><?php echo $button_login; ?></a>
+    <?php } ?>
     <div class="center"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_shopping; ?></a></div>
   </div>
   <?php echo $content_bottom; ?>

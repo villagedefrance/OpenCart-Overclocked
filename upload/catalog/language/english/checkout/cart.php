@@ -38,6 +38,10 @@ $_['text_trial']             		= '%s every %s %s for %s payments then ';
 $_['text_recurring']         		= '%s every %s %s';
 $_['text_length']            		= ' for %s payments';
 
+// Text Minimum Age
+$_['text_age_minimum'] 		= 'One or more products have a minimum age restriction. Please remove them to continue.';
+$_['text_age_restriction']		= 'One or more products have a minimum age restriction. Please <a href="%s">Login</a> or <a href="%s">Register</a>.';
+
 // Column
 $_['column_image']           	= 'Image';
 $_['column_name']            	= 'Product Name';

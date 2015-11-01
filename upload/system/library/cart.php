@@ -80,7 +80,7 @@ class Cart {
 
 									$option_data[] = array(
 										'product_option_id' 	=> $product_option_id,
-										'product_option_value_id'	=> $option_value,
+										'product_option_value_id' => $option_value,
 										'option_id'          		=> $option_query->row['option_id'],
 										'option_value_id'   	=> $option_value_query->row['option_value_id'],
 										'name'                  	=> $option_query->row['name'],
@@ -129,7 +129,7 @@ class Cart {
 
 										$option_data[] = array(
 											'product_option_id' 	=> $product_option_id,
-											'product_option_value_id'	=> $product_option_value_id,
+											'product_option_value_id' => $product_option_value_id,
 											'option_id'            	=> $option_query->row['option_id'],
 											'option_value_id'  	=> $option_value_query->row['option_value_id'],
 											'name'              		=> $option_query->row['name'],
@@ -153,7 +153,7 @@ class Cart {
 							} elseif ($option_query->row['type'] == 'text' || $option_query->row['type'] == 'textarea' || $option_query->row['type'] == 'file' || $option_query->row['type'] == 'date' || $option_query->row['type'] == 'datetime' || $option_query->row['type'] == 'time') {
 								$option_data[] = array(
 									'product_option_id'       => $product_option_id,
-									'product_option_value_id'	=> '',
+									'product_option_value_id' => '',
 									'option_id'               	=> $option_query->row['option_id'],
 									'option_value_id'   		=> '',
 									'name'                    	=> $option_query->row['name'],
@@ -249,7 +249,7 @@ class Cart {
 					$profile_name = '';
 
 					if ($profile_id) {
-						$profile_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "profile` `p` JOIN `" . DB_PREFIX . "product_profile` `pp` ON `pp`.`profile_id` = `p`.`profile_id` AND `pp`.`product_id` = " . (int)$product_query->row['product_id'] . " JOIN `" . DB_PREFIX . "profile_description` `pd` ON `pd`.`profile_id` = `p`.`profile_id` AND `pd`.`language_id` = " . (int)$this->config->get('config_language_id') . " WHERE `pp`.`profile_id` = " . (int)$profile_id . " AND `status` = 1 AND `pp`.`customer_group_id` = " . (int)$customer_group_id)->row;
+						$profile_info = $this->db->query("SELECT * FROM " . DB_PREFIX . "profile p JOIN " . DB_PREFIX . "product_profile pp ON (pp.profile_id = p.profile_id) AND pp.product_id = " . (int)$product_query->row['product_id'] . " JOIN " . DB_PREFIX . "profile_description pd ON (pd.profile_id = p.profile_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . " WHERE pp.profile_id = " . (int)$profile_id . " AND status = 1 AND pp.customer_group_id = " . (int)$customer_group_id)->row;
 
 						if ($profile_info) {
 							$profile_name = $profile_info['name'];

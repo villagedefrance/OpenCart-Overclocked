@@ -248,7 +248,7 @@ class CBA {
 	}
 
 	public function orderCanceled($order) {
-		$flat = "TemplateType=OrderCancellation\tVersion=1.0/1.0.1\tThis row for Amazon.com use only.  Do not modify or delete.\n";
+		$flat = "TemplateType=OrderCancellation\tVersion=1.0/1.0.1\tThis row for Amazon.com use only. Do not modify or delete.\n";
 		$flat .= "order-id\tmerchant-order-id\tcancellation-reason-code\tamazon-order-item-code\n";
 
 		foreach ($order['products'] as $product) {
@@ -271,7 +271,7 @@ class CBA {
 		$response_xml = simplexml_load_string($response);
 
 		$cba_log = new Log('cba.log');
-		$cba_log->write('Marked order ' . $order['amazon_order_id'] .' as canceled. Response  ' . print_r($response_xml, 1));
+		$cba_log->write('Marked order ' . $order['amazon_order_id'] . ' as canceled. Response ' . print_r($response_xml, 1));
 	}
 
 	public function orderShipped($order) {
@@ -319,7 +319,7 @@ class CBA {
 		$response_xml = simplexml_load_string($response);
 
 		$cba_log = new Log('cba.log');
-		$cba_log->write('Marked order ' . $order['amazon_order_id'] .' as shippped. Response  ' . print_r($response_xml, 1));
+		$cba_log->write('Marked order ' . $order['amazon_order_id'] . ' as shipped. Response  ' . print_r($response_xml, 1));
 	}
 
 	public function setPurchaseItems($parameters) {

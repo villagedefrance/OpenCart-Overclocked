@@ -146,6 +146,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['entry_zone'] = $this->language->get('entry_zone');
 			$this->data['entry_postcode'] = $this->language->get('entry_postcode');
 
+			$this->data['button_login'] = $this->language->get('button_login');
 			$this->data['button_update'] = $this->language->get('button_update');
 			$this->data['button_wishlist'] = $this->language->get('button_wishlist');
 			$this->data['button_remove'] = $this->language->get('button_remove');
@@ -162,6 +163,13 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_length'] = $this->language->get('text_length');
 			$this->data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$this->data['text_payment_profile'] = $this->language->get('text_payment_profile');
+
+			$this->data['text_age_minimum'] = $this->language->get('text_age_minimum');
+			$this->data['text_age_restriction'] = sprintf($this->language->get('text_age_restriction'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'));
+
+			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
+
+			$this->data['dob'] = $this->config->get('config_customer_dob');
 
 			$this->data['logged'] = $this->customer->isLogged();
 
@@ -267,6 +275,7 @@ class ControllerCheckoutCart extends Controller {
 					$total = false;
 				}
 
+				// Display profile
 				$profile_description = '';
 
 				if ($product['recurring']) {
@@ -292,6 +301,29 @@ class ControllerCheckoutCart extends Controller {
 					}
 				}
 
+				// Check minimum age
+				$age_minimum = $product['age_minimum'];
+				$age_logged = false;
+				$age_checked = false;
+
+				if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
+					if ($this->customer->isLogged() && $this->customer->isSecure()) {
+						$age_logged = true;
+
+						$this->load->model('account/customer');
+
+						$date_of_birth = $this->model_account_customer->getCustomerDateOfBirth($this->customer->getId());
+
+						if ($date_of_birth && ($date_of_birth != '0000-00-00')) {
+							$customer_age = date_diff(date_create($date_of_birth), date_create('today'))->y;
+
+							if ($customer_age >= $product['age_minimum']) {
+								$age_checked = true;
+							}
+						}
+					}
+				}
+
 				$this->data['products'][] = array(
 					'product_id'				=> $product['product_id'],
 					'key'                 		=> $product['key'],
@@ -305,7 +337,7 @@ class ControllerCheckoutCart extends Controller {
 					'reward'              	=> $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               		=> $price,
 					'cost' 					=> $product['cost'],
-					'age_minimum'			=> ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
+					'age_minimum'			=> $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
 					'total'               		=> $total,
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
 					'remove'              	=> $this->url->link('checkout/cart', 'remove=' . $product['key']),
@@ -316,6 +348,10 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			$this->data['products_recurring'] = array();
+
+			$this->data['age_minimum'] = $age_minimum ? (int)$age_minimum : 0;
+			$this->data['age_logged'] = $age_logged;
+			$this->data['age_checked'] = $age_checked;
 
 			// Gift Voucher
 			$this->data['vouchers'] = array();
