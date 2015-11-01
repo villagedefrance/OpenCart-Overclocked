@@ -26,12 +26,12 @@
           </div>
           <div class="order-info">
             <?php if ($picklist_status) { ?>
-              <a href="<?php echo $order['picklist']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/picklist.png" alt="<?php echo $button_pick; ?>" title="<?php echo $button_pick; ?>" /></a>
+              <a href="<?php echo $order['picklist']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/picklist.png" alt="<?php echo $button_pick; ?>" title="<?php echo $button_pick; ?>" /></a>
               &nbsp;&nbsp;
             <?php } ?>
-            <a href="<?php echo $order['href']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/info.png" alt="<?php echo $button_view; ?>" title="<?php echo $button_view; ?>" /></a>
+            <a href="<?php echo $order['href']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/info.png" alt="<?php echo $button_view; ?>" title="<?php echo $button_view; ?>" /></a>
             &nbsp;&nbsp;
-            <a href="<?php echo $order['reorder']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="<?php echo $button_reorder; ?>" title="<?php echo $button_reorder; ?>" /></a>
+            <a href="<?php echo $order['reorder']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/reorder.png" alt="<?php echo $button_reorder; ?>" title="<?php echo $button_reorder; ?>" /></a>
           </div>
         </div>
       </div>

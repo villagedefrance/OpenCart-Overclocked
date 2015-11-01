@@ -22,7 +22,7 @@
           </div>
           <div><b><?php echo $text_customer; ?></b> <?php echo $return['name']; ?></div>
           <div class="return-info">
-            <a href="<?php echo $return['href']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/info.png" alt="<?php echo $button_view; ?>" title="<?php echo $button_view; ?>" /></a>
+            <a href="<?php echo $return['href']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/info.png" alt="<?php echo $button_view; ?>" title="<?php echo $button_view; ?>" /></a>
           </div>
         </div>
       </div>

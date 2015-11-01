@@ -47,9 +47,9 @@
                 <?php } ?>
               <?php } ?></td>
               <td class="action">
-                <img src="catalog/view/theme/<?php echo $template; ?>/image/cart-add.png" alt="<?php echo $button_cart; ?>" title="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" />
+                <img src="catalog/view/theme/<?php echo $template; ?>/image/account/cart-add.png" alt="<?php echo $button_cart; ?>" title="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" />
                 &nbsp;&nbsp;
-                <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
+                <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
             </tr>
           </tbody>

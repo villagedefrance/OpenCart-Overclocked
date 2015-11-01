@@ -179,7 +179,7 @@ body > #container {
 }
 #header .static {
 	height: 56px;
-	background: url('../image/header.png') repeat-x;
+	background: url('../image/theme/header.png') repeat-x;
 	color: #FFF;
 }
 #header .image {
@@ -339,7 +339,7 @@ body > #container {
 	float: none;
 	width: 100%;
 	height: 34px;
-	background: url('../image/menu.png') repeat-x;
+	background: url('../image/theme/menu.png') repeat-x;
 	font-family: Arial, Helvetica, sans-serif;
 	list-style: none;
 	padding: 0;
@@ -354,7 +354,7 @@ body > #container {
 }
 .menu li:hover, .menu li.onhover { }
 .menu li a.top {
-	background: url('../image/split.png') center left no-repeat;
+	background: url('../image/theme/split.png') center left no-repeat;
 }
 ul.menu a {
 	display: block;
@@ -368,10 +368,10 @@ ul.menu a {
 }
 .menu a:hover { }
 .menu a.arrow {
-	background: url('../image/arrow-right.png') no-repeat right center;
+	background: url('../image/theme/arrow-right.png') no-repeat right center;
 }
 .menu ul a.arrow {
-	background: url('../image/arrow-right.png') no-repeat 97% center;
+	background: url('../image/theme/arrow-right.png') no-repeat 97% center;
 }
 /* Menu - Top-level item to the right */
 .menu .right {
@@ -383,7 +383,7 @@ ul.menu ul {
 	width: 180px;
 	position: absolute;
 	left: -9999px;
-	background: url('../image/transparent.png');
+	background: url('../image/theme/transparent.png');
 	text-align: left;
 	list-style: none;
 	margin: 0;
@@ -432,7 +432,7 @@ ul.menu ul {
 }
 /* Content */
 #content {
-	background: #FFF url('../image/background.png') 0px 1px repeat-x;
+	background: #FFF url('../image/theme/background.png') 0px 1px repeat-x;
 	padding: 10px 30px 128px 30px;
 	min-width: 740px;
 }
@@ -1409,7 +1409,7 @@ table.tool > tr > td {
 	color: #333;
 	font-size: 12px;
 	text-align: center;
-	background: #FFF url('../image/footer.png') repeat-x;
+	background: #FFF url('../image/theme/footer.png') repeat-x;
 	padding-top: 38px;
 	margin-top: -128px;
 	clear: both;

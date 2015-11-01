@@ -8,11 +8,11 @@
     <?php if ($error_warning) { ?>
       <div class="warning"><?php echo $error_warning; ?></div>
     <?php } ?>
-    <h1><img src="view/image/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
+    <h1><img src="view/image/theme/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
     <table style="width:100%;">
       <tr>
-        <td style="text-align:center;" rowspan="4"><img src="view/image/login.png" alt="<?php echo $text_login; ?>" /></td>
+        <td style="text-align:center;" rowspan="4"><img src="view/image/theme/login.png" alt="<?php echo $text_login; ?>" /></td>
       </tr>
       <tr>
         <td><?php echo $entry_username; ?><br />

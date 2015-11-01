@@ -78,7 +78,7 @@
           <td class="right"><?php echo $product['price']; ?></td>
           <td class="right"><?php echo $product['total']; ?></td>
           <td class="right">
-            <a href="<?php echo $product['return']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/return.png" alt="<?php echo $button_return; ?>" title="<?php echo $button_return; ?>" /></a>
+            <a href="<?php echo $product['return']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/return.png" alt="<?php echo $button_return; ?>" title="<?php echo $button_return; ?>" /></a>
           </td>
         </tr>
       <?php } ?>

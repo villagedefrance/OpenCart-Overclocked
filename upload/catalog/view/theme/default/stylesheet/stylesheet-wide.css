@@ -2067,6 +2067,7 @@ ul.box-filter > li ul {
 .cart-info tbody .quantity input[type='image'], .cart-info tbody .quantity img {
 	position: relative;
 	top: 4px;
+	outline: none;
 	cursor: pointer;
 }
 .cart-info tbody .price, .cart-info tbody .total {

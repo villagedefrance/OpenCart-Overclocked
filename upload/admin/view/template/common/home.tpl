@@ -17,6 +17,9 @@
   <?php if ($error_download) { ?>
     <div class="warning"><?php echo $error_download; ?></div>
   <?php } ?>
+  <?php if ($error_upload) { ?>
+    <div class="warning"><?php echo $error_upload; ?></div>
+  <?php } ?>
   <?php if ($error_logs) { ?>
     <div class="warning"><?php echo $error_logs; ?></div>
   <?php } ?>
@@ -280,7 +283,7 @@
               <tr>
                 <td class="left"><?php echo $review['name']; ?></td>
                 <td class="left"><?php echo $review['author']; ?></td>
-                <td class="center"><img src="view/image/rating/stars-<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['rating']; ?>" style="margin-top:2px;" /></td>
+                <td class="center"><img src="view/image/theme/stars-<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['rating']; ?>" style="margin-top:2px;" /></td>
                 <?php if ($review['status'] == 1) { ?>
                   <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
                 <?php } else { ?>
