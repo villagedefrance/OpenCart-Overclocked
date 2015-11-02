@@ -100,6 +100,7 @@ class ControllerStep3 extends Controller {
 		$this->data['text_installation'] = $this->language->get('text_installation');
 		$this->data['text_configuration'] = $this->language->get('text_configuration');
 		$this->data['text_finished'] = $this->language->get('text_finished');
+
 		$this->data['text_db_connection'] = $this->language->get('text_db_connection');
 		$this->data['text_db_administration'] = $this->language->get('text_db_administration');
 		$this->data['text_db_option'] = $this->language->get('text_db_option');
@@ -120,6 +121,7 @@ class ControllerStep3 extends Controller {
 		$this->data['entry_username'] = $this->language->get('entry_username');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_email'] = $this->language->get('entry_email');
+
 		$this->data['entry_rewrite'] = $this->language->get('entry_rewrite');
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
 		$this->data['entry_demo_data'] = $this->language->get('entry_demo_data');

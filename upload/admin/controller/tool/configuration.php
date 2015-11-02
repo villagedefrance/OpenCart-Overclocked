@@ -34,6 +34,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_timezone'] = $this->language->get('text_timezone');
 		$this->data['text_phptime'] = $this->language->get('text_phptime');
 		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
+		$this->data['text_dbname'] = $this->language->get('text_dbname');
 		$this->data['text_storeinfo'] = $this->language->get('text_storeinfo');
 		$this->data['text_serverinfo'] = $this->language->get('text_serverinfo');
 
@@ -78,6 +79,22 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->data['server_time'] = date('Y-m-d H:i:s');
 		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
+
+		$database_name = DB_DRIVER;
+
+		if ($database_name == 'mysql') {
+			$this->data['database_name'] = 'MySQL';
+		} elseif ($database_name == 'mysqli') {
+			$this->data['database_name'] = 'MySQLi';
+		} elseif ($database_name == 'mpdo') {
+			$this->data['database_name'] = 'PDO (MySQL)';
+		} elseif ($database_name == 'pgsql') {
+			$this->data['database_name'] = 'PgSQL';
+		} elseif ($database_name == 'mssql') {
+			$this->data['database_name'] = 'MsSQL';
+		} else {
+			$this->data['database_name'] = 'SQL';
+		}
 
 		// Check install directory exists
 		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {

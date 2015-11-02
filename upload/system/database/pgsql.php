@@ -1,5 +1,5 @@
 <?php
-final class DBPostgre {
+final class DBPgSQL {
 	private $link;
 
 	public function __construct($hostname, $port = '5432', $username, $password, $database) {

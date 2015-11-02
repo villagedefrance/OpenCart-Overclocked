@@ -43,6 +43,10 @@
           <td><?php echo $text_dbtime; ?></td>
           <td><?php echo $database_time; ?></td>
         </tr>
+        <tr>
+          <td><?php echo $text_dbname; ?></td>
+          <td><?php echo $database_name; ?></td>
+        </tr>
       </table>
       <?php if ($error_install) { ?>
         <div class="warning"><?php echo $error_install; ?></div>
