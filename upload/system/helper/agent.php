@@ -199,7 +199,7 @@ $pads = array(
 	'xoom' 				=> 'Xoom'
 );
 
-// There are hundreds of bots, but these are the most common.
+// Most common robots
 $robots = array(
 	'googlebot'			=> 'Googlebot',
 	'msnbot'				=> 'MSNBot',
