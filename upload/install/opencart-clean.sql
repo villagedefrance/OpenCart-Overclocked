@@ -6182,7 +6182,6 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (2734, 176, 'CI', 'Chita', 1),
 (2735, 176, 'DU', 'Dudinka', 1),
 (2736, 176, 'EL', 'Elista', 1),
-(2737, 176, 'GO', 'Gomo-Altaysk', 1),
 (2738, 176, 'GA', 'Gorno-Altaysk', 1),
 (2739, 176, 'GR', 'Groznyy', 1),
 (2740, 176, 'IR', 'Irkutsk', 1),
