@@ -252,7 +252,11 @@ $(document).ready(function() {
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
 			  <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-              <li><a href="<?php echo $csv; ?>"><?php echo $text_csv; ?></a></li>
+              <li><a class="arrow"><?php echo $text_import_export; ?></a>
+                <ul>
+                  <li><a href="<?php echo $export_advanced; ?>"><?php echo $text_export_advanced; ?></a></li>
+                </ul>
+              </li>
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
             </ul>
           </li>

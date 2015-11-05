@@ -1242,7 +1242,7 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_image_cart_height'] = $this->config->get('config_image_cart_height');
 		}
 
-		// FTP
+		// Transfer
 		if (isset($this->request->post['config_ftp_status'])) {
 			$this->data['config_ftp_status'] = $this->request->post['config_ftp_status'];
 		} else {

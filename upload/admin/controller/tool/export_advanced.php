@@ -1,15 +1,15 @@
 <?php
-class ControllerToolCSV extends Controller {
+class ControllerToolExportAdvanced extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('tool/csv');
+		$this->language->load('tool/export_advanced');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
 
-		$this->load->model('tool/csv');
+		$this->load->model('tool/import_export');
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST' && $this->validate()) {
 			if (is_uploaded_file($this->request->files['csv_import']['tmp_name'])) {
@@ -21,11 +21,11 @@ class ControllerToolCSV extends Controller {
 			}
 
 			if ($content) {
-				$this->model_tool_csv->csvImport($filename);
+				$this->model_tool_import_export->csvImportAdvanced($filename);
 
 				$this->session->data['success'] = $this->language->get('text_success');
 
-				$this->redirect($this->url->link('tool/csv', 'token=' . $this->session->data['token'], 'SSL'));
+				$this->redirect($this->url->link('tool/export_advanced', 'token=' . $this->session->data['token'], 'SSL'));
 			} else {
 				$this->error['warning'] = $this->language->get('error_empty');
 			}
@@ -33,15 +33,24 @@ class ControllerToolCSV extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->data['heading_csv'] = $this->language->get('heading_csv');
 		$this->data['heading_export'] = $this->language->get('heading_export');
 		$this->data['heading_import'] = $this->language->get('heading_import');
 
 		$this->data['text_import'] = $this->language->get('text_import');
+		$this->data['text_spreadsheet'] = $this->language->get('text_spreadsheet');
+		$this->data['text_charset'] = $this->language->get('text_charset');
+		$this->data['text_separator'] = $this->language->get('text_separator');
+		$this->data['text_delimiter'] = $this->language->get('text_delimiter');
+		$this->data['text_escaped'] = $this->language->get('text_escaped');
+		$this->data['text_ending'] = $this->language->get('text_ending');
 
 		$this->data['entry_export'] = $this->language->get('entry_export');
 		$this->data['entry_import'] = $this->language->get('entry_import');
 
-		$this->data['help_csv'] = $this->language->get('help_csv');
+		$this->data['help_function'] = $this->language->get('help_function');
+		$this->data['help_caution'] = $this->language->get('help_caution');
+		$this->data['help_warning'] = $this->language->get('help_warning');
 
 		$this->data['button_export'] = $this->language->get('button_export');
 		$this->data['button_import'] = $this->language->get('button_import');
@@ -71,25 +80,26 @@ class ControllerToolCSV extends Controller {
   		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('tool/csv', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('tool/export_advanced', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['csv_import'] = $this->url->link('tool/csv', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['csv_export'] = $this->url->link('tool/csv/export', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['refresh'] = $this->url->link('tool/csv', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['csv_import'] = $this->url->link('tool/export_advanced', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['csv_export'] = $this->url->link('tool/export_advanced/export', 'token=' . $this->session->data['token'], 'SSL');
+
+		$this->data['refresh'] = $this->url->link('tool/export_advanced', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['tables'] = $this->model_tool_csv->getTables();
+		$this->data['tables'] = $this->model_tool_import_export->getTables();
 
-		$this->template = 'tool/csv.tpl';
+		$this->template = 'tool/export_advanced.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -120,19 +130,21 @@ class ControllerToolCSV extends Controller {
 				$this->response->addheader('Cache-Control: must-revalidate, post-check=0,pre-check=0');
 			}
 
-			$this->load->model('tool/csv');
+			$this->load->model('tool/import_export');
 
-			$this->response->setOutput($this->model_tool_csv->csvExport($this->request->post['csv_export']));
+			$this->response->setOutput($this->model_tool_import_export->csvExportAdvanced($this->request->post['csv_export']));
 
 		} else {
-			$this->session->data['error'] = $this->language->get('error_permission');
+			$this->language->load('tool/export_advanced');
 
-			$this->redirect($this->url->link('tool/csv', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->session->data['error'] = $this->language->get('error_export');
+
+			$this->redirect($this->url->link('tool/export_advanced', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 	}
 
 	private function validate() {
-		if (!$this->user->hasPermission('modify', 'tool/csv')) {
+		if (!$this->user->hasPermission('modify', 'tool/export_advanced')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 

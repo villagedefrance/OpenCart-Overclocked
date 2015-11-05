@@ -9,7 +9,7 @@ body {
 	margin: 0;
 	padding: 0;
 }
-body, td, th, input, select, textarea, option, optgroup {
+body, td, th, input, select, textarea, fieldset, option, optgroup {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #111;
@@ -37,6 +37,34 @@ input[type='text'], input[type='password'], textarea {
 	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	box-shadow: inset 0 2px 0 -1px #EDEDED;
+}
+fieldset {
+	width: 90%;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
+	margin: 10px 0px;
+}
+fieldset p.field {
+	display: inline-block;
+	margin: 0px;
+	padding: 3px 5px;
+	width: 23%;
 }
 input.checkbox:not(old), input.radio:not(old) {
 	display: none;
@@ -823,6 +851,48 @@ a.button-form-uninstall, .list a.button-form-uninstall, input.button-form-uninst
 }
 a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button-form-uninstall:hover {
 	background: #E3726E;
+}
+/* Button Half Left/Right */
+a.button-half-left, a.button-half-right, .list a.button-half-left, .list a.button-half-right {
+	display: inline-block;
+	line-height: 12px;
+	padding: 4px 12px;
+	margin: 3px 0px;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+	text-decoration: none;
+	font-weight: bold;
+	color: #405060;
+}
+a.button-half-left, .list a.button-half-left {
+	border: 1px solid #CCC;
+	-webkit-border-radius: 8px 0px 0px 8px;
+	-moz-border-radius: 8px 0px 0px 8px;
+	-khtml-border-radius: 8px 0px 0px 8px;
+	border-radius: 8px 0px 0px 8px;
+}
+a.button-half-right, .list a.button-half-right {
+	border: 1px solid #CCC;
+	-webkit-border-radius: 0px 8px 8px 0px;
+	-moz-border-radius: 0px 8px 8px 0px;
+	-khtml-border-radius: 0px 8px 8px 0px;
+	border-radius: 0px 8px 8px 0px;
+}
+a.button-half-left:hover, a.button-half-right:hover, .list a.button-half-left:hover, .list a.button-half-right:hover {
+	background-color: #F2F2F2;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#CFCFCF));
+	background-image: -webkit-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -moz-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -ms-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: -o-linear-gradient(top, #F2F2F2, #CFCFCF);
+	background-image: linear-gradient(to bottom, #F2F2F2, #CFCFCF);
+	border: 1px solid #4691D2;
+	color: #4691D2;
 }
 /* List */
 .list {

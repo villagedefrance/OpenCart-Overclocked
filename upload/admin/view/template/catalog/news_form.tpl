@@ -61,7 +61,7 @@
           <tr>
             <td><?php echo $entry_store; ?></td>
             <td>
-              <div id="store_ids" class="scrollbox" style="width:220px; height:80px; margin-bottom:5px;">
+              <div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
                 <?php $class = 'even'; ?>
                 <div class="<?php echo $class; ?>">
                   <?php if (in_array(0, $news_store)) { ?>
@@ -85,7 +85,7 @@
                   </div>
                 <?php } ?>
               </div>
-              <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> | <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a>
+              <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-half-left"><?php echo $text_select_all; ?></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-half-right"><?php echo $text_unselect_all; ?></a>
             </td>
           </tr>
           <tr>

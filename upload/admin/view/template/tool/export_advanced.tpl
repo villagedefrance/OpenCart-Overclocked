@@ -15,24 +15,26 @@
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
 	  <div class="buttons">
-        <a onclick="$('#csv-import').submit();" class="button-save"><?php echo $button_import; ?></a>
-        <a onclick="$('#csv-export').submit();" class="button-save"><?php echo $button_export; ?></a>
         <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
-      <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_csv; ?></div>
-      <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="csv-import">
+      <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_function; ?></div>
+      <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="import-advanced">
         <h2><?php echo $heading_import; ?></h2>
         <table class="tool">
           <tr>
             <td width="20%"><?php echo $entry_import; ?></td>
             <td><input type="file" name="csv_import" class="custom-input-class" /></td>
           </tr>
+          <tr>
+            <td width="20%"></td>
+			<td><a onclick="$('#import-advanced').submit();" class="button-filter"><?php echo $button_import; ?></a></td>
+          </tr>
         </table>
       </form>
-      <form action="<?php echo $csv_export; ?>" method="post" enctype="multipart/form-data" id="csv-export">
+      <form action="<?php echo $csv_export; ?>" method="post" enctype="multipart/form-data" id="export-advanced">
         <h2><?php echo $heading_export; ?></h2>
         <table class="tool">
           <tr>
@@ -43,8 +45,40 @@
               <?php } ?>
             </select></td>
           </tr>
+          <tr>
+		    <td width="20%"></td>
+            <td><a onclick="$('#export-advanced').submit();" class="button-filter"><?php echo $button_export; ?></a></td>
+          </tr>
+        </table>
+        <h2><?php echo $heading_csv; ?></h2>
+        <table class="form">
+          <tr>
+            <td colspan="2"><?php echo $text_spreadsheet; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $text_charset; ?></td>
+            <td>Unicode UTF-8</td>
+          </tr>
+          <tr>
+		    <td><?php echo $text_separator; ?></td>
+            <td>;</td>
+          </tr>
+          <tr>
+		    <td><?php echo $text_delimiter; ?></td>
+            <td>"</td>
+          </tr>
+          <tr>
+		    <td><?php echo $text_escaped; ?></td>
+            <td>"</td>
+          </tr>
+          <tr>
+		    <td><?php echo $text_ending; ?></td>
+            <td>"/n"</td>
+          </tr>
         </table>
       </form>
+      <div class="attention" style="margin:35px 0px 5px 0px;"><?php echo $help_caution; ?></div>
+	  <div class="attention" style="margin:15px 0px 5px 0px;"><?php echo $help_warning; ?></div>
     </div>
   </div>
 </div>
