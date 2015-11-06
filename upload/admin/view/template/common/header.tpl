@@ -60,7 +60,7 @@ $(document).ready(function() {
         <div id="show-device" style="display:none;">
           <div class="device">
             <?php echo $agent_platform; ?> (<?php echo $device; ?>)<br />
-            <?php echo $agent_browser; ?> rv:<?php echo $agent_version; ?><br />
+            <?php echo $agent_browser; ?> <?php echo $agent_version; ?><br />
           </div>
         </div>
       </div>

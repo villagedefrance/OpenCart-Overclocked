@@ -91,6 +91,19 @@ $browsers = array(
 	'Android'				=> 'Android'
 );
 
+$pads = array(
+	'ipad'					=> 'Apple iPad',
+	'kindle'				=> 'Kindle',
+	'kobo'					=> 'Kobo',
+	'nook'					=> 'Nook',
+	'playbook'			=> 'PlayBook',
+	'silk'					=> 'Silk',
+	'touchpad'			=> 'TouchPad',
+	'android'				=> 'Android',
+	'tablet'				=> 'Tablet',
+	'xoom' 				=> 'Xoom'
+);
+
 $mobiles = array(
 	'mobileexplorer'	=> 'Mobile Explorer',
 	'palmsource'		=> 'Palm',
@@ -163,7 +176,10 @@ $mobiles = array(
 	'crios'					=> 'Chrome Mobile iOS',
 	'chrome'				=> 'Chrome Mobile',
 	'iemobile'			=> 'IE Mobile',
+	'Chrome'				=> 'Chrome',
 	'fennec'				=> 'Fennec',
+	'Firefox'				=> 'Firefox',
+	'Android'				=> 'Android',
 
 	// Other
 	'digital paths'		=> 'Digital Paths',
@@ -184,19 +200,6 @@ $mobiles = array(
 	'up.browser'		=> 'Generic Mobile',
 	'smartphone'		=> 'Generic Mobile',
 	'cellphone'			=> 'Generic Mobile'
-);
-
-$pads = array(
-	'ipad'					=> 'Apple iPad',
-	'kindle'				=> 'Kindle',
-	'kobo'					=> 'Kobo',
-	'nook'					=> 'Nook',
-	'playbook'			=> 'PlayBook',
-	'silk'					=> 'Silk',
-	'touchpad'			=> 'TouchPad',
-	'android'				=> 'Android',
-	'tablet'				=> 'Tablet',
-	'xoom' 				=> 'Xoom'
 );
 
 // Most common robots

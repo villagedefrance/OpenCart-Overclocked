@@ -25,9 +25,13 @@ class ControllerCommonHeader extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		// User Agent
-		$this->data['agent_platform'] = $this->browser->getPlatform();
-		$this->data['agent_browser'] = $this->browser->getBrowser();
-		$this->data['agent_version'] = $this->browser->getBrowserVersion();
+		$agent_platform = $this->browser->getPlatform();
+		$agent_browser = $this->browser->getBrowser();
+		$agent_version = $this->browser->getBrowserVersion();
+
+		$this->data['agent_platform'] = $agent_platform ? $agent_platform : '';
+		$this->data['agent_browser'] = $agent_browser ? $agent_browser : '';
+		$this->data['agent_version'] = $agent_version ? 'rv:' . $agent_version : '';
 
 		$medium = $this->browser->getMedium();
 

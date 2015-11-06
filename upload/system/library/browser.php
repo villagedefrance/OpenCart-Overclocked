@@ -2,26 +2,26 @@
 class Browser {
 	var $agent = null;
 
-	var $is_robot = false;
-	var $is_mobile = false;
-	var $is_pad = false;
 	var $is_browser = false;
+	var $is_pad = false;
+	var $is_mobile = false;
+	var $is_robot = false;
 
 	var $languages = array();
 	var $charsets = array();
 
 	var $platforms = array();
-	var $robots = array();
-	var $mobiles = array();
-	var $pads = array();
 	var $browsers = array();
+	var $pads = array();
+	var $mobiles = array();
+	var $robots = array();
 
 	var $platform = '';
-	var $robot = '';
-	var $mobile = '';
-	var $pad = '';
 	var $browser = '';
 	var $version = '';
+	var $pad = '';
+	var $mobile = '';
+	var $robot = '';
 
 	public function __construct() {
 		if (isset($_SERVER['HTTP_USER_AGENT'])) {
@@ -53,15 +53,9 @@ class Browser {
 			$return = true;
 		}
 
-		if (isset($robots)) {
-			$this->robots = $robots;
-			unset($robots);
-			$return = true;
-		}
-
-		if (isset($mobiles)) {
-			$this->mobiles = $mobiles;
-			unset($mobiles);
+		if (isset($browsers)) {
+			$this->browsers = $browsers;
+			unset($browsers);
 			$return = true;
 		}
 
@@ -71,9 +65,15 @@ class Browser {
 			$return = true;
 		}
 
-		if (isset($browsers)) {
-			$this->browsers = $browsers;
-			unset($browsers);
+		if (isset($mobiles)) {
+			$this->mobiles = $mobiles;
+			unset($mobiles);
+			$return = true;
+		}
+
+		if (isset($robots)) {
+			$this->robots = $robots;
+			unset($robots);
 			$return = true;
 		}
 
@@ -84,7 +84,7 @@ class Browser {
 	private function _compile_data() {
 		$this->_set_platform();
 
-		foreach (array('_set_robot', '_set_mobile', '_set_pad', '_set_browser') as $function) {
+		foreach (array('_set_browser', '_set_pad', '_set_mobile', '_set_robot') as $function) {
 			if ($this->$function() === true) {
 				break;
 			}
@@ -106,31 +106,20 @@ class Browser {
 		$this->platform = 'Unknown Platform';
 	}
 
-	// Set the Robot
-	private function _set_robot() {
-		if (is_array($this->robots) && count($this->robots) > 0) {
-			foreach ($this->robots as $key => $val) {
-				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
-					$this->is_robot = true;
+	// Set the Browser
+	private function _set_browser() {
+		if (is_array($this->browsers) && count($this->browsers) > 0) {
+			foreach ($this->browsers as $key => $val) {
+				if (preg_match("|" . preg_quote($key) . ".*?([0-9\.]+)|i", $this->agent, $match)) {
+					$this->is_browser = true;
 
-					$this->robot = $val;
+					$this->browser_version = $match[1];
 
-					return true;
-				}
-			}
-		}
+					$this->browser = $val;
 
-		return false;
-	}
-
-	// Set the Mobile Device
-	private function _set_mobile() {
-		if (is_array($this->mobiles) && count($this->mobiles) > 0) {
-			foreach ($this->mobiles as $key => $val) {
-				if (strpos(strtolower($this->agent), $key) !== false) {
-					$this->is_mobile = true;
-
-					$this->mobile = $val;
+					if ($this->_set_pad() == false) {
+					    $this->_set_mobile();
+					}
 
 					return true;
 				}
@@ -157,20 +146,31 @@ class Browser {
 		return false;
 	}
 
-	// Set the Browser
-	private function _set_browser() {
-		if (is_array($this->browsers) && count($this->browsers) > 0) {
-			foreach ($this->browsers as $key => $val) {
-				if (preg_match("|" . preg_quote($key) . ".*?([0-9\.]+)|i", $this->agent, $match)) {
-					$this->is_browser = true;
+	// Set the Mobile Device
+	private function _set_mobile() {
+		if (is_array($this->mobiles) && count($this->mobiles) > 0) {
+			foreach ($this->mobiles as $key => $val) {
+				if (strpos(strtolower($this->agent), $key) !== false) {
+					$this->is_mobile = true;
 
-					$this->browser_version = $match[1];
+					$this->mobile = $val;
 
-					$this->browser = $val;
+					return true;
+				}
+			}
+		}
 
-					if ($this->_set_pad() == false) {
-					    $this->_set_mobile();
-					}
+		return false;
+	}
+
+	// Set the Robot
+	private function _set_robot() {
+		if (is_array($this->robots) && count($this->robots) > 0) {
+			foreach ($this->robots as $key => $val) {
+				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
+					$this->is_robot = true;
+
+					$this->robot = $val;
 
 					return true;
 				}
@@ -206,9 +206,9 @@ class Browser {
 		}
 	}
 
-	// Is Robot
-	public function is_robot($key = null) {
-		if (!$this->is_robot) {
+	// Is Browser
+	public function is_browser($key = null) {
+		if (!$this->is_browser) {
 			return false;
 		}
 
@@ -216,20 +216,7 @@ class Browser {
 			return true;
 		}
 
-		return array_key_exists($key, $this->robots) && $this->robot === $this->robots[$key];
-	}
-
-	// Is Mobile
-	public function is_mobile($key = null) {
-		if (!$this->is_mobile) {
-			return false;
-		}
-
-		if ($key === null) {
-			return true;
-		}
-
-		return array_key_exists($key, $this->mobiles) && $this->mobile === $this->mobiles[$key];
+		return array_key_exists($key, $this->browsers) && $this->browser === $this->browsers[$key];
 	}
 
 	// Is Pad
@@ -245,9 +232,9 @@ class Browser {
 		return array_key_exists($key, $this->pads) && $this->pad === $this->pads[$key];
 	}
 
-	// Is Browser
-	public function is_browser($key = null) {
-		if (!$this->is_browser) {
+	// Is Mobile
+	public function is_mobile($key = null) {
+		if (!$this->is_mobile) {
 			return false;
 		}
 
@@ -255,7 +242,20 @@ class Browser {
 			return true;
 		}
 
-		return array_key_exists($key, $this->browsers) && $this->browser === $this->browsers[$key];
+		return array_key_exists($key, $this->mobiles) && $this->mobile === $this->mobiles[$key];
+	}
+
+	// Is Robot
+	public function is_robot($key = null) {
+		if (!$this->is_robot) {
+			return false;
+		}
+
+		if ($key === null) {
+			return true;
+		}
+
+		return array_key_exists($key, $this->robots) && $this->robot === $this->robots[$key];
 	}
 
 	// Get Medium: mobile, pad, robot, web
@@ -290,21 +290,6 @@ class Browser {
 		return $this->platform;
 	}
 
-	// Get The Robot Name
-	public function getRobot() {
-		return $this->robot;
-	}
-
-	// Get the Mobile Device
-	public function getMobile() {
-		return $this->mobile;
-	}
-
-	// Get the Tablet Device
-	public function getPad() {
-		return $this->pad;
-	}
-
 	// Get Browser Name
 	public function getBrowser() {
 		return $this->browser;
@@ -313,6 +298,21 @@ class Browser {
 	// Get the Browser Version
 	public function getBrowserVersion() {
 		return $this->browser_version;
+	}
+
+	// Get the Tablet Device
+	public function getPad() {
+		return $this->pad;
+	}
+
+	// Get the Mobile Device
+	public function getMobile() {
+		return $this->mobile;
+	}
+
+	// Get The Robot Name
+	public function getRobot() {
+		return $this->robot;
 	}
 
 	// Get the referrer

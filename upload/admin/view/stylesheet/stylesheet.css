@@ -856,7 +856,7 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 a.button-half-left, a.button-half-right, .list a.button-half-left, .list a.button-half-right {
 	display: inline-block;
 	line-height: 12px;
-	padding: 4px 12px;
+	padding: 3px 12px;
 	margin: 3px 0px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
@@ -866,22 +866,23 @@ a.button-half-left, a.button-half-right, .list a.button-half-left, .list a.butto
 	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
 	text-decoration: none;
-	font-weight: bold;
+	font-weight: normal;
+	font-size: 11px;
 	color: #405060;
 }
 a.button-half-left, .list a.button-half-left {
 	border: 1px solid #CCC;
-	-webkit-border-radius: 8px 0px 0px 8px;
-	-moz-border-radius: 8px 0px 0px 8px;
-	-khtml-border-radius: 8px 0px 0px 8px;
-	border-radius: 8px 0px 0px 8px;
+	-webkit-border-radius: 7px 0px 0px 7px;
+	-moz-border-radius: 7px 0px 0px 7px;
+	-khtml-border-radius: 7px 0px 0px 7px;
+	border-radius: 7px 0px 0px 7px;
 }
 a.button-half-right, .list a.button-half-right {
 	border: 1px solid #CCC;
-	-webkit-border-radius: 0px 8px 8px 0px;
-	-moz-border-radius: 0px 8px 8px 0px;
-	-khtml-border-radius: 0px 8px 8px 0px;
-	border-radius: 0px 8px 8px 0px;
+	-webkit-border-radius: 0px 7px 7px 0px;
+	-moz-border-radius: 0px 7px 7px 0px;
+	-khtml-border-radius: 0px 7px 7px 0px;
+	border-radius: 0px 7px 7px 0px;
 }
 a.button-half-left:hover, a.button-half-right:hover, .list a.button-half-left:hover, .list a.button-half-right:hover {
 	background-color: #F2F2F2;
