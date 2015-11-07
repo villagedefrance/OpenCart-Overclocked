@@ -83,7 +83,7 @@
             <td><?php echo $entry_image; ?></td>
             <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-              <a onclick="image_upload('image', 'thumb');" class="button-half-left"><?php echo $text_browse; ?></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-half-right"><?php echo $text_clear; ?></a>
+              <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
             </div></td>
           </tr>
           <tr>
@@ -971,7 +971,7 @@
               <td class="center"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
                 <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
                 <br />
-                <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
+                <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');" class="button-browse"></a><a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');" class="button-recycle"></a>
               </div></td>
               <?php if ($palette_id) { ?>
               <td class="center"><select name="product_image[<?php echo $image_row; ?>][palette_color_id]">
@@ -1745,7 +1745,7 @@ function addImage() {
 	html += '    <td class="center">';
 	html += '      <div class="image">';
 	html += '        <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
-	html += '        <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
+	html += '        <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
 	html += '      </div>';
 	html += '    </td>';
 	<?php if ($palette_id) { ?>
