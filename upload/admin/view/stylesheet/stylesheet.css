@@ -852,45 +852,37 @@ a.button-form-uninstall, .list a.button-form-uninstall, input.button-form-uninst
 a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button-form-uninstall:hover {
 	background: #E3726E;
 }
-/* Button Half Left/Right */
-a.button-half-left, a.button-half-right, .list a.button-half-left, .list a.button-half-right {
+/* Button Select/Unselect */
+a.button-select, a.button-unselect, .list a.button-select, .list a.button-unselect {
 	display: inline-block;
-	line-height: 11px;
-	padding: 3px 11px;
-	margin: 3px 0px;
-	background-color: #FCFCFC;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
-	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: -moz-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
-	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
-	text-decoration: none;
-	font-weight: normal;
-	font-size: 11px;
-	color: #333;
+	min-height: 15px;
+	padding: 3px 15px;
+	margin: 0px;
 }
-a.button-half-left, .list a.button-half-left, a.button-browse, .list a.button-browse {
+a.button-select, .list a.button-select {
+	background: #F8F8F8 url('../image/select.png') center no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
 }
-a.button-half-right, .list a.button-half-right, a.button-recycle, .list a.button-recycle {
+a.button-unselect, .list a.button-unselect {
+	background: #F8F8F8 url('../image/unselect.png') center no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
-a.button-half-left:hover, a.button-half-right:hover, .list a.button-half-left:hover, .list a.button-half-right:hover {
+a.button-select:hover, a.button-unselect:hover, .list a.button-select:hover, .list a.button-unselect:hover {
 	border: 1px solid #4691D2;
 }
 /* Button Browse/Recycle */
 a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle {
 	display: inline-block;
-	min-height: 13px;
+	min-height: 15px;
+	padding: 3px 15px;
 	margin: 0px;
 }
 a.button-browse, .list a.button-browse {
@@ -900,7 +892,6 @@ a.button-browse, .list a.button-browse {
 	-moz-border-radius: 3px 0px 0px 3px;
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
-	padding: 3px 11px;
 }
 a.button-recycle, .list a.button-recycle {
 	background: #F8F8F8 url('../image/recycle.png') center no-repeat;
@@ -909,7 +900,6 @@ a.button-recycle, .list a.button-recycle {
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
-	padding: 3px 11px;
 }
 a.button-browse:hover, a.button-recycle:hover, .list a.button-browse:hover, .list a.button-recycle:hover {
 	border: 1px solid #4691D2;

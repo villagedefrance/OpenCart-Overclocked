@@ -75,10 +75,9 @@
                 <option value="0" selected="selected"><?php echo $text_no; ?></option>
               <?php } ?>
             </select></td>
-            <td class="center"><div class="image"><img src="<?php echo $banner_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
-              <input type="hidden" name="banner_image[<?php echo $image_row; ?>][image]" value="<?php echo $banner_image['image']; ?>" id="image<?php echo $image_row; ?>"  />
-              <br />
-              <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');"><?php echo $text_clear; ?></a>
+            <td class="center"><div class="image"><img src="<?php echo $banner_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" /><br />
+              <input type="hidden" name="banner_image[<?php echo $image_row; ?>][image]" value="<?php echo $banner_image['image']; ?>" id="image<?php echo $image_row; ?>" />
+              <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');" class="button-browse"></a><a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');" class="button-recycle"></a>
             </div></td>
             <td class="center"><a onclick="$('#image-row<?php echo $image_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
@@ -113,9 +112,9 @@ function addImage() {
     html += '      <option value="1"><?php echo $text_yes; ?></option>';
     html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
     html += '    </select></td>';
-	html += '    <td class="center"><div class="image">';
-	html += '	  <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="banner_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
-	html += '	  <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');"><?php echo $text_clear; ?></a>';
+	html += '    <td class="center"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><br />';
+    html += '      <input type="hidden" name="banner_image[' + image_row + '][image]" value="" id="image' + image_row + '" />';
+	html += '	  <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
 	html += '    </div></td>';
 	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

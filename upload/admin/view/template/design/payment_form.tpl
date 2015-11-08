@@ -46,10 +46,9 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image; ?></td>
-            <td style="vertical-align:top;"><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
+            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-              <br />
-              <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
+              <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
             </div>
             <?php if ($error_image) { ?>
               <span class="error"><?php echo $error_image; ?></span>

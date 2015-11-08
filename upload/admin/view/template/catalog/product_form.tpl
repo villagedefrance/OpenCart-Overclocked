@@ -223,7 +223,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-half-left"><?php echo $text_select_all; ?></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-half-right"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
             </td>
           </tr>
           <tr>
@@ -343,7 +343,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-half-left"><?php echo $text_select_all; ?></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-half-right"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
             </td>
           </tr>
         <?php if ($autocomplete_off) { ?>
@@ -366,7 +366,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-half-left"><?php echo $text_select_all; ?></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-half-right"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
 			</td>
           </tr>
 		<?php } else { ?>
@@ -407,7 +407,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-half-left"><?php echo $text_select_all; ?></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-half-right"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
 			</td>
           </tr>
         <?php } else { ?>
@@ -448,7 +448,7 @@
                 </div>
               <?php } ?>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-half-left"><?php echo $text_select_all; ?></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-half-right"><?php echo $text_unselect_all; ?></a>
+            <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
 			</td>
           </tr>
         <?php } else { ?>
@@ -968,9 +968,8 @@
           <?php foreach ($product_images as $product_image) { ?>
           <tbody id="image-row<?php echo $image_row; ?>">
             <tr>
-              <td class="center"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" />
+              <td class="center"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" /><br />
                 <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
-                <br />
                 <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');" class="button-browse"></a><a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');" class="button-recycle"></a>
               </div></td>
               <?php if ($palette_id) { ?>
@@ -1742,12 +1741,10 @@ var image_row = <?php echo $image_row; ?>;
 function addImage() {
 	html  = '<tbody id="image-row' + image_row + '">';
 	html += '  <tr>';
-	html += '    <td class="center">';
-	html += '      <div class="image">';
-	html += '        <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
-	html += '        <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
-	html += '      </div>';
-	html += '    </td>';
+	html += '    <td class="center"><div class="image">';
+	html += '      <img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="image' + image_row + '" /><br />';
+	html += '      <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
+	html += '    </div></td>';
 	<?php if ($palette_id) { ?>
 	html += '    <td class="center"><select name="product_image[' + image_row + '][palette_color_id]">';
     html += '      <option value=""><?php echo $text_none; ?></option>';

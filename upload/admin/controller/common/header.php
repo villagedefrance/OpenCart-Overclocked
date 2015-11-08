@@ -31,7 +31,7 @@ class ControllerCommonHeader extends Controller {
 
 		$this->data['agent_platform'] = $agent_platform ? $agent_platform : '';
 		$this->data['agent_browser'] = $agent_browser ? $agent_browser : '';
-		$this->data['agent_version'] = $agent_version ? 'rv:' . $agent_version : '';
+		$this->data['agent_version'] = $agent_version ? $agent_version : '';
 
 		$medium = $this->browser->getMedium();
 

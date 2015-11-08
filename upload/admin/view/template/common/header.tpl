@@ -59,8 +59,8 @@ $(document).ready(function() {
       <div id="user-device"><img src="view/image/dashboard/<?php echo $device; ?>.png" alt="" />
         <div id="show-device" style="display:none;">
           <div class="device">
-            <?php echo $agent_platform; ?> (<?php echo $device; ?>)<br />
-            <?php echo $agent_browser; ?> <?php echo $agent_version; ?><br />
+            <?php echo $agent_platform; ?><br />
+            <?php echo $agent_browser; ?> &nbsp; <?php echo $agent_version; ?><br />
           </div>
         </div>
       </div>

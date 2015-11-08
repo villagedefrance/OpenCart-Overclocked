@@ -22,7 +22,7 @@ $_['column_date_added'] 	= 'Date Added';
 $_['column_action']     		= 'Action';
 
 // Entry
-$_['entry_code']        		= 'Code:<br /><span class="help">The code the customer enters to activate the voucher.</span>';
+$_['entry_code']        		= 'Code:<br /><span class="help">The code to enter to activate the voucher.</span>';
 $_['entry_from_name']   	= 'From Name:';
 $_['entry_from_email']  		= 'From E-Mail:';
 $_['entry_to_name']     	= 'To Name:';
