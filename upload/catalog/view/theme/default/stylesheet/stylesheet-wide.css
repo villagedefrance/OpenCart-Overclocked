@@ -783,16 +783,27 @@ a.button-add {
 	background-image: -ms-linear-gradient(top, #EEE, #FFF);
 	background-image: -o-linear-gradient(top, #EEE, #FFF);
 	background-image: linear-gradient(to bottom, #EEE, #FFF);
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-	margin-bottom: 3px;
-	padding: 7px 10px 11px 10px;
+	border-top: 1px solid #E7E7E7;
+	border-left: 1px solid #E7E7E7;
+	border-right: 1px solid #E7E7E7;
+	-webkit-border-radius: 3px 3px 0px 0px;
+	-moz-border-radius: 3px 3px 0px 0px;
+	-khtml-border-radius: 3px 3px 0px 0px;
+	border-radius: 3px 3px 0px 0px;
+	padding: 7px 10px 10px 10px;
+	margin: 0px;
 }
 .box .box-content {
 	background: #FFF;
+	border-bottom: 1px solid #E7E7E7;
+	border-left: 1px solid #E7E7E7;
+	border-right: 1px solid #E7E7E7;
+	-webkit-border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0px 0px 3px 3px;
+	-khtml-border-radius: 0px 0px 3px 3px;
+	border-radius: 0px 0px 3px 3px;
 	padding: 10px 7px;
+	margin: 0px;
 }
 /* Box products */
 .box-product {
@@ -800,6 +811,7 @@ a.button-add {
 	margin: 0px;
 	padding: 0px;
 	overflow: auto;
+	overflow-x: hidden;
 }
 .box-product > div {
 	width: 175px;
@@ -817,7 +829,7 @@ a.button-add {
 	margin-bottom: 7px;
 }
 .box-product .image img {
-	padding: 3px;
+	padding: 2px;
 }
 .box-product .name a {
 	display: block;
@@ -825,6 +837,8 @@ a.button-add {
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 4px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 }
 .box-product .price {
 	display: block;

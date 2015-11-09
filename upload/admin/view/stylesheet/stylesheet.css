@@ -791,13 +791,14 @@ a.button-filter, .list a.button-filter {
 	color: #405060;
 }
 a.button-filter:hover, .list a.button-filter:hover {
-	background-color: #F2F2F2;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#CFCFCF));
-	background-image: -webkit-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: -moz-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: -ms-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: -o-linear-gradient(top, #F2F2F2, #CFCFCF);
-	background-image: linear-gradient(to bottom, #F2F2F2, #CFCFCF);
+	background-color: #F8F8F8;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#D6D6D6));
+	background-image: -webkit-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: -moz-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: -ms-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: -o-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: linear-gradient(to bottom, #F8F8F8, #D6D6D6);
+	border: 1px solid #4691D2;
 }
 /* Button Form */
 a.button-form, .list a.button-form, a.button-form-install, .list a.button-form-install, a.button-form-edit, .list a.button-form-edit, a.button-form-uninstall, .list a.button-form-uninstall {
@@ -860,7 +861,7 @@ a.button-select, a.button-unselect, .list a.button-select, .list a.button-unsele
 	margin: 0px;
 }
 a.button-select, .list a.button-select {
-	background: #F8F8F8 url('../image/select.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/select.png') center no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -868,7 +869,7 @@ a.button-select, .list a.button-select {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-unselect, .list a.button-unselect {
-	background: #F8F8F8 url('../image/unselect.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/unselect.png') center no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -886,7 +887,7 @@ a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle
 	margin: 0px;
 }
 a.button-browse, .list a.button-browse {
-	background: #F8F8F8 url('../image/browse.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/browse.png') center no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -894,7 +895,7 @@ a.button-browse, .list a.button-browse {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-recycle, .list a.button-recycle {
-	background: #F8F8F8 url('../image/recycle.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/recycle.png') center no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -902,6 +903,32 @@ a.button-recycle, .list a.button-recycle {
 	border-radius: 0px 3px 3px 0px;
 }
 a.button-browse:hover, a.button-recycle:hover, .list a.button-browse:hover, .list a.button-recycle:hover {
+	border: 1px solid #4691D2;
+}
+/* Button Move Left/Right */
+input.button-move-left, input.button-move-right {
+	display: inline-block;
+	min-height: 15px;
+	padding: 3px 15px;
+	margin: 0px;
+}
+input.button-move-left {
+	background: #F8F8F8 url('../image/theme/move-left.png') center no-repeat;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px 0px 0px 3px;
+	-moz-border-radius: 3px 0px 0px 3px;
+	-khtml-border-radius: 3px 0px 0px 3px;
+	border-radius: 3px 0px 0px 3px;
+}
+input.button-move-right {
+	background: #F8F8F8 url('../image/theme/move-right.png') center no-repeat;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 0px 3px 3px 0px;
+	-moz-border-radius: 0px 3px 3px 0px;
+	-khtml-border-radius: 0px 3px 3px 0px;
+	border-radius: 0px 3px 3px 0px;
+}
+input.button-move-left:hover, input.button-move-right:hover {
 	border: 1px solid #4691D2;
 }
 /* List */

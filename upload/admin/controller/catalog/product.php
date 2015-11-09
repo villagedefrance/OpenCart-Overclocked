@@ -709,6 +709,20 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		// Check if OpenbayPro is enabled
+		$this->load->model('setting/extension');
+
+		$openbay_status = $this->config->get('openbay_status');
+		$amazon_status = $this->config->get('amazon_status');
+		$amazonus_status = $this->config->get('amazonus_status');
+
+		if ($openbay_status || $amazon_status || $amazonus_status) {
+			$this->data['openbaypro_status'] = true;
+		} else {
+			$this->data['openbaypro_status'] = false;
+		}
+
+		// Errors
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {

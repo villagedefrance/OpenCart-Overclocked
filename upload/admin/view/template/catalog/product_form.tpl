@@ -349,7 +349,7 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_category; ?></td>
-            <td><div class="scrollbox" style="width:500px; height:300px; margin-bottom:5px;">
+            <td><div class="scrollbox" style="width:500px; height:293px; margin-bottom:5px;">
               <?php $class='odd'; ?>
               <?php foreach ($categories as $category) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -488,9 +488,9 @@
                 <tr>
                   <td style="padding:0;"><select multiple="multiple" id="product" size="10" style="width:350px; height:153px; background:#F8F8F8; border:1px solid #CCC;"></select></td>
                   <td style="vertical-align:middle;">
-                    <input type="button" class="button" value="&gt;&gt;" onclick="addRelated();" />
+                    <input type="button" class="button-move-right" value="" onclick="addRelated();" />
                     <br /><br />
-                    <input type="button" class="button" value="&lt;&lt;" onclick="removeRelated();" />
+                    <input type="button" class="button-move-left" value="" onclick="removeRelated();" />
                   </td>
                   <td style="padding:0;"><select multiple="multiple" id="related" size="10" style="width:350px; height:153px; border:1px solid #CCC;"></select></td>
                 </tr>
@@ -1782,7 +1782,7 @@ $('#tabs a').tabs();
 $('#languages a').tabs();
 $('#vtab-option a').tabs();
 
-<?php if (isset($this->request->get['product_id'])) { ?>
+<?php if (isset($this->request->get['product_id']) && $openbaypro_status) { ?>
 function openbayLinkStatus() {
 	var product_id = '<?php echo $this->request->get['product_id']; ?>';
 	$.ajax({
