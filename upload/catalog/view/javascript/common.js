@@ -190,4 +190,9 @@ function addToCompare(product_id) {
 }
 
 // Prevent Right Click
+document.onselectstart = new Function('return false');
 document.oncontextmenu = new Function('return false');
+
+$('img').mousedown(function() {
+	return false
+});
