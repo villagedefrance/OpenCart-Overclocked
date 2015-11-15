@@ -19,7 +19,7 @@ $_['entry_description']     			= 'Description:';
 $_['entry_approval']            		= 'Approve New Customers:<br /><span class="help">Customers must be approved by an administrator before they can login.</span>';
 $_['entry_company_id_display']	= 'Display Company N&deg;:<br /><span class="help">Display a company ID field.</span>';
 $_['entry_company_id_required']	= 'Company N&deg; Required:<br /><span class="help">Select which customer groups must enter their company number for billing addresses before checkout.</span>';
-$_['entry_tax_id_display']      	= 'Display Tax ID.:<br /><span class="help">Display a Tax ID field for billing addresses.</span>';
+$_['entry_tax_id_display']      	= 'Display Tax ID:<br /><span class="help">Display a Tax ID field for billing addresses.</span>';
 $_['entry_tax_id_required']     	= 'Tax ID Required:<br /><span class="help">Select which customer groups must enter their Tax ID for billing addresses before checkout.</span>';
 $_['entry_sort_order']          		= 'Sort Order:';
 

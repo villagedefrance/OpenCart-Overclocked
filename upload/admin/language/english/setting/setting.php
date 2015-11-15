@@ -89,7 +89,7 @@ $_['entry_express_point'] 				= 'Display Reward Points:';
 $_['entry_product_count']     		= 'Category Product Count:<br /><span class="help">Show the number of products inside the subcategories in the category module.<br />Be warned, this will cause an extreme performance hit for stores with a lot of subcategories!</span>';
 $_['entry_review']       	    			= 'Allow Reviews:<br /><span class="help">Enable/Disable new review entry and display of existing reviews.</span>';
 $_['entry_download']          			= 'Allow Downloads:';
-$_['entry_tax']                   			= 'Display Prices With Tax:';
+$_['entry_tax']                   			= 'Display Prices with Tax:';
 $_['entry_vat']                    		= 'VAT Number Validate:<br /><span class="help">Validate VAT number with http://ec.europa.eu service.</span>';
 $_['entry_tax_default']         			= 'Use Store Tax Address:<br /><span class="help">Use the store address to calculate taxes if no one is logged in. You can choose to use the store address for the customers shipping or payment address.</span>';
 $_['entry_tax_customer']      			= 'Use Customer Tax Address:<br /><span class="help">Use the customers default address when they login to calculate taxes. You can choose to use the default address for the customers shipping or payment address.</span>';

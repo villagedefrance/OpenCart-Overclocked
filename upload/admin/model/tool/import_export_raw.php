@@ -1,24 +1,8 @@
 <?php
-class ModelToolImportExport extends Model {
-
-	public function getTables() {
-		$table_data = array();
-
-		$query = $this->db->query("SHOW TABLES FROM `" . DB_DATABASE . "`");
-
-		foreach ($query->rows as $result) {
-			if (utf8_substr($result['Tables_in_' . DB_DATABASE], 0, strlen(DB_PREFIX)) == DB_PREFIX) {
-				if (isset($result['Tables_in_' . DB_DATABASE])) {
-					$table_data[] = $result['Tables_in_' . DB_DATABASE];
-				}
-			}
-		}
-
-		return $table_data;
-	}
+class ModelToolImportExportRaw extends Model {
 
 	// Export Advanced
-	public function csvExportAdvanced($table) {
+	public function csvExportRaw($table) {
 	    $csv_separator = ";";
 	    $csv_enclosed = '"';
 		$csv_terminated = "\n";
@@ -75,13 +59,13 @@ class ModelToolImportExport extends Model {
 	}
 
 	// Import Advanced
-	public function csvImportAdvanced($file) {
+	public function csvImportRaw($file) {
 		ini_set('max_execution_time', 3600);
 
 	    $handle = fopen($file, 'r');
 
 	    if (!$handle) {
-			die('Cannot open uploaded file.');
+			die('Cannot open uploaded raw file.');
 		}
 
 		// Get Table name and Columns from header row
@@ -105,7 +89,7 @@ class ModelToolImportExport extends Model {
 		}
 
 		if (!$table) {
-			exit('Could not retrieve table.');
+			exit('Could not retrieve raw table.');
 		}
 
 	    $row_count = 0;
@@ -171,6 +155,22 @@ class ModelToolImportExport extends Model {
 		}
 
 	    return $row_count;
+	}
+
+	public function getTables() {
+		$table_data = array();
+
+		$query = $this->db->query("SHOW TABLES FROM `" . DB_DATABASE . "`");
+
+		foreach ($query->rows as $result) {
+			if (utf8_substr($result['Tables_in_' . DB_DATABASE], 0, strlen(DB_PREFIX)) == DB_PREFIX) {
+				if (isset($result['Tables_in_' . DB_DATABASE])) {
+					$table_data[] = $result['Tables_in_' . DB_DATABASE];
+				}
+			}
+		}
+
+		return $table_data;
 	}
 
 	// Check SQL reserved keywords for Import

@@ -254,7 +254,8 @@ $(document).ready(function() {
 			  <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
               <li><a class="arrow"><?php echo $text_import_export; ?></a>
                 <ul>
-                  <li><a href="<?php echo $export_advanced; ?>"><?php echo $text_export_advanced; ?></a></li>
+                  <li><a href="<?php echo $import_export_raw; ?>"><?php echo $text_import_export_raw; ?></a></li>
+                  <li><a href="<?php echo $import_export_customer; ?>"><?php echo $text_import_export_customer; ?></a></li>
                 </ul>
               </li>
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
@@ -288,8 +289,9 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_product; ?></a>
             <ul>
-              <li><a href="<?php echo $report_product_markup; ?>"><?php echo $text_report_product_markup; ?></a></li>
               <li><a href="<?php echo $report_product_viewed; ?>"><?php echo $text_report_product_viewed; ?></a></li>
+              <li><a href="<?php echo $report_product_quantity; ?>"><?php echo $text_report_product_quantity; ?></a></li>
+              <li><a href="<?php echo $report_product_markup; ?>"><?php echo $text_report_product_markup; ?></a></li>
               <li><a href="<?php echo $report_product_purchased; ?>"><?php echo $text_report_product_purchased; ?></a></li>
             </ul>
           </li>

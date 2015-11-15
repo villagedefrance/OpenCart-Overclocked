@@ -89,10 +89,10 @@ if (isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS
 }
 
 // Helper
+require_once(DIR_SYSTEM . 'helper/agent.php');
 require_once(DIR_SYSTEM . 'helper/crypto.php');
 require_once(DIR_SYSTEM . 'helper/json.php');
 require_once(DIR_SYSTEM . 'helper/utf8.php');
-require_once(DIR_SYSTEM . 'helper/agent.php');
 
 // Engine
 require_once(DIR_SYSTEM . 'engine/action.php');
@@ -123,4 +123,5 @@ require_once(DIR_SYSTEM . 'library/openbay.php');
 require_once(DIR_SYSTEM . 'library/ebay.php');
 require_once(DIR_SYSTEM . 'library/amazon.php');
 require_once(DIR_SYSTEM . 'library/amazonus.php');
+require_once(DIR_SYSTEM . 'library/xlsxwriter.php');
 ?>

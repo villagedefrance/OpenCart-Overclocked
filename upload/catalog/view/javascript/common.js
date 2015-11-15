@@ -129,6 +129,7 @@ function subProductCount() {
     return false;
 }
 
+// Add to Cart / Wishlist / Compare
 function addToCart(product_id, quantity) {
 	quantity = typeof(quantity) != 'undefined' ? quantity : 1;
 
@@ -187,3 +188,6 @@ function addToCompare(product_id) {
 		}
 	});
 }
+
+// Prevent Right Click
+document.oncontextmenu = new Function('return false');

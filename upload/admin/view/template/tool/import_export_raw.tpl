@@ -21,7 +21,7 @@
     </div>
     <div class="content">
       <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_function; ?></div>
-      <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="import-advanced">
+      <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="import-raw">
         <h2><?php echo $heading_import; ?></h2>
         <table class="tool">
           <tr>
@@ -30,11 +30,11 @@
           </tr>
           <tr>
             <td width="20%"></td>
-			<td><a onclick="$('#import-advanced').submit();" class="button-filter"><?php echo $button_import; ?></a></td>
+			<td><a onclick="$('#import-raw').submit();" class="button-filter"><?php echo $button_import; ?></a></td>
           </tr>
         </table>
       </form>
-      <form action="<?php echo $csv_export; ?>" method="post" enctype="multipart/form-data" id="export-advanced">
+      <form action="<?php echo $csv_export; ?>" method="post" enctype="multipart/form-data" id="export-raw">
         <h2><?php echo $heading_export; ?></h2>
         <table class="tool">
           <tr>
@@ -47,7 +47,7 @@
           </tr>
           <tr>
 		    <td width="20%"></td>
-            <td><a onclick="$('#export-advanced').submit();" class="button-filter"><?php echo $button_export; ?></a></td>
+            <td><a onclick="$('#export-raw').submit();" class="button-filter"><?php echo $button_export; ?></a></td>
           </tr>
         </table>
         <h2><?php echo $heading_csv; ?></h2>
@@ -78,7 +78,7 @@
         </table>
       </form>
       <div class="attention" style="margin:35px 0px 5px 0px;"><?php echo $help_caution; ?></div>
-	  <div class="attention" style="margin:15px 0px 5px 0px;"><?php echo $help_warning; ?></div>
+	  <div class="warning" style="margin:15px 0px 5px 0px;"><?php echo $help_warning; ?></div>
     </div>
   </div>
 </div>
