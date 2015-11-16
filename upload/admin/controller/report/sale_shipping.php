@@ -119,7 +119,10 @@ class ControllerReportSaleShipping extends Controller {
 		$this->data['entry_group'] = $this->language->get('entry_group');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
+		$this->data['button_close'] = $this->language->get('button_close');
 		$this->data['button_filter'] = $this->language->get('button_filter');
+
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['token'] = $this->session->data['token'];
 

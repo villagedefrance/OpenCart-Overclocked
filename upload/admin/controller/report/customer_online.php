@@ -114,7 +114,10 @@ class ControllerReportCustomerOnline extends Controller {
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_close'] = $this->language->get('button_close');
 		$this->data['button_filter'] = $this->language->get('button_filter');
+
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['tracking'] = $this->config->get('config_customer_online');
 

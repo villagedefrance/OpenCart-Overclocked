@@ -154,10 +154,10 @@ class ControllerReportProductMarkup extends Controller {
 		$this->data['column_ratio'] = $this->language->get('column_ratio');
 		$this->data['column_graph'] = $this->language->get('column_graph');
 
-		$this->data['button_exit'] = $this->language->get('button_exit');
+		$this->data['button_close'] = $this->language->get('button_close');
 		$this->data['button_filter'] = $this->language->get('button_filter');
 
-		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['token'] = $this->session->data['token'];
 

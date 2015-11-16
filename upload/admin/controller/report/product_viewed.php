@@ -76,6 +76,9 @@ class ControllerReportProductViewed extends Controller {
 		$this->data['column_percent'] = $this->language->get('column_percent');
 
 		$this->data['button_reset'] = $this->language->get('button_reset');
+		$this->data['button_close'] = $this->language->get('button_close');
+
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$url = '';
 

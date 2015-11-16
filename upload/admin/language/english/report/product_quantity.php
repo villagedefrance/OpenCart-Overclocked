@@ -17,8 +17,4 @@ $_['column_cost']   		= 'Cost';
 $_['column_status']   	= 'Status';
 $_['column_quantity'] 	= 'Quantity';
 $_['column_action'] 		= 'Action';
-
-// Button
-$_['button_exit']   		= 'Exit';
-$_['button_filter']   		= 'Filter';
 ?>
