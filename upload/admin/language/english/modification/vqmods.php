@@ -149,17 +149,17 @@ $_['text_vqmod_website']		= 'VQmod&#8482; Repository:';
 $_['text_vqmod_license']		= 'VQmod&#8482; License:';
 
 // Version
-$_['vqmods_description']		= '<b>VQmods</b> is a VQmod&#8482; File Manager for Opencart, based on the original <b>VQmod Manager</b> by Ryan (rph), and integrating the latest <b>VQmod&#8482;</b> Core Files!';
+$_['vqmods_description']		= '<b>VQmods</b> is a VQmod&#8482; File Manager for Opencart Overclocked Edition, based on the original <b>VQmod Manager</b> by Ryan (rph), and integrating the latest <b>VQmod&#8482;</b> Core Files!';
 $_['vqmods_version']			= '2.1.0 - Overclocked Edition';
 $_['vqmods_author']				= 'Villagedefrance';
 $_['vqmods_support']			= 'contact@villagedefrance.net';
-$_['vqmods_license']				= 'GNU General Public License';
+$_['vqmods_license']				= 'GPLv3 (GNU General Public License)';
 $_['vqmod_manager_version']	= '2.0.1';
 $_['vqmod_manager_author']	= 'Ryan (rph) – OpenCartHelp.com';
 $_['vqmod_manager_license']	= 'Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)';
 $_['vqmod_version']				= 'v2.5.1 - Opencart';
 $_['vqmod_author']				= 'Qphoria (qphoria@gmail.com) & Jay Gilford (jay@jaygilford.com)';
-$_['vqmod_license']				= 'GNU General Public License';
+$_['vqmod_license']				= 'GPLv3 (GNU General Public License)';
 
 // Javascript Warnings
 $_['warning_required_delete']		= 'WARNING: Deleting \\\'vqmod_opencart.xml\\\' will cause VQMod to STOP WORKING!  Continue?';

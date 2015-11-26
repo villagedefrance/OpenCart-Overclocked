@@ -856,12 +856,13 @@ a.button-form-uninstall:hover, .list a.button-form-uninstall:hover, input.button
 /* Button Select/Unselect */
 a.button-select, a.button-unselect, .list a.button-select, .list a.button-unselect {
 	display: inline-block;
-	min-height: 15px;
-	padding: 3px 15px;
+	width: 16px;
+	height: 16px;
+	padding: 1px 15px;
 	margin: 0px;
 }
 a.button-select, .list a.button-select {
-	background: #F8F8F8 url('../image/theme/select.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/select.png') center 0px no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -869,25 +870,31 @@ a.button-select, .list a.button-select {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-unselect, .list a.button-unselect {
-	background: #F8F8F8 url('../image/theme/unselect.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/unselect.png') center 0px no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
-a.button-select:hover, a.button-unselect:hover, .list a.button-select:hover, .list a.button-unselect:hover {
+a.button-select:hover, .list a.button-select:hover {
+	background: #F8F8F8 url('../image/theme/select.png') center -16px no-repeat;
+	border: 1px solid #4691D2;
+}
+a.button-unselect:hover, .list a.button-unselect:hover {
+	background: #F8F8F8 url('../image/theme/unselect.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 /* Button Browse/Recycle */
 a.button-browse, a.button-recycle, .list a.button-browse, .list a.button-recycle {
 	display: inline-block;
-	min-height: 15px;
-	padding: 3px 15px;
+	width: 16px;
+	height: 16px;
+	padding: 1px 15px;
 	margin: 0px;
 }
 a.button-browse, .list a.button-browse {
-	background: #F8F8F8 url('../image/theme/browse.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/browse.png') center 0px no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -895,25 +902,31 @@ a.button-browse, .list a.button-browse {
 	border-radius: 3px 0px 0px 3px;
 }
 a.button-recycle, .list a.button-recycle {
-	background: #F8F8F8 url('../image/theme/recycle.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/recycle.png') center 0px no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
-a.button-browse:hover, a.button-recycle:hover, .list a.button-browse:hover, .list a.button-recycle:hover {
+a.button-browse:hover, .list a.button-browse:hover {
+	background: #F8F8F8 url('../image/theme/browse.png') center -16px no-repeat;
+	border: 1px solid #4691D2;
+}
+a.button-recycle:hover, .list a.button-recycle:hover {
+	background: #F8F8F8 url('../image/theme/recycle.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 /* Button Move Left/Right */
 input.button-move-left, input.button-move-right {
 	display: inline-block;
-	min-height: 15px;
-	padding: 3px 15px;
+	width: 16px;
+	height: 20px;
+	padding: 1px 15px 4px 15px;
 	margin: 0px;
 }
 input.button-move-left {
-	background: #F8F8F8 url('../image/theme/move-left.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/move-left.png') center 0px no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px 0px 0px 3px;
 	-moz-border-radius: 3px 0px 0px 3px;
@@ -921,14 +934,19 @@ input.button-move-left {
 	border-radius: 3px 0px 0px 3px;
 }
 input.button-move-right {
-	background: #F8F8F8 url('../image/theme/move-right.png') center no-repeat;
+	background: #F8F8F8 url('../image/theme/move-right.png') center 0px no-repeat;
 	border: 1px solid #CCC;
 	-webkit-border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
 	-khtml-border-radius: 0px 3px 3px 0px;
 	border-radius: 0px 3px 3px 0px;
 }
-input.button-move-left:hover, input.button-move-right:hover {
+input.button-move-left:hover {
+	background: #F8F8F8 url('../image/theme/move-left.png') center -16px no-repeat;
+	border: 1px solid #4691D2;
+}
+input.button-move-right:hover {
+	background: #F8F8F8 url('../image/theme/move-right.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
 /* List */

@@ -63,9 +63,9 @@
                 <?php } ?></td>
                 <td class="right"><?php echo $product['cost_formatted']; ?></td>
                 <td class="right"><?php if ($product['graph_type'] > 0) { ?>
-                  <span style="color:#B00;">-<?php echo $product['ratio']; ?> %</span>
+                  <span style="color:#B00;">-<?php echo $product['ratio']; ?>%</span>
                 <?php } else { ?>
-                  <?php echo $product['ratio']; ?> %
+                  <?php echo $product['ratio']; ?>%
                 <?php } ?></td>
                 <td class="left"><?php if ($product['graph_type'] > 0) { ?>
                   <div class="progress-bar-red" style="width:<?php echo $product['graph']; ?>px;"></div>

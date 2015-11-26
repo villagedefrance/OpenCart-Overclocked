@@ -93,6 +93,10 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_download'] = $this->language->get('text_download');
 		$this->data['text_email_log'] = $this->language->get('text_email_log');
 		$this->data['text_error_log'] = $this->language->get('text_error_log');
+		$this->data['text_export_import'] = $this->language->get('text_export_import');
+		$this->data['text_export_import_raw'] = $this->language->get('text_export_import_raw');
+		$this->data['text_export_import_tool'] = $this->language->get('text_export_import_tool');
+		$this->data['text_export_customer'] = $this->language->get('text_export_customer');
 		$this->data['text_extension'] = $this->language->get('text_extension');
 		$this->data['text_feed'] = $this->language->get('text_feed');
 		$this->data['text_file_manager'] = $this->language->get('text_file_manager');
@@ -102,9 +106,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_front'] = $this->language->get('text_front');
 		$this->data['text_geo_zone'] = $this->language->get('text_geo_zone');
 		$this->data['text_help'] = $this->language->get('text_help');
-		$this->data['text_import_export'] = $this->language->get('text_import_export');
-		$this->data['text_import_export_raw'] = $this->language->get('text_import_export_raw');
-		$this->data['text_import_export_customer'] = $this->language->get('text_import_export_customer');
 		$this->data['text_information'] = $this->language->get('text_information');
 		$this->data['text_language'] = $this->language->get('text_language');
 		$this->data['text_layout'] = $this->language->get('text_layout');
@@ -230,6 +231,9 @@ class ControllerCommonHeader extends Controller {
 			$this->data['download'] = $this->url->link('catalog/download', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['email_log'] = $this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['export_import_raw'] = $this->url->link('tool/export_import_raw', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['export_import_tool'] = $this->url->link('tool/export_import', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['export_import_customer'] = $this->url->link('tool/export_import_customer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['file_manager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['filter'] = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], 'SSL');
@@ -237,8 +241,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['footer'] = $this->url->link('design/footer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['geo_zone'] = $this->url->link('localisation/geo_zone', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['home'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['import_export_raw'] = $this->url->link('tool/import_export_raw', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['import_export_customer'] = $this->url->link('tool/import_export_customer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['information'] = $this->url->link('catalog/information', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['language'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');

@@ -123,5 +123,4 @@ require_once(DIR_SYSTEM . 'library/openbay.php');
 require_once(DIR_SYSTEM . 'library/ebay.php');
 require_once(DIR_SYSTEM . 'library/amazon.php');
 require_once(DIR_SYSTEM . 'library/amazonus.php');
-require_once(DIR_SYSTEM . 'library/xlsxwriter.php');
 ?>

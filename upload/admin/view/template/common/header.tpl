@@ -252,10 +252,11 @@ $(document).ready(function() {
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
 			  <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-              <li><a class="arrow"><?php echo $text_import_export; ?></a>
+              <li><a class="arrow"><?php echo $text_export_import; ?></a>
                 <ul>
-                  <li><a href="<?php echo $import_export_raw; ?>"><?php echo $text_import_export_raw; ?></a></li>
-                  <li><a href="<?php echo $import_export_customer; ?>"><?php echo $text_import_export_customer; ?></a></li>
+                  <li><a href="<?php echo $export_import_raw; ?>"><?php echo $text_export_import_raw; ?></a></li>
+                  <li><a href="<?php echo $export_import_tool; ?>"><?php echo $text_export_import_tool; ?></a></li>
+                  <li><a href="<?php echo $export_import_customer; ?>"><?php echo $text_export_customer; ?></a></li>
                 </ul>
               </li>
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>

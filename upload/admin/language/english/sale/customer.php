@@ -12,7 +12,7 @@ $_['text_add_ban_ip']       	= 'Add Ban IP';
 $_['text_remove_ban_ip']    	= 'Remove Ban IP';
 $_['text_female']    				= 'Female';
 $_['text_male']    				= 'Male';
-$_['text_no_purchases'] 		= 'No Purchases!';
+$_['text_no_purchases'] 		= 'No purchases!';
 
 // Column
 $_['column_name']           	= 'Customer Name';
@@ -34,6 +34,7 @@ $_['column_description']    	= 'Description';
 $_['column_amount']         	= 'Amount';
 $_['column_points']         		= 'Points';
 $_['column_ip']             		= 'IP';
+$_['column_location']			= 'IP Location';
 $_['column_total']          		= 'Total Accounts';
 $_['column_action']         		= 'Action';
 

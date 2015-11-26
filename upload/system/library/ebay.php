@@ -128,7 +128,7 @@ final class Ebay {
 
 	public function callNoResponse($call, array $post = null, array $options = array(), $content_type = 'json') {
 		if ($this->config->get('openbay_status') == 1) {
-			$this->log('openbay_noresponse_call('.$call.') - Data :' . json_encode($post));
+			$this->log('openbay_noresponse_call(' . $call . ') - Data :' . json_encode($post));
 
 			if (defined("HTTPS_CATALOG")) {
 				$domain = HTTPS_CATALOG;
@@ -341,7 +341,7 @@ final class Ebay {
 			if ($sku == null) {
 				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "' LIMIT 1");
 
-				$this->log('ebaySaleStockReduce() - Send item ID: "'.$product_id.'", Stock: "'.$query->row['quantity'].'" to decideEbayStockAction()');
+				$this->log('ebaySaleStockReduce() - Send item ID: "' . $product_id . '", Stock: "' . $query->row['quantity'] . '" to decideEbayStockAction()');
 
 				$this->decideEbayStockAction($product_id, $query->row['quantity'], $query->row['subtract']);
 			} else {
@@ -355,7 +355,7 @@ final class Ebay {
 	}
 
 	public function notifyAdmin($subject, $message) {
-		$this->log('Sending email to: '.$this->config->get('config_email').' - notifyAdmin()');
+		$this->log('Sending email to: ' . $this->config->get('config_email') . ' - notifyAdmin()');
 
 		$mail = new Mail();
 		$mail->protocol = $this->config->get('config_mail_protocol');
@@ -374,19 +374,19 @@ final class Ebay {
 		$mail->send();
 	}
 
-	public function encrypt($msg,$k,$base64 = false) {
+	public function encrypt($msg, $k, $base64 = false) {
 		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) { return false; }
 
 		$msg = serialize($msg);
-		$iv  = mcrypt_create_iv(32, MCRYPT_RAND);
+		$iv = mcrypt_create_iv(32, MCRYPT_RAND);
 
 		if (mcrypt_generic_init($td, $k, $iv) !== 0) {
 			return false;
 		}
 
-		$msg  = mcrypt_generic($td, $msg);
-		$msg  = $iv . $msg;
-		$mac  = $this->pbkdf2($msg, $k, 1000, 32);
+		$msg = mcrypt_generic($td, $msg);
+		$msg = $iv . $msg;
+		$mac = $this->pbkdf2($msg, $k, 1000, 32);
 		$msg .= $mac;
 
 		mcrypt_generic_deinit($td);
@@ -399,7 +399,7 @@ final class Ebay {
 		return $msg;
 	}
 
-	public function decrypt($msg,$k,$base64 = false) {
+	public function decrypt($msg, $k, $base64 = false) {
 		if ($base64) {
 			$msg = base64_decode($msg);
 		}
@@ -445,7 +445,7 @@ final class Ebay {
 		for ($block = 1; $block <= $kb; $block ++) {
 			$ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
 
-			for ( $i = 1; $i < $c; $i ++ ) {
+			for ($i = 1; $i < $c; $i ++) {
 				$ib ^= ($b = hash_hmac($a, $b, $p, true));
 			}
 

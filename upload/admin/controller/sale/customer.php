@@ -642,6 +642,7 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['text_male'] = $this->language->get('text_male');
 
 		$this->data['column_ip'] = $this->language->get('column_ip');
+		$this->data['column_location'] = $this->language->get('column_location');
 		$this->data['column_total'] = $this->language->get('column_total');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_action'] = $this->language->get('column_action');
@@ -1015,7 +1016,7 @@ class ControllerSaleCustomer extends Controller {
 				$this->data['ips'][] = array(
 					'ip'         		=> $result['ip'],
 					'total'      		=> $this->model_sale_customer->getTotalCustomersByIp($result['ip']),
-					'date_added' 	=> date('d/m/y', strtotime($result['date_added'])),
+					'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 					'filter_ip'  		=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&filter_ip=' . $result['ip'], 'SSL'),
 					'ban_ip'     		=> $ban_ip_total
 				);

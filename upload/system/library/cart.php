@@ -334,7 +334,7 @@ class Cart {
 
 		if ($option) {
 			$key .= base64_encode(serialize($option)) . ':';
-		}  else {
+		} else {
 			$key .= ':';
 		}
 
