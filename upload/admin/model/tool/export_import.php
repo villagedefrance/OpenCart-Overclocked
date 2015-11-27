@@ -116,9 +116,7 @@ class ModelToolExportImport extends Model {
 	protected function getDefaultLanguageId() {
 		$code = $this->config->get('config_language');
 
-		$sql = "SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $code . "'";
-
-		$result = $this->db->query( $sql );
+		$result = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $code . "'");
 
 		$language_id = 1;
 
@@ -143,24 +141,18 @@ class ModelToolExportImport extends Model {
 
 		$language_id = $this->getDefaultLanguageId();
 
-		$sql = "SELECT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
 
 		if ($query->num_rows > 0) {
 			return $query->row['unit'];
 		}
 
-		$sql = "SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = 'en'";
+		$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = 'en'");
 
-		$query = $this->db->query($sql);
+		if ($language_query->num_rows > 0) {
+			$language_id = $language_query->row['language_id'];
 
-		if ($query->num_rows > 0) {
-			$language_id = $query->row['language_id'];
-
-			$sql = "SELECT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'";
-
-			$query = $this->db->query($sql);
+			$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
 
 			if ($query->num_rows > 0) {
 				return $query->row['unit'];
@@ -175,24 +167,18 @@ class ModelToolExportImport extends Model {
 
 		$language_id = $this->getDefaultLanguageId();
 
-		$sql = "SELECT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
 
 		if ($query->num_rows > 0) {
 			return $query->row['unit'];
 		}
 
-		$sql = "SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = 'en'";
+		$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = 'en'");
 
-		$query = $this->db->query($sql);
+		if ($language_query->num_rows > 0) {
+			$language_id = $language_query->row['language_id'];
 
-		if ($query->num_rows > 0) {
-			$language_id = $query->row['language_id'];
-
-			$sql = "SELECT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'";
-
-			$query = $this->db->query($sql);
+			$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
 
 			if ($query->num_rows > 0) {
 				return $query->row['unit'];
@@ -270,9 +256,7 @@ class ModelToolExportImport extends Model {
 			if (!in_array($store_id, $manufacturers[$name]['store_ids'])) {
 				$manufacturer_id = $manufacturers[$name]['manufacturer_id'];
 
-				$sql = "INSERT INTO " . DB_PREFIX . "manufacturer_to_store SET manufacturer_id = '" . (int)$manufacturer_id . "', store_id = '" . (int)$store_id . "'";
-
-				$this->db->query($sql);
+				$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer_to_store SET manufacturer_id = '" . (int)$manufacturer_id . "', store_id = '" . (int)$store_id . "'");
 
 				$manufacturers[$name]['store_ids'][] = $store_id;
 			}
@@ -285,9 +269,7 @@ class ModelToolExportImport extends Model {
 
 		$weight_class_ids = array();
 
-		$sql = "SELECT weight_class_id, unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . $language_id . "'";
-
-		$result = $this->db->query($sql);
+		$result = $this->db->query("SELECT weight_class_id, unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . $language_id . "'");
 
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
@@ -310,9 +292,7 @@ class ModelToolExportImport extends Model {
 
 		$length_class_ids = array();
 
-		$sql = "SELECT length_class_id, unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . $language_id . "'";
-
-		$result = $this->db->query($sql);
+		$result = $this->db->query("SELECT length_class_id, unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . $language_id . "'");
 
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
@@ -342,9 +322,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getAvailableStoreIds() {
-		$sql = "SELECT store_id FROM " . DB_PREFIX . "store";
-
-		$result = $this->db->query($sql);
+		$result = $this->db->query("SELECT store_id FROM " . DB_PREFIX . "store");
 
 		$store_ids = array(0);
 
@@ -378,11 +356,9 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getAvailableCategoryIds() {
-		$sql = "SELECT category_id FROM " . DB_PREFIX . "category";
-
-		$result = $this->db->query($sql);
-
 		$category_ids = array();
+
+		$result = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "category");
 
 		foreach ($result->rows as $row) {
 			$category_ids[$row['category_id']] = $row['category_id'];
@@ -490,9 +466,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($store_ids as $store_id) {
 			if (in_array((int)$store_id, $available_store_ids)) {
-				$sql = "INSERT INTO `" . DB_PREFIX . "category_to_store` (`category_id`,`store_id`) VALUES ( $category_id, $store_id);";
-
-				$this->db->query($sql);
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "category_to_store` (`category_id`,`store_id`) VALUES ( $category_id, $store_id);");
 			}
 		}
 
@@ -522,9 +496,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		foreach ($layouts as $store_id => $layout_id) {
-			$sql = "INSERT INTO `" . DB_PREFIX . "category_to_layout` (`category_id`,`store_id`,`layout_id`) VALUES ( $category_id, $store_id, $layout_id);";
-
-			$this->db->query($sql);
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "category_to_layout` (`category_id`,`store_id`,`layout_id`) VALUES ( $category_id, $store_id, $layout_id);");
 		}
 	}
 
@@ -533,18 +505,15 @@ class ModelToolExportImport extends Model {
 		$sql .= "DELETE FROM `" . DB_PREFIX . "category_description` WHERE `category_id` = '" . (int)$category_id . "' ;\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "category_to_store` WHERE `category_id` = '" . (int)$category_id . "' ;\n";
 		$sql .= "DELETE FROM `" . DB_PREFIX . "category_to_layout` WHERE `category_id` = '" . (int)$category_id . "' ;\n";
+
 		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'category_id=" . (int)$category_id . "';\n";
 
 		$this->multiquery($sql);
 
-		$sql = "SHOW TABLES LIKE \"" . DB_PREFIX . "category_path\"";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SHOW TABLES LIKE \"" . DB_PREFIX . "category_path\"");
 
 		if ($query->num_rows) {
-			$sql = "DELETE FROM `" . DB_PREFIX . "category_path` WHERE `category_id` = '" . (int)$category_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM `" . DB_PREFIX . "category_path` WHERE `category_id` = '" . (int)$category_id . "'");
 		}
 	}
 
@@ -553,29 +522,22 @@ class ModelToolExportImport extends Model {
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_description`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_to_store`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_to_layout`;\n";
+
 		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'category_id = %';\n";
 
 		$this->multiquery($sql);
 
-		$sql = "SHOW TABLES LIKE \"" . DB_PREFIX . "category_path\"";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SHOW TABLES LIKE \"" . DB_PREFIX . "category_path\"");
 
 		if ($query->num_rows) {
-			$sql = "TRUNCATE TABLE `" . DB_PREFIX . "category_path`";
-
-			$this->db->query($sql);
+			$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "category_path`");
 		}
 
-		$sql = "SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM `" . DB_PREFIX . "url_alias` LIMIT 1";
+		$alias_query = $this->db->query("SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM `" . DB_PREFIX . "url_alias` LIMIT 1");
 
-		$query = $this->db->query($sql);
+		$next_url_alias_id = $alias_query->row['next_url_alias_id'];
 
-		$next_url_alias_id = $query->row['next_url_alias_id'];
-
-		$sql = "ALTER TABLE `" . DB_PREFIX . "url_alias` AUTO_INCREMENT = $next_url_alias_id";
-
-		$this->db->query($sql);
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "url_alias` AUTO_INCREMENT = $next_url_alias_id");
 
 		$remove = array();
 
@@ -758,29 +720,23 @@ class ModelToolExportImport extends Model {
 		$category_id = $category_filter['category_id'];
 		$filter_id = $category_filter['filter_id'];
 
-		$sql = "INSERT INTO `" . DB_PREFIX . "category_filter` (`category_id`, `filter_id`) VALUES ";
-		$sql .= "( $category_id, $filter_id);";
+		$sql = "INSERT INTO `" . DB_PREFIX . "category_filter` (`category_id`, `filter_id`) VALUES";
+		$sql .= " ( $category_id, $filter_id);";
 
 		$this->db->query($sql);
 	}
 
 	protected function deleteCategoryFilters() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "category_filter";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "category_filter");
 	}
 
 	protected function deleteCategoryFilter($category_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id='" . (int)$category_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id='" . (int)$category_id . "'");
 	}
 
 	protected function deleteUnlistedCategoryFilters(&$unlisted_category_ids) {
 		foreach ($unlisted_category_ids as $category_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id='" . (int)$category_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id='" . (int)$category_id . "'");
 		}
 	}
 
@@ -1032,7 +988,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if (count($categories) > 0) {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_to_category` (`product_id`,`category_id`) VALUES ";
+			$sql = "INSERT INTO `" . DB_PREFIX . "product_to_category` (`product_id`,`category_id`) VALUES";
 
 			$first = true;
 
@@ -1041,7 +997,7 @@ class ModelToolExportImport extends Model {
 
 				$first = false;
 
-				$sql .= "( $product_id, $category_id)";
+				$sql .= " ( $product_id, $category_id)";
 			}
 
 			$sql .= ";";
@@ -1064,10 +1020,8 @@ class ModelToolExportImport extends Model {
 		}
 
 		foreach ($store_ids as $store_id) {
-			if (in_array((int)$store_id,$available_store_ids)) {
-				$sql = "INSERT INTO `" . DB_PREFIX . "product_to_store` (`product_id`,`store_id`) VALUES ( $product_id, $store_id);";
-
-				$this->db->query($sql);
+			if (in_array((int)$store_id, $available_store_ids)) {
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "product_to_store` (`product_id`,`store_id`) VALUES ( $product_id, $store_id);");
 			}
 		}
 
@@ -1097,9 +1051,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		foreach ($layouts as $store_id => $layout_id) {
-			$sql = "INSERT INTO `" . DB_PREFIX . "product_to_layout` (`product_id`,`store_id`,`layout_id`) VALUES ( $product_id, $store_id, $layout_id);";
-
-			$this->db->query($sql);
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "product_to_layout` (`product_id`,`store_id`,`layout_id`) VALUES ( $product_id, $store_id, $layout_id);");
 		}
 
 		if (count($related_ids) > 0) {
@@ -1122,7 +1074,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteProducts(&$url_alias_ids) {
-		$sql  = "TRUNCATE TABLE `" . DB_PREFIX . "product`;\n";
+		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "product`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_description`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_to_category`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_to_store`;\n";
@@ -1134,15 +1086,11 @@ class ModelToolExportImport extends Model {
 
 		$this->multiquery($sql);
 
-		$sql = "SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM `" . DB_PREFIX . "url_alias` LIMIT 1";
+		$alias_query = $this->db->query("SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM `" . DB_PREFIX . "url_alias` LIMIT 1");
 
-		$query = $this->db->query($sql);
+		$next_url_alias_id = $alias_query->row['next_url_alias_id'];
 
-		$next_url_alias_id = $query->row['next_url_alias_id'];
-
-		$sql = "ALTER TABLE `" . DB_PREFIX . "url_alias` AUTO_INCREMENT = $next_url_alias_id";
-
-		$this->db->query($sql);
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "url_alias` AUTO_INCREMENT = $next_url_alias_id");
 
 		$remove = array();
 
@@ -1168,7 +1116,7 @@ class ModelToolExportImport extends Model {
 
 		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'product_id=$product_id';\n";
 
-		$this->multiquery( $sql );
+		$this->multiquery($sql);
 	}
 
 	// Function for reading additional cells in class extensions
@@ -1462,9 +1410,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteAdditionalImages() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_image";
-
-		$this->db->query( $sql );
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_image");
 	}
 
 	protected function deleteAdditionalImage($product_id) {
@@ -1483,9 +1429,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_image_ids) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_image_ids;
@@ -1493,9 +1437,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedAdditionalImages(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -1597,15 +1539,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteSpecials() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_special";
-
-		$this->db->query( $sql );
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_special");
 	}
 
 	protected function deleteSpecial($product_id) {
-		$sql = "SELECT product_special_id, product_id, customer_group_id FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT product_special_id, product_id, customer_group_id FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 
 		$old_product_special_ids = array();
 
@@ -1618,9 +1556,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_special_ids) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query( $sql );
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_special_ids;
@@ -1628,9 +1564,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedSpecials(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query( $sql );
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -1747,9 +1681,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteDiscounts() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_discount";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_discount");
 	}
 
 	protected function deleteDiscount($product_id) {
@@ -1769,9 +1701,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_discount_ids) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query( $sql );
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_discount_ids;
@@ -1779,9 +1709,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedDiscounts(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -1895,15 +1823,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteRewards() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_reward";
-
-		$this->db->query( $sql );
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_reward");
 	}
 
 	protected function deleteReward($product_id) {
-		$sql = "SELECT product_reward_id, product_id, customer_group_id FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'";
-
-		$query = $this->db->query( $sql );
+		$query = $this->db->query("SELECT product_reward_id, product_id, customer_group_id FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'");
 
 		$old_product_reward_ids = array();
 
@@ -1916,9 +1840,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_reward_ids) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_reward_ids;
@@ -1926,9 +1848,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedRewards(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query( $sql );
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -2013,9 +1933,7 @@ class ModelToolExportImport extends Model {
 	protected function getOptionIds() {
 		$language_id = $this->getDefaultLanguageId();
 
-		$sql = "SELECT option_id, name FROM " . DB_PREFIX . "option_description WHERE language_id = '" . (int)$language_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT option_id, name FROM " . DB_PREFIX . "option_description WHERE language_id = '" . (int)$language_id . "'");
 
 		$option_ids = array();
 
@@ -2056,15 +1974,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteProductOptions() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_option";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_option");
 	}
 
 	protected function deleteProductOption($product_id) {
-		$sql = "SELECT product_option_id, product_id, option_id FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT product_option_id, product_id, option_id FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 
 		$old_product_option_ids = array();
 
@@ -2077,9 +1991,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_option_ids) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_option_ids;
@@ -2087,9 +1999,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedProductOptions(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -2182,9 +2092,7 @@ class ModelToolExportImport extends Model {
 	protected function getOptionValueIds() {
 		$language_id = $this->getDefaultLanguageId();
 
-		$sql = "SELECT option_id, option_value_id, name FROM " . DB_PREFIX . "option_value_description WHERE language_id = '" . (int)$language_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT option_id, option_value_id, name FROM " . DB_PREFIX . "option_value_description WHERE language_id = '" . (int)$language_id . "'");
 
 		$option_value_ids = array();
 
@@ -2200,9 +2108,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getProductOptionIds( $product_id ) {
-		$sql = "SELECT product_option_id, option_id FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT product_option_id, option_id FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 
 		$product_option_ids = array();
 
@@ -2253,15 +2159,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteProductOptionValues() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_option_value";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_option_value");
 	}
 
 	protected function deleteProductOptionValue($product_id) {
-		$sql = "SELECT product_option_value_id, product_id, option_id, option_value_id FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT product_option_value_id, product_id, option_id, option_value_id FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
 
 		$old_product_option_value_ids = array();
 
@@ -2275,9 +2177,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($old_product_option_value_ids) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		return $old_product_option_value_ids;
@@ -2285,9 +2185,7 @@ class ModelToolExportImport extends Model {
 
 	protected function deleteUnlistedProductOptionValues(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -2416,9 +2314,7 @@ class ModelToolExportImport extends Model {
 	protected function getAttributeGroupIds() {
 		$language_id = $this->getDefaultLanguageId();
 
-		$sql = "SELECT attribute_group_id, name FROM " . DB_PREFIX . "attribute_group_description WHERE language_id = '" . (int)$language_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT attribute_group_id, name FROM " . DB_PREFIX . "attribute_group_description WHERE language_id = '" . (int)$language_id . "'");
 
 		$attribute_group_ids = array();
 
@@ -2471,22 +2367,16 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteProductAttributes() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_attribute";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_attribute");
 	}
 
 	protected function deleteProductAttribute($product_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 	}
 
 	protected function deleteUnlistedProductAttributes(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -2609,9 +2499,7 @@ class ModelToolExportImport extends Model {
 	protected function getFilterGroupIds() {
 		$language_id = $this->getDefaultLanguageId();
 
-		$sql = "SELECT filter_group_id, name FROM " . DB_PREFIX . "filter_group_description WHERE language_id = '" . (int)$language_id . "'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SELECT filter_group_id, name FROM " . DB_PREFIX . "filter_group_description WHERE language_id = '" . (int)$language_id . "'");
 
 		$filter_group_ids = array();
 
@@ -2657,22 +2545,16 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteProductFilters() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "product_filter";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_filter");
 	}
 
 	protected function deleteProductFilter($product_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'");
 	}
 
 	protected function deleteUnlistedProductFilters(&$unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
-			$sql = "DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'";
-
-			$this->db->query($sql);
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
@@ -2803,23 +2685,13 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteOptions() {
-		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "option`";
-
-		$this->db->query($sql);
-
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "option_description";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "option`");
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "option_description");
 	}
 
 	protected function deleteOption($option_id) {
-		$sql = "DELETE FROM `" . DB_PREFIX . "option` WHERE option_id = '" . (int)$option_id . "'";
-
-		$this->db->query($sql);
-
-		$sql = "DELETE FROM " . DB_PREFIX . "option_description WHERE option_id = '" . (int)$option_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "option` WHERE option_id = '" . (int)$option_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "option_description WHERE option_id = '" . (int)$option_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -2932,23 +2804,13 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteOptionValues() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "option_value";
-
-		$this->db->query($sql);
-
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "option_value_description";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "option_value");
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "option_value_description");
 	}
 
 	protected function deleteOptionValue($option_value_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "option_value WHERE option_value_id = '" . (int)$option_value_id . "'";
-
-		$this->db->query($sql);
-
-		$sql = "DELETE FROM " . DB_PREFIX . "option_value_description WHERE option_value_id = '" . (int)$option_value_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "option_value WHERE option_value_id = '" . (int)$option_value_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "option_value_description WHERE option_value_id = '" . (int)$option_value_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -2965,9 +2827,7 @@ class ModelToolExportImport extends Model {
 		}
 
 		// Get option_value.image field
-		$sql = "SHOW COLUMNS FROM `" . DB_PREFIX . "option_value` LIKE 'image'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . "option_value` LIKE 'image'");
 
 		$exist_image = ($query->num_rows > 0) ? true : false;
 
@@ -3071,23 +2931,13 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteAttributeGroups() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "attribute_group";
-
-		$this->db->query($sql);
-
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "attribute_group_description";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "attribute_group");
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "attribute_group_description");
 	}
 
 	protected function deleteAttributeGroup($attribute_group_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "attribute_group WHERE attribute_group_id = '" . (int)$attribute_group_id . "'";
-
-		$this->db->query($sql);
-
-		$sql = "DELETE FROM " . DB_PREFIX . "attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -3188,23 +3038,13 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteAttributes() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "attribute";
-
-		$this->db->query($sql);
-
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "attribute_description";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "attribute");
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "attribute_description");
 	}
 
 	protected function deleteAttribute($attribute_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "attribute WHERE attribute_id = '" . (int)$attribute_id . "'";
-
-		$this->db->query($sql);
-
-		$sql = "DELETE FROM " . DB_PREFIX . "attribute_description WHERE attribute_id = '" . (int)$attribute_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute WHERE attribute_id = '" . (int)$attribute_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_description WHERE attribute_id = '" . (int)$attribute_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -3311,23 +3151,13 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteFilterGroups() {
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "filter_group";
-
-		$this->db->query($sql);
-
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "filter_group_description";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "filter_group");
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "filter_group_description");
 	}
 
 	protected function deleteFilterGroup($filter_group_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "filter_group WHERE filter_group_id = '" . (int)$filter_group_id . "'";
-
-		$this->db->query($sql);
-
-		$sql = "DELETE FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id = '" . (int)$filter_group_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_group WHERE filter_group_id = '" . (int)$filter_group_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id = '" . (int)$filter_group_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -3428,23 +3258,13 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteFilters() {
-		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "filter`";
-
-		$this->db->query($sql);
-
-		$sql = "TRUNCATE TABLE " . DB_PREFIX . "filter_description";
-
-		$this->db->query($sql);
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "filter`");
+		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "filter_description");
 	}
 
 	protected function deleteFilter($filter_id) {
-		$sql = "DELETE FROM `" . DB_PREFIX . "filter` WHERE filter_id = '" . (int)$filter_id . "'";
-
-		$this->db->query($sql);
-
-		$sql = "DELETE FROM " . DB_PREFIX . "filter_description WHERE filter_id = '" . (int)$filter_id . "'";
-
-		$this->db->query($sql);
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "filter` WHERE filter_id = '" . (int)$filter_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_description WHERE filter_id = '" . (int)$filter_id . "'");
 	}
 
 	// Function for reading additional cells in class extensions
@@ -3868,9 +3688,7 @@ class ModelToolExportImport extends Model {
 			return true;
 		}
 
-		$sql = "SHOW COLUMNS FROM `" . DB_PREFIX . "option_value` LIKE 'image'";
-
-		$query = $this->db->query($sql);
+		$query = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . "option_value` LIKE 'image'");
 
 		$exist_image = ($query->num_rows > 0) ? true : false;
 
@@ -5919,7 +5737,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getProducts(&$languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		$sql = "SELECT p.product_id, GROUP_CONCAT( DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\" ) AS categories,";
+		$sql = "SELECT p.product_id, GROUP_CONCAT(DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\") AS categories,";
 		$sql .= " p.sku,";
 		$sql .= " p.upc,";
 		if (in_array('ean', $product_fields)) {
@@ -6952,7 +6770,7 @@ class ModelToolExportImport extends Model {
 			$attribute_group_names = $this->getAttributeGroupNames($default_language_id);
 		}
 
-		if (!$this->config->get( 'export_import_settings_use_attribute_id' )) {
+		if (!$this->config->get('export_import_settings_use_attribute_id')) {
 			$attribute_names = $this->getAttributeNames($default_language_id);
 		}
 
@@ -7439,7 +7257,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getAttributes(&$languages) {
-		$results = $this->db->query( "SELECT * FROM " . DB_PREFIX . "attribute ORDER BY attribute_group_id ASC, attribute_id ASC");
+		$results = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute ORDER BY attribute_group_id ASC, attribute_id ASC");
 
 		$attribute_descriptions = $this->getAttributeDescriptions($languages);
 
@@ -7525,7 +7343,7 @@ class ModelToolExportImport extends Model {
 
 			$sql = "SELECT ag.filter_group_id, agd.* FROM " . DB_PREFIX . "filter_group ag";
 			$sql .= " LEFT JOIN " . DB_PREFIX . "filter_group_description agd ON (agd.filter_group_id = ag.filter_group_id) AND agd.language_id = '" . (int)$language_id . "'";
-			$sql .= " GROUP BY ag.filter_group_id ";
+			$sql .= " GROUP BY ag.filter_group_id";
 			$sql .= " ORDER BY ag.filter_group_id ASC";
 
 			$query = $this->db->query($sql);
@@ -7579,7 +7397,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($languages as $language) {
 			$styles[$j] = &$text_format;
-			$data[$j++] = 'name('.$language['code'].')';
+			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
 		$worksheet->getRowDimension($i)->setRowHeight(30);
@@ -8087,7 +7905,7 @@ class ModelToolExportImport extends Model {
 					$filename = 'filters-' . $datetime . '.xlsx';
 					break;
 				default:
-					$filename = $datetime.'.xlsx';
+					$filename = $datetime . '.xlsx';
 					break;
 			}
 

@@ -1,6 +1,6 @@
 <?php
 // Version
-define('VERSION', '1.7.2 RC2');
+define('VERSION', '1.7.2');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -147,7 +147,8 @@ if (isset($session->data['language']) && array_key_exists($session->data['langua
 
 	if (isset($request->server['HTTP_ACCEPT_LANGUAGE']) && $request->server['HTTP_ACCEPT_LANGUAGE']) {
 		$browser_accept = explode(',', $request->server['HTTP_ACCEPT_LANGUAGE']);
-		$browser_languages = preg_replace(array('/;.*/','/\s/'), '', $browser_accept);
+
+		$browser_languages = preg_replace(array('/;.*/', '/\s/'), '', $browser_accept);
 
 		foreach ($browser_languages as $browser_language) {
 			foreach ($languages as $key => $value) {
@@ -162,6 +163,7 @@ if (isset($session->data['language']) && array_key_exists($session->data['langua
 			}
 		}
 	}
+
 	$code = $detect ? $detect : $config->get('config_language');
 }
 

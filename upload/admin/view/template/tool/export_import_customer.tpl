@@ -25,7 +25,7 @@
         <h2><?php echo $heading_export; ?></h2>
         <table class="tool">
           <tr>
-            <td><?php echo $entry_export; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_export; ?></td>
             <td><div class="scrollbox" style="height:220px; margin-bottom:5px;">
               <?php $class = 'odd'; ?>
               <?php foreach ($headers as $header) { ?>
