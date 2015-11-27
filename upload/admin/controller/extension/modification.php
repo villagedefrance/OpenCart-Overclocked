@@ -28,6 +28,10 @@ class ControllerExtensionModification extends Controller {
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_close'] = $this->language->get('button_close');
+
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
 

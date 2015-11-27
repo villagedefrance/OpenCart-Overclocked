@@ -27,11 +27,13 @@ class ControllerModificationOpenbaypro extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['cancel'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
-
 		$this->data['heading_title'] = $this->language->get('heading_title');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
 		$this->data['text_installed'] = $this->language->get('text_installed');
+
+		$this->data['button_close'] = $this->language->get('button_close');
+
+		$this->data['close'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->template = 'modification/openbaypro.tpl';
 		$this->children = array(
