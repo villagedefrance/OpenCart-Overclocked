@@ -20,19 +20,19 @@
     <div class="heading">
       <h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
 	  <div class="buttons">
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button"><?php echo $button_exit; ?></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_exit; ?></a>
       </div>
     </div>
     <div class="content">
       <div id="files-menu">
-        <a id="create" class="filemanager-button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
-        <a id="delete" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
-        <a id="move" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
-        <a id="copy" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
-        <a id="rename" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
-        <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-        <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
-        <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+        <a id="create" class="filemanager-button" style="background-image:url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
+        <a id="delete" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
+        <a id="move" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
+        <a id="copy" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
+        <a id="rename" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
+        <a id="upload" class="filemanager-button" style="background-image:url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
+        <a id="uploadmulti" class="filemanager-button" style="background-image:url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
+        <a id="refresh" class="filemanager-button" style="background-image:url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
       </div>
       <div id="column-right"></div>
       <div id="column-left"></div>
@@ -305,9 +305,9 @@ $(document).ready(function() {
 		if (tree.selected) {
 			$('#dialog').remove();
 
-			html  = '<div id="dialog">';
-			html += '  <?php echo $entry_folder; ?> <input type="text" name="name" value="" /><br /><br />';
-			html += '  <input type="button" value="<?php echo $button_submit; ?>" />';
+			html = '<div id="dialog">';
+			html += '<?php echo $entry_folder; ?> <input type="text" name="name" value="" /><br /><br />';
+			html += '<input type="button" value="<?php echo $button_submit; ?>" />';
 			html += '</div>';
 
 			$('#column-right').prepend(html);
