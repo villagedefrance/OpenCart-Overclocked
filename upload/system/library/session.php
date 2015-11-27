@@ -16,16 +16,12 @@ class Session {
 		$this->data =& $_SESSION;
 	}
 
-	public function getId($session_id = '') {
-		if ($session_id) {
-			return session_id($session_id);
-		} else {
-			return session_id();
-		}
+	function getId() {
+		return session_id();
 	}
 
-	public function regenerateId($delete = false) {
-		return session_regenerate_id($delete);
+	public function regenerateId() {
+		session_regenerate_id(true);
 	}
 }
 ?>
