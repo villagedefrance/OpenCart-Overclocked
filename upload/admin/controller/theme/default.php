@@ -57,6 +57,8 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_footer_skype'] = $this->language->get('entry_footer_skype');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
+		$this->data['entry_web_design'] = $this->language->get('entry_web_design');
+		$this->data['entry_powered_by'] = $this->language->get('entry_powered_by');
 
 		$this->data['info_theme'] = $this->language->get('info_theme');
 		$this->data['info_author'] = $this->language->get('info_author');
@@ -214,6 +216,18 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->request->post[$this->_name . '_manufacturer_image'];
 		} else {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->config->get($this->_name . '_manufacturer_image');
+		}
+
+		if (isset($this->request->post[$this->_name . '_web_design'])) {
+			$this->data[$this->_name . '_web_design'] = $this->request->post[$this->_name . '_web_design'];
+		} else {
+			$this->data[$this->_name . '_web_design'] = $this->config->get($this->_name . '_web_design');
+		}
+
+		if (isset($this->request->post[$this->_name . '_powered_by'])) {
+			$this->data[$this->_name . '_powered_by'] = $this->request->post[$this->_name . '_powered_by'];
+		} else {
+			$this->data[$this->_name . '_powered_by'] = $this->config->get($this->_name . '_powered_by');
 		}
 
 		$this->template = 'theme/' . $this->_name . '.tpl';

@@ -18,7 +18,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['scripts'] = $this->document->getScripts();
 		$this->data['lang'] = $this->language->get('code');
 		$this->data['direction'] = $this->language->get('direction');
-		$this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');
 		$this->data['name'] = $this->config->get('config_name');
 		$this->data['version'] = VERSION;
 
@@ -33,6 +32,15 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$this->data['logo'] = '';
 		}
+
+		$this->data['meta_google'] = $this->config->get('config_meta_google') ? html_entity_decode($this->config->get('config_meta_google'), ENT_QUOTES, 'UTF-8') : '';
+		$this->data['meta_bing'] = $this->config->get('config_meta_bing') ? html_entity_decode($this->config->get('config_meta_bing'), ENT_QUOTES, 'UTF-8') : '';
+		$this->data['meta_yandex'] = $this->config->get('config_meta_yandex') ? html_entity_decode($this->config->get('config_meta_yandex'), ENT_QUOTES, 'UTF-8') : '';
+		$this->data['meta_baidu'] = $this->config->get('config_meta_baidu') ? html_entity_decode($this->config->get('config_meta_baidu'), ENT_QUOTES, 'UTF-8') : '';
+		$this->data['meta_alexa'] = $this->config->get('config_meta_alexa') ? html_entity_decode($this->config->get('config_meta_alexa'), ENT_QUOTES, 'UTF-8') : '';
+		
+		$this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');
+		$this->data['alexa_analytics'] = html_entity_decode($this->config->get('config_alexa_analytics'), ENT_QUOTES, 'UTF-8');
 
 		$this->language->load('common/header');
 

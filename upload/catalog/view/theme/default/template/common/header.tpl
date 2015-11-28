@@ -16,6 +16,12 @@
 <?php } else { ?>
 <meta name="keywords" content="<?php echo $text_home; ?>" />
 <?php } ?>
+<?php echo $meta_google; ?>
+<?php echo $meta_bing; ?>
+<?php echo $meta_yandex; ?>
+<?php echo $meta_baidu; ?>
+<?php echo $meta_alexa; ?>
+
 <?php if ($icon) { ?>
 <link href="<?php echo $icon; ?>" rel="icon" />
 <?php } ?>
@@ -41,13 +47,6 @@
 <?php } ?>
 <!--[if IE 7]> 
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/ie7.css" />
-<![endif]-->
-<!--[if lt IE 7]>
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/default/stylesheet/ie6.css" />
-<script type="text/javascript" src="catalog/view/javascript/DD_belatedPNG_0.0.8a-min.js"></script>
-<script type="text/javascript"><!--
-  DD_belatedPNG.fix('#logo img');
-//--></script>
 <![endif]-->
 <?php if ($stores) { ?>
 <script type="text/javascript"><!--
@@ -75,10 +74,13 @@ $(document).ready(function() {
     cookieExpires: 365
   });
 });
-if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {<?php echo $google_analytics; ?>}
+if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {
+  <?php echo ($google_analytics) ? "<br>" + $google_analytics : ''; ?><?php echo ($alexa_analytics) ? "<br>" + $alexa_analytics : ''; ?>
+}
 //--></script>
 <?php } else { ?>
-  <?php echo $google_analytics; ?>
+  <?php echo ($google_analytics) ? $google_analytics : ''; ?>
+  <?php echo ($alexa_analytics) ? $alexa_analytics : ''; ?>
 <?php } ?>
 <link href="/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>" rel="alternate" type="application/rss+xml" />
 </head>
@@ -112,7 +114,7 @@ function getIEVersion() {
     var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
     return match ? parseInt(match[1]) : undefined;
 }
-if (getIEVersion() < 9) {
+if (getIEVersion() < 8) {
 	$('#notification').prepend('<div class="warning"><?php echo $text_ie_warning; ?></div>');
 }
 //--></script>

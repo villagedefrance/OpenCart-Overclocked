@@ -70,6 +70,12 @@ class ControllerCommonFooter extends Controller {
 		$this->data['pinterest'] = html_entity_decode($this->config->get('config_pinterest'), ENT_QUOTES, 'UTF-8');
 		$this->data['skype'] = $this->config->get('config_skype');
 
+		$template = $this->config->get('config_template');
+
+		$web_design = $this->config->get($template . '_web_design');
+
+		$this->data['web_design'] = $web_design ? html_entity_decode($web_design, ENT_QUOTES, 'UTF-8') : '';
+
 		$this->data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
 		// Whos Online

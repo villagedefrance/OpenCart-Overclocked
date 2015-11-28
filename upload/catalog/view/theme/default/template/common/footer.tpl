@@ -99,7 +99,12 @@
 OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but it's generally accepted practise to make a small donation.
 Please donate via PayPal to donate@opencart.com
 //-->
+<?php if ($web_design) { ?>
+<div style="float:right;"><?php echo $web_design; ?></div>
+<?php } ?>
+<?php if ($this->config->get('default_powered_by')) { ?>
 <div id="powered"><?php echo $powered; ?></div>
+<?php } ?>
 </div>
 <?php if ($this->config->get('default_back_to_top')) { ?>
 <script type="text/javascript"><!--

@@ -260,6 +260,24 @@
 			  <label for="manufacturer-image-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_web_design; ?></td>
+            <td><textarea name="default_web_design" cols="40" rows="10"><?php echo $default_web_design; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_powered_by; ?></td>
+            <td><?php if ($default_powered_by) { ?>
+			  <input type="radio" name="default_powered_by" value="1" id="powered-by-on" class="radio" checked />
+              <label for="powered-by-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_powered_by" value="0" id="powered-by-off" class="radio" />
+			  <label for="powered-by-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_powered_by" value="1" id="powered-by-on" class="radio" />
+              <label for="powered-by-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_powered_by" value="0" id="powered-by-off" class="radio" checked />
+			  <label for="powered-by-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
         </table>
       </div>
       <div id="tab-credits">

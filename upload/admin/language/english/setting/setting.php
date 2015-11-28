@@ -8,6 +8,7 @@ $_['text_required']                    	= 'Required';
 $_['text_choice']                    		= 'Customer\'s choice';
 $_['text_automatic']                    	= 'Automatic';
 $_['text_hide']                    			= 'Hide';
+$_['text_verification'] 					= 'Website Verification';
 $_['text_datetime']						= 'Date &amp; Time';
 $_['text_location']						= 'Map &amp; Location';
 $_['text_express']             			= 'Express Checkout';
@@ -38,6 +39,7 @@ $_['text_security']						= 'Security';
 $_['text_upload']							= 'Upload';
 
 // Info
+$_['info_meta_name']             		= 'Meta name tags must follow the exact format : &lt;meta name="search engine" content="long alphanumeric code" /&gt;.';
 $_['info_express']             			= 'Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
 
 // Entry
@@ -47,6 +49,11 @@ $_['entry_address']                		= 'Address:';
 $_['entry_email']                 			= 'E-Mail:';
 $_['entry_telephone']              		= 'Telephone:';
 $_['entry_fax']                    			= 'Fax:';
+$_['entry_meta_google'] 				= 'Google Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Google</b>.</span>';
+$_['entry_meta_bing'] 					= 'Bing Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Bing</b>.</span>';
+$_['entry_meta_yandex'] 				= 'Yandex Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Yandex</b>.</span>';
+$_['entry_meta_baidu'] 				= 'Baidu Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Baidu</b>.</span>';
+$_['entry_meta_alexa'] 					= 'Alexa Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Alexa</b>.</span>';
 $_['entry_title']                  			= 'Title:';
 $_['entry_meta_description']			= 'Meta Tag Description:';
 $_['entry_layout']                 		= 'Default Layout:';
@@ -164,7 +171,8 @@ $_['entry_google']						= 'Url Google+ page:';
 $_['entry_pinterest']						= 'Url Pinterest page:';
 $_['entry_skype']							= 'Skype Name:';
 $_['entry_addthis']    					= 'AddThis Publisher ID:<br /><span class="help">Login to your <a onclick="window.open(\'http://www.addthis.com/\');" title=""><u>AddThis</u></a> account and enter your Publisher ID into this field.</span>';
-$_['entry_google_analytics']    		= 'Google Analytics Code:<br /><span class="help">Login to your <a href="http://www.google.com/analytics/" target="_blank"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
+$_['entry_google_analytics']    		= 'Google Analytics Code:<br /><span class="help">Login to your <a onclick="window.open(\'http://www.google.com/analytics/\');"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
+$_['entry_alexa_analytics']    		= 'Alexa Analytics Code:<br /><span class="help">Login to your <a onclick="window.open(\'http://www.alexa.com/\');"><u>Alexa Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
 $_['entry_maintenance']        		= 'Maintenance Mode:<br /><span class="help">Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.</span>';
 $_['entry_seo_url']              			= 'Use SEO URLs:<br /><span class="help">To use SEO URLs apache module mod-rewrite must be installed. If Yes is selected, the "htaccess.txt" file will be automatically converted to ".htaccess".</span>';
 $_['entry_encryption']          			= 'Encryption Key:<br /><span class="help">Please provide a secret key that will be used to encrypt private information when processing orders.</span>';

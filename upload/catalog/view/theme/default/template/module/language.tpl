@@ -1,20 +1,20 @@
 <?php if (count($languages) > 1) { ?>
 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
   <div id="language">
-    <div id="language-selector">
-      <?php foreach ($languages as $language) { ?>
-        <?php if ($language['code'] == $language_code) { ?>
-          <span class="language-selected"><?php echo $language['name']; ?></span>
-        <?php } ?>
-      <?php } ?>
-      <div id="language-option" style="display:none;">
-        <?php foreach ($languages as $language) { ?>
-          <a onclick="$('input[name=\'language_code\']').attr('value', '<?php echo $language['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $language['name']; ?></a>
-        <?php } ?>
-      </div>
-    </div>
-    <input type="hidden" name="language_code" value="" />
-    <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
+  <div id="language-selector">
+  <?php foreach ($languages as $language) { ?>
+  <?php if ($language['code'] == $language_code) { ?>
+  <span class="language-selected"><?php echo $language['name']; ?></span>
+  <?php } ?>
+  <?php } ?>
+  <div id="language-option" style="display:none;">
+  <?php foreach ($languages as $language) { ?>
+    <a onclick="$('input[name=\'language_code\']').attr('value', '<?php echo $language['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $language['name']; ?></a>
+  <?php } ?>
+  </div>
+  </div>
+  <input type="hidden" name="language_code" value="" />
+  <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
   </div>
 </form>
 
@@ -23,9 +23,9 @@ $(document).ready(function() {
 	language_width = $('#language-option').width();
 	$('#language-selector').css('width', (language_width + 10) + 'px');
 	$('#language-selector').hover(function() {
-		$('#language-option').slideDown(200);
+		$('#language-option').slideDown(100);
 	}, function() {
-		$('#language-option').slideUp(200);
+		$('#language-option').slideUp(100);
 	});
 });
 //--></script> 

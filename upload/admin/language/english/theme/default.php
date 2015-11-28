@@ -32,6 +32,8 @@ $_['entry_footer_pinterest']		= 'Display Pinterest:<br /><span class="help">Link
 $_['entry_footer_skype'] 			= 'Display Skype:<br /><span class="help">Link must be defined in store Settings.</span>';
 $_['entry_manufacturer_name']	= 'Display Manufacturer\'s Name:<br /><span class="help">Show the Manufacturer\'s Name in all Product Lists.</span>';
 $_['entry_manufacturer_image']	= 'Display Manufacturer\'s Image:<br /><span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
+$_['entry_web_design'] 			= 'Display Web Design Credits:<br /><span class="help">Html, links and images are accepted.</span>';
+$_['entry_powered_by']				= 'Display Powered by:<br /><span class="help">Show "Powered by OpenCart Overclocked".</span>';
 
 // Info
 $_['info_theme'] 						= 'Theme';
@@ -42,7 +44,7 @@ $_['info_support'] 					= 'Support';
 // Text Info
 $_['text_info_theme'] 				= 'Default - OverClocked Edition';
 $_['text_info_author'] 				= 'OpenCart, OverClocked Edition by Villagedefrance';
-$_['text_info_license'] 				= '<a onclick="window.open(\'http://www.gnu.org/licenses/gpl-3.0.en.html\');">GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007</a>';
+$_['text_info_license'] 				= '<a onclick="window.open(\'http://www.gnu.org/licenses/gpl-3.0.en.html\');">GPLv3 (GNU General Public License)</a>';
 $_['text_info_support'] 				= '<a onclick="window.open(\'http://villagedefrance.net/index.php\');">www.villagedefrance.net</a>';
 
 // Error
