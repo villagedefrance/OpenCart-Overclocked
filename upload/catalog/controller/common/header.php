@@ -10,9 +10,37 @@ class ControllerCommonHeader extends Controller {
 			$server = $this->config->get('config_url');
 		}
 
+		$metas = false;
+
+		if ($this->config->get('config_meta_google')) {
+            $this->document->addMeta('google-site-verification', $this->config->get('config_meta_google'));
+			$metas = true;
+        }
+
+        if ($this->config->get('config_meta_bing')) {
+            $this->document->addMeta('msvalidate.01', $this->config->get('config_meta_bing'));
+			$metas = true;
+        }
+
+		if ($this->config->get('config_meta_yandex')) {
+            $this->document->addMeta('yandex-verification', $this->config->get('config_meta_yandex'));
+			$metas = true;
+        }
+
+        if ($this->config->get('config_meta_baidu')) {
+            $this->document->addMeta('baidu-site-verification', $this->config->get('config_meta_baidu'));
+			$metas = true;
+        }
+
+        if ($this->config->get('config_meta_alexa')) {
+            $this->document->addMeta('alexaVerifyID', $this->config->get('config_meta_alexa'));
+			$metas = true;
+        }
+
 		$this->data['base'] = $server;
 		$this->data['description'] = $this->document->getDescription();
 		$this->data['keywords'] = $this->document->getKeywords();
+		$this->data['metas'] = $metas ? $this->document->getMetas() : null;
 		$this->data['links'] = $this->document->getLinks();
 		$this->data['styles'] = $this->document->getStyles();
 		$this->data['scripts'] = $this->document->getScripts();
@@ -33,12 +61,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['logo'] = '';
 		}
 
-		$this->data['meta_google'] = $this->config->get('config_meta_google') ? html_entity_decode($this->config->get('config_meta_google'), ENT_QUOTES, 'UTF-8') : '';
-		$this->data['meta_bing'] = $this->config->get('config_meta_bing') ? html_entity_decode($this->config->get('config_meta_bing'), ENT_QUOTES, 'UTF-8') : '';
-		$this->data['meta_yandex'] = $this->config->get('config_meta_yandex') ? html_entity_decode($this->config->get('config_meta_yandex'), ENT_QUOTES, 'UTF-8') : '';
-		$this->data['meta_baidu'] = $this->config->get('config_meta_baidu') ? html_entity_decode($this->config->get('config_meta_baidu'), ENT_QUOTES, 'UTF-8') : '';
-		$this->data['meta_alexa'] = $this->config->get('config_meta_alexa') ? html_entity_decode($this->config->get('config_meta_alexa'), ENT_QUOTES, 'UTF-8') : '';
-		
 		$this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');
 		$this->data['alexa_analytics'] = html_entity_decode($this->config->get('config_alexa_analytics'), ENT_QUOTES, 'UTF-8');
 
@@ -99,6 +121,10 @@ class ControllerCommonHeader extends Controller {
 
 		// Rss
 		$this->data['rss'] = $this->config->get('rss_feed_status');
+
+		$rss_currency = $this->currency->getCode();
+
+		$this->data['rss_href'] = $this->url->link('feed/rss_feed&amp;currency=' . $rss_currency, '', 'SSL');
 
 		// Theme
 		$this->data['theme'] = array();

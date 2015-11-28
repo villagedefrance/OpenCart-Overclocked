@@ -16,12 +16,11 @@
 <?php } else { ?>
 <meta name="keywords" content="<?php echo $text_home; ?>" />
 <?php } ?>
-<?php echo $meta_google; ?>
-<?php echo $meta_bing; ?>
-<?php echo $meta_yandex; ?>
-<?php echo $meta_baidu; ?>
-<?php echo $meta_alexa; ?>
-
+<?php if ($metas) { ?>
+<?php foreach ($metas as $meta) { ?>
+<meta name="<?php echo $meta['name']; ?>" content="<?php echo $meta['content']; ?>" />
+<?php } ?>
+<?php } ?>
 <?php if ($icon) { ?>
 <link href="<?php echo $icon; ?>" rel="icon" />
 <?php } ?>
@@ -61,7 +60,7 @@ $(document).ready(function() {
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/cookiecuttr.css" />
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery.cookie-1.4.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookiecuttr.js"></script>
-<script type="text/javascript"><!--
+<script type="text/javascript">
 $(document).ready(function() {
   $.cookieCuttr({
     cookieAnalytics: false,
@@ -77,12 +76,14 @@ $(document).ready(function() {
 if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {
   <?php echo ($google_analytics) ? "<br>" + $google_analytics : ''; ?><?php echo ($alexa_analytics) ? "<br>" + $alexa_analytics : ''; ?>
 }
-//--></script>
+</script>
 <?php } else { ?>
-  <?php echo ($google_analytics) ? $google_analytics : ''; ?>
-  <?php echo ($alexa_analytics) ? $alexa_analytics : ''; ?>
+<?php echo ($google_analytics) ? $google_analytics : ''; ?>
+<?php echo ($alexa_analytics) ? $alexa_analytics : ''; ?>
 <?php } ?>
-<link href="/index.php?route=feed/rss_feed&amp;currency=<?php echo $this->currency->getCode(); ?>" rel="alternate" type="application/rss+xml" />
+<?php if ($rss) { ?>
+<link rel="alternate" type="application/rss+xml" href="<?php echo $rss_href; ?>" />
+<?php } ?>
 </head>
 <body>
 <div id="container">

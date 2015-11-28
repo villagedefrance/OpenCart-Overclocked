@@ -39,7 +39,7 @@ $_['text_security']						= 'Security';
 $_['text_upload']							= 'Upload';
 
 // Info
-$_['info_meta_name']             		= 'Meta name tags must follow the exact format : &lt;meta name="search engine" content="long alphanumeric code" /&gt;.';
+$_['info_meta_name']             		= 'Meta name keys are unique for each Search Engine and for each Website. WebMaster accounts will be required to get a key.';
 $_['info_express']             			= 'Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
 
 // Entry
@@ -49,11 +49,11 @@ $_['entry_address']                		= 'Address:';
 $_['entry_email']                 			= 'E-Mail:';
 $_['entry_telephone']              		= 'Telephone:';
 $_['entry_fax']                    			= 'Fax:';
-$_['entry_meta_google'] 				= 'Google Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Google</b>.</span>';
-$_['entry_meta_bing'] 					= 'Bing Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Bing</b>.</span>';
-$_['entry_meta_yandex'] 				= 'Yandex Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Yandex</b>.</span>';
-$_['entry_meta_baidu'] 				= 'Baidu Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Baidu</b>.</span>';
-$_['entry_meta_alexa'] 					= 'Alexa Meta Identification:<span class="help">Enter the website unique "meta name" tag here.<br />It will be added to the Catalog Header to identify the site with <b>Alexa</b>.</span>';
+$_['entry_meta_google'] 				= 'Google Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Google</b>.</span>';
+$_['entry_meta_bing'] 					= 'Bing Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Bing</b>.</span>';
+$_['entry_meta_yandex'] 				= 'Yandex Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Yandex</b>.</span>';
+$_['entry_meta_baidu'] 				= 'Baidu Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Baidu</b>.</span>';
+$_['entry_meta_alexa'] 					= 'Alexa Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Alexa</b>.</span>';
 $_['entry_title']                  			= 'Title:';
 $_['entry_meta_description']			= 'Meta Tag Description:';
 $_['entry_layout']                 		= 'Default Layout:';

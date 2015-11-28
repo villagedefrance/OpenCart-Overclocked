@@ -31,6 +31,17 @@ class Document {
 		return $this->keywords;
 	}
 
+	public function addMeta($name, $content) {
+        $this->metas[$name] = array(
+            'name'		=> $name,
+            'content'	=> $content
+        );
+    }
+
+    public function getMetas() {
+        return $this->metas;
+    }
+
 	public function addStyle($href, $rel = 'stylesheet', $media = 'screen') {
 		$this->styles[md5($href)] = array(
 			'href' 		=> $href,
