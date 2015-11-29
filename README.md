@@ -24,7 +24,7 @@ So feel free to post your comments or get in touch.
 Latest Scripts:
 - jQuery 1.11.3.
 - jQuery UI 1.11.4.
-- CKEditor 4.5.3 Full.
+- CKEditor 4.5.5 Full.
 - jQuery Flot 0.8.2.
 - Camera 1.3.4.
 - Slick 1.5.8.
@@ -42,7 +42,22 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-New in 1.7.1.0 (Current Release):
+New in 1.7.2.0 (Current Release):
+- Extended Import/Export Tool.
+- Admin User Agent detector.
+- Customer Order Picklist.
+- Customer Order History.
+- Customer Gender and Date of Birth (optional).
+- Product Minimum Age limit.
+- Improved Quoting system.
+- Module Skype Talk/Chat.
+- Report Profit Margins.
+- Report Stock Levels.
+- Improved Database support.
+- Improved GUI.
+- Bug fixes ...
+
+New in 1.7.1.0:
 - Added Colours for Product.
 - Improved File Managers.
 - Improved Customer Accounts.
@@ -58,7 +73,6 @@ New in 1.7.0.0:
 - VQmod and VQmanager.
 - Improved Upgrade script.
 - Improved Install script.
-- CKEditor 4.5.1 full + plugins.
 - Multi-language Manufacturers.
 - Multi-language Countries.
 - Latest jQuery & jQuery UI.
@@ -66,16 +80,10 @@ New in 1.7.0.0:
 - Option "Free" for zero prices.
 - Option "Get a Quote" for products.
 - Bug fixes ...
-- ...
 
-New in v1.6.5.0:
+Added in v1.6.X:
 - All fixes from Community Edition RC1/2 applied.
 - Database CSV Import/Export.
-- Updated System files.
-- New Profit report.
-- Bug fixes ...
-
-New in v1.6.4.0:
 - Express Checkout.
 - All Product Wall page.
 - Custom Payment labels.
