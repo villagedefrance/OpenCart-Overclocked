@@ -21,8 +21,9 @@
  * @category   PHPExcel
  * @package    PHPExcel_Writer_Excel5
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Worksheet (used as the base for this class):
@@ -3593,36 +3594,36 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 			$dataBlockFill = pack('v', $blockFillPatternStyle);
 			$dataBlockFill .= pack('v', $colorIdxFg | ($colorIdxBg << 7));
 		}
-		if($bFormatProt == 1){
+		if ($bFormatProt == 1){
 			$dataBlockProtection = 0;
-			if($conditional->getStyle()->getProtection()->getLocked() == PHPExcel_Style_Protection::PROTECTION_PROTECTED){
+			if ($conditional->getStyle()->getProtection()->getLocked() == PHPExcel_Style_Protection::PROTECTION_PROTECTED){
 				$dataBlockProtection = 1;
 			}
-			if($conditional->getStyle()->getProtection()->getHidden() == PHPExcel_Style_Protection::PROTECTION_PROTECTED){
+			if ($conditional->getStyle()->getProtection()->getHidden() == PHPExcel_Style_Protection::PROTECTION_PROTECTED){
 				$dataBlockProtection = 1 << 1;
 			}
 		}
 
 		$data	  = pack('CCvvVv', $type, $operatorType, $szValue1, $szValue2, $flags, 0x0000);
-		if($bFormatFont == 1){ // Block Formatting : OK
+		if ($bFormatFont == 1){ // Block Formatting : OK
 			$data .= $dataBlockFont;
 		}
-		if($bFormatAlign == 1){
+		if ($bFormatAlign == 1){
 			$data .= $dataBlockAlign;
 		}
-		if($bFormatBorder == 1){
+		if ($bFormatBorder == 1){
 			$data .= $dataBlockBorder;
 		}
-		if($bFormatFill == 1){ // Block Formatting : OK
+		if ($bFormatFill == 1){ // Block Formatting : OK
 			$data .= $dataBlockFill;
 		}
-		if($bFormatProt == 1){
+		if ($bFormatProt == 1){
 			$data .= $dataBlockProtection;
 		}
-		if(!is_null($operand1)){
+		if (!is_null($operand1)){
 			$data .= $operand1;
 		}
-		if(!is_null($operand2)){
+		if (!is_null($operand2)){
 			$data .= $operand2;
 		}
 		$header	  = pack('vv', $record, strlen($data));
@@ -3643,26 +3644,26 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		$arrConditional = array();
 		foreach ($this->_phpSheet->getConditionalStylesCollection() as $cellCoordinate => $conditionalStyles) {
 			foreach ($conditionalStyles as $conditional) {
-				if($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_EXPRESSION
+				if ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_EXPRESSION
 						|| $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS){
-					if(!in_array($conditional->getHashCode(), $arrConditional)){
+					if (!in_array($conditional->getHashCode(), $arrConditional)){
 						$arrConditional[] = $conditional->getHashCode();
 					}
 					// Cells
 					$arrCoord = PHPExcel_Cell::coordinateFromString($cellCoordinate);
-					if(!is_numeric($arrCoord[0])){
+					if (!is_numeric($arrCoord[0])){
 						$arrCoord[0] = PHPExcel_Cell::columnIndexFromString($arrCoord[0]);
 					}
-					if(is_null($numColumnMin) || ($numColumnMin > $arrCoord[0])){
+					if (is_null($numColumnMin) || ($numColumnMin > $arrCoord[0])){
 						$numColumnMin = $arrCoord[0];
 					}
-					if(is_null($numColumnMax) || ($numColumnMax < $arrCoord[0])){
+					if (is_null($numColumnMax) || ($numColumnMax < $arrCoord[0])){
 						$numColumnMax = $arrCoord[0];
 					}
-					if(is_null($numRowMin) || ($numRowMin > $arrCoord[1])){
+					if (is_null($numRowMin) || ($numRowMin > $arrCoord[1])){
 						$numRowMin = $arrCoord[1];
 					}
-					if(is_null($numRowMax) || ($numRowMax < $arrCoord[1])){
+					if (is_null($numRowMax) || ($numRowMax < $arrCoord[1])){
 						$numRowMax = $arrCoord[1];
 					}
 				}
@@ -3679,3 +3680,4 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		$this->_append($header . $data);
 	}
 }
+?>

@@ -21,8 +21,9 @@
  * @category   PHPExcel
  * @package    PHPExcel_Reader_Excel5
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
 
 // Original file header of ParseXL (used as the base for this class):
@@ -75,8 +76,7 @@ if (!defined('PHPEXCEL_ROOT')) {
  * @package		PHPExcel_Reader_Excel5
  * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
-{
+class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader {
 	// ParseXL definitions
 	const XLS_BIFF8						= 0x0600;
 	const XLS_BIFF7						= 0x0500;
@@ -4830,7 +4830,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 	}
 
-
 	/**
 	 * Read SHEETLAYOUT record. Stores sheet tab color information.
 	 */
@@ -4869,7 +4868,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			}
 		}
 	}
-
 
 	/**
 	 * Read SHEETPROTECTION record (FEATHEADR)
@@ -4969,7 +4967,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		// offset: 21; size: 2; not used
 	}
 
-
 	/**
 	 * Read RANGEPROTECTION record
 	 * Reading of this record is based on Microsoft Office Excel 97-2000 Binary File Format Specification,
@@ -5031,7 +5028,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			}
 		}
 	}
-
 
 	/**
 	 * Read IMDATA record
@@ -5113,7 +5109,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		// _getSplicedRecordData() takes care of moving current position in data stream
 	}
 
-
 	/**
 	 * Read a free CONTINUE record. Free CONTINUE record may be a camouflaged MSODRAWING record
 	 * When MSODRAWING data on a sheet exceeds 8224 bytes, CONTINUE records are used instead. Undocumented.
@@ -5160,9 +5155,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		// move stream pointer to next record
 		$this->_pos += 4 + $length;
-
 	}
-
 
 	/**
 	 * Reads a record from current position in data stream and continues reading data as long as CONTINUE
@@ -5205,7 +5198,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 	}
 
-
 	/**
 	 * Convert formula structure into human readable Excel formula like 'A3+A5*5'
 	 *
@@ -5244,7 +5236,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $this->_getFormulaFromData($formulaData, $additionalData, $baseCell);
 	}
 
-
 	/**
 	 * Take formula data and additional data for formula and return human readable formula
 	 *
@@ -5270,7 +5261,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return $formulaString;
 	}
-
 
 	/**
 	 * Take array of tokens together with additional data for formula and return human readable formula
@@ -5434,7 +5424,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return $formulaString;
 	}
-
 
 	/**
 	 * Fetch next token from binary formula data
@@ -6001,7 +5990,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		);
 	}
 
-
 	/**
 	 * Reads a cell address in BIFF8 e.g. 'A2' or '$A$2'
 	 * section 3.3.4
@@ -6030,7 +6018,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return $column . $row;
 	}
-
 
 	/**
 	 * Reads a cell address in BIFF8 for shared formulas. Uses positive and negative values for row and column
@@ -6075,7 +6062,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $column . $row;
 	}
 
-
 	/**
 	 * Reads a cell range address in BIFF5 e.g. 'A2:B6' or 'A1'
 	 * always fixed range
@@ -6114,7 +6100,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return "$fc$fr:$lc$lr";
 	}
 
-
 	/**
 	 * Reads a cell range address in BIFF8 e.g. 'A2:B6' or 'A1'
 	 * always fixed range
@@ -6152,7 +6137,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		}
 		return "$fc$fr:$lc$lr";
 	}
-
 
 	/**
 	 * Reads a cell range address in BIFF8 e.g. 'A2:B6' or '$A$2:$B$6'
@@ -6205,7 +6189,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return "$fc$fr:$lc$lr";
 	}
-
 
 	/**
 	 * Reads a cell range address in BIFF8 for shared formulas. Uses positive and negative values for row and column
@@ -6289,7 +6272,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return "$fc$fr:$lc$lr";
 	}
 
-
 	/**
 	 * Read BIFF8 cell range address list
 	 * section 2.5.15
@@ -6317,7 +6299,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		);
 	}
 
-
 	/**
 	 * Read BIFF5 cell range address list
 	 * section 2.5.15
@@ -6344,7 +6325,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			'cellRangeAddresses' => $cellRangeAddresses,
 		);
 	}
-
 
 	/**
 	 * Get a sheet range like Sheet1:Sheet3 from REF index
@@ -6403,7 +6383,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return false;
 	}
 
-
 	/**
 	 * read BIFF8 constant value array from array data
 	 * returns e.g. array('value' => '{1,2;3,4}', 'size' => 40}
@@ -6441,7 +6420,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			'size' => $size,
 		);
 	}
-
 
 	/**
 	 * read BIFF8 constant value which may be 'Empty Value', 'Number', 'String Value', 'Boolean Value', 'Error Value'
@@ -6493,7 +6471,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		);
 	}
 
-
 	/**
 	 * Extract RGB color
 	 * OpenOffice.org's Documentation of the Microsoft Excel File Format, section 2.5.4
@@ -6517,7 +6494,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return array('rgb' => $rgb);
 	}
-
 
 	/**
 	 * Read byte string (8-bit string length)
@@ -6563,7 +6539,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		);
 	}
 
-
 	/**
 	 * Extracts an Excel Unicode short string (8-bit string length)
 	 * OpenOffice documentation: 2.5.3
@@ -6587,7 +6562,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $string;
 	}
 
-
 	/**
 	 * Extracts an Excel Unicode long string (16-bit string length)
 	 * OpenOffice documentation: 2.5.3
@@ -6610,7 +6584,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return $string;
 	}
-
 
 	/**
 	 * Read Unicode string with no string length field, but with known character count
@@ -6647,7 +6620,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		);
 	}
 
-
 	/**
 	 * Convert UTF-8 string to string surounded by double quotes. Used for explicit string tokens in formulas.
 	 * Example:  hello"world  -->  "hello""world"
@@ -6659,7 +6631,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 	{
 		return '"' . str_replace('"', '""', $value) . '"';
 	}
-
 
 	/**
 	 * Reads first 8 bytes of a string and return IEEE 754 float
@@ -6690,7 +6661,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $value;
 	}
 
-
 	private static function _GetIEEE754($rknum)
 	{
 		if (($rknum & 0x02) != 0) {
@@ -6716,7 +6686,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $value;
 	}
 
-
 	/**
 	 * Get UTF-8 string from (compressed or uncompressed) UTF-16 string
 	 *
@@ -6732,7 +6701,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return PHPExcel_Shared_String::ConvertEncoding($string, 'UTF-8', 'UTF-16LE');
 	}
-
 
 	/**
 	 * Convert UTF-16 string in compressed notation to uncompressed form. Only used for BIFF8.
@@ -6751,7 +6719,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $uncompressedString;
 	}
 
-
 	/**
 	 * Convert string to UTF-8. Only used for BIFF5.
 	 *
@@ -6762,7 +6729,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 	{
 		return PHPExcel_Shared_String::ConvertEncoding($string, 'UTF-8', $this->_codepage);
 	}
-
 
 	/**
 	 * Read 16-bit unsigned integer
@@ -6775,7 +6741,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 	{
 		return ord($data[$pos]) | (ord($data[$pos+1]) << 8);
 	}
-
 
 	/**
 	 * Read 32-bit signed integer
@@ -6798,7 +6763,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		}
 		return ord($data[$pos]) | (ord($data[$pos+1]) << 8) | (ord($data[$pos+2]) << 16) | $_ord_24;
 	}
-
 
 	/**
 	 * Read color
@@ -6828,7 +6792,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		return $color;
 	}
 
-
 	/**
 	 * Map border style
 	 * OpenOffice documentation: 2.5.11
@@ -6856,7 +6819,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			default:   return PHPExcel_Style_Border::BORDER_NONE;
 		}
 	}
-
 
 	/**
 	 * Get fill pattern from index
@@ -6891,7 +6853,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		}
 	}
 
-
 	/**
 	 * Map error code, e.g. '#N/A'
 	 *
@@ -6911,7 +6872,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			default: return false;
 		}
 	}
-
 
 	/**
 	 * Map built-in color to RGB value
@@ -6935,7 +6895,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			default:   return array('rgb' => '000000');
 		}
 	}
-
 
 	/**
 	 * Map color array from BIFF5 built-in color index
@@ -7006,7 +6965,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		}
 	}
 
-
 	/**
 	 * Map color array from BIFF8 built-in color index
 	 *
@@ -7076,7 +7034,6 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		}
 	}
 
-
 	private function _parseRichText($is = '') {
 		$value = new PHPExcel_RichText();
 
@@ -7084,5 +7041,5 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 		return $value;
 	}
-
 }
+?>

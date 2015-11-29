@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Reader
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Reader_Abstract
@@ -33,8 +33,7 @@
  * @package	PHPExcel_Reader
  * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
-{
+abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader {
 	/**
 	 * Read data only?
 	 * Identifies whether the Reader should only read data values for cells, and ignore any formatting information;
@@ -68,7 +67,6 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	protected $_readFilter = NULL;
 
 	protected $_fileHandle = NULL;
-
 
 	/**
 	 * Read data only?
@@ -129,8 +127,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 *
 	 * @return mixed
 	 */
-	public function getLoadSheetsOnly()
-	{
+	public function getLoadSheetsOnly() {
 		return $this->_loadSheetsOnly;
 	}
 
@@ -143,8 +140,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 *
 	 * @return PHPExcel_Reader_IReader
 	 */
-	public function setLoadSheetsOnly($value = NULL)
-	{
+	public function setLoadSheetsOnly($value = NULL) {
         if ($value === NULL)
             return $this->setLoadAllSheets();
 
@@ -159,8 +155,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 *
 	 * @return PHPExcel_Reader_IReader
 	 */
-	public function setLoadAllSheets()
-	{
+	public function setLoadAllSheets() {
 		$this->_loadSheetsOnly = NULL;
 		return $this;
 	}
@@ -192,8 +187,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 * @throws	PHPExcel_Reader_Exception
 	 * @return resource
 	 */
-	protected function _openFile($pFilename)
-	{
+	protected function _openFile($pFilename) {
 		// Check if file exists
 		if (!file_exists($pFilename) || !is_readable($pFilename)) {
 			throw new PHPExcel_Reader_Exception("Could not open " . $pFilename . " for reading! File does not exist.");
@@ -213,8 +207,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 * @return boolean
 	 * @throws PHPExcel_Reader_Exception
 	 */
-	public function canRead($pFilename)
-	{
+	public function canRead($pFilename) {
 		// Check if file exists
 		try {
 			$this->_openFile($pFilename);
@@ -233,8 +226,7 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 * @param 	string 		$xml
 	 * @throws PHPExcel_Reader_Exception
 	 */
-	public function securityScan($xml)
-	{
+	public function securityScan($xml) {
         $pattern = '/\\0?' . implode('\\0?', str_split('<!DOCTYPE')) . '\\0?/';
         if (preg_match($pattern, $xml)) { 
             throw new PHPExcel_Reader_Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
@@ -248,8 +240,8 @@ abstract class PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 	 * @param 	string 		$filestream
 	 * @throws PHPExcel_Reader_Exception
 	 */
-	public function securityScanFile($filestream)
-	{
+	public function securityScanFile($filestream) {
         return $this->securityScan(file_get_contents($filestream));
     }
 }
+?>

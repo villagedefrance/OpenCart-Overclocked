@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Reader
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Reader_IReader
@@ -33,8 +33,7 @@
  * @package    PHPExcel_Reader
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-interface PHPExcel_Reader_IReader
-{
+interface PHPExcel_Reader_IReader {
 	/**
 	 * Can the current PHPExcel_Reader_IReader read the file?
 	 *
@@ -52,3 +51,4 @@ interface PHPExcel_Reader_IReader
 	 */
 	public function load($pFilename);
 }
+?>

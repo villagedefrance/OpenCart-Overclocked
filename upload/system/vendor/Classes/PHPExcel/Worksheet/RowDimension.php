@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Worksheet_RowDimension
@@ -33,8 +33,7 @@
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Worksheet_RowDimension
-{
+class PHPExcel_Worksheet_RowDimension {
 	/**
 	 * Row index
 	 *
@@ -49,35 +48,35 @@ class PHPExcel_Worksheet_RowDimension
 	 *
 	 * @var double
 	 */
-	private $_rowHeight		= -1;
+	private $_rowHeight = -1;
 
  	/**
 	 * ZeroHeight for Row?
 	 *
 	 * @var bool
 	 */
-	private $_zeroHeight	= false;
+	private $_zeroHeight = false;
 
 	/**
 	 * Visible?
 	 *
 	 * @var bool
 	 */
-	private $_visible		= true;
+	private $_visible = true;
 
 	/**
 	 * Outline level
 	 *
 	 * @var int
 	 */
-	private $_outlineLevel	= 0;
+	private $_outlineLevel = 0;
 
 	/**
 	 * Collapsed
 	 *
 	 * @var bool
 	 */
-	private $_collapsed		= false;
+	private $_collapsed = false;
 
 	/**
 	 * Index to cellXf. Null value means row has no explicit cellXf format.
@@ -263,3 +262,4 @@ class PHPExcel_Worksheet_RowDimension
 		}
 	}
 }
+?>

@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Writer_OpenDocument
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Writer_OpenDocument_Cell_Comment
@@ -34,14 +34,15 @@
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @author     Alexander Pervakov <frost-nzcr4@jagmort.com>
  */
-class PHPExcel_Writer_OpenDocument_Cell_Comment
-{
-    public static function write(PHPExcel_Shared_XMLWriter $objWriter, PHPExcel_Cell $cell)
-    {
+class PHPExcel_Writer_OpenDocument_Cell_Comment {
+
+    public static function write(PHPExcel_Shared_XMLWriter $objWriter, PHPExcel_Cell $cell) {
         $comments = $cell->getWorksheet()->getComments();
+
         if (!isset($comments[$cell->getCoordinate()])) {
             return;
         }
+
         $comment = $comments[$cell->getCoordinate()];
 
         $objWriter->startElement('office:annotation');
@@ -61,3 +62,4 @@ class PHPExcel_Writer_OpenDocument_Cell_Comment
         $objWriter->endElement();
     }
 }
+?>

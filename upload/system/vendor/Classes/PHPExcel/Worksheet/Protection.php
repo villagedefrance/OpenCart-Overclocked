@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Worksheet_Protection
@@ -33,126 +33,125 @@
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Worksheet_Protection
-{
+class PHPExcel_Worksheet_Protection {
 	/**
 	 * Sheet
 	 *
 	 * @var boolean
 	 */
-	private $_sheet					= false;
+	private $_sheet = false;
 
 	/**
 	 * Objects
 	 *
 	 * @var boolean
 	 */
-	private $_objects				= false;
+	private $_objects = false;
 
 	/**
 	 * Scenarios
 	 *
 	 * @var boolean
 	 */
-	private $_scenarios				= false;
+	private $_scenarios = false;
 
 	/**
 	 * Format cells
 	 *
 	 * @var boolean
 	 */
-	private $_formatCells			= false;
+	private $_formatCells = false;
 
 	/**
 	 * Format columns
 	 *
 	 * @var boolean
 	 */
-	private $_formatColumns			= false;
+	private $_formatColumns = false;
 
 	/**
 	 * Format rows
 	 *
 	 * @var boolean
 	 */
-	private $_formatRows			= false;
+	private $_formatRows = false;
 
 	/**
 	 * Insert columns
 	 *
 	 * @var boolean
 	 */
-	private $_insertColumns			= false;
+	private $_insertColumns = false;
 
 	/**
 	 * Insert rows
 	 *
 	 * @var boolean
 	 */
-	private $_insertRows			= false;
+	private $_insertRows = false;
 
 	/**
 	 * Insert hyperlinks
 	 *
 	 * @var boolean
 	 */
-	private $_insertHyperlinks		= false;
+	private $_insertHyperlinks = false;
 
 	/**
 	 * Delete columns
 	 *
 	 * @var boolean
 	 */
-	private $_deleteColumns			= false;
+	private $_deleteColumns = false;
 
 	/**
 	 * Delete rows
 	 *
 	 * @var boolean
 	 */
-	private $_deleteRows			= false;
+	private $_deleteRows = false;
 
 	/**
 	 * Select locked cells
 	 *
 	 * @var boolean
 	 */
-	private $_selectLockedCells		= false;
+	private $_selectLockedCells = false;
 
 	/**
 	 * Sort
 	 *
 	 * @var boolean
 	 */
-	private $_sort					= false;
+	private $_sort = false;
 
 	/**
 	 * AutoFilter
 	 *
 	 * @var boolean
 	 */
-	private $_autoFilter			= false;
+	private $_autoFilter = false;
 
 	/**
 	 * Pivot tables
 	 *
 	 * @var boolean
 	 */
-	private $_pivotTables			= false;
+	private $_pivotTables = false;
 
 	/**
 	 * Select unlocked cells
 	 *
 	 * @var boolean
 	 */
-	private $_selectUnlockedCells	= false;
+	private $_selectUnlockedCells = false;
 
 	/**
 	 * Password
 	 *
 	 * @var string
 	 */
-	private $_password				= '';
+	private $_password = '';
 
     /**
      * Create a new PHPExcel_Worksheet_Protection
@@ -543,3 +542,4 @@ class PHPExcel_Worksheet_Protection
 		}
 	}
 }
+?>

@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Worksheet_SheetView
@@ -33,13 +33,11 @@
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Worksheet_SheetView
-{
-
+class PHPExcel_Worksheet_SheetView {
 	/* Sheet View types */
-	const SHEETVIEW_NORMAL				= 'normal';
-	const SHEETVIEW_PAGE_LAYOUT			= 'pageLayout';
-	const SHEETVIEW_PAGE_BREAK_PREVIEW	= 'pageBreakPreview';
+	const SHEETVIEW_NORMAL = 'normal';
+	const SHEETVIEW_PAGE_LAYOUT = 'pageLayout';
+	const SHEETVIEW_PAGE_BREAK_PREVIEW = 'pageBreakPreview';
 
 	private static $_sheetViewTypes = array(
 		self::SHEETVIEW_NORMAL,
@@ -186,3 +184,4 @@ class PHPExcel_Worksheet_SheetView
 		}
 	}
 }
+?>

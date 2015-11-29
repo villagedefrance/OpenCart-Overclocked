@@ -21,10 +21,10 @@
  * @category   PHPExcel
  * @package    PHPExcel_Writer_Excel5
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Writer_Excel5_Font
@@ -144,12 +144,13 @@ class PHPExcel_Writer_Excel5_Font
 	 * @static	array of int
 	 *
 	 */
-	private static $_mapUnderline = array(	PHPExcel_Style_Font::UNDERLINE_NONE					=> 0x00,
-											PHPExcel_Style_Font::UNDERLINE_SINGLE				=> 0x01,
-											PHPExcel_Style_Font::UNDERLINE_DOUBLE				=> 0x02,
-											PHPExcel_Style_Font::UNDERLINE_SINGLEACCOUNTING		=> 0x21,
-											PHPExcel_Style_Font::UNDERLINE_DOUBLEACCOUNTING		=> 0x22,
-										 );
+	private static $_mapUnderline = array(
+		PHPExcel_Style_Font::UNDERLINE_NONE					=> 0x00,
+		PHPExcel_Style_Font::UNDERLINE_SINGLE				=> 0x01,
+		PHPExcel_Style_Font::UNDERLINE_DOUBLE				=> 0x02,
+		PHPExcel_Style_Font::UNDERLINE_SINGLEACCOUNTING		=> 0x21,
+		PHPExcel_Style_Font::UNDERLINE_DOUBLEACCOUNTING		=> 0x22,
+	);
 	/**
 	 * Map underline
 	 *
@@ -161,5 +162,5 @@ class PHPExcel_Writer_Excel5_Font
 			return self::$_mapUnderline[$underline];
 		return 0x00;
 	}
-
 }
+?>
