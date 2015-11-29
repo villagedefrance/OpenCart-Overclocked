@@ -9,7 +9,7 @@
       <div class="warning"><?php echo $error_warning; ?></div>
     <?php } ?>
     <h1><img src="view/image/theme/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
-    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="login">
     <table style="width:100%;">
       <tr>
         <td style="text-align:center;" rowspan="4"><img src="view/image/theme/login.png" alt="<?php echo $text_login; ?>" /></td>
@@ -31,7 +31,7 @@
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td style="text-align:right;"><a onclick="$('#form').submit();" class="button"><?php echo $button_login; ?></a></td>
+        <td style="text-align:right;"><a onclick="$('#login').submit();" class="button-filter"><?php echo $button_login; ?></a></td>
       </tr>
     </table>
     <?php if ($redirect) { ?>
@@ -41,11 +41,4 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript"><!--
-$('#form input').keydown(function(e) {
-	if (e.keyCode == 13) { $('#form').submit(); }
-});
-//--></script>
-
 <?php echo $footer; ?>

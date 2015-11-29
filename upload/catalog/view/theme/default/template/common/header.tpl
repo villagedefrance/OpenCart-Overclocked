@@ -110,12 +110,3 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {
   	<?php echo $currency; ?>
   </div>
 </div>
-<script type="text/javascript"><!--
-function getIEVersion() {
-    var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
-    return match ? parseInt(match[1]) : undefined;
-}
-if (getIEVersion() < 8) {
-	$('#notification').prepend('<div class="warning"><?php echo $text_ie_warning; ?></div>');
-}
-//--></script>

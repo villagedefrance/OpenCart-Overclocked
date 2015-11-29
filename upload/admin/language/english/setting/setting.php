@@ -8,7 +8,6 @@ $_['text_required']                    	= 'Required';
 $_['text_choice']                    		= 'Customer\'s choice';
 $_['text_automatic']                    	= 'Automatic';
 $_['text_hide']                    			= 'Hide';
-$_['text_verification'] 					= 'Website Verification';
 $_['text_datetime']						= 'Date &amp; Time';
 $_['text_location']						= 'Map &amp; Location';
 $_['text_express']             			= 'Express Checkout';
@@ -34,13 +33,14 @@ $_['text_shipping']                		= 'Shipping Address';
 $_['text_payment']                 		= 'Payment Address';
 $_['text_mail']                    			= 'Mail';
 $_['text_smtp']                    		= 'SMTP';
+$_['text_verification'] 					= 'Verification';
 $_['text_analytic']						= 'Analytics';
 $_['text_security']						= 'Security';
 $_['text_upload']							= 'Upload';
 
 // Info
-$_['info_meta_name']             		= 'Meta name keys are unique for each Search Engine and for each Website. WebMaster accounts will be required to get a key.';
 $_['info_express']             			= 'Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
+$_['info_meta_name']             		= 'Meta name keys and Analytics scripts are unique for each Search Engine and for each Website. WebMaster accounts will be required to get a key or a script.';
 
 // Entry
 $_['entry_name']                   		= 'Store Name:';
@@ -81,7 +81,7 @@ $_['entry_auto_invoice']         		= 'Auto Invoice Number:<br /><span class="hel
 $_['entry_order_edit']             		= 'Order Editing:<br /><span class="help">Number of days allowed to edit an order. This is required because prices and discounts may change over time, corrupting the order if it is edited.</span>';
 $_['entry_order_status']           		= 'Order Status:<br /><span class="help">Set the default order status when an order is processed but not validated (such as orders from a banned IP). Orders with this status should be checked manually.</span>';
 $_['entry_complete_status']   		= 'Complete Order Status:<br /><span class="help">Set the order status the customers order must reach before they are allowed to access their downloadable products and gift vouchers.</span>';
-$_['entry_express_checkout'] 		= 'Express Checkout (Master):<br /><span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
+$_['entry_express_checkout'] 		= 'Express Checkout (<b>Master</b>):<br /><span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
 $_['entry_express_name'] 				= 'Customer\'s Full Name:<br /><span class="help">If No, the customer\'s name will be automatically extracted from the email address supplied.</span>';
 $_['entry_express_password'] 		= 'Auto-Generate Password:<br /><span class="help">If Yes, the customer\'s will still have the possibility to choose another password.</span>';
 $_['entry_express_autofill'] 			= 'Populate Fields Automatically:<br /><span class="help">If Yes, this option will attempt to fill most account fields automatically.</span>';

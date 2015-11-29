@@ -35,7 +35,7 @@ class ControllerCommonHeader extends Controller {
 
 		$medium = $this->browser->getMedium();
 
-		if ($medium == 'mobile') {
+		if (!$agent_platform && $medium == 'mobile') {
 			$this->data['device'] = 'phone';
 		} elseif ($medium == 'pad') {
 			$this->data['device'] = 'tablet';

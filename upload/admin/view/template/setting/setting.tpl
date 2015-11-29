@@ -77,30 +77,6 @@
             <td><input type="text" name="config_fax" value="<?php echo $config_fax; ?>" /></td>
           </tr>
         </table>
-        <h2><?php echo $text_verification; ?></h2>
-        <table class="form">
-          <tr>
-            <td><?php echo $entry_meta_google; ?></td>
-            <td><input type="text" name="config_meta_google" value="<?php echo $config_meta_google; ?>" size="50" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_meta_bing; ?></td>
-            <td><input type="text" name="config_meta_bing" value="<?php echo $config_meta_bing; ?>" size="50" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_meta_yandex; ?></td>
-            <td><input type="text" name="config_meta_yandex" value="<?php echo $config_meta_yandex; ?>" size="50" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_meta_baidu; ?></td>
-            <td><input type="text" name="config_meta_baidu" value="<?php echo $config_meta_baidu; ?>" size="50" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_meta_alexa; ?></td>
-            <td><input type="text" name="config_meta_alexa" value="<?php echo $config_meta_alexa; ?>" size="50" /></td>
-          </tr>
-        </table>
-        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_meta_name; ?></div>
       </div>
       <div id="tab-store">
         <table class="form">
@@ -443,6 +419,7 @@
           </tr>
         </table>
         <h2><?php echo $text_express; ?></h2>
+        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
         <table class="form">
           <tr>
             <td><?php echo $entry_express_checkout; ?></td>
@@ -459,7 +436,6 @@
             <?php } ?></td>
           </tr>
         </table>
-        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
         <table class="form">
 		  <tr>
             <td><?php echo $entry_express_name; ?></td>
@@ -1486,6 +1462,29 @@
             <td>#pubid=<input name="config_addthis" type="text" size="30" value="<?php echo $config_addthis; ?>" /></td>
           <tr>
         </table>
+        <h2><?php echo $text_verification; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_meta_google; ?></td>
+            <td><input type="text" name="config_meta_google" value="<?php echo $config_meta_google; ?>" size="50" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_meta_bing; ?></td>
+            <td><input type="text" name="config_meta_bing" value="<?php echo $config_meta_bing; ?>" size="50" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_meta_yandex; ?></td>
+            <td><input type="text" name="config_meta_yandex" value="<?php echo $config_meta_yandex; ?>" size="50" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_meta_baidu; ?></td>
+            <td><input type="text" name="config_meta_baidu" value="<?php echo $config_meta_baidu; ?>" size="50" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_meta_alexa; ?></td>
+            <td><input type="text" name="config_meta_alexa" value="<?php echo $config_meta_alexa; ?>" size="50" /></td>
+          </tr>
+        </table>
         <h2><?php echo $text_analytic; ?></h2>
         <table class="form">
           <tr>
@@ -1497,6 +1496,7 @@
             <td><textarea name="config_alexa_analytics" cols="40" rows="10"><?php echo $config_alexa_analytics; ?></textarea></td>
           </tr>
         </table>
+        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_meta_name; ?></div>
       </div>
       <div id="tab-server">
         <table class="form">

@@ -101,7 +101,7 @@ $_['column_remaining']            		= 'Remaining Downloads';
 $_['column_comment']             		= 'Comment';
 $_['column_notify']                   	= 'Customer Notified';
 $_['column_status_picked']			= 'Picked';
-$_['column_status_backordered']	= 'Back-order';
+$_['column_status_backordered']	= 'Back-order Reason';
 $_['column_action']                   	= 'Action';
 
 // Entry

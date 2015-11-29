@@ -546,13 +546,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('.magnific').magnificPopup({
 		type: 'image',
-		gallery: {enabled:true},
-		retina: {
-			ratio: 2,
-			replaceSrc: function(item, ratio) {
-				return item.src.replace(/\.\w+$/, function(m) {return '@2x' + m;});
-			}
-		}
+		gallery: { enabled:true }
 	});
 });
 //--></script>

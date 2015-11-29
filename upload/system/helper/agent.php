@@ -57,10 +57,10 @@ $browsers = array(
 	'Chrome'				=> 'Chrome',
 	'Chromium'			=> 'Chromium',
 	'Opera'				=> 'Opera',
-	'Trident/4.0'		=> 'Internet Explorer 8',
-	'Trident/5.0'		=> 'Internet Explorer 9',
-	'Trident/6.0'		=> 'Internet Explorer 10',
 	'Trident/7.0'		=> 'Internet Explorer 11',
+	'Trident/6.0'		=> 'Internet Explorer 10',
+	'Trident/5.0'		=> 'Internet Explorer 9',
+	'Trident/4.0'		=> 'Internet Explorer 8',
 	'MSIE'				=> 'Internet Explorer',
 	'IE'					=> 'Internet Explorer',
 	'Shiira'				=> 'Shiira',
@@ -88,7 +88,7 @@ $browsers = array(
 	'amaya'				=> 'Amaya',
 	'Vivaldi'				=> 'Vivaldi',
 	'IBrowse'			=> 'IBrowse',
-	'Android'				=> 'Android'
+	'Android'				=> 'Android Browser'
 );
 
 $pads = array(
@@ -176,10 +176,9 @@ $mobiles = array(
 	'crios'					=> 'Chrome Mobile iOS',
 	'chrome'				=> 'Chrome Mobile',
 	'iemobile'			=> 'IE Mobile',
-	'Chrome'				=> 'Chrome',
 	'fennec'				=> 'Fennec',
 	'Firefox'				=> 'Firefox',
-	'Android'				=> 'Android',
+	'Android'				=> 'Android Browser',
 
 	// Other
 	'digital paths'		=> 'Digital Paths',

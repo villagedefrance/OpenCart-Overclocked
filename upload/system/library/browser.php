@@ -2,26 +2,26 @@
 class Browser {
 	var $agent = null;
 
+	var $is_robot = false;
 	var $is_browser = false;
 	var $is_pad = false;
 	var $is_mobile = false;
-	var $is_robot = false;
 
 	var $languages = array();
 	var $charsets = array();
 
 	var $platforms = array();
+	var $robots = array();
 	var $browsers = array();
 	var $pads = array();
 	var $mobiles = array();
-	var $robots = array();
 
 	var $platform = '';
+	var $robot = '';
 	var $browser = '';
 	var $version = '';
 	var $pad = '';
 	var $mobile = '';
-	var $robot = '';
 
 	public function __construct() {
 		if (isset($_SERVER['HTTP_USER_AGENT'])) {
@@ -53,6 +53,12 @@ class Browser {
 			$return = true;
 		}
 
+		if (isset($robots)) {
+			$this->robots = $robots;
+			unset($robots);
+			$return = true;
+		}
+
 		if (isset($browsers)) {
 			$this->browsers = $browsers;
 			unset($browsers);
@@ -71,12 +77,6 @@ class Browser {
 			$return = true;
 		}
 
-		if (isset($robots)) {
-			$this->robots = $robots;
-			unset($robots);
-			$return = true;
-		}
-
 		return $return;
 	}
 
@@ -84,7 +84,7 @@ class Browser {
 	private function _compile_data() {
 		$this->_set_platform();
 
-		foreach (array('_set_browser', '_set_pad', '_set_mobile', '_set_robot') as $function) {
+		foreach (array('_set_robot', '_set_browser', '_set_pad', '_set_mobile') as $function) {
 			if ($this->$function() === true) {
 				break;
 			}
@@ -104,6 +104,23 @@ class Browser {
 		}
 
 		$this->platform = 'Unknown Platform';
+	}
+
+	// Set the Robot
+	private function _set_robot() {
+		if (is_array($this->robots) && count($this->robots) > 0) {
+			foreach ($this->robots as $key => $val) {
+				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
+					$this->is_robot = true;
+
+					$this->robot = $val;
+
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	// Set the Browser
@@ -163,23 +180,6 @@ class Browser {
 		return false;
 	}
 
-	// Set the Robot
-	private function _set_robot() {
-		if (is_array($this->robots) && count($this->robots) > 0) {
-			foreach ($this->robots as $key => $val) {
-				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
-					$this->is_robot = true;
-
-					$this->robot = $val;
-
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
 	// Set the accepted languages
 	private function _set_languages() {
 		if ((count($this->accept_languages) == 0) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && $_SERVER['HTTP_ACCEPT_LANGUAGE'] != '') {
@@ -204,6 +204,19 @@ class Browser {
 		if (count($this->accept_charsets) == 0) {
 			$this->accept_charsets = array('Undefined');
 		}
+	}
+
+	// Is Robot
+	public function is_robot($key = null) {
+		if (!$this->is_robot) {
+			return false;
+		}
+
+		if ($key === null) {
+			return true;
+		}
+
+		return array_key_exists($key, $this->robots) && $this->robot === $this->robots[$key];
 	}
 
 	// Is Browser
@@ -245,27 +258,14 @@ class Browser {
 		return array_key_exists($key, $this->mobiles) && $this->mobile === $this->mobiles[$key];
 	}
 
-	// Is Robot
-	public function is_robot($key = null) {
-		if (!$this->is_robot) {
-			return false;
-		}
-
-		if ($key === null) {
-			return true;
-		}
-
-		return array_key_exists($key, $this->robots) && $this->robot === $this->robots[$key];
-	}
-
-	// Get Medium: mobile, pad, robot, web
+	// Get Medium: robot, pad, mobile, web
 	public function getMedium() {
-		if ($this->is_mobile) {
-			return 'mobile';
+		if ($this->is_robot) {
+			return 'robot';
 		} elseif ($this->is_pad) {
 			return 'pad';
-		} elseif ($this->is_robot) {
-			return 'robot';
+		} elseif ($this->is_mobile) {
+			return 'mobile';
 		} else {
 			return 'web';
 		}
@@ -290,6 +290,11 @@ class Browser {
 		return $this->platform;
 	}
 
+	// Get The Robot Name
+	public function getRobot() {
+		return $this->robot;
+	}
+
 	// Get Browser Name
 	public function getBrowser() {
 		return $this->browser;
@@ -308,11 +313,6 @@ class Browser {
 	// Get the Mobile Device
 	public function getMobile() {
 		return $this->mobile;
-	}
-
-	// Get The Robot Name
-	public function getRobot() {
-		return $this->robot;
 	}
 
 	// Get the referrer

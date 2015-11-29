@@ -45,7 +45,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_automatic'] = $this->language->get('text_automatic');
 		$this->data['text_hide'] = $this->language->get('text_hide');
 		$this->data['text_characters'] = $this->language->get('text_characters');
-		$this->data['text_verification'] = $this->language->get('text_verification');
 		$this->data['text_datetime'] = $this->language->get('text_datetime');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_location'] = $this->language->get('text_location');
@@ -71,12 +70,13 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_mail'] = $this->language->get('text_mail');
 		$this->data['text_smtp'] = $this->language->get('text_smtp');
+		$this->data['text_verification'] = $this->language->get('text_verification');
 		$this->data['text_analytic'] = $this->language->get('text_analytic');
 		$this->data['text_security'] = $this->language->get('text_security');
 		$this->data['text_upload'] = $this->language->get('text_upload');
 
-		$this->data['info_meta_name'] = $this->language->get('info_meta_name');
 		$this->data['info_express'] = $this->language->get('info_express');
+		$this->data['info_meta_name'] = $this->language->get('info_meta_name');
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_store'] = $this->language->get('tab_store');
@@ -96,11 +96,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
-		$this->data['entry_meta_google'] = $this->language->get('entry_meta_google');
-		$this->data['entry_meta_bing'] = $this->language->get('entry_meta_bing');
-		$this->data['entry_meta_yandex'] = $this->language->get('entry_meta_yandex');
-		$this->data['entry_meta_baidu'] = $this->language->get('entry_meta_baidu');
-		$this->data['entry_meta_alexa'] = $this->language->get('entry_meta_alexa');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
@@ -218,6 +213,11 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_pinterest'] = $this->language->get('entry_pinterest');
 		$this->data['entry_skype'] = $this->language->get('entry_skype');
 		$this->data['entry_addthis'] = $this->language->get('entry_addthis');
+		$this->data['entry_meta_google'] = $this->language->get('entry_meta_google');
+		$this->data['entry_meta_bing'] = $this->language->get('entry_meta_bing');
+		$this->data['entry_meta_yandex'] = $this->language->get('entry_meta_yandex');
+		$this->data['entry_meta_baidu'] = $this->language->get('entry_meta_baidu');
+		$this->data['entry_meta_alexa'] = $this->language->get('entry_meta_alexa');
 		$this->data['entry_google_analytics'] = $this->language->get('entry_google_analytics');
 		$this->data['entry_alexa_analytics'] = $this->language->get('entry_alexa_analytics');
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
@@ -508,36 +508,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_fax'] = $this->request->post['config_fax'];
 		} else {
 			$this->data['config_fax'] = $this->config->get('config_fax');
-		}
-
-		if (isset($this->request->post['config_meta_google'])) {
-			$this->data['config_meta_google'] = $this->request->post['config_meta_google'];
-		} else {
-			$this->data['config_meta_google'] = $this->config->get('config_meta_google');
-		}
-
-		if (isset($this->request->post['config_meta_bing'])) {
-			$this->data['config_meta_bing'] = $this->request->post['config_meta_bing'];
-		} else {
-			$this->data['config_meta_bing'] = $this->config->get('config_meta_bing');
-		}
-
-		if (isset($this->request->post['config_meta_yandex'])) {
-			$this->data['config_meta_yandex'] = $this->request->post['config_meta_yandex'];
-		} else {
-			$this->data['config_meta_yandex'] = $this->config->get('config_meta_yandex');
-		}
-
-		if (isset($this->request->post['config_meta_baidu'])) {
-			$this->data['config_meta_baidu'] = $this->request->post['config_meta_baidu'];
-		} else {
-			$this->data['config_meta_baidu'] = $this->config->get('config_meta_baidu');
-		}
-
-		if (isset($this->request->post['config_meta_alexa'])) {
-			$this->data['config_meta_alexa'] = $this->request->post['config_meta_alexa'];
-		} else {
-			$this->data['config_meta_alexa'] = $this->config->get('config_meta_alexa');
 		}
 
 		// Store
@@ -1421,6 +1391,36 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_addthis'] = $this->request->post['config_addthis'];
 		} else {
 			$this->data['config_addthis'] = $this->config->get('config_addthis');
+		}
+
+		if (isset($this->request->post['config_meta_google'])) {
+			$this->data['config_meta_google'] = $this->request->post['config_meta_google'];
+		} else {
+			$this->data['config_meta_google'] = $this->config->get('config_meta_google');
+		}
+
+		if (isset($this->request->post['config_meta_bing'])) {
+			$this->data['config_meta_bing'] = $this->request->post['config_meta_bing'];
+		} else {
+			$this->data['config_meta_bing'] = $this->config->get('config_meta_bing');
+		}
+
+		if (isset($this->request->post['config_meta_yandex'])) {
+			$this->data['config_meta_yandex'] = $this->request->post['config_meta_yandex'];
+		} else {
+			$this->data['config_meta_yandex'] = $this->config->get('config_meta_yandex');
+		}
+
+		if (isset($this->request->post['config_meta_baidu'])) {
+			$this->data['config_meta_baidu'] = $this->request->post['config_meta_baidu'];
+		} else {
+			$this->data['config_meta_baidu'] = $this->config->get('config_meta_baidu');
+		}
+
+		if (isset($this->request->post['config_meta_alexa'])) {
+			$this->data['config_meta_alexa'] = $this->request->post['config_meta_alexa'];
+		} else {
+			$this->data['config_meta_alexa'] = $this->config->get('config_meta_alexa');
 		}
 
 		if (isset($this->request->post['config_google_analytics'])) {

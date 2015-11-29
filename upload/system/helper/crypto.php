@@ -52,7 +52,7 @@ function hash_rand($algo = 'md5', $len = 12) {
 
 	if (!in_array($algo, hash_algos())) {
 		$algo = 'md5';
-		trigger_error('Error: Unregistered hashing algorithm');
+		trigger_error('Error: Unregistered hashing algorithm!');
 	}
 
 	/*

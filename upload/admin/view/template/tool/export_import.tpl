@@ -350,8 +350,8 @@ function check_range_type(export_type) {
 		$('#range_type').fadeIn(800);
 		$('#range_type_id').prop('checked',true);
 		$('#range_type_page').prop('checked',false);
-		$('.id').fadeIn(800);
-		$('.page').fadeOut(800);
+		$('.id').show();
+		$('.page').hide();
 	} else {
 		$('#range_type').fadeOut(800);
 	}

@@ -7,6 +7,13 @@ class ControllerCommonLogin extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		// Delete install directory if exists
+		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
+			$this->load->model('tool/system');
+
+			$this->model_tool_system->deleteDirectory('../install');
+		}
+
 		if ($this->user->isLogged() && isset($this->request->get['token']) && ($this->request->get['token'] == $this->session->data['token'])) {
 			$this->redirect($this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'));
 		}
@@ -88,15 +95,6 @@ class ControllerCommonLogin extends Controller {
 			$this->data['forgotten'] = $this->url->link('common/forgotten', '', 'SSL');
 		} else {
 			$this->data['forgotten'] = '';
-		}
-
-		// Delete install directory
-		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
-			$this->load->model('tool/system');
-
-			$this->model_tool_system->deleteDirectory('../install');
-
-			clearstatcache();
 		}
 
 		$this->template = 'common/login.tpl';
