@@ -107,6 +107,7 @@ require_once(DIR_SYSTEM . 'library/cache.php');
 require_once(DIR_SYSTEM . 'library/url.php');
 require_once(DIR_SYSTEM . 'library/config.php');
 require_once(DIR_SYSTEM . 'library/db.php');
+require_once(DIR_SYSTEM . 'library/DbMemoryCacheDecorator.php');
 require_once(DIR_SYSTEM . 'library/document.php');
 require_once(DIR_SYSTEM . 'library/encryption.php');
 require_once(DIR_SYSTEM . 'library/image.php');
