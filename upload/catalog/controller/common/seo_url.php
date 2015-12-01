@@ -1,6 +1,15 @@
 <?php
 class ControllerCommonSeoUrl extends Controller {
 
+	private $db;
+
+	public function __construct($registry)
+	{
+		parent::__construct($registry);
+
+		$this->db = new DbMemoryCacheDecorator($registry->get('db'));
+	}
+
 	public function index() {
 		// Add rewrite to url class
 		if ($this->config->get('config_seo_url')) {
