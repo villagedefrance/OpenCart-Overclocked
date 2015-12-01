@@ -9,7 +9,7 @@ class Amazonus {
 	public function __construct($registry) {
 		$this->registry = $registry;
 
-		$this->token   = $registry->get('config')->get('openbay_amazonus_token');
+		$this->token = $registry->get('config')->get('openbay_amazonus_token');
 
 		$this->encPass = $registry->get('config')->get('openbay_amazonus_enc_string1');
 		$this->encSalt = $registry->get('config')->get('openbay_amazonus_enc_string2');

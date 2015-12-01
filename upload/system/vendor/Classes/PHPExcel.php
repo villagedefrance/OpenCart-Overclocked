@@ -389,7 +389,7 @@ class PHPExcel {
     public function __destruct() {
         PHPExcel_Calculation::unsetInstance($this);
         $this->disconnectWorksheets();
-    }    //    function __destruct()
+    }
 
     /**
      * Disconnect all worksheets from this PHPExcel workbook object,
@@ -416,7 +416,7 @@ class PHPExcel {
 	 */
 	public function getCalculationEngine() {
 		return $this->_calculationEngine;
-	}	//	function getCellCacheController()
+	}
 
     /**
      * Get properties

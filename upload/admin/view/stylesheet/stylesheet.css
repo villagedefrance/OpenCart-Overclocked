@@ -697,7 +697,7 @@ ul.menu ul {
 	-webkit-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	-moz-box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
 	box-shadow: 0 10px 6px -6px rgba(119, 119, 119, 1);
-	overflow: auto;
+	overflow: hidden;
 }
 .box-login > .content-login h1 {
 	margin: 0px 0px 10px 0px;

@@ -1,5 +1,12 @@
 <?php
 class ModelToolSeoUrl extends Controller {
+	private $db;
+
+	public function __construct($registry) {
+		parent::__construct($registry);
+
+		$this->db = new Dbmemory($registry->get('db'));
+	}
 
 	public function index() {
 		// Add rewrite to url class

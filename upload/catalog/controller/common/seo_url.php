@@ -1,13 +1,11 @@
 <?php
 class ControllerCommonSeoUrl extends Controller {
-
 	private $db;
 
-	public function __construct($registry)
-	{
+	public function __construct($registry) {
 		parent::__construct($registry);
 
-		$this->db = new DbMemoryCacheDecorator($registry->get('db'));
+		$this->db = new Dbmemory($registry->get('db'));
 	}
 
 	public function index() {
