@@ -23,9 +23,9 @@ $(document).ready(function() {
 	language_width = $('#language-option').width();
 	$('#language-selector').css('width', (language_width + 10) + 'px');
 	$('#language-selector').hover(function() {
-		$('#language-option').slideDown(100);
+		$('#language-option').slideDown(150);
 	}, function() {
-		$('#language-option').slideUp(100);
+		$('#language-option').slideUp(150);
 	});
 });
 //--></script> 

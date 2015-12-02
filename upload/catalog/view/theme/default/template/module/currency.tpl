@@ -23,9 +23,9 @@ $(document).ready(function() {
 	currency_width = $('#currency-option').width();
 	$('#currency-selector').css('width', (currency_width + 10) + 'px');
 	$('#currency-selector').hover(function() {
-		$('#currency-option').slideDown(100);
+		$('#currency-option').slideDown(150);
 	}, function() {
-		$('#currency-option').slideUp(100);
+		$('#currency-option').slideUp(150);
 	});
 });
 //--></script>
