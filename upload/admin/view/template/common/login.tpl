@@ -9,31 +9,28 @@
       <div class="warning"><?php echo $error_warning; ?></div>
     <?php } ?>
     <h1><img src="view/image/theme/lockscreen.png" alt="" /> <?php echo $text_login; ?></h1>
-    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="login">
-    <table style="width:100%;">
-      <tr>
-        <td style="text-align:center;" rowspan="4"><img src="view/image/theme/login.png" alt="<?php echo $text_login; ?>" /></td>
-      </tr>
-      <tr>
-        <td><?php echo $entry_username; ?><br />
-          <input type="text" name="username" value="<?php echo $username; ?>" style="margin-top:4px;" />
-          <br />
-          <br />
-          <?php echo $entry_password; ?><br />
-          <input type="password" name="password" value="<?php echo $password; ?>" style="margin-top:4px;" />
-          <?php if ($forgotten) { ?>
-            <br /><br />
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+      <div class="leftside">
+        <img src="view/image/theme/login.png" alt="<?php echo $text_login; ?>" />
+      </div>
+      <div class="rightside">
+        <div style="margin:5px 0px;"><?php echo $entry_username; ?></div>
+        <div>
+          <input type="text" name="username" value="<?php echo $username; ?>" />
+        </div>
+        <div style="margin:5px 0px;"><?php echo $entry_password; ?></div>
+        <div>
+          <input type="password" name="password" value="<?php echo $password; ?>" />
+        </div>
+        <?php if ($forgotten) { ?>
+          <div style="margin:5px 0px;">
             <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a>
-          <?php } ?>
-        </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td style="text-align:right;"><a onclick="$('#login').submit();" class="button-filter"><?php echo $button_login; ?></a></td>
-      </tr>
-    </table>
+          </div>
+        <?php } ?>
+      </div>
+      <div class="validate">
+        <a onclick="$('form').submit();" class="button-filter"><?php echo $button_login; ?></a>
+      </div>
     <?php if ($redirect) { ?>
       <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
     <?php } ?>

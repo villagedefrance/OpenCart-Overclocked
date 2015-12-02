@@ -27,7 +27,7 @@
     </div>
     <div class="right">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-        <h2><?php echo $text_returning_affiliate; ?></h2>
+      <h2><?php echo $text_returning_affiliate; ?></h2>
         <div class="content">
           <p><?php echo $text_i_am_returning_affiliate; ?></p>
           <b><?php echo $entry_email; ?></b><br />

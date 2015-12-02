@@ -6,6 +6,8 @@ class Customer {
 	private $email;
 	private $telephone;
 	private $fax;
+	private $gender;
+	private $date_of_birth;
 	private $newsletter;
 	private $customer_group_id;
 	private $address_id;
@@ -26,6 +28,8 @@ class Customer {
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
 				$this->fax = $customer_query->row['fax'];
+				$this->gender = $customer_query->row['gender'];
+				$this->date_of_birth = $customer_query->row['date_of_birth'];
 				$this->newsletter = $customer_query->row['newsletter'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->address_id = $customer_query->row['address_id'];
@@ -63,9 +67,6 @@ class Customer {
 					return false;
 				}
 			}
-
-			// Regenerate session id
-			$this->session->regenerateId();
 
 			// Token used to protect account functions against CSRF
 			$this->setToken();
@@ -105,6 +106,8 @@ class Customer {
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
 			$this->fax = $customer_query->row['fax'];
+			$this->gender = $customer_query->row['gender'];
+			$this->date_of_birth = $customer_query->row['date_of_birth'];
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->address_id = $customer_query->row['address_id'];
@@ -134,6 +137,8 @@ class Customer {
 		$this->email = '';
 		$this->telephone = '';
 		$this->fax = '';
+		$this->gender = '';
+		$this->date_of_birth = '';
 		$this->newsletter = '';
 		$this->customer_group_id = '';
 		$this->address_id = '';
@@ -165,6 +170,14 @@ class Customer {
 
 	public function getFax() {
 		return $this->fax;
+	}
+
+	public function getGender() {
+		return $this->gender;
+	}
+
+	public function getDateOfBirth() {
+		return $this->date_of_birth;
 	}
 
 	public function getNewsletter() {

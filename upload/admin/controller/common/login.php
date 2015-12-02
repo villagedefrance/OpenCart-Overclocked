@@ -18,11 +18,12 @@ class ControllerCommonLogin extends Controller {
 			$this->redirect($this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && isset($this->request->post['username']) && isset($this->request->post['password']) && $this->validate()) {
 			$this->session->data['token'] = hash_rand('md5');
 
-			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0 || strpos($this->request->post['redirect'], HTTPS_SERVER) === 0)) {
-				$this->redirect($this->request->post['redirect'] . '&token=' . $this->session->data['token']);
+			// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
+			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
+				$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
 			} else {
 				$this->redirect($this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'));
 			}
@@ -40,6 +41,16 @@ class ControllerCommonLogin extends Controller {
 
 		if ((isset($this->session->data['token']) && !isset($this->request->get['token'])) || ((isset($this->request->get['token']) && (isset($this->session->data['token']) && ($this->request->get['token'] != $this->session->data['token']))))) {
 			$this->error['warning'] = $this->language->get('error_token');
+		}
+
+		if (isset($this->request->post['redirect'])) {
+			$this->data['redirect'] = $this->request->post['redirect'];
+		} elseif (isset($this->session->data['redirect'])) {
+			$this->data['redirect'] = $this->session->data['redirect'];
+
+			unset($this->session->data['redirect']);
+		} else {
+			$this->data['redirect'] = '';
 		}
 
 		if (isset($this->error['warning'])) {
@@ -70,27 +81,6 @@ class ControllerCommonLogin extends Controller {
 			$this->data['password'] = '';
 		}
 
-		if (isset($this->request->get['route'])) {
-			$route = $this->request->get['route'];
-
-			unset($this->request->get['route']);
-
-			if (isset($this->request->get['token'])) {
-				unset($this->request->get['token']);
-			}
-
-			$url = '';
-
-			if ($this->request->get) {
-				$url .= http_build_query($this->request->get);
-			}
-
-			$this->data['redirect'] = $this->url->link($route, $url, 'SSL');
-
-		} else {
-			$this->data['redirect'] = '';
-		}
-
 		if ($this->config->get('config_password')) {
 			$this->data['forgotten'] = $this->url->link('common/forgotten', '', 'SSL');
 		} else {
@@ -107,7 +97,7 @@ class ControllerCommonLogin extends Controller {
 	}
 
 	protected function validate() {
-		if (!isset($this->request->post['username']) || !isset($this->request->post['password']) || !$this->user->login($this->request->post['username'], $this->request->post['password'])) {
+		if (!$this->user->login($this->request->post['username'], $this->request->post['password'])) {
 			$this->error['warning'] = $this->language->get('error_login');
 		}
 

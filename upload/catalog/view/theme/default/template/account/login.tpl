@@ -50,11 +50,4 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
-
-<script type="text/javascript"><!--
-$('#login input').keydown(function(e) {
-	if (e.keyCode == 13) { $('#login').submit(); }
-});
-//--></script>
-
 <?php echo $footer; ?>

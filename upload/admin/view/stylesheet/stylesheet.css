@@ -713,8 +713,24 @@ ul.menu ul {
 	float: left;
 }
 .box-login > .content-login > form {
-	min-height: 170px;
+	width: 100%;
+	min-height: 180px;
 	padding: 15px 10px;
+}
+.box-login > .content-login > form .leftside {
+	float: left;
+	width: 40%;
+	text-align: center;
+}
+.box-login > .content-login > form .rightside {
+	float: right;
+	width: 60%;
+	text-align: left;
+}
+.box-login > .content-login > form .validate {
+	clear: both;
+	float: right;
+	margin: 10px 20px 15px 0px;
 }
 /* Button */
 a.button, .list a.button, a.button-save, .list a.button-save, a.button-delete, .list a.button-delete, a.button-repair, .list a.button-repair, a.button-cancel, .list a.button-cancel {
