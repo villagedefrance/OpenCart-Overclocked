@@ -1,6 +1,7 @@
 <?php
 class ControllerCommonSeoUrl extends Controller {
 	private $db;
+	private $cache_url_map;
 
 	public function __construct($registry) {
 		parent::__construct($registry);
@@ -12,6 +13,14 @@ class ControllerCommonSeoUrl extends Controller {
 		// Add rewrite to url class
 		if ($this->config->get('config_seo_url')) {
 			$this->url->addRewrite($this);
+		}
+
+		if (true || $this->config->get('config_seo_url_cache')) {
+			$cache_key = 'seo_url_map_' . $this->config->get('config_language');
+			$this->cache_url_map = (array) $this->cache->get($cache_key);
+
+			$this->registry->set('seo_url_map', $this->cache_url_map);
+			$this->registry->set('save_seo_url_map', false);
 		}
 
 		// Decode URL
@@ -92,6 +101,10 @@ class ControllerCommonSeoUrl extends Controller {
 	public function rewrite($link) {
 		$url_info = parse_url(str_replace('&amp;', '&', $link));
 
+		if (null !== $this->cache_url_map && isset($this->cache_url_map[$url_info['query']])) {
+			return $this->cache_url_map[$url_info['query']];
+		}
+
 		$url = '';
 
 		$data = array();
@@ -155,7 +168,15 @@ class ControllerCommonSeoUrl extends Controller {
 				}
 			}
 
-			return $url_info['scheme'] . '://' . $url_info['host'] . (isset($url_info['port']) ? ':' . $url_info['port'] : '') . str_replace('/index.php', '', $url_info['path']) . $url . $query;
+			$new_link = $url_info['scheme'] . '://' . $url_info['host'] . (isset($url_info['port']) ? ':' . $url_info['port'] : '') . str_replace('/index.php', '', $url_info['path']) . $url . $query;
+
+			if (null !== $this->cache_url_map) {
+				$this->cache_url_map[$url_info['query']] = $new_link;
+				$this->registry->set('seo_url_map', $this->cache_url_map);
+				$this->registry->set('save_seo_url_map', true);
+			}
+
+			return $new_link;
 		} else {
 			return $link;
 		}
