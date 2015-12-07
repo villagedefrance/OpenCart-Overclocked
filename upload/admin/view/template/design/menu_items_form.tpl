@@ -43,7 +43,8 @@
             </tr>
             <tr>
               <td><?php echo $entry_meta_description; ?></td>
-              <td><textarea name="menu_item_description[<?php echo $language['language_id']; ?>][meta_description]" cols="40" rows="5"><?php echo isset($menu_item_description[$language['language_id']]) ? $menu_item_description[$language['language_id']]['meta_description'] : ''; ?></textarea></td>
+              <td><textarea name="menu_item_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="155" cols="40" rows="5"><?php echo isset($menu_item_description[$language['language_id']]) ? $menu_item_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
+              <span id="remaining<?php echo $language['language_id']; ?>"></span></td>
             </tr>
             <tr>
               <td><?php echo $entry_meta_keyword; ?></td>
@@ -109,6 +110,24 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+<?php foreach ($languages as $language) { ?>
+$(document).ready(function() {
+    $('#meta-description<?php echo $language['language_id']; ?>').val('');
+    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+        var limit = $(this).data("limit");
+        var remain = limit - $(this).val().length;
+        if (remain <= 0) {
+            $(this).val($(this).val().substring(0, limit));
+        }
+        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+    });
+
+	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
+});
+<?php } ?>
+//--></script>
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();

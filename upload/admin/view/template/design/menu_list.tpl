@@ -15,8 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $module_horizontal; ?>';" class="button"><?php echo $button_horizontal; ?></a>
-        <a onclick="location = '<?php echo $module_vertical; ?>';" class="button"><?php echo $button_vertical; ?></a>
+        <a onclick="location = '<?php echo $module_horizontal; ?>';" class="button-cancel"><?php echo $button_horizontal; ?></a>
+        <a onclick="location = '<?php echo $module_vertical; ?>';" class="button-cancel"><?php echo $button_vertical; ?></a>
         <a onclick="location = '<?php echo $insert; ?>'" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
@@ -51,7 +51,6 @@
               <td class="left"><?php echo $menu['title']; ?></td>
               <td class="left">
                 <?php echo $menu['menu_items']; ?> &nbsp; <?php echo $text_menu_items; ?>
-                <?php echo $menu['menu_item_add']; ?> &nbsp; <?php echo $menu['menu_item_view']; ?>
               </td>
               <?php if ($menu['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
@@ -59,6 +58,8 @@
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
               <td class="right">
+                <?php echo $menu['menu_item_view']; ?>
+                <?php echo $menu['menu_item_add']; ?>
                 <?php foreach ($menu['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
                 <?php } ?>

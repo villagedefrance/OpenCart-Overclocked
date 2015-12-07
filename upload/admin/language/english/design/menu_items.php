@@ -26,8 +26,8 @@ $_['column_action']          	= 'Action';
 
 // Entry
 $_['entry_name']             		= 'Menu Item Name:';
-$_['entry_meta_description']	= 'Meta Tag Description:';
-$_['entry_meta_keyword']		= 'Meta Tag Keyword:';
+$_['entry_meta_description'] 	= 'Meta Tag Description:<br /><span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
+$_['entry_meta_keyword'] 	= 'Meta Tag Keywords:<br /><span class="help">Usually ignored by search engines.<br />SEO importance: Low.</span>';
 $_['entry_parent']				= 'Parent Menu:';
 $_['entry_link']           			= 'Menu Item Link:<br /><span class="help">External links require a complete Url, including the "http://". Leave empty if a link is not needed.</span>';
 $_['entry_external_link'] 		= 'External Link:<br /><span class="help">Must be selected if the link is External.</span>';
@@ -38,7 +38,7 @@ $_['entry_status']           		= 'Status:';
 $_['info_title']						= 'List of internal links';
 
 // Button
-$_['button_back']					= 'Menu List';
+$_['button_back']					= 'Menus';
 
 // Error 
 $_['error_permission']       		= 'Warning: You do not have permission to modify <b>Menu Items</b> !';

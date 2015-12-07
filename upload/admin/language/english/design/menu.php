@@ -9,8 +9,8 @@ $_['text_delete_success']		= 'Success: You have Deleted a <b>Menu</b> !';
 $_['text_enabled']				= 'Enabled';
 $_['text_disabled']				= 'Disabled';
 $_['text_default']					= 'Default';
-$_['text_menu_item_add']		= '+';
-$_['text_menu_item_view']	= '&gt;';
+$_['text_menu_item_add']		= 'Add Item';
+$_['text_menu_item_view']	= 'View Items';
 $_['text_menu_items']  			= 'Menu Items';
 $_['text_menu_edit']  			= 'Edit';
 
