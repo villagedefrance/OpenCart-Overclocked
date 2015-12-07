@@ -239,6 +239,12 @@ if (isset($request->get['route'])) {
 // Dispatch
 $controller->dispatch($action, new Action('error/not_found'));
 
+if ($url_map = $registry->get('save_seo_url_map')) {
+	$cache_key = 'seo_url_map_' . $config->get('config_language');
+	$cache->delete($cache_key);
+	$cache->set($cache_key, $registry->get('seo_url_map'));
+}
+
 // Output
 $response->output();
 ?>
