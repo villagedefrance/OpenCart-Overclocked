@@ -342,7 +342,7 @@ class ModelCatalogProduct extends Model {
 	public function editProductStatus($product_id, $status) {
         $this->db->query("UPDATE " . DB_PREFIX . "product SET status = '" . (int)$status . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
-        $this->cache->delete('seo_url_map');
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('product');
 		$this->cache->delete('store');
     }

@@ -165,7 +165,7 @@ class ModelCatalogCategory extends Model {
 	public function editCategoryStatus($category_id, $status) {
         $this->db->query("UPDATE " . DB_PREFIX . "category SET status = '" . (int)$status . "', date_modified = NOW() WHERE category_id = '" . (int)$category_id . "'");
 
-        $this->cache->delete('seo_url_map');
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('category');
 		$this->cache->delete('store');
     }
