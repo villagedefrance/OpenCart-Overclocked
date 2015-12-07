@@ -55,7 +55,9 @@ class ModelCatalogCategory extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('category');
+		$this->cache->delete('store');
 	}
 
 	public function editCategory($category_id, $data) {
@@ -155,13 +157,17 @@ class ModelCatalogCategory extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('category');
+		$this->cache->delete('store');
 	}
 
 	public function editCategoryStatus($category_id, $status) {
         $this->db->query("UPDATE " . DB_PREFIX . "category SET status = '" . (int)$status . "', date_modified = NOW() WHERE category_id = '" . (int)$category_id . "'");
 
-        $this->cache->delete('category');
+        $this->cache->delete('seo_url_map');
+		$this->cache->delete('category');
+		$this->cache->delete('store');
     }
 
 	public function deleteCategory($category_id) {
@@ -181,7 +187,9 @@ class ModelCatalogCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE category_id = '" . (int)$category_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('category');
+		$this->cache->delete('store');
 	}
 
 	// Function to repair any erroneous categories that are not in the category path table.

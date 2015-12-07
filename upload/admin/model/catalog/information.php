@@ -31,7 +31,9 @@ class ModelCatalogInformation extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('information');
+		$this->cache->delete('store');
 	}
 
 	public function editInformation($information_id, $data) {
@@ -67,13 +69,17 @@ class ModelCatalogInformation extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('information');
+		$this->cache->delete('store');
 	}
 
 	public function editInformationStatus($information_id, $status) {
         $this->db->query("UPDATE " . DB_PREFIX . "information SET status = '" . (int)$status . "'WHERE information_id = '" . (int)$information_id . "'");
 
-        $this->cache->delete('information');
+        $this->cache->delete('seo_url_map');
+		$this->cache->delete('information');
+		$this->cache->delete('store');
     }
 
 	public function deleteInformation($information_id) {
@@ -83,7 +89,9 @@ class ModelCatalogInformation extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_layout WHERE information_id = '" . (int)$information_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "'");
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('information');
+		$this->cache->delete('store');
 	}
 
 	public function getInformation($information_id) {

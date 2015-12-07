@@ -145,13 +145,13 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		$this->cache->delete('store');
-
 		if (isset($data['keyword'])) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('product');
+		$this->cache->delete('store');
 	}
 
 	public function editProduct($product_id, $data) {
@@ -328,21 +328,23 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		$this->cache->delete('store');
-
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
 
 		if (isset($data['keyword'])) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('product');
+		$this->cache->delete('store');
 	}
 
 	public function editProductStatus($product_id, $status) {
         $this->db->query("UPDATE " . DB_PREFIX . "product SET status = '" . (int)$status . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
-        $this->cache->delete('product');
+        $this->cache->delete('seo_url_map');
+		$this->cache->delete('product');
+		$this->cache->delete('store');
     }
 
 	public function copyProduct($product_id) {
@@ -406,6 +408,7 @@ class ModelCatalogProduct extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('product');
 		$this->cache->delete('store');
 	}

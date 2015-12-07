@@ -27,7 +27,9 @@ class ModelCatalogManufacturer extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'manufacturer_id=" . (int)$manufacturer_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('manufacturer');
+		$this->cache->delete('store');
 	}
 
 	public function editManufacturer($manufacturer_id, $data) {
@@ -57,7 +59,9 @@ class ModelCatalogManufacturer extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'manufacturer_id=" . (int)$manufacturer_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('manufacturer');
+		$this->cache->delete('store');
 	}
 
 	public function deleteManufacturer($manufacturer_id) {
@@ -66,7 +70,9 @@ class ModelCatalogManufacturer extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "manufacturer_to_store WHERE manufacturer_id = '" . (int)$manufacturer_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'manufacturer_id=" . (int)$manufacturer_id . "'");
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('manufacturer');
+		$this->cache->delete('store');
 	}
 
 	public function getManufacturer($manufacturer_id) {

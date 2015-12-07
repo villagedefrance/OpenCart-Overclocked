@@ -27,7 +27,9 @@ class ModelCatalogNews extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'news_id=" . (int)$news_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('news');
+		$this->cache->delete('store');
 	}
 
 	public function editNews($news_id, $data) {
@@ -57,7 +59,9 @@ class ModelCatalogNews extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'news_id=" . (int)$news_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('news');
+		$this->cache->delete('store');
 	}
 
 	public function deleteNews($news_id) {
@@ -66,13 +70,17 @@ class ModelCatalogNews extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "news_to_store WHERE news_id = '" . (int)$news_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'news_id=" . (int)$news_id . "'");
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('news');
+		$this->cache->delete('store');
 	}
 
 	public function resetViews($news_id) {
 		$this->db->query("UPDATE " . DB_PREFIX . "news SET viewed = '0' WHERE news_id = '" . (int)$news_id . "'");
 
+		$this->cache->delete('seo_url_map');
 		$this->cache->delete('news');
+		$this->cache->delete('store');
 	}
 
 	public function getNewsStory($news_id) {
