@@ -15,7 +15,8 @@ final class Loader {
 	}
 
 	public function model($model) {
-		$file  = DIR_APPLICATION . 'model/' . $model . '.php';
+		$file = DIR_APPLICATION . 'model/' . $model . '.php';
+
 		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
 
 		if (file_exists($file)) {
@@ -23,7 +24,7 @@ final class Loader {
 			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
 		} else {
 			trigger_error('Error: Could not load model ' . $model . '!');
-			exit(); 
+			exit();
 		}
 	}
 
@@ -34,7 +35,7 @@ final class Loader {
 			include_once($file);
 		} else {
 			trigger_error('Error: Could not load library ' . $library . '!');
-			exit(); 
+			exit();
 		}
 	}
 
@@ -45,20 +46,21 @@ final class Loader {
 			include_once($file);
 		} else {
 			trigger_error('Error: Could not load helper ' . $helper . '!');
-			exit(); 
+			exit();
 		}
 	}
 
-	public function database($driver, $hostname, $username, $password, $database) {
-		$file  = DIR_SYSTEM . 'database/' . $driver . '.php';
+	public function database($driver, $hostname, $username, $password, $database, $port = null) {
+		$file = DIR_SYSTEM . 'database/' . $driver . '.php';
+
 		$class = 'Database' . preg_replace('/[^a-zA-Z0-9]/', '', $driver);
 
 		if (file_exists($file)) {
 			include_once($file);
-			$this->registry->set(str_replace('/', '_', $driver), new $class($hostname, $username, $password, $database));
+			$this->registry->set(str_replace('/', '_', $driver), new $class($hostname, $username, $password, $database, $port));
 		} else {
 			trigger_error('Error: Could not load database ' . $driver . '!');
-			exit(); 
+			exit();
 		}
 	}
 

@@ -43,7 +43,7 @@ abstract class Controller {
 
 		} else {
 			trigger_error('Error: Could not load controller ' . $child . '!');
-			exit(); 
+			exit();
 		}
 	}
 
@@ -87,7 +87,7 @@ abstract class Controller {
 
 		} else {
 			trigger_error('Error: Could not load template ' . DIR_TEMPLATE . $this->template . '!');
-			exit(); 
+			exit();
 		}
 	}
 }
