@@ -1,7 +1,7 @@
 <?php
 class ControllerCommonSeoUrl extends Controller {
 	private $db;
-	private $cache_url_map;
+	private $cache_url_map = array();
 
 	public function __construct($registry) {
 		parent::__construct($registry);
@@ -15,12 +15,14 @@ class ControllerCommonSeoUrl extends Controller {
 			$this->url->addRewrite($this);
 		}
 
-		if (true || $this->config->get('config_seo_url_cache')) {
-			$cache_key = 'seo_url_map_' . $this->config->get('config_language');
-			$this->cache_url_map = (array) $this->cache->get($cache_key);
+		// Catalog SEO URL map
+		if ($this->config->get('config_seo_url_cache')) {
+			$cache_key = 'seo_url_map.' . $this->config->get('config_language_id');
+
+			$this->cache_url_map = $this->cache->get($cache_key);
 
 			$this->registry->set('seo_url_map', $this->cache_url_map);
-			$this->registry->set('save_seo_url_map', false);
+			$this->registry->set('new_seo_url_map', false);
 		}
 
 		// Decode URL
@@ -170,10 +172,11 @@ class ControllerCommonSeoUrl extends Controller {
 
 			$new_link = $url_info['scheme'] . '://' . $url_info['host'] . (isset($url_info['port']) ? ':' . $url_info['port'] : '') . str_replace('/index.php', '', $url_info['path']) . $url . $query;
 
-			if (null !== $this->cache_url_map) {
+			if ($this->cache_url_map !== null) {
 				$this->cache_url_map[$url_info['query']] = $new_link;
+
 				$this->registry->set('seo_url_map', $this->cache_url_map);
-				$this->registry->set('save_seo_url_map', true);
+				$this->registry->set('new_seo_url_map', true);
 			}
 
 			return $new_link;

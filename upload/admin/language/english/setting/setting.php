@@ -175,6 +175,7 @@ $_['entry_google_analytics']    		= 'Google Analytics Code:<br /><span class="he
 $_['entry_alexa_analytics']    		= 'Alexa Analytics Code:<br /><span class="help">Login to your <a onclick="window.open(\'http://www.alexa.com/\');"><u>Alexa Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
 $_['entry_maintenance']        		= 'Maintenance Mode:<br /><span class="help">Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.</span>';
 $_['entry_seo_url']              			= 'Use SEO URLs:<br /><span class="help">To use SEO URLs apache module mod-rewrite must be installed. If Yes is selected, the "htaccess.txt" file will be automatically converted to ".htaccess".</span>';
+$_['entry_seo_url_cache']				= 'Use SEO URLs Caching:<br /><span class="help">Generates a cached map file of all SEO URL keyword definitions for faster access.</span>';
 $_['entry_encryption']          			= 'Encryption Key:<br /><span class="help">Please provide a secret key that will be used to encrypt private information when processing orders.</span>';
 $_['entry_compression']        		= 'Output Compression Level:<br /><span class="help">GZIP for more efficient transfer to requesting clients. Compression level must be between 0 - 9.</span>';
 $_['entry_error_display']       			= 'Display Errors:';

@@ -3924,6 +3924,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (388, 0, 'config', 'config_google_analytics', '', 0),
 (389, 0, 'config', 'config_maintenance', '0', 0),
 (390, 0, 'config', 'config_seo_url', '0', 0),
+(410, 0, 'config', 'config_seo_url_cache', '0', 0),
 (321, 0, 'config', 'config_affiliate_fax', '0', 0),
 (109, 0, 'carousel', 'carousel_title1', '', 0),
 (110, 0, 'featured', 'featured_review', '0', 0),

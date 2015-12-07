@@ -1529,6 +1529,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_seo_url_cache; ?></td>
+            <td><?php if ($config_seo_url_cache) { ?>
+			  <input type="radio" name="config_seo_url_cache" value="1" id="seo-cache-on" class="radio" checked />
+              <label for="seo-cache-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_seo_url_cache" value="0" id="seo-cache-off" class="radio" />
+			  <label for="seo-cache-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_seo_url_cache" value="1" id="seo-cache-on" class="radio" />
+              <label for="seo-cache-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_seo_url_cache" value="0" id="seo-cache-off" class="radio" checked />
+			  <label for="seo-cache-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><span class="required">*</span> <?php echo $entry_encryption; ?></td>
             <td><input type="text" name="config_encryption" value="<?php echo $config_encryption; ?>" size="42" />
             <?php if ($error_encryption) { ?>

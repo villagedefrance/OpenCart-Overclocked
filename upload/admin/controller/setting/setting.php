@@ -222,6 +222,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_alexa_analytics'] = $this->language->get('entry_alexa_analytics');
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
 		$this->data['entry_seo_url'] = $this->language->get('entry_seo_url');
+		$this->data['entry_seo_url_cache'] = $this->language->get('entry_seo_url_cache');
 		$this->data['entry_encryption'] = $this->language->get('entry_encryption');
 		$this->data['entry_compression'] = $this->language->get('entry_compression');
 		$this->data['entry_error_display'] = $this->language->get('entry_error_display');
@@ -1490,6 +1491,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_seo_url'] = $this->request->post['config_seo_url'];
 		} else {
 			$this->data['config_seo_url'] = $this->config->get('config_seo_url');
+		}
+
+		if (isset($this->request->post['config_seo_url_cache'])) {
+			$this->data['config_seo_url_cache'] = $this->request->post['config_seo_url_cache'];
+		} else {
+			$this->data['config_seo_url_cache'] = $this->config->get('config_seo_url_cache');
 		}
 
 		if (isset($this->request->post['config_encryption'])) {
