@@ -351,6 +351,8 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['copy'] = $this->url->link('catalog/product/copy', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('catalog/product/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		$this->data['refresh'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
@@ -394,7 +396,7 @@ class ControllerCatalogProduct extends Controller {
 			$product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
 
 			foreach ($product_specials as $product_special) {
-				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] < date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
+				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] <= date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
 					$special = $product_special['price'];
 					break;
 				}
@@ -417,6 +419,10 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_price_title'] = $this->language->get('text_price_title');
+		$this->data['text_quantity_title'] = $this->language->get('text_quantity_title');
+		$this->data['text_special_title'] = $this->language->get('text_special_title');
+		$this->data['text_discount_title'] = $this->language->get('text_discount_title');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
@@ -434,6 +440,11 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['button_copy'] = $this->language->get('button_copy');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_refresh'] = $this->language->get('button_refresh');
+		$this->data['button_update_price'] = $this->language->get('button_update_price');
+		$this->data['button_update_quantity'] = $this->language->get('button_update_quantity');
+		$this->data['button_update_special'] = $this->language->get('button_update_special');
+		$this->data['button_update_discount'] = $this->language->get('button_update_discount');
 		$this->data['button_filter'] = $this->language->get('button_filter');
 
 		$this->data['token'] = $this->session->data['token'];
@@ -1510,6 +1521,367 @@ class ControllerCatalogProduct extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
+	public function updatePrice() {
+		$json = array();
+
+		$this->language->load('catalog/product');
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			$selected = false;
+			$products = array();
+
+			if (isset($this->request->post['px_selected'])) {
+				$selected = (int)$this->request->post['px_selected'] > 0;
+
+				if ($selected) {
+					if (isset($this->request->post['selected']) && is_array($this->request->post['selected'])) {
+						foreach ($this->request->post['selected'] as $product_id) {
+							if ((int)$product_id > 0) {
+								$products[] = (int)$product_id;
+							}
+						}
+					}
+				}
+			}
+
+			if (isset($this->request->post['px_price'])) {
+				$price = $this->request->post['px_price'];
+			} else {
+				$price = '0.0000';
+			}
+
+			if (isset($this->request->post['px_cost'])) {
+				$cost = $this->request->post['px_cost'];
+			} else {
+				$cost = '0.0000';
+			}
+
+			if ($this->validatePriceUpdate($selected, $products)) {
+				$this->load->model('catalog/product');
+
+				$this->model_catalog_product->updateProductPrice($selected, $products, $price, $cost);
+
+				$json['success'] = $this->language->get('text_price_success');
+			}
+
+			$json['error'] = $this->error;
+
+		} else {
+			$this->data['text_select_all'] = $this->language->get('text_select_all');
+			$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
+			$this->data['text_selected_yes'] = $this->language->get('text_selected_yes');
+			$this->data['text_selected_no'] = $this->language->get('text_selected_no');
+
+			$this->data['entry_px_selected'] = $this->language->get('entry_px_selected');
+			$this->data['entry_px_price'] = $this->language->get('entry_px_price');
+			$this->data['entry_px_cost'] = $this->language->get('entry_px_cost');
+
+			$this->data['button_update_price'] = $this->language->get('button_update_price');
+
+			$this->data['token'] = $this->session->data['token'];
+
+			$this->template = 'catalog/product_price_form.tpl';
+
+			$json['html'] = $this->render();
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function updateQuantity() {
+		$json = array();
+
+		$this->language->load('catalog/product');
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			$selected = false;
+			$products = array();
+
+			if (isset($this->request->post['qt_selected'])) {
+				$selected = (int)$this->request->post['qt_selected'] > 0;
+
+				if ($selected) {
+					if (isset($this->request->post['selected']) && is_array($this->request->post['selected'])) {
+						foreach ($this->request->post['selected'] as $product_id) {
+							if ((int)$product_id > 0) {
+								$products[] = (int)$product_id;
+							}
+						}
+					}
+				}
+			}
+
+			if (isset($this->request->post['qt_quantity']) && (int)$this->request->post['qt_quantity'] >= 0) {
+				$quantity = (int)$this->request->post['qt_quantity'];
+			} else {
+				$quantity = '0';
+			}
+
+			if (isset($this->request->post['qt_minimum']) && (int)$this->request->post['qt_minimum'] >= 0) {
+				$minimum = (int)$this->request->post['qt_minimum'];
+			} else {
+				$minimum = '1';
+			}
+
+			if ($this->validateQuantityUpdate($selected, $products)) {
+				$this->load->model('catalog/product');
+
+				$this->model_catalog_product->updateProductQuantity($selected, $products, $quantity, $minimum);
+
+				$json['success'] = $this->language->get('text_quantity_success');
+			}
+
+			$json['error'] = $this->error;
+
+		} else {
+			$this->data['text_select_all'] = $this->language->get('text_select_all');
+			$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
+			$this->data['text_selected_yes'] = $this->language->get('text_selected_yes');
+			$this->data['text_selected_no'] = $this->language->get('text_selected_no');
+
+			$this->data['entry_qt_selected'] = $this->language->get('entry_qt_selected');
+			$this->data['entry_qt_quantity'] = $this->language->get('entry_qt_quantity');
+			$this->data['entry_qt_minimum'] = $this->language->get('entry_qt_minimum');
+
+			$this->data['button_update_quantity'] = $this->language->get('button_update_quantity');
+
+			$this->data['token'] = $this->session->data['token'];
+
+			$this->template = 'catalog/product_quantity_form.tpl';
+
+			$json['html'] = $this->render();
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function updateSpecial() {
+		$json = array();
+
+		$this->language->load('catalog/product');
+
+		$periods = array(
+			'today'		=> $this->language->get('text_end_today'),
+			'day'			=> $this->language->get('text_end_day'),
+			'week'		=> $this->language->get('text_end_week'),
+			'month'		=> $this->language->get('text_end_month'),
+			'undefined'	=> $this->language->get('text_end_undefined')
+		);
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			$selected = false;
+			$append = false;
+			$date_start = date('Y-m-d');
+			$date_end = '';
+			$customer_group = $this->config->get('config_customer_group_id');
+			$discount = 0;
+			$products = array();
+
+			if (isset($this->request->post['sp_selected'])) {
+				$selected = (int)$this->request->post['sp_selected'] > 0;
+
+				if ($selected) {
+					if (isset($this->request->post['selected']) && is_array($this->request->post['selected'])) {
+						foreach ($this->request->post['selected'] as $product_id) {
+							if ((int)$product_id > 0) {
+								$products[] = (int)$product_id;
+							}
+						}
+					}
+				}
+			}
+
+			if (isset($this->request->post['sp_append'])) {
+				$append = (int)$this->request->post['sp_append'] > 0;
+			}
+
+			if (isset($this->request->post['sp_customer_group']) && (int)$this->request->post['sp_customer_group'] > 0) {
+				$customer_group = (int)$this->request->post['sp_customer_group'];
+			}
+
+			if (isset($this->request->post['sp_period']) && array_key_exists($this->request->post['sp_period'], $periods)) {
+				$period = $this->request->post['sp_period'];
+
+				if ($period == 'today') {
+					$date_end = date('Y-m-d');
+				} elseif ($period == 'day') {
+					$date_end = date('Y-m-d', strtotime('+1 day'));
+				} elseif ($period == 'week') {
+					$date_end = date('Y-m-d', strtotime('+1 week'));
+				} elseif ($period == 'month') {
+					$date_end = date('Y-m-d', strtotime('+1 month'));
+				} else {
+					$date_end = '0000-00-00';
+				}
+			}
+
+			if (isset($this->request->post['sp_discount']) && (int)$this->request->post['sp_discount'] > 0 && (int)$this->request->post['sp_discount'] <= 100) {
+				$discount = (int)$this->request->post['sp_discount'];
+			}
+
+			if ($this->validateSpecialUpdate($selected, $products)) {
+				$this->load->model('catalog/product');
+
+				$this->model_catalog_product->updateProductSpecial($selected, $append, $products, $customer_group, $date_start, $date_end, $discount);
+
+				$json['success'] = $this->language->get('text_special_success');
+			}
+
+			$json['error'] = $this->error;
+
+		} else {
+			$this->load->model('sale/customer_group');
+
+			$this->data['text_select_all'] = $this->language->get('text_select_all');
+			$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
+			$this->data['text_selected_yes'] = $this->language->get('text_selected_yes');
+			$this->data['text_selected_no'] = $this->language->get('text_selected_no');
+			$this->data['text_append_yes'] = $this->language->get('text_append_yes');
+			$this->data['text_append_no'] = $this->language->get('text_append_no');
+
+			$this->data['entry_sp_selected'] = $this->language->get('entry_sp_selected');
+			$this->data['entry_sp_append'] = $this->language->get('entry_sp_append');
+			$this->data['entry_sp_customer_group'] = $this->language->get('entry_sp_customer_group');
+			$this->data['entry_sp_period'] = $this->language->get('entry_sp_period');
+			$this->data['entry_sp_discount'] = $this->language->get('entry_sp_discount');
+
+			$this->data['button_update_special'] = $this->language->get('button_update_special');
+
+			$this->data['periods'] = $periods;
+
+			$this->data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+
+			$this->data['default_customer_group'] = $this->config->get('config_customer_group_id');
+
+			$this->data['token'] = $this->session->data['token'];
+
+			$this->template = 'catalog/product_special_form.tpl';
+
+			$json['html'] = $this->render();
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function updateDiscount() {
+		$json = array();
+
+		$this->language->load('catalog/product');
+
+		$periods = array(
+			'today'		=> $this->language->get('text_end_today'),
+			'day'			=> $this->language->get('text_end_day'),
+			'week'		=> $this->language->get('text_end_week'),
+			'month'		=> $this->language->get('text_end_month'),
+			'undefined'	=> $this->language->get('text_end_undefined')
+		);
+
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			$selected = false;
+			$append = false;
+			$date_start = date('Y-m-d');
+			$date_end = '';
+			$customer_group = $this->config->get('config_customer_group_id');
+			$discount = 0;
+			$products = array();
+
+			if (isset($this->request->post['di_selected'])) {
+				$selected = (int)$this->request->post['di_selected'] > 0;
+
+				if ($selected) {
+					if (isset($this->request->post['selected']) && is_array($this->request->post['selected'])) {
+						foreach ($this->request->post['selected'] as $product_id) {
+							if ((int)$product_id > 0) {
+								$products[] = (int)$product_id;
+							}
+						}
+					}
+				}
+			}
+
+			if (isset($this->request->post['di_append'])) {
+				$append = (int)$this->request->post['di_append'] > 0;
+			}
+
+			if (isset($this->request->post['di_customer_group']) && (int)$this->request->post['di_customer_group'] > 0) {
+				$customer_group = (int)$this->request->post['di_customer_group'];
+			}
+
+			if (isset($this->request->post['di_period']) && array_key_exists($this->request->post['di_period'], $periods)) {
+				$period = $this->request->post['di_period'];
+
+				if ($period == 'today') {
+					$date_end = date('Y-m-d');
+				} elseif ($period == 'day') {
+					$date_end = date('Y-m-d', strtotime('+1 day'));
+				} elseif ($period == 'week') {
+					$date_end = date('Y-m-d', strtotime('+1 week'));
+				} elseif ($period == 'month') {
+					$date_end = date('Y-m-d', strtotime('+1 month'));
+				} else {
+					$date_end = '0000-00-00';
+				}
+			}
+
+			if (isset($this->request->post['di_quantity']) && (int)$this->request->post['di_quantity'] >= 0) {
+				$quantity = (int)$this->request->post['di_quantity'];
+			} else {
+				$quantity = '0';
+			}
+
+			if (isset($this->request->post['di_discount']) && (int)$this->request->post['di_discount'] > 0 && (int)$this->request->post['di_discount'] <= 100) {
+				$discount = (int)$this->request->post['di_discount'];
+			}
+
+			if ($this->validateSpecialUpdate($selected, $products)) {
+				$this->load->model('catalog/product');
+
+				$this->model_catalog_product->updateProductDiscount($selected, $append, $products, $customer_group, $quantity, $date_start, $date_end, $discount);
+
+				$json['success'] = $this->language->get('text_discount_success');
+			}
+
+			$json['error'] = $this->error;
+
+		} else {
+			$this->load->model('sale/customer_group');
+
+			$this->data['text_select_all'] = $this->language->get('text_select_all');
+			$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
+			$this->data['text_selected_yes'] = $this->language->get('text_selected_yes');
+			$this->data['text_selected_no'] = $this->language->get('text_selected_no');
+			$this->data['text_append_yes'] = $this->language->get('text_append_yes');
+			$this->data['text_append_no'] = $this->language->get('text_append_no');
+
+			$this->data['entry_di_selected'] = $this->language->get('entry_di_selected');
+			$this->data['entry_di_append'] = $this->language->get('entry_di_append');
+			$this->data['entry_di_customer_group'] = $this->language->get('entry_di_customer_group');
+			$this->data['entry_di_period'] = $this->language->get('entry_di_period');
+			$this->data['entry_di_quantity'] = $this->language->get('entry_di_quantity');
+			$this->data['entry_di_discount'] = $this->language->get('entry_di_discount');
+
+			$this->data['button_update_discount'] = $this->language->get('button_update_discount');
+
+			$this->data['periods'] = $periods;
+
+			$this->data['customer_groups'] = $this->model_sale_customer_group->getCustomerGroups();
+
+			$this->data['default_customer_group'] = $this->config->get('config_customer_group_id');
+
+			$this->data['token'] = $this->session->data['token'];
+
+			$this->template = 'catalog/product_discount_form.tpl';
+
+			$json['html'] = $this->render();
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
 	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'catalog/product')) {
 			$this->error['warning'] = $this->language->get('error_permission');
@@ -1558,6 +1930,54 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	protected function validatePriceUpdate($selected, $products = array()) {
+		if (!$this->user->hasPermission('modify', 'catalog/product')) {
+			$this->error[] = $this->language->get('error_permission');
+		}
+
+		if ($selected && empty($products)) {
+			$this->error[] = $this->language->get('error_selected');
+		}
+
+		return empty($this->error);
+	}
+
+	protected function validateQuantityUpdate($selected, $products = array()) {
+		if (!$this->user->hasPermission('modify', 'catalog/product')) {
+			$this->error[] = $this->language->get('error_permission');
+		}
+
+		if ($selected && empty($products)) {
+			$this->error[] = $this->language->get('error_selected');
+		}
+
+		return empty($this->error);
+	}
+
+	protected function validateSpecialUpdate($selected, $products = array()) {
+		if (!$this->user->hasPermission('modify', 'catalog/product')) {
+			$this->error[] = $this->language->get('error_permission');
+		}
+
+		if ($selected && empty($products)) {
+			$this->error[] = $this->language->get('error_selected');
+		}
+
+		return empty($this->error);
+	}
+
+	protected function validateDiscountUpdate($selected, $products = array()) {
+		if (!$this->user->hasPermission('modify', 'catalog/product')) {
+			$this->error[] = $this->language->get('error_permission');
+		}
+
+		if ($selected && empty($products)) {
+			$this->error[] = $this->language->get('error_selected');
+		}
+
+		return empty($this->error);
 	}
 
 	public function enable() {

@@ -108,6 +108,66 @@ $_['entry_reward']           		= 'Reward Points';
 $_['entry_palette_color_id']	= 'Palette Color:';
 $_['entry_layout']           		= 'Layout Override';
 
+// Mass Update Common
+$_['text_selected_yes']			= 'Selected only';
+$_['text_selected_no']			= 'All Products';
+$_['text_append_yes']			= 'Append';
+$_['text_append_no']			= 'Replace';
+$_['text_end_today']			= 'Today';
+$_['text_end_day']				= 'One day';
+$_['text_end_week']				= 'Week';
+$_['text_end_month']			= 'Month';
+$_['text_end_undefined']		= 'Undefined';
+
+$_['button_refresh']				= 'Refresh';
+
+$_['error_selected']				= 'No products are currently selected!';
+
+// Mass Update Price
+$_['text_price_title']				= 'Update Product Price';
+$_['text_price_success']		= 'Success: you have updated <b>Product Price</b> of selected products';
+
+$_['entry_px_selected']			= 'Products to update:';
+$_['entry_px_price']				= 'Enter Retail Price:';
+$_['entry_px_cost'] 				= 'Enter Average Cost:';
+
+$_['button_update_price']		= 'Update Price';
+
+// Mass Update Quantity
+$_['text_quantity_title']		= 'Update Product Quantity';
+$_['text_quantity_success']	= 'Success: you have updated <b>Product Quantity</b> of selected products';
+
+$_['entry_qt_selected']			= 'Products to update:';
+$_['entry_qt_quantity']			= 'Enter Quantity in Stock:';
+$_['entry_qt_minimum']			= 'Enter Quantity Minimum:<br /><span class="help">Force a minimum ordered amount</span>';
+
+$_['button_update_quantity']	= 'Update Quantity';
+
+// Mass Update Special
+$_['text_special_title']			= 'Update Product Special';
+$_['text_special_success']		= 'Success: you have updated <b>Special Prices</b> of selected products';
+
+$_['entry_sp_selected']			= 'Products to update:';
+$_['entry_sp_append']			= 'Updating Method:';
+$_['entry_sp_customer_group'] = 'Customer Group:';
+$_['entry_sp_period']			= 'Validity Period:';
+$_['entry_sp_discount']			= 'Discount Special:';
+
+$_['button_update_special']	= 'Update Special';
+
+// Mass Update Discount
+$_['text_discount_title']		= 'Update Product Discount';
+$_['text_discount_success']	= 'Success: you have updated <b>Discount Prices</b> of selected products';
+
+$_['entry_di_selected']			= 'Products to update:';
+$_['entry_di_append']			= 'Updating Method:';
+$_['entry_di_customer_group'] = 'Customer Group:';
+$_['entry_di_period']				= 'Validity Period:';
+$_['entry_di_quantity']			= 'Discount Quantity:';
+$_['entry_di_discount']			= 'Discount Price:';
+
+$_['button_update_discount']	= 'Update Discount';
+
 // Recurring
 $_['text_recurring_help']    	= '<u>Recurring amounts are calculated by the frequency and cycles.</u><br />For example if you use a frequency of "week" and a cycle of "2", then the user will be billed every 2 weeks.<br />The length is the number of times the user will make a payment, set this to 0 if you want payments until they are cancelled.';
 $_['text_recurring_title']   		= 'Recurring payments';

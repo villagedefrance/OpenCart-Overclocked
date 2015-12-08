@@ -731,6 +731,106 @@ class ModelCatalogProduct extends Model {
 		return $query->rows;
 	}
 
+	public function updateProductPrice($selected, $products = array(), $price, $cost) {
+		if ($selected) {
+			$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND price >= '0'");
+		} else {
+			$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE price >= '0'");
+		}
+
+		foreach ($query->rows as $result) {
+			if ($selected) {
+				foreach ($products as $product_id) {
+					$this->db->query("UPDATE " . DB_PREFIX . "product SET price = '" . $this->db->escape((float)$price) . "', cost = '" . $this->db->escape((float)$cost) . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+				}
+			} else {
+				$this->db->query("UPDATE " . DB_PREFIX . "product SET price = '" . $this->db->escape((float)$price) . "', cost = '" . $this->db->escape((float)$cost) . "', date_modified = NOW() WHERE product_id = '" . (int)$result['product_id'] . "'");
+			}
+		}
+
+		$this->cache->delete('product');
+	}
+
+	public function updateProductQuantity($selected, $products = array(), $quantity, $minimum) {
+		if ($selected) {
+			$query = $this->db->query("SELECT product_id, quantity FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND quantity >= '0'");
+		} else {
+			$query = $this->db->query("SELECT product_id, quantity FROM " . DB_PREFIX . "product WHERE quantity >= '0'");
+		}
+
+		foreach ($query->rows as $result) {
+			if ($selected) {
+				foreach ($products as $product_id) {
+					$this->db->query("UPDATE " . DB_PREFIX . "product SET quantity = '" . $this->db->escape((int)$quantity) . "', minimum = '" . $this->db->escape((int)$minimum) . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+				}
+			} else {
+				$this->db->query("UPDATE " . DB_PREFIX . "product SET quantity = '" . $this->db->escape((int)$quantity) . "', minimum = '" . $this->db->escape((int)$minimum) . "', date_modified = NOW() WHERE product_id = '" . (int)$result['product_id'] . "'");
+			}
+		}
+
+		$this->cache->delete('product');
+	}
+
+	public function updateProductSpecial($selected, $append, $products = array(), $customer_group, $date_start, $date_end, $discount) {
+		if ((int)$discount > 0) {
+			if ($selected) {
+				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND price > '0'");
+			} else {
+				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE price > '0'");
+			}
+
+			$priority = 1;
+			$percentage = 1 - (float)$discount / 100.0;
+
+			if (!$append) {
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE customer_group_id = " . (int)$customer_group . ($selected ? " AND product_id IN (" . join(',', $products) . ")" : ""));
+			}
+
+			foreach ($query->rows as $result) {
+				if ($selected) {
+					foreach ($products as $product_id) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$customer_group . "', priority = '" . (int)$priority . "', price = '" . $result['price'] * (float)$percentage . "', date_start = '" . $this->db->escape($date_start) . "', date_end = '" . $this->db->escape($date_end) . "'");
+					}
+				} else {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET product_id = '" . (int)$result['product_id'] . "', customer_group_id = '" . (int)$customer_group . "', priority = '" . (int)$priority . "', price = '" . $result['price'] * (float)$percentage . "', date_start = '" . $this->db->escape($date_start) . "', date_end = '" . $this->db->escape($date_end) . "'");
+				}
+			}
+
+		} else {
+			return;
+		}
+	}
+
+	public function updateProductDiscount($selected, $append, $products = array(), $customer_group, $quantity, $date_start, $date_end, $discount) {
+		if ((int)$discount > 0) {
+			if ($selected) {
+				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND price > '0'");
+			} else {
+				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE price > '0'");
+			}
+
+			$priority = 1;
+			$percentage = 1 - (float)$discount / 100.0;
+
+			if (!$append) {
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE customer_group_id = " . (int)$customer_group . ($selected ? " AND product_id IN (" . join(',', $products) . ")" : ""));
+			}
+
+			foreach ($query->rows as $result) {
+				if ($selected) {
+					foreach ($products as $product_id) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_discount SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$customer_group . "', quantity = '" . (int)$quantity . "', priority = '" . (int)$priority . "', price = '" . $result['price'] * (float)$percentage . "', date_start = '" . $this->db->escape($date_start) . "', date_end = '" . $this->db->escape($date_end) . "'");
+					}
+				} else {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_discount SET product_id = '" . (int)$result['product_id'] . "', customer_group_id = '" . (int)$customer_group . "', quantity = '" . (int)$quantity . "', priority = '" . (int)$priority . "', price = '" . $result['price'] * (float)$percentage . "', date_start = '" . $this->db->escape($date_start) . "', date_end = '" . $this->db->escape($date_end) . "'");
+				}
+			}
+
+		} else {
+			return;
+		}
+	}
+
 	public function getTotalProducts($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
 

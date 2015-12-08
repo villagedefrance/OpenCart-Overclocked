@@ -23,6 +23,14 @@
       </div>
     </div>
     <div class="content">
+      <div class="report">
+        <div class="left"><img src="view/image/product-add.png" alt="" /></div>
+        <div class="left"><a id="price-button" class="button-filter"><?php echo $button_update_price; ?></a></div>
+        <div class="left"><a id="quantity-button" class="button-filter"><?php echo $button_update_quantity; ?></a></div>
+        <div class="left"><a id="special-button" class="button-filter"><?php echo $button_update_special; ?></a></div>
+        <div class="left"><a id="discount-button" class="button-filter"><?php echo $button_update_discount; ?></a></div>
+		<div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button-filter"><?php echo $button_refresh; ?></a></div>
+      </div>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
@@ -130,6 +138,10 @@
           <?php } ?>
         </tbody>
         </table>
+        <div id="update-price-dialog" style="display:none;"></div>
+        <div id="update-quantity-dialog" style="display:none;"></div>
+        <div id="update-special-dialog" style="display:none;"></div>
+        <div id="update-discount-dialog" style="display:none;"></div>
       </form>
       <?php if ($navigation_lo) { ?>
         <div class="pagination"><?php echo $pagination; ?></div>
@@ -231,6 +243,108 @@ $('input[name=\'filter_model\']').autocomplete({
 	focus: function(event, ui) {
       	return false;
    	}
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('#price-button').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=catalog/product/updatePrice&token=<?php echo $token; ?>',
+		dataType: 'json',
+		type: 'get',
+		success: function(json) {
+			if (json['html']) {
+				$('#update-price-dialog').html(json['html']);
+				$('#update-price-dialog').dialog({
+					title: '<?php echo $text_price_title; ?>',
+					width: 760,
+					height: 400,
+					resizable: false,
+					modal: true
+				});
+			} else {
+				alert('Invalid response!');
+			}
+		},
+		failure: function() {
+			alert('Ajax error!');
+		}
+	});
+});
+
+$('#quantity-button').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=catalog/product/updateQuantity&token=<?php echo $token; ?>',
+		dataType: 'json',
+		type: 'get',
+		success: function(json) {
+			if (json['html']) {
+				$('#update-quantity-dialog').html(json['html']);
+				$('#update-quantity-dialog').dialog({
+					title: '<?php echo $text_quantity_title; ?>',
+					width: 760,
+					height: 400,
+					resizable: false,
+					modal: true
+				});
+			} else {
+				alert('Invalid response!');
+			}
+		},
+		failure: function() {
+			alert('Ajax error!');
+		}
+	});
+});
+
+$('#special-button').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=catalog/product/updateSpecial&token=<?php echo $token; ?>',
+		dataType: 'json',
+		type: 'get',
+		success: function(json) {
+			if (json['html']) {
+				$('#update-special-dialog').html(json['html']);
+				$('#update-special-dialog').dialog({
+					title: '<?php echo $text_special_title; ?>',
+					width: 760,
+					height: 400,
+					resizable: false,
+					modal: true
+				});
+			} else {
+				alert('Invalid response!');
+			}
+		},
+		failure: function() {
+			alert('Ajax error!');
+		}
+	});
+});
+
+$('#discount-button').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=catalog/product/updateDiscount&token=<?php echo $token; ?>',
+		dataType: 'json',
+		type: 'get',
+		success: function(json) {
+			if (json['html']) {
+				$('#update-discount-dialog').html(json['html']);
+				$('#update-discount-dialog').dialog({
+					title: '<?php echo $text_discount_title; ?>',
+					width: 760,
+					height: 400,
+					resizable: false,
+					modal: true
+				});
+			} else {
+				alert('Invalid response!');
+			}
+		},
+		failure: function() {
+			alert('Ajax error!');
+		}
+	});
 });
 //--></script>
 

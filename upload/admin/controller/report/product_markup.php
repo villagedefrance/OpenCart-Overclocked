@@ -96,7 +96,7 @@ class ControllerReportProductMarkup extends Controller {
 			$product_specials = $this->model_catalog_product->getProductSpecials($product['product_id']);
 
 			foreach ($product_specials as $product_special) {
-				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] < date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
+				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] <= date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
 					$special = $product_special['price'];
 					break;
 				}
