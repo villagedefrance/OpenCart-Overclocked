@@ -554,7 +554,7 @@ function getSalesChart(range) {
 		success: function(json) {
 			var option = {
 				shadowSize: 0,
-				colors: ['#DE5954', '#4691D2'],
+				colors: ['#F2B155', '#DE5954', '#4691D2'],
 				bars: {
 					show: true,
 					fill: true,
@@ -573,7 +573,7 @@ function getSalesChart(range) {
             		ticks: json['xaxis']
 				}
 			}
-			$.plot($('#report'), [json['order'], json['customer']], option);
+			$.plot($('#report'), [json['cart'], json['order'], json['customer']], option);
 		},
         error: function(xhr, ajaxOptions, thrownError) {
             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

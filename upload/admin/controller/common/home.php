@@ -683,13 +683,16 @@ class ControllerCommonHome extends Controller {
 
 		$data = array();
 
+		$data['cart'] = array();
 		$data['order'] = array();
 		$data['customer'] = array();
 		$data['xaxis'] = array();
 
+		$data['cart']['label'] = $this->language->get('text_cart');
 		$data['order']['label'] = $this->language->get('text_order');
 		$data['customer']['label'] = $this->language->get('text_customer');
 
+		$data['cart']['data'] = array();
 		$data['order']['data'] = array();
 		$data['customer']['data'] = array();
 
@@ -702,6 +705,14 @@ class ControllerCommonHome extends Controller {
 		switch ($range) {
 			case 'day':
 				for ($i = 0; $i < 24; $i++) {
+					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id = '" . (int)$this->config->get('config_order_status_id') . "' AND (DATE(date_added) = DATE(NOW()) AND HOUR(date_added) = '" . (int)$i . "') GROUP BY HOUR(date_added) ORDER BY date_added ASC");
+
+					if ($query->num_rows) {
+						$data['cart']['data'][] = array($i, (int)$query->row['total']);
+					} else {
+						$data['cart']['data'][] = array($i, 0);
+					}
+
 					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id >= '" . (int)$this->config->get('config_complete_status_id') . "' AND (DATE(date_added) = DATE(NOW()) AND HOUR(date_added) = '" . (int)$i . "') GROUP BY HOUR(date_added) ORDER BY date_added ASC");
 
 					if ($query->num_rows) {
@@ -728,6 +739,14 @@ class ControllerCommonHome extends Controller {
 				for ($i = 0; $i < 7; $i++) {
 					$date = date('Y-m-d', $date_start + ($i * 86400));
 
+					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id = '" . (int)$this->config->get('config_order_status_id') . "' AND DATE(date_added) = '" . $this->db->escape($date) . "' GROUP BY DATE(date_added)");
+
+					if ($query->num_rows) {
+						$data['cart']['data'][] = array($i, (int)$query->row['total']);
+					} else {
+						$data['cart']['data'][] = array($i, 0);
+					}
+
 					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id >= '" . (int)$this->config->get('config_complete_status_id') . "' AND DATE(date_added) = '" . $this->db->escape($date) . "' GROUP BY DATE(date_added)");
 
 					if ($query->num_rows) {
@@ -751,6 +770,14 @@ class ControllerCommonHome extends Controller {
 				for ($i = 1; $i <= date('t'); $i++) {
 					$date = date('Y') . '-' . date('m') . '-' . $i;
 
+					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id = '" . (int)$this->config->get('config_order_status_id') . "' AND (DATE(date_added) = '" . $this->db->escape($date) . "') GROUP BY DAY(date_added)");
+
+					if ($query->num_rows) {
+						$data['cart']['data'][] = array($i, (int)$query->row['total']);
+					} else {
+						$data['cart']['data'][] = array($i, 0);
+					}
+
 					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id >= '" . (int)$this->config->get('config_complete_status_id') . "' AND (DATE(date_added) = '" . $this->db->escape($date) . "') GROUP BY DAY(date_added)");
 
 					if ($query->num_rows) {
@@ -772,6 +799,14 @@ class ControllerCommonHome extends Controller {
 				break;
 			case 'year':
 				for ($i = 1; $i <= 12; $i++) {
+					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id = '" . (int)$this->config->get('config_order_status_id') . "' AND YEAR(date_added) = '" . date('Y') . "' AND MONTH(date_added) = '" . $i . "' GROUP BY MONTH(date_added)");
+
+					if ($query->num_rows) {
+						$data['cart']['data'][] = array($i, (int)$query->row['total']);
+					} else {
+						$data['cart']['data'][] = array($i, 0);
+					}
+
 					$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE order_status_id >= '" . (int)$this->config->get('config_complete_status_id') . "' AND YEAR(date_added) = '" . date('Y') . "' AND MONTH(date_added) = '" . $i . "' GROUP BY MONTH(date_added)");
 
 					if ($query->num_rows) {
@@ -793,6 +828,7 @@ class ControllerCommonHome extends Controller {
 				break;
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($data));
 	}
 
