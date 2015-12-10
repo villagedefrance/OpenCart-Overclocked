@@ -293,9 +293,12 @@ class ModelLocalisationLanguage extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('length_class');
 
+		$this->db->query("DELETE FROM " . DB_PREFIX . "manufacturer_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('manufacturer');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('menu_items');
-		
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "news_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('news');
 
