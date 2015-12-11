@@ -664,7 +664,7 @@ class ControllerCommonHome extends Controller {
 
 		// Currency auto-update
 		if ($this->config->get('config_currency_auto') && extension_loaded('curl')) {
-			$currency_url = 'http://download.finance.yahoo.com/d/quotes.csv';
+			$currency_url = 'http://download.finance.yahoo.com';
 
 			$url_response = $this->url->getHttpResponseCode($currency_url);
 

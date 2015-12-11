@@ -12,7 +12,7 @@
     <td><input type="text" name="px_price" value="" size="15" /></td>
   </tr>
   <tr>
-    <td><span class="required">*</span> <?php echo $entry_px_cost; ?></td>
+    <td><?php echo $entry_px_cost; ?></td>
     <td><input type="text" name="px_cost" value="" size="15" /></td>
   </tr>
 </table>

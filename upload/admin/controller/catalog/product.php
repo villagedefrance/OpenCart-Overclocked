@@ -1941,6 +1941,10 @@ class ControllerCatalogProduct extends Controller {
 			$this->error[] = $this->language->get('error_selected');
 		}
 
+		if (empty($this->request->post['px_price']) || $this->request->post['px_price'] < 0) {
+			$this->error[] = $this->language->get('error_price');
+		}
+
 		return empty($this->error);
 	}
 
@@ -1951,6 +1955,10 @@ class ControllerCatalogProduct extends Controller {
 
 		if ($selected && empty($products)) {
 			$this->error[] = $this->language->get('error_selected');
+		}
+
+		if (empty($this->request->post['qt_quantity']) || $this->request->post['qt_quantity'] < 0) {
+			$this->error[] = $this->language->get('error_quantity');
 		}
 
 		return empty($this->error);
