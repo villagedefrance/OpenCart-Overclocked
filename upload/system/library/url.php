@@ -32,5 +32,11 @@ class Url {
 
 		return $url;
 	}
+
+	public function getHttpResponseCode($url) {
+		$headers = get_headers($url);
+
+		return substr($headers[0], 9, 3);
+	}
 }
 ?>
