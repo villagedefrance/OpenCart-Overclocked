@@ -60,11 +60,11 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_mbstring'] = $this->language->get('text_mbstring');
 		$this->data['text_mbstring_note'] = $this->language->get('text_mbstring_note');
 
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_close'] = $this->language->get('button_close');
 
 		$this->data['token'] = $this->session->data['token'];
 
-		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$date_timezone = ini_get('date.timezone');
 		$default_timezone = date_default_timezone_get();

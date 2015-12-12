@@ -1577,6 +1577,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['entry_px_cost'] = $this->language->get('entry_px_cost');
 
 			$this->data['button_update_price'] = $this->language->get('button_update_price');
+			$this->data['button_submit'] = $this->language->get('button_submit');
 
 			$this->data['token'] = $this->session->data['token'];
 
@@ -1645,6 +1646,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['entry_qt_minimum'] = $this->language->get('entry_qt_minimum');
 
 			$this->data['button_update_quantity'] = $this->language->get('button_update_quantity');
+			$this->data['button_submit'] = $this->language->get('button_submit');
 
 			$this->data['token'] = $this->session->data['token'];
 
@@ -1748,6 +1750,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['entry_sp_discount'] = $this->language->get('entry_sp_discount');
 
 			$this->data['button_update_special'] = $this->language->get('button_update_special');
+			$this->data['button_submit'] = $this->language->get('button_submit');
 
 			$this->data['periods'] = $periods;
 
@@ -1864,6 +1867,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['entry_di_discount'] = $this->language->get('entry_di_discount');
 
 			$this->data['button_update_discount'] = $this->language->get('button_update_discount');
+			$this->data['button_submit'] = $this->language->get('button_submit');
 
 			$this->data['periods'] = $periods;
 

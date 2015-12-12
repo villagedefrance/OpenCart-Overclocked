@@ -18,7 +18,7 @@
 </table>
 <div style="margin:20px; text-align:right;">
   <img src="view/image/loading.gif" alt="" id="img-price-update" style="display:none;" /> 
-  <a id="button-price-update" class="button" style="font-size:12px; color:#FFF;"><?php echo $button_update_price; ?></a>
+  <a id="button-price-update" class="button" style="font-size:12px; color:#FFF;"><?php echo $button_submit; ?></a>
 </div>
 
 <script type="text/javascript"><!--

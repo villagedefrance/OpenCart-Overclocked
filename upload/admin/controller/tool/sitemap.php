@@ -27,7 +27,7 @@ class ControllerToolSitemap extends Controller {
 
 		$this->data['button_check'] = $this->language->get('button_check');
 		$this->data['button_refresh'] = $this->language->get('button_refresh');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_close'] = $this->language->get('button_close');
 
  		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -85,7 +85,7 @@ class ControllerToolSitemap extends Controller {
    		);
 
 		$this->data['refresh'] = $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['generate'] = $this->language->get('text_generate');
 		$this->data['download'] = $this->language->get('text_download');

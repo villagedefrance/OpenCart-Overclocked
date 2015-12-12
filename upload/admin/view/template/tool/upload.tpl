@@ -16,6 +16,7 @@
       <h1><img src="view/image/download.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
+        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">

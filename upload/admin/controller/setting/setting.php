@@ -549,15 +549,15 @@ class ControllerSettingSetting extends Controller {
 		$this->data['layouts'] = $this->model_design_layout->getLayouts();
 
 		// Local
+		$this->load->model('localisation/country');
+
+		$this->data['countries'] = $this->model_localisation_country->getCountries();
+
 		if (isset($this->request->post['config_country_id'])) {
 			$this->data['config_country_id'] = $this->request->post['config_country_id'];
 		} else {
 			$this->data['config_country_id'] = $this->config->get('config_country_id');
 		}
-
-		$this->load->model('localisation/country');
-
-		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
 		if (isset($this->request->post['config_zone_id'])) {
 			$this->data['config_zone_id'] = $this->request->post['config_zone_id'];
@@ -565,15 +565,15 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_zone_id'] = $this->config->get('config_zone_id');
 		}
 
+		$this->load->model('localisation/language');
+
+		$this->data['languages'] = $this->model_localisation_language->getLanguages();
+
 		if (isset($this->request->post['config_language'])) {
 			$this->data['config_language'] = $this->request->post['config_language'];
 		} else {
 			$this->data['config_language'] = $this->config->get('config_language');
 		}
-
-		$this->load->model('localisation/language');
-
-		$this->data['languages'] = $this->model_localisation_language->getLanguages();
 
 		if (isset($this->request->post['config_admin_language'])) {
 			$this->data['config_admin_language'] = $this->request->post['config_admin_language'];

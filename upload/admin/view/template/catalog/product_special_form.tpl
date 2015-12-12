@@ -45,7 +45,7 @@
 </table>
 <div style="margin:20px; text-align:right;">
   <img src="view/image/loading.gif" alt="" id="img-special-update" style="display:none;" /> 
-  <a id="button-special-update" class="button" style="font-size:12px; color:#FFF;"><?php echo $button_update_special; ?></a>
+  <a id="button-special-update" class="button" style="font-size:12px; color:#FFF;"><?php echo $button_submit; ?></a>
 </div>
 
 <script type="text/javascript"><!--

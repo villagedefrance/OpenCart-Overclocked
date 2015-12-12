@@ -143,6 +143,7 @@ class ControllerToolUpload extends Controller {
 		);
 
 		$this->data['delete'] = $this->url->link('tool/upload/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
@@ -187,6 +188,7 @@ class ControllerToolUpload extends Controller {
 
 		$this->data['button_download'] = $this->language->get('button_download');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_close'] = $this->language->get('button_close');
 
 		$this->data['token'] = $this->session->data['token'];
 

@@ -147,10 +147,10 @@ $_['entry_di_quantity']			= 'Discount Quantity:';
 $_['entry_di_discount']			= 'Discount Price:';
 
 $_['button_refresh']				= 'Refresh';
-$_['button_update_price']		= 'Update Price';
-$_['button_update_quantity']	= 'Update Quantity';
-$_['button_update_special']	= 'Update Special';
-$_['button_update_discount']	= 'Update Discount';
+$_['button_update_price']		= 'Prices';
+$_['button_update_quantity']	= 'Quantities';
+$_['button_update_special']	= 'Specials';
+$_['button_update_discount']	= 'Discounts';
 
 $_['error_selected']				= 'No products are currently selected!';
 $_['error_price']					= 'Price is required and cannot be negative!';

@@ -17,7 +17,7 @@
       <div class="buttons">
         <a onclick="$('#restore').submit();" class="button"><?php echo $button_restore; ?></a>
         <a onclick="$('#backup').submit();" class="button"><?php echo $button_backup; ?></a>
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">

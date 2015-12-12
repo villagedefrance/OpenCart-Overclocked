@@ -145,6 +145,8 @@ class ControllerToolExportImport extends Controller {
 
 		$this->document->addStyle('view/javascript/jquery/sfi/css/jquery.simplefileinput.css');
 
+		$this->load->model('tool/export_import');
+
 		$this->data['exist_filter'] = $this->model_tool_export_import->existFilter();
 
 		$this->data['text_export_type_category'] = ($this->data['exist_filter']) ? $this->language->get('text_export_type_category') : $this->language->get('text_export_type_category_old');

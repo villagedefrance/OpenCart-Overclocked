@@ -44,7 +44,7 @@ class ControllerToolBackup extends Controller {
 
 		$this->data['button_restore'] = $this->language->get('button_restore');
 		$this->data['button_backup'] = $this->language->get('button_backup');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_close'] = $this->language->get('button_close');
 
 		if (isset($this->session->data['error'])) {
 			$this->data['error_warning'] = $this->session->data['error'];
@@ -80,7 +80,7 @@ class ControllerToolBackup extends Controller {
 
 		$this->data['restore'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['backup'] = $this->url->link('tool/backup/backup', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['tables'] = $this->model_tool_backup->getTables();
 

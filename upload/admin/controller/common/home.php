@@ -664,15 +664,9 @@ class ControllerCommonHome extends Controller {
 
 		// Currency auto-update
 		if ($this->config->get('config_currency_auto') && extension_loaded('curl')) {
-			$currency_url = 'http://download.finance.yahoo.com';
+			$this->load->model('localisation/currency');
 
-			$url_response = $this->url->getHttpResponseCode($currency_url);
-
-			if ($url_response < 400) {
-				$this->load->model('localisation/currency');
-
-				$this->model_localisation_currency->updateCurrencies();
-			}
+			$this->model_localisation_currency->updateCurrencies();
 		}
 
 		$this->template = 'common/home.tpl';
