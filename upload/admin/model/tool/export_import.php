@@ -5164,15 +5164,15 @@ class ModelToolExportImport extends Model {
 		$result = $this->db->query($sql);
 
 		foreach ($result->rows as $row) {
-			$categoryId = $row['category_id'];
+			$category_id = $row['category_id'];
 			$store_id = $row['store_id'];
 
-			if (!isset($store_ids[$categoryId])) {
-				$store_ids[$categoryId] = array();
+			if (!isset($store_ids[$category_id])) {
+				$store_ids[$category_id] = array();
 			}
 
-			if (!in_array($store_id,$store_ids[$categoryId])) {
-				$store_ids[$categoryId][] = $store_id;
+			if (!in_array($store_id, $store_ids[$category_id])) {
+				$store_ids[$category_id][] = $store_id;
 			}
 		}
 
@@ -5189,15 +5189,15 @@ class ModelToolExportImport extends Model {
 		$layouts = array();
 
 		foreach ($result->rows as $row) {
-			$categoryId = $row['category_id'];
+			$category_id = $row['category_id'];
 			$store_id = $row['store_id'];
 			$name = $row['name'];
 
-			if (!isset($layouts[$categoryId])) {
-				$layouts[$categoryId] = array();
+			if (!isset($layouts[$category_id])) {
+				$layouts[$category_id] = array();
 			}
 
-			$layouts[$categoryId][$store_id] = $name;
+			$layouts[$category_id][$store_id] = $name;
 		}
 
 		return $layouts;
@@ -5267,8 +5267,8 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getCategories(&$languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		$sql = "SELECT c.*, ua.keyword FROM " . DB_PREFIX . "category c";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON ua.query = CONCAT('category_id=',c.category_id)";
+		$sql = "SELECT c.*, ua.keyword AS keyword FROM " . DB_PREFIX . "category c";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('category_id=',c.category_id))";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
@@ -5282,10 +5282,10 @@ class ModelToolExportImport extends Model {
 
 		$category_descriptions = $this->getCategoryDescriptions($languages, $offset, $rows, $min_id, $max_id);
 
-		foreach ($results->rows as $key => $row) {
-			foreach ($languages as $language) {
-				$language_code = $language['code'];
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
 
+			foreach ($results->rows as $key => $row) {
 				if (isset($category_descriptions[$language_code][$key])) {
 					$results->rows[$key]['name'][$language_code] = $category_descriptions[$language_code][$key]['name'];
 					$results->rows[$key]['description'][$language_code] = $category_descriptions[$language_code][$key]['description'];
@@ -5320,7 +5320,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_modified'), 19)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description'), 32)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description'), 48)+1);
 		}
 		foreach ($languages as $language) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_description'), 32)+1);
@@ -5419,25 +5419,19 @@ class ModelToolExportImport extends Model {
 				$data[$j++] = html_entity_decode($row['meta_keyword'][$language['code']], ENT_QUOTES, 'UTF-8');
 			}
 			$store_id_list = '';
-
 			$category_id = $row['category_id'];
-
 			if (isset($store_ids[$category_id])) {
 				foreach ($store_ids[$category_id] as $store_id) {
 					$store_id_list .= ($store_id_list=='') ? $store_id : ',' . $store_id;
 				}
 			}
-
 			$data[$j++] = $store_id_list;
-
 			$layout_list = '';
-
 			if (isset($layouts[$category_id])) {
 				foreach ($layouts[$category_id] as $store_id => $name) {
 					$layout_list .= ($layout_list == '') ? $store_id . ':' . $name : ',' . $store_id . ':' . $name;
 				}
 			}
-
 			$data[$j++] = $layout_list;
 			$data[$j++] = ($row['status'] == 0) ? 'false' : 'true';
 
@@ -5717,7 +5711,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\" ) AS related";
 		$sql .= " FROM " . DB_PREFIX . "product p";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category pc ON (p.product_id = pc.product_id)";
-		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON ua.query = CONCAT('product_id=', p.product_id)";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('product_id=',p.product_id))";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id)";
 		$sql .= " AND md.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id)";
@@ -5738,10 +5732,10 @@ class ModelToolExportImport extends Model {
 
 		$product_descriptions = $this->getProductDescriptions($languages, $offset, $rows, $min_id, $max_id);
 
-		foreach ($results->rows as $key => $row) {
-			foreach ($languages as $language) {
-				$language_code = $language['code'];
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
 
+			foreach ($results->rows as $key => $row) {
 				if (isset($product_descriptions[$language_code][$key])) {
 					$results->rows[$key]['name'][$language_code] = $product_descriptions[$language_code][$key]['name'];
 					$results->rows[$key]['description'][$language_code] = $product_descriptions[$language_code][$key]['description'];
@@ -5818,7 +5812,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tax_class_id'), 3)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description')+4, 32)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description')+4, 48)+1);
 		}
 		foreach ($languages as $language) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_description')+4, 32)+1);
@@ -6097,13 +6091,13 @@ class ModelToolExportImport extends Model {
 
 	protected function getSpecials($language_id, $min_id = null, $max_id = null) {
 		// Get the product specials
-		$sql = "SELECT ps.*, cgd.name FROM " . DB_PREFIX . "product_special ps";
+		$sql = "SELECT ps.*, cgd.name AS name FROM " . DB_PREFIX . "product_special ps";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cgd.customer_group_id = ps.customer_group_id)";
 		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND ps.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " ORDER BY ps.product_id, name, ps.priority";
+		$sql .= " ORDER BY ps.product_id, cgd.name, ps.priority";
 
 		$result = $this->db->query($sql);
 
@@ -6168,13 +6162,13 @@ class ModelToolExportImport extends Model {
 
 	protected function getDiscounts($language_id, $min_id = null, $max_id = null) {
 		// Get the product discounts
-		$sql = "SELECT pd.*, cgd.name FROM " . DB_PREFIX . "product_discount pd";
+		$sql = "SELECT pd.*, cgd.name AS name FROM " . DB_PREFIX . "product_discount pd";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cgd.customer_group_id = pd.customer_group_id)";
 		$sql .= " WHERE cgd.language_id = '" . $language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND pd.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " ORDER BY pd.product_id ASC, name ASC, pd.quantity ASC";
+		$sql .= " ORDER BY pd.product_id ASC, cgd.name ASC, pd.quantity ASC";
 
 		$result = $this->db->query($sql);
 
@@ -6592,6 +6586,7 @@ class ModelToolExportImport extends Model {
 					$product_attribute['product_id'] = $product_id;
 					$product_attribute['attribute_group_id'] = $attribute_group_id;
 					$product_attribute['attribute_id'] = $attribute_id;
+
 					$product_attribute['text'] = array();
 
 					foreach ($languages as $language) {
@@ -7507,7 +7502,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getCountCategory() {
-		$query = $this->db->query( "SELECT COUNT(category_id) AS count_category FROM " . DB_PREFIX . "category");
+		$query = $this->db->query("SELECT COUNT(category_id) AS count_category FROM " . DB_PREFIX . "category");
 
 		if (isset($query->row['count_category'])) {
 			$count = $query->row['count_category'];
@@ -7768,14 +7763,14 @@ class ModelToolExportImport extends Model {
 					$filename = 'categories-' . $datetime;
 					if (!$all) {
 						if (isset($offset)) {
-							$filename .= "-offset-'" . $offset . "'";
+							$filename .= "-offset-" . $offset;
 						} elseif (isset($min_id)) {
-							$filename .= "-start-'" . $min_id . "'";
+							$filename .= "-start-" . $min_id;
 						}
 						if (isset($rows)) {
-							$filename .= "-rows-'" . $rows . "'";
+							$filename .= "-rows-" . $rows;
 						} elseif (isset($max_id)) {
-							$filename .= "-end-'" . $max_id . "'";
+							$filename .= "-end-" . $max_id;
 						}
 					}
 					$filename .= '.xlsx';
@@ -7784,14 +7779,14 @@ class ModelToolExportImport extends Model {
 					$filename = 'products-' . $datetime;
 					if (!$all) {
 						if (isset($offset)) {
-							$filename .= "-offset-'" . $offset . "'";
+							$filename .= "-offset-" . $offset;
 						} elseif (isset($min_id)) {
-							$filename .= "-start-'" . $min_id . "'";
+							$filename .= "-start-" . $min_id;
 						}
 						if (isset($rows)) {
-							$filename .= "-rows-'" . $rows . "'";
+							$filename .= "-rows-" . $rows;
 						} elseif (isset($max_id)) {
-							$filename .= "-end-'" . $max_id . "'";
+							$filename .= "-end-" . $max_id;
 						}
 					}
 					$filename .= '.xlsx';
