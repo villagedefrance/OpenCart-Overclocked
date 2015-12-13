@@ -51,7 +51,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_meta_description; ?></td>
-              <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="155" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
+              <td><textarea name="product_description[<?php echo $language['language_id']; ?>][meta_description]" id="meta-description<?php echo $language['language_id']; ?>" data-limit="156" cols="40" rows="5"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
               <span id="remaining<?php echo $language['language_id']; ?>"></span></td>
             </tr>
             <tr>
@@ -1062,7 +1062,6 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 });
 
 $(document).ready(function() {
-    $('#meta-description<?php echo $language['language_id']; ?>').val('');
     $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
         var limit = $(this).data("limit");
         var remain = limit - $(this).val().length;
