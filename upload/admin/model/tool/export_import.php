@@ -5248,19 +5248,21 @@ class ModelToolExportImport extends Model {
 			$language_id = $language['language_id'];
 			$language_code = $language['code'];
 
-			$sql = "SELECT * FROM " . DB_PREFIX . "category_description WHERE language_id = '" . (int)$language_id . "'";
+			$sql = "SELECT c.category_id, cd.* FROM " . DB_PREFIX . "category c";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "category_description cd ON (cd.category_id = c.category_id)";
+			$sql .= " WHERE cd.language_id = '" . (int)$language_id . "'";
 			if (isset($min_id) && isset($max_id)) {
-				$sql .= " AND category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+				$sql .= " AND c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 			}
-			$sql .= " GROUP BY category_id";
-			$sql .= " ORDER BY category_id ASC";
+			$sql .= " GROUP BY c.category_id";
+			$sql .= " ORDER BY c.category_id ASC";
 			if (isset($offset) && isset($rows)) {
 				$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
 			}
 
-			$query = $this->db->query($sql);
+			$category_query = $this->db->query($sql);
 
-			$category_descriptions[$language_code] = $query->rows;
+			$category_descriptions[$language_code] = $category_query->rows;
 		}
 
 		return $category_descriptions;
@@ -5446,11 +5448,11 @@ class ModelToolExportImport extends Model {
 		$sql = "SELECT filter_group_id, name FROM " . DB_PREFIX . "filter_group_description WHERE language_id = '" . (int)$language_id . "'";
 		$sql .= " ORDER BY filter_group_id ASC";
 
-		$query = $this->db->query($sql);
+		$filter_group_query = $this->db->query($sql);
 
 		$filter_group_names = array();
 
-		foreach ($query->rows as $row) {
+		foreach ($filter_group_query->rows as $row) {
 			$filter_group_id = $row['filter_group_id'];
 			$name = $row['name'];
 
@@ -5464,11 +5466,11 @@ class ModelToolExportImport extends Model {
 		$sql = "SELECT filter_id, name FROM " . DB_PREFIX . "filter_description WHERE language_id = '" . (int)$language_id . "'";
 		$sql .= " ORDER BY filter_id ASC";
 
-		$query = $this->db->query($sql);
+		$filter_query = $this->db->query($sql);
 
 		$filter_names = array();
 
-		foreach ($query->rows as $row) {
+		foreach ($filter_query->rows as $row) {
 			$filter_id = $row['filter_id'];
 			$filter_name = $row['name'];
 
@@ -5656,9 +5658,9 @@ class ModelToolExportImport extends Model {
 				$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
 			}
 
-			$query = $this->db->query($sql);
+			$descriptions_query = $this->db->query($sql);
 
-			$product_descriptions[$language_code] = $query->rows;
+			$product_descriptions[$language_code] = $descriptions_query->rows;
 		}
 
 		return $product_descriptions;
@@ -5757,11 +5759,11 @@ class ModelToolExportImport extends Model {
 
 	function populateProductsWorksheet(&$worksheet, &$languages, $default_language_id, &$price_format, &$box_format, &$weight_format, &$text_format, $offset = null, $rows = null, &$min_id = null, &$max_id = null) {
 		// Get list of the field names
-		$query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
+		$describe_query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
 
 		$product_fields = array();
 
-		foreach ($query->rows as $row) {
+		foreach ($describe_query->rows as $row) {
 			$product_fields[] = $row['Field'];
 		}
 
@@ -6299,9 +6301,9 @@ class ModelToolExportImport extends Model {
 		$language_id = $this->getDefaultLanguageId();
 
 		// Product_option.option_value check
-		$query = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . "product_option` LIKE 'value'");
+		$po_query = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . "product_option` LIKE 'value'");
 
-		$exist_po_value = ($query->num_rows > 0) ? true : false;
+		$exist_po_value = ($po_query->num_rows > 0) ? true : false;
 
 		// Database query for getting the product options
 		if ($exist_po_value) {
@@ -6832,9 +6834,9 @@ class ModelToolExportImport extends Model {
 			$sql .= " GROUP BY o.option_id";
 			$sql .= " ORDER BY o.option_id ASC";
 
-			$query = $this->db->query($sql);
+			$option_query = $this->db->query($sql);
 
-			$option_descriptions[$language_code] = $query->rows;
+			$option_descriptions[$language_code] = $option_query->rows;
 		}
 
 		return $option_descriptions;
@@ -6848,7 +6850,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 
-			foreach ($results->rows as $key=>$row) {
+			foreach ($results->rows as $key => $row) {
 				if (isset($option_descriptions[$language_code][$key])) {
 					$results->rows[$key]['name'][$language_code] = $option_descriptions[$language_code][$key]['name'];
 				} else {
@@ -6931,9 +6933,9 @@ class ModelToolExportImport extends Model {
 			$sql .= " GROUP BY ov.option_id, ov.option_value_id";
 			$sql .= " ORDER BY ov.option_id ASC, ov.option_value_id ASC";
 
-			$query = $this->db->query($sql);
+			$option_value_query = $this->db->query($sql);
 
-			$option_value_descriptions[$language_code] = $query->rows;
+			$option_value_descriptions[$language_code] = $option_value_query->rows;
 		}
 
 		return $option_value_descriptions;
@@ -6947,7 +6949,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 
-			foreach ($results->rows as $key=>$row) {
+			foreach ($results->rows as $key => $row) {
 				if (isset($option_value_descriptions[$language_code][$key])) {
 					$results->rows[$key]['name'][$language_code] = $option_value_descriptions[$language_code][$key]['name'];
 				} else {
@@ -7051,9 +7053,9 @@ class ModelToolExportImport extends Model {
 			$sql .= " GROUP BY ag.attribute_group_id";
 			$sql .= " ORDER BY ag.attribute_group_id ASC";
 
-			$query = $this->db->query($sql);
+			$attribute_group_query = $this->db->query($sql);
 
-			$attribute_group_descriptions[$language_code] = $query->rows;
+			$attribute_group_descriptions[$language_code] = $attribute_group_query->rows;
 		}
 
 		return $attribute_group_descriptions;
@@ -7147,9 +7149,9 @@ class ModelToolExportImport extends Model {
 			$sql .= " GROUP BY a.attribute_group_id, a.attribute_id";
 			$sql .= " ORDER BY a.attribute_group_id ASC, a.attribute_id ASC";
 
-			$query = $this->db->query($sql);
+			$attribute_query = $this->db->query($sql);
 
-			$attribute_descriptions[$language_code] = $query->rows;
+			$attribute_descriptions[$language_code] = $attribute_query->rows;
 		}
 
 		return $attribute_descriptions;
@@ -7246,9 +7248,9 @@ class ModelToolExportImport extends Model {
 			$sql .= " GROUP BY ag.filter_group_id";
 			$sql .= " ORDER BY ag.filter_group_id ASC";
 
-			$query = $this->db->query($sql);
+			$filter_group_query = $this->db->query($sql);
 
-			$filter_group_descriptions[$language_code] = $query->rows;
+			$filter_group_descriptions[$language_code] = $filter_group_query->rows;
 		}
 
 		return $filter_group_descriptions;
@@ -7342,9 +7344,9 @@ class ModelToolExportImport extends Model {
 			$sql .= " GROUP BY a.filter_group_id, a.filter_id";
 			$sql .= " ORDER BY a.filter_group_id ASC, a.filter_id ASC";
 
-			$query = $this->db->query($sql);
+			$filter_query = $this->db->query($sql);
 
-			$filter_descriptions[$language_code] = $query->rows;
+			$filter_descriptions[$language_code] = $filter_query->rows;
 		}
 
 		return $filter_descriptions;
@@ -7442,10 +7444,10 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getMaxProductId() {
-		$query = $this->db->query("SELECT MAX(product_id) AS max_product_id FROM " . DB_PREFIX . "product");
+		$pro_max_query = $this->db->query("SELECT MAX(product_id) AS max_product_id FROM " . DB_PREFIX . "product");
 
-		if (isset($query->row['max_product_id'])) {
-			$max_id = $query->row['max_product_id'];
+		if (isset($pro_max_query->row['max_product_id'])) {
+			$max_id = $pro_max_query->row['max_product_id'];
 		} else {
 			$max_id = 0;
 		}
@@ -7454,10 +7456,10 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getMinProductId() {
-		$query = $this->db->query("SELECT MIN(product_id) AS min_product_id FROM " . DB_PREFIX . "product");
+		$pro_min_query = $this->db->query("SELECT MIN(product_id) AS min_product_id FROM " . DB_PREFIX . "product");
 
-		if (isset($query->row['min_product_id'])) {
-			$min_id = $query->row['min_product_id'];
+		if (isset($pro_min_query->row['min_product_id'])) {
+			$min_id = $pro_min_query->row['min_product_id'];
 		} else {
 			$min_id = 0;
 		}
@@ -7466,10 +7468,10 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getCountProduct() {
-		$query = $this->db->query("SELECT COUNT(product_id) AS count_product FROM " . DB_PREFIX . "product");
+		$pro_count_query = $this->db->query("SELECT COUNT(product_id) AS count_product FROM " . DB_PREFIX . "product");
 
-		if (isset($query->row['count_product'])) {
-			$count = $query->row['count_product'];
+		if (isset($pro_count_query->row['count_product'])) {
+			$count = $pro_count_query->row['count_product'];
 		} else {
 			$count = 0;
 		}
@@ -7478,10 +7480,10 @@ class ModelToolExportImport extends Model {
 	}  
 
 	public function getMaxCategoryId() {
-		$query = $this->db->query("SELECT MAX(category_id) AS max_category_id FROM " . DB_PREFIX . "category");
+		$cat_max_query = $this->db->query("SELECT MAX(category_id) AS max_category_id FROM " . DB_PREFIX . "category");
 
-		if (isset($query->row['max_category_id'])) {
-			$max_id = $query->row['max_category_id'];
+		if (isset($cat_max_query->row['max_category_id'])) {
+			$max_id = $cat_max_query->row['max_category_id'];
 		} else {
 			$max_id = 0;
 		}
@@ -7490,10 +7492,10 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getMinCategoryId() {
-		$query = $this->db->query("SELECT MIN(category_id) AS min_category_id FROM " . DB_PREFIX . "category");
+		$cat_min_query = $this->db->query("SELECT MIN(category_id) AS min_category_id FROM " . DB_PREFIX . "category");
 
-		if (isset($query->row['min_category_id'])) {
-			$min_id = $query->row['min_category_id'];
+		if (isset($cat_min_query->row['min_category_id'])) {
+			$min_id = $cat_min_query->row['min_category_id'];
 		} else {
 			$min_id = 0;
 		}
@@ -7502,10 +7504,10 @@ class ModelToolExportImport extends Model {
 	}
 
 	public function getCountCategory() {
-		$query = $this->db->query("SELECT COUNT(category_id) AS count_category FROM " . DB_PREFIX . "category");
+		$cat_count_query = $this->db->query("SELECT COUNT(category_id) AS count_category FROM " . DB_PREFIX . "category");
 
-		if (isset($query->row['count_category'])) {
-			$count = $query->row['count_category'];
+		if (isset($cat_count_query->row['count_category'])) {
+			$count = $cat_count_query->row['count_category'];
 		} else {
 			$count = 0;
 		}
