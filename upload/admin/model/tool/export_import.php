@@ -37,7 +37,7 @@ function error_handler_for_export_import($errno, $errstr, $errfile, $errline) {
 		return true;
 	}
 
-	if (($errors != "Fatal Error") && isset($request->get['route']) && ($request->get['route'] != 'tool/export_import/download'))  {
+	if (($errors != "Fatal Error") && isset($request->get['route']) && ($request->get['route'] != 'tool/export_import/download')) {
 		if ($config->get('config_error_display')) {
 			echo '<b>' . $errors . '</b>: ' . $errstr . ' in <b>' . $errfile . '</b> on line <b>' . $errline . '</b>';
 		}
@@ -237,7 +237,7 @@ class ModelToolExportImport extends Model {
 		return $manufacturers;
 	}
 
-	protected function storeManufacturerIntoDatabase(&$manufacturers, $name, &$store_ids, &$available_store_ids) {
+	protected function storeManufacturerIntoDatabase($manufacturers, $name, $store_ids, $available_store_ids) {
 		$language_id = $this->getDefaultLanguageId();
 
 		foreach ($store_ids as $store_id) {
@@ -345,7 +345,7 @@ class ModelToolExportImport extends Model {
 		return $store_ids;
 	}
 
-	protected function getAvailableProductIds(&$data) {
+	protected function getAvailableProductIds($data) {
 		$available_product_ids = array();
 
 		$k = $data->getHighestRow();
@@ -425,7 +425,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Extract the Category details
-	protected function storeCategoryIntoDatabase(&$category, &$languages, &$layout_ids, &$available_store_ids, &$url_alias_ids) {
+	protected function storeCategoryIntoDatabase($category, $languages, $layout_ids, $available_store_ids, $url_alias_ids) {
 		$category_id = $category['category_id'];
 		$image_name = $this->db->escape($category['image']);
 		$parent_id = $category['parent_id'];
@@ -535,7 +535,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function deleteCategories(&$url_alias_ids) {
+	protected function deleteCategories($url_alias_ids) {
 		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "category`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_description`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_to_store`;\n";
@@ -571,11 +571,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreCategoryCells($i, &$j, &$worksheet, &$category) {
+	protected function moreCategoryCells($i, $j, $worksheet, $category) {
 		return;
 	}
 
-	protected function uploadCategories(&$reader, $incremental, &$available_category_ids = array()) {
+	protected function uploadCategories($reader, $incremental, $available_category_ids = array()) {
 		// Get worksheet if present
 		$data = $reader->getSheetByName('Categories');
 
@@ -622,7 +622,7 @@ class ModelToolExportImport extends Model {
 
 			$j = 1;
 
-			$category_id = trim($this->getCell($data,$i,$j++));
+			$category_id = trim($this->getCell($data, $i, $j++));
 
 			if ($category_id == "") {
 				continue;
@@ -655,7 +655,6 @@ class ModelToolExportImport extends Model {
 				$language_code = substr($first_row[$j-1], strlen("description("), strlen($first_row[$j-1])-strlen("description(")-1);
 				$description = $this->getCell($data, $i, $j++);
 				$description = htmlspecialchars($description);
-
 				$descriptions[$language_code] = $description;
 			}
 
@@ -734,7 +733,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeCategoryFilterIntoDatabase(&$category_filter, &$languages) {
+	protected function storeCategoryFilterIntoDatabase($category_filter, $languages) {
 		$category_id = $category_filter['category_id'];
 		$filter_id = $category_filter['filter_id'];
 
@@ -749,18 +748,18 @@ class ModelToolExportImport extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
 	}
 
-	protected function deleteUnlistedCategoryFilters(&$unlisted_category_ids) {
+	protected function deleteUnlistedCategoryFilters($unlisted_category_ids) {
 		foreach ($unlisted_category_ids as $category_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "category_filter WHERE category_id = '" . (int)$category_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreCategoryFilterCells($i, &$j, &$worksheet, &$category_filter) {
+	protected function moreCategoryFilterCells($i, $j, $worksheet, $category_filter) {
 		return;
 	}
 
-	protected function uploadCategoryFilters(&$reader, $incremental, &$available_category_ids) {
+	protected function uploadCategoryFilters($reader, $incremental, $available_category_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('CategoryFilters');
 
@@ -891,7 +890,7 @@ class ModelToolExportImport extends Model {
 		return $url_alias_ids;
 	}
 
-	protected function storeProductIntoDatabase(&$product, &$languages, &$product_fields, &$layout_ids, &$available_store_ids, &$manufacturers, &$weight_class_ids, &$length_class_ids, &$url_alias_ids) {
+	protected function storeProductIntoDatabase($product, $languages, $product_fields, $layout_ids, $available_store_ids, $manufacturers, $weight_class_ids, $length_class_ids, $url_alias_ids) {
 		// Extract the product details
 		$product_id = $product['product_id'];
 		$names = $product['names'];
@@ -1087,7 +1086,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function deleteProducts(&$url_alias_ids) {
+	protected function deleteProducts($url_alias_ids) {
 		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "product`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_description`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_to_category`;\n";
@@ -1136,11 +1135,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreProductCells($i, &$j, &$worksheet, &$product) {
+	protected function moreProductCells($i, $j, $worksheet, $product) {
 		return;
 	}
 
-	protected function uploadProducts(&$reader, $incremental, &$available_product_ids = array()) {
+	protected function uploadProducts($reader, $incremental, $available_product_ids = array()) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Products');
 
@@ -1398,7 +1397,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// --- Write Product Additional Images
-	protected function storeAdditionalImageIntoDatabase(&$image, &$old_product_image_ids) {
+	protected function storeAdditionalImageIntoDatabase($image, $old_product_image_ids) {
 		$product_id = $image['product_id'];
 		$image_name = $image['image_name'];
 		$sort_order = $image['sort_order'];
@@ -1445,18 +1444,18 @@ class ModelToolExportImport extends Model {
 		return $old_product_image_ids;
 	}
 
-	protected function deleteUnlistedAdditionalImages(&$unlisted_product_ids) {
+	protected function deleteUnlistedAdditionalImages($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreAdditionalImageCells($i, &$j, &$worksheet, &$image) {
+	protected function moreAdditionalImageCells($i, $j, $worksheet, $image) {
 		return;
 	}
 
-	protected function uploadAdditionalImages(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadAdditionalImages($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('AdditionalImages');
 
@@ -1521,7 +1520,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// --- Write Product Special
-	protected function storeSpecialIntoDatabase(&$special, &$old_product_special_ids, &$customer_group_ids) {
+	protected function storeSpecialIntoDatabase($special, $old_product_special_ids, $customer_group_ids) {
 		$product_id = $special['product_id'];
 		$name = $special['customer_group'];
 		$customer_group_id = isset($customer_group_ids[$name]) ? $customer_group_ids[$name] : $this->config->get('config_customer_group_id');
@@ -1572,18 +1571,18 @@ class ModelToolExportImport extends Model {
 		return $old_product_special_ids;
 	}
 
-	protected function deleteUnlistedSpecials(&$unlisted_product_ids) {
+	protected function deleteUnlistedSpecials($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreSpecialCells($i, &$j, &$worksheet, &$special) {
+	protected function moreSpecialCells($i, $j, $worksheet, $special) {
 		return;
 	}
 
-	protected function uploadSpecials(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadSpecials($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Specials');
 
@@ -1662,7 +1661,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// --- Write Product Discount
-	protected function storeDiscountIntoDatabase(&$discount, &$old_product_discount_ids, &$customer_group_ids) {
+	protected function storeDiscountIntoDatabase($discount, $old_product_discount_ids, $customer_group_ids) {
 		$product_id = $discount['product_id'];
 		$name = $discount['customer_group'];
 		$customer_group_id = isset($customer_group_ids[$name]) ? $customer_group_ids[$name] : $this->config->get('config_customer_group_id');
@@ -1718,18 +1717,18 @@ class ModelToolExportImport extends Model {
 		return $old_product_discount_ids;
 	}
 
-	protected function deleteUnlistedDiscounts(&$unlisted_product_ids) {
+	protected function deleteUnlistedDiscounts($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreDiscountCells($i, &$j, &$worksheet, &$discount) {
+	protected function moreDiscountCells($i, $j, $worksheet, $discount) {
 		return;
 	}
 
-	protected function uploadDiscounts(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadDiscounts($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Discounts');
 
@@ -1805,12 +1804,12 @@ class ModelToolExportImport extends Model {
 		}
 
 		if ($incremental) {
-			$this->deleteUnlistedDiscounts( $unlisted_product_ids );
+			$this->deleteUnlistedDiscounts($unlisted_product_ids);
 		}
 	}
 
 	// --- Write Product Reward
-	protected function storeRewardIntoDatabase(&$reward, &$old_product_reward_ids, &$customer_group_ids) {
+	protected function storeRewardIntoDatabase($reward, $old_product_reward_ids, $customer_group_ids) {
 		$product_id = $reward['product_id'];
 		$name = $reward['customer_group'];
 		$customer_group_id = isset($customer_group_ids[$name]) ? $customer_group_ids[$name] : $this->config->get('config_customer_group_id');
@@ -1858,18 +1857,18 @@ class ModelToolExportImport extends Model {
 		return $old_product_reward_ids;
 	}
 
-	protected function deleteUnlistedRewards(&$unlisted_product_ids) {
+	protected function deleteUnlistedRewards($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreRewardCells($i, &$j, &$worksheet, &$reward) {
+	protected function moreRewardCells($i, $j, $worksheet, $reward) {
 		return;
 	}
 
-	protected function uploadRewards(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadRewards($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Rewards');
 
@@ -1958,7 +1957,7 @@ class ModelToolExportImport extends Model {
 		return $option_ids;
 	}
 
-	protected function storeProductOptionIntoDatabase(&$product_option, &$old_product_option_ids) {
+	protected function storeProductOptionIntoDatabase($product_option, $old_product_option_ids) {
 		// Database query for storing the product option
 		$product_id = $product_option['product_id'];
 		$option_id = $product_option['option_id'];
@@ -2008,18 +2007,18 @@ class ModelToolExportImport extends Model {
 		return $old_product_option_ids;
 	}
 
-	protected function deleteUnlistedProductOptions(&$unlisted_product_ids) {
+	protected function deleteUnlistedProductOptions($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreProductOptionCells($i, &$j, &$worksheet, &$product_option) {
+	protected function moreProductOptionCells($i, $j, $worksheet, $product_option) {
 		return;
 	}
 
-	protected function uploadProductOptions(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadProductOptions($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('ProductOptions');
 
@@ -2134,7 +2133,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// --- Write Product Option Values
-	protected function storeProductOptionValueIntoDatabase(&$product_option_value, &$old_product_option_value_ids) {
+	protected function storeProductOptionValueIntoDatabase($product_option_value, $old_product_option_value_ids) {
 		$product_id = $product_option_value['product_id'];
 		$option_id = $product_option_value['option_id'];
 		$option_value_id = $product_option_value['option_value_id'];
@@ -2194,18 +2193,18 @@ class ModelToolExportImport extends Model {
 		return $old_product_option_value_ids;
 	}
 
-	protected function deleteUnlistedProductOptionValues(&$unlisted_product_ids) {
+	protected function deleteUnlistedProductOptionValues($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreProductOptionValueCells($i, &$j, &$worksheet, &$product_option_value) {
+	protected function moreProductOptionValueCells($i, $j, $worksheet, $product_option_value) {
 		return;
 	}
 
-	protected function uploadProductOptionValues(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadProductOptionValues($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('ProductOptionValues');
 
@@ -2359,7 +2358,7 @@ class ModelToolExportImport extends Model {
 		return $attribute_ids;
 	}
 
-	protected function storeProductAttributeIntoDatabase(&$product_attribute, &$languages) {
+	protected function storeProductAttributeIntoDatabase($product_attribute, $languages) {
 		$product_id = $product_attribute['product_id'];
 		$attribute_id = $product_attribute['attribute_id'];
 		$texts = $product_attribute['texts'];
@@ -2382,18 +2381,18 @@ class ModelToolExportImport extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 	}
 
-	protected function deleteUnlistedProductAttributes(&$unlisted_product_ids) {
+	protected function deleteUnlistedProductAttributes($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreProductAttributeCells($i, &$j, &$worksheet, &$product_attribute) {
+	protected function moreProductAttributeCells($i, $j, $worksheet, $product_attribute) {
 		return;
 	}
 
-	protected function uploadProductAttributes(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadProductAttributes($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('ProductAttributes');
 
@@ -2469,10 +2468,9 @@ class ModelToolExportImport extends Model {
 			$texts = array();
 
 			while (($j <= $max_col) && $this->startsWith($first_row[$j-1], "text(")) {
-				$language_code = substr($first_row[$j-1],strlen("text("),strlen($first_row[$j-1])-strlen("text(")-1);
+				$language_code = substr($first_row[$j-1], strlen("text("), strlen($first_row[$j-1])-strlen("text(")-1);
 				$text = $this->getCell($data, $i, $j++);
 				$text = htmlspecialchars($text);
-
 				$texts[$language_code] = $text;
 			}
 
@@ -2541,7 +2539,7 @@ class ModelToolExportImport extends Model {
 		return $filter_ids;
 	}
 
-	protected function storeProductFilterIntoDatabase(&$product_filter, &$languages) {
+	protected function storeProductFilterIntoDatabase($product_filter, $languages) {
 		$product_id = $product_filter['product_id'];
 		$filter_id = $product_filter['filter_id'];
 
@@ -2556,18 +2554,18 @@ class ModelToolExportImport extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'");
 	}
 
-	protected function deleteUnlistedProductFilters(&$unlisted_product_ids) {
+	protected function deleteUnlistedProductFilters($unlisted_product_ids) {
 		foreach ($unlisted_product_ids as $product_id) {
 			$this->db->query("DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'");
 		}
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreProductFilterCells($i, &$j, &$worksheet, &$product_filter) {
+	protected function moreProductFilterCells($i, $j, $worksheet, $product_filter) {
 		return;
 	}
 
-	protected function uploadProductFilters(&$reader, $incremental, &$available_product_ids) {
+	protected function uploadProductFilters($reader, $incremental, $available_product_ids) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('ProductFilters');
 
@@ -2665,7 +2663,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeOptionIntoDatabase(&$option, &$languages) {
+	protected function storeOptionIntoDatabase($option, $languages) {
 		$option_id = $option['option_id'];
 		$type = $option['type'];
 		$sort_order = $option['sort_order'];
@@ -2693,11 +2691,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreOptionCells($i, &$j, &$worksheet, &$option) {
+	protected function moreOptionCells($i, $j, $worksheet, $option) {
 		return;
 	}
 
-	protected function uploadOptions(&$reader, $incremental) {
+	protected function uploadOptions($reader, $incremental) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Options');
 
@@ -2767,7 +2765,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeOptionValueIntoDatabase(&$option_value, &$languages, $exist_image = true) {
+	protected function storeOptionValueIntoDatabase($option_value, $languages, $exist_image = true) {
 		$option_value_id = $option_value['option_value_id'];
 		$option_id = $option_value['option_id'];
 
@@ -2806,11 +2804,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreOptionValueCells($i, &$j, &$worksheet, &$option) {
+	protected function moreOptionValueCells($i, $j, $worksheet, $option) {
 		return;
 	}
 
-	protected function uploadOptionValues(&$reader, $incremental) {
+	protected function uploadOptionValues($reader, $incremental) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('OptionValues');
 
@@ -2899,7 +2897,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeAttributeGroupIntoDatabase(&$attribute_group, &$languages) {
+	protected function storeAttributeGroupIntoDatabase($attribute_group, $languages) {
 		$attribute_group_id = $attribute_group['attribute_group_id'];
 		$sort_order = $attribute_group['sort_order'];
 		$names = $attribute_group['names'];
@@ -2926,11 +2924,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreAttributeGroupCells($i, &$j, &$worksheet, &$attribute_group) {
+	protected function moreAttributeGroupCells($i, $j, $worksheet, $attribute_group) {
 		return;
 	}
 
-	protected function uploadAttributeGroups(&$reader, $incremental) {
+	protected function uploadAttributeGroups($reader, $incremental) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('AttributeGroups');
 
@@ -2998,7 +2996,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeAttributeIntoDatabase(&$attribute, &$languages) {
+	protected function storeAttributeIntoDatabase($attribute, $languages) {
 		$attribute_id = $attribute['attribute_id'];
 		$attribute_group_id = $attribute['attribute_group_id'];
 		$sort_order = $attribute['sort_order'];
@@ -3026,11 +3024,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreAttributeCells($i, &$j, &$worksheet, &$option) {
+	protected function moreAttributeCells($i, $j, $worksheet, $option) {
 		return;
 	}
 
-	protected function uploadAttributes(&$reader, $incremental) {
+	protected function uploadAttributes($reader, $incremental) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Attributes');
 
@@ -3105,7 +3103,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeFilterGroupIntoDatabase(&$filter_group, &$languages) {
+	protected function storeFilterGroupIntoDatabase($filter_group, $languages) {
 		$filter_group_id = $filter_group['filter_group_id'];
 		$sort_order = $filter_group['sort_order'];
 		$names = $filter_group['names'];
@@ -3132,11 +3130,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreFilterGroupCells($i, &$j, &$worksheet, &$filter_group) {
+	protected function moreFilterGroupCells($i, $j, $worksheet, $filter_group) {
 		return;
 	}
 
-	protected function uploadFilterGroups(&$reader, $incremental) {
+	protected function uploadFilterGroups($reader, $incremental) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('FilterGroups');
 
@@ -3204,7 +3202,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function storeFilterIntoDatabase(&$filter, &$languages) {
+	protected function storeFilterIntoDatabase($filter, $languages) {
 		$filter_id = $filter['filter_id'];
 		$filter_group_id = $filter['filter_group_id'];
 		$sort_order = $filter['sort_order'];
@@ -3232,11 +3230,11 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Function for reading additional cells in class extensions
-	protected function moreFilterCells($i, &$j, &$worksheet, &$option) {
+	protected function moreFilterCells($i, $j, $worksheet, $option) {
 		return;
 	}
 
-	protected function uploadFilters(&$reader, $incremental) {
+	protected function uploadFilters($reader, $incremental) {
 		// Get worksheet, if not there return immediately
 		$data = $reader->getSheetByName('Filters');
 
@@ -3312,7 +3310,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	// PHPExcel
-	function getCell(&$worksheet, $row, $col, $default_val = '') {
+	function getCell($worksheet, $row, $col, $default_val = '') {
 		$col -= 1; // we use 1-based, PHPExcel uses 0-based column index
 		$row += 1; // we use 0-based, PHPExcel uses 1-based row index
 
@@ -3325,7 +3323,7 @@ class ModelToolExportImport extends Model {
 		return $val;
 	}
 
-	function validateHeading(&$data, &$expected, &$multilingual) {
+	function validateHeading($data, $expected, $multilingual) {
 		$default_language_code = $this->config->get('config_language');
 
 		$heading = array();
@@ -3388,7 +3386,7 @@ class ModelToolExportImport extends Model {
 		return true;
 	}
 
-	protected function validateCategories(&$reader) {
+	protected function validateCategories($reader) {
 		$data = $reader->getSheetByName('Categories');
 
 		if ($data == null) {
@@ -3404,7 +3402,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateCategoryFilters(&$reader) {
+	protected function validateCategoryFilters($reader) {
 		$data = $reader->getSheetByName('CategoryFilters');
 
 		if ($data == null) {
@@ -3434,7 +3432,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateProducts(&$reader) {
+	protected function validateProducts($reader) {
 		$data = $reader->getSheetByName('Products');
 
 		if ($data == null) {
@@ -3474,7 +3472,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateAdditionalImages(&$reader) {
+	protected function validateAdditionalImages($reader) {
 		$data = $reader->getSheetByName('AdditionalImages');
 
 		if ($data == null) {
@@ -3487,7 +3485,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateSpecials(&$reader) {
+	protected function validateSpecials($reader) {
 		$data = $reader->getSheetByName('Specials');
 
 		if ($data == null) {
@@ -3500,7 +3498,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateDiscounts(&$reader) {
+	protected function validateDiscounts($reader) {
 		$data = $reader->getSheetByName('Discounts');
 
 		if ($data == null) {
@@ -3513,7 +3511,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateRewards(&$reader) {
+	protected function validateRewards($reader) {
 		$data = $reader->getSheetByName('Rewards');
 
 		if ($data == null) {
@@ -3526,7 +3524,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateProductOptions(&$reader) {
+	protected function validateProductOptions($reader) {
 		$data = $reader->getSheetByName('ProductOptions');
 
 		if ($data == null) {
@@ -3544,7 +3542,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateProductOptionValues(&$reader) {
+	protected function validateProductOptionValues($reader) {
 		$data = $reader->getSheetByName('ProductOptionValues');
 
 		if ($data == null) {
@@ -3570,7 +3568,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateProductAttributes(&$reader) {
+	protected function validateProductAttributes($reader) {
 		$data = $reader->getSheetByName('ProductAttributes');
 
 		if ($data == null) {
@@ -3596,7 +3594,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateProductFilters(&$reader) {
+	protected function validateProductFilters($reader) {
 		$data = $reader->getSheetByName('ProductFilters');
 
 		if ($data == null) {
@@ -3626,7 +3624,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateOptions(&$reader) {
+	protected function validateOptions($reader) {
 		$data = $reader->getSheetByName('Options');
 
 		if ($data == null) {
@@ -3640,7 +3638,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateOptionValues(&$reader) {
+	protected function validateOptionValues($reader) {
 		$data = $reader->getSheetByName('OptionValues');
 
 		if ($data == null) {
@@ -3662,7 +3660,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateAttributeGroups(&$reader) {
+	protected function validateAttributeGroups($reader) {
 		$data = $reader->getSheetByName('AttributeGroups');
 
 		if ($data == null) {
@@ -3675,7 +3673,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateAttributes(&$reader) {
+	protected function validateAttributes($reader) {
 		$data = $reader->getSheetByName('Attributes');
 
 		if ($data == null) {
@@ -3688,7 +3686,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateFilterGroups(&$reader) {
+	protected function validateFilterGroups($reader) {
 		$data = $reader->getSheetByName('FilterGroups');
 
 		if ($data == null) {
@@ -3705,7 +3703,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateFilters(&$reader) {
+	protected function validateFilters($reader) {
 		$data = $reader->getSheetByName('Filters');
 
 		if ($data == null) {
@@ -3722,7 +3720,7 @@ class ModelToolExportImport extends Model {
 		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
-	protected function validateProductIdColumns(&$reader) {
+	protected function validateProductIdColumns($reader) {
 		$data = $reader->getSheetByName('Products');
 
 		if ($data == null) {
@@ -3828,7 +3826,7 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
-	protected function validateCustomerGroupColumns(&$reader) {
+	protected function validateCustomerGroupColumns($reader) {
 		// All customer_groups mentioned in the worksheets must be defined
 		$worksheets = array('Specials', 'Discounts', 'Rewards');
 
@@ -3883,7 +3881,7 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
-	protected function validateOptionColumns(&$reader) {
+	protected function validateOptionColumns($reader) {
 		// Get all existing options and option values
 		$ok = true;
 
@@ -4231,7 +4229,7 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
-	protected function validateAttributeColumns(&$reader) {
+	protected function validateAttributeColumns($reader) {
 		// Get all existing attribute_groups and attributes
 		$ok = true;
 
@@ -4479,7 +4477,7 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
-	protected function validateFilterColumns(&$reader) {
+	protected function validateFilterColumns($reader) {
 		// Get all existing filter_groups and filters
 		$ok = true;
 
@@ -4731,7 +4729,7 @@ class ModelToolExportImport extends Model {
 		return $ok;
 	}
 
-	protected function validateUpload(&$reader) {
+	protected function validateUpload($reader) {
 		$ok = true;
 
 		// Worksheets must have correct heading rows
@@ -5203,7 +5201,7 @@ class ModelToolExportImport extends Model {
 		return $layouts;
 	}
 
-	protected function setColumnStyles(&$worksheet, &$styles, $min_row, $max_row) {
+	protected function setColumnStyles($worksheet, $styles, $min_row, $max_row) {
 		if ($max_row < $min_row) {
 			return;
 		}
@@ -5218,7 +5216,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function setCellRow($worksheet, $row, $data, &$default_style = null, &$styles = null) {
+	protected function setCellRow($worksheet, $row, $data, $default_style = null, $styles = null) {
 		if (!empty($default_style)) {
 			$worksheet->getStyle("$row:$row")->applyFromArray($default_style, false);
 		}
@@ -5240,7 +5238,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getCategoryDescriptions(&$languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getCategoryDescriptions($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Category description table for each language
 		$category_descriptions = array();
 
@@ -5268,7 +5266,7 @@ class ModelToolExportImport extends Model {
 		return $category_descriptions;
 	}
 
-	protected function getCategories(&$languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT c.*, ua.keyword AS keyword FROM " . DB_PREFIX . "category c";
 		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('category_id=',c.category_id))";
 		if (isset($min_id) && isset($max_id)) {
@@ -5305,7 +5303,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateCategoriesWorksheet(&$worksheet, &$languages, &$box_format, &$text_format, $offset = null, $rows = null, &$min_id = null, &$max_id = null) {
+	protected function populateCategoriesWorksheet($worksheet, $languages, $box_format, $text_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -5506,7 +5504,7 @@ class ModelToolExportImport extends Model {
 		return $category_filters;
 	}
 
-	protected function populateCategoryFiltersWorksheet(&$worksheet, &$languages, $default_language_id, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateCategoryFiltersWorksheet($worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -5639,7 +5637,7 @@ class ModelToolExportImport extends Model {
 		return $layouts;
 	}
 
-	protected function getProductDescriptions(&$languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getProductDescriptions($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Product description table for each language
 		$product_descriptions = array();
 
@@ -5666,7 +5664,7 @@ class ModelToolExportImport extends Model {
 		return $product_descriptions;
 	}
 
-	protected function getProducts(&$languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getProducts($languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT p.product_id, GROUP_CONCAT(DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\") AS categories,";
 		$sql .= " p.sku,";
 		$sql .= " p.upc,";
@@ -5757,7 +5755,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	function populateProductsWorksheet(&$worksheet, &$languages, $default_language_id, &$price_format, &$box_format, &$weight_format, &$text_format, $offset = null, $rows = null, &$min_id = null, &$max_id = null) {
+	function populateProductsWorksheet($worksheet, $languages, $default_language_id, $price_format, $box_format, $weight_format, $text_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Get list of the field names
 		$describe_query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
 
@@ -6043,7 +6041,7 @@ class ModelToolExportImport extends Model {
 		return $result->rows;
 	}
 
-	protected function populateAdditionalImagesWorksheet(&$worksheet, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateAdditionalImagesWorksheet($worksheet, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6106,7 +6104,7 @@ class ModelToolExportImport extends Model {
 		return $result->rows;
 	}
 
-	protected function populateSpecialsWorksheet(&$worksheet, $language_id, &$price_format, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateSpecialsWorksheet($worksheet, $language_id, $price_format, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6177,7 +6175,7 @@ class ModelToolExportImport extends Model {
 		return $result->rows;
 	}
 
-	protected function populateDiscountsWorksheet(&$worksheet, $language_id, &$price_format, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateDiscountsWorksheet($worksheet, $language_id, $price_format, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6251,7 +6249,7 @@ class ModelToolExportImport extends Model {
 		return $result->rows;
 	}
 
-	protected function populateRewardsWorksheet(&$worksheet, $language_id, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateRewardsWorksheet($worksheet, $language_id, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6325,7 +6323,7 @@ class ModelToolExportImport extends Model {
 		return $query->rows;
 	}
 
-	protected function populateProductOptionsWorksheet(&$worksheet, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateProductOptionsWorksheet($worksheet, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6413,7 +6411,7 @@ class ModelToolExportImport extends Model {
 		return $query->rows;
 	}
 
-	protected function populateProductOptionValuesWorksheet(&$worksheet, &$price_format, &$box_format, &$weight_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateProductOptionValuesWorksheet($worksheet, $price_format, $box_format, $weight_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6555,7 +6553,7 @@ class ModelToolExportImport extends Model {
 		return $attribute_names;
 	}
 
-	protected function getProductAttributes(&$languages, $min_id, $max_id) {
+	protected function getProductAttributes($languages, $min_id, $max_id) {
 		$sql = "SELECT pa.product_id, ag.attribute_group_id, pa.attribute_id, pa.language_id, pa.text FROM " . DB_PREFIX . "product_attribute pa";
 		$sql .= " INNER JOIN " . DB_PREFIX . "attribute a ON (a.attribute_id = pa.attribute_id)";
 		$sql .= " INNER JOIN " . DB_PREFIX . "attribute_group ag ON (ag.attribute_group_id = a.attribute_group_id)";
@@ -6610,7 +6608,7 @@ class ModelToolExportImport extends Model {
 		return $product_attributes;
 	}
 
-	protected function populateProductAttributesWorksheet(&$worksheet, &$languages, $default_language_id, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateProductAttributesWorksheet($worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6734,7 +6732,7 @@ class ModelToolExportImport extends Model {
 		return $product_filters;
 	}
 
-	protected function populateProductFiltersWorksheet(&$worksheet, &$languages, $default_language_id, &$box_format, &$text_format, $min_id = null, $max_id = null) {
+	protected function populateProductFiltersWorksheet($worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6821,7 +6819,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getOptionDescriptions(&$languages) {
+	protected function getOptionDescriptions($languages) {
 		$option_descriptions = array();
 
 		foreach ($languages as $language) {
@@ -6842,7 +6840,7 @@ class ModelToolExportImport extends Model {
 		return $option_descriptions;
 	}
 
-	protected function getOptions(&$languages) {
+	protected function getOptions($languages) {
 		$results = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option` ORDER BY option_id ASC");
 
 		$option_descriptions = $this->getOptionDescriptions($languages);
@@ -6862,7 +6860,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateOptionsWorksheet(&$worksheet, &$languages, &$box_format, &$text_format) {
+	protected function populateOptionsWorksheet($worksheet, $languages, $box_format, $text_format) {
 		// Set the column widths
 		$j = 0;
 
@@ -6920,7 +6918,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getOptionValueDescriptions(&$languages) {
+	protected function getOptionValueDescriptions($languages) {
 		$option_value_descriptions = array();
 
 		foreach ($languages as $language) {
@@ -6941,7 +6939,7 @@ class ModelToolExportImport extends Model {
 		return $option_value_descriptions;
 	}
 
-	protected function getOptionValues(&$languages) {
+	protected function getOptionValues($languages) {
 		$results = $this->db->query("SELECT * FROM " . DB_PREFIX . "option_value ORDER BY option_id ASC, option_value_id ASC");
 
 		$option_value_descriptions = $this->getOptionValueDescriptions($languages);
@@ -6961,7 +6959,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateOptionValuesWorksheet(&$worksheet, $languages, &$box_format, &$text_format) {
+	protected function populateOptionValuesWorksheet($worksheet, $languages, $box_format, $text_format) {
 		// Check for the existence of option_value.image field
 		$query = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . "option_value` LIKE 'image'");
 
@@ -7040,7 +7038,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getAttributeGroupDescriptions(&$languages) {
+	protected function getAttributeGroupDescriptions($languages) {
 		$attribute_group_descriptions = array();
 
 		foreach ($languages as $language) {
@@ -7061,7 +7059,7 @@ class ModelToolExportImport extends Model {
 		return $attribute_group_descriptions;
 	}
 
-	protected function getAttributeGroups(&$languages) {
+	protected function getAttributeGroups($languages) {
 		$attribute_group_descriptions = $this->getAttributeGroupDescriptions($languages);
 
 		$results = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_group ORDER BY attribute_group_id ASC");
@@ -7081,7 +7079,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateAttributeGroupsWorksheet(&$worksheet, $languages, &$box_format, &$text_format) {
+	protected function populateAttributeGroupsWorksheet($worksheet, $languages, $box_format, $text_format) {
 		// Set the column widths
 		$j = 0;
 
@@ -7136,7 +7134,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getAttributeDescriptions(&$languages) {
+	protected function getAttributeDescriptions($languages) {
 		$attribute_descriptions = array();
 
 		foreach ($languages as $language) {
@@ -7157,7 +7155,7 @@ class ModelToolExportImport extends Model {
 		return $attribute_descriptions;
 	}
 
-	protected function getAttributes(&$languages) {
+	protected function getAttributes($languages) {
 		$attribute_descriptions = $this->getAttributeDescriptions($languages);
 
 		$results = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute ORDER BY attribute_group_id ASC, attribute_id ASC");
@@ -7177,7 +7175,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateAttributesWorksheet(&$worksheet, $languages, &$box_format, &$text_format) {
+	protected function populateAttributesWorksheet($worksheet, $languages, $box_format, $text_format) {
 		// Set the column widths
 		$j = 0;
 
@@ -7235,7 +7233,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getFilterGroupDescriptions(&$languages) {
+	protected function getFilterGroupDescriptions($languages) {
 		$filter_group_descriptions = array();
 
 		foreach ($languages as $language) {
@@ -7256,7 +7254,7 @@ class ModelToolExportImport extends Model {
 		return $filter_group_descriptions;
 	}
 
-	protected function getFilterGroups( &$languages ) {
+	protected function getFilterGroups($languages) {
 		$results = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group ORDER BY filter_group_id ASC");
 
 		$filter_group_descriptions = $this->getFilterGroupDescriptions($languages);
@@ -7276,7 +7274,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateFilterGroupsWorksheet(&$worksheet, $languages, &$box_format, &$text_format) {
+	protected function populateFilterGroupsWorksheet($worksheet, $languages, $box_format, $text_format) {
 		// Set the column widths
 		$j = 0;
 
@@ -7331,7 +7329,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getFilterDescriptions(&$languages) {
+	protected function getFilterDescriptions($languages) {
 		$filter_descriptions = array();
 
 		foreach ($languages as $language) {
@@ -7352,7 +7350,7 @@ class ModelToolExportImport extends Model {
 		return $filter_descriptions;
 	}
 
-	protected function getFilters(&$languages) {
+	protected function getFilters($languages) {
 		$filter_descriptions = $this->getFilterDescriptions($languages);
 
 		$results = $this->db->query("SELECT * FROM `" . DB_PREFIX . "filter` ORDER BY filter_group_id ASC, filter_id ASC");
@@ -7372,7 +7370,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateFiltersWorksheet(&$worksheet, $languages, &$box_format, &$text_format) {
+	protected function populateFiltersWorksheet($worksheet, $languages, $box_format, $text_format) {
 		// Set the column widths
 		$j = 0;
 

@@ -137,8 +137,8 @@ class ModelSaleVoucher extends Model {
 				$mail->setHtml($template->fetch('mail/voucher.tpl'));
 				$mail->send();
 
-			// If voucher does not belong to an order
 			}  else {
+				// If voucher does not belong to an order
 				$this->language->load('mail/voucher');
 
 				$template = new Template();

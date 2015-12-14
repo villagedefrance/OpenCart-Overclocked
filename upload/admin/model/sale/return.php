@@ -106,7 +106,7 @@ class ModelSaleReturn extends Model {
 	}
 
 	public function getTotalReturns($data = array()) {
-		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return`r";
+		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "return` r";
 
 		$implode = array();
 
@@ -182,7 +182,7 @@ class ModelSaleReturn extends Model {
 
 				$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'), $return_id);
 
-				$message  = $this->language->get('text_return_id') . ' ' . $return_id . "\n";
+				$message = $this->language->get('text_return_id') . ' ' . $return_id . "\n";
 				$message .= $this->language->get('text_date_added') . ' ' . date($this->language->get('date_format_short'), strtotime($return_query->row['date_added'])) . "\n\n";
 				$message .= $this->language->get('text_return_status') . "\n";
 				$message .= $return_query->row['status'] . "\n\n";
