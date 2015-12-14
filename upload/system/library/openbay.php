@@ -94,7 +94,7 @@ final class Openbay {
 
 	public function testDbColumn($table, $column) {
 		//check profile table for default column
-		$res = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX.$table."` LIKE '".$column."'");
+		$res = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . $table . "` LIKE '" . $column . "'");
 
 		if ($res->num_rows != 0) {
 			return true;
@@ -136,12 +136,7 @@ final class Openbay {
 	public function getTaxRates($tax_class_id) {
 		$tax_rates = array();
 
-		$tax_query = $this->db->query("SELECT
-			tr2.tax_rate_id,
-			tr2.name,
-			tr2.rate,
-			tr2.type,
-			tr1.priority
+		$tax_query = $this->db->query("SELECT tr2.tax_rate_id, tr2.name, tr2.rate, tr2.type, tr1.priority
 			FROM " . DB_PREFIX . "tax_rule tr1
 			LEFT JOIN " . DB_PREFIX . "tax_rate tr2 ON (tr1.tax_rate_id = tr2.tax_rate_id)
 			INNER JOIN " . DB_PREFIX . "tax_rate_to_customer_group tr2cg ON (tr2.tax_rate_id = tr2cg.tax_rate_id)
@@ -183,7 +178,7 @@ final class Openbay {
 	}
 
 	public function getZoneId($name, $country_id) {
-		$query = $this->db->query("SELECT `zone_id` FROM `" . DB_PREFIX . "zone` WHERE `country_id` = '" . (int)$country_id . "' AND status = '1' AND `name` = '" . $this->db->escape($name) . "'");
+		$query = $this->db->query("SELECT zone_id FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "' AND status = '1' AND name = '" . $this->db->escape($name) . "'");
 
 		if ($query->num_rows > 0) {
 			return $query->row['zone_id'];
@@ -204,15 +199,15 @@ final class Openbay {
 		$order_status = $this->db->query("SELECT `name` FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "' LIMIT 1")->row['name'];
 
 		// Order Totals
-		$order_total_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '" . (int)$order_id . "' ORDER BY `sort_order` ASC");
+		$order_total_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_total WHERE order_id = '" . (int)$order_id . "' ORDER BY sort_order ASC");
 
 		// Order contents
-		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
+		$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
 
 		$subject = sprintf($language->get('text_new_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'), $order_id);
 
 		// Text
-		$text  = $language->get('text_new_received') . "\n\n";
+		$text = $language->get('text_new_received') . "\n\n";
 		$text .= $language->get('text_new_order_id') . ' ' . $order_info['order_id'] . "\n";
 		$text .= $language->get('text_new_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n";
 		$text .= $language->get('text_new_order_status') . ' ' . $order_status . "\n\n";
@@ -319,7 +314,7 @@ final class Openbay {
 
 	public function getProductModelNumber($product_id, $sku = null) {
 		if ($sku != null) {
-			$qry = $this->db->query("SELECT `sku` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($sku) . "'");
+			$qry = $this->db->query("SELECT `sku` FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($sku) . "'");
 
 			if ($qry->num_rows > 0) {
 				return $qry->row['sku'];
@@ -328,7 +323,7 @@ final class Openbay {
 			}
 
 		} else {
-			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "' LIMIT 1");
+			$qry = $this->db->query("SELECT `model` FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "' LIMIT 1");
 
 			if ($qry->num_rows > 0) {
 				return $qry->row['model'];
@@ -355,7 +350,7 @@ final class Openbay {
 	}
 
 	public function getUserByEmail($email) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer` WHERE `email` = '" . $this->db->escape($email) . "'");
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE email = '" . $this->db->escape($email) . "'");
 
 		if ($qry->num_rows){
 			return $qry->row['customer_id'];
@@ -400,6 +395,7 @@ final class Openbay {
 					'product_option_value'	=> $product_option_value_data,
 					'required'					=> $product_option['required']
 				);
+
 			} else {
 				$product_option_data[] = array(
 					'product_option_id'	=> $product_option['product_option_id'],
