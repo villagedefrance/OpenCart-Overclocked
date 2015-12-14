@@ -1,7 +1,7 @@
 <?php
 // Version
-define('VERSION', '1.7.3 beta');
-define('REVISION', '2015-12-01');
+define('VERSION', '1.7.3 RC1');
+define('REVISION', '2015-12-14');
 
 // Configuration
 if (file_exists('config.php')) {

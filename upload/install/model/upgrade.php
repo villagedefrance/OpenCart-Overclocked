@@ -509,7 +509,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 			$catalog_string = implode('', file($catalog));
 
-			$fh1 = fopen($catalog, 'w');
+			$fh1 = fopen($catalog, 'w+');
 
 			if (strpos($catalog_data, $check_upload) == false) {
 				$catalog_string .= str_replace($upload, $output_upload, $catalog_string);
@@ -536,7 +536,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 			$admin_string = implode('', file($admin));
 
-			$fh2 = fopen($admin, 'w');
+			$fh2 = fopen($admin, 'w+');
 
 			if (strpos($admin_data, $check_upload) == false) {
 				$admin_string .= str_replace($upload, $output_upload, $admin_string);
