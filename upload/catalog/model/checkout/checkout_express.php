@@ -89,7 +89,7 @@ class ModelCheckoutCheckoutExpress extends Model {
 
 		// Send to main admin email if new account email is enabled
 		if ($this->config->get('config_account_mail')) {
-			$message  = $this->language->get('text_signup') . "\n\n";
+			$message = $this->language->get('text_signup') . "\n\n";
 			$message .= $this->language->get('text_website') . ' ' . $this->config->get('config_name') . "\n";
 			$message .= $this->language->get('text_firstname') . ' ' . $data['firstname'] . "\n";
 
@@ -129,7 +129,7 @@ class ModelCheckoutCheckoutExpress extends Model {
 	}
 
 	public function getCustomer($customer_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'"); 
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 
 		return $query->row;
 	}
@@ -209,7 +209,7 @@ class ModelCheckoutCheckoutExpress extends Model {
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {
 				$data['start'] = 0;
-			}	
+			}
 
 			if ($data['limit'] < 1) {
 				$data['limit'] = 20;

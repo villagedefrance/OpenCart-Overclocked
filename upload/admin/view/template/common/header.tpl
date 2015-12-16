@@ -164,9 +164,6 @@ $(document).ready(function() {
       <li id="sale"><a class="top"><?php echo $text_sale; ?></a>
         <ul>
           <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-		  <?php if ($profile_exist) { ?>
-          <li><a href="<?php echo $recurring_profile; ?>"><?php echo $text_recurring_profile; ?></a></li>
-		  <?php } ?>
           <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
           <li><a class="arrow"><?php echo $text_customer; ?></a>
             <ul>
@@ -175,9 +172,12 @@ $(document).ready(function() {
               <li><a href="<?php echo $customer_ban_ip; ?>"><?php echo $text_customer_ban_ip; ?></a></li>
             </ul>
           </li>
-		  <?php if ($allow_affiliate) { ?>
+          <?php if ($profile_exist) { ?>
+          <li><a href="<?php echo $recurring_profile; ?>"><?php echo $text_recurring_profile; ?></a></li>
+          <?php } ?>
+          <?php if ($allow_affiliate) { ?>
           <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
-		  <?php } ?>
+          <?php } ?>
           <li><a href="<?php echo $coupon; ?>"><?php echo $text_coupon; ?></a></li>
           <li><a class="arrow"><?php echo $text_offer; ?></a>
             <ul>

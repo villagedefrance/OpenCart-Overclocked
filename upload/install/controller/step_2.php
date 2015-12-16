@@ -66,7 +66,7 @@ class ControllerStep2 extends Controller {
 		$this->data['file_uploads'] = ini_get('file_uploads');
 		$this->data['session_auto_start'] = ini_get('session_auto_start');
 
-		if (!array_filter(array('mysql', 'mysqli', 'pgsql', 'pdo'), 'extension_loaded')) {
+		if (!array_filter(array('mysql', 'mysqli', 'pdo', 'pgsql'), 'extension_loaded')) {
 			$this->data['db'] = false;
 		} else {
 			$this->data['db'] = true;

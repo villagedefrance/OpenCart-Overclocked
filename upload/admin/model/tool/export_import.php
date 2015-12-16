@@ -3802,7 +3802,7 @@ class ModelToolExportImport extends Model {
 				}
 
 				if (!ctype_digit($product_id)) {
-					$msg = str_replace( '%2', $product_id, str_replace('%1', $worksheet, $this->language->get('error_invalid_product_id')));
+					$msg = str_replace('%2', $product_id, str_replace('%1', $worksheet, $this->language->get('error_invalid_product_id')));
 					$this->log->write($msg);
 
 					$ok = false;

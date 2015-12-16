@@ -2,7 +2,7 @@
 class ModelSaleRecurring extends Model {
 
 	public function getTotalProfiles($data) {
-		$sql = "SELECT COUNT(*) AS profile_count FROM " . DB_PREFIX . "order_recurring LEFT JOIN " . DB_PREFIX . "order USING(`order_id`) WHERE 1 = 1";
+		$sql = "SELECT COUNT(*) AS profile_count FROM " . DB_PREFIX . "order_recurring LEFT JOIN `" . DB_PREFIX . "order` USING(`order_id`) WHERE order_recurring_id IS NOT NULL";
 
 		if (!empty($data['filter_order_recurring_id'])) {
 			$sql .= " AND order_recurring_id = " . (int)$data['filter_order_recurring_id'];
@@ -34,7 +34,7 @@ class ModelSaleRecurring extends Model {
 	}
 
 	public function getProfiles($data) {
-		$sql = "SELECT order_recurring_id, order_id, status, created, profile_reference, CONCAT(firstname, ' ', lastname) AS customer FROM " . DB_PREFIX . "order_recurring LEFT JOIN " . DB_PREFIX . "order USING(`order_id`) WHERE 1 = 1";
+		$sql = "SELECT order_recurring_id, order_id, status, created, profile_reference, CONCAT(firstname, ' ', lastname) AS customer FROM " . DB_PREFIX . "order_recurring LEFT JOIN `" . DB_PREFIX . "order` USING(`order_id`) WHERE order_recurring_id IS NOT NULL";
 
 		if (!empty($data['filter_order_recurring_id'])) {
 			$sql .= " AND order_recurring_id = " . (int)$data['filter_order_recurring_id'];
@@ -85,6 +85,7 @@ class ModelSaleRecurring extends Model {
 			if ($data['start'] < 0) {
 				$data['start'] = 0;
 			}
+
 			if ($data['limit'] < 1) {
 				$data['limit'] = 20;
 			}
@@ -134,7 +135,7 @@ class ModelSaleRecurring extends Model {
 	}
 
 	public function getProfileTransactions($order_recurring_id) {
-		$results =  $this->db->query("SELECT amount, type, created FROM " . DB_PREFIX . "order_recurring_transaction WHERE order_recurring_id = " . (int)$order_recurring_id . " ORDER BY created DESC")->rows;
+		$results = $this->db->query("SELECT amount, type, created FROM " . DB_PREFIX . "order_recurring_transaction WHERE order_recurring_id = " . (int)$order_recurring_id . " ORDER BY created DESC")->rows;
 
 		$transactions = array();
 

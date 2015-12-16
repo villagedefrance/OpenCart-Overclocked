@@ -938,6 +938,10 @@ class ControllerSaleOrder extends Controller {
 			$this->data['payment_tax_id'] = '';
 		}
 
+		$this->load->model('localisation/country');
+
+		$this->data['countries'] = $this->model_localisation_country->getCountries();
+
 		if (isset($this->request->post['payment_address_1'])) {
 			$this->data['payment_address_1'] = $this->request->post['payment_address_1'];
 		} elseif (!empty($order_info)) {
@@ -1074,10 +1078,6 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$this->data['shipping_zone_id'] = '';
 		}
-
-		$this->load->model('localisation/country');
-
-		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
 		if (isset($this->request->post['shipping_method'])) {
 			$this->data['shipping_method'] = $this->request->post['shipping_method'];
