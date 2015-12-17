@@ -394,17 +394,17 @@ class ControllerToolSeoUrlManager extends Controller {
 		}
 
 		if (isset($this->request->post['query'])) {
-			$this->data['query'] = $this->request->post['query'];
+			$this->data['query'] = trim($this->request->post['query']);
 		} elseif (!empty($url_info)) {
-			$this->data['query'] = $url_info['query'];
+			$this->data['query'] = trim($url_info['query']);
 		} else {
 			$this->data['query'] = '';
 		}
 
 		if (isset($this->request->post['keyword'])) {
-			$this->data['keyword'] = $this->request->post['keyword'];
+			$this->data['keyword'] = trim($this->request->post['keyword']);
 		} elseif (!empty($url_info)) {
-			$this->data['keyword'] = $url_info['keyword'];
+			$this->data['keyword'] = trim($url_info['keyword']);
 		} else {
 			$this->data['keyword'] = '';
 		}
