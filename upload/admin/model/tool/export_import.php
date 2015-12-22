@@ -5241,7 +5241,7 @@ class ModelToolExportImport extends Model {
 		// Category description table for each language
 		$category_descriptions = array();
 
-		$sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "category_description";
+		$sql = "SELECT * FROM " . DB_PREFIX . "category_description";
 		$sql .= " WHERE language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
@@ -5264,7 +5264,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		$sql = "SELECT DISTINCT c.*, ua.keyword AS keyword FROM " . DB_PREFIX . "category c";
+		$sql = "SELECT c.*, ua.keyword AS keyword FROM " . DB_PREFIX . "category c";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON ua.query = CONCAT('category_id=',c.category_id)";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
@@ -5634,7 +5634,7 @@ class ModelToolExportImport extends Model {
 		// Product description table for each language
 		$product_descriptions = array();
 
-		$sql = "SELECT DISTINCT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag";
+		$sql = "SELECT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag";
 		$sql .= " FROM " . DB_PREFIX . "product_description WHERE language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
