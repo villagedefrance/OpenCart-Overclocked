@@ -35,8 +35,13 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_phptime'] = $this->language->get('text_phptime');
 		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
 		$this->data['text_dbname'] = $this->language->get('text_dbname');
-		$this->data['text_storeinfo'] = $this->language->get('text_storeinfo');
-		$this->data['text_serverinfo'] = $this->language->get('text_serverinfo');
+		$this->data['text_store_info'] = $this->language->get('text_store_info');
+		$this->data['text_setting_info'] = $this->language->get('text_setting_info');
+		$this->data['text_server_info'] = $this->language->get('text_server_info');
+
+		$this->data['tab_store'] = $this->language->get('tab_store');
+		$this->data['tab_setting'] = $this->language->get('tab_setting');
+		$this->data['tab_server'] = $this->language->get('tab_server');
 
 		$this->data['column_php'] = $this->language->get('column_php');
 		$this->data['column_extension'] = $this->language->get('column_extension');
@@ -66,6 +71,22 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
+		// Template
+		$this->data['templates'] = array();
+
+		$directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
+
+		foreach ($directories as $directory) {
+			$this->data['templates'][] = basename($directory);
+		}
+
+		if (isset($this->request->post['config_template'])) {
+			$this->data['config_template'] = $this->request->post['config_template'];
+		} else {
+			$this->data['config_template'] = $this->config->get('config_template');
+		}
+
+		// Time
 		$date_timezone = ini_get('date.timezone');
 		$default_timezone = date_default_timezone_get();
 
@@ -80,6 +101,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['server_time'] = date('Y-m-d H:i:s');
 		$this->data['database_time'] = $this->db->query("SELECT NOW() AS now")->row['now'];
 
+		// Database
 		$database_name = DB_DRIVER;
 
 		if ($database_name == 'mysql') {
@@ -118,19 +140,40 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['vqcache'] = DIR_VQMOD . 'vqcache';
 		$this->data['vqmod_xml'] = DIR_VQMOD . 'xml';
 
-		// Template
-		$this->data['templates'] = array();
+		// Server
+		$server_responses = array();
 
-		$directories = glob(DIR_CATALOG . 'view/theme/*', GLOB_ONLYDIR);
+		$server_requests = array(
+			'PHP_SELF',
+			'GATEWAY_INTERFACE',
+			'SERVER_ADDR',
+			'SERVER_NAME',
+			'SERVER_SOFTWARE',
+			'SERVER_PROTOCOL',
+			'DOCUMENT_ROOT',
+			'HTTP_ACCEPT',
+			'HTTP_ACCEPT_CHARSET',
+			'HTTP_ACCEPT_ENCODING',
+			'HTTP_ACCEPT_LANGUAGE',
+			'HTTP_CONNECTION',
+			'HTTP_HOST',
+			'HTTPS',
+			'SCRIPT_FILENAME',
+			'SERVER_ADMIN',
+			'SERVER_PORT'
+		);
 
-		foreach ($directories as $directory) {
-			$this->data['templates'][] = basename($directory);
-		}
+		foreach ($server_requests as $argument) {
+			if (isset($_SERVER[$argument])) {
+				$response = $_SERVER[$argument];
+			} else {
+				$response = '';
+			}
 
-		if (isset($this->request->post['config_template'])) {
-			$this->data['config_template'] = $this->request->post['config_template'];
-		} else {
-			$this->data['config_template'] = $this->config->get('config_template');
+			$this->data['server_responses'][] = array(
+				'request'		=> $argument,
+				'response'	=> $response
+			);
 		}
 
 		$this->template = 'tool/' . $this->_name . '.tpl';

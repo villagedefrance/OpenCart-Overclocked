@@ -526,16 +526,16 @@ class ControllerAccountAddress extends Controller {
 		}
 
 		if (isset($this->request->post['country_id'])) {
-			$this->data['country_id'] = $this->request->post['country_id'];
-		}  elseif (!empty($address_info)) {
+			$this->data['country_id'] = (int)$this->request->post['country_id'];
+		} elseif (!empty($address_info)) {
 			$this->data['country_id'] = $address_info['country_id'];
 		} else {
 			$this->data['country_id'] = $this->config->get('config_country_id');
 		}
 
 		if (isset($this->request->post['zone_id'])) {
-			$this->data['zone_id'] = $this->request->post['zone_id'];
-		}  elseif (!empty($address_info)) {
+			$this->data['zone_id'] = (int)$this->request->post['zone_id'];
+		} elseif (!empty($address_info)) {
 			$this->data['zone_id'] = $address_info['zone_id'];
 		} else {
 			$this->data['zone_id'] = '';
@@ -612,11 +612,11 @@ class ControllerAccountAddress extends Controller {
 			}
 		}
 
-		if ($this->request->post['country_id'] == '') {
+		if (!isset($this->request->post['country_id']) || $this->request->post['country_id'] == '' || !is_int($this->request->post['country_id'])) {
 			$this->error['country'] = $this->language->get('error_country');
 		}
 
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
+		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_int($this->request->post['zone_id'])) {
 			$this->error['zone'] = $this->language->get('error_zone');
 		}
 

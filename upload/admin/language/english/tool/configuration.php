@@ -10,13 +10,19 @@ $_['text_version']  			= '%s';
 $_['text_system_name']  	= 'Revision:';
 $_['text_revision']  			= '%s';
 $_['text_theme']				= 'Active Template:';
-$_['text_timezone'] 			= 'Server Time Zone:<br /><span class="help">Defined by the hosting provider through the server\'s php.ini file.</span>';
-$_['text_phptime'] 			= 'Server Time:<br /><span class="help">Current time for the selected server time zone.</span>';
-$_['text_dbtime'] 			= 'Database Time:<br /><span class="help">Current system date and time.</span>';
-$_['text_dbname'] 			= 'Database Type:';
-$_['text_storeinfo']   		= 'Store Information';
-$_['text_serverinfo']   		= 'Server Information';
+$_['text_timezone'] 			= 'Server Time Zone:<span class="help">Defined by the hosting provider through the server\'s php.ini file.</span>';
+$_['text_phptime'] 			= 'Server Time:<span class="help">Current time for the selected server time zone.</span>';
+$_['text_dbtime'] 			= 'Database Time:<span class="help">Current system date and time.</span>';
+$_['text_dbname'] 			= 'Database Engine:<span class="help">Current system database engine.</span>';
 $_['text_no_timezone'] 		= 'Time Zone data not available.';
+$_['text_store_info']   		= 'Store Information';
+$_['text_setting_info']   	= 'Settings Information';
+$_['text_server_info']   		= 'Server Information';
+
+// Tab
+$_['tab_store']   				= 'Store';
+$_['tab_setting']   			= 'Settings';
+$_['tab_server']   			= 'Server';
 
 // Columns
 $_['column_php'] 				= 'PHP Settings';
