@@ -288,7 +288,6 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['text_menu'] = $this->language->get('text_menu');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
     	$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_cache'] = sprintf($this->language->get('text_cache'), $this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_external'] = $this->language->get('column_external');

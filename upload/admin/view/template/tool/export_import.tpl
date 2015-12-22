@@ -24,6 +24,7 @@
         <a href="#tab-export"><?php echo $tab_export; ?></a>
         <a href="#tab-import"><?php echo $tab_import; ?></a>
         <a href="#tab-settings"><?php echo $tab_settings; ?></a>
+        <a href="#tab-notes"><?php echo $tab_notes; ?></a>
         <a href="#tab-credits"><?php echo $tab_credits; ?></a>
       </div>
       <div id="tab-export">
@@ -97,7 +98,7 @@
               </td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="downloadData();" class="button"><?php echo $button_export; ?></a></td>
+              <td class="buttons"><a onclick="downloadData();" class="button-filter"><?php echo $button_export; ?></a></td>
             </tr>
           </table>
         </form>
@@ -106,12 +107,6 @@
         <form action="<?php echo $import; ?>" method="post" enctype="multipart/form-data" id="import">
           <table class="form">
             <h3><?php echo $entry_import; ?></h3>
-            <tr>
-              <td>
-                <span class="help"><?php echo $help_import; ?></span>
-                <span class="help"><?php echo $help_format; ?></span>
-              </td>
-            </tr>
             <tr>
               <td>
                 <b><?php echo $entry_incremental; ?></b>
@@ -136,10 +131,11 @@
               <td><input type="file" name="upload" id="upload" class="custom-input-class" /></td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="uploadData();" class="button"><?php echo $button_import; ?></a></td>
+              <td class="buttons"><a onclick="uploadData();" class="button-filter"><?php echo $button_import; ?></a></td>
             </tr>
           </table>
         </form>
+		<div class="tooltip" style="margin:15px 0px 5px 0px;"><?php echo $help_format; ?></div>
       </div>
       <div id="tab-settings">
         <form action="<?php echo $settings; ?>" method="post" enctype="multipart/form-data" id="settings">
@@ -252,10 +248,18 @@
               </td>
             </tr>
             <tr>
-              <td class="buttons"><a onclick="updateSettings();" class="button"><?php echo $button_settings; ?></a></td>
+              <td class="buttons"><a onclick="updateSettings();" class="button-filter"><?php echo $button_settings; ?></a></td>
             </tr>
           </table>
         </form>
+      </div>
+      <div id="tab-notes">
+        <h3><?php echo $entry_notes; ?></h3>
+        <table class="form">
+          <tr>
+            <td><?php echo $help_notes; ?></td>
+          </tr>
+        </table>
       </div>
       <div id="tab-credits">
         <h3><?php echo $entry_credits; ?></h3>

@@ -16,7 +16,7 @@ class ModelDesignMenuItems extends Model {
 		// MySQL Hierarchical Data Closure Table Pattern
 		$level = 0;
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE path_id = '" . (int)$menu_item_id . "' ORDER BY level ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE path_id = '" . (int)$menu_item_id . "' ORDER BY `level` ASC");
 
 		foreach ($query->rows as $result) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_path SET menu_item_id = '" . (int)$menu_item_id . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
@@ -39,7 +39,7 @@ class ModelDesignMenuItems extends Model {
 		}
 
 		// MySQL Hierarchical Data Closure Table Pattern
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE path_id = '" . (int)$menu_item_id . "' ORDER BY level ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE path_id = '" . (int)$menu_item_id . "' ORDER BY `level` ASC");
 
 		if ($query->rows) {
 			foreach ($query->rows as $menu_item_path) {
@@ -49,14 +49,14 @@ class ModelDesignMenuItems extends Model {
 				$path = array();
 
 				// Get the nodes new parents
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$data['parent_id'] . "' ORDER BY `level` ASC");
 
 				foreach ($query->rows as $result) {
 					$path[] = $result['path_id'];
 				}
 
 				// Get whats left of the nodes current path
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$menu_item_path['menu_item_id'] . "' ORDER BY level ASC");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$menu_item_path['menu_item_id'] . "' ORDER BY `level` ASC");
 
 				foreach ($query->rows as $result) {
 					$path[] = $result['path_id'];
@@ -79,7 +79,7 @@ class ModelDesignMenuItems extends Model {
 			// Fix for records with no paths
 			$level = 0;
 
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$data['parent_id'] . "' ORDER BY `level` ASC");
 
 			foreach ($query->rows as $result) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_path SET menu_item_id = '" . (int)$menu_item_id . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
@@ -125,7 +125,7 @@ class ModelDesignMenuItems extends Model {
 			// Fix for records with no paths
 			$level = 0;
 
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$parent_id . "' ORDER BY level ASC");
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "menu_item_path WHERE menu_item_id = '" . (int)$parent_id . "' ORDER BY `level` ASC");
 
 			foreach ($query->rows as $result) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_path SET menu_item_id = '" . (int)$menu_item['menu_item_id'] . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
@@ -137,6 +137,8 @@ class ModelDesignMenuItems extends Model {
 
 			$this->repairMenuItems($menu_item['menu_item_id']);
 		}
+
+		$this->cache->delete('menu_items');
 	}
 
 	public function getMenuItem($menu_item_id) {

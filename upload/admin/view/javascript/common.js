@@ -43,3 +43,10 @@ function apply() {
 	$('#form').append('<input type="hidden" id="apply" name="apply" value="1" />');
 	$('#form').submit();
 }
+
+// Notifications
+$(document).ready(function() {
+	$('.success').on('click', function() {
+		$(this).fadeOut('slow');
+	});
+});

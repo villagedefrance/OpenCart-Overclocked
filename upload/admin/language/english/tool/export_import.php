@@ -26,7 +26,9 @@ $_['text_log_details_2_1_x']				= 'See also "System &gt; Tools &gt; Error Logs" 
 $_['entry_import']							= 'Import from a XLS, XLSX or ODS spreadsheet file';
 $_['entry_export']							= 'Export selected data to a XLSX spreadsheet file';
 $_['entry_settings']							= 'Export / Import Settings';
+$_['entry_notes']								= 'Export / Import Notes';
 $_['entry_credits']							= 'Export / Import Credits';
+
 $_['entry_export_type']						= 'Select the data to export:';
 $_['entry_range_type']						= 'Select the data range to export:';
 $_['entry_start_id']							= 'Start id:';
@@ -158,6 +160,7 @@ $_['error_filter_not_supported']					= 'Export/Import: Filters are not supported
 $_['tab_import']						= 'Import';
 $_['tab_export']						= 'Export';
 $_['tab_settings']						= 'Settings';
+$_['tab_notes']						= 'Notes';
 $_['tab_credits']						= 'Credits';
 
 // Button
@@ -172,9 +175,8 @@ $_['button_export_page']			= 'By batches';
 $_['help_range_type']				= '(Optional, leave empty if not needed)';
 $_['help_incremental_yes']			= '(Update and/or add data)';
 $_['help_incremental_no']			= '(Delete all old data before Import)';
-$_['help_import']						= 'Spreadsheet can have categories, products, attribute definitions, option definitions, or filter definitions.';
-$_['help_import_old']					= 'Spreadsheet can have categories, products, attribute definitions, or option definitions.';
-$_['help_format']						= 'Do an Export first to see the exact format of the worksheets!';
+$_['help_format']						= 'Tip: Do an Export first to see the exact format of the worksheets!';
+$_['help_notes']						= '<b>The Export Tool does randomly generate duplicate descriptions of Products and Categories.</b><br /><br />This appears to be a PHPExcel issue occuring while converting the data into XLSX format.<br /><br />Since no solution has yet been found to fix this issue, it is recommended to keep a clean Master copy of your Product and Category spreadsheets, to work with, and to use with the <b>Import Tool</b> to update and maintain your data.<br /><br />';
 
 // About
 $_['text_export_import_version']		= 'Export / Import Version:';
@@ -193,7 +195,7 @@ $_['text_phpexcel_license']			= 'PHPExcel License:';
 
 // Version
 $_['export_import_description']		= '<b>Export / Import</b> is a spreadsheet importer-exporter for Opencart Overclocked Edition, based on the original <b>Export/Import Tool</b> by JNeuhoff, and integrating the latest <b>PHPExcel</b> Core Files!';
-$_['export_import_version']			= '1.7.2 - Overclocked Edition';
+$_['export_import_version']			= '1.7.3 - Overclocked Edition';
 $_['export_import_author']				= 'Villagedefrance';
 $_['export_import_support']			= 'contact@villagedefrance.net';
 $_['export_import_license']			= 'GPLv3 (GNU General Public License)';

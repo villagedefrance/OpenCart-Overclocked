@@ -23,7 +23,7 @@
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
           <td><?php foreach ($languages as $language) { ?>
-            <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]"  size="30" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" />
+            <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" />
             <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php if (isset($error_name[$language['language_id']])) { ?>
               <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />

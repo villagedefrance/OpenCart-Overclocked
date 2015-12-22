@@ -1,6 +1,8 @@
 <?php
-$_['heading_title']	= 'OpenBay Pro';
+// Heading
+$_['heading_title']		= 'OpenBay Pro';
 
-$_['text_module']		= 'Modifications';
-$_['text_installed']	= 'OpenBay Pro modification is now installed. It is available under <b>Extensions > OpenBay Pro</b>';
+// Text
+$_['text_modification']	= 'Modifications';
+$_['text_installed']		= 'OpenBay Pro is now installed. It is available under <b>Extensions > OpenBay Pro</b>';
 ?>

@@ -25,7 +25,7 @@ class ModelDesignMenu extends Model {
 
 	public function getMenuItems($parent_id = 0, $menu_id) {
 		if ($parent_id == 0) {
-			$menu_item_data = $this->cache->get('menu.items.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$parent_id);
+			$menu_item_data = $this->cache->get('menu_items.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$parent_id);
 
 			if (!$menu_item_data) {
 				$menu_item_data = array();
@@ -36,7 +36,7 @@ class ModelDesignMenu extends Model {
 					$menu_item_data[$result['menu_item_id']] = $this->getMenuItem($result['menu_item_id'], (int)$menu_id);
 				}
 
-				$this->cache->set('menu.items.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $parent_id, $menu_item_data);
+				$this->cache->set('menu_items.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $parent_id, $menu_item_data);
 			}
 
 			return $menu_item_data;

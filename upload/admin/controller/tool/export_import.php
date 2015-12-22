@@ -161,7 +161,9 @@ class ControllerToolExportImport extends Controller {
 		$this->data['entry_export'] = $this->language->get('entry_export');
 		$this->data['entry_import'] = $this->language->get('entry_import');
 		$this->data['entry_settings'] = $this->language->get('entry_settings');
+		$this->data['entry_notes'] = $this->language->get('entry_notes');
 		$this->data['entry_credits'] = $this->language->get('entry_credits');
+
 		$this->data['entry_export_type'] = $this->language->get('entry_export_type');
 		$this->data['entry_range_type'] = $this->language->get('entry_range_type');
 		$this->data['entry_start_id'] = $this->language->get('entry_start_id');
@@ -183,6 +185,7 @@ class ControllerToolExportImport extends Controller {
 		$this->data['tab_export'] = $this->language->get('tab_export');
 		$this->data['tab_import'] = $this->language->get('tab_import');
 		$this->data['tab_settings'] = $this->language->get('tab_settings');
+		$this->data['tab_notes'] = $this->language->get('tab_notes');
 		$this->data['tab_credits'] = $this->language->get('tab_credits');
 
 		$this->data['button_close'] = $this->language->get('button_close');
@@ -196,8 +199,8 @@ class ControllerToolExportImport extends Controller {
 		$this->data['help_range_type'] = $this->language->get('help_range_type');
 		$this->data['help_incremental_yes'] = $this->language->get('help_incremental_yes');
 		$this->data['help_incremental_no'] = $this->language->get('help_incremental_no');
-		$this->data['help_import'] = ($this->data['exist_filter']) ? $this->language->get('help_import') : $this->language->get('help_import_old');
 		$this->data['help_format'] = $this->language->get('help_format');
+		$this->data['help_notes'] = $this->language->get('help_notes');
 
 		$this->data['error_select_file'] = $this->language->get('error_select_file');
 		$this->data['error_post_max_size'] = str_replace('%1', ini_get('post_max_size'), $this->language->get('error_post_max_size'));

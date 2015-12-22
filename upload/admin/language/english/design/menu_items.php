@@ -15,7 +15,6 @@ $_['text_no']						= 'No';
 $_['text_menu']					= 'Menus';
 $_['text_separator']				= ' > ';
 $_['text_info']           			= 'Click <a class="colorbox" href="%s" title="List of internal links"><b>Here</b></a> to see a list of internal links.';
-$_['text_cache']					= 'Menu items are cached for faster page loading. Please delete the <a href="%s" title="Cache Files"><b>"cache.menu.item"</b></a> cache file if you have made some changes.';
 
 // Column
 $_['column_name']            	= 'Menu Item Name';
