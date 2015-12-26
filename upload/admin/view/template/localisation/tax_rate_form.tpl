@@ -51,7 +51,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_customer_group; ?></td>
-            <td><div class="scrollbox">
+            <td><div class="scrollbox" style="width:250px; height:110px; margin-bottom:5px;">
               <?php $class = 'even'; ?>
               <?php foreach ($customer_groups as $customer_group) { ?>
                 <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
@@ -65,7 +65,9 @@
                 <?php } ?>
                 </div>
               <?php } ?>
-            </div></td>
+            </div>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_geo_zone; ?></td>

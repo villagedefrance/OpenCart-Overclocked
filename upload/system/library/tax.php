@@ -88,6 +88,25 @@ final class Tax {
 		}
 	}
 
+	public function getEURate() {
+		$eu_table_exist = $this->db->query("SHOW TABLES LIKE 'eucountry'");
+
+		if ($eu_table_exist) {
+			if ($this->shipping_address) {
+				$ec_rate_query = $this->db->query("SELECT DISTINCT ec.rate AS rate FROM " . DB_PREFIX . "eucountry ec LEFT JOIN " . DB_PREFIX . "country c ON (ec.code = c.iso_code_2) WHERE c.country_id = '" . (int)$this->shipping_address['country_id'] . "' AND c.status = '1' AND ec.status = '1'");
+			}
+
+			if ($ec_rate_query->num_rows) {
+				return $ec_rate_query->row['rate'];
+			} else {
+				return false;
+			}
+
+		} else {
+			return false;
+		}
+	}
+
 	public function getRates($value, $tax_class_id) {
 		$tax_rates = array();
 
