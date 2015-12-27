@@ -172,6 +172,13 @@ function addToCompare(product_id) {
 	});
 }
 
+// Success Remove Onclick
+$(document).ready(function() {
+	$('.success').on('click', function() {
+		$(this).fadeOut('slow');
+	});
+});
+
 // Prevent Right Click
 document.onselectstart = new Function('return false');
 document.oncontextmenu = new Function('return false');

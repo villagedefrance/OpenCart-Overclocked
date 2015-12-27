@@ -44,7 +44,7 @@ function apply() {
 	$('#form').submit();
 }
 
-// Notifications
+// Success Remove Onclick
 $(document).ready(function() {
 	$('.success').on('click', function() {
 		$(this).fadeOut('slow');
