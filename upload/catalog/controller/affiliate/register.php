@@ -233,6 +233,10 @@ class ControllerAffiliateRegister extends Controller {
 			$this->data['city'] = '';
 		}
 
+		$this->load->model('localisation/country');
+
+		$this->data['countries'] = $this->model_localisation_country->getCountries();
+
 		if (isset($this->request->post['country_id'])) {
 			$this->data['country_id'] = $this->request->post['country_id'];
 		} else {
@@ -244,10 +248,6 @@ class ControllerAffiliateRegister extends Controller {
 		} else {
 			$this->data['zone_id'] = '';
 		}
-
-		$this->load->model('localisation/country');
-
-		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
 		if (isset($this->request->post['tax'])) {
 			$this->data['tax'] = $this->request->post['tax'];

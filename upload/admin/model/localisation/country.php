@@ -120,7 +120,6 @@ class ModelLocalisationCountry extends Model {
 
 	public function getTotalCountries($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT c.country_id) AS total FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id)";
-
 		$sql .= " WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {

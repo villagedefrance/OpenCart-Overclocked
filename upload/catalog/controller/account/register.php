@@ -309,6 +309,10 @@ class ControllerAccountRegister extends Controller {
 			$this->data['city'] = '';
 		}
 
+		$this->load->model('localisation/country');
+
+		$this->data['countries'] = $this->model_localisation_country->getCountries();
+
 		if (isset($this->request->post['country_id'])) {
 			$this->data['country_id'] = (int)$this->request->post['country_id'];
 		} elseif (isset($this->session->data['shipping_country_id'])) {
@@ -324,10 +328,6 @@ class ControllerAccountRegister extends Controller {
 		} else {
 			$this->data['zone_id'] = '';
 		}
-
-		$this->load->model('localisation/country');
-
-		$this->data['countries'] = $this->model_localisation_country->getCountries();
 
 		if (isset($this->request->post['password'])) {
 			$this->data['password'] = $this->request->post['password'];
@@ -455,7 +455,7 @@ class ControllerAccountRegister extends Controller {
 
 		$this->load->model('localisation/country');
 
-		if (!isset($this->request->post['country_id']) || $this->request->post['country_id'] == '' || !is_int($this->request->post['country_id'])) {
+		if (!isset($this->request->post['country_id']) || $this->request->post['country_id'] == '' || !is_numeric($this->request->post['country_id'])) {
 			$this->error['country'] = $this->language->get('error_country');
 		} else {
 			$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
@@ -476,7 +476,7 @@ class ControllerAccountRegister extends Controller {
 			}
 		}
 
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_int($this->request->post['zone_id'])) {
+		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
 			$this->error['zone'] = $this->language->get('error_zone');
 		}
 
