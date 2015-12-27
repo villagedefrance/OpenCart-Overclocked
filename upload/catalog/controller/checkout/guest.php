@@ -282,7 +282,7 @@ class ControllerCheckoutGuest extends Controller {
 				}
 			}
 
-			if ($this->request->post['country_id'] == '') {
+			if (!isset($this->request->post['country_id']) || $this->request->post['country_id'] == '') {
 				$json['error']['country'] = $this->language->get('error_country');
 			}
 
