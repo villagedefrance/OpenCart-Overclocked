@@ -44,37 +44,37 @@
           <tr>
             <td><?php echo $text_status_geo_zone; ?></td>
             <td class="center"><?php foreach ($geo_zones as $geo_zone) { ?>
-			  <?php if ($geo_zone['name'] == 'EU VAT Zone') { ?>
-                <img src="view/image/success.png" alt="" />
-              <?php } ?>
-            <?php } ?></td>
+              <?php $geo_zone_name[] = $geo_zone['name']; ?>
+            <?php } ?>
+            <?php echo (in_array('EU VAT Zone', $geo_zone_name)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
+            </td>
             <td class="right"><a onclick="location = '<?php echo $action_geo_zone; ?>';" class="button"><?php echo $button_edit; ?></a></td>
           </tr>
           <tr>
             <td><?php echo $text_status_tax_rate; ?></td>
             <td class="center"><?php foreach ($tax_rates as $tax_rate) { ?>
-			  <?php if ($tax_rate['name'] == 'EU Members VAT') { ?>
-                <img src="view/image/success.png" alt="" />
-              <?php } ?>
-            <?php } ?></td>
+              <?php $tax_rate_name[] = $tax_rate['name']; ?>
+            <?php } ?>
+            <?php echo (in_array('EU Members VAT', $tax_rate_name)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
+            </td>
             <td class="right"><a onclick="location = '<?php echo $action_tax_rate; ?>';" class="button"><?php echo $button_edit; ?></a></td>
           </tr>
           <tr>
             <td><?php echo $text_status_tax_class; ?></td>
             <td class="center"><?php foreach ($tax_classes as $tax_class) { ?>
-              <?php if ($tax_class['title'] == 'EU E-medias') { ?>
-                <img src="view/image/success.png" alt="" />
-              <?php } ?>
-            <?php } ?></td>
+              <?php $tax_class_title[] = $tax_class['title']; ?>
+            <?php } ?>
+            <?php echo (in_array('EU E-medias', $tax_class_title)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
+            </td>
             <td class="right"><a onclick="location = '<?php echo $action_tax_class; ?>';" class="button"><?php echo $button_edit; ?></a></td>
           </tr>
           <tr>
             <td><?php echo $text_status_tax_rule; ?></td>
             <td class="center"><?php foreach ($tax_classes as $tax_class) { ?>
-              <?php if ($tax_class['tax_rules']) { ?>
-                <img src="view/image/success.png" alt="" />
-              <?php } ?>
-            <?php } ?></td>
+              <?php $tax_class_tax_rule[] = $tax_class['tax_rules']; ?>
+            <?php } ?>
+            <?php echo (isset($tax_class_tax_rule)) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?>
+            </td>
             <td class="right"><a onclick="location = '<?php echo $action_tax_rule; ?>';" class="button"><?php echo $button_edit; ?></a></td>
           </tr>
         </tbody>
