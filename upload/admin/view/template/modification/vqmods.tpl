@@ -23,8 +23,8 @@
     <?php if ($vqmod_is_installed == true) { ?>
     <div id="tabs" class="htabs">
       <a href="#tab-list"><?php echo $tab_script_list; ?> (<?php echo $total_scripts; ?>)</a>
-	  <a href="#tab-add"><?php echo $tab_script_add; ?></a>
-	  <a href="#tab-maintain"><?php echo $tab_maintain; ?></a>
+      <a href="#tab-add"><?php echo $tab_script_add; ?></a>
+      <a href="#tab-maintain"><?php echo $tab_maintain; ?></a>
       <a href="#tab-error"><?php echo $tab_error_log; ?></a>
       <a href="#tab-settings"><?php echo $tab_settings; ?></a>
       <a href="#tab-about"><?php echo $tab_about; ?></a>
@@ -69,7 +69,7 @@
                     <a href="<?php echo $vqmod['delete']; ?>" class="button-delete"><?php echo $text_delete; ?></a>
                   </td>
                 </tr>
-			  <?php } ?>
+              <?php } ?>
             <?php } else { ?>
               <tr>
                 <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
@@ -85,7 +85,7 @@
           <tr>
             <td colspan="2">
               <input type="file" name="vqmod_file" class="custom-input-class" />
-			  <br /><br />
+              <br /><br />
               <input type="submit" name="upload" value="<?php echo $text_upload; ?>" class="button" />
             </td>
           </tr>
@@ -263,7 +263,7 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    $('.custom-input-class').simpleFileInput({
+	$('.custom-input-class').simpleFileInput({
 		placeholder: '<?php echo $text_getxml; ?>',
 		buttonText: 'Select',
 		allowedExts: ['xml'],

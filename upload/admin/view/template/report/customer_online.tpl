@@ -16,7 +16,7 @@
     <?php if (!$tracking) { ?>
       <div class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_tracking; ?></div>
     <?php } ?>
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <table class="list">
@@ -68,7 +68,7 @@
       </table>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

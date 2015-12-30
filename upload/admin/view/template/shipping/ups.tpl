@@ -735,7 +735,6 @@
 <script type="text/javascript"><!--
 $('select[name=\'ups_origin\']').bind('change', function() {
 	$('#service > div').hide();
-
 	$('#' + this.value).show();
 });
 

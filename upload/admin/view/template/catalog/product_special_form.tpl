@@ -53,7 +53,7 @@ $('#button-special-update').bind('click', function() {
 	$('#special-notifications').html('');
 	$('#img-special-update').show();
 	$('div.success').remove();
-		
+
 	$.ajax({
 		url:'index.php?route=catalog/product/updateSpecial&token=<?php echo $token; ?>',
 		type:'post',

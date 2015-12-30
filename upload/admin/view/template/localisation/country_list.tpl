@@ -96,7 +96,7 @@
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>
@@ -143,8 +143,8 @@ $('input[name=\'filter_name\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

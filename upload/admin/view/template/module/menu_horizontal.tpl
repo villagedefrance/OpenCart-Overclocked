@@ -64,7 +64,7 @@
           <tbody id="module-row<?php echo $module_row; ?>">
             <tr>
               <td class="left">
-			  <?php if ($menus) { ?>
+              <?php if ($menus) { ?>
               <select name="menu_horizontal_module[<?php echo $module_row; ?>][menu_id]">
                 <?php foreach ($menus as $menu) { ?>
                   <?php if ($menu['menu_id'] == $module['menu_id']) { ?>
@@ -116,7 +116,7 @@
                 <?php } ?>
               </select></td>
               <td class="left"><select name="menu_horizontal_module[<?php echo $module_row; ?>][direction]">
-				<?php if ($module['direction']) { ?>
+                <?php if ($module['direction']) { ?>
                   <option value="1" selected="selected"><?php echo $text_ltr; ?></option>
                   <option value="0"><?php echo $text_rtl; ?></option>
                 <?php } else { ?>

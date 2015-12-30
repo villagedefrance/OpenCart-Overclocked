@@ -23,15 +23,15 @@
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($slideshow_theme) { ?>
-			  <input type="radio" name="slideshow_theme" value="1" id="theme-on" class="radio" checked />
+              <input type="radio" name="slideshow_theme" value="1" id="theme-on" class="radio" checked />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="slideshow_theme" value="0" id="theme-off" class="radio" />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="slideshow_theme" value="1" id="theme-on" class="radio" />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="slideshow_theme" value="0" id="theme-off" class="radio" checked />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -53,7 +53,7 @@
               <?php } ?>
             </select></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_playpause; ?></td>
             <td><?php if ($slideshow_playpause) { ?>
               <?php echo $text_yes; ?><input type="radio" name="slideshow_playpause" value="1" checked="checked" />
@@ -63,7 +63,7 @@
               <?php echo $text_no; ?><input type="radio" name="slideshow_playpause" value="0" checked="checked" />
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_pagination; ?></td>
             <td><?php if ($slideshow_pagination) { ?>
               <?php echo $text_yes; ?><input type="radio" name="slideshow_pagination" value="1" checked="checked" />
@@ -73,7 +73,7 @@
               <?php echo $text_no; ?><input type="radio" name="slideshow_pagination" value="0" checked="checked" />
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_thumbnails; ?></td>
             <td><?php if ($slideshow_thumbnails) { ?>
               <?php echo $text_yes; ?><input type="radio" name="slideshow_thumbnails" value="1" checked="checked" />
@@ -110,7 +110,7 @@
                 <?php } ?>
               </select></td>
               <td class="left">
-			    <input type="text" name="slideshow_module[<?php echo $module_row; ?>][width]" value="<?php echo $module['width']; ?>" size="3" /> x 
+                <input type="text" name="slideshow_module[<?php echo $module_row; ?>][width]" value="<?php echo $module['width']; ?>" size="3" /> x 
                 <input type="text" name="slideshow_module[<?php echo $module_row; ?>][height]" value="<?php echo $module['height']; ?>" size="3" /> px
                 <?php if (isset($error_dimension[$module_row])) { ?>
                   <span class="error"><?php echo $error_dimension[$module_row]; ?></span>
@@ -167,10 +167,10 @@
                 <?php } ?>
               </select></td>
               <td class="center">
-			    <input type="text" name="slideshow_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" />
+                <input type="text" name="slideshow_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" />
               </td>
               <td class="center">
-			    <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a>
+                <a onclick="$('#module-row<?php echo $module_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a>
               </td>
             </tr>
           </tbody>

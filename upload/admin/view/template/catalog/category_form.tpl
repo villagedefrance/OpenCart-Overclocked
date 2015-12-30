@@ -102,7 +102,7 @@
             <?php } ?>
           </div>
           <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a>
-		  </td>
+          </td>
         </tr>
       <?php } else { ?>
         <tr>
@@ -117,7 +117,7 @@
               <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
               <div id="category-filter<?php echo $category_filter['filter_id']; ?>" class="<?php echo $class; ?>"><?php echo $category_filter['name']; ?><img src="view/image/delete.png" alt="" />
                 <input type="hidden" name="category_filter[]" value="<?php echo $category_filter['filter_id']; ?>" />
-	          </div>
+              </div>
             <?php } ?>
           </div></td>
         </tr>
@@ -250,14 +250,14 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 });
 
 $(document).ready(function() {
-    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
-        var limit = $(this).data("limit");
-        var remain = limit - $(this).val().length;
-        if (remain <= 0) {
-            $(this).val($(this).val().substring(0, limit));
-        }
-        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
-    });
+	$('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+		var limit = $(this).data("limit");
+		var remain = limit - $(this).val().length;
+		if (remain <= 0) {
+			$(this).val($(this).val().substring(0, limit));
+		}
+		$('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+	});
 
 	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
 });

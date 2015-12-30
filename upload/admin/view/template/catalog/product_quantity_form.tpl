@@ -26,7 +26,7 @@ $('#button-quantity-update').bind('click', function() {
 	$('#quantity-notifications').html('');
 	$('#img-quantity-update').show();
 	$('div.success').remove();
-		
+
 	$.ajax({
 		url:'index.php?route=catalog/product/updateQuantity&token=<?php echo $token; ?>',
 		type:'post',

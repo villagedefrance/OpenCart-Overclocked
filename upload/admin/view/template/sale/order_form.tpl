@@ -661,8 +661,8 @@ $('input[name=\'customer\']').catcomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 $('select[id=\'customer_group_id\']').bind('change', function() {
@@ -730,8 +730,8 @@ $('input[name=\'affiliate\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 var payment_zone_id = '<?php echo $payment_zone_id; ?>';
@@ -1145,8 +1145,8 @@ $('input[name=\'product\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

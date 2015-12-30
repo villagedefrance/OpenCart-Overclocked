@@ -33,7 +33,7 @@
             <input type="radio" name="backend" value="1" id="backend-on" class="radio" checked />
             <label for="backend-on"><span><span></span></span><?php echo $text_yes; ?></label>
             <input type="radio" name="backend" value="0" id="backend-off" class="radio" />
-			<label for="backend-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <label for="backend-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } else { ?>
             <input type="radio" name="backend" value="1" id="backend-on" class="radio" />
             <label for="backend-on"><span><span></span></span><?php echo $text_yes; ?></label>

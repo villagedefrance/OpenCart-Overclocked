@@ -13,10 +13,10 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-	  <div id="show-tooltip" style="display:block;">
+      <div id="show-tooltip" style="display:block;">
         <div id="tooltip" class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_free_products; ?></div>
       </div>
       <table class="list">
@@ -70,7 +70,7 @@
                 <td class="left"><?php if ($product['graph_type'] > 0) { ?>
                   <div class="progress-bar-red" style="width:<?php echo $product['graph']; ?>px;"></div>
                 <?php } else { ?>
-				  <div class="progress-bar-blue" style="width:<?php echo $product['graph']; ?>px;"></div>
+                  <div class="progress-bar-blue" style="width:<?php echo $product['graph']; ?>px;"></div>
                 <?php } ?></td>
               </tr>
             <?php } ?>
@@ -83,8 +83,8 @@
       </table>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
-	</div>
+    <?php } ?>
+    </div>
   </div>
 </div>
 
@@ -135,8 +135,8 @@ $('input[name=\'filter_name\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

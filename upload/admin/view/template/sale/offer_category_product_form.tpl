@@ -48,7 +48,7 @@
             <?php if ($error_percent) { ?>
               <span class="error"><?php echo $error_percent; ?></span>
             <?php } ?>
-			<?php if ($error_price) { ?>
+            <?php if ($error_price) { ?>
               <span class="error"><?php echo $error_price; ?> (<?php echo $gross_price; ?>)</span>
             <?php } ?>
             </td>
@@ -59,7 +59,7 @@
               <input type="radio" name="logged" value="1" id="logged-on" class="radio" checked />
               <label for="logged-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="logged" value="0" id="logged-off" class="radio" />
-			  <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="logged" value="1" id="logged-on" class="radio" />
               <label for="logged-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -84,7 +84,7 @@
             <?php } ?>
             </td>
           </tr>
-		  <tr>
+          <tr>
             <td><span class="required">*</span> <?php echo $entry_product_two; ?></td>
             <td><select name="product_two">
               <option value=""></option>

@@ -154,38 +154,38 @@
 var module_row = <?php echo $module_row; ?>;
 
 function addModule() {
-    html  = '<tbody id="module-row' + module_row + '">';
-    html += '  <tr>';
-    html += '    <td class="left"><input type="text" name="ebaydisplay_module[' + module_row + '][limit]" value="5" size="1" /></td>';
-    html += '    <td class="left">';
-    html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_width]" value="80" size="3" />';
-    html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_height]" value="80" size="3" />';
-    html += '    </td>';
-    html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][layout_id]">';
-    <?php foreach ($layouts as $layout) { ?>
-    html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';
-    <?php } ?>
-    html += '    </select></td>';
-    html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][position]">';
+	html  = '<tbody id="module-row' + module_row + '">';
+	html += '  <tr>';
+	html += '    <td class="left"><input type="text" name="ebaydisplay_module[' + module_row + '][limit]" value="5" size="1" /></td>';
+	html += '    <td class="left">';
+	html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_width]" value="80" size="3" />';
+	html += '      <input type="text" name="ebaydisplay_module[' + module_row + '][image_height]" value="80" size="3" />';
+	html += '    </td>';
+	html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][layout_id]">';
+	<?php foreach ($layouts as $layout) { ?>
+	html += '      <option value="<?php echo $layout['layout_id']; ?>"><?php echo addslashes($layout['name']); ?></option>';
+	<?php } ?>
+	html += '    </select></td>';
+	html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][position]">';
 	html += '      <option value="content_header"><?php echo $text_content_header; ?></option>';
 	html += '      <option value="content_top"><?php echo $text_content_top; ?></option>';
 	html += '      <option value="content_bottom"><?php echo $text_content_bottom; ?></option>';
 	html += '      <option value="content_footer"><?php echo $text_content_footer; ?></option>';
-    html += '      <option value="column_left"><?php echo $text_column_left; ?></option>';
-    html += '      <option value="column_right"><?php echo $text_column_right; ?></option>';
-    html += '    </select></td>';
-    html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][status]">';
-    html += '      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';
-    html += '      <option value="0"><?php echo $text_disabled; ?></option>';
-    html += '    </select></td>';
-    html += '    <td class="center"><input type="text" name="ebaydisplay_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
-    html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
-    html += '  </tr>';
-    html += '</tbody>';
+	html += '      <option value="column_left"><?php echo $text_column_left; ?></option>';
+	html += '      <option value="column_right"><?php echo $text_column_right; ?></option>';
+	html += '    </select></td>';
+	html += '    <td class="left"><select name="ebaydisplay_module[' + module_row + '][status]">';
+	html += '      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>';
+	html += '      <option value="0"><?php echo $text_disabled; ?></option>';
+	html += '    </select></td>';
+	html += '    <td class="center"><input type="text" name="ebaydisplay_module[' + module_row + '][sort_order]" value="" size="3" /></td>';
+	html += '    <td class="center"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
+	html += '</tbody>';
 
-    $('#module tfoot').before(html);
+	$('#module tfoot').before(html);
 
-    module_row++;
+	module_row++;
 }
 //--></script>
 <?php echo $footer; ?>

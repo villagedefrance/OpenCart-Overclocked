@@ -27,15 +27,15 @@
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($menu_vertical_theme) { ?>
-			  <input type="radio" name="menu_vertical_theme" value="1" id="theme-on" class="radio" checked />
+              <input type="radio" name="menu_vertical_theme" value="1" id="theme-on" class="radio" checked />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="menu_vertical_theme" value="0" id="theme-off" class="radio" />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="menu_vertical_theme" value="1" id="theme-on" class="radio" />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="menu_vertical_theme" value="0" id="theme-off" class="radio" checked />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -64,7 +64,7 @@
           <tbody id="module-row<?php echo $module_row; ?>">
             <tr>
               <td class="left">
-			  <?php if ($menus) { ?>
+              <?php if ($menus) { ?>
               <select name="menu_vertical_module[<?php echo $module_row; ?>][menu_id]">
                 <?php foreach ($menus as $menu) { ?>
                   <?php if ($menu['menu_id'] == $module['menu_id']) { ?>

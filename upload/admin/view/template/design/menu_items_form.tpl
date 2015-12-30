@@ -80,7 +80,7 @@
               <input type="radio" name="external_link" value="1" id="external_link-on" class="radio" checked />
               <label for="external_link-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="external_link" value="0" id="external_link-off" class="radio" />
-			  <label for="external_link-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="external_link-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="external_link" value="1" id="external_link-on" class="radio" />
               <label for="external_link-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -114,14 +114,14 @@
 <script type="text/javascript"><!--
 <?php foreach ($languages as $language) { ?>
 $(document).ready(function() {
-    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
-        var limit = $(this).data("limit");
-        var remain = limit - $(this).val().length;
-        if (remain <= 0) {
-            $(this).val($(this).val().substring(0, limit));
-        }
-        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
-    });
+	$('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+		var limit = $(this).data("limit");
+		var remain = limit - $(this).val().length;
+		if (remain <= 0) {
+			$(this).val($(this).val().substring(0, limit));
+		}
+		$('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+	});
 
 	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
 });

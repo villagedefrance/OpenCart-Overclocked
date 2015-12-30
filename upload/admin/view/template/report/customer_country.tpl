@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <table id="form" class="list">
@@ -57,8 +57,8 @@
       </table>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
-	</div>
+    <?php } ?>
+    </div>
   </div>
 </div>
 
@@ -104,8 +104,8 @@ $('input[name=\'filter_name\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

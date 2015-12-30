@@ -19,7 +19,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
-	  <div class="buttons">
+      <div class="buttons">
         <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_exit; ?></a>
       </div>
     </div>
@@ -36,7 +36,7 @@
       </div>
       <div id="column-right"></div>
       <div id="column-left"></div>
-	  <div class="filter">
+      <div class="filter">
         <input type="text" name="filter" id="filter" /><img src="view/image/filemanager/filter.png" alt="" />
       </div>
       <div id="toolset">
@@ -182,7 +182,7 @@ $(document).ready(function() {
 	});
 
 	$('#toolset button:first').button({
-        icons: {primary: 'ui-icon-plus'}
+		icons: {primary: 'ui-icon-plus'}
 	}).next().button({
 		icons: {primary: 'ui-icon-minus'}
 	}).next().button({
@@ -195,13 +195,13 @@ $(document).ready(function() {
 
 	$('#btnExpand').click(function() {
 		var allTree= $.tree.focused();
-        allTree.open_all('#top');
+		allTree.open_all('#top');
 		allTree.refresh(allTree);
 	});
 
 	$('#btnCollapse').click(function() {
 		var allTree= $.tree.focused();
-        allTree.close_all('#top');
+		allTree.close_all('#top');
 		allTree.refresh(allTree);
 	});
 

@@ -56,7 +56,7 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    $('.custom-input-class').simpleFileInput({
+	$('.custom-input-class').simpleFileInput({
 		placeholder: '<?php echo $text_restore; ?>',
 		buttonText: 'Select',
 		allowedExts: ['sql'],

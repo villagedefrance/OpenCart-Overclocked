@@ -34,12 +34,12 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-		    <td class="left"><?php if ($sort == 'backend') { ?>
+            <td class="left"><?php if ($sort == 'backend') { ?>
               <a href="<?php echo $sort_backend; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_backend; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_backend; ?>"><?php echo $column_backend; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-		    <td class="left"><?php if ($sort == 'frontend') { ?>
+            <td class="left"><?php if ($sort == 'frontend') { ?>
               <a href="<?php echo $sort_frontend; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_frontend; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_frontend; ?>"><?php echo $column_frontend; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -84,7 +84,7 @@
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

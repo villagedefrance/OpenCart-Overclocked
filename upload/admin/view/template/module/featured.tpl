@@ -28,15 +28,15 @@
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($featured_theme) { ?>
-			  <input type="radio" name="featured_theme" value="1" id="theme-on" class="radio" checked />
+              <input type="radio" name="featured_theme" value="1" id="theme-on" class="radio" checked />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_theme" value="0" id="theme-off" class="radio" />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_theme" value="1" id="theme-on" class="radio" />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_theme" value="0" id="theme-off" class="radio" checked />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -63,7 +63,7 @@
                 <?php } ?>
               </div>
               <input type="hidden" name="featured_product" value="<?php echo $featured_product; ?>" />
-			</td>
+            </td>
           </tr>
         </table>
         </div>
@@ -72,99 +72,99 @@
           <tr>
             <td><?php echo $entry_brand; ?></td>
             <td><?php if ($featured_brand) { ?>
-			  <input type="radio" name="featured_brand" value="1" id="brand-on" class="radio" checked />
+              <input type="radio" name="featured_brand" value="1" id="brand-on" class="radio" checked />
               <label for="brand-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_brand" value="0" id="brand-off" class="radio" />
-			  <label for="brand-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="brand-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_brand" value="1" id="brand-on" class="radio" />
               <label for="brand-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_brand" value="0" id="brand-off" class="radio" checked />
-			  <label for="brand-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="brand-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_model; ?></td>
             <td><?php if ($featured_model) { ?>
-			  <input type="radio" name="featured_model" value="1" id="model-on" class="radio" checked />
+              <input type="radio" name="featured_model" value="1" id="model-on" class="radio" checked />
               <label for="model-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_model" value="0" id="model-off" class="radio" />
-			  <label for="model-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="model-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_model" value="1" id="model-on" class="radio" />
               <label for="model-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_model" value="0" id="model-off" class="radio" checked />
-			  <label for="model-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="model-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_reward; ?></td>
             <td><?php if ($featured_reward) { ?>
-			  <input type="radio" name="featured_reward" value="1" id="reward-on" class="radio" checked />
+              <input type="radio" name="featured_reward" value="1" id="reward-on" class="radio" checked />
               <label for="reward-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_reward" value="0" id="reward-off" class="radio" />
-			  <label for="reward-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="reward-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_reward" value="1" id="reward-on" class="radio" />
               <label for="reward-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_reward" value="0" id="reward-off" class="radio" checked />
-			  <label for="reward-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="reward-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_point; ?></td>
             <td><?php if ($featured_point) { ?>
-			  <input type="radio" name="featured_point" value="1" id="point-on" class="radio" checked />
+              <input type="radio" name="featured_point" value="1" id="point-on" class="radio" checked />
               <label for="point-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_point" value="0" id="point-off" class="radio" />
-			  <label for="point-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="point-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_point" value="1" id="point-on" class="radio" />
               <label for="point-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_point" value="0" id="point-off" class="radio" checked />
-			  <label for="point-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="point-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_review; ?></td>
             <td><?php if ($featured_review) { ?>
-			  <input type="radio" name="featured_review" value="1" id="review-on" class="radio" checked />
+              <input type="radio" name="featured_review" value="1" id="review-on" class="radio" checked />
               <label for="review-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_review" value="0" id="review-off" class="radio" />
-			  <label for="review-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="review-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_review" value="1" id="review-on" class="radio" />
               <label for="review-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_review" value="0" id="review-off" class="radio" checked />
-			  <label for="review-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="review-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_viewproduct; ?></td>
             <td><?php if ($featured_viewproduct) { ?>
-			  <input type="radio" name="featured_viewproduct" value="1" id="viewproduct-on" class="radio" checked />
+              <input type="radio" name="featured_viewproduct" value="1" id="viewproduct-on" class="radio" checked />
               <label for="viewproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_viewproduct" value="0" id="viewproduct-off" class="radio" />
-			  <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_viewproduct" value="1" id="viewproduct-on" class="radio" />
               <label for="viewproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_viewproduct" value="0" id="viewproduct-off" class="radio" checked />
-			  <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_addproduct; ?></td>
             <td><?php if ($featured_addproduct) { ?>
-			  <input type="radio" name="featured_addproduct" value="1" id="addproduct-on" class="radio" checked />
+              <input type="radio" name="featured_addproduct" value="1" id="addproduct-on" class="radio" checked />
               <label for="addproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_addproduct" value="0" id="addproduct-off" class="radio" />
-			  <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="featured_addproduct" value="1" id="addproduct-on" class="radio" />
               <label for="addproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="featured_addproduct" value="0" id="addproduct-off" class="radio" checked />
-			  <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>

@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -42,7 +42,7 @@
             <?php } ?></td>
             <td class="left"><?php echo $column_telephone; ?></td>
             <td class="left"><?php echo $column_latitude; ?></td>
-			<td class="left"><?php echo $column_longitude; ?></td>
+            <td class="left"><?php echo $column_longitude; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -62,7 +62,7 @@
                 <td class="left"><?php echo $location['address']; ?></td>
                 <td class="left"><?php echo $location['telephone']; ?></td>
                 <td class="left"><?php echo $location['latitude']; ?></td>
-				<td class="left"><?php echo $location['longitude']; ?></td>
+                <td class="left"><?php echo $location['longitude']; ?></td>
                 <td class="right"><?php foreach ($location['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
                 <?php } ?></td>
@@ -76,9 +76,9 @@
         </tbody>
         </table>
       </form>
-	<?php if ($navigation_lo) { ?>
+    <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

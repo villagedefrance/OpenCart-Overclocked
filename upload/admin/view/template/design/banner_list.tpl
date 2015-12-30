@@ -55,7 +55,7 @@
               <label for="<?php echo $banner['banner_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $banner['name']; ?></td>
-			<td class="center"><?php echo $banner['images']; ?></td>
+            <td class="center"><?php echo $banner['images']; ?></td>
             <?php if ($banner['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
@@ -76,7 +76,7 @@
     </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

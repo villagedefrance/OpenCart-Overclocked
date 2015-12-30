@@ -66,7 +66,7 @@
               <?php } ?>
             <?php } ?></td>
             <td class="left"><input type="text" name="banner_image[<?php echo $image_row; ?>][link]" value="<?php echo $banner_image['link']; ?>" size="40" /></td>
-		    <td class="center"><select name="banner_image[<?php echo $image_row; ?>][external_link]">
+            <td class="center"><select name="banner_image[<?php echo $image_row; ?>][external_link]">
               <?php if ($banner_image['external_link']) { ?>
                 <option value="1" selected="selected"><?php echo $text_yes; ?></option>
                 <option value="0"><?php echo $text_no; ?></option>
@@ -108,13 +108,13 @@ function addImage() {
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="left"><input type="text" name="banner_image[' + image_row + '][link]" value="" size="40" /></td>';
-    html += '    <td class="center"><select name="banner_image[' + image_row + '][external_link]">';
-    html += '      <option value="1"><?php echo $text_yes; ?></option>';
-    html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
-    html += '    </select></td>';
+	html += '    <td class="center"><select name="banner_image[' + image_row + '][external_link]">';
+	html += '      <option value="1"><?php echo $text_yes; ?></option>';
+	html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
+	html += '    </select></td>';
 	html += '    <td class="center"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + image_row + '" /><br />';
-    html += '      <input type="hidden" name="banner_image[' + image_row + '][image]" value="" id="image' + image_row + '" />';
-	html += '	  <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
+	html += '      <input type="hidden" name="banner_image[' + image_row + '][image]" value="" id="image' + image_row + '" />';
+	html += '      <a onclick="image_upload(\'image' + image_row + '\', \'thumb' + image_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + image_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + image_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
 	html += '    </div></td>';
 	html += '    <td class="center"><a onclick="$(\'#image-row' + image_row  + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

@@ -25,9 +25,9 @@
         <a href="#tab-general"><?php echo $tab_general; ?></a>
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-local"><?php echo $tab_local; ?></a>
-		<a href="#tab-checkout"><?php echo $tab_checkout; ?></a>
+        <a href="#tab-checkout"><?php echo $tab_checkout; ?></a>
         <a href="#tab-option"><?php echo $tab_option; ?></a>
-		<a href="#tab-preference"><?php echo $tab_preference; ?></a>
+        <a href="#tab-preference"><?php echo $tab_preference; ?></a>
         <a href="#tab-image"><?php echo $tab_image; ?></a>
         <a href="#tab-ftp"><?php echo $tab_ftp; ?></a>
         <a href="#tab-mail"><?php echo $tab_mail; ?></a>
@@ -179,15 +179,15 @@
           <tr>
             <td><?php echo $entry_currency_auto; ?></td>
             <td><?php if ($config_currency_auto) { ?>
-			  <input type="radio" name="config_currency_auto" value="1" id="currency-auto-on" class="radio" checked />
+              <input type="radio" name="config_currency_auto" value="1" id="currency-auto-on" class="radio" checked />
               <label for="currency-auto-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_currency_auto" value="0" id="currency-auto-off" class="radio" />
-			  <label for="currency-auto-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="currency-auto-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_currency_auto" value="1" id="currency-auto-on" class="radio" />
               <label for="currency-auto-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_currency_auto" value="0" id="currency-auto-off" class="radio" checked />
-			  <label for="currency-auto-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="currency-auto-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -289,15 +289,15 @@
           <tr>
             <td><?php echo $entry_our_location; ?></td>
             <td><?php if ($config_our_location) { ?>
-			  <input type="radio" name="config_our_location" value="1" id="our-location-on" class="radio" checked />
+              <input type="radio" name="config_our_location" value="1" id="our-location-on" class="radio" checked />
               <label for="our-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_our_location" value="0" id="our-location-off" class="radio" />
-			  <label for="our-location-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="our-location-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_our_location" value="1" id="our-location-on" class="radio" />
               <label for="our-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_our_location" value="0" id="our-location-off" class="radio" checked />
-			  <label for="our-location-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="our-location-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -315,15 +315,15 @@
           <tr>
             <td><?php echo $entry_contact_map; ?></td>
             <td><?php if ($config_contact_map) { ?>
-			  <input type="radio" name="config_contact_map" value="1" id="contact-map-on" class="radio" checked />
+              <input type="radio" name="config_contact_map" value="1" id="contact-map-on" class="radio" checked />
               <label for="contact-map-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_contact_map" value="0" id="contact-map-off" class="radio" />
-			  <label for="contact-map-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="contact-map-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_contact_map" value="1" id="contact-map-on" class="radio" />
               <label for="contact-map-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_contact_map" value="0" id="contact-map-off" class="radio" checked />
-			  <label for="contact-map-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="contact-map-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
@@ -333,29 +333,29 @@
           <tr>
             <td><?php echo $entry_cart_weight; ?></td>
             <td><?php if ($config_cart_weight) { ?>
-			  <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" checked />
+              <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" checked />
               <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_cart_weight" value="0" id="cart-weight-off" class="radio" />
-			  <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_cart_weight" value="1" id="cart-weight-on" class="radio" />
               <label for="cart-weight-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_cart_weight" value="0" id="cart-weight-off" class="radio" checked />
-			  <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="cart-weight-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_guest_checkout; ?></td>
             <td><?php if ($config_guest_checkout) { ?>
-			  <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" checked />
+              <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" checked />
               <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_guest_checkout" value="0" id="guest-checkout-off" class="radio" />
-			  <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_guest_checkout" value="1" id="guest-checkout-on" class="radio" />
               <label for="guest-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_guest_checkout" value="0" id="guest-checkout-off" class="radio" checked />
-			  <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="guest-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -378,15 +378,15 @@
           <tr>
             <td><?php echo $entry_auto_invoice; ?></td>
             <td><?php if ($config_auto_invoice) { ?>
-			  <input type="radio" name="config_auto_invoice" value="1" id="auto-invoice-on" class="radio" checked />
+              <input type="radio" name="config_auto_invoice" value="1" id="auto-invoice-on" class="radio" checked />
               <label for="auto-invoice-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_auto_invoice" value="0" id="auto-invoice-off" class="radio" />
-			  <label for="auto-invoice-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="auto-invoice-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_auto_invoice" value="1" id="auto-invoice-on" class="radio" />
               <label for="auto-invoice-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_auto_invoice" value="0" id="auto-invoice-off" class="radio" checked />
-			  <label for="auto-invoice-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="auto-invoice-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -424,40 +424,40 @@
           <tr>
             <td><?php echo $entry_express_checkout; ?></td>
             <td><?php if ($config_express_checkout) { ?>
-			  <input type="radio" name="config_express_checkout" value="1" id="express-checkout-on" class="radio" checked />
+              <input type="radio" name="config_express_checkout" value="1" id="express-checkout-on" class="radio" checked />
               <label for="express-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_checkout" value="0" id="express-checkout-off" class="radio" />
-			  <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_checkout" value="1" id="express-checkout-on" class="radio" />
               <label for="express-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_checkout" value="0" id="express-checkout-off" class="radio" checked />
-			  <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
         <table class="form">
-		  <tr>
+          <tr>
             <td><?php echo $entry_express_name; ?></td>
             <td><?php if ($config_express_name) { ?>
-			  <input type="radio" name="config_express_name" value="1" id="express-name-on" class="radio" checked />
+              <input type="radio" name="config_express_name" value="1" id="express-name-on" class="radio" checked />
               <label for="express-name-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_name" value="0" id="express-name-off" class="radio" />
-			  <label for="express-name-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-name-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_name" value="1" id="express-name-on" class="radio" />
               <label for="express-name-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_name" value="0" id="express-name-off" class="radio" checked />
-			  <label for="express-name-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-name-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_express_password; ?></td>
             <td><select name="config_express_password">
               <?php if (isset($config_express_password)) { $selected = "selected"; ?>
                 <option value="0" <?php if ($config_express_password == '0') {echo $selected;} ?>><?php echo $text_no; ?></option>
                 <option value="1" <?php if ($config_express_password == '1') {echo $selected;} ?>><?php echo $text_yes; ?></option>
-				<option value="2" <?php if ($config_express_password == '2') {echo $selected;} ?>><?php echo $text_hide; ?></option>
+                <option value="2" <?php if ($config_express_password == '2') {echo $selected;} ?>><?php echo $text_hide; ?></option>
               <?php } else { ?>
                 <option value="0"><?php echo $text_no; ?></option>
                 <option value="1"><?php echo $text_yes; ?></option>
@@ -468,24 +468,24 @@
           <tr>
             <td><?php echo $entry_express_autofill; ?></td>
             <td><?php if ($config_express_autofill) { ?>
-			  <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" checked />
+              <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" checked />
               <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_autofill" value="0" id="express-autofill-off" class="radio" />
-			  <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" />
               <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_autofill" value="0" id="express-autofill-off" class="radio" checked />
-			  <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_express_phone; ?></td>
             <td><select name="config_express_phone">
               <?php if (isset($config_express_phone)) { $selected = "selected"; ?>
                 <option value="0" <?php if ($config_express_phone == '0') {echo $selected;} ?>><?php echo $text_no; ?></option>
                 <option value="1" <?php if ($config_express_phone == '1') {echo $selected;} ?>><?php echo $text_yes; ?></option>
-				<option value="2" <?php if ($config_express_phone == '2') {echo $selected;} ?>><?php echo $text_required; ?></option>
+                <option value="2" <?php if ($config_express_phone == '2') {echo $selected;} ?>><?php echo $text_required; ?></option>
               <?php } else { ?>
                 <option value="0"><?php echo $text_no; ?></option>
                 <option value="1"><?php echo $text_yes; ?></option>
@@ -496,52 +496,52 @@
           <tr>
             <td><?php echo $entry_express_billing; ?></td>
             <td><?php if ($config_express_billing) { ?>
-			  <input type="radio" name="config_express_billing" value="1" id="express-billing-on" class="radio" checked />
+              <input type="radio" name="config_express_billing" value="1" id="express-billing-on" class="radio" checked />
               <label for="express-billing-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_billing" value="0" id="express-billing-off" class="radio" />
-			  <label for="express-billing-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-billing-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_billing" value="1" id="express-billing-on" class="radio" />
               <label for="express-billing-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_billing" value="0" id="express-billing-off" class="radio" checked />
-			  <label for="express-billing-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-billing-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_postcode; ?></td>
             <td><?php if ($config_express_postcode) { ?>
-			  <input type="radio" name="config_express_postcode" value="1" id="express-postcode-on" class="radio" checked />
+              <input type="radio" name="config_express_postcode" value="1" id="express-postcode-on" class="radio" checked />
               <label for="express-postcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_postcode" value="0" id="express-postcode-off" class="radio" />
-			  <label for="express-postcode-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-postcode-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_postcode" value="1" id="express-postcode-on" class="radio" />
               <label for="express-postcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_postcode" value="0" id="express-postcode-off" class="radio" checked />
-			  <label for="express-postcode-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-postcode-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_comment; ?></td>
             <td><?php if ($config_express_comment) { ?>
-			  <input type="radio" name="config_express_comment" value="1" id="express-comment-on" class="radio" checked />
+              <input type="radio" name="config_express_comment" value="1" id="express-comment-on" class="radio" checked />
               <label for="express-comment-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_comment" value="0" id="express-comment-off" class="radio" />
-			  <label for="express-comment-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-comment-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_comment" value="1" id="express-comment-on" class="radio" />
               <label for="express-comment-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_comment" value="0" id="express-comment-off" class="radio" checked />
-			  <label for="express-comment-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-comment-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_express_newsletter; ?></td>
             <td><select name="config_express_newsletter">
               <?php if (isset($config_express_newsletter)) { $selected = "selected"; ?>
                 <option value="0" <?php if ($config_express_newsletter == '0') {echo $selected;} ?>><?php echo $text_no; ?></option>
                 <option value="1" <?php if ($config_express_newsletter == '1') {echo $selected;} ?>><?php echo $text_yes; ?></option>
-				<option value="2" <?php if ($config_express_newsletter == '2') {echo $selected;} ?>><?php echo $text_choice; ?></option>
+                <option value="2" <?php if ($config_express_newsletter == '2') {echo $selected;} ?>><?php echo $text_choice; ?></option>
               <?php } else { ?>
                 <option value="0"><?php echo $text_no; ?></option>
                 <option value="1"><?php echo $text_yes; ?></option>
@@ -552,38 +552,38 @@
           <tr>
             <td><?php echo $entry_express_coupon; ?></td>
             <td><?php if ($config_express_coupon) { ?>
-			  <input type="radio" name="config_express_coupon" value="1" id="express-coupon-on" class="radio" checked />
+              <input type="radio" name="config_express_coupon" value="1" id="express-coupon-on" class="radio" checked />
               <label for="express-coupon-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_coupon" value="0" id="express-coupon-off" class="radio" />
-			  <label for="express-coupon-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-coupon-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_coupon" value="1" id="express-coupon-on" class="radio" />
               <label for="express-coupon-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_coupon" value="0" id="express-coupon-off" class="radio" checked />
-			  <label for="express-coupon-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-coupon-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_voucher; ?></td>
             <td><?php if ($config_express_voucher) { ?>
-			  <input type="radio" name="config_express_voucher" value="1" id="express-voucher-on" class="radio" checked />
+              <input type="radio" name="config_express_voucher" value="1" id="express-voucher-on" class="radio" checked />
               <label for="express-voucher-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_voucher" value="0" id="express-voucher-off" class="radio" />
-			  <label for="express-voucher-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-voucher-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_express_voucher" value="1" id="express-voucher-on" class="radio" />
               <label for="express-voucher-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_voucher" value="0" id="express-voucher-off" class="radio" checked />
-			  <label for="express-voucher-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="express-voucher-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_express_point; ?></td>
             <td><select name="config_express_point">
               <?php if (isset($config_express_point)) { $selected = "selected"; ?>
                 <option value="0" <?php if ($config_express_point == '0') {echo $selected;} ?>><?php echo $text_no; ?></option>
                 <option value="1" <?php if ($config_express_point == '1') {echo $selected;} ?>><?php echo $text_yes; ?></option>
-				<option value="2" <?php if ($config_express_point == '2') {echo $selected;} ?>><?php echo $text_automatic; ?></option>
+                <option value="2" <?php if ($config_express_point == '2') {echo $selected;} ?>><?php echo $text_automatic; ?></option>
               <?php } else { ?>
                 <option value="0"><?php echo $text_no; ?></option>
                 <option value="1"><?php echo $text_yes; ?></option>
@@ -598,43 +598,43 @@
           <tr>
             <td><?php echo $entry_product_count; ?></td>
             <td><?php if ($config_product_count) { ?>
-			  <input type="radio" name="config_product_count" value="1" id="product-count-on" class="radio" checked />
+              <input type="radio" name="config_product_count" value="1" id="product-count-on" class="radio" checked />
               <label for="product-count-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_product_count" value="0" id="product-count-off" class="radio" />
-			  <label for="product-count-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="product-count-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_product_count" value="1" id="product-count-on" class="radio" />
               <label for="product-count-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_product_count" value="0" id="product-count-off" class="radio" checked />
-			  <label for="product-count-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="product-count-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_review; ?></td>
             <td><?php if ($config_review_status) { ?>
-			  <input type="radio" name="config_review_status" value="1" id="review-status-on" class="radio" checked />
+              <input type="radio" name="config_review_status" value="1" id="review-status-on" class="radio" checked />
               <label for="review-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_review_status" value="0" id="review-status-off" class="radio" />
-			  <label for="review-status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="review-status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_review_status" value="1" id="review-status-on" class="radio" />
               <label for="review-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_review_status" value="0" id="review-status-off" class="radio" checked />
-			  <label for="review-status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="review-status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_download; ?></td>
             <td><?php if ($config_download) { ?>
-			  <input type="radio" name="config_download" value="1" id="download-on" class="radio" checked />
+              <input type="radio" name="config_download" value="1" id="download-on" class="radio" checked />
               <label for="download-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_download" value="0" id="download-off" class="radio" />
-			  <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_download" value="1" id="download-on" class="radio" />
               <label for="download-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_download" value="0" id="download-off" class="radio" checked />
-			  <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="download-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
@@ -643,29 +643,29 @@
           <tr>
             <td><?php echo $entry_tax; ?></td>
             <td><?php if ($config_tax) { ?>
-			  <input type="radio" name="config_tax" value="1" id="tax-on" class="radio" checked />
+              <input type="radio" name="config_tax" value="1" id="tax-on" class="radio" checked />
               <label for="tax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_tax" value="0" id="tax-off" class="radio" />
-			  <label for="tax-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="tax-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_tax" value="1" id="tax-on" class="radio" />
               <label for="tax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_tax" value="0" id="tax-off" class="radio" checked />
-			  <label for="tax-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="tax-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_vat; ?></td>
             <td><?php if ($config_vat) { ?>
-			  <input type="radio" name="config_vat" value="1" id="vat-on" class="radio" checked />
+              <input type="radio" name="config_vat" value="1" id="vat-on" class="radio" checked />
               <label for="vat-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_vat" value="0" id="vat-off" class="radio" />
-			  <label for="vat-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="vat-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_vat" value="1" id="vat-on" class="radio" />
               <label for="vat-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_vat" value="0" id="vat-off" class="radio" checked />
-			  <label for="vat-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="vat-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -706,43 +706,43 @@
           <tr>
             <td><?php echo $entry_stock_display; ?></td>
             <td><?php if ($config_stock_display) { ?>
-			  <input type="radio" name="config_stock_display" value="1" id="stock-display-on" class="radio" checked />
+              <input type="radio" name="config_stock_display" value="1" id="stock-display-on" class="radio" checked />
               <label for="stock-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_stock_display" value="0" id="stock-display-off" class="radio" />
-			  <label for="stock-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="stock-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_stock_display" value="1" id="stock-display-on" class="radio" />
               <label for="stock-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_stock_display" value="0" id="stock-display-off" class="radio" checked />
-			  <label for="stock-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="stock-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_stock_warning; ?></td>
             <td><?php if ($config_stock_warning) { ?>
-			  <input type="radio" name="config_stock_warning" value="1" id="stock-warning-on" class="radio" checked />
+              <input type="radio" name="config_stock_warning" value="1" id="stock-warning-on" class="radio" checked />
               <label for="stock-warning-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_stock_warning" value="0" id="stock-warning-off" class="radio" />
-			  <label for="stock-warning-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="stock-warning-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_stock_warning" value="1" id="stock-warning-on" class="radio" />
               <label for="stock-warning-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_stock_warning" value="0" id="stock-warning-off" class="radio" checked />
-			  <label for="stock-warning-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="stock-warning-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_stock_checkout; ?></td>
             <td><?php if ($config_stock_checkout) { ?>
-			  <input type="radio" name="config_stock_checkout" value="1" id="stock-checkout-on" class="radio" checked />
+              <input type="radio" name="config_stock_checkout" value="1" id="stock-checkout-on" class="radio" checked />
               <label for="stock-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_stock_checkout" value="0" id="stock-checkout-off" class="radio" />
-			  <label for="stock-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="stock-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_stock_checkout" value="1" id="stock-checkout-on" class="radio" />
               <label for="stock-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_stock_checkout" value="0" id="stock-checkout-off" class="radio" checked />
-			  <label for="stock-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="stock-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -763,15 +763,15 @@
           <tr>
             <td><?php echo $entry_customer_online; ?></td>
             <td><?php if ($config_customer_online) { ?>
-			  <input type="radio" name="config_customer_online" value="1" id="customer-online-on" class="radio" checked />
+              <input type="radio" name="config_customer_online" value="1" id="customer-online-on" class="radio" checked />
               <label for="customer-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_online" value="0" id="customer-online-off" class="radio" />
-			  <label for="customer-online-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-online-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_customer_online" value="1" id="customer-online-on" class="radio" />
               <label for="customer-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_online" value="0" id="customer-online-off" class="radio" checked />
-			  <label for="customer-online-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-online-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -810,85 +810,85 @@
           <tr>
             <td><?php echo $entry_customer_price; ?></td>
             <td><?php if ($config_customer_price) { ?>
-			  <input type="radio" name="config_customer_price" value="1" id="customer-price-on" class="radio" checked />
+              <input type="radio" name="config_customer_price" value="1" id="customer-price-on" class="radio" checked />
               <label for="customer-price-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_price" value="0" id="customer-price-off" class="radio" />
-			  <label for="customer-price-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-price-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_customer_price" value="1" id="customer-price-on" class="radio" />
               <label for="customer-price-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_price" value="0" id="customer-price-off" class="radio" checked />
-			  <label for="customer-price-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-price-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer_redirect; ?></td>
             <td><?php if ($config_customer_redirect) { ?>
-			  <input type="radio" name="config_customer_redirect" value="1" id="customer-redirect-on" class="radio" checked />
+              <input type="radio" name="config_customer_redirect" value="1" id="customer-redirect-on" class="radio" checked />
               <label for="customer-redirect-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_redirect" value="0" id="customer-redirect-off" class="radio" />
-			  <label for="customer-redirect-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-redirect-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_customer_redirect" value="1" id="customer-redirect-on" class="radio" />
               <label for="customer-redirect-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_redirect" value="0" id="customer-redirect-off" class="radio" checked />
-			  <label for="customer-redirect-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-redirect-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer_fax; ?></td>
             <td><?php if ($config_customer_fax) { ?>
-			  <input type="radio" name="config_customer_fax" value="1" id="customer-fax-on" class="radio" checked />
+              <input type="radio" name="config_customer_fax" value="1" id="customer-fax-on" class="radio" checked />
               <label for="customer-fax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_fax" value="0" id="customer-fax-off" class="radio" />
-			  <label for="customer-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_customer_fax" value="1" id="customer-fax-on" class="radio" />
               <label for="customer-fax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_fax" value="0" id="customer-fax-off" class="radio" checked />
-			  <label for="customer-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer_gender; ?></td>
             <td><?php if ($config_customer_gender) { ?>
-			  <input type="radio" name="config_customer_gender" value="1" id="customer-gender-on" class="radio" checked />
+              <input type="radio" name="config_customer_gender" value="1" id="customer-gender-on" class="radio" checked />
               <label for="customer-gender-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_gender" value="0" id="customer-gender-off" class="radio" />
-			  <label for="customer-gender-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-gender-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_customer_gender" value="1" id="customer-gender-on" class="radio" />
               <label for="customer-gender-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_gender" value="0" id="customer-gender-off" class="radio" checked />
-			  <label for="customer-gender-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-gender-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_customer_dob; ?></td>
             <td><?php if ($config_customer_dob) { ?>
-			  <input type="radio" name="config_customer_dob" value="1" id="customer-dob-on" class="radio" checked />
+              <input type="radio" name="config_customer_dob" value="1" id="customer-dob-on" class="radio" checked />
               <label for="customer-dob-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_dob" value="0" id="customer-dob-off" class="radio" />
-			  <label for="customer-dob-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-dob-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_customer_dob" value="1" id="customer-dob-on" class="radio" />
               <label for="customer-dob-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_customer_dob" value="0" id="customer-dob-off" class="radio" checked />
-			  <label for="customer-dob-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="customer-dob-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_picklist_status; ?></td>
             <td><?php if ($config_picklist_status) { ?>
-			  <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" checked />
+              <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" checked />
               <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_picklist_status" value="0" id="picklist_status-off" class="radio" />
-			  <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_picklist_status" value="1" id="picklist_status-on" class="radio" />
               <label for="picklist_status-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_picklist_status" value="0" id="picklist_status-off" class="radio" checked />
-			  <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="picklist_status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -927,29 +927,29 @@
           <tr>
             <td><?php echo $entry_affiliate_fax; ?></td>
             <td><?php if ($config_affiliate_fax) { ?>
-			  <input type="radio" name="config_affiliate_fax" value="1" id="affiliate-fax-on" class="radio" checked />
+              <input type="radio" name="config_affiliate_fax" value="1" id="affiliate-fax-on" class="radio" checked />
               <label for="affiliate-fax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_affiliate_fax" value="0" id="affiliate-fax-off" class="radio" />
-			  <label for="affiliate-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="affiliate-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_affiliate_fax" value="1" id="affiliate-fax-on" class="radio" />
               <label for="affiliate-fax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_affiliate_fax" value="0" id="affiliate-fax-off" class="radio" checked />
-			  <label for="affiliate-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="affiliate-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_affiliate_disable; ?></td>
             <td><?php if ($config_affiliate_disable) { ?>
-			  <input type="radio" name="config_affiliate_disable" value="1" id="affiliate-disable-on" class="radio" checked />
+              <input type="radio" name="config_affiliate_disable" value="1" id="affiliate-disable-on" class="radio" checked />
               <label for="affiliate-disable-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_affiliate_disable" value="0" id="affiliate-disable-off" class="radio" />
-			  <label for="affiliate-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="affiliate-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_affiliate_disable" value="1" id="affiliate-disable-on" class="radio" />
               <label for="affiliate-disable-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_affiliate_disable" value="0" id="affiliate-disable-off" class="radio" checked />
-			  <label for="affiliate-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="affiliate-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
@@ -980,18 +980,18 @@
               <?php } ?>
             </select></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_return_disable; ?></td>
             <td><?php if ($config_return_disable) { ?>
-			  <input type="radio" name="config_return_disable" value="1" id="return-disable-on" class="radio" checked />
+              <input type="radio" name="config_return_disable" value="1" id="return-disable-on" class="radio" checked />
               <label for="return-disable-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_return_disable" value="0" id="return-disable-off" class="radio" />
-			  <label for="return-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="return-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_return_disable" value="1" id="return-disable-on" class="radio" />
               <label for="return-disable-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_return_disable" value="0" id="return-disable-off" class="radio" checked />
-			  <label for="return-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="return-disable-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
@@ -1013,7 +1013,7 @@
           </tr>
         </table>
       </div>
-	  <div id="tab-preference">
+      <div id="tab-preference">
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
@@ -1030,74 +1030,74 @@
             <?php } ?></td>
           </tr>
         </table>
-		<h2><?php echo $text_forms; ?></h2>
+        <h2><?php echo $text_forms; ?></h2>
         <table class="form">
           <tr>
-		    <td><?php echo $entry_pagination_hi; ?></td>
+            <td><?php echo $entry_pagination_hi; ?></td>
             <td><?php if ($config_pagination_hi) { ?>
-			  <input type="radio" name="config_pagination_hi" value="1" id="pagination-hi-on" class="radio" checked />
+              <input type="radio" name="config_pagination_hi" value="1" id="pagination-hi-on" class="radio" checked />
               <label for="pagination-hi-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_pagination_hi" value="0" id="pagination-hi-off" class="radio" />
-			  <label for="pagination-hi-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="pagination-hi-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_pagination_hi" value="1" id="pagination-hi-on" class="radio" />
               <label for="pagination-hi-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_pagination_hi" value="0" id="pagination-hi-off" class="radio" checked />
-			  <label for="pagination-hi-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-			<?php if ($error_preference_pagination) { ?>
+              <label for="pagination-hi-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            <?php if ($error_preference_pagination) { ?>
               <span class="error"><?php echo $error_preference_pagination; ?></span>
             <?php } ?>
-			</td>
+            </td>
           </tr>
-		  <tr>
-		    <td><?php echo $entry_pagination_lo; ?></td>
+          <tr>
+            <td><?php echo $entry_pagination_lo; ?></td>
             <td><?php if ($config_pagination_lo) { ?>
-			  <input type="radio" name="config_pagination_lo" value="1" id="pagination-lo-on" class="radio" checked />
+              <input type="radio" name="config_pagination_lo" value="1" id="pagination-lo-on" class="radio" checked />
               <label for="pagination-lo-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_pagination_lo" value="0" id="pagination-lo-off" class="radio" />
-			  <label for="pagination-lo-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="pagination-lo-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_pagination_lo" value="1" id="pagination-lo-on" class="radio" />
               <label for="pagination-lo-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_pagination_lo" value="0" id="pagination-lo-off" class="radio" checked />
-			  <label for="pagination-lo-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-			<?php if ($error_preference_pagination) { ?>
+              <label for="pagination-lo-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            <?php if ($error_preference_pagination) { ?>
               <span class="error"><?php echo $error_preference_pagination; ?></span>
             <?php } ?>
-			</td>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_autocomplete_category; ?></td>
             <td><?php if ($config_autocomplete_category) { ?>
-			  <input type="radio" name="config_autocomplete_category" value="1" id="autocomplete-category-on" class="radio" checked />
+              <input type="radio" name="config_autocomplete_category" value="1" id="autocomplete-category-on" class="radio" checked />
               <label for="autocomplete-category-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_autocomplete_category" value="0" id="autocomplete-category-off" class="radio" />
-			  <label for="autocomplete-category-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="autocomplete-category-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_autocomplete_category" value="1" id="autocomplete-category-on" class="radio" />
               <label for="autocomplete-category-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_autocomplete_category" value="0" id="autocomplete-category-off" class="radio" checked />
-			  <label for="autocomplete-category-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="autocomplete-category-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_autocomplete_product; ?></td>
             <td><?php if ($config_autocomplete_product) { ?>
-			  <input type="radio" name="config_autocomplete_product" value="1" id="autocomplete-product-on" class="radio" checked />
+              <input type="radio" name="config_autocomplete_product" value="1" id="autocomplete-product-on" class="radio" checked />
               <label for="autocomplete-product-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_autocomplete_product" value="0" id="autocomplete-product-off" class="radio" />
-			  <label for="autocomplete-product-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="autocomplete-product-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_autocomplete_product" value="1" id="autocomplete-product-on" class="radio" />
               <label for="autocomplete-product-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_autocomplete_product" value="0" id="autocomplete-product-off" class="radio" checked />
-			  <label for="autocomplete-product-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="autocomplete-product-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
-		<h2><?php echo $text_product; ?></h2>
+        <h2><?php echo $text_product; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_lightbox; ?></td>
@@ -1118,33 +1118,33 @@
           <tr>
             <td><?php echo $entry_offer_label; ?></td>
             <td><?php if ($config_offer_label) { ?>
-			  <input type="radio" name="config_offer_label" value="1" id="offer-label-on" class="radio" checked />
+              <input type="radio" name="config_offer_label" value="1" id="offer-label-on" class="radio" checked />
               <label for="offer-label-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_offer_label" value="0" id="offer-label-off" class="radio" />
-			  <label for="offer-label-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="offer-label-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_offer_label" value="1" id="offer-label-on" class="radio" />
               <label for="offer-label-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_offer_label" value="0" id="offer-label-off" class="radio" checked />
-			  <label for="offer-label-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="offer-label-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_price_free; ?></td>
             <td><?php if ($config_price_free) { ?>
-			  <input type="radio" name="config_price_free" value="1" id="price-free-on" class="radio" checked />
+              <input type="radio" name="config_price_free" value="1" id="price-free-on" class="radio" checked />
               <label for="price-free-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_price_free" value="0" id="price-free-off" class="radio" />
-			  <label for="price-free-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="price-free-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_price_free" value="1" id="price-free-on" class="radio" />
               <label for="price-free-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_price_free" value="0" id="price-free-off" class="radio" checked />
-			  <label for="price-free-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="price-free-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
-		<h2><?php echo $text_captcha; ?></h2>
+        <h2><?php echo $text_captcha; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_captcha_font; ?></td>
@@ -1159,20 +1159,20 @@
             </select></td>
           </tr>
         </table>
-		<h2><?php echo $text_news; ?></h2>
+        <h2><?php echo $text_news; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_news_addthis; ?></td>
             <td><?php if ($config_news_addthis) { ?>
-			  <input type="radio" name="config_news_addthis" value="1" id="news-addthis-on" class="radio" checked />
+              <input type="radio" name="config_news_addthis" value="1" id="news-addthis-on" class="radio" checked />
               <label for="news-addthis-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_news_addthis" value="0" id="news-addthis-off" class="radio" />
-			  <label for="news-addthis-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="news-addthis-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_news_addthis" value="1" id="news-addthis-on" class="radio" />
               <label for="news-addthis-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_news_addthis" value="0" id="news-addthis-off" class="radio" checked />
-			  <label for="news-addthis-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="news-addthis-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1315,15 +1315,15 @@
           <tr>
             <td><?php echo $entry_ftp_status; ?></td>
             <td><?php if ($config_ftp_status) { ?>
-			  <input type="radio" name="config_ftp_status" value="1" id="ftp-status-on" class="radio" checked />
+              <input type="radio" name="config_ftp_status" value="1" id="ftp-status-on" class="radio" checked />
               <label for="ftp-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_ftp_status" value="0" id="ftp-status-off" class="radio" />
-			  <label for="ftp-status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="ftp-status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_ftp_status" value="1" id="ftp-status-on" class="radio" />
               <label for="ftp-status-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_ftp_status" value="0" id="ftp-status-off" class="radio" checked />
-			  <label for="ftp-status-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="ftp-status-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1404,29 +1404,29 @@
           <tr>
             <td><?php echo $entry_alert_mail; ?></td>
             <td><?php if ($config_alert_mail) { ?>
-			  <input type="radio" name="config_alert_mail" value="1" id="alert-mail-on" class="radio" checked />
+              <input type="radio" name="config_alert_mail" value="1" id="alert-mail-on" class="radio" checked />
               <label for="alert-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_alert_mail" value="0" id="alert-mail-off" class="radio" />
-			  <label for="alert-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="alert-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_alert_mail" value="1" id="alert-mail-on" class="radio" />
               <label for="alert-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_alert_mail" value="0" id="alert-mail-off" class="radio" checked />
-			  <label for="alert-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="alert-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_account_mail; ?></td>
             <td><?php if ($config_account_mail) { ?>
-			  <input type="radio" name="config_account_mail" value="1" id="account-mail-on" class="radio" checked />
+              <input type="radio" name="config_account_mail" value="1" id="account-mail-on" class="radio" checked />
               <label for="account-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_account_mail" value="0" id="account-mail-off" class="radio" />
-			  <label for="account-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="account-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_account_mail" value="1" id="account-mail-on" class="radio" />
               <label for="account-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_account_mail" value="0" id="account-mail-off" class="radio" checked />
-			  <label for="account-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="account-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1435,7 +1435,7 @@
           </tr>
         </table>
       </div>
-	  <div id="tab-media">
+      <div id="tab-media">
         <table class="form">
           <tr>
             <td><?php echo $entry_facebook; ?></td>
@@ -1503,43 +1503,43 @@
           <tr>
             <td><?php echo $entry_maintenance; ?></td>
             <td><?php if ($config_maintenance) { ?>
-			  <input type="radio" name="config_maintenance" value="1" id="maintenance-on" class="radio" checked />
+              <input type="radio" name="config_maintenance" value="1" id="maintenance-on" class="radio" checked />
               <label for="maintenance-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_maintenance" value="0" id="maintenance-off" class="radio" />
-			  <label for="maintenance-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="maintenance-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_maintenance" value="1" id="maintenance-on" class="radio" />
               <label for="maintenance-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_maintenance" value="0" id="maintenance-off" class="radio" checked />
-			  <label for="maintenance-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="maintenance-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_seo_url; ?></td>
             <td><?php if ($config_seo_url) { ?>
-			  <input type="radio" name="config_seo_url" value="1" id="seo-url-on" class="radio" checked />
+              <input type="radio" name="config_seo_url" value="1" id="seo-url-on" class="radio" checked />
               <label for="seo-url-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_seo_url" value="0" id="seo-url-off" class="radio" />
-			  <label for="seo-url-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="seo-url-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_seo_url" value="1" id="seo-url-on" class="radio" />
               <label for="seo-url-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_seo_url" value="0" id="seo-url-off" class="radio" checked />
-			  <label for="seo-url-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="seo-url-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_seo_url_cache; ?></td>
             <td><?php if ($config_seo_url_cache) { ?>
-			  <input type="radio" name="config_seo_url_cache" value="1" id="seo-cache-on" class="radio" checked />
+              <input type="radio" name="config_seo_url_cache" value="1" id="seo-cache-on" class="radio" checked />
               <label for="seo-cache-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_seo_url_cache" value="0" id="seo-cache-off" class="radio" />
-			  <label for="seo-cache-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="seo-cache-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_seo_url_cache" value="1" id="seo-cache-on" class="radio" />
               <label for="seo-cache-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_seo_url_cache" value="0" id="seo-cache-off" class="radio" checked />
-			  <label for="seo-cache-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="seo-cache-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1556,29 +1556,29 @@
           <tr>
             <td><?php echo $entry_error_display; ?></td>
             <td><?php if ($config_error_display) { ?>
-			  <input type="radio" name="config_error_display" value="1" id="error-display-on" class="radio" checked />
+              <input type="radio" name="config_error_display" value="1" id="error-display-on" class="radio" checked />
               <label for="error-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_error_display" value="0" id="error-display-off" class="radio" />
-			  <label for="error-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="error-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_error_display" value="1" id="error-display-on" class="radio" />
               <label for="error-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_error_display" value="0" id="error-display-off" class="radio" checked />
-			  <label for="error-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="error-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_error_log; ?></td>
             <td><?php if ($config_error_log) { ?>
-			  <input type="radio" name="config_error_log" value="1" id="error-log-on" class="radio" checked />
+              <input type="radio" name="config_error_log" value="1" id="error-log-on" class="radio" checked />
               <label for="error-log-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_error_log" value="0" id="error-log-off" class="radio" />
-			  <label for="error-log-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="error-log-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_error_log" value="1" id="error-log-on" class="radio" />
               <label for="error-log-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_error_log" value="0" id="error-log-off" class="radio" checked />
-			  <label for="error-log-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="error-log-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1608,29 +1608,29 @@
           <tr>
             <td><?php echo $entry_secure; ?></td>
             <td><?php if ($config_secure) { ?>
-			  <input type="radio" name="config_secure" value="1" id="secure-on" class="radio" checked />
+              <input type="radio" name="config_secure" value="1" id="secure-on" class="radio" checked />
               <label for="secure-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_secure" value="0" id="secure-off" class="radio" />
-			  <label for="secure-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="secure-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_secure" value="1" id="secure-on" class="radio" />
               <label for="secure-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_secure" value="0" id="secure-off" class="radio" checked />
-			  <label for="secure-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="secure-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_shared; ?></td>
             <td><?php if ($config_shared) { ?>
-			  <input type="radio" name="config_shared" value="1" id="shared-on" class="radio" checked />
+              <input type="radio" name="config_shared" value="1" id="shared-on" class="radio" checked />
               <label for="shared-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_shared" value="0" id="shared-off" class="radio" />
-			  <label for="shared-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="shared-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_shared" value="1" id="shared-on" class="radio" />
               <label for="shared-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_shared" value="0" id="shared-off" class="radio" checked />
-			  <label for="shared-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="shared-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1640,15 +1640,15 @@
           <tr>
             <td><?php echo $entry_password; ?></td>
             <td><?php if ($config_password) { ?>
-			  <input type="radio" name="config_password" value="1" id="password-on" class="radio" checked />
+              <input type="radio" name="config_password" value="1" id="password-on" class="radio" checked />
               <label for="password-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_password" value="0" id="password-off" class="radio" />
-			  <label for="password-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="password-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="config_password" value="1" id="password-on" class="radio" />
               <label for="password-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_password" value="0" id="password-off" class="radio" checked />
-			  <label for="password-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="password-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>

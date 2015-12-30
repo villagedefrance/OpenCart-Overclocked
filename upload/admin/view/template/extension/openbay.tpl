@@ -2,7 +2,7 @@
 <div id="content">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-	  <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+      <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
   <?php if ($success) { ?>
@@ -35,7 +35,7 @@
           </thead>
           <tbody>
           <?php if ($extensions) { ?>
-		    <?php foreach ($extensions as $extension) { ?>
+            <?php foreach ($extensions as $extension) { ?>
             <tr>
               <td class="left"><?php echo $extension['name']; ?></td>
               <?php if ($extension['status'] == 1) { ?>

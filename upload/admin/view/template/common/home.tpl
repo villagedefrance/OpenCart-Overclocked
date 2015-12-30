@@ -85,7 +85,7 @@
               </td>
               <td class="right"><?php echo $total_review; ?></td>
             </tr>
-			<?php if ($allow_affiliate) { ?>
+            <?php if ($allow_affiliate) { ?>
             <tr>
               <td class="left"><?php echo $text_total_affiliate; ?>
               <?php if ($total_affiliate_approval > 0) { ?>
@@ -96,7 +96,7 @@
               </td>
               <td class="right"><?php echo $total_affiliate; ?></td>
             </tr>
-			<?php } ?>
+            <?php } ?>
           </table>
         </div>
       </div>
@@ -114,10 +114,10 @@
           <div id="report" style="width:100%; height:230px;"></div> 
         </div>
       </div>
-	  <div class="tiles">
+      <div class="tiles">
         <div class="tile">
-	      <div class="tile-red">
-		    <p><span><?php echo $total_order_today; ?></span>
+          <div class="tile-red">
+            <p><span><?php echo $total_order_today; ?></span>
             <a href="<?php echo $view_orders; ?>" title=""><img src="view/image/dashboard/order.png" alt="" /><br /><?php echo $text_order_today; ?></a></p>
           </div>
         </div>
@@ -137,9 +137,9 @@
           <div class="tile-green">
             <p><span><?php echo $total_online; ?></span>
             <a href="<?php echo $view_online; ?>" title=""><img src="view/image/dashboard/online.png" alt="" /><br /><?php echo $text_online; ?></a></p>
-		  </div>
+          </div>
         </div>
-	  </div>
+      </div>
       <div class="latest">
         <div class="dashboard-heading"><?php echo $text_latest; ?></div>
         <div class="dashboard-content">
@@ -167,7 +167,7 @@
               <tr>
                 <td class="left"><?php echo $column_order; ?></td>
                 <td class="left"><?php echo $column_customer; ?></td>
-				<td class="left"><?php echo $column_customer_group; ?></td>
+                <td class="left"><?php echo $column_customer_group; ?></td>
                 <td class="left" colspan="3"><?php echo $column_conversion; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
@@ -181,10 +181,10 @@
               <tr>
                 <td class="center"><?php echo $order['order_id']; ?></td>
                 <td class="left"><?php echo $order['customer']; ?></td>
-				<td class="center"><?php echo $order['customer_group']; ?></td>
-				<td class="center"><?php echo $order['passed']; ?></td>
-				<td class="center"><?php echo $order['missed']; ?></td>
-				<td class="center"><?php echo $order['conversion']; ?></td>
+                <td class="center"><?php echo $order['customer_group']; ?></td>
+                <td class="center"><?php echo $order['passed']; ?></td>
+                <td class="center"><?php echo $order['missed']; ?></td>
+                <td class="center"><?php echo $order['conversion']; ?></td>
                 <td class="center"><?php echo $order['date_added']; ?></td>
                 <td class="center"><?php echo $order['status']; ?></td>
                 <td class="right"><?php echo $order['total']; ?></td>
@@ -212,8 +212,8 @@
                 <td class="left"><?php echo $column_approved; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
-				<td class="left"><?php echo $column_orders_passed; ?></td>
-				<td class="left"><?php echo $column_orders_missed; ?></td>
+                <td class="left"><?php echo $column_orders_passed; ?></td>
+                <td class="left"><?php echo $column_orders_missed; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
@@ -231,7 +231,7 @@
                   <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                 <?php } ?>
                 <td class="center"><?php echo $customer['date_added']; ?></td>
-				<td class="center"><?php echo $customer['orders_passed']; ?>
+                <td class="center"><?php echo $customer['orders_passed']; ?>
                 <?php foreach ($customer['action_passed'] as $action_passed) { ?>
                   <?php if ($customer['orders_passed'] > 0) { ?>
                     <a href="<?php echo $action_passed['href']; ?>" title="<?php echo $action_passed['text']; ?>"><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a>
@@ -357,7 +357,7 @@
           </table>
         </div>
         <?php } ?>
-		<?php if ($returns && $allow_return) { ?>
+        <?php if ($returns && $allow_return) { ?>
         <div id="tab-latest-return" class="htabs-content">
           <table class="list">
             <thead>
@@ -380,7 +380,7 @@
                 <td class="center"><?php echo $return['order_id']; ?></td>
                 <td class="left"><?php echo $return['customer']; ?></td>
                 <td class="left"><?php echo $return['product']; ?></td>
-				<td class="center"><?php echo $return['status']; ?></td>
+                <td class="center"><?php echo $return['status']; ?></td>
                 <td class="center"><?php echo $return['date_added']; ?></td>
                 <td class="center"><?php echo $return['return_history']; ?>
                 <?php foreach ($return['action_return'] as $action_return) { ?>
@@ -408,13 +408,13 @@
         </div>
         <?php } ?>
         <?php if ($uploads) { ?>
-		<div id="tab-latest-upload" class="htabs-content">
+        <div id="tab-latest-upload" class="htabs-content">
           <table class="list">
             <thead>
               <tr>
                 <td class="left"><?php echo $column_upload_id; ?></td>
                 <td class="left"><?php echo $column_name; ?></td>
-				<td class="left"><?php echo $column_filename; ?></td>
+                <td class="left"><?php echo $column_filename; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
@@ -425,7 +425,7 @@
               <tr>
                 <td class="center"><?php echo $upload['upload_id']; ?></td>
                 <td class="left"><?php echo $upload['name']; ?></td>
-				<td class="left"><?php echo $upload['filename']; ?></td>
+                <td class="left"><?php echo $upload['filename']; ?></td>
                 <td class="center"><?php echo $upload['date_added']; ?></td>
                 <td class="right"><?php foreach ($upload['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -447,11 +447,11 @@
           <div class="dashboard-heading-left"><?php echo $text_topseller; ?></div>
           <div class="dashboard-content-left">
             <table class="list" style="margin-bottom:10px;">
-			<thead>
+            <thead>
               <tr>
                 <td class="left"><?php echo $column_product; ?></td>
                 <td class="left"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
-				<td class="right"><img src="view/image/dashboard/top-total.png" alt="" title="" /></td>
+                <td class="right"><img src="view/image/dashboard/top-total.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-price.png" alt="" title="" /></td>
               </tr>
             </thead>
@@ -478,11 +478,11 @@
           <div class="dashboard-heading-middle"><?php echo $text_topview; ?></div>
           <div class="dashboard-content-middle">
             <table class="list" style="margin-bottom:10px;">
-			<thead>
+            <thead>
               <tr>
                 <td class="left"><?php echo $column_product; ?></td>
                 <td class="left"><img src="view/image/dashboard/top-model.png" alt="" title="" /></td>
-				<td class="right"><img src="view/image/dashboard/top-viewed.png" alt="" title="" /></td>
+                <td class="right"><img src="view/image/dashboard/top-viewed.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-percent.png" alt="" title="" /></td>
               </tr>
             </thead>
@@ -509,11 +509,11 @@
           <div class="dashboard-heading-right"><?php echo $text_topcustomer; ?></div>
           <div class="dashboard-content-right">
             <table class="list" style="margin-bottom:10px;">
-			<thead>
+            <thead>
               <tr>
                 <td class="left"><?php echo $column_customer; ?></td>
                 <td class="right"><img src="view/image/dashboard/top-order.png" alt="" title="" /></td>
-				<td class="right"><img src="view/image/dashboard/top-product.png" alt="" title="" /></td>
+                <td class="right"><img src="view/image/dashboard/top-product.png" alt="" title="" /></td>
                 <td class="right"><img src="view/image/dashboard/top-price.png" alt="" title="" /></td>
               </tr>
             </thead>
@@ -570,14 +570,14 @@ function getSalesChart(range) {
 				},
 				xaxis: {
 					show: true,
-            		ticks: json['xaxis']
+					ticks: json['xaxis']
 				}
 			}
 			$.plot($('#report'), [json['cart'], json['order'], json['customer']], option);
 		},
-        error: function(xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
 	});
 }
 

@@ -14,7 +14,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
-	  <div class="buttons">
+      <div class="buttons">
         <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
@@ -44,7 +44,7 @@
             <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
           </tr>
           <tr>
-		    <td width="20%"></td>
+            <td width="20%"></td>
             <td><a onclick="$('#export-customer').submit();" class="button-filter"><?php echo $button_export; ?></a></td>
           </tr>
         </table>
@@ -58,19 +58,19 @@
             <td>Unicode UTF-8</td>
           </tr>
           <tr>
-		    <td><?php echo $text_delimiter; ?></td>
+            <td><?php echo $text_delimiter; ?></td>
             <td>;</td>
           </tr>
           <tr>
-		    <td><?php echo $text_enclosure; ?></td>
+            <td><?php echo $text_enclosure; ?></td>
             <td>"</td>
           </tr>
           <tr>
-		    <td><?php echo $text_escaped; ?></td>
+            <td><?php echo $text_escaped; ?></td>
             <td>"</td>
           </tr>
           <tr>
-		    <td><?php echo $text_ending; ?></td>
+            <td><?php echo $text_ending; ?></td>
             <td>"/n"</td>
           </tr>
         </table>

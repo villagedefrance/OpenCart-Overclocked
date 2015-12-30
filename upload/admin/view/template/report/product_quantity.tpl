@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <table class="list">
@@ -89,7 +89,7 @@
               <?php } else { ?>
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
-			  <td class="right"><?php if ($product['quantity'] < 10) { ?>
+              <td class="right"><?php if ($product['quantity'] < 10) { ?>
                 <span style="color:#B00;"><b><?php echo $product['quantity']; ?></b></span>
               <?php } else { ?>
                 <b><?php echo $product['quantity']; ?></b>
@@ -108,7 +108,7 @@
       </table>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>
@@ -179,8 +179,8 @@ $('input[name=\'filter_name\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 $('input[name=\'filter_model\']').autocomplete({
@@ -204,8 +204,8 @@ $('input[name=\'filter_model\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

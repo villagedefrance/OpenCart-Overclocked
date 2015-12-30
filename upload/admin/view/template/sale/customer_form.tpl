@@ -20,7 +20,7 @@
     <div class="content">
     <div id="htabs" class="htabs">
       <a href="#tab-general"><?php echo $tab_general; ?></a>
-	  <?php if ($customer_id) { ?>
+      <?php if ($customer_id) { ?>
         <a href="#tab-history"><?php echo $tab_history; ?></a>
         <a href="#tab-purchase"><?php echo $tab_purchase; ?></a>
         <a href="#tab-transaction"><?php echo $tab_transaction; ?></a>
@@ -77,15 +77,15 @@
             <tr>
               <td><?php echo $entry_gender; ?></td>
               <td><?php if ($gender) { ?>
-			    <input type="radio" name="gender" value="1" id="gender-on" class="radio" checked />
+                <input type="radio" name="gender" value="1" id="gender-on" class="radio" checked />
                 <label for="gender-on"><span><span></span></span><?php echo $text_female; ?></label>
                 <input type="radio" name="gender" value="0" id="gender-off" class="radio" />
-			    <label for="gender-off"><span><span></span></span><?php echo $text_male; ?></label>
+                <label for="gender-off"><span><span></span></span><?php echo $text_male; ?></label>
               <?php } else { ?>
                 <input type="radio" name="gender" value="1" id="gender-on" class="radio" />
                 <label for="gender-on"><span><span></span></span><?php echo $text_female; ?></label>
                 <input type="radio" name="gender" value="0" id="gender-off" class="radio" checked />
-			    <label for="gender-off"><span><span></span></span><?php echo $text_male; ?></label>
+                <label for="gender-off"><span><span></span></span><?php echo $text_male; ?></label>
               <?php } ?></td>
             </tr>
             <?php } ?>
@@ -94,7 +94,7 @@
               <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
               <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
               <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span>
-		      <?php if ($error_date_of_birth) { ?>
+              <?php if ($error_date_of_birth) { ?>
                 <span class="error"><?php echo $error_date_of_birth; ?></span>
               <?php } ?></td>
             </tr>
@@ -217,7 +217,7 @@
             </tr>
             <tr>
               <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_postcode; ?></td>
-			  <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" />
+              <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" />
               <?php if (isset($error_address_postcode[$address_row])) { ?>
                 <span class="error"><?php echo $error_address_postcode[$address_row]; ?></span>
               <?php } ?></td>
@@ -324,7 +324,7 @@
               <tr>
                 <td class="left"><a href="http://www.geoiptool.com/en/?IP=<?php echo $ip['ip']; ?>" target="_blank"><?php echo $ip['ip']; ?></a></td>
                 <td class="left"><?php echo $ip['date_added']; ?></td>
-				<td class="right"><a href="<?php echo $ip['filter_ip']; ?>" target="_blank"><?php echo $ip['total']; ?></a></td>
+                <td class="right"><a href="<?php echo $ip['filter_ip']; ?>" target="_blank"><?php echo $ip['total']; ?></a></td>
                 <td class="right"><?php if ($ip['ban_ip']) { ?>
                   <a id="<?php echo str_replace('.', '-', $ip['ip']); ?>" onclick="removeBanIP('<?php echo $ip['ip']; ?>');" class="button"><?php echo $text_remove_ban_ip; ?></a>
                 <?php } else { ?>

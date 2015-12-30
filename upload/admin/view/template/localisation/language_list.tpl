@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -70,7 +70,7 @@
             <?php } ?></td>
             <td class="left"><?php echo $language['name']; ?></td>
             <td class="center"><?php echo $language['code']; ?></td>
-			<td class="center"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" /></td>
+            <td class="center"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" /></td>
             <td class="center"><?php echo $language['sort_order']; ?></td>
             <?php if ($language['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
@@ -90,9 +90,9 @@
         </tbody>
         </table>
       </form>
-	<?php if ($navigation_lo) { ?>
+    <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

@@ -95,8 +95,8 @@
       </td>
       <td><?php echo $product['model']; ?></td>
       <td><?php echo $product['quantity']; ?></td>
-	  <td></td>
-	  <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <?php } ?>
   </table>

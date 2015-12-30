@@ -30,7 +30,7 @@
       <?php $module_row = 1; ?>
       <?php foreach ($modules as $module) { ?>
         <div id="tab-module-<?php echo $module_row; ?>" class="vtabs-content">
-		  <div id="language-<?php echo $module_row; ?>" class="htabs">
+          <div id="language-<?php echo $module_row; ?>" class="htabs">
             <?php foreach ($languages as $language) { ?>
               <a href="#tab-language-<?php echo $module_row; ?>-<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
             <?php } ?>
@@ -38,7 +38,7 @@
         <?php foreach ($languages as $language) { ?>
           <div id="tab-language-<?php echo $module_row; ?>-<?php echo $language['language_id']; ?>">
             <table class="form">
-			  <tr>
+              <tr>
                 <td><?php echo $entry_theme; ?></td> 
                 <td><select name="welcome_module[<?php echo $module_row; ?>][theme]">
                   <?php if ($module['theme']) { ?>

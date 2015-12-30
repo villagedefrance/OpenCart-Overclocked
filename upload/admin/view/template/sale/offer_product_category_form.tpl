@@ -59,7 +59,7 @@
               <input type="radio" name="logged" value="1" id="logged-on" class="radio" checked />
               <label for="logged-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="logged" value="0" id="logged-off" class="radio" />
-			  <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="logged" value="1" id="logged-on" class="radio" />
               <label for="logged-on"><span><span></span></span><?php echo $text_yes; ?></label>
@@ -67,7 +67,7 @@
               <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><span class="required">*</span> <?php echo $entry_product_one; ?></td>
             <td><select name="product_one">
               <option value=""></option>
@@ -82,9 +82,9 @@
             <?php if ($error_product) { ?>
               <span class="error"><?php echo $error_product; ?></span>
             <?php } ?>
-			</td>
+            </td>
           </tr>
-		  <tr>
+          <tr>
             <td><span class="required">*</span> <?php echo $entry_category_two; ?></td>
             <td><select name="category_two">
               <option value=""></option>
@@ -99,7 +99,7 @@
             <?php if ($error_category) { ?>
               <span class="error"><?php echo $error_category; ?></span>
             <?php } ?>
-			</td>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_date_start; ?></td>

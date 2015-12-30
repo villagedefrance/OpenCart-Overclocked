@@ -160,12 +160,12 @@ function addOptionValue() {
 	html += '    <td class="left"><input type="hidden" name="option_value[' + option_value_row + '][option_value_id]" value="" />';
 	<?php foreach ($languages as $language) { ?>
 	html += '      <input type="text" name="option_value[' + option_value_row + '][option_value_description][<?php echo $language['language_id']; ?>][name]" value="" size="30" />';
-    html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="center"><div class="image"><img src="<?php echo $no_image; ?>" alt="" id="thumb' + option_value_row + '" /><br />';
     html += '      <input type="hidden" name="option_value[' + option_value_row + '][image]" value="" id="image' + option_value_row + '" />';
-	html += '	  <a onclick="image_upload(\'image' + option_value_row + '\', \'thumb' + option_value_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + option_value_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + option_value_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
+	html += '      <a onclick="image_upload(\'image' + option_value_row + '\', \'thumb' + option_value_row + '\');" class="button-browse"></a><a onclick="$(\'#thumb' + option_value_row + '\').attr(\'src\', \'<?php echo $no_image; ?>\'); $(\'#image' + option_value_row + '\').attr(\'value\', \'\');" class="button-recycle"></a>';
 	html += '    </div></td>';
 	html += '    <td class="center"><input type="text" name="option_value[' + option_value_row + '][sort_order]" value="" size="1" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#option-value-row' + option_value_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';

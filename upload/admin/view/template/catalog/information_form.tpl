@@ -89,7 +89,7 @@
               <?php } ?>
             </div>
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
-			</td>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_keyword; ?></td>
@@ -181,14 +181,14 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 });
 
 $(document).ready(function() {
-    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
-        var limit = $(this).data("limit");
-        var remain = limit - $(this).val().length;
-        if (remain <= 0) {
-            $(this).val($(this).val().substring(0, limit));
-        }
-        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
-    });
+	$('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+		var limit = $(this).data("limit");
+		var remain = limit - $(this).val().length;
+		if (remain <= 0) {
+			$(this).val($(this).val().substring(0, limit));
+		}
+		$('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+	});
 
 	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
 });

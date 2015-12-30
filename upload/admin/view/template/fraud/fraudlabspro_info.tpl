@@ -19,7 +19,7 @@
         <span style="font-size:2em; font-weight:bold; color:#5DC15E;"><?php echo $flp_status; ?></span>
       <?php } elseif (strtolower($flp_status) == 'review') { ?>
         <span style="font-size:2em; font-weight:bold; color:#F2B155;"><?php echo $flp_status; ?></span>
-	  <?php } else { ?>
+      <?php } else { ?>
         <span style="font-size:2em; font-weight:bold; color:#DE5954;"><?php echo $flp_status; ?></span>
       <?php } ?>
     </td>
@@ -118,16 +118,16 @@
 
 <?php if (strtolower($flp_status) == 'review') { ?>
 <script type="text/javascript"><!--
-  $(document).ready(function() {
-    $("#button-flp-approve").click(function() {
-      $("#new_flp_status").val("APPROVE");
-      $("#review-action").submit();
-    });
+$(document).ready(function() {
+	$("#button-flp-approve").click(function() {
+		$("#new_flp_status").val("APPROVE");
+		$("#review-action").submit();
+	});
 
-    $("#button-flp-reject").click(function() {
-      $("#new_flp_status").val("REJECT");
-      $("#review-action").submit();
-    });
-  });
+	$("#button-flp-reject").click(function() {
+		$("#new_flp_status").val("REJECT");
+		$("#review-action").submit();
+	});
+});
 //--></script>
 <?php } ?>

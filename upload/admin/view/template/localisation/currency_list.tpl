@@ -40,7 +40,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-			<td class="left"><?php if ($sort == 'status') { ?>
+            <td class="left"><?php if ($sort == 'status') { ?>
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -71,7 +71,7 @@
             <?php } ?></td>
             <td class="left"><?php echo $currency['title']; ?></td>
             <td class="left"><?php echo $currency['code']; ?></td>
-			<?php if ($currency['status'] == 1) { ?>
+            <?php if ($currency['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>
               <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
@@ -91,9 +91,9 @@
         </tbody>
         </table>
       </form>
-	<?php if ($navigation_lo) { ?>
+    <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

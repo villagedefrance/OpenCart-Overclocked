@@ -57,7 +57,7 @@ $('#button-discount-update').bind('click', function() {
 	$('#discount-notifications').html('');
 	$('#img-discount-update').show();
 	$('div.success').remove();
-		
+
 	$.ajax({
 		url:'index.php?route=catalog/product/updateDiscount&token=<?php echo $token; ?>',
 		type:'post',

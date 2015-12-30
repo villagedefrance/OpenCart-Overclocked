@@ -45,7 +45,7 @@
         <tr>
           <td><?php echo $entry_rating; ?></td>
           <td>
-		    <b class="rating"><?php echo $entry_bad; ?></b>&nbsp;
+            <b class="rating"><?php echo $entry_bad; ?></b>&nbsp;
             <?php if ($rating == 1) { ?>
               <input type="radio" name="rating" value="1" id="one" class="checkbox" checked />
               <label for="one"><span></span></label>
@@ -65,7 +65,7 @@
             <?php if ($rating == 3) { ?>
               <input type="radio" name="rating" value="3" id="three" class="checkbox" checked />
               <label for="three"><span></span></label>
-			<?php } else { ?>
+            <?php } else { ?>
               <input type="radio" name="rating" value="3" id="three" class="checkbox" />
               <label for="three"><span></span></label>
             <?php } ?>
@@ -145,8 +145,8 @@ $('input[name=\'product\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

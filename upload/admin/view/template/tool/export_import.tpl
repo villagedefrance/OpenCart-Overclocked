@@ -135,7 +135,7 @@
             </tr>
           </table>
         </form>
-		<div class="tooltip" style="margin:15px 0px 5px 0px;"><?php echo $help_format; ?></div>
+        <div class="tooltip" style="margin:15px 0px 5px 0px;"><?php echo $help_format; ?></div>
       </div>
       <div id="tab-settings">
         <form action="<?php echo $settings; ?>" method="post" enctype="multipart/form-data" id="settings">
@@ -335,7 +335,7 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    $('.custom-input-class').simpleFileInput({
+	$('.custom-input-class').simpleFileInput({
 		placeholder: '<?php echo $entry_upload; ?>',
 		buttonText: 'Select',
 		allowedExts: ['xls', 'xlsx', 'ods'],

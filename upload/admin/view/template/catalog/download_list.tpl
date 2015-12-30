@@ -34,7 +34,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-		    <td class="left"><?php echo $column_filesize; ?></td>
+            <td class="left"><?php echo $column_filesize; ?></td>
             <td class="left"><?php if ($sort == 'd.remaining') { ?>
               <a href="<?php echo $sort_remaining; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_remaining; ?></a>
             <?php } else { ?>
@@ -126,8 +126,8 @@ $('input[name=\'filter_name\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

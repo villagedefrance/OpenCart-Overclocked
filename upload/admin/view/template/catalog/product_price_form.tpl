@@ -26,7 +26,7 @@ $('#button-price-update').bind('click', function() {
 	$('#price-notifications').html('');
 	$('#img-price-update').show();
 	$('div.success').remove();
-		
+
 	$.ajax({
 		url:'index.php?route=catalog/product/updatePrice&token=<?php echo $token; ?>',
 		type:'post',

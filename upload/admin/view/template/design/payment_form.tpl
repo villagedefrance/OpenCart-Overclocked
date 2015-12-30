@@ -53,7 +53,7 @@
             <?php if ($error_image) { ?>
               <span class="error"><?php echo $error_image; ?></span>
             <?php } ?>
-			</td>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_status; ?></td>

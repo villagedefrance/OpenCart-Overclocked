@@ -23,15 +23,15 @@
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($account_theme) { ?>
-			  <input type="radio" name="account_theme" value="1" id="theme-on" class="radio" checked />
+              <input type="radio" name="account_theme" value="1" id="theme-on" class="radio" checked />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="account_theme" value="0" id="theme-off" class="radio" />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="account_theme" value="1" id="theme-on" class="radio" />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="account_theme" value="0" id="theme-off" class="radio" checked />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -41,7 +41,7 @@
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
           </tr>
-		  <tr>
+          <tr>
             <td><?php echo $entry_mode; ?></td>
             <td><select name="account_mode">
               <?php if (isset($account_mode)) { $selected = "selected"; ?>

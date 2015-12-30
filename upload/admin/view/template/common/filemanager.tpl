@@ -177,7 +177,7 @@ $(document).ready(function() {
 	});
 
 	$('#toolset button:first').button({
-        icons: {primary: 'ui-icon-plus'}
+		icons: {primary: 'ui-icon-plus'}
 	}).next().button({
 		icons: {primary: 'ui-icon-minus'}
 	}).next().button({
@@ -190,13 +190,13 @@ $(document).ready(function() {
 
 	$('#btnExpand').click(function() {
 		var allTree= $.tree.focused();
-        allTree.open_all('#top');
+		allTree.open_all('#top');
 		allTree.refresh(allTree);
 	});
 
 	$('#btnCollapse').click(function() {
 		var allTree= $.tree.focused();
-        allTree.close_all('#top');
+		allTree.close_all('#top');
 		allTree.refresh(allTree);
 	});
 

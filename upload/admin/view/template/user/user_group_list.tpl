@@ -47,7 +47,7 @@
               <label for="<?php echo $user_group['user_group_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $user_group['name']; ?></td>
-			<td class="center"><?php echo $user_group['users']; ?></td>
+            <td class="center"><?php echo $user_group['users']; ?></td>
             <td class="right"><?php foreach ($user_group['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>

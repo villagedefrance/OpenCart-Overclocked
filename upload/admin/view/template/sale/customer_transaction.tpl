@@ -25,7 +25,7 @@
     </tr>
   <?php } ?>
     <tr>
-      <td>&nbsp;</td>
+      <td></td>
       <td class="right"><b><?php echo $text_balance; ?></b></td>
       <td class="right"><?php echo $balance; ?></td>
     </tr>

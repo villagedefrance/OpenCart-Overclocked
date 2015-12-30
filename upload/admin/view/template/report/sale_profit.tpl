@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
       <div class="report">
@@ -46,12 +46,12 @@
         <tbody>
           <?php if ($products) { ?>
             <?php foreach ($products as $product) { ?>
-			  <tr>
-			    <td class="left"><?php echo $product['year']; ?></td>
-			    <td class="left"><?php echo $product['month']; ?></td>
-			    <td class="right"><?php echo $product['price']; ?></td>
-			    <td class="right"><?php echo $product['cost']; ?></td>
-			    <td class="right"><?php echo $product['percent_profit']; ?></td>
+              <tr>
+                <td class="left"><?php echo $product['year']; ?></td>
+                <td class="left"><?php echo $product['month']; ?></td>
+                <td class="right"><?php echo $product['price']; ?></td>
+                <td class="right"><?php echo $product['cost']; ?></td>
+                <td class="right"><?php echo $product['percent_profit']; ?></td>
                 <td class="right"><?php echo $product['profit']; ?></td>
               </tr>
             <?php } ?>
@@ -64,16 +64,16 @@
         <tfoot>
           <tr style="background:#FAFAFA;">
             <td class="left" colspan="2"></td>
-		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> :</b> <?php echo $total_price; ?></td>
-		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> :</b> <?php echo $total_cost; ?></td>
-		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%) :</b> <?php echo $total_percent_profit; ?></td>
-		    <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> :</b> <?php echo $total_profit; ?></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> :</b> <?php echo $total_price; ?></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> :</b> <?php echo $total_cost; ?></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> (%) :</b> <?php echo $total_percent_profit; ?></td>
+            <td class="right"><b><?php echo $text_total; ?> <?php echo $column_profit; ?> :</b> <?php echo $total_profit; ?></td>
           </tr>
         </tfoot>
       </table>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

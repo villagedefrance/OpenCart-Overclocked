@@ -72,8 +72,8 @@
             <?php } ?></td>
             <td class="center"><?php echo $user['user_id']; ?></td>
             <td class="left"><?php echo $user['username']; ?></td>
-			<td class="left"><?php echo $user['group_name']; ?></td>
-			<td class="left"><?php echo $user['email']; ?></td>
+            <td class="left"><?php echo $user['group_name']; ?></td>
+            <td class="left"><?php echo $user['email']; ?></td>
             <td class="center"><?php echo $user['date_added']; ?></td>
             <?php if ($user['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>

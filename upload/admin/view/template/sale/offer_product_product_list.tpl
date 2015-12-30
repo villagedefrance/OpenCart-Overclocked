@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="content">
-	<?php if ($navigation_hi) { ?>
+    <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -40,12 +40,12 @@
             <?php } else { ?>
               <a href="<?php echo $sort_discount; ?>"><?php echo $column_discount; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-			<td class="left"><?php if ($sort == 'type') { ?>
+            <td class="left"><?php if ($sort == 'type') { ?>
               <a href="<?php echo $sort_type; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_type; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_type; ?>"><?php echo $column_type; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-			<td class="left"><?php if ($sort == 'logged') { ?>
+            <td class="left"><?php if ($sort == 'logged') { ?>
               <a href="<?php echo $sort_logged; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_logged; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_logged; ?>"><?php echo $column_logged; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -81,8 +81,8 @@
             <?php } ?></td>
             <td class="left"><?php echo $offer_product_product['name']; ?></td>
             <td class="center"><?php echo $offer_product_product['discount']; ?></td>
-			<td class="center"><?php echo $offer_product_product['type']; ?></td>
-			<td class="center"><?php echo $offer_product_product['logged']; ?></td>
+            <td class="center"><?php echo $offer_product_product['type']; ?></td>
+            <td class="center"><?php echo $offer_product_product['logged']; ?></td>
             <td class="left"><?php echo $offer_product_product['date_start']; ?></td>
             <td class="left"><?php echo $offer_product_product['date_end']; ?></td>
             <?php if ($offer_product_product['status'] == 1) { ?>
@@ -103,9 +103,9 @@
         </tbody>
       </table>
     </form>
-	<?php if ($navigation_lo) { ?>
+    <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
-	<?php } ?>
+    <?php } ?>
     </div>
   </div>
 </div>

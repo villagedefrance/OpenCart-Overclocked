@@ -153,8 +153,8 @@ $('input[name=\'customers\']').catcomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 $('#customer div img').live('click', function() {
@@ -193,8 +193,8 @@ $('input[name=\'affiliates\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 $('#affiliate div img').live('click', function() {
@@ -231,8 +231,8 @@ $('input[name=\'products\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 $('#product div img').live('click', function() {

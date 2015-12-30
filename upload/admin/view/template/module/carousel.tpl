@@ -23,15 +23,15 @@
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($carousel_theme) { ?>
-			  <input type="radio" name="carousel_theme" value="1" id="theme-on" class="radio" checked />
+              <input type="radio" name="carousel_theme" value="1" id="theme-on" class="radio" checked />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="carousel_theme" value="0" id="theme-off" class="radio" />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="carousel_theme" value="1" id="theme-on" class="radio" />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="carousel_theme" value="0" id="theme-off" class="radio" checked />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -90,7 +90,7 @@
               </td>
               <td class="left">
                 <input type="text" name="carousel_module[<?php echo $module_row; ?>][show]" value="<?php echo $module['show']; ?>" size="2" />
-				<?php if (isset($error_show[$module_row])) { ?>
+                <?php if (isset($error_show[$module_row])) { ?>
                   <span class="error"><?php echo $error_show[$module_row]; ?></span>
                 <?php } ?>
               </td>

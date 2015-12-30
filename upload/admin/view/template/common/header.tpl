@@ -111,19 +111,19 @@ $(document).ready(function() {
           <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
           <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
           <li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
-		  <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
+          <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
           <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
         </ul>
       </li>
       <li id="extension"><a class="top"><?php echo $text_extension; ?></a>
         <ul>
           <li><a href="<?php echo $module; ?>"><?php echo $text_module; ?></a></li>
-		  <li><a href="<?php echo $modification; ?>"><?php echo $text_modification; ?></a></li>
+          <li><a href="<?php echo $modification; ?>"><?php echo $text_modification; ?></a></li>
           <li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
           <li><a href="<?php echo $shipping; ?>"><?php echo $text_shipping; ?></a></li>
           <li><a href="<?php echo $theme; ?>"><?php echo $text_theme; ?></a></li>
           <li><a href="<?php echo $total; ?>"><?php echo $text_total; ?></a></li>
-		  <li><a href="<?php echo $fraud; ?>"><?php echo $text_fraud; ?></a></li>
+          <li><a href="<?php echo $fraud; ?>"><?php echo $text_fraud; ?></a></li>
           <li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
           <?php if ($openbay_show_menu == 1) { ?>
           <li><a class="arrow"><?php echo $text_openbay_extension; ?></a>
@@ -203,7 +203,7 @@ $(document).ready(function() {
           <?php } ?>
           <li><a href="<?php echo $upload; ?>"><?php echo $text_upload; ?></a></li>
           <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
-	    </ul>
+        </ul>
       </li>
       <li id="system"><a class="top"><?php echo $text_system; ?></a>
         <ul>
@@ -254,7 +254,7 @@ $(document).ready(function() {
             <ul>
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
-			  <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
+              <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
               <li><a class="arrow"><?php echo $text_export_import; ?></a>
                 <ul>
                   <li><a href="<?php echo $export_import_raw; ?>"><?php echo $text_export_import_raw; ?></a></li>
@@ -265,7 +265,7 @@ $(document).ready(function() {
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
             </ul>
           </li>
-		  <li><a class="arrow"><?php echo $text_cache_manager; ?></a>
+          <li><a class="arrow"><?php echo $text_cache_manager; ?></a>
             <ul>
               <li><a href="<?php echo $cache_files; ?>"><?php echo $text_cache_files; ?></a></li>
               <li><a href="<?php echo $cache_images; ?>"><?php echo $text_cache_images; ?></a></li>
@@ -280,7 +280,7 @@ $(document).ready(function() {
         </ul>
       </li>
       <li id="reports"><a class="top"><?php echo $text_reports; ?></a>
-	    <ul>
+        <ul>
           <li><a class="arrow"><?php echo $text_sale; ?></a>
             <ul>
               <li><a href="<?php echo $report_sale_order; ?>"><?php echo $text_report_sale_order; ?></a></li>
@@ -315,8 +315,8 @@ $(document).ready(function() {
           </li>
         </ul>
       </li>
-	  <?php if ($connection_exist) { ?>
-	  <li id="connection"><a class="top"><?php echo $text_connection; ?></a>
+      <?php if ($connection_exist) { ?>
+      <li id="connection"><a class="top"><?php echo $text_connection; ?></a>
         <ul>
         <?php foreach ($connections_ul as $connection_ul) { ?>
           <li><a class="arrow"><?php echo $connection_ul['name']; ?></a>
@@ -331,7 +331,7 @@ $(document).ready(function() {
         <?php } ?>
         </ul>
       </li>
-	  <?php } ?>
+      <?php } ?>
       <li id="help"><a class="top"><?php echo $text_help; ?></a>
         <ul>
           <li><a onclick="window.open('http://www.opencart.com');" title=""><?php echo $text_opencart; ?></a></li>
@@ -340,7 +340,7 @@ $(document).ready(function() {
           <li><a onclick="window.open('http://forum.opencart.com');" title=""><?php echo $text_support; ?></a></li>
         </ul>
       </li>
-	</ul>
+    </ul>
   </div>
   <?php } ?>
 </div>

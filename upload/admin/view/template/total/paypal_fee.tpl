@@ -29,7 +29,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_fee_type; ?></td>
-			<td><select name="paypal_fee_fee_type">
+            <td><select name="paypal_fee_fee_type">
               <?php if ($paypal_fee_fee_type == 'P') { ?>
                 <option value="P" selected="selected"><?php echo $text_percent; ?></option>
               <?php } else { ?>

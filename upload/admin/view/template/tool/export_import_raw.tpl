@@ -14,7 +14,7 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/backup.png" alt="" /> <?php echo $heading_title; ?></h1>
-	  <div class="buttons">
+      <div class="buttons">
         <a onclick="location = '<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <td width="20%"></td>
-			<td><a onclick="$('#import-raw').submit();" class="button-filter"><?php echo $button_import; ?></a></td>
+            <td><a onclick="$('#import-raw').submit();" class="button-filter"><?php echo $button_import; ?></a></td>
           </tr>
         </table>
       </form>
@@ -46,7 +46,7 @@
             </select></td>
           </tr>
           <tr>
-		    <td width="20%"></td>
+            <td width="20%"></td>
             <td><a onclick="$('#export-raw').submit();" class="button-filter"><?php echo $button_export; ?></a></td>
           </tr>
         </table>
@@ -60,25 +60,25 @@
             <td>Unicode UTF-8</td>
           </tr>
           <tr>
-		    <td><?php echo $text_delimiter; ?></td>
+            <td><?php echo $text_delimiter; ?></td>
             <td>;</td>
           </tr>
           <tr>
-		    <td><?php echo $text_enclosure; ?></td>
+            <td><?php echo $text_enclosure; ?></td>
             <td>"</td>
           </tr>
           <tr>
-		    <td><?php echo $text_escaped; ?></td>
+            <td><?php echo $text_escaped; ?></td>
             <td>"</td>
           </tr>
           <tr>
-		    <td><?php echo $text_ending; ?></td>
+            <td><?php echo $text_ending; ?></td>
             <td>"/n"</td>
           </tr>
         </table>
       </form>
       <div class="attention" style="margin:35px 0px 5px 0px;"><?php echo $help_caution; ?></div>
-	  <div class="warning" style="margin:15px 0px 5px 0px;"><?php echo $help_warning; ?></div>
+      <div class="warning" style="margin:15px 0px 5px 0px;"><?php echo $help_warning; ?></div>
     </div>
   </div>
 </div>
@@ -87,7 +87,7 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    $('.custom-input-class').simpleFileInput({
+	$('.custom-input-class').simpleFileInput({
 		placeholder: '<?php echo $text_import; ?>',
 		buttonText: 'Select',
 		allowedExts: ['csv'],

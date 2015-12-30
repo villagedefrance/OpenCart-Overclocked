@@ -98,7 +98,7 @@
             <td><?php echo $entry_cost; ?></td>
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
           </tr>
-		  <tr style="background:#FCFCFC;">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_quote; ?></td>
             <td><select name="quote">
               <?php if ($quote) { ?>
@@ -130,7 +130,7 @@
           <tr>
             <td><?php echo $entry_date_available; ?></td>
             <td><input type="text" name="date_available" value="<?php echo $date_available; ?>" class="date" size="12" />
-			<span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
+            <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
@@ -260,10 +260,10 @@
           <tr>
             <td><?php echo $entry_dimension; ?></td>
             <td>
-			  <input type="text" name="length" value="<?php echo $length; ?>" size="10" />
+              <input type="text" name="length" value="<?php echo $length; ?>" size="10" />
               <input type="text" name="width" value="<?php echo $width; ?>" size="10" />
               <input type="text" name="height" value="<?php echo $height; ?>" size="10" />
-			</td>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_length; ?></td>
@@ -367,9 +367,9 @@
               <?php } ?>
             </div>
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
-			</td>
+            </td>
           </tr>
-		<?php } else { ?>
+        <?php } else { ?>
           <tr>
             <td><?php echo $entry_category; ?><?php echo $text_autocomplete; ?></td>
             <td><input type="text" name="category" value="" /></td>
@@ -408,7 +408,7 @@
               <?php } ?>
             </div>
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
-			</td>
+            </td>
           </tr>
         <?php } else { ?>
           <tr>
@@ -449,7 +449,7 @@
               <?php } ?>
             </div>
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
-			</td>
+            </td>
           </tr>
         <?php } else { ?>
           <tr>
@@ -473,7 +473,7 @@
           <tr>
             <td><?php echo $entry_related; ?></td>
             <td>
-			  <table>
+              <table>
                 <tr>
                   <td colspan="3" style="padding:0;"><select id="category" style="margin-bottom:5px;" onchange="getProducts();">
                   <?php foreach ($categories as $category) { ?>
@@ -551,13 +551,13 @@
           <tr>
             <td class="left"><select name="product_color[<?php echo $color_row; ?>][palette_color_id]">
               <?php foreach ($colors as $color) { ?>
-			    <?php if ($product_color['palette_color_id'] == $color['palette_color_id']) { ?>
+                <?php if ($product_color['palette_color_id'] == $color['palette_color_id']) { ?>
                   <option value="<?php echo $color['palette_color_id']; ?>" selected="selected"><?php echo $color['title']; ?></option>
                 <?php } else { ?>
                   <option value="<?php echo $color['palette_color_id']; ?>"><?php echo $color['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-			</select></td>
+            </select></td>
             <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
@@ -585,15 +585,15 @@
         <tbody id="attribute-row<?php echo $attribute_row; ?>">
           <tr>
             <td class="left">
-			  <input type="text" name="product_attribute[<?php echo $attribute_row; ?>][name]" value="<?php echo $product_attribute['name']; ?>" />
+              <input type="text" name="product_attribute[<?php echo $attribute_row; ?>][name]" value="<?php echo $product_attribute['name']; ?>" />
               <input type="hidden" name="product_attribute[<?php echo $attribute_row; ?>][attribute_id]" value="<?php echo $product_attribute['attribute_id']; ?>" />
-			</td>
+            </td>
             <td class="left">
-			  <?php foreach ($languages as $language) { ?>
+              <?php foreach ($languages as $language) { ?>
                 <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
                 <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
               <?php } ?>
-			</td>
+            </td>
             <td class="center"><a onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
           </tr>
         </tbody>
@@ -616,8 +616,8 @@
           <?php } ?>
           <span id="option-add">
             <input name="option" value="" style="width:130px;" />&nbsp;<img src="view/image/add.png" alt="<?php echo $button_add_option; ?>" title="<?php echo $button_add_option; ?>" />
-		  </span>
-		</div>
+          </span>
+        </div>
         <?php $option_row = 0; ?>
         <?php $option_value_row = 0; ?>
         <?php foreach ($product_options as $product_option) { ?>
@@ -707,10 +707,10 @@
                   <?php } ?>
                 </select>
                 <input type="hidden" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][product_option_value_id]" value="<?php echo $product_option_value['product_option_value_id']; ?>" />
-				</td>
+                </td>
                 <td class="right"><input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][quantity]" value="<?php echo $product_option_value['quantity']; ?>" size="3" /></td>
                 <td class="right">
-				  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][subtract]">
+                  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][subtract]">
                   <?php if ($product_option_value['subtract']) { ?>
                     <option value="1" selected="selected"><?php echo $text_yes; ?></option>
                     <option value="0"><?php echo $text_no; ?></option>
@@ -719,9 +719,9 @@
                     <option value="0" selected="selected"><?php echo $text_no; ?></option>
                   <?php } ?>
                   </select>
-				</td>
+                </td>
                 <td class="right">
-				  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][price_prefix]">
+                  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][price_prefix]">
                   <?php if ($product_option_value['price_prefix'] == '+') { ?>
                     <option value="+" selected="selected">+</option>
                   <?php } else { ?>
@@ -734,9 +734,9 @@
                   <?php } ?>
                   </select>
                   <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][price]" value="<?php echo $product_option_value['price']; ?>" size="5" />
-				</td>
+                </td>
                 <td class="right">
-				  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][points_prefix]">
+                  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][points_prefix]">
                   <?php if ($product_option_value['points_prefix'] == '+') { ?>
                     <option value="+" selected="selected">+</option>
                   <?php } else { ?>
@@ -749,9 +749,9 @@
                   <?php } ?>
                   </select>
                   <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][points]" value="<?php echo $product_option_value['points']; ?>" size="5" />
-				</td>
+                </td>
                 <td class="right">
-				  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][weight_prefix]">
+                  <select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][weight_prefix]">
                   <?php if ($product_option_value['weight_prefix'] == '+') { ?>
                     <option value="+" selected="selected">+</option>
                   <?php } else { ?>
@@ -764,7 +764,7 @@
                   <?php } ?>
                   </select>
                   <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][weight]" value="<?php echo $product_option_value['weight']; ?>" size="5" />
-				</td>
+                </td>
                 <td class="center"><a onclick="$('#option-value-row<?php echo $option_value_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
               </tr>
             </tbody>
@@ -804,7 +804,7 @@
           <tr>
             <td class="left">
               <select name="product_profiles[<?php echo $profile_row; ?>][profile_id]">
-			  <option value=""><?php echo $text_none; ?></option>
+              <option value=""><?php echo $text_none; ?></option>
               <?php foreach ($profiles as $profile) { ?>
                 <?php if ($profile['profile_id'] == $product_profile['profile_id']) { ?>
                   <option value="<?php echo $profile['profile_id']; ?>" selected="selected"><?php echo $profile['name']; ?></option>
@@ -958,7 +958,7 @@
             <tr>
               <td class="left"><?php echo $column_image; ?></td>
               <?php if ($palette_id) { ?>
-			    <td class="left"><?php echo $column_palette_color_id; ?></td>
+                <td class="left"><?php echo $column_palette_color_id; ?></td>
               <?php } ?>
               <td class="left"><?php echo $column_sort_order; ?></td>
               <td></td>
@@ -1062,14 +1062,14 @@ CKEDITOR.replace('description<?php echo $language['language_id']; ?>', {
 });
 
 $(document).ready(function() {
-    $('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
-        var limit = $(this).data("limit");
-        var remain = limit - $(this).val().length;
-        if (remain <= 0) {
-            $(this).val($(this).val().substring(0, limit));
-        }
-        $('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
-    });
+	$('#meta-description<?php echo $language['language_id']; ?>').on('load propertychange keyup input paste', function() {
+		var limit = $(this).data("limit");
+		var remain = limit - $(this).val().length;
+		if (remain <= 0) {
+			$(this).val($(this).val().substring(0, limit));
+		}
+		$('#remaining<?php echo $language['language_id']; ?>').text((remain <= 0) ? 0 : remain);
+	});
 
 	$('#meta-description<?php echo $language['language_id']; ?>').trigger('load');
 });
@@ -1432,7 +1432,7 @@ function attributeautocomplete(attribute_row) {
 			return false;
 		},
 		focus: function(event, ui) {
-      		return false;
+			return false;
    		}
 	});
 }
@@ -1504,7 +1504,7 @@ $('input[name=\'option\']').catcomplete({
 			html += '    <tr>';
 			html += '      <td><?php echo $entry_option_value; ?></td>';
 			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="date" size="12" />';
-            html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
+			html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 			html += '    </tr>';
 		}
 
@@ -1520,7 +1520,7 @@ $('input[name=\'option\']').catcomplete({
 			html += '    <tr>';
 			html += '      <td><?php echo $entry_option_value; ?></td>';
 			html += '      <td><input type="text" name="product_option[' + option_row + '][option_value]" value="" class="datetime" />';
-            html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td></td>';
+			html += '      <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td></td>';
 			html += '    </tr>';
 		}
 
@@ -1565,7 +1565,7 @@ $('input[name=\'option\']').catcomplete({
 		$('#option-' + option_row).trigger('click');
 
 		$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-        $('.time').timepicker({timeFormat: 'h:m'});
+		$('.time').timepicker({timeFormat: 'h:m'});
 		$('.datetime').datetimepicker({
 			dateFormat: 'yy-mm-dd',
 			timeFormat: 'h:m'
@@ -1662,9 +1662,9 @@ function addDiscount() {
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][priority]" value="" size="2" /></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][price]" value="" /></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_start]" value="" class="date" size="12" />';
-    html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
+	html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 	html += '    <td class="left"><input type="text" name="product_discount[' + discount_row + '][date_end]" value="" class="date" size="12" />';
-    html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
+	html += '    <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span></td>';
 	html += '    <td class="center"><a onclick="$(\'#discount-row' + discount_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
@@ -1746,8 +1746,8 @@ function addImage() {
 	html += '    </div></td>';
 	<?php if ($palette_id) { ?>
 	html += '    <td class="center"><select name="product_image[' + image_row + '][palette_color_id]">';
-    html += '      <option value=""><?php echo $text_none; ?></option>';
-    <?php if ($palette_colors) { ?>
+	html += '      <option value=""><?php echo $text_none; ?></option>';
+	<?php if ($palette_colors) { ?>
 	<?php foreach ($palette_colors as $palette_color) { ?>
 	html += '      <option value="<?php echo $palette_color['palette_color_id']; ?>"><?php echo addslashes($palette_color['title']); ?></option>';
 	<?php } ?>

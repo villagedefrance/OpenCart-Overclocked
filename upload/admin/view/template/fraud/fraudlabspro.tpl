@@ -58,7 +58,7 @@
             </select></td>
           </tr>
         </table>
-		<h2><?php echo $text_rules; ?></h2>
+        <h2><?php echo $text_rules; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_review_status; ?></td>
@@ -97,13 +97,13 @@
             </select></td>
           </tr>
         </table>
-		<h2><?php echo $text_testing; ?></h2>
+        <h2><?php echo $text_testing; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $entry_simulate_ip; ?></td>
             <td><input type="text" name="fraudlabspro_simulate_ip" value="<?php echo $fraudlabspro_simulate_ip; ?>" /></td>
           </tr>
-		</table>
+        </table>
       </form>
     </div>
   </div>

@@ -28,7 +28,7 @@
     <?php } ?>
       <a href="#tab-product"><?php echo $tab_product; ?></a>
       <a href="#tab-picklist"><?php echo $tab_pick_list; ?></a>
-	  <a href="#tab-history"><?php echo $tab_history; ?></a>
+      <a href="#tab-history"><?php echo $tab_history; ?></a>
     <?php foreach ($tabs as $tab) { ?>
       <a href="#tab-<?php echo $tab['code']; ?>"><?php echo $tab['title']; ?></a>
     <?php } ?>
@@ -384,7 +384,7 @@
       <?php } ?>
     </div>
     <div id="tab-picklist" class="vtabs-content">
-	  <div id="show-tooltip" style="display:block;">
+      <div id="show-tooltip" style="display:block;">
         <?php if ($picklist_status) { ?>
           <div id="tooltip" class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_picklist_enabled; ?></div>
         <?php } else { ?>
@@ -429,7 +429,7 @@
                 <input type="text" value="<?php echo $product['backordered']; ?>" name="pick-<?php echo $product['product_id']; ?>" class="status-backordered" maxlength="255" style="width:97%;" />
                 <input type="hidden" name="<?php echo $product['href_backordered']; ?>" />
               </td>
-			  <td id="pick-<?php echo $product['product_id']; ?>"></td>
+              <td id="pick-<?php echo $product['product_id']; ?>"></td>
             </tr>
           <?php } ?>
         </tbody>

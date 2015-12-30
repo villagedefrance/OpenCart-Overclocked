@@ -198,8 +198,8 @@ $('input[name=\'customer\']').catcomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 
@@ -229,8 +229,8 @@ $('input[name=\'product\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

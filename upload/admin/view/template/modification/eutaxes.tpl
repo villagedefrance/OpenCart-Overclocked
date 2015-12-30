@@ -32,7 +32,7 @@
         </table>
       </div>
       <div id="tab-status">
-		<table class="list">
+        <table class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $column_setting; ?></td>

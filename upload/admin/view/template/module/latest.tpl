@@ -23,15 +23,15 @@
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($latest_theme) { ?>
-			  <input type="radio" name="latest_theme" value="1" id="theme-on" class="radio" checked />
+              <input type="radio" name="latest_theme" value="1" id="theme-on" class="radio" checked />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="latest_theme" value="0" id="theme-off" class="radio" />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="latest_theme" value="1" id="theme-on" class="radio" />
               <label for="theme-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="latest_theme" value="0" id="theme-off" class="radio" checked />
-			  <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -44,29 +44,29 @@
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_viewproduct; ?></td>
             <td><?php if ($latest_viewproduct) { ?>
-			  <input type="radio" name="latest_viewproduct" value="1" id="viewproduct-on" class="radio" checked />
+              <input type="radio" name="latest_viewproduct" value="1" id="viewproduct-on" class="radio" checked />
               <label for="viewproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="latest_viewproduct" value="0" id="viewproduct-off" class="radio" />
-			  <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="latest_viewproduct" value="1" id="viewproduct-on" class="radio" />
               <label for="viewproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="latest_viewproduct" value="0" id="viewproduct-off" class="radio" checked />
-			  <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_addproduct; ?></td>
             <td><?php if ($latest_addproduct) { ?>
-			  <input type="radio" name="latest_addproduct" value="1" id="addproduct-on" class="radio" checked />
+              <input type="radio" name="latest_addproduct" value="1" id="addproduct-on" class="radio" checked />
               <label for="addproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="latest_addproduct" value="0" id="addproduct-off" class="radio" />
-			  <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
               <input type="radio" name="latest_addproduct" value="1" id="addproduct-on" class="radio" />
               <label for="addproduct-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="latest_addproduct" value="0" id="addproduct-off" class="radio" checked />
-			  <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <label for="addproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>

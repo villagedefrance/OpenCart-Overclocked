@@ -36,15 +36,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme1) { ?>
-			    <input type="radio" name="html_theme1" value="1" id="theme1-on" class="radio" checked />
+                <input type="radio" name="html_theme1" value="1" id="theme1-on" class="radio" checked />
                 <label for="theme1-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme1" value="0" id="theme1-off" class="radio" />
-			    <label for="theme1-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme1-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme1" value="1" id="theme1-on" class="radio" />
                 <label for="theme1-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme1" value="0" id="theme1-off" class="radio" checked />
-			    <label for="theme1-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme1-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -65,15 +65,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme2) { ?>
-			    <input type="radio" name="html_theme2" value="1" id="theme2-on" class="radio" checked />
+                <input type="radio" name="html_theme2" value="1" id="theme2-on" class="radio" checked />
                 <label for="theme2-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme2" value="0" id="theme2-off" class="radio" />
-			    <label for="theme2-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme2-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme2" value="1" id="theme2-on" class="radio" />
                 <label for="theme2-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme2" value="0" id="theme2-off" class="radio" checked />
-			    <label for="theme2-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme2-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -94,15 +94,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme3) { ?>
-			    <input type="radio" name="html_theme3" value="1" id="theme3-on" class="radio" checked />
+                <input type="radio" name="html_theme3" value="1" id="theme3-on" class="radio" checked />
                 <label for="theme3-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme3" value="0" id="theme3-off" class="radio" />
-			    <label for="theme3-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme3-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme3" value="1" id="theme3-on" class="radio" />
                 <label for="theme3-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme3" value="0" id="theme3-off" class="radio" checked />
-			    <label for="theme3-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme3-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -123,15 +123,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme4) { ?>
-			    <input type="radio" name="html_theme4" value="1" id="theme4-on" class="radio" checked />
+                <input type="radio" name="html_theme4" value="1" id="theme4-on" class="radio" checked />
                 <label for="theme4-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme4" value="0" id="theme4-off" class="radio" />
-			    <label for="theme4-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme4-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme4" value="1" id="theme4-on" class="radio" />
                 <label for="theme4-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme4" value="0" id="theme4-off" class="radio" checked />
-			    <label for="theme4-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme4-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -152,15 +152,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme5) { ?>
-			    <input type="radio" name="html_theme5" value="1" id="theme5-on" class="radio" checked />
+                <input type="radio" name="html_theme5" value="1" id="theme5-on" class="radio" checked />
                 <label for="theme5-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme5" value="0" id="theme5-off" class="radio" />
-			    <label for="theme5-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme5-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme5" value="1" id="theme5-on" class="radio" />
                 <label for="theme5-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme5" value="0" id="theme5-off" class="radio" checked />
-			    <label for="theme5-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme5-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -181,15 +181,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme6) { ?>
-			    <input type="radio" name="html_theme6" value="1" id="theme6-on" class="radio" checked />
+                <input type="radio" name="html_theme6" value="1" id="theme6-on" class="radio" checked />
                 <label for="theme6-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme6" value="0" id="theme6-off" class="radio" />
-			    <label for="theme6-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme6-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme6" value="1" id="theme6-on" class="radio" />
                 <label for="theme6-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme6" value="0" id="theme6-off" class="radio" checked />
-			    <label for="theme6-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme6-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -210,15 +210,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme7) { ?>
-			    <input type="radio" name="html_theme7" value="1" id="theme7-on" class="radio" checked />
+                <input type="radio" name="html_theme7" value="1" id="theme7-on" class="radio" checked />
                 <label for="theme7-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme7" value="0" id="theme7-off" class="radio" />
-			    <label for="theme7-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme7-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme7" value="1" id="theme7-on" class="radio" />
                 <label for="theme7-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme7" value="0" id="theme7-off" class="radio" checked />
-			    <label for="theme7-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme7-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -239,15 +239,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme8) { ?>
-			    <input type="radio" name="html_theme8" value="1" id="theme8-on" class="radio" checked />
+                <input type="radio" name="html_theme8" value="1" id="theme8-on" class="radio" checked />
                 <label for="theme8-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme8" value="0" id="theme8-off" class="radio" />
-			    <label for="theme8-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme8-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme8" value="1" id="theme8-on" class="radio" />
                 <label for="theme8-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme8" value="0" id="theme8-off" class="radio" checked />
-			    <label for="theme8-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme8-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -268,15 +268,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme9) { ?>
-			    <input type="radio" name="html_theme9" value="1" id="theme9-on" class="radio" checked />
+                <input type="radio" name="html_theme9" value="1" id="theme9-on" class="radio" checked />
                 <label for="theme9-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme9" value="0" id="theme9-off" class="radio" />
-			    <label for="theme9-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme9-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme9" value="1" id="theme9-on" class="radio" />
                 <label for="theme9-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme9" value="0" id="theme9-off" class="radio" checked />
-			    <label for="theme9-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme9-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
@@ -297,15 +297,15 @@
             <tr>
               <td><?php echo $entry_theme; ?></td>
               <td><?php if ($html_theme10) { ?>
-			    <input type="radio" name="html_theme10" value="1" id="theme10-on" class="radio" checked />
+                <input type="radio" name="html_theme10" value="1" id="theme10-on" class="radio" checked />
                 <label for="theme10-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme10" value="0" id="theme10-off" class="radio" />
-			    <label for="theme10-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme10-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
                 <input type="radio" name="html_theme10" value="1" id="theme10-on" class="radio" />
                 <label for="theme10-on"><span><span></span></span><?php echo $text_yes; ?></label>
                 <input type="radio" name="html_theme10" value="0" id="theme10-off" class="radio" checked />
-			    <label for="theme10-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <label for="theme10-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>

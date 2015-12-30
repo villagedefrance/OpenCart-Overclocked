@@ -76,7 +76,7 @@
               <?php } ?>
             </div>
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
-			</td>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_position; ?></td>
@@ -110,14 +110,14 @@
         </table>
       </div>
       <br />
-	  <h2><?php echo $header_links; ?></h2>
+      <h2><?php echo $header_links; ?></h2>
       <table id="route" class="list">
       <thead>
         <tr>
           <td class="left"><span class="required">*</span> <?php echo $entry_title; ?></td>
           <td class="left"><?php echo $entry_route; ?></td>
-		  <td class="left"><?php echo $entry_external_link; ?></td>
-		  <td class="left"><?php echo $entry_sort_order; ?></td>
+          <td class="left"><?php echo $entry_external_link; ?></td>
+          <td class="left"><?php echo $entry_sort_order; ?></td>
           <td></td>
         </tr>
       </thead>
@@ -133,7 +133,7 @@
             <?php } ?>
           <?php } ?></td>
           <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
-		  <td class="center"><select name="footer_route[<?php echo $route_row; ?>][external_link]">
+          <td class="center"><select name="footer_route[<?php echo $route_row; ?>][external_link]">
             <?php if ($footer_route['external_link']) { ?>
               <option value="1" selected="selected"><?php echo $text_yes; ?></option>
               <option value="0"><?php echo $text_no; ?></option>
@@ -166,16 +166,16 @@ var route_row = <?php echo $route_row; ?>;
 function addRoute() {
 	html  = '<tbody id="route-row' + route_row + '">';
 	html += '  <tr>';
-	html += '	<td class="left">';
+	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '	<input type="text" name="footer_route[' + route_row + '][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
+	html += '      <input type="text" name="footer_route[' + route_row + '][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
 	<?php } ?>
-	html += '	</td>';
+	html += '    </td>';
 	html += '    <td class="left"><input type="text" name="footer_route[' + route_row + '][route]" value="" size="50" /></td>';
-    html += '    <td class="center"><select name="footer_route[' + route_row + '][external_link]">';
-    html += '      <option value="1"><?php echo $text_yes; ?></option>';
-    html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
-    html += '    </select></td>';
+	html += '    <td class="center"><select name="footer_route[' + route_row + '][external_link]">';
+	html += '      <option value="1"><?php echo $text_yes; ?></option>';
+	html += '      <option value="0" selected="selected"><?php echo $text_no; ?></option>';
+	html += '    </select></td>';
 	html += '    <td class="center"><input type="text" name="footer_route[' + route_row + '][sort_order]" value="" size="4" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';

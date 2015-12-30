@@ -50,17 +50,17 @@
             </td>
           </tr>
         </table>
-		<h2><?php echo $text_engine; ?></h2>
+        <h2><?php echo $text_engine; ?></h2>
         <table class="tool">
           <tr>
             <td width="20%"><b><?php echo $text_table_engine; ?></b></td>
-		  <?php if (!$engine) { ?>
-			<td width="55%"><?php echo $text_help_myisam; ?></td>
-			<td width="25%"><a onclick="Innodb();" class="button-cancel"><?php echo $button_innodb; ?></a></td>
-		  <?php } else { ?>
-			<td width="55%"><?php echo $text_help_innodb; ?></td>
-			<td width="25%"><a onclick="Myisam();" class="button-cancel"><?php echo $button_myisam; ?></a></td>
-		  <?php } ?>
+          <?php if (!$engine) { ?>
+            <td width="55%"><?php echo $text_help_myisam; ?></td>
+            <td width="25%"><a onclick="Innodb();" class="button-cancel"><?php echo $button_innodb; ?></a></td>
+          <?php } else { ?>
+            <td width="55%"><?php echo $text_help_innodb; ?></td>
+            <td width="25%"><a onclick="Myisam();" class="button-cancel"><?php echo $button_myisam; ?></a></td>
+          <?php } ?>
           </tr>
         </table>
         <input type="hidden" name="buttonForm" value="" />

@@ -34,11 +34,11 @@
               <td class="left"><?php echo $text_total_c2c; ?></td>
               <td class="right"><?php echo $total_c2c; ?></td>
             </tr>
-			<tr>
+            <tr>
               <td class="left"><b><?php echo $text_total_discount; ?></b></td>
               <td class="right"><b><?php echo $total_discount; ?></b></td>
             </tr>
-			<tr>
+            <tr>
               <td class="left"><b><?php echo $text_total_special; ?></b></td>
               <td class="right"><b><?php echo $total_special; ?></b></td>
             </tr>
@@ -69,12 +69,12 @@
           <?php if ($error_offers) { ?>
             <div class="attention" style="margin:5px 0px 0px 0px;"><?php echo $error_offers; ?></div>
           <?php } ?>
-		  <?php if ($success_offers) { ?>
+          <?php if ($success_offers) { ?>
             <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $success_offers; ?></div>
           <?php } ?>
         </div>
       </div>
-	  <div class="latest">
+      <div class="latest">
         <div class="dashboard-heading"><?php echo $text_status; ?></div>
         <div class="dashboard-content" style="height:300px; overflow-y:scroll;">
           <table class="list">
@@ -82,25 +82,25 @@
               <tr>
                 <td class="left"><?php echo $column_group; ?></td>
                 <td class="left"><?php echo $column_name; ?></td>
-				<td class="left"><?php echo $column_type; ?></td>
+                <td class="left"><?php echo $column_type; ?></td>
                 <td class="left"><?php echo $column_discount; ?></td>
                 <td class="left"><?php echo $column_logged; ?></td>
                 <td class="left"><?php echo $column_date_end; ?></td>
                 <td class="left"><?php echo $column_validity; ?></td>
                 <td class="left"><?php echo $column_status; ?></td>
-				<td class="right"><?php echo $column_action; ?></td>
+                <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
             <tbody>
-			<?php if ($offer_product_products || $offer_product_categories || $offer_category_products || $offer_category_categories) { ?>
-			  <?php if ($offer_product_products) { ?>
+            <?php if ($offer_product_products || $offer_product_categories || $offer_category_products || $offer_category_categories) { ?>
+              <?php if ($offer_product_products) { ?>
                 <?php foreach ($offer_product_products as $offer) { ?>
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
-				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="center"><?php echo $offer['type']; ?></td>
                   <td class="right"><?php echo $offer['discount']; ?></td>
-				  <td class="center"><?php echo $offer['logged']; ?></td>
+                  <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
                   <td class="center"><?php echo $offer['validity']; ?></td>
                   <?php if ($offer['status'] == 1) { ?>
@@ -108,16 +108,16 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>
-			  <?php if ($offer_product_categories) { ?>
+              <?php if ($offer_product_categories) { ?>
                 <?php foreach ($offer_product_categories as $offer) { ?>
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
-				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="center"><?php echo $offer['type']; ?></td>
                   <td class="right"><?php echo $offer['discount']; ?></td>
                   <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
@@ -127,16 +127,16 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>
-			  <?php if ($offer_category_products) { ?>
+              <?php if ($offer_category_products) { ?>
                 <?php foreach ($offer_category_products as $offer) { ?>
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
-				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="center"><?php echo $offer['type']; ?></td>
                   <td class="right"><?php echo $offer['discount']; ?></td>
                   <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
@@ -146,16 +146,16 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>
-			  <?php if ($offer_category_categories) { ?>
+              <?php if ($offer_category_categories) { ?>
                 <?php foreach ($offer_category_categories as $offer) { ?>
                 <tr>
                   <td class="center"><?php echo $offer['group']; ?></td>
                   <td class="left"><?php echo $offer['name']; ?></td>
-				  <td class="center"><?php echo $offer['type']; ?></td>
+                  <td class="center"><?php echo $offer['type']; ?></td>
                   <td class="right"><?php echo $offer['discount']; ?></td>
                   <td class="center"><?php echo $offer['logged']; ?></td>
                   <td class="center"><?php echo $offer['date_end']; ?></td>
@@ -165,7 +165,7 @@
                   <?php } else { ?>
                     <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
                   <?php } ?>
-				  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
+                  <td class="right"><a href="<?php echo $offer['href']; ?>" title="" class="button-form"><?php echo $button_edit; ?></a></td>
                 </tr>
                 <?php } ?>
               <?php } ?>

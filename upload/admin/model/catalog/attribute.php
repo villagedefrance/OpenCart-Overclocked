@@ -5,7 +5,7 @@ class ModelCatalogAttribute extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "attribute SET attribute_group_id = '" . (int)$data['attribute_group_id'] . "', sort_order = '" . (int)$data['sort_order'] . "'");
 
 		$attribute_id = $this->db->getLastId();
-		
+
 		// Save and Continue
 		$this->session->data['new_attribute_id'] = $attribute_id;
 
