@@ -157,7 +157,7 @@ $('input[name=\'customer_group_id\']:checked').live('change', function() {
             $('#company-id-display').show(500);
 		} else {
 			$('#company-name-display').hide(100);
-            $('#company-id-display').hide(100);
+			$('#company-id-display').hide(100);
 		}
 
 		if (customer_group[this.value]['company_id_required'] == '1') {
@@ -205,13 +205,13 @@ $('select[name=\'country_id\']').bind('change', function() {
 
 			if (json['zone'] != '') {
 				for (var i = 0; i < json['zone'].length; i++) {
-        			html += '<option value="' + json['zone'][i]['zone_id'] + '"';
+					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
 					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
-	      				html += ' selected="selected"';
-	    			}
+						html += ' selected="selected"';
+					}
 
-	    			html += '>' + json['zone'][i]['name'] + '</option>';
+					html += '>' + json['zone'][i]['name'] + '</option>';
 				}
 			} else {
 				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';

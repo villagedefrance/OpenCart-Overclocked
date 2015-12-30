@@ -68,7 +68,7 @@
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
-	<?php if ($mode == 1) { ?>
+    <?php if ($mode == 1) { ?>
       <div style="text-align:center; padding:10px 0px;">
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
@@ -93,7 +93,7 @@
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
-	<?php if ($mode == 1) { ?>
+    <?php if ($mode == 1) { ?>
       <div style="text-align:center; padding:10px 0px;">
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>

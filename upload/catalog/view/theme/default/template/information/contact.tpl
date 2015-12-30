@@ -37,7 +37,7 @@
             <span class="error"><?php echo $error_enquiry; ?></span>
           <?php } ?>
           <br />
-		  <div id="captcha-wrap">
+          <div id="captcha-wrap">
             <div class="captcha-box">
               <div class="captcha-view">
                 <img src="index.php?route=information/contact/captcha" alt="" id="captcha-image" />
@@ -46,7 +46,7 @@
             <div class="captcha-text">
               <label><?php echo $entry_captcha; ?></label>
               <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-		    </div>
+            </div>
             <div class="captcha-action"></div>
           </div>
           <br />
@@ -70,7 +70,7 @@
           <?php } ?>
           <?php if ($fax) { ?>
             <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
-			<br />
+            <br />
           <?php } ?>
           <?php if ($map) { ?>
            <br />
@@ -80,7 +80,7 @@
            <br />
            <i><?php echo $text_latitude; ?></i> <?php echo $map_latitude; ?> <i>&deg; N</i>
            <br />
-		   <br />
+           <br />
            <i><?php echo $text_longitude; ?></i> <?php echo $map_longitude; ?> <i>&deg; E</i>
            <br />
           <?php } ?>

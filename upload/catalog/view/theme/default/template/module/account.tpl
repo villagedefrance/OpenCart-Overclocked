@@ -66,14 +66,14 @@
           <?php if ($reward) { ?>
           <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
           <?php } ?>
-		  <?php if ($allow_return) { ?>
+          <?php if ($allow_return) { ?>
           <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-		  <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
-		  <?php } ?>
+          <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
+          <?php } ?>
           <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-		  <?php if ($profile_exist) { ?>
+          <?php if ($profile_exist) { ?>
           <li><a href="<?php echo $recurring; ?>"><?php echo $text_recurring; ?></a></li>
-		  <?php } ?>
+          <?php } ?>
           <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
         </ul>
       </div>
@@ -81,7 +81,7 @@
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
-	<?php if ($mode == 1) { ?>
+    <?php if ($mode == 1) { ?>
       <div style="text-align:center; padding:10px 0px;">
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
@@ -104,14 +104,14 @@
           <?php if ($reward) { ?>
           <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
           <?php } ?>
-		  <?php if ($allow_return) { ?>
+          <?php if ($allow_return) { ?>
           <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-		  <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
-		  <?php } ?>
+          <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
+          <?php } ?>
           <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-		  <?php if ($profile_exist) { ?>
+          <?php if ($profile_exist) { ?>
           <li><a href="<?php echo $recurring; ?>"><?php echo $text_recurring; ?></a></li>
-		  <?php } ?>
+          <?php } ?>
           <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
         </ul>
       </div>
@@ -119,7 +119,7 @@
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
-	<?php if ($mode == 1) { ?>
+    <?php if ($mode == 1) { ?>
       <div style="text-align:center; padding:10px 0px;">
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
@@ -128,7 +128,7 @@
 </div>
 <?php } ?>
 <?php } ?>
-	
+
 <script type="text/javascript"><!--
 $('#module-account input').keydown(function(e) {
 	if (e.keyCode == 13) { $('#module-account').submit(); }

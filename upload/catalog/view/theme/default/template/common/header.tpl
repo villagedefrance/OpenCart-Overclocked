@@ -51,7 +51,7 @@
 <script type="text/javascript"><!--
 $(document).ready(function() {
 <?php foreach ($stores as $store) { ?>
-  $('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
+	$('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
 <?php } ?>
 });
 //--></script>
@@ -62,19 +62,19 @@ $(document).ready(function() {
 <script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookiecuttr.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $.cookieCuttr({
-    cookieAnalytics: false,
-    cookiePolicyPage: true,
-    cookieAcceptButton: true,
-    cookieDeclineButton: true,
-    cookiePolicyPageMessage: '<?php echo $theme['cookie_message']; ?>',
-    cookieAcceptButtonText: '<?php echo $theme['cookie_yes']; ?>',
-    cookieDeclineButtonText: '<?php echo $theme['cookie_no']; ?>',
-    cookieExpires: 365
-  });
+	$.cookieCuttr({
+		cookieAnalytics: false,
+		cookiePolicyPage: true,
+		cookieAcceptButton: true,
+		cookieDeclineButton: true,
+		cookiePolicyPageMessage: '<?php echo $theme['cookie_message']; ?>',
+		cookieAcceptButtonText: '<?php echo $theme['cookie_yes']; ?>',
+		cookieDeclineButtonText: '<?php echo $theme['cookie_no']; ?>',
+		cookieExpires: 365
+	});
 });
 if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {
-  <?php echo ($google_analytics) ? "<br>" + $google_analytics : ''; ?><?php echo ($alexa_analytics) ? "<br>" + $alexa_analytics : ''; ?>
+	<?php echo ($google_analytics) ? "<br>" + $google_analytics : ''; ?><?php echo ($alexa_analytics) ? "<br>" + $alexa_analytics : ''; ?>
 }
 </script>
 <?php } else { ?>
@@ -106,7 +106,7 @@ if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {
         <div class="button-search"></div>
       </div>
     </div>
-  	<?php echo $language; ?>
-  	<?php echo $currency; ?>
+  <?php echo $language; ?>
+  <?php echo $currency; ?>
   </div>
 </div>

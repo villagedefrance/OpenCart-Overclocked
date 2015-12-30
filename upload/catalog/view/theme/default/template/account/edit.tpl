@@ -67,7 +67,7 @@
       <tr>
         <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
         <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
-		<?php if ($error_date_of_birth) { ?>
+        <?php if ($error_date_of_birth) { ?>
           <span class="error"><?php echo $error_date_of_birth; ?></span>
         <?php } ?></td>
       </tr>

@@ -17,7 +17,7 @@
         <div class="return-status"><b><?php echo $text_status; ?></b> <?php echo $return['status']; ?></div>
         <div class="return-content">
           <div>
-		    <b><?php echo $text_date_added; ?></b> <?php echo $return['date_added']; ?><br />
+            <b><?php echo $text_date_added; ?></b> <?php echo $return['date_added']; ?><br />
             <b><?php echo $text_order_id; ?></b> <?php echo $return['order_id']; ?>
           </div>
           <div><b><?php echo $text_customer; ?></b> <?php echo $return['name']; ?></div>

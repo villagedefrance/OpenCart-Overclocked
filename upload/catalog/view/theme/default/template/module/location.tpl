@@ -4,13 +4,13 @@
   <div class="box-heading"><?php echo $title; ?></div>
   <div class="box-content">
     <?php foreach ($locations as $location) { ?>
-	  <div class="box-news">
+      <div class="box-news">
         <?php if ($location['thumb']) { ?>
           <img src="<?php echo $location['thumb']; ?>" alt="<?php echo $location['name']; ?>" />
         <?php } ?>
         <h4><?php echo $location['name']; ?></h4>
         <p><?php echo $location['address']; ?></p>
-		<?php echo $location['details']; ?>
+        <?php echo $location['details']; ?>
       </div>
     <?php } ?>
   </div>
@@ -18,13 +18,13 @@
 <?php } else { ?>
   <div style="margin-bottom:20px;">
     <?php foreach ($locations as $location) { ?>
-	  <div class="box-news">
+      <div class="box-news">
         <?php if ($location['thumb']) { ?>
           <img src="<?php echo $location['thumb']; ?>" alt="<?php echo $location['name']; ?>" />
         <?php } ?>
         <h4><?php echo $location['name']; ?></h4>
         <p><?php echo $location['address']; ?></p>
-		<?php echo $location['details']; ?>
+        <?php echo $location['details']; ?>
       </div>
     <?php } ?>
   </div>

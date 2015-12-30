@@ -130,7 +130,7 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
 					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
-	      				html += ' selected="selected"';
+						html += ' selected="selected"';
 					}
 
 					html += '>' + json['zone'][i]['name'] + '</option>';

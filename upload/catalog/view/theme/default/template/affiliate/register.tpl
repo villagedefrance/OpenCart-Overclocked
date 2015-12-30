@@ -252,7 +252,7 @@ $('select[name=\'country_id\']').bind('change', function() {
 					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
 					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
-	      				html += ' selected="selected"';
+						html += ' selected="selected"';
 					}
 
 					html += '>' + json['zone'][i]['name'] + '</option>';
@@ -283,11 +283,11 @@ $('input[name=\'payment\']:checked').trigger('change');
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    $('#password1').on('keyup', function() {
-        $('#check').html(checkStrength($('#password1').val()));
-    });
+	$('#password1').on('keyup', function() {
+		$('#check').html(checkStrength($('#password1').val()));
+	});
 
-    function checkStrength(password1) {
+	function checkStrength(password1) {
 		var strength = 0;
 
 		if (password1.length < 4) {
@@ -317,9 +317,9 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    var password1 = $('#password1');
-    var password2 = $('#password2');
-    var passwordInfo = $('#password-info');
+	var password1 = $('#password1');
+	var password2 = $('#password2');
+	var passwordInfo = $('#password-info');
 
 	$(password2).on('keyup', function() {
 		if (password1.val() === password2.val()) {

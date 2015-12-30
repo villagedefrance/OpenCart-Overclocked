@@ -40,10 +40,10 @@
     <div class="review-list">	
       <?php foreach ($reviews as $review) { ?>
         <div>
-		  <?php if (!$label && $review['offer']) { ?>
+          <?php if (!$label && $review['offer']) { ?>
             <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
-		  <?php if ($review['thumb']) { ?>
+          <?php if ($review['thumb']) { ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
           <?php } ?>
           <div class="name">
@@ -55,10 +55,10 @@
           <div class="text">&#8220;<?php echo $review['text']; ?>&#8221;</div>
           <div class="author"><?php echo $review['author']; ?></div>
           <div class="date"><?php echo $review['date_added']; ?></div>
-		  <div class="rating">
+          <div class="rating">
             <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $review['rating']; ?>.png" alt="<?php echo $review['reviews']; ?>" />
           </div>
-		  <div class="addons">
+          <div class="addons">
             <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
             <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
             <a href="<?php echo $review['href']; ?>" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_view.png" alt="<?php echo $review['name']; ?>" title="<?php echo $review['name']; ?>" /></a>
@@ -69,7 +69,7 @@
             <?php } elseif ($dob && $review['age_minimum'] && !$review['age_checked']) { ?>
               <p class="hidden"></p>
             <?php } else { ?>
-		      <?php if ($review['quote']) { ?>
+              <?php if ($review['quote']) { ?>
                 <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
               <?php } else { ?>
                 <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />

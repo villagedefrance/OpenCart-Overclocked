@@ -38,14 +38,14 @@
           </div>
         <?php } ?>
       <?php } ?>
-	  <?php if ($lightbox == 'swipebox') { ?>
+      <?php if ($lightbox == 'swipebox') { ?>
         <?php if ($thumb) { ?>
           <?php if (!$label && $offers) { ?>
             <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox" rel="swipe"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
-		  </div>
+          </div>
         <?php } ?>
         <?php if ($images) { ?>
           <div class="image-additional">
@@ -457,7 +457,7 @@
           <div class="captcha-text">
             <label><?php echo $entry_captcha; ?></label>
             <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-		  </div>
+          </div>
           <div class="captcha-action"></div>
         </div>
         <br />
@@ -493,7 +493,7 @@
             <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
           <?php } ?>
           <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a>
-	    </div>
+        </div>
       <?php } ?>
       </div>
     </div>
@@ -556,8 +556,8 @@ $(document).ready(function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#zoom .simpleLens-thumbnails-container img').click(function(event) {
-        event.preventDefault();
-        return false;
+		event.preventDefault();
+		return false;
 	});
 	$('#zoom .simpleLens-thumbnails-container img').simpleGallery();
 	$('#zoom .simpleLens-big-image').simpleLens();

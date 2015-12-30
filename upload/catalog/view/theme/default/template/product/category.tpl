@@ -79,7 +79,7 @@
         <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
-		<?php } ?>
+        <?php } ?>
         <div class="manufacturer"><?php echo $this->config->get('default_manufacturer_name') ? $product['manufacturer'] : ""; ?></div>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
         <div class="description"><?php echo $product['description']; ?></div>
@@ -104,7 +104,7 @@
         <?php } ?>
         <?php if ($product['rating']) { ?>
           <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
-		<?php } ?>
+        <?php } ?>
         <div class="addons">
           <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
           <a onclick="addToCompare('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>

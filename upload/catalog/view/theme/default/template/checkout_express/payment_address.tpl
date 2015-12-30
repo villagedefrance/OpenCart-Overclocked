@@ -94,13 +94,13 @@
 
 <script type="text/javascript"><!--
 $('#payment-address input[name=\'payment_address\']').live('change', function() {
-    if (this.value == 'new') {
-        $('#payment-existing').hide();
-        $('#payment-new').show(500);
-    } else {
-        $('#payment-existing').show(500);
-        $('#payment-new').hide();
-    }
+	if (this.value == 'new') {
+		$('#payment-existing').hide();
+		$('#payment-new').show(500);
+	} else {
+		$('#payment-existing').show(500);
+		$('#payment-new').hide();
+	}
 });
 //--></script>
 
@@ -109,54 +109,54 @@ var postcode_required = 0;
 
 $('#payment-address select[name=\'country_id\']').bind('change', function() {
 	if (this.value == '') { return; }
-    $.ajax({
-        url: 'index.php?route=checkout_express/checkout/country&country_id=' + this.value,
-        dataType: 'json',
-        beforeSend: function() {
-            $('#payment-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
-        },
-        complete: function() {
-            $('.wait').remove();
-        },
-        success: function(json) {
-            var html = '<option value=""><?php echo $text_select; ?></option>';
+	$.ajax({
+		url: 'index.php?route=checkout_express/checkout/country&country_id=' + this.value,
+		dataType: 'json',
+		beforeSend: function() {
+			$('#payment-address select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
+		},
+		complete: function() {
+			$('.wait').remove();
+		},
+		success: function(json) {
+			var html = '<option value=""><?php echo $text_select; ?></option>';
 
-            if (json['zone'] != '') {
-                for (var i = 0; i < json['zone'].length; i++) {
-                    html += '<option value="' + json['zone'][i]['zone_id'] + '"';
+			if (json['zone'] != '') {
+				for (var i = 0; i < json['zone'].length; i++) {
+					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
-                    if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
-                        html += ' selected="selected"';
-                    }
+					if (json['zone'][i]['zone_id'] == '<?php echo $zone_id; ?>') {
+						html += ' selected="selected"';
+					}
 
-                    html += '>' + json['zone'][i]['name'] + '</option>';
-                }
-            } else {
-                html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
-            }
+					html += '>' + json['zone'][i]['name'] + '</option>';
+				}
+			} else {
+				html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
+			}
 
-            $('#payment-address select[name=\'zone_id\']').html(html);
+			$('#payment-address select[name=\'zone_id\']').html(html);
 
-            document.getElementsByName('city')[0].value='';
+			document.getElementsByName('city')[0].value='';
 
-            var postcode_required = json['postcode_required'] == '1';
+			var postcode_required = json['postcode_required'] == '1';
 
-            <?php if ($this->config->get('config_express_postcode')) { ?>
-                postcode_required = 1;
-            <?php } ?>
+			<?php if ($this->config->get('config_express_postcode')) { ?>
+				postcode_required = 1;
+			<?php } ?>
 
-            $('#payment-address select[name=\'zone_id\']').trigger('change');
+			$('#payment-address select[name=\'zone_id\']').trigger('change');
 
-            if (json['postcode_required'] == '1') {
-                $('#payment-postcode-required').show(500);
-            } else {
-                $('#payment-postcode-required').hide(100);
-            }
-        },
-        error:function (xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
+			if (json['postcode_required'] == '1') {
+				$('#payment-postcode-required').show(500);
+			} else {
+				$('#payment-postcode-required').hide(100);
+			}
+		},
+		error:function (xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
 });
 
 $('#payment-address select[name=\'country_id\']').trigger('change');

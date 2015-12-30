@@ -68,7 +68,7 @@
       <tr>
         <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
         <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
-		<?php if ($error_date_of_birth) { ?>
+        <?php if ($error_date_of_birth) { ?>
           <span class="error"><?php echo $error_date_of_birth; ?></span>
         <?php } ?></td>
       </tr>
@@ -313,11 +313,11 @@ $('select[name=\'country_id\']').trigger('change');
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    $('#password1').on('keyup', function() {
-        $('#check').html(checkStrength($('#password1').val()));
-    });
+	$('#password1').on('keyup', function() {
+		$('#check').html(checkStrength($('#password1').val()));
+	});
 
-    function checkStrength(password1) {
+	function checkStrength(password1) {
 		var strength = 0;
 
 		if (password1.length < 4) {
@@ -347,9 +347,9 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-    var password1 = $('#password1');
-    var password2 = $('#password2');
-    var passwordInfo = $('#password-info');
+	var password1 = $('#password1');
+	var password2 = $('#password2');
+	var passwordInfo = $('#password-info');
 
 	$(password2).on('keyup', function() {
 		if (password1.val() === password2.val()) {

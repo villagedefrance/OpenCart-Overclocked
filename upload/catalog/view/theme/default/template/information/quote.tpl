@@ -42,7 +42,7 @@
             <?php } ?>
           </select>
           <br />
-		  <br />
+          <br />
           <b><?php echo $entry_enquiry; ?></b><br />
           <textarea name="enquiry" cols="40" rows="10" style="width:99%;"><?php echo $enquiry; ?></textarea>
           <br />
@@ -50,7 +50,7 @@
             <span class="error"><?php echo $error_enquiry; ?></span>
           <?php } ?>
           <br />
-		  <div id="captcha-wrap">
+          <div id="captcha-wrap">
             <div class="captcha-box">
               <div class="captcha-view">
                 <img src="index.php?route=information/quote/captcha" alt="" id="captcha-image" />
@@ -59,7 +59,7 @@
             <div class="captcha-text">
               <label><?php echo $entry_captcha; ?></label>
               <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-		    </div>
+            </div>
             <div class="captcha-action"></div>
           </div>
           <br />
@@ -78,7 +78,7 @@
             <input type="hidden" name="quote_file" value="" />
           </div>
           <br />
-		  <?php echo $text_file_size; ?>
+          <?php echo $text_file_size; ?>
           <br />
           <br />
           <br />
@@ -95,7 +95,7 @@
             <?php } ?>
             <?php if ($fax) { ?>
               <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
-			  <br />
+              <br />
             <?php } ?>
             <br />
           <?php } ?>

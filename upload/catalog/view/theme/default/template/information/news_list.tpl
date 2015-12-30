@@ -47,7 +47,7 @@
             <div class="image"><a href="<?php echo $news['href']; ?>"><img src="<?php echo $news['image']; ?>" alt="<?php echo $news['title']; ?>" /></a></div>
           <?php } ?>
           <div class="title"><a href="<?php echo $news['href']; ?>" style="text-decoration:none;"><?php echo $news['title']; ?></a></div>
-		  <div class="description"><?php echo $news['description']; ?></div>
+          <div class="description"><?php echo $news['description']; ?></div>
           <div class="date"><?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?></div>
         </div>
       <?php } ?>

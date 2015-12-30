@@ -47,7 +47,6 @@ $('input[name=\'product\']').autocomplete({
 	select: function(event, ui) {
 		$('input[name=\'product\']').attr('value', ui.item.label);
 		$('textarea[name=\'link\']').attr('value', ui.item.value);
-
 		return false;
 	},
 	focus: function(event, ui) {

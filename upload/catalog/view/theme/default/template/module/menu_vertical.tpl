@@ -65,8 +65,8 @@
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#<?php echo $category['item_id']; ?>').on('mouseenter mouseleave', function() {
-        $('#<?php echo $category['item_id']; ?> a').toggleClass('active');
-    });
+		$('#<?php echo $category['item_id']; ?> a').toggleClass('active');
+	});
 });
 //--></script>
 <?php } ?>

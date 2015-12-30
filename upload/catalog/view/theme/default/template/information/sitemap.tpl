@@ -38,9 +38,9 @@
       <ul>
         <li><a href="<?php echo $cart; ?>"><?php echo $text_cart; ?></a></li>
         <li class="last-line"><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>
-		<li><a href="<?php echo $product_list; ?>"><?php echo $text_product_list; ?></a></li>
-		<li><a href="<?php echo $product_wall; ?>"><?php echo $text_product_wall; ?></a></li>
-		<li><a href="<?php echo $category_list; ?>"><?php echo $text_category_list; ?></a></li>
+        <li><a href="<?php echo $product_list; ?>"><?php echo $text_product_list; ?></a></li>
+        <li><a href="<?php echo $product_wall; ?>"><?php echo $text_product_wall; ?></a></li>
+        <li><a href="<?php echo $category_list; ?>"><?php echo $text_category_list; ?></a></li>
         <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
         <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
         <li><a href="<?php echo $review_list; ?>"><?php echo $text_review_list; ?></a></li>
@@ -55,16 +55,16 @@
             <li><a href="<?php echo $history; ?>"><?php echo $text_history; ?></a></li>
             <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
             <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-			<?php if ($allow_return) { ?>
+            <?php if ($allow_return) { ?>
             <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-			<li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
-			<?php } ?>
+            <li><a href="<?php echo $addreturn; ?>"><?php echo $text_addreturn; ?></a></li>
+            <?php } ?>
             <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
             <li><a href="<?php echo $giftvoucher; ?>"><?php echo $text_giftvoucher; ?></a></li>
             <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
           </ul>
         </li>
-		<?php if ($allow_affiliate) { ?>
+        <?php if ($allow_affiliate) { ?>
         <li class="last-line"><a href="<?php echo $affiliate_account; ?>"><?php echo $text_affiliate_account; ?></a>
           <ul>
             <li><a href="<?php echo $affiliate_login; ?>"><?php echo $text_affiliate_login; ?></a></li>
@@ -75,7 +75,7 @@
             <li><a href="<?php echo $affiliate_transaction; ?>"><?php echo $text_affiliate_transaction; ?></a></li>
           </ul>
         </li>
-		<?php } ?>
+        <?php } ?>
         <li class="last-line"><a href="<?php echo $sitemap; ?>"><?php echo $text_information; ?></a>
           <ul>
           <?php foreach ($informations as $information) { ?>

@@ -85,7 +85,7 @@
           <?php if ($error_model) { ?>
             <span class="error"><?php echo $error_model; ?></span>
           <?php } ?>
-		  <br />
+          <br />
           <span class="required">*</span> <b><?php echo $entry_reason; ?></b><br />
           <table>
             <?php foreach ($return_reasons as $return_reason) { ?>
@@ -136,7 +136,7 @@
           <div class="captcha-text">
             <label><?php echo $entry_captcha; ?></label>
             <input type="text" name="captcha" id="captcha" value="<?php echo $captcha; ?>" autocomplete="off" />
-		  </div>
+          </div>
           <div class="captcha-action"></div>
         </div>
         <br />

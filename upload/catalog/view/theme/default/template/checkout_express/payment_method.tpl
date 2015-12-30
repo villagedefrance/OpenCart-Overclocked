@@ -20,11 +20,11 @@
             <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
           <?php } ?>
         </td>
-		<td>
-		  <?php if ($payment_images) { ?>
+        <td>
+          <?php if ($payment_images) { ?>
             <?php foreach ($payment_images as $payment_image) { ?>
               <?php if ($payment_image['payment'] == strtolower($payment_method['code'])) { ?>
-				<?php if ($payment_image['status']) { ?>
+                <?php if ($payment_image['status']) { ?>
                   <label for="<?php echo $payment_method['code']; ?>"><img src="<?php echo $payment_image['image']; ?>" title="<?php echo $payment_method['title']; ?>" alt="<?php echo $payment_method['title']; ?>" />
                     <?php if ($paypal_fee) { ?>
                       <span> + <?php echo $paypal_fee; ?></span>
@@ -83,7 +83,7 @@ $(document).ready(function() {
 	if ($('#payment-method :radio').size() == 1) {
 		$('#payment-method :radio').click();
 		$('#button-payment-method').click();
-   	}
+	}
 });
 //--></script>
 <?php } ?>
