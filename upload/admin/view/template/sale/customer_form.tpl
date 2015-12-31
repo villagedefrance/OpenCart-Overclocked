@@ -548,7 +548,7 @@ $('#transaction .pagination a').live('click', function() {
 
 function deleteTransaction(transaction_id) {
 	$.ajax({
-		url: 'index.php?route=sale/customer/DeleteTransaction&token=<?php echo $token; ?>&transaction_id=' + transaction_id + '&customer_id=<?php echo $customer_id; ?>',
+		url: 'index.php?route=sale/customer/deleteTransaction&token=<?php echo $token; ?>&transaction_id=' + transaction_id + '&customer_id=<?php echo $customer_id; ?>',
 		type: 'post',
 		dataType: 'html',
 		beforeSend: function() {
