@@ -157,7 +157,7 @@ class ControllerCheckoutExpressShippingAddress extends Controller {
 			$this->request->post['firstname'] = $this->model_checkout_checkout_tools->getFirstName($this->request->post['firstname']);
 			$this->request->post['lastname'] = $this->model_checkout_checkout_tools->getLastName($this->request->post['firstname']);
 
-            $this->request->post['address_2'] = '';
+			$this->request->post['address_2'] = '';
 
 			if (!isset($this->request->post['company_id'])) {
 				$this->request->post['company_id'] = '';

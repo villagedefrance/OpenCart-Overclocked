@@ -24,10 +24,10 @@ So feel free to post your comments or get in touch.
 Latest Scripts:
 - jQuery 1.11.3.
 - jQuery UI 1.11.4.
-- CKEditor 4.5.5 Full.
+- CKEditor 4.5.6 Full.
 - jQuery Flot 0.8.2.
 - Camera 1.3.4.
-- Slick 1.5.8.
+- Slick 1.5.9.
 - ...
 
 Main Features:

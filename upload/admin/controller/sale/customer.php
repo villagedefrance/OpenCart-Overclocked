@@ -1065,12 +1065,14 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if (isset($this->request->post['date_of_birth']) && (utf8_strlen($this->request->post['date_of_birth']) == 10)) {
-			if ($this->request->post['date_of_birth'] != date('Y-m-d', strtotime($this->request->post['date_of_birth']))) {
+		if ($this->config->get('config_customer_dob')) {
+			if (isset($this->request->post['date_of_birth']) && (utf8_strlen($this->request->post['date_of_birth']) == 10)) {
+				if ($this->request->post['date_of_birth'] != date('Y-m-d', strtotime($this->request->post['date_of_birth']))) {
+					$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
+				}
+			} else {
 				$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
 			}
-		} else {
-			$this->error['date_of_birth'] = $this->language->get('error_date_of_birth');
 		}
 
 		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {
@@ -1423,6 +1425,9 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_description'] = $this->language->get('column_description');
 		$this->data['column_amount'] = $this->language->get('column_amount');
+		$this->data['column_action'] = $this->language->get('column_action');
+
+		$this->data['button_delete'] = $this->language->get('button_delete');
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -1440,6 +1445,7 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
+				'id'      			=> $result['customer_transaction_id'],
 				'amount'      	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
 				'description' 	=> $result['description'],
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
@@ -1454,6 +1460,76 @@ class ControllerSaleCustomer extends Controller {
 		$pagination->total = $transaction_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;
+		$pagination->text = $this->language->get('text_pagination');
+		$pagination->url = $this->url->link('sale/customer/transaction', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
+
+		$this->data['pagination'] = $pagination->render();
+
+		$this->template = 'sale/customer_transaction.tpl';
+
+		$this->response->setOutput($this->render());
+	}
+
+	public function deleteTransaction() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) { 
+			$this->model_sale_customer->deleteTransactionbyID($this->request->get['transaction_id']);
+
+			$this->data['success'] = $this->language->get('text_success');
+		} else {
+			$this->data['success'] = '';
+		}
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->data['error_warning'] = $this->language->get('error_permission');
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_balance'] = $this->language->get('text_balance');
+
+		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_description'] = $this->language->get('column_description');
+		$this->data['column_amount'] = $this->language->get('column_amount');
+		$this->data['column_action'] = $this->language->get('column_action');
+
+		$this->data['button_delete'] = $this->language->get('button_delete');
+
+		if (isset($this->request->get['page'])) {
+			$page = $this->request->get['page'];
+		} else {
+			$page = 1;
+		}  
+
+		// Pagination
+		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
+		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
+
+		$this->data['transactions'] = array();
+
+		$results = $this->model_sale_customer->getTransactions($this->request->get['customer_id'], ($page - 1) * 10, 10);
+
+		foreach ($results as $result) {
+			$this->data['transactions'][] = array(
+				'id'      			=> $result['customer_transaction_id'],
+				'amount'			=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'description'	=> $result['description'],
+				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+			);
+		}
+
+		$this->data['balance'] = $this->currency->format($this->model_sale_customer->getTransactionTotal($this->request->get['customer_id']), $this->config->get('config_currency'));
+
+		$transaction_total = $this->model_sale_customer->getTotalTransactions($this->request->get['customer_id']);
+
+		$pagination = new Pagination();
+		$pagination->total = $transaction_total;
+		$pagination->page = $page;
+		$pagination->limit = 10; 
 		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('sale/customer/transaction', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
 

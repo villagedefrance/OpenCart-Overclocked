@@ -339,9 +339,9 @@ class ModelUpgrade extends Model {
 		set_time_limit(30);
 
 		// Add serialized to Setting
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
+		$setting_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
 
-		foreach ($query->rows as $setting) {
+		foreach ($setting_query->rows as $setting) {
 			if (!$setting['serialized']) {
 				$settings[$setting['key']] = $setting['value'];
 			} else {
@@ -407,12 +407,12 @@ class ModelUpgrade extends Model {
 		}
 
 		// Move blacklisted ip to ban ip table
-		$query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "customer_ip_blacklist'");
+		$ip_query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "customer_ip_blacklist'");
 
-		if ($query->num_rows) {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip_blacklist");
+		if ($ip_query->num_rows) {
+			$blacklist_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_ip_blacklist");
 
-			foreach ($query->rows as $result) {
+			foreach ($blacklist_query->rows as $result) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "customer_ban_ip SET ip = '" . $this->db->escape($result['ip']) . "'");
 			}
 
@@ -427,13 +427,6 @@ class ModelUpgrade extends Model {
 
 		// Delete unused order_fraud table
 		$this->db->query("DROP TABLE IF EXISTS " . DB_PREFIX . "order_fraud");
-
-		// Create system/upload directory
-		$upload_directory = DIR_SYSTEM . 'upload/';
-
-		if (!is_dir($upload_directory)) {
-			mkdir(DIR_SYSTEM . 'upload', 0777);
-		}
 
 		clearstatcache();
 
@@ -457,9 +450,9 @@ class ModelUpgrade extends Model {
 			// Fix for records with no paths
 			$level = 0;
 
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$parent_id . "' ORDER BY `level` ASC");
+			$level_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$parent_id . "' ORDER BY `level` ASC");
 
-			foreach ($query->rows as $result) {
+			foreach ($level_query->rows as $result) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_path SET category_id = '" . (int)$category['category_id'] . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
 
 				$level++;
@@ -468,6 +461,13 @@ class ModelUpgrade extends Model {
 			$this->db->query("REPLACE INTO " . DB_PREFIX . "category_path SET category_id = '" . (int)$category['category_id'] . "', path_id = '" . (int)$category['category_id'] . "', `level` = '" . (int)$level . "'");
 
 			$this->repairCategories($category['category_id']);
+		}
+
+		// Create system/upload directory
+		$upload_directory = DIR_SYSTEM . 'upload/';
+
+		if (!is_dir($upload_directory)) {
+			mkdir(DIR_SYSTEM . 'upload', 0777);
 		}
 
 		$step3 = true;

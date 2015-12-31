@@ -70,9 +70,9 @@ class ControllerCheckoutExpressLogin extends Controller {
                 } else {
 					$json['mail'] = $this->request->post['email'];
 				}
-            }
+			}
 
-            if ($this->request->post['email'] && $this->request->post['password']) {
+			if ($this->request->post['email'] && $this->request->post['password']) {
 				if (!$this->customer->login($this->request->post['email'], $this->request->post['password'])) {
 					$json['error']['warning'] = $this->language->get('error_login');
 				}

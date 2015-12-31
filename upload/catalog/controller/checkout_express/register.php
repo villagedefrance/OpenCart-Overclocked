@@ -6,8 +6,8 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		$this->data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('checkout_express/checkout', '', 'SSL'));
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
-    	$this->data['text_your_address'] = $this->language->get('text_your_address');
-    	$this->data['text_your_password'] = $this->language->get('text_your_password');
+		$this->data['text_your_address'] = $this->language->get('text_your_address');
+		$this->data['text_your_password'] = $this->language->get('text_your_password');
 		$this->data['text_female'] = $this->language->get('text_female');
 		$this->data['text_male'] = $this->language->get('text_male');
 		$this->data['text_select'] = $this->language->get('text_select');
@@ -15,27 +15,27 @@ class ControllerCheckoutExpressRegister extends Controller {
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 
-    	$this->data['entry_firstname'] = $this->language->get('entry_firstname');
-    	$this->data['entry_lastname'] = $this->language->get('entry_lastname');
-    	$this->data['entry_email'] = $this->language->get('entry_email');
-    	$this->data['entry_telephone'] = $this->language->get('entry_telephone');
-    	$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
+		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
+		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
+		$this->data['entry_fax'] = $this->language->get('entry_fax');
 		$this->data['entry_gender'] = $this->language->get('entry_gender');
 		$this->data['entry_date_of_birth'] = $this->language->get('entry_date_of_birth');
 		$this->data['entry_company'] = $this->language->get('entry_company');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
 		$this->data['entry_tax_id'] = $this->language->get('entry_tax_id');
-    	$this->data['entry_address_1'] = $this->language->get('entry_address_1');
-    	$this->data['entry_address_2'] = $this->language->get('entry_address_2');
-    	$this->data['entry_postcode'] = $this->language->get('entry_postcode');
-    	$this->data['entry_city'] = $this->language->get('entry_city');
-    	$this->data['entry_country'] = $this->language->get('entry_country');
-    	$this->data['entry_zone'] = $this->language->get('entry_zone');
-    	$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_address_1'] = $this->language->get('entry_address_1');
+		$this->data['entry_address_2'] = $this->language->get('entry_address_2');
+		$this->data['entry_postcode'] = $this->language->get('entry_postcode');
+		$this->data['entry_city'] = $this->language->get('entry_city');
+		$this->data['entry_country'] = $this->language->get('entry_country');
+		$this->data['entry_zone'] = $this->language->get('entry_zone');
+		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 		$this->data['entry_shipping'] = $this->language->get('entry_shipping');
-    	$this->data['entry_express_newsletter'] = $this->language->get('entry_express_newsletter');
+		$this->data['entry_express_newsletter'] = $this->language->get('entry_express_newsletter');
 
 		$this->data['text_express_full_name'] = $this->language->get('text_express_full_name');
 		$this->data['text_express_address'] = $this->language->get('text_express_address');
@@ -44,13 +44,13 @@ class ControllerCheckoutExpressRegister extends Controller {
 		$this->data['text_express_generated'] = $this->language->get('text_express_generated');
 		$this->data['text_express_company_info'] = $this->language->get('text_express_company_info');
 
-    	$this->data['button_express_go'] = $this->language->get('button_express_go');
+		$this->data['button_express_go'] = $this->language->get('button_express_go');
 
 		$this->load->model('checkout/checkout_tools');
 
-        $this->data['email'] = $this->request->get['mail'];
+		$this->data['email'] = $this->request->get['mail'];
 
-        if ($this->config->get('config_express_autofill')) {
+		if ($this->config->get('config_express_autofill')) {
 			$this->data['firstname'] = $this->model_checkout_checkout_tools->extractName($this->request->get['mail']);
 		} else {
 			$this->data['firstname'] = '';
@@ -58,7 +58,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 		$this->data['gender'] = 0;
 
-        if ($this->config->get('config_express_password')) {
+		if ($this->config->get('config_express_password')) {
 			$this->data['password'] = $this->model_checkout_checkout_tools->generatePassword();
 		} else {
 			$this->data['password'] = '';
@@ -86,17 +86,17 @@ class ControllerCheckoutExpressRegister extends Controller {
 			$this->data['postcode'] = '';
 		}
 
-    	if (isset($this->session->data['shipping_country_id'])) {
+		if (isset($this->session->data['shipping_country_id'])) {
 			$this->data['country_id'] = $this->session->data['shipping_country_id'];
 		} else {
-      		$this->data['country_id'] = $this->config->get('config_country_id');
-    	}
+			$this->data['country_id'] = $this->config->get('config_country_id');
+		}
 
-    	if (isset($this->session->data['shipping_zone_id'])) {
+		if (isset($this->session->data['shipping_zone_id'])) {
 			$this->data['zone_id'] = $this->session->data['shipping_zone_id'];
 		} else {
-      		$this->data['zone_id'] = '';
-    	}
+			$this->data['zone_id'] = '';
+		}
 
 		$this->load->model('localisation/country');
 
@@ -183,7 +183,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 				$json['error']['firstname'] = $this->language->get('error_fullname');
 			}
 
-            if ($this->config->get('config_express_phone') == 2) {
+			if ($this->config->get('config_express_phone') == 2) {
 				if ((utf8_strlen($this->request->post['telephone']) < 1) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 					$json['error']['telephone'] = $this->language->get('error_telephone');
 				}
@@ -222,8 +222,8 @@ class ControllerCheckoutExpressRegister extends Controller {
 
 			$customer_group = $this->model_account_customer_group->getCustomerGroup($customer_group_id);
 
-            if ($this->config->get('config_express_billing')) {
-                if ($customer_group) {
+			if ($this->config->get('config_express_billing')) {
+				if ($customer_group) {
 					// Company ID
 					if ($customer_group['company_id_display'] && $customer_group['company_id_required'] && empty($this->request->post['company_id'])) {
 						$json['error']['company_id'] = $this->language->get('error_company_id');
@@ -281,7 +281,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 				}
 			}
 
-        } else {
+		} else {
 			$json = array();
 		}
 

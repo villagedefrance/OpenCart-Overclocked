@@ -13,6 +13,7 @@
       <td class="left"><?php echo $column_date_added; ?></td>
       <td class="left"><?php echo $column_description; ?></td>
       <td class="right"><?php echo $column_amount; ?></td>
+      <td class="right"><?php echo $column_action; ?></td>
     </tr>
   </thead>
   <tbody>
@@ -22,16 +23,18 @@
       <td class="left"><?php echo $transaction['date_added']; ?></td>
       <td class="left"><?php echo $transaction['description']; ?></td>
       <td class="right"><?php echo $transaction['amount']; ?></td>
+      <td class="right"><a id="delete-transaction" class="button-delete" onclick="deleteTransaction(<?php echo $transaction['id']; ?>);"><?php echo $button_delete; ?></a></td>
     </tr>
   <?php } ?>
     <tr>
       <td></td>
       <td class="right"><b><?php echo $text_balance; ?></b></td>
       <td class="right"><?php echo $balance; ?></td>
+      <td></td>
     </tr>
   <?php } else { ?>
     <tr>
-      <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+      <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
     </tr>
   <?php } ?>
   </tbody>

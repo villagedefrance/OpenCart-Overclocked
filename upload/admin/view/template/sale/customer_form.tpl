@@ -428,8 +428,8 @@ function addAddress() {
 	html += '  <input type="hidden" name="address[' + address_row + '][address_id]" value="" />';
 	html += '  <table class="form">';
 	html += '    <tr>';
-	html += '	   <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>';
-	html += '	   <td><input type="text" name="address[' + address_row + '][firstname]" value="" size="30" /></td>';
+	html += '      <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][firstname]" value="" size="30" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>';
@@ -545,6 +545,26 @@ $('#transaction .pagination a').live('click', function() {
 	$('#transaction').load(this.href);
 	return false;
 });
+
+function deleteTransaction(transaction_id) {
+	$.ajax({
+		url: 'index.php?route=sale/customer/DeleteTransaction&token=<?php echo $token; ?>&transaction_id=' + transaction_id + '&customer_id=<?php echo $customer_id; ?>',
+		type: 'post',
+		dataType: 'html',
+		beforeSend: function() {
+			$('.success, .warning').remove();
+			$('#button-transaction').attr('disabled', true);
+			$('#transaction').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+		},
+		complete: function() {
+			$('#button-transaction').attr('disabled', false);
+			$('.attention').remove();
+		},
+		success: function(html) {
+			$('#transaction').html(html);
+		}
+	});
+}
 
 $('#transaction').load('index.php?route=sale/customer/transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
 

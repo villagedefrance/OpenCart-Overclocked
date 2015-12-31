@@ -55,9 +55,9 @@ class ControllerAccountAccount extends Controller {
 		$this->data['text_order'] = $this->language->get('text_order');
 		$this->data['text_download'] = $this->language->get('text_download');
 		$this->data['text_reward'] = $this->language->get('text_reward');
+		$this->data['text_transaction'] = $this->language->get('text_transaction');
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_addreturn'] = $this->language->get('text_addreturn');
-		$this->data['text_transaction'] = $this->language->get('text_transaction');
 		$this->data['text_recurring'] = $this->language->get('text_recurring');
 		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
 
@@ -67,9 +67,9 @@ class ControllerAccountAccount extends Controller {
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
 		$this->data['download'] = $this->url->link('account/download', '', 'SSL');
+		$this->data['transaction'] = $this->url->link('account/transaction', '', 'SSL');
 		$this->data['return'] = $this->url->link('account/return', '', 'SSL');
 		$this->data['addreturn'] = $this->url->link('account/return/insert', '', 'SSL');
-		$this->data['transaction'] = $this->url->link('account/transaction', '', 'SSL');
 		$this->data['recurring'] = $this->url->link('account/recurring', '', 'SSL');
 		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');
 

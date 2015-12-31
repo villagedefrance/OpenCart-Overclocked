@@ -33,14 +33,14 @@ class ControllerCheckoutExpressConfirm extends Controller {
 			$payment_address = $this->model_account_address->getAddress($this->session->data['payment_address_id']);
 		}
 
-        if (empty($payment_address) && !$this->config->get('config_express_billing')) {
-            if (isset($this->session->data['shipping_country_id'])) {
+		if (empty($payment_address) && !$this->config->get('config_express_billing')) {
+			if (isset($this->session->data['shipping_country_id'])) {
 				$payment_address['country_id'] = $this->session->data['shipping_country_id'];
 			} else {
 				$payment_address['country_id'] = $this->config->get('config_country_id');
 			}
 
-            if (isset($this->session->data['shipping_zone_id'])) {
+			if (isset($this->session->data['shipping_zone_id'])) {
 				$payment_address['zone_id'] = $this->session->data['shipping_zone_id'];
 			} else {
 				$payment_address['zone_id'] = '';
