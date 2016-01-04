@@ -701,20 +701,20 @@ class ControllerCatalogCategory extends Controller {
 	}
 
 	public function enable() {
-        $this->language->load('catalog/category');
+		$this->language->load('catalog/category');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/category');
+		$this->load->model('catalog/category');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $category_id) {
-                $this->model_catalog_category->editCategoryStatus($category_id, 1);
-            }
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $category_id) {
+				$this->model_catalog_category->editCategoryStatus($category_id, 1);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
@@ -728,31 +728,31 @@ class ControllerCatalogCategory extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page=' . $this->request->get['page'];
-            }
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
 
-            $this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
-    public function disable() {
-        $this->language->load('catalog/category');
+	public function disable() {
+		$this->language->load('catalog/category');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/category');
+		$this->load->model('catalog/category');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $category_id) {
-                $this->model_catalog_category->editCategoryStatus($category_id, 0);
-            }
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $category_id) {
+				$this->model_catalog_category->editCategoryStatus($category_id, 0);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
@@ -766,15 +766,15 @@ class ControllerCatalogCategory extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page=' . $this->request->get['page'];
-            }
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
 
-            $this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
 	// Filter - Autocomplete Off
 	public function filter() {

@@ -8,19 +8,19 @@ class ControllerCommonFileManagerFull extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-  		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('common/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -152,6 +152,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -219,6 +220,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -248,7 +250,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -257,6 +259,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$json['success'] = $this->language->get('text_create');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -281,7 +284,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -294,6 +297,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$json['success'] = $this->language->get('text_delete');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -354,7 +358,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -363,6 +367,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$json['success'] = $this->language->get('text_move');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -399,7 +404,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -412,6 +417,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$json['success'] = $this->language->get('text_copy');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -490,6 +496,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$json['success'] = $this->language->get('text_rename');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -575,7 +582,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/' . $this->_name)) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -586,6 +593,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

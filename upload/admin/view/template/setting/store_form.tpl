@@ -582,7 +582,7 @@ $('select[name=\'config_country_id\']').bind('change', function() {
 					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
 					if (json['zone'][i]['zone_id'] == '<?php echo $config_zone_id; ?>') {
-	      				html += ' selected="selected"';
+						html += ' selected="selected"';
 					}
 
 					html += '>' + json['zone'][i]['name'] + '</option>';
@@ -611,10 +611,10 @@ function image_upload(field, thumb) {
 
 	$('#dialog').dialog({
 		title: '<?php echo $text_image_manager; ?>',
-		close: function (event, ui) {
+		close: function(event, ui) {
 			if ($('#' + field).attr('value')) {
 				$.ajax({
-					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
+					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),
 					dataType: 'text',
 					success: function(data) {
 						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');

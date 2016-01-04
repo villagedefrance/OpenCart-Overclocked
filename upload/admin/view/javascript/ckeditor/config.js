@@ -8,11 +8,7 @@ CKEDITOR.editorConfig = function(config) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 
-	config.filebrowserBrowseUrl = 'index.php?route=common/filemanager';
-	config.filebrowserImageBrowseUrl = 'index.php?route=common/filemanager';
-	config.filebrowserFlashBrowseUrl = 'index.php?route=common/filemanager';
-
-	config.filebrowserWindowWidth = '800';
+	config.filebrowserWindowWidth = '760';
 	config.filebrowserWindowHeight = '480';
 
 	config.enterMode = CKEDITOR.ENTER_BR;

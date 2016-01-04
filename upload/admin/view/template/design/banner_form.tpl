@@ -143,7 +143,7 @@ function image_upload(field, thumb) {
 
 	$('#dialog').dialog({
 		title: '<?php echo $text_image_manager; ?>',
-		close: function (event, ui) {
+		close: function(event, ui) {
 			if ($('#' + field).attr('value')) {
 				$.ajax({
 					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),

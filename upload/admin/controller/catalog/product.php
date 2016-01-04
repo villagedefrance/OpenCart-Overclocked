@@ -1993,22 +1993,22 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	public function enable() {
-        $this->language->load('catalog/product');
+		$this->language->load('catalog/product');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/product');
+		$this->load->model('catalog/product');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $product_id) {
-                $this->model_catalog_product->editProductStatus($product_id, 1);
-            }
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $product_id) {
+				$this->model_catalog_product->editProductStatus($product_id, 1);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
-            if (isset($this->request->get['filter_name'])) {
+			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
 
@@ -2040,29 +2040,29 @@ class ControllerCatalogProduct extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-            $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
-    public function disable() {
-        $this->language->load('catalog/product');
+	public function disable() {
+		$this->language->load('catalog/product');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/product');
+		$this->load->model('catalog/product');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $product_id) {
-                $this->model_catalog_product->editProductStatus($product_id, 0);
-            }
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $product_id) {
+				$this->model_catalog_product->editProductStatus($product_id, 0);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
-            if (isset($this->request->get['filter_name'])) {
+			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
 
@@ -2094,11 +2094,11 @@ class ControllerCatalogProduct extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-            $this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
 	// Category - Autocomplete Off
 	public function category() {

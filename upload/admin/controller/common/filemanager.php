@@ -136,6 +136,7 @@ class ControllerCommonFileManager extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -203,6 +204,7 @@ class ControllerCommonFileManager extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -232,7 +234,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -241,6 +243,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['success'] = $this->language->get('text_create');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -265,7 +268,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -278,6 +281,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['success'] = $this->language->get('text_delete');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -338,7 +342,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -347,6 +351,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['success'] = $this->language->get('text_move');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -383,7 +388,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -396,6 +401,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['success'] = $this->language->get('text_copy');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -428,7 +434,7 @@ class ControllerCommonFileManager extends Controller {
 
 		$directories = glob(rtrim(str_replace(array('../', '..\\', '..'), '', $directory), '/') . '/*', GLOB_ONLYDIR);
 
-		foreach ($directories  as $directory) {
+		foreach ($directories as $directory) {
 			$output .= $this->recursiveFolders($directory);
 		}
 
@@ -465,7 +471,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -474,6 +480,7 @@ class ControllerCommonFileManager extends Controller {
 			$json['success'] = $this->language->get('text_rename');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -559,7 +566,7 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
-      		$json['error'] = $this->language->get('error_permission');
+			$json['error'] = $this->language->get('error_permission');
 		}
 
 		if (!isset($json['error'])) {
@@ -570,6 +577,7 @@ class ControllerCommonFileManager extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
