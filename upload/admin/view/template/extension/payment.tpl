@@ -16,6 +16,7 @@
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a href="<?php echo $payment_images; ?>" class="button"><?php echo $button_images; ?></a>
+        <a id="installed" class="button"><?php echo $button_filter; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
@@ -33,7 +34,7 @@
         <tbody>
         <?php if ($extensions) { ?>
           <?php foreach ($extensions as $extension) { ?>
-          <tr>
+          <tr<?php echo ($extension['set']) ? '' : ' class="not-set"'; ?>>
             <td class="left"><?php echo $extension['name']; ?></td>
             <td class="center"><?php echo $extension['link']; ?></td>
             <td class="center"><?php echo $extension['sort_order']; ?></td>
@@ -57,4 +58,13 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$("#installed").click(function() {
+		$(".not-set").toggle();
+	});
+});
+//--></script>
+
 <?php echo $footer; ?>

@@ -2,8 +2,8 @@
 class ModelToolExportImportCustomer extends Model {
 
 	public function csvExportCustomer($headers = array()) {
-	    $csv_delimiter = ";";
-	    $csv_enclosure = '"';
+		$csv_delimiter = ";";
+		$csv_enclosure = '"';
 		$csv_terminated = "\n";
 
 		$platform = $this->browser->getPlatform();
@@ -21,38 +21,38 @@ class ModelToolExportImportCustomer extends Model {
 
 		$output .= stripslashes(implode($csv_delimiter, $columns)) . "\n"; 
 
-	 	// Data
+		// Data
 		$result = $this->db->query("SELECT " . implode(',', $columns) . " FROM " . DB_PREFIX . "customer");
 
-	    foreach ($result->rows as $row) {
+		foreach ($result->rows as $row) {
 			$schema_insert = '';
 
 			$fields_cnt = count($row);
 
 			foreach ($row as $k => $v) {
-		        if ($row[$k] == '0' || $row[$k] != '') {
-		            if ($csv_enclosure == '') {
-		                $schema_insert .= $row[$k];
-		            } else {
-		            	$row[$k] = str_replace(array("\r","\n","\t"), "", $row[$k]);
-		            	$row[$k] = html_entity_decode($row[$k], ENT_COMPAT, 'UTF-8');
+				if ($row[$k] == '0' || $row[$k] != '') {
+					if ($csv_enclosure == '') {
+						$schema_insert .= $row[$k];
+					} else {
+						$row[$k] = str_replace(array("\r","\n","\t"), "", $row[$k]);
+						$row[$k] = html_entity_decode($row[$k], ENT_COMPAT, 'UTF-8');
 
-		                $schema_insert .= $csv_enclosure . str_replace($csv_enclosure, $csv_escaped . $csv_enclosure, $row[$k]) . $csv_enclosure;
-		            }
-		        } else {
-		            $schema_insert .= '';
-		        }
+						$schema_insert .= $csv_enclosure . str_replace($csv_enclosure, $csv_escaped . $csv_enclosure, $row[$k]) . $csv_enclosure;
+					}
+				} else {
+					$schema_insert .= '';
+				}
 
-		        if ($k < $fields_cnt - 1) {
-		            $schema_insert .= $csv_delimiter;
-		        }
-		    }
+				if ($k < $fields_cnt - 1) {
+					$schema_insert .= $csv_delimiter;
+				}
+			}
 
-		    $output .= $schema_insert;
-		    $output .= $csv_terminated;
-	    }
+			$output .= $schema_insert;
+			$output .= $csv_terminated;
+		}
 
-	    return $output;
+		return $output;
 	}
 
 	// Get customers for export

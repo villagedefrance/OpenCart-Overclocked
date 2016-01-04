@@ -3,8 +3,8 @@ class ModelToolExportImportRaw extends Model {
 
 	// Export SQL
 	public function csvExportRaw($table) {
-	    $csv_delimiter = ";";
-	    $csv_enclosure = '"';
+		$csv_delimiter = ";";
+		$csv_enclosure = '"';
 		$csv_terminated = "\n";
 
 		$platform = $this->browser->getPlatform();
@@ -17,54 +17,54 @@ class ModelToolExportImportRaw extends Model {
 
 		$query = "SELECT * FROM `" . $table . "`";
 
-	    $result = $this->db->query($query);
+		$result = $this->db->query($query);
 
-	    $columns = array_keys($result->row);
+		$columns = array_keys($result->row);
 
 		$output = '';
 
 		// Header
 	 	$output .= '"' . $table . '.' . stripslashes(implode('"' . $csv_delimiter . '"' . $table . '.', $columns)) . "\"\n"; 
 
-	 	// Data
-	    foreach ($result->rows as $row) {
+		// Data
+		foreach ($result->rows as $row) {
 			$schema_insert = '';
 
 			$fields_cnt = count($row);
 
 			foreach ($row as $k => $v) {
-		        if ($row[$k] == '0' || $row[$k] != '') {
-		            if ($csv_enclosure == '') {
-		                $schema_insert .= $row[$k];
-		            } else {
-		            	$row[$k] = str_replace(array("\r","\n","\t"), "", $row[$k]);
-		            	$row[$k] = html_entity_decode($row[$k], ENT_COMPAT, 'UTF-8');
+				if ($row[$k] == '0' || $row[$k] != '') {
+					if ($csv_enclosure == '') {
+						$schema_insert .= $row[$k];
+					} else {
+						$row[$k] = str_replace(array("\r","\n","\t"), "", $row[$k]);
+						$row[$k] = html_entity_decode($row[$k], ENT_COMPAT, 'UTF-8');
 
-		                $schema_insert .= $csv_enclosure . str_replace($csv_enclosure, $csv_escaped . $csv_enclosure, $row[$k]) . $csv_enclosure;
-		            }
-		        } else {
-		            $schema_insert .= '';
-		        }
+						$schema_insert .= $csv_enclosure . str_replace($csv_enclosure, $csv_escaped . $csv_enclosure, $row[$k]) . $csv_enclosure;
+					}
+				} else {
+					$schema_insert .= '';
+				}
 
-		        if ($k < $fields_cnt - 1) {
-		            $schema_insert .= $csv_delimiter;
-		        }
-		    }
+				if ($k < $fields_cnt - 1) {
+					$schema_insert .= $csv_delimiter;
+				}
+			}
 
-		    $output .= $schema_insert;
-		    $output .= $csv_terminated;
-	    }
+			$output .= $schema_insert;
+			$output .= $csv_terminated;
+		}
 
-	    return $output;
+		return $output;
 	}
 
 	// Import SQL
 	public function csvImportRaw($file) {
 		ini_set('max_execution_time', 3600);
 
-	    $handle = fopen($file, 'r');
+		$handle = fopen($file, 'r');
 
-	    if (!$handle) {
+		if (!$handle) {
 			die('Cannot open uploaded CSV file.');
 		}
 
@@ -92,28 +92,28 @@ class ModelToolExportImportRaw extends Model {
 			exit('Could not retrieve SQL table.');
 		}
 
-	    $row_count = 0;
+		$row_count = 0;
 
-        $sql_query_array = array();
+		$sql_query_array = array();
 
-	    // Read the file as csv
-	    while (($data = fgetcsv($handle, 10000, ";")) !== false) {
+		// Read the file as csv
+		while (($data = fgetcsv($handle, 10000, ";")) !== false) {
 			if (count($data) > count($columns)) {
 				$data = array_slice($data, 0, count($columns));
 			}
 
-	        $row_count++;
+			$row_count++;
 
-	        $pattern = '/\A\d{1,2}\/\d{1,2}\/\d{4}/';
-	        $pattern2 = '/\A\d{1,2}\-\d{1,2}\-\d{4}/';
+			$pattern = '/\A\d{1,2}\/\d{1,2}\/\d{4}/';
+			$pattern2 = '/\A\d{1,2}\-\d{1,2}\-\d{4}/';
 
-	        foreach ($data as $key => $value) {
-	        	$matches = '';
+			foreach ($data as $key => $value) {
+				$matches = '';
 
-	        	$test = preg_match_all($pattern, $value, $matches);
-	        	$test2 = preg_match_all($pattern2, $value, $matches);
+				$test = preg_match_all($pattern, $value, $matches);
+				$test2 = preg_match_all($pattern2, $value, $matches);
 
-	        	if ($test || $test2) {
+				if ($test || $test2) {
 					if ($value == date('Y-m-d H:i:s', strtotime($value))) {
 						$new_value = date('Y-m-d H:i:s', strtotime($value));
 						$data[$key] = "DATETIME('" . $this->db->escape($new_value) . "')";
@@ -125,36 +125,36 @@ class ModelToolExportImportRaw extends Model {
 						$data[$key] = "DATE('" . $this->db->escape($value) . "')";
 					}
 
-	        	} else {
-	            	$data[$key] = "'" . $this->db->escape($value) . "'";
+				} else {
+					$data[$key] = "'" . $this->db->escape($value) . "'";
 				}
-	        }
+			}
 
-            // Try to prevent last missing columns sql error
-            if (count($data) < count($columns)) {
-                while (count($data) < count($columns)) {
-                    $key++;
-                    $data[$key] = "''";
-                }
-            }
+			// Try to prevent last missing columns sql error
+			if (count($data) < count($columns)) {
+				while (count($data) < count($columns)) {
+					$key++;
+					$data[$key] = "''";
+				}
+			}
 
 			$columns = $this->checkReserved($columns);
 
-            // Handle line in one by one query
-            $sql_query_array[] = "INSERT INTO " . $table . " (" . implode(',', $columns) . ") VALUES (" . htmlentities(implode(",", $data)) . ")";
-	    }
-
-	    fclose($handle);
-
-        if (count($sql_query_array)) {
-			$this->db->query("TRUNCATE TABLE " . $table);
-
-            foreach($sql_query_array as $sql_query) {
-                $this->db->query($sql_query);
-            }
+			// Handle line in one by one query
+			$sql_query_array[] = "INSERT INTO " . $table . " (" . implode(',', $columns) . ") VALUES (" . htmlentities(implode(",", $data)) . ")";
 		}
 
-	    return $row_count;
+		fclose($handle);
+
+		if (count($sql_query_array)) {
+			$this->db->query("TRUNCATE TABLE " . $table);
+
+			foreach ($sql_query_array as $sql_query) {
+				$this->db->query($sql_query);
+			}
+		}
+
+		return $row_count;
 	}
 
 	public function getTables() {

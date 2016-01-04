@@ -32,6 +32,7 @@ class ControllerExtensionTotal extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_filter'] = $this->language->get('button_filter');
 		$this->data['button_close'] = $this->language->get('button_close');
 
 		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
@@ -83,11 +84,13 @@ class ControllerExtensionTotal extends Controller {
 						'href'	=> $this->url->link('extension/total/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
 
+					$installed = false;
+
 				} else {
 					$action[] = array(
 						'text'	=> $this->language->get('text_edit'),
 						'type'	=> 'edit',
-						'href'	=> $this->url->link('total/' . $extension . '', 'token=' . $this->session->data['token'], 'SSL')
+						'href'	=> $this->url->link('total/' . $extension, 'token=' . $this->session->data['token'], 'SSL')
 					);
 
 					$action[] = array(
@@ -95,12 +98,15 @@ class ControllerExtensionTotal extends Controller {
 						'type'	=> 'uninstall',
 						'href'	=> $this->url->link('extension/total/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
+
+					$installed = true;
 				}
 
 				$this->data['extensions'][] = array(
 					'name'    	=> $this->language->get('heading_title'),
 					'sort_order'	=> $this->config->get($extension . '_sort_order'),
 					'status'  	=> $this->config->get($extension . '_status'),
+					'set'			=> $installed,
 					'action'    	=> $action
 				);
 			}

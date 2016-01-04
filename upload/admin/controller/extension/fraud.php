@@ -84,7 +84,7 @@ class ControllerExtensionFraud extends Controller {
 					$action[] = array(
 						'text'	=> $this->language->get('text_edit'),
 						'type'	=> 'edit',
-						'href'	=> $this->url->link('fraud/' . $extension . '', 'token=' . $this->session->data['token'], 'SSL')
+						'href'	=> $this->url->link('fraud/' . $extension, 'token=' . $this->session->data['token'], 'SSL')
 					);
 
 					$action[] = array(

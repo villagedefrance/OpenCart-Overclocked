@@ -107,7 +107,7 @@ class ControllerLocalisationCountry extends Controller {
 	public function enable() {
 		$this->language->load('localisation/country');
 
- 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('localisation/country');
 
@@ -149,7 +149,7 @@ class ControllerLocalisationCountry extends Controller {
 	public function disable() {
 		$this->language->load('localisation/country');
 
- 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('localisation/country');
 
@@ -164,7 +164,7 @@ class ControllerLocalisationCountry extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_disable_success');
 
-		  	$url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));

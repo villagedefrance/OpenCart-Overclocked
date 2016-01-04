@@ -5192,6 +5192,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Categories
 	function getStoreIdsForCategories() {
 		$store_ids = array();
 
@@ -5279,7 +5280,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($languages as $language) {
 			$language_id = $language['language_id'];
-			$language_code = $language['code'];
+			$language_code = strtolower($language['code']);
 
 			$category_descriptions = $this->getCategoryDescriptions($language_id, $language_code, $offset, $rows, $min_id, $max_id);
 
@@ -5585,6 +5586,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Products
 	protected function getStoreIdsForProducts() {
 		$store_ids = array();
 
@@ -5724,7 +5726,7 @@ class ModelToolExportImport extends Model {
 
 		foreach ($languages as $language) {
 			$language_id = $language['language_id'];
-			$language_code = $language['code'];
+			$language_code = strtolower($language['code']);
 
 			$product_descriptions = $this->getProductDescriptions($language_id, $language_code, $offset, $rows, $min_id, $max_id);
 

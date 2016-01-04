@@ -105,7 +105,7 @@ class ModelUpgrade extends Model {
 			foreach ($indexes as $index) {
 				$key = '';
 
-				foreach($index[1] as $field) {
+				foreach ($index[1] as $field) {
 					if ($key == '') {
 						$key = $field;
 					} else {
@@ -171,7 +171,6 @@ class ModelUpgrade extends Model {
 
 				// Charset
 				if (isset($table['option']['CHARSET']) && isset($table['option']['COLLATE'])) {
-					$this->db->query("ALTER TABLE `" . $table['name'] . "` CONVERT TO CHARACTER SET " . $table['option']['CHARSET'] . " COLLATE " . $table['option']['COLLATE'] . "");
  					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET " . $table['option']['CHARSET'] . " COLLATE " . $table['option']['COLLATE'] . "");
 				}
 

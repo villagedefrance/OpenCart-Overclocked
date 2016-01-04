@@ -28,6 +28,7 @@ class ControllerExtensionModification extends Controller {
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_filter'] = $this->language->get('button_filter');
 		$this->data['button_close'] = $this->language->get('button_close');
 
 		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
@@ -79,11 +80,13 @@ class ControllerExtensionModification extends Controller {
 						'href'	=> $this->url->link('extension/modification/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
 
+					$installed = false;
+
 				} else {
 					$action[] = array(
 						'text'	=> $this->language->get('text_edit'),
 						'type'	=> 'edit',
-						'href'	=> $this->url->link('modification/' . $extension . '', 'token=' . $this->session->data['token'], 'SSL')
+						'href'	=> $this->url->link('modification/' . $extension, 'token=' . $this->session->data['token'], 'SSL')
 					);
 
 					$action[] = array(
@@ -91,10 +94,13 @@ class ControllerExtensionModification extends Controller {
 						'type'	=> 'uninstall',
 						'href' 	=> $this->url->link('extension/modification/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
+
+					$installed = true;
 				}
 
 				$this->data['extensions'][] = array(
 					'name' 	=> $this->language->get('heading_title'),
+					'set'		=> $installed,
 					'action' 	=> $action
 				);
 			}
