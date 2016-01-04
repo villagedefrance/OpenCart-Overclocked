@@ -105,36 +105,36 @@ class ControllerCatalogReview extends Controller {
 	}
 
 	public function enable() {
-        $this->language->load('catalog/review');
+		$this->language->load('catalog/review');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/review');
+		$this->load->model('catalog/review');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $review_id) {
-                $data = array();
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $review_id) {
+				$data = array();
 
-                $result = $this->model_catalog_review->getReview($review_id);
+				$result = $this->model_catalog_review->getReview($review_id);
 
-                foreach ($result as $key => $value) {
-                    $data[$key] = $value;
-                }
+				foreach ($result as $key => $value) {
+					$data[$key] = $value;
+				}
 
-                $data['status'] = 1;
+				$data['status'] = 1;
 
-                $this->model_catalog_review->editReview($review_id, $data);
-            }
+				$this->model_catalog_review->editReview($review_id, $data);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
 
-            if (isset($this->request->get['sort'])) {
+			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
 
@@ -146,43 +146,43 @@ class ControllerCatalogReview extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-            $this->redirect($this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
-    public function disable() {
-        $this->language->load('catalog/review');
+	public function disable() {
+		$this->language->load('catalog/review');
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('catalog/review');
+		$this->load->model('catalog/review');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $review_id) {
-                $data = array();
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $review_id) {
+				$data = array();
 
-                $result = $this->model_catalog_review->getReview($review_id);
+				$result = $this->model_catalog_review->getReview($review_id);
 
-                foreach ($result as $key => $value) {
-                    $data[$key] = $value;
-                }
+				foreach ($result as $key => $value) {
+					$data[$key] = $value;
+				}
 
-                $data['status'] = 0;
+				$data['status'] = 0;
 
-                $this->model_catalog_review->editReview($review_id, $data);
-            }
+				$this->model_catalog_review->editReview($review_id, $data);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 			}
 
-            if (isset($this->request->get['sort'])) {
+			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
 
@@ -194,11 +194,11 @@ class ControllerCatalogReview extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-            $this->redirect($this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('catalog/review', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
 	public function delete() {
 		$this->language->load('catalog/review');

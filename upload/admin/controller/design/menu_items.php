@@ -226,17 +226,17 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		$this->data['back'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['enabled'] = $this->url->link('design/menu_items/enable', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
@@ -287,7 +287,7 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_menu'] = $this->language->get('text_menu');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
-    	$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_external'] = $this->language->get('column_external');
@@ -297,7 +297,7 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->data['button_back'] = $this->language->get('button_back');
 		$this->data['button_enable'] = $this->language->get('button_enable');
-        $this->data['button_disable'] = $this->language->get('button_disable');
+		$this->data['button_disable'] = $this->language->get('button_disable');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_repair'] = $this->language->get('button_repair');
 		$this->data['button_delete'] = $this->language->get('button_delete');
@@ -306,7 +306,7 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->data['menu_id'] = $menu_id;
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
@@ -383,9 +383,9 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
-    	$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
-    	$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_selector'] = $this->language->get('text_selector');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
@@ -406,7 +406,7 @@ class ControllerDesignMenuItems extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
@@ -429,25 +429,25 @@ class ControllerDesignMenuItems extends Controller {
 
 		$menu_id = $this->request->get['menu_id'];
 
-  		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-   			'text'		=> $this->language->get('text_menu'),
-   			'href'		=> $this->url->link('design/menu', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-   			'separator' => ' :: '
-   		);
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_menu'),
+			'href'		=> $this->url->link('design/menu', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'separator' => ' :: '
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		if (!isset($this->request->get['menu_item_id'])) {
 			$this->data['action'] = $this->url->link('design/menu_items/insert', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL');
@@ -460,7 +460,7 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['text_info'] = sprintf($this->language->get('text_info'), $this->url->link('design/menu_items/info', 'token=' . $this->session->data['token'], 'SSL'));
 
 		if (isset($this->request->get['menu_item_id']) && isset($menu_id) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-      		$menu_item_info = $this->model_design_menu_items->getMenuItem($this->request->get['menu_item_id'], $menu_id);
+			$menu_item_info = $this->model_design_menu_items->getMenuItem($this->request->get['menu_item_id'], $menu_id);
 		}
 
 		$this->load->model('localisation/language');
@@ -586,20 +586,20 @@ class ControllerDesignMenuItems extends Controller {
 	}
 
 	public function enable() {
-        $this->language->load('design/' . $this->_name);
+		$this->language->load('design/' . $this->_name);
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('design/menu_items');
+		$this->load->model('design/menu_items');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $menu_item_id) {
-                $this->model_design_menu_items->editMenuItemStatus($menu_item_id, 1);
-            }
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $menu_item_id) {
+				$this->model_design_menu_items->editMenuItemStatus($menu_item_id, 1);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
@@ -613,31 +613,31 @@ class ControllerDesignMenuItems extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page=' . $this->request->get['page'];
-            }
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
 
 			$this->redirect($this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'] . $url, 'SSL'));
-        }
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
-    public function disable() {
-        $this->language->load('design/' . $this->_name);
+	public function disable() {
+		$this->language->load('design/' . $this->_name);
 
-        $this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setTitle($this->language->get('heading_title'));
 
-        $this->load->model('design/menu_items');
+		$this->load->model('design/menu_items');
 
-        if (isset($this->request->post['selected'])) {
-            foreach ($this->request->post['selected'] as $menu_item_id) {
-                $this->model_design_menu_items->editMenuItemStatus($menu_item_id, 0);
-            }
+		if (isset($this->request->post['selected'])) {
+			foreach ($this->request->post['selected'] as $menu_item_id) {
+				$this->model_design_menu_items->editMenuItemStatus($menu_item_id, 0);
+			}
 
-            $this->session->data['success'] = $this->language->get('text_success');
+			$this->session->data['success'] = $this->language->get('text_success');
 
-            $url = '';
+			$url = '';
 
 			if (isset($this->request->get['filter_name'])) {
 				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
@@ -651,15 +651,15 @@ class ControllerDesignMenuItems extends Controller {
 				$url .= '&order=' . $this->request->get['order'];
 			}
 
-            if (isset($this->request->get['page'])) {
-                $url .= '&page=' . $this->request->get['page'];
-            }
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
 
-            $this->redirect($this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'] . $url, 'SSL'));
-        }
+			$this->redirect($this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $this->request->get['menu_id'] . $url, 'SSL'));
+		}
 
-        $this->getList();
-    }
+		$this->getList();
+	}
 
 	public function info() {
 		$this->language->load('design/' . $this->_name);
