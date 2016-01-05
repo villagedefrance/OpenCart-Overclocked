@@ -14,7 +14,6 @@ class ModelDesignPayment extends Model {
 
 	public function editPaymentImage($payment_image_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "payment_image SET name = '" . $this->db->escape($data['name']) . "', payment = '" . $this->db->escape($data['payment']) . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "', status = '" . (int)$data['status'] . "' WHERE payment_image_id = '" . (int)$payment_image_id . "'");
-
 	}
 
 	public function deletePaymentImage($payment_image_id) {

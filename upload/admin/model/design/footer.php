@@ -32,6 +32,7 @@ class ModelDesignFooter extends Model {
 		}
 
 		$this->cache->delete('footer');
+		$this->cache->delete('store');
 	}
 
 	public function editFooter($footer_id, $data) {
@@ -67,6 +68,7 @@ class ModelDesignFooter extends Model {
 		}
 
 		$this->cache->delete('footer');
+		$this->cache->delete('store');
 	}
 
 	public function deleteFooter($footer_id) {
@@ -77,6 +79,7 @@ class ModelDesignFooter extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_to_store WHERE footer_id = '" . (int)$footer_id . "'");
 
 		$this->cache->delete('footer');
+		$this->cache->delete('store');
 	}
 
 	public function getFooter($footer_id) {

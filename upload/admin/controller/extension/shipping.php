@@ -55,6 +55,8 @@ class ControllerExtensionShipping extends Controller {
 
 		$this->load->model('setting/extension');
 
+		$total_extensions = $this->model_setting_extension->getTotalInstalled('shipping');
+
 		$extensions = $this->model_setting_extension->getInstalled('shipping');
 
 		foreach ($extensions as $key => $value) {
@@ -111,6 +113,8 @@ class ControllerExtensionShipping extends Controller {
 				);
 			}
 		}
+
+		$this->data['total_extensions'] = $total_extensions;
 
 		$this->template = 'extension/shipping.tpl';
 		$this->children = array(

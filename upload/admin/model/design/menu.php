@@ -15,6 +15,8 @@ class ModelDesignMenu extends Model {
 			}
 		}
 
+		$this->cache->delete('store');
+
 		return $menu_id;
 	}
 
@@ -28,6 +30,8 @@ class ModelDesignMenu extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "menu_to_store SET menu_id = '" . (int)$menu_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
+
+		$this->cache->delete('store');
 	}
 
 	public function deleteMenu($menu_id) {
@@ -35,6 +39,8 @@ class ModelDesignMenu extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item_description WHERE menu_id = '" . (int)$menu_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_to_store WHERE menu_id = '" . (int)$menu_id . "'");
+
+		$this->cache->delete('store');
 	}
 
 	public function getMenu($menu_id) {

@@ -22,7 +22,7 @@ $_['entry_image']          	= 'Image:<br /><span class="help">Important! Payment
 $_['entry_status']        	= 'Status:';
 
 // Button
-$_['button_extension']		= 'Payment Modules';
+$_['button_extension']		= 'Payment Gateways';
 
 // Error
 $_['error_permission']		= 'Warning: You do not have permission to modify <b>Payments</b> !';

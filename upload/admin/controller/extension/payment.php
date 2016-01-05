@@ -56,7 +56,20 @@ class ControllerExtensionPayment extends Controller {
 
 		$this->data['payment_images'] = $this->url->link('design/payment', 'token=' . $this->session->data['token'], 'SSL');
 
+		$this->load->model('design/payment');
+
+		$total_payment_images = $this->model_design_payment->getTotalPaymentImages();
+
 		$this->load->model('setting/extension');
+
+		$total_extensions = $this->model_setting_extension->getTotalInstalled('payment');
+
+		// CSS class modifier
+		if ($total_payment_images < $total_extensions) {
+			$this->data['payment_button'] = '-repair';
+		} else {
+			$this->data['payment_button'] = '';
+		}
 
 		$extensions = $this->model_setting_extension->getInstalled('payment');
 
@@ -123,6 +136,8 @@ class ControllerExtensionPayment extends Controller {
 				);
 			}
 		}
+
+		$this->data['total_extensions'] = $total_extensions;
 
 		$this->template = 'extension/payment.tpl';
 		$this->children = array(

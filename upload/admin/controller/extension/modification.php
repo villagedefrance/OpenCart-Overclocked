@@ -80,8 +80,6 @@ class ControllerExtensionModification extends Controller {
 						'href'	=> $this->url->link('extension/modification/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
 
-					$installed = false;
-
 				} else {
 					$action[] = array(
 						'text'	=> $this->language->get('text_edit'),
@@ -94,13 +92,10 @@ class ControllerExtensionModification extends Controller {
 						'type'	=> 'uninstall',
 						'href' 	=> $this->url->link('extension/modification/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
-
-					$installed = true;
 				}
 
 				$this->data['extensions'][] = array(
 					'name' 	=> $this->language->get('heading_title'),
-					'set'		=> $installed,
 					'action' 	=> $action
 				);
 			}

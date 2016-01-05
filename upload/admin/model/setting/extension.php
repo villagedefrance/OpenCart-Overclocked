@@ -26,5 +26,11 @@ class ModelSettingExtension extends Model {
 
 		return $query->rows;
 	}
+
+	public function getTotalInstalled($type) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "extension WHERE `type` = '" . $this->db->escape($type) . "'");
+
+		return $query->row['total'];
+	}
 }
 ?>

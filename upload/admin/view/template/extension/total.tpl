@@ -13,7 +13,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/total.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/total.png" alt="" /> <?php echo $heading_title; ?> (<?php echo $total_extensions; ?>)</h1>
       <div class="buttons">
         <a id="installed" class="button"><?php echo $button_filter; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
