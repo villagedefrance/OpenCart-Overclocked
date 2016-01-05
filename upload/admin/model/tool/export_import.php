@@ -5242,12 +5242,12 @@ class ModelToolExportImport extends Model {
 		// Category description table for each language
 		$category_descriptions = array();
 
-		$sql = "SELECT * FROM " . DB_PREFIX . "category_description";
+		$sql = "SELECT category_id, name, description, meta_description, meta_keyword FROM " . DB_PREFIX . "category_description";
 		$sql .= " WHERE language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " GROUP BY category_id";
+		$sql .= " GROUP BY category_id, language_id";
 		$sql .= " ORDER BY category_id ASC";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
@@ -5641,7 +5641,7 @@ class ModelToolExportImport extends Model {
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " GROUP BY product_id";
+		$sql .= " GROUP BY product_id, language_id";
 		$sql .= " ORDER BY product_id";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
