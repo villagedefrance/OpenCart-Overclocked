@@ -388,23 +388,21 @@
   <div id="tab-description" class="tab-content"><?php echo $description; ?></div>
   <?php if ($attribute_groups) { ?>
     <div id="tab-attribute" class="tab-content">
-      <table class="attribute">
+      <div class="attribute">
         <?php foreach ($attribute_groups as $attribute_group) { ?>
-          <thead>
-            <tr>
-              <td colspan="2"><?php echo $attribute_group['name']; ?></td>
-            </tr>
-          </thead>
-          <tbody>
+          <div class="attribute-group">
+            <?php echo $attribute_group['name']; ?>
+          </div>
+          <div class="attribute-list">
             <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
-              <tr>
-                <td><?php echo $attribute['name']; ?></td>
-                <td><?php echo $attribute['text']; ?></td>
-              </tr>
+              <div>
+                <div class="attribute-list-left"><?php echo $attribute['name']; ?></div>
+                <div class="attribute-list-right"><?php echo $attribute['text']; ?></div>
+              </div>
             <?php } ?>
-          </tbody>
+          </div>
         <?php } ?>
-      </table>
+      </div>
     </div>
   <?php } ?>
   <?php if ($offers) { ?>
