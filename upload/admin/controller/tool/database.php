@@ -192,7 +192,7 @@ class ControllerToolDatabase extends Controller {
 		$this->redirect($this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
-	// InnoDB
+	// MyISAM
 	public function myisam() {
 		$this->language->load('tool/' . $this->_name);
 

@@ -53,6 +53,14 @@
             <td><?php echo $text_dbname; ?></td>
             <td><?php echo $database_name; ?></td>
           </tr>
+          <tr>
+            <td><?php echo $text_dbengine; ?></td>
+            <?php if (!$engine) { ?>
+              <td><?php echo $text_myisam; ?></td>
+            <?php } else { ?>
+              <td><?php echo $text_innodb; ?></td>
+            <?php } ?>
+          </tr>
         </table>
         <?php if ($error_install) { ?>
           <div class="warning"><?php echo $error_install; ?></div>

@@ -35,6 +35,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_phptime'] = $this->language->get('text_phptime');
 		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
 		$this->data['text_dbname'] = $this->language->get('text_dbname');
+		$this->data['text_dbengine'] = $this->language->get('text_dbengine');
 		$this->data['text_store_info'] = $this->language->get('text_store_info');
 		$this->data['text_setting_info'] = $this->language->get('text_setting_info');
 		$this->data['text_server_info'] = $this->language->get('text_server_info');
@@ -117,6 +118,22 @@ class ControllerToolConfiguration extends Controller {
 		} else {
 			$this->data['database_name'] = 'SQL';
 		}
+
+		// Engines
+		$this->load->model('tool/database');
+
+		$engines = $this->model_tool_database->getEngines();
+
+		foreach ($engines as $engine) {
+			if ($engine == 'InnoDB') {
+				$this->data['engine'] = true;
+			} else {
+				$this->data['engine'] = false;
+			}
+		}
+
+		$this->data['text_innodb'] = 'InnoDB';
+		$this->data['text_myisam'] = 'MyISAM';
 
 		// Check install directory exists
 		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
