@@ -199,6 +199,32 @@ class ModelToolExportImport extends Model {
 		return 'cm';
 	}
 
+	// Find all category ids
+	protected function getCategoryIds() {
+		$category_ids = array();
+
+		$result = $this->db->query("SELECT * FROM " . DB_PREFIX . "category");
+
+		foreach ($result->rows as $row) {
+			$category_ids[] = $row['category_id'];
+		}
+
+		return $category_ids;
+	}
+
+	// Find all product ids
+	protected function getProductIds() {
+		$product_ids = array();
+
+		$result = $this->db->query("SELECT * FROM " . DB_PREFIX . "product");
+
+		foreach ($result->rows as $row) {
+			$product_ids[] = $row['product_id'];
+		}
+
+		return $product_ids;
+	}
+
 	// Find all manufacturers already stored in the database
 	protected function getManufacturers() {
 		$language_id = $this->getDefaultLanguageId();
