@@ -453,7 +453,7 @@ class ControllerCatalogInformation extends Controller {
 				'separator' => ' :: '
 			);
 
-			$this->data['manufacturer_title'] = $this->language->get('heading_title');
+			$this->data['information_title'] = $this->language->get('heading_title');
 		}
 
 		if (!isset($this->request->get['information_id'])) {
