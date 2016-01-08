@@ -2,8 +2,8 @@
 class ControllerOpenbayAmazonProduct extends Controller {
 
 	public function index() {
-		$this->load->language('catalog/product');
-		$this->load->language('openbay/amazon');
+		$this->language->load('catalog/product');
+		$this->language->load('openbay/amazon');
 
 		$this->load->model('openbay/amazon');
 		$this->load->model('catalog/product');
@@ -11,7 +11,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 		$this->load->library('amazon');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_listing'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazon_listing'));
 
 		$this->document->addStyle('view/stylesheet/openbay.css');
 		$this->document->addScript('view/javascript/openbay/openbay.js');
@@ -328,7 +328,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 	}
 
 	private function uploadSaved() {
-		$this->load->language('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
 		$this->load->library('amazon');
 
@@ -373,7 +373,6 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 				$result['error_message'] = sprintf($this->language->get('upload_failed'), $savedProduct['sku'], $details);
 				$result['status'] = 'error';
-
 				break;
 			}
 
@@ -384,7 +383,6 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 		if (!isset($result['status'])) {
 			$result['status'] = 'ok';
-
 			$logger->write('Uploading process completed successfully.');
 		} else {
 			$logger->write('Uploading process failed with message: ' . $result['error_message']);
@@ -476,15 +474,15 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 		// Key must be lowecase
 		$defaults = array(
-			'sku' => $product_info['sku'],
-			'title' => $product_info['name'],
-			'quantity' => $product_info['quantity'],
-			'standardprice' => $product_info['price'],
-			'description' => $product_info['description'],
-			'mainimage' => $product_info['image'],
-			'currency' => $this->config->get('config_currency'),
-			'shippingweight' => number_format($product_info['weight'], 2, '.', ''),
-			'conditiontype' => $default_condition,
+			'sku' 					=> $product_info['sku'],
+			'title' 					=> $product_info['name'],
+			'quantity' 			=> $product_info['quantity'],
+			'standardprice'		=> $product_info['price'],
+			'description'		=> $product_info['description'],
+			'mainimage'			=> $product_info['image'],
+			'currency'			=> $this->config->get('config_currency'),
+			'shippingweight'	=> number_format($product_info['weight'], 2, '.', ''),
+			'conditiontype'		=> $default_condition
 		);
 
 		$this->load->model('localisation/weight_class');

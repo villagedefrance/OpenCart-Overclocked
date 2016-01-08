@@ -82,23 +82,23 @@ class ControllerThemeDefault extends Controller {
 
 		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' 	=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text' 	=> $this->language->get('text_home'),
 			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'   	=> $this->language->get('text_theme'),
+		$this->data['breadcrumbs'][] = array(
+			'text'   	=> $this->language->get('text_theme'),
 			'href'   	=> $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'  	=> $this->language->get('heading_title'),
+		$this->data['breadcrumbs'][] = array(
+			'text'  	=> $this->language->get('heading_title'),
 			'href'  	=> $this->url->link('theme/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		$this->data['action'] = $this->url->link('theme/default', 'token=' . $this->session->data['token'], 'SSL');
 

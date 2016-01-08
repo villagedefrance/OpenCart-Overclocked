@@ -1,6 +1,6 @@
 <?php
 class ControllerOpenbayAmazon extends Controller {
-	
+
 	public function stockUpdates() {
 		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_stockupdates'));
 
@@ -253,7 +253,7 @@ class ControllerOpenbayAmazon extends Controller {
 	public function settings() {
 		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_settings'));
 
-		$this->load->language('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -302,11 +302,13 @@ class ControllerOpenbayAmazon extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'separator' => false
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=extension/openbay&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=openbay/amazon/overview&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_overview'),
@@ -437,11 +439,12 @@ class ControllerOpenbayAmazon extends Controller {
 				}
 				break;
 		}
+
 		return false;
 	}
 
 	public function itemLinks() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_links'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazon_links'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -457,11 +460,13 @@ class ControllerOpenbayAmazon extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'separator' => false
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=extension/openbay&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=openbay/amazon/overview&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_overview'),
@@ -492,7 +497,7 @@ class ControllerOpenbayAmazon extends Controller {
 	}
 
 	public function savedListings() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_listingsaved'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazon_listingsaved'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -508,11 +513,13 @@ class ControllerOpenbayAmazon extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'separator' => false
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=extension/openbay&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=openbay/amazon/overview&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_overview'),
@@ -604,6 +611,7 @@ class ControllerOpenbayAmazon extends Controller {
 			$json = false;
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -658,6 +666,7 @@ class ControllerOpenbayAmazon extends Controller {
 			$json = json_encode('error');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput($json);
 	}
 
@@ -675,6 +684,7 @@ class ControllerOpenbayAmazon extends Controller {
 			$json = json_encode('error');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput($json);
 	}
 
@@ -684,6 +694,7 @@ class ControllerOpenbayAmazon extends Controller {
 
 		$json = json_encode($this->model_openbay_amazon->getProductLinks());
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput($json);
 	}
 
@@ -693,6 +704,7 @@ class ControllerOpenbayAmazon extends Controller {
 
 		$json = json_encode($this->model_openbay_amazon->getUnlinkedProducts());
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput($json);
 	}
 
@@ -707,7 +719,7 @@ class ControllerOpenbayAmazon extends Controller {
 	}
 
 	public function doBulkList() {
-		$this->load->language('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
 		if (empty($this->request->post['products'])) {
 			$json = array(
@@ -767,14 +779,15 @@ class ControllerOpenbayAmazon extends Controller {
 			);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function doBulkSearch() {
+		$this->language->load('openbay/amazon_bulk');
+
 		$this->load->model('catalog/product');
 		$this->load->model('openbay/amazon_listing');
-
-		$this->load->language('openbay/amazon_bulk');
 
 		$json = array();
 		$search_data = array();
@@ -824,6 +837,7 @@ class ControllerOpenbayAmazon extends Controller {
 			$this->model_openbay_amazon_listing->doBulkSearch($search_data);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -832,7 +846,7 @@ class ControllerOpenbayAmazon extends Controller {
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_bulk'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazon_bulk'));
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -846,11 +860,13 @@ class ControllerOpenbayAmazon extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'separator' => false
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
 			'text'		=> $this->language->get('text_openbay'),
 			'separator' => ' :: '
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> $this->url->link('openbay/amazon/overview', 'token=' . $this->session->data['token'], 'SSL'),
 			'text'		=> $this->language->get('text_overview'),
@@ -995,7 +1011,7 @@ class ControllerOpenbayAmazon extends Controller {
 	public function bulkLinking() {
 		$this->load->model('openbay/amazon');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazon_bulk_linking'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazon_bulk_linking'));
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -1009,11 +1025,13 @@ class ControllerOpenbayAmazon extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'separator' => false
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
 			'text'		=> $this->language->get('text_openbay'),
 			'separator' => ' :: '
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> $this->url->link('openbay/amazon/overview', 'token=' . $this->session->data['token'], 'SSL'),
 			'text'		=> $this->language->get('text_overview'),
@@ -1141,10 +1159,10 @@ class ControllerOpenbayAmazon extends Controller {
 	}
 
 	public function loadListingReport() {
+		$this->language->load('openbay/amazon_bulk_linking');
+
 		$this->load->model('openbay/amazon');
 		$this->load->model('setting/setting');
-
-		$this->load->language('openbay/amazon_bulk_linking');
 
 		$marketplace = $this->request->get['marketplace'];
 
@@ -1173,6 +1191,7 @@ class ControllerOpenbayAmazon extends Controller {
 			$json['message'] = $this->language->get('text_report_request_failed');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

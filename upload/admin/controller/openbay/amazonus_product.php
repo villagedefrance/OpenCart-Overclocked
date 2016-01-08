@@ -1,9 +1,9 @@
 <?php
 class ControllerOpenbayAmazonusProduct extends Controller {
-	
+
 	public function index() {
-		$this->load->language('catalog/product');
-		$this->load->language('openbay/amazonus');
+		$this->language->load('catalog/product');
+		$this->language->load('openbay/amazonus');
 
 		$this->load->model('openbay/amazonus');
 		$this->load->model('catalog/product');
@@ -11,7 +11,7 @@ class ControllerOpenbayAmazonusProduct extends Controller {
 
 		$this->load->library('amazonus');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_listing'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_listing'));
 
 		$this->document->addStyle('view/stylesheet/openbay.css');
 		$this->document->addScript('view/javascript/openbay/openbay.js');
@@ -304,7 +304,7 @@ class ControllerOpenbayAmazonusProduct extends Controller {
 	}
 
 	private function uploadSaved() {
-		$this->load->language('openbay/amazonus_listing');
+		$this->language->load('openbay/amazonus_listing');
 
 		$this->load->library('amazonus');
 

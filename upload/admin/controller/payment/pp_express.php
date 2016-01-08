@@ -3,7 +3,7 @@ class ControllerPaymentPPExpress extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/pp_express');
+		$this->language->load('payment/pp_express');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -87,6 +87,8 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->data['text_ipn'] = $this->language->get('text_ipn');
 		$this->data['text_ipn_url'] = HTTPS_CATALOG . 'index.php?route=payment/pp_express/ipn';
+
+		$this->data['token'] = $this->session->data['token'];
 
 		$this->data['breadcrumbs'] = array();
 
@@ -298,8 +300,6 @@ class ControllerPaymentPPExpress extends Controller {
 			$this->data['pp_express_sort_order'] = $this->config->get('pp_express_sort_order');
 		}
 
-		$this->data['token'] = $this->session->data['token'];
-
 		$this->template = 'payment/pp_express.tpl';
 		$this->children = array(
 			'common/header',
@@ -342,11 +342,11 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function resend() {
-		$this->load->language('payment/pp_express');
+		$json = array();
+
+		$this->language->load('payment/pp_express');
 
 		$this->load->model('payment/pp_express');
-
-		$json = array();
 
 		if (isset($this->request->get['paypal_order_transaction_id'])) {
 			$transaction = $this->model_payment_pp_express->getFailedTransaction($this->request->get['paypal_order_transaction_id']);
@@ -407,16 +407,14 @@ class ControllerPaymentPPExpress extends Controller {
 			$json['error'] = $this->language->get('error_data');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function capture() {
-		$this->load->language('payment/pp_express');
-		/**
-		 * used to capture authorised payments
-		 *
-		 * capture can be full or partial amounts
-		 */
+		$this->language->load('payment/pp_express');
+
+		// Used to capture authorised payments. Capture can be full or partial amounts
 		if (isset($this->request->post['order_id']) && $this->request->post['amount'] > 0 && isset($this->request->post['order_id']) && isset($this->request->post['complete'])) {
 			$this->load->model('payment/pp_express');
 
@@ -429,6 +427,7 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 
 			$call_data = array();
+
 			$call_data['METHOD'] = 'DoCapture';
 			$call_data['AUTHORIZATIONID'] = $paypal_order['authorization_id'];
 			$call_data['AMT'] = number_format($this->request->post['amount'], 2);
@@ -532,19 +531,19 @@ class ControllerPaymentPPExpress extends Controller {
 			$json['msg'] = 'Missing data';
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function void() {
-		/**
-		 * used to void an authorised payment
-		 */
+		// Used to void an authorised payment
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
 			$this->load->model('payment/pp_express');
 
 			$paypal_order = $this->model_payment_pp_express->getOrder($this->request->post['order_id']);
 
 			$call_data = array();
+
 			$call_data['METHOD'] = 'DoVoid';
 			$call_data['AUTHORIZATIONID'] = $paypal_order['authorization_id'];
 
@@ -587,20 +586,23 @@ class ControllerPaymentPPExpress extends Controller {
 			$json['msg'] = 'Missing data';
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function refund() {
-		$this->load->language('payment/pp_express_refund');
+		$this->language->load('payment/pp_express_refund');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
-		$this->data['btn_cancel'] = $this->language->get('btn_cancel');
+
 		$this->data['entry_transaction_id'] = $this->language->get('entry_transaction_id');
 		$this->data['entry_full_refund'] = $this->language->get('entry_full_refund');
 		$this->data['entry_amount'] = $this->language->get('entry_amount');
 		$this->data['entry_message'] = $this->language->get('entry_message');
+
+		$this->data['btn_cancel'] = $this->language->get('btn_cancel');
 		$this->data['btn_refund'] = $this->language->get('btn_refund');
 
 		$this->data['breadcrumbs'] = array();
@@ -666,13 +668,9 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function doRefund() {
-		/**
-		 * used to issue a refund for a captured payment
-		 *
-		 * refund can be full or partial
-		 */
+		// Used to issue a Refund for a captured payment. Refund can be full or partial
 		if (isset($this->request->post['transaction_id']) && isset($this->request->post['refund_full'])) {
-			$this->load->language('payment/pp_express_refund');
+			$this->language->load('payment/pp_express_refund');
 
 			$this->load->model('payment/pp_express');
 
@@ -684,6 +682,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				if ($paypal_order) {
 					$call_data = array();
+
 					$call_data['METHOD'] = 'RefundTransaction';
 					$call_data['TRANSACTIONID'] = $this->request->post['transaction_id'];
 					$call_data['NOTE'] = urlencode($this->request->post['refund_message']);
@@ -735,6 +734,7 @@ class ControllerPaymentPPExpress extends Controller {
 						} else {
 							$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = 'Partially-Refunded' WHERE `transaction_id` = '" . $this->db->escape($this->request->post['transaction_id']) . "' LIMIT 1");
 						}
+
 						//redirect back to the order
 						$this->redirect($this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $paypal_order['order_id'], 'SSL'));
 
@@ -768,8 +768,9 @@ class ControllerPaymentPPExpress extends Controller {
 
 	public function orderAction() {
 		if ($this->config->get('pp_express_status')) {
+			$this->language->load('payment/pp_express_order');
+
 			$this->load->model('payment/pp_express');
-			$this->load->language('payment/pp_express_order');
 
 			$paypal_order = $this->model_payment_pp_express->getOrder($this->request->get['order_id']);
 
@@ -777,8 +778,6 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->data['text_payment_info'] = $this->language->get('text_payment_info');
 				$this->data['text_capture_status'] = $this->language->get('text_capture_status');
 				$this->data['text_amount_auth'] = $this->language->get('text_amount_auth');
-				$this->data['btn_void'] = $this->language->get('btn_void');
-				$this->data['btn_capture'] = $this->language->get('btn_capture');
 				$this->data['text_amount_captured'] = $this->language->get('text_amount_captured');
 				$this->data['text_amount_refunded'] = $this->language->get('text_amount_refunded');
 				$this->data['text_capture_amount'] = $this->language->get('text_capture_amount');
@@ -786,10 +785,10 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->data['text_transactions'] = $this->language->get('text_transactions');
 				$this->data['text_complete'] = $this->language->get('text_complete');
 				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
-				$this->data['error_capture_amt'] = $this->language->get('error_capture_amt');
 				$this->data['text_view'] = $this->language->get('text_view');
 				$this->data['text_refund'] = $this->language->get('text_refund');
 				$this->data['text_resend'] = $this->language->get('text_resend');
+
 				$this->data['column_trans_id'] = $this->language->get('column_trans_id');
 				$this->data['column_amount'] = $this->language->get('column_amount');
 				$this->data['column_type'] = $this->language->get('column_type');
@@ -798,8 +797,15 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->data['column_created'] = $this->language->get('column_created');
 				$this->data['column_action'] = $this->language->get('column_action');
 
+				$this->data['btn_void'] = $this->language->get('btn_void');
+				$this->data['btn_capture'] = $this->language->get('btn_capture');
+
+				$this->data['error_capture_amt'] = $this->language->get('error_capture_amt');
+
 				$this->data['paypal_order'] = $paypal_order;
+
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->session->data['token'];
 
 				$captured = number_format($this->model_payment_pp_express->totalCaptured($this->data['paypal_order']['paypal_order_id']), 2);
@@ -832,15 +838,14 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function search() {
-		$this->load->language('payment/pp_express_search');
+		$this->language->load('payment/pp_express_search');
 
 		$this->load->model('payment/pp_express');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
-		$this->data['btn_search'] = $this->language->get('btn_search');
-		$this->data['btn_edit_search'] = $this->language->get('btn_edit_search');
+
 		$this->data['entry_date'] = $this->language->get('entry_date');
 		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
 		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
@@ -857,15 +862,19 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['entry_auction'] = $this->language->get('entry_auction');
 		$this->data['entry_amount'] = $this->language->get('entry_amount');
 		$this->data['entry_profile_id'] = $this->language->get('entry_profile_id');
-		$this->data['text_buyer_info'] = $this->language->get('text_buyer_info');
 		$this->data['entry_salutation'] = $this->language->get('entry_salutation');
-		$this->data['text_name'] = $this->language->get('text_name');
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
 		$this->data['entry_middlename'] = $this->language->get('entry_middlename');
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
 		$this->data['entry_suffix'] = $this->language->get('entry_suffix');
+
+		$this->data['text_buyer_info'] = $this->language->get('text_buyer_info');
+		$this->data['text_name'] = $this->language->get('text_name');
 		$this->data['text_searching'] = $this->language->get('text_searching');
 		$this->data['text_view'] = $this->language->get('text_view');
+
+		$this->data['btn_search'] = $this->language->get('btn_search');
+		$this->data['btn_edit_search'] = $this->language->get('btn_edit_search');
 
 		$this->data['entry_status_all'] = $this->language->get('entry_status_all');
 		$this->data['entry_status_pending'] = $this->language->get('entry_status_pending');
@@ -910,6 +919,8 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->data['default_currency'] = $this->config->get('pp_express_currency');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -930,8 +941,6 @@ class ControllerPaymentPPExpress extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['token'] = $this->session->data['token'];
-
 		$this->data['date_start'] = date("Y-m-d", strtotime('-30 days'));
 
 		$this->data['view_link'] = $this->url->link('payment/pp_express/viewTransaction', 'token=' . $this->session->data['token'], 'SSL');
@@ -946,18 +955,17 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function doSearch() {
-		/**
-		 * used to search for transactions from a user account
-		 */
+		// Used to search for transactions from a user account
 		if (isset($this->request->post['date_start'])) {
 			$this->load->model('payment/pp_express');
 
 			$call_data = array();
+
 			$call_data['METHOD'] = 'TransactionSearch';
-			$call_data['STARTDATE'] = gmdate($this->request->post['date_start']."\TH:i:s\Z");
+			$call_data['STARTDATE'] = gmdate($this->request->post['date_start'] . "\TH:i:s\Z");
 
 			if (!empty($this->request->post['date_end'])) {
-				$call_data['ENDDATE'] = gmdate($this->request->post['date_end']."\TH:i:s\Z");
+				$call_data['ENDDATE'] = gmdate($this->request->post['date_end'] . "\TH:i:s\Z");
 			}
 
 			if (!empty($this->request->post['transaction_class'])) {
@@ -1026,24 +1034,28 @@ class ControllerPaymentPPExpress extends Controller {
 			if ($result['ACK'] != 'Failure' && $result['ACK'] != 'FailureWithWarning') {
 				$response['error'] = false;
 				$response['result'] = $this->formatRows($result);
+
+				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($response));
 			} else {
 				$response['error'] = true;
 				$response['error_msg'] = $result['L_LONGMESSAGE0'];
 			}
 
+			$this->response->addHeader('Content-Type: application/json');
 			$this->response->setOutput(json_encode($response));
 
 		} else {
 			$response['error'] = true;
 			$response['error_msg'] = 'Enter a start date';
 
+			$this->response->addHeader('Content-Type: application/json');
 			$this->response->setOutput(json_encode($response));
 		}
 	}
 
 	public function viewTransaction() {
-		$this->load->language('payment/pp_express_view');
+		$this->language->load('payment/pp_express_view');
 
 		$this->load->model('payment/pp_express');
 
@@ -1057,6 +1069,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+
 		$this->data['text_product_lines'] = $this->language->get('text_product_lines');
 		$this->data['text_ebay_txn_id'] = $this->language->get('text_ebay_txn_id');
 		$this->data['text_name'] = $this->language->get('text_name');
@@ -1186,7 +1199,7 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function recurringCancel() {
-		//cancel an active profile
+		// Cancel an active profile
 		$this->language->load('sale/recurring');
 
 		$this->load->model('sale/recurring');

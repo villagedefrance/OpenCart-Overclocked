@@ -81,7 +81,6 @@ class Mail {
 		$boundary = '----=_NextPart_' . md5(time());
 
 		$header = '';
-
 		$header .= 'MIME-Version: 1.0' . $this->newline;
 
 		if ($this->protocol != 'mail') {
@@ -97,12 +96,12 @@ class Mail {
 		$header .= 'Content-Type: multipart/related; boundary="' . $boundary . '"' . $this->newline . $this->newline;
 
 		if (!$this->html) {
-			$message  = '--' . $boundary . $this->newline;
+			$message = '--' . $boundary . $this->newline;
 			$message .= 'Content-Type: text/plain; charset="utf-8"' . $this->newline;
 			$message .= 'Content-Transfer-Encoding: 8bit' . $this->newline . $this->newline;
 			$message .= $this->text . $this->newline;
 		} else {
-			$message  = '--' . $boundary . $this->newline;
+			$message = '--' . $boundary . $this->newline;
 			$message .= 'Content-Type: multipart/alternative; boundary="' . $boundary . '_alt"' . $this->newline . $this->newline;
 			$message .= '--' . $boundary . '_alt' . $this->newline;
 			$message .= 'Content-Type: text/plain; charset="utf-8"' . $this->newline;

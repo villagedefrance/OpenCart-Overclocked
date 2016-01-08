@@ -835,7 +835,6 @@ class ControllerModificationVQmods extends Controller {
 		}
 
 		clearstatcache();
-
 		return true;
 	}
 

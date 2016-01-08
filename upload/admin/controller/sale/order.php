@@ -1291,7 +1291,7 @@ class ControllerSaleOrder extends Controller {
 			}
 		}
 
-		if ($this->request->post['payment_country_id'] == '') {
+		if (!isset($this->request->post['payment_country_id']) || $this->request->post['payment_country_id'] == '') {
 			$this->error['payment_country'] = $this->language->get('error_country');
 		}
 
@@ -1345,7 +1345,7 @@ class ControllerSaleOrder extends Controller {
 				$this->error['shipping_postcode'] = $this->language->get('error_postcode');
 			}
 
-			if ($this->request->post['shipping_country_id'] == '') {
+			if (!isset($this->request->post['shipping_country_id']) || $this->request->post['shipping_country_id'] == '') {
 				$this->error['shipping_country'] = $this->language->get('error_country');
 			}
 
@@ -1353,7 +1353,7 @@ class ControllerSaleOrder extends Controller {
 				$this->error['shipping_zone'] = $this->language->get('error_zone');
 			}
 
-			if (!$this->request->post['shipping_method']) {
+			if (!isset($this->request->post['shipping_method']) || $this->request->post['shipping_method'] == '') {
 				$this->error['shipping_method'] = $this->language->get('error_shipping');
 			}
 		}
@@ -1723,10 +1723,10 @@ class ControllerSaleOrder extends Controller {
 					'quantity'		   		=> $product['quantity'],
 					'price'					=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'total'						=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-                    'picked'					=> $product['picked'],
-                    'backordered'			=> $product['backordered'],
-					'href_picked'			=> $this->url->link('sale/order/picked', 'token=' . $this->session->data['token'] . '&order_product_id=' .  $product['order_product_id'], 'SSL'),
-                    'href_backordered'	=> $this->url->link('sale/order/backordered', 'token=' . $this->session->data['token'] . '&order_product_id=' .  $product['order_product_id'], 'SSL'),
+					'picked'					=> $product['picked'],
+					'backordered'			=> $product['backordered'],
+					'href_picked'			=> $this->url->link('sale/order/picked', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
+					'href_backordered'	=> $this->url->link('sale/order/backordered', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
 					'href'						=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
 				); 
 			} 
@@ -1836,9 +1836,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function createInvoiceNo() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -1860,9 +1860,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function addCredit() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -1892,9 +1892,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function removeCredit() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -1921,9 +1921,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function addReward() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -1957,9 +1957,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function removeReward() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -1986,9 +1986,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function addCommission() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -2022,9 +2022,9 @@ class ControllerSaleOrder extends Controller {
 	}
 
 	public function removeCommission() {
-		$this->language->load('sale/order');
-
 		$json = array();
+
+		$this->language->load('sale/order');
 
 		if (!$this->user->hasPermission('modify', 'sale/order')) {
 			$json['error'] = $this->language->get('error_permission');
@@ -2144,7 +2144,7 @@ class ControllerSaleOrder extends Controller {
 					header('Content-Length: ' . filesize($file));
 
 					readfile($file, 'rb');
-					exit;
+					exit();
 
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
@@ -2305,7 +2305,6 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$json['error'] = $this->language->get('error_action');
 		}
-
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));

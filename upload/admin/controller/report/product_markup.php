@@ -49,19 +49,19 @@ class ControllerReportProductMarkup extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-  		$this->data['breadcrumbs'] = array();
-
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => false
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('report/product_markup', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
@@ -237,9 +237,9 @@ class ControllerReportProductMarkup extends Controller {
 			}
 
 			$data = array(
-				'filter_name'  	=> $filter_name,
-				'start'        	=> 0,
-				'limit'        		=> $limit
+				'filter_name'	=> $filter_name,
+				'start'			=> 0,
+				'limit'				=> $limit
 			);
 
 			$results = $this->model_catalog_product->getProducts($data);

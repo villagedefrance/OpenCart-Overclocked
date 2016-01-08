@@ -83,18 +83,19 @@ class Cart {
 										'product_option_value_id' => $option_value,
 										'option_id'          		=> $option_query->row['option_id'],
 										'option_value_id'   	=> $option_value_query->row['option_value_id'],
-										'name'                  	=> $option_query->row['name'],
+										'name'					=> $option_query->row['name'],
 										'option_value'      	=> $option_value_query->row['name'],
 										'type'               		=> $option_query->row['type'],
 										'quantity'            	=> $option_value_query->row['quantity'],
-										'subtract'              	=> $option_value_query->row['subtract'],
+										'subtract'				=> $option_value_query->row['subtract'],
 										'price'                 	=> $option_value_query->row['price'],
 										'price_prefix'     		=> $option_value_query->row['price_prefix'],
-										'points'                  	=> $option_value_query->row['points'],
+										'points'					=> $option_value_query->row['points'],
 										'points_prefix'      	=> $option_value_query->row['points_prefix'],
 										'weight'              	=> $option_value_query->row['weight'],
 										'weight_prefix'     	=> $option_value_query->row['weight_prefix']
 									);
+
 								} else {
 									$this->remove($key);
 									continue 2;
@@ -134,16 +135,17 @@ class Cart {
 											'option_value_id'  	=> $option_value_query->row['option_value_id'],
 											'name'              		=> $option_query->row['name'],
 											'option_value'    		=> $option_value_query->row['name'],
-											'type'                    	=> $option_query->row['type'],
+											'type'						=> $option_query->row['type'],
 											'quantity'          		=> $option_value_query->row['quantity'],
 											'subtract'         		=> $option_value_query->row['subtract'],
-											'price'                   	=> $option_value_query->row['price'],
+											'price'					=> $option_value_query->row['price'],
 											'price_prefix'     		=> $option_value_query->row['price_prefix'],
-											'points'                  	=> $option_value_query->row['points'],
+											'points'					=> $option_value_query->row['points'],
 											'points_prefix'   		=> $option_value_query->row['points_prefix'],
 											'weight'              	=> $option_value_query->row['weight'],
 											'weight_prefix'   		=> $option_value_query->row['weight_prefix']
 										);
+
 									} else {
 										$this->remove($key);
 										continue 3;
@@ -169,6 +171,7 @@ class Cart {
 									'weight_prefix'   			=> ''
 								);
 							}
+
 						} else {
 							$this->remove($key);
 							continue 2;

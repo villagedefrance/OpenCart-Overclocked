@@ -1,8 +1,8 @@
 <?php
 class Captcha {
-	private  $code;
-	private  $height = 172;
-	private  $width = 42;
+	private $code;
+	private $height = 172;
+	private $width = 42;
 
 	public function __construct() {
 		$this->code = null;

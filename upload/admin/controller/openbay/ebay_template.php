@@ -3,7 +3,7 @@ class ControllerOpenbayEbayTemplate extends Controller {
 	private $error = array();
 
 	public function listAll() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/ebay_template'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/ebay_template'));
 
 		$this->load->model('openbay/ebay_template');
 
@@ -31,11 +31,11 @@ class ControllerOpenbayEbayTemplate extends Controller {
 			unset($this->session->data['success']);
 		}
 
-		$this->data['btn_add']  = $this->url->link('openbay/ebay_template/add', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['btn_add'] = $this->url->link('openbay/ebay_template/add', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['templates'] = $this->model_openbay_ebay_template->getAll();
 
-		$this->data['token']    = $this->session->data['token'];
+		$this->data['token'] = $this->session->data['token'];
 
 		$this->data['breadcrumbs'] = array();
 
@@ -63,17 +63,18 @@ class ControllerOpenbayEbayTemplate extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function add() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/ebay_template'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/ebay_template'));
 
 		$this->load->model('openbay/ebay_template');
 
 		$this->data['page_title'] = $this->data['lang_title_list_add'];
 
 		$this->data['btn_save'] = $this->url->link('openbay/ebay_template/add', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['cancel'] = $this->url->link('openbay/ebay_template/listAll', 'token=' . $this->session->data['token'], 'SSL');
 
 		if ($this->request->post && $this->templateValidate()) {
@@ -102,13 +103,14 @@ class ControllerOpenbayEbayTemplate extends Controller {
 	}
 
 	public function edit() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/ebay_template'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/ebay_template'));
 
 		$this->load->model('openbay/ebay_template');
 
 		$this->data['page_title'] = $this->data['lang_title_list_edit'];
 
 		$this->data['btn_save'] = $this->url->link('openbay/ebay_template/edit', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['cancel'] = $this->url->link('openbay/ebay_template/listAll', 'token=' . $this->session->data['token'], 'SSL');
 
 		if ($this->request->post && $this->templateValidate()) {
@@ -200,7 +202,7 @@ class ControllerOpenbayEbayTemplate extends Controller {
 			$this->data['template_id'] = '';
 		}
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	private function templateValidate() {

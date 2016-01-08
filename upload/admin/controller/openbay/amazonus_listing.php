@@ -2,7 +2,7 @@
 class ControllerOpenbayAmazonusListing extends Controller {
 
 	public function create() {
-		$this->load->language('openbay/amazonus_listing');
+		$this->language->load('openbay/amazonus_listing');
 
 		$this->load->model('openbay/amazonus_listing');
 		$this->load->model('openbay/amazonus');
@@ -243,14 +243,14 @@ class ControllerOpenbayAmazonusListing extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function edit() {
+		$this->language->load('openbay/amazonus_listing');
+
 		$this->load->model('openbay/amazonus_listing');
 		$this->load->model('openbay/amazonus');
-
-		$this->load->language('openbay/amazonus_listing');
 
 		$url = '';
 
@@ -468,7 +468,7 @@ class ControllerOpenbayAmazonusListing extends Controller {
 	}
 
 	public function deleteLinks() {
-		$this->load->language('openbay/amazonus_listing');
+		$this->language->load('openbay/amazonus_listing');
 
 		$url = '';
 
@@ -550,9 +550,9 @@ class ControllerOpenbayAmazonusListing extends Controller {
 	}
 
 	public function search() {
-		$this->load->model('openbay/amazonus_listing');
+		$this->language->load('openbay/amazonus_listing');
 
-		$this->load->language('openbay/amazonus_listing');
+		$this->load->model('openbay/amazonus_listing');
 
 		$error = '';
 
@@ -562,13 +562,13 @@ class ControllerOpenbayAmazonusListing extends Controller {
 
 		if ($error) {
 			$response = array(
-				'data'		=> '',
-				'error'		=> $error
+				'data'	=> '',
+				'error'	=> $error
 			);
 		} else {
 			$response = array(
-				'data'		=> $this->model_openbay_amazonus_listing->search($this->request->post['search_string']),
-				'error'		=> ''
+				'data'	=> $this->model_openbay_amazonus_listing->search($this->request->post['search_string']),
+				'error'	=> ''
 			);
 		}
 
@@ -576,9 +576,9 @@ class ControllerOpenbayAmazonusListing extends Controller {
 	}
 
 	public function bestPrice() {
-		$this->load->model('openbay/amazonus_listing');
+		$this->language->load('openbay/amazonus_listing');
 
-		$this->load->language('openbay/amazonus_listing');
+		$this->load->model('openbay/amazonus_listing');
 
 		$error = '';
 

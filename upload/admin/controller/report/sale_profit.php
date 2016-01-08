@@ -48,19 +48,19 @@ class ControllerReportSaleProfit extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-   		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('report/sale_profit', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		// Pagination
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');

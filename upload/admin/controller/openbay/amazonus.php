@@ -2,7 +2,7 @@
 class ControllerOpenbayAmazonus extends Controller {
 
 	public function stockUpdates() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_stockupdates'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_stockupdates'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -112,7 +112,7 @@ class ControllerOpenbayAmazonus extends Controller {
 		$this->load->model('openbay/amazonus');
 		$this->load->model('sale/customer_group');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_overview'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_overview'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -167,7 +167,7 @@ class ControllerOpenbayAmazonus extends Controller {
 	}
 
 	public function subscription() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_subscription'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_subscription'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -256,9 +256,9 @@ class ControllerOpenbayAmazonus extends Controller {
 	}
 
 	public function settings() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_settings'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_settings'));
 
-		$this->load->language('openbay/amazonus_listing');
+		$this->language->load('openbay/amazonus_listing');
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -307,11 +307,13 @@ class ControllerOpenbayAmazonus extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'separator' => false
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=extension/openbay&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
+
 		$this->data['breadcrumbs'][] = array(
 			'href'		=> HTTPS_SERVER . 'index.php?route=openbay/amazonus/overview&token=' . $this->session->data['token'],
 			'text'		=> $this->language->get('lang_overview'),
@@ -447,7 +449,7 @@ class ControllerOpenbayAmazonus extends Controller {
 	}
 
 	public function itemLinks() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_links'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_links'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -500,7 +502,7 @@ class ControllerOpenbayAmazonus extends Controller {
 	}
 
 	public function savedListings() {
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_listingsaved'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_listingsaved'));
 
 		$this->document->setTitle($this->language->get('lang_title'));
 
@@ -606,6 +608,7 @@ class ControllerOpenbayAmazonus extends Controller {
 		if ($this->openbay->addonLoad('openstock') && isset($this->request->get['product_id'])) {
 			$this->load->model('openstock/openstock');
 			$this->load->model('tool/image');
+
 			$options = $this->model_openstock_openstock->getProductOptionStocks($this->request->get['product_id']);
 		}
 
@@ -785,10 +788,10 @@ class ControllerOpenbayAmazonus extends Controller {
 	}
 
 	public function doBulkSearch() {
+		$this->language->load('openbay/amazonus_bulk');
+
 		$this->load->model('catalog/product');
 		$this->load->model('openbay/amazonus_listing');
-
-		$this->load->language('openbay/amazonus_bulk');
 
 		$json = array();
 		$search_data = array();
@@ -845,7 +848,7 @@ class ControllerOpenbayAmazonus extends Controller {
 		$this->load->model('catalog/product');
 		$this->load->model('tool/image');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_bulk'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_bulk'));
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -995,7 +998,7 @@ class ControllerOpenbayAmazonus extends Controller {
 	public function bulkLinking() {
 		$this->load->model('openbay/amazonus');
 
-		$this->data = array_merge($this->data, $this->load->language('openbay/amazonus_bulk_linking'));
+		$this->data = array_merge($this->data, $this->language->load('openbay/amazonus_bulk_linking'));
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -1101,10 +1104,10 @@ class ControllerOpenbayAmazonus extends Controller {
 	}
 
 	public function loadListingReport() {
+		$this->language->load('openbay/amazonus_bulk_linking');
+
 		$this->load->model('openbay/amazonus');
 		$this->load->model('setting/setting');
-
-		$this->load->language('openbay/amazonus_bulk_linking');
 
 		$this->model_openbay_amazonus->deleteListingReports();
 

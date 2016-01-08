@@ -77,7 +77,7 @@ class ControllerToolExportImportRaw extends Controller {
 			$this->data['success'] = '';
 		}
 
-  		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('text_home'),

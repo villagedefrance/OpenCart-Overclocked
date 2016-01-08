@@ -64,25 +64,25 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 			$this->data['error_key'] = '';
 		}
 
-  		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_payment'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_payment'),
 			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('payment/authorizenet_sim', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		$this->data['action'] = $this->url->link('payment/authorizenet_sim', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -158,7 +158,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 			'common/footer'
 		);
 
- 		$this->response->setOutput($this->render());
+		$this->response->setOutput($this->render());
 	}
 
 	protected function validate() {

@@ -113,8 +113,8 @@ class ControllerSaleContact extends Controller {
 					case 'newsletter':
 						$customer_data = array(
 							'filter_newsletter'	=> 1,
-							'start'             	=> ($page - 1) * 10,
-							'limit'             		=> 10
+							'start'	=> ($page - 1) * 10,
+							'limit'		=> 10
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
@@ -142,8 +142,8 @@ class ControllerSaleContact extends Controller {
 					case 'customer_group':
 						$customer_data = array(
 							'filter_customer_group_id'	=> $this->request->post['customer_group_id'],
-							'start'                    		=> ($page - 1) * 10,
-							'limit'                    			=> 10
+							'start'	=> ($page - 1) * 10,
+							'limit'		=> 10
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
@@ -168,7 +168,7 @@ class ControllerSaleContact extends Controller {
 					case 'affiliate_all':
 						$affiliate_data = array(
 							'start'	=> ($page - 1) * 10,
-							'limit'  	=> 10
+							'limit'		=> 10
 						);
 
 						$email_total = $this->model_sale_affiliate->getTotalAffiliates($affiliate_data);

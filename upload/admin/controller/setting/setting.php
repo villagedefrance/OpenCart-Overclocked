@@ -1431,10 +1431,10 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		if (isset($this->request->post['config_alexa_analytics'])) {
-            $this->data['config_alexa_analytics'] = $this->request->post['config_alexa_analytics'];
-        } else {
-            $this->data['config_alexa_analytics'] = $this->config->get('config_alexa_analytics');
-        }
+			$this->data['config_alexa_analytics'] = $this->request->post['config_alexa_analytics'];
+		} else {
+			$this->data['config_alexa_analytics'] = $this->config->get('config_alexa_analytics');
+		}
 
 		// Server
 		if (isset($this->request->post['config_secure'])) {

@@ -9,9 +9,7 @@ class Template {
 			extract($this->data);
 
 			ob_start();
-
 			include($file);
-
 			$content = ob_get_clean();
 
 			return $content;

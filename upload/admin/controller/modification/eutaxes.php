@@ -175,22 +175,22 @@ class ControllerModificationEutaxes extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_home'),
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
-
-   		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_modification'),
-			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => false
+		);
 
 		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('heading_title'),
+			'text'		=> $this->language->get('text_modification'),
+			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => ' :: '
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_title'),
 			'href'		=> $this->url->link('modification/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		// Geo_zone Status
 		$this->load->model('localisation/geo_zone');
@@ -311,10 +311,10 @@ class ControllerModificationEutaxes extends Controller {
 		);
 
 		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_modification'),
+			'text'		=> $this->language->get('text_modification'),
 			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
@@ -520,10 +520,10 @@ class ControllerModificationEutaxes extends Controller {
 		);
 
 		$this->data['breadcrumbs'][] = array(
-       		'text'		=> $this->language->get('text_modification'),
+			'text'		=> $this->language->get('text_modification'),
 			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),

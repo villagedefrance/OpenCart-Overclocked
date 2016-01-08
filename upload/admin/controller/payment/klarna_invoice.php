@@ -191,7 +191,6 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				break;
 			case 'boolean':
 				$value = (string)$child->nodeValue;
-
 				if ($value == '0') {
 					$value = false;
 				} elseif ($value == '1') {
@@ -210,11 +209,9 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				$value = array();
 				$xpath = new DOMXPath($document);
 				$entries = $xpath->query('.//array/data/value', $child);
-
 				for ($i = 0; $i < $entries->length; $i++) {
 					$value[] = $this->parseResponse($entries->item($i)->firstChild, $document);
 				}
-
 				break;
 			default:
 				$value = null;

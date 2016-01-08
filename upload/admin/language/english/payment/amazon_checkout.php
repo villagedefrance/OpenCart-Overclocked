@@ -49,7 +49,7 @@ $_['error_permissions'] 				= 'Warning: You do not have permissions to modify <b
 $_['error_empty_access_secret'] = 'Secret Key is required';
 $_['error_empty_access_key'] 	= 'Access Key is required';
 $_['error_empty_merchant_id'] 	= 'Merchant ID is required';
-$_['error_curreny'] 					= 'Your shop must have %s currency installed and enabled';
+$_['error_currency'] 					= 'Your shop must have %s currency installed and enabled';
 $_['error_upload'] 					= 'Upload failed';
 
 // Checkout button settings
@@ -75,6 +75,7 @@ $_['text_amazon_details'] 			= 'Amazon Details';
 $_['text_amazon_order_id'] 		= 'Amazon Order ID:';
 $_['text_upload'] 						= 'Upload';
 $_['text_upload_template'] 		= 'Upload the filled in template by clicking on the button below. Make sure it is saved as a tab-delimited file.';
+
 $_['tab_order_adjustment'] 		= 'Order Adjustment';
 
 //Table columns

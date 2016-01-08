@@ -37,13 +37,13 @@ class ControllerPaymentOkpay extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
 		}
 
- 		if (isset($this->error['receiver'])) {
+		if (isset($this->error['receiver'])) {
 			$this->data['error_receiver'] = $this->error['receiver'];
 		} else {
 			$this->data['error_receiver'] = '';

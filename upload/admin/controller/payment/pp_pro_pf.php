@@ -3,7 +3,7 @@ class ControllerPaymentPPProPF extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/pp_pro_pf');
+		$this->language->load('payment/pp_pro_pf');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -46,6 +46,8 @@ class ControllerPaymentPPProPF extends Controller {
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

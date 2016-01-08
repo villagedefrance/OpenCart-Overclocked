@@ -2,7 +2,7 @@
 class ControllerOpenbayAmazonListing extends Controller {
 
 	public function create() {
-		$this->load->language('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
 		$this->load->model('openbay/amazon_listing');
 		$this->load->model('openbay/amazon');
@@ -258,14 +258,14 @@ class ControllerOpenbayAmazonListing extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function edit() {
+		$this->language->load('openbay/amazon_listing');
+
 		$this->load->model('openbay/amazon_listing');
 		$this->load->model('openbay/amazon');
-
-		$this->load->language('openbay/amazon_listing');
 
 		$url = '';
 
@@ -484,7 +484,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 	}
 
 	public function deleteLinks() {
-		$this->load->language('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
 		$url = '';
 
@@ -566,9 +566,9 @@ class ControllerOpenbayAmazonListing extends Controller {
 	}
 
 	public function search() {
-		$this->load->model('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
-		$this->load->language('openbay/amazon_listing');
+		$this->load->model('openbay/amazon_listing');
 
 		$error = '';
 
@@ -596,9 +596,9 @@ class ControllerOpenbayAmazonListing extends Controller {
 	}
 
 	public function bestPrice() {
-		$this->load->model('openbay/amazon_listing');
+		$this->language->load('openbay/amazon_listing');
 
-		$this->load->language('openbay/amazon_listing');
+		$this->load->model('openbay/amazon_listing');
 
 		$error = '';
 
@@ -619,6 +619,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 				'data' => '',
 				'error' => $error,
 			);
+
 		} else {
 			$bestPrice = $this->model_openbay_amazon_listing->getBestPrice($this->request->post['asin'], $this->request->post['condition'], $this->request->post['marketplace']);
 
@@ -627,6 +628,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 					'data' => $bestPrice,
 					'error' => '',
 				);
+
 			} else {
 				$json = array(
 					'data' => '',

@@ -1132,11 +1132,11 @@ class ControllerSaleCustomer extends Controller {
 					}
 				}
 
-				if ($value['country_id'] == '') {
+				if (!isset($value['country_id']) || $value['country_id'] == '' || !is_numeric($value['country_id'])) {
 					$this->error['address_country'][$key] = $this->language->get('error_country');
 				}
 
-				if (!isset($value['zone_id']) || $value['zone_id'] == '') {
+				if (!isset($value['zone_id']) || $value['zone_id'] == '' || !is_numeric($value['zone_id'])) {
 					$this->error['address_zone'][$key] = $this->language->get('error_zone');
 				}
 			}
@@ -1166,8 +1166,6 @@ class ControllerSaleCustomer extends Controller {
 	}
 
 	public function login() {
-		$json = array();
-
 		if (isset($this->request->get['customer_id'])) {
 			$customer_id = $this->request->get['customer_id'];
 		} else {
@@ -1607,9 +1605,9 @@ class ControllerSaleCustomer extends Controller {
 	}
 
 	public function addBanIP() {
-		$this->language->load('sale/customer');
-
 		$json = array();
+
+		$this->language->load('sale/customer');
 
 		if (isset($this->request->post['ip'])) {
 			if (!$this->user->hasPermission('modify', 'sale/customer')) {
@@ -1629,9 +1627,9 @@ class ControllerSaleCustomer extends Controller {
 	}
 
 	public function removeBanIP() {
-		$this->language->load('sale/customer');
-
 		$json = array();
+
+		$this->language->load('sale/customer');
 
 		if (isset($this->request->post['ip'])) {
 			if (!$this->user->hasPermission('modify', 'sale/customer')) {

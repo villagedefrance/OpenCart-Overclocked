@@ -218,6 +218,7 @@ class CBA {
 				if (isset($xml->Error->Code) && (string)$xml->Error->Code == 'RequestThrottled') {
 					$xml = false;
 				}
+
 			} else {
 				$xml = false;
 			}
@@ -306,7 +307,7 @@ class CBA {
 
 		$headers = array(
 			'Content-Type: text/xml',
-			'Content-MD5: ' . base64_encode(md5($xml, true)),
+			'Content-MD5: ' . base64_encode(md5($xml, true))
 		);
 
 		$args = $this->getCommonParameters();
@@ -320,7 +321,7 @@ class CBA {
 		$response_xml = simplexml_load_string($response);
 
 		$cba_log = new Log('cba.log');
-		$cba_log->write('Marked order ' . $order['amazon_order_id'] . ' as shipped. Response  ' . print_r($response_xml, 1));
+		$cba_log->write('Marked order ' . $order['amazon_order_id'] . ' as shipped. Response ' . print_r($response_xml, 1));
 	}
 
 	public function setPurchaseItems($parameters) {

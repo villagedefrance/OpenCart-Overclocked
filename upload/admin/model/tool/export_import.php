@@ -69,7 +69,7 @@ class ModelToolExportImport extends Model {
 	private $error = array();
 	protected $null_array = array();
 
-	protected function clean(&$str, $allowBlanks = false) {
+	protected function clean($str, $allowBlanks = false) {
 		$result = "";
 
 		$n = strlen($str);
@@ -201,28 +201,16 @@ class ModelToolExportImport extends Model {
 
 	// Find all category ids
 	protected function getCategoryIds() {
-		$category_ids = array();
+		$query = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "category");
 
-		$result = $this->db->query("SELECT * FROM " . DB_PREFIX . "category");
-
-		foreach ($result->rows as $row) {
-			$category_ids[] = $row['category_id'];
-		}
-
-		return $category_ids;
+		return $query->rows['category_id'];
 	}
 
 	// Find all product ids
 	protected function getProductIds() {
-		$product_ids = array();
+		$query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product");
 
-		$result = $this->db->query("SELECT * FROM " . DB_PREFIX . "product");
-
-		foreach ($result->rows as $row) {
-			$product_ids[] = $row['product_id'];
-		}
-
-		return $product_ids;
+		return $query->rows['product_id'];
 	}
 
 	// Find all manufacturers already stored in the database

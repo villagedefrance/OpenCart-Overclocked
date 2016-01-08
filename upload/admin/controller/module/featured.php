@@ -66,7 +66,7 @@ class ControllerModuleFeatured extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
@@ -78,25 +78,25 @@ class ControllerModuleFeatured extends Controller {
 			$this->data['error_image'] = array();
 		}
 
-  		$this->data['breadcrumbs'] = array();
+		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'   	=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'  	=> $this->language->get('text_home'),
 			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'  	=> $this->language->get('text_module'),
+		$this->data['breadcrumbs'][] = array(
+			'text'  	=> $this->language->get('text_module'),
 			'href'   	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+			'separator' => ' :: '
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+		$this->data['breadcrumbs'][] = array(
+			'text'  	=> $this->language->get('heading_title'),
+			'href'   	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => ' :: '
+		);
 
 		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 

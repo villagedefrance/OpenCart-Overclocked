@@ -562,7 +562,6 @@ class ControllerSaleVoucher extends Controller {
 
 			if ($order_voucher_info) {
 				$this->error['warning'] = sprintf($this->language->get('error_order'), $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $order_voucher_info['order_id'], 'SSL'));
-
 				break;
 			}
 		}
@@ -625,9 +624,9 @@ class ControllerSaleVoucher extends Controller {
 	}
 
 	public function send() {
-		$this->language->load('sale/voucher');
-
 		$json = array();
+
+		$this->language->load('sale/voucher');
 
 		if (!$this->user->hasPermission('modify', 'sale/voucher')) {
 			$json['error'] = $this->language->get('error_permission');

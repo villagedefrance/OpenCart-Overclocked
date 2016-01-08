@@ -332,9 +332,9 @@ class ControllerPaymentAmazonCheckout extends Controller {
 	}
 
 	public function uploadOrderAdjustment() {
-		$this->language->load('payment/amazon_checkout');
-
 		$json = array();
+
+		$this->language->load('payment/amazon_checkout');
 
 		if (!empty($this->request->files['file']['name'])) {
 			$filename = basename(html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8'));
@@ -362,6 +362,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 				$response = $cba->orderAdjustment($flat);
 
 				$response_xml = simplexml_load_string($response);
+
 				$submission_id = (string)$response_xml->SubmitFeedResult->FeedSubmissionInfo->FeedSubmissionId;
 
 				if (!empty($submission_id)) {
@@ -371,6 +372,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -384,11 +386,11 @@ class ControllerPaymentAmazonCheckout extends Controller {
 	}
 
 	public function orderAction() {
-		$this->load->model('sale/order');
-		$this->load->model('payment/amazon_checkout');
-
 		$this->language->load('sale/order');
 		$this->language->load('payment/amazon_checkout');
+
+		$this->load->model('sale/order');
+		$this->load->model('payment/amazon_checkout');
 
 		$this->document->addScript('view/javascript/jquery/ajaxupload.js');
 
@@ -450,6 +452,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			$this->data['token'] = $this->session->data['token'];
 
 			$this->data['amazon_order_id'] = $amazon_order_info['amazon_order_id'];
+
 			$this->data['order_id'] = $order_id;
 
 			$this->template = 'payment/amazon_checkout_order.tpl';
@@ -489,7 +492,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$currency = $this->model_localisation_currency->getCurrency($this->currency->getId($currency_code));
 
 		if (empty($currency) || $currency['status'] != '1') {
-			$this->errors[] = sprintf($this->language->get('error_curreny'), $currency_code);
+			$this->errors[] = sprintf($this->language->get('error_currency'), $currency_code);
 		}
 
 		return empty($this->errors);

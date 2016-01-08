@@ -130,7 +130,7 @@ class Browser {
 				if (preg_match("|" . preg_quote($key) . ".*?([0-9\.]+)|i", $this->agent, $match)) {
 					$this->is_browser = true;
 
-					$this->browser_version = $match[1];
+					$this->browser_version = (isset($match[1]) ? $match[1] : '');
 
 					$this->browser = $val;
 

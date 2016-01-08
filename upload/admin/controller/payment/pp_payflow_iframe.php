@@ -3,7 +3,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/pp_payflow_iframe');
+		$this->language->load('payment/pp_payflow_iframe');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -67,6 +67,8 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		$this->data['help_partner'] = $this->language->get('help_partner');
 		$this->data['help_checkout_method'] = $this->language->get('help_checkout_method');
 		$this->data['help_debug'] = $this->language->get('help_debug');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -233,7 +235,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 	}
 
 	public function refund() {
-		$this->load->language('payment/pp_payflow_iframe');
+		$this->language->load('payment/pp_payflow_iframe');
 
 		$this->load->model('payment/pp_payflow_iframe');
 		$this->load->model('sale/order');
@@ -298,12 +300,12 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		}
 	}
 
-	public function do_refund() { 
-		$this->load->language('payment/pp_payflow_iframe');
+	public function do_refund() {
+		$json = array();
+
+		$this->language->load('payment/pp_payflow_iframe');
 
 		$this->load->model('payment/pp_payflow_iframe');
-
-		$json = array();
 
 		if (isset($this->request->post['transaction_reference']) && isset($this->request->post['amount'])) {
 			$transaction = $this->model_payment_pp_payflow_iframe->getTransaction($this->request->post['transaction_reference']);
@@ -342,11 +344,12 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$json['error'] = $this->language->get('error_missing_data');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function capture() {
-		$this->load->language('payment/pp_payflow_iframe');
+		$this->language->load('payment/pp_payflow_iframe');
 
 		$this->load->model('payment/pp_payflow_iframe');
 		$this->load->model('sale/order');
@@ -413,11 +416,12 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$json['error'] = $this->language->get('error_missing_data');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function void() {
-		$this->load->language('payment/pp_payflow_iframe');
+		$this->language->load('payment/pp_payflow_iframe');
 
 		$this->load->model('payment/pp_payflow_iframe');
 
@@ -468,11 +472,12 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$json['error'] = $this->language->get('error_missing_data');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function orderAction() {
-		$this->load->language('payment/pp_payflow_iframe');
+		$this->language->load('payment/pp_payflow_iframe');
 
 		$this->load->model('payment/pp_payflow_iframe');
 
