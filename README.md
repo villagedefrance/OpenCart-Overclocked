@@ -43,11 +43,15 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-New in 1.7.3.0 (Current Release):
+New in 1.7.4.0 (Current Release):
+- Code Standards.
+- Bug Fixes ...
+
+New in 1.7.3.0:
 - Added EU taxes for E-medias Law.
 - Added received orders in dashboard graph.
-- Added Seo-Urls cache.
-- Improved GUI and code standards.
+- Added Seo-Urls cache. Thanks skyosev!
+- Improved GUI.
 - Bug Fixes ...
 
 New in 1.7.2.0:
