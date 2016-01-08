@@ -284,7 +284,7 @@ class ControllerCheckoutManual extends Controller {
 			if ($this->cart->hasShipping()) {
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['shipping_country_id']);
 
-				if ($this->request->post['shipping_country_id'] == '') {
+				if (!isset($this->request->post['shipping_country_id']) || $this->request->post['shipping_country_id'] == '') {
 					$json['error']['shipping']['country'] = $this->language->get('error_country');
 				}
 
@@ -488,7 +488,7 @@ class ControllerCheckoutManual extends Controller {
 				$json['error']['payment']['postcode'] = $this->language->get('error_postcode');
 			}
 
-			if ($this->request->post['payment_country_id'] == '') {
+			if (!isset($this->request->post['payment_country_id']) || $this->request->post['payment_country_id'] == '') {
 				$json['error']['payment']['country'] = $this->language->get('error_country');
 			}
 

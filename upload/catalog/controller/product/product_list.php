@@ -11,11 +11,11 @@ class ControllerProductProductList extends Controller {
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
-      	$this->data['breadcrumbs'][] = array(
+		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home'),
 			'separator' => false
-      	);
+		);
 
 		$categories_list = $this->model_catalog_category->getCategories(0);
 

@@ -1,7 +1,7 @@
 <?php
 class ControllerCheckoutExpressPaymentMethod extends Controller {
 
-  	public function index() {
+	public function index() {
 		$this->language->load('checkout/checkout_express');
 
 		if ($this->config->get('config_express_reward') == 2) {
@@ -93,7 +93,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 
 						} else {
 							$method_data[$result['code']] = $method;
-						}	
+						}
 					}
 				}
 			}
@@ -222,7 +222,7 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 		}
 
 		$this->response->setOutput($this->render());
-  	}
+	}
 
 	public function validate() {
 		$this->language->load('checkout/checkout_express');

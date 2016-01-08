@@ -1,4 +1,4 @@
-<?php  
+<?php
 class ControllerCheckoutExpressLogin extends Controller {
 
 	public function index() {
@@ -62,12 +62,12 @@ class ControllerCheckoutExpressLogin extends Controller {
 				}
 			}
 
-            if (!$this->request->post['password'] && $this->request->post['email']) {
-                $customer_name = $this->model_checkout_checkout_express->getCustomerByEmail($this->request->post['email']);
+			if (!$this->request->post['password'] && $this->request->post['email']) {
+				$customer_name = $this->model_checkout_checkout_express->getCustomerByEmail($this->request->post['email']);
 
-                if ($customer_name) {
+				if ($customer_name) {
 					$json['name'] = $this->model_checkout_checkout_tools->getJoinName($customer_name);
-                } else {
+				} else {
 					$json['mail'] = $this->request->post['email'];
 				}
 			}

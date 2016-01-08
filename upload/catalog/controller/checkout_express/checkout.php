@@ -1,6 +1,6 @@
 <?php
 class ControllerCheckoutExpressCheckout extends Controller {
-    private $error = array();
+	private $error = array();
 
 	public function index() {
 		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
@@ -9,8 +9,8 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-	  		$this->redirect($this->url->link('checkout/cart'));
-    	}
+			$this->redirect($this->url->link('checkout/cart'));
+		}
 
 		// Validate minimum quantity requirements.
 		$products = $this->cart->getProducts();
@@ -41,92 +41,92 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_express'));
 
-        // Coupon session
-        if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
-            $this->session->data['coupon'] = $this->request->post['coupon'];
+		// Coupon session
+		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
+			$this->session->data['coupon'] = $this->request->post['coupon'];
 
-            $this->session->data['success'] = $this->language->get('text_coupon');
+			$this->session->data['success'] = $this->language->get('text_coupon');
 
-            $this->redirect($this->url->link('checkout_express/checkout'));
-        }
+			$this->redirect($this->url->link('checkout_express/checkout'));
+		}
 
-        // Voucher session
+		// Voucher session
 		if (!isset($this->session->data['vouchers'])) {
-            $this->session->data['vouchers'] = array();
-        }
+			$this->session->data['vouchers'] = array();
+		}
 
-        if (isset($this->request->post['voucher']) && $this->validateVoucher()) {
-            $this->session->data['voucher'] = $this->request->post['voucher'];
+		if (isset($this->request->post['voucher']) && $this->validateVoucher()) {
+			$this->session->data['voucher'] = $this->request->post['voucher'];
 
-            $this->session->data['success'] = $this->language->get('text_voucher');
+			$this->session->data['success'] = $this->language->get('text_voucher');
 
-            $this->redirect($this->url->link('checkout_express/checkout'));
-        }
+			$this->redirect($this->url->link('checkout_express/checkout'));
+		}
 
-        // Reward session
-        if (isset($this->request->post['reward']) && $this->validateReward()) {
-            $this->session->data['reward'] = abs($this->request->post['reward']);
+		// Reward session
+		if (isset($this->request->post['reward']) && $this->validateReward()) {
+			$this->session->data['reward'] = abs($this->request->post['reward']);
 
-            $this->session->data['success'] = $this->language->get('text_reward');
+			$this->session->data['success'] = $this->language->get('text_reward');
 
-            $this->redirect($this->url->link('checkout_express/checkout'));
-        }
+			$this->redirect($this->url->link('checkout_express/checkout'));
+		}
 
-        if (isset($this->error['warning'])) {
-            $this->data['error_warning'] = $this->error['warning'];
-        } elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
-            $this->data['error_warning'] = $this->language->get('error_stock');
-        } else {
-            $this->data['error_warning'] = '';
-        }
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
+			$this->data['error_warning'] = $this->language->get('error_stock');
+		} else {
+			$this->data['error_warning'] = '';
+		}
 
-        if (isset($this->session->data['success'])) {
-            $this->data['success'] = $this->session->data['success'];
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
 
-            unset($this->session->data['success']);
-        } else {
-            $this->data['success'] = '';
-        }
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
 
-        $this->data['action'] = $this->url->link('checkout_express/checkout');
+		$this->data['action'] = $this->url->link('checkout_express/checkout');
 
 		// Coupon
 		$this->data['coupon_status'] = $this->config->get('coupon_status');
 
-        if (isset($this->request->post['coupon'])) {
-            $this->data['coupon'] = $this->request->post['coupon'];
-        } elseif (isset($this->session->data['coupon'])) {
-            $this->data['coupon'] = $this->session->data['coupon'];
-        } else {
-            $this->data['coupon'] = '';
-        }
+		if (isset($this->request->post['coupon'])) {
+			$this->data['coupon'] = $this->request->post['coupon'];
+		} elseif (isset($this->session->data['coupon'])) {
+			$this->data['coupon'] = $this->session->data['coupon'];
+		} else {
+			$this->data['coupon'] = '';
+		}
 
-        // Gift Voucher
-        $this->data['vouchers'] = array();
+		// Gift Voucher
+		$this->data['vouchers'] = array();
 
-        if (!empty($this->session->data['vouchers'])) {
-            foreach ($this->session->data['vouchers'] as $key => $voucher) {
-                $this->data['vouchers'][] = array(
-                    'key'				=> $key,
-                    'description'	=> $voucher['description'],
-                    'amount'			=> $this->currency->format($voucher['amount']),
-                    'remove'			=> $this->url->link('checkout_express/checkout', 'remove=' . $key)
-                );
-            }
-        }
+		if (!empty($this->session->data['vouchers'])) {
+			foreach ($this->session->data['vouchers'] as $key => $voucher) {
+				$this->data['vouchers'][] = array(
+					'key'				=> $key,
+					'description'	=> $voucher['description'],
+					'amount'			=> $this->currency->format($voucher['amount']),
+					'remove'			=> $this->url->link('checkout_express/checkout', 'remove=' . $key)
+				);
+			}
+		}
 
-        $this->data['voucher_status'] = $this->config->get('voucher_status');
+		$this->data['voucher_status'] = $this->config->get('voucher_status');
 
-        if (isset($this->request->post['voucher'])) {
-            $this->data['voucher'] = $this->request->post['voucher'];
-        } elseif (isset($this->session->data['voucher'])) {
-            $this->data['voucher'] = $this->session->data['voucher'];
-        } else {
-            $this->data['voucher'] = '';
-        }
+		if (isset($this->request->post['voucher'])) {
+			$this->data['voucher'] = $this->request->post['voucher'];
+		} elseif (isset($this->session->data['voucher'])) {
+			$this->data['voucher'] = $this->session->data['voucher'];
+		} else {
+			$this->data['voucher'] = '';
+		}
 
 		// Reward
-        $points = $this->customer->getRewardPoints();
+		$points = $this->customer->getRewardPoints();
 
 		$points_total = 0;
 
@@ -136,7 +136,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			}
 		}
 
-        $max_points = min($points, $points_total);
+		$max_points = min($points, $points_total);
 
 		$sub_total = $this->cart->getSubTotal();
 
@@ -146,27 +146,27 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			$reward_points = $max_points;
 		}
 
-        $this->data['reward_point'] = ($points && $points_total && $this->config->get('reward_status'));
+		$this->data['reward_point'] = ($points && $points_total && $this->config->get('reward_status'));
 
-        if ($this->config->get('config_express_point') == 2) {
-            $this->data['reward_point'] = false;
+		if ($this->config->get('config_express_point') == 2) {
+			$this->data['reward_point'] = false;
 
-            if ($points && $this->config->get('reward_status')) {
-                $this->session->data['reward'] = $reward_points;
+			if ($points && $this->config->get('reward_status')) {
+				$this->session->data['reward'] = $reward_points;
 			}
-        }
+		}
 
-        if (!$this->config->get('config_express_point')) {
+		if (!$this->config->get('config_express_point')) {
 			$this->data['reward_point'] = false;
 		}
 
-        if (isset($this->request->post['reward'])) {
-            $this->data['reward'] = $this->request->post['reward'];
-        } elseif (isset($this->session->data['reward'])) {
-            $this->data['reward'] = $this->session->data['reward'];
-        } else {
-            $this->data['reward'] = '';
-        }
+		if (isset($this->request->post['reward'])) {
+			$this->data['reward'] = $this->request->post['reward'];
+		} elseif (isset($this->session->data['reward'])) {
+			$this->data['reward'] = $this->session->data['reward'];
+		} else {
+			$this->data['reward'] = '';
+		}
 
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
@@ -174,25 +174,25 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text'		=> $this->language->get('text_home'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home'),
-        	'separator' => false
-      	); 
+			'separator' => false
+		); 
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text'		=> $this->language->get('text_cart'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('text_cart'),
 			'href'		=> $this->url->link('checkout/cart'),
-        	'separator' => $this->language->get('text_separator')
-      	);
+			'separator' => $this->language->get('text_separator')
+		);
 
-      	$this->data['breadcrumbs'][] = array(
-        	'text'		=> $this->language->get('heading_express'),
+		$this->data['breadcrumbs'][] = array(
+			'text'		=> $this->language->get('heading_express'),
 			'href'		=> $this->url->link('checkout_express/checkout', '', 'SSL'),
-        	'separator' => $this->language->get('text_separator')
-      	);
+			'separator' => $this->language->get('text_separator')
+		);
 
-	    $this->data['heading_title'] = $this->language->get('heading_express');
+		$this->data['heading_title'] = $this->language->get('heading_express');
 
 		$this->data['text_cart'] = $this->language->get('text_cart');
 		$this->data['text_your_address'] = $this->language->get('text_your_address');
@@ -250,14 +250,14 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
-  	}
+	}
 
 	public function country() {
 		$json = array();
 
 		$this->load->model('localisation/country');
 
-    	$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
+		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
 
 		if ($country_info) {
 			$this->load->model('localisation/zone');
@@ -278,66 +278,66 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-    private function validateCoupon() {
-        $this->load->model('checkout/coupon');
+	private function validateCoupon() {
+		$this->load->model('checkout/coupon');
 
-        $coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);
+		$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);
 
-        if (!$coupon_info) {
-            $this->error['warning'] = $this->language->get('error_coupon');
-        }
+		if (!$coupon_info) {
+			$this->error['warning'] = $this->language->get('error_coupon');
+		}
 
-        if (!$this->error) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    private function validateVoucher() {
-        $this->load->model('checkout/voucher');
+	private function validateVoucher() {
+		$this->load->model('checkout/voucher');
 
-        $voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);
+		$voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);
 
-        if (!$voucher_info) {
-            $this->error['warning'] = $this->language->get('error_voucher');
-        }
+		if (!$voucher_info) {
+			$this->error['warning'] = $this->language->get('error_voucher');
+		}
 
-        if (!$this->error) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    private function validateReward() {
-        $points = $this->customer->getRewardPoints();
+	private function validateReward() {
+		$points = $this->customer->getRewardPoints();
 
-        $points_total = 0;
+		$points_total = 0;
 
-        foreach ($this->cart->getProducts() as $product) {
-            if ($product['points']) {
-                $points_total += $product['points'];
-            }
-        }
+		foreach ($this->cart->getProducts() as $product) {
+			if ($product['points']) {
+				$points_total += $product['points'];
+			}
+		}
 
-        if (empty($this->request->post['reward'])) {
-            $this->error['warning'] = $this->language->get('error_reward');
-        }
+		if (empty($this->request->post['reward'])) {
+			$this->error['warning'] = $this->language->get('error_reward');
+		}
 
-        if ($this->request->post['reward'] > $points) {
-            $this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
-        }
+		if ($this->request->post['reward'] > $points) {
+			$this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
+		}
 
-        if ($this->request->post['reward'] > $points_total) {
-            $this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
-        }
+		if ($this->request->post['reward'] > $points_total) {
+			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
+		}
 
-        if (!$this->error) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 ?>

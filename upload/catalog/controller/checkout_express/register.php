@@ -1,7 +1,7 @@
-<?php 
+<?php
 class ControllerCheckoutExpressRegister extends Controller {
 
-  	public function index() {
+	public function index() {
 		$this->language->load('checkout/checkout_express');
 
 		$this->data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('checkout_express/checkout', '', 'SSL'));
@@ -129,7 +129,7 @@ class ControllerCheckoutExpressRegister extends Controller {
 		}
 
 		$this->response->setOutput($this->render());
-  	}
+	}
 
 	public function validate() {
 		$this->language->load('checkout/checkout_express');
@@ -306,11 +306,11 @@ class ControllerCheckoutExpressRegister extends Controller {
 			if (!$customer_group['approval']) {
 				$this->customer->login($this->request->post['email'], $this->request->post['password']);
 
-                if ($this->config->get('config_express_billing')) {
+				if ($this->config->get('config_express_billing')) {
 					$this->session->data['payment_address_id'] = $this->customer->getAddressId();
 					$this->session->data['payment_country_id'] = $this->request->post['country_id'];
 					$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
-                }
+				}
 
 				if (!empty($this->request->post['shipping_address'])) {
 					$this->session->data['shipping_address_id'] = $this->customer->getAddressId();

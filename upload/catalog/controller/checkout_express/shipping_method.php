@@ -1,7 +1,7 @@
 <?php
 class ControllerCheckoutExpressShippingMethod extends Controller {
 
-  	public function index() {
+	public function index() {
 		$this->language->load('checkout/checkout_express');
 
 		$this->load->model('account/address');
@@ -90,7 +90,7 @@ class ControllerCheckoutExpressShippingMethod extends Controller {
 		}
 
 		$this->response->setOutput($this->render());
-  	}
+	}
 
 	public function validate() {
 		$this->language->load('checkout/checkout_express');

@@ -1,11 +1,11 @@
-<?php 
+<?php
 class ControllerCheckoutExpressSignup extends Controller {
 	private $error = array();
 
-  	public function index() {
+	public function index() {
 		if ($this->customer->isLogged()) {
 			$this->redirect($this->url->link('account/account', '', 'SSL'));
-    	}
+		}
 
 		$this->language->load('checkout/checkout_express');
 
@@ -16,7 +16,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 
 		$this->load->model('checkout/checkout_express');
 
-    	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_checkout_checkout_express->addCustomer($this->request->post);
 
 			$this->customer->login($this->request->post['email'], $this->request->post['password']);
@@ -28,7 +28,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 			} else {
 				$this->redirect($this->url->link('account/account'));
 			}
-    	}
+		}
 
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
@@ -359,9 +359,9 @@ class ControllerCheckoutExpressSignup extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
-  	}
+	}
 
-  	private function validate() {
+	private function validate() {
 		$this->load->model('checkout/checkout_express');
 		$this->load->model('checkout/checkout_tools');
 
