@@ -44,9 +44,9 @@ class ControllerInformationNews extends Controller {
 				'separator' 	=> $this->language->get('text_separator')
 			);
 
-     		$this->data['news_info'] = $news_info;
+			$this->data['news_info'] = $news_info;
 
-     		$this->data['heading_title'] = $news_info['title'];
+			$this->data['heading_title'] = $news_info['title'];
 
 			$this->data['text_no_results'] = $this->language->get('text_no_results');
 
@@ -79,7 +79,7 @@ class ControllerInformationNews extends Controller {
 				$this->data['image'] = false;
 			}
 
-     		$this->data['button_news'] = $this->language->get('button_news');
+			$this->data['button_news'] = $this->language->get('button_news');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['news'] = $this->url->link('information/news_list');
@@ -109,10 +109,10 @@ class ControllerInformationNews extends Controller {
 
 			$this->response->setOutput($this->render());
 
-	  	} else {
-		  	$this->document->setTitle($this->language->get('text_error'));
+		} else {
+			$this->document->setTitle($this->language->get('text_error'));
 
-	     	$this->data['breadcrumbs'][] = array(
+			$this->data['breadcrumbs'][] = array(
 				'text'		=> $this->language->get('text_error'),
 				'href'		=> $this->url->link('information/news', 'news_id=' . $news_id),
 				'separator' => $this->language->get('text_separator')

@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerCommonContentFooter extends Controller {
 
 	protected function index() {

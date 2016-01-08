@@ -13,29 +13,29 @@ class ControllerCommonHeader extends Controller {
 		$metas = false;
 
 		if ($this->config->get('config_meta_google')) {
-            $this->document->addMeta('google-site-verification', $this->config->get('config_meta_google'));
+			$this->document->addMeta('google-site-verification', $this->config->get('config_meta_google'));
 			$metas = true;
-        }
+		}
 
-        if ($this->config->get('config_meta_bing')) {
-            $this->document->addMeta('msvalidate.01', $this->config->get('config_meta_bing'));
+		if ($this->config->get('config_meta_bing')) {
+			$this->document->addMeta('msvalidate.01', $this->config->get('config_meta_bing'));
 			$metas = true;
-        }
+		}
 
 		if ($this->config->get('config_meta_yandex')) {
-            $this->document->addMeta('yandex-verification', $this->config->get('config_meta_yandex'));
+			$this->document->addMeta('yandex-verification', $this->config->get('config_meta_yandex'));
 			$metas = true;
-        }
+		}
 
-        if ($this->config->get('config_meta_baidu')) {
-            $this->document->addMeta('baidu-site-verification', $this->config->get('config_meta_baidu'));
+		if ($this->config->get('config_meta_baidu')) {
+			$this->document->addMeta('baidu-site-verification', $this->config->get('config_meta_baidu'));
 			$metas = true;
-        }
+		}
 
-        if ($this->config->get('config_meta_alexa')) {
-            $this->document->addMeta('alexaVerifyID', $this->config->get('config_meta_alexa'));
+		if ($this->config->get('config_meta_alexa')) {
+			$this->document->addMeta('alexaVerifyID', $this->config->get('config_meta_alexa'));
 			$metas = true;
-        }
+		}
 
 		$this->data['base'] = $server;
 		$this->data['description'] = $this->document->getDescription();

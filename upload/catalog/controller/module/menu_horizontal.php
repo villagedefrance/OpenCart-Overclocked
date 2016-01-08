@@ -86,7 +86,7 @@ class ControllerModuleMenuHorizontal extends Controller {
 			);
 		}
 
-    	$this->data['module'] = $module++;
+		$this->data['module'] = $module++;
 
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
@@ -98,6 +98,6 @@ class ControllerModuleMenuHorizontal extends Controller {
 		}
 
 		$this->render();
-  	}
+	}
 }
 ?>

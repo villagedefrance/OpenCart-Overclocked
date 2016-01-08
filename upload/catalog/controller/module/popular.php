@@ -7,7 +7,7 @@ class ControllerModulePopular extends Controller {
 
 		$this->language->load('module/' . $this->_name);
 
-      	$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');

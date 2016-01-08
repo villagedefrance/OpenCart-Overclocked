@@ -1,4 +1,4 @@
-<?php 
+<?php
 class ControllerCommonContentHeader extends Controller {
 
 	protected function index() {

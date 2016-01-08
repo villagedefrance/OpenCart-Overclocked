@@ -7,7 +7,7 @@ class ControllerModuleNews extends Controller {
 
 		$this->language->load('module/' . $this->_name);
 
-      	$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
@@ -42,7 +42,7 @@ class ControllerModuleNews extends Controller {
 		$results = $this->model_catalog_news->getNewsShort($setting['limit']);
 
 		foreach ($results as $result) {
-            if ($result['image']) {
+			if ($result['image']) {
 				$image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
 			} else {
 				$image = false;

@@ -20,11 +20,11 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			$this->redirect($this->url->link('common/home'));
 		}
 
-		$this->load->model('account/address');
-
 		$this->language->load('payment/amazon_checkout');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('account/address');
 
 		if (isset($this->request->get['contract_id'])) {
 			$this->session->data['cba']['contract_id'] = $this->request->get['contract_id'];
@@ -84,6 +84,8 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->document->addScript($amazon_payment_js);
 
+		$this->language->load('payment/amazon_checkout');
+
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		if (isset($this->session->data['cba'])) {
@@ -91,8 +93,6 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		} else {
 			$this->redirect($this->url->link('common/home'));
 		}
-
-		$this->language->load('payment/amazon_checkout');
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 		$this->data['heading_payment'] = $this->language->get('heading_payment');
@@ -132,14 +132,14 @@ class ControllerPaymentAmazonCheckout extends Controller {
 	}
 
 	public function confirm() {
+		$this->language->load('checkout/checkout');
+		$this->language->load('payment/amazon_checkout');
+
 		$this->load->model('setting/extension');
 		$this->load->model('account/address');
 		$this->load->model('payment/amazon_checkout');
 
 		$this->load->library('cba');
-
-		$this->language->load('checkout/checkout');
-		$this->language->load('payment/amazon_checkout');
 
 		if ($this->config->get('amazon_checkout_mode') == 'sandbox') {
 			$amazon_payment_js = 'https://static-eu.payments-amazon.com/cba/js/gb/sandbox/PaymentWidgets.js';
@@ -541,6 +541,8 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->document->addScript($amazon_payment_js);
 
+		$this->language->load('payment/amazon_checkout');
+
 		$this->load->library('cba');
 
 		$this->load->model('checkout/order');
@@ -548,8 +550,6 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$this->load->model('setting/extension');
 		$this->load->model('account/order');
 		$this->load->model('payment/amazon_checkout');
-
-		$this->language->load('payment/amazon_checkout');
 
 		if (!isset($this->session->data['cba']['order_id'])) {
 			$this->redirect($this->url->link('common/home'));
@@ -749,13 +749,12 @@ class ControllerPaymentAmazonCheckout extends Controller {
 	}
 
 	public function shipping_quotes() {
-		$this->load->model('setting/extension');
+		$this->language->load('payment/amazon_checkout');
 
 		$this->load->library('cba');
 
+		$this->load->model('setting/extension');
 		$this->load->model('payment/amazon_checkout');
-
-		$this->language->load('payment/amazon_checkout');
 
 		if (!isset($this->session->data['cba'])) {
 			$this->redirect($this->url->link('common/home'));

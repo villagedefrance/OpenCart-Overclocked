@@ -7,7 +7,7 @@ class ControllerModuleLocation extends Controller {
 
 		$this->language->load('module/' . $this->_name);
 
-      	$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');

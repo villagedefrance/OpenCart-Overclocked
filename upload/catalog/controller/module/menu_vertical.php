@@ -71,7 +71,7 @@ class ControllerModuleMenuVertical extends Controller {
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 
-    	$this->data['module'] = $module++;
+		$this->data['module'] = $module++;
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl';
@@ -80,6 +80,6 @@ class ControllerModuleMenuVertical extends Controller {
 		}
 
 		$this->render();
-  	}
+	}
 }
 ?>
