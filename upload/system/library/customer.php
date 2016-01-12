@@ -56,7 +56,7 @@ class Customer {
 		}
 
 		if ($customer_query->num_rows) {
-            // Create customer login cookie if HTTPS
+			// Create customer login cookie if HTTPS
 			if ($this->config->get('config_secure')) {
 				// Create a cookie and restrict it to HTTPS pages
 				if ($this->request->isSecure()) {

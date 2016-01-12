@@ -146,8 +146,8 @@
         <td><input type="checkbox" name="demo_data" value="1" /> <?php echo $text_remove; ?></td>
       </tr>
     </table>
-	<br />
-	<br />
+    <br />
+    <br />
     <p id="progress" style="display:none;"></p>
     </fieldset>
     <div id="start" class="buttons">
@@ -160,8 +160,8 @@
 <script type="text/javascript"><!--
 function progress() {
 	document.getElementById('start').style.display='none';
-    document.getElementById('progress').style.display='block';
-    return true;
+	document.getElementById('progress').style.display='block';
+	return true;
 }
 //--></script>
 
