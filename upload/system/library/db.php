@@ -16,8 +16,8 @@ class DB {
 		}
 	}
 
-	public function query($sql) {
-		return $this->driver->query($sql);
+	public function query($sql, $params = array()) {
+		return $this->driver->query($sql, $params);
 	}
 
 	public function escape($value) {

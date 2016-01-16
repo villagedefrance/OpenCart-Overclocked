@@ -7,7 +7,7 @@ final class DBmPDO {
 		try {
 			$this->pdo = new \PDO("mysql:host=" . $hostname . ";port=" . $port . ";dbname=" . $database, $username, $password, array(\PDO::ATTR_PERSISTENT => true));
 		} catch(\PDOException $e) {
-			throw new \Exception('Unknown database \'' . $database . '\'');
+			throw new \Exception('Failed to connect to database. Reason: \'' . $e->getMessage() . '\'');
 			exit();
 		}
 

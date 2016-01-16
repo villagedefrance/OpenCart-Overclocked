@@ -29,7 +29,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_system_core'] = $this->language->get('text_system_core');
 		$this->data['text_version'] = sprintf($this->language->get('text_version'), VERSION);
 		$this->data['text_system_name'] = $this->language->get('text_system_name');
-		$this->data['text_revision'] = sprintf($this->language->get('text_revision'), REVISION);
+		$this->data['text_revision'] = sprintf($this->language->get('text_revision'), RELEASE);
 		$this->data['text_theme'] = $this->language->get('text_theme');
 		$this->data['text_timezone'] = $this->language->get('text_timezone');
 		$this->data['text_phptime'] = $this->language->get('text_phptime');
