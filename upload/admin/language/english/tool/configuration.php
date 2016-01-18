@@ -7,7 +7,7 @@ $_['text_on']	       			= 'On';
 $_['text_off']	       			= 'Off';
 $_['text_system_core']  	= 'Opencart Version:';
 $_['text_version']  			= '%s';
-$_['text_system_name']  	= 'Release:';
+$_['text_system_name']  	= 'Released:';
 $_['text_revision']  			= '%s';
 $_['text_theme']				= 'Active Template:';
 $_['text_timezone'] 			= 'Server Time Zone:<span class="help">Defined by the hosting provider through the server\'s php.ini file.</span>';

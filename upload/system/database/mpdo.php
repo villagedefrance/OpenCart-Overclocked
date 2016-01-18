@@ -1,24 +1,23 @@
 <?php
 final class DBmPDO {
-	private $pdo = null;
+	private $connection = null;
 	private $statement = null;
 
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
 		try {
-			$this->pdo = new \PDO("mysql:host=" . $hostname . ";port=" . $port . ";dbname=" . $database, $username, $password, array(\PDO::ATTR_PERSISTENT => true));
+			$this->connection = new \PDO("mysql:host=" . $hostname . ";port=" . $port . ";dbname=" . $database, $username, $password, array(\PDO::ATTR_PERSISTENT => true));
 		} catch(\PDOException $e) {
 			throw new \Exception('Failed to connect to database. Reason: \'' . $e->getMessage() . '\'');
-			exit();
 		}
 
-		$this->pdo->exec("SET NAMES 'utf8'");
-		$this->pdo->exec("SET CHARACTER SET utf8");
-		$this->pdo->exec("SET CHARACTER_SET_CONNECTION=utf8");
-		$this->pdo->exec("SET SQL_MODE = ''");
+		$this->connection->exec("SET NAMES 'utf8'");
+		$this->connection->exec("SET CHARACTER SET utf8");
+		$this->connection->exec("SET CHARACTER_SET_CONNECTION=utf8");
+		$this->connection->exec("SET SQL_MODE = ''");
 	}
 
 	public function prepare($sql) {
-		$this->statement = $this->pdo->prepare($sql);
+		$this->statement = $this->connection->prepare($sql);
 	}
 
 	public function bindParam($parameter, $variable, $data_type = \PDO::PARAM_STR, $length = 0) {
@@ -44,12 +43,13 @@ final class DBmPDO {
 				$result->num_rows = $this->statement->rowCount();
 			}
 		} catch(\PDOException $e) {
-			trigger_error('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode());
+			throw new \Exception('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode());
 		}
 	}
 
 	public function query($sql, $params = array()) {
-		$this->statement = $this->pdo->prepare($sql);
+		$this->statement = $this->connection->prepare($sql);
+
 		$result = false;
 
 		try {
@@ -66,8 +66,7 @@ final class DBmPDO {
 				$result->num_rows = $this->statement->rowCount();
 			}
 		} catch (\PDOException $e) {
-			trigger_error('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode() . ' <br />' . $sql);
-			exit();
+			throw new \Exception('Error: ' . $e->getMessage() . ' Error Code : ' . $e->getCode() . ' <br />' . $sql);
 		}
 
 		if ($result) {
@@ -94,11 +93,19 @@ final class DBmPDO {
 	}
 
 	public function getLastId() {
-		return $this->pdo->lastInsertId();
+		return $this->connection->lastInsertId();
+	}
+
+	public function isConnected() {
+		if ($this->connection) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function __destruct() {
-		$this->pdo = null;
+		$this->connection = null;
 	}
 }
 ?>
