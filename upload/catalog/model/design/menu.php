@@ -49,15 +49,39 @@ class ModelDesignMenu extends Model {
 	}
 
 	public function getTotalMenuItems($menu_id) {
-      	$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "' AND status = '1'");
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "' AND status = '1'";
 
-		return $query->row['total'];
+		$cache_id = 'menu.items.total';
+
+		$total = $this->cache->get($cache_id);
+
+		if (!$total || $total === null) {
+			$query = $this->db->query($sql);
+
+			$total = $query->row['total'];
+
+			$this->cache->set($cache_id, $total);
+		}
+
+		return $total;
 	}
 
 	public function getTotalMenuItemsByParentId($menu_id, $parent_id) {
-      	$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "' AND parent_id = '" . (int)$parent_id . "' AND status = '1'");
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "' AND parent_id = '" . (int)$parent_id . "' AND status = '1'";
 
-		return $query->row['total'];
+		$cache_id = 'menu.item.parents.total';
+
+		$total = $this->cache->get($cache_id);
+
+		if (!$total || $total === null) {
+			$query = $this->db->query($sql);
+
+			$total = $query->row['total'];
+
+			$this->cache->set($cache_id, $total);
+		}
+
+		return $total;
 	}
 }
 ?>

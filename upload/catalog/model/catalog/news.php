@@ -74,13 +74,21 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getTotalNews() {
-     	$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'");
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'";
 
-		if ($query->row) {
-			return $query->row['total'];
-		} else {
-			return false;
+		$cache_id = 'news.total';
+
+		$total = $this->cache->get($cache_id);
+
+		if (!$total || $total === null) {
+			$query = $this->db->query($sql);
+
+			$total = $query->row['total'];
+
+			$this->cache->set($cache_id, $total);
 		}
+
+		return $total;
 	}
 }
 ?>

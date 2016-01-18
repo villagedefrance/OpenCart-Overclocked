@@ -76,23 +76,31 @@ class ModelCatalogReview extends Model {
 	public function getRandomReviews($limit) {
 		$query = $this->db->query("SELECT r.author, r.text, r.rating, p.product_id, pd.name, p.price, p.image, r.date_added FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY RAND() LIMIT " . $limit);
 
-		$results = $query->rows;
-
-		return $results;
+		return $query->rows;
 	}
 
 	public function getLatestReviews($limit) {
 		$query = $this->db->query("SELECT r.author, r.text, r.rating, p.product_id, pd.name, p.price, p.image, r.date_added FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT " . $limit);
 
-		$results = $query->rows;
-
-		return $results;
+		return $query->rows;
 	}
 
 	public function getTotalReviews() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1'");
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1'";
 
-		return $query->row['total'];
+		$cache_id = 'reviews.total';
+
+		$total = $this->cache->get($cache_id);
+
+		if (!$total || $total === null) {
+			$query = $this->db->query($sql);
+
+			$total = $query->row['total'];
+
+			$this->cache->set($cache_id, $total);
+		}
+
+		return $total;
 	}
 
 	public function getTotalReviewsByProductId($product_id) {

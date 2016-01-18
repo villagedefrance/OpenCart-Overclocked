@@ -82,9 +82,21 @@ class ModelDesignConnection extends Model {
 	}
 
 	public function getTotalCatalogConnections() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection WHERE frontend = '1'");
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection WHERE frontend = '1'";
 
-		return $query->row['total'];
+		$cache_id = 'connections.total';
+
+		$total = $this->cache->get($cache_id);
+
+		if (!$total || $total === null) {
+			$query = $this->db->query($sql);
+
+			$total = $query->row['total'];
+
+			$this->cache->set($cache_id, $total);
+		}
+
+		return $total;
 	}
 }
 ?>

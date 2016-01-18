@@ -36,9 +36,21 @@ class ModelDesignFooter extends Model {
 	}
 
 	public function getTotalFooters() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "footer WHERE status = '1'");
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "footer WHERE status = '1'";
 
-		return $query->row['total'];
+		$cache_id = 'footers.total';
+
+		$total = $this->cache->get($cache_id);
+
+		if (!$total || $total === null) {
+			$query = $this->db->query($sql);
+
+			$total = $query->row['total'];
+
+			$this->cache->set($cache_id, $total);
+		}
+
+		return $total;
 	}
 
 	public function getFooterMaxPosition() {

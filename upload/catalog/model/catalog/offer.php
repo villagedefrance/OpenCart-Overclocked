@@ -328,18 +328,18 @@ class ModelCatalogOffer extends Model {
 
 	// Product List
 	private function getCategoryProducts($category_id) {
-        $product_list = array();
+		$product_list = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE category_id = '" . (int)$category_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE category_id = '" . (int)$category_id . "'");
 
-        if ($query->num_rows) {
-            foreach ($query->rows as $result) {
-                $product_list[] = $result['product_id'];
-            }
-        }
+		if ($query->num_rows) {
+			foreach ($query->rows as $result) {
+				$product_list[] = $result['product_id'];
+			}
+		}
 
-        return $product_list;
-    }
+		return $product_list;
+	}
 
 	public function getOfferProductImage($product_id) {
 		$query = $this->db->query("SELECT image FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
