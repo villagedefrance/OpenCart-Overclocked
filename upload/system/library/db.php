@@ -12,7 +12,7 @@ class DB {
 
 			$this->driver = new $class($hostname, $username, $password, $database, $port);
 		} else {
-			exit('Error: Could not load database driver ' . $driver . '!');
+			throw new \Exception('Error: Could not load database driver ' . $driver . '!');
 		}
 	}
 
@@ -30,6 +30,10 @@ class DB {
 
 	public function getLastId() {
 		return $this->driver->getLastId();
+	}
+
+	public function connected() {
+		return $this->driver->connected();
 	}
 }
 ?>

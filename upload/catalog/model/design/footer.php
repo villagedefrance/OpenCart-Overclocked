@@ -38,7 +38,7 @@ class ModelDesignFooter extends Model {
 	public function getTotalFooters() {
 		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "footer WHERE status = '1'";
 
-		$cache_id = 'footers.total';
+		$cache_id = 'footer.total';
 
 		$total = $this->cache->get($cache_id);
 

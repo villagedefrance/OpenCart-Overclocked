@@ -51,7 +51,7 @@ class ModelDesignMenu extends Model {
 	public function getTotalMenuItems($menu_id) {
 		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "' AND status = '1'";
 
-		$cache_id = 'menu.items.total';
+		$cache_id = 'menu_items.total';
 
 		$total = $this->cache->get($cache_id);
 
@@ -69,7 +69,7 @@ class ModelDesignMenu extends Model {
 	public function getTotalMenuItemsByParentId($menu_id, $parent_id) {
 		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "menu_item WHERE menu_id = '" . (int)$menu_id . "' AND parent_id = '" . (int)$parent_id . "' AND status = '1'";
 
-		$cache_id = 'menu.item.parents.total';
+		$cache_id = 'menu_items.parents.total';
 
 		$total = $this->cache->get($cache_id);
 

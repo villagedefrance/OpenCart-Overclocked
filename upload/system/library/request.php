@@ -30,7 +30,7 @@ class Request {
 	}
 
 	public function isSecure() {
-		if (isset($this->server['HTTPS']) && (($this->server['HTTPS'] == 'on') || ($this->server['HTTPS'] == '1')) || ($this->server['SERVER_PORT'] == '443')) {
+		if ((isset($this->server['HTTPS']) && (($this->server['HTTPS'] == 'on') || ($this->server['HTTPS'] == '1'))) || ($this->server['SERVER_PORT'] == '443')) {
 			return true;
 		} elseif (!empty($this->server['HTTP_X_FORWARDED_PROTO']) && $this->server['HTTP_X_FORWARDED_PROTO'] == 'https' || !empty($this->server['HTTP_X_FORWARDED_SSL']) && $this->server['HTTP_X_FORWARDED_SSL'] == 'on') {
 			return true;

@@ -28,6 +28,7 @@ class ModelCatalogNews extends Model {
 		}
 
 		$this->cache->delete('seo_url_map');
+		$this->cache->delete('news.total');
 		$this->cache->delete('news');
 		$this->cache->delete('store');
 	}
@@ -71,6 +72,7 @@ class ModelCatalogNews extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'news_id=" . (int)$news_id . "'");
 
 		$this->cache->delete('seo_url_map');
+		$this->cache->delete('news.total');
 		$this->cache->delete('news');
 		$this->cache->delete('store');
 	}

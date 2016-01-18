@@ -27,6 +27,8 @@ class ModelDesignMenuItems extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "menu_item_path SET menu_item_id = '" . (int)$menu_item_id . "', path_id = '" . (int)$menu_item_id . "', `level` = '" . (int)$level . "'");
 
 		$this->cache->delete('menu_items');
+		$this->cache->delete('menu_items.total');
+		$this->cache->delete('menu_items.parents.total');
 	}
 
 	public function editMenuItem($menu_item_id, $menu_id, $data) {
@@ -97,6 +99,8 @@ class ModelDesignMenuItems extends Model {
         $this->db->query("UPDATE " . DB_PREFIX . "menu_item SET status = '" . (int)$status . "' WHERE menu_item_id = '" . (int)$menu_item_id . "'");
 
         $this->cache->delete('menu_items');
+		$this->cache->delete('menu_items.total');
+		$this->cache->delete('menu_items.parents.total');
     }
 
 	public function deleteMenuItem($menu_item_id) {
@@ -112,6 +116,8 @@ class ModelDesignMenuItems extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "menu_item_description WHERE menu_item_id = '" . (int)$menu_item_id . "'");
 
 		$this->cache->delete('menu_items');
+		$this->cache->delete('menu_items.total');
+		$this->cache->delete('menu_items.parents.total');
 	}
 
 	// Function to repair any erroneous menu items that are not in the menu item path table.
@@ -139,6 +145,8 @@ class ModelDesignMenuItems extends Model {
 		}
 
 		$this->cache->delete('menu_items');
+		$this->cache->delete('menu_items.total');
+		$this->cache->delete('menu_items.parents.total');
 	}
 
 	public function getMenuItem($menu_item_id) {

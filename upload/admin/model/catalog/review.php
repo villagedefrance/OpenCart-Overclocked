@@ -9,6 +9,7 @@ class ModelCatalogReview extends Model {
 		// Save and Continue
 		$this->session->data['new_review_id'] = $review_id;
 
+		$this->cache->delete('reviews.total');
 		$this->cache->delete('product');
 	}
 
@@ -21,6 +22,7 @@ class ModelCatalogReview extends Model {
 	public function deleteReview($review_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "review WHERE review_id = '" . (int)$review_id . "'");
 
+		$this->cache->delete('reviews.total');
 		$this->cache->delete('product');
 	}
 
