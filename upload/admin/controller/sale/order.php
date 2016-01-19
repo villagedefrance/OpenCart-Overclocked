@@ -775,7 +775,7 @@ class ControllerSaleOrder extends Controller {
 
 		$this->data['stores'] = $this->model_setting_store->getStores();
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
 			$this->data['store_url'] = HTTPS_CATALOG;
 		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['store_url'] = HTTPS_CATALOG;
@@ -2315,7 +2315,7 @@ class ControllerSaleOrder extends Controller {
 
 		$this->data['title'] = $this->language->get('heading_title');
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
 			$this->data['base'] = HTTPS_SERVER;
 		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
@@ -2416,7 +2416,7 @@ class ControllerSaleOrder extends Controller {
 
 		$this->data['title'] = $this->language->get('heading_title');
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
 			$this->data['base'] = HTTPS_SERVER;
 		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
@@ -2637,7 +2637,7 @@ class ControllerSaleOrder extends Controller {
 
 		$this->data['title'] = $this->language->get('heading_title');
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
 			$this->data['base'] = HTTPS_SERVER;
 		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
@@ -2856,7 +2856,7 @@ class ControllerSaleOrder extends Controller {
 
 		$this->data['title'] = $this->language->get('heading_title');
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
 			$this->data['base'] = HTTPS_SERVER;
 		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
