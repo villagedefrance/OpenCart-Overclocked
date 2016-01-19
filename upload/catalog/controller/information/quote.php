@@ -281,18 +281,6 @@ class ControllerInformationQuote extends Controller {
 		}
 	}
 
-	public function captcha() {
-		$this->load->library('captcha');
-
-		$font = $this->config->get('config_captcha_font');
-
-		$captcha = new Captcha();
-
-		$this->session->data['captcha'] = $captcha->getCode();
-
-		$captcha->showImage($font);
-	}
-
 	public function upload() {
 		$this->language->load('information/quote');
 
@@ -361,6 +349,16 @@ class ControllerInformationQuote extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function captcha() {
+		$this->load->library('captcha');
+
+		$captcha = new Captcha();
+
+		$this->session->data['captcha'] = $captcha->getCode();
+
+		$captcha->showImage($this->config->get('config_captcha_font'));
 	}
 }
 ?>
