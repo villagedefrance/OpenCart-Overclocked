@@ -570,6 +570,8 @@ class ControllerAccountReturn extends Controller {
 			$this->data['captcha'] = '';
 		}
 
+		$this->data['captcha_image'] = $this->url->link('account/return/captcha', '', 'SSL');
+
 		if ($this->config->get('config_return_id')) {
 			$this->load->model('catalog/information');
 

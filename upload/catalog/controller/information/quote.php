@@ -165,6 +165,8 @@ class ControllerInformationQuote extends Controller {
 			$this->data['captcha'] = '';
 		}
 
+		$this->data['captcha_image'] = $this->url->link('information/quote/captcha', '', 'SSL');
+
 		// Create directory if it does not exist
 		$directory = DIR_SYSTEM . 'logs/';
 

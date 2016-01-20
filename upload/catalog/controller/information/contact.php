@@ -147,6 +147,8 @@ class ControllerInformationContact extends Controller {
 			$this->data['captcha'] = '';
 		}
 
+		$this->data['captcha_image'] = $this->url->link('information/contact/captcha', '', 'SSL');
+
 		// Create directory if it does not exist
 		$directory = DIR_SYSTEM . 'logs/';
 

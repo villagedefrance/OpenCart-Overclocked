@@ -40,7 +40,7 @@
           <div id="captcha-wrap">
             <div class="captcha-box">
               <div class="captcha-view">
-                <img src="index.php?route=information/contact/captcha" alt="" id="captcha-image" />
+                <img src="<?php echo $captcha_image; ?>" alt="" id="captcha-image" />
               </div>
             </div>
             <div class="captcha-text">
