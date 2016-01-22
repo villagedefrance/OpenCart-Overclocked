@@ -44,13 +44,13 @@
             <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
           <?php } ?>
           <div class="image">
-            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox" rel="swipe"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
           </div>
         <?php } ?>
         <?php if ($images) { ?>
           <div class="image-additional">
             <?php foreach ($images as $image) { ?>
-              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="swipebox" rel="swipe"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
             <?php } ?>
           </div>
         <?php } ?>
@@ -429,7 +429,6 @@
       <div id="add-review">
         <h2 id="review-title"><?php echo $text_write; ?></h2>
         <div class="review-element">
-          <label for="name" class="hidden"></label>
           <input type="text" name="name" placeholder="<?php echo $entry_name; ?>" value="" size="30" />
         </div>
         <div class="review-element">

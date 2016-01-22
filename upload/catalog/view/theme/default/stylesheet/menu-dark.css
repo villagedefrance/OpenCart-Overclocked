@@ -14,9 +14,9 @@
 	margin: 0;
 	padding: 0px 0px 0px 5px;
 	-moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -khtml-border-radius: 4px;
-    border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
 }
 .menu-dark #menu a {
 	font-family: Arial, Helvetica, sans-serif;
@@ -45,7 +45,7 @@
 	padding: 0px 14px 0px 14px;
 	transition: all 0.2s;
 	-webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
+	-moz-transition: all 0.2s;
 	z-index: 516;
 	color: #FFF;
 	background-color: #4D4F50;
@@ -86,9 +86,9 @@
 	z-index: 520;
 	padding: 0px 0px 10px 0px;
 	-moz-border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    -khtml-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px;
+	-webkit-border-radius: 0 0 4px 4px;
+	-khtml-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
 	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
 	-moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
 	box-shadow: 1px 1px 3px rgba(0,0,0,0.12);
@@ -128,16 +128,15 @@
 	white-space: nowrap;
 	transition: all 0.3s;
 	-webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
+	-moz-transition: all 0.3s;
 	outline: none;
 }
 .menu-dark #menu > ul > li ul > li > a > span {
 	background: url('../image/menu/arrow_left_dark.png') -20px center no-repeat;
 	display: inline-block;
-	zoom: 1;
 	transition: all 0.3s;
 	-webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
+	-moz-transition: all 0.3s;
 }
 .menu-dark #menu > ul > li ul > li > a.last-submenu-item {
 	padding: 7px 0px 7px;
@@ -196,72 +195,72 @@
 		width: auto;
 	}
 	#menu-phone {
-        margin: 0px 0px 15px 0px;
+		margin: 0px 0px 15px 0px;
 		padding: 0px;
-        position: relative;
-        top: 10px;
-        width: 295px;
+		position: relative;
+		top: 10px;
+		width: 295px;
 		background: rgba(255,255,255,1);
 		opacity: 1;
 		filter: alpha(opacity=100);
-        box-shadow: none;
+		box-shadow: none;
 		display: none;
 		z-index: 550;
-    }
-    #menu-phone:after {
-        content: "";
-        position: absolute;
-        left: 22px;
-        top: -8px;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-bottom: 8px solid #555;
-    }
-    #menu-phone > ul {
-        position: static;
-        visibility: visible;
-        opacity: 1;
-        margin: 0px 0px 10px 0px;
-        background: none;
-        box-shadow: none;
+	}
+	#menu-phone:after {
+		content: "";
+		position: absolute;
+		left: 22px;
+		top: -8px;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		border-bottom: 8px solid #555;
+	}
+	#menu-phone > ul {
+		position: static;
+		visibility: visible;
+		opacity: 1;
+		margin: 0px 0px 10px 0px;
+		background: none;
+		box-shadow: none;
 		list-style: none;
-    }
-    #menu-phone > ul > li > ul {
-        margin: 0px 0px 5px 0px;
-        box-shadow: none;
+	}
+	#menu-phone > ul > li > ul {
+		margin: 0px 0px 5px 0px;
+		box-shadow: none;
 		list-style: none;
-    }
-    #menu-phone > ul > li {
-        position: static;
-        display: block;
-        float: none;
-        margin-left: 5px;
+	}
+	#menu-phone > ul > li {
+		position: static;
+		display: block;
+		float: none;
+		margin-left: 5px;
 		padding-bottom: 2px;
 		border-bottom: 1px dotted #AAA;
 		border-right: none;
 		box-shadow: none;
-    }
-    #menu-phone > ul > li a {
+	}
+	#menu-phone > ul > li a {
 		display: block;
-        float: none;
-        line-height: 25px;
-		color: #111;
-		font-size: 14px;
-		text-decoration: none;
-		z-index: 555;
-    }
-	#menu-phone > ul > li ul > li a {
-        display: block;
-        float: none;
+		float: none;
 		line-height: 25px;
 		color: #111;
 		font-size: 14px;
 		text-decoration: none;
 		z-index: 555;
-    }
-    #menu-phone > ul > li a:hover, #menu-phone > ul > li ul > li a:hover {
-        color: #38B0E3;
-    }
+	}
+	#menu-phone > ul > li ul > li a {
+		display: block;
+		float: none;
+		line-height: 25px;
+		color: #111;
+		font-size: 14px;
+		text-decoration: none;
+		z-index: 555;
+	}
+	#menu-phone > ul > li a:hover, #menu-phone > ul > li ul > li a:hover {
+		color: #38B0E3;
+	}
 	#menu-phone > ul > li a .home-icon {
 		background: url('../image/menu/home_icon_dark.png') center center no-repeat;
 		width: 30px;
@@ -269,7 +268,7 @@
 		padding: 0px 10px 0px 0px;
 		display: block;
 	}
-    #menu-phone > ul > li:first-child a:after, #menu-phone > ul > li ul > li:first-child a:after {
-        border: none;
-    }
+	#menu-phone > ul > li:first-child a:after, #menu-phone > ul > li ul > li:first-child a:after {
+		border: none;
+	}
 }
