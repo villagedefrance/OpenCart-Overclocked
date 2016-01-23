@@ -46,7 +46,6 @@ $_['text_db']						= 'Database';
 $_['text_mysqli']					= 'MySQLi';
 $_['text_mysql']					= 'MySQL';
 $_['text_mpdo']					= 'PDO';
-$_['text_pgsql']					= 'PgSQL';
 $_['text_gd']						= 'GD';
 $_['text_curl']						= 'cURL';
 $_['text_mcrypt']					= 'mCrypt';
@@ -105,19 +104,18 @@ $_['error_image_write']			= 'Warning: Image directory needs to be writable for O
 $_['error_imagecache_write']	= 'Warning: Image cache directory needs to be writable for OpenCart OCE to work!';
 $_['error_imagedata_write']	= 'Warning: Image data directory needs to be writable for OpenCart OCE to work!';
 
-$_['error_db_hostname']		= 'Hostname required!';
-$_['error_db_username']		= 'Username required!';
-$_['error_db_database']		= 'Database Name required!';
-$_['error_db_port']				= 'Database Port required!';
+$_['error_db_hostname']		= 'Hostname is required!';
+$_['error_db_username']		= 'Username is required!';
+$_['error_db_database']		= 'Database Name is required!';
+$_['error_db_port']				= 'Database Port is required and must be numeric!';
 $_['error_db_prefix']				= 'DB Prefix can only contain lowercase characters in the a-z range, 0-9 and underscores';
 $_['error_db_connect']			= 'Error: Could not connect to the database please make sure the database server, username and password is correct!';
 $_['error_db_not_exist']		= 'Error: Database does not exist!';
 $_['error_db_mysql']				= 'MySQL is not supported on your server! Try using MySQLi';
 $_['error_db_mysqli']				= 'MySQLi is not supported on your server! Try using MySQL';
-$_['error_db_pgsql']				= 'PgSQL is not supported on your server! Try using MySQLi';
-$_['error_username']				= 'Username required!';
-$_['error_password']				= 'Password required!';
-$_['error_email']					= 'Invalid E-Mail!';
+$_['error_username']				= 'Username is required!';
+$_['error_password']				= 'Password is required!';
+$_['error_email']					= 'Invalid E-mail address!';
 $_['error_config']					= 'Error: Could not write to config.php please check you have set the correct permissions on: ';
 
 // Buttons

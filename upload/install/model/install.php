@@ -8,13 +8,13 @@ class ModelInstall extends Model {
 			$file = DIR_APPLICATION . 'opencart-clean.sql';
 
 			if (!file_exists($file)) {
-				exit('Could not load sql file: ' . $file);
+				exit('Could not load SQL file: ' . $file);
 			}
 		} else {
 			$file = DIR_APPLICATION . 'opencart.sql';
 
 			if (!file_exists($file)) {
-				exit('Could not load sql file: ' . $file);
+				exit('Could not load SQL file: ' . $file);
 			}
 		}
 

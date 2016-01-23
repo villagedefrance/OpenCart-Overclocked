@@ -118,18 +118,18 @@ class ControllerUpgrade extends Controller {
 		}
 
 		if (DB_DRIVER == 'mysqli') {
-			$link = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+			$connection = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 			if (mysqli_connect_errno()) {
 				$this->error['warning'] = 'Error database connect: "' . mysqli_connect_error() . '"';
 				exit();
 			}
 
-			if (!mysqli_ping($link)) {
-				$this->error['warning'] = 'Error database server: "' . mysqli_error($link) . '"';
+			if (!mysqli_ping($connection)) {
+				$this->error['warning'] = 'Error database server: "' . mysqli_error($connection) . '"';
 			}
 
-			mysqli_close($link);
+			mysqli_close($connection);
 		}
 
 		if (DB_DRIVER == 'mpdo') {

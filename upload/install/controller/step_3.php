@@ -107,7 +107,6 @@ class ControllerStep3 extends Controller {
 		$this->data['text_mysqli'] = $this->language->get('text_mysqli');
 		$this->data['text_mysql'] = $this->language->get('text_mysql');
 		$this->data['text_mpdo'] = $this->language->get('text_mpdo');
-		$this->data['text_pgsql'] = $this->language->get('text_pgsql');
 		$this->data['text_activate'] = $this->language->get('text_activate');
 		$this->data['text_remove'] = $this->language->get('text_remove');
 
@@ -254,7 +253,6 @@ class ControllerStep3 extends Controller {
 		$this->data['mysqli'] = extension_loaded('mysqli');
 		$this->data['mysql'] = extension_loaded('mysql');
 		$this->data['pdo'] = extension_loaded('pdo');
-		$this->data['pgsql'] = extension_loaded('pgsql');
 
 		// Advanced Options
 		if (file_exists('../.htaccess.txt') && is_writable('../.htaccess.txt')) {
@@ -307,7 +305,7 @@ class ControllerStep3 extends Controller {
 			$this->error['db_database'] = $this->language->get('error_db_database');
 		}
 
-		if (!$this->request->post['db_port']) {
+		if (!$this->request->post['db_port'] || !is_numeric($this->request->post['db_port'])) {
 			$this->error['db_port'] = $this->language->get('error_db_port');
 		}
 
@@ -355,23 +353,6 @@ class ControllerStep3 extends Controller {
 			}
 		}
 
-		if ($this->request->post['db_driver'] == 'pgsql') {
-			if (function_exists('pg_connect')) {
-				if (!$connection = @pg_connect('host=' . $this->request->post['db_hostname'] . ' user=' . $this->request->post['db_username'] . ' password=' . $this->request->post['db_password'] . ' dbname=' . $this->request->post['db_database'] . ' connect_timeout=5')) {
-					$this->error['warning'] = $this->language->get('error_db_connect');
-				} else {
-					if (!@pg_connect('dbname=' . $this->request->post['db_database'] . ' ' . $connection)) {
-						$this->error['warning'] = $this->language->get('error_db_not_exist');
-					}
-
-					pg_close($connection);
-				}
-
-			} else {
-				$this->error['db_driver'] = $this->language->get('error_db_pgsql');
-			}
-		}
-
 		if (!$this->request->post['username']) {
 			$this->error['username'] = $this->language->get('error_username');
 		}
@@ -380,7 +361,7 @@ class ControllerStep3 extends Controller {
 			$this->error['password'] = $this->language->get('error_password');
 		}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+		if ((utf8_strlen($this->request->post['email']) < 6) || (utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
