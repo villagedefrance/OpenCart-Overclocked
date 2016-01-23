@@ -34,7 +34,7 @@
             <td class="left"><?php if ($sort == 'ecd.eucountry') { ?>
               <a href="<?php echo $sort_eucountry; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_eucountry; ?> (<?php echo $totaleucountries; ?>)</a>
             <?php } else { ?>
-              <a href="<?php echo $sort_eucountry; ?>"><?php echo $column_eucountry; ?> (<?php echo $totaleucountries; ?>)&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_eucountry; ?>"><?php echo $column_eucountry; ?> (<?php echo $totaleucountries; ?>)&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'ec.code') { ?>
               <a href="<?php echo $sort_code; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_code; ?></a>
