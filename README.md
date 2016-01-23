@@ -43,6 +43,10 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
+Coming Soon in 1.7.5.0 !
+- Ip Range blocker.
+- ...
+
 New in 1.7.4.0 (Current Release):
 - Code Standards.
 - Bug Fixes ...
