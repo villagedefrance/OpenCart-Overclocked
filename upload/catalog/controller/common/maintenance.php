@@ -29,13 +29,7 @@ class ControllerCommonMaintenance extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		if ($this->request->server['SERVER_PROTOCOL'] == 'HTTP/1.1') {
-			$this->response->addHeader('HTTP/1.1 503 Service Unavailable');
-		} else {
-			$this->response->addHeader('HTTP/1.0 503 Service Unavailable');
-		}
-
-		$this->response->addHeader('Retry-After: 3600');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['message'] = $this->language->get('text_message');
 
@@ -53,6 +47,13 @@ class ControllerCommonMaintenance extends Controller {
 			'common/header'
 		);
 
+		if ($this->request->server['SERVER_PROTOCOL'] == 'HTTP/1.1') {
+			$this->response->addHeader('HTTP/1.1 503 Service Unavailable');
+		} else {
+			$this->response->addHeader('HTTP/1.0 503 Service Unavailable');
+		}
+
+		$this->response->addHeader('Retry-After: 3600');
 		$this->response->setOutput($this->render());
 	}
 }

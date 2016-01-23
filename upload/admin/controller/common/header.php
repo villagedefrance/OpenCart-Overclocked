@@ -85,7 +85,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_customer_group'] = $this->language->get('text_customer_group');
 		$this->data['text_customer_field'] = $this->language->get('text_customer_field');
 		$this->data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
-		$this->data['text_custom_field'] = $this->language->get('text_custom_field');
 		$this->data['text_dashboard'] = $this->language->get('text_dashboard');
 		$this->data['text_database'] = $this->language->get('text_database');
 		$this->data['text_design'] = $this->language->get('text_design');
@@ -113,6 +112,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_localisation'] = $this->language->get('text_localisation');
 		$this->data['text_location'] = $this->language->get('text_location');
 		$this->data['text_logout'] = $this->language->get('text_logout');
+		$this->data['text_logs'] = $this->language->get('text_logs');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_menu_manager'] = $this->language->get('text_menu_manager');
 		$this->data['text_modification'] = $this->language->get('text_modification');
@@ -226,7 +226,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['customer_fields'] = $this->url->link('sale/customer_field', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer_group'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer_ban_ip'] = $this->url->link('sale/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['custom_field'] = $this->url->link('design/custom_field', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['database'] = $this->url->link('tool/database', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['download'] = $this->url->link('catalog/download', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['email_log'] = $this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL');

@@ -30,10 +30,12 @@ class ControllerErrorNotFound extends Controller {
 				$url = '&' . urldecode(http_build_query($data, '', '&'));
 			}
 
-			if (isset($this->request->server['https']) && (($this->request->server['https'] == 'on') || ($this->request->server['https'] == '1'))) {
-				$connection = 'ssl';
+			if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
+				$connection = 'SSL';
+			} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+				$connection = 'SSL';
 			} else {
-				$connection = 'nonssl';
+				$connection = 'NONSSL';
 			}
 
 			$this->data['breadcrumbs'][] = array(

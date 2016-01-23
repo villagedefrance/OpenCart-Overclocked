@@ -14,7 +14,7 @@ class Url {
 	}
 
 	public function link($route, $args = '', $connection = 'NONSSL') {
-		if ($connection ==  'NONSSL') {
+		if ($connection == 'NONSSL') {
 			$url = $this->url;
 		} else {
 			$url = $this->ssl;

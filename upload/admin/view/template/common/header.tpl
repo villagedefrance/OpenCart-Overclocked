@@ -211,9 +211,10 @@ $(document).ready(function() {
           <li><a class="arrow"><?php echo $text_design; ?></a>
             <ul>
               <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
-              <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
               <li><a href="<?php echo $footer; ?>"><?php echo $text_footer; ?></a></li>
               <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
+              <li><a href="<?php echo $connection; ?>"><?php echo $text_connection; ?></a></li>
+              <li><a href="<?php echo $menu_manager; ?>"><?php echo $text_menu_manager; ?></a></li>
               <li><a href="<?php echo $payment_image; ?>"><?php echo $text_payment_image; ?></a></li>
             </ul>
           </li>
@@ -237,15 +238,15 @@ $(document).ready(function() {
                   <li><a href="<?php echo $return_reason; ?>"><?php echo $text_return_reason; ?></a></li>
                 </ul>
               </li>
-              <li><a href="<?php echo $country; ?>"><?php echo $text_country; ?></a></li>
-              <li><a href="<?php echo $zone; ?>"><?php echo $text_zone; ?></a></li>
-              <li><a href="<?php echo $geo_zone; ?>"><?php echo $text_geo_zone; ?></a></li>
               <li><a class="arrow"><?php echo $text_tax; ?></a>
                 <ul>
                   <li><a href="<?php echo $tax_class; ?>"><?php echo $text_tax_class; ?></a></li>
                   <li><a href="<?php echo $tax_rate; ?>"><?php echo $text_tax_rate; ?></a></li>
                 </ul>
               </li>
+              <li><a href="<?php echo $country; ?>"><?php echo $text_country; ?></a></li>
+              <li><a href="<?php echo $zone; ?>"><?php echo $text_zone; ?></a></li>
+              <li><a href="<?php echo $geo_zone; ?>"><?php echo $text_geo_zone; ?></a></li>
               <li><a href="<?php echo $length_class; ?>"><?php echo $text_length_class; ?></a></li>
               <li><a href="<?php echo $weight_class; ?>"><?php echo $text_weight_class; ?></a></li>
             </ul>
@@ -265,6 +266,13 @@ $(document).ready(function() {
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
             </ul>
           </li>
+          <li><a class="arrow"><?php echo $text_logs; ?></a>
+            <ul>
+              <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
+              <li><a href="<?php echo $email_log; ?>"><?php echo $text_email_log; ?></a></li>
+              <li><a href="<?php echo $quote_log; ?>"><?php echo $text_quote_log; ?></a></li>
+            </ul>
+          </li>
           <li><a class="arrow"><?php echo $text_cache_manager; ?></a>
             <ul>
               <li><a href="<?php echo $cache_files; ?>"><?php echo $text_cache_files; ?></a></li>
@@ -272,11 +280,7 @@ $(document).ready(function() {
             </ul>
           </li>
           <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
-          <li><a href="<?php echo $menu_manager; ?>"><?php echo $text_menu_manager; ?></a></li>
           <li><a href="<?php echo $file_manager; ?>"><?php echo $text_file_manager; ?></a></li>
-          <li><a href="<?php echo $email_log; ?>"><?php echo $text_email_log; ?></a></li>
-          <li><a href="<?php echo $quote_log; ?>"><?php echo $text_quote_log; ?></a></li>
-          <li><a href="<?php echo $error_log; ?>"><?php echo $text_error_log; ?></a></li>
         </ul>
       </li>
       <li id="reports"><a class="top"><?php echo $text_reports; ?></a>
