@@ -11,6 +11,7 @@ $_['text_attribute']					= 'Attributes';
 $_['text_attribute_group']			= 'Attribute Groups';
 $_['text_backup']						= 'Backup / Restore';
 $_['text_banner']						= 'Banners';
+$_['text_block_ip']					= 'Block Ips';
 $_['text_cache_manager']			= 'Cache Manager';
 $_['text_cache_files']				= 'Cache Files';
 $_['text_cache_images']			= 'Cache Images';

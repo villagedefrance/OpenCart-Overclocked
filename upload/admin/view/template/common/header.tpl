@@ -256,6 +256,7 @@ $(document).ready(function() {
               <li><a href="<?php echo $configuration; ?>"><?php echo $text_configuration; ?></a></li>
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
               <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
+              <li><a href="<?php echo $block_ip; ?>"><?php echo $text_block_ip; ?></a></li>
               <li><a class="arrow"><?php echo $text_export_import; ?></a>
                 <ul>
                   <li><a href="<?php echo $export_import_raw; ?>"><?php echo $text_export_import_raw; ?></a></li>

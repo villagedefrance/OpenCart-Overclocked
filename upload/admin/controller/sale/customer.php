@@ -457,6 +457,7 @@ class ControllerSaleCustomer extends Controller {
 				'status'         		=> $result['status'],
 				'approved'       	=> $result['approved'],
 				'ip'             		=> $result['ip'],
+				'blocked_ip'			=> $this->model_sale_customer->isBlockedIp($result['ip']) ? '<b>(!)</b>' : '',
 				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'selected'       		=> isset($this->request->post['selected']) && in_array($result['customer_id'], $this->request->post['selected']),
 				'action'         		=> $action

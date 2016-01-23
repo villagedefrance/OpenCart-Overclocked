@@ -97,6 +97,17 @@ class ControllerCommonHeader extends Controller {
 			}
 		}
 
+		// Ip Blocking
+		$this->load->model('tool/online');
+
+		if (isset($this->request->server['REMOTE_ADDR'])) {
+			$is_blocked = $this->model_tool_online->isBlockedIp($this->request->server['REMOTE_ADDR']);
+
+			if ($is_blocked) {
+				$this->redirect($this->url->link('error/forbidden', '', 'SSL'));
+			}
+		}
+
 		// Multi-store cookie
 		$this->load->model('setting/store');
 

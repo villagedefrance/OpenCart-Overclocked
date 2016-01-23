@@ -300,6 +300,20 @@ INSERT INTO `oc_banner_image_description` (`banner_image_id`, `language_id`, `ba
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_block_ip`
+--
+
+DROP TABLE IF EXISTS `oc_block_ip`;
+CREATE TABLE `oc_block_ip` (
+  `block_ip_id` int(11) NOT NULL AUTO_INCREMENT,
+  `from_ip` varchar(32) NOT NULL,
+  `to_ip` varchar(32) NOT NULL,
+  PRIMARY KEY (`block_ip_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_category`
 --
 
