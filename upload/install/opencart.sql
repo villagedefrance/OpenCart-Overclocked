@@ -84,7 +84,7 @@ CREATE TABLE `oc_affiliate_transaction` (
   `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`affiliate_transaction_id`)
@@ -387,7 +387,7 @@ CREATE TABLE `oc_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`category_id`,`language_id`),
@@ -654,7 +654,7 @@ CREATE TABLE `oc_country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `iso_code_2` varchar(2) NOT NULL,
   `iso_code_3` varchar(3) NOT NULL,
-  `address_format` text NOT NULL,
+  `address_format` text CHARACTER SET utf8 NOT NULL,
   `postcode_required` tinyint(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`country_id`)
@@ -1322,8 +1322,8 @@ CREATE TABLE `oc_customer` (
   `date_of_birth` date NOT NULL,
   `password` varchar(40) NOT NULL,
   `salt` varchar(9) NOT NULL,
-  `cart` text,
-  `wishlist` text,
+  `cart` text CHARACTER SET utf8,
+  `wishlist` text CHARACTER SET utf8,
   `newsletter` tinyint(1) NOT NULL DEFAULT '0',
   `address_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL,
@@ -1385,7 +1385,7 @@ CREATE TABLE `oc_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`customer_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -1406,7 +1406,7 @@ DROP TABLE IF EXISTS `oc_customer_history`;
 CREATE TABLE `oc_customer_history` (
   `customer_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -1437,7 +1437,7 @@ DROP TABLE IF EXISTS `oc_customer_online`;
 CREATE TABLE `oc_customer_online` (
   `ip` varchar(32) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `url` text NOT NULL,
+  `url` text CHARACTER SET utf8 NOT NULL,
   `referer` text NOT NULL,
   `user_agent` text NOT NULL,
   `date_added` datetime NOT NULL,
@@ -1455,7 +1455,7 @@ CREATE TABLE `oc_customer_reward` (
   `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT '0',
   `order_id` int(11) NOT NULL DEFAULT '0',
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `points` int(8) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_reward_id`)
@@ -1472,7 +1472,7 @@ CREATE TABLE `oc_customer_transaction` (
   `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_transaction_id`)
@@ -1507,6 +1507,151 @@ CREATE TABLE `oc_download_description` (
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`download_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_eucountry`
+--
+
+DROP TABLE IF EXISTS `oc_eucountry`;
+CREATE TABLE `oc_eucountry` (
+  `eucountry_id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(2) DEFAULT NULL,
+  `rate` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`eucountry_id`)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_eucountry`
+--
+
+INSERT INTO `oc_eucountry` (`eucountry_id`, `code`, `rate`, `status`) VALUES
+(1, 'AT', '20.0000', '1'),
+(2, 'BE', '21.0000', '1'),
+(3, 'BG', '20.0000', '1'),
+(4, 'CY', '19.0000', '1'),
+(5, 'CZ', '21.0000', '1'),
+(6, 'DE', '19.0000', '1'),
+(7, 'DK', '25.0000', '1'),
+(8, 'EE', '20.0000', '1'),
+(9, 'ES', '21.0000', '1'),
+(10, 'FI', '24.0000', '1'),
+(11, 'FR', '20.0000', '1'),
+(12, 'GB', '20.0000', '1'),
+(13, 'GR', '23.0000', '1'),
+(14, 'HR', '25.0000', '1'),
+(15, 'HU', '27.0000', '1'),
+(16, 'IE', '23.0000', '1'),
+(17, 'IT', '22.0000', '1'),
+(18, 'LV', '21.0000', '1'),
+(19, 'LT', '21.0000', '1'),
+(20, 'LU', '17.0000', '1'),
+(21, 'MT', '18.0000', '1'),
+(22, 'NL', '21.0000', '1'),
+(23, 'PL', '23.0000', '1'),
+(24, 'PT', '23.0000', '1'),
+(25, 'RO', '24.0000', '1'),
+(26, 'SE', '25.0000', '1'),
+(27, 'SI', '22.0000', '1'),
+(28, 'SK', '20.0000', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_eucountry_description`
+--
+
+DROP TABLE IF EXISTS `oc_eucountry_description`;
+CREATE TABLE `oc_eucountry_description` (
+  `eucountry_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `eucountry` varchar(128) NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`eucountry_id`,`language_id`)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_eucountry_description`
+--
+
+INSERT INTO `oc_eucountry_description` (`eucountry_id`, `language_id`, `eucountry`, `description`) VALUES
+(1, 1, 'Austria', 'VAT Rate AT'),
+(2, 1, 'Belgium', 'VAT Rate BE'),
+(3, 1, 'Bulgaria', 'VAT Rate BG'),
+(4, 1, 'Cyprus', 'VAT Rate CY'),
+(5, 1, 'Czech Republic', 'VAT Rate CZ'),
+(6, 1, 'Germany', 'VAT Rate DE'),
+(7, 1, 'Denmark', 'VAT Rate DK'),
+(8, 1, 'Estonia', 'VAT Rate EE'),
+(9, 1, 'Spain', 'VAT Rate ES'),
+(10, 1, 'Finland', 'VAT Rate FI'),
+(11, 1, 'France', 'VAT Rate FR'),
+(12, 1, 'United Kingdom', 'VAT Rate GB'),
+(13, 1, 'Greece', 'VAT Rate GR'),
+(14, 1, 'Croatia', 'VAT Rate HR'),
+(15, 1, 'Hungary', 'VAT Rate HU'),
+(16, 1, 'Ireland', 'VAT Rate IE'),
+(17, 1, 'Italy', 'VAT Rate IT'),
+(18, 1, 'Latvia', 'VAT Rate LV'),
+(19, 1, 'Lithuania', 'VAT Rate LT'),
+(20, 1, 'Luxembourg', 'VAT Rate LU'),
+(21, 1, 'Malta', 'VAT Rate MT'),
+(22, 1, 'Netherlands', 'VAT Rate NL'),
+(23, 1, 'Poland', 'VAT Rate PL'),
+(24, 1, 'Portugal', 'VAT Rate PT'),
+(25, 1, 'Romania', 'VAT Rate RO'),
+(26, 1, 'Sweden', 'VAT Rate SE'),
+(27, 1, 'Slovenia', 'VAT Rate SI'),
+(28, 1, 'Slovakia', 'VAT Rate SK');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_eucountry_to_store`
+--
+
+DROP TABLE IF EXISTS `oc_eucountry_to_store`;
+CREATE TABLE `oc_eucountry_to_store` (
+  `eucountry_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`eucountry_id`,`store_id`)
+) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_eucountry_to_store`
+--
+
+INSERT INTO `oc_eucountry_to_store` (`eucountry_id`, `store_id`) VALUES
+(1, '0'),
+(2, '0'),
+(3, '0'),
+(4, '0'),
+(5, '0'),
+(6, '0'),
+(7, '0'),
+(8, '0'),
+(9, '0'),
+(10, '0'),
+(11, '0'),
+(12, '0'),
+(13, '0'),
+(14, '0'),
+(15, '0'),
+(16, '0'),
+(17, '0'),
+(18, '0'),
+(19, '0'),
+(20, '0'),
+(21, '0'),
+(22, '0'),
+(23, '0'),
+(24, '0'),
+(25, '0'),
+(26, '0'),
+(27, '0'),
+(28, '0');
 
 -- --------------------------------------------------------
 
@@ -1813,7 +1958,7 @@ CREATE TABLE `oc_information_description` (
   `title` varchar(64) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`information_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -2014,13 +2159,13 @@ DROP TABLE IF EXISTS `oc_location`;
 CREATE TABLE `oc_location` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  `address` text NOT NULL,
+  `address` text CHARACTER SET utf8 NOT NULL,
   `telephone` varchar(32) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `latitude` varchar(32) NOT NULL,
   `longitude` varchar(32) NOT NULL,
-  `open` text NOT NULL,
-  `comment` text NOT NULL,
+  `open` text CHARACTER SET utf8 NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`location_id`),
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -2063,7 +2208,7 @@ CREATE TABLE `oc_manufacturer_description` (
   `manufacturer_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`manufacturer_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -2608,7 +2753,7 @@ CREATE TABLE `oc_order` (
   `payment_country_id` int(11) NOT NULL,
   `payment_zone` varchar(128) NOT NULL,
   `payment_zone_id` int(11) NOT NULL,
-  `payment_address_format` text NOT NULL,
+  `payment_address_format` text CHARACTER SET utf8 NOT NULL,
   `payment_method` varchar(128) NOT NULL,
   `payment_code` varchar(128) NOT NULL,
   `shipping_firstname` varchar(32) NOT NULL,
@@ -2622,10 +2767,10 @@ CREATE TABLE `oc_order` (
   `shipping_country_id` int(11) NOT NULL,
   `shipping_zone` varchar(128) NOT NULL,
   `shipping_zone_id` int(11) NOT NULL,
-  `shipping_address_format` text NOT NULL,
+  `shipping_address_format` text CHARACTER SET utf8 NOT NULL,
   `shipping_method` varchar(128) NOT NULL,
   `shipping_code` varchar(128) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
   `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `order_status_id` int(11) NOT NULL DEFAULT '0',
   `affiliate_id` int(11) NOT NULL,
@@ -2673,7 +2818,7 @@ CREATE TABLE `oc_order_history` (
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL DEFAULT '0',
-  `comment` text NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -2832,14 +2977,14 @@ CREATE TABLE `oc_order_voucher` (
   `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `voucher_id` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `code` varchar(10) NOT NULL,
   `from_name` varchar(64) NOT NULL,
   `from_email` varchar(96) NOT NULL,
   `to_name` varchar(64) NOT NULL,
   `to_email` varchar(96) NOT NULL,
   `voucher_theme_id` int(11) NOT NULL,
-  `message` text NOT NULL,
+  `message` text CHARACTER SET utf8 NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   PRIMARY KEY (`order_voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -3027,7 +3172,7 @@ CREATE TABLE `oc_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `text` text NOT NULL,
+  `text` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`product_id`,`attribute_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -3068,10 +3213,10 @@ CREATE TABLE `oc_product_description` (
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL,
-  `tag` text NOT NULL,
+  `tag` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`product_id`,`language_id`),
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -3098,7 +3243,7 @@ INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `desc
 (43, 1, 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', '', ''),
 (31, 1, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '', ''),
 (49, 1, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&lt;/p&gt;\r\n', '', '', ''),
-(42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there&amp;#39;s no limit to what you can achieve. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it&amp;#39;s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple&amp;#39;s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br /&gt;\r\n	&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170&amp;deg; horizontal; 170&amp;deg; vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br /&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br /&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50&amp;deg; to 95&amp;deg; F (10&amp;deg; to 35&amp;deg; C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40&amp;deg; to 116&amp;deg; F (-40&amp;deg; to 47&amp;deg; C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO &amp;#39;03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br /&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', 'Apple, Monitor, HD'),
+(42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there&amp;#39;s no limit to what you can achieve. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it&amp;#39;s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple&amp;#39;s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br /&gt;\r\n	&lt;br /&gt;\r\n	The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br /&gt;\r\n	&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170&amp;deg; horizontal; 170&amp;deg; vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br /&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br /&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50&amp;deg; to 95&amp;deg; F (10&amp;deg; to 35&amp;deg; C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40&amp;deg; to 116&amp;deg; F (-40&amp;deg; to 47&amp;deg; C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO &amp;#39;03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br /&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', 'Apple, Monitor, HD'),
 (30, 1, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) &lt;/p&gt;\r\n', '', '', '');
 
 -- --------------------------------------------------------
@@ -3238,7 +3383,7 @@ CREATE TABLE `oc_product_option` (
   `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
-  `option_value` text NOT NULL,
+  `option_value` text CHARACTER SET utf8 NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -3674,7 +3819,7 @@ CREATE TABLE `oc_return` (
   `return_reason_id` int(11) NOT NULL,
   `return_action_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
-  `comment` text,
+  `comment` text CHARACTER SET utf8,
   `date_ordered` date NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
@@ -3716,7 +3861,7 @@ CREATE TABLE `oc_return_history` (
   `return_id` int(11) NOT NULL,
   `return_status_id` int(11) NOT NULL,
   `notify` tinyint(1) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`return_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -3781,7 +3926,7 @@ CREATE TABLE `oc_review` (
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `author` varchar(64) NOT NULL,
-  `text` text NOT NULL,
+  `text` text CHARACTER SET utf8 NOT NULL,
   `rating` int(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
@@ -4291,7 +4436,7 @@ DROP TABLE IF EXISTS `oc_user_group`;
 CREATE TABLE `oc_user_group` (
   `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  `permission` text NOT NULL,
+  `permission` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`user_group_id`),
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -4301,7 +4446,7 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Top Administrator', 'a:2:{s:6:"access";a:201:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:14:"catalog/filter";i:5;s:19:"catalog/information";i:6;s:20:"catalog/manufacturer";i:7;s:12:"catalog/news";i:8;s:14:"catalog/option";i:9;s:15:"catalog/palette";i:10;s:15:"catalog/product";i:11;s:15:"catalog/profile";i:12;s:14:"catalog/review";i:13;s:18:"common/filemanager";i:14;s:23:"common/filemanager_full";i:15;s:13:"design/banner";i:16;s:17:"design/connection";i:17;s:13:"design/footer";i:18;s:13:"design/layout";i:19;s:11:"design/menu";i:20;s:17:"design/menu_items";i:21;s:14:"design/payment";i:22;s:14:"extension/feed";i:23;s:15:"extension/fraud";i:24;s:22:"extension/modification";i:25;s:16:"extension/module";i:26;s:17:"extension/openbay";i:27;s:17:"extension/payment";i:28;s:18:"extension/shipping";i:29;s:15:"extension/theme";i:30;s:15:"extension/total";i:31;s:16:"feed/google_base";i:32;s:19:"feed/google_sitemap";i:33;s:13:"feed/rss_feed";i:34;s:18:"fraud/fraudlabspro";i:35;s:13:"fraud/maxmind";i:36;s:20:"localisation/country";i:37;s:21:"localisation/currency";i:38;s:21:"localisation/geo_zone";i:39;s:21:"localisation/language";i:40;s:25:"localisation/length_class";i:41;s:21:"localisation/location";i:42;s:25:"localisation/order_status";i:43;s:26:"localisation/return_action";i:44;s:26:"localisation/return_reason";i:45;s:26:"localisation/return_status";i:46;s:25:"localisation/stock_status";i:47;s:22:"localisation/tax_class";i:48;s:21:"localisation/tax_rate";i:49;s:25:"localisation/weight_class";i:50;s:17:"localisation/zone";i:51;s:20:"modification/eutaxes";i:52;s:23:"modification/openbaypro";i:53;s:19:"modification/vqmods";i:54;s:14:"module/account";i:55;s:16:"module/affiliate";i:56;s:29:"module/amazon_checkout_layout";i:57;s:13:"module/banner";i:58;s:17:"module/bestseller";i:59;s:15:"module/carousel";i:60;s:15:"module/category";i:61;s:18:"module/ebaydisplay";i:62;s:15:"module/featured";i:63;s:13:"module/filter";i:64;s:22:"module/google_hangouts";i:65;s:11:"module/html";i:66;s:18:"module/information";i:67;s:13:"module/latest";i:68;s:12:"module/links";i:69;s:15:"module/location";i:70;s:22:"module/menu_horizontal";i:71;s:20:"module/menu_vertical";i:72;s:11:"module/news";i:73;s:14:"module/popular";i:74;s:16:"module/pp_layout";i:75;s:12:"module/skype";i:76;s:16:"module/slideshow";i:77;s:14:"module/special";i:78;s:12:"module/store";i:79;s:15:"module/tagcloud";i:80;s:14:"module/welcome";i:81;s:14:"openbay/amazon";i:82;s:22:"openbay/amazon_listing";i:83;s:22:"openbay/amazon_product";i:84;s:16:"openbay/amazonus";i:85;s:24:"openbay/amazonus_listing";i:86;s:24:"openbay/amazonus_product";i:87;s:20:"openbay/ebay_profile";i:88;s:21:"openbay/ebay_template";i:89;s:15:"openbay/openbay";i:90;s:23:"payment/amazon_checkout";i:91;s:24:"payment/authorizenet_aim";i:92;s:24:"payment/authorizenet_sim";i:93;s:16:"payment/bank_bni";i:94;s:21:"payment/bank_transfer";i:95;s:14:"payment/cheque";i:96;s:11:"payment/cod";i:97;s:21:"payment/free_checkout";i:98;s:17:"payment/globalpay";i:99;s:22:"payment/klarna_account";i:100;s:22:"payment/klarna_invoice";i:101;s:14:"payment/liqpay";i:102;s:20:"payment/moneybookers";i:103;s:14:"payment/nochex";i:104;s:13:"payment/okpay";i:105;s:15:"payment/paymate";i:106;s:16:"payment/paypoint";i:107;s:13:"payment/payza";i:108;s:18:"payment/pp_express";i:109;s:25:"payment/pp_payflow_iframe";i:110;s:14:"payment/pp_pro";i:111;s:21:"payment/pp_pro_iframe";i:112;s:17:"payment/pp_pro_pf";i:113;s:17:"payment/pp_pro_uk";i:114;s:19:"payment/pp_standard";i:115;s:15:"payment/sagepay";i:116;s:22:"payment/sagepay_direct";i:117;s:18:"payment/sagepay_us";i:118;s:19:"payment/twocheckout";i:119;s:28:"payment/web_payment_software";i:120;s:16:"payment/worldpay";i:121;s:27:"report/affiliate_commission";i:122;s:23:"report/customer_country";i:123;s:22:"report/customer_credit";i:124;s:22:"report/customer_online";i:125;s:21:"report/customer_order";i:126;s:22:"report/customer_reward";i:127;s:21:"report/product_markup";i:128;s:24:"report/product_purchased";i:129;s:23:"report/product_quantity";i:130;s:21:"report/product_viewed";i:131;s:18:"report/sale_coupon";i:132;s:17:"report/sale_order";i:133;s:18:"report/sale_profit";i:134;s:18:"report/sale_return";i:135;s:20:"report/sale_shipping";i:136;s:15:"report/sale_tax";i:137;s:14:"sale/affiliate";i:138;s:12:"sale/contact";i:139;s:11:"sale/coupon";i:140;s:13:"sale/customer";i:141;s:20:"sale/customer_ban_ip";i:142;s:19:"sale/customer_group";i:143;s:10:"sale/offer";i:144;s:28:"sale/offer_category_category";i:145;s:27:"sale/offer_category_product";i:146;s:27:"sale/offer_product_category";i:147;s:26:"sale/offer_product_product";i:148;s:10:"sale/order";i:149;s:14:"sale/recurring";i:150;s:11:"sale/return";i:151;s:12:"sale/voucher";i:152;s:18:"sale/voucher_theme";i:153;s:15:"setting/setting";i:154;s:13:"setting/store";i:155;s:16:"shipping/auspost";i:156;s:17:"shipping/citylink";i:157;s:14:"shipping/fedex";i:158;s:15:"shipping/flat_1";i:159;s:15:"shipping/flat_2";i:160;s:15:"shipping/flat_3";i:161;s:13:"shipping/free";i:162;s:16:"shipping/geozone";i:163;s:13:"shipping/item";i:164;s:23:"shipping/parcelforce_48";i:165;s:15:"shipping/pickup";i:166;s:14:"shipping/price";i:167;s:19:"shipping/royal_mail";i:168;s:12:"shipping/ups";i:169;s:13:"shipping/usps";i:170;s:15:"shipping/weight";i:171;s:13:"theme/default";i:172;s:11:"tool/backup";i:173;s:16:"tool/cache_files";i:174;s:17:"tool/cache_images";i:175;s:18:"tool/configuration";i:176;s:13:"tool/database";i:177;s:14:"tool/error_log";i:178;s:18:"tool/export_import";i:179;s:27:"tool/export_import_customer";i:180;s:22:"tool/export_import_raw";i:181;s:13:"tool/mail_log";i:182;s:14:"tool/quote_log";i:183;s:20:"tool/seo_url_manager";i:184;s:12:"tool/sitemap";i:185;s:11:"tool/upload";i:186;s:12:"total/coupon";i:187;s:12:"total/credit";i:188;s:14:"total/handling";i:189;s:16:"total/klarna_fee";i:190;s:19:"total/low_order_fee";i:191;s:12:"total/offers";i:192;s:16:"total/paypal_fee";i:193;s:12:"total/reward";i:194;s:14:"total/shipping";i:195;s:15:"total/sub_total";i:196;s:9:"total/tax";i:197;s:11:"total/total";i:198;s:13:"total/voucher";i:199;s:9:"user/user";i:200;s:20:"user/user_permission";}s:6:"modify";a:201:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:14:"catalog/filter";i:5;s:19:"catalog/information";i:6;s:20:"catalog/manufacturer";i:7;s:12:"catalog/news";i:8;s:14:"catalog/option";i:9;s:15:"catalog/palette";i:10;s:15:"catalog/product";i:11;s:15:"catalog/profile";i:12;s:14:"catalog/review";i:13;s:18:"common/filemanager";i:14;s:23:"common/filemanager_full";i:15;s:13:"design/banner";i:16;s:17:"design/connection";i:17;s:13:"design/footer";i:18;s:13:"design/layout";i:19;s:11:"design/menu";i:20;s:17:"design/menu_items";i:21;s:14:"design/payment";i:22;s:14:"extension/feed";i:23;s:15:"extension/fraud";i:24;s:22:"extension/modification";i:25;s:16:"extension/module";i:26;s:17:"extension/openbay";i:27;s:17:"extension/payment";i:28;s:18:"extension/shipping";i:29;s:15:"extension/theme";i:30;s:15:"extension/total";i:31;s:16:"feed/google_base";i:32;s:19:"feed/google_sitemap";i:33;s:13:"feed/rss_feed";i:34;s:18:"fraud/fraudlabspro";i:35;s:13:"fraud/maxmind";i:36;s:20:"localisation/country";i:37;s:21:"localisation/currency";i:38;s:21:"localisation/geo_zone";i:39;s:21:"localisation/language";i:40;s:25:"localisation/length_class";i:41;s:21:"localisation/location";i:42;s:25:"localisation/order_status";i:43;s:26:"localisation/return_action";i:44;s:26:"localisation/return_reason";i:45;s:26:"localisation/return_status";i:46;s:25:"localisation/stock_status";i:47;s:22:"localisation/tax_class";i:48;s:21:"localisation/tax_rate";i:49;s:25:"localisation/weight_class";i:50;s:17:"localisation/zone";i:51;s:20:"modification/eutaxes";i:52;s:23:"modification/openbaypro";i:53;s:19:"modification/vqmods";i:54;s:14:"module/account";i:55;s:16:"module/affiliate";i:56;s:29:"module/amazon_checkout_layout";i:57;s:13:"module/banner";i:58;s:17:"module/bestseller";i:59;s:15:"module/carousel";i:60;s:15:"module/category";i:61;s:18:"module/ebaydisplay";i:62;s:15:"module/featured";i:63;s:13:"module/filter";i:64;s:22:"module/google_hangouts";i:65;s:11:"module/html";i:66;s:18:"module/information";i:67;s:13:"module/latest";i:68;s:12:"module/links";i:69;s:15:"module/location";i:70;s:22:"module/menu_horizontal";i:71;s:20:"module/menu_vertical";i:72;s:11:"module/news";i:73;s:14:"module/popular";i:74;s:16:"module/pp_layout";i:75;s:12:"module/skype";i:76;s:16:"module/slideshow";i:77;s:14:"module/special";i:78;s:12:"module/store";i:79;s:15:"module/tagcloud";i:80;s:14:"module/welcome";i:81;s:14:"openbay/amazon";i:82;s:22:"openbay/amazon_listing";i:83;s:22:"openbay/amazon_product";i:84;s:16:"openbay/amazonus";i:85;s:24:"openbay/amazonus_listing";i:86;s:24:"openbay/amazonus_product";i:87;s:20:"openbay/ebay_profile";i:88;s:21:"openbay/ebay_template";i:89;s:15:"openbay/openbay";i:90;s:23:"payment/amazon_checkout";i:91;s:24:"payment/authorizenet_aim";i:92;s:24:"payment/authorizenet_sim";i:93;s:16:"payment/bank_bni";i:94;s:21:"payment/bank_transfer";i:95;s:14:"payment/cheque";i:96;s:11:"payment/cod";i:97;s:21:"payment/free_checkout";i:98;s:17:"payment/globalpay";i:99;s:22:"payment/klarna_account";i:100;s:22:"payment/klarna_invoice";i:101;s:14:"payment/liqpay";i:102;s:20:"payment/moneybookers";i:103;s:14:"payment/nochex";i:104;s:13:"payment/okpay";i:105;s:15:"payment/paymate";i:106;s:16:"payment/paypoint";i:107;s:13:"payment/payza";i:108;s:18:"payment/pp_express";i:109;s:25:"payment/pp_payflow_iframe";i:110;s:14:"payment/pp_pro";i:111;s:21:"payment/pp_pro_iframe";i:112;s:17:"payment/pp_pro_pf";i:113;s:17:"payment/pp_pro_uk";i:114;s:19:"payment/pp_standard";i:115;s:15:"payment/sagepay";i:116;s:22:"payment/sagepay_direct";i:117;s:18:"payment/sagepay_us";i:118;s:19:"payment/twocheckout";i:119;s:28:"payment/web_payment_software";i:120;s:16:"payment/worldpay";i:121;s:27:"report/affiliate_commission";i:122;s:23:"report/customer_country";i:123;s:22:"report/customer_credit";i:124;s:22:"report/customer_online";i:125;s:21:"report/customer_order";i:126;s:22:"report/customer_reward";i:127;s:21:"report/product_markup";i:128;s:24:"report/product_purchased";i:129;s:23:"report/product_quantity";i:130;s:21:"report/product_viewed";i:131;s:18:"report/sale_coupon";i:132;s:17:"report/sale_order";i:133;s:18:"report/sale_profit";i:134;s:18:"report/sale_return";i:135;s:20:"report/sale_shipping";i:136;s:15:"report/sale_tax";i:137;s:14:"sale/affiliate";i:138;s:12:"sale/contact";i:139;s:11:"sale/coupon";i:140;s:13:"sale/customer";i:141;s:20:"sale/customer_ban_ip";i:142;s:19:"sale/customer_group";i:143;s:10:"sale/offer";i:144;s:28:"sale/offer_category_category";i:145;s:27:"sale/offer_category_product";i:146;s:27:"sale/offer_product_category";i:147;s:26:"sale/offer_product_product";i:148;s:10:"sale/order";i:149;s:14:"sale/recurring";i:150;s:11:"sale/return";i:151;s:12:"sale/voucher";i:152;s:18:"sale/voucher_theme";i:153;s:15:"setting/setting";i:154;s:13:"setting/store";i:155;s:16:"shipping/auspost";i:156;s:17:"shipping/citylink";i:157;s:14:"shipping/fedex";i:158;s:15:"shipping/flat_1";i:159;s:15:"shipping/flat_2";i:160;s:15:"shipping/flat_3";i:161;s:13:"shipping/free";i:162;s:16:"shipping/geozone";i:163;s:13:"shipping/item";i:164;s:23:"shipping/parcelforce_48";i:165;s:15:"shipping/pickup";i:166;s:14:"shipping/price";i:167;s:19:"shipping/royal_mail";i:168;s:12:"shipping/ups";i:169;s:13:"shipping/usps";i:170;s:15:"shipping/weight";i:171;s:13:"theme/default";i:172;s:11:"tool/backup";i:173;s:16:"tool/cache_files";i:174;s:17:"tool/cache_images";i:175;s:18:"tool/configuration";i:176;s:13:"tool/database";i:177;s:14:"tool/error_log";i:178;s:18:"tool/export_import";i:179;s:27:"tool/export_import_customer";i:180;s:22:"tool/export_import_raw";i:181;s:13:"tool/mail_log";i:182;s:14:"tool/quote_log";i:183;s:20:"tool/seo_url_manager";i:184;s:12:"tool/sitemap";i:185;s:11:"tool/upload";i:186;s:12:"total/coupon";i:187;s:12:"total/credit";i:188;s:14:"total/handling";i:189;s:16:"total/klarna_fee";i:190;s:19:"total/low_order_fee";i:191;s:12:"total/offers";i:192;s:16:"total/paypal_fee";i:193;s:12:"total/reward";i:194;s:14:"total/shipping";i:195;s:15:"total/sub_total";i:196;s:9:"total/tax";i:197;s:11:"total/total";i:198;s:13:"total/voucher";i:199;s:9:"user/user";i:200;s:20:"user/user_permission";}}'),
+(1, 'Top Administrator', 'a:2:{s:6:"access";a:202:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:14:"catalog/filter";i:5;s:19:"catalog/information";i:6;s:20:"catalog/manufacturer";i:7;s:12:"catalog/news";i:8;s:14:"catalog/option";i:9;s:15:"catalog/palette";i:10;s:15:"catalog/product";i:11;s:15:"catalog/profile";i:12;s:14:"catalog/review";i:13;s:18:"common/filemanager";i:14;s:23:"common/filemanager_full";i:15;s:13:"design/banner";i:16;s:17:"design/connection";i:17;s:13:"design/footer";i:18;s:13:"design/layout";i:19;s:11:"design/menu";i:20;s:17:"design/menu_items";i:21;s:14:"design/payment";i:22;s:14:"extension/feed";i:23;s:15:"extension/fraud";i:24;s:22:"extension/modification";i:25;s:16:"extension/module";i:26;s:17:"extension/openbay";i:27;s:17:"extension/payment";i:28;s:18:"extension/shipping";i:29;s:15:"extension/theme";i:30;s:15:"extension/total";i:31;s:16:"feed/google_base";i:32;s:19:"feed/google_sitemap";i:33;s:13:"feed/rss_feed";i:34;s:18:"fraud/fraudlabspro";i:35;s:13:"fraud/maxmind";i:36;s:20:"localisation/country";i:37;s:21:"localisation/currency";i:38;s:21:"localisation/geo_zone";i:39;s:21:"localisation/language";i:40;s:25:"localisation/length_class";i:41;s:21:"localisation/location";i:42;s:25:"localisation/order_status";i:43;s:26:"localisation/return_action";i:44;s:26:"localisation/return_reason";i:45;s:26:"localisation/return_status";i:46;s:25:"localisation/stock_status";i:47;s:22:"localisation/tax_class";i:48;s:21:"localisation/tax_rate";i:49;s:25:"localisation/weight_class";i:50;s:17:"localisation/zone";i:51;s:20:"modification/eutaxes";i:52;s:23:"modification/openbaypro";i:53;s:19:"modification/vqmods";i:54;s:14:"module/account";i:55;s:16:"module/affiliate";i:56;s:29:"module/amazon_checkout_layout";i:57;s:13:"module/banner";i:58;s:17:"module/bestseller";i:59;s:15:"module/carousel";i:60;s:15:"module/category";i:61;s:18:"module/ebaydisplay";i:62;s:15:"module/featured";i:63;s:13:"module/filter";i:64;s:22:"module/google_hangouts";i:65;s:11:"module/html";i:66;s:18:"module/information";i:67;s:13:"module/latest";i:68;s:12:"module/links";i:69;s:15:"module/location";i:70;s:22:"module/menu_horizontal";i:71;s:20:"module/menu_vertical";i:72;s:11:"module/news";i:73;s:14:"module/popular";i:74;s:16:"module/pp_layout";i:75;s:12:"module/skype";i:76;s:16:"module/slideshow";i:77;s:14:"module/special";i:78;s:12:"module/store";i:79;s:15:"module/tagcloud";i:80;s:14:"module/welcome";i:81;s:14:"openbay/amazon";i:82;s:22:"openbay/amazon_listing";i:83;s:22:"openbay/amazon_product";i:84;s:16:"openbay/amazonus";i:85;s:24:"openbay/amazonus_listing";i:86;s:24:"openbay/amazonus_product";i:87;s:20:"openbay/ebay_profile";i:88;s:21:"openbay/ebay_template";i:89;s:15:"openbay/openbay";i:90;s:23:"payment/amazon_checkout";i:91;s:24:"payment/authorizenet_aim";i:92;s:24:"payment/authorizenet_sim";i:93;s:16:"payment/bank_bni";i:94;s:21:"payment/bank_transfer";i:95;s:14:"payment/cheque";i:96;s:11:"payment/cod";i:97;s:21:"payment/free_checkout";i:98;s:17:"payment/globalpay";i:99;s:22:"payment/klarna_account";i:100;s:22:"payment/klarna_invoice";i:101;s:14:"payment/liqpay";i:102;s:20:"payment/moneybookers";i:103;s:14:"payment/nochex";i:104;s:13:"payment/okpay";i:105;s:15:"payment/paymate";i:106;s:16:"payment/paypoint";i:107;s:13:"payment/payza";i:108;s:18:"payment/pp_express";i:109;s:25:"payment/pp_payflow_iframe";i:110;s:14:"payment/pp_pro";i:111;s:21:"payment/pp_pro_iframe";i:112;s:17:"payment/pp_pro_pf";i:113;s:17:"payment/pp_pro_uk";i:114;s:19:"payment/pp_standard";i:115;s:15:"payment/sagepay";i:116;s:22:"payment/sagepay_direct";i:117;s:18:"payment/sagepay_us";i:118;s:19:"payment/twocheckout";i:119;s:28:"payment/web_payment_software";i:120;s:16:"payment/worldpay";i:121;s:27:"report/affiliate_commission";i:122;s:23:"report/customer_country";i:123;s:22:"report/customer_credit";i:124;s:22:"report/customer_online";i:125;s:21:"report/customer_order";i:126;s:22:"report/customer_reward";i:127;s:21:"report/product_markup";i:128;s:24:"report/product_purchased";i:129;s:23:"report/product_quantity";i:130;s:21:"report/product_viewed";i:131;s:18:"report/sale_coupon";i:132;s:17:"report/sale_order";i:133;s:18:"report/sale_profit";i:134;s:18:"report/sale_return";i:135;s:20:"report/sale_shipping";i:136;s:15:"report/sale_tax";i:137;s:14:"sale/affiliate";i:138;s:12:"sale/contact";i:139;s:11:"sale/coupon";i:140;s:13:"sale/customer";i:141;s:20:"sale/customer_ban_ip";i:142;s:19:"sale/customer_group";i:143;s:10:"sale/offer";i:144;s:28:"sale/offer_category_category";i:145;s:27:"sale/offer_category_product";i:146;s:27:"sale/offer_product_category";i:147;s:26:"sale/offer_product_product";i:148;s:10:"sale/order";i:149;s:14:"sale/recurring";i:150;s:11:"sale/return";i:151;s:12:"sale/voucher";i:152;s:18:"sale/voucher_theme";i:153;s:15:"setting/setting";i:154;s:13:"setting/store";i:155;s:16:"shipping/auspost";i:156;s:17:"shipping/citylink";i:157;s:14:"shipping/fedex";i:158;s:15:"shipping/flat_1";i:159;s:15:"shipping/flat_2";i:160;s:15:"shipping/flat_3";i:161;s:13:"shipping/free";i:162;s:16:"shipping/geozone";i:163;s:13:"shipping/item";i:164;s:23:"shipping/parcelforce_48";i:165;s:15:"shipping/pickup";i:166;s:14:"shipping/price";i:167;s:19:"shipping/royal_mail";i:168;s:12:"shipping/ups";i:169;s:13:"shipping/usps";i:170;s:15:"shipping/weight";i:171;s:13:"theme/default";i:172;s:11:"tool/backup";i:173;s:13:"tool/block_ip";i:174;s:16:"tool/cache_files";i:175;s:17:"tool/cache_images";i:176;s:18:"tool/configuration";i:177;s:13:"tool/database";i:178;s:14:"tool/error_log";i:179;s:18:"tool/export_import";i:180;s:27:"tool/export_import_customer";i:181;s:22:"tool/export_import_raw";i:182;s:13:"tool/mail_log";i:183;s:14:"tool/quote_log";i:184;s:20:"tool/seo_url_manager";i:185;s:12:"tool/sitemap";i:186;s:11:"tool/upload";i:187;s:12:"total/coupon";i:188;s:12:"total/credit";i:189;s:14:"total/handling";i:190;s:16:"total/klarna_fee";i:191;s:19:"total/low_order_fee";i:192;s:12:"total/offers";i:193;s:16:"total/paypal_fee";i:194;s:12:"total/reward";i:195;s:14:"total/shipping";i:196;s:15:"total/sub_total";i:197;s:9:"total/tax";i:198;s:11:"total/total";i:199;s:13:"total/voucher";i:200;s:9:"user/user";i:201;s:20:"user/user_permission";}s:6:"modify";a:202:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:14:"catalog/filter";i:5;s:19:"catalog/information";i:6;s:20:"catalog/manufacturer";i:7;s:12:"catalog/news";i:8;s:14:"catalog/option";i:9;s:15:"catalog/palette";i:10;s:15:"catalog/product";i:11;s:15:"catalog/profile";i:12;s:14:"catalog/review";i:13;s:18:"common/filemanager";i:14;s:23:"common/filemanager_full";i:15;s:13:"design/banner";i:16;s:17:"design/connection";i:17;s:13:"design/footer";i:18;s:13:"design/layout";i:19;s:11:"design/menu";i:20;s:17:"design/menu_items";i:21;s:14:"design/payment";i:22;s:14:"extension/feed";i:23;s:15:"extension/fraud";i:24;s:22:"extension/modification";i:25;s:16:"extension/module";i:26;s:17:"extension/openbay";i:27;s:17:"extension/payment";i:28;s:18:"extension/shipping";i:29;s:15:"extension/theme";i:30;s:15:"extension/total";i:31;s:16:"feed/google_base";i:32;s:19:"feed/google_sitemap";i:33;s:13:"feed/rss_feed";i:34;s:18:"fraud/fraudlabspro";i:35;s:13:"fraud/maxmind";i:36;s:20:"localisation/country";i:37;s:21:"localisation/currency";i:38;s:21:"localisation/geo_zone";i:39;s:21:"localisation/language";i:40;s:25:"localisation/length_class";i:41;s:21:"localisation/location";i:42;s:25:"localisation/order_status";i:43;s:26:"localisation/return_action";i:44;s:26:"localisation/return_reason";i:45;s:26:"localisation/return_status";i:46;s:25:"localisation/stock_status";i:47;s:22:"localisation/tax_class";i:48;s:21:"localisation/tax_rate";i:49;s:25:"localisation/weight_class";i:50;s:17:"localisation/zone";i:51;s:20:"modification/eutaxes";i:52;s:23:"modification/openbaypro";i:53;s:19:"modification/vqmods";i:54;s:14:"module/account";i:55;s:16:"module/affiliate";i:56;s:29:"module/amazon_checkout_layout";i:57;s:13:"module/banner";i:58;s:17:"module/bestseller";i:59;s:15:"module/carousel";i:60;s:15:"module/category";i:61;s:18:"module/ebaydisplay";i:62;s:15:"module/featured";i:63;s:13:"module/filter";i:64;s:22:"module/google_hangouts";i:65;s:11:"module/html";i:66;s:18:"module/information";i:67;s:13:"module/latest";i:68;s:12:"module/links";i:69;s:15:"module/location";i:70;s:22:"module/menu_horizontal";i:71;s:20:"module/menu_vertical";i:72;s:11:"module/news";i:73;s:14:"module/popular";i:74;s:16:"module/pp_layout";i:75;s:12:"module/skype";i:76;s:16:"module/slideshow";i:77;s:14:"module/special";i:78;s:12:"module/store";i:79;s:15:"module/tagcloud";i:80;s:14:"module/welcome";i:81;s:14:"openbay/amazon";i:82;s:22:"openbay/amazon_listing";i:83;s:22:"openbay/amazon_product";i:84;s:16:"openbay/amazonus";i:85;s:24:"openbay/amazonus_listing";i:86;s:24:"openbay/amazonus_product";i:87;s:20:"openbay/ebay_profile";i:88;s:21:"openbay/ebay_template";i:89;s:15:"openbay/openbay";i:90;s:23:"payment/amazon_checkout";i:91;s:24:"payment/authorizenet_aim";i:92;s:24:"payment/authorizenet_sim";i:93;s:16:"payment/bank_bni";i:94;s:21:"payment/bank_transfer";i:95;s:14:"payment/cheque";i:96;s:11:"payment/cod";i:97;s:21:"payment/free_checkout";i:98;s:17:"payment/globalpay";i:99;s:22:"payment/klarna_account";i:100;s:22:"payment/klarna_invoice";i:101;s:14:"payment/liqpay";i:102;s:20:"payment/moneybookers";i:103;s:14:"payment/nochex";i:104;s:13:"payment/okpay";i:105;s:15:"payment/paymate";i:106;s:16:"payment/paypoint";i:107;s:13:"payment/payza";i:108;s:18:"payment/pp_express";i:109;s:25:"payment/pp_payflow_iframe";i:110;s:14:"payment/pp_pro";i:111;s:21:"payment/pp_pro_iframe";i:112;s:17:"payment/pp_pro_pf";i:113;s:17:"payment/pp_pro_uk";i:114;s:19:"payment/pp_standard";i:115;s:15:"payment/sagepay";i:116;s:22:"payment/sagepay_direct";i:117;s:18:"payment/sagepay_us";i:118;s:19:"payment/twocheckout";i:119;s:28:"payment/web_payment_software";i:120;s:16:"payment/worldpay";i:121;s:27:"report/affiliate_commission";i:122;s:23:"report/customer_country";i:123;s:22:"report/customer_credit";i:124;s:22:"report/customer_online";i:125;s:21:"report/customer_order";i:126;s:22:"report/customer_reward";i:127;s:21:"report/product_markup";i:128;s:24:"report/product_purchased";i:129;s:23:"report/product_quantity";i:130;s:21:"report/product_viewed";i:131;s:18:"report/sale_coupon";i:132;s:17:"report/sale_order";i:133;s:18:"report/sale_profit";i:134;s:18:"report/sale_return";i:135;s:20:"report/sale_shipping";i:136;s:15:"report/sale_tax";i:137;s:14:"sale/affiliate";i:138;s:12:"sale/contact";i:139;s:11:"sale/coupon";i:140;s:13:"sale/customer";i:141;s:20:"sale/customer_ban_ip";i:142;s:19:"sale/customer_group";i:143;s:10:"sale/offer";i:144;s:28:"sale/offer_category_category";i:145;s:27:"sale/offer_category_product";i:146;s:27:"sale/offer_product_category";i:147;s:26:"sale/offer_product_product";i:148;s:10:"sale/order";i:149;s:14:"sale/recurring";i:150;s:11:"sale/return";i:151;s:12:"sale/voucher";i:152;s:18:"sale/voucher_theme";i:153;s:15:"setting/setting";i:154;s:13:"setting/store";i:155;s:16:"shipping/auspost";i:156;s:17:"shipping/citylink";i:157;s:14:"shipping/fedex";i:158;s:15:"shipping/flat_1";i:159;s:15:"shipping/flat_2";i:160;s:15:"shipping/flat_3";i:161;s:13:"shipping/free";i:162;s:16:"shipping/geozone";i:163;s:13:"shipping/item";i:164;s:23:"shipping/parcelforce_48";i:165;s:15:"shipping/pickup";i:166;s:14:"shipping/price";i:167;s:19:"shipping/royal_mail";i:168;s:12:"shipping/ups";i:169;s:13:"shipping/usps";i:170;s:15:"shipping/weight";i:171;s:13:"theme/default";i:172;s:11:"tool/backup";i:173;s:13:"tool/block_ip";i:174;s:16:"tool/cache_files";i:175;s:17:"tool/cache_images";i:176;s:18:"tool/configuration";i:177;s:13:"tool/database";i:178;s:14:"tool/error_log";i:179;s:18:"tool/export_import";i:180;s:27:"tool/export_import_customer";i:181;s:22:"tool/export_import_raw";i:182;s:13:"tool/mail_log";i:183;s:14:"tool/quote_log";i:184;s:20:"tool/seo_url_manager";i:185;s:12:"tool/sitemap";i:186;s:11:"tool/upload";i:187;s:12:"total/coupon";i:188;s:12:"total/credit";i:189;s:14:"total/handling";i:190;s:16:"total/klarna_fee";i:191;s:19:"total/low_order_fee";i:192;s:12:"total/offers";i:193;s:16:"total/paypal_fee";i:194;s:12:"total/reward";i:195;s:14:"total/shipping";i:196;s:15:"total/sub_total";i:197;s:9:"total/tax";i:198;s:11:"total/total";i:199;s:13:"total/voucher";i:200;s:9:"user/user";i:201;s:20:"user/user_permission";}}'),
 (2, 'Demonstration', '');
 
 -- --------------------------------------------------------
@@ -4320,7 +4465,7 @@ CREATE TABLE `oc_voucher` (
   `to_name` varchar(64) NOT NULL,
   `to_email` varchar(96) NOT NULL,
   `voucher_theme_id` int(11) NOT NULL,
-  `message` text NOT NULL,
+  `message` text CHARACTER SET utf8 NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,

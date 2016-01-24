@@ -68,6 +68,15 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "download_description SET download_id = '" . (int)$download['download_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($download['name']) . "'");
 		}
 
+		// EU Countries
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "eucountry_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		foreach ($query->rows as $eucountry) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "eucountry_description SET eucountry_id = '" . (int)$eucountry['eucountry_id'] . "', language_id = '" . (int)$language_id . "', eucountry = '" . $this->db->escape($eucountry['eucountry']) . "', description = '" . $this->db->escape($eucountry['description']) . "'");
+		}
+
+		$this->cache->delete('eucountry');
+
 		// Filter
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -281,6 +290,9 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "download_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "eucountry_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('eucountry');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_group_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_description WHERE language_id = '" . (int)$language_id . "'");
