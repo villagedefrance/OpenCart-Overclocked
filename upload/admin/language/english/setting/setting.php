@@ -131,6 +131,7 @@ $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<br /><span 
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br /><span class="help">Use standard html selectors in Product form.</span>';
 $_['entry_lightbox']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, the Product Image size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']					= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
+$_['entry_share_addthis']				= 'Hide AddThis Share:<br /><span class="help">Hiding AddThis could help your product pages load faster.</span>';
 $_['entry_price_free']					= 'Display "Free" if Zero Price:<br /><span class="help">Replaces zero prices with language variable.</span>';
 $_['entry_captcha_font']				= 'Select a Captcha Font:<br /><span class="help">Choose which TrueType Font to use for the Captcha.</span>';
 $_['entry_news_addthis'] 				= 'Show AddThis on News Pages:<br /><span class="help">AddThis Share buttons will be displayed in News Pages.</span>';

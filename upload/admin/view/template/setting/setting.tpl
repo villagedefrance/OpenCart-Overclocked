@@ -1130,6 +1130,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_share_addthis; ?></td>
+            <td><?php if ($config_share_addthis) { ?>
+              <input type="radio" name="config_share_addthis" value="1" id="share-addthis-on" class="radio" checked />
+              <label for="share-addthis-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_share_addthis" value="0" id="share-addthis-off" class="radio" />
+              <label for="share-addthis-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_share_addthis" value="1" id="share-addthis-on" class="radio" />
+              <label for="share-addthis-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_share_addthis" value="0" id="share-addthis-off" class="radio" checked />
+              <label for="share-addthis-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_price_free; ?></td>
             <td><?php if ($config_price_free) { ?>
               <input type="radio" name="config_price_free" value="1" id="price-free-on" class="radio" checked />

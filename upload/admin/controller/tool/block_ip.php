@@ -291,8 +291,10 @@ class ControllerToolBlockIp extends Controller {
 
 	private function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_range'] = $this->language->get('heading_range');
 
 		$this->data['text_default'] = $this->language->get('text_default');
+		$this->data['text_info'] = $this->language->get('text_info');
 
 		$this->data['entry_from_ip'] = $this->language->get('entry_from_ip');
 		$this->data['entry_to_ip'] = $this->language->get('entry_to_ip');

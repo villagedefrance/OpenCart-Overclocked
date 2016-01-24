@@ -552,6 +552,7 @@ class ControllerProductProduct extends Controller {
 				$this->data['addthis'] = false;
 			}
 
+			$this->data['share_addthis'] = $this->config->get('config_share_addthis');
 			$this->data['label'] = $this->config->get('config_offer_label');
 
 			$this->load->model('catalog/offer');

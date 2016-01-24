@@ -173,6 +173,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
 		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
+		$this->data['entry_share_addthis'] = $this->language->get('entry_share_addthis');
 		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
@@ -1042,6 +1043,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_offer_label'] = $this->request->post['config_offer_label'];
 		} else {
 			$this->data['config_offer_label'] = $this->config->get('config_offer_label');
+		}
+
+		if (isset($this->request->post['config_share_addthis'])) {
+			$this->data['config_share_addthis'] = $this->request->post['config_share_addthis'];
+		} else {
+			$this->data['config_share_addthis'] = $this->config->get('config_share_addthis');
 		}
 
 		if (isset($this->request->post['config_price_free'])) {

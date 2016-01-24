@@ -50,13 +50,13 @@
             <td class="left"><?php if ($sort == 'url_alias_id') { ?>
               <a href="<?php echo $sort_url_alias_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_url_alias_id; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_url_alias_id; ?>"><?php echo $column_url_alias_id; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_url_alias_id; ?>"><?php echo $column_url_alias_id; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php echo $column_query; ?></td>
             <td class="left"><?php if ($sort == 'keyword') { ?>
               <a href="<?php echo $sort_keyword; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_keyword; ?></a>
             <?php } else { ?>
-              <a href="<?php echo $sort_keyword; ?>"><?php echo $column_keyword; ?>&nbsp;&nbsp;<img src="view/image/asc.png" alt="" /></a>
+              <a href="<?php echo $sort_keyword; ?>"><?php echo $column_keyword; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>

@@ -51,7 +51,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="center"><?php echo $column_action; ?></td>
+            <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@
               <td class="left"><?php echo $eucountry_story['code']; ?></td>
               <td class="left"><?php echo $eucountry_story['rate']; ?></td>
               <td class="left"><?php echo $eucountry_story['status']; ?></td>
-              <td class="center">
+              <td class="right">
                 <?php foreach ($eucountry_story['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button"><?php echo $action['text']; ?></a>
                 <?php } ?>

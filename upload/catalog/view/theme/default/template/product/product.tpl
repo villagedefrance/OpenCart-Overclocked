@@ -351,6 +351,7 @@
             <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;&nbsp;
             <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_comment.png" alt="<?php echo $text_write; ?>" title="<?php echo $text_write; ?>" /></a>
           </div>
+          <?php if (!$share_addthis) { ?>
           <div class="share">
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_print"></a>
@@ -366,6 +367,7 @@
               <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script> 
             <?php } ?>
           </div>
+          <?php } ?>
         </div>
       <?php } ?>
     </div>
@@ -445,7 +447,7 @@
           <input type="radio" name="rating" value="5" />
           <?php echo $entry_good; ?>
         </div>
-		<div id="captcha-wrap">
+        <div id="captcha-wrap">
           <div class="captcha-box">
             <div class="captcha-view">
               <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
@@ -714,17 +716,11 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	if ($.browser.msie && $.browser.version == 6) {
-		$('.date, .datetime, .time').bgIframe();
-	}
-
 	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-
 	$('.datetime').datetimepicker({
 		dateFormat: 'yy-mm-dd',
 		timeFormat: 'h:m'
 	});
-
 	$('.time').timepicker({timeFormat: 'h:m'});
 });
 //--></script>
