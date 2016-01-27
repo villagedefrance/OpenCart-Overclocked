@@ -12,6 +12,7 @@ class ControllerErrorForbidden extends Controller {
 			}
 		}
 
+		// Force accounts logout if logged in
 		if ($this->customer->isLogged()) {
 			$this->customer->logout();
 			$this->cart->clear();
@@ -36,6 +37,10 @@ class ControllerErrorForbidden extends Controller {
 			unset($this->session->data['vouchers']);
 		}
 
+		if ($this->affiliate->isLogged()) {
+			$this->affiliate->logout();
+		}
+
 		// Show site if logged in as admin
 		$this->load->library('user');
 
@@ -54,6 +59,8 @@ class ControllerErrorForbidden extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['message'] = $this->language->get('text_message');
+
+		$this->session->destroy();
 
 		// Template
 		$this->data['template'] = $this->config->get('config_template');

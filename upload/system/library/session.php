@@ -23,5 +23,9 @@ class Session {
 	public function regenerateId() {
 		session_regenerate_id(true);
 	}
+
+	public function destroy() {
+		return session_destroy();
+	}
 }
 ?>
