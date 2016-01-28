@@ -1,0 +1,177 @@
+html {
+	overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #111;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	color: #FFF;
+}
+body, td, th, input, textarea, select, a {
+	font-size: 16px;
+}
+h1 {
+	color: #636E75;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: 0px;
+	margin-bottom: 20px;
+	font-size: 32px;
+	font-weight: normal;
+	text-shadow: 0 0 1px rgba(0, 0, 0, .01);
+}
+p {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+a, a:visited {
+	color: #38B0E3;
+	text-decoration: underline;
+	outline: none;
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: none;
+	outline: none;
+}
+a img {
+	border: none;
+	outline: none;
+}
+form {
+	padding: 0;
+	margin: 0;
+	display: inline;
+}
+input[type='text'], input[type='password'], textarea {
+	height: 22px;
+	padding: 3px 0px 3px 4px;
+	margin-left: 0px;
+	margin-right: 0px;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
+}
+select {
+	padding: 2px;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
+}
+label {
+	cursor: pointer;
+}
+/* Container */
+#container-firewall {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #111;
+}
+#container-search {
+	width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #777;
+}
+body > #container-firewall, body > #container-search {
+	height: auto;
+	min-height: 100%;
+}
+/* Firewall */
+.firewall {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+.firewall p {
+	margin-top: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+}
+.firewall .context {
+	margin: 30px auto;
+}
+.firewall .context span.text {
+	color: #FFF;
+	font-size: 26px;
+}
+/* Search */
+.search {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+.search .search-form {
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#E8E8E8));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: -o-linear-gradient(top, #FCFCFC, #E8E8E8);
+	background-image: linear-gradient(to bottom, #FCFCFC, #E8E8E8);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	margin-top: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	padding: 0px;
+	min-height: 100px;
+}
+.search .search-form > div {
+	display: inline-block;
+	padding: 35px 3px;
+}
+.search .search-form > div a img {
+	vertical-align: middle;
+	margin-left: 3px;
+}
+/* Footer */
+#footer {
+	position: absolute;
+	bottom: 40px;
+	width: 100%;
+	margin: 0px auto;
+	text-align: center;
+}
+#footer a {
+	color: #555;
+	font-size: 12px;
+	text-decoration: none;
+}

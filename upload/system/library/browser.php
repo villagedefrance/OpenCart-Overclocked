@@ -302,7 +302,7 @@ class Browser {
 
 	// Get the Browser Version
 	public function getBrowserVersion() {
-		return $this->browser_version;
+		return ($this->browser_version) ? $this->browser_version : '000';
 	}
 
 	// Get the Tablet Device

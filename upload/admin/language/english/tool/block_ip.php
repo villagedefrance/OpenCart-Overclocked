@@ -6,7 +6,7 @@ $_['heading_range']		= 'Ip Range';
 // Text
 $_['text_success']		= 'Success: You have modified <b>Block Ips</b> !';
 $_['text_default']			= 'Default';
-$_['text_info']				= 'Supports IPv4 address format only. Ip "From" must be inferior at ip "To", or equal.<br />Blocked Ips will be re-directed to the HTTP 403 Forbidden page, and will not be able to navigate outside it.';
+$_['text_info']				= 'Supports IPv4 address format only. Ip "From" must be inferior at ip "To", or equal.<br />Blocked Ips will be re-directed to an external page, and will not be able to navigate back in the store.';
 
 // Column
 $_['column_from_ip']		= 'From Ip';
