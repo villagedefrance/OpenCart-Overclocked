@@ -21,5 +21,5 @@ $_['entry_to_ip']			= 'To Ip:<span class="help">Example: 91.200.12.255</span>';
 $_['error_permission']	= 'Warning: You do not have permission to modify <b>Block Ips</b> !';
 $_['error_from_ip']		= 'Ip is required and must be a valid ipv4 address!';
 $_['error_to_ip']			= 'Ip is required and must be a valid ipv4 address!';
-$_['error_warning']		= 'Warning: Please check the form carefully for errors!';
+$_['error_range']			= 'Ip "To" cannot be lower than Ip "From" !';
 ?>

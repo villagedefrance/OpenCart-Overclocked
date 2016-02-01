@@ -321,6 +321,12 @@ class ControllerToolBlockIp extends Controller {
 			$this->data['error_to_ip'] = '';
 		}
 
+		if (isset($this->error['range'])) {
+			$this->data['error_range'] = $this->error['range'];
+		} else {
+			$this->data['error_range'] = '';
+		}
+
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {
@@ -395,12 +401,12 @@ class ControllerToolBlockIp extends Controller {
 			$this->error['from_ip'] = $this->language->get('error_from_ip');
 		}
 
-		if (!$this->request->post['to_ip'] || strlen($this->request->post['from_ip']) < 7 || !preg_match('/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/ ', $this->request->post['to_ip'])) {
+		if (!$this->request->post['to_ip'] || strlen($this->request->post['to_ip']) < 7 || !preg_match('/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/ ', $this->request->post['to_ip'])) {
 			$this->error['to_ip'] = $this->language->get('error_to_ip');
 		}
 
-		if ($this->error && !isset($this->error['warning'])) {
-			$this->error['warning'] = $this->language->get('error_warning');
+		if (isset($this->request->post['from_ip']) && isset($this->request->post['to_ip']) && (strlen($this->request->post['from_ip']) > strlen($this->request->post['to_ip']))) {
+			$this->error['range'] = $this->language->get('error_range');
 		}
 
 		if (!$this->error) {

@@ -73,6 +73,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_verification'] = $this->language->get('text_verification');
 		$this->data['text_analytic'] = $this->language->get('text_analytic');
 		$this->data['text_security'] = $this->language->get('text_security');
+		$this->data['text_search_page'] = $this->language->get('text_search_page');
+		$this->data['text_block_page'] = $this->language->get('text_block_page');
 		$this->data['text_upload'] = $this->language->get('text_upload');
 
 		$this->data['info_express'] = $this->language->get('info_express');
@@ -235,6 +237,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_shared'] = $this->language->get('entry_shared');
 		$this->data['entry_robots'] = $this->language->get('entry_robots');
 		$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_ban_page'] = $this->language->get('entry_ban_page');
 		$this->data['entry_file_max_size'] = $this->language->get('entry_file_max_size');
 		$this->data['entry_file_extension_allowed'] = $this->language->get('entry_file_extension_allowed');
 		$this->data['entry_file_mime_allowed'] = $this->language->get('entry_file_mime_allowed');
@@ -1443,6 +1446,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_alexa_analytics'] = $this->config->get('config_alexa_analytics');
 		}
 
+		$this->data['google_web'] = 'https://www.google.com/webmasters/tools/home';
+		$this->data['bing_web'] = 'https://ssl.bing.com/webmaster/home/mysites';
+		$this->data['yandex_web'] = 'http://webmaster.yandex.com/sites/';
+		$this->data['baidu_web'] = 'http://zhanzhang.baidu.com/sitemap/index';
+		$this->data['alexa_web'] = 'http://www.alexa.com/';
+
 		// Server
 		if (isset($this->request->post['config_secure'])) {
 			$this->data['config_secure'] = $this->request->post['config_secure'];
@@ -1466,6 +1475,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_password'] = $this->request->post['config_password'];
 		} else {
 			$this->data['config_password'] = $this->config->get('config_password');
+		}
+
+		if (isset($this->request->post['config_ban_page'])) {
+			$this->data['config_ban_page'] = $this->request->post['config_ban_page'];
+		} else {
+			$this->data['config_ban_page'] = $this->config->get('config_ban_page');
 		}
 
 		if (isset($this->request->post['config_file_max_size'])) {

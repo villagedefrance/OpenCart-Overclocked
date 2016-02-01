@@ -47,9 +47,17 @@ class ControllerErrorForbidden extends Controller {
 		$this->user = new User($this->registry);
 
 		if (!$this->user->isLogged()) {
+			$ban_page = $this->config->get('config_ban_page');
+
+			if ($ban_page == 'search') {
+				$end_page = 'search';
+			} else {
+				$end_page = 'firewall';
+			}
+
 			$this->session->destroy();
 
-			header('Location: ../security/search.html');
+			header('Location: ../security/' . $end_page . '.html');
 			exit();
 		}
 	}

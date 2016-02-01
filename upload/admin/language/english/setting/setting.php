@@ -36,11 +36,13 @@ $_['text_smtp']							= 'SMTP';
 $_['text_verification'] 					= 'Verification';
 $_['text_analytic']						= 'Analytics';
 $_['text_security']						= 'Security';
+$_['text_search_page']					= 'Search Page';
+$_['text_block_page']					= 'Block Page';
 $_['text_upload']							= 'Upload';
 
 // Info
 $_['info_express']							= 'Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
-$_['info_meta_name']					= 'Meta name keys and Analytics scripts are unique for each Search Engine and for each Website. WebMaster accounts will be required to get a key or a script.';
+$_['info_meta_name']					= 'Meta name keys and Analytics scripts are unique for each Search Engine and for each Website. WebMaster accounts might be required to get a key or a script.';
 
 // Entry
 $_['entry_name']							= 'Store Name:';
@@ -188,6 +190,7 @@ $_['entry_secure']						= 'Use SSL:<br /><span class="help">To use SSL check wit
 $_['entry_shared']						= 'Use Shared Sessions:<br /><span class="help">Try to share the session cookie between stores so the cart can be passed between different domains.</span>';
 $_['entry_robots']						= 'Robots:<br /><span class="help">A list of web crawler user agents that shared sessions will not be used with. Use separate lines for each user agent.</span>';
 $_['entry_password']					= 'Allow Forgotten Password:<br /><span class="help">Allow forgotten password to be used for the admin. This will be disabled automatically if the system detects a hack attempt.</span>';
+$_['entry_ban_page']					= 'Blocked Ips Exit Page:<br /><span class="help">Select the type of page to use for blocked ip addresses re-direction.</span>';
 $_['entry_file_max_size']				= 'Maximum File Size:<br /><span class="help">Set the upload file size limit.</span>';
 $_['entry_file_extension_allowed']	= 'Allowed File Extensions:<br /><span class="help">Add which file extensions are allowed to be uploaded. Use a new line for each value.</span>';
 $_['entry_file_mime_allowed']			= 'Allowed File Mime Types:<br /><span class="help">Add which file mime types are allowed to be uploaded. Use a new line for each value.</span>';

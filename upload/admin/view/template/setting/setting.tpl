@@ -1510,6 +1510,19 @@
             <td><textarea name="config_alexa_analytics" cols="40" rows="10"><?php echo $config_alexa_analytics; ?></textarea></td>
           </tr>
         </table>
+        <div>
+          <table width="100%">
+            <tr>
+              <td>
+                <a onclick="window.open('<?php echo $google_web; ?>');" title="Google Webmaster Tools"><img src="view/image/engines/google-web.gif" alt="Google" /></a> &nbsp;
+                <a onclick="window.open('<?php echo $bing_web; ?>');" title="Bing Webmaster Tools"><img src="view/image/engines/bing-web.gif" alt="Bing" /></a> &nbsp;
+                <a onclick="window.open('<?php echo $yandex_web; ?>');" title="Yandex Webmaster Tools"><img src="view/image/engines/yandex-web.gif" alt="Yandex" /></a> &nbsp;
+                <a onclick="window.open('<?php echo $baidu_web; ?>');" title="Baidu Webmaster Tools"><img src="view/image/engines/baidu-web.gif" alt="Baidu" /></a> &nbsp;
+                <a onclick="window.open('<?php echo $alexa_web; ?>');" title="Alexa Analytics"><img src="view/image/engines/alexa-web.gif" alt="Alexa" /></a> &nbsp;
+              </td>
+            </tr>
+          </table>
+        </div>
         <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_meta_name; ?></div>
       </div>
       <div id="tab-server">
@@ -1664,6 +1677,18 @@
               <input type="radio" name="config_password" value="0" id="password-off" class="radio" checked />
               <label for="password-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_ban_page; ?></td>
+            <td><select name="config_ban_page">
+              <?php if (isset($config_ban_page)) { $selected = "selected"; ?>
+                <option value="search" <?php if ($config_ban_page == 'search') { echo $selected; } ?>><?php echo $text_search_page; ?></option>
+                <option value="block" <?php if ($config_ban_page == 'block') { echo $selected; } ?>><?php echo $text_block_page; ?></option>
+              <?php } else { ?>
+                <option value="search"><?php echo $text_search_page; ?></option>
+                <option value="block"><?php echo $text_block_page; ?></option>
+              <?php } ?>
+            </select></td>
           </tr>
         </table>
         <h2><?php echo $text_upload; ?></h2>
