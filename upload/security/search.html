@@ -20,8 +20,8 @@
         <option selected>Google</option>
         <option> Bing </option>
         <option> Yandex </option>
+        <option> Baidu </option>
         <option> Lycos </option>
-        <option> Hotbot </option>
       </select></div>
       <div>
         <a onclick="startSearch();"><img src="../security/image/go.png" alt="" style="width:30px; height:30px;" /></a>
@@ -44,7 +44,7 @@ function startSearch() {
 		finalSearchString = "";
 
 		if (searchEngine == 1) {
-			finalSearchString = "https://www.google.com/?gws_rd=ssl#safe=active&q=" + searchString;
+			finalSearchString = "https://www.google.co.uk/?gws_rd=ssl#safe=active&q=" + searchString;
 		}
 		if (searchEngine == 2) {
 			finalSearchString = "https://www.bing.com/search?q=" + searchString + "&qs=n";
@@ -53,10 +53,10 @@ function startSearch() {
 			finalSearchString = "https://www.yandex.com/search/?text=" + searchString;
 		}
 		if (searchEngine == 4) {
-			finalSearchString = "http://search.lycos.co.uk/web/?q=" + searchString;
+			finalSearchString = "http://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=" + searchString;
 		}
 		if (searchEngine == 5) {
-			finalSearchString = "http://www.hotbot.com/search/web?q=" + searchString;
+			finalSearchString = "http://search.lycos.co.uk/web/?q=" + searchString;
 		}
 
 		location.href = finalSearchString;
