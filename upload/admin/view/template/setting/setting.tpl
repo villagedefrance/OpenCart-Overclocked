@@ -1763,7 +1763,7 @@ $('select[name=\'config_country_id\']').bind('change', function() {
 					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
 					if (json['zone'][i]['zone_id'] == '<?php echo $config_zone_id; ?>') {
-	      				html += ' selected="selected"';
+						html += ' selected="selected"';
 					}
 
 					html += '>' + json['zone'][i]['name'] + '</option>';

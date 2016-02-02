@@ -1082,10 +1082,9 @@ $.widget('custom.catcomplete', $.ui.autocomplete, {
 		var self = this, currentCategory = '';
 
 		$.each(items, function(index, item) {
-			if (item.category != currentCategory) {
-				ul.append('<li class="ui-autocomplete-category">' + item.category + '</li>');
-
-				currentCategory = item.category;
+			if (item['category'] != currentCategory) {
+				ul.append('<li class="ui-autocomplete-category">' + item['category'] + '</li>');
+				currentCategory = item['category'];
 			}
 
 			self._renderItemData(ul, item);
@@ -1442,6 +1441,24 @@ $('#attribute tbody').each(function(index, element) {
 });
 //--></script>
 
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-slider-access.min.js"></script> 
+
+<script type="text/javascript"><!--
+$('.date').datepicker({dateFormat: 'yy-mm-dd'});
+$('.time').timepicker({
+	timeFormat: 'HH:mm',
+	addSliderAccess: true,
+	sliderAccessArgs: { touchonly: false }
+});
+$('.datetime').datetimepicker({
+	dateFormat: 'yy-mm-dd',
+	timeFormat: 'HH:mm',
+	addSliderAccess: true,
+	sliderAccessArgs: { touchonly: false }
+});
+//--></script>
+
 <script type="text/javascript"><!--
 var option_row = <?php echo $option_row; ?>;
 
@@ -1565,10 +1582,16 @@ $('input[name=\'option\']').catcomplete({
 		$('#option-' + option_row).trigger('click');
 
 		$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-		$('.time').timepicker({timeFormat: 'h:m'});
+		$('.time').timepicker({
+			timeFormat: 'HH:mm',
+			addSliderAccess: true,
+			sliderAccessArgs: { touchonly: false }
+		});
 		$('.datetime').datetimepicker({
 			dateFormat: 'yy-mm-dd',
-			timeFormat: 'h:m'
+			timeFormat: 'HH:mm',
+			addSliderAccess: true,
+			sliderAccessArgs: { touchonly: false }
 		});
 
 		option_row++;
@@ -1671,7 +1694,7 @@ function addDiscount() {
 
 	$('#discount tfoot').before(html);
 
-	$('#discount-row' + discount_row + ' .date').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#discount-row' + discount_row + '.date').datepicker({dateFormat: 'yy-mm-dd'});
 
 	discount_row++;
 };
@@ -1763,17 +1786,6 @@ function addImage() {
 
 	image_row++;
 };
-//--></script>
-
-<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>
-
-<script type="text/javascript"><!--
-$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-$('.time').timepicker({timeFormat: 'h:m'});
-$('.datetime').datetimepicker({
-	dateFormat: 'yy-mm-dd',
-	timeFormat: 'h:m'
-});
 //--></script>
 
 <script type="text/javascript"><!--

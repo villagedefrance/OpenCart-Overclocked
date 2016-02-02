@@ -575,7 +575,7 @@ $('select[name="profile_id"], input[name="quantity"]').change(function() {
 			$('#profile-description').html('');
 		},
 		success: function(json) {
-			$('.success, .warning, .attention, information, .error').remove();
+			$('.success, .warning, .attention, .tooltip, .error').remove();
 
 			if (json['success']) {
 				$('#profile-description').html(json['success']);
@@ -591,7 +591,7 @@ $('#button-cart').bind('click', function() {
 		data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
 		dataType: 'json',
 		success: function(json) {
-			$('.success, .warning, .attention, .information, .error').remove();
+			$('.success, .warning, .attention, .tooltip, .error').remove();
 
 			if (json['error']) {
 				if (json['error']['option']) {
@@ -613,6 +613,24 @@ $('#button-cart').bind('click', function() {
 			}
 		}
 	});
+});
+//--></script>
+
+<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-slider-access.min.js"></script> 
+
+<script type="text/javascript"><!--
+$('.date').datepicker({dateFormat: 'yy-mm-dd'});
+$('.time').timepicker({
+	timeFormat: 'HH:mm',
+	addSliderAccess: true,
+	sliderAccessArgs: { touchonly: false }
+});
+$('.datetime').datetimepicker({
+	dateFormat: 'yy-mm-dd',
+	timeFormat: 'HH:mm',
+	addSliderAccess: true,
+	sliderAccessArgs: { touchonly: false }
 });
 //--></script>
 
@@ -709,19 +727,6 @@ $('#button-review').bind('click', function() {
 <script type="text/javascript"><!--
 $(document).ready(function() {
 	$('#tabs a').tabs();
-});
-//--></script>
-
-<script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
-	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-	$('.datetime').datetimepicker({
-		dateFormat: 'yy-mm-dd',
-		timeFormat: 'h:m'
-	});
-	$('.time').timepicker({timeFormat: 'h:m'});
 });
 //--></script>
 

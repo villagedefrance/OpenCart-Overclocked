@@ -130,8 +130,10 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
-$('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
+$(document).ready(function() {
+	$('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
+});
 //--></script>
 
 <?php echo $footer; ?>

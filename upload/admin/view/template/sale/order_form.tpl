@@ -602,7 +602,6 @@ $.widget('custom.catcomplete', $.ui.autocomplete, {
 		$.each(items, function(index, item) {
 			if (item['category'] != currentCategory) {
 				ul.append('<li class="ui-autocomplete-category">' + item['category'] + '</li>');
-
 				currentCategory = item['category'];
 			}
 
@@ -874,6 +873,24 @@ $('select[name=\'shipping_address\']').bind('change', function() {
 });
 //--></script>
 
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-slider-access.min.js"></script> 
+
+<script type="text/javascript"><!--
+$('.date').datepicker({dateFormat: 'yy-mm-dd'});
+$('.time').timepicker({
+	timeFormat: 'HH:mm',
+	addSliderAccess: true,
+	sliderAccessArgs: { touchonly: false }
+});
+$('.datetime').datetimepicker({
+	dateFormat: 'yy-mm-dd',
+	timeFormat: 'HH:mm',
+	addSliderAccess: true,
+	sliderAccessArgs: { touchonly: false }
+});
+//--></script>
+
 <script type="text/javascript"><!--
 $('input[name=\'product\']').autocomplete({
 	delay: 10,
@@ -1130,13 +1147,17 @@ $('input[name=\'product\']').autocomplete({
 			}
 
 			$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-
+			$('.time').timepicker({
+				timeFormat: 'HH:mm',
+				addSliderAccess: true,
+				sliderAccessArgs: { touchonly: false }
+			});
 			$('.datetime').datetimepicker({
 				dateFormat: 'yy-mm-dd',
-				timeFormat: 'h:m'
+				timeFormat: 'HH:mm',
+				addSliderAccess: true,
+				sliderAccessArgs: { touchonly: false }
 			});
-
-			$('.time').timepicker({timeFormat: 'h:m'});
 
 		} else {
 			$('#option td').remove();
@@ -1551,12 +1572,12 @@ $('#button-product, #button-voucher, #button-update').live('click', function() {
 
 					html += '<tr id="total-row' + total_row + '">';
 					html += '  <td class="right" colspan="4">';
-					html += '  	<input type="hidden" name="order_total[' + total_row + '][order_total_id]" value="" />';
-					html += '  	<input type="hidden" name="order_total[' + total_row + '][code]" value="' + total['code'] + '" />';
-					html += '  	<input type="hidden" name="order_total[' + total_row + '][title]" value="' + total['title'] + '" />';
-					html += '  	<input type="hidden" name="order_total[' + total_row + '][text]" value="' + total['text'] + '" />';
-					html += '  	<input type="hidden" name="order_total[' + total_row + '][value]" value="' + total['value'] + '" />';
-					html += '  	<input type="hidden" name="order_total[' + total_row + '][sort_order]" value="' + total['sort_order'] + '" />' + total['title'] + ':';
+					html += '    <input type="hidden" name="order_total[' + total_row + '][order_total_id]" value="" />';
+					html += '    <input type="hidden" name="order_total[' + total_row + '][code]" value="' + total['code'] + '" />';
+					html += '    <input type="hidden" name="order_total[' + total_row + '][title]" value="' + total['title'] + '" />';
+					html += '    <input type="hidden" name="order_total[' + total_row + '][text]" value="' + total['text'] + '" />';
+					html += '    <input type="hidden" name="order_total[' + total_row + '][value]" value="' + total['value'] + '" />';
+					html += '    <input type="hidden" name="order_total[' + total_row + '][sort_order]" value="' + total['sort_order'] + '" />' + total['title'] + ':';
 					html += '  </td>';
 					html += '  <td class="right">' + total['value'] + '</td>';
 					html += '</tr>';
@@ -1636,17 +1657,6 @@ $('#button-product, #button-voucher, #button-update').live('click', function() {
 		}
 	});
 });
-//--></script>
-
-<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
-
-<script type="text/javascript"><!--
-$('.date').datepicker({dateFormat: 'yy-mm-dd'});
-$('.datetime').datetimepicker({
-	dateFormat: 'yy-mm-dd',
-	timeFormat: 'h:m'
-});
-$('.time').timepicker({timeFormat: 'h:m'});
 //--></script>
 
 <script type="text/javascript"><!--

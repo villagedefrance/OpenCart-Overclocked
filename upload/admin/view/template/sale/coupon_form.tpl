@@ -269,8 +269,10 @@ $('#coupon-category div img').live('click', function() {
 //--></script>
 
 <script type="text/javascript"><!--
-$('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
-$('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
+$(document).ready(function() {
+	$('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
+});
 //--></script>
 
 <?php if ($coupon_id) { ?>

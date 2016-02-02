@@ -155,7 +155,9 @@ function filter() {
 $('#form input').keydown(function(e) {
 	if (e.keyCode == 13) { filter(); }
 });
+//--></script>
 
+<script type="text/javascript"><!--
 $(document).ready(function() {
 	$('.date').datepicker({dateFormat: 'yy-mm-dd'});
 });

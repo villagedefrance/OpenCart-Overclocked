@@ -43,9 +43,12 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-Coming Soon in 1.7.5.0 !
+Coming Soon in 1.7.5.0:
 - Ip Range blocker.
-- ...
+- Added caching for totals.
+- TimePicker updated to v1.5.0.
+- Stronger Session Class.
+- Bug Fixes ...
 
 New in 1.7.4.0 (Current Release):
 - Code Standards.

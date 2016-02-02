@@ -477,8 +477,8 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#tooltip').hover(function() {
-		$('#show-tooltip').fadeOut(1000);
+	$('#tooltip').on('click', function() {
+		$('#show-tooltip').fadeOut('slow');
 	});
 });
 //--></script>
@@ -566,7 +566,7 @@ $('#credit-remove').live('click', function() {
 			}
 
 			if (json['success']) {
-                $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 
 				$('.success').fadeIn('slow');
 
@@ -659,7 +659,7 @@ $('#commission-add').live('click', function() {
 			}
 
 			if (json['success']) {
-                $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
 
 				$('.success').fadeIn('slow');
 
@@ -752,7 +752,7 @@ function setNotComplete(obj, init) {
 	}
 }
 
-$(function() {
+$(document).ready(function() {
 	$('.status-picked').each(function(index, obj) {
 		if ($(obj).prop('checked')) {
 			setComplete(obj, true);

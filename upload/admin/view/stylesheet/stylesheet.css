@@ -1542,6 +1542,18 @@ table.tool > tr > td {
 	top: 3px;
 	cursor: pointer;
 }
+/* Autocomplete */
+.ui-autocomplete {
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	list-style: none;
+	margin: 0px;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 18px;
+	padding: 3px 10px 3px 4px;
+}
 /* Footer */
 #footer {
 	position: relative;
