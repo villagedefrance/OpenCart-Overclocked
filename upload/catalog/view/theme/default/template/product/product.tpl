@@ -673,8 +673,8 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('#captcha-image').load(function(event) { 
-	$(event.target).fadeIn(100);
+$(document).ready(function() {
+	$('#captcha-image').load('index.php?route=product/product/captcha').fadeIn(100);
 });
 //--></script>
 
