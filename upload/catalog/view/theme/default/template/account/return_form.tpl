@@ -173,7 +173,9 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#captcha-image').load('index.php?route=account/return/captcha').fadeIn(100);
+	$('#captcha-image').load(function(event) {
+		$(event.target).fadeIn(300);
+	});
 });
 //--></script>
 
