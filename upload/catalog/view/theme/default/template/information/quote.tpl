@@ -109,10 +109,8 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$(document).ready(function() {
-	$('#captcha-image').load(function(event) {
-		$(event.target).fadeIn(300);
-	});
+$('#captcha-image').load(function(event) {
+	$(event.target).show();
 });
 //--></script>
 

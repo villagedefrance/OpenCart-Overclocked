@@ -1,12 +1,10 @@
 <?php
 class Captcha {
-	private $code;
-	private $height = 172;
-	private $width = 42;
+	private $code = null;
+	private $width = 186;
+	private $height = 42;
 
 	public function __construct() {
-		$this->code = null;
-
 		$word_1 = '';
 		$word_2 = '';
 
@@ -18,25 +16,23 @@ class Captcha {
 			$word_2 .= chr(rand(97, 122));
 		}
 
-		$this->code .= $word_1 . ' ' . $word_2;
+		$this->code = $word_1 . ' ' . $word_2;
 
-		return substr($this->code, 0);
+		return $this->code;
 	}
 
 	public function getCode() {
-		return substr($this->code, 0);
+		return $this->code;
 	}
 
 	public function showImage($font) {
-		$dir = DIR_SYSTEM . 'fonts/';
-
 		if ($font) {
-			$fontfile = $font . ".ttf";
+			$fontfile = DIR_SYSTEM . 'fonts/' . $font . '.ttf';
 		} else {
-			$fontfile = "Recaptcha.ttf";
+			$fontfile = DIR_SYSTEM . 'fonts/Recaptcha.ttf';
 		}
 
-		$image = imagecreatetruecolor($this->height, $this->width);
+		$image = imagecreatetruecolor($this->width, $this->height);
 
 		$color = imagecolorallocate($image, 10, 10, 10);
 
@@ -44,11 +40,11 @@ class Captcha {
 
 		imagefilledrectangle($image, 0, 0, 262, 42, $background);
 
-		imagettftext($image, 22, 0, 2, 28, $color, $dir.$fontfile, html_entity_decode($this->code));
+		imagettftext($image, 22, 0, 2, 28, $color, $fontfile, $this->code);
 
 		header("Content-type: image/png");
 
-		imagepng($image);
+		imagepng($image, null, 9);
 
 		imagedestroy($image);
 	}
