@@ -44,21 +44,18 @@ Main Features:
 - ... and more!
 
 Coming Soon in 1.7.5.0:
-- Ip Range blocker.
+- Added Ip Range blocker.
 - Added caching for totals.
-- TimePicker updated to v1.5.0.
-- Stronger Session Class.
+- Moved EU Taxes in core files.
+- TimePicker Addon updated to v1.5.0.
+- Stronger Session & Captcha Classes.
 - Bug Fixes ...
 
-New in 1.7.4.0 (Current Release):
-- Code Standards.
-- Bug Fixes ...
-
-New in 1.7.3.0:
+New in [1.7.3.0] 1.7.4.0 (Current Release):
 - Added EU taxes for E-medias Law.
 - Added received orders in dashboard graph.
 - Added Seo-Urls cache. Thanks skyosev!
-- Improved GUI.
+- Improved GUI & Code Standards.
 - Bug Fixes ...
 
 New in 1.7.2.0:
