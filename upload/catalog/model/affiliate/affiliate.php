@@ -4,6 +4,7 @@ class ModelAffiliateAffiliate extends Model {
 	public function addAffiliate($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . (isset($data['fax']) ? (int)$data['fax'] : 0) . "', salt = '" . $this->db->escape($salt = substr(hash_rand('md5'), 0, 9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', company = '" . $this->db->escape($data['company']) . "', website = '" . $this->db->escape($data['website']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', code = '" . $this->db->escape(uniqid()) . "', commission = '" . (float)$this->config->get('config_commission') . "', tax = '" . $this->db->escape($data['tax']) . "', payment = '" . $this->db->escape($data['payment']) . "', cheque = '" . $this->db->escape($data['cheque']) . "', paypal = '" . $this->db->escape($data['paypal']) . "', bank_name = '" . $this->db->escape($data['bank_name']) . "', bank_branch_number = '" . $this->db->escape($data['bank_branch_number']) . "', bank_swift_code = '" . $this->db->escape($data['bank_swift_code']) . "', bank_account_name = '" . $this->db->escape($data['bank_account_name']) . "', bank_account_number = '" . $this->db->escape($data['bank_account_number']) . "', status = '1', date_added = NOW()");
 
+		// Send new affiliate email
 		$this->language->load('mail/affiliate');
 
 		$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
@@ -23,9 +24,10 @@ class ModelAffiliateAffiliate extends Model {
 		$mail->password = $this->config->get('config_smtp_password');
 		$mail->port = $this->config->get('config_smtp_port');
 		$mail->timeout = $this->config->get('config_smtp_timeout');
+
 		$mail->setTo($this->request->post['email']);
 		$mail->setFrom($this->config->get('config_email'));
-		$mail->setSender($this->config->get('config_name'));
+		$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 		$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 		$mail->send();
@@ -62,21 +64,9 @@ class ModelAffiliateAffiliate extends Model {
 	}
 
 	public function getTotalAffiliatesByEmail($email) {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate WHERE email = '" . $this->db->escape($email) . "'";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate WHERE email = '" . $this->db->escape($email) . "'");
 
-		$cache_id = 'affiliate.emails.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
-		}
-
-		return $total;
+		return $query->row['total'];
 	}
 }
 ?>

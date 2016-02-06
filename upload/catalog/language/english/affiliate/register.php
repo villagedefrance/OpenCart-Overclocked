@@ -11,7 +11,6 @@ $_['text_your_details']     		= 'Your Personal Details';
 $_['text_your_address']  		= 'Your Address Details';
 $_['text_payment']           	= 'Payment Information';
 $_['text_your_password'] 		= 'Your Password';
-$_['text_match']  				= '<span style="color:#46A020;">Password match!</span>';
 $_['text_cheque']               	= 'Cheque';
 $_['text_paypal']               	= 'PayPal';
 $_['text_bank']                 	= 'Bank Transfer';

@@ -80,9 +80,10 @@ class ModelCheckoutCheckoutExpress extends Model {
 		$mail->password = $this->config->get('config_smtp_password');
 		$mail->port = $this->config->get('config_smtp_port');
 		$mail->timeout = $this->config->get('config_smtp_timeout');
+
 		$mail->setTo($data['email']);
 		$mail->setFrom($this->config->get('config_email'));
-		$mail->setSender($this->config->get('config_name'));
+		$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 		$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 		$mail->setHtml($html);
 		$mail->send();
@@ -90,16 +91,27 @@ class ModelCheckoutCheckoutExpress extends Model {
 		// Send to main admin email if new account email is enabled
 		if ($this->config->get('config_account_mail')) {
 			$message = $this->language->get('text_signup') . "\n\n";
-			$message .= $this->language->get('text_website') . ' ' . $this->config->get('config_name') . "\n";
-			$message .= $this->language->get('text_firstname') . ' ' . $data['firstname'] . "\n";
+			$message .= $this->language->get('text_website') . " " . $this->config->get('config_name') . "\n";
+			$message .= $this->language->get('text_firstname') . " " . $data['firstname'] . "\n";
 
 			if ($data['company']) {
-				$message .= $this->language->get('text_company') . ' ' . $data['company'] . "\n";
+				$message .= $this->language->get('text_company') . " " . $data['company'] . "\n";
 			}
 
-			$message .= $this->language->get('text_email') . ' ' . $data['email'] . "\n";
+			$message .= $this->language->get('text_email') . " " . $data['email'] . "\n";
+
+			$mail = new Mail();
+			$mail->protocol = $this->config->get('config_mail_protocol');
+			$mail->parameter = $this->config->get('config_mail_parameter');
+			$mail->hostname = $this->config->get('config_smtp_host');
+			$mail->username = $this->config->get('config_smtp_username');
+			$mail->password = $this->config->get('config_smtp_password');
+			$mail->port = $this->config->get('config_smtp_port');
+			$mail->timeout = $this->config->get('config_smtp_timeout');
 
 			$mail->setTo($this->config->get('config_email'));
+			$mail->setFrom($this->config->get('config_email_noreply'));
+			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode($this->language->get('text_new_customer'), ENT_QUOTES, 'UTF-8'));
 			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
 			$mail->send();

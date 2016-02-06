@@ -135,27 +135,19 @@ class ModelAccountAddress extends Model {
 	}
 
 	public function getTotalAddresses() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "address WHERE customer_id = '" . (int)$this->customer->getId() . "'";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "address WHERE customer_id = '" . (int)$this->customer->getId() . "'");
 
-		$cache_id = 'addresses.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
+		if ($query->num_rows) {
+			return $query->row['total'];
+		} else {
+			return 0;
 		}
-
-		return $total;
 	}
 
 	public function getDefaultAddressId($customer_id) {
-		$query = $this->db->query("SELECT DISTINCT address_id FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+		$query = $this->db->query("SELECT DISTINCT address_id AS address FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
 
-		return $query->row;
+		return $query->row['address'];
 	}
 }
 ?>

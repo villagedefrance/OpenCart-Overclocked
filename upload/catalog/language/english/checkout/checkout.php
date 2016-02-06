@@ -25,7 +25,6 @@ $_['text_your_address']              		= 'Your Address';
 $_['text_your_password']             		= 'Your Password';
 $_['text_female']    							= 'Female';
 $_['text_male']    							= 'Male';
-$_['text_match']  							= '<span style="color:#46A020;">Password match!</span>';
 $_['text_agree']                     			= 'I have read and agree to the <a class="colorbox" href="%s" title="%s"><b>%s</b></a>';
 $_['text_address_new']               		= 'I want to use a new address';
 $_['text_address_existing']          		= 'I want to use an existing address';

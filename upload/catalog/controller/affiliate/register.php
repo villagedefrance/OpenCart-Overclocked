@@ -59,7 +59,6 @@ class ControllerAffiliateRegister extends Controller {
 		$this->data['text_your_address'] = $this->language->get('text_your_address');
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_your_password'] = $this->language->get('text_your_password');
-		$this->data['text_match'] = $this->language->get('text_match');
 		$this->data['text_cheque'] = $this->language->get('text_cheque');
 		$this->data['text_paypal'] = $this->language->get('text_paypal');
 		$this->data['text_bank'] = $this->language->get('text_bank');
@@ -371,6 +370,8 @@ class ControllerAffiliateRegister extends Controller {
 		if (!isset($this->request->post['email']) || (utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
+
+		$this->load->model('affiliate/affiliate');
 
 		if (isset($this->request->post['email']) && $this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_exists');

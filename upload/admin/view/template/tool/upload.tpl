@@ -39,12 +39,12 @@
               <?php } else { ?>
                 <a href="<?php echo $sort_filename; ?>"><?php echo $column_filename; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
-              <td class="center"><?php if ($sort == 'date_added') { ?>
+              <td class="left"><?php if ($sort == 'date_added') { ?>
                 <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
               <?php } else { ?>
                 <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
               <?php } ?></td>
-              <td class="center"><?php echo $column_action; ?></td>
+              <td class="right"><?php echo $column_action; ?></td>
             </tr>
           </thead>
           <tbody>
@@ -61,7 +61,7 @@
                 <td class="left"><?php echo $upload['name']; ?></td>
                 <td class="left"><?php echo $upload['filename']; ?></td>
                 <td class="center"><?php echo $upload['date_added']; ?></td>
-                <td class="center"><a href="<?php echo $upload['download']; ?>" title="" class="button-form"><?php echo $button_download; ?></a></td>
+                <td class="right"><a href="<?php echo $upload['download']; ?>" title="" class="button-form"><?php echo $button_download; ?></a></td>
               </tr>
             <?php } ?>
           <?php } else { ?>

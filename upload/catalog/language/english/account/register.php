@@ -10,7 +10,6 @@ $_['text_your_details']    		= 'Your Personal Details';
 $_['text_your_address']    		= 'Your Address';
 $_['text_newsletter']      		= 'Newsletter';
 $_['text_your_password']   	= 'Your Password';
-$_['text_match']  				= '<span style="color:#46A020;">Password match!</span>';
 $_['text_agree']           		= 'I have read and agree to the <a class="colorbox" href="%s" title="%s"><b>%s</b></a>';
 $_['text_female']    				= 'Female';
 $_['text_male']    				= 'Male';

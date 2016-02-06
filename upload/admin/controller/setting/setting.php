@@ -96,6 +96,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_owner'] = $this->language->get('entry_owner');
 		$this->data['entry_address'] = $this->language->get('entry_address');
 		$this->data['entry_email'] = $this->language->get('entry_email');
+		$this->data['entry_email_noreply'] = $this->language->get('entry_email_noreply');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
 		$this->data['entry_title'] = $this->language->get('entry_title');
@@ -274,6 +275,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_email'] = $this->error['email'];
 		} else {
 			$this->data['error_email'] = '';
+		}
+
+		if (isset($this->error['email_noreply'])) {
+			$this->data['error_email_noreply'] = $this->error['email_noreply'];
+		} else {
+			$this->data['error_email_noreply'] = '';
 		}
 
 		if (isset($this->error['telephone'])) {
@@ -501,6 +508,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_email'] = $this->request->post['config_email'];
 		} else {
 			$this->data['config_email'] = $this->config->get('config_email');
+		}
+
+		if (isset($this->request->post['config_email_noreply'])) {
+			$this->data['config_email_noreply'] = $this->request->post['config_email_noreply'];
+		} elseif ($this->config->get('config_email_noreply')) {
+			$this->data['config_email_noreply'] = $this->config->get('config_email_noreply');
+		} else {
+			$this->data['config_email_noreply'] = 'noreply@' . $this->request->server['SERVER_NAME'];
 		}
 
 		if (isset($this->request->post['config_telephone'])) {
@@ -1591,6 +1606,10 @@ class ControllerSettingSetting extends Controller {
 
 		if ((utf8_strlen($this->request->post['config_email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['config_email'])) {
 			$this->error['email'] = $this->language->get('error_email');
+		}
+
+		if ((utf8_strlen($this->request->post['config_email_noreply']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['config_email_noreply'])) {
+			$this->error['email_noreply'] = $this->language->get('error_email_noreply');
 		}
 
 		if ((utf8_strlen($this->request->post['config_telephone']) < 3) || (utf8_strlen($this->request->post['config_telephone']) > 32)) {

@@ -239,7 +239,7 @@ $('#payment-address select[name=\'country_id\']').bind('change', function() {
 				$('#city-row').show(500);
 			}
 		},
-		error:function (xhr, ajaxOptions, thrownError) {
+		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});

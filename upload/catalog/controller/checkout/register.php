@@ -14,7 +14,6 @@ class ControllerCheckoutRegister extends Controller {
 		$this->data['text_your_password'] = $this->language->get('text_your_password');
 		$this->data['text_female'] = $this->language->get('text_female');
 		$this->data['text_male'] = $this->language->get('text_male');
-		$this->data['text_match'] = $this->language->get('text_match');
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
 
@@ -149,8 +148,6 @@ class ControllerCheckoutRegister extends Controller {
 		}
 
 		if (!$json) {
-			$this->load->model('account/customer');
-
 			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
 				$json['error']['firstname'] = $this->language->get('error_firstname');
 			}
@@ -162,6 +159,8 @@ class ControllerCheckoutRegister extends Controller {
 			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
+
+			$this->load->model('account/customer');
 
 			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 				$json['error']['warning'] = $this->language->get('error_exists');

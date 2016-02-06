@@ -26,21 +26,13 @@ class ModelAccountDownload extends Model {
 	}
 
 	public function getTotalDownloads() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_download od LEFT JOIN `" . DB_PREFIX . "order` o ON (od.order_id = o.order_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.order_status_id = '" . (int)$this->config->get('config_complete_status_id') . "' AND od.remaining > '0'";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "order_download od LEFT JOIN `" . DB_PREFIX . "order` o ON (od.order_id = o.order_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND o.order_status_id > '0' AND o.order_status_id = '" . (int)$this->config->get('config_complete_status_id') . "' AND od.remaining > '0'");
 
-		$cache_id = 'downloads.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
+		if ($query->num_rows) {
+			return $query->row['total'];
+		} else {
+			return 0;
 		}
-
-		return $total;
 	}
 }
 ?>

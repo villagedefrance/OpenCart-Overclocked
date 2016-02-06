@@ -153,22 +153,15 @@ class ModelAccountOrder extends Model {
 		return $query->rows;
 	}
 
+	// Totals
 	public function getTotalOrders() {
-		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE customer_id = '" . (int)$this->customer->getId() . "' AND order_status_id > '0'";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE customer_id = '" . (int)$this->customer->getId() . "' AND order_status_id > '0'");
 
-		$cache_id = 'customer.orders.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
+		if ($query->num_rows) {
+			return $query->row['total'];
+		} else {
+			return 0;
 		}
-
-		return $total;
 	}
 
 	public function getTotalOrderProductsByOrderId($order_id) {

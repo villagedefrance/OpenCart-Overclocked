@@ -135,17 +135,17 @@ class ModelCheckoutOffers extends Model {
 
 	// Category List
 	public function getCategoryList($product_id) {
-        $category_list = array();
+		$category_list = array();
 
-        $query = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
 
-        if ($query->num_rows) {
-            foreach ($query->rows as $result) {
-                $category_list[] = $result['category_id'];
-            }
-        }
+		if ($query->num_rows) {
+			foreach ($query->rows as $result) {
+				$category_list[] = $result['category_id'];
+			}
+		}
 
-        return $category_list;
-    }
+		return $category_list;
+	}
 }
 ?>

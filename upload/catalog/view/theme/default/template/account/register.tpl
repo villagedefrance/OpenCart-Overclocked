@@ -175,7 +175,7 @@
       <tr>
         <td><span class="required">*</span> <?php echo $entry_confirm; ?></td>
         <td><input type="password" name="confirm" id="password2" value="<?php echo $confirm; ?>" />&nbsp;
-        <span id="password-info" class="hidden"></span>
+        <span id="match" class="hidden"></span>
         <?php if ($error_confirm) { ?>
           <span class="error"><?php echo $error_confirm; ?></span>
         <?php } ?></td>
@@ -349,13 +349,12 @@ $(document).ready(function() {
 $(document).ready(function() {
 	var password1 = $('#password1');
 	var password2 = $('#password2');
-	var passwordInfo = $('#password-info');
 
 	$(password2).on('keyup', function() {
-		if (password1.val() === password2.val()) {
-			passwordInfo.removeClass('hidden').addClass('match').html('<?php echo $text_match; ?>');
+		if (password1.val() && password2.val() === password1.val()) {
+			$('#match').removeClass().addClass('match').html('<img src="catalog/view/theme/<?php echo $template; ?>/image/account/yes.png" alt="" />');
 		} else {
-			passwordInfo.removeClass('match').addClass('hidden').html('<?php echo $text_match; ?>');
+			$('#match').removeClass('match').addClass('hidden').html('');
 		}
 	});
 });
