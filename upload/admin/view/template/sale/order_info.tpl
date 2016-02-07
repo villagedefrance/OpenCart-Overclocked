@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $order_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $close; ?>" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
     <div class="content">

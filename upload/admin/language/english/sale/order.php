@@ -67,6 +67,8 @@ $_['text_credit_add']               	 	= 'Add Credit';
 $_['text_credit_added']          		= 'Success: Account credit added!';
 $_['text_credit_remove']          		= 'Remove Credit';
 $_['text_credit_removed']       		= 'Success: Account credit removed!';
+$_['text_order_picked']       			= 'Success: Order is now picked!';
+$_['text_order_backordered']			= 'Success: Order is now backordered!';
 $_['text_upload']                     		= 'Your file was successfully uploaded!';
 
 $_['text_pick_list']             			= 'Pick List';
@@ -101,7 +103,7 @@ $_['column_remaining']            		= 'Remaining Downloads';
 $_['column_comment']             		= 'Comment';
 $_['column_notify']                   	= 'Customer Notified';
 $_['column_status_picked']			= 'Picked';
-$_['column_status_backordered']	= 'Back-order Reason';
+$_['column_status_backordered']	= 'Backorder Reason';
 $_['column_action']                   	= 'Action';
 
 // Entry
@@ -151,7 +153,7 @@ $_['info_picklist_disabled'] 				= 'The Pick List is <b>Disabled</b> in your Set
 // Button
 $_['button_pick_list']            		= 'Print Pick List';
 $_['button_shipping_label'] 			= 'Print Shipping Label';
-$_['button_delivery_note']            	= 'Print Delivery Note';
+$_['button_delivery_note']				= 'Print Delivery Note';
 
 // Tab
 $_['tab_pick_list']							= 'Pick List';

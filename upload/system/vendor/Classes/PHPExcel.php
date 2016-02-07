@@ -239,7 +239,7 @@ class PHPExcel {
 	*
 	* return string|null|array
 	*/
-	public function getRibbonXMLData($What='all') {//we need some constants here...
+	public function getRibbonXMLData($What = 'all') {//we need some constants here...
 		$ReturnData = null;
 		$What = strtolower($What);
 

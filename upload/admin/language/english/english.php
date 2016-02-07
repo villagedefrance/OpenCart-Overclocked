@@ -62,6 +62,7 @@ $_['button_upload']       		= 'Upload';
 $_['button_download']			= 'Download';
 $_['button_submit']          	= 'Submit';
 $_['button_invoice']          	= 'Print Invoice';
+$_['button_download_pdf']		= 'Download PDF';
 $_['button_add_address']       	= 'Add Address';
 $_['button_add_attribute']  		= 'Add Attribute';
 $_['button_add_banner']        	= 'Add Banner';

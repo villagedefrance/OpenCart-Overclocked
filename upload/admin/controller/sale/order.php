@@ -1492,7 +1492,8 @@ class ControllerSaleOrder extends Controller {
 			$this->data['button_shipping_label'] = $this->language->get('button_shipping_label');
 			$this->data['button_delivery_note'] = $this->language->get('button_delivery_note');
 			$this->data['button_invoice'] = $this->language->get('button_invoice');
-			$this->data['button_cancel'] = $this->language->get('button_cancel');
+			$this->data['button_download_pdf'] = $this->language->get('button_download_pdf');
+			$this->data['button_close'] = $this->language->get('button_close');
 			$this->data['button_add_history'] = $this->language->get('button_add_history');
 
 			$this->data['tab_order'] = $this->language->get('tab_order');
@@ -1574,7 +1575,7 @@ class ControllerSaleOrder extends Controller {
 				$this->data['order_title'] = $this->language->get('heading_title');
 			}
 
-			$this->data['cancel'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
+			$this->data['close'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 			$this->data['pick_list'] = $this->url->link('sale/order/pick_list', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
 			$this->data['shipping_label'] = $this->url->link('sale/order/shipping_label', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
@@ -2277,7 +2278,7 @@ class ControllerSaleOrder extends Controller {
 				$this->model_sale_order->setPicked($product_id, false);
 			}
 
-			$json['success'] = '';
+			$json['success'] = $this->language->get('text_order_picked');
 		} else {
 			$json['error'] = $this->language->get('error_action');
 		}
@@ -2302,7 +2303,7 @@ class ControllerSaleOrder extends Controller {
 
 			$this->model_sale_order->setBackOrdered($product_id, $backorder);
 
-			$json['success'] = '';
+			$json['success'] = $this->language->get('text_order_backordered');
 		} else {
 			$json['error'] = $this->language->get('error_action');
 		}
