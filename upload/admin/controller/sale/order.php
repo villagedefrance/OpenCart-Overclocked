@@ -1492,7 +1492,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['button_shipping_label'] = $this->language->get('button_shipping_label');
 			$this->data['button_delivery_note'] = $this->language->get('button_delivery_note');
 			$this->data['button_invoice'] = $this->language->get('button_invoice');
-			$this->data['button_download_pdf'] = $this->language->get('button_download_pdf');
 			$this->data['button_close'] = $this->language->get('button_close');
 			$this->data['button_add_history'] = $this->language->get('button_add_history');
 
