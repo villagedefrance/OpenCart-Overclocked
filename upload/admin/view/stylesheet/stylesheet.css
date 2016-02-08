@@ -543,6 +543,12 @@ ul.menu ul {
 	margin-top: 3px;
 	display: block;
 }
+input[type='text'].input-error, input[type='password'].input-error, textarea.input-error, select.input-error {
+	border-top: 1px solid #DE5954;
+	border-left: 1px solid #DE5954;
+	border-bottom: 1px solid #E3726E;
+	border-right: 1px solid #E3726E;
+}
 .help {
 	color: #555;
 	font-size: 11px;

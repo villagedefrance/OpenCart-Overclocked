@@ -1592,7 +1592,7 @@ class ControllerSettingSetting extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['config_name']) {
+		if (!$this->request->post['config_name'] || (utf8_strlen($this->request->post['config_name']) < 3) || (utf8_strlen($this->request->post['config_name']) > 32)) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
@@ -1616,7 +1616,7 @@ class ControllerSettingSetting extends Controller {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if (!$this->request->post['config_title']) {
+		if (!$this->request->post['config_title'] || (utf8_strlen($this->request->post['config_title']) < 3) || (utf8_strlen($this->request->post['config_title']) > 32)) {
 			$this->error['title'] = $this->language->get('error_title');
 		}
 
@@ -1710,15 +1710,15 @@ class ControllerSettingSetting extends Controller {
 			}
 		}
 
-		if (!$this->request->post['config_error_filename'] && preg_match('/\.txt$/i', $this->request->post['config_error_filename'])) {
+		if (!$this->request->post['config_error_filename'] || !preg_match('/\.txt$/i', $this->request->post['config_error_filename'])) {
 			$this->error['error_filename'] = $this->language->get('error_error_filename');
 		}
 
-		if (!$this->request->post['config_mail_filename'] && preg_match('/\.txt$/i', $this->request->post['config_mail_filename'])) {
+		if (!$this->request->post['config_mail_filename'] || !preg_match('/\.txt$/i', $this->request->post['config_mail_filename'])) {
 			$this->error['mail_filename'] = $this->language->get('error_mail_filename');
 		}
 
-		if (!$this->request->post['config_quote_filename'] && preg_match('/\.txt$/i', $this->request->post['config_quote_filename'])) {
+		if (!$this->request->post['config_quote_filename'] || !preg_match('/\.txt$/i', $this->request->post['config_quote_filename'])) {
 			$this->error['quote_filename'] = $this->language->get('error_quote_filename');
 		}
 
