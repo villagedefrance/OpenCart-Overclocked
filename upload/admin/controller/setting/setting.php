@@ -647,10 +647,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_date_format'] = $this->config->get('config_date_format');
 		}
 
+		$this->data['time_offsets'] = array('+11', '+10', '+9', '+8', '+7', '+6', '+5', '+4', '+3', '+2', '+1', '0', '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9', '-10', '-11');
+
 		if (isset($this->request->post['config_time_offset'])) {
 			$this->data['config_time_offset'] = $this->request->post['config_time_offset'];
-		} else {
+		} elseif ($this->config->get('config_time_offset')) {
 			$this->data['config_time_offset'] = $this->config->get('config_time_offset');
+		} else {
+			$this->data['config_time_offset'] = '0';
 		}
 
 		if (isset($this->request->post['config_our_location'])) {

@@ -38,6 +38,12 @@ input[type='text'], input[type='password'], textarea {
 	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	box-shadow: inset 0 2px 0 -1px #EDEDED;
 }
+input[type='text'].input-error, input[type='password'].input-error, textarea.input-error, select.input-error {
+	border-top: 1px solid #DE5954;
+	border-left: 1px solid #DE5954;
+	border-bottom: 1px solid #E3726E;
+	border-right: 1px solid #E3726E;
+}
 fieldset {
 	width: 90%;
 	border-top: 1px solid #B6B6B6;
@@ -542,12 +548,6 @@ ul.menu ul {
 	font-weight: normal;
 	margin-top: 3px;
 	display: block;
-}
-input[type='text'].input-error, input[type='password'].input-error, textarea.input-error, select.input-error {
-	border-top: 1px solid #DE5954;
-	border-left: 1px solid #DE5954;
-	border-bottom: 1px solid #E3726E;
-	border-right: 1px solid #E3726E;
 }
 .help {
 	color: #555;
