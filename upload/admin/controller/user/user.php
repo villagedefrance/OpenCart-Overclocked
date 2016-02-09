@@ -383,11 +383,26 @@ class ControllerUserUser extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('user/user', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['user_id'])) {
+			$user_name = $this->model_user_user->getUserName($this->request->get['user_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title') . ' :: ' . $user_name,
+				'href'		=> $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $this->request->get['user_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['user_title'] = $user_name;
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'		=> $this->language->get('heading_title'),
+				'href'		=> $this->url->link('user/user', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['user_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['user_id'])) {
 			$this->data['action'] = $this->url->link('user/user/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -525,7 +540,7 @@ class ControllerUserUser extends Controller {
 				$this->error['password'] = $this->language->get('error_password');
 			}
 
-			if ($this->request->post['password'] != $this->request->post['confirm']) {
+			if ($this->request->post['confirm'] != $this->request->post['password']) {
 				$this->error['confirm'] = $this->language->get('error_confirm');
 			}
 		}

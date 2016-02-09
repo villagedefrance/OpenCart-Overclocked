@@ -36,22 +36,10 @@ class ModelUserUser extends Model {
 		return $query->row;
 	}
 
-	public function getUserByUsername($username) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE username = '" . $this->db->escape($username) . "'");
+	public function getUserName($user_id) {
+		$query = $this->db->query("SELECT DISTINCT username FROM `" . DB_PREFIX . "user` WHERE user_id = '" . (int)$user_id . "'");
 
-		return $query->row;
-	}
-
-	public function getUserByEmail($email) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE email = '" . $this->db->escape($email) . "'");
-
-		return $query->row;
-	}
-
-	public function getUserByCode($code) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE code = '" . $this->db->escape($code) . "' AND code != ''");
-
-		return $query->row;
+		return $query->row['username'];
 	}
 
 	public function getUsers($data = array()) {
@@ -95,12 +83,31 @@ class ModelUserUser extends Model {
 		return $query->rows;
 	}
 
+	public function getUserByUsername($username) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE username = '" . $this->db->escape($username) . "'");
+
+		return $query->row;
+	}
+
+	public function getUserByEmail($email) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE email = '" . $this->db->escape($email) . "'");
+
+		return $query->row;
+	}
+
+	public function getUserByCode($code) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "user` WHERE code = '" . $this->db->escape($code) . "' AND code != ''");
+
+		return $query->row;
+	}
+
 	public function getUserGroup($user_id, $user_group_id) {
 		$query = $this->db->query("SELECT ug.name AS name FROM " . DB_PREFIX . "user_group ug LEFT JOIN `" . DB_PREFIX . "user` u ON (ug.user_group_id = u.user_group_id) WHERE ug.user_group_id = '" . (int)$user_group_id . "' AND u.user_id = '" . (int)$user_id . "'");
 
 		return $query->row['name'];
 	}
 
+	// Totals
 	public function getTotalUsers() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "user`");
 

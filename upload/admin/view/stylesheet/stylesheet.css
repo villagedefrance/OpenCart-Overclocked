@@ -542,6 +542,10 @@ ul.menu ul {
 	color: #CC2626;
 	font-weight: bold;
 }
+.advised {
+	color: #267F00;
+	font-weight: bold;
+}
 .error {
 	color: #CC2626;
 	font-size: 12px;

@@ -10,7 +10,7 @@
   <?php } ?>
   <div class="box">
     <div class="heading">
-      <h1><img src="view/image/user.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <h1><img src="view/image/user.png" alt="" /> <?php echo $user_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
@@ -61,14 +61,14 @@
           </select></td>
         </tr>
         <tr>
-          <td><?php echo $entry_password; ?></td>
-          <td><input type="password" name="password" value="<?php echo $password; ?>"  />
+          <td><span class="advised">*</span> <?php echo $entry_password; ?></td>
+          <td><input type="password" name="password" value="<?php echo $password; ?>" />
           <?php if ($error_password) { ?>
             <span class="error"><?php echo $error_password; ?></span>
           <?php  } ?></td>
         </tr>
         <tr>
-          <td><?php echo $entry_confirm; ?></td>
+          <td><span class="advised">*</span> <?php echo $entry_confirm; ?></td>
           <td><input type="password" name="confirm" value="<?php echo $confirm; ?>" />
           <?php if ($error_confirm) { ?>
             <span class="error"><?php echo $error_confirm; ?></span>
