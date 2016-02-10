@@ -424,6 +424,8 @@ class ControllerUserUser extends Controller {
 			$this->data['username'] = '';
 		}
 
+		$this->data['is_required'] = isset($this->request->get['user_id']) ? 'advised' : 'required';
+
 		if (isset($this->request->post['password'])) {
 			$this->data['password'] = $this->request->post['password'];
 		} else {
@@ -535,7 +537,7 @@ class ControllerUserUser extends Controller {
 			}
 		}
 
-		if ($this->request->post['password'] || (!isset($this->request->get['user_id']))) {
+		if (!empty($this->request->post['password']) || (!isset($this->request->get['user_id']))) {
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 				$this->error['password'] = $this->language->get('error_password');
 			}

@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 	$(password2).on('keyup', function() {
 		if (password1.val() && password2.val() === password1.val()) {
-			$('#match').removeClass().addClass('match').html('<img src="catalog/view/theme/<?php echo $template; ?>/image/account/yes.png" alt="" />');
+			$('#match').removeClass().addClass('match').html('<img src="catalog/view/theme/<?php echo $template; ?>/image/account/tick.png" alt="" />');
 		} else {
 			$('#match').removeClass('match').addClass('hidden').html('');
 		}

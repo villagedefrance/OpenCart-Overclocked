@@ -61,14 +61,14 @@
           </select></td>
         </tr>
         <tr>
-          <td><span class="advised">*</span> <?php echo $entry_password; ?></td>
+          <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_password; ?></td>
           <td><input type="password" name="password" value="<?php echo $password; ?>" />
           <?php if ($error_password) { ?>
             <span class="error"><?php echo $error_password; ?></span>
           <?php  } ?></td>
         </tr>
         <tr>
-          <td><span class="advised">*</span> <?php echo $entry_confirm; ?></td>
+          <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_confirm; ?></td>
           <td><input type="password" name="confirm" value="<?php echo $confirm; ?>" />
           <?php if ($error_confirm) { ?>
             <span class="error"><?php echo $error_confirm; ?></span>

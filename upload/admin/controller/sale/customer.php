@@ -974,6 +974,8 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['approved'] = true;
 		}
 
+		$this->data['is_required'] = isset($this->request->get['customer_id']) ? 'advised' : 'required';
+
 		if (isset($this->request->post['password'])) {
 			$this->data['password'] = $this->request->post['password'];
 		} else {
@@ -1076,7 +1078,7 @@ class ControllerSaleCustomer extends Controller {
 			}
 		}
 
-		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {
+		if (!empty($this->request->post['password']) || (!isset($this->request->get['customer_id']))) {
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 				$this->error['password'] = $this->language->get('error_password');
 			}

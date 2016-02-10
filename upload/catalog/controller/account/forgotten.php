@@ -26,7 +26,7 @@ class ControllerAccountForgotten extends Controller {
 
 			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
 
-			$message  = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
+			$message = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
 			$message .= $this->language->get('text_password') . "\n\n";
 			$message .= $password;
 
@@ -53,6 +53,7 @@ class ControllerAccountForgotten extends Controller {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
+
 			$mail->setTo($this->request->post['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));

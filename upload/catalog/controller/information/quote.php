@@ -36,6 +36,7 @@ class ControllerInformationQuote extends Controller {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
+
 			$mail->setTo($this->config->get('config_email'));
 			$mail->setFrom($this->request->post['email']);
 			$mail->setSender($this->request->post['name']);
