@@ -34,9 +34,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_url; ?></td>
-            <td><input type="text" name="config_url" value="<?php echo $config_url; ?>" size="40" />
-            <?php if ($error_url) { ?>
+            <td><?php if ($error_url) { ?>
+              <input type="text" name="config_url" value="<?php echo $config_url; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_url; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_url" value="<?php echo $config_url; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -45,37 +47,47 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="config_name" value="<?php echo $config_name; ?>" size="40" />
-            <?php if ($error_name) { ?>
+            <td><?php if ($error_name) { ?>
+              <input type="text" name="config_name" value="<?php echo $config_name; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_name; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_name" value="<?php echo $config_name; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_owner; ?></td>
-            <td><input type="text" name="config_owner" value="<?php echo $config_owner; ?>" size="40" />
-            <?php if ($error_owner) { ?>
+            <td><?php if ($error_owner) { ?>
+              <input type="text" name="config_owner" value="<?php echo $config_owner; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_owner; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_owner" value="<?php echo $config_owner; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_address; ?></td>
-            <td><textarea name="config_address" cols="40" rows="5"><?php echo $config_address; ?></textarea>
-            <?php if ($error_address) { ?>
+            <td><?php if ($error_address) { ?>
+              <textarea name="config_address" cols="40" rows="5" class="input-error"><?php echo $config_address; ?></textarea>
               <span class="error"><?php echo $error_address; ?></span>
+            <?php } else { ?>
+              <textarea name="config_address" cols="40" rows="5"><?php echo $config_address; ?></textarea>
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="config_email" value="<?php echo $config_email; ?>" size="40" />
-            <?php if ($error_email) { ?>
+            <td><?php if ($error_email) { ?>
+              <input type="text" name="config_email" value="<?php echo $config_email; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_email" value="<?php echo $config_email; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-            <td><input type="text" name="config_telephone" value="<?php echo $config_telephone; ?>" />
-            <?php if ($error_telephone) { ?>
+            <td><?php if ($error_telephone) { ?>
+              <input type="text" name="config_telephone" value="<?php echo $config_telephone; ?>" class="input-error" />
               <span class="error"><?php echo $error_telephone; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_telephone" value="<?php echo $config_telephone; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -88,14 +100,17 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-            <td><input type="text" name="config_title" value="<?php echo $config_title; ?>" size="40" />
-            <?php if ($error_title) { ?>
+            <td><?php if ($error_title) { ?>
+              <input type="text" name="config_title" value="<?php echo $config_title; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_title; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_title" value="<?php echo $config_title; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_meta_description; ?></td>
-            <td><textarea name="config_meta_description" cols="40" rows="5"><?php echo $config_meta_description; ?></textarea></td>
+            <td><textarea name="config_meta_description" id="meta-description" data-limit="156" cols="40" rows="5"><?php echo isset($config_meta_description) ? $config_meta_description : ''; ?></textarea>
+            <span id="remaining"></span></td>
           </tr>
           <tr>
             <td><?php echo $entry_template; ?></td>
@@ -177,9 +192,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
-            <td><input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" />
-            <?php if ($error_catalog_limit) { ?>
+            <td><?php if ($error_catalog_limit) { ?>
+              <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" class="input-error" />
               <span class="error"><?php echo $error_catalog_limit; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" />
             <?php } ?></td>
           </tr>
         </table>
@@ -406,15 +423,13 @@
           <tr>
             <td><?php echo $entry_logo; ?></td>
             <td><div class="image"><img src="<?php echo $logo; ?>" alt="" id="thumb-logo" />
-            <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="logo" />
-            <br />
+            <input type="hidden" name="config_logo" value="<?php echo $config_logo; ?>" id="logo" /><br />
             <a onclick="image_upload('logo', 'thumb-logo');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-logo').attr('src', '<?php echo $no_image; ?>'); $('#logo').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
           </tr>
           <tr>
             <td><?php echo $entry_icon; ?></td>
             <td><div class="image"><img src="<?php echo $icon; ?>" alt="" id="thumb-icon" />
-            <input type="hidden" name="config_icon" value="<?php echo $config_icon; ?>" id="icon" />
-            <br />
+            <input type="hidden" name="config_icon" value="<?php echo $config_icon; ?>" id="icon" /><br />
             <a onclick="image_upload('icon', 'thumb-icon');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb-icon').attr('src', '<?php echo $no_image; ?>'); $('#icon').attr('value', '');"><?php echo $text_clear; ?></a></div></td>
           </tr>
         </table>
@@ -422,110 +437,134 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_category; ?></td>
-            <td><input type="text" name="config_image_category_width" value="<?php echo $config_image_category_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_category_height" value="<?php echo $config_image_category_height; ?>" size="3" /> px
-            <?php if ($error_image_category) { ?>
+            <td><?php if ($error_image_category) { ?>
+              <input type="text" name="config_image_category_width" value="<?php echo $config_image_category_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_category_height" value="<?php echo $config_image_category_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_category; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_category_width" value="<?php echo $config_image_category_width; ?>" size="3" /> x
+              <input type="text" name="config_image_category_height" value="<?php echo $config_image_category_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_thumb; ?></td>
-            <td><input type="text" name="config_image_thumb_width" value="<?php echo $config_image_thumb_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_thumb_height" value="<?php echo $config_image_thumb_height; ?>" size="3" /> px
-            <?php if ($error_image_thumb) { ?>
+            <td><?php if ($error_image_thumb) { ?>
+              <input type="text" name="config_image_thumb_width" value="<?php echo $config_image_thumb_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_thumb_height" value="<?php echo $config_image_thumb_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_thumb; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_thumb_width" value="<?php echo $config_image_thumb_width; ?>" size="3" /> x
+              <input type="text" name="config_image_thumb_height" value="<?php echo $config_image_thumb_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_popup; ?></td>
-            <td><input type="text" name="config_image_popup_width" value="<?php echo $config_image_popup_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_popup_height" value="<?php echo $config_image_popup_height; ?>" size="3" /> px
-            <?php if ($error_image_popup) { ?>
+            <td><?php if ($error_image_popup) { ?>
+              <input type="text" name="config_image_popup_width" value="<?php echo $config_image_popup_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_popup_height" value="<?php echo $config_image_popup_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_popup; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_popup_width" value="<?php echo $config_image_popup_width; ?>" size="3" /> x
+              <input type="text" name="config_image_popup_height" value="<?php echo $config_image_popup_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_product; ?></td>
-            <td><input type="text" name="config_image_product_width" value="<?php echo $config_image_product_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_product_height" value="<?php echo $config_image_product_height; ?>" size="3" /> px
-            <?php if ($error_image_product) { ?>
+            <td><?php if ($error_image_product) { ?>
+              <input type="text" name="config_image_product_width" value="<?php echo $config_image_product_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_product_height" value="<?php echo $config_image_product_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_product; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_product_width" value="<?php echo $config_image_product_width; ?>" size="3" /> x
+              <input type="text" name="config_image_product_height" value="<?php echo $config_image_product_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_additional; ?></td>
-            <td><input type="text" name="config_image_additional_width" value="<?php echo $config_image_additional_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_additional_height" value="<?php echo $config_image_additional_height; ?>" size="3" /> px
-            <?php if ($error_image_additional) { ?>
+            <td><?php if ($error_image_additional) { ?>
+              <input type="text" name="config_image_additional_width" value="<?php echo $config_image_additional_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_additional_height" value="<?php echo $config_image_additional_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_additional; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_additional_width" value="<?php echo $config_image_additional_width; ?>" size="3" /> x
+              <input type="text" name="config_image_additional_height" value="<?php echo $config_image_additional_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_brand; ?></td>
-            <td><input type="text" name="config_image_brand_width" value="<?php echo $config_image_brand_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_brand_height" value="<?php echo $config_image_brand_height; ?>" size="3" /> px
-            <?php if ($error_image_brand) { ?>
+            <td><?php if ($error_image_brand) { ?>
+              <input type="text" name="config_image_brand_width" value="<?php echo $config_image_brand_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_brand_height" value="<?php echo $config_image_brand_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_brand; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_brand_width" value="<?php echo $config_image_brand_width; ?>" size="3" /> x
+              <input type="text" name="config_image_brand_height" value="<?php echo $config_image_brand_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_related; ?></td>
-            <td><input type="text" name="config_image_related_width" value="<?php echo $config_image_related_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_related_height" value="<?php echo $config_image_related_height; ?>" size="3" /> px
-            <?php if ($error_image_related) { ?>
+            <td><?php if ($error_image_related) { ?>
+              <input type="text" name="config_image_related_width" value="<?php echo $config_image_related_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_related_height" value="<?php echo $config_image_related_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_related; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_related_width" value="<?php echo $config_image_related_width; ?>" size="3" /> x
+              <input type="text" name="config_image_related_height" value="<?php echo $config_image_related_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_compare; ?></td>
-            <td><input type="text" name="config_image_compare_width" value="<?php echo $config_image_compare_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_compare_height" value="<?php echo $config_image_compare_height; ?>" size="3" /> px
-            <?php if ($error_image_compare) { ?>
+            <td><?php if ($error_image_compare) { ?>
+              <input type="text" name="config_image_compare_width" value="<?php echo $config_image_compare_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_compare_height" value="<?php echo $config_image_compare_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_compare; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_compare_width" value="<?php echo $config_image_compare_width; ?>" size="3" /> x
+              <input type="text" name="config_image_compare_height" value="<?php echo $config_image_compare_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_wishlist; ?></td>
-            <td><input type="text" name="config_image_wishlist_width" value="<?php echo $config_image_wishlist_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_wishlist_height" value="<?php echo $config_image_wishlist_height; ?>" size="3" /> px
-            <?php if ($error_image_wishlist) { ?>
+            <td><?php if ($error_image_wishlist) { ?>
+              <input type="text" name="config_image_wishlist_width" value="<?php echo $config_image_wishlist_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_wishlist_height" value="<?php echo $config_image_wishlist_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_wishlist; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_wishlist_width" value="<?php echo $config_image_wishlist_width; ?>" size="3" /> x
+              <input type="text" name="config_image_wishlist_height" value="<?php echo $config_image_wishlist_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_newsthumb; ?></td>
-            <td><input type="text" name="config_image_newsthumb_width" value="<?php echo $config_image_newsthumb_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_newsthumb_height" value="<?php echo $config_image_newsthumb_height; ?>" size="3" /> px
-            <?php if ($error_image_newsthumb) { ?>
+            <td><?php if ($error_image_newsthumb) { ?>
+              <input type="text" name="config_image_newsthumb_width" value="<?php echo $config_image_newsthumb_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_newsthumb_height" value="<?php echo $config_image_newsthumb_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_newsthumb; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_newsthumb_width" value="<?php echo $config_image_newsthumb_width; ?>" size="3" /> x
+              <input type="text" name="config_image_newsthumb_height" value="<?php echo $config_image_newsthumb_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_newspopup; ?></td>
-            <td><input type="text" name="config_image_newspopup_width" value="<?php echo $config_image_newspopup_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_newspopup_height" value="<?php echo $config_image_newspopup_height; ?>" size="3" /> px
-            <?php if ($error_image_newspopup) { ?>
+            <td><?php if ($error_image_newspopup) { ?>
+              <input type="text" name="config_image_newspopup_width" value="<?php echo $config_image_newspopup_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_newspopup_height" value="<?php echo $config_image_newspopup_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_newspopup; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_newspopup_width" value="<?php echo $config_image_newspopup_width; ?>" size="3" /> x
+              <input type="text" name="config_image_newspopup_height" value="<?php echo $config_image_newspopup_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_image_cart; ?></td>
-            <td><input type="text" name="config_image_cart_width" value="<?php echo $config_image_cart_width; ?>" size="3" />
-              x
-            <input type="text" name="config_image_cart_height" value="<?php echo $config_image_cart_height; ?>" size="3" /> px
-            <?php if ($error_image_cart) { ?>
+            <td><?php if ($error_image_cart) { ?>
+              <input type="text" name="config_image_cart_width" value="<?php echo $config_image_cart_width; ?>" size="3" class="input-error" /> x
+              <input type="text" name="config_image_cart_height" value="<?php echo $config_image_cart_height; ?>" size="3" class="input-error" /> px
               <span class="error"><?php echo $error_image_cart; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_image_cart_width" value="<?php echo $config_image_cart_width; ?>" size="3" /> x
+              <input type="text" name="config_image_cart_height" value="<?php echo $config_image_cart_height; ?>" size="3" /> px
             <?php } ?></td>
           </tr>
         </table>
@@ -552,6 +591,21 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#meta-description').on('load propertychange keyup input paste', function() {
+		var limit = $(this).data("limit");
+		var remain = limit - $(this).val().length;
+		if (remain <= 0) {
+			$(this).val($(this).val().substring(0, limit));
+		}
+		$('#remaining').text((remain <= 0) ? 0 : remain);
+	});
+
+	$('#meta-description').trigger('load');
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $('#template').load('index.php?route=setting/store/template&token=<?php echo $token; ?>&template=' + encodeURIComponent($('select[name=\'config_template\']').attr('value')));
