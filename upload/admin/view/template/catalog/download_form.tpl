@@ -23,25 +23,31 @@
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
           <td><?php foreach ($languages as $language) { ?>
-            <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" />
-            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php if (isset($error_name[$language['language_id']])) { ?>
+              <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
               <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
+            <?php } else { ?>
+              <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" />
             <?php } ?>
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_filename; ?></td>
-          <td><input type="text" name="filename" value="<?php echo $filename; ?>" size="30" /> <a id="button-upload" class="button-form"><?php echo $button_upload; ?></a>
-          <?php if ($error_filename) { ?>
+          <td><?php if ($error_filename) { ?>
+            <input type="text" name="filename" value="<?php echo $filename; ?>" size="30" class="input-error" /> <a id="button-upload" class="button-form"><?php echo $button_upload; ?></a>
             <span class="error"><?php echo $error_filename; ?></span>
+          <?php } else { ?>
+            <input type="text" name="filename" value="<?php echo $filename; ?>" size="30" /> <a id="button-upload" class="button-form"><?php echo $button_upload; ?></a>
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_mask; ?></td>
-          <td><input type="text" name="mask" value="<?php echo $mask; ?>" size="40" />
-          <?php if ($error_mask) { ?>
+          <td><?php if ($error_mask) { ?>
+            <input type="text" name="mask" value="<?php echo $mask; ?>" size="40" class="input-error" />
             <span class="error"><?php echo $error_mask; ?></span>
+          <?php } else { ?>
+            <input type="text" name="mask" value="<?php echo $mask; ?>" size="40" />
           <?php } ?></td>
         </tr>
         <tr>

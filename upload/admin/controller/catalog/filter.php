@@ -400,8 +400,8 @@ class ControllerCatalogFilter extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		foreach ($this->request->post['filter_group_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['name']) < 1) || (utf8_strlen($value['name']) > 64)) {
+		foreach ($this->request->post['filter_group_description'] as $language_id => $filter_group_description) {
+			if (empty($filter_group_description['name']) || (utf8_strlen($filter_group_description['name']) < 1) || (utf8_strlen($filter_group_description['name']) > 64)) {
 				$this->error['group'][$language_id] = $this->language->get('error_group');
 			}
 		}

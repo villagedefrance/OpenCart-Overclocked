@@ -23,10 +23,13 @@
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
           <td><?php foreach ($languages as $language) { ?>
-            <input type="text" name="option_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($option_description[$language['language_id']]) ? $option_description[$language['language_id']]['name'] : ''; ?>" />
-            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php if (isset($error_name[$language['language_id']])) { ?>
+              <input type="text" name="option_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($option_description[$language['language_id']]) ? $option_description[$language['language_id']]['name'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
               <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
+            <?php } else { ?>
+              <input type="text" name="option_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($option_description[$language['language_id']]) ? $option_description[$language['language_id']]['name'] : ''; ?>" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php } ?>
           <?php } ?></td>
         </tr>

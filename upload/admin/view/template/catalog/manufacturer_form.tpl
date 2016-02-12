@@ -25,18 +25,20 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-general">
         <div id="languages" class="htabs">
-        <?php foreach ($languages as $language) { ?>
-          <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
-        <?php } ?>
+          <?php foreach ($languages as $language) { ?>
+            <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+          <?php } ?>
         </div>
         <?php foreach ($languages as $language) { ?>
         <div id="language<?php echo $language['language_id']; ?>">
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-              <td><input type="text" name="manufacturer_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($manufacturer_description[$language['language_id']]) ? $manufacturer_description[$language['language_id']]['name'] : ''; ?>" size="40" />
-              <?php if (isset($error_name[$language['language_id']])) { ?>
+              <td><?php if (isset($error_name[$language['language_id']])) { ?>
+                <input type="text" name="manufacturer_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($manufacturer_description[$language['language_id']]) ? $manufacturer_description[$language['language_id']]['name'] : ''; ?>" size="40" class="input-error" />
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="manufacturer_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($manufacturer_description[$language['language_id']]) ? $manufacturer_description[$language['language_id']]['name'] : ''; ?>" size="40" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -51,7 +53,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_store; ?></td>
-            <td><div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
+            <td><div id="store_ids" class="scrollbox-store">
               <?php $class = 'even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $manufacturer_store)) { ?>

@@ -34,9 +34,11 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-              <td><input type="text" name="news_description[<?php echo $language['language_id']; ?>][title]" size="60" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" />
-              <?php if (isset($error_title[$language['language_id']])) { ?>
+              <td><?php if (isset($error_title[$language['language_id']])) { ?>
+                <input type="text" name="news_description[<?php echo $language['language_id']; ?>][title]" size="60" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" class="input-error" />
                 <span class="error"><?php echo $error_title[$language['language_id']]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="news_description[<?php echo $language['language_id']; ?>][title]" size="60" value="<?php echo isset($news_description[$language['language_id']]) ? $news_description[$language['language_id']]['title'] : ''; ?>" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -61,7 +63,7 @@
           <tr>
             <td><?php echo $entry_store; ?></td>
             <td>
-              <div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
+              <div id="store_ids" class="scrollbox-store">
                 <?php $class = 'even'; ?>
                 <div class="<?php echo $class; ?>">
                   <?php if (in_array(0, $news_store)) { ?>

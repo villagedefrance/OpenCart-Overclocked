@@ -26,6 +26,10 @@ class ControllerCatalogPalette extends Controller {
 
 			$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -68,6 +72,10 @@ class ControllerCatalogPalette extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
 
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
@@ -112,6 +120,10 @@ class ControllerCatalogPalette extends Controller {
 
 			$url = '';
 
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
 			if (isset($this->request->get['sort'])) {
 				$url .= '&sort=' . $this->request->get['sort'];
 			}
@@ -131,10 +143,16 @@ class ControllerCatalogPalette extends Controller {
 	}
 
 	protected function getList() {
+		if (isset($this->request->get['filter_name'])) {
+			$filter_name = $this->request->get['filter_name'];
+		} else {
+			$filter_name = null;
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'p.name';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -150,6 +168,10 @@ class ControllerCatalogPalette extends Controller {
 		}
 
 		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -187,13 +209,14 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['palettes'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'filter_name'	=> $filter_name,
+			'sort'  			=> $sort,
+			'order' 			=> $order,
+			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' 				=> $this->config->get('config_admin_limit')
 		);
 
-		$palette_total = $this->model_catalog_palette->getTotalPalettes();
+		$palette_total = $this->model_catalog_palette->getTotalPalettes($data);
 
 		$results = $this->model_catalog_palette->getPalettes($data);
 
@@ -224,6 +247,9 @@ class ControllerCatalogPalette extends Controller {
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_filter'] = $this->language->get('button_filter');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -241,6 +267,10 @@ class ControllerCatalogPalette extends Controller {
 
 		$url = '';
 
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
+
 		if ($order == 'ASC') {
 			$url .= '&order=DESC';
 		} else {
@@ -251,9 +281,13 @@ class ControllerCatalogPalette extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		$this->data['sort_name'] = $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
+		$this->data['sort_name'] = $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . '&sort=p.name' . $url, 'SSL');
 
 		$url = '';
+
+		if (isset($this->request->get['filter_name'])) {
+			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -271,6 +305,8 @@ class ControllerCatalogPalette extends Controller {
 		$pagination->url = $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
+
+		$this->data['filter_name'] = $filter_name;
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
@@ -360,36 +396,36 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['cancel'] = $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		if (isset($this->request->get['palette_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$palette_info = $this->model_catalog_palette->getPalette($this->request->get['palette_id']);
+			$palette_name = $this->model_catalog_palette->getPaletteName($this->request->get['palette_id']);
 		}
 
-		if (isset($this->request->post['name'])) {
-			$this->data['name'] = $this->request->post['name'];
-		} elseif (!empty($palette_info)) {
-			$this->data['name'] = $palette_info['name'];
-		} else {
-			$this->data['name'] = '';
-		}
+		$this->data['token'] = $this->session->data['token'];
 
 		$this->load->model('localisation/language');
 
 		$this->data['languages'] = $this->model_localisation_language->getLanguages();
 
-		if (isset($this->request->post['palette_color_description'])) {
-			$palette_colors = $this->request->post['palette_color_description'];
-		} elseif (isset($this->request->get['palette_id'])) {
-			$palette_colors = $this->model_catalog_palette->getPaletteDescriptions($this->request->get['palette_id']);
+		if (isset($this->request->post['name'])) {
+			$this->data['name'] = $this->request->post['name'];
+		} elseif (!empty($palette_name)) {
+			$this->data['name'] = html_entity_decode($palette_name, ENT_QUOTES, 'UTF-8');
 		} else {
-			$palette_colors = array();
+			$this->data['name'] = '';
 		}
 
 		$this->data['palette_colors'] = array();
 
-		foreach ($palette_colors as $palette_color) {
-			$this->data['palette_colors'][] = array(
-				'palette_color_description'	=> $palette_color['palette_color_description'],
-				'color'		=> $palette_color['color']
-			);
+		if (isset($this->request->post['palette_color_description'])) {
+			$this->data['palette_colors'] = $this->request->post['palette_color_description'];
+		} else {
+			$palette_colors = $this->model_catalog_palette->getPaletteDescriptions($this->request->get['palette_id']);
+
+			foreach ($palette_colors as $palette_color) {
+				$this->data['palette_colors'][] = array(
+					'palette_color_description'	=> $palette_color['palette_color_description'],
+					'color'							=> $palette_color['color']
+				);
+			}
 		}
 
 		$this->template = 'catalog/palette_form.tpl';
@@ -414,12 +450,12 @@ class ControllerCatalogPalette extends Controller {
 			foreach ($this->request->post['palette_color'] as $palette_color_id => $palette_color) {
 				foreach ($palette_color['palette_color_description'] as $language_id => $palette_color_description) {
 					if ((utf8_strlen($palette_color_description['title']) < 3) || (utf8_strlen($palette_color_description['title']) > 64)) {
-						$this->error['palette_color'][$palette_color_id][$language_id] = $this->language->get('error_title');
+						$this->error['title'][$palette_color_id][$language_id] = $this->language->get('error_title');
 					}
 				}
 
 				if ((utf8_strlen($palette_color['color']) != 6) || (!preg_match('/^[a-f0-9]{6}$/i', $palette_color['color']))) {
-					$this->error['palette_color'][$palette_color_id] = $this->language->get('error_color');
+					$this->error['color'][$palette_color_id] = $this->language->get('error_color');
 				}
 			}
 		}
@@ -441,6 +477,40 @@ class ControllerCatalogPalette extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	public function autocomplete() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('catalog/palette');
+
+			$data = array(
+				'filter_name'	=> $this->request->get['filter_name'],
+				'start'       		=> 0,
+				'limit'       		=> 20
+			);
+
+			$results = $this->model_catalog_palette->getPalettes($data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'palette_id'	=> $result['palette_id'],
+					'name'		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
 ?>

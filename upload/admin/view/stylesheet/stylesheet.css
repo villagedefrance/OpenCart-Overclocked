@@ -1250,21 +1250,33 @@ table.tool > tr > td {
 	border-radius: 3px;
 	overflow-y: scroll;
 }
+.scrollbox-store {
+	width: 220px;
+	height: 90px;
+	margin-bottom: 5px;
+	background: #FFF;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	overflow-y: scroll;
+}
 .scrollbox img {
 	float: right;
 	cursor: pointer;
 }
-.scrollbox div {
+.scrollbox div, .scrollbox-store div {
 	padding: 3px;
 }
-.scrollbox div input {
+.scrollbox div input, .scrollbox-store div input {
 	margin: 0px 3px 0px 0px;
 	padding: 0px;
 }
-.scrollbox div.even {
+.scrollbox div.even, .scrollbox-store div.even {
 	background: #FFF;
 }
-.scrollbox div.odd {
+.scrollbox div.odd, .scrollbox-store div.odd {
 	background: #E4EEF7;
 }
 /* Progress Bar */

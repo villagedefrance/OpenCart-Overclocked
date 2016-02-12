@@ -29,7 +29,7 @@
           <tr>
             <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" id="check-all" class="checkbox" />
             <label for="check-all"><span></span></label></td>
-            <td class="left"><?php if ($sort == 'name') { ?>
+            <td class="left"><?php if ($sort == 'p.name') { ?>
               <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
@@ -39,6 +39,12 @@
           </tr>
         </thead>
         <tbody>
+          <tr class="filter">
+            <td></td>
+            <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
+            <td></td>
+            <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
+          </tr>
         <?php if ($palettes) { ?>
           <?php foreach ($palettes as $palette) { ?>
           <tr>
@@ -70,4 +76,52 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+function filter() {
+	url = 'index.php?route=catalog/palette&token=<?php echo $token; ?>';
+
+	var filter_name = $('input[name=\'filter_name\']').attr('value');
+
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
+
+	location = url;
+}
+//--></script>
+
+<script type="text/javascript"><!--
+$('#form input').keydown(function(e) {
+	if (e.keyCode == 13) { filter(); }
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('input[name=\'filter_name\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/palette/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.product_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'filter_name\']').val(ui.item.label);
+		return false;
+	},
+	focus: function(event, ui) {
+		return false;
+	}
+});
+//--></script>
+
 <?php echo $footer; ?>

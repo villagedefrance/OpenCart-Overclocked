@@ -35,9 +35,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="category_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['name'] : ''; ?>" />
-            <?php if (isset($error_name[$language['language_id']])) { ?>
+            <td><?php if (isset($error_name[$language['language_id']])) { ?>
+              <input type="text" name="category_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['name'] : ''; ?>" class="input-error" />
               <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
+            <?php } else { ?>
+              <input type="text" name="category_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['name'] : ''; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -124,7 +126,7 @@
       <?php } ?>
         <tr>
           <td><?php echo $entry_store; ?></td>
-          <td><div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
+          <td><div id="store_ids" class="scrollbox-store">
             <?php $class = 'even'; ?>
             <div class="<?php echo $class; ?>">
               <?php if (in_array(0, $category_store)) { ?>
@@ -293,8 +295,8 @@ $('input[name=\'path\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 

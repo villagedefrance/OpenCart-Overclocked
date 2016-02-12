@@ -9,7 +9,6 @@ class ModelCatalogReview extends Model {
 		// Save and Continue
 		$this->session->data['new_review_id'] = $review_id;
 
-		$this->cache->delete('reviews.total');
 		$this->cache->delete('product');
 	}
 
@@ -22,7 +21,6 @@ class ModelCatalogReview extends Model {
 	public function deleteReview($review_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "review WHERE review_id = '" . (int)$review_id . "'");
 
-		$this->cache->delete('reviews.total');
 		$this->cache->delete('product');
 	}
 
@@ -78,9 +76,7 @@ class ModelCatalogReview extends Model {
 	}
 
 	public function getTotalReviews($data = array()) {
-		$sql = "SELECT COUNT(DISTINCT r.review_id) AS total FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product_description pd ON (r.product_id = pd.product_id)";
-
-		$sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT COUNT(DISTINCT r.review_id) AS total FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product_description pd ON (r.product_id = pd.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";

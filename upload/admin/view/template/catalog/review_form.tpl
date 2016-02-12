@@ -22,24 +22,31 @@
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_author; ?></td>
-          <td><input type="text" name="author" value="<?php echo $author; ?>" size="40" />
-          <?php if ($error_author) { ?>
+          <td><?php if ($error_author) { ?>
+            <input type="text" name="author" value="<?php echo $author; ?>" size="40" class="input-error" />
             <span class="error"><?php echo $error_author; ?></span>
+          <?php } else { ?>
+            <input type="text" name="author" value="<?php echo $author; ?>" size="40" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_product; ?></td>
-          <td><input type="text" name="product" value="<?php echo $product; ?>" />
-          <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-          <?php if ($error_product) { ?>
+          <td><?php if ($error_product) { ?>
+            <input type="text" name="product" value="<?php echo $product; ?>" class="input-error" />
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             <span class="error"><?php echo $error_product; ?></span>
+          <?php } else { ?>
+            <input type="text" name="product" value="<?php echo $product; ?>" />
+            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_text; ?></td>
-          <td><textarea name="text" cols="60" rows="8"><?php echo $text; ?></textarea>
-          <?php if ($error_text) { ?>
+          <td><?php if ($error_text) { ?>
+            <textarea name="text" cols="60" rows="8" class="input-error"><?php echo $text; ?></textarea>
             <span class="error"><?php echo $error_text; ?></span>
+          <?php } else { ?>
+            <textarea name="text" cols="60" rows="8"><?php echo $text; ?></textarea>
           <?php } ?></td>
         </tr>
         <tr>

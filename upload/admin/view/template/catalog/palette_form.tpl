@@ -22,9 +22,11 @@
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-          <td><input type="text" name="name" value="<?php echo $name; ?>" size="30" />
-          <?php if ($error_name) { ?>
+          <td><?php if ($error_name) { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
             <span class="error"><?php echo $error_name; ?></span>
+          <?php } else { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" />
           <?php } ?></td>
         </tr>
       </table>
@@ -44,12 +46,9 @@
           <td class="left"><?php foreach ($languages as $language) { ?>
             <input type="text" name="palette_color[<?php echo $color_row; ?>][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($palette_color['palette_color_description'][$language['language_id']]) ? $palette_color['palette_color_description'][$language['language_id']]['title'] : ''; ?>" />
             <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-            <?php if (isset($error_palette_color[$color_row][$language['language_id']])) { ?>
-              <span class="error"><?php echo $error_palette_color[$color_row][$language['language_id']]; ?></span>
+            <?php if (isset($error_title[$color_row][$language['language_id']])) { ?>
+              <span class="error"><?php echo $error_title[$color_row][$language['language_id']]; ?></span>
             <?php } ?>
-          <?php } ?></td>
-          <?php if (isset($error_title[$color_row])) { ?>
-            <span class="error"><?php echo $error_title[$color_row]; ?></span>
           <?php } ?></td>
           <td class="left">#<input type="text" name="palette_color[<?php echo $color_row; ?>][color]" value="<?php echo $palette_color['color']; ?>" size="7" maxlength="6" /><span class="color" style="background-color:#<?php echo $palette_color['color']; ?>;"></span>
           <?php if (isset($error_color[$color_row])) { ?>
@@ -80,15 +79,17 @@ function addColor() {
 	html += '  <tr>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '      <input type="text" name="palette_color[' + color_row + '][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
+	html += '      <input type="text" name="palette_color[' + color_row + '][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
 	<?php } ?>
 	html += '    </td>';
-	html += '    <td class="left">#<input type="text" name="palette_color[' + color_row + '][color]" value="" size="7" maxlength="6" /><span class="color" style="background-color:#F8F8F8;">?</span></td>';
+	html += '    <td class="left">';
+	html += '      #<input type="text" name="palette_color[' + color_row + '][color]" value="" size="7" maxlength="6" /><span class="color" style="background-color:#F8F8F8;">?</span>';
+	html += '    </td>';
 	html += '    <td class="center"><a onclick="$(\'#color-row' + color_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 
-	$('#color > tfoot').before(html);
+	$('#color tfoot').before(html);
 
 	color_row++;
 }

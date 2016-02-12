@@ -484,8 +484,8 @@ class ControllerCatalogProfile extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		foreach ($this->request->post['profile_description'] as $language_id => $value) {
-			if ((utf8_strlen($value['name']) < 3) || (utf8_strlen($value['name']) > 255)) {
+		foreach ($this->request->post['profile_description'] as $language_id => $profile_description) {
+			if ((utf8_strlen($profile_description['name']) < 3) || (utf8_strlen($profile_description['name']) > 255)) {
 				$this->error['name'][$language_id] = $this->language->get('error_name');
 			}
 		}

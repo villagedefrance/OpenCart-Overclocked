@@ -35,18 +35,20 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-general">
         <div id="languages" class="htabs">
-        <?php foreach ($languages as $language) { ?>
-          <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
-        <?php } ?>
+          <?php foreach ($languages as $language) { ?>
+            <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+          <?php } ?>
         </div>
         <?php foreach ($languages as $language) { ?>
         <div id="language<?php echo $language['language_id']; ?>">
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-              <td><input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" size="40" />
-              <?php if (isset($error_name[$language['language_id']])) { ?>
+              <td><?php if (isset($error_name[$language['language_id']])) { ?>
+                <input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" size="40" class="input-error" />
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" size="40" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -74,9 +76,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_model; ?></td>
-            <td><input type="text" name="model" value="<?php echo $model; ?>" size="30" />
-            <?php if ($error_model) { ?>
+            <td><?php if ($error_model) { ?>
+              <input type="text" name="model" value="<?php echo $model; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_model; ?></span>
+            <?php } else { ?>
+              <input type="text" name="model" value="<?php echo $model; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -199,7 +203,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_store_location; ?></td>
-            <td><div id="location_ids" class="scrollbox" style="width:220px; height:85px; margin-bottom:5px;">
+            <td><div id="location_ids" class="scrollbox-store">
               <?php $class='even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $product_location)) { ?>
@@ -319,7 +323,7 @@
         <?php } ?>
           <tr>
             <td><?php echo $entry_store; ?></td>
-            <td><div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
+            <td><div id="store_ids" class="scrollbox-store">
               <?php $class='even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $product_store)) { ?>
@@ -354,15 +358,15 @@
               <?php foreach ($categories as $category) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
                 <div class="<?php echo $class; ?>">
-                <?php $product_category_id = array(); ?>
-                <?php foreach ($product_categories as $product_category) { $product_category_id[] = $product_category['category_id']; } ?>
-                <?php if (in_array($category['category_id'], $product_category_id)) { ?>
-                  <input type="checkbox" name="product_category[]" value="<?php echo $category['category_id']; ?>" checked="checked" />
-                  <?php echo $category['name']; ?>
-                <?php } else { ?>
-                  <input type="checkbox" name="product_category[]" value="<?php echo $category['category_id']; ?>" />
-                  <?php echo $category['name']; ?>
-                <?php } ?>
+                  <?php $product_category_id = array(); ?>
+                  <?php foreach ($product_categories as $product_category) { $product_category_id[] = $product_category['category_id']; } ?>
+                  <?php if (in_array($category['category_id'], $product_category_id)) { ?>
+                    <input type="checkbox" name="product_category[]" value="<?php echo $category['category_id']; ?>" checked="checked" />
+                    <?php echo $category['name']; ?>
+                  <?php } else { ?>
+                    <input type="checkbox" name="product_category[]" value="<?php echo $category['category_id']; ?>" />
+                    <?php echo $category['name']; ?>
+                  <?php } ?>
                 </div>
               <?php } ?>
             </div>
