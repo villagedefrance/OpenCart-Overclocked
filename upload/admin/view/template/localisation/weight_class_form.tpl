@@ -18,34 +18,40 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="form">
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-            <td><?php foreach ($languages as $language) { ?>
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="form">
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_title; ?></td>
+          <td><?php foreach ($languages as $language) { ?>
+            <?php if (isset($error_title[$language['language_id']])) { ?>
+              <input type="text" name="weight_class_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($weight_class_description[$language['language_id']]) ? $weight_class_description[$language['language_id']]['title'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+              <span class="error"><?php echo $error_title[$language['language_id']]; ?></span><br />
+            <?php } else { ?>
               <input type="text" name="weight_class_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($weight_class_description[$language['language_id']]) ? $weight_class_description[$language['language_id']]['title'] : ''; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-              <?php if (isset($error_title[$language['language_id']])) { ?>
-                <span class="error"><?php echo $error_title[$language['language_id']]; ?></span><br />
-              <?php } ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_unit; ?></td>
-            <td><?php foreach ($languages as $language) { ?>
+            <?php } ?>
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_unit; ?></td>
+          <td><?php foreach ($languages as $language) { ?>
+            <?php if (isset($error_unit[$language['language_id']])) { ?>
+              <input type="text" name="weight_class_description[<?php echo $language['language_id']; ?>][unit]" value="<?php echo isset($weight_class_description[$language['language_id']]) ? $weight_class_description[$language['language_id']]['unit'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+              <span class="error"><?php echo $error_unit[$language['language_id']]; ?></span><br />
+            <?php } else { ?>
               <input type="text" name="weight_class_description[<?php echo $language['language_id']; ?>][unit]" value="<?php echo isset($weight_class_description[$language['language_id']]) ? $weight_class_description[$language['language_id']]['unit'] : ''; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-              <?php if (isset($error_unit[$language['language_id']])) { ?>
-                <span class="error"><?php echo $error_unit[$language['language_id']]; ?></span><br />
-              <?php } ?>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_value; ?></td>
-            <td><input type="text" name="value" value="<?php echo $value; ?>" /></td>
-          </tr>
-        </table>
-      </form>
+            <?php } ?>
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_value; ?></td>
+          <td><input type="text" name="value" value="<?php echo $value; ?>" /></td>
+        </tr>
+      </table>
+    </form>
     </div>
   </div>
 </div>

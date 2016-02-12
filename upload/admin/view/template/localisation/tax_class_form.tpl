@@ -22,16 +22,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-            <td><input type="text" name="title" value="<?php echo $title; ?>" size="40" />
-            <?php if ($error_title) { ?>
+            <td><?php if ($error_title) { ?>
+              <input type="text" name="title" value="<?php echo $title; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_title; ?></span>
+            <?php } else { ?>
+              <input type="text" name="title" value="<?php echo $title; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_description; ?></td>
-            <td><input type="text" name="description" value="<?php echo $description; ?>" size="40" />
-            <?php if ($error_description) { ?>
+            <td><?php if ($error_description) { ?>
+              <input type="text" name="description" value="<?php echo $description; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_description; ?></span>
+            <?php } else { ?>
+              <input type="text" name="description" value="<?php echo $description; ?>" size="40" />
             <?php } ?></td>
           </tr>
         </table>

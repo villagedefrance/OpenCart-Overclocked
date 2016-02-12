@@ -18,20 +18,23 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="form">
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><?php foreach ($languages as $language) { ?>
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="form">
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_name; ?></td>
+          <td><?php foreach ($languages as $language) { ?>
+            <?php if (isset($error_name[$language['language_id']])) { ?>
+              <input type="text" name="return_reason[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($return_reason[$language['language_id']]) ? $return_reason[$language['language_id']]['name'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+              <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
+            <?php } else { ?>
               <input type="text" name="return_reason[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($return_reason[$language['language_id']]) ? $return_reason[$language['language_id']]['name'] : ''; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-              <?php if (isset($error_name[$language['language_id']])) { ?>
-                <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
-              <?php } ?>
-            <?php } ?></td>
-          </tr>
-        </table>
-      </form>
+            <?php } ?>
+          <?php } ?></td>
+        </tr>
+      </table>
+    </form>
     </div>
   </div>
 </div>

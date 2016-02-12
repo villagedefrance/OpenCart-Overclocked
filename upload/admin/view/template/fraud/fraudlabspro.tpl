@@ -23,11 +23,12 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="fraudlabspro_key" value="<?php echo $fraudlabspro_key; ?>" size="50" />
-            <?php if ($error_key) { ?>
+            <td><?php if ($error_key) { ?>
+              <input type="text" name="fraudlabspro_key" value="<?php echo $fraudlabspro_key; ?>" size="50" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
-            <?php } ?>
-            </td>
+            <?php } else { ?>
+              <input type="text" name="fraudlabspro_key" value="<?php echo $fraudlabspro_key; ?>" size="50" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_score; ?></td>

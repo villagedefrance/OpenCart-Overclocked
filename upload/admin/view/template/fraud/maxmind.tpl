@@ -23,9 +23,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="maxmind_key" value="<?php echo $maxmind_key; ?>" size="50" />
-            <?php if ($error_key) { ?>
+            <td><?php if ($error_key) { ?>
+              <input type="text" name="maxmind_key" value="<?php echo $maxmind_key; ?>" size="50" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="maxmind_key" value="<?php echo $maxmind_key; ?>" size="50" />
             <?php } ?>
             </td>
           </tr>

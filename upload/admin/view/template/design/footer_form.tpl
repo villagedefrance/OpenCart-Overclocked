@@ -181,7 +181,7 @@ function addRoute() {
 	html += '  </tr>';
 	html += '</tbody>';
 
-	$('#route tfoot').before(html);
+	$('#route > tfoot').before(html);
 
 	route_row++;
 }

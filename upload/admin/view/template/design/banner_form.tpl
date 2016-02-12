@@ -122,7 +122,7 @@ function addImage() {
 	html += '  </tr>';
 	html += '</tbody>';
 
-	$('#images tfoot').before(html);
+	$('#images > tfoot').before(html);
 
 	image_row++;
 };

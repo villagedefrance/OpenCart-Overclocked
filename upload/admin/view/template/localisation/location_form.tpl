@@ -18,27 +18,33 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-          <td><input type="text" name="name" value="<?php echo $name; ?>" size="30" />
-          <?php if ($error_name) { ?>
+          <td><?php if ($error_name) { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
             <span class="error"><?php echo $error_name; ?></span>
+          <?php } else { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_address; ?></td>
-          <td><input id="search_address" name="address" type="text" value="<?php echo isset($address) ? $address : ''; ?>" autocomplete="on" runat="server" size="80" />
-          <?php if ($error_address) { ?>
+          <td><?php if ($error_address) { ?>
+            <input id="search_address" type="text" name="address" value="<?php echo isset($address) ? $address : ''; ?>" autocomplete="on" runat="server" size="80" class="input-error" />
             <span class="error"><?php echo $error_address; ?></span>
+          <?php } else { ?>
+            <input id="search_address" type="text" name="address" value="<?php echo isset($address) ? $address : ''; ?>" autocomplete="on" runat="server" size="80" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-          <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-          <?php if ($error_telephone) { ?>
+          <td><?php if ($error_telephone) { ?>
+            <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="input-error" />
             <span class="error"><?php echo $error_telephone; ?></span>
+          <?php } else { ?>
+            <input type="text" name="telephone" value="<?php echo $telephone; ?>" />
           <?php } ?></td>
         </tr>
         <tr>
@@ -65,7 +71,7 @@
           <td><textarea name="comment" cols="40" rows="5"><?php echo $comment; ?></textarea></td>
         </tr>
       </table>
-      </form>
+    </form>
     </div>
   </div>
 </div>

@@ -18,25 +18,29 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="form">
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="name" value="<?php echo $name; ?>" size="30" />
-            <?php if ($error_name) { ?>
-              <span class="error"><?php echo $error_name; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_description; ?></td>
-            <td><input type="text" name="description" value="<?php echo $description; ?>" size="40" />
-            <?php if ($error_description) { ?>
-              <span class="error"><?php echo $error_description; ?></span>
-            <?php } ?></td>
-          </tr>
-        </table>
-        <br />
-        <table id="zone-to-geo-zone" class="list">
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="form">
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_name; ?></td>
+          <td><?php if ($error_name) { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
+            <span class="error"><?php echo $error_name; ?></span>
+          <?php } else { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" />
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_description; ?></td>
+          <td><?php if ($error_description) { ?>
+            <input type="text" name="description" value="<?php echo $description; ?>" size="40"" class="input-error" />
+            <span class="error"><?php echo $error_description; ?></span>
+          <?php } else { ?>
+            <input type="text" name="description" value="<?php echo $description; ?>" size="40" />
+          <?php } ?></td>
+        </tr>
+      </table>
+      <br />
+      <table id="zone-to-geo-zone" class="list">
         <thead>
           <tr>
             <td class="left"><?php echo $entry_country; ?></td>
@@ -70,8 +74,8 @@
             <td class="center"><a onclick="addGeoZone();" class="button"><?php echo $button_add_geo_zone; ?></a></td>
           </tr>
         </tfoot>
-        </table>
-      </form>
+      </table>
+    </form>
     </div>
   </div>
 </div>
