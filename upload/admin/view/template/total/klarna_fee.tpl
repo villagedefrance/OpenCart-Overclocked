@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="vtabs" class="vtabs">
         <?php foreach ($countries as $country) { ?>
           <a href="#tab-<?php echo $country['code']; ?>"><?php echo $country['name']; ?></a>
@@ -67,7 +67,7 @@
         </table>
       </div>
       <?php } ?>
-      </form>
+    </form>
     </div>
   </div>
 </div>

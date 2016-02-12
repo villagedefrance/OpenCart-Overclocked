@@ -1,9 +1,9 @@
 <?php echo $header; ?>
 <div id="content">
   <div class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-    <?php } ?>
+  <?php } ?>
   </div>
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
@@ -17,26 +17,26 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="form">
-          <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="offers_status">
-              <?php if ($offers_status) { ?>
-                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                <option value="0"><?php echo $text_disabled; ?></option>
-              <?php } else { ?>
-                <option value="1"><?php echo $text_enabled; ?></option>
-                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="offers_sort_order" value="<?php echo $offers_sort_order; ?>" size="1" /></td>
-          </tr>
-        </table>
-      </form>
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="form">
+        <tr>
+          <td><?php echo $entry_status; ?></td>
+          <td><select name="offers_status">
+            <?php if ($offers_status) { ?>
+              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+              <option value="0"><?php echo $text_disabled; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_enabled; ?></option>
+              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+            <?php } ?>
+          </select></td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_sort_order; ?></td>
+          <td><input type="text" name="offers_sort_order" value="<?php echo $offers_sort_order; ?>" size="1" /></td>
+        </tr>
+      </table>
+    </form>
     </div>
   </div>
 </div>

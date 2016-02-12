@@ -31,43 +31,31 @@
           <tr>
             <td><?php echo $entry_display_weight; ?></td>
             <td><?php if ($parcelforce_48_display_weight) { ?>
-              <input type="radio" name="parcelforce_48_display_weight" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="parcelforce_48_display_weight" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="parcelforce_48_display_weight" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="parcelforce_48_display_weight" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="parcelforce_48_display_weight" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="parcelforce_48_display_weight" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="parcelforce_48_display_weight" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="parcelforce_48_display_weight" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_display_insurance; ?></td>
             <td><?php if ($parcelforce_48_display_insurance) { ?>
-              <input type="radio" name="parcelforce_48_display_insurance" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="parcelforce_48_display_insurance" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="parcelforce_48_display_insurance" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="parcelforce_48_display_insurance" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="parcelforce_48_display_insurance" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="parcelforce_48_display_insurance" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="parcelforce_48_display_insurance" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="parcelforce_48_display_insurance" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_display_time; ?></td>
             <td><?php if ($parcelforce_48_display_time) { ?>
-              <input type="radio" name="parcelforce_48_display_time" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="parcelforce_48_display_time" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="parcelforce_48_display_time" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="parcelforce_48_display_time" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="parcelforce_48_display_time" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="parcelforce_48_display_time" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="parcelforce_48_display_time" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="parcelforce_48_display_time" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

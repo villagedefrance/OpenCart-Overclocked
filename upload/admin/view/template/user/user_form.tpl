@@ -22,30 +22,38 @@
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_username; ?></td>
-          <td><input type="text" name="username" value="<?php echo $username; ?>" />
-          <?php if ($error_username) { ?>
+          <td><?php if ($error_username) { ?>
+            <input type="text" name="username" value="<?php echo $username; ?>" class="input-error" />
             <span class="error"><?php echo $error_username; ?></span>
+          <?php } else { ?>
+            <input type="text" name="username" value="<?php echo $username; ?>" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-          <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" />
-          <?php if ($error_firstname) { ?>
+          <td><?php if ($error_firstname) { ?>
+            <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="input-error" />
             <span class="error"><?php echo $error_firstname; ?></span>
+          <?php } else { ?>
+            <input type="text" name="firstname" value="<?php echo $firstname; ?>" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
-          <?php if ($error_lastname) { ?>
+          <td><?php if ($error_lastname) { ?>
+            <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="input-error" />
             <span class="error"><?php echo $error_lastname; ?></span>
+          <?php } else { ?>
+            <input type="text" name="lastname" value="<?php echo $lastname; ?>" />
           <?php } ?></td>
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-          <td><input type="text" name="email" value="<?php echo $email; ?>" size="40" />
-          <?php if ($error_email) { ?>
+          <td><?php if ($error_email) { ?>
+            <input type="text" name="email" value="<?php echo $email; ?>" size="40" class="input-error" />
             <span class="error"><?php echo $error_email; ?></span>
+          <?php } else { ?>
+            <input type="text" name="email" value="<?php echo $email; ?>" size="40" />
           <?php } ?></td>
         </tr>
         <tr>
@@ -62,16 +70,20 @@
         </tr>
         <tr>
           <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_password; ?></td>
-          <td><input type="password" name="password" value="<?php echo $password; ?>" />
-          <?php if ($error_password) { ?>
+          <td><?php if ($error_password) { ?>
+            <input type="password" name="password" value="<?php echo $password; ?>" class="input-error" />
             <span class="error"><?php echo $error_password; ?></span>
+          <?php } else { ?>
+            <input type="password" name="password" value="<?php echo $password; ?>" />
           <?php  } ?></td>
         </tr>
         <tr>
           <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_confirm; ?></td>
-          <td><input type="password" name="confirm" value="<?php echo $confirm; ?>" />
-          <?php if ($error_confirm) { ?>
+          <td><?php if ($error_confirm) { ?>
+            <input type="password" name="confirm" value="<?php echo $confirm; ?>" class="input-error" />
             <span class="error"><?php echo $error_confirm; ?></span>
+          <?php } else { ?>
+            <input type="password" name="confirm" value="<?php echo $confirm; ?>" />
           <?php  } ?></td>
         </tr>
         <tr>

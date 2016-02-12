@@ -22,9 +22,11 @@
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-          <td><input type="text" name="name" value="<?php echo $name; ?>" />
-          <?php if ($error_name) { ?>
+          <td><?php if ($error_name) { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" class="input-error" />
             <span class="error"><?php echo $error_name; ?></span>
+          <?php } else { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" />
           <?php  } ?></td>
         </tr>
         <tr>

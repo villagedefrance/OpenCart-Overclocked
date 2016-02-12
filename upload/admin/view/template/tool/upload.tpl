@@ -23,55 +23,55 @@
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
-      <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="list">
-          <thead>
+    <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="list">
+        <thead>
+          <tr>
+            <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" id="check-all" class="checkbox" />
+            <label for="check-all"><span></span></label></td>
+            <td class="left"><?php if ($sort == 'name') { ?>
+              <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'filename') { ?>
+              <a href="<?php echo $sort_filename; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_filename; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_filename; ?>"><?php echo $column_filename; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'date_added') { ?>
+              <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="right"><?php echo $column_action; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+        <?php if ($uploads) { ?>
+          <?php foreach ($uploads as $upload) { ?>
             <tr>
-              <td width="1" style="text-align:center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" id="check-all" class="checkbox" />
-              <label for="check-all"><span></span></label></td>
-              <td class="left"><?php if ($sort == 'name') { ?>
-                <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_name; ?></a>
+              <td style="text-align:center;"><?php if (in_array($upload['upload_id'], $selected)) { ?>
+                <input type="checkbox" name="selected[]" value="<?php echo $upload['upload_id']; ?>" id="<?php echo $upload['upload_id']; ?>" class="checkbox" checked />
+                <label for="<?php echo $upload['upload_id']; ?>"><span></span></label>
               <?php } else { ?>
-                <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+                <input type="checkbox" name="selected[]" value="<?php echo $upload['upload_id']; ?>" id="<?php echo $upload['upload_id']; ?>" class="checkbox" />
+                <label for="<?php echo $upload['upload_id']; ?>"><span></span></label>
               <?php } ?></td>
-              <td class="left"><?php if ($sort == 'filename') { ?>
-                <a href="<?php echo $sort_filename; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_filename; ?></a>
-              <?php } else { ?>
-                <a href="<?php echo $sort_filename; ?>"><?php echo $column_filename; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
-              <?php } ?></td>
-              <td class="left"><?php if ($sort == 'date_added') { ?>
-                <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
-              <?php } else { ?>
-                <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
-              <?php } ?></td>
-              <td class="right"><?php echo $column_action; ?></td>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if ($uploads) { ?>
-            <?php foreach ($uploads as $upload) { ?>
-              <tr>
-                <td style="text-align:center;"><?php if (in_array($upload['upload_id'], $selected)) { ?>
-                  <input type="checkbox" name="selected[]" value="<?php echo $upload['upload_id']; ?>" id="<?php echo $upload['upload_id']; ?>" class="checkbox" checked />
-                  <label for="<?php echo $upload['upload_id']; ?>"><span></span></label>
-                <?php } else { ?>
-                  <input type="checkbox" name="selected[]" value="<?php echo $upload['upload_id']; ?>" id="<?php echo $upload['upload_id']; ?>" class="checkbox" />
-                  <label for="<?php echo $upload['upload_id']; ?>"><span></span></label>
-                <?php } ?></td>
-                <td class="left"><?php echo $upload['name']; ?></td>
-                <td class="left"><?php echo $upload['filename']; ?></td>
-                <td class="center"><?php echo $upload['date_added']; ?></td>
-                <td class="right"><a href="<?php echo $upload['download']; ?>" title="" class="button-form"><?php echo $button_download; ?></a></td>
-              </tr>
-            <?php } ?>
-          <?php } else { ?>
-            <tr>
-              <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+              <td class="left"><?php echo $upload['name']; ?></td>
+              <td class="left"><?php echo $upload['filename']; ?></td>
+              <td class="center"><?php echo $upload['date_added']; ?></td>
+              <td class="right"><a href="<?php echo $upload['download']; ?>" title="" class="button-form"><?php echo $button_download; ?></a></td>
             </tr>
           <?php } ?>
-          </tbody>
-        </table>
-      </form>
+        <?php } else { ?>
+          <tr>
+            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+          </tr>
+        <?php } ?>
+        </tbody>
+      </table>
+    </form>
     <?php if ($navigation_lo) { ?>
       <div class="pagination"><?php echo $pagination; ?></div>
     <?php } ?>

@@ -22,23 +22,29 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="ups_key" value="<?php echo $ups_key; ?>" />
-            <?php if ($error_key) { ?>
+            <td><?php if ($error_key) { ?>
+              <input type="text" name="ups_key" value="<?php echo $ups_key; ?>" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="ups_key" value="<?php echo $ups_key; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_username; ?></td>
-            <td><input type="text" name="ups_username" value="<?php echo $ups_username; ?>" />
-            <?php if ($error_username) { ?>
+            <td><?php if ($error_username) { ?>
+              <input type="text" name="ups_username" value="<?php echo $ups_username; ?>" class="input-error" />
               <span class="error"><?php echo $error_username; ?></span>
+            <?php } else { ?>
+              <input type="text" name="ups_username" value="<?php echo $ups_username; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="ups_password" value="<?php echo $ups_password; ?>" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="ups_password" value="<?php echo $ups_password; ?>" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="ups_password" value="<?php echo $ups_password; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -91,23 +97,29 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-            <td><input type="text" name="ups_city" value="<?php echo $ups_city; ?>" />
-            <?php if ($error_city) { ?>
+            <td><?php if ($error_city) { ?>
+              <input type="text" name="ups_city" value="<?php echo $ups_city; ?>" class="input-error" />
               <span class="error"><?php echo $error_city; ?></span>
+            <?php } else { ?>
+              <input type="text" name="ups_city" value="<?php echo $ups_city; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_state; ?></td>
-            <td><input type="text" name="ups_state" value="<?php echo $ups_state; ?>" maxlength="2" size="4" />
-            <?php if ($error_state) { ?>
+            <td><?php if ($error_state) { ?>
+              <input type="text" name="ups_state" value="<?php echo $ups_state; ?>" maxlength="2" size="4" class="input-error" />
               <span class="error"><?php echo $error_state; ?></span>
+            <?php } else { ?>
+              <input type="text" name="ups_state" value="<?php echo $ups_state; ?>" maxlength="2" size="4" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-            <td><input type="text" name="ups_country" value="<?php echo $ups_country; ?>" maxlength="2" size="4" />
-            <?php if ($error_country) { ?>
+            <td><?php if ($error_country) { ?>
+              <input type="text" name="ups_country" value="<?php echo $ups_country; ?>" maxlength="2" size="4" class="input-error" />
               <span class="error"><?php echo $error_country; ?></span>
+            <?php } else { ?>
+              <input type="text" name="ups_country" value="<?php echo $ups_country; ?>" maxlength="2" size="4" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -117,15 +129,11 @@
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($ups_test) { ?>
-              <input type="radio" name="ups_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="ups_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="ups_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="ups_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="ups_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="ups_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="ups_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="ups_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -143,7 +151,7 @@
           <tr>
             <td><?php echo $entry_service; ?></td>
             <td id="service"><div id="US">
-              <div class="scrollbox">
+              <div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
                 <div class="even">
                   <?php if ($ups_us_01) { ?>
                     <input type="checkbox" name="ups_us_01" value="1" checked="checked" />
@@ -255,7 +263,7 @@
               </div>
             </div>
             <div id="PR">
-              <div class="scrollbox">
+              <div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
                 <div class="even">
                   <?php if ($ups_pr_01) { ?>
                     <input type="checkbox" name="ups_pr_01" value="1" checked="checked" />
@@ -331,7 +339,7 @@
               </div>
             </div>
             <div id="CA">
-              <div class="scrollbox">
+              <div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
                 <div class="even">
                   <?php if ($ups_ca_01) { ?>
                     <input type="checkbox" name="ups_ca_01" value="1" checked="checked" />
@@ -425,7 +433,7 @@
               </div>
             </div>
             <div id="MX">
-              <div class="scrollbox">
+              <div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
                 <div class="even">
                   <?php if ($ups_mx_07) { ?>
                     <input type="checkbox" name="ups_mx_07" value="1" checked="checked" />
@@ -465,7 +473,7 @@
               </div>
             </div>
             <div id="EU">
-              <div class="scrollbox">
+              <div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
                 <div class="even">
                   <?php if ($ups_eu_07) { ?>
                     <input type="checkbox" name="ups_eu_07" value="1" checked="checked" />
@@ -559,7 +567,7 @@
               </div>
             </div>
             <div id="other">
-              <div class="scrollbox">
+              <div class="scrollbox" style="width:350px; height:153px; margin-bottom:5px;">
                 <div class="even">
                   <?php if ($ups_other_07) { ?>
                     <input type="checkbox" name="ups_other_07" value="1" checked="checked" />
@@ -607,34 +615,26 @@
                 </div>
               </div>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a></td>
+          <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_insurance; ?></td>
             <td><?php if ($ups_insurance) { ?>
-              <input type="radio" name="ups_insurance" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="ups_insurance" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="ups_insurance" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="ups_insurance" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="ups_insurance" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="ups_insurance" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="ups_insurance" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="ups_insurance" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_display_weight; ?></td>
             <td><?php if ($ups_display_weight) { ?>
-              <input type="radio" name="ups_display_weight" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="ups_display_weight" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="ups_display_weight" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="ups_display_weight" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="ups_display_weight" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="ups_display_weight" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="ups_display_weight" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="ups_display_weight" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

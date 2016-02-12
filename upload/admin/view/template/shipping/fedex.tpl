@@ -22,51 +22,57 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="fedex_key" value="<?php echo $fedex_key; ?>" />
-            <?php if ($error_key) { ?>
+            <td><?php if ($error_key) { ?>
+              <input type="text" name="fedex_key" value="<?php echo $fedex_key; ?>" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="fedex_key" value="<?php echo $fedex_key; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="fedex_password" value="<?php echo $fedex_password; ?>" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="fedex_password" value="<?php echo $fedex_password; ?>" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="fedex_password" value="<?php echo $fedex_password; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_account; ?></td>
-            <td><input type="text" name="fedex_account" value="<?php echo $fedex_account; ?>" />
-            <?php if ($error_account) { ?>
+            <td><?php if ($error_account) { ?>
+              <input type="text" name="fedex_account" value="<?php echo $fedex_account; ?>" class="input-error" />
               <span class="error"><?php echo $error_account; ?></span>
+            <?php } else { ?>
+              <input type="text" name="fedex_account" value="<?php echo $fedex_account; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_meter; ?></td>
-            <td><input type="text" name="fedex_meter" value="<?php echo $fedex_meter; ?>" />
-            <?php if ($error_meter) { ?>
+            <td><?php if ($error_meter) { ?>
+              <input type="text" name="fedex_meter" value="<?php echo $fedex_meter; ?>" class="input-error" />
               <span class="error"><?php echo $error_meter; ?></span>
+            <?php } else { ?>
+              <input type="text" name="fedex_meter" value="<?php echo $fedex_meter; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_postcode; ?></td>
-            <td><input type="text" name="fedex_postcode" value="<?php echo $fedex_postcode; ?>" />
-            <?php if ($error_postcode) { ?>
+            <td><?php if ($error_postcode) { ?>
+              <input type="text" name="fedex_postcode" value="<?php echo $fedex_postcode; ?>" class="input-error" />
               <span class="error"><?php echo $error_postcode; ?></span>
+            <?php } else { ?>
+              <input type="text" name="fedex_postcode" value="<?php echo $fedex_postcode; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($fedex_test) { ?>
-              <input type="radio" name="fedex_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="fedex_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="fedex_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="fedex_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="fedex_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="fedex_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="fedex_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="fedex_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -176,29 +182,21 @@
           <tr>
             <td><?php echo $entry_display_time; ?></td>
             <td><?php if ($fedex_display_time) { ?>
-              <input type="radio" name="fedex_display_time" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="fedex_display_time" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="fedex_display_time" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="fedex_display_time" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="fedex_display_time" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="fedex_display_time" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="fedex_display_time" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="fedex_display_time" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_display_weight; ?></td>
             <td><?php if ($fedex_display_weight) { ?>
-              <input type="radio" name="fedex_display_weight" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="fedex_display_weight" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="fedex_display_weight" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="fedex_display_weight" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="fedex_display_weight" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="fedex_display_weight" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="fedex_display_weight" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="fedex_display_weight" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

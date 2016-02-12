@@ -22,22 +22,26 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_user_id; ?></td>
-            <td><input type="text" name="usps_user_id" value="<?php echo $usps_user_id; ?>" />
-            <?php if ($error_user_id) { ?>
+            <td><?php if ($error_user_id) { ?>
+              <input type="text" name="usps_user_id" value="<?php echo $usps_user_id; ?>" class="input-error" />
               <span class="error"><?php echo $error_user_id; ?></span>
+            <?php } else { ?>
+              <input type="text" name="usps_user_id" value="<?php echo $usps_user_id; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_postcode; ?></td>
-            <td><input type="text" name="usps_postcode" value="<?php echo $usps_postcode; ?>" />
-            <?php if ($error_postcode) { ?>
+            <td><?php if ($error_postcode) { ?>
+              <input type="text" name="usps_postcode" value="<?php echo $usps_postcode; ?>" class="input-error" />
               <span class="error"><?php echo $error_postcode; ?></span>
+            <?php } else { ?>
+              <input type="text" name="usps_postcode" value="<?php echo $usps_postcode; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_domestic; ?></td>
-            <td><div class="scrollbox" style="width:425px;">
-              <div class="even">
+            <td><div class="scrollbox" style="width:425px; height:153px; margin-bottom:5px;">
+              <div class="odd">
                 <?php if ($usps_domestic_00) { ?>
                   <input type="checkbox" name="usps_domestic_00" value="1" checked="checked" />
                   <?php echo $text_domestic_00; ?>
@@ -55,7 +59,7 @@
                   <?php echo $text_domestic_01; ?>
                 <?php } ?>
               </div>
-              <div class="even">
+              <div class="odd">
                 <?php if ($usps_domestic_02) { ?>
                   <input type="checkbox" name="usps_domestic_02" value="1" checked="checked" />
                   <?php echo $text_domestic_02; ?>
@@ -236,11 +240,11 @@
                 <?php } ?>
               </div>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a></td>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_international; ?></td>
-            <td><div class="scrollbox" style="width:425px;">
+            <td><div class="scrollbox" style="width:425px; height:153px; margin-bottom:5px;">
               <?php $class = 'odd'; ?>
               <div class="even">
                 <?php if ($usps_international_1) { ?>
@@ -387,7 +391,7 @@
                 <?php } ?>
               </div>
             </div>
-            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').attr('checked', false);"><?php echo $text_unselect_all; ?></a></td>
+            <a onclick="$(this).parent().find(':checkbox').attr('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').attr('checked', false);" class="button-unselect"></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_size; ?></td>
@@ -445,29 +449,21 @@
           <tr>
             <td><?php echo $entry_display_time; ?></td>
             <td><?php if ($usps_display_time) { ?>
-              <input type="radio" name="usps_display_time" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="usps_display_time" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="usps_display_time" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="usps_display_time" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="usps_display_time" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="usps_display_time" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="usps_display_time" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="usps_display_time" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_display_weight; ?></td>
             <td><?php if ($usps_display_weight) { ?>
-              <input type="radio" name="usps_display_weight" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="usps_display_weight" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="usps_display_weight" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="usps_display_weight" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="usps_display_weight" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="usps_display_weight" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="usps_display_weight" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="usps_display_weight" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
