@@ -18,18 +18,21 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <table class="form">
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="name" value="<?php echo $name; ?>" size="30" />
-            <?php if ($error_name) { ?>
-              <span class="error"><?php echo $error_name; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_payment; ?></td>
-            <td><select name="payment">
+    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <table class="form">
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_name; ?></td>
+          <td><?php if ($error_name) { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
+            <span class="error"><?php echo $error_name; ?></span>
+          <?php } else { ?>
+            <input type="text" name="name" value="<?php echo $name; ?>" size="30" />
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_payment; ?></td>
+          <td><?php if ($error_payment) { ?>
+            <select name="payment" class="input-error">
               <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($payment_methods as $payment_method) { ?>
                 <?php if ($payment_method['filename'] == $payment) { ?>
@@ -39,36 +42,46 @@
                 <?php } ?>
               <?php } ?>
             </select>
-            <?php if ($error_payment) { ?>
-              <span class="error"><?php echo $error_payment; ?></span>
-            <?php } ?>
-            </td>
-          </tr>
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_image; ?></td>
-            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
-              <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-              <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
-            </div>
-            <?php if ($error_image) { ?>
-              <span class="error"><?php echo $error_image; ?></span>
-            <?php } ?>
-            </td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="status">
-              <?php if ($status) { ?>
-                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                <option value="0"><?php echo $text_disabled; ?></option>
-              <?php } else { ?>
-                <option value="1"><?php echo $text_enabled; ?></option>
-                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+            <span class="error"><?php echo $error_payment; ?></span>
+          <?php } else { ?>
+            <select name="payment">
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($payment_methods as $payment_method) { ?>
+                <?php if ($payment_method['filename'] == $payment) { ?>
+                  <option value="<?php echo $payment_method['filename']; ?>" selected="selected"><?php echo $payment_method['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $payment_method['filename']; ?>"><?php echo $payment_method['name']; ?></option>
+                <?php } ?>
               <?php } ?>
-            </select></td>
-          </tr>
-        </table>
-      </form>
+            </select>
+          <?php } ?>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_image; ?></td>
+          <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+            <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+            <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
+          </div>
+          <?php if ($error_image) { ?>
+            <span class="error"><?php echo $error_image; ?></span>
+          <?php } ?>
+          </td>
+        </tr>
+        <tr>
+          <td><?php echo $entry_status; ?></td>
+          <td><select name="status">
+            <?php if ($status) { ?>
+              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+              <option value="0"><?php echo $text_disabled; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_enabled; ?></option>
+              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+            <?php } ?>
+          </select></td>
+        </tr>
+      </table>
+    </form>
     </div>
   </div>
 </div>

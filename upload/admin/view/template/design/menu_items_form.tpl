@@ -34,12 +34,12 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-              <td>
+              <td><?php if (isset($error_name[$language['language_id']])) { ?>
+                <input type="text" name="menu_item_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($menu_item_description[$language['language_id']]) ? $menu_item_description[$language['language_id']]['name'] : ''; ?>" class="input-error" />
+                <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
+              <?php } else { ?>
                 <input type="text" name="menu_item_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($menu_item_description[$language['language_id']]) ? $menu_item_description[$language['language_id']]['name'] : ''; ?>" />
-                <?php if (isset($error_name[$language['language_id']])) { ?>
-                  <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
-                <?php } ?>
-              </td>
+              <?php } ?></td>
             </tr>
             <tr>
               <td><?php echo $entry_meta_description; ?></td>

@@ -22,14 +22,16 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-            <td><input type="text" name="title" size="40" value="<?php echo $title; ?>" />
-            <?php if (isset($error_title)) { ?>
+            <td><?php if (isset($error_title)) { ?>
+              <input type="text" name="title" size="40" value="<?php echo $title; ?>" class="input-error" />
               <span class="error"><?php echo $error_title; ?></span>
+            <?php } else { ?>
+              <input type="text" name="title" size="40" value="<?php echo $title; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_store; ?></td>
-            <td><div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
+            <td><div id="store_ids" class="scrollbox-store">
               <?php $class = 'even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $menu_store)) { ?>

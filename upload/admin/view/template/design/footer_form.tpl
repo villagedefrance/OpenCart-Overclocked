@@ -25,9 +25,9 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-general">
         <div id="languages" class="htabs">
-        <?php foreach ($languages as $language) { ?>
-          <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
-        <?php } ?>
+          <?php foreach ($languages as $language) { ?>
+            <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
+          <?php } ?>
         </div>
         <?php foreach ($languages as $language) { ?>
           <div id="language<?php echo $language['language_id']; ?>">
@@ -51,7 +51,7 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_store; ?></td>
-            <td><div id="store_ids" class="scrollbox" style="width:220px; height:90px; margin-bottom:5px;">
+            <td><div id="store_ids" class="scrollbox-store">
               <?php $class = 'even'; ?>
               <div class="<?php echo $class; ?>">
                 <?php if (in_array(0, $footer_store)) { ?>
@@ -82,16 +82,16 @@
             <td><?php echo $entry_position; ?></td>
             <td><select name="position">
               <?php if (isset($position)) { $selected = "selected"; ?>
-                <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1</option>
-                <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2</option>
-                <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3</option>
-                <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4</option>
+                <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1 </option>
+                <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2 </option>
+                <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3 </option>
+                <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4 </option>
               <?php } else { ?>
                 <option selected="selected"></option>
-                <option value="1" selected><?php echo $text_position; ?> 1</option>
-                <option value="2"><?php echo $text_position; ?> 2</option>
-                <option value="3"><?php echo $text_position; ?> 3</option>
-                <option value="4"><?php echo $text_position; ?> 4</option>
+                <option value="1" selected><?php echo $text_position; ?> 1 </option>
+                <option value="2"><?php echo $text_position; ?> 2 </option>
+                <option value="3"><?php echo $text_position; ?> 3 </option>
+                <option value="4"><?php echo $text_position; ?> 4 </option>
               <?php } ?>
             </select></td>
           </tr>
@@ -181,7 +181,7 @@ function addRoute() {
 	html += '  </tr>';
 	html += '</tbody>';
 
-	$('#route > tfoot').before(html);
+	$('#route tfoot').before(html);
 
 	route_row++;
 }
