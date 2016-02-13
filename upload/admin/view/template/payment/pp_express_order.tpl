@@ -27,7 +27,7 @@
     <td><?php echo $text_capture_amount; ?>: </td>
     <td>
       <p><input type="checkbox" name="paypal_capture_complete" id="paypal_capture_complete" value="1" /> <?php echo $text_complete_capture; ?></p>
-      <p><input type="text" size="10" id="paypal_capture_amount" value="<?php echo $paypal_order['remaining']; ?>" />
+      <p><input type="text" id="paypal_capture_amount" value="<?php echo $paypal_order['remaining']; ?>" size="10" />
         <a class="button" onclick="capture();" id="btn_capture"><?php echo $btn_capture; ?></a>
         <img src="view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
       </p>
@@ -154,7 +154,7 @@ function capture() {
 						html += '<td class="left"></td>';
 						html += '<td class="left">' + data.failed_transaction.created + '</td>';
 						html += '<td class="left"><a onclick="resendTransaction(this); return false;" href="<?php echo $resend_link; ?>&paypal_order_transaction_id=' + data.failed_transaction.paypal_order_transaction_id + '"><?php echo $text_resend; ?></a></td>';
-						html += '/<tr>';
+						html += '</tr>';
 
 						$('#paypal_transactions').append(html);
 					}
@@ -209,7 +209,7 @@ function doVoid() {
 
 function resendTransaction(element) {
 	$.ajax({
-		type:'GET',
+		type: 'GET',
 		dataType: 'json',
 		url: $(element).attr('href'),
 		beforeSend: function() {

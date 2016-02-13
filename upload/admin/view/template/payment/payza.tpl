@@ -22,21 +22,25 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="payza_merchant" value="<?php echo $payza_merchant; ?>" size="40" />
-            <?php if ($error_merchant) { ?>
+            <td><?php if ($error_merchant) { ?>
+              <input type="text" name="payza_merchant" value="<?php echo $payza_merchant; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payza_merchant" value="<?php echo $payza_merchant; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_security; ?></td>
-            <td><input type="text" name="payza_security" value="<?php echo $payza_security; ?>" size="40" />
-            <?php if ($error_security) { ?>
+            <td><?php if ($error_security) { ?>
+              <input type="text" name="payza_security" value="<?php echo $payza_security; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_security; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payza_security" value="<?php echo $payza_security; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_callback; ?></td>
-            <td><textarea cols="40" rows="5"><?php echo $callback; ?></textarea></td>
+            <td><textarea name="payza_callback" cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_total; ?></td>

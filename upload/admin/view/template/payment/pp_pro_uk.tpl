@@ -22,37 +22,39 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_username; ?></td>
-            <td><input type="text" name="pp_pro_uk_username" value="<?php echo $pp_pro_uk_username; ?>" size="40" />
-            <?php if ($error_username) { ?>
+            <td><?php if ($error_username) { ?>
+              <input type="text" name="pp_pro_uk_username" value="<?php echo $pp_pro_uk_username; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_username; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_uk_username" value="<?php echo $pp_pro_uk_username; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="pp_pro_uk_password" value="<?php echo $pp_pro_uk_password; ?>" size="40" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="pp_pro_uk_password" value="<?php echo $pp_pro_uk_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_uk_password" value="<?php echo $pp_pro_uk_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_signature; ?></td>
-            <td><input type="text" name="pp_pro_uk_signature" value="<?php echo $pp_pro_uk_signature; ?>" size="40" />
-            <?php if ($error_signature) { ?>
+            <td><?php if ($error_signature) { ?>
+              <input type="text" name="pp_pro_uk_signature" value="<?php echo $pp_pro_uk_signature; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_signature; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_uk_signature" value="<?php echo $pp_pro_uk_signature; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($pp_pro_uk_test) { ?>
-              <input type="radio" name="pp_pro_uk_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_pro_uk_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_pro_uk_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_pro_uk_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="pp_pro_uk_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_pro_uk_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_pro_uk_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_pro_uk_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

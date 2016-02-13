@@ -22,9 +22,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="moneybookers_email" value="<?php echo $moneybookers_email; ?>" size="40" />
-            <?php if ($error_email) { ?>
+            <td><?php if ($error_email) { ?>
+              <input type="text" name="moneybookers_email" value="<?php echo $moneybookers_email; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
+            <?php } else { ?>
+              <input type="text" name="moneybookers_email" value="<?php echo $moneybookers_email; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

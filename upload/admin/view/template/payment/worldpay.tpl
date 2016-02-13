@@ -22,21 +22,25 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="worldpay_merchant" value="<?php echo $worldpay_merchant; ?>" size="40" />
-            <?php if ($error_merchant) { ?>
+            <td><?php if ($error_merchant) { ?>
+              <input type="text" name="worldpay_merchant" value="<?php echo $worldpay_merchant; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant; ?></span>
+            <?php } else { ?>
+              <input type="text" name="worldpay_merchant" value="<?php echo $worldpay_merchant; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="worldpay_password" value="<?php echo $worldpay_password; ?>" size="40" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="worldpay_password" value="<?php echo $worldpay_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="worldpay_password" value="<?php echo $worldpay_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_callback; ?></td>
-            <td><textarea cols="40" rows="5"><?php echo $callback; ?></textarea></td>
+            <td><textarea name="worldpay_callback" cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_test; ?></td>

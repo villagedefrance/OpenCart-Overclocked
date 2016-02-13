@@ -19,17 +19,17 @@
         <?php echo $entry_complete_capture; ?> 
         <input type="checkbox" name="capture-complete" value="1" /><br />
         <input type="text" name="capture-amount" value="0.00" />
-        <a class="button" id="button-capture" onclick="capture()"><?php echo $button_capture; ?></a>
+        <a class="button" id="button-capture" onclick="capture();"><?php echo $button_capture; ?></a>
       <?php } ?>
     </td>
   </tr>
   <tr>
-    <td><?php echo $entry_void ?></td>
+    <td><?php echo $entry_void; ?></td>
     <td id="reauthorise-entry">
       <?php if ($complete) { ?>
         -
       <?php } else { ?>
-        <a class="button" id="button-void" onclick="doVoid()"><?php echo $button_void; ?></a>
+        <a class="button" id="button-void" onclick="doVoid();"><?php echo $button_void; ?></a>
       <?php } ?>
     </td>
   </tr>
@@ -75,7 +75,7 @@ function markAsComplete() {
 function doVoid(){
 	if (confirm('<?php echo $text_confirm_void; ?>')) {
 		$.ajax({
-			type:'POST',
+			type: 'POST',
 			dataType: 'json',
 			data: {'order_id': <?php echo $order_id; ?> },
 			url: 'index.php?route=payment/pp_payflow_iframe/void&token=<?php echo $token; ?>',
@@ -121,7 +121,7 @@ function capture() {
 	}
 
 	$.ajax({
-		type:'POST',
+		type: 'POST',
 		dataType: 'json',
 		data: {'order_id': <?php echo $order_id; ?>, 'amount' : amount, 'complete' : complete },
 		url: 'index.php?route=payment/pp_payflow_iframe/capture&token=<?php echo $token; ?>',

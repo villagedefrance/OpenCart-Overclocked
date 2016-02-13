@@ -33,19 +33,19 @@
             <td><?php echo $entry_full_refund; ?>:</td>
             <td>
               <input type="hidden" name="refund_full" value="0" />
-              <input type="checkbox" name="refund_full" id="refund_full" value="1" <?php echo ($refund_available == '' ? 'checked="checked"' : ''); ?> onchange="refundAmount();" />
+              <input type="checkbox" name="refund_full" id="refund_full" value="1" <?php echo ($refund_available == '') ? 'checked="checked"' : ''; ?> onchange="refundAmount();" />
             </td>
           </tr>
-          <tr><?php echo ($refund_available == '' ? 'style="display:none;"' : ''); ?> id="partial_amount_row">
+          <tr><?php echo ($refund_available == '') ? 'style="display:none;"' : ''; ?> id="partial_amount_row">
             <td><?php echo $entry_amount; ?>:</td>
-            <td><input type="text" name="amount" value="<?php echo ($refund_available != '' ? $refund_available : ''); ?>" /></td>
+            <td><input type="text" name="amount" value="<?php echo ($refund_available != '') ? $refund_available : ''; ?>" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_message; ?>:</td>
             <td><textarea name="refund_message" id="paypal_refund_message" cols="40" rows="5"></textarea></td>
           </tr>
         </table>
-        <a style="float:right;" onclick="$('#form').submit();" class="button"><?php echo $button_refund; ?></a>
+        <a onclick="$('#form').submit();" class="button" style="float:right;"><?php echo $button_refund; ?></a>
       </form>
     </div>
   </div>

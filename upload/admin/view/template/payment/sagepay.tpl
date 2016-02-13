@@ -22,16 +22,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_vendor; ?></td>
-            <td><input type="text" name="sagepay_vendor" value="<?php echo $sagepay_vendor; ?>" size="40" />
-            <?php if ($error_vendor) { ?>
+            <td><?php if ($error_vendor) { ?>
+              <input type="text" name="sagepay_vendor" value="<?php echo $sagepay_vendor; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_vendor; ?></span>
+            <?php } else { ?>
+              <input type="text" name="sagepay_vendor" value="<?php echo $sagepay_vendor; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="sagepay_password" value="<?php echo $sagepay_password; ?>" size="40" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="sagepay_password" value="<?php echo $sagepay_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="sagepay_password" value="<?php echo $sagepay_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

@@ -22,9 +22,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_payable; ?></td>
-            <td><input type="text" name="cheque_payable" value="<?php echo $cheque_payable; ?>" size="40" />
-            <?php if ($error_payable) { ?>
+            <td><?php if ($error_payable) { ?>
+              <input type="text" name="cheque_payable" value="<?php echo $cheque_payable; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_payable; ?></span>
+            <?php } else { ?>
+              <input type="text" name="cheque_payable" value="<?php echo $cheque_payable; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

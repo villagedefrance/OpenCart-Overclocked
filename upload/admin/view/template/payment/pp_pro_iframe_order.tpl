@@ -159,7 +159,7 @@ function capture() {
 						html += '<td class="left"></td>';
 						html += '<td class="left">' + data.failed_transaction.created + '</td>';
 						html += '<td class="left"><a onclick="resendTransaction(this); return false;" href="<?php echo $resend_link; ?>&paypal_iframe_order_transaction_id=' + data.failed_transaction.paypal_iframe_order_transaction_id + '"><?php echo $text_resend; ?></a></td>';
-						html += '/<tr>';
+						html += '</tr>';
 
 						$('#paypal_transactions').append(html);
 					}
@@ -187,13 +187,13 @@ function doVoid() {
 				if (data.error == false) {
 					html = '';
 					html += '<tr>';
-					html += '  <td class="left"></td>';
-					html += '  <td class="left"></td>';
-					html += '  <td class="left"></td>';
-					html += '  <td class="left">' + data.data.payment_status + '</td>';
-					html += '  <td class="left"></td>';
-					html += '  <td class="left">' + data.data.created + '</td>';
-					html += '  <td class="left"></td>';
+					html += '<td class="left"></td>';
+					html += '<td class="left"></td>';
+					html += '<td class="left"></td>';
+					html += '<td class="left">' + data.data.payment_status + '</td>';
+					html += '<td class="left"></td>';
+					html += '<td class="left">' + data.data.created + '</td>';
+					html += '<td class="left"></td>';
 					html += '</tr>';
 
 					$('#paypal_transactions').append(html);

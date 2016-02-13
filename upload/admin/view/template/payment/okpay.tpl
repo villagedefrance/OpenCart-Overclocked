@@ -22,9 +22,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_receiver; ?></td>
-            <td><input type="text" name="okpay_receiver" value="<?php echo $okpay_receiver; ?>" size="30" />
-            <?php if ($error_receiver) { ?>
+            <td><?php if ($error_receiver) { ?>
+              <input type="text" name="okpay_receiver" value="<?php echo $okpay_receiver; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_receiver; ?></span>
+            <?php } else { ?>
+              <input type="text" name="okpay_receiver" value="<?php echo $okpay_receiver; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>

@@ -22,16 +22,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant_id; ?></td>
-            <td><input type="text" name="sagepay_us_merchant_id" value="<?php echo $sagepay_us_merchant_id; ?>" size="40" />
-            <?php if ($error_merchant_id) { ?>
+            <td><?php if ($error_merchant_id) { ?>
+              <input type="text" name="sagepay_us_merchant_id" value="<?php echo $sagepay_us_merchant_id; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant_id; ?></span>
+            <?php } else { ?>
+              <input type="text" name="sagepay_us_merchant_id" value="<?php echo $sagepay_us_merchant_id; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant_key; ?></td>
-            <td><input type="text" name="sagepay_us_merchant_key" value="<?php echo $sagepay_us_merchant_key; ?>" size="40" />
-            <?php if ($error_merchant_key) { ?>
+            <td><?php if ($error_merchant_key) { ?>
+              <input type="text" name="sagepay_us_merchant_key" value="<?php echo $sagepay_us_merchant_key; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="sagepay_us_merchant_key" value="<?php echo $sagepay_us_merchant_key; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

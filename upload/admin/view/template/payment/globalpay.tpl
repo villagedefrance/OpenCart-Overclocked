@@ -31,16 +31,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant_id; ?></td>
-            <td><input type="text" name="globalpay_merchant_id" value="<?php echo $globalpay_merchant_id; ?>" size="30" />
-            <?php if ($error_merchant_id) { ?>
+            <td><?php if ($error_merchant_id) { ?>
+              <input type="text" name="globalpay_merchant_id" value="<?php echo $globalpay_merchant_id; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_merchant_id; ?></span>
+            <?php } else { ?>
+              <input type="text" name="globalpay_merchant_id" value="<?php echo $globalpay_merchant_id; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_secret; ?></td>
-            <td><input type="password" name="globalpay_secret" value="<?php echo $globalpay_secret; ?>" size="30" />
-            <?php if ($error_secret) { ?>
+            <td><?php if ($error_secret) { ?>
+              <input type="password" name="globalpay_secret" value="<?php echo $globalpay_secret; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_secret; ?></span>
+            <?php } else { ?>
+              <input type="password" name="globalpay_secret" value="<?php echo $globalpay_secret; ?>" size="30" />  
             <?php } ?></td>
           </tr>
           <tr>
@@ -272,16 +276,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_live_url; ?></td>
-            <td><input type="text" name="globalpay_live_url" value="<?php echo $globalpay_live_url; ?>" size="40" />
-            <?php if ($error_live_url) { ?>
+            <td><?php if ($error_live_url) { ?>
+              <input type="text" name="globalpay_live_url" value="<?php echo $globalpay_live_url; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_live_url; ?></span>
+            <?php } else { ?>
+              <input type="text" name="globalpay_live_url" value="<?php echo $globalpay_live_url; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_demo_url; ?></td>
-            <td><input type="text" name="globalpay_demo_url" value="<?php echo $globalpay_demo_url; ?>" size="40" />
-            <?php if ($error_demo_url) { ?>
+            <td><?php if ($error_demo_url) { ?>
+              <input type="text" name="globalpay_demo_url" value="<?php echo $globalpay_demo_url; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_demo_url; ?></span>
+            <?php } else { ?>
+              <input type="text" name="globalpay_demo_url" value="<?php echo $globalpay_demo_url; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

@@ -22,9 +22,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="nochex_email" value="<?php echo $nochex_email; ?>" size="40" />
-            <?php if ($error_email) { ?>
+            <td><?php if ($error_email) { ?>
+              <input type="text" name="nochex_email" value="<?php echo $nochex_email; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
+            <?php } else { ?>
+              <input type="text" name="nochex_email" value="<?php echo $nochex_email; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -44,37 +46,31 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="nochex_merchant" value="<?php echo $nochex_merchant; ?>" size="40" />
-            <?php if ($error_merchant) { ?>
+            <td><?php if ($error_merchant) { ?>
+              <input type="text" name="nochex_merchant" value="<?php echo $nochex_merchant; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant; ?></span>
+            <?php } else { ?>
+              <input type="text" name="nochex_merchant" value="<?php echo $nochex_merchant; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_template; ?></td>
             <td><?php if ($nochex_template) { ?>
-              <input type="radio" name="nochex_template" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="nochex_template" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="nochex_template" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="nochex_template" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="nochex_template" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="nochex_template" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="nochex_template" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="nochex_template" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($nochex_test) { ?>
-              <input type="radio" name="nochex_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="nochex_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="nochex_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="nochex_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="nochex_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="nochex_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="nochex_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="nochex_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

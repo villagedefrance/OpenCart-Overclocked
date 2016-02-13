@@ -26,7 +26,7 @@
           <td><?php echo $entry_refund_amount; ?></td>
           <td>
             <input type="test" value="0.00" name="amount" />
-            <a onclick="refund()" id="button-refund" class="button"><?php echo $button_refund; ?></a>
+            <a onclick="refund();" id="button-refund" class="button"><?php echo $button_refund; ?></a>
           </td>
         </tr>
       </table>
@@ -39,7 +39,7 @@ function refund() {
 	var amount = $('input[name="amount"]').val();
 
 	$.ajax({
-		type:'POST',
+		type: 'POST',
 		dataType: 'json',
 		data: {'transaction_reference': '<?php echo $transaction_reference; ?>', 'amount' : amount },
 		url: 'index.php?route=payment/pp_payflow_iframe/do_refund&token=<?php echo $token; ?>',

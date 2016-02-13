@@ -27,27 +27,30 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_user; ?></td>
-            <td><input type="text" name="pp_pro_iframe_user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" />
-              <?php if ($error_user) { ?>
-                <span class="error"><?php echo $error_user; ?></span>
-              <?php } ?>
-            </td>
+            <td><?php if ($error_user) { ?>
+              <input type="text" name="pp_pro_iframe_user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_user; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_iframe_user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="pp_pro_iframe_password" value="<?php echo $pp_pro_iframe_password; ?>" size="40" />
-              <?php if ($error_password) { ?>
-                <span class="error"><?php echo $error_password; ?></span>
-              <?php } ?>
-            </td>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="pp_pro_iframe_password" value="<?php echo $pp_pro_iframe_password; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_iframe_password" value="<?php echo $pp_pro_iframe_password; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_sig; ?></td>
-            <td><input type="text" name="pp_pro_iframe_sig" value="<?php echo $pp_pro_iframe_sig; ?>" size="40" />
-              <?php if ($error_sig) { ?>
-                <span class="error"><?php echo $error_sig; ?></span>
-              <?php } ?>
-            </td>
+            <td><?php if ($error_sig) { ?>
+              <input type="text" name="pp_pro_iframe_sig" value="<?php echo $pp_pro_iframe_sig; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_sig; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_iframe_sig" value="<?php echo $pp_pro_iframe_sig; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_transaction_method; ?></td>
@@ -64,15 +67,11 @@
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($pp_pro_iframe_test) { ?>
-              <input type="radio" name="pp_pro_iframe_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_pro_iframe_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_pro_iframe_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_pro_iframe_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="pp_pro_iframe_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_pro_iframe_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_pro_iframe_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_pro_iframe_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -268,7 +267,7 @@
 </div>
 
 <script type="text/javascript"><!--
-	$('#htabs a').tabs();
+$('#htabs a').tabs();
 //--></script>
 
 <?php echo $footer; ?>

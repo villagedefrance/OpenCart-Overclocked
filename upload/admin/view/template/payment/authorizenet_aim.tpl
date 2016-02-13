@@ -22,16 +22,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_login; ?></td>
-            <td><input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" size="40" />
-            <?php if ($error_login) { ?>
+            <td><?php if ($error_login) { ?>
+              <input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_login; ?></span>
+            <?php } else { ?>
+              <input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" size="40" />
-            <?php if ($error_key) { ?>
+            <td><?php if ($error_key) { ?>
+              <input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

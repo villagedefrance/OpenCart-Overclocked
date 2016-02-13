@@ -22,9 +22,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="paypoint_merchant" value="<?php echo $paypoint_merchant; ?>" size="40" />
-            <?php if ($error_merchant) { ?>
+            <td><?php if ($error_merchant) { ?>
+              <input type="text" name="paypoint_merchant" value="<?php echo $paypoint_merchant; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant; ?></span>
+            <?php } else { ?>
+              <input type="text" name="paypoint_merchant" value="<?php echo $paypoint_merchant; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

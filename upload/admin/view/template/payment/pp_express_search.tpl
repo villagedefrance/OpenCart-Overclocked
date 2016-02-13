@@ -27,8 +27,8 @@
           <tr>
             <td><?php echo $entry_transaction; ?></td>
             <td>
-			  <?php echo $entry_transaction_type; ?>:
-			  <select name="transaction_class">
+              <?php echo $entry_transaction_type; ?>:
+              <select name="transaction_class">
                 <option value="All"><?php echo $entry_trans_all; ?></option>
                 <option value="Sent"><?php echo $entry_trans_sent; ?></option>
                 <option value="Received"><?php echo $entry_trans_received; ?></option>
@@ -89,7 +89,7 @@
             <td>
               <input type="text" name="amount" value="" size="6" />&nbsp;
               <select name="currency_code">
-                <?php foreach($currency_codes as $code) { ?>
+                <?php foreach ($currency_codes as $code) { ?>
                   <option <?php if ($code == $default_currency) { echo 'selected'; } ?>><?php echo $code; ?></option>
                 <?php } ?>
               </select>
@@ -133,6 +133,7 @@
 <script type="text/javascript"><!--
 function doSearch() {
 	var html;
+
 	$.ajax({
 		type: 'POST',
 		dataType: 'json',

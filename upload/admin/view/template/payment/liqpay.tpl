@@ -22,16 +22,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="liqpay_merchant" value="<?php echo $liqpay_merchant; ?>" size="40" />
-            <?php if ($error_merchant) { ?>
+            <td><?php if ($error_merchant) { ?>
+              <input type="text" name="liqpay_merchant" value="<?php echo $liqpay_merchant; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_merchant; ?></span>
+            <?php } else { ?>
+              <input type="text" name="liqpay_merchant" value="<?php echo $liqpay_merchant; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_signature; ?></td>
-            <td><input type="text" name="liqpay_signature" value="<?php echo $liqpay_signature; ?>" size="40" />
-            <?php if ($error_signature) { ?>
+            <td><?php if ($error_signature) { ?>
+              <input type="text" name="liqpay_signature" value="<?php echo $liqpay_signature; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_signature; ?></span>
+            <?php } else { ?>
+              <input type="text" name="liqpay_signature" value="<?php echo $liqpay_signature; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>

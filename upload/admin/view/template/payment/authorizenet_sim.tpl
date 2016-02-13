@@ -22,21 +22,25 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_merchant; ?></td>
-            <td><input type="text" name="authorizenet_sim_merchant" value="<?php echo $authorizenet_sim_merchant; ?>" />
-            <?php if ($error_merchant) { ?>
+            <td><?php if ($error_merchant) { ?>
+              <input type="text" name="authorizenet_sim_merchant" value="<?php echo $authorizenet_sim_merchant; ?>" class="input-error" />
               <span class="error"><?php echo $error_merchant; ?></span>
+            <?php } else { ?>
+              <input type="text" name="authorizenet_sim_merchant" value="<?php echo $authorizenet_sim_merchant; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-            <td><input type="text" name="authorizenet_sim_key" value="<?php echo $authorizenet_sim_key; ?>" />
-            <?php if ($error_key) { ?>
+            <td><?php if ($error_key) { ?>
+              <input type="text" name="authorizenet_sim_key" value="<?php echo $authorizenet_sim_key; ?>" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="authorizenet_sim_key" value="<?php echo $authorizenet_sim_key; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_callback; ?></td>
-            <td><textarea cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea></td>
+            <td><textarea name="authorizenet_sim_callback" cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_md5; ?></td>
@@ -45,15 +49,11 @@
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($authorizenet_sim_test) { ?>
-              <input type="radio" name="authorizenet_sim_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="authorizenet_sim_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="authorizenet_sim_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="authorizenet_sim_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="authorizenet_sim_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="authorizenet_sim_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="authorizenet_sim_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="authorizenet_sim_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

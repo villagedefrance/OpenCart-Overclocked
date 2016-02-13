@@ -29,23 +29,29 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_username; ?></td>
-            <td><input type="text" name="pp_express_username" value="<?php echo $pp_express_username; ?>" size="40" />
-            <?php if (isset($error['username'])) { ?>
+            <td><?php if (isset($error['username'])) { ?>
+              <input type="text" name="pp_express_username" value="<?php echo $pp_express_username; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error['username']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_express_username" value="<?php echo $pp_express_username; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="pp_express_password" value="<?php echo $pp_express_password; ?>" size="40" />
-            <?php if (isset($error['password'])) { ?>
+            <td><?php if (isset($error['password'])) { ?>
+              <input type="text" name="pp_express_password" value="<?php echo $pp_express_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error['password']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_express_password" value="<?php echo $pp_express_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_signature; ?></td>
-            <td><input type="text" name="pp_express_signature" value="<?php echo $pp_express_signature; ?>" size="40" />
-            <?php if (isset($error['signature'])) { ?>
+            <td><?php if (isset($error['signature'])) { ?>
+              <input type="text" name="pp_express_signature" value="<?php echo $pp_express_signature; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error['signature']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_express_signature" value="<?php echo $pp_express_signature; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -59,29 +65,21 @@
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($pp_express_test) { ?>
-              <input type="radio" name="pp_express_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_express_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_express_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="pp_express_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_express_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_express_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_debug; ?></td>
             <td><?php if ($pp_express_debug) { ?>
-              <input type="radio" name="pp_express_debug" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_debug" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_express_debug" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_express_debug" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="pp_express_debug" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_debug" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_express_debug" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_express_debug" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
@@ -111,8 +109,8 @@
           <tr>
             <td><?php echo $entry_currency; ?></td>
             <td><select name="pp_express_currency">
-              <?php foreach($currency_codes as $code) { ?>
-                <option <?php if($code == $pp_express_currency){ echo 'selected'; } ?>><?php echo $code; ?></option>
+              <?php foreach ($currency_codes as $code) { ?>
+                <option <?php if ($code == $pp_express_currency) { echo 'selected'; } ?>><?php echo $code; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -275,24 +273,19 @@
           <tr>
             <td><?php echo $entry_allow_notes; ?></td>
             <td><?php if ($pp_express_allow_note) { ?>
-              <input type="radio" name="pp_express_allow_note" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_allow_note" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_express_allow_note" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_express_allow_note" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="pp_express_allow_note" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_allow_note" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_express_allow_note" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_express_allow_note" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_logo; ?></td>
             <td style="vertical-align:top;">
               <div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" />
-                <input type="hidden" name="pp_express_logo" value="<?php echo $pp_express_logo; ?>" id="image" />
-                <br />
-                <a onclick="image_upload('image', 'thumb');"><?php echo $text_browse; ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');"><?php echo $text_clear; ?></a>
+                <input type="hidden" name="pp_express_logo" value="<?php echo $pp_express_logo; ?>" id="image" /><br />
+                <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
               </div>
             </td>
           </tr>
@@ -327,10 +320,10 @@ function image_upload(field, thumb) {
 
 	$('#dialog').dialog({
 		title: '<?php echo $text_image_manager; ?>',
-		close: function (event, ui) {
+		close: function(event, ui) {
 			if ($('#' + field).attr('value')) {
-                    $.ajax({
-					url: 'index.php?route=payment/pp_express/imageLogo&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).val()),
+				$.ajax({
+					url: 'index.php?route=payment/pp_express/imageLogo&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),
 					dataType: 'text',
 					success: function(data) {
 						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
@@ -339,7 +332,7 @@ function image_upload(field, thumb) {
 			}
 		},
 		bgiframe: false,
-		width: 800,
+		width: 760,
 		height: 400,
 		resizable: false,
 		modal: false

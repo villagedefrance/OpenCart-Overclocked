@@ -22,44 +22,48 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_vendor; ?></td>
-            <td><input type="text" name="pp_pro_pf_vendor" value="<?php echo $pp_pro_pf_vendor; ?>" size="40" />
-            <?php if ($error_vendor) { ?>
+            <td><?php if ($error_vendor) { ?>
+              <input type="text" name="pp_pro_pf_vendor" value="<?php echo $pp_pro_pf_vendor; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_vendor; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_pf_vendor" value="<?php echo $pp_pro_pf_vendor; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_user; ?></td>
-            <td><input type="text" name="pp_pro_pf_user" value="<?php echo $pp_pro_pf_user; ?>" size="40" />
-            <?php if ($error_user) { ?>
+            <td><?php if ($error_user) { ?>
+              <input type="text" name="pp_pro_pf_user" value="<?php echo $pp_pro_pf_user; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_user; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_pf_user" value="<?php echo $pp_pro_pf_user; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_password; ?></td>
-            <td><input type="text" name="pp_pro_pf_password" value="<?php echo $pp_pro_pf_password; ?>" size="40" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="text" name="pp_pro_pf_password" value="<?php echo $pp_pro_pf_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_pf_password" value="<?php echo $pp_pro_pf_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_partner; ?></td>
-            <td><input type="text" name="pp_pro_pf_partner" value="<?php echo $pp_pro_pf_partner; ?>" size="40" />
-            <?php if ($error_partner) { ?>
+            <td><?php if ($error_partner) { ?>
+              <input type="text" name="pp_pro_pf_partner" value="<?php echo $pp_pro_pf_partner; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_partner; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_pf_partner" value="<?php echo $pp_pro_pf_partner; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($pp_pro_pf_test) { ?>
-              <input type="radio" name="pp_pro_pf_test" value="1" checked="checked" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_pro_pf_test" value="0" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_pro_pf_test" value="1" checked="checked" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_pro_pf_test" value="0" /><?php echo $text_no; ?>
             <?php } else { ?>
-              <input type="radio" name="pp_pro_pf_test" value="1" />
-              <?php echo $text_yes; ?>
-              <input type="radio" name="pp_pro_pf_test" value="0" checked="checked" />
-              <?php echo $text_no; ?>
+              <input type="radio" name="pp_pro_pf_test" value="1" /><?php echo $text_yes; ?>
+              <input type="radio" name="pp_pro_pf_test" value="0" checked="checked" /><?php echo $text_no; ?>
             <?php } ?></td>
           </tr>
           <tr>

@@ -22,7 +22,7 @@
         <span class="capture-text"><?php echo $text_no; ?></span>
         &nbsp;&nbsp;
         <?php if ($globalpay_order['void_status'] == 0) { ?>
-          <input type="text" width="10" id="capture-amount" value="<?php echo $globalpay_order['total']; ?>" />
+          <input type="text" id="capture-amount" value="<?php echo $globalpay_order['total']; ?>" size="10" />
           <a class="button" id="button-capture"><?php echo $button_capture; ?></a>
           <span class="button" id="loading-capture" style="display:none;"></span>
         <?php } ?>
@@ -51,7 +51,7 @@
         <span class="rebate_text"><?php echo $text_no; ?></span>
         &nbsp;&nbsp;
         <?php if ($globalpay_order['total_captured'] > 0 && $globalpay_order['void_status'] == 0) { ?>
-          <input type="text" size="10" id="rebate-amount" />
+          <input type="text" id="rebate-amount" size="10" />
           <a class="button" id="button-rebate"><?php echo $button_rebate; ?></a>
           <span class="button" id="loading-rebate" style="display:none;"></span>
         <?php } ?>
@@ -84,147 +84,150 @@
 </table>
 
 <script type="text/javascript"><!--
-  $("#button-void").click(function() {
-    if (confirm('<?php echo $text_confirm_void; ?>')) {
-      $.ajax({
-        type:'POST',
-        dataType: 'json',
-        data: {'order_id': '<?php echo $order_id; ?>' },
-        url: 'index.php?route=payment/globalpay/void&token=<?php echo $token; ?>',
-        beforeSend: function() {
-          $('#button-void').hide();
-          $('#loading-void').show();
-          $('#globalpay-transaction-msg').hide();
-        },
-        success: function(data) {
-          if (data.error == false) {
-            html = '';
-            html += '<tr>';
-            html += '<td class="left">' + data.data.date_added + '</td>';
-            html += '<td class="left">void</td>';
-            html += '<td class="left">0.00</td>';
-            html += '</tr>';
+$("#button-void").click(function() {
+	if (confirm('<?php echo $text_confirm_void; ?>')) {
+		$.ajax({
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id': '<?php echo $order_id; ?>' },
+			url: 'index.php?route=payment/globalpay/void&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('#button-void').hide();
+				$('#loading-void').show();
+				$('#globalpay-transaction-msg').hide();
+			},
+			success: function(data) {
+				if (data.error == false) {
+					html = '';
+					html += '<tr>';
+					html += '<td class="left">' + data.data.date_added + '</td>';
+					html += '<td class="left">void</td>';
+					html += '<td class="left">0.00</td>';
+					html += '</tr>';
 
-            $('.void_text').text('<?php echo $text_yes; ?>');
-            $('#globalpay-transactions').append(html);
-            $('#button-capture').hide();
-            $('#capture-amount').hide();
+					$('.void_text').text('<?php echo $text_yes; ?>');
+					$('#globalpay-transactions').append(html);
+					$('#button-capture').hide();
+					$('#capture-amount').hide();
 
-            if (data.msg != '') {
-              $('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
-            }
-          }
-          if (data.error == true) {
-            alert(data.msg);
-            $('#button-void').show();
-          }
+					if (data.msg != '') {
+						$('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
+					}
+				}
 
-          $('#loading-void').hide();
-        }
-      });
-    }
-  });
+				if (data.error == true) {
+					alert(data.msg);
+					$('#button-void').show();
+				}
 
-  $("#button-capture").click(function () {
-    if (confirm('<?php echo $text_confirm_capture; ?>')) {
-      $.ajax({
-        type:'POST',
-        dataType: 'json',
-        data: {'order_id' : '<?php echo $order_id; ?>', 'amount' : $('#capture-amount').val() },
-        url: 'index.php?route=payment/globalpay/capture&token=<?php echo $token; ?>',
-        beforeSend: function() {
-          $('#button-capture').hide();
-          $('#capture-amount').hide();
-          $('#loading-capture').show();
-          $('#globalpay-transaction-msg').hide();
-        },
-        success: function(data) {
-          if (data.error == false) {
-            html = '';
-            html += '<tr>';
-            html += '<td class="left">' + data.data.date_added + '</td>';
-            html += '<td class="left">payment</td>';
-            html += '<td class="left">' + data.data.amount + '</td>';
-            html += '</tr>';
+				$('#loading-void').hide();
+			}
+		});
+	}
+});
 
-            $('#globalpay-transactions').append(html);
-            $('#globalpay-total-captured').text(data.data.total);
+$("#button-capture").click(function() {
+	if (confirm('<?php echo $text_confirm_capture; ?>')) {
+		$.ajax({
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id' : '<?php echo $order_id; ?>', 'amount' : $('#capture-amount').val() },
+			url: 'index.php?route=payment/globalpay/capture&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('#button-capture').hide();
+				$('#capture-amount').hide();
+				$('#loading-capture').show();
+				$('#globalpay-transaction-msg').hide();
+			},
+			success: function(data) {
+				if (data.error == false) {
+					html = '';
+					html += '<tr>';
+					html += '<td class="left">' + data.data.date_added + '</td>';
+					html += '<td class="left">payment</td>';
+					html += '<td class="left">' + data.data.amount + '</td>';
+					html += '</tr>';
 
-            if (data.data.capture_status == 1) {
-              $('#button-void').hide();
-              $('.capture-text').text('<?php echo $text_yes; ?>');
-            } else {
-              $('#button-capture').show();
-              $('#capture-amount').val('0.00');
+					$('#globalpay-transactions').append(html);
+					$('#globalpay-total-captured').text(data.data.total);
 
-              <?php if ($auto_settle == 2) { ?>
-                $('#capture-amount').show();
-              <?php } ?>
-            }
+					if (data.data.capture_status == 1) {
+						$('#button-void').hide();
+						$('.capture-text').text('<?php echo $text_yes; ?>');
+					} else {
+						$('#button-capture').show();
+						$('#capture-amount').val('0.00');
 
-            if (data.msg != '') {
-              $('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
-            }
+						<?php if ($auto_settle == 2) { ?>
+							$('#capture-amount').show();
+						<?php } ?>
+					}
 
-            $('#button-rebate').show();
-            $('#rebate-amount').val(0.00).show();
-          }
-          if (data.error == true) {
-            alert(data.msg);
-            $('#button-capture').show();
-            $('#capture-amount').show();
-          }
+					if (data.msg != '') {
+						$('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
+					}
 
-          $('#loading-capture').hide();
-        }
-      });
-    }
-  });
+					$('#button-rebate').show();
+					$('#rebate-amount').val(0.00).show();
+				}
 
-  $("#button-rebate").click(function () {
-    if (confirm('<?php echo $text_confirm_rebate; ?>')) {
-      $.ajax({
-        type:'POST',
-        dataType: 'json',
-        data: {'order_id': '<?php echo $order_id; ?>', 'amount' : $('#rebate-amount').val() },
-        url: 'index.php?route=payment/globalpay/rebate&token=<?php echo $token; ?>',
-        beforeSend: function() {
-          $('#button-rebate').hide();
-          $('#rebate-amount').hide();
-          $('#loading-rebate').show();
-          $('#globalpay-transaction-msg').hide();
-        },
-        success: function(data) {
-          if (data.error == false) {
-            html = '';
-            html += '<tr>';
-            html += '<td class="left">' + data.data.date_added + '</td>';
-            html += '<td class="left">rebate</td>';
-            html += '<td class="left">' + data.data.amount + '</td>';
-            html += '</tr>';
+				if (data.error == true) {
+					alert(data.msg);
+					$('#button-capture').show();
+					$('#capture-amount').show();
+				}
 
-            $('#globalpay-transactions').append(html);
-            $('#globalpay-total-captured').text(data.data.total_captured);
+				$('#loading-capture').hide();
+			}
+		});
+	}
+});
 
-            if (data.data.rebate_status == 1) {
-              $('.rebate_text').text('<?php echo $text_yes; ?>');
-            } else {
-              $('#button-rebate').show();
-              $('#rebate-amount').val(0.00).show();
-            }
+$("#button-rebate").click(function() {
+	if (confirm('<?php echo $text_confirm_rebate; ?>')) {
+		$.ajax({
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id': '<?php echo $order_id; ?>', 'amount' : $('#rebate-amount').val() },
+			url: 'index.php?route=payment/globalpay/rebate&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('#button-rebate').hide();
+				$('#rebate-amount').hide();
+				$('#loading-rebate').show();
+				$('#globalpay-transaction-msg').hide();
+			},
+			success: function(data) {
+				if (data.error == false) {
+					html = '';
+					html += '<tr>';
+					html += '<td class="left">' + data.data.date_added + '</td>';
+					html += '<td class="left">rebate</td>';
+					html += '<td class="left">' + data.data.amount + '</td>';
+					html += '</tr>';
 
-            if (data.msg != '') {
-              $('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
-            }
-          }
-          if (data.error == true) {
-            alert(data.msg);
-            $('#button-rebate').show();
-          }
+					$('#globalpay-transactions').append(html);
+					$('#globalpay-total-captured').text(data.data.total_captured);
 
-          $('#loading-rebate').hide();
-        }
-      });
-    }
-  });
+					if (data.data.rebate_status == 1) {
+						$('.rebate_text').text('<?php echo $text_yes; ?>');
+					} else {
+						$('#button-rebate').show();
+						$('#rebate-amount').val(0.00).show();
+					}
+
+					if (data.msg != '') {
+						$('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
+					}
+				}
+
+				if (data.error == true) {
+					alert(data.msg);
+					$('#button-rebate').show();
+				}
+
+				$('#loading-rebate').hide();
+			}
+		});
+	}
+});
 //--></script>
