@@ -637,6 +637,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_wait'] = $this->language->get('text_wait');
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_blocked_ip'] = $this->language->get('text_blocked_ip');
+		$this->data['text_allowed_ip'] = $this->language->get('text_allowed_ip');
 		$this->data['text_add_ban_ip'] = $this->language->get('text_add_ban_ip');
 		$this->data['text_remove_ban_ip'] = $this->language->get('text_remove_ban_ip');
 		$this->data['text_female'] = $this->language->get('text_female');
@@ -645,6 +647,7 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['column_ip'] = $this->language->get('column_ip');
 		$this->data['column_location'] = $this->language->get('column_location');
 		$this->data['column_total'] = $this->language->get('column_total');
+		$this->data['column_firewall'] = $this->language->get('column_firewall');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_action'] = $this->language->get('column_action');
 
@@ -990,7 +993,7 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->load->model('localisation/country');
 
-		$this->data['countries'] = $this->model_localisation_country->getCountries();
+		$this->data['countries'] = $this->model_localisation_country->getCountries(0);
 
 		if (isset($this->request->post['address'])) {
 			$this->data['addresses'] = $this->request->post['address'];
@@ -1018,9 +1021,10 @@ class ControllerSaleCustomer extends Controller {
 
 				$this->data['ips'][] = array(
 					'ip'         		=> $result['ip'],
-					'total'      		=> $this->model_sale_customer->getTotalCustomersByIp($result['ip']),
 					'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-					'filter_ip'  		=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&filter_ip=' . $result['ip'], 'SSL'),
+					'total'      		=> $this->model_sale_customer->getTotalCustomersByIp($result['ip']),
+					'blocked_ip'		=> $this->model_sale_customer->isBlockedIp($result['ip']) ? '<span class="disabled">' . $this->language->get('text_blocked_ip') . '</span>' : '<span class="enabled">' . $this->language->get('text_allowed_ip') . '</span>',
+					'filter_ip'  		=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&filter_ip=' . $result['ip'] . $url, 'SSL'),
 					'ban_ip'     		=> $ban_ip_total
 				);
 			}

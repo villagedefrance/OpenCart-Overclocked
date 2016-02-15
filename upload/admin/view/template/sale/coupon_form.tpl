@@ -29,16 +29,20 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input type="text" name="name" value="<?php echo $name; ?>" />
-            <?php if ($error_name) { ?>
+            <td><?php if ($error_name) { ?>
+              <input type="text" name="name" value="<?php echo $name; ?>" class="input-error" />
               <span class="error"><?php echo $error_name; ?></span>
+            <?php } else { ?>
+              <input type="text" name="name" value="<?php echo $name; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_code; ?></td>
-            <td><input type="text" name="code" value="<?php echo $code; ?>" />
-            <?php if ($error_code) { ?>
+            <td><?php if ($error_code) { ?>
+              <input type="text" name="code" value="<?php echo $code; ?>" class="input-error" />
               <span class="error"><?php echo $error_code; ?></span>
+            <?php } else { ?>
+              <input type="text" name="code" value="<?php echo $code; ?>" />
             <?php } ?></td>
           </tr>
           <tr>

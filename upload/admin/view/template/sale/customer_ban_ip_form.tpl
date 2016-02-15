@@ -22,9 +22,11 @@
       <table class="form">
         <tr>
           <td><span class="required">*</span> <?php echo $entry_ip; ?></td>
-          <td><input type="text" name="ip" value="<?php echo $ip; ?>" />
-          <?php if ($error_ip) { ?>
+          <td><?php if ($error_ip) { ?>
+            <input type="text" name="ip" value="<?php echo $ip; ?>" class="input-error" />
             <span class="error"><?php echo $error_ip; ?></span>
+          <?php } else { ?>
+            <input type="text" name="ip" value="<?php echo $ip; ?>" />
           <?php } ?></td>
         </tr>
       </table>

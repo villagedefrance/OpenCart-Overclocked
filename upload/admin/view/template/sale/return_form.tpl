@@ -26,9 +26,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_order_id; ?></td>
-            <td><input type="text" name="order_id" value="<?php echo $order_id; ?>" />
-            <?php if ($error_order_id) { ?>
+            <td><?php if ($error_order_id) { ?>
+              <input type="text" name="order_id" value="<?php echo $order_id; ?>" class="input-error" />
               <span class="error"><?php echo $error_order_id; ?></span>
+            <?php } else { ?>
+              <input type="text" name="order_id" value="<?php echo $order_id; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -43,30 +45,38 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-            <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="40" />
-            <?php if ($error_firstname) { ?>
+            <td><?php if ($error_firstname) { ?>
+              <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_firstname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-            <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="40" />
-            <?php if ($error_lastname) { ?>
+            <td><?php if ($error_lastname) { ?>
+              <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_lastname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="email" value="<?php echo $email; ?>" size="40" />
-            <?php if ($error_email) { ?>
+            <td><?php if ($error_email) { ?>
+              <input type="text" name="email" value="<?php echo $email; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
+            <?php } else { ?>
+              <input type="text" name="email" value="<?php echo $email; ?>" size="40" />
             <?php  } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-            <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-            <?php if ($error_telephone) { ?>
+            <td><?php if ($error_telephone) { ?>
+              <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="input-error" />
               <span class="error"><?php echo $error_telephone; ?></span>
+            <?php } else { ?>
+              <input type="text" name="telephone" value="<?php echo $telephone; ?>" />
             <?php  } ?></td>
           </tr>
         </table>

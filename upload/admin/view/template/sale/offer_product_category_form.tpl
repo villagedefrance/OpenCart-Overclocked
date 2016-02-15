@@ -22,9 +22,11 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-            <td><input name="name" value="<?php echo $name; ?>" size="30" />
-            <?php if ($error_name) { ?>
+            <td><?php if ($error_name) { ?>
+              <input name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_name; ?></span>
+            <?php } else { ?>
+              <input name="name" value="<?php echo $name; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -69,37 +71,57 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_product_one; ?></td>
-            <td><select name="product_one">
-              <option value=""></option>
-              <?php foreach ($products as $product) { ?>
-                <?php if ($product['product_id'] == $product_one) { ?>
-                  <option value="<?php echo $product['product_id']; ?>" selected="selected"><?php echo $product['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $product['product_id']; ?>"><?php echo $product['name']; ?></option>
+            <td><?php if ($error_product) { ?>
+              <select name="product_one" class="input-error">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($products as $product) { ?>
+                  <?php if ($product['product_id'] == $product_one) { ?>
+                    <option value="<?php echo $product['product_id']; ?>" selected="selected"><?php echo $product['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $product['product_id']; ?>"><?php echo $product['name']; ?></option>
+                  <?php } ?>
                 <?php } ?>
-              <?php } ?>
-            </select>
-            <?php if ($error_product) { ?>
+              </select>
               <span class="error"><?php echo $error_product; ?></span>
-            <?php } ?>
-            </td>
+            <?php } else { ?>
+              <select name="product_one">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($products as $product) { ?>
+                  <?php if ($product['product_id'] == $product_one) { ?>
+                    <option value="<?php echo $product['product_id']; ?>" selected="selected"><?php echo $product['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $product['product_id']; ?>"><?php echo $product['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_category_two; ?></td>
-            <td><select name="category_two">
-              <option value=""></option>
-              <?php foreach ($categories as $category) { ?>
-                <?php if ($category['category_id'] == $category_two) { ?>
-                  <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+            <td><?php if ($error_category) { ?>
+              <select name="category_two" class="input-error">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($categories as $category) { ?>
+                  <?php if ($category['category_id'] == $category_two) { ?>
+                    <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+                  <?php } ?>
                 <?php } ?>
-              <?php } ?>
-            </select>
-            <?php if ($error_category) { ?>
+              </select>
               <span class="error"><?php echo $error_category; ?></span>
-            <?php } ?>
-            </td>
+            <?php } else { ?>
+              <select name="category_two">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($categories as $category) { ?>
+                  <?php if ($category['category_id'] == $category_two) { ?>
+                    <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_date_start; ?></td>

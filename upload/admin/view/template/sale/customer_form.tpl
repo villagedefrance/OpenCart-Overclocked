@@ -41,30 +41,38 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-              <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
-              <?php if ($error_firstname) { ?>
+              <td><?php if ($error_firstname) { ?>
+                <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" class="input-error" />
                 <span class="error"><?php echo $error_firstname; ?></span>
+              <?php } else { ?>
+                <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-              <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
-              <?php if ($error_lastname) { ?>
+              <td><?php if ($error_lastname) { ?>
+                <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" class="input-error" />
                 <span class="error"><?php echo $error_lastname; ?></span>
+              <?php } else { ?>
+                <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-              <td><input type="text" name="email" value="<?php echo $email; ?>" size="40" />
-              <?php if ($error_email) { ?>
+              <td><?php if ($error_email) { ?>
+                <input type="text" name="email" value="<?php echo $email; ?>" size="40" class="input-error" />
                 <span class="error"><?php echo $error_email; ?></span>
+              <?php } else { ?>
+                <input type="text" name="email" value="<?php echo $email; ?>" size="40" />
               <?php  } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-              <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-              <?php if ($error_telephone) { ?>
+              <td><?php if ($error_telephone) { ?>
+                <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="input-error" />
                 <span class="error"><?php echo $error_telephone; ?></span>
+              <?php } else { ?>
+                <input type="text" name="telephone" value="<?php echo $telephone; ?>" />
               <?php  } ?></td>
             </tr>
             <?php if ($show_fax) { ?>
@@ -92,25 +100,32 @@
             <?php if ($show_dob) { ?>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_date_of_birth; ?></td>
-              <td><input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
-              <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span>
-              <?php if ($error_date_of_birth) { ?>
+              <td><?php if ($error_date_of_birth) { ?>
+                <input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" class="input-error" />
+                <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span>
                 <span class="error"><?php echo $error_date_of_birth; ?></span>
+              <?php } else { ?>
+                <input type="text" name="date_of_birth" value="<?php echo $date_of_birth; ?>" id="date-of-birth" size="12" />
+                <span class="form-icon"><img src="view/image/calendar.png" alt="" /></span>
               <?php } ?></td>
             </tr>
             <?php } ?>
             <tr>
               <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_password; ?></td>
-              <td><input type="password" name="password" value="<?php echo $password; ?>"  />
-              <?php if ($error_password) { ?>
+              <td><?php if ($error_password) { ?>
+                <input type="password" name="password" value="<?php echo $password; ?>" class="input-error" />
                 <span class="error"><?php echo $error_password; ?></span>
+              <?php } else { ?>
+                <input type="password" name="password" value="<?php echo $password; ?>" />
               <?php  } ?></td>
             </tr>
             <tr>
               <td><span class="<?php echo $is_required; ?>">*</span> <?php echo $entry_confirm; ?></td>
-              <td><input type="password" name="confirm" value="<?php echo $confirm; ?>" />
-              <?php if ($error_confirm) { ?>
+              <td><?php if ($error_confirm) { ?>
+                <input type="password" name="confirm" value="<?php echo $confirm; ?>" class="input-error" />
                 <span class="error"><?php echo $error_confirm; ?></span>
+              <?php } else { ?>
+                <input type="password" name="confirm" value="<?php echo $confirm; ?>" />
               <?php  } ?></td>
             </tr>
             <tr>
@@ -170,16 +185,20 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][firstname]" value="<?php echo $address['firstname']; ?>" size="30" />
-              <?php if (isset($error_address_firstname[$address_row])) { ?>
+              <td><?php if (isset($error_address_firstname[$address_row])) { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][firstname]" value="<?php echo $address['firstname']; ?>" size="30" class="input-error" />
                 <span class="error"><?php echo $error_address_firstname[$address_row]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][firstname]" value="<?php echo $address['firstname']; ?>" size="30" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][lastname]" value="<?php echo $address['lastname']; ?>" size="30" />
-              <?php if (isset($error_address_lastname[$address_row])) { ?>
+              <td><?php if (isset($error_address_lastname[$address_row])) { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][lastname]" value="<?php echo $address['lastname']; ?>" size="30" class="input-error" />
                 <span class="error"><?php echo $error_address_lastname[$address_row]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][lastname]" value="<?php echo $address['lastname']; ?>" size="30" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -192,16 +211,20 @@
             </tr>
             <tr class="tax-id-display">
               <td><?php echo $entry_tax_id; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" />
-              <?php if (isset($error_address_tax_id[$address_row])) { ?>
+              <td><?php if (isset($error_address_tax_id[$address_row])) { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" class="input-error" />
                 <span class="error"><?php echo $error_address_tax_id[$address_row]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" />
-              <?php if (isset($error_address_address_1[$address_row])) { ?>
+              <td><?php if (isset($error_address_address_1[$address_row])) { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" class="input-error" />
                 <span class="error"><?php echo $error_address_address_1[$address_row]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -210,49 +233,69 @@
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" />
-              <?php if (isset($error_address_city[$address_row])) { ?>
+              <td><?php if (isset($error_address_city[$address_row])) { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" class="input-error" />
                 <span class="error"><?php echo $error_address_city[$address_row]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_postcode; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" />
-              <?php if (isset($error_address_postcode[$address_row])) { ?>
+              <td><?php if (isset($error_address_postcode[$address_row])) { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" class="input-error" />
                 <span class="error"><?php echo $error_address_postcode[$address_row]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-              <td><select name="address[<?php echo $address_row; ?>][country_id]" onchange="country(this, '<?php echo $address_row; ?>', '<?php echo $address['zone_id']; ?>');">
-                <option value=""><?php echo $text_select; ?></option>
-                <?php foreach ($countries as $country) { ?>
-                  <?php if ($country['country_id'] == $address['country_id']) { ?>
-                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                  <?php } else { ?>
-                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+              <td><?php if (isset($error_address_country[$address_row])) { ?>
+                <select name="address[<?php echo $address_row; ?>][country_id]" onchange="country(this, '<?php echo $address_row; ?>', '<?php echo $address['zone_id']; ?>');" class="input-error">
+                  <option value=""><?php echo $text_select; ?></option>
+                  <?php foreach ($countries as $country) { ?>
+                    <?php if ($country['country_id'] == $address['country_id']) { ?>
+                      <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                    <?php } ?>
                   <?php } ?>
-                <?php } ?>
-              </select>
-              <?php if (isset($error_address_country[$address_row])) { ?>
+                </select>
                 <span class="error"><?php echo $error_address_country[$address_row]; ?></span>
+              <?php } else { ?>
+                <select name="address[<?php echo $address_row; ?>][country_id]" onchange="country(this, '<?php echo $address_row; ?>', '<?php echo $address['zone_id']; ?>');">
+                  <option value=""><?php echo $text_select; ?></option>
+                  <?php foreach ($countries as $country) { ?>
+                    <?php if ($country['country_id'] == $address['country_id']) { ?>
+                      <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                    <?php } ?>
+                  <?php } ?>
+                </select>
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-              <td><select name="address[<?php echo $address_row; ?>][zone_id]">
-              </select>
-              <?php if (isset($error_address_zone[$address_row])) { ?>
+              <td><?php if (isset($error_address_zone[$address_row])) { ?>
+                <select name="address[<?php echo $address_row; ?>][zone_id]" class="input-error">
+                </select>
                 <span class="error"><?php echo $error_address_zone[$address_row]; ?></span>
+              <?php } else { ?>
+                <select name="address[<?php echo $address_row; ?>][zone_id]">
+                </select>
               <?php } ?></td>
             </tr>
             <tr>
               <td><?php echo $entry_default; ?></td>
               <td><?php if (($address['address_id'] == $address_id) || !$addresses) { ?>
-                <input type="radio" name="address[<?php echo $address_row; ?>][default]" value="<?php echo $address_row; ?>" checked="checked" /></td>
+                <input type="radio" name="address[<?php echo $address_row; ?>][default]" value="<?php echo $address_row; ?>" id="default-address<?php echo $address_row; ?>" class="radio" checked />
+                <label for="default-address<?php echo $address_row; ?>"><span><span></span></span></label>
               <?php } else { ?>
-                <input type="radio" name="address[<?php echo $address_row; ?>][default]" value="<?php echo $address_row; ?>" /></td>
-              <?php } ?>
+                <input type="radio" name="address[<?php echo $address_row; ?>][default]" value="<?php echo $address_row; ?>" id="default-address<?php echo $address_row; ?>" class="radio" />
+                <label for="default-address<?php echo $address_row; ?>"><span><span></span></span></label>
+              <?php } ?></td>
             </tr>
           </table>
         </div>
@@ -314,7 +357,8 @@
               <tr>
                 <td class="left"><?php echo $column_ip; ?></td>
                 <td class="left"><?php echo $column_date_added; ?></td>
-                <td class="right"><?php echo $column_total; ?></td>
+                <td class="left"><?php echo $column_total; ?></td>
+                <td class="left"><?php echo $column_firewall; ?></td>
                 <td class="right"><?php echo $column_action; ?></td>
               </tr>
             </thead>
@@ -322,9 +366,10 @@
             <?php if ($ips) { ?>
               <?php foreach ($ips as $ip) { ?>
               <tr>
-                <td class="left"><a href="http://www.geoiptool.com/en/?IP=<?php echo $ip['ip']; ?>" target="_blank"><?php echo $ip['ip']; ?></a></td>
-                <td class="left"><?php echo $ip['date_added']; ?></td>
-                <td class="right"><a href="<?php echo $ip['filter_ip']; ?>" target="_blank"><?php echo $ip['total']; ?></a></td>
+                <td class="center"><a onclick="window.open('http://www.geoiptool.com/en/?IP=<?php echo $ip['ip']; ?>');"><?php echo $ip['ip']; ?></a></td>
+                <td class="center"><?php echo $ip['date_added']; ?></td>
+                <td class="center"><a href="<?php echo $ip['filter_ip']; ?>" title=""><?php echo $ip['total']; ?></a></td>
+                <td class="center"><?php echo $ip['blocked_ip']; ?></td>
                 <td class="right"><?php if ($ip['ban_ip']) { ?>
                   <a id="<?php echo str_replace('.', '-', $ip['ip']); ?>" onclick="removeBanIP('<?php echo $ip['ip']; ?>');" class="button"><?php echo $text_remove_ban_ip; ?></a>
                 <?php } else { ?>
@@ -334,7 +379,7 @@
               <?php } ?>
             <?php } else { ?>
               <tr>
-                <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+                <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
               </tr>
             <?php } ?>
             </tbody>
@@ -478,7 +523,8 @@ function addAddress() {
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><?php echo $entry_default; ?></td>';
-	html += '      <td><input type="radio" name="address[' + address_row + '][default]" value="1" /></td>';
+	html += '      <td><input type="radio" name="address[' + address_row + '][default]" value="' + address_row + '" id="default-address' + address_row + '" class="radio" />';
+	html += '      <label for="default-address' + address_row + '"><span><span></span></span></label></td>';
 	html += '    </tr>';
 	html += '  </table>';
 	html += '</div>';
@@ -635,7 +681,6 @@ function addBanIP(ip) {
 		data: 'ip=' + encodeURIComponent(ip),
 		beforeSend: function() {
 			$('.success, .warning').remove();
-
 			$('.box').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		complete: function() {
@@ -645,13 +690,11 @@ function addBanIP(ip) {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
 
 				$('#' + id).replaceWith('<a id="' + id + '" onclick="removeBanIP(\'' + ip + '\');"><?php echo $text_remove_ban_ip; ?></a>');
@@ -670,7 +713,6 @@ function removeBanIP(ip) {
 		data: 'ip=' + encodeURIComponent(ip),
 		beforeSend: function() {
 			$('.success, .warning').remove();
-
 			$('.box').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		success: function(json) {
@@ -678,13 +720,11 @@ function removeBanIP(ip) {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
 
 				$('#' + id).replaceWith('<a id="' + id + '" onclick="addBanIP(\'' + ip + '\');"><?php echo $text_add_ban_ip; ?></a>');

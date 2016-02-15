@@ -74,7 +74,7 @@
           <h2><?php echo $text_file_upload; ?></h2>
           <br />
           <div id="quote-file-upload">
-            <input type="button" value="<?php echo $button_upload; ?>" id="button-quote-upload" class="button">
+            <input type="button" value="<?php echo $button_upload; ?>" id="button-quote-upload" class="button" />
             <input type="hidden" name="quote_file" value="" />
           </div>
           <br />

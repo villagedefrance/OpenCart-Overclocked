@@ -29,30 +29,38 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-            <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
-            <?php if ($error_firstname) { ?>
+            <td><?php if ($error_firstname) { ?>
+              <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_firstname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-            <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
-            <?php if ($error_lastname) { ?>
+            <td><?php if ($error_lastname) { ?>
+              <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_lastname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="email" value="<?php echo $email; ?>" size="40" />
-            <?php if ($error_email) { ?>
+            <td><?php if ($error_email) { ?>
+              <input type="text" name="email" value="<?php echo $email; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
+            <?php } else { ?>
+              <input type="text" name="email" value="<?php echo $email; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-            <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-            <?php if ($error_telephone) { ?>
+            <td><?php if ($error_telephone) { ?>
+              <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="input-error" />
               <span class="error"><?php echo $error_telephone; ?></span>
+            <?php } else { ?>
+              <input type="text" name="telephone" value="<?php echo $telephone; ?>" />
             <?php } ?></td>
           </tr>
           <?php if ($show_fax) { ?>
@@ -71,9 +79,11 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-            <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" size="40" />
-            <?php if ($error_address_1) { ?>
+            <td><?php if ($error_address_1) { ?>
+              <input type="text" name="address_1" value="<?php echo $address_1; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_address_1; ?></span>
+            <?php } else { ?>
+              <input type="text" name="address_1" value="<?php echo $address_1; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -82,40 +92,58 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-            <td><input type="text" name="city" value="<?php echo $city; ?>" class="large-field" />
-            <?php if ($error_city) { ?>
+            <td><?php if ($error_city) { ?>
+              <input type="text" name="city" value="<?php echo $city; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_city ?></span>
+            <?php } else { ?>
+              <input type="text" name="city" value="<?php echo $city; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-            <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
-            <?php if ($error_postcode) { ?>
+            <td><?php if ($error_postcode) { ?>
+              <input type="text" name="postcode" value="<?php echo $postcode; ?>" class="input-error" />
               <span class="error"><?php echo $error_postcode ?></span>
+            <?php } else { ?>
+              <input type="text" name="postcode" value="<?php echo $postcode; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-            <td><select name="country_id">
-              <option value="false"><?php echo $text_select; ?></option>
-              <?php foreach ($countries as $country) { ?>
-                <?php if ($country['country_id'] == $country_id) { ?>
-                  <option value="<?php echo $country['country_id']; ?>" selected="selected"> <?php echo $country['name']; ?> </option>
-                <?php } else { ?>
-                  <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+            <td><?php if ($error_country) { ?>
+              <select name="country_id" class="input-error">
+                <option value="false"><?php echo $text_select; ?></option>
+                <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == $country_id) { ?>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"> <?php echo $country['name']; ?> </option>
+                  <?php } else { ?>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
                 <?php } ?>
-              <?php } ?>
-            </select>
-            <?php if ($error_country) { ?>
+              </select>
               <span class="error"><?php echo $error_country; ?></span>
+            <?php } else { ?>
+              <select name="country_id">
+                <option value="false"><?php echo $text_select; ?></option>
+                <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == $country_id) { ?>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"> <?php echo $country['name']; ?> </option>
+                  <?php } else { ?>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-            <td><select name="zone_id">
-            </select>
-            <?php if ($error_zone) { ?>
+            <td><?php if ($error_zone) { ?>
+              <select name="zone_id" class="input-error">
+              </select>
               <span class="error"><?php echo $error_zone; ?></span>
+            <?php } else { ?>
+              <select name="zone_id">
+              </select>
             <?php } ?></td>
           </tr>
           <tr>
@@ -127,16 +155,20 @@
           </tr>
           <tr>
             <td><?php echo $entry_password; ?></td>
-            <td><input type="password" name="password" value="<?php echo $password; ?>" />
-            <?php if ($error_password) { ?>
+            <td><?php if ($error_password) { ?>
+              <input type="password" name="password" value="<?php echo $password; ?>" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="password" name="password" value="<?php echo $password; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_confirm; ?></td>
-            <td><input type="password" name="confirm" value="<?php echo $confirm; ?>" />
-            <?php if ($error_confirm) { ?>
+            <td><?php if ($error_confirm) { ?>
+              <input type="password" name="confirm" value="<?php echo $confirm; ?>" class="input-error" />
               <span class="error"><?php echo $error_confirm; ?></span>
+            <?php } else { ?>
+              <input type="password" name="confirm" value="<?php echo $confirm; ?>" />
             <?php } ?></td>
           </tr>
           <tr>

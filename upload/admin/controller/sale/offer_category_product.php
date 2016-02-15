@@ -314,6 +314,7 @@ class ControllerSaleOfferCategoryProduct extends Controller {
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_fixed'] = $this->language->get('text_fixed');
 		$this->data['text_percent'] = $this->language->get('text_percent');
+		$this->data['text_select'] = $this->language->get('text_select');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_type'] = $this->language->get('entry_type');

@@ -8,6 +8,8 @@ $_['text_default']          		= 'Default';
 $_['text_approved']         		= 'You have approved %s accounts!';
 $_['text_wait']             		= 'Please Wait!';
 $_['text_balance']          		= 'Balance:';
+$_['text_blocked_ip'] 			= 'Blocked';
+$_['text_allowed_ip'] 			= 'Allowed';
 $_['text_add_ban_ip']       	= 'Add Ban IP';
 $_['text_remove_ban_ip']    	= 'Remove Ban IP';
 $_['text_female']    				= 'Female';
@@ -35,6 +37,7 @@ $_['column_amount']         	= 'Amount';
 $_['column_points']         		= 'Points';
 $_['column_ip']             		= 'IP';
 $_['column_location']			= 'IP Location';
+$_['column_firewall']				= 'Firewall Status';
 $_['column_total']          		= 'Total Accounts';
 $_['column_action']         		= 'Action';
 

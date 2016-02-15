@@ -209,9 +209,13 @@ class ModelSaleOffer extends Model {
 
 	// Product Price
 	public function getProductPrice($product_id) {
-		$query = $this->db->query("SELECT price FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT DISTINCT price FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "' GROUP BY product_id");
 
-		return $query->row['price'];
+		if (isset($query->row['price'])) {
+			return $query->row['price'];
+		} else {
+			return false;
+		}
 	}
 
 	// MIN Product Price by Category

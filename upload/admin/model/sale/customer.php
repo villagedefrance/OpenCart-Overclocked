@@ -194,9 +194,10 @@ class ModelSaleCustomer extends Model {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
+
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
-			$mail->setSender($store_name);
+			$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_approve_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
 			$mail->setHtml($html);
 			$mail->send();
@@ -429,9 +430,10 @@ class ModelSaleCustomer extends Model {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
+
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
-			$mail->setSender($store_name);
+			$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8'));
 			$mail->setHtml($html);
 			$mail->send();
@@ -524,9 +526,10 @@ class ModelSaleCustomer extends Model {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
+			
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
-			$mail->setSender($store_name);
+			$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_reward_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
 			$mail->setHtml($html);
 			$mail->send();

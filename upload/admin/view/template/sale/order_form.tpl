@@ -61,30 +61,38 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-            <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" />
-            <?php if ($error_firstname) { ?>
+            <td><?php if ($error_firstname) { ?>
+              <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="input-error" />
               <span class="error"><?php echo $error_firstname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="firstname" value="<?php echo $firstname; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-            <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
-            <?php if ($error_lastname) { ?>
+            <td><?php if ($error_lastname) { ?>
+              <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="input-error" />
               <span class="error"><?php echo $error_lastname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="lastname" value="<?php echo $lastname; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_email; ?></td>
-            <td><input type="text" name="email" value="<?php echo $email; ?>" />
-            <?php if ($error_email) { ?>
+            <td><?php if ($error_email) { ?>
+              <input type="text" name="email" value="<?php echo $email; ?>" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
+            <?php } else { ?>
+              <input type="text" name="email" value="<?php echo $email; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-            <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-            <?php if ($error_telephone) { ?>
+            <td><?php if ($error_telephone) { ?>
+              <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="input-error" />
               <span class="error"><?php echo $error_telephone; ?></span>
+            <?php } else { ?>
+              <input type="text" name="telephone" value="<?php echo $telephone; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -106,16 +114,20 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-            <td><input type="text" name="payment_firstname" value="<?php echo $payment_firstname; ?>" />
-            <?php if ($error_payment_firstname) { ?>
+            <td><?php if ($error_payment_firstname) { ?>
+              <input type="text" name="payment_firstname" value="<?php echo $payment_firstname; ?>" class="input-error" />
               <span class="error"><?php echo $error_payment_firstname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payment_firstname" value="<?php echo $payment_firstname; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-            <td><input type="text" name="payment_lastname" value="<?php echo $payment_lastname; ?>" />
-            <?php if ($error_payment_lastname) { ?>
+            <td><?php if ($error_payment_lastname) { ?>
+              <input type="text" name="payment_lastname" value="<?php echo $payment_lastname; ?>" class="input-error" />
               <span class="error"><?php echo $error_payment_lastname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payment_lastname" value="<?php echo $payment_lastname; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -128,16 +140,20 @@
           </tr>
           <tr id="tax-id-display">
             <td><span id="tax-id-required" class="required">*</span> <?php echo $entry_tax_id; ?></td>
-            <td><input type="text" name="payment_tax_id" value="<?php echo $payment_tax_id; ?>" />
-            <?php if ($error_payment_tax_id) { ?>
+            <td><?php if ($error_payment_tax_id) { ?>
+              <input type="text" name="payment_tax_id" value="<?php echo $payment_tax_id; ?>" class="input-error" />
               <span class="error"><?php echo $error_payment_tax_id; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payment_tax_id" value="<?php echo $payment_tax_id; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-            <td><input type="text" name="payment_address_1" value="<?php echo $payment_address_1; ?>" />
-            <?php if ($error_payment_address_1) { ?>
+            <td><?php if ($error_payment_address_1) { ?>
+              <input type="text" name="payment_address_1" value="<?php echo $payment_address_1; ?>" class="input-error" />
               <span class="error"><?php echo $error_payment_address_1; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payment_address_1" value="<?php echo $payment_address_1; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -146,41 +162,58 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-            <td><input type="text" name="payment_city" value="<?php echo $payment_city; ?>" />
-            <?php if ($error_payment_city) { ?>
+            <td><?php if ($error_payment_city) { ?>
+              <input type="text" name="payment_city" value="<?php echo $payment_city; ?>" class="input-error" />
               <span class="error"><?php echo $error_payment_city; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payment_city" value="<?php echo $payment_city; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-            <td><input type="text" name="payment_postcode" value="<?php echo $payment_postcode; ?>" />
-            <?php if ($error_payment_postcode) { ?>
+            <td><?php if ($error_payment_postcode) { ?>
+              <input type="text" name="payment_postcode" value="<?php echo $payment_postcode; ?>" class="input-error" />
               <span class="error"><?php echo $error_payment_postcode; ?></span>
+            <?php } else { ?>
+              <input type="text" name="payment_postcode" value="<?php echo $payment_postcode; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-            <td><select name="payment_country_id">
-              <option value=""><?php echo $text_select; ?></option>
-              <?php foreach ($countries as $country) { ?>
-                <?php if ($country['country_id'] == $payment_country_id) { ?>
-                  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+            <td><?php if ($error_payment_country) { ?>
+              <select name="payment_country_id" class="input-error">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == $payment_country_id) { ?>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
                 <?php } ?>
-              <?php } ?>
               </select>
-              <?php if ($error_payment_country) { ?>
-                <span class="error"><?php echo $error_payment_country; ?></span>
-              <?php } ?>
-            </td>
+              <span class="error"><?php echo $error_payment_country; ?></span>
+            <?php } else { ?>
+              <select name="payment_country_id">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == $payment_country_id) { ?>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-            <td><select name="payment_zone_id">
-            </select>
-            <?php if ($error_payment_zone) { ?>
+            <td><?php if ($error_payment_zone) { ?>
+              <select name="payment_zone_id" class="input-error">
+              </select>
               <span class="error"><?php echo $error_payment_zone; ?></span>
+            <?php } else { ?>
+              <select name="payment_zone_id">
+              </select>
             <?php } ?></td>
           </tr>
         </table>
@@ -198,16 +231,20 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
-            <td><input type="text" name="shipping_firstname" value="<?php echo $shipping_firstname; ?>" />
-            <?php if ($error_shipping_firstname) { ?>
+            <td><?php if ($error_shipping_firstname) { ?>
+              <input type="text" name="shipping_firstname" value="<?php echo $shipping_firstname; ?>" class="input-error" />
               <span class="error"><?php echo $error_shipping_firstname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="shipping_firstname" value="<?php echo $shipping_firstname; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-            <td><input type="text" name="shipping_lastname" value="<?php echo $shipping_lastname; ?>" />
-            <?php if ($error_shipping_lastname) { ?>
+            <td><?php if ($error_shipping_lastname) { ?>
+              <input type="text" name="shipping_lastname" value="<?php echo $shipping_lastname; ?>" class="input-error" />
               <span class="error"><?php echo $error_shipping_lastname; ?></span>
+            <?php } else { ?>
+              <input type="text" name="shipping_lastname" value="<?php echo $shipping_lastname; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -216,9 +253,11 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-            <td><input type="text" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" />
-            <?php if ($error_shipping_address_1) { ?>
+            <td><?php if ($error_shipping_address_1) { ?>
+              <input type="text" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" class="input-error" />
               <span class="error"><?php echo $error_shipping_address_1; ?></span>
+            <?php } else { ?>
+              <input type="text" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -231,34 +270,49 @@
           </tr>
           <tr>
             <td><span id="shipping-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-            <td><input type="text" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" />
-            <?php if ($error_shipping_postcode) { ?>
+            <td><?php if ($error_shipping_postcode) { ?>
+              <input type="text" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" class="input-error" />
               <span class="error"><?php echo $error_shipping_postcode; ?></span>
+            <?php } else { ?>
+              <input type="text" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" />
             <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-            <td><select name="shipping_country_id">
-              <option value=""><?php echo $text_select; ?></option>
-              <?php foreach ($countries as $country) { ?>
-                <?php if ($country['country_id'] == $shipping_country_id) { ?>
-                  <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+            <td><?php if ($error_shipping_country) { ?>
+              <select name="shipping_country_id" class="input-error">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == $shipping_country_id) { ?>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
                 <?php } ?>
-              <?php } ?>
               </select>
-              <?php if ($error_shipping_country) { ?>
-                <span class="error"><?php echo $error_shipping_country; ?></span>
-              <?php } ?>
-            </td>
+              <span class="error"><?php echo $error_shipping_country; ?></span>
+            <?php } else { ?>
+              <select name="shipping_country_id">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php foreach ($countries as $country) { ?>
+                  <?php if ($country['country_id'] == $shipping_country_id) { ?>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-            <td><select name="shipping_zone_id">
-            </select>
-            <?php if ($error_shipping_zone) { ?>
+            <td><?php if ($error_shipping_zone) { ?>
+              <select name="shipping_zone_id" class="input-error">
+              </select>
               <span class="error"><?php echo $error_shipping_zone; ?></span>
+            <?php } else { ?>
+              <select name="shipping_zone_id">
+              </select>
             <?php } ?></td>
           </tr>
         </table>
@@ -295,7 +349,7 @@
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_option][<?php echo $option_row; ?>][name]" value="<?php echo $option['name']; ?>" />
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_option][<?php echo $option_row; ?>][value]" value="<?php echo $option['value']; ?>" />
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_option][<?php echo $option_row; ?>][type]" value="<?php echo $option['type']; ?>" />
-                <?php $option_row++; ?>
+                  <?php $option_row++; ?>
                 <?php } ?>
                 <?php foreach ($order_product['download'] as $download) { ?>
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_download][<?php echo $download_row; ?>][order_download_id]" value="<?php echo $download['order_download_id']; ?>" />
@@ -303,7 +357,7 @@
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_download][<?php echo $download_row; ?>][filename]" value="<?php echo $download['filename']; ?>" />
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_download][<?php echo $download_row; ?>][mask]" value="<?php echo $download['mask']; ?>" />
                   <input type="hidden" name="order_product[<?php echo $product_row; ?>][order_download][<?php echo $download_row; ?>][remaining]" value="<?php echo $download['remaining']; ?>" />
-                <?php $download_row++; ?>
+                  <?php $download_row++; ?>
                 <?php } ?>
               </td>
               <td class="left"><?php echo $order_product['model']; ?>
@@ -317,7 +371,7 @@
               <input type="hidden" name="order_product[<?php echo $product_row; ?>][tax]" value="<?php echo $order_product['tax']; ?>" />
               <input type="hidden" name="order_product[<?php echo $product_row; ?>][reward]" value="<?php echo $order_product['reward']; ?>" /></td>
             </tr>
-          <?php $product_row++; ?>
+            <?php $product_row++; ?>
           <?php } ?>
         <?php } else { ?>
           <tr>
@@ -369,7 +423,9 @@
           <?php if ($order_vouchers) { ?>
             <?php foreach ($order_vouchers as $order_voucher) { ?>
               <tr id="voucher-row<?php echo $voucher_row; ?>">
-                <td class="center" style="width: 3px;"><img src="view/image/delete.png" alt="" title="<?php echo $button_remove; ?>" alt="<?php echo $button_remove; ?>" style="cursor:pointer;" onclick="$('#voucher-row<?php echo $voucher_row; ?>').remove(); $('#button-update').trigger('click');" /></td>
+                <td class="center" style="width:3px;">
+                  <img src="view/image/delete.png" alt="" title="<?php echo $button_remove; ?>" alt="<?php echo $button_remove; ?>" style="cursor:pointer;" onclick="$('#voucher-row<?php echo $voucher_row; ?>').remove(); $('#button-update').trigger('click');" />
+                </td>
                 <td class="left"><?php echo $order_voucher['description']; ?>
                   <input type="hidden" name="order_voucher[<?php echo $voucher_row; ?>][order_voucher_id]" value="<?php echo $order_voucher['order_voucher_id']; ?>" />
                   <input type="hidden" name="order_voucher[<?php echo $voucher_row; ?>][voucher_id]" value="<?php echo $order_voucher['voucher_id']; ?>" />
@@ -510,33 +566,49 @@
         <tbody>
           <tr>
             <td class="left"><?php echo $entry_shipping; ?></td>
-            <td class="left"><select name="shipping">
-              <option value=""><?php echo $text_select; ?></option>
-              <?php if ($shipping_code) { ?>
-                <option value="<?php echo $shipping_code; ?>" selected="selected"><?php echo $shipping_method; ?></option>
-              <?php } ?>
+            <td class="left"><?php if ($error_shipping_method) { ?>
+              <select name="shipping" class="input-error">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php if ($shipping_code) { ?>
+                  <option value="<?php echo $shipping_code; ?>" selected="selected"><?php echo $shipping_method; ?></option>
+                <?php } ?>
               </select>
               <input type="hidden" name="shipping_method" value="<?php echo $shipping_method; ?>" />
               <input type="hidden" name="shipping_code" value="<?php echo $shipping_code; ?>" />
-              <?php if ($error_shipping_method) { ?>
-                <span class="error"><?php echo $error_shipping_method; ?></span>
-              <?php } ?>
-            </td>
+              <span class="error"><?php echo $error_shipping_method; ?></span>
+            <?php } else { ?>
+              <select name="shipping">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php if ($shipping_code) { ?>
+                  <option value="<?php echo $shipping_code; ?>" selected="selected"><?php echo $shipping_method; ?></option>
+                <?php } ?>
+              </select>
+              <input type="hidden" name="shipping_method" value="<?php echo $shipping_method; ?>" />
+              <input type="hidden" name="shipping_code" value="<?php echo $shipping_code; ?>" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_payment; ?></td>
-            <td class="left"><select name="payment">
-              <option value=""><?php echo $text_select; ?></option>
-              <?php if ($payment_code) { ?>
-                <option value="<?php echo $payment_code; ?>" selected="selected"><?php echo $payment_method; ?></option>
-              <?php } ?>
+            <td class="left"><?php if ($error_payment_method) { ?>
+              <select name="payment" class="input-error">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php if ($payment_code) { ?>
+                  <option value="<?php echo $payment_code; ?>" selected="selected"><?php echo $payment_method; ?></option>
+                <?php } ?>
               </select>
               <input type="hidden" name="payment_method" value="<?php echo $payment_method; ?>" />
               <input type="hidden" name="payment_code" value="<?php echo $payment_code; ?>" />
-              <?php if ($error_payment_method) { ?>
-                <span class="error"><?php echo $error_payment_method; ?></span>
-              <?php } ?>
-            </td>
+              <span class="error"><?php echo $error_payment_method; ?></span>
+            <?php } else { ?>
+              <select name="payment">
+                <option value=""><?php echo $text_select; ?></option>
+                <?php if ($payment_code) { ?>
+                  <option value="<?php echo $payment_code; ?>" selected="selected"><?php echo $payment_method; ?></option>
+                <?php } ?>
+              </select>
+              <input type="hidden" name="payment_method" value="<?php echo $payment_method; ?>" />
+              <input type="hidden" name="payment_code" value="<?php echo $payment_code; ?>" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td class="left"><?php echo $entry_coupon; ?></td>
