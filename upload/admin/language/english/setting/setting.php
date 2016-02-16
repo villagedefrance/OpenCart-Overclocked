@@ -127,6 +127,7 @@ $_['entry_pagination_hi'] 				= 'Enable Top Pagination:<br /><span class="help">
 $_['entry_pagination_lo'] 				= 'Enable Bottom Pagination:<br /><span class="help">Show pagination links at the bottom of all lists.</span>';
 $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<br /><span class="help">Use standard html selectors in Category form.</span>';
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<br /><span class="help">Use standard html selectors in Product form.</span>';
+$_['entry_autocomplete_offer']		= 'Disable Offer Auto-complete:<br /><span class="help">Use standard html selectors in Offer form.</span>';
 $_['entry_lightbox']						= 'Product Image Viewer:<br /><span class="help">If "Zoom Lens" is selected, the Product Image size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']					= 'Hide Offer Labels:<br /><span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_share_addthis']				= 'Hide AddThis:<br /><span class="help">Hiding AddThis could help your product pages load faster.</span>';

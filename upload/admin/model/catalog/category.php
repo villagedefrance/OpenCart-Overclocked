@@ -284,6 +284,12 @@ class ModelCatalogCategory extends Model {
 		return $category_description_data;
 	}
 
+	public function getCategoryName($category_id) {
+		$query = $this->db->query("SELECT DISTINCT cd.name AS name FROM " . DB_PREFIX . "category_description cd LEFT JOIN " . DB_PREFIX . "category c ON (cd.category_id = c.category_id) WHERE c.category_id = '" . (int)$category_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY c.category_id");
+
+		return $query->row['name'];
+	}
+
 	public function getCategoryImage($category_id) {
 		$query = $this->db->query("SELECT image FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "'");
 

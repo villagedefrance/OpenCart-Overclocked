@@ -315,6 +315,8 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		$this->data['text_fixed'] = $this->language->get('text_fixed');
 		$this->data['text_percent'] = $this->language->get('text_percent');
 		$this->data['text_select'] = $this->language->get('text_select');
+		$this->data['text_none'] = $this->language->get('text_none');
+		$this->data['text_autocomplete'] = $this->language->get('text_autocomplete');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_type'] = $this->language->get('entry_type');
@@ -422,6 +424,9 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 
 		$this->data['cancel'] = $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		// Auto-complete
+		$this->data['autocomplete_off'] = $this->config->get('config_autocomplete_offer');
+
 		if (isset($this->request->get['offer_category_category_id']) && (!$this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$offer_category_category_info = $this->model_sale_offer_category_category->getOfferCategoryCategory($this->request->get['offer_category_category_id']);
 		}
@@ -462,20 +467,28 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 
 		$this->data['categories'] = $this->model_catalog_category->getCategories(0);
 
+		// Category One
 		if (isset($this->request->post['category_one'])) {
 			$this->data['category_one'] = $this->request->post['category_one'];
+			$this->data['category_one_name'] = $this->language->get('text_none');
 		} elseif (!empty($offer_category_category_info)) {
 			$this->data['category_one'] = $offer_category_category_info['category_one'];
+			$this->data['category_one_name'] = $this->model_catalog_category->getCategoryName($offer_category_category_info['category_one']);
 		} else {
-			$this->data['category_one'] = '';
+			$this->data['category_one'] = 0;
+			$this->data['category_one_name'] = '';
 		}
 
+		// Category Two
 		if (isset($this->request->post['category_two'])) {
 			$this->data['category_two'] = $this->request->post['category_two'];
+			$this->data['category_two_name'] = $this->language->get('text_none');
 		} elseif (!empty($offer_category_category_info)) {
 			$this->data['category_two'] = $offer_category_category_info['category_two'];
+			$this->data['category_two_name'] = $this->model_catalog_category->getCategoryName($offer_category_category_info['category_two']);
 		} else {
-			$this->data['category_two'] = '';
+			$this->data['category_two'] = 0;
+			$this->data['category_two_name'] = '';
 		}
 
 		if (isset($this->request->post['date_start'])) {
@@ -530,15 +543,15 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 
 		if (($this->request->post['type'] == 'F') && ($this->request->post['discount'] > $min_product_price)) {
 			$this->error['price'] = $this->language->get('error_price');
-			
+
 			$this->data['lowest_price'] = $min_product_price;
 		}
 
-		if (empty($this->request->post['category_one'])) {
+		if (empty($this->request->post['category_one']) || !is_numeric($this->request->post['category_one'])) {
 			$this->error['category_one'] = $this->language->get('error_category');
 		}
 
-		if (empty($this->request->post['category_two'])) {
+		if (empty($this->request->post['category_two']) || !is_numeric($this->request->post['category_two'])) {
 			$this->error['category_two'] = $this->language->get('error_category');
 		}
 
@@ -559,6 +572,40 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	public function autocompleteCat() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('catalog/category');
+
+			$data = array(
+				'filter_name'	=> $this->request->get['filter_name'],
+				'start'       		=> 0,
+				'limit'       		=> 20
+			);
+
+			$results = $this->model_catalog_category->getListCategories($data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'category_id' 	=> $result['category_id'],
+					'name'        	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
 ?>

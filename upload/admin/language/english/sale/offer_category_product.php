@@ -6,6 +6,7 @@ $_['heading_title']       			= 'Category to Product';
 $_['text_success']        		= 'Success: You have modified <b>Category to Product</b> !';
 $_['text_fixed']         			= 'Fixed Value';
 $_['text_percent']        		= 'Percentage';
+$_['text_autocomplete']     	= '<span class="help">(Autocomplete)</span>';
 
 // Column
 $_['column_name']         		= 'Offer Name';
@@ -19,11 +20,11 @@ $_['column_action']       		= 'Action';
 
 // Entry
 $_['entry_name']          		= 'Offer Name:';
-$_['entry_type']          			= 'Type:<br /><span class="help">Percentage or Fixed Amount</span>';
-$_['entry_discount']      		= 'Discount:<br /><span class="help">Special characters like %, £ or $ are not allowed.</span>';
-$_['entry_logged']        		= 'Customer Login:<br /><span class="help">Customer must be logged in to benefit from the offer.</span>';
-$_['entry_category_one']		= 'Category:<br /><span class="help">Select a reference category.</span>';
-$_['entry_product_two']		= 'Product:<br /><span class="help">Select the product the offer will apply to.</span>';
+$_['entry_type']          			= 'Type:<span class="help">Percentage or Fixed Amount</span>';
+$_['entry_discount']      		= 'Discount:<span class="help">Special characters like %, £ or $ are not allowed.</span>';
+$_['entry_logged']        		= 'Customer Login:<span class="help">Customer must be logged in to benefit from the offer.</span>';
+$_['entry_category_one']		= 'Category:<span class="help">Select a reference category.</span>';
+$_['entry_product_two']		= 'Product:<span class="help">Select the product the offer will apply to.</span>';
 $_['entry_date_start']    		= 'Date Start:';
 $_['entry_date_end']      		= 'Date End:';
 $_['entry_status']        		= 'Status:';

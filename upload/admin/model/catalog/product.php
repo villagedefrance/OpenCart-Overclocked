@@ -514,7 +514,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductName($product_id) {
-		$query = $this->db->query("SELECT DISTINCT name FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT DISTINCT pd.name AS name FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON (pd.product_id = p.product_id) WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY p.product_id");
 
 		return $query->row['name'];
 	}

@@ -1084,6 +1084,20 @@
               <label for="autocomplete-product-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_autocomplete_offer; ?></td>
+            <td><?php if ($config_autocomplete_offer) { ?>
+              <input type="radio" name="config_autocomplete_offer" value="1" id="autocomplete-offer-on" class="radio" checked />
+              <label for="autocomplete-offer-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_autocomplete_offer" value="0" id="autocomplete-offer-off" class="radio" />
+              <label for="autocomplete-offer-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_autocomplete_offer" value="1" id="autocomplete-offer-on" class="radio" />
+              <label for="autocomplete-offer-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_autocomplete_offer" value="0" id="autocomplete-offer-off" class="radio" checked />
+              <label for="autocomplete-offer-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
         </table>
         <h2><?php echo $text_product; ?></h2>
         <table class="form">

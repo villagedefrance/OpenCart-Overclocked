@@ -174,6 +174,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_pagination_lo'] = $this->language->get('entry_pagination_lo');
 		$this->data['entry_autocomplete_category'] = $this->language->get('entry_autocomplete_category');
 		$this->data['entry_autocomplete_product'] = $this->language->get('entry_autocomplete_product');
+		$this->data['entry_autocomplete_offer'] = $this->language->get('entry_autocomplete_offer');
 		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_share_addthis'] = $this->language->get('entry_share_addthis');
@@ -1053,6 +1054,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_autocomplete_product'] = $this->request->post['config_autocomplete_product'];
 		} else {
 			$this->data['config_autocomplete_product'] = $this->config->get('config_autocomplete_product');
+		}
+
+		if (isset($this->request->post['config_autocomplete_offer'])) {
+			$this->data['config_autocomplete_offer'] = $this->request->post['config_autocomplete_offer'];
+		} else {
+			$this->data['config_autocomplete_offer'] = $this->config->get('config_autocomplete_offer');
 		}
 
 		if (isset($this->request->post['config_lightbox'])) {

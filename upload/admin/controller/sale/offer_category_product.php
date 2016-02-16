@@ -315,6 +315,8 @@ class ControllerSaleOfferCategoryProduct extends Controller {
 		$this->data['text_fixed'] = $this->language->get('text_fixed');
 		$this->data['text_percent'] = $this->language->get('text_percent');
 		$this->data['text_select'] = $this->language->get('text_select');
+		$this->data['text_none'] = $this->language->get('text_none');
+		$this->data['text_autocomplete'] = $this->language->get('text_autocomplete');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_type'] = $this->language->get('entry_type');
@@ -422,6 +424,9 @@ class ControllerSaleOfferCategoryProduct extends Controller {
 
 		$this->data['cancel'] = $this->url->link('sale/offer_category_product', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		// Auto-complete
+		$this->data['autocomplete_off'] = $this->config->get('config_autocomplete_offer');
+
 		if (isset($this->request->get['offer_category_product_id']) && (!$this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$offer_category_product_info = $this->model_sale_offer_category_product->getOfferCategoryProduct($this->request->get['offer_category_product_id']);
 		}
@@ -462,24 +467,32 @@ class ControllerSaleOfferCategoryProduct extends Controller {
 
 		$this->data['categories'] = $this->model_catalog_category->getCategories(0);
 
+		// Category One
 		if (isset($this->request->post['category_one'])) {
 			$this->data['category_one'] = $this->request->post['category_one'];
+			$this->data['category_one_name'] = $this->language->get('text_none');
 		} elseif (!empty($offer_category_product_info)) {
 			$this->data['category_one'] = $offer_category_product_info['category_one'];
+			$this->data['category_one_name'] = $this->model_catalog_category->getCategoryName($offer_category_product_info['category_one']);
 		} else {
-			$this->data['category_one'] = '';
+			$this->data['category_one'] = 0;
+			$this->data['category_one_name'] = '';
 		}
 
 		$this->load->model('catalog/product');
 
-		$this->data['products'] = $this->model_catalog_product->getProducts();
+		$this->data['products'] = $this->model_catalog_product->getProducts(0);
 
+		// Product Two
 		if (isset($this->request->post['product_two'])) {
 			$this->data['product_two'] = $this->request->post['product_two'];
+			$this->data['product_two_name'] = $this->language->get('text_none');
 		} elseif (!empty($offer_category_product_info)) {
 			$this->data['product_two'] = $offer_category_product_info['product_two'];
+			$this->data['product_two_name'] = $this->model_catalog_product->getProductName($offer_category_product_info['product_two']);
 		} else {
-			$this->data['product_two'] = '';
+			$this->data['product_two'] = 0;
+			$this->data['product_two_name'] = '';
 		}
 
 		if (isset($this->request->post['date_start'])) {
@@ -538,11 +551,11 @@ class ControllerSaleOfferCategoryProduct extends Controller {
 			$this->data['gross_price'] = $product_price;
 		}
 
-		if (empty($this->request->post['category_one'])) {
+		if (empty($this->request->post['category_one']) || !is_numeric($this->request->post['category_one'])) {
 			$this->error['category'] = $this->language->get('error_category');
 		}
 
-		if (empty($this->request->post['product_two'])) {
+		if (empty($this->request->post['product_two']) || !is_numeric($this->request->post['product_two'])) {
 			$this->error['product'] = $this->language->get('error_product');
 		}
 
@@ -563,6 +576,74 @@ class ControllerSaleOfferCategoryProduct extends Controller {
 		} else {
 			return false;
 		}
+	}
+
+	public function autocompleteCat() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('catalog/category');
+
+			$data = array(
+				'filter_name'	=> $this->request->get['filter_name'],
+				'start'       		=> 0,
+				'limit'       		=> 20
+			);
+
+			$results = $this->model_catalog_category->getListCategories($data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'category_id' 	=> $result['category_id'],
+					'name'        	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+
+	public function autocompletePro() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('catalog/product');
+
+			$data = array(
+				'filter_name'	=> $this->request->get['filter_name'],
+				'start'       		=> 0,
+				'limit'       		=> 20
+			);
+
+			$results = $this->model_catalog_product->getProducts($data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'product_id'	=> $result['product_id'],
+					'name'		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
 ?>

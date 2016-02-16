@@ -318,7 +318,7 @@
         <?php } else { ?>
           <tr>
             <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
+            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer; ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
           </tr>
         <?php } ?>
           <tr>

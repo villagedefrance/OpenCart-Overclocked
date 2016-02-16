@@ -23,10 +23,10 @@
           <tr>
             <td><span class="required">*</span> <?php echo $entry_name; ?></td>
             <td><?php if ($error_name) { ?>
-              <input name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
+              <input type="text" name="name" value="<?php echo $name; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_name; ?></span>
             <?php } else { ?>
-              <input name="name" value="<?php echo $name; ?>" size="30" />
+              <input type="text" name="name" value="<?php echo $name; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -69,6 +69,7 @@
               <label for="logged-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+       <?php if ($autocomplete_off) { ?>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_product_one; ?></td>
             <td><?php if ($error_product_one) { ?>
@@ -96,6 +97,20 @@
               </select>
             <?php } ?></td>
           </tr>
+        <?php } else { ?>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_product_one; ?><?php echo $text_autocomplete; ?></td>
+            <td><?php if ($error_product_one) { ?>
+              <input type="text" name="product_one_name" value="<?php echo $product_one_name; ?>" size="30" class="input-error" />
+              <input type="hidden" name="product_one" value="<?php echo $product_one; ?>" />
+              <span class="error"><?php echo $error_product_one; ?></span>
+            <?php } else { ?>
+              <input type="text" name="product_one_name" value="<?php echo $product_one_name; ?>" size="30" />
+              <input type="hidden" name="product_one" value="<?php echo $product_one; ?>" />
+            <?php } ?></td>
+          </tr>
+        <?php } ?>
+       <?php if ($autocomplete_off) { ?>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_product_two; ?></td>
             <td><?php if ($error_product_two) { ?>
@@ -123,6 +138,19 @@
               </select>
             <?php } ?></td>
           </tr>
+        <?php } else { ?>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_product_two; ?><?php echo $text_autocomplete; ?></td>
+            <td><?php if ($error_product_two) { ?>
+              <input type="text" name="product_two_name" value="<?php echo $product_two_name; ?>" size="30" class="input-error" />
+              <input type="hidden" name="product_two" value="<?php echo $product_two; ?>" />
+              <span class="error"><?php echo $error_product_two; ?></span>
+            <?php } else { ?>
+              <input type="text" name="product_two_name" value="<?php echo $product_two_name; ?>" size="30" />
+              <input type="hidden" name="product_two" value="<?php echo $product_two; ?>" />
+            <?php } ?></td>
+          </tr>
+        <?php } ?>
           <tr>
             <td><?php echo $entry_date_start; ?></td>
             <td><input type="text" name="date_start" value="<?php echo $date_start; ?>" id="date-start" size="12" />
@@ -150,6 +178,72 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('input[name=\'product_one_name\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=sale/offer_product_product/autocompletePro&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				json.unshift({
+					'product_id': 0,
+					'name': '<?php echo $text_none; ?>'
+				});
+
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.product_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'product_one_name\']').attr('value', ui.item.label);
+		$('input[name=\'product_one\']').attr('value', ui.item.value);
+
+		return false;
+	},
+	focus: function(event, ui) {
+		return false;
+	}
+});
+
+$('input[name=\'product_two_name\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=sale/offer_product_product/autocompletePro&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				json.unshift({
+					'product_id': 0,
+					'name': '<?php echo $text_none; ?>'
+				});
+
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.product_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'product_two_name\']').attr('value', ui.item.label);
+		$('input[name=\'product_two\']').attr('value', ui.item.value);
+
+		return false;
+	},
+	focus: function(event, ui) {
+		return false;
+	}
+});
+//--></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {

@@ -146,8 +146,8 @@ $('input[name=\'product\']').autocomplete({
 		});
 	},
 	select: function(event, ui) {
-		$('input[name=\'product\']').val(ui.item.label);
-		$('input[name=\'product_id\']').val(ui.item.value);
+		$('input[name=\'product\']').attr('value', ui.item.label);
+		$('input[name=\'product_id\']').attr('value', ui.item.value);
 
 		return false;
 	},
