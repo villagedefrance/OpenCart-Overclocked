@@ -196,7 +196,6 @@ class ControllerToolSeoUrlManager extends Controller {
 		);
 
 		$keyword_total = $this->model_tool_seo_url_manager->getTotalUniqueKeywords();
-
 		$url_total = $this->model_tool_seo_url_manager->getTotalUrls();
 
 		$this->data['keyword_total'] = $keyword_total;
@@ -212,9 +211,30 @@ class ControllerToolSeoUrlManager extends Controller {
 				'href'	=> $this->url->link('tool/seo_url_manager/update', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $result['url_alias_id'] . $url, 'SSL')
 			);
 
+			$query_link = false;
+
+			if ($result['query']) {
+				$check_query = strstr($result['query'], '_', true);
+
+				if ($check_query == 'category') {
+					$query_link = $this->url->link('catalog/category/update', 'token=' . $this->session->data['token'] . '&' . $result['query'], 'SSL');
+				} elseif ($check_query == 'product') {
+					$query_link = $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&' . $result['query'], 'SSL');
+				} elseif ($check_query == 'manufacturer') {
+					$query_link = $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&' . $result['query'], 'SSL');
+				} elseif ($check_query == 'information') {
+					$query_link = $this->url->link('catalog/information/update', 'token=' . $this->session->data['token'] . '&' . $result['query'], 'SSL');
+				} elseif ($check_query == 'news') {
+					$query_link = $this->url->link('catalog/news/update', 'token=' . $this->session->data['token'] . '&' . $result['query'], 'SSL');
+				} else {
+					$query_link = false;
+				}
+			}
+
 			$this->data['seo_urls'][] = array(
 				'url_alias_id'	=> $result['url_alias_id'],
 				'query'			=> $result['query'],
+				'query_link'		=> $query_link,
 				'keyword'		=> $result['keyword'],
 				'selected'   		=> isset($this->request->post['selected']) && in_array($result['url_alias_id'], $this->request->post['selected']),
 				'action'     		=> $action

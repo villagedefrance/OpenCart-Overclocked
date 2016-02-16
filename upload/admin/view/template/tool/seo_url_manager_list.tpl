@@ -73,7 +73,11 @@
                   <label for="<?php echo $seo_url['url_alias_id']; ?>"><span></span></label>
                 <?php } ?></td>
                 <td class="left"><?php echo $seo_url['url_alias_id']; ?></td>
-                <td class="left"><?php echo $seo_url['query']; ?></td>
+                <?php if ($seo_url['query_link']) { ?>
+                  <td class="left"><a href="<?php echo $seo_url['query_link']; ?>"><?php echo $seo_url['query']; ?></a></td>
+                <?php } else { ?>
+                  <td class="left"><?php echo $seo_url['query']; ?></td>
+                <?php } ?>
                 <td class="left"><?php echo $seo_url['keyword']; ?></td>
                 <td class="right"><?php foreach ($seo_url['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
