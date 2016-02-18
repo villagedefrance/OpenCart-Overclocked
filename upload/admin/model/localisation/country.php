@@ -101,9 +101,9 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountryName($country_id) {
-		$query = $this->db->query("SELECT DISTINCT name FROM " . DB_PREFIX . "country_description WHERE country_id = '" . (int)$country_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT cd.name AS name FROM " . DB_PREFIX . "country_description cd LEFT JOIN " . DB_PREFIX . "country c ON (cd.country_id = c.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY c.country_id");
 
-		return $query->row;
+		return $query->row['name'];
 	}
 
 	public function enableCountry($country_id) {
@@ -120,6 +120,7 @@ class ModelLocalisationCountry extends Model {
 
 	public function getTotalCountries($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT c.country_id) AS total FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id)";
+
 		$sql .= " WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {

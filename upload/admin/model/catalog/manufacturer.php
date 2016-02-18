@@ -159,9 +159,9 @@ class ModelCatalogManufacturer extends Model {
 	}
 
 	public function getManufacturerName($manufacturer_id) {
-		$query = $this->db->query("SELECT DISTINCT name FROM " . DB_PREFIX . "manufacturer_description WHERE manufacturer_id = '" . (int)$manufacturer_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT md.name AS name FROM " . DB_PREFIX . "manufacturer_description md LEFT JOIN " . DB_PREFIX . "manufacturer m ON (md.manufacturer_id = m.manufacturer_id) WHERE m.manufacturer_id = '" . (int)$manufacturer_id . "' AND md.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY m.manufacturer_id");
 
-		return $query->row;
+		return $query->row['name'];
 	}
 
 	public function getTotalManufacturersByImageId($image_id) {
