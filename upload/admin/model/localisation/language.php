@@ -319,6 +319,9 @@ class ModelLocalisationLanguage extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "order_status WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('order_status');
 
+		$this->db->query("DELETE FROM " . DB_PREFIX . "palette_color_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('palette');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_tag WHERE language_id = '" . (int)$language_id . "'");
