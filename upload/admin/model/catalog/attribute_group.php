@@ -12,6 +12,8 @@ class ModelCatalogAttributeGroup extends Model {
 		foreach ($data['attribute_group_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_group_description SET attribute_group_id = '" . (int)$attribute_group_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('attribute.group');
 	}
 
 	public function editAttributeGroup($attribute_group_id, $data) {
@@ -22,11 +24,15 @@ class ModelCatalogAttributeGroup extends Model {
 		foreach ($data['attribute_group_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_group_description SET attribute_group_id = '" . (int)$attribute_group_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('attribute.group');
 	}
 
 	public function deleteAttributeGroup($attribute_group_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+
+		$this->cache->delete('attribute.group');
 	}
 
 	public function getAttributeGroup($attribute_group_id) {
@@ -73,12 +79,18 @@ class ModelCatalogAttributeGroup extends Model {
 	}
 
 	public function getAttributeGroupDescriptions($attribute_group_id) {
-		$attribute_group_data = array();
+		$attribute_group_data = $this->cache->get('attribute.group.' . (int)$this->config->get('config_language_id'));
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+		if (!$attribute_group_data) {
+			$attribute_group_data = array();
 
-		foreach ($query->rows as $result) {
-			$attribute_group_data[$result['language_id']] = array('name' => $result['name']);
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+
+			foreach ($query->rows as $result) {
+				$attribute_group_data[$result['language_id']] = array('name' => $result['name']);
+			}
+
+			$this->cache->set('attribute.group.' . (int)$this->config->get('config_language_id'), $attribute_group_data);
 		}
 
 		return $attribute_group_data;

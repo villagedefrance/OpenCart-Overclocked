@@ -8,14 +8,14 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountries() {
-		$country_data = $this->cache->get('country.' . (int)$this->config->get('config_language_id'));
+		$country_data = $this->cache->get('countries.' . (int)$this->config->get('config_language_id'));
 
 		if (!$country_data) {
 			$query = $this->db->query("SELECT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY cd.name ASC");
 
 			$country_data = $query->rows;
 
-			$this->cache->set('country.' . (int)$this->config->get('config_language_id'), $country_data);
+			$this->cache->set('countries.' . (int)$this->config->get('config_language_id'), $country_data);
 		}
 
 		return $country_data;

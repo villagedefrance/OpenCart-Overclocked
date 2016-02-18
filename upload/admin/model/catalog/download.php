@@ -12,6 +12,8 @@ class ModelCatalogDownload extends Model {
 		foreach ($data['download_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "download_description SET download_id = '" . (int)$download_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('download');
 	}
 
 	public function editDownload($download_id, $data) {
@@ -30,11 +32,15 @@ class ModelCatalogDownload extends Model {
 		foreach ($data['download_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "download_description SET download_id = '" . (int)$download_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('download');
 	}
 
 	public function deleteDownload($download_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "download WHERE download_id = '" . (int)$download_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "download_description WHERE download_id = '" . (int)$download_id . "'");
+
+		$this->cache->delete('download');
 	}
 
 	public function getDownload($download_id) {
@@ -85,12 +91,18 @@ class ModelCatalogDownload extends Model {
 	}
 
 	public function getDownloadDescriptions($download_id) {
-		$download_description_data = array();
+		$download_description_data = $this->cache->get('download.' . (int)$this->config->get('config_language_id'));
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "download_description WHERE download_id = '" . (int)$download_id . "'");
+		if (!$download_description_data) {
+			$download_description_data = array();
 
-		foreach ($query->rows as $result) {
-			$download_description_data[$result['language_id']] = array('name' => $result['name']);
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "download_description WHERE download_id = '" . (int)$download_id . "'");
+
+			foreach ($query->rows as $result) {
+				$download_description_data[$result['language_id']] = array('name' => $result['name']);
+			}
+
+			$this->cache->set('download.' . (int)$this->config->get('config_language_id'), $download_description_data);
 		}
 
 		return $download_description_data;

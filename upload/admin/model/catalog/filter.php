@@ -24,6 +24,8 @@ class ModelCatalogFilter extends Model {
 				}
 			}
 		}
+
+		$this->cache->delete('filter');
 	}
 
 	public function editFilter($filter_group_id, $data) {
@@ -53,6 +55,8 @@ class ModelCatalogFilter extends Model {
 				}
 			}
 		}
+
+		$this->cache->delete('filter');
 	}
 
 	public function deleteFilter($filter_group_id) {
@@ -60,6 +64,8 @@ class ModelCatalogFilter extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id = '" . (int)$filter_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter WHERE filter_group_id = '" . (int)$filter_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_description WHERE filter_group_id = '" . (int)$filter_group_id . "'");
+
+		$this->cache->delete('filter');
 	}
 
 	public function getFilterGroup($filter_group_id) {
@@ -170,24 +176,30 @@ class ModelCatalogFilter extends Model {
 	}
 
 	public function getFilterDescriptions($filter_group_id) {
-		$filter_data = array();
+		$filter_data = $this->cache->get('filter.' . (int)$this->config->get('config_language_id'));
 
-		$filter_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter WHERE filter_group_id = '" . (int)$filter_group_id . "'");
+		if (!$filter_data) {
+			$filter_data = array();
 
-		foreach ($filter_query->rows as $filter) {
-			$filter_description_data = array();
+			$filter_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter WHERE filter_group_id = '" . (int)$filter_group_id . "'");
 
-			$filter_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE filter_id = '" . (int)$filter['filter_id'] . "'");
+			foreach ($filter_query->rows as $filter) {
+				$filter_description_data = array();
 
-			foreach ($filter_description_query->rows as $filter_description) {
-				$filter_description_data[$filter_description['language_id']] = array('name' => $filter_description['name']);
+				$filter_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE filter_id = '" . (int)$filter['filter_id'] . "'");
+
+				foreach ($filter_description_query->rows as $filter_description) {
+					$filter_description_data[$filter_description['language_id']] = array('name' => $filter_description['name']);
+				}
+
+				$filter_data[] = array(
+					'filter_id'          	=> $filter['filter_id'],
+					'filter_description'	=> $filter_description_data,
+					'sort_order'   		=> $filter['sort_order']
+				);
 			}
 
-			$filter_data[] = array(
-				'filter_id'          	=> $filter['filter_id'],
-				'filter_description'	=> $filter_description_data,
-				'sort_order'   		=> $filter['sort_order']
-			);
+			$this->cache->set('filter.' . (int)$this->config->get('config_language_id'), $filter_data);
 		}
 
 		return $filter_data;

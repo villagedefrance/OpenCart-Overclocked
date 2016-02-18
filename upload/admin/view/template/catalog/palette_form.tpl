@@ -44,15 +44,20 @@
       <tbody id="color-row<?php echo $color_row; ?>">
         <tr>
           <td class="left"><?php foreach ($languages as $language) { ?>
-            <input type="text" name="palette_color[<?php echo $color_row; ?>][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($palette_color['palette_color_description'][$language['language_id']]) ? $palette_color['palette_color_description'][$language['language_id']]['title'] : ''; ?>" />
-            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php if (isset($error_title[$color_row][$language['language_id']])) { ?>
+              <input type="text" name="palette_color[<?php echo $color_row; ?>][color_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($palette_color['color_description'][$language['language_id']]) ? $palette_color['color_description'][$language['language_id']]['title'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
               <span class="error"><?php echo $error_title[$color_row][$language['language_id']]; ?></span>
+            <?php } else { ?>
+              <input type="text" name="palette_color[<?php echo $color_row; ?>][color_description][<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($palette_color['color_description'][$language['language_id']]) ? $palette_color['color_description'][$language['language_id']]['title'] : ''; ?>" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php } ?>
           <?php } ?></td>
-          <td class="left">#<input type="text" name="palette_color[<?php echo $color_row; ?>][color]" value="<?php echo $palette_color['color']; ?>" size="7" maxlength="6" /><span class="color" style="background-color:#<?php echo $palette_color['color']; ?>;"></span>
-          <?php if (isset($error_color[$color_row])) { ?>
+          <td class="left"><?php if (isset($error_color[$color_row])) { ?>
+            #<input type="text" name="palette_color[<?php echo $color_row; ?>][color]" value="<?php echo $palette_color['color']; ?>" size="7" maxlength="6" class="input-error" /><span class="color" style="background-color:#<?php echo $palette_color['color']; ?>;"></span>
             <span class="error"><?php echo $error_color[$color_row]; ?></span>
+          <?php } else { ?>
+            #<input type="text" name="palette_color[<?php echo $color_row; ?>][color]" value="<?php echo $palette_color['color']; ?>" size="7" maxlength="6" /><span class="color" style="background-color:#<?php echo $palette_color['color']; ?>;"></span>
           <?php } ?></td>
           <td class="center"><a onclick="$('#color-row<?php echo $color_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
         </tr>
@@ -75,11 +80,12 @@
 var color_row = <?php echo $color_row; ?>;
 
 function addColor() {
-	html  = '<tbody id="color-row' + color_row + '">';
+	html = '<tbody id="color-row' + color_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '      <input type="text" name="palette_color[' + color_row + '][palette_color_description][<?php echo $language['language_id']; ?>][title]" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
+	html += '      <input type="text" name="palette_color[' + color_row + '][color_description][<?php echo $language['language_id']; ?>][title]" value="" />';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />';
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="left">';

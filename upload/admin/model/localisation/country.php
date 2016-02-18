@@ -14,6 +14,7 @@ class ModelLocalisationCountry extends Model {
 		}
 
 		$this->cache->delete('country');
+		$this->cache->delete('countries');
 	}
 
 	public function editCountry($country_id, $data) {
@@ -26,6 +27,7 @@ class ModelLocalisationCountry extends Model {
 		}
 
 		$this->cache->delete('country');
+		$this->cache->delete('countries');
 	}
 
 	public function deleteCountry($country_id) {
@@ -33,6 +35,7 @@ class ModelLocalisationCountry extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "country_description WHERE country_id = '" . (int)$country_id . "'");
 
 		$this->cache->delete('country');
+		$this->cache->delete('countries');
 	}
 
 	public function getCountry($country_id) {
@@ -87,14 +90,20 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountryDescriptions($country_id) {
-		$country_data = array();
+		$country_data = $this->cache->get('country.' . (int)$this->config->get('config_language_id'));
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country_description WHERE country_id = '" . (int)$country_id . "'");
+		if (!$country_data) {
+			$country_data = array();
 
-		foreach ($query->rows as $result) {
-			$country_data[$result['language_id']] = array(
-				'name'	=> $result['name']
-			);
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country_description WHERE country_id = '" . (int)$country_id . "'");
+
+			foreach ($query->rows as $result) {
+				$country_data[$result['language_id']] = array(
+					'name'	=> $result['name']
+				);
+			}
+
+			$this->cache->set('country.' . (int)$this->config->get('config_language_id'), $country_data);
 		}
 
 		return $country_data;

@@ -20,6 +20,8 @@ class ModelDesignBanner extends Model {
 				}
 			}
 		}
+
+		$this->cache->delete('banner.image');
 	}
 
 	public function editBanner($banner_id, $data) {
@@ -39,12 +41,16 @@ class ModelDesignBanner extends Model {
 				}
 			}
 		}
+
+		$this->cache->delete('banner.image');
 	}
 
 	public function deleteBanner($banner_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "banner WHERE banner_id = '" . (int)$banner_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "banner_image WHERE banner_id = '" . (int)$banner_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "banner_image_description WHERE banner_id = '" . (int)$banner_id . "'");
+
+		$this->cache->delete('banner.image');
 	}
 
 	public function getBanner($banner_id) {
@@ -91,25 +97,31 @@ class ModelDesignBanner extends Model {
 	}
 
 	public function getBannerImages($banner_id) {
-		$banner_image_data = array();
+		$banner_image_data = $this->cache->get('banner.image.' . (int)$this->config->get('config_language_id'));
 
-		$banner_image_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "banner_image WHERE banner_id = '" . (int)$banner_id . "' ORDER BY banner_id ASC");
+		if (!$banner_image_data) {
+			$banner_image_data = array();
 
-		foreach ($banner_image_query->rows as $banner_image) {
-			$banner_image_description_data = array();
+			$banner_image_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "banner_image WHERE banner_id = '" . (int)$banner_id . "' ORDER BY banner_id ASC");
 
-			$banner_image_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "banner_image_description WHERE banner_image_id = '" . (int)$banner_image['banner_image_id'] . "' AND banner_id = '" . (int)$banner_id . "'");
+			foreach ($banner_image_query->rows as $banner_image) {
+				$banner_image_description_data = array();
 
-			foreach ($banner_image_description_query->rows as $banner_image_description) {
-				$banner_image_description_data[$banner_image_description['language_id']] = array('title' => $banner_image_description['title']);
+				$banner_image_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "banner_image_description WHERE banner_image_id = '" . (int)$banner_image['banner_image_id'] . "' AND banner_id = '" . (int)$banner_id . "'");
+
+				foreach ($banner_image_description_query->rows as $banner_image_description) {
+					$banner_image_description_data[$banner_image_description['language_id']] = array('title' => $banner_image_description['title']);
+				}
+
+				$banner_image_data[] = array(
+					'banner_image_description' => $banner_image_description_data,
+					'link'                	=> $banner_image['link'],
+					'external_link'		=> $banner_image['external_link'],
+					'image'           	=> $banner_image['image']
+				);
 			}
 
-			$banner_image_data[] = array(
-				'banner_image_description' => $banner_image_description_data,
-				'link'                	=> $banner_image['link'],
-				'external_link'		=> $banner_image['external_link'],
-				'image'           	=> $banner_image['image']
-			);
+			$this->cache->set('banner.image.' . (int)$this->config->get('config_language_id'), $banner_image_data);
 		}
 
 		return $banner_image_data;

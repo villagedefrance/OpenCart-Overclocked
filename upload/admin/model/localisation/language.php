@@ -18,6 +18,8 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_description SET attribute_id = '" . (int)$attribute['attribute_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($attribute['name']) . "'");
 		}
 
+		$this->cache->delete('attribute');
+
 		// Attribute Group
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_group_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -25,7 +27,7 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_group_description SET attribute_group_id = '" . (int)$attribute_group['attribute_group_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($attribute_group['name']) . "'");
 		}
 
-		$this->cache->delete('attribute');
+		$this->cache->delete('attribute.group');
 
 		// Banner
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "banner_image_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
@@ -34,7 +36,7 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "banner_image_description SET banner_image_id = '" . (int)$banner_image['banner_image_id'] . "', banner_id = '" . (int)$banner_image['banner_id'] . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($banner_image['title']) . "'");
 		}
 
-		$this->cache->delete('banner');
+		$this->cache->delete('banner.image');
 
 		// Category
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
@@ -68,6 +70,8 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "download_description SET download_id = '" . (int)$download['download_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($download['name']) . "'");
 		}
 
+		$this->cache->delete('download');
+
 		// EU Countries
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "eucountry_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -83,6 +87,8 @@ class ModelLocalisationLanguage extends Model {
 		foreach ($query->rows as $filter) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "filter_description SET filter_id = '" . (int)$filter['filter_id'] . "', language_id = '" . (int)$language_id . "', filter_group_id = '" . (int)$filter['filter_group_id'] . "', name = '" . $this->db->escape($filter['name']) . "'");
 		}
+
+		$this->cache->delete('filter');
 
 		// Filter Group
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
@@ -106,6 +112,8 @@ class ModelLocalisationLanguage extends Model {
 		foreach ($query->rows as $footer_route) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "footer_route_description SET footer_route_id = '" . (int)$footer_route['footer_route_id'] . "', language_id = '" . (int)$language_id . "', footer_id = '" . (int)$footer_route['footer_id'] . "', title = '" . $this->db->escape($footer_route['title']) . "'");
 		}
+
+		$this->cache->delete('footer.route');
 
 		// Information
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
@@ -214,6 +222,8 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "profile_description SET profile_id = '" . (int)$profile['profile_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($profile['name']) . "'");
 		}
 
+		$this->cache->delete('profile');
+
 		// Return Action
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "return_action WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -267,6 +277,18 @@ class ModelLocalisationLanguage extends Model {
 		}
 
 		$this->cache->delete('weight_class');
+
+		// Other Cache Files
+		$this->cache->delete('categories');
+		$this->cache->delete('menu_items.total');
+		$this->cache->delete('menu_items.parents.total');
+		$this->cache->delete('product.bestseller');
+		$this->cache->delete('product.latest');
+		$this->cache->delete('product.popular');
+		$this->cache->delete('footer.total');
+		$this->cache->delete('seo_url_map');
+		$this->cache->delete('countries');
+		$this->cache->delete('store');
 	}
 
 	public function editLanguage($language_id, $data) { 
@@ -280,8 +302,14 @@ class ModelLocalisationLanguage extends Model {
 		$this->cache->delete('language');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('attribute');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('attribute.group');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "banner_image_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('banner.image');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('category');
 
@@ -290,14 +318,20 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "download_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('download');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "eucountry_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('eucountry');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('filter');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_group_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_description WHERE language_id = '" . (int)$language_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_route_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('footer');
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "footer_route_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('footer.route');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('information');
@@ -328,6 +362,8 @@ class ModelLocalisationLanguage extends Model {
 		$this->cache->delete('product');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "profile_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('profile');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "return_action WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('return_action');
 
@@ -345,6 +381,18 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('weight_class');
+
+		// Other Cache Files
+		$this->cache->delete('categories');
+		$this->cache->delete('menu_items.total');
+		$this->cache->delete('menu_items.parents.total');
+		$this->cache->delete('product.bestseller');
+		$this->cache->delete('product.latest');
+		$this->cache->delete('product.popular');
+		$this->cache->delete('footer.total');
+		$this->cache->delete('seo_url_map');
+		$this->cache->delete('countries');
+		$this->cache->delete('store');
 	}
 
 	public function getLanguage($language_id) {
@@ -399,7 +447,7 @@ class ModelLocalisationLanguage extends Model {
 			if (!$language_data) {
 				$language_data = array();
 
-				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` ORDER BY sort_order, name");
+				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` ORDER BY sort_order, name ASC");
 
 				foreach ($query->rows as $result) {
 					$language_data[$result['code']] = array(

@@ -52,10 +52,13 @@
           <tr>
             <td class="left"><input type="hidden" name="filter[<?php echo $filter_row; ?>][filter_id]" value="<?php echo $filter['filter_id']; ?>" />
             <?php foreach ($languages as $language) { ?>
-              <input type="text" name="filter[<?php echo $filter_row; ?>][filter_description][<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($filter['filter_description'][$language['language_id']]) ? $filter['filter_description'][$language['language_id']]['name'] : ''; ?>" />
-              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
               <?php if (isset($error_filter[$filter_row][$language['language_id']])) { ?>
+                <input type="text" name="filter[<?php echo $filter_row; ?>][filter_description][<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($filter['filter_description'][$language['language_id']]) ? $filter['filter_description'][$language['language_id']]['name'] : ''; ?>" class="input-error" />
+                <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
                 <span class="error"><?php echo $error_filter[$filter_row][$language['language_id']]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="filter[<?php echo $filter_row; ?>][filter_description][<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($filter['filter_description'][$language['language_id']]) ? $filter['filter_description'][$language['language_id']]['name'] : ''; ?>" />
+                <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
               <?php } ?>
             <?php } ?></td>
             <td class="center"><input type="text" name="filter[<?php echo $filter_row; ?>][sort_order]" value="<?php echo $filter['sort_order']; ?>" size="1" /></td>
@@ -80,7 +83,7 @@
 var filter_row = <?php echo $filter_row; ?>;
 
 function addFilter() {
-	html  = '<tbody id="filter-row' + filter_row + '">';
+	html = '<tbody id="filter-row' + filter_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left"><input type="hidden" name="filter[' + filter_row + '][filter_id]" value="" />';
 	<?php foreach ($languages as $language) { ?>

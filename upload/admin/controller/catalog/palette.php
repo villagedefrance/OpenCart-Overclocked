@@ -413,19 +413,12 @@ class ControllerCatalogPalette extends Controller {
 			$this->data['name'] = '';
 		}
 
-		$this->data['palette_colors'] = array();
-
-		if (isset($this->request->post['palette_color_description'])) {
-			$this->data['palette_colors'] = $this->request->post['palette_color_description'];
+		if (isset($this->request->post['palette_color'])) {
+			$this->data['palette_colors'] = $this->request->post['palette_color'];
+		} elseif (isset($this->request->get['palette_id'])) {
+			$this->data['palette_colors'] = $this->model_catalog_palette->getPaletteDescriptions($this->request->get['palette_id']);
 		} else {
-			$palette_colors = $this->model_catalog_palette->getPaletteDescriptions($this->request->get['palette_id']);
-
-			foreach ($palette_colors as $palette_color) {
-				$this->data['palette_colors'][] = array(
-					'palette_color_description'	=> $palette_color['palette_color_description'],
-					'color'							=> $palette_color['color']
-				);
-			}
+			$this->data['palette_colors'] = array();
 		}
 
 		$this->template = 'catalog/palette_form.tpl';
@@ -448,8 +441,8 @@ class ControllerCatalogPalette extends Controller {
 
 		if (isset($this->request->post['palette_color'])) {
 			foreach ($this->request->post['palette_color'] as $palette_color_id => $palette_color) {
-				foreach ($palette_color['palette_color_description'] as $language_id => $palette_color_description) {
-					if ((utf8_strlen($palette_color_description['title']) < 3) || (utf8_strlen($palette_color_description['title']) > 64)) {
+				foreach ($palette_color['color_description'] as $language_id => $color_description) {
+					if ((utf8_strlen($color_description['title']) < 3) || (utf8_strlen($color_description['title']) > 64)) {
 						$this->error['title'][$palette_color_id][$language_id] = $this->language->get('error_title');
 					}
 				}

@@ -12,6 +12,8 @@ class ModelCatalogAttribute extends Model {
 		foreach ($data['attribute_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_description SET attribute_id = '" . (int)$attribute_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('attribute');
 	}
 
 	public function editAttribute($attribute_id, $data) {
@@ -22,11 +24,15 @@ class ModelCatalogAttribute extends Model {
 		foreach ($data['attribute_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_description SET attribute_id = '" . (int)$attribute_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('attribute');
 	}
 
 	public function deleteAttribute($attribute_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute WHERE attribute_id = '" . (int)$attribute_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_description WHERE attribute_id = '" . (int)$attribute_id . "'");
+
+		$this->cache->delete('attribute');
 	}
 
 	public function getAttribute($attribute_id) {
@@ -82,12 +88,18 @@ class ModelCatalogAttribute extends Model {
 	}
 
 	public function getAttributeDescriptions($attribute_id) {
-		$attribute_data = array();
+		$attribute_data = $this->cache->get('attribute.' . (int)$this->config->get('config_language_id'));
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description WHERE attribute_id = '" . (int)$attribute_id . "'");
+		if (!$attribute_data) {
+			$attribute_data = array();
 
-		foreach ($query->rows as $result) {
-			$attribute_data[$result['language_id']] = array('name' => $result['name']);
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description WHERE attribute_id = '" . (int)$attribute_id . "'");
+
+			foreach ($query->rows as $result) {
+				$attribute_data[$result['language_id']] = array('name' => $result['name']);
+			}
+
+			$this->cache->set('attribute.' . (int)$this->config->get('config_language_id'), $attribute_data);
 		}
 
 		return $attribute_data;

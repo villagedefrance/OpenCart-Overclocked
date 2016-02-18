@@ -13,6 +13,8 @@ class ModelCatalogProfile extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "profile_description SET profile_id = '" . (int)$profile_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
 
+		$this->cache->delete('profile');
+
 		return $profile_id;
 	}
 
@@ -24,6 +26,8 @@ class ModelCatalogProfile extends Model {
 		foreach ($data['profile_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "profile_description SET profile_id = '" . (int)$profile_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
 		}
+
+		$this->cache->delete('profile');
 	}
 
 	public function deleteProfile($profile_id) {
@@ -32,6 +36,8 @@ class ModelCatalogProfile extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_profile WHERE profile_id = '" . (int)$profile_id . "'");
 
 		$this->db->query("UPDATE " . DB_PREFIX . "order_recurring SET profile_id = '0' WHERE profile_id = '" . (int)$profile_id . "'");
+
+		$this->cache->delete('profile');
 	}
 
 	public function getFrequencies() {
@@ -90,17 +96,23 @@ class ModelCatalogProfile extends Model {
 	}
 
 	public function getProfileDescription($profile_id) {
-		$profile_descriptions = array();
+		$profile_description_data = $this->cache->get('profile.' . (int)$this->config->get('config_language_id'));
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "profile_description WHERE profile_id = '" . (int)$profile_id . "'");
+		if (!$profile_description_data) {
+			$profile_description_data = array();
 
-		foreach ($query->rows as $result) {
-			$profile_descriptions[$result['language_id']] = array(
-				'name' => $result['name']
-			);
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "profile_description WHERE profile_id = '" . (int)$profile_id . "'");
+
+			foreach ($query->rows as $result) {
+				$profile_description_data[$result['language_id']] = array(
+					'name' => $result['name']
+				);
+			}
+
+			$this->cache->set('profile.' . (int)$this->config->get('config_language_id'), $profile_description_data);
 		}
 
-		return $profile_descriptions;
+		return $profile_description_data;
 	}
 
 	public function getTotalProfiles() {
