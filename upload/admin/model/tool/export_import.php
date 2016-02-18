@@ -5256,13 +5256,14 @@ class ModelToolExportImport extends Model {
 		// Category description table for each language
 		$category_descriptions = array();
 
-		$sql = "SELECT category_id, name, description, meta_description, meta_keyword FROM " . DB_PREFIX . "category_description";
-		$sql .= " WHERE language_id = '" . (int)$language_id . "'";
+		$sql = "SELECT c.category_id, cd.name, cd.description AS description, cd.meta_description, cd.meta_keyword";
+		$sql .= " FROM " . DB_PREFIX . "category_description cd LEFT JOIN " . DB_PREFIX . "category c ON (c.category_id = cd.category_id)";
+		$sql .= " WHERE cd.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " GROUP BY category_id, language_id";
-		$sql .= " ORDER BY category_id ASC";
+		$sql .= " GROUP BY c.category_id, cd.language_id";
+		$sql .= " ORDER BY c.category_id ASC";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
 		}
@@ -5650,13 +5651,14 @@ class ModelToolExportImport extends Model {
 		// Product description table for each language
 		$product_descriptions = array();
 
-		$sql = "SELECT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag";
-		$sql .= " FROM " . DB_PREFIX . "product_description WHERE language_id = '" . (int)$language_id . "'";
+		$sql = "SELECT p.product_id, pd.name, pd.description AS description, pd.meta_description, pd.meta_keyword, GROUP_CONCAT(pd.tag SEPARATOR \",\") AS tag";
+		$sql .= " FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON (p.product_id = pd.product_id)";
+		$sql .= " WHERE pd.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " GROUP BY product_id, language_id";
-		$sql .= " ORDER BY product_id";
+		$sql .= " GROUP BY p.product_id, pd.language_id";
+		$sql .= " ORDER BY p.product_id";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
 		}

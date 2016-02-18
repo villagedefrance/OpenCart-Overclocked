@@ -21,14 +21,14 @@ $_['text_missing'] 			= '<span style="color:#F2B155;">File is missing</span>';
 $_['text_unknown'] 			= '<span style="color:#DE5954;">File is unknown</span>';
 $_['text_store_info']   		= 'Store Information';
 $_['text_setting_info']   	= 'Settings Information';
-$_['text_server_info']   		= 'Server Information';
 $_['text_integrity_info']		= 'System Files Integrity';
+$_['text_server_info']   		= 'Server Information';
 
 // Tab
 $_['tab_store']   				= 'Store';
 $_['tab_setting']   			= 'Settings';
-$_['tab_server']   			= 'Server';
 $_['tab_integrity']   			= 'Integrity';
+$_['tab_server']   			= 'Server';
 
 // Columns
 $_['column_php'] 					= 'PHP Settings';

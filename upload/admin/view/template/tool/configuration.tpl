@@ -16,8 +16,8 @@
       <div id="tabs" class="htabs">
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-setting"><?php echo $tab_setting; ?></a>
-        <a href="#tab-server"><?php echo $tab_server; ?></a>
         <a href="#tab-integrity"><?php echo $tab_integrity; ?></a>
+        <a href="#tab-server"><?php echo $tab_server; ?></a>
       </div>
       <div id="tab-store">
         <h2><?php echo $text_store_info; ?></h2>
@@ -226,17 +226,6 @@
           </table>
         </div>
       </div>
-      <div id="tab-server">
-        <h2><?php echo $text_server_info; ?></h2>
-        <table class="form">
-          <?php foreach ($server_responses as $server_response) { ?>
-          <tr>
-            <td><?php echo $server_response['request']; ?></td>
-            <td><?php echo $server_response['response']; ?></td>
-          </tr>
-          <?php } ?>
-        </table>
-      </div>
       <div id="tab-integrity">
         <h2><?php echo $text_integrity_info; ?></h2>
         <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
@@ -319,6 +308,17 @@
           <?php } ?>
           </table>
         </div>
+      </div>
+      <div id="tab-server">
+        <h2><?php echo $text_server_info; ?></h2>
+        <table class="form">
+          <?php foreach ($server_responses as $server_response) { ?>
+          <tr>
+            <td><?php echo $server_response['request']; ?></td>
+            <td><?php echo $server_response['response']; ?></td>
+          </tr>
+          <?php } ?>
+        </table>
       </div>
     </div>
   </div>

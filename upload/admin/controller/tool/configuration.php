@@ -41,13 +41,13 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_unknown'] = $this->language->get('text_unknown');
 		$this->data['text_store_info'] = $this->language->get('text_store_info');
 		$this->data['text_setting_info'] = $this->language->get('text_setting_info');
-		$this->data['text_server_info'] = $this->language->get('text_server_info');
 		$this->data['text_integrity_info'] = $this->language->get('text_integrity_info');
+		$this->data['text_server_info'] = $this->language->get('text_server_info');
 
 		$this->data['tab_store'] = $this->language->get('tab_store');
 		$this->data['tab_setting'] = $this->language->get('tab_setting');
-		$this->data['tab_server'] = $this->language->get('tab_server');
 		$this->data['tab_integrity'] = $this->language->get('tab_integrity');
+		$this->data['tab_server'] = $this->language->get('tab_server');
 
 		$this->data['column_php'] = $this->language->get('column_php');
 		$this->data['column_extension'] = $this->language->get('column_extension');
@@ -166,43 +166,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['vqcache'] = DIR_VQMOD . 'vqcache';
 		$this->data['vqmod_xml'] = DIR_VQMOD . 'xml';
 
-		// Server
-		$server_responses = array();
-
-		$server_requests = array(
-			'PHP_SELF',
-			'GATEWAY_INTERFACE',
-			'SERVER_ADDR',
-			'SERVER_NAME',
-			'SERVER_SOFTWARE',
-			'SERVER_PROTOCOL',
-			'DOCUMENT_ROOT',
-			'HTTP_ACCEPT',
-			'HTTP_ACCEPT_CHARSET',
-			'HTTP_ACCEPT_ENCODING',
-			'HTTP_ACCEPT_LANGUAGE',
-			'HTTP_CONNECTION',
-			'HTTP_HOST',
-			'HTTPS',
-			'SCRIPT_FILENAME',
-			'SERVER_ADMIN',
-			'SERVER_PORT'
-		);
-
-		foreach ($server_requests as $argument) {
-			if (isset($_SERVER[$argument])) {
-				$response = $_SERVER[$argument];
-			} else {
-				$response = '';
-			}
-
-			$this->data['server_responses'][] = array(
-				'request'		=> $argument,
-				'response'	=> $response
-			);
-		}
-
-				// Database Files
+		// Database Files
 		$this->data['databases'] = array();
 
 		$databases = glob(DIR_SYSTEM . 'database/*.php');
@@ -296,6 +260,42 @@ class ControllerToolConfiguration extends Controller {
 			'user'				=> DIR_SYSTEM . 'library/user.php',
 			'weight'			=> DIR_SYSTEM . 'library/weight.php',
 		);
+
+		// Server
+		$server_responses = array();
+
+		$server_requests = array(
+			'PHP_SELF',
+			'GATEWAY_INTERFACE',
+			'SERVER_ADDR',
+			'SERVER_NAME',
+			'SERVER_SOFTWARE',
+			'SERVER_PROTOCOL',
+			'DOCUMENT_ROOT',
+			'HTTP_ACCEPT',
+			'HTTP_ACCEPT_CHARSET',
+			'HTTP_ACCEPT_ENCODING',
+			'HTTP_ACCEPT_LANGUAGE',
+			'HTTP_CONNECTION',
+			'HTTP_HOST',
+			'HTTPS',
+			'SCRIPT_FILENAME',
+			'SERVER_ADMIN',
+			'SERVER_PORT'
+		);
+
+		foreach ($server_requests as $argument) {
+			if (isset($_SERVER[$argument])) {
+				$response = $_SERVER[$argument];
+			} else {
+				$response = '';
+			}
+
+			$this->data['server_responses'][] = array(
+				'request'		=> $argument,
+				'response'	=> $response
+			);
+		}
 
 		$this->template = 'tool/' . $this->_name . '.tpl';
 		$this->children = array(
