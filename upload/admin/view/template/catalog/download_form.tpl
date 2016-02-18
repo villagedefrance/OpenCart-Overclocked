@@ -29,6 +29,7 @@
               <span class="error"><?php echo $error_name[$language['language_id']]; ?></span><br />
             <?php } else { ?>
               <input type="text" name="download_description[<?php echo $language['language_id']; ?>][name]" size="30" value="<?php echo isset($download_description[$language['language_id']]) ? $download_description[$language['language_id']]['name'] : ''; ?>" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php } ?>
           <?php } ?></td>
         </tr>

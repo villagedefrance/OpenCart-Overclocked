@@ -18,8 +18,6 @@ class ModelLocalisationLanguage extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_description SET attribute_id = '" . (int)$attribute['attribute_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($attribute['name']) . "'");
 		}
 
-		$this->cache->delete('attribute');
-
 		// Attribute Group
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_group_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -302,8 +300,6 @@ class ModelLocalisationLanguage extends Model {
 		$this->cache->delete('language');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_description WHERE language_id = '" . (int)$language_id . "'");
-		$this->cache->delete('attribute');
-
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('attribute.group');
 
