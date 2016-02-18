@@ -17,6 +17,7 @@
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-setting"><?php echo $tab_setting; ?></a>
         <a href="#tab-server"><?php echo $tab_server; ?></a>
+        <a href="#tab-integrity"><?php echo $tab_integrity; ?></a>
       </div>
       <div id="tab-store">
         <h2><?php echo $text_store_info; ?></h2>
@@ -235,6 +236,89 @@
           </tr>
           <?php } ?>
         </table>
+      </div>
+      <div id="tab-integrity">
+        <h2><?php echo $text_integrity_info; ?></h2>
+        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
+          <table width="100%">
+            <tr>
+              <th width="80%" style="text-align:left;"><?php echo $column_database_files; ?></th>
+              <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
+            </tr>
+          <?php foreach ($databases as $database) { ?>
+            <tr>
+              <td width="80%" style="text-align:left;"><?php echo $database; ?></td>
+              <?php if (in_array($database, $database_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_present; ?></td>
+              <?php } elseif (!in_array($database, $database_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_unknown; ?></td>
+              <?php } else { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_missing; ?></td>
+              <?php } ?>
+            </tr>
+          <?php } ?>
+          </table>
+        </div>
+        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
+          <table width="100%">
+            <tr>
+              <th width="80%" style="text-align:left;"><?php echo $column_engine_files; ?></th>
+              <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
+            </tr>
+          <?php foreach ($engines as $engine) { ?>
+            <tr>
+              <td width="80%" style="text-align:left;"><?php echo $engine; ?></td>
+              <?php if (in_array($engine, $engine_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_present; ?></td>
+              <?php } elseif (!in_array($engine, $engine_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_unknown; ?></td>
+              <?php } else { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_missing; ?></td>
+              <?php } ?>
+            </tr>
+          <?php } ?>
+          </table>
+        </div>
+        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
+          <table width="100%">
+            <tr>
+              <th width="80%" style="text-align:left;"><?php echo $column_helper_files; ?></th>
+              <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
+            </tr>
+          <?php foreach ($helpers as $helper) { ?>
+            <tr>
+              <td width="80%" style="text-align:left;"><?php echo $helper; ?></td>
+              <?php if (in_array($helper, $helper_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_present; ?></td>
+              <?php } elseif (!in_array($helper, $helper_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_unknown; ?></td>
+              <?php } else { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_missing; ?></td>
+              <?php } ?>
+            </tr>
+          <?php } ?>
+          </table>
+        </div>
+        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
+          <table width="100%">
+            <tr>
+              <th width="80%" style="text-align:left;"><?php echo $column_library_files; ?></th>
+              <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
+            </tr>
+          <?php foreach ($libraries as $library) { ?>
+            <tr>
+              <td width="80%" style="text-align:left;"><?php echo $library; ?></td>
+              <?php if (in_array($library, $library_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_present; ?></td>
+              <?php } elseif (!in_array($library, $library_files)) { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_unknown; ?></td>
+              <?php } else { ?>
+                <td width="20%" style="text-align:left;"><?php echo $text_missing; ?></td>
+              <?php } ?>
+            </tr>
+          <?php } ?>
+          </table>
+        </div>
       </div>
     </div>
   </div>

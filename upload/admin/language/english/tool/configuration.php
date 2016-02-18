@@ -16,22 +16,31 @@ $_['text_dbtime'] 			= 'Database Time:<span class="help">Current system date and
 $_['text_dbname'] 			= 'Database Driver:<span class="help">Current system database driver.</span>';
 $_['text_dbengine'] 			= 'Database Table Engine:<span class="help">Current system database table engine.</span>';
 $_['text_no_timezone'] 		= 'Time Zone data not available.';
+$_['text_present'] 			= '<span style="color:#5DC15E;">File is present</span>';
+$_['text_missing'] 			= '<span style="color:#F2B155;">File is missing</span>';
+$_['text_unknown'] 			= '<span style="color:#DE5954;">File is unknown</span>';
 $_['text_store_info']   		= 'Store Information';
 $_['text_setting_info']   	= 'Settings Information';
 $_['text_server_info']   		= 'Server Information';
+$_['text_integrity_info']		= 'System Files Integrity';
 
 // Tab
 $_['tab_store']   				= 'Store';
 $_['tab_setting']   			= 'Settings';
 $_['tab_server']   			= 'Server';
+$_['tab_integrity']   			= 'Integrity';
 
 // Columns
-$_['column_php'] 				= 'PHP Settings';
-$_['column_extension'] 		= 'Extensions';
-$_['column_directories'] 	= 'Directories';
-$_['column_required'] 		= 'Required Settings';
-$_['column_current'] 		= 'Current Settings';
-$_['column_status'] 			= 'Status';
+$_['column_php'] 					= 'PHP Settings';
+$_['column_extension'] 			= 'Extensions';
+$_['column_directories'] 		= 'Directories';
+$_['column_required'] 			= 'Required Settings';
+$_['column_current'] 			= 'Current Settings';
+$_['column_status'] 				= 'Status';
+$_['column_database_files']	= 'Database Files';
+$_['column_engine_files'] 		= 'Engine Files';
+$_['column_helper_files'] 		= 'Helper Files';
+$_['column_library_files'] 		= 'Library Files';
 
 // Checks
 $_['text_phpversion'] 		= 'PHP Version:';

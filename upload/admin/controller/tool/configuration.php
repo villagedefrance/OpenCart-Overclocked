@@ -36,13 +36,18 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_dbtime'] = $this->language->get('text_dbtime');
 		$this->data['text_dbname'] = $this->language->get('text_dbname');
 		$this->data['text_dbengine'] = $this->language->get('text_dbengine');
+		$this->data['text_present'] = $this->language->get('text_present');
+		$this->data['text_missing'] = $this->language->get('text_missing');
+		$this->data['text_unknown'] = $this->language->get('text_unknown');
 		$this->data['text_store_info'] = $this->language->get('text_store_info');
 		$this->data['text_setting_info'] = $this->language->get('text_setting_info');
 		$this->data['text_server_info'] = $this->language->get('text_server_info');
+		$this->data['text_integrity_info'] = $this->language->get('text_integrity_info');
 
 		$this->data['tab_store'] = $this->language->get('tab_store');
 		$this->data['tab_setting'] = $this->language->get('tab_setting');
 		$this->data['tab_server'] = $this->language->get('tab_server');
+		$this->data['tab_integrity'] = $this->language->get('tab_integrity');
 
 		$this->data['column_php'] = $this->language->get('column_php');
 		$this->data['column_extension'] = $this->language->get('column_extension');
@@ -50,6 +55,10 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['column_required'] = $this->language->get('column_required');
 		$this->data['column_current'] = $this->language->get('column_current');
 		$this->data['column_status'] = $this->language->get('column_status');
+		$this->data['column_database_files'] = $this->language->get('column_database_files');
+		$this->data['column_engine_files'] = $this->language->get('column_engine_files');
+		$this->data['column_helper_files'] = $this->language->get('column_helper_files');
+		$this->data['column_library_files'] = $this->language->get('column_library_files');
 
 		$this->data['text_phpversion'] = $this->language->get('text_phpversion');
 		$this->data['text_registerglobals'] = $this->language->get('text_registerglobals');
@@ -192,6 +201,101 @@ class ControllerToolConfiguration extends Controller {
 				'response'	=> $response
 			);
 		}
+
+				// Database Files
+		$this->data['databases'] = array();
+
+		$databases = glob(DIR_SYSTEM . 'database/*.php');
+
+		foreach ($databases as $database) {
+			$this->data['databases'][] = $database;
+		}
+
+		$this->data['database_files'] = array(
+			'mpdo'	=> DIR_SYSTEM . 'database/mpdo.php',
+			'mssql'	=> DIR_SYSTEM . 'database/mssql.php',
+			'mysql'	=> DIR_SYSTEM . 'database/mysql.php',
+			'mysqli'	=> DIR_SYSTEM . 'database/mysqli.php',
+			'pgsql'	=> DIR_SYSTEM . 'database/pgsql.php'
+		);
+
+		// Engine Files
+		$this->data['engines'] = array();
+
+		$engines = glob(DIR_SYSTEM . 'engine/*.php');
+
+		foreach ($engines as $engine) {
+			$this->data['engines'][] = $engine;
+		}
+
+		$this->data['engine_files'] = array(
+			'action'		=> DIR_SYSTEM . 'engine/action.php',
+			'controller'	=> DIR_SYSTEM . 'engine/controller.php',
+			'front'	 	=> DIR_SYSTEM . 'engine/front.php',
+			'loader'		=> DIR_SYSTEM . 'engine/loader.php',
+			'model'		=> DIR_SYSTEM . 'engine/model.php',
+			'registry'		=> DIR_SYSTEM . 'engine/registry.php'
+		);
+
+		// Helper Files
+		$this->data['helpers'] = array();
+
+		$helpers = glob(DIR_SYSTEM . 'helper/*.php');
+
+		foreach ($helpers as $helper) {
+			$this->data['helpers'][] = $helper;
+		}
+
+		$this->data['helper_files'] = array(
+			'agent'	=> DIR_SYSTEM . 'helper/agent.php',
+			'crypto'	=> DIR_SYSTEM . 'helper/crypto.php',
+			'json'		=> DIR_SYSTEM . 'helper/json.php',
+			'utf8'		=> DIR_SYSTEM . 'helper/utf8.php',
+			'vat'		=> DIR_SYSTEM . 'helper/vat.php'
+		);
+
+		// Library Files
+		$this->data['libraries'] = array();
+
+		$libraries = glob(DIR_SYSTEM . 'library/*.php');
+
+		foreach ($libraries as $library) {
+			$this->data['libraries'][] = $library;
+		}
+
+		$this->data['library_files'] = array(
+			'affiliate'			=> DIR_SYSTEM . 'library/affiliate.php',
+			'amazon'			=> DIR_SYSTEM . 'library/amazon.php',
+			'amazonus'		=> DIR_SYSTEM . 'library/amazonus.php',
+			'browser'		=> DIR_SYSTEM . 'library/browser.php',
+			'cache'			=> DIR_SYSTEM . 'library/cache.php',
+			'captcha'		=> DIR_SYSTEM . 'library/captcha.php',
+			'cart'				=> DIR_SYSTEM . 'library/cart.php',
+			'cba'				=> DIR_SYSTEM . 'library/cba.php',
+			'config'			=> DIR_SYSTEM . 'library/config.php',
+			'currency'		=> DIR_SYSTEM . 'library/currency.php',
+			'customer'		=> DIR_SYSTEM . 'library/customer.php',
+			'db'				=> DIR_SYSTEM . 'library/db.php',
+			'dbmemory'		=> DIR_SYSTEM . 'library/dbmemory.php',
+			'document'		=> DIR_SYSTEM . 'library/document.php',
+			'ebay'			=> DIR_SYSTEM . 'library/ebay.php',
+			'encryption'		=> DIR_SYSTEM . 'library/encryption.php',
+			'image'			=> DIR_SYSTEM . 'library/image.php',
+			'language'		=> DIR_SYSTEM . 'library/language.php',
+			'length'			=> DIR_SYSTEM . 'library/length.php',
+			'log'				=> DIR_SYSTEM . 'library/log.php',
+			'mail'				=> DIR_SYSTEM . 'library/mail.php',
+			'openbay'		=> DIR_SYSTEM . 'library/openbay.php',
+			'pagination'		=> DIR_SYSTEM . 'library/pagination.php',
+			'request'			=> DIR_SYSTEM . 'library/request.php',
+			'response'		=> DIR_SYSTEM . 'library/response.php',
+			'session'			=> DIR_SYSTEM . 'library/session.php',
+			'tax'				=> DIR_SYSTEM . 'library/tax.php',
+			'template'		=> DIR_SYSTEM . 'library/template.php',
+			'url'				=> DIR_SYSTEM . 'library/url.php',
+			'user'				=> DIR_SYSTEM . 'library/user.php',
+			'weight'			=> DIR_SYSTEM . 'library/weight.php',
+		);
 
 		$this->template = 'tool/' . $this->_name . '.tpl';
 		$this->children = array(
