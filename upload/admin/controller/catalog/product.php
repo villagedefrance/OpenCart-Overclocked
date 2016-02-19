@@ -424,7 +424,7 @@ class ControllerCatalogProduct extends Controller {
 				'price'    	=> $result['price'],
 				'special' 		=> $special,
 				'discount' 	=> $discounts,
-				'discounts'	=> ((int)$total_discounts < 4) ? (int)$total_discounts : 3,
+				'discounts'	=> (int)$total_discounts,
 				'quantity'   	=> $result['quantity'],
 				'status'     	=> $result['status'],
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
@@ -1691,7 +1691,7 @@ class ControllerCatalogProduct extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$selected = false;
 			$append = false;
-			$date_start = date('Y-m-d');
+			$date_start = '0000-00-00';
 			$date_end = '';
 			$customer_group = $this->config->get('config_customer_group_id');
 			$discount = 0;
@@ -1730,6 +1730,8 @@ class ControllerCatalogProduct extends Controller {
 					$date_end = date('Y-m-d', strtotime('+1 week'));
 				} elseif ($period == 'month') {
 					$date_end = date('Y-m-d', strtotime('+1 month'));
+				} elseif ($period == 'undefined') {
+					$date_end = '0000-00-00';
 				} else {
 					$date_end = '0000-00-00';
 				}
@@ -1801,7 +1803,7 @@ class ControllerCatalogProduct extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			$selected = false;
 			$append = false;
-			$date_start = date('Y-m-d');
+			$date_start = '0000-00-00';
 			$date_end = '';
 			$customer_group = $this->config->get('config_customer_group_id');
 			$discount = 0;
@@ -1840,6 +1842,8 @@ class ControllerCatalogProduct extends Controller {
 					$date_end = date('Y-m-d', strtotime('+1 week'));
 				} elseif ($period == 'month') {
 					$date_end = date('Y-m-d', strtotime('+1 month'));
+				} elseif ($period == 'undefined') {
+					$date_end = '0000-00-00';
 				} else {
 					$date_end = '0000-00-00';
 				}

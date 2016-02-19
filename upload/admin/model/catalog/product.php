@@ -630,13 +630,13 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductValidDiscounts($product_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "' AND (date_start = '0000-00-00' OR date_start <= NOW()) AND (date_end = '0000-00-00' OR date_end > NOW()) ORDER BY quantity, priority, price");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "' AND (date_start = '0000-00-00' OR date_start <= CURDATE()) AND (date_end = '0000-00-00' OR date_end > CURDATE()) ORDER BY quantity, priority, price");
 
 		return $query->rows;
 	}
 
 	public function getTotalDiscountsByProductId($product_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "' AND (date_start = '0000-00-00' OR date_start <= NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "' AND (date_start = '0000-00-00' OR date_start <= CURDATE()) AND (date_end = '0000-00-00' OR date_end > CURDATE())");
 
 		return $query->row['total'];
 	}
@@ -745,7 +745,7 @@ class ModelCatalogProduct extends Model {
 
 	public function updateProductPrice($selected, $products = array(), $price, $cost) {
 		if ($selected) {
-			$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND price >= '0'");
+			$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . implode(',', $products) . ") AND price >= '0'");
 		} else {
 			$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE price >= '0'");
 		}
@@ -765,7 +765,7 @@ class ModelCatalogProduct extends Model {
 
 	public function updateProductQuantity($selected, $products = array(), $quantity, $minimum) {
 		if ($selected) {
-			$query = $this->db->query("SELECT product_id, quantity FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND quantity >= '0'");
+			$query = $this->db->query("SELECT product_id, quantity FROM " . DB_PREFIX . "product WHERE product_id IN (" . implode(',', $products) . ") AND quantity >= '0'");
 		} else {
 			$query = $this->db->query("SELECT product_id, quantity FROM " . DB_PREFIX . "product WHERE quantity >= '0'");
 		}
@@ -786,7 +786,7 @@ class ModelCatalogProduct extends Model {
 	public function updateProductSpecial($selected, $append, $products = array(), $customer_group, $date_start, $date_end, $discount) {
 		if ((int)$discount > 0) {
 			if ($selected) {
-				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND price > '0'");
+				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . implode(',', $products) . ") AND price > '0'");
 			} else {
 				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE price > '0'");
 			}
@@ -795,7 +795,7 @@ class ModelCatalogProduct extends Model {
 			$percentage = 1 - (float)$discount / 100.0;
 
 			if (!$append) {
-				$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE customer_group_id = " . (int)$customer_group . ($selected ? " AND product_id IN (" . join(',', $products) . ")" : ""));
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE customer_group_id = " . (int)$customer_group . ($selected ? " AND product_id IN (" . implode(',', $products) . ")" : ""));
 			}
 
 			foreach ($query->rows as $result) {
@@ -816,7 +816,7 @@ class ModelCatalogProduct extends Model {
 	public function updateProductDiscount($selected, $append, $products = array(), $customer_group, $quantity, $date_start, $date_end, $discount) {
 		if ((int)$discount > 0) {
 			if ($selected) {
-				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . join(',', $products) . ") AND price > '0'");
+				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE product_id IN (" . implode(',', $products) . ") AND price > '0'");
 			} else {
 				$query = $this->db->query("SELECT product_id, price FROM " . DB_PREFIX . "product WHERE price > '0'");
 			}
@@ -825,7 +825,7 @@ class ModelCatalogProduct extends Model {
 			$percentage = 1 - (float)$discount / 100.0;
 
 			if (!$append) {
-				$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE customer_group_id = " . (int)$customer_group . ($selected ? " AND product_id IN (" . join(',', $products) . ")" : ""));
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE customer_group_id = " . (int)$customer_group . ($selected ? " AND product_id IN (" . implode(',', $products) . ")" : ""));
 			}
 
 			foreach ($query->rows as $result) {

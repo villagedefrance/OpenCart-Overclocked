@@ -195,14 +195,14 @@ class ModelSaleOffer extends Model {
 
 	// Discount Products
 	public function getTotalProductDiscounts() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_discount");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_discount WHERE (date_start = '0000-00-00' OR date_start <= CURDATE()) AND (date_end = '0000-00-00' OR date_end > CURDATE())");
 
 		return $query->row['total'];
 	}
 
 	// Special Products
 	public function getTotalProductSpecials() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_special");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_special WHERE (date_start = '0000-00-00' OR date_start <= CURDATE()) AND (date_end = '0000-00-00' OR date_end > CURDATE())");
 
 		return $query->row['total'];
 	}

@@ -113,22 +113,14 @@
                 <span style="color:#B00;"><?php echo $product['special']; ?></span><br />
                 <?php if ($product['discount']) { ?>
                   <?php foreach ($product['discount'] as $discount) { ?>
-                    <?php if (count($discount) < $product['discounts']) { ?>
-                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>) </span>;
-                    <?php } else { ?>
-                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>
-                    <?php } ?>
+                    <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>&nbsp;
                   <?php } ?>
                 <?php } ?>
               <?php } else { ?>
                 <?php echo $product['price']; ?><br />
                 <?php if ($product['discount']) { ?>
                   <?php foreach ($product['discount'] as $discount) { ?>
-                    <?php if (count($discount) < $product['discounts']) { ?>
-                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>) </span>
-                    <?php } else { ?>
-                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>
-                    <?php } ?>
+                    <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>&nbsp;
                   <?php } ?>
                 <?php } ?>
               <?php } ?></td>
