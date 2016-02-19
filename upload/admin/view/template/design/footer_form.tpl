@@ -34,9 +34,11 @@
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-              <td><input type="text" name="footer_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($footer_description[$language['language_id']]) ? $footer_description[$language['language_id']]['name'] : ''; ?>" />
-              <?php if (isset($error_name[$language['language_id']])) { ?>
+              <td><?php if (isset($error_name[$language['language_id']])) { ?>
+                <input type="text" name="footer_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($footer_description[$language['language_id']]) ? $footer_description[$language['language_id']]['name'] : ''; ?>" class="input-error" />
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
+              <?php } else { ?>
+                <input type="text" name="footer_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($footer_description[$language['language_id']]) ? $footer_description[$language['language_id']]['name'] : ''; ?>" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -49,6 +51,23 @@
       </div>
       <div id="tab-data">
         <table class="form">
+          <tr>
+            <td><?php echo $entry_position; ?></td>
+            <td><select name="position">
+              <?php if (isset($position)) { $selected = "selected"; ?>
+                <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1 </option>
+                <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2 </option>
+                <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3 </option>
+                <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4 </option>
+              <?php } else { ?>
+                <option selected="selected"></option>
+                <option value="1" selected><?php echo $text_position; ?> 1 </option>
+                <option value="2"><?php echo $text_position; ?> 2 </option>
+                <option value="3"><?php echo $text_position; ?> 3 </option>
+                <option value="4"><?php echo $text_position; ?> 4 </option>
+              <?php } ?>
+            </select></td>
+          </tr>
           <tr>
             <td><?php echo $entry_store; ?></td>
             <td><div id="store_ids" class="scrollbox-store">
@@ -77,23 +96,6 @@
             </div>
             <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
             </td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_position; ?></td>
-            <td><select name="position">
-              <?php if (isset($position)) { $selected = "selected"; ?>
-                <option value="1" <?php if ($position == 1) { echo $selected; } ?>><?php echo $text_position; ?> 1 </option>
-                <option value="2" <?php if ($position == 2) { echo $selected; } ?>><?php echo $text_position; ?> 2 </option>
-                <option value="3" <?php if ($position == 3) { echo $selected; } ?>><?php echo $text_position; ?> 3 </option>
-                <option value="4" <?php if ($position == 4) { echo $selected; } ?>><?php echo $text_position; ?> 4 </option>
-              <?php } else { ?>
-                <option selected="selected"></option>
-                <option value="1" selected><?php echo $text_position; ?> 1 </option>
-                <option value="2"><?php echo $text_position; ?> 2 </option>
-                <option value="3"><?php echo $text_position; ?> 3 </option>
-                <option value="4"><?php echo $text_position; ?> 4 </option>
-              <?php } ?>
-            </select></td>
           </tr>
           <tr>
             <td><?php echo $entry_status; ?></td>
@@ -126,10 +128,13 @@
       <tbody id="route-row<?php echo $route_row; ?>">
         <tr>
           <td class="left"><?php foreach ($languages as $language) { ?>
-            <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" />
-            <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php if (isset($error_footer_route[$route_row][$language['language_id']])) { ?>
+              <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" class="input-error" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
               <span class="error"><?php echo $error_footer_route[$route_row][$language['language_id']]; ?></span>
+            <?php } else { ?>
+              <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" />
+              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
             <?php } ?>
           <?php } ?></td>
           <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
@@ -168,7 +173,8 @@ function addRoute() {
 	html += '  <tr>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '      <input type="text" name="footer_route[' + route_row + '][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="" /> <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
+	html += '      <input type="text" name="footer_route[' + route_row + '][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="" />';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />'; 
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="left"><input type="text" name="footer_route[' + route_row + '][route]" value="" size="50" /></td>';

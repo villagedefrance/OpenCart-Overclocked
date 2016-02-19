@@ -110,9 +110,27 @@
               <td class="left"><?php echo $product['model']; ?></td>
               <td class="right"><?php if ($product['special']) { ?>
                 <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
-                <span style="color:#B00;"><?php echo $product['special']; ?></span>
+                <span style="color:#B00;"><?php echo $product['special']; ?></span><br />
+                <?php if ($product['discount']) { ?>
+                  <?php foreach ($product['discount'] as $discount) { ?>
+                    <?php if (count($discount) < $product['discounts']) { ?>
+                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>) </span>;
+                    <?php } else { ?>
+                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>
+                    <?php } ?>
+                  <?php } ?>
+                <?php } ?>
               <?php } else { ?>
-                <?php echo $product['price']; ?>
+                <?php echo $product['price']; ?><br />
+                <?php if ($product['discount']) { ?>
+                  <?php foreach ($product['discount'] as $discount) { ?>
+                    <?php if (count($discount) < $product['discounts']) { ?>
+                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>) </span>
+                    <?php } else { ?>
+                      <span style="color:#558899; font-size:10px;"><?php echo $discount['price']; ?>(<?php echo $discount['quantity']; ?>)</span>
+                    <?php } ?>
+                  <?php } ?>
+                <?php } ?>
               <?php } ?></td>
               <td class="right"><?php if ($product['quantity'] <= 0) { ?>
                 <span style="color:#FF0000;"><?php echo $product['quantity']; ?></span>
@@ -253,6 +271,8 @@ $('#price-button').bind('click', function() {
 		dataType: 'json',
 		type: 'get',
 		success: function(json) {
+			$('.success, .warning, .attention, .error').remove();
+
 			if (json['html']) {
 				$('#update-price-dialog').html(json['html']);
 				$('#update-price-dialog').dialog({
@@ -278,6 +298,8 @@ $('#quantity-button').bind('click', function() {
 		dataType: 'json',
 		type: 'get',
 		success: function(json) {
+			$('.success, .warning, .attention, .error').remove();
+
 			if (json['html']) {
 				$('#update-quantity-dialog').html(json['html']);
 				$('#update-quantity-dialog').dialog({
@@ -303,6 +325,8 @@ $('#special-button').bind('click', function() {
 		dataType: 'json',
 		type: 'get',
 		success: function(json) {
+			$('.success, .warning, .attention, .error').remove();
+
 			if (json['html']) {
 				$('#update-special-dialog').html(json['html']);
 				$('#update-special-dialog').dialog({
@@ -328,6 +352,8 @@ $('#discount-button').bind('click', function() {
 		dataType: 'json',
 		type: 'get',
 		success: function(json) {
+			$('.success, .warning, .attention, .error').remove();
+
 			if (json['html']) {
 				$('#update-discount-dialog').html(json['html']);
 				$('#update-discount-dialog').dialog({

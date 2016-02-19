@@ -307,8 +307,8 @@ class ControllerDesignFooter extends Controller {
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
-		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_position'] = $this->language->get('entry_position');
+		$this->data['entry_store'] = $this->language->get('entry_store');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_route'] = $this->language->get('entry_route');
@@ -401,6 +401,14 @@ class ControllerDesignFooter extends Controller {
 			$this->data['footer_description'] = array();
 		}
 
+		if (isset($this->request->post['position'])) {
+			$this->data['position'] = $this->request->post['position'];
+		} elseif (!empty($footer_info)) {
+			$this->data['position'] = $footer_info['position'];
+		} else {
+			$this->data['position'] = '';
+		}
+
 		$this->load->model('setting/store');
 
 		$this->data['stores'] = $this->model_setting_store->getStores();
@@ -411,14 +419,6 @@ class ControllerDesignFooter extends Controller {
 			$this->data['footer_store'] = $this->model_design_footer->getFooterStores($this->request->get['footer_id']);
 		} else {
 			$this->data['footer_store'] = array(0);
-		}
-
-		if (isset($this->request->post['position'])) {
-			$this->data['position'] = $this->request->post['position'];
-		} elseif (!empty($footer_info)) {
-			$this->data['position'] = $footer_info['position'];
-		} else {
-			$this->data['position'] = '';
 		}
 
 		if (isset($this->request->post['status'])) {

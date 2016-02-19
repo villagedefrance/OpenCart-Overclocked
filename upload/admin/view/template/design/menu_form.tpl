@@ -22,7 +22,7 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_title; ?></td>
-            <td><?php if (isset($error_title)) { ?>
+            <td><?php if ($error_title) { ?>
               <input type="text" name="title" size="40" value="<?php echo $title; ?>" class="input-error" />
               <span class="error"><?php echo $error_title; ?></span>
             <?php } else { ?>

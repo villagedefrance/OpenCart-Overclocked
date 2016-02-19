@@ -629,6 +629,18 @@ class ModelCatalogProduct extends Model {
 		return $query->rows;
 	}
 
+	public function getProductValidDiscounts($product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "' AND (date_start = '0000-00-00' OR date_start <= NOW()) AND (date_end = '0000-00-00' OR date_end > NOW()) ORDER BY quantity, priority, price");
+
+		return $query->rows;
+	}
+
+	public function getTotalDiscountsByProductId($product_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "' AND (date_start = '0000-00-00' OR date_start <= NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())");
+
+		return $query->row['total'];
+	}
+
 	public function getProductSpecials($product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' ORDER BY priority, price");
 

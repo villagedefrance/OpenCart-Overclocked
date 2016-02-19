@@ -30,22 +30,22 @@ $(document).ready(function() {
 	});
 
 	// Mega Menu
-    $('#menu > ul > li').hover(
-        function() {
-            $(this).addClass("active");
-            $(this).find('div').stop(false, true).slideDown({
-            	duration: 300,
-            	easing: "easeOutExpo"
+	$('#menu > ul > li').hover(
+		function() {
+			$(this).addClass("active");
+			$(this).find('div').stop(false, true).slideDown({
+				duration: 300,
+				easing: "easeOutExpo"
 			});
-        },
-        function() {
-            $(this).removeClass("active");
-            $(this).find('div').stop(false, true).slideUp({
-            	duration: 100,
-            	easing: "easeOutExpo"
+		},
+		function() {
+			$(this).removeClass("active");
+			$(this).find('div').stop(false, true).slideUp({
+				duration: 100,
+				easing: "easeOutExpo"
 			});
-        }
-    );
+		}
+	);
 
 	$('#menu ul > li > a + div').each(function(index, element) {
 		var menu = $('#menu').offset();
@@ -98,18 +98,18 @@ function getURLVar(key) {
 // Product Quantity +/-
 function addProductCount() {
 	var q = parseInt($('#quantity').val());
-    if (q > 0) {
-    	$('#quantity').val(q + 1);
-    }
-    return false;
+	if (q > 0) {
+		$('#quantity').val(q + 1);
+	}
+	return false;
 }
 
 function subProductCount() {
 	var q = parseInt($('#quantity').val());
-    if (q > 1) {
-    	$('#quantity').val(q - 1);
-    }
-    return false;
+	if (q > 1) {
+		$('#quantity').val(q - 1);
+	}
+	return false;
 }
 
 // Add to Cart / Wishlist / Compare
@@ -184,5 +184,5 @@ document.onselectstart = new Function('return false');
 document.oncontextmenu = new Function('return false');
 
 $('img').mousedown(function() {
-	return false
+	return false;
 });

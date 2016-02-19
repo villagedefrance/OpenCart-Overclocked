@@ -70,7 +70,18 @@ class ControllerSaleReturn extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->redirect($this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			if (isset($this->request->post['apply'])) {
+				$return_id = $this->session->data['new_return_id'];
+
+				if ($return_id) {
+					unset($this->session->data['new_return_id']);
+
+					$this->redirect($this->url->link('sale/return/update', 'token=' . $this->session->data['token'] . '&return_id=' . $return_id . $url, 'SSL'));
+				}
+
+			} else {
+				$this->redirect($this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
 		}
 
 		$this->getForm();
@@ -134,7 +145,16 @@ class ControllerSaleReturn extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->redirect($this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			if (isset($this->request->post['apply'])) {
+				$return_id = $this->request->get['return_id'];
+
+				if ($return_id) {
+					$this->redirect($this->url->link('sale/return/update', 'token=' . $this->session->data['token'] . '&return_id=' . $return_id . $url, 'SSL'));
+				}
+
+			} else {
+				$this->redirect($this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
 		}
 
 		$this->getForm();
@@ -579,6 +599,7 @@ class ControllerSaleReturn extends Controller {
 		$this->data['entry_action'] = $this->language->get('entry_action');
 
 		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['tab_return'] = $this->language->get('tab_return');
@@ -1088,6 +1109,10 @@ class ControllerSaleReturn extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
+		if (empty($this->request->post['order_id']) || !is_numeric($this->request->post['order_id'])) {
+			$this->error['order_id'] = $this->language->get('error_order_id');
+		}
+
 		if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
@@ -1158,6 +1183,7 @@ class ControllerSaleReturn extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 

@@ -402,6 +402,20 @@ class ControllerCatalogProduct extends Controller {
 				}
 			}
 
+			$discounts = array();
+
+			$total_discounts = $this->model_catalog_product->getTotalDiscountsByProductId($result['product_id']);
+
+			$product_discounts = $this->model_catalog_product->getProductValidDiscounts($result['product_id']);
+
+			foreach ($product_discounts as $product_discount) {
+				$discounts[] = array(
+					'product_id'	=> $result['product_id'],
+					'quantity'	=> (int)$product_discount['quantity'],
+					'price'		=> $this->currency->format((float)$product_discount['price'])
+				);
+			}
+
 			$this->data['products'][] = array(
 				'product_id'	=> $result['product_id'],
 				'image'      	=> $image,
@@ -409,6 +423,8 @@ class ControllerCatalogProduct extends Controller {
 				'model'      	=> $result['model'],
 				'price'    	=> $result['price'],
 				'special' 		=> $special,
+				'discount' 	=> $discounts,
+				'discounts'	=> ((int)$total_discounts < 4) ? (int)$total_discounts : 3,
 				'quantity'   	=> $result['quantity'],
 				'status'     	=> $result['status'],
 				'selected' 	=> isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
@@ -655,7 +671,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_required'] = $this->language->get('entry_required');
 		$this->data['entry_palette'] = $this->language->get('entry_palette');
 
-		// Compatibility 1.5.X
+		// Compatibility 1.5.X & 1.6.X
 		$this->data['entry_attribute'] = $this->language->get('entry_attribute');
 		$this->data['entry_text'] = $this->language->get('entry_text');
 		$this->data['entry_option_value'] = $this->language->get('entry_option_value');

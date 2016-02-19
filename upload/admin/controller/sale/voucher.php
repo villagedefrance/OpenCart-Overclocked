@@ -329,6 +329,8 @@ class ControllerSaleVoucher extends Controller {
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_voucher_history'] = $this->language->get('tab_voucher_history');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->request->get['voucher_id'])) {
 			$this->data['voucher_id'] = $this->request->get['voucher_id'];
 		} else {
@@ -369,6 +371,12 @@ class ControllerSaleVoucher extends Controller {
 			$this->data['error_to_email'] = $this->error['to_email'];
 		} else {
 			$this->data['error_to_email'] = '';
+		}
+
+		if (isset($this->error['message'])) {
+			$this->data['error_message'] = $this->error['message'];
+		} else {
+			$this->data['error_message'] = '';
 		}
 
 		if (isset($this->error['amount'])) {
@@ -416,8 +424,6 @@ class ControllerSaleVoucher extends Controller {
 		if (isset($this->request->get['voucher_id']) && (!$this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$voucher_info = $this->model_sale_voucher->getVoucher($this->request->get['voucher_id']);
 		}
-
-		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->post['code'])) {
 			$this->data['code'] = $this->request->post['code'];
@@ -539,7 +545,11 @@ class ControllerSaleVoucher extends Controller {
 			$this->error['from_email'] = $this->language->get('error_email');
 		}
 
-		if ($this->request->post['amount'] < 1) {
+		if ((utf8_strlen($this->request->post['message']) < 3) || (utf8_strlen($this->request->post['message']) > 128)) {
+			$this->error['message'] = $this->language->get('error_message');
+		}
+
+		if ($this->request->post['amount'] < 1 || !is_numeric($this->request->post['amount'])) {
 			$this->error['amount'] = $this->language->get('error_amount');
 		}
 
@@ -638,6 +648,7 @@ class ControllerSaleVoucher extends Controller {
 			$json['success'] = $this->language->get('text_sent');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

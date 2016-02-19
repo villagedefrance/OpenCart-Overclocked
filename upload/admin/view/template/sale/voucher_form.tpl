@@ -86,10 +86,15 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_message; ?></td>
-            <td><textarea name="message" cols="40" rows="5"><?php echo $message; ?></textarea></td>
+            <td><?php if ($error_message) { ?>
+              <textarea name="message" cols="40" rows="5" class="input-error"><?php echo $message; ?></textarea>
+              <span class="error"><?php echo $error_message; ?></span>
+            <?php } else { ?>
+              <textarea name="message" cols="40" rows="5"><?php echo $message; ?></textarea>
+            <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_amount; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_amount; ?></td>
             <td><?php if ($error_amount) { ?>
               <input type="text" name="amount" value="<?php echo $amount; ?>" class="input-error" />
               <span class="error"><?php echo $error_amount; ?></span>

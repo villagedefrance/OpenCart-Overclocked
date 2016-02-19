@@ -9,7 +9,7 @@ $_['header_links'] 			= 'Block Links';
 $_['text_success']  			= 'Success: You have modified <b>Footers</b> !';
 $_['text_default']  			= 'Default';
 $_['text_position']			= 'Position';
-$_['text_link']           		= 'Internal Links:<br /><span class="help">External links require a complete Url,<br />including the "http://".</span>';
+$_['text_link']           		= 'Internal Links:<span class="help">External links require a complete Url,<br />including the "http://".</span>';
 $_['text_info']           		= 'Click <a class="colorbox" href="%s" title="List of internal links"><b>Here</b></a> to see a list of internal links.';
 
 // Column
@@ -20,7 +20,7 @@ $_['column_action'] 			= 'Action';
 
 // Entry
 $_['entry_name']    			= 'Block Name:';
-$_['entry_position']			= 'Position:<br /><span class="help">Blocks 1 to 4, from left to right.</span>';
+$_['entry_position']			= 'Position:<span class="help">Blocks 1 to 4, from left to right.</span>';
 $_['entry_store']				= 'Stores:';
 $_['entry_status']			= 'Status:';
 

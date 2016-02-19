@@ -13,6 +13,7 @@
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
@@ -85,10 +86,13 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_product; ?></td>
-            <td><input type="text" name="product" value="<?php echo $product; ?>" />
-            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-            <?php if ($error_product) { ?>
+            <td><?php if ($error_product) { ?>
+              <input type="text" name="product" value="<?php echo $product; ?>" class="input-error" />
+              <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
               <span class="error"><?php echo $error_product; ?></span>
+            <?php } else { ?>
+              <input type="text" name="product" value="<?php echo $product; ?>" />
+              <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             <?php  } ?></td>
           </tr>
           <tr>
@@ -130,7 +134,6 @@
           <tr>
             <td><?php echo $entry_action; ?></td>
             <td><select name="return_action_id">
-              <option value="0"></option>
               <?php foreach ($return_actions as $return_action) { ?>
                 <?php if ($return_action['return_action_id'] == $return_action_id) { ?>
                   <option value="<?php echo $return_action['return_action_id']; ?>" selected="selected"> <?php echo $return_action['name']; ?></option>
@@ -165,10 +168,9 @@ $.widget('custom.catcomplete', $.ui.autocomplete, {
 		var self = this, currentCategory = '';
 
 		$.each(items, function(index, item) {
-			if (item.category != currentCategory) {
-				ul.append('<li class="ui-autocomplete-category">' + item.category + '</li>');
-
-				currentCategory = item.category;
+			if (item['category'] != currentCategory) {
+				ul.append('<li class="ui-autocomplete-category">' + item['category'] + '</li>');
+				currentCategory = item['category'];
 			}
 
 			self._renderItemData(ul, item);
