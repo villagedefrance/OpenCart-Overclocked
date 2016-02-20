@@ -5257,12 +5257,12 @@ class ModelToolExportImport extends Model {
 		$category_descriptions = array();
 
 		$sql = "SELECT c.category_id, cd.name, cd.description AS description, cd.meta_description, cd.meta_keyword";
-		$sql .= " FROM " . DB_PREFIX . "category_description cd LEFT JOIN " . DB_PREFIX . "category c ON (c.category_id = cd.category_id)";
+		$sql .= " FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (cd.category_id = c.category_id)";
 		$sql .= " WHERE cd.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " GROUP BY c.category_id, cd.language_id";
+		$sql .= " GROUP BY c.category_id";
 		$sql .= " ORDER BY c.category_id ASC";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
@@ -5281,7 +5281,7 @@ class ModelToolExportImport extends Model {
 
 	protected function getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT c.*, ua.keyword AS keyword FROM " . DB_PREFIX . "category c";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON ua.query = CONCAT('category_id=',c.category_id)";
+		$sql .= " INNER JOIN " . DB_PREFIX . "url_alias ua ON (ua.query = CONCAT('category_id=',c.category_id))";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
@@ -5652,12 +5652,12 @@ class ModelToolExportImport extends Model {
 		$product_descriptions = array();
 
 		$sql = "SELECT p.product_id, pd.name, pd.description AS description, pd.meta_description, pd.meta_keyword, GROUP_CONCAT(pd.tag SEPARATOR \",\") AS tag";
-		$sql .= " FROM " . DB_PREFIX . "product_description pd LEFT JOIN " . DB_PREFIX . "product p ON (p.product_id = pd.product_id)";
+		$sql .= " FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (pd.product_id = p.product_id)";
 		$sql .= " WHERE pd.language_id = '" . (int)$language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " GROUP BY p.product_id, pd.language_id";
+		$sql .= " GROUP BY p.product_id";
 		$sql .= " ORDER BY p.product_id";
 		if (isset($offset) && isset($rows)) {
 			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
@@ -5720,17 +5720,17 @@ class ModelToolExportImport extends Model {
 		$sql .= " p.minimum,";
 		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\" ) AS related";
 		$sql .= " FROM " . DB_PREFIX . "product p";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category pc ON (p.product_id = pc.product_id)";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON ua.query=CONCAT('product_id=',p.product_id)";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category pc ON (pc.product_id = p.product_id)";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON (ua.query = CONCAT('product_id=',p.product_id))";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id)";
-		$sql .= " AND md.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id)";
-		$sql .= " AND wc.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "length_class_description mc ON (mc.length_class_id = p.length_class_id)";
-		$sql .= " AND mc.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_related pr ON (pr.product_id = p.product_id)";
+		$sql .= " WHERE md.language_id = '" . $default_language_id . "'";
+		$sql .= " AND wc.language_id = '" . $default_language_id . "'";
+		$sql .= " AND mc.language_id = '" . $default_language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " WHERE p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
 		$sql .= " GROUP BY p.product_id";
 		$sql .= " ORDER BY p.product_id";

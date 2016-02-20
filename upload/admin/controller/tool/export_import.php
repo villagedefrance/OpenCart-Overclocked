@@ -22,7 +22,7 @@ class ControllerToolExportImport extends Controller {
 		$this->load->model('tool/export_import');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateUploadForm())) {
-			if ((isset( $this->request->files['upload'] )) && (is_uploaded_file($this->request->files['upload']['tmp_name']))) {
+			if ((isset($this->request->files['upload'])) && (is_uploaded_file($this->request->files['upload']['tmp_name']))) {
 				$file = $this->request->files['upload']['tmp_name'];
 
 				$incremental = ($this->request->post['incremental']) ? true : false;
@@ -473,7 +473,7 @@ class ControllerToolExportImport extends Controller {
 				}
 			}
 
-			if (!$this->config->get( 'export_import_settings_use_filter_id' )) {
+			if (!$this->config->get('export_import_settings_use_filter_id')) {
 				$filter_names = $this->model_tool_export_import->getFilterNameCounts();
 
 				foreach ($filter_names as $filter_name) {
