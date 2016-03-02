@@ -35,8 +35,7 @@
  * @package    PHPExcel_Worksheet
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Worksheet_Column
-{
+class PHPExcel_Worksheet_Column {
 	/**
 	 * PHPExcel_Worksheet
 	 *
@@ -54,12 +53,12 @@ class PHPExcel_Worksheet_Column
 	/**
 	 * Create a new column
 	 *
-	 * @param PHPExcel_Worksheet 	$parent
-	 * @param string				$columnIndex
+	 * @param PHPExcel_Worksheet		$parent
+	 * @param string		$columnIndex
 	 */
 	public function __construct(PHPExcel_Worksheet $parent = null, $columnIndex = 'A') {
 		// Set parent and column index
-		$this->_parent 		= $parent;
+		$this->_parent = $parent;
 		$this->_columnIndex = $columnIndex;
 	}
 
@@ -73,7 +72,7 @@ class PHPExcel_Worksheet_Column
 	/**
 	 * Get column index
 	 *
-	 * @return int
+	 * @return string
 	 */
 	public function getColumnIndex() {
 		return $this->_columnIndex;
@@ -82,8 +81,8 @@ class PHPExcel_Worksheet_Column
 	/**
 	 * Get cell iterator
 	 *
-	 * @param	integer				$startRow	    The row number at which to start iterating
-	 * @param	integer				$endRow	        Optionally, the row number at which to stop iterating
+	 * @param	integer		$startRow		The row number at which to start iterating
+	 * @param	integer		$endRow		Optionally, the row number at which to stop iterating
 	 * @return PHPExcel_Worksheet_CellIterator
 	 */
 	public function getCellIterator($startRow = 1, $endRow = null) {

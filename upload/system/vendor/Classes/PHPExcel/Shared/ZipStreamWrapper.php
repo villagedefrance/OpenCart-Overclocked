@@ -22,9 +22,9 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Shared_ZipStreamWrapper
@@ -95,7 +95,7 @@ class PHPExcel_Shared_ZipStreamWrapper {
 
         $this->_fileNameInArchive = $url['fragment'];
         $this->_position = 0;
-        $this->_data = $this->_archive->getFromName( $this->_fileNameInArchive );
+        $this->_data = $this->_archive->getFromName($this->_fileNameInArchive);
 
         return true;
     }
@@ -115,7 +115,7 @@ class PHPExcel_Shared_ZipStreamWrapper {
 	 * @return  boolean
      */
     public function url_stat() {
-        return $this->statName( $this->_fileNameInArchive );
+        return $this->statName($this->_fileNameInArchive);
     }
 
     /**
@@ -124,7 +124,7 @@ class PHPExcel_Shared_ZipStreamWrapper {
 	 * @return  boolean
      */
     public function stream_stat() {
-        return $this->_archive->statName( $this->_fileNameInArchive );
+        return $this->_archive->statName($this->_fileNameInArchive);
     }
 
     /**
@@ -199,3 +199,4 @@ class PHPExcel_Shared_ZipStreamWrapper {
         }
     }
 }
+?>

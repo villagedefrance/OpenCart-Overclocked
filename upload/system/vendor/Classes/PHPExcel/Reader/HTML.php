@@ -106,8 +106,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
     /**
      * Create a new PHPExcel_Reader_HTML
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->_readFilter = new PHPExcel_Reader_DefaultReadFilter();
     }
 
@@ -116,16 +115,16 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @return boolean
      */
-    protected function _isValidFormat()
-    {
+    protected function _isValidFormat() {
         //	Reading 2048 bytes should be enough to validate that the format is HTML
         $data = fread($this->_fileHandle, 2048);
-        if ((strpos($data, '<') !== FALSE) &&
+
+        if ((strpos($data, '<') !== false) &&
                 (strlen($data) !== strlen(strip_tags($data)))) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -135,8 +134,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      * @return PHPExcel
      * @throws PHPExcel_Reader_Exception
      */
-    public function load($pFilename)
-    {
+    public function load($pFilename) {
         // Create new PHPExcel
         $objPHPExcel = new PHPExcel();
 
@@ -149,8 +147,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @param string $pValue Input encoding
      */
-    public function setInputEncoding($pValue = 'ANSI')
-    {
+    public function setInputEncoding($pValue = 'ANSI') {
         $this->_inputEncoding = $pValue;
 
         return $this;
@@ -161,8 +158,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @return string
      */
-    public function getInputEncoding()
-    {
+    public function getInputEncoding() {
         return $this->_inputEncoding;
     }
 
@@ -171,30 +167,28 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
     protected $_tableLevel = 0;
     protected $_nestedColumn = array('A');
 
-    protected function _setTableStartColumn($column)
-    {
-        if ($this->_tableLevel == 0)
+    protected function _setTableStartColumn($column) {
+        if ($this->_tableLevel == 0) {
             $column = 'A';
+		}
         ++$this->_tableLevel;
+
         $this->_nestedColumn[$this->_tableLevel] = $column;
 
         return $this->_nestedColumn[$this->_tableLevel];
     }
 
-    protected function _getTableStartColumn()
-    {
+    protected function _getTableStartColumn() {
         return $this->_nestedColumn[$this->_tableLevel];
     }
 
-    protected function _releaseTableStartColumn()
-    {
+    protected function _releaseTableStartColumn() {
         --$this->_tableLevel;
 
         return array_pop($this->_nestedColumn);
     }
 
-    protected function _flushCell($sheet, $column, $row, &$cellContent)
-    {
+    protected function _flushCell($sheet, $column, $row, &$cellContent) {
         if (is_string($cellContent)) {
             //	Simple String content
             if (trim($cellContent) > '') {
@@ -213,8 +207,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
         $cellContent = (string) '';
     }
 
-    protected function _processDomElement(DOMNode $element, $sheet, &$row, &$column, &$cellContent, $format = null)
-    {
+    protected function _processDomElement(DOMNode $element, $sheet, &$row, &$column, &$cellContent, $format = null) {
         foreach ($element->childNodes as $child) {
             if ($child instanceof DOMText) {
                 $domText = preg_replace('/\s+/u', ' ', trim($child->nodeValue));
@@ -229,6 +222,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 //				echo '<b>DOM ELEMENT: </b>' , strtoupper($child->nodeName) , '<br />';
 
                 $attributeArray = array();
+
                 foreach ($child->attributes as $attribute) {
 //					echo '<b>ATTRIBUTE: </b>' , $attribute->name , ' => ' , $attribute->value , '<br />';
                     $attributeArray[$attribute->name] = $attribute->value;
@@ -455,10 +449,10 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      * @return PHPExcel
      * @throws PHPExcel_Reader_Exception
      */
-    public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel)
-    {
+    public function loadIntoExisting($pFilename, PHPExcel $objPHPExcel) {
         // Open file to validate
         $this->_openFile($pFilename);
+
         if (!$this->_isValidFormat()) {
             fclose($this->_fileHandle);
             throw new PHPExcel_Reader_Exception($pFilename . " is an Invalid HTML file.");
@@ -475,8 +469,9 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
         //	Create a new DOM object
         $dom = new domDocument;
         //	Reload the HTML file into the DOM object
-        $loaded = $dom->loadHTML($this->securityScanFile($pFilename));
-        if ($loaded === FALSE) {
+		$loaded = $dom->loadHTML(mb_convert_encoding($this->securityScanFile($pFilename), 'HTML-ENTITIES', 'UTF-8'));
+
+        if ($loaded === false) {
             throw new PHPExcel_Reader_Exception('Failed to load ', $pFilename, ' as a DOM Document');
         }
 
@@ -497,19 +492,17 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
      *
      * @return int
      */
-    public function getSheetIndex()
-    {
+    public function getSheetIndex() {
         return $this->_sheetIndex;
     }
 
     /**
      * Set sheet index
      *
-     * @param  int                  $pValue Sheet index
+     * @param  int		$pValue Sheet index
      * @return PHPExcel_Reader_HTML
      */
-    public function setSheetIndex($pValue = 0)
-    {
+    public function setSheetIndex($pValue = 0) {
         $this->_sheetIndex = $pValue;
 
         return $this;
@@ -521,8 +514,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 	 * @param 	string 		$xml
 	 * @throws PHPExcel_Reader_Exception
 	 */
-	public function securityScan($xml)
-	{
+	public function securityScan($xml) {
         $pattern = '/\\0?' . implode('\\0?', str_split('<!ENTITY')) . '\\0?/';
         if (preg_match($pattern, $xml)) { 
             throw new PHPExcel_Reader_Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');

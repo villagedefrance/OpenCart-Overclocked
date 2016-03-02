@@ -1385,7 +1385,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable {
         $this->_parent->getDefaultStyle()->applyFromArray(array(
             'font' => array(
                 'name'	=> $pValue->getFont()->getName(),
-                'size'		=> $pValue->getFont()->getSize(),
+                'size'		=> $pValue->getFont()->getSize()
             ),
         ));
 
@@ -2443,6 +2443,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable {
 
         // Loop through rows
         $r = -1;
+
         for ($row = $minRow; $row <= $maxRow; ++$row) {
             $rRef = ($returnCellRef) ? $row : ++$r;
 

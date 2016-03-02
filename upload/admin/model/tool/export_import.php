@@ -116,16 +116,22 @@ class ModelToolExportImport extends Model {
 	public function getDefaultLanguageId() {
 		$query = $this->db->query("SELECT DISTINCT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
 
-		return $query->row['language_id'];
+		if ($query->row['language_id']) {
+			$language_id = $query->row['language_id'];
+		} else {
+			$language_id = 1;
+		}
+
+		return $language_id;
 	}
 
 	public function getLanguages() {
-		$language_data = $this->cache->get('language');
+		$language_data = $this->cache->get('languages');
 
 		if (!$language_data) {
 			$language_data = array();
 
-			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` ORDER BY code");
+			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` WHERE status = '1' ORDER BY code ASC");
 
 			foreach ($query->rows as $result) {
 				$language_data[$result['code']] = array(
@@ -141,7 +147,7 @@ class ModelToolExportImport extends Model {
 				);
 			}
 
-			$this->cache->set('language', $language_data);
+			$this->cache->set('languages', $language_data);
 		}
 
 		return $language_data;
@@ -150,67 +156,72 @@ class ModelToolExportImport extends Model {
 	protected function getDefaultWeightUnit() {
 		$weight_class_id = $this->config->get('config_weight_class_id');
 
-		$language_id = $this->getDefaultLanguageId();
+		$language_query = $this->db->query("SELECT DISTINCT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
 
-		$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
-
-		if ($query->num_rows > 0) {
-			return $query->row['unit'];
-		}
-
-		$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
-
-		if ($language_query->num_rows > 0) {
+		if ($language_query->row['language_id']) {
 			$language_id = $language_query->row['language_id'];
 
-			$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
+			$query = $this->db->query("SELECT DISTINCT unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
 
-			if ($query->num_rows > 0) {
+			if ($query->row['unit']) {
 				return $query->row['unit'];
 			}
-		}
 
-		return 'kg';
+		} else {
+			return 'kg';
+		}
 	}
 
 	protected function getDefaultMeasurementUnit() {
 		$length_class_id = $this->config->get('config_length_class_id');
 
-		$language_id = $this->getDefaultLanguageId();
+		$language_query = $this->db->query("SELECT DISTINCT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
 
-		$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
-
-		if ($query->num_rows > 0) {
-			return $query->row['unit'];
-		}
-
-		$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->config->get('config_admin_language') . "'");
-
-		if ($language_query->num_rows > 0) {
+		if ($language_query->row['language_id']) {
 			$language_id = $language_query->row['language_id'];
 
-			$query = $this->db->query("SELECT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
+			$query = $this->db->query("SELECT DISTINCT unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
 
-			if ($query->num_rows > 0) {
+			if ($query->row['unit']) {
 				return $query->row['unit'];
 			}
-		}
 
-		return 'cm';
+		} else {
+			return 'cm';
+		}
+	}
+
+	// Find all customer ids
+	protected function getCustomerIds() {
+		$query = $this->db->query("SELECT customer_id FROM " . DB_PREFIX . "customer");
+
+		if ($query->num_rows > 0) {
+			return $query->rows['customer_id'];
+		} else {
+			return 0;
+		}
 	}
 
 	// Find all category ids
 	protected function getCategoryIds() {
 		$query = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "category");
 
-		return $query->rows['category_id'];
+		if ($query->num_rows > 0) {
+			return $query->rows['category_id'];
+		} else {
+			return 0;
+		}
 	}
 
 	// Find all product ids
 	protected function getProductIds() {
 		$query = $this->db->query("SELECT product_id FROM " . DB_PREFIX . "product");
 
-		return $query->rows['product_id'];
+		if ($query->num_rows > 0) {
+			return $query->rows['product_id'];
+		} else {
+			return 0;
+		}
 	}
 
 	// Find all manufacturers already stored in the database
@@ -219,8 +230,8 @@ class ModelToolExportImport extends Model {
 
 		$manufacturers = array();
 
-		$sql = "SELECT ms.manufacturer_id, ms.store_id, md.name AS name FROM " . DB_PREFIX . "manufacturer m";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_to_store ms ON (ms.manufacturer_id = m.manufacturer_id)";
+		$sql = "SELECT m2s.manufacturer_id, m2s.store_id, md.name AS name FROM " . DB_PREFIX . "manufacturer m";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m2s.manufacturer_id = m.manufacturer_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = m.manufacturer_id)";
 		$sql .= " WHERE md.language_id = '" . (int)$language_id . "'";
 
@@ -293,12 +304,11 @@ class ModelToolExportImport extends Model {
 
 		$weight_class_ids = array();
 
-		$result = $this->db->query("SELECT weight_class_id, unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . $language_id . "'");
+		$result = $this->db->query("SELECT weight_class_id, unit FROM " . DB_PREFIX . "weight_class_description WHERE language_id = '" . (int)$language_id . "'");
 
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
 				$weight_class_id = $row['weight_class_id'];
-
 				$unit = $row['unit'];
 
 				if (!isset($weight_class_ids[$unit])) {
@@ -316,7 +326,7 @@ class ModelToolExportImport extends Model {
 
 		$length_class_ids = array();
 
-		$result = $this->db->query("SELECT length_class_id, unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . $language_id . "'");
+		$result = $this->db->query("SELECT length_class_id, unit FROM " . DB_PREFIX . "length_class_description WHERE language_id = '" . (int)$language_id . "'");
 
 		if ($result->rows) {
 			foreach ($result->rows as $row) {
@@ -333,6 +343,7 @@ class ModelToolExportImport extends Model {
 		return $length_class_ids;
 	}
 
+	// Find all layout ids
 	protected function getLayoutIds() {
 		$layout_ids = array();
 
@@ -345,6 +356,25 @@ class ModelToolExportImport extends Model {
 		return $layout_ids;
 	}
 
+	// Find all customer group ids
+	protected function getCustomerGroupIds() {
+		$language_id = $this->getDefaultLanguageId();
+
+		$customer_group_ids = array();
+
+		$result = $this->db->query("SELECT customer_group_id, name FROM " . DB_PREFIX . "customer_group_description WHERE language_id = '" . (int)$language_id . "' ORDER BY customer_group_id ASC");
+
+		foreach ($result->rows as $row) {
+			$customer_group_id = $row['customer_group_id'];
+			$name = $row['name'];
+
+			$customer_group_ids[$name] = $customer_group_id;
+		}
+
+		return $customer_group_ids;
+	}
+
+	// Find all available store ids
 	protected function getAvailableStoreIds() {
 		$store_ids = array(0);
 
@@ -359,6 +389,7 @@ class ModelToolExportImport extends Model {
 		return $store_ids;
 	}
 
+	// Find all available product ids
 	protected function getAvailableProductIds($data) {
 		$available_product_ids = array();
 
@@ -379,46 +410,332 @@ class ModelToolExportImport extends Model {
 		return $available_product_ids;
 	}
 
+	// Find all available customer ids
+	protected function getAvailableCustomerIds() {
+		$available_customer_ids = array();
+
+		$result = $this->db->query("SELECT customer_id FROM " . DB_PREFIX . "customer");
+
+		foreach ($result->rows as $row) {
+			$available_customer_ids[$row['customer_id']] = (int)$row['customer_id'];
+		}
+
+		return $available_customer_ids;
+	}
+
+	// Find all available address ids
+	protected function getAvailableAddressIds() {
+		$address_ids = array();
+
+		$result = $this->db->query("SELECT address_id FROM " . DB_PREFIX . "address");
+
+		foreach ($result->rows as $row) {
+			$address_ids[$row['address_id']] = (int)$row['address_id'];
+		}
+
+		return $address_ids;
+	}
+
+	// Find available category ids
 	protected function getAvailableCategoryIds() {
 		$category_ids = array();
 
 		$result = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "category");
 
 		foreach ($result->rows as $row) {
-			$category_ids[$row['category_id']] = $row['category_id'];
+			$category_ids[$row['category_id']] = (int)$row['category_id'];
 		}
 
 		return $category_ids;
 	}
 
+	// Find available palette ids
 	protected function getAvailablePaletteIds() {
 		$palette_ids = array();
 
-		$query = $this->db->query("SELECT palette_id FROM " . DB_PREFIX . "palette");
+		$result = $this->db->query("SELECT palette_id FROM " . DB_PREFIX . "palette");
 
 		foreach ($result->rows as $row) {
-			$palette_ids[$row['palette_id']] = $row['palette_id'];
+			$palette_ids[$row['palette_id']] = (int)$row['palette_id'];
 		}
 
 		return $palette_ids;
 	}
 
-	protected function getCustomerGroupIds() {
-		$language_id = $this->getDefaultLanguageId();
+	// Customers
+	protected function getCustomerAddressIds() {
+		$address_ids = array();
 
-		$customer_group_ids = array();
+		$result = $this->db->query("SELECT address_id, customer_id FROM " . DB_PREFIX . "address");
 
-		$query = $this->db->query("SELECT customer_group_id, name FROM " . DB_PREFIX . "customer_group_description WHERE language_id = '" . $language_id . "' ORDER BY customer_group_id ASC");
-
-		foreach ($query->rows as $row) {
-			$customer_group_id = $row['customer_group_id'];
-			$name = $row['name'];
-			$customer_group_ids[$name] = $customer_group_id;
+		foreach ($result->rows as $row) {
+			$address_id = $row['address_id'];
+			$customer_id = $row['customer_id'];
+			$address_ids[$customer_id] = $address_id;
 		}
 
-		return $customer_group_ids;
+		return $address_ids;
 	}
 
+	// Extract and Insert the Customer details
+	protected function storeCustomerIntoDatabase($customer, $available_customer_ids, $available_address_ids) {
+		$customer_id = $customer['customer_id'];
+		$store_id = ($customer['store_id']) ? $customer['store_id'] : 0;
+		$firstname = $this->db->escape($customer['firstname']);
+		$lastname = $this->db->escape($customer['lastname']);
+		$email = $this->db->escape($customer['email']);
+		$telephone = $this->db->escape($customer['telephone']);
+		$fax = ($customer['fax']) ? $this->db->escape($customer['fax']) : '';
+		$gender = ($customer['gender']) ? $this->db->escape($customer['gender']) : 0;
+		$date_of_birth = ($customer['date_of_birth']) ? $customer['date_of_birth'] : '0000-00-00';
+		$password = ($customer['password']) ? $customer['password'] : '';
+		$salt = ($customer['salt']) ? $customer['salt'] : '';
+		$cart = $customer['cart'];
+		$wishlist = $customer['wishlist'];
+		$newsletter = $customer['newsletter'];
+		$newsletter = ((strtoupper($newsletter) == "TRUE") || (strtoupper($newsletter) == "YES") || (strtoupper($newsletter) == "ENABLED")) ? 1 : 0;
+		$address_id = $this->db->escape($customer['address_id']);
+		$company = $this->db->escape($customer['company']);
+		$company_id = $this->db->escape($customer['company_id']);
+		$tax_id = $this->db->escape($customer['tax_id']);
+		$address_1 = $this->db->escape($customer['address_1']);
+		$address_2 = $this->db->escape($customer['address_2']);
+		$city = $this->db->escape($customer['city']);
+		$postcode = $this->db->escape($customer['postcode']);
+		$country_id = $this->db->escape($customer['country_id']);
+		$zone_id = $this->db->escape($customer['zone_id']);
+		$customer_group_id = ($customer['customer_group_id']) ? $customer['customer_group_id'] : 1;
+		$ip = ($customer['ip']) ? $customer['ip'] : '127.0.0.1';
+		$status = $customer['status'];
+		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
+		$approved = $customer['approved'];
+		$approved = ((strtoupper($approved) == "TRUE") || (strtoupper($approved) == "YES") || (strtoupper($approved) == "ENABLED")) ? 1 : 0;
+		$token = $this->db->escape($customer['token']);
+		$date_added = $customer['date_added'];
+		$date_added = ($date_added) ? $date_added : date('Y-m-d');
+
+		// Generate and execute SQL for inserting the customers
+		$sql = "INSERT INTO `" . DB_PREFIX . "customer` (`customer_id`,`store_id`,`firstname`,`lastname`,`email`,`telephone`,`fax`,`gender`,`date_of_birth`,`password`,`salt`,`cart`,`wishlist`,`newsletter`,`address_id`,`customer_group_id`,`ip`,`status`,`approved`,`token`,`date_added`) VALUES";
+		$sql .= " ( '$customer_id', '$store_id', '$firstname', '$lastname', '$email', '$telephone', '$fax', '$gender', '$date_of_birth', '$password', '$salt', '$cart', '$wishlist', '$newsletter', '$address_id', '$customer_group_id', '$ip', '$status', '$approved', '$token', '$date_added');";
+
+		$this->db->query($sql);
+
+		if ($customer_id) {
+			if (isset($address_ids[$customer_id])) {
+				$address_id = $address_ids[$customer_id];
+
+				$address_sql = "INSERT INTO `" . DB_PREFIX . "address` (`address_id`,`customer_id`,`firstname`,`lastname`,`company`,`company_id`,`tax_id`,`address_1`,`address_2`,`city`,`postcode`,`country_id`,`zone_id`) VALUES";
+				$address_sql .= "( '$address_id', '$customer_id', '$firstname', '$lastname', '$company', '$company_id', '$tax_id', '$address_1', '$address_2', '$city', '$postcode', '$country_id', '$zone_id');";
+
+				unset($address_ids[$customer_id]);
+			} else {
+				$address_sql = "INSERT INTO `" . DB_PREFIX . "address` (`customer_id`,`firstname`,`lastname`,`company`,`company_id`,`tax_id`,`address_1`,`address_2`,`city`,`postcode`,`country_id`,`zone_id`) VALUES";
+				$address_sql .= "( '$customer_id', '$firstname', '$lastname', '$company', '$company_id', '$tax_id', '$address_1', '$address_2', '$city', '$postcode', '$country_id', '$zone_id');";
+			}
+
+			$this->db->query($address_sql);
+
+			$new_address_id = $this->db->getLastId();
+
+			$this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int)$new_address_id . "' WHERE customer_id = '" . (int)$customer_id . "'");
+		}
+	}
+
+	protected function deleteCustomer($customer_id) {
+		$sql = "DELETE FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "customer_history WHERE customer_id = '" . (int)$customer_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "customer_ip WHERE customer_id = '" . (int)$customer_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "customer_online WHERE customer_id = '" . (int)$customer_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$customer_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_id = '" . (int)$customer_id . "';\n";
+
+		$this->multiquery($sql);
+
+		$query = $this->db->query("SHOW TABLES LIKE \"" . DB_PREFIX . "address\"");
+
+		if ($query->num_rows) {
+			$this->db->query("DELETE FROM " . DB_PREFIX . "address WHERE customer_id = '" . (int)$customer_id . "'");
+		}
+	}
+
+	protected function deleteCustomers($address_ids) {
+		$sql = "TRUNCATE TABLE `" . DB_PREFIX . "customer`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_history`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_ip`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_online`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_reward`;\n";
+		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "customer_transaction`;\n";
+
+		$this->multiquery($sql);
+
+		$query = $this->db->query("SHOW TABLES LIKE \"" . DB_PREFIX . "address\"");
+
+		if ($query->num_rows) {
+			$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "address`");
+		}
+
+		$address_query = $this->db->query("SELECT (MAX(address_id)+1) AS next_address_id FROM " . DB_PREFIX . "address");
+
+		$next_address_id = $address_query->row['next_address_id'];
+
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "address` AUTO_INCREMENT = '" . $next_address_id . "'");
+
+		$remove = array();
+
+		foreach ($address_ids as $customer_id => $address_id) {
+			if ($address_id >= $next_address_id) {
+				$remove[$customer_id] = $address_id;
+			}
+		}
+
+		foreach ($remove as $customer_id => $address_id) {
+			unset($address_ids[$customer_id]);
+		}
+	}
+
+	// Function for reading additional cells in class extensions
+	protected function moreCustomerCells($i, $j, $worksheet, $customer) {
+		return;
+	}
+
+	protected function uploadCustomers($reader, $incremental, $available_customer_ids = array()) {
+		// Get worksheet if present
+		$data = $reader->getSheetByName('Customers');
+
+		if ($data == null) {
+			return;
+		}
+
+		// Get old address_ids
+		$address_ids = $this->getCustomerAddressIds();
+
+		// If incremental, then find current customer ids, else delete all old customers
+		$available_customer_ids = array();
+
+		if ($incremental) {
+			$available_customer_ids = $this->getAvailableCustomerIds();
+		} else {
+			$this->deleteCustomers($address_ids);
+		}
+
+		// Get address_ids
+		$available_address_ids = array();
+
+		$available_address_ids = $this->getAvailableAddressIds();
+
+		$first_row = array();
+
+		$i = 0;
+		$k = $data->getHighestRow();
+
+		for ($i = 0; $i < $k; $i += 1) {
+			if ($i == 0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString($data->getHighestColumn());
+
+				for ($j = 1; $j <= $max_col; $j += 1) {
+					$first_row[] = $this->getCell($data, $i, $j);
+				}
+
+				continue;
+			}
+
+			$j = 1;
+
+			$customer_id = trim($this->getCell($data, $i, $j++));
+
+			if ($customer_id == "") {
+				continue;
+			}
+
+			$store_id = $this->getCell($data, $i, $j++, '0');
+			$firstname = $this->getCell($data, $i, $j++);
+			$lastname = $this->getCell($data, $i, $j++);
+			$email = $this->getCell($data, $i, $j++);
+			$email = html_entity_decode($email);
+			$telephone = $this->getCell($data, $i, $j++);
+			$fax = trim($this->getCell($data, $i, $j++));
+			$fax = (is_string($fax) && utf8_strlen($fax) > 0) ? $fax : '';
+			$gender = $this->getCell($data, $i, $j++);
+			$gender = ($gender) ? '1' : '0';
+			$date_of_birth = trim($this->getCell($data, $i, $j++));
+			$date_of_birth = (is_string($date_of_birth) && utf8_strlen($date_of_birth) > 0) ? $date_of_birth : "0000-00-00";
+			$password = trim($this->getCell($data, $i, $j++));
+			$password = (is_string($password) && utf8_strlen($password) > 0) ? $password : '';
+			$salt = trim($this->getCell($data, $i, $j++));
+			$salt = (is_string($salt) && utf8_strlen($salt) == 9) ? $salt : '';
+			$cart = $this->getCell($data, $i, $j++);
+			$wishlist = $this->getCell($data, $i, $j++);
+			$newsletter = trim($this->getCell($data, $i, $j++));
+			$newsletter = ($newsletter) ? 'true' : 'false';
+			$address_id = $this->getCell($data, $i, $j++);
+			$company = $this->getCell($data, $i, $j++);
+			$company_id = $this->getCell($data, $i, $j++);
+			$tax_id = $this->getCell($data, $i, $j++);
+			$address_1 = $this->getCell($data, $i, $j++);
+			$address_2 = $this->getCell($data, $i, $j++);
+			$city = $this->getCell($data, $i, $j++);
+			$postcode = $this->getCell($data, $i, $j++);
+			$country_id = $this->getCell($data, $i, $j++);
+			$zone_id = $this->getCell($data, $i, $j++);
+			$customer_group_id = $this->getCell($data, $i, $j++);
+			$ip = $this->getCell($data, $i, $j++);
+			$ip = ($ip) ? $ip : '127.0.0.1';
+			$status = $this->getCell($data, $i, $j++);
+			$status = ($status) ? 'true' : 'false';
+			$approved = $this->getCell($data, $i, $j++);
+			$approved = ($approved) ? 'true' : 'false';
+			$token = $this->getCell($data, $i, $j++);
+			$date_added = trim($this->getCell($data, $i, $j++));
+			$date_added = (is_string($date_added) && utf8_strlen($date_added) > 0) ? $date_added : date('Y-m-d');
+
+			$customer = array();
+
+			$customer['customer_id'] = $customer_id;
+			$customer['store_id'] = $store_id;
+			$customer['firstname'] = $firstname;
+			$customer['lastname'] = $lastname;
+			$customer['email'] = $email;
+			$customer['telephone'] = $telephone;
+			$customer['fax'] = $fax;
+			$customer['gender'] = $gender;
+			$customer['date_of_birth'] = $date_of_birth;
+			$customer['password'] = $password;
+			$customer['salt'] = $salt;
+			$customer['cart'] = $cart;
+			$customer['wishlist'] = $wishlist;
+			$customer['newsletter'] = $newsletter;
+			$customer['address_id'] = $address_id;
+			$customer['company'] = $company;
+			$customer['company_id'] = $company_id;
+			$customer['tax_id'] = $tax_id;
+			$customer['address_1'] = $address_1;
+			$customer['address_2'] = $address_2;
+			$customer['city'] = $city;
+			$customer['postcode'] = $postcode;
+			$customer['country_id'] = $country_id;
+			$customer['zone_id'] = $zone_id;
+			$customer['customer_group_id'] = $customer_group_id;
+			$customer['ip'] = $ip;
+			$customer['status'] = $status;
+			$customer['approved'] = $approved;
+			$customer['token'] = $token;
+			$customer['date_added'] = $date_added;
+
+			if ($incremental) {
+				if ($available_customer_ids) {
+					if (in_array((int)$customer_id, $available_customer_ids)) {
+						$this->deleteCustomer($customer_id);
+					}
+				}
+			}
+
+			$this->moreCustomerCells($i, $j, $data, $customer);
+
+			$this->storeCustomerIntoDatabase($customer, $available_customer_ids, $available_address_ids);
+		}
+	}
+
+	// Categories
 	protected function getCategoryUrlAliasIds() {
 		$url_alias_ids = array();
 
@@ -459,7 +776,7 @@ class ModelToolExportImport extends Model {
 		$status = ((strtoupper($status) == "TRUE") || (strtoupper($status) == "YES") || (strtoupper($status) == "ENABLED")) ? 1 : 0;
 
 		// Generate and execute SQL for inserting the category
-		$sql = "INSERT INTO `" . DB_PREFIX . "category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `date_added`, `date_modified`, `status`) VALUES";
+		$sql = "INSERT INTO `" . DB_PREFIX . "category` (`category_id`,`image`,`parent_id`,`top`,`column`,`sort_order`,`date_added`,`date_modified`,`status`) VALUES";
 		$sql .= " ( $category_id, '$image_name', $parent_id, $top, $columns, $sort_order,";
 		$sql .= ($date_added == 'NOW()') ? " $date_added," : " '$date_added',";
 		$sql .= ($date_modified == 'NOW()') ? " $date_modified," : " '$date_modified',";
@@ -470,12 +787,13 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 			$description = isset($descriptions[$language_code]) ? $this->db->escape($descriptions[$language_code]) : '';
 			$meta_description = isset($meta_descriptions[$language_code]) ? $this->db->escape($meta_descriptions[$language_code]) : '';
 			$meta_keyword = isset($meta_keywords[$language_code]) ? $this->db->escape($meta_keywords[$language_code]) : '';
 
-			$sql = "INSERT INTO `" . DB_PREFIX . "category_description` (`category_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES";
+			$sql = "INSERT INTO `" . DB_PREFIX . "category_description` (`category_id`,`language_id`,`name`,`description`,`meta_description`,`meta_keyword`) VALUES";
 			$sql .= " ( $category_id, $language_id, '$name', '$description', '$meta_description', '$meta_keyword');";
 
 			$this->db->query( $sql );
@@ -532,10 +850,10 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteCategory($category_id) {
-		$sql = "DELETE FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "' ;\n";
-		$sql .= "DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "' ;\n";
-		$sql .= "DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "' ;\n";
-		$sql .= "DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "' ;\n";
+		$sql = "DELETE FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "';\n";
+		$sql .= "DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "';\n";
 
 		$sql .= "DELETE FROM " . DB_PREFIX . "url_alias WHERE query LIKE 'category_id=" . (int)$category_id . "';\n";
 
@@ -599,7 +917,7 @@ class ModelToolExportImport extends Model {
 		// Get old url_alias_ids
 		$url_alias_ids = $this->getCategoryUrlAliasIds();
 
-		// If incremental then find current category IDs else delete all old categories
+		// If incremental, then find current category ids, else delete all old categories
 		$available_category_ids = array();
 
 		if ($incremental) {
@@ -608,13 +926,13 @@ class ModelToolExportImport extends Model {
 			$this->deleteCategories($url_alias_ids);
 		}
 
-		// Get pre-defined layouts
+		// Get layouts
 		$layout_ids = $this->getLayoutIds();
 
-		// Get pre-defined store_ids
+		// Get store_ids
 		$available_store_ids = $this->getAvailableStoreIds();
 
-		// Get installed languages
+		// Get languages
 		$languages = $this->getLanguages();
 
 		$first_row = array();
@@ -696,12 +1014,12 @@ class ModelToolExportImport extends Model {
 			$category = array();
 
 			$category['category_id'] = $category_id;
-			$category['image'] = $image_name;
 			$category['parent_id'] = $parent_id;
+			$category['names'] = $names;
 			$category['sort_order'] = $sort_order;
+			$category['image'] = $image_name;
 			$category['date_added'] = $date_added;
 			$category['date_modified'] = $date_modified;
-			$category['names'] = $names;
 			$category['top'] = $top;
 			$category['columns'] = $columns;
 			$category['descriptions'] = $descriptions;
@@ -750,7 +1068,7 @@ class ModelToolExportImport extends Model {
 		$category_id = $category_filter['category_id'];
 		$filter_id = $category_filter['filter_id'];
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "category_filter` (`category_id`, `filter_id`) VALUES ( $category_id, $filter_id);");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "category_filter` (`category_id`,`filter_id`) VALUES ( $category_id, $filter_id);");
 	}
 
 	protected function deleteCategoryFilters() {
@@ -1411,7 +1729,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	// --- Write Product Additional Images
+	// Write Product Additional Images
 	protected function storeAdditionalImageIntoDatabase($image, $old_product_image_ids) {
 		$product_id = $image['product_id'];
 		$image_name = $image['image_name'];
@@ -1966,6 +2284,7 @@ class ModelToolExportImport extends Model {
 		foreach ($query->rows as $row) {
 			$option_id = $row['option_id'];
 			$name = htmlspecialchars_decode($row['name']);
+
 			$option_ids[$name] = $option_id;
 		}
 
@@ -2802,6 +3121,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "option_value_description` (`option_value_id`,`language_id`,`option_id`,`name`) VALUES ( $option_value_id, $language_id, $option_id, '$name');");
@@ -2922,6 +3242,7 @@ class ModelToolExportImport extends Model {
 		foreach ($languages as $language) {
 			$language_code = $language['code'];
 			$language_id = $language['language_id'];
+
 			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "attribute_group_description` (`attribute_group_id`,`language_id`,`name`) VALUES ( $attribute_group_id, $language_id, '$name');");
@@ -3325,9 +3646,9 @@ class ModelToolExportImport extends Model {
 	}
 
 	// PHPExcel
-	function getCell($worksheet, $row, $col, $default_val = '') {
-		$col -= 1; // we use 1-based, PHPExcel uses 0-based column index
-		$row += 1; // we use 0-based, PHPExcel uses 1-based row index
+	protected function getCell($worksheet, $row, $col, $default_val = '') {
+		$col -= 1; // We use 1-based, PHPExcel uses 0-based column index
+		$row += 1; // We use 0-based, PHPExcel uses 1-based row index
 
 		$val = ($worksheet->cellExistsByColumnAndRow($col, $row)) ? $worksheet->getCellByColumnAndRow($col, $row)->getValue() : $default_val;
 
@@ -3338,7 +3659,7 @@ class ModelToolExportImport extends Model {
 		return $val;
 	}
 
-	function validateHeading($data, $expected, $multilingual) {
+	protected function validateHeading($data, $expected, $multilingual) {
 		$default_language_code = $this->config->get('config_admin_language');
 
 		$heading = array();
@@ -3399,6 +3720,22 @@ class ModelToolExportImport extends Model {
 		}
 
 		return true;
+	}
+
+	protected function validateCustomers($reader) {
+		$data = $reader->getSheetByName('Customers');
+
+		if ($data == null) {
+			return true;
+		}
+
+		$expected_heading = array(
+			"customer_id", "store_id", "firstname", "lastname", "email", "telephone", "fax", "gender", "date_of_birth", "password", "salt", "cart", "wishlist", "newsletter", "address_id", "company", "company_id", "tax_id", "address_1", "address_2", "city", "postcode", "country_id", "zone_id", "customer_group_id", "ip", "status", "approved", "token", "date_added"
+		);
+
+		$expected_multilingual = array();
+
+		return $this->validateHeading($data, $expected_heading, $expected_multilingual);
 	}
 
 	protected function validateCategories($reader) {
@@ -3907,9 +4244,8 @@ class ModelToolExportImport extends Model {
 
 		$sql = "SELECT od.option_id, od.name AS option_name, ovd.option_value_id, ovd.name AS option_value_name";
 		$sql .= " FROM " . DB_PREFIX . "option_description od";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ovd.option_id = od.option_id)";
-		$sql .= " WHERE ovd.language_id = '" . (int)$language_id . "'";
-		$sql .= " AND od.language_id = '" . (int)$language_id . "'";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "option_value_description ovd ON (ovd.option_id = od.option_id) AND ovd.language_id = '" . (int)$language_id . "'";
+		$sql .= " WHERE od.language_id = '" . (int)$language_id . "'";
 
 		$query = $this->db->query($sql);
 
@@ -4748,6 +5084,11 @@ class ModelToolExportImport extends Model {
 		$ok = true;
 
 		// Worksheets must have correct heading rows
+		if (!$this->validateCustomers($reader)) {
+			$this->log->write($this->language->get('error_customers_header'));
+			$ok = false;
+		}
+
 		if (!$this->validateCategories($reader)) {
 			$this->log->write($this->language->get('error_categories_header'));
 			$ok = false;
@@ -4836,6 +5177,7 @@ class ModelToolExportImport extends Model {
 		// Certain worksheets rely on the existence of other worksheets
 		$names = $reader->getSheetNames();
 
+		$exist_customers = false;
 		$exist_categories = false;
 		$exist_category_filters = false;
 		$exist_product_options = false;
@@ -4855,6 +5197,11 @@ class ModelToolExportImport extends Model {
 		$exist_option_values = false;
 
 		foreach ($names as $name) {
+			if ($name == 'Customers') {
+				$exist_customers = true;
+				continue;
+			}
+
 			if ($name == 'Categories') {
 				$exist_categories = true;
 				continue;
@@ -5084,6 +5431,41 @@ class ModelToolExportImport extends Model {
 		$this->cache->delete('*');
 	}
 
+	protected function removeEntities($string_in) {
+		$string_out = null;
+
+		$stripped_string = strip_tags(html_entity_decode($string_in, ENT_COMPAT, 'UTF-8'));
+
+		for ($i = 0; $i < utf8_strlen($stripped_string); $i++) {
+			$ord = ord($stripped_string[$i]);
+
+			if (($ord > 0 && $ord < 32) || ($ord > 59 && $ord < 63) || ($ord > 126)) {
+				$string_out .= ' ';
+			} else {
+				switch ($stripped_string[$i]) {
+				case '<':
+					$string_out .= '&lt;';
+					break;
+				case '>':
+					$string_out .= '&gt;';
+					break;
+				case '&':
+					$string_out .= '&amp;';
+					break;
+				case '"':
+					$string_out .= '&quot;';
+					break;
+				default:
+					$string_out .= $stripped_string[$i];
+				}
+			}
+		}
+
+		$clean_string_out = str_replace(array('/', '&amp;nbsp;', '&amp;amp;', '&amp;ndash;', '&amp;mdash;', '&amp;trade;', '&amp;reg;', '&amp;deg;', '&amp;rsquo;', '&amp;quot;', '&amp;#39;', '&amp;acute;'), ' ', $string_out);
+
+		return $clean_string_out;
+	}
+
 	public function upload($filename, $incremental = false) {
 		// Error handler
 		global $registry;
@@ -5109,6 +5491,7 @@ class ModelToolExportImport extends Model {
 			// Memory Optimization
 			if ($this->config->get('export_import_settings_use_import_cache')) {
 				$cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+
 				$cacheSettings = array('memoryCacheSize' => '16MB');
 
 				PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
@@ -5130,9 +5513,11 @@ class ModelToolExportImport extends Model {
 
 			$this->session->data['export_import_nochange'] = 0;
 
+			$available_customer_ids = array();
 			$available_product_ids = array();
 			$available_category_ids = array();
 
+			$this->uploadCustomers($reader, $incremental, $available_customer_ids);
 			$this->uploadCategories($reader, $incremental, $available_category_ids);
 			$this->uploadCategoryFilters($reader, $incremental, $available_category_ids);
 			$this->uploadProducts($reader, $incremental, $available_product_ids);
@@ -5186,7 +5571,7 @@ class ModelToolExportImport extends Model {
 
 	protected function setCellRow($worksheet, $row, $data, $default_style = null, $styles = null) {
 		if (!empty($default_style)) {
-			$worksheet->getStyle("$row:$row")->applyFromArray($default_style, false);
+			$worksheet->getStyle($row . ':' . $row)->applyFromArray($default_style, false);
 		}
 
 		if (!empty($styles)) {
@@ -5198,7 +5583,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->fromArray($data, null, 'A' . $row, true);
 	}
 
-	protected function setCell(&$worksheet, $row, $col, $val, &$style = null) {
+	protected function setCell($worksheet, $row, $col, $val, $style = null) {
 		$worksheet->setCellValueByColumnAndRow($col, $row, $val);
 
 		if (!empty($style)) {
@@ -5206,8 +5591,156 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
+	// Customers
+	protected function getCustomers() {
+		$sql = "SELECT * FROM " . DB_PREFIX . "customer c";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "address a ON (a.address_id = c.address_id)";
+		$sql .= " GROUP BY c.customer_id";
+		$sql .= " ORDER BY c.lastname, c.firstname ASC";
+
+		$results = $this->db->query($sql);
+
+		return $results->rows;
+	}
+
+	protected function populateCustomersWorksheet($worksheet, $box_format, $text_format, $date_format, $datetime_format) {
+		// Set the column widths
+		$j = 0;
+
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_id')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('store_id')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('firstname')+4, 20)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('lastname')+4, 20)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('email')+4, 25)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('telephone')+4, 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('fax')+4, 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('gender'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_of_birth'), 12)+1, $date_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('password'), 32)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('salt'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('cart'), 10)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('wishlist'), 10)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('newsletter')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('address_id')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('company'), 30)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('company_id'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tax_id'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('address_1'), 20)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('address_2'), 20)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('city'), 20)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('postcode'), 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('country_id'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('zone_id'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('customer_group_id'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('ip'), 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('approved'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('token'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_added'), 19)+1, $datetime_format);
+
+		// The heading row and column styles
+		$styles = array();
+		$data = array();
+
+		$i = 1;
+		$j = 0;
+
+		$data[$j++] = 'customer_id';
+		$data[$j++] = 'store_id';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'firstname';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'lastname';
+		$data[$j++] = 'email';
+		$data[$j++] = 'telephone';
+		$data[$j++] = 'fax';
+		$data[$j++] = 'gender';
+		$styles[$j] = $date_format;
+		$data[$j++] = 'date_of_birth';
+		$data[$j++] = 'password';
+		$data[$j++] = 'salt';
+		$data[$j++] = 'cart';
+		$data[$j++] = 'wishlist';
+		$data[$j++] = 'newsletter';
+		$data[$j++] = 'address_id';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'company';
+		$data[$j++] = 'company_id';
+		$data[$j++] = 'tax_id';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'address_1';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'address_2';
+		$styles[$j] = $text_format;
+		$data[$j++] = 'city';
+		$data[$j++] = 'postcode';
+		$data[$j++] = 'country_id';
+		$data[$j++] = 'zone_id';
+		$data[$j++] = 'customer_group_id';
+		$data[$j++] = 'ip';
+		$data[$j++] = 'status';
+		$data[$j++] = 'approved';
+		$data[$j++] = 'token';
+		$styles[$j] = $datetime_format;
+		$data[$j++] = 'date_added';
+
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+
+		$this->setCellRow($worksheet, $i, $data, $box_format);
+
+		// The actual customers data
+		$i += 1;
+		$j = 0;
+
+		$customers = $this->getCustomers();
+
+		foreach ($customers as $row) {
+			$data = array();
+
+			$worksheet->getRowDimension($i)->setRowHeight(26);
+
+			$customer_id = $row['customer_id'];
+
+			$data[$j++] = $row['customer_id'];
+			$data[$j++] = $row['store_id'];
+			$data[$j++] = html_entity_decode($row['firstname'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = html_entity_decode($row['lastname'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = $row['email'];
+			$data[$j++] = $row['telephone'];
+			$data[$j++] = $row['fax'];
+			$data[$j++] = ($row['gender'] == 0) ? '0' : '1';
+			$data[$j++] = ($row['date_of_birth']) ? $row['date_of_birth'] : '0000-00-00';
+			$data[$j++] = $row['password'];
+			$data[$j++] = $row['salt'];
+			$data[$j++] = $row['cart'];
+			$data[$j++] = $row['wishlist'];
+			$data[$j++] = ($row['newsletter'] == 0) ? 'false' : 'true';
+			$data[$j++] = $row['address_id'];
+			$data[$j++] = html_entity_decode($row['company'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = $row['company_id'];
+			$data[$j++] = $row['tax_id'];
+			$data[$j++] = html_entity_decode($row['address_1'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = html_entity_decode($row['address_2'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = html_entity_decode($row['city'], ENT_QUOTES, 'UTF-8');
+			$data[$j++] = $row['postcode'];
+			$data[$j++] = $row['country_id'];
+			$data[$j++] = $row['zone_id'];
+			$data[$j++] = $row['customer_group_id'];
+			$data[$j++] = $row['ip'];
+			$data[$j++] = ($row['status'] == 0) ? 'false' : 'true';
+			$data[$j++] = ($row['approved'] == 0) ? 'false' : 'true';
+			$data[$j++] = $row['token'];
+			$data[$j++] = $row['date_added'];
+
+			$this->setCellRow($worksheet, $i, $data, $this->null_array, $styles);
+
+			$i += 1;
+			$j = 0;
+		}
+	}
+
 	// Categories
-	function getStoreIdsForCategories() {
+	protected function getStoreIdsForCategories() {
 		$store_ids = array();
 
 		$result = $this->db->query("SELECT category_id, store_id FROM " . DB_PREFIX . "category_to_store");
@@ -5228,7 +5761,7 @@ class ModelToolExportImport extends Model {
 		return $store_ids;
 	}
 
-	function getLayoutsForCategories() {
+	protected function getLayoutsForCategories() {
 		$layouts = array();
 
 		$sql = "SELECT cl.*, l.name FROM " . DB_PREFIX . "category_to_layout cl";
@@ -5252,64 +5785,85 @@ class ModelToolExportImport extends Model {
 		return $layouts;
 	}
 
-	protected function getCategoryDescriptions($language_id, $language_code, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getCategoryDescriptions($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Category description table for each language
 		$category_descriptions = array();
 
-		$sql = "SELECT c.category_id, cd.name, cd.description AS description, cd.meta_description, cd.meta_keyword";
-		$sql .= " FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (cd.category_id = c.category_id)";
-		$sql .= " WHERE cd.language_id = '" . (int)$language_id . "'";
-		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+		foreach ($languages as $language) {
+			$language_id = $language['language_id'];
+			$language_code = strtolower($language['code']);
+
+			$sql = "SELECT c.category_id, cd.* FROM " . DB_PREFIX . "category c";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "category_description cd ON (cd.category_id = c.category_id)";
+			$sql .= " WHERE cd.language_id = '" . (int)$language_id . "'";
+			if (isset($min_id) && isset($max_id)) {
+				$sql .= " AND c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			}
+			$sql .= " GROUP BY c.category_id";
+			$sql .= " ORDER BY c.category_id";
+			if (isset($offset) && isset($rows)) {
+				$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+			} else {
+				$sql .= " ASC";
+			}
+
+			$category_query = $this->db->query($sql);
+
+			$category_descriptions[$language_code] = $category_query->rows;
 		}
-		$sql .= " GROUP BY c.category_id";
-		$sql .= " ORDER BY c.category_id ASC";
-		if (isset($offset) && isset($rows)) {
-			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
-		}
 
-		$category_query = $this->db->query($sql);
-
-		$category_descriptions[$language_code] = $category_query->rows;
-
-		if (isset($category_descriptions)) {
+		if (!empty($category_descriptions)) {
 			return $category_descriptions;
 		} else {
 			return 0;
 		}
 	}
 
-	protected function getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
-		$sql = "SELECT c.*, ua.keyword AS keyword FROM " . DB_PREFIX . "category c";
-		$sql .= " INNER JOIN " . DB_PREFIX . "url_alias ua ON (ua.query = CONCAT('category_id=',c.category_id))";
+	public function getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+		$sql = "SELECT c.*, ua.keyword AS seo_keyword FROM " . DB_PREFIX . "category c";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON (ua.query = CONCAT('category_id=',c.category_id))";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "category_to_store cs ON (cs.category_id = c.category_id)";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
 		$sql .= " GROUP BY c.category_id";
-		$sql .= " ORDER BY c.category_id ASC";
+		$sql .= " ORDER BY c.category_id";
 		if (isset($offset) && isset($rows)) {
-			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
+			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+		} else {
+			$sql .= " ASC";
 		}
 
 		$results = $this->db->query($sql);
 
+		$category_descriptions = $this->getCategoryDescriptions($languages, $offset, $rows, $min_id, $max_id);
+
 		foreach ($languages as $language) {
-			$language_id = $language['language_id'];
 			$language_code = strtolower($language['code']);
 
-			$category_descriptions = $this->getCategoryDescriptions($language_id, $language_code, $offset, $rows, $min_id, $max_id);
-
 			foreach ($results->rows as $key => $row) {
-				if (isset($category_descriptions[$language_code][$key])) {
+				if (isset($category_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $category_descriptions[$language_code][$key]['name'];
+				} else {
+					$results->rows[$key]['name'][$language_code] = null;
+				}
+
+				if (isset($category_descriptions[$language_code][$key]['description'])) {
 					$results->rows[$key]['description'][$language_code] = $category_descriptions[$language_code][$key]['description'];
+				} else {
+					$results->rows[$key]['description'][$language_code] = null;
+				}
+
+				if (isset($category_descriptions[$language_code][$key]['meta_description'])) {
 					$results->rows[$key]['meta_description'][$language_code] = $category_descriptions[$language_code][$key]['meta_description'];
+				} else {
+					$results->rows[$key]['meta_description'][$language_code] = null;
+				}
+
+				if (isset($category_descriptions[$language_code][$key]['meta_keyword'])) {
 					$results->rows[$key]['meta_keyword'][$language_code] = $category_descriptions[$language_code][$key]['meta_keyword'];
 				} else {
-					$results->rows[$key]['name'][$language_code] = '';
-					$results->rows[$key]['description'][$language_code] = '';
-					$results->rows[$key]['meta_description'][$language_code] = '';
-					$results->rows[$key]['meta_keyword'][$language_code] = '';
+					$results->rows[$key]['meta_keyword'][$language_code] = null;
 				}
 			}
 		}
@@ -5317,33 +5871,33 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	protected function populateCategoriesWorksheet($worksheet, $languages, $box_format, $text_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function populateCategoriesWorksheet($worksheet, $languages, $box_format, $text_format, $datetime_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('category_id')+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('parent_id')+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('top'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('columns')+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('sort_order')+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image_name'), 32)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_added'), 19)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_modified'), 19)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image_name'), 30)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_added'), 19)+1, $datetime_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_modified'), 19)+1, $datetime_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1, $text_format);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description'), 48)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description'), 48)+1, $text_format);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_description'), 32)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_description'), 32)+1, $text_format);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_keywords'), 24)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_keywords'), 24)+1, $text_format);
 		}
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('store_ids'), 5)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('layout'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('layout'), 16)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 5)+1);
 
 		// The heading row and column styles
@@ -5356,35 +5910,34 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'category_id';
 		$data[$j++] = 'parent_id';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 		$data[$j++] = 'top';
 		$data[$j++] = 'columns';
 		$data[$j++] = 'sort_order';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'image_name';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $datetime_format;
 		$data[$j++] = 'date_added';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $datetime_format;
 		$data[$j++] = 'date_modified';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'seo_keyword';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'description(' . $language['code'] . ')';
 		}
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'meta_description(' . $language['code'] .')';
 		}
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'meta_keywords(' . $language['code'] . ')';
 		}
-		$styles[$j] = &$text_format;
 		$data[$j++] = 'store_ids';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'layout';
 		$data[$j++] = 'status';
 
@@ -5398,6 +5951,8 @@ class ModelToolExportImport extends Model {
 
 		$store_ids = $this->getStoreIdsForCategories();
 		$layouts = $this->getLayoutsForCategories();
+
+		$keep_tags = $this->config->get('export_import_settings_use_export_tags');
 
 		$categories = $this->getCategories($languages, $offset, $rows, $min_id, $max_id);
 
@@ -5414,19 +5969,19 @@ class ModelToolExportImport extends Model {
 			$category_id = $row['category_id'];
 
 			$data[$j++] = $row['category_id'];
-			$data[$j++] = $row['parent_id'];
+			$data[$j++] = ($row['parent_id']) ? $row['parent_id'] : '0';
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8');
 			}
 			$data[$j++] = ($row['top'] == 0) ? 'false' : 'true';
-			$data[$j++] = $row['column'];
-			$data[$j++] = $row['sort_order'];
-			$data[$j++] = $row['image'];
+			$data[$j++] = ($row['column']) ? $row['column'] : '0';
+			$data[$j++] = ($row['sort_order']) ? $row['sort_order'] : '0';
+			$data[$j++] = ($row['image']) ? $row['image'] : '';
 			$data[$j++] = $row['date_added'];
 			$data[$j++] = $row['date_modified'];
-			$data[$j++] = ($row['keyword']) ? $row['keyword'] : '';
+			$data[$j++] = ($row['seo_keyword']) ? $row['seo_keyword'] : '';
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = (isset($keep_tags)) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') : $this->removeEntities($row['description'][$language['code']]);
 			}
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['meta_description'][$language['code']], ENT_QUOTES, 'UTF-8');
@@ -5535,7 +6090,7 @@ class ModelToolExportImport extends Model {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter'), 30)+1);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4, 30)+1, $text_format);
 		}
 
 		// The heading row and column styles
@@ -5549,13 +6104,13 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_filter_group_id')) {
 			$data[$j++] = 'filter_group_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'filter_group';
 		}
 		if ($this->config->get('export_import_settings_use_filter_id')) {
 			$data[$j++] = 'filter_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'filter';
 		}
 
@@ -5598,6 +6153,37 @@ class ModelToolExportImport extends Model {
 
 			$i += 1;
 			$j = 0;
+		}
+	}
+
+	// Manufacturers
+	protected function getManufacturerDescriptions($language_id, $language_code, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+		// Manufacturer description table for each language
+		$manufacturer_descriptions = array();
+
+		$sql = "SELECT p.product_id, md.name AS manufacturer FROM " . DB_PREFIX . "manufacturer_description md";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer m ON (m.manufacturer_id = md.manufacturer_id)";
+		$sql .= " INNER JOIN " . DB_PREFIX . "product p ON (p.manufacturer_id = md.manufacturer_id)";
+		$sql .= " WHERE md.language_id = '" . (int)$language_id . "'";
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+		}
+		$sql .= " GROUP BY p.product_id";
+		$sql .= " ORDER BY p.product_id";
+		if (isset($offset) && isset($rows)) {
+			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+		} else {
+			$sql .= " ASC";
+		}
+
+		$manufacturer_query = $this->db->query($sql);
+
+		$manufacturer_descriptions[$language_code] = $manufacturer_query->rows;
+
+		if (isset($manufacturer_descriptions)) {
+			return $manufacturer_descriptions;
+		} else {
+			return 0;
 		}
 	}
 
@@ -5647,25 +6233,31 @@ class ModelToolExportImport extends Model {
 		return $layouts;
 	}
 
-	protected function getProductDescriptions($language_id, $language_code, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function getProductDescriptions($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Product description table for each language
 		$product_descriptions = array();
 
-		$sql = "SELECT p.product_id, pd.name, pd.description AS description, pd.meta_description, pd.meta_keyword, GROUP_CONCAT(pd.tag SEPARATOR \",\") AS tag";
-		$sql .= " FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (pd.product_id = p.product_id)";
-		$sql .= " WHERE pd.language_id = '" . (int)$language_id . "'";
-		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
-		}
-		$sql .= " GROUP BY p.product_id";
-		$sql .= " ORDER BY p.product_id";
-		if (isset($offset) && isset($rows)) {
-			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
-		}
+		foreach ($languages as $language) {
+			$language_id = $language['language_id'];
+			$language_code = strtolower($language['code']);
 
-		$product_query = $this->db->query($sql);
+			$sql = "SELECT product_id, name, description, meta_description, meta_keyword, GROUP_CONCAT(tag SEPARATOR \",\") AS tag";
+			$sql .= " FROM " . DB_PREFIX . "product_description WHERE language_id = '" . (int)$language_id . "'";
+			if (isset($min_id) && isset($max_id)) {
+				$sql .= " AND product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			}
+			$sql .= " GROUP BY product_id, language_id";
+			$sql .= " ORDER BY product_id";
+			if (isset($offset) && isset($rows)) {
+				$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+			} else {
+				$sql .= " ASC";
+			}
 
-		$product_descriptions[$language_code] = $product_query->rows;
+			$product_query = $this->db->query($sql);
+
+			$product_descriptions[$language_code] = $product_query->rows;
+		}
 
 		if (isset($product_descriptions)) {
 			return $product_descriptions;
@@ -5674,7 +6266,7 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	protected function getProducts($languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	public function getProducts($languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT p.product_id, GROUP_CONCAT(DISTINCT CAST(pc.category_id AS CHAR(11)) SEPARATOR \",\") AS categories,";
 		$sql .= " p.sku,";
 		$sql .= " p.upc,";
@@ -5721,44 +6313,59 @@ class ModelToolExportImport extends Model {
 		$sql .= " GROUP_CONCAT(DISTINCT CAST(pr.related_id AS CHAR(11)) SEPARATOR \",\" ) AS related";
 		$sql .= " FROM " . DB_PREFIX . "product p";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category pc ON (pc.product_id = p.product_id)";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON (ua.query = CONCAT('product_id=',p.product_id))";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id)";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id)";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "length_class_description mc ON (mc.length_class_id = p.length_class_id)";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_store ps ON (ps.product_id = p.product_id)";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON (ua.query=CONCAT('product_id=',p.product_id))";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . $default_language_id . "'";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . $default_language_id . "'";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "length_class_description mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_related pr ON (pr.product_id = p.product_id)";
-		$sql .= " WHERE md.language_id = '" . $default_language_id . "'";
-		$sql .= " AND wc.language_id = '" . $default_language_id . "'";
-		$sql .= " AND mc.language_id = '" . $default_language_id . "'";
 		if (isset($min_id) && isset($max_id)) {
-			$sql .= " AND p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+			$sql .= " WHERE p.product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
 		$sql .= " GROUP BY p.product_id";
 		$sql .= " ORDER BY p.product_id";
 		if (isset($offset) && isset($rows)) {
-			$sql .= " LIMIT '" . $offset . "','" . $rows . "'";
+			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+		} else {
+			$sql .= " ASC";
 		}
 
 		$results = $this->db->query($sql);
 
+		$product_descriptions = $this->getProductDescriptions($languages, $offset, $rows, $min_id, $max_id);
+
 		foreach ($languages as $language) {
-			$language_id = $language['language_id'];
 			$language_code = strtolower($language['code']);
 
-			$product_descriptions = $this->getProductDescriptions($language_id, $language_code, $offset, $rows, $min_id, $max_id);
-
 			foreach ($results->rows as $key => $row) {
-				if (isset($product_descriptions[$language_code][$key])) {
+				if (isset($product_descriptions[$language_code][$key]['name'])) {
 					$results->rows[$key]['name'][$language_code] = $product_descriptions[$language_code][$key]['name'];
+				} else {
+					$results->rows[$key]['name'][$language_code] = null;
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['description'])) {
 					$results->rows[$key]['description'][$language_code] = $product_descriptions[$language_code][$key]['description'];
+				} else {
+					$results->rows[$key]['description'][$language_code] = null;
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['meta_description'])) {
 					$results->rows[$key]['meta_description'][$language_code] = $product_descriptions[$language_code][$key]['meta_description'];
+				} else {
+					$results->rows[$key]['meta_description'][$language_code] = null;
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['meta_keyword'])) {
 					$results->rows[$key]['meta_keyword'][$language_code] = $product_descriptions[$language_code][$key]['meta_keyword'];
+				} else {
+					$results->rows[$key]['meta_keyword'][$language_code] = null;
+				}
+
+				if (isset($product_descriptions[$language_code][$key]['tag'])) {
 					$results->rows[$key]['tag'][$language_code] = $product_descriptions[$language_code][$key]['tag'];
 				} else {
-					$results->rows[$key]['name'][$language_code] = '';
-					$results->rows[$key]['description'][$language_code] = '';
-					$results->rows[$key]['meta_description'][$language_code] = '';
-					$results->rows[$key]['meta_keyword'][$language_code] = '';
-					$results->rows[$key]['tag'][$language_code] = '';
+					$results->rows[$key]['tag'][$language_code] = null;
 				}
 			}
 		}
@@ -5766,7 +6373,7 @@ class ModelToolExportImport extends Model {
 		return $results->rows;
 	}
 
-	function populateProductsWorksheet($worksheet, $languages, $default_language_id, $price_format, $box_format, $weight_format, $text_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
+	protected function populateProductsWorksheet($worksheet, $languages, $default_language_id, $box_format, $price_format, $weight_format, $text_format, $date_format, $datetime_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Get list of the field names
 		$describe_query = $this->db->query("DESCRIBE `" . DB_PREFIX . "product`");
 
@@ -5781,39 +6388,39 @@ class ModelToolExportImport extends Model {
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('product_id'), 4)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('categories'), 12)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sku'), 10)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('upc'), 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('categories'), 12)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sku'), 10)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('upc'), 12)+1, $text_format);
 		if (in_array('ean', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('ean'), 14)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('ean'), 14)+1, $text_format);
 		}
 		if (in_array('jan', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('jan'), 13)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('jan'), 13)+1, $text_format);
 		}
 		if (in_array('isbn', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('isbn'), 13)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('isbn'), 13)+1, $text_format);
 		}
 		if (in_array('mpn', $product_fields)) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('mpn'), 15)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('mpn'), 15)+1, $text_format);
 		}
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('location'), 10)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('quantity'), 4)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('model'), 8)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('manufacturer'), 10)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image_name'), 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('location'), 10)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('quantity'), 5)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('model'), 16)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('manufacturer'), 16)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image_name')+4, 36)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('shipping'), 5)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('cost'), 10)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1, $price_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('cost'), 10)+1, $price_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('quote'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('age_minimum'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('points'), 5)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_added'), 19)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_modified'), 19)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_available'), 10)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_added'), 19)+1, $datetime_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_modified'), 19)+1, $datetime_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_available'), 10)+1, $date_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('palette_id'), 3)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('weight'), 6)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('weight'), 6)+1, $weight_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('weight_unit'), 3)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('length'), 8)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('width'), 8)+1);
@@ -5821,22 +6428,22 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('length_unit'), 3)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('status'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tax_class_id'), 3)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('seo_keyword'), 16)+1, $text_format);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description')+4, 48)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('description')+4, 48)+1, $text_format);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_description')+4, 32)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_description')+4, 32)+1, $text_format);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_keywords')+4, 24)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('meta_keywords')+4, 24)+1, $text_format);
 		}
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('stock_status_id'), 3)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('store_ids'), 5)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('layout'), 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('layout'), 16)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('related_ids'), 16)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tags')+4, 24)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('tags')+4, 24)+1, $text_format);
 		}
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('subtract'), 5)+1);
@@ -5851,53 +6458,56 @@ class ModelToolExportImport extends Model {
 
 		$data[$j++] = 'product_id';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'categories';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'sku';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'upc';
 		if (in_array('ean', $product_fields)) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'ean';
 		}
 		if (in_array('jan', $product_fields)) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'jan';
 		}
 		if (in_array('isbn', $product_fields)) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'isbn';
 		}
 		if (in_array('mpn', $product_fields)) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'mpn';
 		}
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'location';
 		$data[$j++] = 'quantity';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'model';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'manufacturer';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'image_name';
 		$data[$j++] = 'shipping';
-		$styles[$j] = &$price_format;
+		$styles[$j] = $price_format;
 		$data[$j++] = 'price';
-		$styles[$j] = &$price_format;
+		$styles[$j] = $price_format;
 		$data[$j++] = 'cost';
 		$data[$j++] = 'quote';
 		$data[$j++] = 'age_minimum';
 		$data[$j++] = 'points';
+		$styles[$j] = $datetime_format;
 		$data[$j++] = 'date_added';
+		$styles[$j] = $datetime_format;
 		$data[$j++] = 'date_modified';
+		$styles[$j] = $date_format;
 		$data[$j++] = 'date_available';
 		$data[$j++] = 'palette_id';
-		$styles[$j] = &$weight_format;
+		$styles[$j] = $weight_format;
 		$data[$j++] = 'weight';
 		$data[$j++] = 'weight_unit';
 		$data[$j++] = 'length';
@@ -5906,27 +6516,27 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'length_unit';
 		$data[$j++] = 'status';
 		$data[$j++] = 'tax_class_id';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'seo_keyword';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'description(' . $language['code'] . ')';
 		}
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'meta_description(' . $language['code'] . ')';
 		}
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'meta_keywords(' . $language['code'] . ')';
 		}
 		$data[$j++] = 'stock_status_id';
 		$data[$j++] = 'store_ids';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'layout';
 		$data[$j++] = 'related_ids';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'tags(' . $language['code'] . ')';
 		}
 		$data[$j++] = 'sort_order';
@@ -5943,6 +6553,8 @@ class ModelToolExportImport extends Model {
 
 		$store_ids = $this->getStoreIdsForProducts();
 		$layouts = $this->getLayoutsForProducts();
+
+		$keep_tags = $this->config->get('export_import_settings_use_export_tags');
 
 		$products = $this->getProducts($languages, $default_language_id, $product_fields, $offset, $rows, $min_id, $max_id);
 
@@ -5977,7 +6589,7 @@ class ModelToolExportImport extends Model {
 			if (in_array('mpn', $product_fields)) {
 				$data[$j++] = $row['mpn'];
 			}
-			$data[$j++] = $row['location'];
+			$data[$j++] = html_entity_decode($row['location'], ENT_QUOTES, 'UTF-8');
 			$data[$j++] = $row['quantity'];
 			$data[$j++] = $row['model'];
 			$data[$j++] = $row['manufacturer'];
@@ -6002,7 +6614,7 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['tax_class_id'];
 			$data[$j++] = ($row['keyword']) ? $row['keyword'] : '';
 			foreach ($languages as $language) {
-				$data[$j++] = html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8');
+				$data[$j++] = (isset($keep_tags)) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') : $this->removeEntities($row['description'][$language['code']]);
 			}
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['meta_description'][$language['code']], ENT_QUOTES, 'UTF-8');
@@ -6057,7 +6669,7 @@ class ModelToolExportImport extends Model {
 		$j = 0;
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('product_id'), 4)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image'), 30)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image')+4, 36)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 
 		// The additional images headings row and colum styles
@@ -6068,7 +6680,7 @@ class ModelToolExportImport extends Model {
 		$j = 0;
 
 		$data[$j++] = 'product_id';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'image';
 		$data[$j++] = 'sort_order';
 
@@ -6113,16 +6725,16 @@ class ModelToolExportImport extends Model {
 		return $result->rows;
 	}
 
-	protected function populateSpecialsWorksheet($worksheet, $language_id, $price_format, $box_format, $text_format, $min_id = null, $max_id = null) {
+	protected function populateSpecialsWorksheet($worksheet, $language_id, $box_format, $price_format, $text_format, $date_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_id')+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group')+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('priority')+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1, $price_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_start'), 19)+1, $text_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_end'), 19)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_start'), 19)+1, $date_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_end'), 19)+1, $date_format);
 
 		// The heading row and column styles
 		$styles = array();
@@ -6132,12 +6744,14 @@ class ModelToolExportImport extends Model {
 		$j = 0;
 
 		$data[$j++] = 'product_id';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'customer_group';
 		$data[$j++] = 'priority';
-		$styles[$j] = &$price_format;
+		$styles[$j] = $price_format;
 		$data[$j++] = 'price';
+		$styles[$j] = $date_format;
 		$data[$j++] = 'date_start';
+		$styles[$j] = $date_format;
 		$data[$j++] = 'date_end';
 
 		$worksheet->getRowDimension($i)->setRowHeight(30);
@@ -6184,17 +6798,17 @@ class ModelToolExportImport extends Model {
 		return $result->rows;
 	}
 
-	protected function populateDiscountsWorksheet($worksheet, $language_id, $price_format, $box_format, $text_format, $min_id = null, $max_id = null) {
+	protected function populateDiscountsWorksheet($worksheet, $language_id, $box_format, $price_format, $text_format, $date_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_id')+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group')+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('quantity')+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('priority')+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1, $price_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_start'), 19)+1, $text_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_end'), 19)+1, $text_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_start'), 19)+1, $date_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_end'), 19)+1, $date_format);
 
 		// The heading row and column styles
 		$styles = array();
@@ -6204,13 +6818,15 @@ class ModelToolExportImport extends Model {
 		$j = 0;
 
 		$data[$j++] = 'product_id';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'customer_group';
 		$data[$j++] = 'quantity';
 		$data[$j++] = 'priority';
-		$styles[$j] = &$price_format;
+		$styles[$j] = $price_format;
 		$data[$j++] = 'price';
+		$styles[$j] = $date_format;
 		$data[$j++] = 'date_start';
+		$styles[$j] = $date_format;
 		$data[$j++] = 'date_end';
 
 		$worksheet->getRowDimension($i)->setRowHeight(30);
@@ -6263,7 +6879,7 @@ class ModelToolExportImport extends Model {
 		$j = 0;
 
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_id')+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group')+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('customer_group')+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('points')+1);
 
 		// The heading row and column styles
@@ -6274,7 +6890,7 @@ class ModelToolExportImport extends Model {
 		$j = 0;
 
 		$data[$j++] = 'product_id';
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'customer_group';
 		$data[$j++] = 'points';
 
@@ -6322,7 +6938,7 @@ class ModelToolExportImport extends Model {
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE product_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
 		}
-		$sql .= " ORDER BY product_id ASC ) AS p";
+		$sql .= " ORDER BY product_id ASC) AS p";
 		$sql .= " INNER JOIN " . DB_PREFIX . "product_option po ON (po.product_id = p.product_id)";
 		$sql .= " INNER JOIN " . DB_PREFIX . "option_description od ON (od.option_id = po.option_id) AND od.language_id = '" . (int)$language_id . "'";
 		$sql .= " ORDER BY p.product_id ASC, po.option_id ASC";
@@ -6356,10 +6972,10 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_option_id')) {
 			$data[$j++] = 'option_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'option';
 		}
-		$styles[$j] = &$text_format;
+		$styles[$j] = $text_format;
 		$data[$j++] = 'default_option_value';
 		$data[$j++] = 'required';
 
@@ -6414,7 +7030,7 @@ class ModelToolExportImport extends Model {
 		return $query->rows;
 	}
 
-	protected function populateProductOptionValuesWorksheet($worksheet, $price_format, $box_format, $weight_format, $text_format, $min_id = null, $max_id = null) {
+	protected function populateProductOptionValuesWorksheet($worksheet, $box_format, $price_format, $weight_format, $text_format, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -6422,20 +7038,20 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_option_id')) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('option_id')+1);
 		} else {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('option'), 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('option'), 30)+1, $text_format);
 		}
 		if ($this->config->get('export_import_settings_use_option_value_id')) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('option_value_id')+1);
 		} else {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('option_value'), 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('option_value'), 30)+1, $text_format);
 		}
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('quantity'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('subtract'), 5)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price'), 10)+1, $price_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('price_prefix'), 5)+1, $text_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('points'), 10)+1, $price_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('points'), 10)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('points_prefix'), 5)+1, $text_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('weight'), 10)+1, $price_format);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('weight'), 10)+1, $weight_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('weight_prefix'), 5)+1, $text_format);
 
 		// The heading row and column styles
@@ -6449,24 +7065,28 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_option_id')) {
 			$data[$j++] = 'option_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'option';
 		}
 		if ($this->config->get('export_import_settings_use_option_value_id')) {
 			$data[$j++] = 'option_value_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'option_value';
 		}
 		$data[$j++] = 'quantity';
+		$styles[$j] = $text_format;
 		$data[$j++] = 'subtract';
-		$styles[$j] = &$price_format;
+		$styles[$j] = $price_format;
 		$data[$j++] = 'price';
+		$styles[$j] = $text_format;
 		$data[$j++] = "price_prefix";
 		$data[$j++] = 'points';
+		$styles[$j] = $text_format;
 		$data[$j++] = "points_prefix";
-		$styles[$j] = &$weight_format;
+		$styles[$j] = $weight_format;
 		$data[$j++] = 'weight';
+		$styles[$j] = $text_format;
 		$data[$j++] = 'weight_prefix';
 
 		$worksheet->getRowDimension($i)->setRowHeight(30);
@@ -6610,15 +7230,15 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_attribute_group_id')) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('attribute_group_id')+1);
 		} else {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('attribute_group'), 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('attribute_group'), 30)+1, $text_format);
 		}
 		if ($this->config->get('export_import_settings_use_attribute_id')) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('attribute_id')+1);
 		} else {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('attribute'), 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('attribute'), 30)+1, $text_format);
 		}
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4, 30)+1, $text_format);
 		}
 
 		// The heading row and column styles
@@ -6632,17 +7252,17 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_attribute_group_id')) {
 			$data[$j++] = 'attribute_group_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'attribute_group';
 		}
 		if ($this->config->get('export_import_settings_use_attribute_id')) {
 			$data[$j++] = 'attribute_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'attribute';
 		}
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'text(' . $language['code'] . ')';
 		}
 
@@ -6725,15 +7345,12 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_filter_group_id')) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('filter_group_id')+1);
 		} else {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group'), 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group'), 30)+1, $text_format);
 		}
 		if ($this->config->get('export_import_settings_use_filter_id')) {
 			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('filter_id')+1);
 		} else {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter'), 30)+1);
-		}
-		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter'), 30)+1, $text_format);
 		}
 
 		// The heading row and column styles
@@ -6747,13 +7364,13 @@ class ModelToolExportImport extends Model {
 		if ($this->config->get('export_import_settings_use_filter_group_id')) {
 			$data[$j++] = 'filter_group_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'filter_group';
 		}
 		if ($this->config->get('export_import_settings_use_filter_id')) {
 			$data[$j++] = 'filter_id';
 		} else {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'filter';
 		}
 
@@ -6848,7 +7465,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('type'), 10)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 
 		// The options headings row and column styles
@@ -6862,7 +7479,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'type';
 		$data[$j++] = 'sort_order';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
@@ -6948,11 +7565,11 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('option_value_id'), 2)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('option_id'), 4)+1);
 		if ($exist_image) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image'), 12)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('image'), 12)+1, $text_format);
 		}
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 
 		// The option values headings row and column styles
@@ -6965,12 +7582,12 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'option_value_id';
 		$data[$j++] = 'option_id';
 		if ($exist_image) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'image';
 		}
 		$data[$j++] = 'sort_order';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
@@ -7054,7 +7671,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('attribute_group_id'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 
 		// The attribute groups headings row and column styles
@@ -7067,7 +7684,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'attribute_group_id';
 		$data[$j++] = 'sort_order';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
@@ -7148,7 +7765,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('attribute_group_id'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 
 		// The attributes headings row and column styles
@@ -7162,7 +7779,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'attribute_group_id';
 		$data[$j++] = 'sort_order';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
@@ -7243,7 +7860,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group_id'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 
 		// The filter groups headings row and column styles
@@ -7256,7 +7873,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'filter_group_id';
 		$data[$j++] = 'sort_order';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
@@ -7337,7 +7954,7 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group_id'), 4)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'), 5)+1);
 		foreach ($languages as $language) {
-			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1);
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4, 30)+1, $text_format);
 		}
 
 		// The filters headings row and column styles
@@ -7351,7 +7968,7 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'filter_group_id';
 		$data[$j++] = 'sort_order';
 		foreach ($languages as $language) {
-			$styles[$j] = &$text_format;
+			$styles[$j] = $text_format;
 			$data[$j++] = 'name(' . $language['code'] . ')';
 		}
 
@@ -7502,6 +8119,11 @@ class ModelToolExportImport extends Model {
 			PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
 		}
 
+		// Export as ZIP (Beta)
+		if ($this->config->get('export_import_settings_use_export_pclzip')) {
+			PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+		}
+
 		try {
 			// Set appropriate timeout limit
 			set_time_limit(1800);
@@ -7512,6 +8134,7 @@ class ModelToolExportImport extends Model {
 			// Set some default styles
 			$workbook->getDefaultStyle()->getFont()->setName('Arial');
 			$workbook->getDefaultStyle()->getFont()->setSize(10);
+			$workbook->getDefaultStyle()->getAlignment()->setWrapText(true);
 			$workbook->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
 			$workbook->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 			$workbook->getDefaultStyle()->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
@@ -7520,7 +8143,7 @@ class ModelToolExportImport extends Model {
 			$box_format = array(
 				'fill' => array(
 					'type'		=> PHPExcel_Style_Fill::FILL_SOLID,
-					'color'	=> array('rgb' => 'F0F0F0')
+					'color'	=> array('argb' => 'FFF0F0F0')
 				)
 			);
 
@@ -7536,6 +8159,24 @@ class ModelToolExportImport extends Model {
 				),
 				'alignment' => array(
 					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT
+				)
+			);
+
+			$date_format = array(
+				'numberformat' => array(
+					'code' 	=> '0000-00-00'
+				),
+				'alignment' => array(
+					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER
+				)
+			);
+
+			$datetime_format = array(
+				'numberformat' => array(
+					'code' 	=> '0000-00-00 00:00:00'
+				),
+				'alignment' => array(
+					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER
 				)
 			);
 
@@ -7555,12 +8196,21 @@ class ModelToolExportImport extends Model {
 			$default_language_id = $this->getDefaultLanguageId();
 
 			switch ($export_type) {
+				case 'm':
+					// Creating the Customers worksheet
+					$workbook->setActiveSheetIndex($worksheet_index++);
+					$worksheet = $workbook->getActiveSheet();
+					$worksheet->setTitle('Customers');
+					$this->populateCustomersWorksheet($worksheet, $box_format, $text_format, $date_format, $datetime_format);
+					$worksheet->freezePaneByColumnAndRow(1, 2);
+					break;
+
 				case 'c':
 					// Creating the Categories worksheet
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('Categories');
-					$this->populateCategoriesWorksheet($worksheet, $languages, $box_format, $text_format, $offset, $rows, $min_id, $max_id);
+					$this->populateCategoriesWorksheet($worksheet, $languages, $box_format, $text_format, $datetime_format, $offset, $rows, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 
 					// Creating the CategoryFilters worksheet
@@ -7579,7 +8229,7 @@ class ModelToolExportImport extends Model {
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('Products');
-					$this->populateProductsWorksheet($worksheet, $languages, $default_language_id, $price_format, $box_format, $weight_format, $text_format, $offset, $rows, $min_id, $max_id);
+					$this->populateProductsWorksheet($worksheet, $languages, $default_language_id, $box_format, $price_format, $weight_format, $text_format, $date_format, $datetime_format, $offset, $rows, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 
 					// Creating the AdditionalImages worksheet
@@ -7595,7 +8245,7 @@ class ModelToolExportImport extends Model {
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('Specials');
-					$this->populateSpecialsWorksheet($worksheet, $default_language_id, $price_format, $box_format, $text_format, $min_id, $max_id);
+					$this->populateSpecialsWorksheet($worksheet, $default_language_id, $box_format, $price_format, $text_format, $date_format, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 
 					// Creating the Discounts worksheet
@@ -7603,7 +8253,7 @@ class ModelToolExportImport extends Model {
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('Discounts');
-					$this->populateDiscountsWorksheet($worksheet, $default_language_id, $price_format, $box_format, $text_format, $min_id, $max_id);
+					$this->populateDiscountsWorksheet($worksheet, $default_language_id, $box_format, $price_format, $text_format, $date_format, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 
 					// Creating the Rewards worksheet
@@ -7627,7 +8277,7 @@ class ModelToolExportImport extends Model {
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('ProductOptionValues');
-					$this->populateProductOptionValuesWorksheet($worksheet, $price_format, $box_format, $weight_format, $text_format, $min_id, $max_id);
+					$this->populateProductOptionValuesWorksheet($worksheet, $box_format, $price_format, $weight_format, $text_format, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 
 					// Creating the ProductAttributes worksheet
@@ -7715,6 +8365,9 @@ class ModelToolExportImport extends Model {
 			$datetime = date('Y-m-d');
 
 			switch ($export_type) {
+				case 'm':
+					$filename = 'customers-' . $datetime . '.xlsx';
+					break;
 				case 'c':
 					$filename = 'categories-' . $datetime;
 					if (!$all) {

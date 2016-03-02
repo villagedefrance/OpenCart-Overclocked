@@ -44,39 +44,41 @@ PHPExcel_Shared_String::buildCharacterSets();
  * @copyright   Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Autoloader {
-    /**
-     * Register the Autoloader with SPL
-     *
-     */
-    public static function Register() {
-        if (function_exists('__autoload')) {
-            spl_autoload_register('__autoload');
-        }
+	/**
+	* Register the Autoloader with SPL
+	*
+	*/
+	public static function Register() {
+		if (function_exists('__autoload')) {
+			spl_autoload_register('__autoload');
+		}
 
-        if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
-            return spl_autoload_register(array('PHPExcel_Autoloader', 'Load'), true, true);
-        } else {
-            return spl_autoload_register(array('PHPExcel_Autoloader', 'Load'));
-        }
-    }
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+			return spl_autoload_register(array('PHPExcel_Autoloader', 'Load'), true, true);
+		} else {
+			return spl_autoload_register(array('PHPExcel_Autoloader', 'Load'));
+		}
+	}
 
-    /**
-     * Autoload a class identified by name
-     *
-     * @param    string    $pClassName     Name of the object to load
-     */
-    public static function Load($pClassName) {
-        if ((class_exists($pClassName, false)) || (strpos($pClassName, 'PHPExcel') !== 0)) {
-            return false;
-        }
+	/**
+	* Autoload a class identified by name
+	*
+	* @param    string    $pClassName     Name of the object to load
+	*/
+	public static function Load($pClassName) {
+		if ((class_exists($pClassName, false)) || (strpos($pClassName, 'PHPExcel') !== 0)) {
+			return false;
+		}
 
-        $pClassFilePath = PHPEXCEL_ROOT . str_replace('_', DIRECTORY_SEPARATOR, $pClassName) . '.php';
+		$pClassFilePath = PHPEXCEL_ROOT . str_replace('_', DIRECTORY_SEPARATOR, $pClassName) . '.php';
 
-        if ((file_exists($pClassFilePath) === false) || (is_readable($pClassFilePath) === false)) {
-            return false;
-        }
+		if ((file_exists($pClassFilePath) === false) || (is_readable($pClassFilePath) === false)) {
+			return false;
+		}
 
-        require($pClassFilePath);
-    }
+		require($pClassFilePath);
+
+		clearstatcache();
+	}
 }
 ?>

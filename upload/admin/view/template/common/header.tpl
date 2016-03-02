@@ -261,7 +261,6 @@ $(document).ready(function() {
                 <ul>
                   <li><a href="<?php echo $export_import_raw; ?>"><?php echo $text_export_import_raw; ?></a></li>
                   <li><a href="<?php echo $export_import_tool; ?>"><?php echo $text_export_import_tool; ?></a></li>
-                  <li><a href="<?php echo $export_import_customer; ?>"><?php echo $text_export_customer; ?></a></li>
                 </ul>
               </li>
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>

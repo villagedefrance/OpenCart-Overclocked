@@ -22,9 +22,9 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @version    v1.8.1, released: 01-05-2015
+ * @edition     Overclocked Edition
  */
-
 
 /**
  * PHPExcel_Shared_File
@@ -33,23 +33,21 @@
  * @package    PHPExcel_Shared
  * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
-class PHPExcel_Shared_File
-{
+class PHPExcel_Shared_File {
 	/*
 	 * Use Temp or File Upload Temp for temporary files
 	 *
 	 * @protected
 	 * @var	boolean
 	 */
-	protected static $_useUploadTempDirectory	= FALSE;
-
+	protected static $_useUploadTempDirectory = false;
 
 	/**
 	 * Set the flag indicating whether the File Upload Temp directory should be used for temporary files
 	 *
 	 * @param	 boolean	$useUploadTempDir		Use File Upload Temporary directory (true or false)
 	 */
-	public static function setUseUploadTempDirectory($useUploadTempDir = FALSE) {
+	public static function setUseUploadTempDirectory($useUploadTempDir = false) {
 		self::$_useUploadTempDirectory = (boolean) $useUploadTempDir;
 	}	//	function setUseUploadTempDirectory()
 
@@ -71,15 +69,14 @@ class PHPExcel_Shared_File
 	  * @return bool
 	  */
 	public static function file_exists($pFilename) {
-		// Sick construction, but it seems that
-		// file_exists returns strange values when
-		// doing the original file_exists on ZIP archives...
-		if ( strtolower(substr($pFilename, 0, 3)) == 'zip' ) {
+		// Sick construction, but it seems that file_exists returns strange values when doing the original file_exists on ZIP archives...
+		if (strtolower(substr($pFilename, 0, 3)) == 'zip') {
 			// Open ZIP file and verify if the file exists
-			$zipFile 		= substr($pFilename, 6, strpos($pFilename, '#') - 6);
-			$archiveFile 	= substr($pFilename, strpos($pFilename, '#') + 1);
+			$zipFile = substr($pFilename, 6, strpos($pFilename, '#') - 6);
+			$archiveFile = substr($pFilename, strpos($pFilename, '#') + 1);
 
 			$zip = new ZipArchive();
+
 			if ($zip->open($zipFile) === true) {
 				$returnValue = ($zip->getFromName($archiveFile) !== false);
 				$zip->close();
@@ -109,8 +106,9 @@ class PHPExcel_Shared_File
 		}
 
 		// Found something?
-		if ($returnValue == '' || ($returnValue === NULL)) {
-			$pathArray = explode('/' , $pFilename);
+		if ($returnValue == '' || ($returnValue === null)) {
+			$pathArray = explode('/', $pFilename);
+
 			while(in_array('..', $pathArray) && $pathArray[0] != '..') {
 				for ($i = 0; $i < count($pathArray); ++$i) {
 					if ($pathArray[$i] == '..' && $i > 0) {
@@ -120,10 +118,10 @@ class PHPExcel_Shared_File
 					}
 				}
 			}
+
 			$returnValue = implode('/', $pathArray);
 		}
 
-		// Return
 		return $returnValue;
 	}
 
@@ -132,28 +130,29 @@ class PHPExcel_Shared_File
 	 *
 	 * @return string
 	 */
-	public static function sys_get_temp_dir()
-	{
+	public static function sys_get_temp_dir() {
 		if (self::$_useUploadTempDirectory) {
-			//  use upload-directory when defined to allow running on environments having very restricted
-			//      open_basedir configs
-			if (ini_get('upload_tmp_dir') !== FALSE) {
+			//  use upload-directory when defined to allow running on environments having very restricted open_basedir configs
+			if (ini_get('upload_tmp_dir') !== false) {
 				if ($temp = ini_get('upload_tmp_dir')) {
-					if (file_exists($temp))
+					if (file_exists($temp)) {
 						return realpath($temp);
+					}
 				}
 			}
 		}
 
 		// sys_get_temp_dir is only available since PHP 5.2.1
 		// http://php.net/manual/en/function.sys-get-temp-dir.php#94119
-		if ( !function_exists('sys_get_temp_dir')) {
+		if (!function_exists('sys_get_temp_dir')) {
 			if ($temp = getenv('TMP') ) {
 				if ((!empty($temp)) && (file_exists($temp))) { return realpath($temp); }
 			}
+
 			if ($temp = getenv('TEMP') ) {
 				if ((!empty($temp)) && (file_exists($temp))) { return realpath($temp); }
 			}
+
 			if ($temp = getenv('TMPDIR') ) {
 				if ((!empty($temp)) && (file_exists($temp))) { return realpath($temp); }
 			}
@@ -174,5 +173,5 @@ class PHPExcel_Shared_File
 		//		be called if we're running 5.2.1 or earlier
 		return realpath(sys_get_temp_dir());
 	}
-
 }
+?>

@@ -35,6 +35,13 @@
               <td style="vertical-align:top;">
                 <b><?php echo $entry_export_type; ?></b>
                 <br /><br />
+                <?php if ($export_type=='m') { ?>
+                  <input type="radio" name="export_type" value="m" id="export-m" class="radio" checked />
+                <?php } else { ?>
+                  <input type="radio" name="export_type" value="m" id="export-m" class="radio" />
+                <?php } ?>
+                <label for="export-m"><span><span></span></span> <?php echo $text_export_type_customer; ?></label>
+                <br />
                 <?php if ($export_type=='c') { ?>
                   <input type="radio" name="export_type" value="c" id="export-c" class="radio" checked />
                 <?php } else { ?>
@@ -102,6 +109,29 @@
             </tr>
           </table>
         </form>
+        <div>
+          <h2><?php echo $text_debug; ?></h2>
+          <div id="switch" style="margin-bottom:15px;">
+            <a class="button-filter"><?php echo $button_switch; ?></a>
+          </div>
+          <div id="cat" style="display:block;">
+            <?php foreach ($categories as $category) { ?>
+              <?php echo $category['cat_name']; ?>
+              <?php echo $category['cat_description']; ?>
+              <?php echo $category['cat_meta_description']; ?>
+              <?php echo $category['cat_meta_keyword']; ?><br />
+            <?php } ?>
+          </div>
+          <div id="pro" style="display:none;">
+            <?php foreach ($products as $product) { ?>
+              <?php echo $product['pro_name']; ?>
+              <?php echo $product['pro_description']; ?>
+              <?php echo $product['pro_meta_description']; ?>
+              <?php echo $product['pro_meta_keyword']; ?>
+              <?php echo $product['pro_tag']; ?><br />
+            <?php } ?>
+          </div>
+        </div>
       </div>
       <div id="tab-import">
         <form action="<?php echo $import; ?>" method="post" enctype="multipart/form-data" id="import">
@@ -221,6 +251,32 @@
               </td>
             </tr>
             <?php } ?>
+            <tr>
+              <td>
+                <label>
+                <?php if ($settings_use_export_tags) { ?>
+                  <input type="checkbox" name="export_import_settings_use_export_tags" value="1" id="use_export_tags" class="checkbox" checked />
+                  <label for="use_export_tags"><span></span> <?php echo $entry_settings_use_export_tags; ?></label>
+                <?php } else { ?>
+                  <input type="checkbox" name="export_import_settings_use_export_tags" value="1" id="use_export_tags" class="checkbox" />
+                  <label for="use_export_tags"><span></span> <?php echo $entry_settings_use_export_tags; ?></label>
+                <?php } ?>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>
+                <?php if ($settings_use_export_pclzip) { ?>
+                  <input type="checkbox" name="export_import_settings_use_export_pclzip" value="1" id="use_export_pclzip" class="checkbox" checked />
+                  <label for="use_export_pclzip"><span></span> <?php echo $entry_settings_use_export_pclzip; ?></label>
+                <?php } else { ?>
+                  <input type="checkbox" name="export_import_settings_use_export_pclzip" value="1" id="use_export_pclzip" class="checkbox" />
+                  <label for="use_export_pclzip"><span></span> <?php echo $entry_settings_use_export_pclzip; ?></label>
+                <?php } ?>
+                </label>
+              </td>
+            </tr>
             <tr style="background:#FCFCFC;">
               <td>
                 <label>
@@ -338,7 +394,7 @@ $(document).ready(function() {
 	$('.custom-input-class').simpleFileInput({
 		placeholder: '<?php echo $entry_upload; ?>',
 		buttonText: 'Select',
-		allowedExts: ['xls', 'xlsx', 'ods'],
+		allowedExts: ['xls', 'xlsx', 'ods', 'zip'],
 		width: 282
 	});
 });
@@ -349,15 +405,30 @@ $('#tabs a').tabs();
 //--></script>
 
 <script type="text/javascript"><!--
+$('#switch').click(function() {
+	if ($('#pro').is(':hidden')) {
+		$('#pro').slideDown('slow');
+	} else {
+		$('#pro').hide();
+	}
+	if ($('#cat').is(':hidden')) {
+		$('#cat').slideDown('slow');
+	} else {
+		$('#cat').hide();
+	}
+});
+//--></script>
+
+<script type="text/javascript"><!--
 function check_range_type(export_type) {
-	if ((export_type=='p') || (export_type=='c')) {
-		$('#range_type').fadeIn(800);
+	if ((export_type == 'p') || (export_type == 'c')) {
+		$('#range_type').fadeIn(500);
 		$('#range_type_id').prop('checked',true);
 		$('#range_type_page').prop('checked',false);
 		$('.id').show();
 		$('.page').hide();
 	} else {
-		$('#range_type').fadeOut(800);
+		$('#range_type').fadeOut(500);
 	}
 }
 
@@ -379,7 +450,7 @@ $(document).ready(function() {
 	});
 
 	$('span.close').click(function() {
-		$(this).parent().fadeOut(800);
+		$(this).parent().fadeOut(500);
 	});
 });
 
@@ -426,7 +497,7 @@ function uploadData() {
 	}
 }
 
-function isNumber(txt){ 
+function isNumber(txt) { 
 	var regExp=/^[\d]{1,}$/;
 	return regExp.test(txt);
 }
@@ -436,7 +507,7 @@ function validateExportForm(id) {
 	var min = $("input[name=min]").val();
 	var max = $("input[name=max]").val();
 
-	if ((min=='') && (max=='')) {
+	if ((min == '') && (max == '')) {
 		return true;
 	}
 
@@ -446,11 +517,11 @@ function validateExportForm(id) {
 	}
 
 	var export_type = $('input[name=export_type]:checked').val();
-	var count_item = (export_type=='p') ? <?php echo $count_product-1; ?> : <?php echo $count_category-1; ?>;
+	var count_item = (export_type == 'p') ? <?php echo $count_product-1; ?> : <?php echo $count_category-1; ?>;
 	var batchNo = parseInt(count_item/parseInt(min))+1;
 
-	var minItemId = parseInt((export_type=='c') ? <?php echo $min_category_id; ?> : <?php echo $min_product_id; ?>);
-	var maxItemId = parseInt((export_type=='c') ? <?php echo $max_category_id; ?> : <?php echo $max_product_id; ?>);
+	var minItemId = parseInt((export_type == 'c') ? <?php echo $min_category_id; ?> : <?php echo $min_product_id; ?>);
+	var maxItemId = parseInt((export_type == 'c') ? <?php echo $max_category_id; ?> : <?php echo $max_product_id; ?>);
 
 	if (val == "page") {
 		if (parseInt(max) <= 0) {

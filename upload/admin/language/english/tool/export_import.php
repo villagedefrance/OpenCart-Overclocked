@@ -8,12 +8,13 @@ $_['header_phpexcel']						= 'PHPExcel';
 // Text
 $_['text_success']							= 'Success: You have successfully imported your data!';
 $_['text_success_settings']				= 'Success: You have successfully updated the <b>Export / Import XLSX</b> settings !';
+$_['text_export_type_customer']		= 'Customers';
 $_['text_export_type_category']			= 'Categories (including category data and filters)';
 $_['text_export_type_category_old']	= 'Categories';
 $_['text_export_type_product']			= 'Products (including product data, options, specials, discounts, rewards, attributes and filters)';
 $_['text_export_type_product_old']		= 'Products (including product data, options, specials, discounts, rewards and attributes)';
-$_['text_export_type_option']			= 'Option definitions';
-$_['text_export_type_attribute']			= 'Attribute definitions';
+$_['text_export_type_option']			= 'Products Options';
+$_['text_export_type_attribute']			= 'Products Attributes';
 $_['text_export_type_filter']				= 'Filter definitions';
 $_['text_yes']									= 'Yes';
 $_['text_no']									= 'No';
@@ -43,12 +44,15 @@ $_['entry_settings_use_attribute_group_id']	= 'Use <b>attribute_group_id</b> ins
 $_['entry_settings_use_attribute_id']			= 'Use <b>attribute_id</b> instead of <b>attribute name</b> in worksheet \'ProductAttributes\'';
 $_['entry_settings_use_filter_group_id']		= 'Use <b>filter_group_id</b> instead of <b>filter_group name</b> in worksheets \'ProductFilters\' and \'CategoryFilters\'';
 $_['entry_settings_use_filter_id']				= 'Use <b>filter_id</b> instead of <b>filter name</b> in worksheets \'ProductFilters\' and \'CategoryFilters\'';
+$_['entry_settings_use_export_tags'] 			= 'Use <b>html tags</b> when exporting Html content. Note: this generates duplicates when Html can not be converted, but preserves the formatting.';
+$_['entry_settings_use_export_pclzip'] 		= 'Use Export and Import with <b>PclZip</b>. (Beta)';
 $_['entry_settings_use_export_cache']		= 'Use phpTemp cache for large Exports (will be slightly slower)';
 $_['entry_settings_use_import_cache']		= 'Use phpTemp cache for large Imports (will be slightly slower)';
 
 // Error
 $_['error_permission']							= 'Warning: You do not have permission to modify <b>Export / Import XLSX</b> !';
 $_['error_upload']									= 'Uploaded spreadsheet file has validation errors!';
+$_['error_customers_header']					= 'Export/Import: Invalid header in the Customers worksheet';
 $_['error_categories_header']					= 'Export/Import: Invalid header in the Categories worksheet';
 $_['error_category_filters_header']			= 'Export/Import: Invalid header in the CategoryFilters worksheet';
 $_['error_products_header']					= 'Export/Import: Invalid header in the Products worksheet';
@@ -154,7 +158,7 @@ $_['error_invalid_filter_group_name_filter_name']		= 'Export/Import: Undefined f
 $_['error_invalid_product_id']						= 'Export/Import: Invalid product_id \'%2\' used in worksheet \'%1\'!';
 $_['error_duplicate_product_id']					= 'Export/Import: Duplicate product_id \'%2\' used in worksheet \'%1\'!';
 $_['error_unlisted_product_id']					= 'Export/Import: Worksheet \'%1\' cannot use product_id \'%2\' because it is not listed in worksheet \'Products\'!';
-$_['error_filter_not_supported']					= 'Export/Import: Filters are not supported in your OpenCart version!';
+$_['error_filter_not_supported']					= 'Export/Import: Filters are not supported in your OpenCart Overclocked version!';
 
 // Tab
 $_['tab_import']						= 'Import';
@@ -176,7 +180,7 @@ $_['help_range_type']				= '(Optional, leave empty if not needed)';
 $_['help_incremental_yes']			= '(Update and/or add data)';
 $_['help_incremental_no']			= '(Delete all old data before Import)';
 $_['help_format']						= 'Tip: Do an Export first to see the exact format of the worksheets!';
-$_['help_notes']						= '<b>The Export Tool does randomly generate duplicate descriptions of Products and Categories.</b><br /><br />This appears to be a PHPExcel issue occuring while converting the data into XLSX format.<br /><br />Since no solution has yet been found to fix this issue, it is recommended to keep a clean Master copy of your Product and Category spreadsheets, to work with, and to use with the <b>Import Tool</b> to update and maintain your data.<br /><br />';
+$_['help_notes']						= '<b>The Export/Import Tool is designed to work with the default Opencart Overclocked Edition files only.</b><br /><br />If you are using third party Category, Product, Options, Specials, Discounts, Rewards, Attributes or Filters extensions, under your administration, who are modifying the default files, then unpredictable results may happen during Export and Import.<br /><br />If you have a very large number of Products in your store, and you are experiencing server memory issues, please use the range filters.<br /><br /><br />';
 
 // About
 $_['text_export_import_version']		= 'Export / Import Version:';

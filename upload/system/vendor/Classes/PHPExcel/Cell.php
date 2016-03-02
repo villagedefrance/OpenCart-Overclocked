@@ -269,7 +269,7 @@ class PHPExcel_Cell {
 					}
 				}
 
-			} catch ( PHPExcel_Exception $ex ) {
+			} catch (PHPExcel_Exception $ex) {
 				if (($ex->getMessage() === 'Unable to access External Workbook') && ($this->_calculatedValue !== null)) {
 					return $this->_calculatedValue; // Fallback for calculations referencing external files.
 				}
@@ -582,6 +582,7 @@ class PHPExcel_Cell {
 			if (count($cellAddress) > 1) {
 				list($worksheet, $pCoordinateString) = $cellAddress;
 			}
+
 			if ($worksheet > '')	$worksheet .= '!';
 
 			// Create absolute coordinate
