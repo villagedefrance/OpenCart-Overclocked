@@ -73,7 +73,39 @@ class ControllerToolExportImport extends Controller {
 
 			switch ($export_type) {
 				case 'm':
+					$min = null;
+					if (isset($this->request->post['min']) && ($this->request->post['min'] != '')) {
+						$min = $this->request->post['min'];
+					}
+					$max = null;
+					if (isset($this->request->post['max']) && ($this->request->post['max'] != '')) {
+						$max = $this->request->post['max'];
+					}
+					if (($min == null) || ($max == null)) {
+						$this->model_tool_export_import->download($export_type, null, null, null, null);
+					} elseif ($this->request->post['range_type'] == 'id') {
+						$this->model_tool_export_import->download($export_type, null, null, $min, $max);
+					} else {
+						$this->model_tool_export_import->download($export_type, $min * ($max-1-1), $min, null, null);
+					}
+					break;
 				case 'c':
+					$min = null;
+					if (isset($this->request->post['min']) && ($this->request->post['min'] != '')) {
+						$min = $this->request->post['min'];
+					}
+					$max = null;
+					if (isset($this->request->post['max']) && ($this->request->post['max'] != '')) {
+						$max = $this->request->post['max'];
+					}
+					if (($min == null) || ($max == null)) {
+						$this->model_tool_export_import->download($export_type, null, null, null, null);
+					} elseif ($this->request->post['range_type'] == 'id') {
+						$this->model_tool_export_import->download($export_type, null, null, $min, $max);
+					} else {
+						$this->model_tool_export_import->download($export_type, $min * ($max-1-1), $min, null, null);
+					}
+					break;
 				case 'p':
 					$min = null;
 					if (isset($this->request->post['min']) && ($this->request->post['min'] != '')) {
@@ -452,19 +484,25 @@ class ControllerToolExportImport extends Controller {
 			$this->data['settings_use_import_cache'] = '0';
 		}
 
-		$min_product_id = $this->model_tool_export_import->getMinProductId();
-		$max_product_id = $this->model_tool_export_import->getMaxProductId();
-		$count_product = $this->model_tool_export_import->getCountProduct();
+		$min_customer_id = $this->model_tool_export_import->getMinCustomerId();
+		$max_customer_id = $this->model_tool_export_import->getMaxCustomerId();
+		$count_customer = $this->model_tool_export_import->getCountCustomer();
 		$min_category_id = $this->model_tool_export_import->getMinCategoryId();
 		$max_category_id = $this->model_tool_export_import->getMaxCategoryId();
 		$count_category = $this->model_tool_export_import->getCountCategory();
+		$min_product_id = $this->model_tool_export_import->getMinProductId();
+		$max_product_id = $this->model_tool_export_import->getMaxProductId();
+		$count_product = $this->model_tool_export_import->getCountProduct();
 
-		$this->data['min_product_id'] = $min_product_id;
-		$this->data['max_product_id'] = $max_product_id;
-		$this->data['count_product'] = $count_product;
+		$this->data['min_customer_id'] = $min_customer_id;
+		$this->data['max_customer_id'] = $max_customer_id;
+		$this->data['count_customer'] = $count_customer;
 		$this->data['min_category_id'] = $min_category_id;
 		$this->data['max_category_id'] = $max_category_id;
 		$this->data['count_category'] = $count_category;
+		$this->data['min_product_id'] = $min_product_id;
+		$this->data['max_product_id'] = $max_product_id;
+		$this->data['count_product'] = $count_product;
 
 		$this->template = 'tool/export_import.tpl';
 		$this->children = array(

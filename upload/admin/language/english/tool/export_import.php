@@ -8,7 +8,7 @@ $_['header_phpexcel']						= 'PHPExcel';
 // Text
 $_['text_success']							= 'Success: You have successfully imported your data!';
 $_['text_success_settings']				= 'Success: You have successfully updated the <b>Export / Import XLSX</b> settings !';
-$_['text_export_type_customer']		= 'Customers';
+$_['text_export_type_customer']		= 'Customers (including default address)';
 $_['text_export_type_category']			= 'Categories (including category data and filters)';
 $_['text_export_type_category_old']	= 'Categories';
 $_['text_export_type_product']			= 'Products (including product data, options, specials, discounts, rewards, attributes and filters)';

@@ -651,8 +651,8 @@ class ModelToolExportImport extends Model {
 			$firstname = $this->getCell($data, $i, $j++);
 			$lastname = $this->getCell($data, $i, $j++);
 			$email = $this->getCell($data, $i, $j++);
-			$email = html_entity_decode($email);
 			$telephone = $this->getCell($data, $i, $j++);
+			$telephone = (is_string($telephone) && utf8_strlen($telephone) > 0) ? $telephone : '';
 			$fax = trim($this->getCell($data, $i, $j++));
 			$fax = (is_string($fax) && utf8_strlen($fax) > 0) ? $fax : '';
 			$gender = $this->getCell($data, $i, $j++);
@@ -679,7 +679,7 @@ class ModelToolExportImport extends Model {
 			$zone_id = $this->getCell($data, $i, $j++);
 			$customer_group_id = $this->getCell($data, $i, $j++);
 			$ip = $this->getCell($data, $i, $j++);
-			$ip = ($ip) ? $ip : '127.0.0.1';
+			$ip = (is_string($ip)) ? $ip : '127.0.0.1';
 			$status = $this->getCell($data, $i, $j++);
 			$status = ($status) ? 'true' : 'false';
 			$approved = $this->getCell($data, $i, $j++);
@@ -5440,7 +5440,7 @@ class ModelToolExportImport extends Model {
 			$ord = ord($stripped_string[$i]);
 
 			if (($ord > 0 && $ord < 32) || ($ord > 59 && $ord < 63) || ($ord > 126)) {
-				$string_out .= ' ';
+				$string_out .= '';
 			} else {
 				switch ($stripped_string[$i]) {
 				case '<':
@@ -5592,18 +5592,26 @@ class ModelToolExportImport extends Model {
 	}
 
 	// Customers
-	protected function getCustomers() {
+	protected function getCustomers($offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "customer c";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "address a ON (a.address_id = c.address_id)";
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= " WHERE c.customer_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
+		}
 		$sql .= " GROUP BY c.customer_id";
-		$sql .= " ORDER BY c.lastname, c.firstname ASC";
+		$sql .= " ORDER BY c.lastname, c.firstname";
+		if (isset($offset) && isset($rows)) {
+			$sql .= " ASC LIMIT '" . $offset . "','" . $rows . "'";
+		} else {
+			$sql .= " ASC";
+		}
 
 		$results = $this->db->query($sql);
 
 		return $results->rows;
 	}
 
-	protected function populateCustomersWorksheet($worksheet, $box_format, $text_format, $date_format, $datetime_format) {
+	protected function populateCustomersWorksheet($worksheet, $box_format, $text_format, $date_format, $datetime_format, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Set the column widths
 		$j = 0;
 
@@ -5612,11 +5620,11 @@ class ModelToolExportImport extends Model {
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('firstname')+4, 20)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('lastname')+4, 20)+1, $text_format);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('email')+4, 25)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('telephone')+4, 12)+1);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('fax')+4, 12)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('telephone')+4, 16)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('fax')+4, 16)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('gender'), 5)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('date_of_birth'), 12)+1, $date_format);
-		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('password'), 32)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('password'), 24)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('salt'), 16)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('cart'), 10)+1);
 		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('wishlist'), 10)+1);
@@ -5692,7 +5700,12 @@ class ModelToolExportImport extends Model {
 		$i += 1;
 		$j = 0;
 
-		$customers = $this->getCustomers();
+		$customers = $this->getCustomers($offset, $rows, $min_id, $max_id);
+
+		$length = count($customers);
+
+		$min_id = $customers[0]['customer_id'];
+		$max_id = $customers[$length-1]['customer_id'];
 
 		foreach ($customers as $row) {
 			$data = array();
@@ -8014,11 +8027,12 @@ class ModelToolExportImport extends Model {
 		}
 	}
 
-	public function getMaxProductId() {
-		$pro_max_query = $this->db->query("SELECT MAX(product_id) AS max_product_id FROM " . DB_PREFIX . "product");
+	// Customers
+	public function getMaxCustomerId() {
+		$cus_max_query = $this->db->query("SELECT MAX(customer_id) AS max_customer_id FROM " . DB_PREFIX . "customer");
 
-		if (isset($pro_max_query->row['max_product_id'])) {
-			$max_id = $pro_max_query->row['max_product_id'];
+		if (isset($cus_max_query->row['max_customer_id'])) {
+			$max_id = $cus_max_query->row['max_customer_id'];
 		} else {
 			$max_id = 0;
 		}
@@ -8026,11 +8040,11 @@ class ModelToolExportImport extends Model {
 		return $max_id;
 	}
 
-	public function getMinProductId() {
-		$pro_min_query = $this->db->query("SELECT MIN(product_id) AS min_product_id FROM " . DB_PREFIX . "product");
+	public function getMinCustomerId() {
+		$cus_min_query = $this->db->query("SELECT MIN(customer_id) AS min_customer_id FROM " . DB_PREFIX . "customer");
 
-		if (isset($pro_min_query->row['min_product_id'])) {
-			$min_id = $pro_min_query->row['min_product_id'];
+		if (isset($cus_min_query->row['min_customer_id'])) {
+			$min_id = $cus_min_query->row['min_customer_id'];
 		} else {
 			$min_id = 0;
 		}
@@ -8038,18 +8052,19 @@ class ModelToolExportImport extends Model {
 		return $min_id;
 	}
 
-	public function getCountProduct() {
-		$pro_count_query = $this->db->query("SELECT COUNT(product_id) AS count_product FROM " . DB_PREFIX . "product");
+	public function getCountCustomer() {
+		$cus_count_query = $this->db->query("SELECT COUNT(customer_id) AS count_customer FROM " . DB_PREFIX . "customer");
 
-		if (isset($pro_count_query->row['count_product'])) {
-			$count = $pro_count_query->row['count_product'];
+		if (isset($cus_count_query->row['count_customer'])) {
+			$count = $cus_count_query->row['count_customer'];
 		} else {
 			$count = 0;
 		}
 
 		return $count;
-	}  
+	}
 
+	// Categories
 	public function getMaxCategoryId() {
 		$cat_max_query = $this->db->query("SELECT MAX(category_id) AS max_category_id FROM " . DB_PREFIX . "category");
 
@@ -8084,7 +8099,44 @@ class ModelToolExportImport extends Model {
 		}
 
 		return $count;
-	}  
+	}
+
+	// Products
+	public function getMaxProductId() {
+		$pro_max_query = $this->db->query("SELECT MAX(product_id) AS max_product_id FROM " . DB_PREFIX . "product");
+
+		if (isset($pro_max_query->row['max_product_id'])) {
+			$max_id = $pro_max_query->row['max_product_id'];
+		} else {
+			$max_id = 0;
+		}
+
+		return $max_id;
+	}
+
+	public function getMinProductId() {
+		$pro_min_query = $this->db->query("SELECT MIN(product_id) AS min_product_id FROM " . DB_PREFIX . "product");
+
+		if (isset($pro_min_query->row['min_product_id'])) {
+			$min_id = $pro_min_query->row['min_product_id'];
+		} else {
+			$min_id = 0;
+		}
+
+		return $min_id;
+	}
+
+	public function getCountProduct() {
+		$pro_count_query = $this->db->query("SELECT COUNT(product_id) AS count_product FROM " . DB_PREFIX . "product");
+
+		if (isset($pro_count_query->row['count_product'])) {
+			$count = $pro_count_query->row['count_product'];
+		} else {
+			$count = 0;
+		}
+
+		return $count;
+	}
 
 	public function download($export_type, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		// Error handler
@@ -8201,7 +8253,7 @@ class ModelToolExportImport extends Model {
 					$workbook->setActiveSheetIndex($worksheet_index++);
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle('Customers');
-					$this->populateCustomersWorksheet($worksheet, $box_format, $text_format, $date_format, $datetime_format);
+					$this->populateCustomersWorksheet($worksheet, $box_format, $text_format, $date_format, $datetime_format, $offset, $rows, $min_id, $max_id);
 					$worksheet->freezePaneByColumnAndRow(1, 2);
 					break;
 
@@ -8366,7 +8418,20 @@ class ModelToolExportImport extends Model {
 
 			switch ($export_type) {
 				case 'm':
-					$filename = 'customers-' . $datetime . '.xlsx';
+					$filename = 'customers-' . $datetime;
+					if (!$all) {
+						if (isset($offset)) {
+							$filename .= "-offset-" . $offset;
+						} elseif (isset($min_id)) {
+							$filename .= "-start-" . $min_id;
+						}
+						if (isset($rows)) {
+							$filename .= "-rows-" . $rows;
+						} elseif (isset($max_id)) {
+							$filename .= "-end-" . $max_id;
+						}
+					}
+					$filename .= '.xlsx';
 					break;
 				case 'c':
 					$filename = 'categories-' . $datetime;

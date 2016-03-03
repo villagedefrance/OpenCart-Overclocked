@@ -421,7 +421,7 @@ $('#switch').click(function() {
 
 <script type="text/javascript"><!--
 function check_range_type(export_type) {
-	if ((export_type == 'p') || (export_type == 'c')) {
+	if ((export_type == 'm') || (export_type == 'c') || (export_type == 'p')) {
 		$('#range_type').fadeIn(500);
 		$('#range_type_id').prop('checked',true);
 		$('#range_type_page').prop('checked',false);
@@ -517,11 +517,27 @@ function validateExportForm(id) {
 	}
 
 	var export_type = $('input[name=export_type]:checked').val();
-	var count_item = (export_type == 'p') ? <?php echo $count_product-1; ?> : <?php echo $count_category-1; ?>;
+
+	if (export_type == 'm') {
+		var count_item = <?php echo $count_customer-1; ?>;
+	} else if (export_type == 'c') {
+		var count_item = <?php echo $count_category-1; ?>;
+	} else {
+		var count_item = <?php echo $count_product-1; ?>;
+	}
+
 	var batchNo = parseInt(count_item/parseInt(min))+1;
 
-	var minItemId = parseInt((export_type == 'c') ? <?php echo $min_category_id; ?> : <?php echo $min_product_id; ?>);
-	var maxItemId = parseInt((export_type == 'c') ? <?php echo $max_category_id; ?> : <?php echo $max_product_id; ?>);
+	if (parseInt(export_type == 'm')) {
+		var minItemId = <?php echo $min_customer_id; ?>;
+		var maxItemId = <?php echo $max_customer_id; ?>;
+	} else if (parseInt(export_type == 'c')) {
+		var minItemId = <?php echo $min_category_id; ?>;
+		var maxItemId = <?php echo $max_category_id; ?>;
+	} else {
+		var minItemId = <?php echo $min_product_id; ?>;
+		var maxItemId = <?php echo $max_product_id; ?>;
+	}
 
 	if (val == "page") {
 		if (parseInt(max) <= 0) {
