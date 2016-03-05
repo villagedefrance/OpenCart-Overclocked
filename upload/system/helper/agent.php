@@ -55,6 +55,7 @@ $browsers = array(
 	'Flock'				=> 'Flock',
 	'Edge'				=> 'Microsoft Edge',
 	'Opera'				=> 'Opera',
+	'Dragon'				=> 'Chromodo',
 	'Chrome'				=> 'Chrome',
 	'Chromium'			=> 'Chromium',
 	'Trident/7.0'		=> 'Internet Explorer 11',
