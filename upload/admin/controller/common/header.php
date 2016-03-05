@@ -96,7 +96,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_export_import'] = $this->language->get('text_export_import');
 		$this->data['text_export_import_raw'] = $this->language->get('text_export_import_raw');
 		$this->data['text_export_import_tool'] = $this->language->get('text_export_import_tool');
-		$this->data['text_export_customer'] = $this->language->get('text_export_customer');
 		$this->data['text_extension'] = $this->language->get('text_extension');
 		$this->data['text_feed'] = $this->language->get('text_feed');
 		$this->data['text_file_manager'] = $this->language->get('text_file_manager');
@@ -234,7 +233,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['export_import_raw'] = $this->url->link('tool/export_import_raw', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['export_import_tool'] = $this->url->link('tool/export_import', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['export_import_customer'] = $this->url->link('tool/export_import_customer', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['file_manager'] = $this->url->link('common/filemanager_full', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['filter'] = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], 'SSL');

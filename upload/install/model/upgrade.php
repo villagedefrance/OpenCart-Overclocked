@@ -174,9 +174,9 @@ class ModelUpgrade extends Model {
  					$this->db->query("ALTER TABLE `" . $table['name'] . "` DEFAULT CHARACTER SET " . $table['option']['CHARSET'] . " COLLATE " . $table['option']['COLLATE'] . "");
 				}
 
-				$i = 0;
+				set_time_limit(60);
 
-				set_time_limit(30);
+				$i = 0;
 
 				foreach ($table['field'] as $field) {
 					// If Field is not found create it
@@ -211,10 +211,6 @@ class ModelUpgrade extends Model {
 					$i++;
 				}
 
-				flush();
-
-				set_time_limit(30);
-
 				foreach ($table['field'] as $field) {
 					if (in_array($field['name'], $table_old_data[$table['name']])) {
 						// Remove auto-increment from all fields
@@ -248,13 +244,9 @@ class ModelUpgrade extends Model {
 					$i++;
 				}
 
-				flush();
-
 				$status = false;
 
 				// Drop primary keys and indexes
-				set_time_limit(30);
-
 				$query = $this->db->query("SHOW INDEXES FROM `" . $table['name'] . "`");
 
 				foreach ($query->rows as $result) {
@@ -285,7 +277,7 @@ class ModelUpgrade extends Model {
 					$index_data = array();
 
 					foreach ($index as $key) {
-						$index_data[] = '`' . $key . '`';
+						$index_data[] = "`" . $key . "`";
 					}
 
 					if ($index_data) {

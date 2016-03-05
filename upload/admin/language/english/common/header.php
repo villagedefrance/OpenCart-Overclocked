@@ -36,7 +36,6 @@ $_['text_error_log']					= 'Error Logs';
 $_['text_export_import']			= 'Export / Import';
 $_['text_export_import_raw']		= 'Export / Import SQL';
 $_['text_export_import_tool']		= 'Export / Import XLSX';
-$_['text_export_customer']		= 'Export Customers';
 $_['text_extension']					= 'Extensions';
 $_['text_feed']						= 'Feeds';
 $_['text_file_manager']				= 'File Manager';
