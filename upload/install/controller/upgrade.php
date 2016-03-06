@@ -62,7 +62,7 @@ class ControllerUpgrade extends Controller {
 		$status = false;
 
 		// Check if the sql file exists
-		$file = DIR_APPLICATION . 'opencart-clean.sql';
+		$file = DIR_APPLICATION . 'opencart-upgrade.sql';
 
 		if (!file_exists($file)) {
 			exit('Could not load sql file: ' . $file);
