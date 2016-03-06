@@ -40,6 +40,7 @@ Main Features:
 - "Filter Name" for all essential Admin forms.
 - Full Page Image Manager, with multi-uploads.
 - Cache Managers for Files and Images.
+- SEO Keywords Manager.
 - Integrated News (Blog).
 - ... and more!
 
@@ -49,9 +50,10 @@ New in 1.7.5.0 (Current Release):
 - Moved EU Taxes in core files.
 - TimePicker Addon updated to v1.5.0.
 - Stronger Session & Captcha Classes.
+- Improved upgrade script.
 - Bug Fixes ...
 
-New in [1.7.3.0] 1.7.4.0 (Current Release):
+New in [1.7.3.0] 1.7.4.0:
 - Added EU taxes for E-medias Law.
 - Added received orders in dashboard graph.
 - Added Seo-Urls cache. Thanks skyosev!

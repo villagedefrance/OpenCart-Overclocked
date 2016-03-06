@@ -4,6 +4,7 @@ User-agent: *
 Disallow: /admin/
 Disallow: /download/
 Disallow: /image/
+Disallow: /security/
 Disallow: /system/
 
 # Files
