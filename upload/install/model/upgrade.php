@@ -8,7 +8,7 @@ class ModelUpgrade extends Model {
 
 	public function dataTables($step1) {
 		// Load the sql file
-		$file = DIR_APPLICATION . 'opencart-clean.sql';
+		$file = DIR_APPLICATION . 'opencart-upgrade.sql';
 
 		if (!file_exists($file)) {
 			exit('Could not load sql file: ' . $file);
@@ -212,8 +212,8 @@ class ModelUpgrade extends Model {
 				}
 
 				foreach ($table['field'] as $field) {
+					// Remove auto-increment from all fields
 					if (in_array($field['name'], $table_old_data[$table['name']])) {
-						// Remove auto-increment from all fields
 						$sql = "ALTER TABLE `" . $table['name'] . "` CHANGE `" . $field['name'] . "` `" . $field['name'] . "` " . strtoupper($field['type']) . "";
 
 						if ($field['size']) {
