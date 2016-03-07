@@ -109,29 +109,6 @@
             </tr>
           </table>
         </form>
-        <div>
-          <h2><?php echo $text_debug; ?></h2>
-          <div id="switch" style="margin-bottom:15px;">
-            <a class="button-filter"><?php echo $button_switch; ?></a>
-          </div>
-          <div id="cat" style="display:block;">
-            <?php foreach ($categories as $category) { ?>
-              <?php echo $category['cat_name']; ?>
-              <?php echo $category['cat_description']; ?>
-              <?php echo $category['cat_meta_description']; ?>
-              <?php echo $category['cat_meta_keyword']; ?><br />
-            <?php } ?>
-          </div>
-          <div id="pro" style="display:none;">
-            <?php foreach ($products as $product) { ?>
-              <?php echo $product['pro_name']; ?>
-              <?php echo $product['pro_description']; ?>
-              <?php echo $product['pro_meta_description']; ?>
-              <?php echo $product['pro_meta_keyword']; ?>
-              <?php echo $product['pro_tag']; ?><br />
-            <?php } ?>
-          </div>
-        </div>
       </div>
       <div id="tab-import">
         <form action="<?php echo $import; ?>" method="post" enctype="multipart/form-data" id="import">
@@ -402,21 +379,6 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
-//--></script>
-
-<script type="text/javascript"><!--
-$('#switch').click(function() {
-	if ($('#pro').is(':hidden')) {
-		$('#pro').slideDown('slow');
-	} else {
-		$('#pro').hide();
-	}
-	if ($('#cat').is(':hidden')) {
-		$('#cat').slideDown('slow');
-	} else {
-		$('#cat').hide();
-	}
-});
 //--></script>
 
 <script type="text/javascript"><!--

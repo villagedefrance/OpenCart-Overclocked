@@ -279,50 +279,6 @@ class ControllerToolExportImport extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
-		// Debug
-		$this->data['text_debug'] = 'Debug';
-
-		$this->data['button_switch'] = 'Categories / Products';
-
-		$languages = $this->model_tool_export_import->getLanguages();
-
-		$this->data['languages'] = $languages;
-
-		$categories = $this->model_tool_export_import->getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null);
-
-		$this->data['categories'] = array();
-
-		foreach ($categories as $row) {
-			foreach ($languages as $language) {
-				$this->data['categories'][] = array(
-					'cat_name'					=> (!empty($row['name'][$language['code']])) ? html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'cat_description'			=> (!empty($row['description'][$language['code']])) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'cat_meta_description'	=> (!empty($row['meta_description'][$language['code']])) ? html_entity_decode($row['meta_description'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'cat_meta_keyword'		=> (!empty($row['meta_keyword'][$language['code']])) ? html_entity_decode($row['meta_keyword'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : ''
-				);
-			}
-		}
-
-		$default_language_id = $this->model_tool_export_import->getDefaultLanguageId();
-
-		$product_fields = array();
-
-		$products = $this->model_tool_export_import->getProducts($languages, $default_language_id, $product_fields, $offset = null, $rows = null, $min_id = null, $max_id = null);
-
-		$this->data['products'] = array();
-
-		foreach ($products as $row) {
-			foreach ($languages as $language) {
-				$this->data['products'][] = array(
-					'pro_name'					=> (!empty($row['name'][$language['code']])) ? html_entity_decode($row['name'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'pro_description'			=> (!empty($row['description'][$language['code']])) ? html_entity_decode($row['description'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'pro_meta_description'	=> (!empty($row['meta_description'][$language['code']])) ? html_entity_decode($row['meta_description'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'pro_meta_keyword'		=> (!empty($row['meta_keyword'][$language['code']])) ? html_entity_decode($row['meta_keyword'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : '',
-					'pro_tag'						=> (!empty($row['tag'][$language['code']])) ? html_entity_decode($row['tag'][$language['code']], ENT_QUOTES, 'UTF-8') . ' (' . $language['code'] . ')' : ''
-				);
-			}
-		}
-
 		// Errors
 		if (!empty($this->session->data['export_import_error']['errstr'])) {
 			$this->error['warning'] = $this->session->data['export_import_error']['errstr'];
