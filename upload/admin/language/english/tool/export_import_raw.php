@@ -26,7 +26,7 @@ $_['button_export']			= 'Export';
 $_['button_refresh']			= 'Refresh';
 
 // Help
-$_['help_function']			= 'The Export / Import (SQL) Tool allows you to mass edit individual database table by exporting them into a spreadsheet, using the standard CSV format.';
+$_['help_function']			= 'The Export / Import (SQL) Tool allows you to mass edit an individual database table by exporting it into a spreadsheet, using the standard CSV format.';
 $_['help_caution']			= '<b>Important!</b> Editing tables this way is quick and easy, but keep in mind that some columns values are common to more than one table in your database.';
 $_['help_warning']			= 'All changes must be consistent, otherwise the integrity of your database will be compromised, and in NO circumstances you should edit the ID numbers in tables!';
 
