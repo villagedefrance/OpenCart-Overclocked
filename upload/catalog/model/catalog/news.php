@@ -14,16 +14,11 @@ class ModelCatalogNews extends Model {
 	public function getNews($data = array()) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'";
 
-		if (!empty($data['filter_name'])) {
-			$sql .= " AND LCASE(nd.title) LIKE '" . $this->db->escape(utf8_strtolower($data['filter_name'])) . "%'";
-		}
-
 		$sort_data = array(
 			'nd.title',
 			'nd.description',
 			'n.date_added',
-			'n.viewed',
-			'n.status'
+			'n.viewed'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -74,21 +69,9 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getTotalNews() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_to_store n2s ON (n.news_id = n2s.news_id) WHERE n2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND n.status = '1'");
 
-		$cache_id = 'news.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
-		}
-
-		return $total;
+		return $query->row['total'];
 	}
 }
 ?>

@@ -4,13 +4,9 @@ class ControllerInformationNewsList extends Controller {
 	public function index() {
 		$this->language->load('information/news');
 
-		$this->load->model('catalog/news');
+		$this->document->setTitle($this->language->get('heading_title'));
 
-		if (isset($this->request->get['filter_name'])) {
-			$filter_name = $this->request->get['filter_name'];
-		} else {
-			$filter_name = '';
-		}
+		$this->load->model('catalog/news');
 
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
@@ -45,17 +41,7 @@ class ControllerInformationNewsList extends Controller {
 			'separator' => false
 		);
 
-		$this->document->setTitle($this->language->get('heading_title'));
-
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
-
-		$this->load->model('tool/image');
-
 		$url = '';
-
-		if (isset($this->request->get['filter_name'])) {
-			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-		}
 
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
@@ -79,35 +65,20 @@ class ControllerInformationNewsList extends Controller {
 			'separator' => $this->language->get('text_separator')
 		);
 
-		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_display'] = $this->language->get('text_display');
-		$this->data['text_list'] = $this->language->get('text_list');
-		$this->data['text_grid'] = $this->language->get('text_grid');
-		$this->data['text_sort'] = $this->language->get('text_sort');
-		$this->data['text_limit'] = $this->language->get('text_limit');
-		$this->data['text_posted'] = $this->language->get('text_posted');
-		$this->data['text_views'] = $this->language->get('text_views');
-
-		$this->data['button_read'] = $this->language->get('button_read');
-		$this->data['button_continue'] = $this->language->get('button_continue');
-
-		$this->data['continue'] = $this->url->link('common/home');
+		$this->load->model('tool/image');
 
 		$this->data['news_data'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'sort' 				=> $sort,
-			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $limit,
-			'limit' 				=> $limit
+			'sort' 		=> $sort,
+			'order' 	=> $order,
+			'start' 	=> ($page - 1) * $limit,
+			'limit' 		=> $limit
 		);
 
 		$total_news = $this->model_catalog_news->getTotalNews();
-
-		$this->data['total_news'] = $total_news;
 
 		$news_data = $this->model_catalog_news->getNews($data);
 
@@ -139,11 +110,25 @@ class ControllerInformationNewsList extends Controller {
 			);
 		}
 
-		$url = '';
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		if (isset($this->request->get['filter_name'])) {
-			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-		}
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_display'] = $this->language->get('text_display');
+		$this->data['text_list'] = $this->language->get('text_list');
+		$this->data['text_grid'] = $this->language->get('text_grid');
+		$this->data['text_sort'] = $this->language->get('text_sort');
+		$this->data['text_limit'] = $this->language->get('text_limit');
+		$this->data['text_posted'] = $this->language->get('text_posted');
+		$this->data['text_views'] = $this->language->get('text_views');
+
+		$this->data['button_read'] = $this->language->get('button_read');
+		$this->data['button_continue'] = $this->language->get('button_continue');
+
+		$this->data['continue'] = $this->url->link('common/home');
+
+		$this->data['total_news'] = $total_news;
+
+		$url = '';
 
 		$this->data['sorts'] = array();
 
@@ -217,10 +202,6 @@ class ControllerInformationNewsList extends Controller {
 
 		$url = '';
 
-		if (isset($this->request->get['filter_name'])) {
-			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-		}
-
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
@@ -241,8 +222,6 @@ class ControllerInformationNewsList extends Controller {
 		$pagination->url = $this->url->link('information/news_list', $url . '&page={page}');
 
 		$this->data['pagination'] = $pagination->render();
-
-		$this->data['filter_name'] = $filter_name;
 
 		$this->data['sort'] = $sort;
 		$this->data['order'] = $order;
