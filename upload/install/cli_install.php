@@ -59,15 +59,15 @@ function usage() {
 	echo "======\n";
 	echo "\n";
 	$options = implode(" ", array(
-		'--db_driver', 'mysqli',
-		'--db_host', 'localhost',
-		'--db_user', 'root',
+		'--db_hostname', 'localhost',
+		'--db_username', 'root',
 		'--db_password', 'pass',
-		'--db_name', 'opencart',
+		'--db_database', 'opencart',
+		'--db_driver', 'mysqli',
+		'--db_port', '3306',
 		'--username', 'admin',
 		'--password', 'admin',
 		'--email', 'youremail@example.com',
-		'--agree_tnc', 'yes',
 		'--http_server', 'http://localhost/opencart')
 	);
 	echo 'php cli_install.php install ' . $options . "\n\n";
@@ -75,12 +75,12 @@ function usage() {
 
 function get_options($argv) {
 	$defaults = array(
-		'db_driver' 	=> 'mysqli',
-		'db_host' 	=> 'localhost',
-		'db_name' 	=> 'opencart',
-		'db_prefix' 	=> '',
-		'username'	=> 'admin',
-		'agree_tnc'	=> 'no'
+		'db_hostname'	=> 'localhost',
+		'db_database'	=> 'opencart',
+		'db_prefix'		=> 'oc_',
+		'db_driver'		=> 'mysqli',
+		'db_port'			=> '3306',
+		'username'		=> 'admin'
 	);
 
 	$options = array();
@@ -102,16 +102,15 @@ function get_options($argv) {
 
 function valid($options) {
 	$required = array(
-		'db_driver',
-		'db_host',
-		'db_user',
+		'db_hostname',
+		'db_username',
 		'db_password',
-		'db_name',
+		'db_database',
 		'db_prefix',
+		'db_port',
 		'username',
 		'password',
 		'email',
-		'agree_tnc',
 		'http_server'
 	);
 
@@ -123,15 +122,11 @@ function valid($options) {
 		}
 	}
 
-	if ($options['agree_tnc'] !== 'yes') {
-		$missing[] = 'agree_tnc (should be yes)';
-	}
-
 	if (!preg_match('#/$#', $options['http_server'])) {
 		$options['http_server'] = $options['http_server'] . '/';
 	}
 
-	$valid = count($missing) === 0 && $options['agree_tnc'] === 'yes';
+	$valid = count($missing) === 0;
 
 	return array($valid, $missing);
 }
@@ -140,7 +135,7 @@ function install($options) {
 	$check = check_requirements();
 
 	if ($check[0]) {
-		setup_mysql($options);
+		setup_db($options);
 		write_config_files($options);
 		dir_permissions();
 	} else {
@@ -229,14 +224,55 @@ function check_requirements() {
 	return array($error === null, $error);
 }
 
-function setup_mysql($dbdata) {
-	global $loader, $registry;
+function setup_db($data) {
+	$db = new DB($data['db_driver'], htmlspecialchars_decode($data['db_hostname']), htmlspecialchars_decode($data['db_username']), htmlspecialchars_decode($data['db_password']), htmlspecialchars_decode($data['db_database']), $data['db_port']);
 
-	$loader->model('install');
+	$file = DIR_APPLICATION . 'opencart.sql';
 
-	$model = $registry->get('model_install');
+	if (!file_exists($file)) {
+		exit('Could not load sql file: ' . $file);
+	}
 
-	$model->database($dbdata);
+	$lines = file($file);
+
+	if ($lines) {
+		$sql = '';
+
+		foreach ($lines as $line) {
+			if ($line && (substr($line, 0, 2) != '--') && (substr($line, 0, 1) != '#')) {
+				$sql .= $line;
+
+				if (preg_match('/;\s*$/', $line)) {
+					$sql = str_replace("DROP TABLE IF EXISTS `oc_", "DROP TABLE IF EXISTS `" . $data['db_prefix'], $sql);
+					$sql = str_replace("CREATE TABLE `oc_", "CREATE TABLE `" . $data['db_prefix'], $sql);
+					$sql = str_replace("INSERT INTO `oc_", "INSERT INTO `" . $data['db_prefix'], $sql);
+
+					$db->query($sql);
+
+					$sql = '';
+				}
+			}
+		}
+
+		$db->query("SET CHARACTER SET utf8");
+
+		$db->query("SET @@session.sql_mode = 'MYSQL40'");
+
+		$db->query("DELETE FROM `" . $data['db_prefix'] . "user` WHERE user_id = '1'");
+
+		$db->query("INSERT INTO `" . $data['db_prefix'] . "user` SET user_id = '1', user_group_id = '1', username = '" . $db->escape($data['username']) . "', salt = '" . $db->escape($salt = token(9)) . "', password = '" . $db->escape(sha1($salt . sha1($salt . sha1($data['password'])))) . "', firstname = 'John', lastname = 'Doe', email = '" . $db->escape($data['email']) . "', status = '1', date_added = NOW()");
+
+		$db->query("DELETE FROM `" . $data['db_prefix'] . "setting` WHERE `key` = 'config_email'");
+		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_email', value = '" . $db->escape($data['email']) . "'");
+
+		$db->query("DELETE FROM `" . $data['db_prefix'] . "setting` WHERE `key` = 'config_url'");
+		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_url', value = '" . $db->escape(HTTP_OPENCART) . "'");
+
+		$db->query("DELETE FROM `" . $data['db_prefix'] . "setting` WHERE `key` = 'config_encryption'");
+		$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `code` = 'config', `key` = 'config_encryption', value = '" . $db->escape(token(1024)) . "'");
+
+		$db->query("UPDATE `" . $data['db_prefix'] . "product` SET `viewed` = '0'");
+	}
 }
 
 function write_config_files($options) {

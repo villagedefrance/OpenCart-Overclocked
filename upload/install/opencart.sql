@@ -8976,6 +8976,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (4230, 118, 'LB-ST', 'South', 1),
 
 (4231, 99, 'TS', 'Telangana', 1),
+(4232, 44, 'QH', 'Qinghai', 1),
 
 (4246, 100, 'KR', 'Kepulauan Riau', 1),
 (4247, 100, 'KU', 'Kalimantan Utara', 1),
