@@ -406,6 +406,30 @@ class Cart {
 		return $total;
 	}
 
+	public function getPriceFromPriceWithTax($price, $tax_class_id) {
+		$cal_price = $price;
+
+		if ($this->config->get('config_tax')) {
+			$base = 100;
+
+			$tax_rates = $this->tax->getRates($base, $tax_class_id);
+
+			$rate_p = 0;
+
+			foreach ($tax_rates as $tax_rate) {
+				if ($tax_rate['type'] == 'F') {
+					$cal_price -= $tax_rate['rate'];
+				} elseif ($tax_rate['type'] == 'P') {
+					$rate_p += $tax_rate['rate'];
+				}
+			}
+
+			$cal_price = $cal_price / (1 + ((float)$rate_p) / 100);
+		}
+
+		return $cal_price;
+	}
+
 	public function getTaxes() {
 		$tax_data = array();
 
