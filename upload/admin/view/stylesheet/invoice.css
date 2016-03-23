@@ -8,7 +8,7 @@ body {
 }
 body, td, th, input, select, textarea, option, optgroup {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	color: #000;
 }
 h1 {
@@ -111,4 +111,8 @@ table.address, table.product, table.comment, table.delivery {
 }
 .delivery td {
 	width: 50%;
+}
+/* Page timer */
+#response-time {
+	display: none;
 }

@@ -182,3 +182,7 @@
 	font-weight: bold;
 	margin: 30px 0px 0px 50px;
 }
+/* Page timer */
+#response-time {
+	display: none;
+}

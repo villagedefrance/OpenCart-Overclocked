@@ -85,6 +85,10 @@ $_['text_reception_name']           	= 'Print Name :';
 $_['text_reception_sign']            	= 'Signature :';
 $_['text_reception_date']         		= 'Date :';
 $_['text_reception_condition']    	= 'Shipment condition :';
+$_['text_print_invoice'] 				= 'Printing invoice #';
+$_['text_print_delivery_note'] 		= 'Printing delivery note #';
+$_['text_print_shipping_label'] 		= 'Printing shipping label #';
+$_['text_print_pick_list'] 				= 'Printing pick list #';
 
 // Column
 $_['column_order_id']            		= 'Order ID';
@@ -151,9 +155,9 @@ $_['info_picklist_enabled'] 				= 'The Pick List is <b>Enabled</b> in your Setti
 $_['info_picklist_disabled'] 				= 'The Pick List is <b>Disabled</b> in your Settings. Customers will NOT be able to track progress on their order.';
 
 // Button
-$_['button_pick_list']            		= 'Print Pick List';
-$_['button_shipping_label'] 			= 'Print Shipping Label';
-$_['button_delivery_note']				= 'Print Delivery Note';
+$_['button_pick_list']            		= 'Pick List';
+$_['button_shipping_label'] 			= 'Shipping Label';
+$_['button_delivery_note']				= 'Delivery Note';
 
 // Tab
 $_['tab_pick_list']							= 'Pick List';

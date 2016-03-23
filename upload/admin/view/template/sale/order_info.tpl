@@ -15,10 +15,18 @@
     <div class="content">
     <div class="report">
       <div class="left"><img src="view/image/print-preview.png" alt="" /></div>
-      <div class="right"><a onclick="window.open('<?php echo $invoice; ?>');" class="button-filter"><?php echo $button_invoice; ?></a></div>
-      <div class="right"><a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-filter"><?php echo $button_delivery_note; ?></a></div>
-      <div class="right"><a onclick="window.open('<?php echo $pick_list; ?>');" class="button-filter"><?php echo $button_pick_list; ?></a></div>
-      <div class="right"><a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-filter"><?php echo $button_shipping_label; ?></a></div>
+      <div class="right"><?php echo $button_invoice; ?> &nbsp;
+        <a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print"></a>
+      </div>
+      <div class="right"><?php echo $button_delivery_note; ?> &nbsp;
+        <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview"></a><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print"></a>
+      </div>
+      <div class="right"><?php echo $button_pick_list; ?> &nbsp;
+        <a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview"></a><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print"></a>
+      </div>
+      <div class="right"><?php echo $button_shipping_label; ?> &nbsp;
+        <a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview"></a><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print"></a>
+      </div>
     </div>
     <div class="vtabs">
       <a href="#tab-order"><?php echo $tab_order; ?></a>
@@ -855,6 +863,35 @@ $(document).ready(function() {
 
 $('select[name="order_status_id"]').change(function() {
 	orderStatusChange();
+});
+//--></script>
+
+<script type="text/javascript" src="view/javascript/jquery/jquery-printpage.js"></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	var order_id = <?php echo $order_id; ?>;
+
+	$('#print-invoice').printPage({
+		url: false,
+		attr: 'href',
+		message: '<?php echo $text_print_invoice; ?>' + order_id
+	});
+	$('#print-delivery-note').printPage({
+		url: false,
+		attr: 'href',
+		message: '<?php echo $text_print_delivery_note; ?>' + order_id
+	});
+	$('#print-pick-list').printPage({
+		url: false,
+		attr: 'href',
+		message: '<?php echo $text_print_pick_list; ?>' + order_id
+	});
+	$('#print-shipping-label').printPage({
+		url: false,
+		attr: 'href',
+		message: '<?php echo $text_print_shipping_label; ?>' + order_id
+	});
 });
 //--></script>
 

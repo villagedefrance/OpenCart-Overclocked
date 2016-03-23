@@ -6,7 +6,7 @@
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
 <link rel="icon" type="image/png" href="docicon.png" />
-<link rel="stylesheet" type="text/css" href="view/stylesheet/invoice.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="view/stylesheet/invoice.css" media="screen, print" />
 </head>
 <body>
 <?php foreach ($orders as $order) { ?>

@@ -1472,6 +1472,10 @@ class ControllerSaleOrder extends Controller {
 			$this->data['text_commission_remove'] = $this->language->get('text_commission_remove');
 			$this->data['text_credit_add'] = $this->language->get('text_credit_add');
 			$this->data['text_credit_remove'] = $this->language->get('text_credit_remove');
+			$this->data['text_print_invoice'] = $this->language->get('text_print_invoice');
+			$this->data['text_print_delivery_note'] = $this->language->get('text_print_delivery_note');
+			$this->data['text_print_shipping_label'] = $this->language->get('text_print_shipping_label');
+			$this->data['text_print_pick_list'] = $this->language->get('text_print_pick_list');
 
 			$this->data['column_product'] = $this->language->get('column_product');
 			$this->data['column_model'] = $this->language->get('column_model');

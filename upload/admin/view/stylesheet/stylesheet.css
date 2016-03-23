@@ -975,6 +975,39 @@ input.button-move-right:hover {
 	background: #F8F8F8 url('../image/theme/move-right.png') center -16px no-repeat;
 	border: 1px solid #4691D2;
 }
+/* Button Preview/Print */
+a.button-preview, a.button-print {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	padding: 1px 9px;
+	margin: 0px;
+	vertical-align: middle;
+}
+a.button-preview {
+	background: #F8F8F8 url('../image/theme/preview.png') center 0px no-repeat;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px 0px 0px 3px;
+	-moz-border-radius: 3px 0px 0px 3px;
+	-khtml-border-radius: 3px 0px 0px 3px;
+	border-radius: 3px 0px 0px 3px;
+}
+a.button-print {
+	background: #F8F8F8 url('../image/theme/print.png') center 0px no-repeat;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 0px 3px 3px 0px;
+	-moz-border-radius: 0px 3px 3px 0px;
+	-khtml-border-radius: 0px 3px 3px 0px;
+	border-radius: 0px 3px 3px 0px;
+}
+a.button-preview:hover {
+	background: #F8F8F8 url('../image/theme/preview.png') center -24px no-repeat;
+	border: 1px solid #4691D2;
+}
+a.button-print:hover {
+	background: #F8F8F8 url('../image/theme/print.png') center -24px no-repeat;
+	border: 1px solid #4691D2;
+}
 /* List */
 .list {
 	width: 100%;
