@@ -99,6 +99,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_email_noreply'] = $this->language->get('entry_email_noreply');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
 		$this->data['entry_fax'] = $this->language->get('entry_fax');
+		$this->data['entry_company_id'] = $this->language->get('entry_company_id');
+		$this->data['entry_company_tax_id'] = $this->language->get('entry_company_tax_id');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
@@ -529,6 +531,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_fax'] = $this->request->post['config_fax'];
 		} else {
 			$this->data['config_fax'] = $this->config->get('config_fax');
+		}
+
+		if (isset($this->request->post['config_company_id'])) {
+			$this->data['config_company_id'] = $this->request->post['config_company_id'];
+		} else {
+			$this->data['config_company_id'] = $this->config->get('config_company_id');
+		}
+
+		if (isset($this->request->post['config_company_tax_id'])) {
+			$this->data['config_company_tax_id'] = $this->request->post['config_company_tax_id'];
+		} else {
+			$this->data['config_company_tax_id'] = $this->config->get('config_company_tax_id');
 		}
 
 		// Store

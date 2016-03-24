@@ -25,7 +25,13 @@
           <?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
         <?php } ?>
         <?php echo $order['store_email']; ?><br />
-        <?php echo $order['store_url']; ?>
+        <?php echo $order['store_url']; ?><br />
+        <?php if ($order['store_company_id']) { ?>
+          <span style="font-size:12px;"><?php echo $order['store_company_id']; ?></span><br />
+        <?php } ?>
+        <?php if ($order['store_company_tax_id']) { ?>
+          <span style="font-size:12px;"><?php echo $order['store_company_tax_id']; ?></span><br />
+        <?php } ?>
       </td>
       <td class="top-right">
         <table>
@@ -82,20 +88,20 @@
   </table>
   <table class="product">
     <tr class="heading">
-      <td><b><?php echo $column_product; ?></b></td>
-      <td><b><?php echo $column_model; ?></b></td>
-      <td class="right"><b><?php echo $column_quantity; ?></b></td>
+      <td class="left"><b><?php echo $column_product; ?></b></td>
+      <td class="left"><b><?php echo $column_model; ?></b></td>
+      <td class="center"><b><?php echo $column_quantity; ?></b></td>
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
     <tr>
-      <td><?php echo $product['name']; ?>
+      <td class="left"><?php echo $product['name']; ?>
         <?php foreach ($product['option'] as $option) { ?>
           <br />
           &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
         <?php } ?>
       </td>
-      <td><?php echo $product['model']; ?></td>
-      <td class="right"><?php echo $product['quantity']; ?></td>
+      <td class="left"><?php echo $product['model']; ?></td>
+      <td class="center"><?php echo $product['quantity']; ?></td>
     </tr>
     <?php } ?>
   </table>

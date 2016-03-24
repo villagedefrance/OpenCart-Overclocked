@@ -11,16 +11,16 @@
 <body>
 <?php foreach ($orders as $order) { ?>
 <div style="page-break-after:always;">
-  <div style="width:400px; border:1px dotted #CCC; padding:18px 0px 0px 18px;">
+  <div style="width:420px; border:1px dotted #CCC; padding:18px 0px 0px 18px;">
   <?php if (!empty($logo)) { ?>
     <img src="<?php echo $logo; ?>" alt="" />
   <?php } ?>
-  <table class="store" style="width:380px;">
+  <table class="store" style="width:400px;">
     <tr>
       <td><?php echo $order['store_url']; ?></td>
     </tr>
   </table>
-  <table class="address" style="width:380px;">
+  <table class="address" style="width:400px;">
     <tr class="heading">
       <td><b><?php echo $text_deliver_to; ?></b></td>
     </tr>
@@ -36,7 +36,7 @@
     </tr>
   </table>
   <?php if ($order['comment']) { ?>
-  <table class="comment" style="width:380px;">
+  <table class="comment" style="width:400px;">
     <tr class="heading">
       <td><b><?php echo $column_comment; ?></b></td>
     </tr>

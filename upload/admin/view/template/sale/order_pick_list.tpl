@@ -82,22 +82,22 @@
   </table>
   <table class="product">
     <tr class="heading">
-      <td><b><?php echo $column_product; ?></b></td>
-      <td><b><?php echo $column_model; ?></b></td>
-      <td><b><?php echo $column_quantity; ?></b></td>
-      <td><b><?php echo $column_status_picked; ?></b></td>
-      <td width="20%"><b><?php echo $column_status_backordered; ?></b></td>
+      <td class="left"><b><?php echo $column_product; ?></b></td>
+      <td class="left"><b><?php echo $column_model; ?></b></td>
+      <td class="center"><b><?php echo $column_quantity; ?></b></td>
+      <td class="left"><b><?php echo $column_status_picked; ?></b></td>
+      <td class="left" width="20%"><b><?php echo $column_status_backordered; ?></b></td>
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
     <tr>
-      <td><?php echo $product['name']; ?>
+      <td class="left"><?php echo $product['name']; ?>
         <?php foreach ($product['option'] as $option) { ?>
           <br />
           &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
         <?php } ?>
       </td>
-      <td><?php echo $product['model']; ?></td>
-      <td><?php echo $product['quantity']; ?></td>
+      <td class="left"><?php echo $product['model']; ?></td>
+      <td class="center"><?php echo $product['quantity']; ?></td>
       <td></td>
       <td></td>
     </tr>

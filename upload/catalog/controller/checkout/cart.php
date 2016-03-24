@@ -137,6 +137,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['column_model'] = $this->language->get('column_model');
 			$this->data['column_quantity'] = $this->language->get('column_quantity');
 			$this->data['column_price'] = $this->language->get('column_price');
+			$this->data['column_tax_value'] = $this->language->get('column_tax_value');
+			$this->data['column_tax_percent'] = $this->language->get('column_tax_percent');
 			$this->data['column_total'] = $this->language->get('column_total');
 
 			$this->data['entry_coupon'] = $this->language->get('entry_coupon');
@@ -324,6 +326,8 @@ class ControllerCheckoutCart extends Controller {
 					}
 				}
 
+				$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
+
 				$this->data['products'][] = array(
 					'product_id'				=> $product['product_id'],
 					'key'                 		=> $product['key'],
@@ -337,6 +341,8 @@ class ControllerCheckoutCart extends Controller {
 					'reward'              	=> $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               		=> $price,
 					'cost' 					=> $product['cost'],
+					'tax_value'				=> $this->currency->format($product_tax_value),
+					'tax_percent'			=> number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
 					'age_minimum'			=> $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
 					'total'               		=> $total,
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),

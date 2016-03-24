@@ -1481,6 +1481,8 @@ class ControllerSaleOrder extends Controller {
 			$this->data['column_model'] = $this->language->get('column_model');
 			$this->data['column_quantity'] = $this->language->get('column_quantity');
 			$this->data['column_price'] = $this->language->get('column_price');
+			$this->data['column_tax_value'] = $this->language->get('column_tax_value');
+			$this->data['column_tax_percent'] = $this->language->get('column_tax_percent');
 			$this->data['column_total'] = $this->language->get('column_total');
 			$this->data['column_download'] = $this->language->get('column_download');
 			$this->data['column_filename'] = $this->language->get('column_filename');
@@ -1726,6 +1728,8 @@ class ControllerSaleOrder extends Controller {
 					'option'   		   		=> $option_data,
 					'quantity'		   		=> $product['quantity'],
 					'price'					=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_value'				=> $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_percent'			=> number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
 					'total'						=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
 					'picked'					=> $product['picked'],
 					'backordered'			=> $product['backordered'],
@@ -2723,6 +2727,9 @@ class ControllerSaleOrder extends Controller {
 					$store_fax = $this->config->get('config_fax');
 				}
 
+				$store_company_id = $this->config->get('config_company_id') ? $this->config->get('config_company_id') : '';
+				$store_company_tax_id = $this->config->get('config_company_tax_id') ? $this->config->get('config_company_tax_id') : '';
+
 				if ($order_info['invoice_no']) {
 					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
 				} else {
@@ -2837,6 +2844,8 @@ class ControllerSaleOrder extends Controller {
 					'store_email'        		=> $store_email,
 					'store_telephone'    		=> $store_telephone,
 					'store_fax'          		=> $store_fax,
+					'store_company_id'		=> $store_company_id,
+					'store_company_tax_id'	=> $store_company_tax_id,
 					'email'              			=> $order_info['email'],
 					'telephone'          		=> $order_info['telephone'],
 					'shipping_address'   		=> $shipping_address,
@@ -2897,6 +2906,8 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_model'] = $this->language->get('column_model');
 		$this->data['column_quantity'] = $this->language->get('column_quantity');
 		$this->data['column_price'] = $this->language->get('column_price');
+		$this->data['column_tax_value'] = $this->language->get('column_tax_value');
+		$this->data['column_tax_percent'] = $this->language->get('column_tax_percent');
 		$this->data['column_total'] = $this->language->get('column_total');
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
@@ -2931,6 +2942,9 @@ class ControllerSaleOrder extends Controller {
 					$store_telephone = $this->config->get('config_telephone');
 					$store_fax = $this->config->get('config_fax');
 				}
+
+				$store_company_id = $this->config->get('config_company_id') ? $this->config->get('config_company_id') : '';
+				$store_company_tax_id = $this->config->get('config_company_tax_id') ? $this->config->get('config_company_tax_id') : '';
 
 				if ($order_info['invoice_no']) {
 					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
@@ -3029,12 +3043,14 @@ class ControllerSaleOrder extends Controller {
 					}
 
 					$product_data[] = array(
-						'name'     	=> $product['name'],
-						'model'    	=> $product['model'],
-						'option'   	=> $option_data,
-						'quantity' 	=> $product['quantity'],
-						'price'    	=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-						'total'    		=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
+						'name'     		=> $product['name'],
+						'model'    		=> $product['model'],
+						'option'   		=> $option_data,
+						'quantity' 		=> $product['quantity'],
+						'price'    		=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+						'tax_value'		=> $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+						'tax_percent'	=> number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+						'total'    			=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
 					);
 				}
 
@@ -3061,6 +3077,8 @@ class ControllerSaleOrder extends Controller {
 					'store_email'        		=> $store_email,
 					'store_telephone'    		=> $store_telephone,
 					'store_fax'          		=> $store_fax,
+					'store_company_id'		=> $store_company_id,
+					'store_company_tax_id'	=> $store_company_tax_id,
 					'email'              			=> $order_info['email'],
 					'telephone'          		=> $order_info['telephone'],
 					'shipping_address'   		=> $shipping_address,

@@ -328,8 +328,10 @@
           <tr>
             <td class="left"><?php echo $column_product; ?></td>
             <td class="left"><?php echo $column_model; ?></td>
-            <td class="right"><?php echo $column_quantity; ?></td>
+            <td class="center"><?php echo $column_quantity; ?></td>
             <td class="right"><?php echo $column_price; ?></td>
+            <td class="right"><?php echo $column_tax_value; ?></td>
+            <td class="right"><?php echo $column_tax_percent; ?></td>
             <td class="right"><?php echo $column_total; ?></td>
           </tr>
         </thead>
@@ -346,16 +348,19 @@
               <?php } ?>
             <?php } ?></td>
             <td class="left"><?php echo $product['model']; ?></td>
-            <td class="right"><?php echo $product['quantity']; ?></td>
+            <td class="center"><?php echo $product['quantity']; ?></td>
             <td class="right"><?php echo $product['price']; ?></td>
+            <td class="right"><?php echo $product['tax_value']; ?></td>
+            <td class="right"><?php echo $product['tax_percent']; ?>%</td>
             <td class="right"><?php echo $product['total']; ?></td>
           </tr>
         <?php } ?>
         <?php foreach ($vouchers as $voucher) { ?>
           <tr>
-            <td class="left"><a href="<?php echo $voucher['href']; ?>"><?php echo $voucher['description']; ?></a></td>
-            <td class="left"></td>
+            <td class="left" colspan="2"><a href="<?php echo $voucher['href']; ?>"><?php echo $voucher['description']; ?></a></td>
+            <td class="left" colspan="2"></td>
             <td class="right">1</td>
+            <td class="right"><?php echo $voucher['amount']; ?></td>
             <td class="right"><?php echo $voucher['amount']; ?></td>
           </tr>
         <?php } ?>
@@ -363,7 +368,7 @@
         <?php foreach ($totals as $totals) { ?>
         <tbody id="totals">
           <tr>
-            <td colspan="4" class="right"><?php echo $totals['title']; ?>:</td>
+            <td colspan="6" class="right"><b><?php echo $totals['title']; ?>:</b></td>
             <td class="right"><?php echo $totals['text']; ?></td>
           </tr>
         </tbody>

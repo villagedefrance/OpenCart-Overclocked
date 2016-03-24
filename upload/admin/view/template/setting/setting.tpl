@@ -95,6 +95,14 @@
             <td><?php echo $entry_fax; ?></td>
             <td><input type="text" name="config_fax" value="<?php echo $config_fax; ?>" /></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_company_id; ?></td>
+            <td><input type="text" name="config_company_id" value="<?php echo $config_company_id; ?>" size="40" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_company_tax_id; ?></td>
+            <td><input type="text" name="config_company_tax_id" value="<?php echo $config_company_tax_id; ?>" size="40" /></td>
+          </tr>
         </table>
       </div>
       <div id="tab-store">

@@ -38,6 +38,8 @@
             <td class="model"><?php echo $column_model; ?></td>
             <td class="quantity"><?php echo $column_quantity; ?></td>
             <td class="price"><?php echo $column_price; ?></td>
+            <td class="price"><?php echo $column_tax_value; ?></td>
+            <td class="price"><?php echo $column_tax_percent; ?></td>
             <td class="total"><?php echo $column_total; ?></td>
           </tr>
         </thead>
@@ -91,6 +93,8 @@
                 <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
               <td class="price"><?php echo $product['price']; ?></td>
+			  <td class="price"><?php echo $product['tax_value']; ?></td>
+			  <td class="price"><?php echo $product['tax_percent']; ?>%</td>
               <td class="total"><?php echo $product['total']; ?></td>
             </tr>
           <?php } ?>
