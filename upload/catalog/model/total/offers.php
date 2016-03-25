@@ -63,14 +63,14 @@ class ModelTotalOffers {
 		$discount_total = 0;
 
 		for ($disc = 0, $n = count($this->discount_list); $disc < $n; $disc++) {
-			$li = $this->discount_list[$disc];
+			$line = $this->discount_list[$disc];
 
-			if (($li->variation == PRO_TO_PRO) || ($li->variation == PRO_TO_CAT)) {
-				if ($li->item1 != $discount_item['product_id']) {
+			if (($line->variation == PRO_TO_PRO) || ($line->variation == PRO_TO_CAT)) {
+				if ($line->item1 != $discount_item['product_id']) {
 					continue;
 				}
 			} else {
-				if (!in_array($li->item1, $discount_item['category_id'])) {
+				if (!in_array($line->item1, $discount_item['category_id'])) {
 					continue;
 				}
 			}
@@ -82,12 +82,12 @@ class ModelTotalOffers {
 
 				$match = 0;
 
-				if (($li->variation == PRO_TO_PRO) || ($li->variation == CAT_TO_PRO)) {
-					if ($discountable_products[$i]['product_id'] == $li->item2) {
+				if (($line->variation == PRO_TO_PRO) || ($line->variation == CAT_TO_PRO)) {
+					if ($discountable_products[$i]['product_id'] == $line->item2) {
 						$match = 1;
 					}
 				} else {
-					if (in_array($li->item2, $discountable_products[$i]['category_id'])) {
+					if (in_array($line->item2, $discountable_products[$i]['category_id'])) {
 						$match = 1;
 					}
 				}
@@ -107,10 +107,10 @@ class ModelTotalOffers {
 				if ($match == 1) {
 					$discountable_products[$i]['quantity'] -= 1;
 
-					if ($li->type == "$") {
-						$discount_total = $li->amount;
+					if ($line->type == "$") {
+						$discount_total = $this->tax->calculate($line->amount, $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax'));
 					} else {
-						$discount_total = ($discountable_products[$i]['price'] * $li->amount) / 100;
+						$discount_total = $this->tax->calculate(($discountable_products[$i]['price'] * $line->amount), $discountable_products[$i]['tax_class_id'], $this->config->get('config_tax')) / 100;
 					}
 				}
 			}
@@ -191,12 +191,12 @@ class ModelTotalOffers {
 			$total_data[] = array(
 				'code'		=> 'offers',
 				'title'			=> $this->language->get('text_offers'),
-				'text'			=> '-' . $this->currency->format($this->tax->calculate($discount_total, $product['tax_class_id'], $this->config->get('config_tax'))),
-				'value'		=> '-' . number_format($this->tax->calculate($discount_total, $product['tax_class_id'], $this->config->get('config_tax')), 2, '.', ''),
+				'text'			=> '-' . $this->currency->format($discount_total),
+				'value'		=> '-' . number_format($discount_total, 2, '.', ''),
 				'sort_order'	=> $this->config->get('offers_sort_order')
 			);
 
-			$total -= number_format($this->tax->calculate($discount_total, $product['tax_class_id'], $this->config->get('config_tax')), 2, '.', '');
+			$total -= number_format($discount_total, 2, '.', '');
 		}
 	}
 
