@@ -216,7 +216,7 @@ class Customer {
 		$this->session->data['customer_token'] = hash_rand('md5');
 	}
 
-	public function loginExpired($age = 900) {
+	public function loginExpired($age = 1800) {
 		if (isset($this->session->data['customer_login_time']) && (time() - $this->session->data['customer_login_time'] < $age)) {
 			return false;
 		} else {

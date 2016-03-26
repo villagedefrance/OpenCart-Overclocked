@@ -57,8 +57,10 @@
       <tr>
         <td class="left"><?php echo $column_name; ?></td>
         <td class="left"><?php echo $column_model; ?></td>
-        <td class="right"><?php echo $column_quantity; ?></td>
+        <td class="center"><?php echo $column_quantity; ?></td>
         <td class="right"><?php echo $column_price; ?></td>
+        <td class="right"><?php echo $column_tax_value; ?></td>
+        <td class="right"><?php echo $column_tax_percent; ?></td>
         <td class="right"><?php echo $column_total; ?></td>
         <?php if ($products) { ?>
           <td style="width:1px;"></td>
@@ -74,8 +76,10 @@
             &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
           <?php } ?></td>
           <td class="left"><?php echo $product['model']; ?></td>
-          <td class="right"><?php echo $product['quantity']; ?></td>
+          <td class="center"><?php echo $product['quantity']; ?></td>
           <td class="right"><?php echo $product['price']; ?></td>
+          <td class="right"><?php echo $product['tax_value']; ?></td>
+          <td class="right"><?php echo $product['tax_percent']; ?>%</td>
           <td class="right"><?php echo $product['total']; ?></td>
           <td class="right">
             <a href="<?php echo $product['return']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/return.png" alt="<?php echo $button_return; ?>" title="<?php echo $button_return; ?>" /></a>
@@ -84,8 +88,8 @@
       <?php } ?>
       <?php foreach ($vouchers as $voucher) { ?>
         <tr>
-          <td class="left"><?php echo $voucher['description']; ?></td>
-          <td class="left"></td>
+          <td class="left" colspan="2"><?php echo $voucher['description']; ?></td>
+          <td class="left" colspan="2"></td>
           <td class="right">1</td>
           <td class="right"><?php echo $voucher['amount']; ?></td>
           <td class="right"><?php echo $voucher['amount']; ?></td>
@@ -98,8 +102,8 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
         <tr>
-          <td colspan="3"></td>
-          <td class="right"><b><?php echo $total['title']; ?>:</b></td>
+          <td colspan="4"></td>
+          <td class="right" colspan="2"><b><?php echo $total['title']; ?>:</b></td>
           <td class="right"><?php echo $total['text']; ?></td>
           <?php if ($products) { ?>
           <td></td>

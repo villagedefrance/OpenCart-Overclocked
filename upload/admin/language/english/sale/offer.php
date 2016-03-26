@@ -13,8 +13,8 @@ $_['text_total_p2c']			= 'P2C &#8211; Product :: Category:';
 $_['text_total_c2p']			= 'C2P &#8211; Category :: Product:';
 $_['text_total_c2c']			= 'C2C &#8211; Category :: Category:';
 
-$_['text_total_discount']	= 'N&deg; of Discounts';
-$_['text_total_special']		= 'N&deg; of Specials';
+$_['text_total_discount']	= 'N&deg; of products with Discounts';
+$_['text_total_special']		= 'N&deg; of products with Specials';
 
 $_['text_p2p']					= '<b>Product :: Product</b>';
 $_['text_p2c']					= '<b>Product :: Category</b>';

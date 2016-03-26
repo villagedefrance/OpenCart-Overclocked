@@ -195,7 +195,7 @@ class ModelSaleOffer extends Model {
 
 	// Discount Products
 	public function getTotalProductDiscounts() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_discount WHERE (date_start = '0000-00-00' OR date_start <= CURDATE()) AND (date_end = '0000-00-00' OR date_end > CURDATE())");
+		$query = $this->db->query("SELECT COUNT(DISTINCT product_id) AS total FROM " . DB_PREFIX . "product_discount WHERE (date_start = '0000-00-00' OR date_start <= CURDATE()) AND (date_end = '0000-00-00' OR date_end > CURDATE()) GROUP BY product_id");
 
 		return $query->row['total'];
 	}
