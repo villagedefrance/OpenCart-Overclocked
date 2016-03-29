@@ -426,21 +426,21 @@
                         <td><label><?php echo $lang_developer_empty; ?></td>
                         <td>
                           <a onclick="devClearData();" class="button" id="devClearData"><span><?php echo $lang_clear; ?></span></a>
-                          <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" id="imageDevClearData" class="displayNone"/>
+                          <img src="view/image/loading.gif" id="imageDevClearData" class="displayNone"/>
                         </td>
                       </tr>
                       <tr>
                         <td><label><?php echo $lang_developer_locks; ?></td>
                         <td>
                           <a onclick="removeLocks();" class="button" id="removeLocks"><span><?php echo $lang_clear; ?></span></a>
-                          <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" id="imageRemoveLocks" class="displayNone"/>
+                          <img src="view/image/loading.gif" id="imageRemoveLocks" class="displayNone"/>
                         </td>
                       </tr>
                       <tr>
                         <td><label><?php echo $lang_developer_repairlinks; ?></td>
                         <td>
                           <a onclick="repairLinks();" class="button" id="repairLinks"><span><?php echo $lang_update; ?></span></a>
-                          <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" id="imageRepairLinks" class="displayNone"/>
+                          <img src="view/image/loading.gif" id="imageRepairLinks" class="displayNone"/>
                         </td>
                       </tr>
                     </table>

@@ -7,7 +7,7 @@ $_['text_pp_pro_uk']        	= '<a onclick="window.open(\'https://www.paypal.com
 
 // Text 
 $_['text_payment']       	= 'Payment';
-$_['text_success']       		= 'Success: You have modified <b>Payment PayPal Website Payment Pro (UK)</b> account details !';
+$_['text_success']       		= 'Success: You have modified <b>PayPal Payments Pro Payflow (UK)</b> account details !';
 $_['text_authorization'] 	= 'Authorization';
 $_['text_sale']          		= 'Sale';
 
@@ -24,7 +24,7 @@ $_['entry_status']       		= 'Status:';
 $_['entry_sort_order']   	= 'Sort Order:';
 
 // Error
-$_['error_permission']   		= 'Warning: You do not have permission to modify <b>Payment PayPal Website Payment Pro (UK)</b> !';
+$_['error_permission']   		= 'Warning: You do not have permission to modify <b>PayPal Payments Pro Payflow (UK)</b> !';
 $_['error_username']     	= 'API Username Required!';
 $_['error_password']     	= 'API Password Required!';
 $_['error_signature']    		= 'API Signature Required!';

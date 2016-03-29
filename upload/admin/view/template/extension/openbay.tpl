@@ -132,7 +132,7 @@ function getOpenbayNotifications() {
 			url: 'index.php?route=extension/openbay/getNotifications&token=<?php echo $this->request->get['token']; ?>',
 			dataType: 'json',
 			success: function(json) {
-				html += '<h3 style="background: url(<?php echo HTTPS_SERVER; ?>/view/image/information.png) no-repeat top left;"><?php echo $lang_title_messages; ?></h3>';
+				html += '<h3 style="background: url(view/image/information.png) no-repeat top left;"><?php echo $lang_title_messages; ?></h3>';
 				html += '<ul>';
 				$.each(json, function(key, val) {
 					html += '<li>' + val + '</li>';
