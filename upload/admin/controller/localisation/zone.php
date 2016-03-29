@@ -142,6 +142,48 @@ class ControllerLocalisationZone extends Controller {
 		$this->getList();
 	}
 
+	public function repair() {
+		$this->language->load('localisation/zone');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+ 
+		$this->load->model('tool/repair');
+
+		$file = DIR_SYSTEM . 'repair/oc_zone.csv';
+
+		if (file_exists($file) && $this->validate()) {
+			$content = file_get_contents($file);
+
+			if ($content) {
+				$this->model_tool_repair->repair($file);
+
+				$this->session->data['success'] = $this->language->get('text_success');
+
+				$url = '';
+
+				if (isset($this->request->get['filter_name'])) {
+					$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+				}
+
+				if (isset($this->request->get['sort'])) {
+					$url .= '&sort=' . $this->request->get['sort'];
+				}
+
+				if (isset($this->request->get['order'])) {
+					$url .= '&order=' . $this->request->get['order'];
+				}
+
+				if (isset($this->request->get['page'])) {
+					$url .= '&page=' . $this->request->get['page'];
+				}
+
+				$this->redirect($this->url->link('localisation/zone', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
+		}
+
+		$this->getList();
+	}
+
 	protected function getList() {
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
@@ -199,6 +241,7 @@ class ControllerLocalisationZone extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->data['repair'] = $this->url->link('localisation/zone/repair', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('localisation/zone/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('localisation/zone/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -255,7 +298,7 @@ class ControllerLocalisationZone extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
-		$this->data['button_filter'] = $this->language->get('button_filter');
+		$this->data['button_repair'] = $this->language->get('button_repair');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_filter'] = $this->language->get('button_filter');
@@ -500,6 +543,18 @@ class ControllerLocalisationZone extends Controller {
 			if ($zone_to_geo_zone_total) {
 				$this->error['warning'] = sprintf($this->language->get('error_zone_to_geo_zone'), $zone_to_geo_zone_total);
 			}
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'localisation/zone')) {
+			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
 		if (!$this->error) {
