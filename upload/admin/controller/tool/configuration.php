@@ -281,7 +281,7 @@ class ControllerToolConfiguration extends Controller {
 			'template'		=> DIR_SYSTEM . 'library/template.php',
 			'url'				=> DIR_SYSTEM . 'library/url.php',
 			'user'				=> DIR_SYSTEM . 'library/user.php',
-			'weight'			=> DIR_SYSTEM . 'library/weight.php',
+			'weight'			=> DIR_SYSTEM . 'library/weight.php'
 		);
 
 		// Reset
