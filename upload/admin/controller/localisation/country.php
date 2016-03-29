@@ -111,7 +111,7 @@ class ControllerLocalisationCountry extends Controller {
 
 		$this->load->model('localisation/country');
 
-		if (isset($this->request->post['selected']) && $this->validateStatus()) {
+		if (isset($this->request->post['selected']) && $this->validate()) {
 			foreach ($this->request->post['selected'] as $country_id) {
 			  	$country_info = $this->model_localisation_country->getCountry($country_id);
 
@@ -153,7 +153,7 @@ class ControllerLocalisationCountry extends Controller {
 
 		$this->load->model('localisation/country');
 
-		if (isset($this->request->post['selected']) && $this->validateStatus()) {
+		if (isset($this->request->post['selected']) && $this->validate()) {
 			foreach ($this->request->post['selected'] as $country_id) {
 			  	$country_info = $this->model_localisation_country->getCountry($country_id);
 
@@ -226,6 +226,60 @@ class ControllerLocalisationCountry extends Controller {
 		$this->getList();
 	}
 
+	public function repair() {
+		$this->language->load('localisation/country');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+ 
+		$this->load->model('tool/repair');
+
+		$file_1 = DIR_SYSTEM . 'repair/oc_country.csv';
+		$file_2 = DIR_SYSTEM . 'repair/oc_country_description.csv';
+
+		if (file_exists($file_1) && file_exists($file_2) && $this->validate()) {
+			$content_1 = file_get_contents($file_1);
+			$content_2 = file_get_contents($file_2);
+
+			if ($content_1 && $content_2) {
+				$step_1 = true;
+				$step_2 = false;
+
+				if ($step_1) {
+					$this->model_tool_repair->repair($file_1);
+					$step_2 = true;
+				}
+
+				if ($step_2) {
+					$this->model_tool_repair->repair($file_2);
+				}
+
+				$this->session->data['success'] = $this->language->get('text_success');
+
+				$url = '';
+
+				if (isset($this->request->get['filter_name'])) {
+					$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+				}
+
+				if (isset($this->request->get['sort'])) {
+					$url .= '&sort=' . $this->request->get['sort'];
+				}
+
+				if (isset($this->request->get['order'])) {
+					$url .= '&order=' . $this->request->get['order'];
+				}
+
+				if (isset($this->request->get['page'])) {
+					$url .= '&page=' . $this->request->get['page'];
+				}
+
+				$this->redirect($this->url->link('localisation/country', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
+		}
+
+		$this->getList();
+	}
+
 	protected function getList() {
 		if (isset($this->request->get['filter_name'])) {
 			$filter_name = $this->request->get['filter_name'];
@@ -285,6 +339,7 @@ class ControllerLocalisationCountry extends Controller {
 
 		$this->data['enable'] = $this->url->link('localisation/country/enable', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['disable'] = $this->url->link('localisation/country/disable', 'token=' . $this->session->data['token'] . $url, 'SSL');
+		$this->data['repair'] = $this->url->link('localisation/country/repair', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('localisation/country/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('localisation/country/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -339,6 +394,7 @@ class ControllerLocalisationCountry extends Controller {
 
 		$this->data['button_enable'] = $this->language->get('button_enable');
 		$this->data['button_disable'] = $this->language->get('button_disable');
+		$this->data['button_repair'] = $this->language->get('button_repair');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_filter'] = $this->language->get('button_filter');
@@ -567,18 +623,6 @@ class ControllerLocalisationCountry extends Controller {
 		}
 	}
 
-	protected function validateStatus() {
-		if (!$this->user->hasPermission('modify', 'localisation/country')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'localisation/country')) {
 			$this->error['warning'] = $this->language->get('error_permission');
@@ -624,6 +668,18 @@ class ControllerLocalisationCountry extends Controller {
 			if ($zone_to_geo_zone_total) {
 				$this->error['warning'] = sprintf($this->language->get('error_zone_to_geo_zone'), $zone_to_geo_zone_total);
 			}
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'localisation/country')) {
+			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
 		if (!$this->error) {

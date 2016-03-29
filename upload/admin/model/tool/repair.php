@@ -1,65 +1,7 @@
 <?php
-class ModelToolExportImportRaw extends Model {
+class ModelToolRepair extends Model {
 
-	// Export SQL
-	public function csvExportRaw($table) {
-		$csv_delimiter = ";";
-		$csv_enclosure = '"';
-		$csv_terminated = "\n";
-
-		$platform = $this->browser->getPlatform();
-
-		if ($platform == 'Linux' || $platform == 'Debian' || $platform == 'GNU/Linux') {
-			$csv_escaped = "\\";
-		} else {
-			$csv_escaped = '"';
-		}
-
-		$query = "SELECT * FROM `" . $table . "`";
-
-		$result = $this->db->query($query);
-
-		$columns = array_keys($result->row);
-
-		$output = '';
-
-		// Header
-	 	$output .= '"' . $table . '.' . stripslashes(implode('"' . $csv_delimiter . '"' . $table . '.', $columns)) . "\"\n"; 
-
-		// Data
-		foreach ($result->rows as $row) {
-			$schema_insert = '';
-
-			$fields_cnt = count($row);
-
-			foreach ($row as $k => $v) {
-				if ($row[$k] == '0' || $row[$k] != '') {
-					if ($csv_enclosure == '') {
-						$schema_insert .= $row[$k];
-					} else {
-						$row[$k] = str_replace(array("\r","\n","\t"), "", $row[$k]);
-						$row[$k] = html_entity_decode($row[$k], ENT_COMPAT, 'UTF-8');
-
-						$schema_insert .= $csv_enclosure . str_replace($csv_enclosure, $csv_escaped . $csv_enclosure, $row[$k]) . $csv_enclosure;
-					}
-				} else {
-					$schema_insert .= '';
-				}
-
-				if ($k < $fields_cnt - 1) {
-					$schema_insert .= $csv_delimiter;
-				}
-			}
-
-			$output .= $schema_insert;
-			$output .= $csv_terminated;
-		}
-
-		return $output;
-	}
-
-	// Import SQL
-	public function csvImportRaw($file) {
+	public function repair($file) {
 		ini_set('max_execution_time', 3600);
 
 		$handle = fopen($file, 'r');
@@ -81,7 +23,7 @@ class ModelToolExportImportRaw extends Model {
 		foreach ($data as $d) {
 			if (strpos($d, '.') !== false) {
 				$tmp = explode('.', $d);
-				$table = $tmp[0];
+				$table =  DB_PREFIX . $tmp[0];
 				$columns[] = $tmp[1];
 			} else {
 				$columns[] = $d;
@@ -155,22 +97,6 @@ class ModelToolExportImportRaw extends Model {
 		}
 
 		return $row_count;
-	}
-
-	public function getTables() {
-		$table_data = array();
-
-		$query = $this->db->query("SHOW TABLES FROM `" . DB_DATABASE . "`");
-
-		foreach ($query->rows as $result) {
-			if (utf8_substr($result['Tables_in_' . DB_DATABASE], 0, strlen(DB_PREFIX)) == DB_PREFIX) {
-				if (isset($result['Tables_in_' . DB_DATABASE])) {
-					$table_data[] = $result['Tables_in_' . DB_DATABASE];
-				}
-			}
-		}
-
-		return $table_data;
 	}
 
 	// Check SQL reserved keywords
