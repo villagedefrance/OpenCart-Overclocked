@@ -5,6 +5,12 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
   <?php } ?>
   </div>
+  <?php if ($error_warning) { ?>
+    <div class="warning"><?php echo $error_warning; ?></div>
+  <?php } ?>
+  <?php if ($success) { ?>
+    <div class="success"><?php echo $success; ?></div>
+  <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/server.png" alt="" /> <?php echo $heading_title; ?></h1>
@@ -17,6 +23,7 @@
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-setting"><?php echo $tab_setting; ?></a>
         <a href="#tab-integrity"><?php echo $tab_integrity; ?></a>
+        <a href="#tab-reset"><?php echo $tab_reset; ?></a>
         <a href="#tab-server"><?php echo $tab_server; ?></a>
       </div>
       <div id="tab-store">
@@ -308,6 +315,22 @@
           <?php } ?>
           </table>
         </div>
+      </div>
+      <div id="tab-reset">
+        <table class="form">
+          <tr>
+            <td><?php echo $text_zones; ?></td>
+            <td><a href="<?php echo $zones; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
+          </tr>
+          <tr>
+            <td><?php echo $text_countries; ?></td>
+            <td><a href="<?php echo $countries; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
+          </tr>
+          <tr>
+            <td><?php echo $text_eucountries; ?></td>
+            <td><a href="<?php echo $eucountries; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
+          </tr>
+        </table>
       </div>
       <div id="tab-server">
         <h2><?php echo $text_server_info; ?></h2>
