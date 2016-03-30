@@ -317,6 +317,7 @@
         </div>
       </div>
       <div id="tab-reset">
+        <h2><?php echo $text_reset_info; ?></h2>
         <table class="form">
           <tr>
             <td><?php echo $text_zones; ?></td>
@@ -331,6 +332,7 @@
             <td><a href="<?php echo $eucountries; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
           </tr>
         </table>
+        <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_reset; ?></div>
       </div>
       <div id="tab-server">
         <h2><?php echo $text_server_info; ?></h2>

@@ -50,6 +50,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_store_info'] = $this->language->get('text_store_info');
 		$this->data['text_setting_info'] = $this->language->get('text_setting_info');
 		$this->data['text_integrity_info'] = $this->language->get('text_integrity_info');
+		$this->data['text_reset_info'] = $this->language->get('text_reset_info');
 		$this->data['text_server_info'] = $this->language->get('text_server_info');
 
 		$this->data['tab_store'] = $this->language->get('tab_store');
@@ -83,6 +84,8 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_zip'] = $this->language->get('text_zip');
 		$this->data['text_mbstring'] = $this->language->get('text_mbstring');
 		$this->data['text_mbstring_note'] = $this->language->get('text_mbstring_note');
+
+		$this->data['help_reset'] = $this->language->get('help_reset');
 
 		$this->data['button_close'] = $this->language->get('button_close');
 
@@ -345,15 +348,15 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
  
-		$this->load->model('tool/repair');
+		$this->load->model('tool/reset');
 
-		$file = DIR_SYSTEM . 'repair/oc_zone.csv';
+		$file = DIR_SYSTEM . 'reset/oc_zone.csv';
 
 		if (file_exists($file) && $this->validate()) {
 			$content = file_get_contents($file);
 
 			if ($content) {
-				$this->model_tool_repair->repair($file);
+				$this->model_tool_reset->reset($file);
 
 				$this->session->data['success'] = $this->language->get('text_success_zones');
 
@@ -369,10 +372,10 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
  
-		$this->load->model('tool/repair');
+		$this->load->model('tool/reset');
 
-		$file_1 = DIR_SYSTEM . 'repair/oc_country.csv';
-		$file_2 = DIR_SYSTEM . 'repair/oc_country_description.csv';
+		$file_1 = DIR_SYSTEM . 'reset/oc_country.csv';
+		$file_2 = DIR_SYSTEM . 'reset/oc_country_description.csv';
 
 		if (file_exists($file_1) && file_exists($file_2) && $this->validate()) {
 			$content_1 = file_get_contents($file_1);
@@ -383,12 +386,12 @@ class ControllerToolConfiguration extends Controller {
 				$step_2 = false;
 
 				if ($step_1) {
-					$this->model_tool_repair->repair($file_1);
+					$this->model_tool_reset->reset($file_1);
 					$step_2 = true;
 				}
 
 				if ($step_2) {
-					$this->model_tool_repair->repair($file_2);
+					$this->model_tool_reset->reset($file_2);
 				}
 
 				$this->session->data['success'] = $this->language->get('text_success_countries');
@@ -405,11 +408,11 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
  
-		$this->load->model('tool/repair');
+		$this->load->model('tool/reset');
 
-		$file_1 = DIR_SYSTEM . 'repair/oc_eucountry.csv';
-		$file_2 = DIR_SYSTEM . 'repair/oc_eucountry_description.csv';
-		$file_3 = DIR_SYSTEM . 'repair/oc_eucountry_to_store.csv';
+		$file_1 = DIR_SYSTEM . 'reset/oc_eucountry.csv';
+		$file_2 = DIR_SYSTEM . 'reset/oc_eucountry_description.csv';
+		$file_3 = DIR_SYSTEM . 'reset/oc_eucountry_to_store.csv';
 
 		if (file_exists($file_1) && file_exists($file_2) && file_exists($file_3) && $this->validate()) {
 			$content_1 = file_get_contents($file_1);
@@ -422,17 +425,17 @@ class ControllerToolConfiguration extends Controller {
 				$step_3 = false;
 
 				if ($step_1) {
-					$this->model_tool_repair->repair($file_1);
+					$this->model_tool_reset->reset($file_1);
 					$step_2 = true;
 				}
 
 				if ($step_2) {
-					$this->model_tool_repair->repair($file_2);
+					$this->model_tool_reset->reset($file_2);
 					$step_3 = true;
 				}
 
 				if ($step_3) {
-					$this->model_tool_repair->repair($file_3);
+					$this->model_tool_reset->reset($file_3);
 				}
 
 				$this->session->data['success'] = $this->language->get('text_success_eucountries');

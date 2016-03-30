@@ -20,8 +20,11 @@
         <li><?php echo $text_admin_setting; ?></li>
         <li><?php echo $text_store_front; ?></li>
       </ol>
-	  <br />
-	  <p><?php echo $text_be_patient; ?></p>
+      <br />
+      <p><b><?php echo $entry_geo_data; ?></b>
+        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="geo_data" value="1" /> <?php echo $text_update; ?>
+      </p>
+      <p><?php echo $text_be_patient; ?></p>
       <p id="progress" style="display:none;"></p>
     </fieldset>
     <div id="start" class="buttons">

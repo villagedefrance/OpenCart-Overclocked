@@ -22,12 +22,15 @@ $_['text_unknown'] 			= '<span style="color:#DE5954;">File is unknown</span>';
 $_['text_store_info']   		= 'Store Information';
 $_['text_setting_info']   	= 'Settings Information';
 $_['text_integrity_info']		= 'System Files Integrity';
+$_['text_reset_info']			= 'Geographic Data Reset';
 $_['text_server_info']   		= 'Server Information';
 
 // Resets
 $_['text_success_zones']			= 'Success: You have successfully reset <b>Zones</b> !';
 $_['text_success_countries']		= 'Success: You have successfully reset <b>Countries</b> !';
 $_['text_success_eucountries']	= 'Success: You have successfully reset <b>EU Countries</b> !';
+
+$_['help_reset'] 				= 'Resetting the geographical data is only necessary when an updated file has been made available and installed.';
 
 $_['text_zones'] 				= 'Reset all zones:';
 $_['text_countries'] 			= 'Reset all countries:';

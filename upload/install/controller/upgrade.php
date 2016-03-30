@@ -6,7 +6,7 @@ class ControllerUpgrade extends Controller {
 		$this->document->setTitle($this->language->get('heading_upgrade'));
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->initialize();
+			$this->initialize($this->request->post);
 
 			$this->data['heading_success'] = $this->language->get('heading_success');
 
@@ -36,7 +36,10 @@ class ControllerUpgrade extends Controller {
 			$this->data['text_admin_user'] = $this->language->get('text_admin_user');
 			$this->data['text_admin_setting'] = $this->language->get('text_admin_setting');
 			$this->data['text_store_front'] = $this->language->get('text_store_front');
+			$this->data['text_update'] = $this->language->get('text_update');
 			$this->data['text_be_patient'] = $this->language->get('text_be_patient');
+
+			$this->data['entry_geo_data'] = $this->language->get('entry_geo_data');
 
 			$this->data['button_upgrade'] = $this->language->get('button_upgrade');
 
@@ -46,6 +49,12 @@ class ControllerUpgrade extends Controller {
 				$this->data['error_warning'] = $this->error['warning'];
 			} else {
 				$this->data['error_warning'] = '';
+			}
+
+			if (isset($this->request->post['geo_data'])) {
+				$this->data['geo_data'] = $this->request->post['geo_data'];
+			} else {
+				$this->data['geo_data'] = '';
 			}
 
 			$this->template = 'upgrade.tpl';
@@ -58,7 +67,7 @@ class ControllerUpgrade extends Controller {
 		}
 	}
 
-	public function initialize() {
+	public function initialize($data) {
 		$status = false;
 
 		// Check if the sql file exists
@@ -99,8 +108,8 @@ class ControllerUpgrade extends Controller {
 				$this->model_upgrade->updateLayouts($step5);
 			}
 
-			if ($step5) {
-				$file_1 = DIR_SYSTEM . 'repair/oc_zone.csv';
+			if ($step5 && isset($data['geo_data'])) {
+				$file_1 = DIR_SYSTEM . 'reset/oc_zone.csv';
 
 				if (file_exists($file_1)) {
 					$content_1 = file_get_contents($file_1);
@@ -110,31 +119,31 @@ class ControllerUpgrade extends Controller {
 					}
 				}
 
-				$file_2 = DIR_SYSTEM . 'repair/oc_country.csv';
-				$file_3 = DIR_SYSTEM . 'repair/oc_country_description.csv';
+				$file_2 = DIR_SYSTEM . 'reset/oc_country.csv';
+				$file_3 = DIR_SYSTEM . 'reset/oc_country_description.csv';
 
 				if (file_exists($file_2) && file_exists($file_3)) {
 					$content_2 = file_get_contents($file_2);
 					$content_3 = file_get_contents($file_3);
 
 					if ($content_2 && $content_3) {
-						$step_one = true;
-						$step_two = false;
-
-						if ($step_one) {
-							$this->model_upgrade->updateGeoData($file_2);
-							$step_two = true;
-						}
+						$step_two = true;
+						$step_three = false;
 
 						if ($step_two) {
+							$this->model_upgrade->updateGeoData($file_2);
+							$step_three = true;
+						}
+
+						if ($step_three) {
 							$this->model_upgrade->updateGeoData($file_3);
 						}
 					}
 				}
 
-				$file_4 = DIR_SYSTEM . 'repair/oc_eucountry.csv';
-				$file_5 = DIR_SYSTEM . 'repair/oc_eucountry_description.csv';
-				$file_6 = DIR_SYSTEM . 'repair/oc_eucountry_to_store.csv';
+				$file_4 = DIR_SYSTEM . 'reset/oc_eucountry.csv';
+				$file_5 = DIR_SYSTEM . 'reset/oc_eucountry_description.csv';
+				$file_6 = DIR_SYSTEM . 'reset/oc_eucountry_to_store.csv';
 
 				if (file_exists($file_4) && file_exists($file_5) && file_exists($file_6)) {
 					$content_4 = file_get_contents($file_4);
@@ -142,21 +151,21 @@ class ControllerUpgrade extends Controller {
 					$content_6 = file_get_contents($file_6);
 
 					if ($content_4 && $content_5 && $content_6) {
-						$step_three = true;
-						$step_four = false;
+						$step_four = true;
 						$step_five = false;
-
-						if ($step_three) {
-							$this->model_upgrade->updateGeoData($file_4);
-							$step_four = true;
-						}
+						$step_six = false;
 
 						if ($step_four) {
-							$this->model_upgrade->updateGeoData($file_5);
+							$this->model_upgrade->updateGeoData($file_4);
 							$step_five = true;
 						}
 
 						if ($step_five) {
+							$this->model_upgrade->updateGeoData($file_5);
+							$step_six = true;
+						}
+
+						if ($step_six) {
 							$this->model_upgrade->updateGeoData($file_6);
 						}
 					}
