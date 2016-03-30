@@ -8,6 +8,14 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		$this->getConfiguration();
+	}
+
+	public function getConfiguration() {
+		$this->language->load('tool/' . $this->_name);
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -47,6 +55,7 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['tab_store'] = $this->language->get('tab_store');
 		$this->data['tab_setting'] = $this->language->get('tab_setting');
 		$this->data['tab_integrity'] = $this->language->get('tab_integrity');
+		$this->data['tab_reset'] = $this->language->get('tab_reset');
 		$this->data['tab_server'] = $this->language->get('tab_server');
 
 		$this->data['column_php'] = $this->language->get('column_php');
@@ -77,9 +86,23 @@ class ControllerToolConfiguration extends Controller {
 
 		$this->data['button_close'] = $this->language->get('button_close');
 
+		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['token'] = $this->session->data['token'];
 
-		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
 
 		// Template
 		$this->data['templates'] = array();
@@ -258,8 +281,19 @@ class ControllerToolConfiguration extends Controller {
 			'template'		=> DIR_SYSTEM . 'library/template.php',
 			'url'				=> DIR_SYSTEM . 'library/url.php',
 			'user'				=> DIR_SYSTEM . 'library/user.php',
-			'weight'			=> DIR_SYSTEM . 'library/weight.php',
+			'weight'			=> DIR_SYSTEM . 'library/weight.php'
 		);
+
+		// Reset
+		$this->data['text_zones'] = $this->language->get('text_zones');
+		$this->data['text_countries'] = $this->language->get('text_countries');
+		$this->data['text_eucountries'] = $this->language->get('text_eucountries');
+
+		$this->data['button_reset'] = $this->language->get('button_reset');
+
+		$this->data['zones'] = $this->url->link('tool/' . $this->_name . '/zones', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['countries'] = $this->url->link('tool/' . $this->_name . '/countries', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['eucountries'] = $this->url->link('tool/' . $this->_name . '/eucountries', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Server
 		$server_responses = array();
@@ -304,6 +338,122 @@ class ControllerToolConfiguration extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
+	}
+
+	public function zones() {
+		$this->language->load('tool/configuration');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+ 
+		$this->load->model('tool/repair');
+
+		$file = DIR_SYSTEM . 'repair/oc_zone.csv';
+
+		if (file_exists($file) && $this->validate()) {
+			$content = file_get_contents($file);
+
+			if ($content) {
+				$this->model_tool_repair->repair($file);
+
+				$this->session->data['success'] = $this->language->get('text_success_zones');
+
+				$this->redirect($this->url->link('tool/configuration', 'token=' . $this->session->data['token'], 'SSL'));
+			}
+		}
+
+		$this->getConfiguration();
+	}
+
+	public function countries() {
+		$this->language->load('tool/configuration');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+ 
+		$this->load->model('tool/repair');
+
+		$file_1 = DIR_SYSTEM . 'repair/oc_country.csv';
+		$file_2 = DIR_SYSTEM . 'repair/oc_country_description.csv';
+
+		if (file_exists($file_1) && file_exists($file_2) && $this->validate()) {
+			$content_1 = file_get_contents($file_1);
+			$content_2 = file_get_contents($file_2);
+
+			if ($content_1 && $content_2) {
+				$step_1 = true;
+				$step_2 = false;
+
+				if ($step_1) {
+					$this->model_tool_repair->repair($file_1);
+					$step_2 = true;
+				}
+
+				if ($step_2) {
+					$this->model_tool_repair->repair($file_2);
+				}
+
+				$this->session->data['success'] = $this->language->get('text_success_countries');
+
+				$this->redirect($this->url->link('tool/configuration', 'token=' . $this->session->data['token'], 'SSL'));
+			}
+		}
+
+		$this->getConfiguration();
+	}
+
+	public function eucountries() {
+		$this->language->load('tool/configuration');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+ 
+		$this->load->model('tool/repair');
+
+		$file_1 = DIR_SYSTEM . 'repair/oc_eucountry.csv';
+		$file_2 = DIR_SYSTEM . 'repair/oc_eucountry_description.csv';
+		$file_3 = DIR_SYSTEM . 'repair/oc_eucountry_to_store.csv';
+
+		if (file_exists($file_1) && file_exists($file_2) && file_exists($file_3) && $this->validate()) {
+			$content_1 = file_get_contents($file_1);
+			$content_2 = file_get_contents($file_2);
+			$content_3 = file_get_contents($file_3);
+
+			if ($content_1 && $content_2 && $content_3) {
+				$step_1 = true;
+				$step_2 = false;
+				$step_3 = false;
+
+				if ($step_1) {
+					$this->model_tool_repair->repair($file_1);
+					$step_2 = true;
+				}
+
+				if ($step_2) {
+					$this->model_tool_repair->repair($file_2);
+					$step_3 = true;
+				}
+
+				if ($step_3) {
+					$this->model_tool_repair->repair($file_3);
+				}
+
+				$this->session->data['success'] = $this->language->get('text_success_eucountries');
+
+				$this->redirect($this->url->link('tool/configuration', 'token=' . $this->session->data['token'], 'SSL'));
+			}
+		}
+
+		$this->getConfiguration();
+	}
+
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'tool/configuration')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

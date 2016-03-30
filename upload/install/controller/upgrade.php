@@ -99,6 +99,72 @@ class ControllerUpgrade extends Controller {
 				$this->model_upgrade->updateLayouts($step5);
 			}
 
+			if ($step5) {
+				$file_1 = DIR_SYSTEM . 'repair/oc_zone.csv';
+
+				if (file_exists($file_1)) {
+					$content_1 = file_get_contents($file_1);
+
+					if ($content_1) {
+						$this->model_upgrade->updateGeoData($file_1);
+					}
+				}
+
+				$file_2 = DIR_SYSTEM . 'repair/oc_country.csv';
+				$file_3 = DIR_SYSTEM . 'repair/oc_country_description.csv';
+
+				if (file_exists($file_2) && file_exists($file_3)) {
+					$content_2 = file_get_contents($file_2);
+					$content_3 = file_get_contents($file_3);
+
+					if ($content_2 && $content_3) {
+						$step_one = true;
+						$step_two = false;
+
+						if ($step_one) {
+							$this->model_upgrade->updateGeoData($file_2);
+							$step_two = true;
+						}
+
+						if ($step_two) {
+							$this->model_upgrade->updateGeoData($file_3);
+						}
+					}
+				}
+
+				$file_4 = DIR_SYSTEM . 'repair/oc_eucountry.csv';
+				$file_5 = DIR_SYSTEM . 'repair/oc_eucountry_description.csv';
+				$file_6 = DIR_SYSTEM . 'repair/oc_eucountry_to_store.csv';
+
+				if (file_exists($file_4) && file_exists($file_5) && file_exists($file_6)) {
+					$content_4 = file_get_contents($file_4);
+					$content_5 = file_get_contents($file_5);
+					$content_6 = file_get_contents($file_6);
+
+					if ($content_4 && $content_5 && $content_6) {
+						$step_three = true;
+						$step_four = false;
+						$step_five = false;
+
+						if ($step_three) {
+							$this->model_upgrade->updateGeoData($file_4);
+							$step_four = true;
+						}
+
+						if ($step_four) {
+							$this->model_upgrade->updateGeoData($file_5);
+							$step_five = true;
+						}
+
+						if ($step_five) {
+							$this->model_upgrade->updateGeoData($file_6);
+						}
+					}
+				}
+
+				clearstatcache();
+			}
+
 		} else {
 			return;
 		}

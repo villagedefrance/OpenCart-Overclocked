@@ -133,64 +133,6 @@ class ControllerModificationEutaxes extends Controller {
 		$this->getList();
 	}
 
-	public function repair() {
-		$this->language->load('modification/' . $this->_name);
-
-		$this->document->setTitle($this->language->get('heading_title'));
- 
-		$this->load->model('tool/repair');
-
-		$file_1 = DIR_SYSTEM . 'repair/oc_eucountry.csv';
-		$file_2 = DIR_SYSTEM . 'repair/oc_eucountry_description.csv';
-		$file_3 = DIR_SYSTEM . 'repair/oc_eucountry_to_store.csv';
-
-		if (file_exists($file_1) && file_exists($file_2) && file_exists($file_3) && $this->validate()) {
-			$content_1 = file_get_contents($file_1);
-			$content_2 = file_get_contents($file_2);
-			$content_3 = file_get_contents($file_3);
-
-			if ($content_1 && $content_2 && $content_3) {
-				$step_1 = true;
-				$step_2 = false;
-				$step_3 = false;
-
-				if ($step_1) {
-					$this->model_tool_repair->repair($file_1);
-					$step_2 = true;
-				}
-
-				if ($step_2) {
-					$this->model_tool_repair->repair($file_2);
-					$step_3 = true;
-				}
-
-				if ($step_3) {
-					$this->model_tool_repair->repair($file_3);
-				}
-
-				$this->session->data['success'] = $this->language->get('text_success');
-
-				$url = '';
-
-				if (isset($this->request->get['sort'])) {
-					$url .= '&sort=' . $this->request->get['sort'];
-				}
-
-				if (isset($this->request->get['order'])) {
-					$url .= '&order=' . $this->request->get['order'];
-				}
-
-				if (isset($this->request->get['page'])) {
-					$url .= '&page=' . $this->request->get['page'];
-				}
-
-				$this->redirect($this->url->link('modification/eutaxes/listing', 'token=' . $this->session->data['token'] . $url, 'SSL'));
-			}
-		}
-
-		$this->getList();
-	}
-
 	public function listing() {
 		$this->language->load('modification/' . $this->_name);
 
@@ -306,10 +248,11 @@ class ControllerModificationEutaxes extends Controller {
 		$this->data['text_status_tax_class'] = $this->language->get('text_status_tax_class');
 		$this->data['text_status_tax_rule'] = $this->language->get('text_status_tax_rule');
 
-		// Actions
+		// Links
 		$this->data['eucountries'] = $this->url->link('modification/eutaxes/listing', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
 
+		// Actions
 		$this->data['action_geo_zone'] = $this->url->link('localisation/geo_zone', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['action_tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['action_tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
@@ -380,7 +323,6 @@ class ControllerModificationEutaxes extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['repair'] = $this->url->link('modification/eutaxes/repair', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('modification/eutaxes/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('modification/eutaxes/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -448,7 +390,6 @@ class ControllerModificationEutaxes extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
-		$this->data['button_repair'] = $this->language->get('button_repair');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');

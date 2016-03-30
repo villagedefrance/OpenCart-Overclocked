@@ -24,10 +24,22 @@ $_['text_setting_info']   	= 'Settings Information';
 $_['text_integrity_info']		= 'System Files Integrity';
 $_['text_server_info']   		= 'Server Information';
 
+// Resets
+$_['text_success_zones']			= 'Success: You have successfully reset <b>Zones</b> !';
+$_['text_success_countries']		= 'Success: You have successfully reset <b>Countries</b> !';
+$_['text_success_eucountries']	= 'Success: You have successfully reset <b>EU Countries</b> !';
+
+$_['text_zones'] 				= 'Reset all zones:';
+$_['text_countries'] 			= 'Reset all countries:';
+$_['text_eucountries'] 		= 'Reset all EU Countries:';
+
+$_['button_reset'] 			= 'Reset';
+
 // Tab
 $_['tab_store']   				= 'Store';
 $_['tab_setting']   			= 'Settings';
 $_['tab_integrity']   			= 'Integrity';
+$_['tab_reset']   				= 'Reset';
 $_['tab_server']   			= 'Server';
 
 // Columns
