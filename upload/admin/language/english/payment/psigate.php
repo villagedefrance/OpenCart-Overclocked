@@ -7,7 +7,7 @@ $_['text_psigate']				= '<a onclick="window.open(\'http://www.psigate.com/\');">
 
 // Text 
 $_['text_payment']       	= 'Payment'; 
-$_['text_success']       		= 'Success: You have modified <b>Payment PSIGate</b> account details !';
+$_['text_success']       		= 'Success: You have modified <b>Payment PSiGate</b> account details !';
 
 // Entry
 $_['entry_merchant']     	= 'Merchant ID:';
@@ -21,7 +21,7 @@ $_['entry_status']       		= 'Status:';
 $_['entry_sort_order']   	= 'Sort Order:';
 
 // Error
-$_['error_permission']   		= 'Warning: You do not have permission to modify <b>Payment PSIGate</b> !';
+$_['error_permission']   		= 'Warning: You do not have permission to modify <b>Payment PSiGate</b> !';
 $_['error_merchant']     	= 'Merchant Required!';
 $_['error_password']     	= 'Passphrase Required!';
 $_['error_gateway']      	= 'Gateway URL Required!';

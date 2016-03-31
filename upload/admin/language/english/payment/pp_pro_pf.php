@@ -7,7 +7,7 @@ $_['text_pp_pro_pf']     	= '<a onclick="window.open(\'https://www.paypal.com/\'
 
 // Text 
 $_['text_payment']       	= 'Payment';
-$_['text_success']       		= 'Success: You have modified <b>Payment PayPal Website Payment Pro Payflow</b> account details !';
+$_['text_success']       		= 'Success: You have modified <b>PayPal Payments Pro Payflow</b> account details !';
 $_['text_authorization'] 	= 'Authorization';
 $_['text_sale']          		= 'Sale';
 
@@ -25,7 +25,7 @@ $_['entry_status']       		= 'Status:';
 $_['entry_sort_order']   	= 'Sort Order:';
 
 // Error
-$_['error_permission']   		= 'Warning: You do not have permission to modify <b>Payment PayPal Website Payment Pro Payflow</b> !';
+$_['error_permission']   		= 'Warning: You do not have permission to modify <b>PayPal Payments Pro Payflow</b> !';
 $_['error_vendor']       		= 'Vendor Required!'; 
 $_['error_user']         		= 'User Required!'; 
 $_['error_password']     	= 'Password Required!'; 

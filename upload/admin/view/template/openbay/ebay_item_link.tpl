@@ -372,9 +372,9 @@ function checkUnlinkedItems(){
                 });
                 htmlInj += '</td>';
                 htmlInj += '<input type="hidden" name="variants" id="l_'+key+'_variants" value="1" />';
-                htmlInj += '<td class="center"><img title="" alt="" src="<?php echo HTTPS_SERVER; ?>view/image/success.png" style="margin-top:3px;"></td>';
+                htmlInj += '<td class="center"><img title="" alt="" src="view/image/success.png" style="margin-top:3px;"></td>';
               }
-              htmlInj += '<td class="center"><a class="button displayNone" onclick="saveListingLink('+key+'); return false;" id="l_'+key+'_saveBtn"><span><?php echo $lang_btn_save; ?></span></a> <img src="<?php echo HTTPS_SERVER; ?>/view/image/loading.gif" class="displayNone" id="l_'+key+'_saveLoading" /></td>';
+              htmlInj += '<td class="center"><a class="button displayNone" onclick="saveListingLink('+key+'); return false;" id="l_'+key+'_saveBtn"><span><?php echo $lang_btn_save; ?></span></a> <img src="view/image/loading.gif" class="displayNone" id="l_'+key+'_saveLoading" /></td>';
               htmlInj += '</tr>';
 
               $('#eBayListings').append(htmlInj);
