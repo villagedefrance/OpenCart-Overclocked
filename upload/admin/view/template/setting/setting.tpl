@@ -1418,6 +1418,7 @@
       </div>
       <div id="tab-mail">
         <table class="form">
+          <tbody>
           <tr>
             <td><?php echo $entry_mail_protocol; ?></td>
             <td><select name="config_mail_protocol">
@@ -1433,10 +1434,14 @@
               <?php } ?>
             </select></td>
           </tr>
+          </tbody>
+          <tbody id="protocol-mail" class="protocol">
           <tr>
             <td><?php echo $entry_mail_parameter; ?></td>
             <td><input type="text" name="config_mail_parameter" value="<?php echo $config_mail_parameter; ?>" size="30" /></td>
           </tr>
+          </tbody>
+          <tbody id="protocol-smtp" class="protocol">
           <tr>
             <td><?php echo $entry_smtp_host; ?></td>
             <td><input type="text" name="config_smtp_host" value="<?php echo $config_smtp_host; ?>" size="30" /></td>
@@ -1457,6 +1462,7 @@
             <td><?php echo $entry_smtp_timeout; ?></td>
             <td><input type="text" name="config_smtp_timeout" value="<?php echo $config_smtp_timeout; ?>" /></td>
           </tr>
+          </tbody>
           <tr>
             <td><?php echo $entry_alert_mail; ?></td>
             <td><?php if ($config_alert_mail) { ?>
@@ -1877,6 +1883,15 @@ function image_upload(field, thumb) {
 		modal: false
 	});
 };
+//--></script>
+
+<script type="text/javascript"><!--
+$('select[name=\'config_mail_protocol\']').bind('change', function() {
+	$('.protocol').hide();
+	$('#protocol-' + this.value).show();
+});
+
+$('select[name=\'config_mail_protocol\']').trigger('change');
 //--></script>
 
 <script type="text/javascript"><!--

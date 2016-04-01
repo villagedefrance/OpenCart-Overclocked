@@ -30,7 +30,7 @@ $_['text_success_zones']			= 'Success: You have successfully reset <b>Zones</b> 
 $_['text_success_countries']		= 'Success: You have successfully reset <b>Countries</b> !';
 $_['text_success_eucountries']	= 'Success: You have successfully reset <b>EU Countries</b> !';
 
-$_['help_reset'] 				= 'Resetting the geographical data is only necessary if an updated file has been made available.';
+$_['help_reset'] 				= 'Resetting the geographical data is only necessary when an updated file has been made available.';
 
 $_['text_zones'] 				= 'Reset all zones:';
 $_['text_countries'] 			= 'Reset all countries:';

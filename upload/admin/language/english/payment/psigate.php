@@ -3,7 +3,7 @@
 $_['heading_title']      		= 'PSiGate';
 
 // Link
-$_['text_psigate']				= '<a onclick="window.open(\'http://www.psigate.com/\');"><img src="view/image/payment/paypal.png" alt="PSiGate" title="PSiGate" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_psigate']				= '<a onclick="window.open(\'http://www.psigate.com/\');"><img src="view/image/payment/psigate.png" alt="PSiGate" title="PSiGate" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text 
 $_['text_payment']       	= 'Payment'; 
