@@ -15,52 +15,60 @@ final class Loader {
 	}
 
 	public function model($model) {
+		// Sanitize the call
+		$model = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$model);
+
 		$file = DIR_APPLICATION . 'model/' . $model . '.php';
 
 		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
 
-		if (file_exists($file)) {
+		if (is_file($file)) {
 			include_once($file);
 			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
 		} else {
-			trigger_error('Error: Could not load model ' . $model . '!');
-			exit();
+			throw new \Exception('Error: Could not load model ' . $model . '!');
 		}
 	}
 
 	public function library($library) {
+		// Sanitize the call
+		$library = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$library);
+
 		$file = DIR_SYSTEM . 'library/' . $library . '.php';
 
-		if (file_exists($file)) {
+		if (is_file($file)) {
 			include_once($file);
 		} else {
-			trigger_error('Error: Could not load library ' . $library . '!');
-			exit();
+			throw new \Exception('Error: Could not load library ' . $library . '!');
 		}
 	}
 
 	public function helper($helper) {
+		// Sanitize the call
+		$helper = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$helper);
+
 		$file = DIR_SYSTEM . 'helper/' . $helper . '.php';
 
-		if (file_exists($file)) {
+		if (is_file($file)) {
 			include_once($file);
 		} else {
-			trigger_error('Error: Could not load helper ' . $helper . '!');
-			exit();
+			throw new \Exception('Error: Could not load helper ' . $helper . '!');
 		}
 	}
 
 	public function database($driver, $hostname, $username, $password, $database, $port = null) {
+		// Sanitize the call
+		$driver = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$driver);
+
 		$file = DIR_SYSTEM . 'database/' . $driver . '.php';
 
 		$class = 'Database' . preg_replace('/[^a-zA-Z0-9]/', '', $driver);
 
-		if (file_exists($file)) {
+		if (is_file($file)) {
 			include_once($file);
 			$this->registry->set(str_replace('/', '_', $driver), new $class($hostname, $username, $password, $database, $port));
 		} else {
-			trigger_error('Error: Could not load database ' . $driver . '!');
-			exit();
+			throw new \Exception('Error: Could not load database ' . $driver . '!');
 		}
 	}
 
