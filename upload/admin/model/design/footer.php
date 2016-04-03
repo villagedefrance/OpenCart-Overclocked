@@ -97,7 +97,6 @@ class ModelDesignFooter extends Model {
 			$sort_data = array(
 				'fd.name',
 				'f.position',
-				'f.sort_order',
 				'f.status'
 			);
 

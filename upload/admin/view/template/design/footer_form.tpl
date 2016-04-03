@@ -12,33 +12,30 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
-         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
+        <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
-    <div id="tabs" class="htabs">
-      <a href="#tab-general"><?php echo $tab_general; ?></a>
-      <a href="#tab-data"><?php echo $tab_data; ?></a>
-    </div>
-    <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-      <div id="tab-general">
-        <div id="languages" class="htabs">
-          <?php foreach ($languages as $language) { ?>
-            <a href="#language<?php echo $language['language_id']; ?>"><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a>
-          <?php } ?>
-        </div>
-        <?php foreach ($languages as $language) { ?>
-          <div id="language<?php echo $language['language_id']; ?>">
+      <div id="tabs" class="htabs">
+        <a href="#tab-general"><?php echo $tab_general; ?></a>
+        <a href="#tab-data"><?php echo $tab_data; ?></a>
+      </div>
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+        <div id="tab-general">
           <table class="form">
             <tr>
               <td><span class="required">*</span> <?php echo $entry_name; ?></td>
-              <td><?php if (isset($error_name[$language['language_id']])) { ?>
+              <td><?php foreach ($languages as $language) { ?>
+              <?php if (isset($error_name[$language['language_id']])) { ?>
                 <input type="text" name="footer_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($footer_description[$language['language_id']]) ? $footer_description[$language['language_id']]['name'] : ''; ?>" class="input-error" />
+                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
                 <span class="error"><?php echo $error_name[$language['language_id']]; ?></span>
               <?php } else { ?>
                 <input type="text" name="footer_description[<?php echo $language['language_id']; ?>][name]" size="40" value="<?php echo isset($footer_description[$language['language_id']]) ? $footer_description[$language['language_id']]['name'] : ''; ?>" />
+                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
+              <?php } ?>
               <?php } ?></td>
             </tr>
             <tr>
@@ -46,8 +43,53 @@
               <td><?php echo $text_info; ?></td>
             </tr>
           </table>
-          </div>
-        <?php } ?>
+          <table id="route" class="list">
+            <thead>
+              <tr>
+                <td class="left"><span class="required">*</span> <?php echo $entry_title; ?></td>
+                <td class="left"><?php echo $entry_route; ?></td>
+                <td class="left"><?php echo $entry_external_link; ?></td>
+                <td class="left"><?php echo $entry_sort_order; ?></td>
+                <td></td>
+              </tr>
+            </thead>
+          <?php $route_row = 0; ?>
+          <?php foreach ($footer_routes as $footer_route) { ?>
+            <tbody id="route-row<?php echo $route_row; ?>">
+              <tr>
+                <td class="left"><?php foreach ($languages as $language) { ?>
+                  <?php if (isset($error_footer_route[$route_row][$language['language_id']])) { ?>
+                  <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" class="input-error" />
+                  <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+                  <span class="error"><?php echo $error_footer_route[$route_row][$language['language_id']]; ?></span>
+                <?php } else { ?>
+                  <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" />
+                  <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
+                <?php } ?>
+              <?php } ?></td>
+              <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
+              <td class="center"><select name="footer_route[<?php echo $route_row; ?>][external_link]">
+                <?php if ($footer_route['external_link']) { ?>
+                  <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                  <option value="0"><?php echo $text_no; ?></option>
+                <?php } else { ?>
+                  <option value="1"><?php echo $text_yes; ?></option>
+                  <option value="0" selected="selected"><?php echo $text_no; ?></option>
+                <?php } ?>
+              </select></td>
+              <td class="center"><input type="text" name="footer_route[<?php echo $route_row; ?>][sort_order]" value="<?php echo $footer_route['sort_order']; ?>" size="4" /></td>
+              <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+            </tr>
+          </tbody>
+          <?php $route_row++; ?>
+          <?php } ?>
+          <tfoot>
+            <tr>
+              <td colspan="4"></td>
+              <td class="center"><a onclick="addRoute();" class="button"><?php echo $button_add_route; ?></a></td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
       <div id="tab-data">
         <table class="form">
@@ -111,55 +153,6 @@
           </tr>
         </table>
       </div>
-      <br />
-      <h2><?php echo $header_links; ?></h2>
-      <table id="route" class="list">
-      <thead>
-        <tr>
-          <td class="left"><span class="required">*</span> <?php echo $entry_title; ?></td>
-          <td class="left"><?php echo $entry_route; ?></td>
-          <td class="left"><?php echo $entry_external_link; ?></td>
-          <td class="left"><?php echo $entry_sort_order; ?></td>
-          <td></td>
-        </tr>
-      </thead>
-      <?php $route_row = 0; ?>
-      <?php foreach ($footer_routes as $footer_route) { ?>
-      <tbody id="route-row<?php echo $route_row; ?>">
-        <tr>
-          <td class="left"><?php foreach ($languages as $language) { ?>
-            <?php if (isset($error_footer_route[$route_row][$language['language_id']])) { ?>
-              <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" class="input-error" />
-              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-              <span class="error"><?php echo $error_footer_route[$route_row][$language['language_id']]; ?></span>
-            <?php } else { ?>
-              <input type="text" name="footer_route[<?php echo $route_row; ?>][footer_route_description][<?php echo $language['language_id']; ?>][title]" size="30" value="<?php echo isset($footer_route['footer_route_description'][$language['language_id']]) ? $footer_route['footer_route_description'][$language['language_id']]['title'] : ''; ?>" />
-              <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" /><br />
-            <?php } ?>
-          <?php } ?></td>
-          <td class="left"><input type="text" name="footer_route[<?php echo $route_row; ?>][route]" value="<?php echo $footer_route['route']; ?>" size="50" /></td>
-          <td class="center"><select name="footer_route[<?php echo $route_row; ?>][external_link]">
-            <?php if ($footer_route['external_link']) { ?>
-              <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-              <option value="0"><?php echo $text_no; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_yes; ?></option>
-              <option value="0" selected="selected"><?php echo $text_no; ?></option>
-            <?php } ?>
-          </select></td>
-          <td class="center"><input type="text" name="footer_route[<?php echo $route_row; ?>][sort_order]" value="<?php echo $footer_route['sort_order']; ?>" size="4" /></td>
-          <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
-        </tr>
-      </tbody>
-      <?php $route_row++; ?>
-      <?php } ?>
-      <tfoot>
-        <tr>
-          <td colspan="4"></td>
-          <td class="center"><a onclick="addRoute();" class="button"><?php echo $button_add_route; ?></a></td>
-        </tr>
-      </tfoot>
-      </table>
     </form>
     </div>
   </div>
@@ -195,7 +188,6 @@ function addRoute() {
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
-$('#languages a').tabs();
 //--></script>
 
 <script type="text/javascript"><!--

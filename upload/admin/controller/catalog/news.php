@@ -202,6 +202,9 @@ class ControllerCatalogNews extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		$this->language->load('catalog/' . $this->_name);
+
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -250,7 +253,7 @@ class ControllerCatalogNews extends Controller {
 
 		$news_total = $this->model_catalog_news->getTotalNews();
 
-		$this->data['totalnews'] = $news_total;
+		$this->data['total_news'] = $news_total;
 
 		$results = $this->model_catalog_news->getNews($data);
 
@@ -423,6 +426,7 @@ class ControllerCatalogNews extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
+		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(

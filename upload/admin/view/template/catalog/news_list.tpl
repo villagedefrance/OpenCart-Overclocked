@@ -33,9 +33,9 @@
             <label for="check-all"><span></span></label></td>
             <td class="center"><?php echo $column_image; ?></td>
             <td class="left"><?php if ($sort == 'nd.title') { ?>
-              <a href="<?php echo $sort_title; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_title; ?> (<?php echo $totalnews; ?>)</a>
+              <a href="<?php echo $sort_title; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_title; ?> (<?php echo $total_news; ?>)</a>
             <?php } else { ?>
-              <a href="<?php echo $sort_title; ?>"><?php echo $column_title; ?> (<?php echo $totalnews; ?>)&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+              <a href="<?php echo $sort_title; ?>"><?php echo $column_title; ?> (<?php echo $total_news; ?>)&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'n.date_added') { ?>
               <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>

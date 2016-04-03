@@ -2,9 +2,6 @@
 // Heading
 $_['heading_title']     		= 'Footers';
 
-// Header
-$_['header_links'] 			= 'Block Links';
-
 // Text
 $_['text_success']  			= 'Success: You have modified <b>Footers</b> !';
 $_['text_default']  			= 'Default';

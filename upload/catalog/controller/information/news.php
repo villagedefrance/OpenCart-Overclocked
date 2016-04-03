@@ -14,7 +14,7 @@ class ControllerInformationNews extends Controller {
 			'text'		=> $this->language->get('text_home'),
 			'href'		=> $this->url->link('common/home'),
 			'separator' => false
-      	);
+		);
 
 		if (isset($this->request->get['news_id'])) {
 			$news_id = $this->request->get['news_id'];
