@@ -12,7 +12,7 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->load->model('setting/setting');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting($this->_name, $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -198,7 +198,7 @@ class ControllerModuleCarousel extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	protected function validate() {
+	private function validate() {
 		if (!$this->user->hasPermission('modify', 'module/' . $this->_name)) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

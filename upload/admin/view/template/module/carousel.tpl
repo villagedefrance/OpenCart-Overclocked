@@ -191,7 +191,7 @@ function addModule() {
 	html += '      <input type="text" name="carousel_module[' + module_row + '][height]" value="120" size="3" /> px';
 	html += '    </td>';
     html += '    <td class="left">';
-	html += '      <input type="text" name="carousel_module[' + module_row + '][show]" value="4" size="2" />;
+	html += '      <input type="text" name="carousel_module[' + module_row + '][show]" value="4" size="2" />';
 	html += '    </td>';
 	html += '    <td class="left"><select name="carousel_module[' + module_row + '][auto]">';
 	html += '      <option value="1" selected="selected"><?php echo $text_yes; ?></option>';

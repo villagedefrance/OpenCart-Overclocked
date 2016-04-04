@@ -56,31 +56,43 @@
           <tr>
             <td><?php echo $entry_playpause; ?></td>
             <td><?php if ($slideshow_playpause) { ?>
-              <?php echo $text_yes; ?><input type="radio" name="slideshow_playpause" value="1" checked="checked" />
-              <?php echo $text_no; ?><input type="radio" name="slideshow_playpause" value="0" />
+              <input type="radio" name="slideshow_playpause" value="1" id="playpause-on" class="radio" checked />
+              <label for="playpause-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_playpause" value="0" id="playpause-off" class="radio" />
+              <label for="playpause-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <?php echo $text_yes; ?><input type="radio" name="slideshow_playpause" value="1" />
-              <?php echo $text_no; ?><input type="radio" name="slideshow_playpause" value="0" checked="checked" />
+              <input type="radio" name="slideshow_playpause" value="1" id="playpause-on" class="radio" />
+              <label for="playpause-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_playpause" value="0" id="playpause-off" class="radio" checked />
+              <label for="playpause-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_pagination; ?></td>
             <td><?php if ($slideshow_pagination) { ?>
-              <?php echo $text_yes; ?><input type="radio" name="slideshow_pagination" value="1" checked="checked" />
-              <?php echo $text_no; ?><input type="radio" name="slideshow_pagination" value="0" />
+              <input type="radio" name="slideshow_pagination" value="1" id="pagination-on" class="radio" checked />
+              <label for="pagination-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_pagination" value="0" id="pagination-off" class="radio" />
+              <label for="pagination-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <?php echo $text_yes; ?><input type="radio" name="slideshow_pagination" value="1" />
-              <?php echo $text_no; ?><input type="radio" name="slideshow_pagination" value="0" checked="checked" />
+              <input type="radio" name="slideshow_pagination" value="1" id="pagination-on" class="radio" />
+              <label for="pagination-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_pagination" value="0" id="pagination-off" class="radio" checked />
+              <label for="pagination-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_thumbnails; ?></td>
             <td><?php if ($slideshow_thumbnails) { ?>
-              <?php echo $text_yes; ?><input type="radio" name="slideshow_thumbnails" value="1" checked="checked" />
-              <?php echo $text_no; ?><input type="radio" name="slideshow_thumbnails" value="0" />
+              <input type="radio" name="slideshow_thumbnails" value="1" id="thumbnails-on" class="radio" checked />
+              <label for="thumbnails-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_thumbnails" value="0" id="thumbnails-off" class="radio" />
+              <label for="thumbnails-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <?php echo $text_yes; ?><input type="radio" name="slideshow_thumbnails" value="1" />
-              <?php echo $text_no; ?><input type="radio" name="slideshow_thumbnails" value="0" checked="checked" />
+              <input type="radio" name="slideshow_thumbnails" value="1" id="thumbnails-on" class="radio" />
+              <label for="thumbnails-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="slideshow_thumbnails" value="0" id="thumbnails-off" class="radio" checked />
+              <label for="thumbnails-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
@@ -191,7 +203,7 @@
 <script type="text/javascript"><!--
 var module_row = <?php echo $module_row; ?>;
 
-function addModule() {	
+function addModule() {
 	html  = '<tbody id="module-row' + module_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left"><select name="slideshow_module[' + module_row + '][banner_id]">';

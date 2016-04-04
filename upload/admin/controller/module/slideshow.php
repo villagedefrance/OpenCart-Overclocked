@@ -6,19 +6,19 @@ class ControllerModuleSlideshow extends Controller {
 	private $_version = 'v1.3.4';
 
 	public function index() {
-		$this->load->language('module/slideshow');
+		$this->language->load('module/' . $this->_name);
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('slideshow', $this->request->post);
+			$this->model_setting_setting->editSetting($this->_name, $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->post['apply'])) {
-				$this->redirect($this->url->link('module/slideshow', 'token=' . $this->session->data['token'], 'SSL'));
+				$this->redirect($this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
 			} else {
 				$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
 			}
@@ -89,7 +89,7 @@ class ControllerModuleSlideshow extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = $this->url->link('module/slideshow', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -185,10 +185,10 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['modules'] = array();
 
-		if (isset($this->request->post['slideshow_module'])) {
-			$this->data['modules'] = $this->request->post['slideshow_module'];
-		} elseif ($this->config->get('slideshow_module')) { 
-			$this->data['modules'] = $this->config->get('slideshow_module');
+		if (isset($this->request->post[$this->_name . '_module'])) {
+			$this->data['modules'] = $this->request->post[$this->_name . '_module'];
+		} elseif ($this->config->get($this->_name . '_module')) {
+			$this->data['modules'] = $this->config->get($this->_name . '_module');
 		}
 
 		$this->load->model('design/layout');
@@ -199,7 +199,7 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['banners'] = $this->model_design_banner->getBanners();
 
-		$this->template = 'module/slideshow.tpl';
+		$this->template = 'module/' . $this->_name . '.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -209,7 +209,7 @@ class ControllerModuleSlideshow extends Controller {
 	}
 
 	private function validate() {
-		if (!$this->user->hasPermission('modify', 'module/slideshow')) {
+		if (!$this->user->hasPermission('modify', 'module/' . $this->_name)) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
