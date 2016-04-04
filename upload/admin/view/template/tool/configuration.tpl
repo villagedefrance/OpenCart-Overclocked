@@ -23,7 +23,6 @@
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-setting"><?php echo $tab_setting; ?></a>
         <a href="#tab-integrity"><?php echo $tab_integrity; ?></a>
-        <a href="#tab-reset"><?php echo $tab_reset; ?></a>
         <a href="#tab-server"><?php echo $tab_server; ?></a>
       </div>
       <div id="tab-store">
@@ -315,24 +314,6 @@
           <?php } ?>
           </table>
         </div>
-      </div>
-      <div id="tab-reset">
-        <h2><?php echo $text_reset_info; ?></h2>
-        <table class="form">
-          <tr>
-            <td><?php echo $text_zones; ?></td>
-            <td><a href="<?php echo $zones; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
-          </tr>
-          <tr>
-            <td><?php echo $text_countries; ?></td>
-            <td><a href="<?php echo $countries; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
-          </tr>
-          <tr>
-            <td><?php echo $text_eucountries; ?></td>
-            <td><a href="<?php echo $eucountries; ?>" title="" class="button-repair"><?php echo $button_reset; ?></a></td>
-          </tr>
-        </table>
-        <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_reset; ?></div>
       </div>
       <div id="tab-server">
         <h2><?php echo $text_server_info; ?></h2>
