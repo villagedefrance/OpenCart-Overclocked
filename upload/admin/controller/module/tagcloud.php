@@ -29,7 +29,7 @@ class ControllerModuleTagCloud extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
-		$this->data['text_no']	= $this->language->get('text_no');
+		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -129,7 +129,7 @@ class ControllerModuleTagCloud extends Controller {
 		if (isset($this->request->post[$this->_name . '_title'])) {
 			$this->data[$this->_name . '_title'] = $this->request->post[$this->_name . '_title'];
 		} else {
-			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title' );
+			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
 		}
 
 		$this->data['font_weights'] = array();

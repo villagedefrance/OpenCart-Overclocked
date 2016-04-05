@@ -45,11 +45,15 @@
           <tr>
             <td><?php echo $entry_headline; ?></td>
             <td><?php if ($news_headline) { ?>
-              <?php echo $text_yes; ?><input type="radio" name="news_headline" value="1" checked="checked" />
-              <?php echo $text_no; ?><input type="radio" name="news_headline" value="0" />
+              <input type="radio" name="news_headline" value="1" id="headline-on" class="radio" checked />
+              <label for="headline-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="news_headline" value="0" id="headline-off" class="radio" />
+              <label for="headline-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <?php echo $text_yes; ?><input type="radio" name="news_headline" value="1" />
-              <?php echo $text_no; ?><input type="radio" name="news_headline" value="0" checked="checked" />
+              <input type="radio" name="news_headline" value="1" id="headline-on" class="radio" />
+              <label for="headline-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="news_headline" value="0" id="headline-off" class="radio" checked />
+              <label for="headline-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
