@@ -1365,9 +1365,9 @@ class ControllerSaleCustomer extends Controller {
 				'product_href'	=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'], 'SSL'),
 				'name'			=> $result['name'],
 				'model'        	=> $result['model'],
-				'price'        	=> $this->currency->format($result['price'], $result['currency_code'], $result['currency_value']),
+				'price'        	=> $this->currency->format(($result['price'] + $result['tax']), $result['currency_code'], $result['currency_value']),
 				'quantity'		=> $result['quantity'],
-				'total'				=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'total'				=> $this->currency->format(($result['total'] + ($result['tax'] * $result['quantity'])), $result['currency_code'], $result['currency_value']),
 				'selected'		=> isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
 				'action'			=> $action
 			);

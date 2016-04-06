@@ -174,7 +174,7 @@ function addToCompare(product_id) {
 
 // Success Remove Onclick
 $(document).ready(function() {
-	$('.success').on('click', function() {
+	$('.success').live('click', function() {
 		$(this).fadeOut('slow');
 	});
 });

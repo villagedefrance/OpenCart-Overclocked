@@ -46,7 +46,7 @@ function apply() {
 
 // Success Remove Onclick
 $(document).ready(function() {
-	$('.success').on('click', function() {
+	$('.success, .tooltip').live('click', function() {
 		$(this).fadeOut('slow');
 	});
 });
