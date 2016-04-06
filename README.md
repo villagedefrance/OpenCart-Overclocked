@@ -22,9 +22,9 @@ Each new release will bring newer and better features, upgraded scripts, bug fix
 So feel free to post your comments or get in touch.
 
 Latest Scripts:
-- jQuery 1.11.3.
+- jQuery 1.12.3.
 - jQuery UI 1.11.4.
-- CKEditor 4.5.7 Full.
+- CKEditor 4.5.8 Full.
 - jQuery Flot 0.8.2.
 - Plupload 2.1.8.
 - Camera 1.3.4.
@@ -44,6 +44,13 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
+Coming soon in 1.7.6.0!
+- Added direct printing of invoices.
+- Added Country and Zone update on upgrade.
+- Improved invoicing, with tax breakdown.
+- jQuery updated to v1.12.3.
+- Essential bug fixes ...
+
 New in 1.7.5.0 (Current Release):
 - Added Ip Range blocker (firewall).
 - Added autocomplete for offers.
@@ -53,14 +60,11 @@ New in 1.7.5.0 (Current Release):
 - Improved upgrade script.
 - Bug Fixes ...
 
-New in [1.7.3.0] 1.7.4.0:
+Added in previous 1.7.X.0 versions:
 - Added EU taxes for E-medias Law.
 - Added received orders in dashboard graph.
 - Added Seo-Urls cache. Thanks skyosev!
 - Improved GUI & Code Standards.
-- Bug Fixes ...
-
-New in 1.7.2.0:
 - Extended Import/Export Tool.
 - Admin User Agent detector.
 - Customer Order Picklist.
@@ -72,18 +76,11 @@ New in 1.7.2.0:
 - Report Profit Margins.
 - Report Stock Levels.
 - Improved Database support.
-- Improved GUI.
-- Bug fixes ...
-
-New in 1.7.1.0:
 - Added Colours for Product.
 - Improved File Managers.
 - Improved Customer Accounts.
 - Improved Affiliate Accounts.
 - Better Responsive Stylesheets.
-- Bug fixes ...
-
-New in 1.7.0.0:
 - Custom Menu System.
 - Custom Footer System.
 - Responsive Default Theme.
@@ -93,7 +90,6 @@ New in 1.7.0.0:
 - Improved Install script.
 - Multi-language Manufacturers.
 - Multi-language Countries.
-- Latest jQuery & jQuery UI.
 - FraudLabs Pro integration.
 - Option "Free" for zero prices.
 - Option "Get a Quote" for products.

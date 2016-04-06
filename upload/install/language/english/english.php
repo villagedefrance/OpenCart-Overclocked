@@ -83,7 +83,7 @@ $_['entry_email']					= 'E-Mail';
 $_['entry_rewrite']				= 'Activate Seo-url Rewrite ?';
 $_['entry_maintenance']		= 'Activate Maintenance mode ?';
 $_['entry_demo_data']			= 'Remove Demo Data ?';
-$_['entry_geo_data']			= 'Update Countries &amp; Zones Data ?';
+$_['entry_geo_data']			= 'Update Country &amp; Zone data ?';
 
 // Error
 $_['error_php_version']			= 'Warning: You need to use PHP 5.3 or above for OpenCart OCE to work!';
