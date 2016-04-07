@@ -303,11 +303,8 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 	public function install() {
 		$this->load->model('payment/amazon_checkout');
-		$this->load->model('setting/setting');
 
 		$this->model_payment_amazon_checkout->install();
-
-		$this->model_setting_setting->editSetting('amazon_checkout', $this->settings);
 	}
 
 	public function uninstall() {

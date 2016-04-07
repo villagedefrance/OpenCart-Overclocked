@@ -1,10 +1,10 @@
 <?php
 // Heading
-$_['heading_title']		= 'GeoZones';
+$_['heading_title']		= 'Geo Zones';
 
 // Text
 $_['text_shipping']		= 'Shipping';
-$_['text_success']		= 'Success: You have modified <b>GeoZones Shipping</b> !';
+$_['text_success']		= 'Success: You have modified <b>Geo Zones Shipping</b> !';
 $_['text_item']				= 'Item';
 $_['text_price']			= 'Price';
 $_['text_weight']			= 'Weight';
@@ -18,5 +18,5 @@ $_['entry_status']		= 'Status:';
 $_['entry_sort_order']	= 'Sort Order:';
 
 // Error
-$_['error_permission']	= 'Warning: You do not have permission to modify <b>GeoZones Shipping</b> !';
+$_['error_permission']	= 'Warning: You do not have permission to modify <b>Geo Zones Shipping</b> !';
 ?>
