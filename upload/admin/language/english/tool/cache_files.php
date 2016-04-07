@@ -12,9 +12,6 @@ $_['column_name']  		= 'Cache File Name';
 $_['column_size'] 		= 'Cache File Size';
 $_['column_expire']		= 'Cache Expire Time (Minutes)';
 
-// Button
-$_['button_clean']  		= 'Clean Expired Cache';
-
 // Error
 $_['error_permission'] 	= 'Warning: You do not have permission to modify <b>Cache Files</b> !';
 ?>

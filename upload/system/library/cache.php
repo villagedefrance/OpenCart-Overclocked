@@ -1,32 +1,61 @@
 <?php
 class Cache {
+	private $expire;
+
+	public function __construct($expire = 3600) {
+		$this->expire = $expire;
+
+		$files = glob(DIR_CACHE . 'cache.*');
+
+		if ($files) {
+			foreach ($files as $file) {
+				$time = substr(strrchr($file, '.'), 1);
+
+				if ($time < time()) {
+					if (file_exists($file)) {
+						unlink($file);
+					}
+				}
+			}
+		}
+	}
+
 	public function get($key) {
 		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
 
 		if ($files) {
-			$file_handle = fopen($files[0], 'r');
+			$handle = fopen($files[0], 'r');
 
-			flock($file_handle, LOCK_SH);
-			$data = fread($file_handle, filesize($files[0]));
-			flock($file_handle, LOCK_UN);
-			fclose($file_handle);
+			flock($handle, LOCK_SH);
 
-			return unserialize($data);
+			$data = fread($handle, filesize($files[0]));
+
+			flock($handle, LOCK_UN);
+
+			fclose($handle);
+
+			return json_decode($data, true);
 		}
 
 		return false;
 	}
 
 	public function set($key, $value) {
-		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + 3600);
+		$this->delete($key);
 
-		$file_handle = fopen($file, 'w');
+		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + $this->expire);
 
-		flock($file_handle, LOCK_EX);
-		fwrite($file_handle, serialize($value));
-		fflush($file_handle);
-		flock($file_handle, LOCK_UN);
-		fclose($file_handle);
+		$handle = fopen($file, 'w');
+
+		flock($handle, LOCK_EX);
+
+		fwrite($handle, json_encode($value));
+
+		fflush($handle);
+
+		flock($handle, LOCK_UN);
+
+		fclose($handle);
 	}
 
 	public function delete($key) {

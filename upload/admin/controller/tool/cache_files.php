@@ -29,11 +29,9 @@ class ControllerToolCacheFiles extends Controller {
 		$this->data['column_size'] = $this->language->get('column_size');
 		$this->data['column_expire'] = $this->language->get('column_expire');
 
-		$this->data['button_clean'] = $this->language->get('button_clean');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
-		$this->data['clean'] = $this->url->link('tool/cache_files/clean', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['delete'] = $this->url->link('tool/cache_files/delete', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -97,28 +95,6 @@ class ControllerToolCacheFiles extends Controller {
 		);
 
 		$this->response->setOutput($this->render());
-	}
-
-	public function clean() {
-		$this->language->load('tool/cache_files');
-
-		$this->document->setTitle($this->language->get('heading_title'));
-
-		$files = glob(DIR_CACHE . 'cache.*');
-
-		if ($files) {
-			foreach ($files as $file) {
-				$time = substr(strrchr($file, '.'), 1);
-
-				if ($time < time()) {
-					if (file_exists($file)) {
-						unlink($file);
-					}
-				}
-			}
-		}
-
-		$this->redirect($this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
 	public function delete() {

@@ -53,7 +53,7 @@ final class DBMySQLi {
 	}
 
 	public function connected() {
-		return $this->connection->connected();
+		return $this->connection->ping();
 	}
 
 	public function __destruct() {

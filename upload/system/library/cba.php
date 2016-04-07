@@ -259,7 +259,7 @@ class CBA {
 
 		$headers = array(
 			'Content-Type: text/xml',
-			'Content-MD5: ' . base64_encode(md5($flat, true)),
+			'Content-MD5: ' . base64_encode(md5($flat, true))
 		);
 
 		$args = $this->getCommonParameters();
@@ -278,30 +278,30 @@ class CBA {
 
 	public function orderShipped($order) {
 		$xml = '<?xml version="1.0"?>
-<AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd"> 
+<AmazonEnvelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="amzn-envelope.xsd">
   <Header> 
-	<DocumentVersion>1.01</DocumentVersion>
-	<MerchantIdentifier>' . $this->getMerchantId() . '</MerchantIdentifier>
+    <DocumentVersion>1.01</DocumentVersion>
+    <MerchantIdentifier>' . $this->getMerchantId() . '</MerchantIdentifier>
   </Header>
-  <MessageType>OrderFulfillment</MessageType> 
+  <MessageType>OrderFulfillment</MessageType>
   <Message>
-	<MessageID>1</MessageID>
-	<OrderFulfillment>
-	  <AmazonOrderID>' . $order['amazon_order_id'] . '</AmazonOrderID>
-	  <FulfillmentDate>' . date('c') . '</FulfillmentDate>
+    <MessageID>1</MessageID>
+    <OrderFulfillment>
+      <AmazonOrderID>' . $order['amazon_order_id'] . '</AmazonOrderID>
+      <FulfillmentDate>' . date('c') . '</FulfillmentDate>
 ';
 
-		foreach ($order['products'] as $product) {
-			$xml .= '
-	  <Item>
-		<AmazonOrderItemCode>' . $product['amazon_order_item_code'] . '</AmazonOrderItemCode>
-		<Quantity>' . $product['quantity'] . '</Quantity>
-	  </Item>
-';
-		}
-
+	foreach ($order['products'] as $product) {
 		$xml .= '
-	</OrderFulfillment>
+      <Item>
+        <AmazonOrderItemCode>' . $product['amazon_order_item_code'] . '</AmazonOrderItemCode>
+        <Quantity>' . $product['quantity'] . '</Quantity>
+      </Item>
+';
+	}
+
+	$xml .= '
+    </OrderFulfillment>
   </Message>
 </AmazonEnvelope>';
 

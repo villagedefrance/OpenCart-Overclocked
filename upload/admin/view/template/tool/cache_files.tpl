@@ -18,7 +18,6 @@
     <div class="heading">
       <h1><img src="view/image/stock-status.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $clean; ?>" class="button"><?php echo $button_clean; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>

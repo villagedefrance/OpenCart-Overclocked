@@ -52,9 +52,6 @@ class Affiliate {
 				}
 			}
 
-			// Regenerate session id
-			$this->session->regenerateId();
-
 			// Token used to protect affiliate functions against CSRF
 			$this->setToken();
 
@@ -140,7 +137,7 @@ class Affiliate {
 		$this->session->data['affiliate_token'] = hash_rand('md5');
 	}
 
-	public function loginExpired($age = 900) {
+	public function loginExpired($age = 1800) {
 		if (isset($this->session->data['affiliate_login_time']) && (time() - $this->session->data['affiliate_login_time'] < $age)) {
 			return false;
 		} else {

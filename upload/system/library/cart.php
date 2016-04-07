@@ -249,6 +249,7 @@ class Cart {
 					$recurring_trial_cycle = 0;
 					$recurring_trial_duration = 0;
 					$recurring_trial_frequency = 0;
+
 					$profile_name = '';
 
 					if ($profile_id) {
@@ -448,7 +449,7 @@ class Cart {
 		}
 
 		return $tax_data;
-	} 
+	}
 
 	public function getTotal() {
 		$total = 0;
@@ -498,7 +499,7 @@ class Cart {
 		foreach ($this->getProducts() as $product) {
 			if ($product['shipping']) {
 				$shipping = true;
-				break; 
+				break;
 			}
 		}
 
@@ -511,7 +512,7 @@ class Cart {
 		foreach ($this->getProducts() as $product) {
 			if ($product['download']) {
 				$download = true;
-				break; 
+				break;
 			}
 		}
 
