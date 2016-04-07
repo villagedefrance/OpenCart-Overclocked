@@ -44,14 +44,14 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-Coming soon in 1.7.6.0!
+New in 1.7.6.0 (Current Release)!
 - Added direct printing of invoices.
 - Added Country and Zone update on upgrade.
 - Improved invoicing, with tax breakdown.
 - jQuery updated to v1.12.3.
 - Essential bug fixes ...
 
-New in 1.7.5.0 (Current Release):
+New in 1.7.5.0:
 - Added Ip Range blocker (firewall).
 - Added autocomplete for offers.
 - Moved EU Taxes in core files.
