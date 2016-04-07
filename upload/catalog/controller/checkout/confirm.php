@@ -347,6 +347,8 @@ class ControllerCheckoutConfirm extends Controller {
 			$this->data['column_model'] = $this->language->get('column_model');
 			$this->data['column_quantity'] = $this->language->get('column_quantity');
 			$this->data['column_price'] = $this->language->get('column_price');
+			$this->data['column_tax_value'] = $this->language->get('column_tax_value');
+			$this->data['column_tax_percent'] = $this->language->get('column_tax_percent');
 			$this->data['column_total'] = $this->language->get('column_total');
 
 			$this->data['text_recurring_item'] = $this->language->get('text_recurring_item');
@@ -397,6 +399,8 @@ class ControllerCheckoutConfirm extends Controller {
 					}
 				}
 
+				$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
+
 				$this->data['products'][] = array(
 					'key'                 		=> $product['key'],
 					'product_id'          	=> $product['product_id'],
@@ -406,6 +410,8 @@ class ControllerCheckoutConfirm extends Controller {
 					'quantity'				=> $product['quantity'],
 					'subtract'           		=> $product['subtract'],
 					'price'               		=> $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
+					'tax_value'				=> $this->currency->format($product_tax_value),
+					'tax_percent'			=> number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
 					'age_minimum'			=> ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
 					'total'               		=> $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
 					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),

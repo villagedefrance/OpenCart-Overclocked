@@ -93,8 +93,8 @@
                 <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
               <td class="price"><?php echo $product['price']; ?></td>
-			  <td class="price"><?php echo $product['tax_value']; ?></td>
-			  <td class="price"><?php echo $product['tax_percent']; ?>%</td>
+              <td class="price"><?php echo $product['tax_value']; ?></td>
+              <td class="price"><?php echo $product['tax_percent']; ?>%</td>
               <td class="total"><?php echo $product['total']; ?></td>
             </tr>
           <?php } ?>

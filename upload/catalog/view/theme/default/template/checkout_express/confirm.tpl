@@ -36,6 +36,8 @@
         <td class="model"><?php echo $column_model; ?></td>
         <td class="quantity"><?php echo $column_quantity; ?></td>
         <td class="price"><?php echo $column_price; ?></td>
+        <td class="price"><?php echo $column_tax_value; ?></td>
+        <td class="price"><?php echo $column_tax_percent; ?></td>
         <td class="total"><?php echo $column_total; ?></td>
       </tr>
     </thead>
@@ -43,7 +45,7 @@
       <?php foreach ($products as $product) { ?>
         <?php if ($product['recurring']) { ?>
           <tr>
-            <td colspan="5" style="border:none; line-height:18px; margin-left:10px;">
+            <td colspan="7" style="border:none; line-height:18px; margin-left:10px;">
               <img src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" />
               <strong><?php echo $text_recurring_item; ?></strong>
               <?php echo $product['profile_description']; ?>
@@ -64,13 +66,15 @@
           <td class="model"><?php echo $product['model']; ?></td>
           <td class="quantity"><?php echo $product['quantity']; ?></td>
           <td class="price"><?php echo $product['price']; ?></td>
+          <td class="price"><?php echo $product['tax_value']; ?></td>
+          <td class="price"><?php echo $product['tax_percent']; ?>%</td>
           <td class="total"><?php echo $product['total']; ?></td>
         </tr>
       <?php } ?>
       <?php foreach ($vouchers as $voucher) { ?>
         <tr>
-          <td class="name"><?php echo $voucher['description']; ?></td>
-          <td class="model"></td>
+          <td colspan="2" class="name"><?php echo $voucher['description']; ?></td>
+          <td colspan="2" class="model"></td>
           <td class="quantity">1</td>
           <td class="price"><?php echo $voucher['amount']; ?></td>
           <td class="total"><?php echo $voucher['amount']; ?></td>
@@ -80,7 +84,7 @@
     <tfoot>
       <?php foreach ($totals as $total) { ?>
         <tr>
-          <td colspan="4" class="price"><b><?php echo $total['title']; ?>:</b></td>
+          <td colspan="6" class="price"><b><?php echo $total['title']; ?>:</b></td>
           <td class="total"><?php echo $total['text']; ?></td>
         </tr>
       <?php } ?>

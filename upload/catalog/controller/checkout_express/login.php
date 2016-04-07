@@ -50,34 +50,28 @@ class ControllerCheckoutExpressLogin extends Controller {
 			$this->load->model('checkout/checkout_express');
 			$this->load->model('checkout/checkout_tools');
 
-			if (!isset($this->request->post['password'])) {
-				$this->request->post['password'] = '';
-
-				if (!$this->request->post['email']) {
-					$json['error']['warning'] = $this->language->get('error_email');
-				}
-
-				if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-					$json['error']['warning'] = $this->language->get('error_email');
-				}
+			if (!$this->request->post['email'] || (utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+				$json['error']['warning'] = $this->language->get('error_email');
 			}
 
-			if (!$this->request->post['password'] && $this->request->post['email']) {
-				$customer_name = $this->model_checkout_checkout_express->getCustomerByEmail($this->request->post['email']);
+			$customer_info = $this->model_checkout_checkout_express->getCustomerByEmail($this->request->post['email']);
 
-				if ($customer_name) {
-					$json['name'] = $this->model_checkout_checkout_tools->getJoinName($customer_name);
+			if (!isset($this->request->post['password'])) {
+				$this->request->post['password'] = '';
+			}
+
+			if (!$this->request->post['password']) {
+                if ($customer_info) {
+					$json['name'] = $this->model_checkout_checkout_tools->getJoinName($customer_info);
 				} else {
 					$json['mail'] = $this->request->post['email'];
 				}
-			}
+            }
 
 			if ($this->request->post['email'] && $this->request->post['password']) {
 				if (!$this->customer->login($this->request->post['email'], $this->request->post['password'])) {
 					$json['error']['warning'] = $this->language->get('error_login');
 				}
-
-				$customer_info = $this->model_checkout_checkout_express->getCustomerByEmail($this->request->post['email']);
 
 				if ($customer_info && !$customer_info['approved']) {
 					$json['error']['warning'] = $this->language->get('error_approved');
