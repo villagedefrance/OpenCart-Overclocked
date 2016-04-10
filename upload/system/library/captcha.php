@@ -27,9 +27,9 @@ class Captcha {
 
 	public function showImage($font) {
 		if ($font) {
-			$fontfile = DIR_SYSTEM . 'fonts/' . $font . '.ttf';
+			$file = DIR_SYSTEM . 'fonts/' . $font . '.ttf';
 		} else {
-			$fontfile = DIR_SYSTEM . 'fonts/Recaptcha.ttf';
+			$file = DIR_SYSTEM . 'fonts/Recaptcha.ttf';
 		}
 
 		$image = imagecreatetruecolor($this->width, $this->height);
@@ -40,9 +40,10 @@ class Captcha {
 
 		imagefilledrectangle($image, 0, 0, 262, 42, $background);
 
-		imagettftext($image, 22, 0, 2, 28, $color, $fontfile, $this->code);
+		imagettftext($image, 22, 0, 2, 28, $color, $file, $this->code);
 
-		header("Content-type: image/png");
+		header('Content-Disposition: Attachment;filename=image.png');
+		header('Content-type: image/png');
 
 		imagepng($image, null, 9);
 

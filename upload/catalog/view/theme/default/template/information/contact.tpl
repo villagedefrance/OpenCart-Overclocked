@@ -40,7 +40,7 @@
           <div id="captcha-wrap">
             <div class="captcha-box">
               <div class="captcha-view">
-                <img src="<?php echo $captcha_image; ?>" alt="" id="captcha-image" />
+                <img src="<?php echo $captcha_image; ?>" alt="" id="captcha-image" readonly="readonly" />
               </div>
             </div>
             <div class="captcha-text">
@@ -97,9 +97,10 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('#captcha-image').load(function(event) {
+$('#captcha-image').on('load', function(event) {
 	$(event.target).show();
 });
+$('#captcha-image').trigger('load');
 //--></script>
 
 <?php if ($map) { ?>

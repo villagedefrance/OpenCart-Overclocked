@@ -450,7 +450,7 @@
         <div id="captcha-wrap">
           <div class="captcha-box">
             <div class="captcha-view">
-              <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" />
+              <img src="index.php?route=product/product/captcha" alt="" id="captcha-image" readonly="readonly" />
             </div>
           </div>
           <div class="captcha-text">
@@ -673,9 +673,10 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 
 <script type="text/javascript"><!--
-$('#captcha-image').load(function(event) {
+$('#captcha-image').on('load', function(event) {
 	$(event.target).show();
 });
+$('#captcha-image').trigger('load');
 //--></script>
 
 <script type="text/javascript"><!--
