@@ -64,6 +64,7 @@ $(document).ready(function() {
           <div class="device">
             <?php echo $agent_platform; ?><br />
             <?php echo $agent_browser; ?> &nbsp; <?php echo $agent_version; ?><br />
+            <span id="agent-width"></span> x <span id="agent-height"></span> px<br />
           </div>
         </div>
       </div>
@@ -402,4 +403,21 @@ $(document).ready(function() {
 	time();
 	setInterval(function() {time();}, 1000);
 });
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	if (typeof(document.documentElement.clientWidth) != 'undefined') {
+		var $w = document.getElementById('agent-width');
+		var $h = document.getElementById('agent-height');
+
+		$w.innerHTML = document.documentElement.clientWidth;
+		$h.innerHTML = document.documentElement.clientHeight;
+
+		window.onresize = function(event) {
+			$w.innerHTML = document.documentElement.clientWidth;
+			$h.innerHTML = document.documentElement.clientHeight;
+		};
+	}
+})();
 //--></script>

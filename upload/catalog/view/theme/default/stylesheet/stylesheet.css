@@ -1554,7 +1554,7 @@ ul.box-filter > li ul {
 /* Add Review */
 #add-review {
 	float: left;
-	width: 48%;
+	width: 49%;
 	min-width: 275px;
 	display: block;
 }
@@ -1577,7 +1577,7 @@ ul.box-filter > li ul {
 /* Reviews */
 #review {
 	float: right;
-	width: 48%;
+	width: 49%;
 	min-width: 275px;
 	display: block;
 }
@@ -2636,7 +2636,7 @@ a.icon-skype:hover {
 	margin-top: 8px;
 }
 /* Tablets */
-@media only screen and (min-width: 640px) and (max-width: 980px) {
+@media only screen and (min-width: 620px) and (max-width: 960px) {
 	#container {
 		width: auto;
 		margin: 0px 10px;
@@ -2658,9 +2658,20 @@ a.icon-skype:hover {
 	#column-right + #content {
 		margin-right: 210px;
 	}
+	/* Reviews */
+	#review {
+		float: left;
+	}
+	#add-review {
+		clear: left;
+	}
 	/* Footer */
 	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
 		clear: left;
+	}
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
+		float: left;
+		margin: 10px 0px 0px 15px;
 	}
 	/* General */
 	.hide-phone {
@@ -2668,7 +2679,7 @@ a.icon-skype:hover {
 	}
 }
 /* Phones */
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 620px) {
 	html {-webkit-text-size-adjust: none;}
 	body {padding: 10px 0px;}
 	#container {
