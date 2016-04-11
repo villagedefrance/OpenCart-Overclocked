@@ -53,7 +53,7 @@
           <div id="captcha-wrap">
             <div class="captcha-box">
               <div class="captcha-view">
-                <img src="<?php echo $captcha_image; ?>" alt="" id="captcha-image" readonly="readonly" />
+                <img src="<?php echo $captcha_image; ?>" alt="" id="captcha-image" />
               </div>
             </div>
             <div class="captcha-text">
@@ -109,10 +109,10 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-$('#captcha-image').on('load', function(event) {
+$('img#captcha-image').on('load', function(event) {
 	$(event.target).show();
 });
-$('#captcha-image').trigger('load');
+$('img#captcha-image').trigger('load');
 //--></script>
 
 <script type="text/javascript" src="catalog/view/javascript/jquery/ajaxupload.js"></script>
