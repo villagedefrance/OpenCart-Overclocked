@@ -52,6 +52,10 @@ a img {
 	border: none;
 	outline: none;
 }
+a:hover, a img:hover {
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+}
 form {
 	padding: 0;
 	margin: 0;

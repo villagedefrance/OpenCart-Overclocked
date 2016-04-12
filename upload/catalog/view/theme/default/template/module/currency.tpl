@@ -9,7 +9,7 @@
   <?php } ?>
   <div id="currency-option" style="display:none;">
   <?php foreach ($currencies as $currency) { ?>
-  <a onclick="$('input[name=\'currency_code\']').attr('value', '<?php echo $currency['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $currency['title']; ?></a>
+    <a id="currency_selection" onclick="$('input[name=\'currency_code\']').attr('value', '<?php echo $currency['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $currency['title']; ?></a>
   <?php } ?>
   </div>
   </div>
@@ -22,11 +22,16 @@
 $(document).ready(function() {
 	currency_width = $('#currency-option').width();
 	$('#currency-selector').css('width', (currency_width + 10) + 'px');
-	$('#currency-selector').hover(function() {
+	$('#currency-selector').on('mouseenter touchstart touchend', function() {
+		$('#currency-selection').click(function(event) {
+			event.preventDefault();
+		});
 		$('#currency-option').slideDown(150);
-	}, function() {
+	});
+	$('#currency-option').on('mouseleave', function() {
 		$('#currency-option').slideUp(150);
 	});
 });
 //--></script>
+
 <?php } ?>

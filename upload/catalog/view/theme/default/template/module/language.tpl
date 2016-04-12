@@ -9,7 +9,7 @@
   <?php } ?>
   <div id="language-option" style="display:none;">
   <?php foreach ($languages as $language) { ?>
-    <a onclick="$('input[name=\'language_code\']').attr('value', '<?php echo $language['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $language['name']; ?></a>
+    <a id="language-selection" onclick="$('input[name=\'language_code\']').attr('value', '<?php echo $language['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $language['name']; ?></a>
   <?php } ?>
   </div>
   </div>
@@ -22,11 +22,16 @@
 $(document).ready(function() {
 	language_width = $('#language-option').width();
 	$('#language-selector').css('width', (language_width + 10) + 'px');
-	$('#language-selector').hover(function() {
+	$('#language-selector').on('mouseenter touchstart touchend', function() {
+		$('#language-selection').click(function(event) {
+			event.preventDefault();
+		});
 		$('#language-option').slideDown(150);
-	}, function() {
+	});
+	$('#language-option').on('mouseleave touchmove', function() {
 		$('#language-option').slideUp(150);
 	});
 });
-//--></script> 
+//--></script>
+
 <?php } ?>
