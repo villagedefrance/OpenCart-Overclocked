@@ -209,7 +209,7 @@ body > #container {
 }
 /* Header */
 #header {
-	min-width: 800px;
+	min-width: 740px;
 }
 #header .static {
 	height: 56px;
@@ -284,6 +284,9 @@ body > #container {
 	text-decoration: none;
 	white-space: nowrap;
 	padding: 0px 6px;
+}
+#show-device span#screen-width, #show-device span#screen-height {
+	font-size: 11px;
 }
 /* Header Date & Time */
 #date-time {
@@ -1612,7 +1615,7 @@ table.tool > tr > td {
 /* Footer */
 #footer {
 	position: relative;
-	min-width: 800px;
+	min-width: 740px;
 	height: 90px;
 	color: #333;
 	font-size: 12px;
@@ -1625,4 +1628,22 @@ table.tool > tr > td {
 #footer a {
 	color: #333;
 	text-decoration: underline;
+}
+/* Desktops */
+@media only screen and (min-width: 960px) and (max-width: 1220px) {
+	#content {
+		padding: 10px 20px 128px 20px;
+	}
+}
+/* Tablets */
+@media only screen and (min-width: 740px) and (max-width: 960px) {
+	#content {
+		padding: 10px 10px 128px 10px;
+	}
+}
+/* Phones */
+@media only screen and (max-width: 740px) {
+	#content {
+		padding: 10px 5px 128px 5px;
+	}
 }

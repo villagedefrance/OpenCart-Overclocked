@@ -64,7 +64,7 @@ $(document).ready(function() {
           <div class="device">
             <?php echo $agent_platform; ?><br />
             <?php echo $agent_browser; ?> &nbsp; <?php echo $agent_version; ?><br />
-            <span id="agent-width"></span> x <span id="agent-height"></span> px<br />
+            <span id="screen-width"></span> x <span id="screen-height"></span><br />
           </div>
         </div>
       </div>
@@ -374,42 +374,9 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	function time() {
-		var now = new Date();
-		var offset = <?php echo $time_offset; ?>;
-
-		var outHour = now.getHours()+offset;
-		if (outHour < 10) { 
-			document.getElementById('hour').innerHTML="0"+outHour;
-		} else {
-			document.getElementById('hour').innerHTML=outHour;
-		}
-
-		var outMin = now.getMinutes();
-		if (outMin < 10)	{
-			document.getElementById('minute').innerHTML="0"+outMin;
-		} else {
-			document.getElementById('minute').innerHTML=outMin;
-		}
-
-		var outSec = now.getSeconds();
-		if (outSec < 10) {
-			document.getElementById('second').innerHTML="0"+outSec;
-		} else {
-			document.getElementById('second').innerHTML=outSec;
-		}
-	}
-
-	time();
-	setInterval(function() {time();}, 1000);
-});
-//--></script>
-
-<script type="text/javascript"><!--
-$(document).ready(function() {
 	if (typeof(document.documentElement.clientWidth) != 'undefined') {
-		var $w = document.getElementById('agent-width');
-		var $h = document.getElementById('agent-height');
+		var $w = document.getElementById('screen-width');
+		var $h = document.getElementById('screen-height');
 
 		$w.innerHTML = document.documentElement.clientWidth;
 		$h.innerHTML = document.documentElement.clientHeight;
@@ -419,5 +386,37 @@ $(document).ready(function() {
 			$h.innerHTML = document.documentElement.clientHeight;
 		};
 	}
-})();
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	function time() {
+		var now = new Date();
+		var offset = <?php echo $time_offset; ?>;
+
+		var outHour = now.getHours()+offset;
+		if (outHour < 10) { 
+			document.getElementById('hour').innerHTML = "0"+outHour;
+		} else {
+			document.getElementById('hour').innerHTML = outHour;
+		}
+
+		var outMin = now.getMinutes();
+		if (outMin < 10) {
+			document.getElementById('minute').innerHTML = "0"+outMin;
+		} else {
+			document.getElementById('minute').innerHTML = outMin;
+		}
+
+		var outSec = now.getSeconds();
+		if (outSec < 10) {
+			document.getElementById('second').innerHTML = "0"+outSec;
+		} else {
+			document.getElementById('second').innerHTML = outSec;
+		}
+	}
+	time();
+	setInterval(function() {time();}, 1000);
+});
 //--></script>
