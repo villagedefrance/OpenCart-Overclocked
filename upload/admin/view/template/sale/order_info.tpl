@@ -13,21 +13,24 @@
       </div>
     </div>
     <div class="content">
-    <div class="report">
-      <div class="left"><img src="view/image/print-preview.png" alt="" /></div>
-      <div class="right"><?php echo $button_invoice; ?> &nbsp;
-        <a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print"></a>
-      </div>
-      <div class="right"><?php echo $button_delivery_note; ?> &nbsp;
-        <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview"></a><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print"></a>
-      </div>
-      <div class="right"><?php echo $button_pick_list; ?> &nbsp;
-        <a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview"></a><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print"></a>
-      </div>
-      <div class="right"><?php echo $button_shipping_label; ?> &nbsp;
-        <a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview"></a><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print"></a>
-      </div>
-    </div>
+    <table class="list">
+      <thead>
+        <tr>
+          <td class="left"><?php echo $button_shipping_label; ?></td>
+          <td class="left"><?php echo $button_pick_list; ?></td>
+          <td class="left"><?php echo $button_delivery_note; ?></td>
+          <td class="left"><?php echo $button_invoice; ?></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="filter">
+          <td class="center"><a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview"></a><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print"></a></td>
+          <td class="center"><a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview"></a><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print"></a></td>
+          <td class="center"><a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview"></a><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print"></a></td>
+          <td class="center"><a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print"></a></td>
+        </tr>
+      </tbody>
+    </table>
     <div class="vtabs">
       <a href="#tab-order"><?php echo $tab_order; ?></a>
       <a href="#tab-payment"><?php echo $tab_payment; ?></a>
