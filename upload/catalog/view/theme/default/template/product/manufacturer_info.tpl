@@ -10,7 +10,7 @@
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
-  <div class="heading_description"><?php echo $description; ?></div>
+  <div class="heading-description"><?php echo $description; ?></div>
   <?php if ($products) { ?>
     <div class="product-filter">
       <div class="display"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display('grid');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a></div>
