@@ -237,6 +237,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_meta_alexa'] = $this->language->get('entry_meta_alexa');
 		$this->data['entry_google_analytics'] = $this->language->get('entry_google_analytics');
 		$this->data['entry_alexa_analytics'] = $this->language->get('entry_alexa_analytics');
+		$this->data['entry_piwik_analytics'] = $this->language->get('entry_piwik_analytics');
 		$this->data['entry_maintenance'] = $this->language->get('entry_maintenance');
 		$this->data['entry_seo_url'] = $this->language->get('entry_seo_url');
 		$this->data['entry_seo_url_cache'] = $this->language->get('entry_seo_url_cache');
@@ -1528,11 +1529,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_alexa_analytics'] = $this->config->get('config_alexa_analytics');
 		}
 
+		if (isset($this->request->post['config_piwik_analytics'])) {
+			$this->data['config_piwik_analytics'] = $this->request->post['config_piwik_analytics'];
+		} else {
+			$this->data['config_piwik_analytics'] = $this->config->get('config_piwik_analytics');
+		}
+
 		$this->data['google_web'] = 'https://www.google.com/webmasters/tools/home';
 		$this->data['bing_web'] = 'https://ssl.bing.com/webmaster/home/mysites';
 		$this->data['yandex_web'] = 'http://webmaster.yandex.com/sites/';
 		$this->data['baidu_web'] = 'http://zhanzhang.baidu.com/sitemap/index';
 		$this->data['alexa_web'] = 'http://www.alexa.com/';
+		$this->data['piwik_web'] = 'http://piwik.org/';
 
 		// Server
 		if (isset($this->request->post['config_secure'])) {

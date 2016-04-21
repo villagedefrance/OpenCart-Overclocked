@@ -1614,6 +1614,10 @@
             <td><?php echo $entry_alexa_analytics; ?></td>
             <td><textarea name="config_alexa_analytics" cols="40" rows="10"><?php echo $config_alexa_analytics; ?></textarea></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_piwik_analytics; ?></td>
+            <td><textarea name="config_piwik_analytics" cols="40" rows="10"><?php echo $config_piwik_analytics; ?></textarea></td>
+          </tr>
         </table>
         <div>
           <table width="100%">
@@ -1624,6 +1628,7 @@
                 <a onclick="window.open('<?php echo $yandex_web; ?>');" title="Yandex Webmaster Tools"><img src="view/image/engines/yandex-web.gif" alt="Yandex" /></a> &nbsp;
                 <a onclick="window.open('<?php echo $baidu_web; ?>');" title="Baidu Webmaster Tools"><img src="view/image/engines/baidu-web.gif" alt="Baidu" /></a> &nbsp;
                 <a onclick="window.open('<?php echo $alexa_web; ?>');" title="Alexa Analytics"><img src="view/image/engines/alexa-web.gif" alt="Alexa" /></a> &nbsp;
+                <a onclick="window.open('<?php echo $piwik_web; ?>');" title="Piwik Analytics"><img src="view/image/engines/piwik-web.gif" alt="Piwik" /></a> &nbsp;
               </td>
             </tr>
           </table>

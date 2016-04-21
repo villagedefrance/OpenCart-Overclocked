@@ -48,18 +48,18 @@
 <script type="text/javascript" src="catalog/view/javascript/html5.js"></script>
 <![endif]-->
 <?php if ($stores) { ?>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $(document).ready(function() {
 <?php foreach ($stores as $store) { ?>
-	$('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
+  $('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
 <?php } ?>
 });
-</script>
+//--></script>
 <?php } ?>
 <?php if ($cookie_consent) { ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/css/cookieDisclaimer.min.css" />
 <script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookieDisclaimer.pack.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"><!--
 $(document).ready(function() {
   $('body').cookieDisclaimer({
     position: "<?php echo $cookie_position; ?>",
@@ -77,7 +77,7 @@ $(document).ready(function() {
     cookie: { expire: <?php echo $cookie_age; ?> }
   });
 });
-</script>
+//--></script>
 <?php } ?>
 <?php echo ($google_analytics) ? $google_analytics : ''; ?>
 <?php echo ($alexa_analytics) ? $alexa_analytics : ''; ?>
