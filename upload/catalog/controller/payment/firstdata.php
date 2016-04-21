@@ -1,9 +1,11 @@
 <?php
 class ControllerPaymentFirstdata extends Controller {
+
 	public function index() {
-		$this->load->language('payment/firstdata');
+		$this->language->load('payment/firstdata');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
+
 		$this->data['text_new_card'] = $this->language->get('text_new_card');
 		$this->data['text_store_card'] = $this->language->get('text_store_card');
 
@@ -23,6 +25,7 @@ class ControllerPaymentFirstdata extends Controller {
 		$this->data['merchant_id'] = $this->config->get('firstdata_merchant_id');
 		$this->data['timestamp'] = date('Y:m:d-H:i:s');
 		$this->data['order_id'] = 'CON-' . $this->session->data['order_id'] . 'T' . $this->data['timestamp'] . mt_rand(1, 999);
+
 		$this->data['url_success'] = $this->url->link('checkout/success', '', true);
 		$this->data['url_fail'] = $this->url->link('payment/firstdata/fail', '', true);
 		$this->data['url_notify'] = $this->url->link('payment/firstdata/notify', '', true);
@@ -95,11 +98,10 @@ class ControllerPaymentFirstdata extends Controller {
 	}
 
 	public function notify() {
+		$this->language->load('payment/firstdata');
+
 		$this->load->model('payment/firstdata');
-
 		$this->load->model('checkout/order');
-
-		$this->load->language('payment/firstdata');
 
 		$message = '';
 
@@ -113,7 +115,7 @@ class ControllerPaymentFirstdata extends Controller {
 			if ($local_hash == $this->request->post['notification_hash']) {
 				$order_id_parts = explode('T', $this->request->post['oid']);
 
-				$order_id = str_replace("CON-","",$order_id_parts[0]);
+				$order_id = str_replace("CON-", "", $order_id_parts[0]);
 
 				$order_info = $this->model_checkout_order->getOrder($order_id);
 
@@ -122,32 +124,32 @@ class ControllerPaymentFirstdata extends Controller {
 						$response_parts = explode(':', $this->request->post['approval_code']);
 
 						$address_codes = array(
-							'PPX' => $this->language->get('text_address_ppx'),
-							'YYY' => $this->language->get('text_address_yyy'),
-							'YNA' => $this->language->get('text_address_yna'),
-							'NYZ' => $this->language->get('text_address_nyz'),
-							'NNN' => $this->language->get('text_address_nnn'),
-							'YPX' => $this->language->get('text_address_ypx'),
-							'PYX' => $this->language->get('text_address_pyx'),
-							'XXU' => $this->language->get('text_address_xxu')
+							'PPX'	=> $this->language->get('text_address_ppx'),
+							'YYY'	=> $this->language->get('text_address_yyy'),
+							'YNA'	=> $this->language->get('text_address_yna'),
+							'NYZ'	=> $this->language->get('text_address_nyz'),
+							'NNN'	=> $this->language->get('text_address_nnn'),
+							'YPX'	=> $this->language->get('text_address_ypx'),
+							'PYX'	=> $this->language->get('text_address_pyx'),
+							'XXU'	=> $this->language->get('text_address_xxu')
 						);
 
 						$cvv_codes = array(
-							'M'    => $this->language->get('text_card_code_m'),
-							'N'    => $this->language->get('text_card_code_n'),
-							'P'    => $this->language->get('text_card_code_p'),
-							'S'    => $this->language->get('text_card_code_s'),
-							'U'    => $this->language->get('text_card_code_u'),
-							'X'    => $this->language->get('text_card_code_x'),
+							'M'		=> $this->language->get('text_card_code_m'),
+							'N'		=> $this->language->get('text_card_code_n'),
+							'P'		=> $this->language->get('text_card_code_p'),
+							'S'		=> $this->language->get('text_card_code_s'),
+							'U'		=> $this->language->get('text_card_code_u'),
+							'X'		=> $this->language->get('text_card_code_x'),
 							'NONE' => $this->language->get('text_card_code_blank')
 						);
 
 						$card_types = array(
-							'M'         => $this->language->get('text_card_type_m'),
-							'V'         => $this->language->get('text_card_type_v'),
-							'C'         => $this->language->get('text_card_type_c'),
-							'A'         => $this->language->get('text_card_type_a'),
-							'MA'        => $this->language->get('text_card_type_ma'),
+							'M'			=> $this->language->get('text_card_type_m'),
+							'V'			=> $this->language->get('text_card_type_v'),
+							'C'			=> $this->language->get('text_card_type_c'),
+							'A'			=> $this->language->get('text_card_type_a'),
+							'MA'		=> $this->language->get('text_card_type_ma'),
 							'MAESTROUK' => $this->language->get('text_card_type_mauk')
 						);
 
@@ -202,6 +204,7 @@ class ControllerPaymentFirstdata extends Controller {
 
 								$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_success_unsettled_id'), $message, false);
 							}
+
 						} else {
 							$message = $this->request->post['fail_reason'] . '<br />';
 							$message .= $this->language->get('text_response_code_full') . $this->request->post['approval_code'];
@@ -234,9 +237,11 @@ class ControllerPaymentFirstdata extends Controller {
 						$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_success_settled_id'), $message, false);
 					}
 				}
+
 			} else {
 				$this->model_payment_firstdata->logger('Hash does not match! Received: ' . $this->request->post['notification_hash'] . ', calculated: ' . $local_hash);
 			}
+
 		} else {
 			$this->model_payment_firstdata->logger('Data is missing from request . ');
 		}
@@ -254,3 +259,4 @@ class ControllerPaymentFirstdata extends Controller {
 		$this->redirect($this->url->link('checkout/checkout', '', true));
 	}
 }
+?>

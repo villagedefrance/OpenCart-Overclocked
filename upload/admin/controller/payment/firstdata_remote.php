@@ -3,7 +3,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/firstdata_remote');
+		$this->language->load('payment/firstdata_remote');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -21,59 +21,59 @@ class ControllerPaymentFirstdataRemote extends Controller {
 			}
 		}
 
-		$this->data['heading_title']                  = $this->language->get('heading_title');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_enabled']                   = $this->language->get('text_enabled');
-		$this->data['text_disabled']                  = $this->language->get('text_disabled');
-		$this->data['text_yes']                       = $this->language->get('text_yes');
-		$this->data['text_no']                        = $this->language->get('text_no');
-		$this->data['text_all_zones']                 = $this->language->get('text_all_zones');
-		$this->data['text_enabled']                   = $this->language->get('text_enabled');
-		$this->data['text_notification_url']          = $this->language->get('text_notification_url');
-		$this->data['text_card_type']                 = $this->language->get('text_card_type');
-		$this->data['text_merchant_id']               = $this->language->get('text_merchant_id');
-		$this->data['text_subaccount']                = $this->language->get('text_subaccount');
-		$this->data['text_secret']                    = $this->language->get('text_secret');
-		$this->data['text_settle_delayed']            = $this->language->get('text_settle_delayed');
-		$this->data['text_settle_auto']               = $this->language->get('text_settle_auto');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_notification_url'] = $this->language->get('text_notification_url');
+		$this->data['text_card_type'] = $this->language->get('text_card_type');
+		$this->data['text_merchant_id'] = $this->language->get('text_merchant_id');
+		$this->data['text_subaccount'] = $this->language->get('text_subaccount');
+		$this->data['text_secret'] = $this->language->get('text_secret');
+		$this->data['text_settle_delayed'] = $this->language->get('text_settle_delayed');
+		$this->data['text_settle_auto'] = $this->language->get('text_settle_auto');
 
-		$this->data['entry_certificate_path']         = $this->language->get('entry_certificate_path');
-		$this->data['entry_certificate_key_path']     = $this->language->get('entry_certificate_key_path');
-		$this->data['entry_certificate_key_pw']       = $this->language->get('entry_certificate_key_pw');
-		$this->data['entry_certificate_ca_path']      = $this->language->get('entry_certificate_ca_path');
-		$this->data['entry_merchant_id']              = $this->language->get('entry_merchant_id');
-		$this->data['entry_user_id']                  = $this->language->get('entry_user_id');
-		$this->data['entry_password']                 = $this->language->get('entry_password');
-		$this->data['entry_geo_zone']                 = $this->language->get('entry_geo_zone');
-		$this->data['entry_status']                   = $this->language->get('entry_status');
-		$this->data['entry_debug']                    = $this->language->get('entry_debug');
-		$this->data['entry_auto_settle']              = $this->language->get('entry_auto_settle');
-		$this->data['entry_total']                    = $this->language->get('entry_total');
-		$this->data['entry_total_max']                = $this->language->get('entry_total_max');
-		$this->data['entry_sort_order']               = $this->language->get('entry_sort_order');
-		$this->data['entry_enable_card_store']        = $this->language->get('entry_enable_card_store');
-		$this->data['entry_cards_accepted']           = $this->language->get('entry_cards_accepted');
-		$this->data['entry_status_success_settled']   = $this->language->get('entry_status_success_settled');
+		$this->data['entry_certificate_path'] = $this->language->get('entry_certificate_path');
+		$this->data['entry_certificate_key_path'] = $this->language->get('entry_certificate_key_path');
+		$this->data['entry_certificate_key_pw'] = $this->language->get('entry_certificate_key_pw');
+		$this->data['entry_certificate_ca_path'] = $this->language->get('entry_certificate_ca_path');
+		$this->data['entry_merchant_id'] = $this->language->get('entry_merchant_id');
+		$this->data['entry_user_id'] = $this->language->get('entry_user_id');
+		$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
+		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_debug'] = $this->language->get('entry_debug');
+		$this->data['entry_auto_settle'] = $this->language->get('entry_auto_settle');
+		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_enable_card_store'] = $this->language->get('entry_enable_card_store');
+		$this->data['entry_cards_accepted'] = $this->language->get('entry_cards_accepted');
+		$this->data['entry_status_success_settled'] = $this->language->get('entry_status_success_settled');
 		$this->data['entry_status_success_unsettled'] = $this->language->get('entry_status_success_unsettled');
-		$this->data['entry_status_decline']           = $this->language->get('entry_status_decline');
-		$this->data['entry_status_void']              = $this->language->get('entry_status_void');
-		$this->data['entry_status_refund']            = $this->language->get('entry_status_refund');
+		$this->data['entry_status_decline'] = $this->language->get('entry_status_decline');
+		$this->data['entry_status_void'] = $this->language->get('entry_status_void');
+		$this->data['entry_status_refund'] = $this->language->get('entry_status_refund');
 
-		$this->data['help_certificate']               = $this->language->get('help_certificate');
-		$this->data['help_total']                     = $this->language->get('help_total');
-		$this->data['help_total_max']                 = $this->language->get('help_total_max');
-		$this->data['help_card_select']               = $this->language->get('help_card_select');
-		$this->data['help_debug']                     = $this->language->get('help_debug');
-		$this->data['help_settle']                    = $this->language->get('help_settle');
-		$this->data['help_notification']              = $this->language->get('help_notification');
+		$this->data['help_certificate'] = $this->language->get('help_certificate');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
+		$this->data['help_card_select'] = $this->language->get('help_card_select');
+		$this->data['help_debug'] = $this->language->get('help_debug');
+		$this->data['help_settle'] = $this->language->get('help_settle');
+		$this->data['help_notification'] = $this->language->get('help_notification');
 
-		$this->data['tab_account']                    = $this->language->get('tab_account');
-		$this->data['tab_order_status']               = $this->language->get('tab_order_status');
-		$this->data['tab_payment']                    = $this->language->get('tab_payment');
+		$this->data['tab_account'] = $this->language->get('tab_account');
+		$this->data['tab_order_status'] = $this->language->get('tab_order_status');
+		$this->data['tab_payment'] = $this->language->get('tab_payment');
 
-		$this->data['button_save']                    = $this->language->get('button_save');
-		$this->data['button_apply']                   = $this->language->get('button_apply');
-		$this->data['button_cancel']                  = $this->language->get('button_cancel');
+		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->load->model('localisation/order_status');
 
@@ -134,24 +134,25 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_payment'),
-			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_payment'),
+			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
-			'href'      => $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['action'] = $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['firstdata_remote_merchant_id'])) {
@@ -291,28 +292,28 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['cards'] = array();
 
 		$this->data['cards'][] = array(
-			'text'  => $this->language->get('text_mastercard'),
-			'value' => 'mastercard'
+			'text'		=> $this->language->get('text_mastercard'),
+			'value'	=> 'mastercard'
 		);
 
 		$this->data['cards'][] = array(
-			'text'  => $this->language->get('text_visa'),
-			'value' => 'visa'
+			'text'		=> $this->language->get('text_visa'),
+			'value'	=> 'visa'
 		);
 
 		$this->data['cards'][] = array(
-			'text'  => $this->language->get('text_diners'),
-			'value' => 'diners'
+			'text'		=> $this->language->get('text_diners'),
+			'value'	=> 'diners'
 		);
 
 		$this->data['cards'][] = array(
-			'text'  => $this->language->get('text_amex'),
-			'value' => 'amex'
+			'text'		=> $this->language->get('text_amex'),
+			'value'	=> 'amex'
 		);
 
 		$this->data['cards'][] = array(
-			'text'  => $this->language->get('text_maestro'),
-			'value' => 'maestro'
+			'text'		=> $this->language->get('text_maestro'),
+			'value'	=> 'maestro'
 		);
 
 		if (isset($this->request->post['firstdata_remote_cards_accepted'])) {
@@ -322,7 +323,6 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		} else {
 			$this->data['firstdata_remote_cards_accepted'] = array();
 		}
-
 
 		$this->template = 'payment/firstdata_remote.tpl';
 		$this->children = array(
@@ -359,28 +359,29 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 				$this->data['firstdata_order'] = $firstdata_order;
 
-				$this->data['text_payment_info']      = $this->language->get('text_payment_info');
-				$this->data['text_order_ref']         = $this->language->get('text_order_ref');
-				$this->data['text_order_total']       = $this->language->get('text_order_total');
-				$this->data['text_total_captured']    = $this->language->get('text_total_captured');
-				$this->data['text_capture_status']    = $this->language->get('text_capture_status');
-				$this->data['text_void_status']       = $this->language->get('text_void_status');
-				$this->data['text_refund_status']     = $this->language->get('text_refund_status');
-				$this->data['text_transactions']      = $this->language->get('text_transactions');
-				$this->data['text_yes']               = $this->language->get('text_yes');
-				$this->data['text_no']                = $this->language->get('text_no');
-				$this->data['text_column_amount']     = $this->language->get('text_column_amount');
-				$this->data['text_column_type']       = $this->language->get('text_column_type');
+				$this->data['text_payment_info'] = $this->language->get('text_payment_info');
+				$this->data['text_order_ref'] = $this->language->get('text_order_ref');
+				$this->data['text_order_total'] = $this->language->get('text_order_total');
+				$this->data['text_total_captured'] = $this->language->get('text_total_captured');
+				$this->data['text_capture_status'] = $this->language->get('text_capture_status');
+				$this->data['text_void_status'] = $this->language->get('text_void_status');
+				$this->data['text_refund_status'] = $this->language->get('text_refund_status');
+				$this->data['text_transactions'] = $this->language->get('text_transactions');
+				$this->data['text_yes'] = $this->language->get('text_yes');
+				$this->data['text_no'] = $this->language->get('text_no');
+				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
+				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
-				$this->data['text_confirm_void']      = $this->language->get('text_confirm_void');
-				$this->data['text_confirm_capture']   = $this->language->get('text_confirm_capture');
-				$this->data['text_confirm_refund']    = $this->language->get('text_confirm_refund');
+				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
+				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
+				$this->data['text_confirm_refund'] = $this->language->get('text_confirm_refund');
 
-				$this->data['button_capture']         = $this->language->get('button_capture');
-				$this->data['button_refund']          = $this->language->get('button_refund');
-				$this->data['button_void']            = $this->language->get('button_void');
+				$this->data['button_capture'] = $this->language->get('button_capture');
+				$this->data['button_refund'] = $this->language->get('button_refund');
+				$this->data['button_void'] = $this->language->get('button_void');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/firstdata_remote_order.tpl';
@@ -421,6 +422,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($void_response['error']) && !empty($void_response['error']) ? (string)$void_response['error'] : 'Unable to void';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -431,7 +433,8 @@ class ControllerPaymentFirstdataRemote extends Controller {
 	}
 
 	public function capture() {
-		$this->load->language('payment/firstdata');
+		$this->language->load('payment/firstdata');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
@@ -445,10 +448,13 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 			if (strtoupper($capture_response['transaction_result']) == 'APPROVED') {
 				$this->model_payment_firstdata_remote->addTransaction($firstdata_order['firstdata_remote_order_id'], 'payment', $firstdata_order['total']);
+
 				$total_captured = $this->model_payment_firstdata_remote->getTotalCaptured($firstdata_order['firstdata_remote_order_id']);
 
 				$this->model_payment_firstdata_remote->updateCaptureStatus($firstdata_order['firstdata_remote_order_id'], 1);
+
 				$capture_status = 1;
+
 				$json['msg'] = $this->language->get('text_capture_ok_order');
 				$json['data'] = array();
 				$json['data']['column_date_added'] = date("Y-m-d H:i:s");
@@ -460,8 +466,8 @@ class ControllerPaymentFirstdataRemote extends Controller {
 			} else {
 				$json['error'] = true;
 				$json['msg'] = isset($capture_response['error']) && !empty($capture_response['error']) ? (string)$capture_response['error'] : 'Unable to capture';
-
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -472,7 +478,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 	}
 
 	public function refund() {
-		$this->load->language('payment/firstdata_remote');
+		$this->language->load('payment/firstdata_remote');
 
 		$json = array();
 
@@ -511,6 +517,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($refund_response['error']) && !empty($refund_response['error']) ? (string)$refund_response['error'] : 'Unable to refund';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -553,7 +560,11 @@ class ControllerPaymentFirstdataRemote extends Controller {
 			$this->error['error_ca'] = $this->language->get('error_ca');
 		}
 
-		return !$this->error;
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

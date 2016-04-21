@@ -1,7 +1,9 @@
 <?php
 class ControllerPaymentFirstdataRemote extends Controller {
+
 	public function index() {
-		$this->load->language('payment/firstdata_remote');
+		$this->language->load('payment/firstdata_remote');
+
 		$this->load->model('payment/firstdata_remote');
 
 		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
@@ -39,8 +41,8 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text'  => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
-				'value' => sprintf('%02d', $i)
+				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value'	=> sprintf('%02d', $i)
 			);
 		}
 
@@ -50,8 +52,8 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value' => strftime('%y', mktime(0, 0, 0, 1, 1, $i))
+				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value'	=> strftime('%y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -68,28 +70,29 @@ class ControllerPaymentFirstdataRemote extends Controller {
 	}
 
 	public function send() {
+		$this->language->load('payment/firstdata_remote');
+
 		$this->load->model('checkout/order');
 		$this->load->model('payment/firstdata_remote');
-		$this->load->language('payment/firstdata_remote');
 
 		$address_codes = array(
-			'PPX' => $this->language->get('text_address_ppx'),
-			'YYY' => $this->language->get('text_address_yyy'),
-			'YNA' => $this->language->get('text_address_yna'),
-			'NYZ' => $this->language->get('text_address_nyz'),
-			'NNN' => $this->language->get('text_address_nnn'),
-			'YPX' => $this->language->get('text_address_ypx'),
-			'PYX' => $this->language->get('text_address_pyx'),
-			'XXU' => $this->language->get('text_address_xxu')
+			'PPX'	=> $this->language->get('text_address_ppx'),
+			'YYY'	=> $this->language->get('text_address_yyy'),
+			'YNA'	=> $this->language->get('text_address_yna'),
+			'NYZ'	=> $this->language->get('text_address_nyz'),
+			'NNN'	=> $this->language->get('text_address_nnn'),
+			'YPX'	=> $this->language->get('text_address_ypx'),
+			'PYX'	=> $this->language->get('text_address_pyx'),
+			'XXU'	=> $this->language->get('text_address_xxu')
 		);
 
 		$cvv_codes = array(
-			'M' => $this->language->get('text_card_code_m'),
-			'N' => $this->language->get('text_card_code_n'),
-			'P' => $this->language->get('text_card_code_p'),
-			'S' => $this->language->get('text_card_code_s'),
-			'U' => $this->language->get('text_card_code_u'),
-			'X' => $this->language->get('text_card_code_x'),
+			'M'		=> $this->language->get('text_card_code_m'),
+			'N'		=> $this->language->get('text_card_code_n'),
+			'P' 	=> $this->language->get('text_card_code_p'),
+			'S'		=> $this->language->get('text_card_code_s'),
+			'U' 	=> $this->language->get('text_card_code_u'),
+			'X' 	=> $this->language->get('text_card_code_x'),
 			'NONE' => $this->language->get('text_card_code_blank')
 		);
 
@@ -142,6 +145,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 					$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_remote_order_status_success_unsettled_id'), $message, false);
 				}
+
 			} else {
 				if (isset($capture_result['error']) && !empty($capture_result['error'])) {
 					$json['error'] = $capture_result['error'];
@@ -166,3 +170,4 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
+?>

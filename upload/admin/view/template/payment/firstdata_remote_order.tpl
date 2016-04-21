@@ -1,6 +1,6 @@
 <h2><?php echo $text_payment_info; ?></h2>
-<div class="alert alert-success" id="firstdata_transaction_msg" style="display: none;"></div>
-<table class="table table-striped table-bordered">
+<div class="success" id="firstdata_transaction_msg" style="display:none;"></div>
+<table class="form">
   <tr>
     <td><?php echo $text_order_ref; ?></td>
     <td><?php echo $firstdata_order['order_ref']; ?></td>
@@ -22,7 +22,7 @@
       <?php if ($firstdata_order['void_status'] == 0) { ?>
       <a class="btn btn-primary" id="button-capture"><?php echo $button_capture; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
       <?php } ?>
-      <?php } ?></td>
+    <?php } ?></td>
   </tr>
   <tr>
     <td><?php echo $text_void_status; ?></td>
@@ -33,7 +33,7 @@
       <?php if ($firstdata_order['capture_status'] == 0 ) { ?>
       <a class="btn btn-primary" id="button-void"><?php echo $button_void; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
       <?php } ?>
-      <?php } ?></td>
+   <?php } ?></td>
   </tr>
   <tr>
     <td><?php echo $text_refund_status; ?></td>
@@ -45,31 +45,32 @@
   </tr>
   <tr>
     <td><?php echo $text_transactions; ?>:</td>
-    <td><table class="table table-striped table-bordered" id="firstdata_transactions">
-        <thead>
-          <tr>
-            <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>
-            <td class="left"><strong><?php echo $text_column_type; ?></strong></td>
-            <td class="left"><strong><?php echo $text_column_amount; ?></strong></td>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($firstdata_order['transactions'] as $transaction) { ?>
-          <tr>
-            <td class="left"><?php echo $transaction['date_added']; ?></td>
-            <td class="left"><?php echo $transaction['type']; ?></td>
-            <td class="left"><?php echo $transaction['amount']; ?></td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table></td>
+    <td><table id="firstdata_transactions">
+      <thead>
+        <tr>
+          <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>
+          <td class="left"><strong><?php echo $text_column_type; ?></strong></td>
+          <td class="left"><strong><?php echo $text_column_amount; ?></strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach($firstdata_order['transactions'] as $transaction) { ?>
+        <tr>
+          <td class="left"><?php echo $transaction['date_added']; ?></td>
+          <td class="left"><?php echo $transaction['type']; ?></td>
+          <td class="left"><?php echo $transaction['amount']; ?></td>
+        </tr>
+        <?php } ?>
+      </tbody>
+    </table></td>
   </tr>
 </table>
+
 <script type="text/javascript"><!--
-$('#button-void').bind('click', function () {
+$('#button-void').bind('click', function() {
 	if (confirm('<?php echo $text_confirm_void; ?>')) {
 		$.ajax({
-			type:'post',
+			type: 'POST',
 			dataType: 'json',
 			data: 'order_id=<?php echo $order_id; ?>',
 			url: 'index.php?route=payment/firstdata_remote/void&token=<?php echo $token; ?>',
@@ -86,118 +87,119 @@ $('#button-void').bind('click', function () {
 					html += '<td class="left">void</td>';
 					html += '<td class="left">0.00</td>';
 					html += '</tr>';
-			
-					$('. void_text').text('<?php echo $text_yes; ?>');
-					
+
+					$('.void_text').text('<?php echo $text_yes; ?>');
+
 					$('#firstdata_transactions').append(html);
-					
+
 					$('#button-capture').hide();
-					
+
 					if (data.msg != '') {
-						$('#firstdata_transaction_msg').empty().html('<i class="fa fa-check-circle"></i> ' + data['msg']).fadeIn();
+						$('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
 					}
 				}
-			
+
 				if (data['error'] == true) {
 					alert(data['msg']);
-					
 					$('#button-void').show();
 				}
-			
+
 				$('#img_loading_void').hide();
 			}
 		});
 	}
 });
 
-$('#button-capture').bind('click', function () {
+$('#button-capture').bind('click', function() {
 	if (confirm('<?php echo $text_confirm_capture; ?>')) {
 		$.ajax({
-		type:'POST',
-		dataType: 'json',
-		data: {'order_id': <?php echo $order_id; ?> },
-		url: 'index.php?route=payment/firstdata_remote/capture&token=<?php echo $token; ?>',
-		beforeSend: function() {
-		$('#button-capture').hide();
-		$('#img_loading_capture').show();
-		$('#firstdata_transaction_msg').hide();
-		},
-		success: function(data) {
-		if (data.error == false) {
-		html = '';
-		html += '<tr>';
-		html += '<td class="left">'+data.data.date_added+'</td>';
-		html += '<td class="left">payment</td>';
-		html += '<td class="left">'+data.data.amount+'</td>';
-		html += '</tr>';
-		
-		$('#firstdata_transactions').append(html);
-		$('#firstdata_total_captured').text(data.data.total_formatted);
-		
-		if (data.data.capture_status == 1) {
-		$('#button-void').hide();
-		$('#button-refund').show();
-		$(' . capture_text').text('<?php echo $text_yes; ?>');
-		} else {
-		$('#button-capture').show();
-		}
-		
-		if (data.msg != '') {
-		$('#firstdata_transaction_msg').empty().html('<i class="fa fa-check-circle"></i> '+data.msg).fadeIn();
-		}
-		}
-		if (data.error == true) {
-		alert(data.msg);
-		$('#button-capture').show();
-		}
-		
-		$('#img_loading_capture').hide();
-		}
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id': <?php echo $order_id; ?> },
+			url: 'index.php?route=payment/firstdata_remote/capture&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('#button-capture').hide();
+				$('#img_loading_capture').show();
+				$('#firstdata_transaction_msg').hide();
+			},
+			success: function(data) {
+				if (data.error == false) {
+					html = '';
+					html += '<tr>';
+					html += '<td class="left">'+data.data.date_added+'</td>';
+					html += '<td class="left">payment</td>';
+					html += '<td class="left">'+data.data.amount+'</td>';
+					html += '</tr>';
+
+					$('#firstdata_transactions').append(html);
+					$('#firstdata_total_captured').text(data.data.total_formatted);
+
+					if (data.data.capture_status == 1) {
+						$('#button-void').hide();
+						$('#button-refund').show();
+						$('.capture_text').text('<?php echo $text_yes; ?>');
+					} else {
+						$('#button-capture').show();
+					}
+
+					if (data.msg != '') {
+						$('#firstdata_transaction_msg').empty().html(data.msg).fadeIn();
+					}
+				}
+
+				if (data.error == true) {
+					alert(data.msg);
+					$('#button-capture').show();
+				}
+
+				$('#img_loading_capture').hide();
+			}
 		});
 	}
 });
 
-$('#button-refund').bind('click', function () {
+$('#button-refund').bind('click', function() {
 	if (confirm('<?php echo $text_confirm_refund; ?>')) {
 		$.ajax({
-		type:'POST',
-		dataType: 'json',
-		data: {'order_id': <?php echo $order_id; ?> },
-		url: 'index.php?route=payment/firstdata_remote/refund&token=<?php echo $token; ?>',
-		beforeSend: function() {
-		$('#button-refund').hide();
-		$('#img_loading_refund').show();
-		$('#firstdata_transaction_msg').hide();
-		},
-		success: function(data) {
-		if (data.error == false) {
-		html = '';
-		html += '<tr>';
-		html += '<td class="left">'+data.data.date_added+'</td>';
-		html += '<td class="left">refund</td>';
-		html += '<td class="left">'+data.data.amount+'</td>';
-		html += '</tr>';
-		
-		$('#firstdata_transactions').append(html);
-		$('#firstdata_total_captured').text(data.data.total_captured);
-		
-		if (data.data.refund_status == 1) {
-		$(' . refund_text').text('<?php echo $text_yes; ?>');
-		} else {
-		$('#button-refund').show();
-		}
-		
-		if (data.msg != '') {
-		$('#firstdata_transaction_msg').empty().html('<i class="fa fa-check-circle"></i> '+data.msg).fadeIn();
-		}
-		}
-		if (data.error == true) {
-		alert(data.msg);
-		$('#button-refund').show();
-		}
-		
-		$('#img_loading_refund').hide();
-		}
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id': <?php echo $order_id; ?> },
+			url: 'index.php?route=payment/firstdata_remote/refund&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('#button-refund').hide();
+				$('#img_loading_refund').show();
+				$('#firstdata_transaction_msg').hide();
+			},
+			success: function(data) {
+				if (data.error == false) {
+					html = '';
+					html += '<tr>';
+					html += '<td class="left">'+data.data.date_added+'</td>';
+					html += '<td class="left">refund</td>';
+					html += '<td class="left">'+data.data.amount+'</td>';
+					html += '</tr>';
+
+					$('#firstdata_transactions').append(html);
+					$('#firstdata_total_captured').text(data.data.total_captured);
+
+					if (data.data.refund_status == 1) {
+					$('.refund_text').text('<?php echo $text_yes; ?>');
+				} else {
+					$('#button-refund').show();
+				}
+
+				if (data.msg != '') {
+					$('#firstdata_transaction_msg').empty().html(data.msg).fadeIn();
+				}
+			}
+
+			if (data.error == true) {
+				alert(data.msg);
+				$('#button-refund').show();
+			}
+
+			$('#img_loading_refund').hide();
+			}
 		});
 	}
 });

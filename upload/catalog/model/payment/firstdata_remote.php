@@ -1,9 +1,10 @@
 <?php
 class ModelPaymentFirstdataRemote extends Model {
-	public function getMethod($address, $total) {
-		$this->load->language('payment/firstdata_remote');
 
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone_to_geo_zone` WHERE `geo_zone_id` = '" . (int)$this->config->get('firstdata_geo_zone_id') . "' AND `country_id` = '" . (int)$address['country_id'] . "' AND (`zone_id` = '" . (int)$address['zone_id'] . "' OR `zone_id` = '0')");
+	public function getMethod($address, $total) {
+		$this->language->load('payment/firstdata_remote');
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('firstdata_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
 		if ($this->config->get('firstdata_remote_total') > 0 && $this->config->get('firstdata_remote_total') > $total) {
 			$status = false;
@@ -19,10 +20,10 @@ class ModelPaymentFirstdataRemote extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'       => 'firstdata_remote',
-				'title'      => $this->language->get('text_title'),
-				'terms'      => '',
-				'sort_order' => $this->config->get('firstdata_remote_sort_order')
+				'code'		=> 'firstdata_remote',
+				'title'			=> $this->language->get('text_title'),
+				'terms'		=> '',
+				'sort_order'	=> $this->config->get('firstdata_remote_sort_order')
 			);
 		}
 
@@ -48,6 +49,7 @@ class ModelPaymentFirstdataRemote extends Model {
 
 		$token = '';
 		$payment_token = '';
+
 		if ($this->config->get('firstdata_remote_card_storage') == 1) {
 			if (isset($this->request->post['cc_choice']) && $this->request->post['cc_choice'] != 'new') {
 				$payment_token = $this->request->post['cc_choice'];
@@ -127,6 +129,7 @@ class ModelPaymentFirstdataRemote extends Model {
 		$fault = $xml->xpath('//soap:Fault');
 
 		$response['fault'] = '';
+
 		if (!empty($fault[0]) && isset($fault[0]->detail)) {
 			$response['fault'] = (string)$fault[0]->detail;
 		}
@@ -195,6 +198,7 @@ class ModelPaymentFirstdataRemote extends Model {
 
 	public function call($xml) {
 		$ch = curl_init();
+
 		curl_setopt($ch, CURLOPT_URL, "https://test.ipg-online.com/ipgapi/services");
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
@@ -207,8 +211,8 @@ class ModelPaymentFirstdataRemote extends Model {
 		curl_setopt($ch, CURLOPT_SSLKEYPASSWD, $this->config->get('firstdata_remote_key_pw'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-		//curl_setopt($ch, CURLOPT_STDERR, fopen(DIR_LOGS . "/headers.txt", "w+"));
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
+
 		$response = curl_exec ($ch);
 
 		$this->logger('Post data: ' . print_r($this->request->post, 1));
@@ -230,7 +234,7 @@ class ModelPaymentFirstdataRemote extends Model {
 			$settle_status = 0;
 		}
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "firstdata_remote_order` SET `order_id` = '" . (int)$order_info['order_id'] . "', `order_ref` = '" . $this->db->escape($capture_result['order_id']) . "', `authcode` = '" . $this->db->escape($capture_result['approval_code']) . "', `tdate` = '" . $this->db->escape($capture_result['t_date']) . "', `date_added` = now(), `date_modified` = now(), `capture_status` = '" . (int)$settle_status . "', `currency_code` = '" . $this->db->escape($order_info['currency_code']) . "', `total` = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "firstdata_remote_order SET order_id = '" . (int)$order_info['order_id'] . "', order_ref = '" . $this->db->escape($capture_result['order_id']) . "', authcode = '" . $this->db->escape($capture_result['approval_code']) . "', tdate = '" . $this->db->escape($capture_result['t_date']) . "', date_added = NOW(), date_modified = NOW(), capture_status = '" . (int)$settle_status . "', currency_code = '" . $this->db->escape($order_info['currency_code']) . "', total = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) . "'");
 
 		return $this->db->getLastId();
 	}
@@ -242,7 +246,7 @@ class ModelPaymentFirstdataRemote extends Model {
 			$amount = 0.00;
 		}
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "firstdata_remote_order_transaction` SET `firstdata_remote_order_id` = '" . (int)$firstdata_remote_order_id . "', `date_added` = now(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . (float)$amount . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "firstdata_remote_order_transaction SET firstdata_remote_order_id = '" . (int)$firstdata_remote_order_id . "', date_added = NOW(), `type` = '" . $this->db->escape($type) . "', amount = '" . (float)$amount . "'");
 	}
 
 	public function logger($message) {
@@ -253,14 +257,14 @@ class ModelPaymentFirstdataRemote extends Model {
 	}
 
 	public function addHistory($order_id, $order_status_id, $comment) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "order_history` SET `order_id` = '" . (int)$order_id . "', `order_status_id` = '" . (int)$order_status_id . "', `notify` = '0', `comment` = '" . $this->db->escape($comment) . "', `date_added` = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '0', `comment` = '" . $this->db->escape($comment) . "', date_added = NOW()");
 	}
 
 	public function mapCurrency($code) {
 		$currency = array(
-			'GBP' => 826,
-			'USD' => 840,
-			'EUR' => 978,
+			'GBP'	=> 826,
+			'USD'	=> 840,
+			'EUR'	=> 978
 		);
 
 		if (array_key_exists($code, $currency)) {
@@ -279,6 +283,7 @@ class ModelPaymentFirstdataRemote extends Model {
 	}
 
 	public function storeCard($token, $customer_id, $type, $month, $year, $digits) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "firstdata_remote_card` SET `customer_id` = '" . (int)$customer_id . "', `date_added` = now(), `token` = '" . $this->db->escape($token) . "', `card_type` = '" . $this->db->escape($type) . "', `expire_month` = '" . $this->db->escape($month) . "', `expire_year` = '" . $this->db->escape($year) . "', `digits` = '" . $this->db->escape($digits) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "firstdata_remote_card SET customer_id = '" . (int)$customer_id . "', date_added = NOW(), token = '" . $this->db->escape($token) . "', card_type = '" . $this->db->escape($type) . "', expire_month = '" . $this->db->escape($month) . "', expire_year = '" . $this->db->escape($year) . "', digits = '" . $this->db->escape($digits) . "'");
 	}
 }
+?>

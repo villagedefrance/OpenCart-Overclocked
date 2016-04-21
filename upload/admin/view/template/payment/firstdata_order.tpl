@@ -1,9 +1,9 @@
 <h2><?php echo $text_payment_info; ?></h2>
 <?php if ($void_success) { ?>
-<div class="alert alert-success"><?php echo $void_success; ?></div>
+<div class="success"><?php echo $void_success; ?></div>
 <?php } ?>
 <?php if ($void_error) { ?>
-<div class="alert alert-warning"><?php echo $void_error; ?></div>
+<div class="warning"><?php echo $void_error; ?></div>
 <?php } ?>
 <table class="form">
   <tr>
@@ -27,7 +27,7 @@
       <?php if ($firstdata_order['void_status'] == 0) { ?>
       <a class="button" id="button_capture"><?php echo $button_capture; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
       <?php } ?>
-      <?php } ?></td>
+    <?php } ?></td>
   </tr>
   <tr>
     <td><?php echo $text_void_status; ?></td>
@@ -35,68 +35,70 @@
       <span class="void_text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
       <span class="void_text"><?php echo $text_no; ?></span>&nbsp;&nbsp; <img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
-      <?php } ?></td>
+    <?php } ?></td>
   </tr>
   <tr>
     <td><?php echo $text_transactions; ?>:</td>
-    <td><table class="table table-striped table-bordered" id="firstdata_transactions">
-        <thead>
-          <tr>
-            <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>
-            <td class="left"><strong><?php echo $text_column_type; ?></strong></td>
-            <td class="left"><strong><?php echo $text_column_amount; ?></strong></td>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($firstdata_order['transactions'] as $transaction) { ?>
-          <tr>
-            <td class="left"><?php echo $transaction['date_added']; ?></td>
-            <td class="left"><?php echo $transaction['type']; ?></td>
-            <td class="left"><?php echo $transaction['amount']; ?></td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table></td>
+    <td><table id="firstdata_transactions">
+      <thead>
+        <tr>
+          <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>
+          <td class="left"><strong><?php echo $text_column_type; ?></strong></td>
+          <td class="left"><strong><?php echo $text_column_amount; ?></strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($firstdata_order['transactions'] as $transaction) { ?>
+        <tr>
+          <td class="left"><?php echo $transaction['date_added']; ?></td>
+          <td class="left"><?php echo $transaction['type']; ?></td>
+          <td class="left"><?php echo $transaction['amount']; ?></td>
+        </tr>
+        <?php } ?>
+      </tbody>
+    </table></td>
   </tr>
 </table>
+
 <form method="POST" id="voidform" action="<?php echo $action_url; ?>">
-  <input type="hidden" name="responseSuccessURL" value="<?php echo $void_url; ?>"/>
-  <input type="hidden" name="responseFailURL" value="<?php echo $void_url; ?>"/>
-  <input type="hidden" name="transactionNotificationURL" value="<?php echo $notify_url; ?>"/>
-  <input type="hidden" name="txntype" value="void"/>
-  <input type="hidden" name="timezone" value="GMT"/>
-  <input type="hidden" name="txndatetime" value="<?php echo $request_timestamp; ?>"/>
-  <input type="hidden" name="hash" value="<?php echo $hash; ?>"/>
-  <input type="hidden" name="storename" value="<?php echo $merchant_id; ?>"/>
-  <input type="hidden" name="chargetotal" value="<?php echo $amount; ?>"/>
-  <input type="hidden" name="currency" value="<?php echo $currency; ?>"/>
-  <input type="hidden" name="oid" value="<?php echo $firstdata_order['order_ref']; ?>"/>
-  <input type="hidden" name="tdate" value="<?php echo $firstdata_order['tdate']; ?>"/>
-  <input type="hidden" name="order_id" value="<?php echo $order_id; ?>"/>
+  <input type="hidden" name="responseSuccessURL" value="<?php echo $void_url; ?>" />
+  <input type="hidden" name="responseFailURL" value="<?php echo $void_url; ?>" />
+  <input type="hidden" name="transactionNotificationURL" value="<?php echo $notify_url; ?>" />
+  <input type="hidden" name="txntype" value="void" />
+  <input type="hidden" name="timezone" value="GMT" />
+  <input type="hidden" name="txndatetime" value="<?php echo $request_timestamp; ?>" />
+  <input type="hidden" name="hash" value="<?php echo $hash; ?>" />
+  <input type="hidden" name="storename" value="<?php echo $merchant_id; ?>" />
+  <input type="hidden" name="chargetotal" value="<?php echo $amount; ?>" />
+  <input type="hidden" name="currency" value="<?php echo $currency; ?>" />
+  <input type="hidden" name="oid" value="<?php echo $firstdata_order['order_ref']; ?>" />
+  <input type="hidden" name="tdate" value="<?php echo $firstdata_order['tdate']; ?>" />
+  <input type="hidden" name="order_id" value="<?php echo $order_id; ?>" />
 </form>
 <form method="POST" id="captureform" action="<?php echo $action_url; ?>">
-  <input type="hidden" name="responseSuccessURL" value="<?php echo $capture_url; ?>"/>
-  <input type="hidden" name="responseFailURL" value="<?php echo $capture_url; ?>"/>
-  <input type="hidden" name="transactionNotificationURL" value="<?php echo $notify_url; ?>"/>
-  <input type="hidden" name="txntype" value="postauth"/>
-  <input type="hidden" name="timezone" value="GMT"/>
-  <input type="hidden" name="txndatetime" value="<?php echo $request_timestamp; ?>"/>
-  <input type="hidden" name="hash" value="<?php echo $hash; ?>"/>
-  <input type="hidden" name="storename" value="<?php echo $merchant_id; ?>"/>
-  <input type="hidden" name="chargetotal" value="<?php echo $amount; ?>"/>
-  <input type="hidden" name="currency" value="<?php echo $currency; ?>"/>
-  <input type="hidden" name="oid" value="<?php echo $firstdata_order['order_ref']; ?>"/>
-  <input type="hidden" name="tdate" value="<?php echo $firstdata_order['tdate']; ?>"/>
-  <input type="hidden" name="order_id" value="<?php echo $order_id; ?>"/>
+  <input type="hidden" name="responseSuccessURL" value="<?php echo $capture_url; ?>" />
+  <input type="hidden" name="responseFailURL" value="<?php echo $capture_url; ?>" />
+  <input type="hidden" name="transactionNotificationURL" value="<?php echo $notify_url; ?>" />
+  <input type="hidden" name="txntype" value="postauth" />
+  <input type="hidden" name="timezone" value="GMT" />
+  <input type="hidden" name="txndatetime" value="<?php echo $request_timestamp; ?>" />
+  <input type="hidden" name="hash" value="<?php echo $hash; ?>" />
+  <input type="hidden" name="storename" value="<?php echo $merchant_id; ?>" />
+  <input type="hidden" name="chargetotal" value="<?php echo $amount; ?>" />
+  <input type="hidden" name="currency" value="<?php echo $currency; ?>" />
+  <input type="hidden" name="oid" value="<?php echo $firstdata_order['order_ref']; ?>" />
+  <input type="hidden" name="tdate" value="<?php echo $firstdata_order['tdate']; ?>" />
+  <input type="hidden" name="order_id" value="<?php echo $order_id; ?>" />
 </form>
+
 <script type="text/javascript"><!--
-$("#button-void").bind('click', function () {
+$("#button-void").bind('click', function() {
   if (confirm('<?php echo $text_confirm_void; ?>')) {
     $('#voidform').submit();
   }
 });
 
-$("#button_capture").bind('click', function () {
+$("#button_capture").bind('click', function() {
   if (confirm('<?php echo $text_confirm_capture; ?>')) {
     $('#captureform').submit();
   }

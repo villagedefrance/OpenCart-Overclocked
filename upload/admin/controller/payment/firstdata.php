@@ -3,7 +3,7 @@ class ControllerPaymentFirstdata extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/firstdata');
+		$this->language->load('payment/firstdata');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -21,60 +21,60 @@ class ControllerPaymentFirstdata extends Controller {
 			}
 		}
 
-		$this->data['heading_title']                  = $this->language->get('heading_title');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_enabled']                   = $this->language->get('text_enabled');
-		$this->data['text_disabled']                  = $this->language->get('text_disabled');
-		$this->data['text_live']                      = $this->language->get('text_live');
-		$this->data['text_demo']                      = $this->language->get('text_demo');
-		$this->data['text_yes']                       = $this->language->get('text_yes');
-		$this->data['text_no']                        = $this->language->get('text_no');
-		$this->data['text_all_zones']                 = $this->language->get('text_all_zones');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_live'] = $this->language->get('text_live');
+		$this->data['text_demo'] = $this->language->get('text_demo');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
 
-		$this->data['text_card_type']                 = $this->language->get('text_card_type');
-		$this->data['text_enabled']                   = $this->language->get('text_enabled');
-		$this->data['text_notification_url']          = $this->language->get('text_notification_url');
-		$this->data['text_merchant_id']               = $this->language->get('text_merchant_id');
-		$this->data['text_secret']                    = $this->language->get('text_secret');
-		$this->data['text_settle_delayed']            = $this->language->get('text_settle_delayed');
-		$this->data['text_settle_auto']               = $this->language->get('text_settle_auto');
+		$this->data['text_card_type'] = $this->language->get('text_card_type');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_notification_url'] = $this->language->get('text_notification_url');
+		$this->data['text_merchant_id'] = $this->language->get('text_merchant_id');
+		$this->data['text_secret'] = $this->language->get('text_secret');
+		$this->data['text_settle_delayed'] = $this->language->get('text_settle_delayed');
+		$this->data['text_settle_auto'] = $this->language->get('text_settle_auto');
 
-		$this->data['entry_merchant_id']              = $this->language->get('entry_merchant_id');
-		$this->data['entry_secret']                   = $this->language->get('entry_secret');
-		$this->data['entry_geo_zone']                 = $this->language->get('entry_geo_zone');
-		$this->data['entry_status']                   = $this->language->get('entry_status');
-		$this->data['entry_debug']                    = $this->language->get('entry_debug');
-		$this->data['entry_live_demo']                = $this->language->get('entry_live_demo');
-		$this->data['entry_auto_settle']              = $this->language->get('entry_auto_settle');
-		$this->data['entry_live_url']                 = $this->language->get('entry_live_url');
-		$this->data['entry_demo_url']                 = $this->language->get('entry_demo_url');
-		$this->data['entry_total']                    = $this->language->get('entry_total');
-		$this->data['entry_total_max']                = $this->language->get('entry_total_max');
-		$this->data['entry_sort_order']               = $this->language->get('entry_sort_order');
-		$this->data['entry_enable_card_store']        = $this->language->get('entry_enable_card_store');
+		$this->data['entry_merchant_id'] = $this->language->get('entry_merchant_id');
+		$this->data['entry_secret'] = $this->language->get('entry_secret');
+		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
+		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_debug'] = $this->language->get('entry_debug');
+		$this->data['entry_live_demo'] = $this->language->get('entry_live_demo');
+		$this->data['entry_auto_settle'] = $this->language->get('entry_auto_settle');
+		$this->data['entry_live_url'] = $this->language->get('entry_live_url');
+		$this->data['entry_demo_url'] = $this->language->get('entry_demo_url');
+		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$this->data['entry_enable_card_store'] = $this->language->get('entry_enable_card_store');
 
-		$this->data['entry_status_success_settled']   = $this->language->get('entry_status_success_settled');
+		$this->data['entry_status_success_settled'] = $this->language->get('entry_status_success_settled');
 		$this->data['entry_status_success_unsettled'] = $this->language->get('entry_status_success_unsettled');
-		$this->data['entry_status_decline']           = $this->language->get('entry_status_decline');
-		$this->data['entry_status_decline_pending']   = $this->language->get('entry_status_decline_pending');
-		$this->data['entry_status_decline_stolen']    = $this->language->get('entry_status_decline_stolen');
-		$this->data['entry_status_decline_bank']      = $this->language->get('entry_status_decline_bank');
-		$this->data['entry_status_void']              = $this->language->get('entry_status_void');
+		$this->data['entry_status_decline'] = $this->language->get('entry_status_decline');
+		$this->data['entry_status_decline_pending'] = $this->language->get('entry_status_decline_pending');
+		$this->data['entry_status_decline_stolen'] = $this->language->get('entry_status_decline_stolen');
+		$this->data['entry_status_decline_bank'] = $this->language->get('entry_status_decline_bank');
+		$this->data['entry_status_void'] = $this->language->get('entry_status_void');
 
-		$this->data['help_total']                     = $this->language->get('help_total');
-		$this->data['help_total_max']                 = $this->language->get('help_total_max');
-		$this->data['help_debug']                     = $this->language->get('help_debug');
-		$this->data['help_notification']              = $this->language->get('help_notification');
-		$this->data['help_settle']                    = $this->language->get('help_settle');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
+		$this->data['help_debug'] = $this->language->get('help_debug');
+		$this->data['help_notification'] = $this->language->get('help_notification');
+		$this->data['help_settle'] = $this->language->get('help_settle');
 
-		$this->data['tab_account']                    = $this->language->get('tab_account');
-		$this->data['tab_order_status']               = $this->language->get('tab_order_status');
-		$this->data['tab_payment']                    = $this->language->get('tab_payment');
-		$this->data['tab_advanced']                   = $this->language->get('tab_advanced');
+		$this->data['tab_account'] = $this->language->get('tab_account');
+		$this->data['tab_order_status'] = $this->language->get('tab_order_status');
+		$this->data['tab_payment'] = $this->language->get('tab_payment');
+		$this->data['tab_advanced'] = $this->language->get('tab_advanced');
 
-		$this->data['button_save']                    = $this->language->get('button_save');
-		$this->data['button_apply']                   = $this->language->get('button_apply');
-		$this->data['button_cancel']                  = $this->language->get('button_cancel');
+		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['notify_url'] = HTTPS_CATALOG . 'index.php?route=payment/firstdata/notify';
 
@@ -119,24 +119,25 @@ class ControllerPaymentFirstdata extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_payment'),
-			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_payment'),
+			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('payment/firstdata', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('payment/firstdata', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['action'] = $this->url->link('payment/firstdata', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['firstdata_merchant_id'])) {
@@ -334,22 +335,22 @@ class ControllerPaymentFirstdata extends Controller {
 					$this->data['capture_error'] = '';
 				}
 
-				$this->data['text_payment_info']      = $this->language->get('text_payment_info');
-				$this->data['text_order_ref']         = $this->language->get('text_order_ref');
-				$this->data['text_order_total']       = $this->language->get('text_order_total');
-				$this->data['text_total_captured']    = $this->language->get('text_total_captured');
-				$this->data['text_capture_status']    = $this->language->get('text_capture_status');
-				$this->data['text_void_status']       = $this->language->get('text_void_status');
-				$this->data['text_transactions']      = $this->language->get('text_transactions');
-				$this->data['text_yes']               = $this->language->get('text_yes');
-				$this->data['text_no']                = $this->language->get('text_no');
-				$this->data['text_column_amount']     = $this->language->get('text_column_amount');
-				$this->data['text_column_type']       = $this->language->get('text_column_type');
+				$this->data['text_payment_info'] = $this->language->get('text_payment_info');
+				$this->data['text_order_ref'] = $this->language->get('text_order_ref');
+				$this->data['text_order_total'] = $this->language->get('text_order_total');
+				$this->data['text_total_captured'] = $this->language->get('text_total_captured');
+				$this->data['text_capture_status'] = $this->language->get('text_capture_status');
+				$this->data['text_void_status'] = $this->language->get('text_void_status');
+				$this->data['text_transactions'] = $this->language->get('text_transactions');
+				$this->data['text_yes'] = $this->language->get('text_yes');
+				$this->data['text_no'] = $this->language->get('text_no');
+				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
+				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
-				$this->data['button_capture']         = $this->language->get('button_capture');
-				$this->data['button_void']            = $this->language->get('button_void');
-				$this->data['text_confirm_void']      = $this->language->get('text_confirm_void');
-				$this->data['text_confirm_capture']   = $this->language->get('text_confirm_capture');
+				$this->data['button_capture'] = $this->language->get('button_capture');
+				$this->data['button_void'] = $this->language->get('button_void');
+				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
+				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
 				$this->data['token'] = $this->request->get['token'];
@@ -422,7 +423,11 @@ class ControllerPaymentFirstdata extends Controller {
 			$this->error['error_demo_url'] = $this->language->get('error_demo_url');
 		}
 
-		return !$this->error;
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

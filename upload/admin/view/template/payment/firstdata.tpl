@@ -5,11 +5,9 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
-
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
   <?php } ?>
-  
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
@@ -106,7 +104,6 @@
           </tr>
         </table>
       </div>
-
       <div id="tab-order-status">
         <table class="form">
           <tr>
@@ -159,7 +156,6 @@
           </tr>
         </table>
       </div>
-
       <div id="tab-payment">
         <table class="form">
           <tr>
@@ -185,7 +181,6 @@
           </tr>
         </table>
       </div>
-
       <div id="tab-advanced">
         <table class="form">
           <tr>
@@ -208,13 +203,14 @@
           </tr>
         </table>
       </div>
-
       </form>
     </div>
   </div>
 </div>
+
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 $('#tabs a:first').tab('show');
 //--></script>
+
 <?php echo $footer; ?>
