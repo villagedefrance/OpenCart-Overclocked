@@ -351,7 +351,9 @@ function addModule() {
 //--></script>
 
 <script type="text/javascript"><!--
-$(function() {$('#tabs a').tabs();});
+$(function() {
+	$('#tabs a').tabs();
+});
 //--></script>
 
 <?php echo $footer; ?>

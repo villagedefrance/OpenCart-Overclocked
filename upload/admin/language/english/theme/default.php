@@ -18,8 +18,6 @@ $_['tab_credits'] 						= 'Credits';
 // Entry
 $_['entry_widescreen']				= 'Widescreen Mode:<br /><span class="help">Widescreen is 1280 pixels wide, otherwise default 980 pixels will be used.</span>';
 $_['entry_breadcrumbs']			= 'Show Breadcrumbs:<br /><span class="help">If "No" is selected, the breadcrumb trail will not show on catalog pages.</span>';
-$_['entry_cookie_consent']       	= 'Activate Cookie Consent:<br /><span class="help">If Yes, Cookie Consent banner will be enabled. Gives customers the option to opt-out of Google Analytics tracking.</span>';
-$_['entry_cookie_privacy']        	= 'Select Cookie Policy page:<br /><span class="help">Usually part of the Privacy Policy. Cookie Consent must be activated.</span>';
 $_['entry_back_to_top']			= 'Enable Scroll Back to Top:';
 $_['entry_footer_theme'] 			= 'Footer Theme:<br /><span class="help">Choose between a Light or a Dark theme.</span>';
 $_['entry_footer_location'] 		= 'Display Address:';

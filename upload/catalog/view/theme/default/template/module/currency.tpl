@@ -20,18 +20,17 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	currency_width = $('#currency-option').width();
-	$('#currency-selector').css('width', (currency_width + 10) + 'px');
-	$('#currency-selector').on('mouseenter touchstart touchend', function() {
-		$('#currency-selection').click(function(event) {
-			event.preventDefault();
-		});
-		$('#currency-option').slideDown(150);
-	});
-	$('#currency-option').on('mouseleave', function() {
-		$('#currency-option').slideUp(150);
-	});
+  currency_width = $('#currency-option').width();
+  $('#currency-selector').css('width', (currency_width + 10) + 'px');
+  $('#currency-selector').on('mouseenter touchstart touchend', function() {
+    $('#currency-selection').click(function(event) {
+      event.preventDefault();
+    });
+    $('#currency-option').slideDown(150);
+  });
+  $('#currency-option').on('mouseleave', function() {
+    $('#currency-option').slideUp(150);
+  });
 });
 //--></script>
-
 <?php } ?>

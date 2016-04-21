@@ -29,44 +29,28 @@
 
 <script type="text/javascript"><!--
 jQuery(document).ready(function() {
-	$('#carousel<?php echo $module; ?>').slick({
-		arrows: true,
-		prevArrow: '<p class="slick-prev"><span></span></p>',
-		nextArrow: '<p class="slick-next"><span></span></p>',
-		autoplay: <?php echo $auto; ?>,
-		autoplaySpeed: 5000,
-		pauseOnHover: true,
-		slidesToScroll: 1,
-		infinite: true,
-		speed: 800,
-		easing: 'easeInOutExpo',
-		mobileFirst: true,
-		swipe: true,
-		rtl: false,
-		responsive: [
-		{	breakpoint: 1280,
-			settings: {
-				slidesToShow: <?php echo $show_1280; ?>
-			}
-		},
-		{	breakpoint: 960,
-			settings: {
-				slidesToShow: <?php echo $show_960; ?>
-			}
-		},
-		{ 	breakpoint: 640,
-			settings: {
-				slidesToShow: <?php echo $show_640; ?>
-			}
-		},
-		{ 	breakpoint: 320,
-			settings: {
-				slidesToShow: <?php echo $show_320; ?>
-			}
-		}]
-	});
-	$('.carousel-swipe').on('swipe', function(event, slick, direction) {
-		console.log(direction);
-	});
+  $('#carousel<?php echo $module; ?>').slick({
+    arrows: true,
+    prevArrow: '<p class="slick-prev"><span></span></p>',
+    nextArrow: '<p class="slick-next"><span></span></p>',
+    autoplay: <?php echo $auto; ?>,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    slidesToScroll: 1,
+    infinite: true,
+    speed: 800,
+    easing: 'easeInOutExpo',
+    mobileFirst: true,
+    swipe: true,
+    rtl: false,
+    responsive: [
+    { breakpoint: 1280, settings: { slidesToShow: <?php echo $show_1280; ?> } },
+    { breakpoint: 960, settings: { slidesToShow: <?php echo $show_960; ?> } },
+    { breakpoint: 640, settings: { slidesToShow: <?php echo $show_640; ?> } },
+    { breakpoint: 320, settings: { slidesToShow: <?php echo $show_320; ?> } } ]
+  });
+  $('.carousel-swipe').on('swipe', function(event, slick, direction) {
+    console.log(direction);
+  });
 })(jQuery);
 --></script>

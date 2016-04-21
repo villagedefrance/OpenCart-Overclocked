@@ -61,32 +61,6 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_cookie_consent; ?></td>
-            <td><?php if ($default_cookie_consent) { ?>
-              <input type="radio" name="default_cookie_consent" value="1" id="cookie-consent-on" class="radio" checked />
-              <label for="cookie-consent-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="default_cookie_consent" value="0" id="cookie-consent-off" class="radio" />
-              <label for="cookie-consent-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="default_cookie_consent" value="1" id="cookie-consent-on" class="radio" />
-              <label for="cookie-consent-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="default_cookie_consent" value="0" id="cookie-consent-off" class="radio" checked />
-              <label for="cookie-consent-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_cookie_privacy; ?></td>
-            <td><select name="default_cookie_privacy">
-              <?php foreach ($informations as $information) { ?>
-                <?php if ($information['information_id'] == $default_cookie_privacy) { ?>
-                  <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_back_to_top; ?></td>
             <td><?php if ($default_back_to_top) { ?>
               <input type="radio" name="default_back_to_top" value="1" id="back-to-top-on" class="radio" checked />

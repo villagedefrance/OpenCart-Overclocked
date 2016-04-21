@@ -48,39 +48,39 @@
 <script type="text/javascript" src="catalog/view/javascript/html5.js"></script>
 <![endif]-->
 <?php if ($stores) { ?>
-<script type="text/javascript"><!--
+<script type="text/javascript">
 $(document).ready(function() {
 <?php foreach ($stores as $store) { ?>
 	$('body').prepend('<iframe src="<?php echo $store; ?>" style="display:none;"></iframe>');
 <?php } ?>
 });
-//--></script>
+</script>
 <?php } ?>
-<?php if ($theme['cookie_consent']) { ?>
-<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/cookiecuttr.css" />
-<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.cookie-1.4.1.min.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookiecuttr.js"></script>
+<?php if ($cookie_consent) { ?>
+<link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/consent/css/cookieDisclaimer.min.css" />
+<script type="text/javascript" src="catalog/view/javascript/jquery/consent/jquery.cookieDisclaimer.pack.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$.cookieCuttr({
-		cookieAnalytics: false,
-		cookiePolicyPage: true,
-		cookieAcceptButton: true,
-		cookieDeclineButton: true,
-		cookiePolicyPageMessage: '<?php echo $theme['cookie_message']; ?>',
-		cookieAcceptButtonText: '<?php echo $theme['cookie_yes']; ?>',
-		cookieDeclineButtonText: '<?php echo $theme['cookie_no']; ?>',
-		cookieExpires: 365
-	});
+  $('body').cookieDisclaimer({
+    position: "<?php echo $cookie_position; ?>",
+    style: "<?php echo $cookie_theme; ?>",
+    text: "<?php echo $text_message; ?>",
+    cssPosition: "relative",
+    acceptBtn: {
+      text: "<?php echo $text_accept; ?>"
+    },
+    policyBtn: {
+      active: true,
+      text: "<?php echo $text_policy; ?>",
+      link: "<?php echo $cookie_privacy; ?>"
+    },
+    cookie: { expire: <?php echo $cookie_age; ?> }
+  });
 });
-if (jQuery.cookie('cc_cookie_accept') == "cc_cookie_accept") {
-	<?php echo ($google_analytics) ? "<br>" + $google_analytics : ''; ?><?php echo ($alexa_analytics) ? "<br>" + $alexa_analytics : ''; ?>
-}
 </script>
-<?php } else { ?>
+<?php } ?>
 <?php echo ($google_analytics) ? $google_analytics : ''; ?>
 <?php echo ($alexa_analytics) ? $alexa_analytics : ''; ?>
-<?php } ?>
 <?php if ($rss) { ?>
 <link rel="alternate" type="application/rss+xml" href="<?php echo $rss_href; ?>" />
 <?php } ?>

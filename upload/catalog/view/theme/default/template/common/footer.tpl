@@ -109,20 +109,20 @@ Please donate via PayPal to donate@opencart.com
 <?php if ($this->config->get('default_back_to_top')) { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#backtotop').hide();
-	$(function() {
-		$(window).scroll(function() {
-			if ($(this).scrollTop() > 100) {
-				$('#backtotop').fadeIn();
-			} else {
-				$('#backtotop').fadeOut();
-			}
-		});
-		$('#backtotop a').click(function() {
-			$('body,html').animate({scrollTop:0}, 800);
-			return false;
-		});
-	});
+  $('#backtotop').hide();
+  $(function() {
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        $('#backtotop').fadeIn();
+      } else {
+        $('#backtotop').fadeOut();
+      }
+    });
+    $('#backtotop a').click(function() {
+      $('body,html').animate({scrollTop:0}, 800);
+      return false;
+    });
+  });
 });
 //--></script>
 <?php } ?>

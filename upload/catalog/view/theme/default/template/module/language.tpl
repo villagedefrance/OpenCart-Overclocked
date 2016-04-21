@@ -20,18 +20,17 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	language_width = $('#language-option').width();
-	$('#language-selector').css('width', (language_width + 10) + 'px');
-	$('#language-selector').on('mouseenter touchstart touchend', function() {
-		$('#language-selection').click(function(event) {
-			event.preventDefault();
-		});
-		$('#language-option').slideDown(150);
-	});
-	$('#language-option').on('mouseleave touchmove', function() {
-		$('#language-option').slideUp(150);
-	});
+  language_width = $('#language-option').width();
+  $('#language-selector').css('width', (language_width + 10) + 'px');
+  $('#language-selector').on('mouseenter touchstart touchend', function() {
+    $('#language-selection').click(function(event) {
+      event.preventDefault();
+    });
+    $('#language-option').slideDown(150);
+  });
+  $('#language-option').on('mouseleave', function() {
+    $('#language-option').slideUp(150);
+  });
 });
 //--></script>
-
 <?php } ?>

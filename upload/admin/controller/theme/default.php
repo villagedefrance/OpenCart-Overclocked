@@ -43,8 +43,6 @@ class ControllerThemeDefault extends Controller {
 
 		$this->data['entry_widescreen'] = $this->language->get('entry_widescreen');
 		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
-		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
-		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
 		$this->data['entry_footer_theme'] = $this->language->get('entry_footer_theme');
 		$this->data['entry_footer_location'] = $this->language->get('entry_footer_location');
@@ -126,22 +124,6 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_breadcrumbs'] = $this->request->post[$this->_name . '_breadcrumbs'];
 		} else {
 			$this->data[$this->_name . '_breadcrumbs'] = $this->config->get($this->_name . '_breadcrumbs');
-		}
-
-		if (isset($this->request->post[$this->_name . '_cookie_consent'])) {
-			$this->data[$this->_name . '_cookie_consent'] = $this->request->post[$this->_name . '_cookie_consent'];
-		} else {
-			$this->data[$this->_name . '_cookie_consent'] = $this->config->get($this->_name . '_cookie_consent');
-		}
-
-		$this->load->model('catalog/information');
-
-		$this->data['informations'] = $this->model_catalog_information->getInformationPages();
-
-		if (isset($this->request->post[$this->_name . '_cookie_privacy'])) {
-			$this->data[$this->_name . '_cookie_privacy'] = $this->request->post[$this->_name . '_cookie_privacy'];
-		} else {
-			$this->data[$this->_name . '_cookie_privacy'] = $this->config->get($this->_name . '_cookie_privacy');
 		}
 
 		if (isset($this->request->post[$this->_name . '_back_to_top'])) {

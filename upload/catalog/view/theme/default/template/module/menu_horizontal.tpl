@@ -93,7 +93,7 @@
 <script type="text/javascript"><!--
 $('#menu-holder').prepend('<div id="menu-trigger"><img src="catalog/view/theme/default/image/menu-button-<?php echo $menu_theme; ?>.png" alt="" style="padding:3px 15px;" /></div>');
 $('#menu-trigger').live('click', function(e) {
-	e.preventDefault();
-	$('#menu-phone').slideToggle();
+  e.preventDefault();
+  $('#menu-phone').slideToggle();
 });
 //--></script>

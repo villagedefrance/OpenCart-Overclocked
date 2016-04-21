@@ -61,6 +61,11 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_magnific'] = $this->language->get('text_magnific');
 		$this->data['text_zoomlens'] = $this->language->get('text_zoomlens');
 		$this->data['text_captcha'] = $this->language->get('text_captcha');
+		$this->data['text_cookies'] = $this->language->get('text_cookies');
+		$this->data['text_black'] = $this->language->get('text_black');
+		$this->data['text_white'] = $this->language->get('text_white');
+		$this->data['text_top'] = $this->language->get('text_top');
+		$this->data['text_bottom'] = $this->language->get('text_bottom');
 		$this->data['text_news'] = $this->language->get('text_news');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
@@ -182,6 +187,11 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_share_addthis'] = $this->language->get('entry_share_addthis');
 		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
+		$this->data['entry_cookie_consent'] = $this->language->get('entry_cookie_consent');
+		$this->data['entry_cookie_theme'] = $this->language->get('entry_cookie_theme');
+		$this->data['entry_cookie_position'] = $this->language->get('entry_cookie_position');
+		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
+		$this->data['entry_cookie_age'] = $this->language->get('entry_cookie_age');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
@@ -1114,6 +1124,38 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_captcha_font'] = $this->request->post['config_captcha_font'];
 		} else {
 			$this->data['config_captcha_font'] = $this->config->get('config_captcha_font');
+		}
+
+		if (isset($this->request->post['config_cookie_consent'])) {
+			$this->data['config_cookie_consent'] = $this->request->post['config_cookie_consent'];
+		} else {
+			$this->data['config_cookie_consent'] = $this->config->get('config_cookie_consent');
+		}
+
+		if (isset($this->request->post['config_cookie_theme'])) {
+			$this->data['config_cookie_theme'] = $this->request->post['config_cookie_theme'];
+		} else {
+			$this->data['config_cookie_theme'] = $this->config->get('config_cookie_theme');
+		}
+
+		if (isset($this->request->post['config_cookie_position'])) {
+			$this->data['config_cookie_position'] = $this->request->post['config_cookie_position'];
+		} else {
+			$this->data['config_cookie_position'] = $this->config->get('config_cookie_position');
+		}
+
+		$this->data['information_pages'] = $this->model_catalog_information->getInformationPages();
+
+		if (isset($this->request->post['config_cookie_privacy'])) {
+			$this->data['config_cookie_privacy'] = $this->request->post['config_cookie_privacy'];
+		} else {
+			$this->data['config_cookie_privacy'] = $this->config->get('config_cookie_privacy');
+		}
+
+		if (isset($this->request->post['config_cookie_age'])) {
+			$this->data['config_cookie_age'] = $this->request->post['config_cookie_age'];
+		} else {
+			$this->data['config_cookie_age'] = $this->config->get('config_cookie_age');
 		}
 
 		if (isset($this->request->post['config_news_addthis'])) {

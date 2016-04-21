@@ -1183,6 +1183,63 @@
             </select></td>
           </tr>
         </table>
+        <h2><?php echo $text_cookies; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_cookie_consent; ?></td>
+            <td><?php if ($config_cookie_consent) { ?>
+              <input type="radio" name="config_cookie_consent" value="1" id="cookie-consent-on" class="radio" checked />
+              <label for="cookie-consent-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_cookie_consent" value="0" id="cookie-consent-off" class="radio" />
+              <label for="cookie-consent-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_cookie_consent" value="1" id="cookie-consent-on" class="radio" />
+              <label for="cookie-consent-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_cookie_consent" value="0" id="cookie-consent-off" class="radio" checked />
+              <label for="cookie-consent-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_cookie_theme; ?></td>
+            <td><select name="config_cookie_theme">
+              <?php if (isset($config_cookie_theme)) { $selected = "selected"; ?>
+                <option value="dark" <?php if ($config_cookie_theme == 'dark') { echo $selected; } ?>><?php echo $text_black; ?> <?php echo $text_default; ?></option>
+                <option value="light" <?php if ($config_cookie_theme == 'light') { echo $selected; } ?>><?php echo $text_white; ?></option>
+              <?php } else { ?>
+                <option value="dark"><?php echo $text_black; ?> <?php echo $text_default; ?></option>
+                <option value="light"><?php echo $text_white; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_cookie_position; ?></td>
+            <td><select name="config_cookie_position">
+              <?php if (isset($config_cookie_position)) { $selected = "selected"; ?>
+                <option value="top" <?php if ($config_cookie_position == 'top') { echo $selected; } ?>><?php echo $text_top; ?> <?php echo $text_default; ?></option>
+                <option value="bottom" <?php if ($config_cookie_position == 'bottom') { echo $selected; } ?>><?php echo $text_bottom; ?></option>
+              <?php } else { ?>
+                <option value="top"><?php echo $text_top; ?> <?php echo $text_default; ?></option>
+                <option value="bottom"><?php echo $text_bottom; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_cookie_privacy; ?></td>
+            <td><select name="config_cookie_privacy">
+              <?php foreach ($information_pages as $information) { ?>
+                <?php if ($information['information_id'] == $config_cookie_privacy) { ?>
+                  <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_cookie_age; ?></td>
+            <td><input type="text" name="config_cookie_age" value="<?php echo $config_cookie_age; ?>" size="5" /></td>
+          </tr>
+        </table>
         <h2><?php echo $text_news; ?></h2>
         <table class="form">
           <tr>
