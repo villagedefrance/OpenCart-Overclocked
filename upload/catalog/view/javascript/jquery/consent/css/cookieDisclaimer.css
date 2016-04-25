@@ -7,7 +7,7 @@
  *  Released Under GNU/GPL License
  *  (c)2014-2015 by BRAINLEAF Communication
  *
- *  BugReport/Assistence: https://github.com/Gix075/jqueryCookieDisclaimer/issues
+ *  BugReport/Assistance: https://github.com/Gix075/jqueryCookieDisclaimer/issues
  */
 
 /* CookieDisclaimer Bar */
@@ -34,9 +34,14 @@
 	outline: none;
 }
 .cdbar .cdbar-buttons button {
-	border: none;
 	line-height: 18px;
 	outline: none;
+	border: none;
+}
+.cdbar .cdbar-buttons button::-moz-focus-inner {
+	background-image: none;
+	padding: 0;
+	border: 0;
 }
 .cdbar.fixed {
 	position: fixed;
