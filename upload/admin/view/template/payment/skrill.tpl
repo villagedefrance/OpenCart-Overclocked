@@ -1,9 +1,9 @@
 <?php echo $header; ?>
 <div id="content">
   <div class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+  <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-    <?php } ?>
+  <?php } ?>
   </div>
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
@@ -21,7 +21,7 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="form">
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for=for="input-email"><?php echo $entry_email; ?></label></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-email"><?php echo $entry_email; ?></label></td>
             <td><?php if ($error_email) { ?>
               <input type="text" name="skrill_email" value="<?php echo $skrill_email; ?>" id="input-mail"  size="40" class="input-error" />
               <span class="error"><?php echo $error_email; ?></span>
@@ -30,7 +30,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><label for=for="input-secret"><?php echo $entry_secret; ?></label></td>
+            <td><label for="input-secret"><?php echo $entry_secret; ?></label></td>
             <td><input type="text" name="skrill_secret" value="<?php echo $skrill_secret; ?>" id="input-mail" size="40" />
           </tr>
           <tr>

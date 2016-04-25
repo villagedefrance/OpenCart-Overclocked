@@ -1,9 +1,10 @@
 <?php
 class ControllerPaymentSkrill extends Controller {
+
 	public function index() {
 		$this->load->model('checkout/order');
 
-		$this->load->language('payment/skrill');
+		$this->language->load('payment/skrill');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
@@ -12,6 +13,7 @@ class ControllerPaymentSkrill extends Controller {
 		$this->data['pay_to_email'] = $this->config->get('skrill_email');
 		$this->data['platform'] = '31974336';
 		$this->data['description'] = $this->config->get('config_name');
+
 		$this->data['transaction_id'] = $this->session->data['order_id'];
 
 		$this->data['return_url'] = $this->url->link('checkout/success');
@@ -77,11 +79,11 @@ class ControllerPaymentSkrill extends Controller {
 
 			// md5sig validation
 			if ($this->config->get('skrill_secret')) {
-				$hash  = $this->request->post['merchant_id'];
+				$hash = $this->request->post['merchant_id'];
 				$hash .= $this->request->post['transaction_id'];
 				$hash .= strtoupper(md5($this->config->get('skrill_secret')));
-				$hash .= $this->request->post['mb_amount'];
-				$hash .= $this->request->post['mb_currency'];
+				$hash .= $this->request->post['amount'];
+				$hash .= $this->request->post['currency'];
 				$hash .= $this->request->post['status'];
 
 				$md5hash = strtoupper(md5($hash));
