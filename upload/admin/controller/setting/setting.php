@@ -127,6 +127,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_contact_map'] = $this->language->get('entry_contact_map');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
+		$this->data['entry_buy_now'] = $this->language->get('entry_buy_now');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
 		$this->data['entry_auto_invoice'] = $this->language->get('entry_auto_invoice');
@@ -724,6 +725,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_guest_checkout'] = $this->request->post['config_guest_checkout'];
 		} else {
 			$this->data['config_guest_checkout'] = $this->config->get('config_guest_checkout');
+		}
+
+		if (isset($this->request->post['config_buy_now'])) {
+			$this->data['config_buy_now'] = $this->request->post['config_buy_now'];
+		} else {
+			$this->data['config_buy_now'] = $this->config->get('config_buy_now');
 		}
 
 		if (isset($this->request->post['config_checkout_id'])) {

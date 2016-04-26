@@ -347,6 +347,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_buy_now; ?></td>
+            <td><?php if ($config_buy_now) { ?>
+              <input type="radio" name="config_buy_now" value="1" id="buy-now-on" class="radio" checked />
+              <label for="buy-now-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_buy_now" value="0" id="buy-now-off" class="radio" />
+              <label for="buy-now-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_buy_now" value="1" id="buy-now-on" class="radio" />
+              <label for="buy-now-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_buy_now" value="0" id="buy-now-off" class="radio" checked />
+              <label for="buy-now-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_checkout; ?></td>
             <td><select name="config_checkout_id">
               <option value="0"><?php echo $text_none; ?></option>

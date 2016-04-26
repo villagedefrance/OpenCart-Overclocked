@@ -58,6 +58,9 @@ $_['tab_offer']     			= 'Offers';
 $_['tab_review']        		= 'Reviews (%s)';
 $_['tab_related']       		= 'Related Products';
 
+// Button
+$_['button_buy_it_now']	= 'Buy it Now!';
+
 // Offer
 $_['text_G241']				= 'Buy 1 Get 1 %s!';
 $_['text_G241D']				= 'Buy 1 %s and Get 1 %s for %s!';

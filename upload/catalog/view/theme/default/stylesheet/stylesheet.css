@@ -642,7 +642,7 @@ table.radio tr.highlight:hover td {
 	padding-top: 3px;
 }
 /* Button */
-a.button, input.button, input.button-cart {
+a.button, input.button, input.button-cart, input.button-buy-now {
 	color: #FFF;
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: #28B0EC;
@@ -678,7 +678,7 @@ input.button {
 	font-weight: bold;
 	line-height: 12px;
 }
-input.button-cart {
+input.button-cart, input.button-buy-now {
 	position: relative;
 	top: 0px;
 	height: 28px;
@@ -689,7 +689,7 @@ input.button-cart {
 	line-height: 14px;
 	border: 0;
 }
-a.button:hover, input.button:hover, input.button-cart:hover {
+a.button:hover, input.button:hover, input.button-cart:hover, input.button-buy-now:hover {
 	background-color: #0D6D98;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#0D6D98), to(#045C84));
 	background-image: -webkit-linear-gradient(top, #0D6D98, #045C84);
