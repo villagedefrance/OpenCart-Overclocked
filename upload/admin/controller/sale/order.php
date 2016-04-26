@@ -2350,8 +2350,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2359,8 +2360,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -2417,7 +2420,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_shipping_label.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_shipping_label');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function pick_list() {
@@ -2477,8 +2486,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2486,8 +2496,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -2638,7 +2650,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_pick_list.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_pick_list');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function delivery_note() {
@@ -2696,8 +2714,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2705,8 +2724,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -2862,7 +2883,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_delivery_note.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_delivery_note');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function invoice() {
@@ -2912,8 +2939,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2921,8 +2949,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -3097,7 +3127,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_invoice.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_invoice');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 }
 ?>

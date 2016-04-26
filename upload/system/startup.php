@@ -123,5 +123,9 @@ require_once(DIR_SYSTEM . 'library/amazonus.php');
 require_once(DIR_SYSTEM . 'helper/agent.php');
 require_once(DIR_SYSTEM . 'helper/crypto.php');
 require_once(DIR_SYSTEM . 'helper/json.php');
+require_once(DIR_SYSTEM . 'helper/pdf.php');
 require_once(DIR_SYSTEM . 'helper/utf8.php');
+
+// Vendor
+require_once(DIR_SYSTEM . 'vendor/dompdf/dompdf_config.inc.php');
 ?>

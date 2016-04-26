@@ -236,6 +236,7 @@ class ControllerToolConfiguration extends Controller {
 			'agent'	=> DIR_SYSTEM . 'helper/agent.php',
 			'crypto'	=> DIR_SYSTEM . 'helper/crypto.php',
 			'json'		=> DIR_SYSTEM . 'helper/json.php',
+			'pdf'		=> DIR_SYSTEM . 'helper/pdf.php',
 			'utf8'		=> DIR_SYSTEM . 'helper/utf8.php',
 			'vat'		=> DIR_SYSTEM . 'helper/vat.php'
 		);
