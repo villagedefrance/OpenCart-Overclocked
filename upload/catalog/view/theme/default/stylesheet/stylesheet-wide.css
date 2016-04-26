@@ -642,7 +642,7 @@ table.radio tr.highlight:hover td {
 	padding-top: 3px;
 }
 /* Button */
-a.button, input.button, input.button-cart, input.button-buy-now {
+a.button, input.button, input.button-cart {
 	color: #FFF;
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: #28B0EC;
@@ -678,7 +678,7 @@ input.button {
 	font-weight: bold;
 	line-height: 12px;
 }
-input.button-cart, input.button-buy-now {
+input.button-cart {
 	position: relative;
 	top: 0px;
 	height: 28px;
@@ -689,7 +689,7 @@ input.button-cart, input.button-buy-now {
 	line-height: 14px;
 	border: 0;
 }
-a.button:hover, input.button:hover, input.button-cart:hover, input.button-buy-now:hover {
+a.button:hover, input.button:hover, input.button-cart:hover {
 	background-color: #0D6D98;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#0D6D98), to(#045C84));
 	background-image: -webkit-linear-gradient(top, #0D6D98, #045C84);
@@ -697,6 +697,44 @@ a.button:hover, input.button:hover, input.button-cart:hover, input.button-buy-no
 	background-image: -ms-linear-gradient(top, #0D6D98, #045C84);
 	background-image: -o-linear-gradient(top, #0D6D98, #045C84);
 	background-image: linear-gradient(to bottom, #0D6D98, #045C84);
+}
+/* Button Buy it Now */
+input.button-buy-now {
+	color: #FFF;
+	top: 0px;
+	height: 30px;
+	padding: 0px 15px;
+	margin-left: 10px;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 15px;
+	border: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #F9CB37;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F9CB37), to(#F08625));
+	background-image: -webkit-linear-gradient(top, #F9CB37, #F08625);
+	background-image: -moz-linear-gradient(top, #F9CB37, #F08625);
+	background-image: -ms-linear-gradient(top, #F9CB37, #F08625);
+	background-image: -o-linear-gradient(top, #F9CB37, #F08625);
+	background-image: linear-gradient(to bottom, #F9CB37, #F08625);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 2px 2px #DDD;
+	-moz-box-shadow: 0px 2px 2px #DDD;
+	box-shadow: 0px 2px 2px #DDD;
+	outline: none;
+	cursor: pointer;
+}
+input.button-buy-now:hover {
+	background-color: #F08625;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F08625), to(#E5661D));
+	background-image: -webkit-linear-gradient(top, #F08625, #E5661D);
+	background-image: -moz-linear-gradient(top, #F08625, #E5661D);
+	background-image: -ms-linear-gradient(top, #F08625, #E5661D);
+	background-image: -o-linear-gradient(top, #F08625, #E5661D);
+	background-image: linear-gradient(to bottom, #F08625, #E5661D);
 }
 /* Button Add */
 a.button-add {
