@@ -369,8 +369,18 @@ class ControllerCheckoutExpressSignup extends Controller {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
+		// Email exists check
 		if ($this->model_checkout_checkout_express->getTotalCustomersByEmail($this->request->post['email'])) {
 			$this->error['warning'] = $this->language->get('error_exists');
+		}
+
+		// Email MX Record check
+		$this->load->model('tool/email');
+
+		$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
+
+		if (!$email_valid) {
+			$this->error['email'] = $this->language->get('error_email');
 		}
 
 		if (strlen($this->request->post['firstname']) < 3) {

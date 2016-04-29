@@ -371,10 +371,24 @@ class ControllerAffiliateRegister extends Controller {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		$this->load->model('affiliate/affiliate');
+		if (isset($this->request->post['email'])) {
+			// Email exists check
+			$this->load->model('affiliate/affiliate');
 
-		if (isset($this->request->post['email']) && $this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_exists');
+			$email_exist = $this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email']) ? true : false;
+
+			if ($email_exist) {
+				$this->error['warning'] = $this->language->get('error_exists');
+			}
+
+			// Email MX Record check
+			$this->load->model('tool/email');
+
+			$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
+
+			if (!$email_valid) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
 		}
 
 		if (!isset($this->request->post['telephone']) || (utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
