@@ -3,7 +3,7 @@ class ModelPaymentG2aPay extends Model {
 
 	public function install() {
 		$this->db->query("
-			CREATE TABLE `" . DB_PREFIX . "g2apay_order` (
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "g2apay_order` (
 				`g2apay_order_id` int(11) NOT NULL AUTO_INCREMENT,
 				`order_id` int(11) NOT NULL,
 				`g2apay_transaction_id` varchar(255) NOT NULL,
@@ -35,7 +35,7 @@ class ModelPaymentG2aPay extends Model {
 	}
 
 	public function getOrder($order_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "g2apay_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "g2apay_order WHERE order_id = '" . (int)$order_id . "' LIMIT 1");
 
 		if ($query->num_rows) {
 			$order = $query->row;
@@ -47,7 +47,7 @@ class ModelPaymentG2aPay extends Model {
 	}
 
 	public function getTotalReleased($g2apay_order_id) {
-		$query = $this->db->query("SELECT SUM(`amount`) AS `total` FROM `" . DB_PREFIX . "g2apay_order_transaction` WHERE `g2apay_order_id` = '" . (int)$g2apay_order_id . "' AND (`type` = 'payment' OR `type` = 'refund')");
+		$query = $this->db->query("SELECT SUM(amount) AS total FROM " . DB_PREFIX . "g2apay_order_transaction WHERE g2apay_order_id = '" . (int)$g2apay_order_id . "' AND (`type` = 'payment' OR `type` = 'refund')");
 
 		return (double)$query->row['total'];
 	}
@@ -63,12 +63,13 @@ class ModelPaymentG2aPay extends Model {
 			$refunded_amount = round($amount, 2);
 
 			$string = $g2apay_order['g2apay_transaction_id'] . $g2apay_order['order_id'] . round($g2apay_order['total'], 2) . $refunded_amount . html_entity_decode($this->config->get('g2apay_secret'));
+
 			$hash = hash('sha256', $string);
 
 			$fields = array(
-				'action' => 'refund',
-				'amount' => $refunded_amount,
-				'hash'   => $hash,
+				'action'	=> 'refund',
+				'amount'	=> $refunded_amount,
+				'hash'		=> $hash
 			);
 
 			return $this->sendCurl($url, $fields);
@@ -78,13 +79,14 @@ class ModelPaymentG2aPay extends Model {
 	}
 
 	public function updateRefundStatus($g2apay_order_id, $status) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "g2apay_order` SET `refund_status` = '" . (int)$status . "' WHERE `g2apay_order_id` = '" . (int)$g2apay_order_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "g2apay_order SET refund_status = '" . (int)$status . "' WHERE g2apay_order_id = '" . (int)$g2apay_order_id . "'");
 	}
 
 	private function getTransactions($g2apay_order_id, $currency_code) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "g2apay_order_transaction` WHERE `g2apay_order_id` = '" . (int)$g2apay_order_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "g2apay_order_transaction WHERE g2apay_order_id = '" . (int)$g2apay_order_id . "'");
 
 		$transactions = array();
+
 		if ($query->num_rows) {
 			foreach ($query->rows as $row) {
 				$row['amount'] = $this->currency->format($row['amount'], $currency_code, true, true);
@@ -97,11 +99,11 @@ class ModelPaymentG2aPay extends Model {
 	}
 
 	public function addTransaction($g2apay_order_id, $type, $total) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "g2apay_order_transaction` SET `g2apay_order_id` = '" . (int)$g2apay_order_id . "',`date_added` = now(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . (double)$total . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "g2apay_order_transaction SET g2apay_order_id = '" . (int)$g2apay_order_id . "', date_added = NOW(), `type` = '" . $this->db->escape($type) . "', amount = '" . (double)$total . "'");
 	}
 
 	public function getTotalRefunded($g2apay_order_id) {
-		$query = $this->db->query("SELECT SUM(`amount`) AS `total` FROM `" . DB_PREFIX . "g2apay_order_transaction` WHERE `g2apay_order_id` = '" . (int)$g2apay_order_id . "' AND 'refund'");
+		$query = $this->db->query("SELECT SUM(amount) AS total FROM " . DB_PREFIX . "g2apay_order_transaction WHERE g2apay_order_id = '" . (int)$g2apay_order_id . "' AND 'refund'");
 
 		return (double)$query->row['total'];
 	}
@@ -115,7 +117,9 @@ class ModelPaymentG2aPay extends Model {
 		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
 
 		$auth_hash = hash('sha256', $this->config->get('g2apay_api_hash') . $this->config->get('g2apay_username') . html_entity_decode($this->config->get('g2apay_secret')));
+
 		$authorization = $this->config->get('g2apay_api_hash') . ';' . $auth_hash;
+
 		curl_setopt(
 			$curl, CURLOPT_HTTPHEADER, array(
 				"Authorization: " . $authorization
@@ -136,7 +140,9 @@ class ModelPaymentG2aPay extends Model {
 	public function logger($message) {
 		if ($this->config->get('g2apay_debug') == 1) {
 			$log = new Log('g2apay.log');
+
 			$backtrace = debug_backtrace();
+
 			$log->write('Origin: ' . $backtrace[6]['class'] . '::' . $backtrace[6]['function']);
 			$log->write(print_r($message, 1));
 		}

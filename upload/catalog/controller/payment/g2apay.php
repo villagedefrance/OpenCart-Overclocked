@@ -1,7 +1,8 @@
 <?php
 class ControllerPaymentG2APay extends Controller {
+
 	public function index() {
-		$this->load->language('payment/g2apay');
+		$this->language->load('payment/g2apay');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
@@ -27,14 +28,19 @@ class ControllerPaymentG2APay extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		$this->load->model('setting/extension');
+
 		$results = $this->model_setting_extension->getExtensions('total');
 
 		$order_data = array();
+
 		$total = 0;
+
 		$items = array();
+
 		$taxes = $this->cart->getTaxes();
 
 		$i = 0;
+
 		foreach ($results as $result) {
 			if ($this->config->get($result['code'] . '_status')) {
 				$this->load->model('total/' . $result['code']);
@@ -84,15 +90,15 @@ class ControllerPaymentG2APay extends Controller {
 		$string = $this->session->data['order_id'] . $order_total . $order_info['currency_code'] . html_entity_decode($this->config->get('g2apay_secret'), ENT_QUOTES, 'UTF-8');
 
 		$fields = array(
-			'api_hash'    => $this->config->get('g2apay_api_hash'),
-			'hash'        => hash('sha256', $string),
-			'order_id'    => $this->session->data['order_id'],
-			'amount'      => $order_total,
-			'currency'    => $order_info['currency_code'],
-			'email'       => $order_info['email'],
-			'url_failure' => $this->url->link('checkout/failure'),
-			'url_ok'      => $this->url->link('payment/g2apay/success'),
-			'items'       => json_encode($items)
+			'api_hash'	=> $this->config->get('g2apay_api_hash'),
+			'hash'			=> hash('sha256', $string),
+			'order_id'	=> $this->session->data['order_id'],
+			'amount'		=> $order_total,
+			'currency'	=> $order_info['currency_code'],
+			'email'		=> $order_info['email'],
+			'url_failure'	=> $this->url->link('checkout/failure'),
+			'url_ok'		=> $this->url->link('payment/g2apay/success'),
+			'items'		=> json_encode($items)
 		);
 
 		$response_data = $this->model_payment_g2apay->sendCurl($url, $fields);
@@ -147,6 +153,7 @@ class ControllerPaymentG2APay extends Controller {
 
 	public function ipn() {
 		$this->load->model('payment/g2apay');
+
 		$this->model_payment_g2apay->logger('ipn');
 
 		if (isset($this->request->get['token']) && hash_equals($this->config->get('g2apay_secret_token'), $this->request->get['token'])) {
@@ -156,8 +163,10 @@ class ControllerPaymentG2APay extends Controller {
 				$g2apay_order = $this->model_payment_g2apay->getG2aOrder($this->request->post['userOrderId']);
 
 				$string = $g2apay_order['g2apay_transaction_id'] . $g2apay_order['order_id'] . round($g2apay_order['total'], 2) . html_entity_decode($this->config->get('g2apay_secret'), ENT_QUOTES, 'UTF-8');
+
 				$hash = hash('sha256', $string);
-				if($hash != $this->request->post['hash']){
+
+				if ($hash != $this->request->post['hash']) {
 					$this->model_payment_g2apay->logger('Hashes do not match, possible tampering!');
 					return;
 				}
@@ -184,6 +193,7 @@ class ControllerPaymentG2APay extends Controller {
 				}
 
 				$this->load->model('checkout/order');
+
 				$this->model_checkout_order->addOrderHistory($this->request->post['userOrderId'], $order_status_id);
 			}
 		}

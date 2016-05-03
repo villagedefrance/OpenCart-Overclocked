@@ -30,21 +30,24 @@
             <td><input type="text" name="g2apay_username" value="<?php echo $g2apay_username; ?>" id="input-username" />
               <?php if ($error_username) { ?>
               <span class="error"><?php echo $error_username; ?></span>
-              <?php } ?></td>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-secret"><?php echo $entry_secret; ?></label></td>
             <td><input type="text" name="g2apay_secret" value="<?php echo $g2apay_secret; ?>" id="input-secret" />
               <?php if ($error_secret) { ?>
               <span class="error"><?php echo $error_secret; ?></span>
-              <?php } ?></td>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-api-hash"><?php echo $entry_api_hash; ?></label></td>
             <td><input type="text" name="g2apay_api_hash" value="<?php echo $g2apay_api_hash; ?>" id="input-api-hash" size="80" />
               <?php if ($error_api_hash) { ?>
               <span class="error"><?php echo $error_api_hash; ?></span>
-              <?php } ?></td>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><label for="input-environment"><?php echo $entry_environment; ?></label></td>
@@ -77,7 +80,7 @@
           <tr>
             <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label>
             <td><select name="g2apay_geo_zone_id" id="input-geo-zone">
-                <option value="0"><?php echo $text_all_zones; ?></option>
+              <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $g2apay_geo_zone_id) { ?>
                 <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
@@ -117,18 +120,17 @@
           </tr>
         </table>
       </div>
-
       <div id="tab-order-status">
         <table class="form">
           <tr>
             <td><label for="input-order-status"><?php echo $entry_order_status; ?></label>
             <td><select name="g2apay_order_status_id" id="input-order-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_order_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_order_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -136,11 +138,11 @@
             <td><label for="input-complete-status"><?php echo $entry_complete_status; ?></label>
             <td><select name="g2apay_complete_status_id" id="input-complete-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_complete_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_complete_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -148,11 +150,11 @@
             <td><label for="input-rejected-status"><?php echo $entry_rejected_status; ?></label>
             <td><select name="g2apay_rejected_status_id" id="input-rejected-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_rejected_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_rejected_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -160,11 +162,11 @@
             <td><label for="input-cancelled-status"><?php echo $entry_cancelled_status; ?></label>
             <td><select name="g2apay_cancelled_status_id" id="input-cancelled-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_cancelled_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_cancelled_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -172,11 +174,11 @@
             <td><label for="input-pending-status"><?php echo $entry_pending_status; ?></label>
             <td><select name="g2apay_pending_status_id" id="input-pending-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_pending_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_pending_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -184,11 +186,11 @@
             <td><label for="input-refunded-status"><?php echo $entry_refunded_status; ?></label>
             <td><select name="g2apay_refunded_status_id" id="input-refunded-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_refunded_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_refunded_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -196,11 +198,11 @@
             <td><label for="input-partially-refunded-status"><?php echo $entry_partially_refunded_status; ?></label>
             <td><select name="g2apay_partially_refunded_status_id" id="input-partially-refunded-status">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $g2apay_partially_refunded_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
-              <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
-              <?php } ?>
+                <?php if ($order_status['order_status_id'] == $g2apay_partially_refunded_status_id) { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
@@ -210,8 +212,10 @@
     </div>
   </div>
 </div>
+
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 $('#tabs a:first').tab('show');
 //--></script>
+
 <?php echo $footer; ?>
