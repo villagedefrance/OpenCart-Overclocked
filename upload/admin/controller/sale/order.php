@@ -2595,9 +2595,9 @@ class ControllerSaleOrder extends Controller {
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				if (!empty($payment_address)) {
-					$similar_address = similar_text(strtolower($payment_address), strtolower($shipping_address), $similarity);
+					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if (number_format($similarity, 0) > 80) {
+					if (number_format($similarity, 0) > 90) {
 						$same_address = true;
 					} else {
 						$same_address = false;
@@ -2839,9 +2839,9 @@ class ControllerSaleOrder extends Controller {
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				if (!empty($payment_address)) {
-					$similar_address = similar_text(strtolower($payment_address), strtolower($shipping_address), $similarity);
+					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if (number_format($similarity, 0) > 80) {
+					if (number_format($similarity, 0) > 90) {
 						$same_address = true;
 					} else {
 						$same_address = false;
@@ -3077,9 +3077,9 @@ class ControllerSaleOrder extends Controller {
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				if (!empty($payment_address)) {
-					$similar_address = similar_text(strtolower($payment_address), strtolower($shipping_address), $similarity);
+					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if (number_format($similarity, 0) > 80) {
+					if (number_format($similarity, 0) > 90) {
 						$same_address = true;
 					} else {
 						$same_address = false;

@@ -16,6 +16,7 @@ Disallow: /address.php
 Disallow: /account.php
 Disallow: /cart.php
 Disallow: /checkout.php
+Disallow: /confirm.php
 Disallow: /history.php
 Disallow: /manual.php
 Disallow: /payment_address.php
@@ -46,4 +47,4 @@ Disallow: /maintenance.php
 # you save bandwidth and server resources.
 
 # For more information about the robots.txt standard, see:
-# http://www.robotstxt.org/wc/robots.html
+# http://www.robotstxt.org/robotstxt.html

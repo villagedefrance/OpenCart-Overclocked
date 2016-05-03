@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="content">
-       <textarea wrap="off" class="log"><?php echo $error_log; ?></textarea>
+      <textarea wrap="off" class="log"><?php echo $error_log; ?></textarea>
     </div>
   </div>
 </div>
