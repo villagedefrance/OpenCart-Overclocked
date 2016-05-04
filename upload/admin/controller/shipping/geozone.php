@@ -35,8 +35,8 @@ class ControllerShippingGeoZone extends Controller {
 		$this->data['entry_rate'] = $this->language->get('entry_rate');
 		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_method'] = $this->language->get('entry_method');
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -66,7 +66,7 @@ class ControllerShippingGeoZone extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('shipping/zonerates', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'		=> $this->url->link('shipping/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -128,16 +128,16 @@ class ControllerShippingGeoZone extends Controller {
 			$this->data[$this->_name . '_status'] = $this->config->get($this->_name . '_status');
 		}
 
-		if (isset($this->request->post[$this->_name . '_sort_order'])) {
-			$this->data[$this->_name . '_sort_order'] = $this->request->post[$this->_name . '_sort_order'];
-		} else {
-			$this->data[$this->_name . '_sort_order'] = $this->config->get($this->_name . '_sort_order');
-		}
-
 		if (isset($this->request->post[$this->_name . '_method'])) {
 			$this->data[$this->_name . '_method'] = $this->request->post[$this->_name . '_method'];
 		} else {
 			$this->data[$this->_name . '_method'] = $this->config->get($this->_name . '_method');
+		}
+
+		if (isset($this->request->post[$this->_name . '_sort_order'])) {
+			$this->data[$this->_name . '_sort_order'] = $this->request->post[$this->_name . '_sort_order'];
+		} else {
+			$this->data[$this->_name . '_sort_order'] = $this->config->get($this->_name . '_sort_order');
 		}
 
 		$this->template = 'shipping/' . $this->_name . '.tpl';

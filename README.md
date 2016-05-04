@@ -44,6 +44,14 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
+Coming soon in 1.7.7.0!
+- Added DomPDF vendor library for document downloads.
+- Added FirstData payment method. Thanks Gob33!
+- Updated MoneyBookers to Skrill. Thanks Gob33!
+- New Cookie Consent code.
+- Added Piwik code field in Settings.
+- ...
+
 New in 1.7.6.0 (Current Release)!
 - Added direct printing of invoices.
 - Added Country and Zone update on upgrade.

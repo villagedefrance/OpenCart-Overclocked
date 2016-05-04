@@ -285,8 +285,6 @@ class ControllerProductProduct extends Controller {
 			$this->data['button_upload'] = $this->language->get('button_upload');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->load->model('catalog/review');
-
 			$this->data['tab_description'] = $this->language->get('tab_description');
 			$this->data['tab_attribute'] = $this->language->get('tab_attribute');
 			$this->data['tab_offer'] = $this->language->get('tab_offer');
@@ -295,8 +293,17 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['lang'] = $this->language->get('code');
 
+			// Buy it Now
+			$this->data['buy_now_button'] = $this->config->get('config_buy_now');
+
+			$this->data['button_buy_it_now'] = $this->language->get('button_buy_it_now');
+
+			$this->data['buy_it_now'] = $this->url->link('checkout/checkout', '', 'SSL');
+
+			// Product
 			$this->data['product_id'] = (int)$this->request->get['product_id'];
 
+			$this->load->model('catalog/review');
 			$this->load->model('tool/image');
 
 			if ($this->config->get('config_lightbox') == 'zoomlens') {

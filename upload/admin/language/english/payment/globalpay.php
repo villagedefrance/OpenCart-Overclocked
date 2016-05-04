@@ -84,6 +84,7 @@ $_['button_rebate']				= 'Rebate / Refund';
 $_['button_void']					= 'Void';
 
 // Error
+$_['error_permission']			= 'Warning: You do not have permission to modify <b>Globalpay</b>!';
 $_['error_merchant_id']			= 'Merchant ID is required!';
 $_['error_secret']					= 'Shared secret is required!';
 $_['error_live_url']				= 'Live URL is required!';

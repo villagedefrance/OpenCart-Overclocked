@@ -983,7 +983,7 @@ input.button-move-right:hover {
 	border: 1px solid #4691D2;
 }
 /* Button Preview/Print */
-a.button-preview, a.button-print {
+a.button-preview, a.button-pdf, a.button-print {
 	display: inline-block;
 	width: 24px;
 	height: 24px;
@@ -999,6 +999,14 @@ a.button-preview {
 	-khtml-border-radius: 3px 0px 0px 3px;
 	border-radius: 3px 0px 0px 3px;
 }
+a.button-pdf {
+	background: #F8F8F8 url('../image/theme/pdf.png') center 0px no-repeat;
+	border: 1px solid #CCC;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-khtml-border-radius: 0px;
+	border-radius: 0px;
+}
 a.button-print {
 	background: #F8F8F8 url('../image/theme/print.png') center 0px no-repeat;
 	border: 1px solid #CCC;
@@ -1009,6 +1017,10 @@ a.button-print {
 }
 a.button-preview:hover {
 	background: #F8F8F8 url('../image/theme/preview.png') center -24px no-repeat;
+	border: 1px solid #4691D2;
+}
+a.button-pdf:hover {
+	background: #F8F8F8 url('../image/theme/pdf.png') center -24px no-repeat;
 	border: 1px solid #4691D2;
 }
 a.button-print:hover {

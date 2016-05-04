@@ -344,6 +344,11 @@
           <div class="minimum"><?php echo $text_minimum; ?></div>
         <?php } ?>
       </div>
+      <?php if (($dob && $age_minimum > 0 && !$age_checked) || $is_quote || !$buy_now_button) { ?>
+        <p class="hidden"></p>
+      <?php } else { ?>
+        <div id="buy-now" style="margin-bottom:15px;"><input type="button" value="<?php echo $button_buy_it_now; ?>" id="button-buy-it-now" class="button-buy-now" /></div>
+      <?php } ?>
       <?php if ($review_status) { ?>
         <div class="review">
           <div class="rating">
@@ -610,6 +615,42 @@ $('#button-cart').bind('click', function() {
 				$('.success').fadeIn('slow');
 				$('#cart-total').html(json['total']);
 				$('html, body').animate({ scrollTop:0 }, 800);
+			}
+		}
+	});
+});
+
+$('#button-buy-it-now').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('.product-info input[type=\'text\'], .product-info input[type=\'hidden\'], .product-info input[type=\'radio\']:checked, .product-info input[type=\'checkbox\']:checked, .product-info select, .product-info textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('.success, .warning, .attention, .error').remove();
+			$('#button-buy-it-now').attr('disabled', true);
+			$('#button-buy-it-now').after('<span><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" class="loading" style="padding-left:10px;" /></span>');
+		},
+		complete: function() {
+			$('#button-buy-it-now').attr('disabled', false);
+			$('.loading').remove();
+		},
+		success: function(json) {
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						$('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
+					}
+				}
+
+				if (json['error']['profile']) {
+					$('select[name="profile_id"]').after('<span class="error">' + json['error']['profile'] + '</span>');
+				}
+			}
+
+			if (json['success']) {
+				$('#cart-total').html(json['total']);
+				window.location = '<?php echo $buy_it_now; ?>';
 			}
 		}
 	});

@@ -2350,8 +2350,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2359,8 +2360,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -2417,7 +2420,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_shipping_label.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_shipping_label');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function pick_list() {
@@ -2477,8 +2486,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2486,8 +2496,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -2582,6 +2594,19 @@ class ControllerSaleOrder extends Controller {
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
+				if (!empty($payment_address)) {
+					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
+
+					if (number_format($similarity, 0) > 90) {
+						$same_address = true;
+					} else {
+						$same_address = false;
+					}
+
+				} else {
+					$same_address = true;
+				}
+
 				$product_data = array();
 
 				$products = $this->model_sale_order->getOrderProducts($order_id);
@@ -2624,9 +2649,9 @@ class ControllerSaleOrder extends Controller {
 					'store_fax'          		=> $store_fax,
 					'email'              			=> $order_info['email'],
 					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> $shipping_address,
+					'shipping_address'   		=> ($same_address) ? '' : $shipping_address,
 					'shipping_method'    		=> $order_info['shipping_method'],
-					'payment_address'    	=> $payment_address,
+					'payment_address'    	=> ($same_address) ? $shipping_address : $payment_address,
 					'payment_company_id'	=> $order_info['payment_company_id'],
 					'payment_tax_id'     		=> $order_info['payment_tax_id'],
 					'payment_method'     	=> $order_info['payment_method'],
@@ -2638,7 +2663,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_pick_list.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_pick_list');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function delivery_note() {
@@ -2696,8 +2727,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2705,8 +2737,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -2804,6 +2838,19 @@ class ControllerSaleOrder extends Controller {
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
+				if (!empty($payment_address)) {
+					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
+
+					if (number_format($similarity, 0) > 90) {
+						$same_address = true;
+					} else {
+						$same_address = false;
+					}
+
+				} else {
+					$same_address = true;
+				}
+
 				$product_data = array();
 
 				$products = $this->model_sale_order->getOrderProducts($order_id);
@@ -2848,9 +2895,9 @@ class ControllerSaleOrder extends Controller {
 					'store_company_tax_id'	=> $store_company_tax_id,
 					'email'              			=> $order_info['email'],
 					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> $shipping_address,
+					'shipping_address'   		=> ($same_address) ? '' : $shipping_address,
 					'shipping_method'    		=> $order_info['shipping_method'],
-					'payment_address'    	=> $payment_address,
+					'payment_address'    	=> ($same_address) ? $shipping_address : $payment_address,
 					'payment_company_id'	=> $order_info['payment_company_id'],
 					'payment_tax_id'     		=> $order_info['payment_tax_id'],
 					'payment_method'     	=> $order_info['payment_method'],
@@ -2862,7 +2909,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_delivery_note.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_delivery_note');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 
 	public function invoice() {
@@ -2912,8 +2965,9 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_comment'] = $this->language->get('column_comment');
 
 		$this->load->model('sale/order');
-
 		$this->load->model('setting/setting');
+
+		$pdf = false;
 
 		$this->data['orders'] = array();
 
@@ -2921,8 +2975,10 @@ class ControllerSaleOrder extends Controller {
 
 		if (isset($this->request->post['selected'])) {
 			$orders = $this->request->post['selected'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		} elseif (isset($this->request->get['order_id'])) {
 			$orders[] = $this->request->get['order_id'];
+			$pdf = (isset($this->request->get['pdf'])) ? true : false;
 		}
 
 		foreach ($orders as $order_id) {
@@ -3020,6 +3076,19 @@ class ControllerSaleOrder extends Controller {
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
+				if (!empty($payment_address)) {
+					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
+
+					if (number_format($similarity, 0) > 90) {
+						$same_address = true;
+					} else {
+						$same_address = false;
+					}
+
+				} else {
+					$same_address = true;
+				}
+
 				$product_data = array();
 
 				$products = $this->model_sale_order->getOrderProducts($order_id);
@@ -3081,9 +3150,9 @@ class ControllerSaleOrder extends Controller {
 					'store_company_tax_id'	=> $store_company_tax_id,
 					'email'              			=> $order_info['email'],
 					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> $shipping_address,
+					'shipping_address'   		=> ($same_address) ? '' : $shipping_address,
 					'shipping_method'    		=> $order_info['shipping_method'],
-					'payment_address'    	=> $payment_address,
+					'payment_address'    	=> ($same_address) ? $shipping_address : $payment_address,
 					'payment_company_id'	=> $order_info['payment_company_id'],
 					'payment_tax_id'     		=> $order_info['payment_tax_id'],
 					'payment_method'     	=> $order_info['payment_method'],
@@ -3097,7 +3166,13 @@ class ControllerSaleOrder extends Controller {
 
 		$this->template = 'sale/order_invoice.tpl';
 
-		$this->response->setOutput($this->render());
+		if ($pdf) {
+			$document_type = $this->language->get('text_invoice');
+
+			$this->response->setOutput(pdf($this->render(), $document_type, $this->request->get['order_id']));
+		} else {
+			$this->response->setOutput($this->render());
+		}
 	}
 }
 ?>

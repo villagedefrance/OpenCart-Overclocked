@@ -14,20 +14,20 @@
     </div>
     <div class="content">
     <table class="list">
-      <thead>
-        <tr>
-          <td class="left"><?php echo $button_shipping_label; ?></td>
-          <td class="left"><?php echo $button_pick_list; ?></td>
-          <td class="left"><?php echo $button_delivery_note; ?></td>
-          <td class="left"><?php echo $button_invoice; ?></td>
-        </tr>
-      </thead>
       <tbody>
         <tr class="filter">
-          <td class="center"><a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview"></a><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print"></a></td>
-          <td class="center"><a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview"></a><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print"></a></td>
-          <td class="center"><a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview"></a><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print"></a></td>
-          <td class="center"><a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print"></a></td>
+          <td class="center"><?php echo $button_shipping_label; ?><br />
+            <a onclick="window.open('<?php echo $shipping_label; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $shipping_label; ?>&pdf=true');" class="button-pdf"><a href="<?php echo $shipping_label; ?>" id="print-shipping-label" class="button-print"></a>
+          </td>
+          <td class="center"><?php echo $button_pick_list; ?><br />
+            <a onclick="window.open('<?php echo $pick_list; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $pick_list; ?>&pdf=true');" class="button-pdf"><a href="<?php echo $pick_list; ?>" id="print-pick-list" class="button-print"></a>
+          </td>
+          <td class="center"><?php echo $button_delivery_note; ?><br />
+            <a onclick="window.open('<?php echo $delivery_note; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $delivery_note; ?>&pdf=true');" class="button-pdf"><a href="<?php echo $delivery_note; ?>" id="print-delivery-note" class="button-print"></a>
+          </td>
+          <td class="center"><?php echo $button_invoice; ?><br />
+            <a onclick="window.open('<?php echo $invoice; ?>');" class="button-preview"></a><a onclick="window.open('<?php echo $invoice; ?>&pdf=true');" class="button-pdf"></a><a href="<?php echo $invoice; ?>" id="print-invoice" class="button-print"></a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -515,14 +515,12 @@ $('#invoice-generate').live('click', function() {
 
 			if (json['error']) {
 				$('#tab-order').prepend('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json.invoice_no) {
 				$('#invoice').fadeOut('slow', function() {
 					$('#invoice').html(json['invoice_no']);
-
 					$('#invoice').fadeIn('slow');
 				});
 			}
@@ -546,15 +544,12 @@ $('#credit-add').live('click', function() {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#credit').html('<a id="credit-remove" class="button-form"><?php echo $text_credit_remove; ?></a>');
 			}
 		}
@@ -577,15 +572,12 @@ $('#credit-remove').live('click', function() {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#credit').html('<a id="credit-add" class="button-form"><?php echo $text_credit_add; ?></a>');
 			}
 		}
@@ -608,15 +600,12 @@ $('#reward-add').live('click', function() {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
                 $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#reward').html('<a id="reward-remove" class="button-form"><?php echo $text_reward_remove; ?></a>');
 			}
 		}
@@ -639,15 +628,12 @@ $('#reward-remove').live('click', function() {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
                 $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#reward').html('<a id="reward-add" class="button-form"><?php echo $text_reward_add; ?></a>');
 			}
 		}
@@ -670,15 +656,12 @@ $('#commission-add').live('click', function() {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
 				$('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#commission').html('<a id="commission-remove" class="button-form"><?php echo $text_commission_remove; ?></a>');
 			}
 		}
@@ -701,15 +684,12 @@ $('#commission-remove').live('click', function() {
 
 			if (json['error']) {
 				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-
 				$('.warning').fadeIn('slow');
 			}
 
 			if (json['success']) {
                 $('.box').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-
 				$('.success').fadeIn('slow');
-
 				$('#commission').html('<a id="commission-add" class="button-form"><?php echo $text_commission_add; ?></a>');
 			}
 		}
@@ -815,9 +795,7 @@ $('#button-history').live('click', function() {
 		},
 		success: function(html) {
 			$('#history').html(html);
-
 			$('textarea[name=\'comment\']').val('');
-
 			$('#order-status').html($('select[name=\'order_status_id\'] option:selected').text());
 		}
 	});

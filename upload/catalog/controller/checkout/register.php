@@ -160,10 +160,20 @@ class ControllerCheckoutRegister extends Controller {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
 
+			// Email exists check
 			$this->load->model('account/customer');
 
 			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 				$json['error']['warning'] = $this->language->get('error_exists');
+			}
+
+			// Email MX Record check
+			$this->load->model('tool/email');
+
+			$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
+
+			if (!$email_valid) {
+				$json['error']['email'] = $this->language->get('error_email');
 			}
 
 			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
