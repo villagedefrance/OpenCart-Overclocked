@@ -14,45 +14,45 @@ final class Loader {
 		$this->registry->set($key, $value);
 	}
 
-	public function model($model) {
+	public function model($route) {
 		// Sanitize the call
-		$model = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$model);
+		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
 
-		$file = DIR_APPLICATION . 'model/' . $model . '.php';
+		$file = DIR_APPLICATION . 'model/' . $route . '.php';
 
-		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
+		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', (string)$route);
 
 		if (is_file($file)) {
 			include_once($file);
-			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
+			$this->registry->set('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), (string)$route), new $class($this->registry));
 		} else {
-			throw new \Exception('Error: Could not load model ' . $model . '!');
+			throw new \Exception('Error: Could not load model ' . $route . '!');
 		}
 	}
 
-	public function library($library) {
+	public function library($route) {
 		// Sanitize the call
-		$library = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$library);
+		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
 
-		$file = DIR_SYSTEM . 'library/' . $library . '.php';
+		$file = DIR_SYSTEM . 'library/' . $route . '.php';
 
 		if (is_file($file)) {
 			include_once($file);
 		} else {
-			throw new \Exception('Error: Could not load library ' . $library . '!');
+			throw new \Exception('Error: Could not load library ' . $route . '!');
 		}
 	}
 
-	public function helper($helper) {
+	public function helper($route) {
 		// Sanitize the call
-		$helper = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$helper);
+		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
 
-		$file = DIR_SYSTEM . 'helper/' . $helper . '.php';
+		$file = DIR_SYSTEM . 'helper/' . $route . '.php';
 
 		if (is_file($file)) {
 			include_once($file);
 		} else {
-			throw new \Exception('Error: Could not load helper ' . $helper . '!');
+			throw new \Exception('Error: Could not load helper ' . $route . '!');
 		}
 	}
 
@@ -72,12 +72,12 @@ final class Loader {
 		}
 	}
 
-	public function config($config) {
-		$this->config->load($config);
+	public function config($route) {
+		$this->config->load($route);
 	}
 
-	public function language($language) {
-		return $this->language->load($language);
+	public function language($route) {
+		return $this->language->load($route);
 	}
 }
 ?>
