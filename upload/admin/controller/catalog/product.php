@@ -372,6 +372,9 @@ class ControllerCatalogProduct extends Controller {
 		);
 
 		$this->load->model('tool/image');
+		$this->load->model('tool/barcode');
+
+		$admin_barcode = $this->config->get('config_admin_barcode');
 
 		$product_total = $this->model_catalog_product->getTotalProducts($data);
 
@@ -420,6 +423,7 @@ class ControllerCatalogProduct extends Controller {
 				'product_id'	=> $result['product_id'],
 				'image'      	=> $image,
 				'name'       	=> $result['name'],
+				'barcode'	=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($result['model'], 'TYPE_CODE_128', 1, 20) : '',
 				'model'      	=> $result['model'],
 				'price'    	=> $result['price'],
 				'special' 		=> $special,
@@ -882,6 +886,17 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['model'] = $product_info['model'];
 		} else {
 			$this->data['model'] = '';
+		}
+
+		// Barcode
+		$admin_barcode = $this->config->get('config_admin_barcode');
+
+		if ($admin_barcode && !empty($product_info) && $product_info['model']) {
+			$this->load->model('tool/barcode');
+
+			$this->data['barcode'] = $this->model_tool_barcode->getBarcode($product_info['model'], 'TYPE_CODE_128', 1.2, 24);
+		} else {
+			$this->data['barcode'] = '';
 		}
 
 		// Images

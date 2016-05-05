@@ -107,7 +107,7 @@
               <td class="center"><?php echo $product['product_id']; ?></td>
               <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $product['name']; ?></td>
-              <td class="left"><?php echo $product['model']; ?></td>
+              <td class="left"><?php echo $product['barcode']; ?><?php echo $product['model']; ?></td>
               <td class="right"><?php if ($product['special']) { ?>
                 <span style="text-decoration:line-through;"><?php echo $product['price']; ?></span><br />
                 <span style="color:#B00;"><?php echo $product['special']; ?></span><br />

@@ -80,6 +80,7 @@
               <input type="text" name="model" value="<?php echo $model; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_model; ?></span>
             <?php } else { ?>
+              <span><?php echo $barcode; ?></span><br />
               <input type="text" name="model" value="<?php echo $model; ?>" size="30" />
             <?php } ?></td>
           </tr>

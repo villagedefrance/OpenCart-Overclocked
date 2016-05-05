@@ -350,7 +350,7 @@
                 &nbsp;<small> - <?php echo $option['name']; ?>: <a href="<?php echo $option['href']; ?>"><?php echo $option['value']; ?></a></small>
               <?php } ?>
             <?php } ?></td>
-            <td class="left"><?php echo $product['model']; ?></td>
+            <td class="left"><?php echo $product['barcode']; ?><?php echo $product['model']; ?></td>
             <td class="center"><?php echo $product['quantity']; ?></td>
             <td class="right"><?php echo $product['price']; ?></td>
             <td class="right"><?php echo $product['tax_value']; ?></td>
@@ -431,7 +431,7 @@
                   <?php } ?>
                 <?php } ?>
               </td>
-              <td class="left"><?php echo $product['model']; ?></td>
+              <td class="left"><?php echo $product['barcode']; ?><?php echo $product['model']; ?></td>
               <td class="center"><?php echo $product['quantity']; ?></td>
               <td class="center">
                 <?php if ($product['picked'] == '1') { ?>

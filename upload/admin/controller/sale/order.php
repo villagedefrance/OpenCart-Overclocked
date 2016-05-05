@@ -1314,7 +1314,6 @@ class ControllerSaleOrder extends Controller {
 
 				if ($product_info && $product_info['shipping']) {
 					$shipping = true;
-
 					break;
 				}
 			}
@@ -1693,6 +1692,10 @@ class ControllerSaleOrder extends Controller {
 			$this->data['shipping_zone_code'] = $order_info['shipping_zone_code'];
 			$this->data['shipping_country'] = $order_info['shipping_country'];
 
+			$this->load->model('tool/barcode');
+
+			$admin_barcode = $this->config->get('config_admin_barcode');
+
 			$this->data['products'] = array();
 
 			$products = $this->model_sale_order->getOrderProducts($this->request->get['order_id']);
@@ -1724,6 +1727,7 @@ class ControllerSaleOrder extends Controller {
 					'order_product_id'	=> $product['order_product_id'],
 					'product_id'       		=> $product['product_id'],
 					'name'    	 	   		=> $product['name'],
+					'barcode'				=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
 					'model'    		   		=> $product['model'],
 					'option'   		   		=> $option_data,
 					'quantity'		   		=> $product['quantity'],
@@ -2487,6 +2491,9 @@ class ControllerSaleOrder extends Controller {
 
 		$this->load->model('sale/order');
 		$this->load->model('setting/setting');
+		$this->load->model('tool/barcode');
+
+		$admin_barcode = $this->config->get('config_admin_barcode');
 
 		$pdf = false;
 
@@ -2631,6 +2638,7 @@ class ControllerSaleOrder extends Controller {
 
 					$product_data[] = array(
 						'name'     	=> $product['name'],
+						'barcode'	=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
 						'model'    	=> $product['model'],
 						'option'   	=> $option_data,
 						'quantity' 	=> $product['quantity']
@@ -2728,6 +2736,9 @@ class ControllerSaleOrder extends Controller {
 
 		$this->load->model('sale/order');
 		$this->load->model('setting/setting');
+		$this->load->model('tool/barcode');
+
+		$admin_barcode = $this->config->get('config_admin_barcode');
 
 		$pdf = false;
 
@@ -2875,6 +2886,7 @@ class ControllerSaleOrder extends Controller {
 
 					$product_data[] = array(
 						'name'     	=> $product['name'],
+						'barcode'	=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
 						'model'    	=> $product['model'],
 						'option'   	=> $option_data,
 						'quantity' 	=> $product['quantity']

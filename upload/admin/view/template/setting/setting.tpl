@@ -1124,6 +1124,36 @@
         <h2><?php echo $text_product; ?></h2>
         <table class="form">
           <tr>
+            <td><?php echo $entry_catalog_barcode; ?></td>
+            <td><?php if ($config_catalog_barcode) { ?>
+              <input type="radio" name="config_catalog_barcode" value="1" id="catalog-barcode-on" class="radio" checked />
+              <label for="catalog-barcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_catalog_barcode" value="0" id="catalog-barcode-off" class="radio" />
+              <label for="catalog-barcode-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_catalog_barcode" value="1" id="catalog-barcode-on" class="radio" />
+              <label for="catalog-barcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_catalog_barcode" value="0" id="catalog-barcode-off" class="radio" checked />
+              <label for="catalog-barcode-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_admin_barcode; ?></td>
+            <td><?php if ($config_admin_barcode) { ?>
+              <input type="radio" name="config_admin_barcode" value="1" id="admin-barcode-on" class="radio" checked />
+              <label for="admin-barcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_admin_barcode" value="0" id="admin-barcode-off" class="radio" />
+              <label for="admin-barcode-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_admin_barcode" value="1" id="admin-barcode-on" class="radio" />
+              <label for="admin-barcode-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_admin_barcode" value="0" id="admin-barcode-off" class="radio" checked />
+              <label for="admin-barcode-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            </td>
+          </tr>
+          <tr>
             <td><?php echo $entry_lightbox; ?></td>
             <td><select name="config_lightbox">
               <?php if (isset($config_lightbox)) { $selected = "selected"; ?>

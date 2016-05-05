@@ -100,7 +100,7 @@
           &nbsp;<small> - <?php echo $option['name']; ?>: <?php echo $option['value']; ?></small>
         <?php } ?>
       </td>
-      <td class="left"><?php echo $product['model']; ?></td>
+      <td class="left"><?php echo $product['barcode']; ?><?php echo $product['model']; ?></td>
       <td class="center"><?php echo $product['quantity']; ?></td>
     </tr>
     <?php } ?>

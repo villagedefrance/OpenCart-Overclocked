@@ -136,6 +136,8 @@ $_['entry_pagination_lo'] 				= 'Enable Bottom Pagination:<span class="help">Sho
 $_['entry_autocomplete_category']	= 'Disable Category Auto-complete:<span class="help">Use standard html selectors in Category form.</span>';
 $_['entry_autocomplete_product']	= 'Disable Product Auto-complete:<span class="help">Use standard html selectors in Product form.</span>';
 $_['entry_autocomplete_offer']		= 'Disable Offer Auto-complete:<span class="help">Use standard html selectors in Offer form.</span>';
+$_['entry_catalog_barcode']			= 'Product Model Barcode (<b>Catalog</b>):<span class="help">If Yes, a product model barcode will be displayed on every product page.</span>';
+$_['entry_admin_barcode']				= 'Product Model Barcode (<b>Admin</b>):<span class="help">If Yes, the product model barcode will be presented on every relevant page, including printable documents.</span>';
 $_['entry_lightbox']						= 'Product Image Viewer:<span class="help">If "Zoom Lens" is selected, the Product Image size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']					= 'Hide Offer Labels:<span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_share_addthis']				= 'Hide AddThis:<span class="help">Hiding AddThis could help your product pages load faster.</span>';
