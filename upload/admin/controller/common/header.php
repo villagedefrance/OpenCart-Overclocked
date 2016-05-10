@@ -101,6 +101,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_file_manager'] = $this->language->get('text_file_manager');
 		$this->data['text_filter'] = $this->language->get('text_filter');
 		$this->data['text_footer'] = $this->language->get('text_footer');
+		$this->data['text_forum'] = $this->language->get('text_forum');
 		$this->data['text_fraud'] = $this->language->get('text_fraud');
 		$this->data['text_front'] = $this->language->get('text_front');
 		$this->data['text_geo_zone'] = $this->language->get('text_geo_zone');
@@ -174,6 +175,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_tax_class'] = $this->language->get('text_tax_class');
 		$this->data['text_tax_rate'] = $this->language->get('text_tax_rate');
 		$this->data['text_theme'] = $this->language->get('text_theme');
+		$this->data['text_tool'] = $this->language->get('text_tool');
 		$this->data['text_total'] = $this->language->get('text_total');
 		$this->data['text_upload'] = $this->language->get('text_upload');
 		$this->data['text_user'] = $this->language->get('text_user');

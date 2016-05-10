@@ -98,20 +98,24 @@ $(document).ready(function() {
       <li id="catalog"><a class="top"><?php echo $text_catalog; ?></a>
         <ul>
           <li><a href="<?php echo $category; ?>"><?php echo $text_category; ?></a></li>
-          <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
-          <li><a href="<?php echo $filter; ?>"><?php echo $text_filter; ?></a></li>
-          <li><a href="<?php echo $profile; ?>"><?php echo $text_profile; ?></a></li>
-          <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
+          <li><a class="arrow"><?php echo $text_product; ?></a>
+            <ul>
+              <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
+              <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
+              <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
+              <li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
+            </ul>
+          </li>
           <li><a class="arrow"><?php echo $text_attribute; ?></a>
             <ul>
               <li><a href="<?php echo $attribute; ?>"><?php echo $text_attribute; ?></a></li>
               <li><a href="<?php echo $attribute_group; ?>"><?php echo $text_attribute_group; ?></a></li>
             </ul>
           </li>
+          <li><a href="<?php echo $filter; ?>"><?php echo $text_filter; ?></a></li>
+          <li><a href="<?php echo $profile; ?>"><?php echo $text_profile; ?></a></li>
+          <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>
           <li><a href="<?php echo $option; ?>"><?php echo $text_option; ?></a></li>
-          <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-          <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-          <li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
           <li><a href="<?php echo $news; ?>"><?php echo $text_news; ?></a></li>
           <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
         </ul>
@@ -203,6 +207,24 @@ $(document).ready(function() {
           </li>
           <?php } ?>
           <li><a href="<?php echo $upload; ?>"><?php echo $text_upload; ?></a></li>
+        </ul>
+      </li>
+      <li id="tools"><a class="top"><?php echo $text_tool; ?></a>
+        <ul>
+          <li><a class="arrow"><?php echo $text_export_import; ?></a>
+            <ul>
+              <li><a href="<?php echo $export_import_raw; ?>"><?php echo $text_export_import_raw; ?></a></li>
+              <li><a href="<?php echo $export_import_tool; ?>"><?php echo $text_export_import_tool; ?></a></li>
+            </ul>
+          </li>
+          <li><a class="arrow"><?php echo $text_cache_manager; ?></a>
+            <ul>
+              <li><a href="<?php echo $cache_files; ?>"><?php echo $text_cache_files; ?></a></li>
+              <li><a href="<?php echo $cache_images; ?>"><?php echo $text_cache_images; ?></a></li>
+            </ul>
+          </li>
+          <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
+          <li><a href="<?php echo $file_manager; ?>"><?php echo $text_file_manager; ?></a></li>
           <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
         </ul>
       </li>
@@ -258,12 +280,6 @@ $(document).ready(function() {
               <li><a href="<?php echo $database; ?>"><?php echo $text_database; ?></a></li>
               <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
               <li><a href="<?php echo $block_ip; ?>"><?php echo $text_block_ip; ?></a></li>
-              <li><a class="arrow"><?php echo $text_export_import; ?></a>
-                <ul>
-                  <li><a href="<?php echo $export_import_raw; ?>"><?php echo $text_export_import_raw; ?></a></li>
-                  <li><a href="<?php echo $export_import_tool; ?>"><?php echo $text_export_import_tool; ?></a></li>
-                </ul>
-              </li>
               <li><a href="<?php echo $backup; ?>"><?php echo $text_backup; ?></a></li>
             </ul>
           </li>
@@ -274,14 +290,15 @@ $(document).ready(function() {
               <li><a href="<?php echo $quote_log; ?>"><?php echo $text_quote_log; ?></a></li>
             </ul>
           </li>
-          <li><a class="arrow"><?php echo $text_cache_manager; ?></a>
+          <li><a class="arrow"><?php echo $text_help; ?></a>
             <ul>
-              <li><a href="<?php echo $cache_files; ?>"><?php echo $text_cache_files; ?></a></li>
-              <li><a href="<?php echo $cache_images; ?>"><?php echo $text_cache_images; ?></a></li>
+              <li><a onclick="window.open('http://villagedefrance.net');" title=""><?php echo $text_opencart_overclocked; ?></a></li>
+              <li><a onclick="window.open('http://forum.villagedefrance.net');" title=""><?php echo $text_forum; ?></a></li>
+              <li><a onclick="window.open('http://www.opencart.com');" title=""><?php echo $text_opencart; ?></a></li>
+              <li><a onclick="window.open('http://forum.opencart.com');" title=""><?php echo $text_support; ?></a></li>
+              <li><a onclick="window.open('http://docs.opencart.com/');" title=""><?php echo $text_documentation; ?></a></li>
             </ul>
           </li>
-          <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
-          <li><a href="<?php echo $file_manager; ?>"><?php echo $text_file_manager; ?></a></li>
         </ul>
       </li>
       <li id="reports"><a class="top"><?php echo $text_reports; ?></a>
@@ -337,14 +354,6 @@ $(document).ready(function() {
         </ul>
       </li>
       <?php } ?>
-      <li id="help"><a class="top"><?php echo $text_help; ?></a>
-        <ul>
-          <li><a onclick="window.open('http://www.opencart.com');" title=""><?php echo $text_opencart; ?></a></li>
-          <li><a onclick="window.open('http://villagedefrance.net');" title=""><?php echo $text_opencart_overclocked; ?></a></li>
-          <li><a onclick="window.open('http://www.opencart.com/index.php?route=documentation/introduction');" title=""><?php echo $text_documentation; ?></a></li>
-          <li><a onclick="window.open('http://forum.opencart.com');" title=""><?php echo $text_support; ?></a></li>
-        </ul>
-      </li>
     </ul>
   </div>
   <?php } ?>
