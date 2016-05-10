@@ -43,51 +43,71 @@
           <tr>
             <td><?php echo $entry_approval; ?></td>
             <td><?php if ($approval) { ?>
-              <input type="radio" name="approval" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="approval" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="approval" value="1" id="approval-on" class="radio" checked />
+              <label for="approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="approval" value="0" id="approval-off" class="radio" />
+              <label for="approval-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="approval" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="approval" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="approval" value="1" id="approval-on" class="radio" />
+              <label for="approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="approval" value="0" id="approval-off" class="radio" checked />
+              <label for="approval-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_company_id_display; ?></td>
             <td><?php if ($company_id_display) { ?>
-              <input type="radio" name="company_id_display" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="company_id_display" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="company_id_display" value="1" id="company-id-display-on" class="radio" checked />
+              <label for="company-id-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="company_id_display" value="0" id="company-id-display-off" class="radio" />
+              <label for="company-id-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="company_id_display" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="company_id_display" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="company_id_display" value="1" id="company-id-display-on" class="radio" />
+              <label for="company-id-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="company_id_display" value="0" id="company-id-display-off" class="radio" checked />
+              <label for="company-id-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_company_id_required; ?></td>
             <td><?php if ($company_id_required) { ?>
-              <input type="radio" name="company_id_required" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="company_id_required" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="company_id_required" value="1" id="company-id-required-on" class="radio" checked />
+              <label for="company-id-required-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="company_id_required" value="0" id="company-id-required-off" class="radio" />
+              <label for="company-id-required-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="company_id_required" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="company_id_required" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="company_id_required" value="1" id="company-id-required-on" class="radio" />
+              <label for="company-id-required-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="company_id_required" value="0" id="company-id-required-off" class="radio" checked />
+              <label for="company-id-required-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_tax_id_display; ?></td>
             <td><?php if ($tax_id_display) { ?>
-              <input type="radio" name="tax_id_display" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="tax_id_display" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="tax_id_display" value="1" id="tax-id-display-on" class="radio" checked />
+              <label for="tax-id-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="tax_id_display" value="0" id="tax-id-display-off" class="radio" />
+              <label for="tax-id-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="tax_id_display" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="tax_id_display" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="tax_id_display" value="1" id="tax-id-display-on" class="radio" />
+              <label for="tax-id-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="tax_id_display" value="0" id="tax-id-display-off" class="radio" checked />
+              <label for="tax-id-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_tax_id_required; ?></td>
             <td><?php if ($tax_id_required) { ?>
-              <input type="radio" name="tax_id_required" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="tax_id_required" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="tax_id_required" value="1" id="tax-id-required-on" class="radio" checked />
+              <label for="tax-id-required-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="tax_id_required" value="0" id="tax-id-required-off" class="radio" />
+              <label for="tax-id-required-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="tax_id_required" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="tax_id_required" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="tax_id_required" value="1" id="tax-id-required-on" class="radio" />
+              <label for="tax-id-required-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="tax_id_required" value="0" id="tax-id-required-off" class="radio" checked />
+              <label for="tax-id-required-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
