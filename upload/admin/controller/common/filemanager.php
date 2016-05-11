@@ -218,7 +218,7 @@ class ControllerCommonFileManager extends Controller {
 
 					$json[] = array(
 						'filename' 	=> htmlspecialchars(basename($file), ENT_QUOTES, 'UTF-8'),
-					    'file'  	=> $filename_pathd,
+						'file'  	=> $filename_pathd,
 						'size'     	=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
 						'image'     => $this->image($filename_pathd) // call image directly, use pathd for the sake of subdirs
 					);
