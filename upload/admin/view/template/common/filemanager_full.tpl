@@ -118,7 +118,7 @@ $(document).ready(function() {
 								html += '<div class="feedback"><?php echo $text_no_file_found; ?></div>';
 							} else {
 								for (i = 0; i < json.length; i++) {
-									html += '<a file="' + json[i]['file'] + '" style="display:none; float:left;" title="' + json[i]['filename'] + '"><span class="fileName">' + ((json[i]['filename'].length > 16) ? (json[i]['filename'].substr(0, 16) + '..') : json[i]['filename']) + '</span><span class="fileSize">' + json[i]['size'] + '</span><input type="hidden" name="image" value="' + json[i]['file'] + '" /></a>';
+									html += '<a file="' + json[i]['file'] + '" style="float:left;" title="' + json[i]['filename'] + '"><img src="' + json[i]['image'] + '" title="" alt="" /><span class="fileName">' + ((json[i]['filename'].length > 16) ? (json[i]['filename'].substr(0, 16) + '..') : json[i]['filename']) + '</span><span class="fileSize">' + json[i]['size'] + '</span><input type="hidden" name="image" value="' + json[i]['file'] + '" /></a>';
 								}
 							}
 						}
@@ -126,16 +126,6 @@ $(document).ready(function() {
 
 						$('#column-right').html(html);
 
-						$('#column-right a').each(function(index, element) {
-							$.ajax({
-								url: 'index.php?route=common/filemanager_full/image&token=<?php echo $token; ?>&image=' + encodeURIComponent('data/' + $(element).find('input[name=\'image\']').attr('value')),
-								dataType: 'html',
-								success: function(html) {
-									$(element).prepend('<img src="' + html + '" title="" alt="" /><br />');
-									$(element).fadeIn(60);
-								}
-							});
-						});
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
