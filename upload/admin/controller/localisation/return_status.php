@@ -218,6 +218,7 @@ class ControllerLocalisationReturnStatus extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_status_id'] = $this->language->get('column_status_id');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -250,6 +251,7 @@ class ControllerLocalisationReturnStatus extends Controller {
 		}
 
 		$this->data['sort_name'] = $this->url->link('localisation/return_status', 'token=' . $this->session->data['token'] . '&sort=name' . $url, 'SSL');
+		$this->data['sort_return_status_id'] = $this->url->link('localisation/return_status', 'token=' . $this->session->data['token'] . '&sort=return_status_id' . $url, 'SSL');
 
 		$url = '';
 
