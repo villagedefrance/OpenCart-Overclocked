@@ -80,35 +80,51 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function image() {
+	public function image($filename = '') {
 		$this->load->model('tool/image');
 
 		$this->data['token'] = $this->session->data['token'];
 
-		if (isset($this->request->get['image'])) {
-			$ext = utf8_substr(strrchr($this->request->get['image'], '.'), 1);
+		$return = true;
 
-			if (strtolower($ext) == 'pdf') {
-				$this->request->get['image'] = 'pdf.png';
-			}
+		if (!empty($this->request->get['image'])) {
+			$filename = $this->request->get['image'];
+			$return = false;
+		}
 
-			if (strtolower($ext) == 'flv') {
-				$this->request->get['image'] = 'flv.png';
-			}
+		if (strpos($filename, 'data/') == false) {
+			$filename = 'data/' . $filename;
+		}
 
-			if (strtolower($ext) == 'swf') {
-				$this->request->get['image'] = 'swf.png';
-			}
+		$filename = str_replace('//', '/', $filename);
+		$filename = str_replace('data/data', 'data', $filename);
 
-			if (strtolower($ext) == 'zip') {
-				$this->request->get['image'] = 'zip.png';
-			}
+		$ext = utf8_substr(strrchr($filename, '.'), 1);
 
-			if (strtolower($ext) == 'rar') {
-				$this->request->get['image'] = 'rar.png';
-			}
+		if (strtolower($ext) == 'pdf') {
+			$filename = 'pdf.png';
+		}
 
-			$this->response->setOutput(htmlspecialchars($this->model_tool_image->resize(html_entity_decode($this->request->get['image'], ENT_QUOTES, 'UTF-8'), 100, 100), ENT_QUOTES, 'UTF-8'));
+		if (strtolower($ext) == 'flv') {
+			$filename = 'flv.png';
+		}
+
+		if (strtolower($ext) == 'swf') {
+			$filename = 'swf.png';
+		}
+
+		if (strtolower($ext) == 'zip') {
+			$filename = 'zip.png';
+		}
+
+		if (strtolower($ext) == 'rar') {
+			$filename = 'rar.png';
+		}
+
+		if ($return) {
+			return htmlspecialchars($this->model_tool_image->resize(html_entity_decode($filename, ENT_QUOTES, 'UTF-8'), 100, 100), ENT_QUOTES, 'UTF-8');
+		} else {
+			$this->response->setOutput(htmlspecialchars($this->model_tool_image->resize(html_entity_decode($filename, ENT_QUOTES, 'UTF-8'), 100, 100), ENT_QUOTES, 'UTF-8'));
 		}
 	}
 
@@ -195,10 +211,13 @@ class ControllerCommonFileManager extends Controller {
 						$i++;
 					}
 
+					$filename_path_data = htmlspecialchars(utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')), ENT_QUOTES, 'UTF-8');
+
 					$json[] = array(
 						'filename'	=> htmlspecialchars(basename($file), ENT_QUOTES, 'UTF-8'),
-						'file'			=> htmlspecialchars(utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')), ENT_QUOTES, 'UTF-8'),
-						'size'			=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i]
+						'file'			=> $filename_path_data,
+						'size'			=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
+						'image'		=> $this->image($filename_path_data)
 					);
 				}
 			}
@@ -634,8 +653,9 @@ class ControllerCommonFileManager extends Controller {
 					$in = fopen($_FILES['file']['tmp_name'], "rb");
 
 					if ($in) {
-						while ($buff = fread($in, (int)$file_max_size))
+						while ($buff = fread($in, (int)$file_max_size)) {
 							fwrite($out, $buff);
+						}
 					} else {
 						die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
 					}
@@ -660,8 +680,9 @@ class ControllerCommonFileManager extends Controller {
 				$in = fopen("php://input", "rb");
 
 				if ($in) {
-					while ($buff = fread($in, (int)$file_max_size))
+					while ($buff = fread($in, (int)$file_max_size)) {
 						fwrite($out, $buff);
+					}
 				} else {
 					die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
 				}

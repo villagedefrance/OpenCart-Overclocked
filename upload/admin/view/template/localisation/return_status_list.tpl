@@ -34,6 +34,11 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php if ($sort == 'return_status_id') { ?>
+              <a href="<?php echo $sort_return_status_id; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status_id; ?></a>
+            <?php } else { ?>
+              <a href="<?php echo $sort_return_status_id; ?>"><?php echo $column_status_id; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+            <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -49,6 +54,7 @@
               <label for="<?php echo $return_status['return_status_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $return_status['name']; ?></td>
+            <td class="center"><?php echo $return_status['return_status_id']; ?></td>
             <td class="right"><?php foreach ($return_status['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -56,7 +62,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="3"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

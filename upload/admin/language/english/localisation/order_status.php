@@ -7,6 +7,7 @@ $_['text_success']     	= 'Success: You have modified <b>Order Statuses</b> !';
 
 // Column
 $_['column_name']   	= 'Order Status Name';
+$_['column_status_id']	= 'Status Id';
 $_['column_action']   	= 'Action';
 
 // Entry

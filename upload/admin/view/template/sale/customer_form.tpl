@@ -203,41 +203,41 @@
             </tr>
             <tr>
               <td><?php echo $entry_company; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][company]" value="<?php echo $address['company']; ?>" /></td>
+              <td><input type="text" name="address[<?php echo $address_row; ?>][company]" value="<?php echo $address['company']; ?>" size="40" /></td>
             </tr>
             <tr class="company-id-display">
               <td><?php echo $entry_company_id; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][company_id]" value="<?php echo $address['company_id']; ?>" /></td>
+              <td><input type="text" name="address[<?php echo $address_row; ?>][company_id]" value="<?php echo $address['company_id']; ?>" size="30" /></td>
             </tr>
             <tr class="tax-id-display">
               <td><?php echo $entry_tax_id; ?></td>
               <td><?php if (isset($error_address_tax_id[$address_row])) { ?>
-                <input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" class="input-error" />
+                <input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" size="30" class="input-error" />
                 <span class="error"><?php echo $error_address_tax_id[$address_row]; ?></span>
               <?php } else { ?>
-                <input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" />
+                <input type="text" name="address[<?php echo $address_row; ?>][tax_id]" value="<?php echo $address['tax_id']; ?>" size="30" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
               <td><?php if (isset($error_address_address_1[$address_row])) { ?>
-                <input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" class="input-error" />
+                <input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" size="40" class="input-error" />
                 <span class="error"><?php echo $error_address_address_1[$address_row]; ?></span>
               <?php } else { ?>
-                <input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" />
+                <input type="text" name="address[<?php echo $address_row; ?>][address_1]" value="<?php echo $address['address_1']; ?>" size="40" />
               <?php } ?></td>
             </tr>
             <tr>
               <td><?php echo $entry_address_2; ?></td>
-              <td><input type="text" name="address[<?php echo $address_row; ?>][address_2]" value="<?php echo $address['address_2']; ?>" /></td>
+              <td><input type="text" name="address[<?php echo $address_row; ?>][address_2]" value="<?php echo $address['address_2']; ?>" size="40" /></td>
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_city; ?></td>
               <td><?php if (isset($error_address_city[$address_row])) { ?>
-                <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" class="input-error" />
+                <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" size="30" class="input-error" />
                 <span class="error"><?php echo $error_address_city[$address_row]; ?></span>
               <?php } else { ?>
-                <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" />
+                <input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" size="30" />
               <?php } ?></td>
             </tr>
             <tr>
@@ -482,27 +482,27 @@ function addAddress() {
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><?php echo $entry_company; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][company]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][company]" value="" size="40" /></td>';
 	html += '    </tr>';
 	html += '    <tr class="company-id-display">';
 	html += '      <td><?php echo $entry_company_id; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][company_id]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][company_id]" value="" size="30" /></td>';
 	html += '    </tr>';
 	html += '    <tr class="tax-id-display">';
 	html += '      <td><?php echo $entry_tax_id; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][tax_id]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][tax_id]" value="" size="30" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][address_1]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][address_1]" value="" size="40" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><?php echo $entry_address_2; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][address_2]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][address_2]" value="" size="40" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><span class="required">*</span> <?php echo $entry_city; ?></td>';
-	html += '      <td><input type="text" name="address[' + address_row + '][city]" value="" /></td>';
+	html += '      <td><input type="text" name="address[' + address_row + '][city]" value="" size="30" /></td>';
 	html += '    </tr>';
 	html += '    <tr>';
 	html += '      <td><span id="postcode-required' + address_row + '" class="required">*</span> <?php echo $entry_postcode; ?></td>';
