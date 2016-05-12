@@ -96,24 +96,22 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function image($filename = '') { // added filename argument for local use
+	public function image($filename = '') {
 		$this->load->model('tool/image');
 
 		$this->data['token'] = $this->session->data['token'];
 
-		// set return mode
 		$return = true;
 
-		// check for image request param and change to render mode
-		if (!empty($this->request->get['image']))  {
+		if (!empty($this->request->get['image'])) {
 			$filename = $this->request->get['image'];
 			$return = false;
 		}
 
-		// do some filters here in case something passes messy in this mess
 		if (strpos($filename, 'data/') == false) {
 			$filename = 'data/' . $filename;
 		}
+
 		$filename = str_replace('//', '/', $filename);
 		$filename = str_replace('data/data', 'data', $filename);
 
@@ -138,8 +136,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		if (strtolower($ext) == 'rar') {
 			$filename = 'rar.png';
 		}
-		
-		// mode: return or render
+
 		if ($return) {
 			return htmlspecialchars($this->model_tool_image->resize(html_entity_decode($filename, ENT_QUOTES, 'UTF-8'), 100, 100), ENT_QUOTES, 'UTF-8');
 		} else {
@@ -230,13 +227,13 @@ class ControllerCommonFileManagerFull extends Controller {
 						$i++;
 					}
 
-					$filename_pathd = htmlspecialchars(utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')), ENT_QUOTES, 'UTF-8');
+					$filename_path_data = htmlspecialchars(utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')), ENT_QUOTES, 'UTF-8');
 
 					$json[] = array(
-						'filename' 	=> htmlspecialchars(basename($file), ENT_QUOTES, 'UTF-8'),
-						'file'  	=> $filename_pathd,
-						'size'     	=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
-						'image'     => $this->image($filename_pathd) // call image directly, use pathd for the sake of subdirs
+						'filename'	=> htmlspecialchars(basename($file), ENT_QUOTES, 'UTF-8'),
+						'file'			=> $filename_path_data,
+						'size'			=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
+						'image'		=> $this->image($filename_path_data)
 					);
 				}
 			}
@@ -672,8 +669,9 @@ class ControllerCommonFileManagerFull extends Controller {
 					$in = fopen($_FILES['file']['tmp_name'], "rb");
 
 					if ($in) {
-						while ($buff = fread($in, (int)$file_max_size))
+						while ($buff = fread($in, (int)$file_max_size)) {
 							fwrite($out, $buff);
+						}
 					} else {
 						die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
 					}
@@ -698,8 +696,9 @@ class ControllerCommonFileManagerFull extends Controller {
 				$in = fopen("php://input", "rb");
 
 				if ($in) {
-					while ($buff = fread($in, (int)$file_max_size))
+					while ($buff = fread($in, (int)$file_max_size)) {
 						fwrite($out, $buff);
+					}
 				} else {
 					die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
 				}
