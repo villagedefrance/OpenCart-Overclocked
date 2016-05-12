@@ -210,7 +210,6 @@ class ModelSaleCustomer extends Model {
 		if ($address_query->num_rows) {
 			$country_query = $this->db->query("SELECT DISTINCT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE c.country_id = '" . (int)$address_query->row['country_id'] . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
-
 			if ($country_query->num_rows) {
 				$country = $country_query->row['name'];
 				$iso_code_2 = $country_query->row['iso_code_2'];
