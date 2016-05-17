@@ -69,10 +69,13 @@ class ControllerProductReviewList extends Controller {
 		$review_results = $this->model_catalog_review->getReviews($data);
 
 		if ($review_results) {
+
+			$title_page = ($page > 1) ? ' - Page ' . $page : '';
+
 			if (isset($this->request->get['filter_name'])) {
-				$this->document->setTitle($this->language->get('heading_title') . ' - ' . $this->request->get['filter_name']);
+				$this->document->setTitle($this->language->get('heading_title') . ' - ' . $this->request->get['filter_name'] . $title_page);
 			} else {
-				$this->document->setTitle($this->language->get('heading_title'));
+				$this->document->setTitle($this->language->get('heading_title') . $title_page);
 			}
 
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
@@ -354,6 +357,30 @@ class ControllerProductReviewList extends Controller {
 			$this->data['sort'] = $sort;
 			$this->data['order'] = $order;
 			$this->data['limit'] = $limit;
+
+			$page_trig = $review_total - $limit;
+			$page_last = ceil($review_total / $limit);
+			
+			if (($page == 1) && ($page_trig < 1)) {
+				$this->document->addLink($this->url->link('product/review_list'), 'canonical');
+			
+			} elseif (($page == 1) && ($page_trig > 0)) {
+				$this->document->addLink($this->url->link('product/review_list'), 'canonical');
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page + 1) . $url), 'next');
+
+			} elseif ($page == $page_last) {
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page - 1) . $url), 'prev');
+			
+			} elseif ($this->request->get['page'] > $page_last) {
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page_last . $url), 'prev');
+			
+			} elseif (($page > 1) && ($page < $page_last)) {
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page - 1) . $url), 'prev');
+				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page + 1) . $url), 'next');
+			}
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');
