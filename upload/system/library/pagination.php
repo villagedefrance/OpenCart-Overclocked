@@ -6,8 +6,8 @@ class Pagination {
 	public $num_links = 10;
 	public $url = '';
 	public $text = 'Showing {start}-{end} of {total} Results ({pages} Pages)';
-	public $text_first = '&laquo;';
-	public $text_last = '&raquo;';
+	public $text_first = '1';
+	public $text_last = '{page}';
 	public $text_next = '&rsaquo;';
 	public $text_prev = '&lsaquo;';
 	public $style_links = 'links';
