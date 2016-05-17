@@ -26,7 +26,7 @@ class ControllerInformationInformation extends Controller {
 		if ($information_info) {
 			$this->document->setTitle($information_info['title']);
 			
-			$this->document->addLink($this->url->link($information_info['keyword'], '', 'SSL'), 'canonical');
+			$this->document->addLink($this->url->link('information/information', 'information_id=' . $information_info['information_id']), 'canonical');
 
 			$this->data['breadcrumbs'][] = array(
 				'text'		=> $information_info['title'],
