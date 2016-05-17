@@ -6,6 +6,12 @@ class ControllerProductSpecial extends Controller {
 
 		$this->load->model('catalog/product');
 
+		if (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] < 1)) {
+			$this->request->get['limit'] = $this->config->get('config_catalog_limit');
+		} elseif (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] > 100)) {
+			$this->request->get['limit'] = 100;
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
