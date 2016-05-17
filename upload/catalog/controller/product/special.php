@@ -59,7 +59,12 @@ class ControllerProductSpecial extends Controller {
 		$product_results = $this->model_catalog_product->getProductSpecials($data);
 
 		if ($product_results) {
-			$this->document->setTitle($this->language->get('heading_title'));
+
+			if ($page > 1) {
+				$this->document->setTitle($this->language->get('heading_title') . ' - Page ' . $page);
+			} else {
+				$this->document->setTitle($this->language->get('heading_title'));
+			}
 
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
@@ -335,6 +340,30 @@ class ControllerProductSpecial extends Controller {
 			$this->data['sort'] = $sort;
 			$this->data['order'] = $order;
 			$this->data['limit'] = $limit;
+
+			$page_trig = $product_total - $limit;
+			$page_last = ceil($product_total / $limit);
+			
+			if (($page == 1) && ($page_trig < 1)) {
+				$this->document->addLink($this->url->link('product/special'), 'canonical');
+			
+			} elseif (($page == 1) && ($page_trig > 0)) {
+				$this->document->addLink($this->url->link('product/special'), 'canonical');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page + 1) . $url), 'next');
+
+			} elseif ($page == $page_last) {
+				$this->document->addLink($this->url->link('product/special', 'page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page - 1) . $url), 'prev');
+			
+			} elseif ($this->request->get['page'] > $page_last) {
+				$this->document->addLink($this->url->link('product/special', 'page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/special', 'page=' . $page_last . $url), 'prev');
+			
+			} elseif (($page > 1) && ($page < $page_last)) {
+				$this->document->addLink($this->url->link('product/special', 'page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page - 1) . $url), 'prev');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page + 1) . $url), 'next');
+			}
 
 			$this->data['continue'] = $this->url->link('common/home');
 
