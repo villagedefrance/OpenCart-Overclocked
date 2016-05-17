@@ -145,7 +145,11 @@ class ControllerProductManufacturer extends Controller {
 		$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($manufacturer_id);
 
 		if ($manufacturer_info) {
-			$this->document->setTitle($manufacturer_info['name']);
+			if ($page > 1) {
+				$this->document->setTitle($manufacturer_info['name'] . ' - Page ' . $page);
+			} else {
+				$this->document->setTitle($manufacturer_info['name']);
+			}
 
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 
@@ -430,6 +434,30 @@ class ControllerProductManufacturer extends Controller {
 			$this->data['sort'] = $sort;
 			$this->data['order'] = $order;
 			$this->data['limit'] = $limit;
+
+			$page_trig = $product_total - $limit;
+			$page_last = ceil($product_total / $limit);
+			
+			if (($page == 1) && ($page_trig < 1)) {
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id']), 'canonical');
+			
+			} elseif (($page == 1) && ($page_trig > 0)) {
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id']), 'canonical');
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . ($page + 1) . $url), 'next');
+			
+			} elseif ($page == $page_last) {
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . ($page - 1) . $url), 'prev');
+			
+			} elseif ($this->request->get['page'] > $page_last) {
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . $page_last . $url), 'prev');
+			
+			} elseif (($page > 1) && ($page < $page_last)) {
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . ($page - 1) . $url), 'prev');
+				$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&page=' . ($page + 1) . $url), 'next');
+			}
 
 			$this->data['continue'] = $this->url->link('common/home');
 
