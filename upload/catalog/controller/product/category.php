@@ -7,6 +7,12 @@ class ControllerProductCategory extends Controller {
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
 
+		if (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] < 1)) {
+			$this->request->get['limit'] = $this->config->get('config_catalog_limit');
+		} elseif (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] > 100)) {
+			$this->request->get['limit'] = 100;
+		}
+
 		if (isset($this->request->get['filter'])) {
 			$filter = $this->request->get['filter'];
 		} else {
@@ -100,7 +106,12 @@ class ControllerProductCategory extends Controller {
 		$category_info = $this->model_catalog_category->getCategory($category_id);
 
 		if ($category_info) {
-			$this->document->setTitle($category_info['name']);
+			if ($page > 1) {
+				$this->document->setTitle($category_info['name'] . ' - Page ' . $page);
+			} else {
+				$this->document->setTitle($category_info['name']);
+			}
+			
 			$this->document->setDescription($category_info['meta_description']);
 			$this->document->setKeywords($category_info['meta_keyword']);
 
@@ -459,6 +470,30 @@ class ControllerProductCategory extends Controller {
 			$this->data['sort'] = $sort;
 			$this->data['order'] = $order;
 			$this->data['limit'] = $limit;
+
+			$page_trig = $product_total - $limit;
+			$page_last = ceil($product_total / $limit);
+			
+			if (($page == 1) && ($page_trig < 1)) {
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id), 'canonical');
+			
+			} elseif (($page == 1) && ($page_trig > 0)) {
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id), 'canonical');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . ($page + 1) . $url), 'next');
+
+			} elseif ($page == $page_last) {
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . ($page - 1) . $url), 'prev');
+			
+			} elseif ($this->request->get['page'] > $page_last) {
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page_last . $url), 'prev');
+			
+			} elseif (($page > 1) && ($page < $page_last)) {
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page), 'canonical');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . ($page - 1) . $url), 'prev');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . ($page + 1) . $url), 'next');
+			}
 
 			$this->data['continue'] = $this->url->link('common/home');
 

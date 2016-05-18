@@ -7,6 +7,12 @@ class ControllerProductSearch extends Controller {
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
 
+		if (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] < 1)) {
+			$this->request->get['limit'] = $this->config->get('config_catalog_limit');
+		} elseif (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] > 100)) {
+			$this->request->get['limit'] = 100;
+		}
+
 		if (isset($this->request->get['search'])) {
 			$search = $this->request->get['search'];
 		} else {
