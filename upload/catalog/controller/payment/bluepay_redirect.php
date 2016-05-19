@@ -1,7 +1,8 @@
 <?php
 class ControllerPaymentBluePayRedirect extends Controller {
+
 	public function index() {
-		$this->load->language('payment/bluepay_redirect');
+		$this->language->load('payment/bluepay_redirect');
 
 		$this->data['text_wait'] = $this->language->get('text_wait');
 		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
@@ -33,8 +34,8 @@ class ControllerPaymentBluePayRedirect extends Controller {
 
 		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text' => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
-				'value' => sprintf('%02d', $i)
+				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value'	=> sprintf('%02d', $i)
 			);
 		}
 
@@ -44,8 +45,8 @@ class ControllerPaymentBluePayRedirect extends Controller {
 
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -56,6 +57,7 @@ class ControllerPaymentBluePayRedirect extends Controller {
 		}
 
 		$this->data['existing_cards'] = array();
+
 		if ($this->customer->isLogged() && $this->data['bluepay_redirect_card']) {
 			$this->load->model('payment/bluepay_redirect');
 
@@ -77,18 +79,19 @@ class ControllerPaymentBluePayRedirect extends Controller {
 	}
 
 	public function send() {
-		$this->load->language('payment/bluepay_redirect');
+		$this->language->load('payment/bluepay_redirect');
 
 		$this->load->model('checkout/order');
-
 		$this->load->model('payment/bluepay_redirect');
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
 		$post_data = $this->request->post;
 
 		$post_data['MERCHANT'] = $this->config->get('bluepay_redirect_account_id');
 		$post_data["TRANSACTION_TYPE"] = $this->config->get('bluepay_redirect_transaction');
 		$post_data["MODE"] = strtoupper($this->config->get('bluepay_redirect_test'));
+
 		$post_data["AMOUNT"] = $this->currency->format($order_info['total'], $order_info['currency_code'], false, false);
 
 		if (isset($this->request->post['RRNO'])) {

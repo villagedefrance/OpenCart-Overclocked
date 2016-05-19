@@ -24,28 +24,30 @@
             <td><span class="required">*</span>&nbsp;<label for="input-vendor"><?php echo $entry_vendor; ?></label></td>
             <td><input type="text" name="bluepay_redirect_account_id" value="<?php echo $bluepay_redirect_account_id; ?>" id="input-vendor" />
               <?php if ($error_account_id) { ?>
-              <span class="error"><?php echo $error_account_id; ?></span>
-              <?php } ?></td>
+                <span class="error"><?php echo $error_account_id; ?></span>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="bluepay_redirect_secret_key"><?php echo $entry_secret_key; ?></label></td>
             <td><input type="text" name="bluepay_redirect_secret_key" value="<?php echo $bluepay_redirect_secret_key; ?>" id="bluepay_redirect_secret_key" />
               <?php if ($error_secret_key) { ?>
-              <span class="error"><?php echo $error_secret_key; ?></span>
-              <?php } ?></td>
+                <span class="error"><?php echo $error_secret_key; ?></span>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><label for="input-test"><?php echo $entry_test; ?></label></td>
             <td><select name="bluepay_redirect_test" id="input-test">
               <?php if ($bluepay_redirect_test == 'test') { ?>
-              <option value="test" selected="selected"><?php echo $text_test; ?></option>
+                <option value="test" selected="selected"><?php echo $text_test; ?></option>
               <?php } else { ?>
-              <option value="test"><?php echo $text_test; ?></option>
+                <option value="test"><?php echo $text_test; ?></option>
               <?php } ?>
               <?php if ($bluepay_redirect_test == 'live') { ?>
-              <option value="live" selected="selected"><?php echo $text_live; ?></option>
+                <option value="live" selected="selected"><?php echo $text_live; ?></option>
               <?php } else { ?>
-              <option value="live"><?php echo $text_live; ?></option>
+                <option value="live"><?php echo $text_live; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -53,14 +55,14 @@
             <td><label for="input-transaction"><?php echo $entry_transaction; ?><br /><span class="help"><?php echo $help_transaction; ?></span></label></td>
             <td><select name="bluepay_redirect_transaction" id="input-transaction">
               <?php if ($bluepay_redirect_transaction == 'SALE') { ?>
-              <option value="SALE" selected="selected"><?php echo $text_sale; ?></option>
+                <option value="SALE" selected="selected"><?php echo $text_sale; ?></option>
               <?php } else { ?>
-              <option value="SALE"><?php echo $text_sale; ?></option>
+                <option value="SALE"><?php echo $text_sale; ?></option>
               <?php } ?>
               <?php if ($bluepay_redirect_transaction == 'AUTH') { ?>
-              <option value="AUTH" selected="selected"><?php echo $text_authenticate; ?></option>
+                <option value="AUTH" selected="selected"><?php echo $text_authenticate; ?></option>
               <?php } else { ?>
-              <option value="AUTH"><?php echo $text_authenticate; ?></option>
+                <option value="AUTH"><?php echo $text_authenticate; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -76,11 +78,11 @@
             <td><label for="input-card"><?php echo $entry_card; ?></label></td>
             <td><select name="bluepay_redirect_card" id="input-card">
               <?php if ($bluepay_redirect_card) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -89,9 +91,9 @@
             <td><select name="bluepay_redirect_order_status_id" id="input-order-status">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $bluepay_redirect_order_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
               <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -102,9 +104,9 @@
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
               <?php if ($geo_zone['geo_zone_id'] == $bluepay_redirect_geo_zone_id) { ?>
-              <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
               <?php } else { ?>
-              <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -113,11 +115,11 @@
             <td><label for="input-debug"><?php echo $entry_debug; ?><br /><span class="help"><?php echo $help_debug; ?></span></label></td>
             <td><select name="bluepay_redirect_debug" id="input-debug">
               <?php if ($bluepay_redirect_debug) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -125,11 +127,11 @@
             <td><label for="input-status"><?php echo $entry_status; ?></label></td>
             <td><select name="bluepay_redirect_status" id="input-status">
               <?php if ($bluepay_redirect_status) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>

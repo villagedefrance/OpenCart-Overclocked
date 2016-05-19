@@ -24,35 +24,38 @@
             <td><span class="required">*</span>&nbsp;<label for="input-account-name"><?php echo $entry_account_name; ?></label></td>
             <td><input type="text" name="bluepay_hosted_account_name" value="<?php echo $bluepay_hosted_account_name; ?>" id="input-account-name" />
               <?php if ($error_account_name) { ?>
-              <span class="error"><?php echo $error_account_name; ?></span>
-              <?php } ?></td>
+                <span class="error"><?php echo $error_account_name; ?></span>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-account-id"><?php echo $entry_account_id; ?></label></td>
             <td><input type="text" name="bluepay_hosted_account_id" value="<?php echo $bluepay_hosted_account_id; ?>" id="input-account-id" />
               <?php if ($error_account_id) { ?>
-              <span class="error"><?php echo $error_account_id; ?></span>
-              <?php } ?></td>
+                <span class="error"><?php echo $error_account_id; ?></span>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-secret-key"><?php echo $entry_secret_key; ?></label></td>
             <td><input type="text" name="bluepay_hosted_secret_key" value="<?php echo $bluepay_hosted_secret_key; ?>" id="input-secret-key" />
               <?php if ($error_secret_key) { ?>
-              <span class="error"><?php echo $error_secret_key; ?></span>
-              <?php } ?></td>
+                <span class="error"><?php echo $error_secret_key; ?></span>
+              <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><label for="input-test"><?php echo $entry_test; ?></label></td>
             <td><select name="bluepay_hosted_test" id="input-test">
               <?php if ($bluepay_hosted_test == 'test') { ?>
-              <option value="test" selected="selected"><?php echo $text_test; ?></option>
+                <option value="test" selected="selected"><?php echo $text_test; ?></option>
               <?php } else { ?>
-              <option value="test"><?php echo $text_test; ?></option>
+                <option value="test"><?php echo $text_test; ?></option>
               <?php } ?>
               <?php if ($bluepay_hosted_test == 'live') { ?>
-              <option value="live" selected="selected"><?php echo $text_live; ?></option>
+                <option value="live" selected="selected"><?php echo $text_live; ?></option>
               <?php } else { ?>
-              <option value="live"><?php echo $text_live; ?></option>
+                <option value="live"><?php echo $text_live; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -60,14 +63,14 @@
             <td><label for="input-transaction"><?php echo $entry_transaction; ?><br /><span class="help"><?php echo $help_transaction; ?></span></label></td>
             <td><select name="bluepay_hosted_transaction" id="input-transaction">
               <?php if ($bluepay_hosted_transaction == 'SALE') { ?>
-              <option value="SALE" selected="selected"><?php echo $text_sale; ?></option>
+                <option value="SALE" selected="selected"><?php echo $text_sale; ?></option>
               <?php } else { ?>
-              <option value="SALE"><?php echo $text_sale; ?></option>
+                <option value="SALE"><?php echo $text_sale; ?></option>
               <?php } ?>
               <?php if ($bluepay_hosted_transaction == 'AUTH') { ?>
-              <option value="AUTH" selected="selected"><?php echo $text_authenticate; ?></option>
+                <option value="AUTH" selected="selected"><?php echo $text_authenticate; ?></option>
               <?php } else { ?>
-              <option value="AUTH"><?php echo $text_authenticate; ?></option>
+                <option value="AUTH"><?php echo $text_authenticate; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -75,11 +78,11 @@
             <td><label for="input-amex"><?php echo $entry_card_amex; ?></label></td>
             <td><select name="bluepay_hosted_amex" id="input-amex">
               <?php if ($bluepay_hosted_amex) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -87,11 +90,11 @@
             <td><label for="input-discover"><?php echo $entry_card_discover; ?></label></td>
             <td><select name="bluepay_hosted_discover" id="input-discover">
               <?php if ($bluepay_hosted_discover) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -108,9 +111,9 @@
             <td><select name="bluepay_hosted_order_status_id" id="input-order-status">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $bluepay_hosted_order_status_id) { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
               <?php } else { ?>
-              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -121,9 +124,9 @@
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
               <?php if ($geo_zone['geo_zone_id'] == $bluepay_hosted_geo_zone_id) { ?>
-              <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
               <?php } else { ?>
-              <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -132,11 +135,11 @@
             <td><label for="input-debug"><?php echo $entry_debug; ?><br /><span class="help"><?php echo $help_debug; ?></span></label></td>
             <td><select name="bluepay_hosted_debug" id="input-debug">
               <?php if ($bluepay_hosted_debug) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -144,11 +147,11 @@
             <td><label for="input-status"><?php echo $entry_status; ?></label></td>
             <td><select name="bluepay_hosted_status" id="input-status">
               <?php if ($bluepay_hosted_status) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>

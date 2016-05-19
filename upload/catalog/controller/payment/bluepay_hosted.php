@@ -1,13 +1,16 @@
 <?php
 class ControllerPaymentBluePayHosted extends Controller {
+
 	public function index() {
-		$this->load->language('payment/bluepay_hosted');
+		$this->language->load('payment/bluepay_hosted');
+
 		$this->load->model('checkout/order');
 		$this->load->model('payment/bluepay_hosted');
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		$this->data['ORDER_ID'] = $this->session->data['order_id'];
+
 		$this->data['NAME1'] = $order_info['payment_firstname'];
 		$this->data['NAME2'] = $order_info['payment_lastname'];
 		$this->data['ADDR1'] = $order_info['payment_address_1'];
@@ -20,6 +23,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 		$this->data['EMAIL'] = $order_info['email'];
 
 		$this->data['SHPF_FORM_ID'] = 'opencart01';
+
 		$this->data['DBA'] = $this->config->get('bluepay_hosted_account_name');
 		$this->data['MERCHANT'] = $this->config->get('bluepay_hosted_account_id');
 		$this->data['SHPF_ACCOUNT_ID'] = $this->config->get('bluepay_hosted_account_id');
@@ -37,6 +41,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 		}
 
 		$this->data["AMOUNT"] = $this->currency->format($order_info['total'], $order_info['currency_code'], false, false);
+
 		$this->data['APPROVED_URL'] = $this->url->link('payment/bluepay_hosted/callback', '', 'SSL');
 		$this->data['DECLINED_URL'] = $this->url->link('payment/bluepay_hosted/callback', '', 'SSL');
 		$this->data['MISSING_URL'] = $this->url->link('payment/bluepay_hosted/callback', '', 'SSL');
@@ -64,10 +69,9 @@ class ControllerPaymentBluePayHosted extends Controller {
 	}
 
 	public function callback() {
-		$this->load->language('payment/bluepay_hosted');
+		$this->language->load('payment/bluepay_hosted');
 
 		$this->load->model('checkout/order');
-
 		$this->load->model('payment/bluepay_hosted');
 
 		$response_data = $this->request->get;
@@ -92,6 +96,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 
 				$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 			}
+
 		} else {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}

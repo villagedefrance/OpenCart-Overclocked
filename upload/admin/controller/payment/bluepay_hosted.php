@@ -3,7 +3,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/bluepay_hosted');
+		$this->language->load('payment/bluepay_hosted');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -88,20 +88,20 @@ class ControllerPaymentBluePayHosted extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_home'),
+			'href'		=> $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_payment'),
-			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('text_payment'),
+			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('payment/bluepay_hosted', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		=> $this->language->get('heading_title'),
+			'href'		=> $this->url->link('payment/bluepay_hosted', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -231,7 +231,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 			$bluepay_hosted_order = $this->model_payment_bluepay_hosted->getOrder($this->request->get['order_id']);
 
 			if (!empty($bluepay_hosted_order)) {
-				$this->load->language('payment/bluepay_hosted');
+				$this->language->load('payment/bluepay_hosted');
 
 				$bluepay_hosted_order['total_released'] = $this->model_payment_bluepay_hosted->getTotalReleased($bluepay_hosted_order['bluepay_hosted_order_id']);
 
@@ -275,7 +275,8 @@ class ControllerPaymentBluePayHosted extends Controller {
 	}
 
 	public function void() {
-		$this->load->language('payment/bluepay_hosted');
+		$this->language->load('payment/bluepay_hosted');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
@@ -300,6 +301,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($void_response['MESSAGE']) && !empty($void_response['MESSAGE']) ? (string)$void_response['MESSAGE'] : 'Unable to void';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -310,7 +312,8 @@ class ControllerPaymentBluePayHosted extends Controller {
 	}
 
 	public function release() {
-		$this->load->language('payment/bluepay_hosted');
+		$this->language->load('payment/bluepay_hosted');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '' && isset($this->request->post['amount']) && $this->request->post['amount'] > 0) {
@@ -348,6 +351,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($release_response['MESSAGE']) && !empty($release_response['MESSAGE']) ? (string)$release_response['MESSAGE'] : 'Unable to release';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = $this->language->get('error_data_missing');
@@ -358,7 +362,8 @@ class ControllerPaymentBluePayHosted extends Controller {
 	}
 
 	public function rebate() {
-		$this->load->language('payment/bluepay_hosted');
+		$this->language->load('payment/bluepay_hosted');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && !empty($this->request->post['order_id'])) {
@@ -396,6 +401,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response['MESSAGE']) && !empty($rebate_response['MESSAGE']) ? (string)$rebate_response['MESSAGE'] : 'Unable to rebate';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
