@@ -9,7 +9,7 @@ $_['text_card_name']         	= 'Card Name: ';
 $_['text_card_digits']       		= 'Last Digits: ';
 $_['text_card_expiry']       	= 'Expiry: ';
 
-// Returned text
+// Callback
 $_['text_transaction_error'] 	= 'There was an error processing your transaction - ';
 
 // Entry
@@ -27,6 +27,6 @@ $_['entry_cc_city']          		= 'City';
 $_['entry_cc_state']         	= 'State';
 $_['entry_cc_zipcode']    		= 'Zipcode';
 $_['entry_cc_phone']         	= 'Phone';
-$_['entry_cc_email']         	= 'E-mail';
+$_['entry_cc_email']         	= 'Email';
 $_['entry_cc_choice']        	= 'Choose an Existing Card';
 ?>

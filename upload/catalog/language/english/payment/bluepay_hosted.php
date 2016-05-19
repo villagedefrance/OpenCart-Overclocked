@@ -1,5 +1,6 @@
 <?php
 // Text
+$_['text_wait']              		= 'Please Wait!';
 $_['text_title']             		= 'Credit Card / Debit Card (BluePay)';
 $_['text_credit_card']       	= 'Card Details';
 $_['text_description']       		= 'Items on %s Order No: %s';
@@ -7,6 +8,8 @@ $_['text_card_type']         	= 'Card Type: ';
 $_['text_card_name']         	= 'Card Name: ';
 $_['text_card_digits']       		= 'Last Digits: ';
 $_['text_card_expiry']       	= 'Expiry: ';
+
+// Callback
 $_['text_transaction_error'] 	= 'There was an error processing your transaction - ';
 
 // Entry
