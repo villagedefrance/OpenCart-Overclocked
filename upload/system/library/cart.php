@@ -336,7 +336,7 @@ class Cart {
 	public function add($product_id, $qty = 1, $option, $profile_id = '') {
 		$key = (int)$product_id . ':';
 
-		if ($option) {
+		if ($option || !is_array($option)) {
 			$key .= base64_encode(serialize($option)) . ':';
 		} else {
 			$key .= ':';
@@ -358,7 +358,7 @@ class Cart {
 	}
 
 	public function update($key, $qty) {
-		if ((int)$qty && ((int)$qty > 0)) {
+		if ((int)$qty && ((int)$qty > 0) && isset($this->session->data['cart'][$key])) {
 			$this->session->data['cart'][$key] = (int)$qty;
 		} else {
 			$this->remove($key);
