@@ -358,24 +358,20 @@ class ControllerProductReviewList extends Controller {
 			$this->data['order'] = $order;
 			$this->data['limit'] = $limit;
 
-			$page_trig = $review_total - $limit;
+			$page_trigger = $review_total - $limit;
 			$page_last = ceil($review_total / $limit);
-			
-			if (($page == 1) && ($page_trig < 1)) {
+
+			if (($page == 1) && ($page_trigger < 1)) {
 				$this->document->addLink($this->url->link('product/review_list'), 'canonical');
-			
-			} elseif (($page == 1) && ($page_trig > 0)) {
+			} elseif (($page == 1) && ($page_trigger > 0)) {
 				$this->document->addLink($this->url->link('product/review_list'), 'canonical');
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page + 1) . $url), 'next');
-
 			} elseif ($page == $page_last) {
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page - 1) . $url), 'prev');
-			
 			} elseif ($this->request->get['page'] > $page_last) {
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page_last . $url), 'prev');
-			
 			} elseif (($page > 1) && ($page < $page_last)) {
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/review_list', 'page=' . ($page - 1) . $url), 'prev');

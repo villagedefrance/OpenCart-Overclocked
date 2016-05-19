@@ -41,7 +41,7 @@ class Pagination {
 
 		if ($page > 1) {
 			$output .= ' <a href="' . str_replace('{page}', $page - 1, $this->url) . '" title="Previous Page">' . $this->text_prev . '</a> ';
-			
+
 			$calc_first = floor(($this->num_links / 2) + 1);
 
 			if (($page > $calc_first) && !($num_pages <= ($num_links + 1))) {
@@ -86,7 +86,6 @@ class Pagination {
 		}
 
    		if ($page < $num_pages) {
-			
 			$calc_last = $num_pages - floor($this->num_links / 2);
 
 			if (($end < $num_pages) && ($page < $calc_last)) {
@@ -95,7 +94,6 @@ class Pagination {
 
 			$output .= ' <a href="' . str_replace('{page}', $page + 1, $this->url) . '" title="Next Page">' . $this->text_next . '</a> ';
 		}
-		
 
 		if ($total <= 1) {
 			$this->text = '';

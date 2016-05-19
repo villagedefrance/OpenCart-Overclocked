@@ -337,24 +337,20 @@ class ControllerProductProductWall extends Controller {
 			$this->data['order'] = $order;
 			$this->data['limit'] = $limit;
 
-			$page_trig = $product_total - $limit;
+			$page_trigger = $product_total - $limit;
 			$page_last = ceil($product_total / $limit);
-			
-			if (($page == 1) && ($page_trig < 1)) {
+
+			if (($page == 1) && ($page_trigger < 1)) {
 				$this->document->addLink($this->url->link('product/product_wall'), 'canonical');
-			
-			} elseif (($page == 1) && ($page_trig > 0)) {
+			} elseif (($page == 1) && ($page_trigger > 0)) {
 				$this->document->addLink($this->url->link('product/product_wall'), 'canonical');
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page + 1) . $url), 'next');
-
 			} elseif ($page == $page_last) {
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page - 1) . $url), 'prev');
-			
 			} elseif ($this->request->get['page'] > $page_last) {
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page_last . $url), 'prev');
-			
 			} elseif (($page > 1) && ($page < $page_last)) {
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page - 1) . $url), 'prev');
