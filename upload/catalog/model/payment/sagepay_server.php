@@ -1,16 +1,13 @@
 <?php
-class ModelPaymentSagePayDirect extends Model {
-
+class ModelPaymentSagePayServer extends Model {
 	public function getMethod($address, $total) {
-		$this->language->load('payment/sagepay_direct');
+		$this->load->language('payment/sagepay_server');
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('sagepay_direct_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone_to_geo_zone` WHERE geo_zone_id = '" . (int)$this->config->get('sagepay_server_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		if ($this->config->get('sagepay_direct_total') > 0 && $this->config->get('sagepay_direct_total') > $total) {
+		if ($this->config->get('sagepay_server_total') > 0 && $this->config->get('sagepay_server_total') > $total) {
 			$status = false;
-		} elseif ($this->config->has('sagepay_direct_total_max') && $this->config->get('sagepay_direct_total_max') > 0 && $total > $this->config->get('sagepay_direct_total_max')) {
-			$status = false;
-		} elseif (!$this->config->get('sagepay_direct_geo_zone_id')) {
+		} elseif (!$this->config->get('sagepay_server_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
 			$status = true;
@@ -22,10 +19,10 @@ class ModelPaymentSagePayDirect extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'       => 'sagepay_direct',
-				'title'      => $this->language->get('text_title'),
-				'terms'      => '',
-				'sort_order' => $this->config->get('sagepay_direct_sort_order')
+				'code' => 'sagepay_server',
+				'title' => $this->language->get('text_title'),
+				'terms' => '',
+				'sort_order' => $this->config->get('sagepay_server_sort_order')
 			);
 		}
 
@@ -33,60 +30,55 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	public function getCards($customer_id) {
+
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_card` WHERE customer_id = '" . (int)$customer_id . "'");
+
 		$card_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sagepay_direct_card WHERE customer_id = '" . (int)$customer_id . "' ORDER BY card_id");
+		$this->load->model('account/address');
 
 		foreach ($query->rows as $row) {
 
 			$card_data[] = array(
-				'card_id'     => $row['card_id'],
+				'card_id' => $row['card_id'],
 				'customer_id' => $row['customer_id'],
-				'token'       => $row['token'],
-				'digits'      => '**** ' . $row['digits'],
-				'expiry'      => $row['expiry'],
-				'type'        => $row['type'],
+				'token' => $row['token'],
+				'digits' => '**** ' . $row['digits'],
+				'expiry' => $row['expiry'],
+				'type' => $row['type'],
 			);
 		}
 		return $card_data;
 	}
 
-	public function addCard($card_data) {
-		$this->db->query("INSERT into " . DB_PREFIX . "sagepay_direct_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', type = '" . $this->db->escape($card_data['CardType']) . "', token = '" . $this->db->escape($card_data['Token']) . "'");
-
-		return $this->db->getLastId();
-	}
-
-	public function updateCard($card_id, $token) {
-		$this->db->query("UPDATE " . DB_PREFIX . "sagepay_direct_card SET token = '" . $this->db->escape($token) . "' WHERE card_id = '" . (int)$card_id . "'");
-	}
-
 	public function getCard($card_id, $token) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sagepay_direct_card WHERE (card_id = '" . $this->db->escape($card_id) . "' OR token = '" . $this->db->escape($token) . "') AND customer_id = '" . (int)$this->customer->getId() . "'");
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "sagepay_server_card WHERE (card_id = '" . $this->db->escape($card_id) . "' OR token = '" . $this->db->escape($token) . "') AND customer_id = '" . (int)$this->customer->getId() . "'");
 
-		if ($query->num_rows) {
-			return $query->row;
+		if ($qry->num_rows) {
+			return $qry->row;
 		} else {
 			return false;
 		}
 	}
 
+	public function addCard($data) {
+		$this->db->query("INSERT into `" . DB_PREFIX . "sagepay_server_card` SET customer_id = '" . $this->db->escape($data['customer_id']) . "', token = '" . $this->db->escape($data['Token']) . "', digits = '" . $this->db->escape($data['Last4Digits']) . "', expiry = '" . $this->db->escape($data['ExpiryDate']) . "', type = '" . $this->db->escape($data['CardType']) . "'");
+	}
+
 	public function deleteCard($card_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "sagepay_direct_card WHERE card_id = '" . (int)$card_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "sagepay_server_card WHERE card_id = '" . (int)$card_id . "'");
 	}
 
-	public function addOrder($order_id, $response_data, $payment_data, $card_id) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_direct_order` SET `order_id` = '" . (int)$order_id . "', `VPSTxId` = '" . $this->db->escape($response_data['VPSTxId']) . "', `VendorTxCode` = '" . $this->db->escape($payment_data['VendorTxCode']) . "', `SecurityKey` = '" . $this->db->escape($response_data['SecurityKey']) . "', `TxAuthNo` = '" . $this->db->escape($response_data['TxAuthNo']) . "', `date_added` = now(), `date_modified` = now(), `currency_code` = '" . $this->db->escape($payment_data['Currency']) . "', `total` = '" . $this->currency->format($payment_data['Amount'], $payment_data['Currency'], false, false) . "', `card_id` = '" . $this->db->escape($card_id) . "'");
-
-		return $this->db->getLastId();
+	public function addOrder($order_info) {
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_server_order` SET `order_id` = '" . (int)$order_info['order_id'] . "', `customer_id` = '" . (int)$this->customer->getId() . "', `VPSTxId` = '" . $this->db->escape($order_info['VPSTxId']) . "',  `VendorTxCode` = '" . $this->db->escape($order_info['VendorTxCode']) . "', `SecurityKey` = '" . $this->db->escape($order_info['SecurityKey']) . "', `date_added` = now(), `date_modified` = now(), `currency_code` = '" . $this->db->escape($order_info['currency_code']) . "', `total` = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
 	}
 
-	public function getOrder($order_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_direct_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 1");
+	public function getOrder($order_id, $vpstx_id = null) {
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_order` WHERE `order_id` = '" . (int)$order_id . "' OR `VPSTxId` = '" . $this->db->escape($vpstx_id) . "' LIMIT 1");
 
-		if ($query->num_rows) {
-			$order = $query->row;
-			$order['transactions'] = $this->getTransactions($order['sagepay_direct_order_id']);
+		if ($qry->num_rows) {
+			$order = $qry->row;
+			$order['transactions'] = $this->getTransactions($order['sagepay_server_order_id']);
 
 			return $order;
 		} else {
@@ -94,41 +86,44 @@ class ModelPaymentSagePayDirect extends Model {
 		}
 	}
 
-	public function updateOrder($order_info, $data) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "sagepay_direct_order` SET `SecurityKey` = '" . $this->db->escape($data['SecurityKey']) . "',  `VPSTxId` = '" . $this->db->escape($data['VPSTxId']) . "', `TxAuthNo` = '" . $this->db->escape($data['TxAuthNo']) . "' WHERE `order_id` = '" . (int)$order_info['order_id'] . "'");
-
-		return $this->db->getLastId();
+	public function updateOrder($order_info, $vps_txn_id, $tx_auth_no) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "sagepay_server_order` SET `VPSTxId` = '" . $this->db->escape($vps_txn_id) . "', `TxAuthNo` = '" . $this->db->escape($tx_auth_no) . "' WHERE `order_id` = '" . (int)$order_info['order_id'] . "'");
 	}
 
-	public function deleteOrder($vendor_tx_code) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "sagepay_direct_order` WHERE order_id = '" . $vendor_tx_code . "'");
+	public function deleteOrder($order_id) {
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "sagepay_server_order` WHERE order_id = '" . (int)$order_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_recurring` WHERE order_id = '" . (int)$order_id . "'");
 	}
 
-	public function addTransaction($sagepay_direct_order_id, $type, $order_info) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_direct_order_transaction` SET `sagepay_direct_order_id` = '" . (int)$sagepay_direct_order_id . "', `date_added` = now(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
+	public function addTransaction($sagepay_server_order_id, $type, $order_info) {
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_server_order_transaction` SET `sagepay_server_order_id` = '" . (int)$sagepay_server_order_id . "', `date_added` = now(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
 	}
 
-	private function getTransactions($sagepay_direct_order_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_direct_order_transaction` WHERE `sagepay_direct_order_id` = '" . (int)$sagepay_direct_order_id . "'");
+	private function getTransactions($sagepay_server_order_id) {
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_order_transaction` WHERE `sagepay_server_order_id` = '" . (int)$sagepay_server_order_id . "'");
 
-		if ($query->num_rows) {
-			return $query->rows;
+		if ($qry->num_rows) {
+			return $qry->rows;
 		} else {
 			return false;
 		}
 	}
 
-	public function recurringPayment($item, $vendor_tx_code) {
+	public function getRecurringOrders($order_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_recurring` WHERE order_id = '" . (int)$order_id . "'");
+		return $query->rows;
+	}
+
+	public function addRecurringPayment($item, $vendor_tx_code) {
 
 		$this->load->model('checkout/recurring');
-		$this->load->model('payment/sagepay_direct');
+		$this->load->language('payment/sagepay_server');
+
 		//trial information
 		if ($item['recurring_trial'] == 1) {
-			$price = $item['recurring_trial_price'];
 			$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency'], false, false) * $item['quantity'] . ' ' . $this->session->data['currency'];
 			$trial_text = sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring_trial_cycle'], $item['recurring_trial_frequency'], $item['recurring_trial_duration']);
 		} else {
-			$price = $item['recurring_price'];
 			$trial_text = '';
 		}
 
@@ -140,24 +135,34 @@ class ModelPaymentSagePayDirect extends Model {
 		}
 
 		//create new recurring and set to pending status as no payment has been made yet.
-		$order_recurring_id = $this->model_checkout_recurring->create($item, $this->session->data['order_id'], $recurring_description);
-		$this->model_checkout_recurring->addReference($order_recurring_id, $vendor_tx_code);
+		$recurring_id = $this->model_checkout_recurring->create($item, $this->session->data['order_id'], $recurring_description);
+		$this->model_checkout_recurring->addReference($recurring_id, $vendor_tx_code);
+	}
 
-		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+	public function updateRecurringPayment($item, $order_details) {
 
-		$sagepay_order_info = $this->getOrder($this->session->data['order_id']);
+		$this->load->model('checkout/recurring');
 
-		$response_data = $this->setPaymentData($order_info, $sagepay_order_info, $price, $order_recurring_id, $item['recurring_name']);
+		$order_info = $this->model_checkout_order->getOrder($order_details['order_id']);
+
+		//trial information
+		if ($item['trial'] == 1) {
+			$price = $this->currency->format($item['trial_price'], $this->session->data['currency'], false, false);
+		} else {
+			$price = $this->currency->format($item['recurring_price'], $this->session->data['currency'], false, false);
+		}
+
+		$response_data = $this->setPaymentData($order_info, $order_details, $price, $item['order_recurring_id'], $item['recurring_name']);
 
 		$next_payment = new DateTime('now');
 		$trial_end = new DateTime('now');
 		$subscription_end = new DateTime('now');
 
-		if ($item['recurring_trial'] == 1 && $item['recurring_trial_duration'] != 0) {
-			$next_payment = $this->calculateSchedule($item['recurring_trial_frequency'], $next_payment, $item['recurring_trial_cycle']);
-			$trial_end = $this->calculateSchedule($item['recurring_trial_frequency'], $trial_end, $item['recurring_trial_cycle'] * $item['recurring_trial_duration']);
-		} elseif ($item['recurring_trial'] == 1) {
-			$next_payment = $this->calculateSchedule($item['recurring_trial_frequency'], $next_payment, $item['recurring_trial_cycle']);
+		if ($item['trial'] == 1 && $item['trial_duration'] != 0) {
+			$next_payment = $this->calculateSchedule($item['trial_frequency'], $next_payment, $item['trial_cycle']);
+			$trial_end = $this->calculateSchedule($item['trial_frequency'], $trial_end, $item['trial_cycle'] * $item['trial_duration']);
+		} elseif ($item['trial'] == 1) {
+			$next_payment = $this->calculateSchedule($item['trial_frequency'], $next_payment, $item['trial_cycle']);
 			$trial_end = new DateTime('0000-00-00');
 		}
 
@@ -174,31 +179,31 @@ class ModelPaymentSagePayDirect extends Model {
 			$subscription_end = new DateTime('0000-00-00');
 		}
 
-		$this->addRecurringOrder($this->session->data['order_id'], $response_data, $order_recurring_id, date_format($trial_end, 'Y-m-d H:i:s'), date_format($subscription_end, 'Y-m-d H:i:s'));
+		$this->addRecurringOrder($order_details['order_id'], $response_data, $item['order_recurring_id'], date_format($trial_end, 'Y-m-d H:i:s'), date_format($subscription_end, 'Y-m-d H:i:s'));
 
 		if ($response_data['Status'] == 'OK') {
-			$this->updateRecurringOrder($order_recurring_id, date_format($next_payment, 'Y-m-d H:i:s'));
+			$this->updateRecurringOrder($item['order_recurring_id'], date_format($next_payment, 'Y-m-d H:i:s'));
 
-			$this->addRecurringTransaction($order_recurring_id, $response_data, 1);
+			$this->addRecurringTransaction($item['order_recurring_id'], $response_data, 1);
 		} else {
-			$this->addRecurringTransaction($order_recurring_id, $response_data, 4);
+			$this->addRecurringTransaction($item['order_recurring_id'], $response_data, 4);
 		}
 	}
 
 	private function setPaymentData($order_info, $sagepay_order_info, $price, $order_recurring_id, $recurring_name, $i = null) {
-		if ($this->config->get('sagepay_direct_test') == 'live') {
+		if ($this->config->get('sagepay_server_test') == 'live') {
 			$url = 'https://live.sagepay.com/gateway/service/repeat.vsp';
 			$payment_data['VPSProtocol'] = '3.00';
-		} elseif ($this->config->get('sagepay_direct_test') == 'test') {
+		} elseif ($this->config->get('sagepay_server_test') == 'test') {
 			$url = 'https://test.sagepay.com/gateway/service/repeat.vsp';
 			$payment_data['VPSProtocol'] = '3.00';
-		} elseif ($this->config->get('sagepay_direct_test') == 'sim') {
+		} elseif ($this->config->get('sagepay_server_test') == 'sim') {
 			$url = 'https://test.sagepay.com/Simulator/VSPServerGateway.asp?Service=VendorRepeatTx';
 			$payment_data['VPSProtocol'] = '2.23';
 		}
 
 		$payment_data['TxType'] = 'REPEAT';
-		$payment_data['Vendor'] = $this->config->get('sagepay_direct_vendor');
+		$payment_data['Vendor'] = $this->config->get('sagepay_server_vendor');
 		$payment_data['VendorTxCode'] = $order_recurring_id . 'RSD' . strftime("%Y%m%d%H%M%S") . mt_rand(1, 999);
 		$payment_data['Amount'] = $this->currency->format($price, $this->session->data['currency'], false, false);
 		$payment_data['Currency'] = $this->session->data['currency'];
@@ -300,7 +305,7 @@ class ModelPaymentSagePayDirect extends Model {
 				$this->addRecurringTransaction($recurring['order_recurring_id'], $response_data, 4);
 			}
 		}
-		$log = new Log('sagepay_direct_recurring_orders.log');
+		$log = new Log('sagepay_server_recurring_orders.log');
 		$log->write(print_r($cron_data, 1));
 		return $cron_data;
 	}
@@ -344,16 +349,16 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	private function addRecurringOrder($order_id, $response_data, $order_recurring_id, $trial_end, $subscription_end) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_direct_order_recurring` SET `order_id` = '" . (int)$order_id . "', `order_recurring_id` = '" . (int)$order_recurring_id . "', `VPSTxId` = '" . $this->db->escape($response_data['VPSTxId']) . "', `VendorTxCode` = '" . $this->db->escape($response_data['VendorTxCode']) . "', `SecurityKey` = '" . $this->db->escape($response_data['SecurityKey']) . "', `TxAuthNo` = '" . $this->db->escape($response_data['TxAuthNo']) . "', `date_added` = now(), `date_modified` = now(), `next_payment` = now(), `trial_end` = '" . $trial_end . "', `subscription_end` = '" . $subscription_end . "', `currency_code` = '" . $this->db->escape($response_data['Currency']) . "', `total` = '" . $this->currency->format($response_data['Amount'], $response_data['Currency'], false, false) . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_server_order_recurring` SET `order_id` = '" . (int)$order_id . "', `order_recurring_id` = '" . (int)$order_recurring_id . "', `VPSTxId` = '" . $this->db->escape($response_data['VPSTxId']) . "', `VendorTxCode` = '" . $this->db->escape($response_data['VendorTxCode']) . "', `SecurityKey` = '" . $this->db->escape($response_data['SecurityKey']) . "', `TxAuthNo` = '" . $this->db->escape($response_data['TxAuthNo']) . "', `date_added` = now(), `date_modified` = now(), `next_payment` = now(), `trial_end` = '" . $trial_end . "', `subscription_end` = '" . $subscription_end . "', `currency_code` = '" . $this->db->escape($response_data['Currency']) . "', `total` = '" . $this->currency->format($response_data['Amount'], $response_data['Currency'], false, false) . "'");
 	}
 
 	private function updateRecurringOrder($order_recurring_id, $next_payment) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "sagepay_direct_order_recurring` SET `next_payment` = '" . $next_payment . "', `date_modified` = now() WHERE `order_recurring_id` = '" . (int)$order_recurring_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "sagepay_server_order_recurring` SET `next_payment` = '" . $next_payment . "', `date_modified` = now() WHERE `order_recurring_id` = '" . (int)$order_recurring_id . "'");
 	}
 
 	private function getRecurringOrder($order_recurring_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sagepay_direct_order_recurring WHERE order_recurring_id = '" . (int)$order_recurring_id . "'");
-		return $query->row;
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "sagepay_server_order_recurring WHERE order_recurring_id = '" . (int)$order_recurring_id . "'");
+		return $qry->row;
 	}
 
 	private function addRecurringTransaction($order_recurring_id, $response_data, $type) {
@@ -361,30 +366,31 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	private function getProfiles() {
+
 		$sql = "
 			SELECT `or`.order_recurring_id
 			FROM `" . DB_PREFIX . "order_recurring` `or`
 			JOIN `" . DB_PREFIX . "order` `o` USING(`order_id`)
-			WHERE o.payment_code = 'sagepay_direct'";
+			WHERE o.payment_code = 'sagepay_server'";
 
-		$query = $this->db->query($sql);
+		$qry = $this->db->query($sql);
 
 		$order_recurring = array();
 
-		foreach ($query->rows as $recurring) {
+		foreach ($qry->rows as $recurring) {
 			$order_recurring[] = $this->getProfile($recurring['order_recurring_id']);
 		}
 		return $order_recurring;
 	}
 
 	private function getProfile($order_recurring_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_recurring WHERE order_recurring_id = " . (int)$order_recurring_id);
-		return $query->row;
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_recurring WHERE order_recurring_id = " . (int)$order_recurring_id);
+		return $qry->row;
 	}
 
 	public function updateCronJobRunTime() {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "setting` WHERE `code` = 'sagepay_direct' AND `key` = 'sagepay_direct_last_cron_job_run'");
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALUES (0, 'sagepay_direct', 'sagepay_direct_last_cron_job_run', NOW(), 0)");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "setting` WHERE `code` = 'sagepay_server' AND `key` = 'sagepay_server_last_cron_job_run'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALUES (0, 'sagepay_server', 'sagepay_server_last_cron_job_run', NOW(), 0)");
 	}
 
 	public function sendCurl($url, $payment_data, $i = null) {
@@ -419,8 +425,8 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	public function logger($title, $data) {
-		if ($this->config->get('sagepay_direct_debug')) {
-			$log = new Log('sagepay_direct.log');
+		if ($this->config->get('sagepay_server_debug')) {
+			$log = new Log('sagepay_server.log');
 			$backtrace = debug_backtrace();
 			$log->write($backtrace[6]['class'] . '::' . $backtrace[6]['function'] . ' - ' . $title . ': ' . print_r($data, 1));
 		}
@@ -434,4 +440,3 @@ class ModelPaymentSagePayDirect extends Model {
 		return true;
 	}
 }
-?>
