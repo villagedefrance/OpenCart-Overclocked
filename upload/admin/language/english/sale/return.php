@@ -39,14 +39,14 @@ $_['column_notify']        		= 'Customer Notified';
 $_['column_action']        		= 'Action';
 
 // Entry
-$_['entry_customer']      	= 'Customer:';
 $_['entry_order_id']      	= 'Order ID:';
 $_['entry_date_ordered']	= 'Order Date:';
+$_['entry_customer']      	= 'Customer:<span class="help">(Autocomplete)</span>';
 $_['entry_firstname']     	= 'First Name:';
 $_['entry_lastname']			= 'Last Name:';
 $_['entry_email']				= 'E-Mail:';
 $_['entry_telephone']     	= 'Telephone:';
-$_['entry_product']       	= 'Product:<br /><span class="help">(Autocomplete)</span>';
+$_['entry_product']       	= 'Product:<span class="help">(Autocomplete)</span>';
 $_['entry_model']         	= 'Model:';
 $_['entry_quantity']      	= 'Quantity:';
 $_['entry_reason']        	= 'Return Reason:';
