@@ -56,95 +56,94 @@
     <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" data-loading-text="<?php echo $text_loading; ?>" class="button" />
   </div>
 </div>
-<script type="text/javascript">
-  $('input[name=\'CreateToken\']').on('change', function() {
-    if (this.value === '0') {
-      $('#card-existing').show();
-      $('#card-save').hide();
-      $('#card-existing select').prop('disabled', false);
-      $('#card-save :input').prop('disabled', true);
-    } else {
-      $('#card-existing').hide();
-      $('#card-save').show();
-      $('#card-existing select').prop('disabled', true);
-      $('#card-save :input').prop('disabled', false);
-    }
-  });
-//</script>
+
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
-  $.ajax({
-    url: 'index.php?route=payment/sagepay_server/send',
-    type: 'post',
-    data: $('#card-existing :input:checked, #card-save :input:enabled, #payment select:enabled'),
-    dataType: 'json',
-    cache: false,
-    beforeSend: function() {
-      $('#button-confirm').prop('disabled', true);
-      $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
-    },
-    complete: function() {
-      $('#button-confirm').prop('disabled', false);
-      $('.attention').remove();
-    },
-    success: function(json) {
-      // if success
-      if (json['redirect']) {
-        html = '<form action="' + json['redirect'] + '" method="post" id="redirect">';
-        html += '  <input type="hidden" name="Status" value="' + json['Status'] + '" />';
-        html += '  <input type="hidden" name="StatusDetail" value="' + json['StatusDetail'] + '" />';
-
-        html += '</form>';
-
-        $('#payment').after(html);
-
-        $('#redirect').submit();
-      }
-
-      // if error
-      if (json['error']) {
-        $('#payment').before('<div id="sagepay_message_error" class="warning"> ' + json['error'] + '</div>');
-      }
-    }
-  });
+$('input[name=\'CreateToken\']').on('change', function() {
+	if (this.value === '0') {
+		$('#card-existing').show();
+		$('#card-save').hide();
+		$('#card-existing select').prop('disabled', false);
+		$('#card-save :input').prop('disabled', true);
+	} else {
+		$('#card-existing').hide();
+		$('#card-save').show();
+		$('#card-existing select').prop('disabled', true);
+		$('#card-save :input').prop('disabled', false);
+	}
 });
 //--></script>
+
 <script type="text/javascript"><!--
-$('#button-delete').bind('click', function () {
-  if (confirm('<?php echo $text_confirm_delete; ?>')) {
-    $.ajax({
-      url: 'index.php?route=payment/sagepay_server/delete',
-      type: 'post',
-      data: $('#card-existing :input[name=\'Token\']'),
-      dataType: 'json',
-      beforeSend: function() {
-        $('#button-confirm').prop('disabled', true);
-        $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
-      },
-      complete: function() {
-        $('#button-confirm').prop('disabled', false);
-        $('.attention').remove();
-      },
-      success: function (json) {
-        if (json['error']) {
-          alert(json['error']);
-        }
+$('#button-confirm').bind('click', function() {
+	$.ajax({
+		url: 'index.php?route=payment/sagepay_server/send',
+		type: 'post',
+		data: $('#card-existing :input:checked, #card-save :input:enabled, #payment select:enabled'),
+		dataType: 'json',
+		cache: false,
+		beforeSend: function() {
+			$('#button-confirm').prop('disabled', true);
+			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
+		},
+		complete: function() {
+			$('#button-confirm').prop('disabled', false);
+			$('.attention').remove();
+		},
+		success: function(json) {
+			if (json['redirect']) {
+				html = '<form action="' + json['redirect'] + '" method="post" id="redirect">';
+				html += '  <input type="hidden" name="Status" value="' + json['Status'] + '" />';
+				html += '  <input type="hidden" name="StatusDetail" value="' + json['StatusDetail'] + '" />';
+				html += '</form>';
 
-        if (json['success']) {
-          $.ajax({
-            url: 'index.php?route=checkout/confirm',
-            dataType: 'html',
-            success: function (html) {
-              $('#confirm .checkout-content').html(html);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-          });
-        }
+				$('#payment').after(html);
 
-      }
-    });
-  }
+				$('#redirect').submit();
+			}
+
+			if (json['error']) {
+				$('#payment').before('<div id="sagepay_message_error" class="warning"> ' + json['error'] + '</div>');
+			}
+		}
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('#button-delete').bind('click', function() {
+	if (confirm('<?php echo $text_confirm_delete; ?>')) {
+		$.ajax({
+			url: 'index.php?route=payment/sagepay_server/delete',
+			type: 'post',
+			data: $('#card-existing :input[name=\'Token\']'),
+			dataType: 'json',
+			beforeSend: function() {
+				$('#button-confirm').prop('disabled', true);
+				$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
+			},
+			complete: function() {
+				$('#button-confirm').prop('disabled', false);
+				$('.attention').remove();
+			},
+			success: function(json) {
+				if (json['error']) {
+					alert(json['error']);
+				}
+
+				if (json['success']) {
+					$.ajax({
+						url: 'index.php?route=checkout/confirm',
+						dataType: 'html',
+						success: function(html) {
+							$('#confirm .checkout-content').html(html);
+						},
+						error: function (xhr, ajaxOptions, thrownError) {
+							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						}
+					});
+				}
+			}
+		});
+	}
 });
 //--></script>

@@ -211,7 +211,6 @@ class ControllerPaymentSagepayServer extends Controller {
 	}
 
 	public function orderAction() {
-
 		if ($this->config->get('sagepay_server_status')) {
 			$this->load->model('payment/sagepay_server');
 
@@ -265,6 +264,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 	public function void() {
 		$this->language->load('payment/sagepay_server');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
@@ -289,6 +289,7 @@ class ControllerPaymentSagepayServer extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($void_response['StatuesDetail']) && !empty($void_response['StatuesDetail']) ? (string)$void_response['StatuesDetail'] : 'Unable to void';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -300,6 +301,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 	public function release() {
 		$this->language->load('payment/sagepay_server');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '' && isset($this->request->post['amount']) && $this->request->post['amount'] > 0) {
@@ -335,6 +337,7 @@ class ControllerPaymentSagepayServer extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($release_response['StatusDetail']) && !empty($release_response['StatusDetail']) ? (string)$release_response['StatusDetail'] : 'Unable to release';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = $this->language->get('error_data_missing');
@@ -346,6 +349,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 	public function rebate() {
 		$this->language->load('payment/sagepay_server');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && !empty($this->request->post['order_id'])) {
@@ -383,6 +387,7 @@ class ControllerPaymentSagepayServer extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response['StatusDetail']) && !empty($rebate_response['StatusDetail']) ? (string)$rebate_response['StatusDetail'] : 'Unable to rebate';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
