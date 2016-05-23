@@ -107,6 +107,8 @@
                 &nbsp;<a href="<?php echo $vouchers['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>
               <td class="price"><?php echo $vouchers['amount']; ?></td>
+              <td class="price">0.00</td>
+              <td class="price">0%</td>
               <td class="total"><?php echo $vouchers['amount']; ?></td>
             </tr>
           <?php } ?>

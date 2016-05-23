@@ -1,7 +1,8 @@
 <?php
 class ModelPaymentSagePayServer extends Model {
+
 	public function getMethod($address, $total) {
-		$this->load->language('payment/sagepay_server');
+		$this->language->load('payment/sagepay_server');
 
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone_to_geo_zone` WHERE geo_zone_id = '" . (int)$this->config->get('sagepay_server_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
@@ -19,10 +20,10 @@ class ModelPaymentSagePayServer extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code' => 'sagepay_server',
-				'title' => $this->language->get('text_title'),
-				'terms' => '',
-				'sort_order' => $this->config->get('sagepay_server_sort_order')
+				'code'		=> 'sagepay_server',
+				'title'			=> $this->language->get('text_title'),
+				'terms'		=> '',
+				'sort_order'	=> $this->config->get('sagepay_server_sort_order')
 			);
 		}
 
@@ -30,7 +31,6 @@ class ModelPaymentSagePayServer extends Model {
 	}
 
 	public function getCards($customer_id) {
-
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_card` WHERE customer_id = '" . (int)$customer_id . "'");
 
 		$card_data = array();
@@ -40,14 +40,15 @@ class ModelPaymentSagePayServer extends Model {
 		foreach ($query->rows as $row) {
 
 			$card_data[] = array(
-				'card_id' => $row['card_id'],
-				'customer_id' => $row['customer_id'],
-				'token' => $row['token'],
-				'digits' => '**** ' . $row['digits'],
-				'expiry' => $row['expiry'],
-				'type' => $row['type'],
+				'card_id'			=> $row['card_id'],
+				'customer_id'	=> $row['customer_id'],
+				'token'			=> $row['token'],
+				'digits'			=> '**** ' . $row['digits'],
+				'expiry'			=> $row['expiry'],
+				'type'				=> $row['type']
 			);
 		}
+
 		return $card_data;
 	}
 
@@ -78,6 +79,7 @@ class ModelPaymentSagePayServer extends Model {
 
 		if ($qry->num_rows) {
 			$order = $qry->row;
+
 			$order['transactions'] = $this->getTransactions($order['sagepay_server_order_id']);
 
 			return $order;
@@ -111,15 +113,16 @@ class ModelPaymentSagePayServer extends Model {
 
 	public function getRecurringOrders($order_id) {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_recurring` WHERE order_id = '" . (int)$order_id . "'");
+
 		return $query->rows;
 	}
 
 	public function addRecurringPayment($item, $vendor_tx_code) {
+		$this->language->load('payment/sagepay_server');
 
 		$this->load->model('checkout/recurring');
-		$this->load->language('payment/sagepay_server');
 
-		//trial information
+		// trial information
 		if ($item['recurring_trial'] == 1) {
 			$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency'], false, false) * $item['quantity'] . ' ' . $this->session->data['currency'];
 			$trial_text = sprintf($this->language->get('text_trial'), $trial_amt, $item['recurring_trial_cycle'], $item['recurring_trial_frequency'], $item['recurring_trial_duration']);
@@ -134,18 +137,18 @@ class ModelPaymentSagePayServer extends Model {
 			$recurring_description .= sprintf($this->language->get('text_length'), $item['recurring_duration']);
 		}
 
-		//create new recurring and set to pending status as no payment has been made yet.
+		// create new recurring and set to pending status as no payment has been made yet.
 		$recurring_id = $this->model_checkout_recurring->create($item, $this->session->data['order_id'], $recurring_description);
+
 		$this->model_checkout_recurring->addReference($recurring_id, $vendor_tx_code);
 	}
 
 	public function updateRecurringPayment($item, $order_details) {
-
 		$this->load->model('checkout/recurring');
 
 		$order_info = $this->model_checkout_order->getOrder($order_details['order_id']);
 
-		//trial information
+		// trial information
 		if ($item['trial'] == 1) {
 			$price = $this->currency->format($item['trial_price'], $this->session->data['currency'], false, false);
 		} else {
@@ -251,7 +254,9 @@ class ModelPaymentSagePayServer extends Model {
 
 			$payment_data['DeliveryPhone'] = $order_info['telephone'];
 		}
+
 		$response_data = $this->sendCurl($url, $payment_data, $i);
+
 		$response_data['VendorTxCode'] = $payment_data['VendorTxCode'];
 		$response_data['Amount'] = $payment_data['Amount'];
 		$response_data['Currency'] = $payment_data['Currency'];
@@ -260,14 +265,15 @@ class ModelPaymentSagePayServer extends Model {
 	}
 
 	public function cronPayment() {
-
 		$this->load->model('account/order');
+
 		$recurrings = $this->getProfiles();
+
 		$cron_data = array();
+
 		$i = 0;
 
 		foreach ($recurrings as $recurring) {
-
 			$recurring_order = $this->getRecurringOrder($recurring['order_recurring_id']);
 
 			$today = new DateTime('now');
@@ -305,8 +311,10 @@ class ModelPaymentSagePayServer extends Model {
 				$this->addRecurringTransaction($recurring['order_recurring_id'], $response_data, 4);
 			}
 		}
+
 		$log = new Log('sagepay_server_recurring_orders.log');
 		$log->write(print_r($cron_data, 1));
+
 		return $cron_data;
 	}
 
@@ -315,6 +323,7 @@ class ModelPaymentSagePayServer extends Model {
 			$day = date_format($next_payment, 'd');
 			$value = 15 - $day;
 			$is_even = false;
+
 			if ($cycle % 2 == 0) {
 				$is_even = true;
 			}
@@ -342,9 +351,11 @@ class ModelPaymentSagePayServer extends Model {
 				$next_payment->modify('+' . $value . ' day');
 				$next_payment->modify('+' . $odd . ' month');
 			}
+
 		} else {
 			$next_payment->modify('+' . $cycle . ' ' . $frequency);
 		}
+
 		return $next_payment;
 	}
 
@@ -366,12 +377,7 @@ class ModelPaymentSagePayServer extends Model {
 	}
 
 	private function getProfiles() {
-
-		$sql = "
-			SELECT `or`.order_recurring_id
-			FROM `" . DB_PREFIX . "order_recurring` `or`
-			JOIN `" . DB_PREFIX . "order` `o` USING(`order_id`)
-			WHERE o.payment_code = 'sagepay_server'";
+		$sql = "SELECT `or`.order_recurring_id FROM `" . DB_PREFIX . "order_recurring` `or` JOIN `" . DB_PREFIX . "order` `o` USING(`order_id`) WHERE o.payment_code = 'sagepay_server'";
 
 		$qry = $this->db->query($sql);
 
@@ -380,11 +386,13 @@ class ModelPaymentSagePayServer extends Model {
 		foreach ($qry->rows as $recurring) {
 			$order_recurring[] = $this->getProfile($recurring['order_recurring_id']);
 		}
+
 		return $order_recurring;
 	}
 
 	private function getProfile($order_recurring_id) {
 		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_recurring WHERE order_recurring_id = " . (int)$order_recurring_id);
+
 		return $qry->row;
 	}
 
@@ -421,13 +429,16 @@ class ModelPaymentSagePayServer extends Model {
 				$data[trim($parts[0])] = trim($parts[1]);
 			}
 		}
+
 		return $data;
 	}
 
 	public function logger($title, $data) {
 		if ($this->config->get('sagepay_server_debug')) {
 			$log = new Log('sagepay_server.log');
+
 			$backtrace = debug_backtrace();
+
 			$log->write($backtrace[6]['class'] . '::' . $backtrace[6]['function'] . ' - ' . $title . ': ' . print_r($data, 1));
 		}
 	}
@@ -440,3 +451,4 @@ class ModelPaymentSagePayServer extends Model {
 		return true;
 	}
 }
+?>

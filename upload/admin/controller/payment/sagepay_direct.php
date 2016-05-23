@@ -213,9 +213,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 	}
 
 	public function orderAction() {
-
 		if ($this->config->get('sagepay_direct_status')) {
-
 			$this->load->model('payment/sagepay_direct');
 
 			$sagepay_direct_order = $this->model_payment_sagepay_direct->getOrder($this->request->get['order_id']);
@@ -268,6 +266,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 	public function void() {
 		$this->language->load('payment/sagepay_direct');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
@@ -301,6 +300,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($void_response['StatuesDetail']) && !empty($void_response['StatuesDetail']) ? (string)$void_response['StatuesDetail'] : 'Unable to void';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -312,6 +312,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 	public function release() {
 		$this->language->load('payment/sagepay_direct');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '' && isset($this->request->post['amount']) && $this->request->post['amount'] > 0) {
@@ -341,6 +342,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 					$history['notify'] = '';
 
 					$this->model_sale_order->addOrderHistory($this->request->post['order_id'], $history);
+
 				} else {
 					$release_status = 0;
 					$json['msg'] = $this->language->get('text_release_ok');
@@ -356,6 +358,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($release_response['StatusDetail']) && !empty($release_response['StatusDetail']) ? (string)$release_response['StatusDetail'] : 'Unable to release';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = $this->language->get('error_data_missing');
@@ -367,6 +370,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 	public function rebate() {
 		$this->language->load('payment/sagepay_direct');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && !empty($this->request->post['order_id'])) {
@@ -413,6 +417,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response['StatusDetail']) && !empty($rebate_response['StatusDetail']) ? (string)$rebate_response['StatusDetail'] : 'Unable to rebate';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';

@@ -22,10 +22,10 @@ class ModelPaymentSagePayDirect extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'       => 'sagepay_direct',
-				'title'      => $this->language->get('text_title'),
-				'terms'      => '',
-				'sort_order' => $this->config->get('sagepay_direct_sort_order')
+				'code'		=> 'sagepay_direct',
+				'title'			=> $this->language->get('text_title'),
+				'terms'		=> '',
+				'sort_order'	=> $this->config->get('sagepay_direct_sort_order')
 			);
 		}
 
@@ -40,14 +40,15 @@ class ModelPaymentSagePayDirect extends Model {
 		foreach ($query->rows as $row) {
 
 			$card_data[] = array(
-				'card_id'     => $row['card_id'],
-				'customer_id' => $row['customer_id'],
-				'token'       => $row['token'],
-				'digits'      => '**** ' . $row['digits'],
-				'expiry'      => $row['expiry'],
-				'type'        => $row['type'],
+				'card_id'			=> $row['card_id'],
+				'customer_id'	=> $row['customer_id'],
+				'token'			=> $row['token'],
+				'digits'			=> '**** ' . $row['digits'],
+				'expiry'			=> $row['expiry'],
+				'type'				=> $row['type']
 			);
 		}
+
 		return $card_data;
 	}
 
@@ -119,10 +120,10 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	public function recurringPayment($item, $vendor_tx_code) {
-
 		$this->load->model('checkout/recurring');
 		$this->load->model('payment/sagepay_direct');
-		//trial information
+
+		// trial information
 		if ($item['recurring_trial'] == 1) {
 			$price = $item['recurring_trial_price'];
 			$trial_amt = $this->currency->format($this->tax->calculate($item['recurring_trial_price'], $item['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency'], false, false) * $item['quantity'] . ' ' . $this->session->data['currency'];
@@ -139,8 +140,9 @@ class ModelPaymentSagePayDirect extends Model {
 			$recurring_description .= sprintf($this->language->get('text_length'), $item['recurring_duration']);
 		}
 
-		//create new recurring and set to pending status as no payment has been made yet.
+		// create new recurring and set to pending status as no payment has been made yet.
 		$order_recurring_id = $this->model_checkout_recurring->create($item, $this->session->data['order_id'], $recurring_description);
+
 		$this->model_checkout_recurring->addReference($order_recurring_id, $vendor_tx_code);
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
@@ -246,7 +248,9 @@ class ModelPaymentSagePayDirect extends Model {
 
 			$payment_data['DeliveryPhone'] = $order_info['telephone'];
 		}
+
 		$response_data = $this->sendCurl($url, $payment_data, $i);
+
 		$response_data['VendorTxCode'] = $payment_data['VendorTxCode'];
 		$response_data['Amount'] = $payment_data['Amount'];
 		$response_data['Currency'] = $payment_data['Currency'];
@@ -255,14 +259,15 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	public function cronPayment() {
-
 		$this->load->model('account/order');
+
 		$recurrings = $this->getProfiles();
+
 		$cron_data = array();
+
 		$i = 0;
 
 		foreach ($recurrings as $recurring) {
-
 			$recurring_order = $this->getRecurringOrder($recurring['order_recurring_id']);
 
 			$today = new DateTime('now');
@@ -300,8 +305,10 @@ class ModelPaymentSagePayDirect extends Model {
 				$this->addRecurringTransaction($recurring['order_recurring_id'], $response_data, 4);
 			}
 		}
+
 		$log = new Log('sagepay_direct_recurring_orders.log');
 		$log->write(print_r($cron_data, 1));
+
 		return $cron_data;
 	}
 
@@ -310,6 +317,7 @@ class ModelPaymentSagePayDirect extends Model {
 			$day = date_format($next_payment, 'd');
 			$value = 15 - $day;
 			$is_even = false;
+
 			if ($cycle % 2 == 0) {
 				$is_even = true;
 			}
@@ -337,9 +345,11 @@ class ModelPaymentSagePayDirect extends Model {
 				$next_payment->modify('+' . $value . ' day');
 				$next_payment->modify('+' . $odd . ' month');
 			}
+
 		} else {
 			$next_payment->modify('+' . $cycle . ' ' . $frequency);
 		}
+
 		return $next_payment;
 	}
 
@@ -353,6 +363,7 @@ class ModelPaymentSagePayDirect extends Model {
 
 	private function getRecurringOrder($order_recurring_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sagepay_direct_order_recurring WHERE order_recurring_id = '" . (int)$order_recurring_id . "'");
+
 		return $query->row;
 	}
 
@@ -361,11 +372,7 @@ class ModelPaymentSagePayDirect extends Model {
 	}
 
 	private function getProfiles() {
-		$sql = "
-			SELECT `or`.order_recurring_id
-			FROM `" . DB_PREFIX . "order_recurring` `or`
-			JOIN `" . DB_PREFIX . "order` `o` USING(`order_id`)
-			WHERE o.payment_code = 'sagepay_direct'";
+		$sql = "SELECT `or`.order_recurring_id FROM `" . DB_PREFIX . "order_recurring` `or` JOIN `" . DB_PREFIX . "order` `o` USING(`order_id`) WHERE o.payment_code = 'sagepay_direct'";
 
 		$query = $this->db->query($sql);
 
@@ -374,16 +381,19 @@ class ModelPaymentSagePayDirect extends Model {
 		foreach ($query->rows as $recurring) {
 			$order_recurring[] = $this->getProfile($recurring['order_recurring_id']);
 		}
+
 		return $order_recurring;
 	}
 
 	private function getProfile($order_recurring_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_recurring WHERE order_recurring_id = " . (int)$order_recurring_id);
+
 		return $query->row;
 	}
 
 	public function updateCronJobRunTime() {
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "setting` WHERE `code` = 'sagepay_direct' AND `key` = 'sagepay_direct_last_cron_job_run'");
+
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALUES (0, 'sagepay_direct', 'sagepay_direct_last_cron_job_run', NOW(), 0)");
 	}
 
@@ -415,13 +425,16 @@ class ModelPaymentSagePayDirect extends Model {
 				$data[trim($parts[0])] = trim($parts[1]);
 			}
 		}
+
 		return $data;
 	}
 
 	public function logger($title, $data) {
 		if ($this->config->get('sagepay_direct_debug')) {
 			$log = new Log('sagepay_direct.log');
+
 			$backtrace = debug_backtrace();
+
 			$log->write($backtrace[6]['class'] . '::' . $backtrace[6]['function'] . ' - ' . $title . ': ' . print_r($data, 1));
 		}
 	}

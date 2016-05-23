@@ -199,18 +199,26 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->data['action'] = $this->url->link('checkout/cart');
 
+			// Minimum age
+			$age_minimum = 0;
+			$age_logged = false;
+			$age_checked = false;
+
+			// Get weight
 			if ($this->config->get('config_cart_weight')) {
 				$this->data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
 			} else {
 				$this->data['weight'] = '';
 			}
 
+			// Get offers
 			$this->data['label'] = $this->config->get('config_offer_label');
 
 			$this->load->model('catalog/offer');
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
+			// Products
 			$this->load->model('tool/image');
 
 			$this->data['products'] = array();

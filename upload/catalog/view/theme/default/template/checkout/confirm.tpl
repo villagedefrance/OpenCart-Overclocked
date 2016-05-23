@@ -44,10 +44,12 @@
       <?php } ?>
       <?php foreach ($vouchers as $voucher) { ?>
         <tr>
-          <td colspan="2" class="name"><?php echo $voucher['description']; ?></td>
-          <td colspan="2" class="model"></td>
+          <td class="name"><?php echo $voucher['description']; ?></td>
+          <td class="model"></td>
           <td class="quantity">1</td>
           <td class="price"><?php echo $voucher['amount']; ?></td>
+          <td class="price">0.00</td>
+          <td class="price">0%</td>
           <td class="total"><?php echo $voucher['amount']; ?></td>
         </tr>
       <?php } ?>

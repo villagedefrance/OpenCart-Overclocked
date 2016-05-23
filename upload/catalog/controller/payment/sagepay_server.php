@@ -1,5 +1,6 @@
 <?php
 class ControllerPaymentSagepayServer extends Controller {
+
 	public function index() {
 		$this->language->load('payment/sagepay_server');
 
@@ -51,6 +52,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 	public function send() {
 		$this->language->load('payment/sagepay_server');
+
 		$this->load->model('checkout/order');
 		$this->load->model('payment/sagepay_server');
 		$this->load->model('account/order');
@@ -59,15 +61,12 @@ class ControllerPaymentSagepayServer extends Controller {
 
 		if ($this->config->get('sagepay_server_test') == 'live') {
 			$url = 'https://live.sagepay.com/gateway/service/vspserver-register.vsp';
-
 			$payment_data['VPSProtocol'] = '3.00';
 		} elseif ($this->config->get('sagepay_server_test') == 'test') {
 			$url = 'https://test.sagepay.com/gateway/service/vspserver-register.vsp';
-
 			$payment_data['VPSProtocol'] = '3.00';
 		} elseif ($this->config->get('sagepay_server_test') == 'sim') {
 			$url = 'https://test.sagepay.com/Simulator/VSPServerGateway.asp?Service=VendorRegisterTx';
-
 			$payment_data['VPSProtocol'] = '2.23';
 		}
 
@@ -140,8 +139,10 @@ class ControllerPaymentSagepayServer extends Controller {
 		}
 
 		$order_products = $this->model_account_order->getOrderProducts($this->session->data['order_id']);
+
 		$cart_rows = 0;
 		$str_basket = "";
+
 		foreach ($order_products as $product) {
 			$str_basket .=
 					":" . str_replace(":", " ", $product['name'] . " " . $product['model']) .
@@ -154,10 +155,12 @@ class ControllerPaymentSagepayServer extends Controller {
 		}
 
 		$order_totals = $this->model_account_order->getOrderTotals($this->session->data['order_id']);
+
 		foreach ($order_totals as $total) {
 			$str_basket .= ":" . str_replace(":", " ", $total['title']) . ":::::" . $this->currency->format($total['value'], $order_info['currency_code'], false, false);
 			$cart_rows++;
 		}
+
 		$str_basket = $cart_rows . $str_basket;
 
 		$payment_data['Basket'] = $str_basket;
@@ -193,8 +196,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 			if ($this->config->get('sagepay_server_transaction') == 'PAYMENT') {
 				$recurring_products = $this->cart->getRecurringProducts();
-
-				//loop through any products that are recurring items
+				// loop through any products that are recurring items
 				foreach ($recurring_products as $item) {
 					$this->model_payment_sagepay_server->addRecurringPayment($item, $payment_data['VendorTxCode']);
 				}
@@ -213,6 +215,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 		$success_page = $this->url->link('payment/sagepay_server/success', '', 'SSL');
 		$error_page = $this->url->link('payment/sagepay_server/failure', '', 'SSL');
+
 		$end_ln = chr(13) . chr(10);
 
 		if (isset($this->request->post['VendorTxCode'])) {
@@ -235,6 +238,7 @@ class ControllerPaymentSagepayServer extends Controller {
 		} else {
 			$str_vps_signature = '';
 		}
+
 		if (isset($this->request->post['StatusDetail'])) {
 			$str_status_detail = $this->request->post['StatusDetail'];
 		} else {
@@ -352,14 +356,13 @@ class ControllerPaymentSagepayServer extends Controller {
 		$this->model_payment_sagepay_server->logger('$transaction_info', $transaction_info);
 		$this->model_payment_sagepay_server->logger('$strStatus', $str_status);
 
-		//Check if order we have saved in database maches with callback sagepay does
+		// Check if order in database matches with Sagepay's callback
 		if (!isset($transaction_info['order_id']) || $transaction_info['order_id'] != $order_id) {
 			echo "Status=INVALID" . $end_ln;
 			echo "StatusDetail= Order IDs could not be matched. Order might be tampered with." . $end_ln;
 			echo "RedirectURL=" . $error_page . $end_ln;
 
 			$this->model_payment_sagepay_server->logger('StatusDetail', 'Order IDs could not be matched. Order might be tampered with');
-
 			exit;
 		}
 
@@ -413,6 +416,7 @@ class ControllerPaymentSagepayServer extends Controller {
 			$comment .= "Paypal address status: " . $str_address_status . "<br>";
 			$comment .= "Paypal payer status: " . $str_payer_status . "<br>";
 		}
+
 		$comment .= "Last 4 digits: " . $str_last_4_digits . "<br>";
 
 		$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('sagepay_server_order_status_id'), $comment);
@@ -445,8 +449,7 @@ class ControllerPaymentSagepayServer extends Controller {
 
 			if ($this->config->get('sagepay_server_transaction') == 'PAYMENT') {
 				$recurring_products = $this->model_payment_sagepay_server->getRecurringOrders($this->session->data['order_id']);
-
-				//loop through any products that are recurring items
+				// loop through any products that are recurring items
 				foreach ($recurring_products as $item) {
 					$this->model_payment_sagepay_server->updateRecurringPayment($item, $order_details);
 				}
@@ -471,7 +474,6 @@ class ControllerPaymentSagepayServer extends Controller {
 
 		$this->load->model('payment/sagepay_server');
 
-
 		$card = $this->model_payment_sagepay_server->getCard(false, $this->request->post['Token']);
 
 		if (!empty($card['token'])) {
@@ -480,19 +482,24 @@ class ControllerPaymentSagepayServer extends Controller {
 			} else {
 				$url = 'https://test.sagepay.com/gateway/service/removetoken.vsp';
 			}
+
 			$payment_data['VPSProtocol'] = '3.00';
 			$payment_data['Vendor'] = $this->config->get('sagepay_server_vendor');
 			$payment_data['TxType'] = 'REMOVETOKEN';
 			$payment_data['Token'] = $card['token'];
 
 			$response_data = $this->model_payment_sagepay_server->sendCurl($url, $payment_data);
+
 			if ($response_data['Status'] == 'OK') {
 				$this->model_payment_sagepay_server->deleteCard($card['card_id']);
+
 				$this->session->data['success'] = $this->language->get('text_success_card');
+
 				$json['success'] = true;
 			} else {
 				$json['error'] = $this->language->get('text_fail_card');
 			}
+
 		} else {
 			$json['error'] = $this->language->get('text_fail_card');
 		}
@@ -510,6 +517,5 @@ class ControllerPaymentSagepayServer extends Controller {
 			$this->model_payment_sagepay_server->logger('Repeat Orders', $orders);
 		}
 	}
-
 }
 ?>

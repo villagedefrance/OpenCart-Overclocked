@@ -1,66 +1,67 @@
 <?php
 class ModelPaymentSagepayDirect extends Model {
+
 	public function install() {
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "sagepay_direct_order` (
-				`sagepay_direct_order_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`order_id` INT(11) NOT NULL,
-				`VPSTxId` VARCHAR(50),
-				`VendorTxCode` VARCHAR(50) NOT NULL,
-				`SecurityKey` CHAR(50) NOT NULL,
-				`TxAuthNo` INT(50),
-				`date_added` DATETIME NOT NULL,
-				`date_modified` DATETIME NOT NULL,
-				`release_status` INT(1) DEFAULT NULL,
-				`void_status` INT(1) DEFAULT NULL,
-				`settle_type` INT(1) DEFAULT NULL,
-				`rebate_status` INT(1) DEFAULT NULL,
-				`currency_code` CHAR(3) NOT NULL,
-				`total` DECIMAL(10, 2) NOT NULL,
-				`card_id` INT(11),
+				`sagepay_direct_order_id` int(11) NOT NULL AUTO_INCREMENT,
+				`order_id` int(11) NOT NULL,
+				`VPSTxId` varchar(50),
+				`VendorTxCode` varchar(50) NOT NULL,
+				`SecurityKey` varchar(50) NOT NULL,
+				`TxAuthNo` int(50),
+				`date_added` datetime NOT NULL,
+				`date_modified` datetime NOT NULL,
+				`release_status` int(1) DEFAULT NULL,
+				`void_status` int(1) DEFAULT NULL,
+				`settle_type` int(1) DEFAULT NULL,
+				`rebate_status` int(1) DEFAULT NULL,
+				`currency_code` varchar(3) NOT NULL,
+				`total` decimal(10, 2) NOT NULL,
+				`card_id` int(11),
 				PRIMARY KEY (`sagepay_direct_order_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "sagepay_direct_order_transaction` (
-				`sagepay_direct_order_transaction_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`sagepay_direct_order_id` INT(11) NOT NULL,
-				`date_added` DATETIME NOT NULL,
-				`type` ENUM('auth', 'payment', 'rebate', 'void') DEFAULT NULL,
-				`amount` DECIMAL(10, 2) NOT NULL,
+				`sagepay_direct_order_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+				`sagepay_direct_order_id` int(11) NOT NULL,
+				`date_added` datetime NOT NULL,
+				`type` enum('auth', 'payment', 'rebate', 'void') DEFAULT NULL,
+				`amount` decimal(10, 2) NOT NULL,
 				PRIMARY KEY (`sagepay_direct_order_transaction_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "sagepay_direct_order_recurring` (
-				`sagepay_direct_order_recurring_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`order_id` INT(11) NOT NULL,
-				`order_recurring_id` INT(11) NOT NULL,
-				`VPSTxId` VARCHAR(50),
-				`VendorTxCode` VARCHAR(50) NOT NULL,
-				`SecurityKey` CHAR(50) NOT NULL,
-				`TxAuthNo` INT(50),
-				`date_added` DATETIME NOT NULL,
-				`date_modified` DATETIME NOT NULL,
-				`next_payment` DATETIME NOT NULL,
+				`sagepay_direct_order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
+				`order_id` int(11) NOT NULL,
+				`order_recurring_id` int(11) NOT NULL,
+				`VPSTxId` varchar(50),
+				`VendorTxCode` varchar(50) NOT NULL,
+				`SecurityKey` varchar(50) NOT NULL,
+				`TxAuthNo` int(50),
+				`date_added` datetime NOT NULL,
+				`date_modified` datetime NOT NULL,
+				`next_payment` datetime NOT NULL,
 				`trial_end` datetime DEFAULT NULL,
 				`subscription_end` datetime DEFAULT NULL,
-				`currency_code` CHAR(3) NOT NULL,
-				`total` DECIMAL(10, 2) NOT NULL,
+				`currency_code` varchar(3) NOT NULL,
+				`total` decimal(10, 2) NOT NULL,
 				PRIMARY KEY (`sagepay_direct_order_recurring_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "sagepay_direct_card` (
-				`card_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`customer_id` INT(11) NOT NULL,
-				`token` VARCHAR(50) NOT NULL,
-				`digits` VARCHAR(4) NOT NULL,
-				`expiry` VARCHAR(5) NOT NULL,
-				`type` VARCHAR(50) NOT NULL,
+				`card_id` int(11) NOT NULL AUTO_INCREMENT,
+				`customer_id` int(11) NOT NULL,
+				`token` varchar(50) NOT NULL,
+				`digits` varchar(4) NOT NULL,
+				`expiry` varchar(5) NOT NULL,
+				`type` varchar(50) NOT NULL,
 				PRIMARY KEY (`card_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
@@ -77,7 +78,6 @@ class ModelPaymentSagepayDirect extends Model {
 		$sagepay_direct_order = $this->getOrder($order_id);
 
 		if (!empty($sagepay_direct_order) && $sagepay_direct_order['release_status'] == 0) {
-
 			$void_data = array();
 
 			if ($this->config->get('sagepay_direct_test') == 'live') {
@@ -92,7 +92,9 @@ class ModelPaymentSagepayDirect extends Model {
 			}
 
 			$void_data['TxType'] = 'VOID';
+
 			$void_data['Vendor'] = $this->config->get('sagepay_direct_vendor');
+
 			$void_data['VendorTxCode'] = $sagepay_direct_order['VendorTxCode'];
 			$void_data['VPSTxId'] = $sagepay_direct_order['VPSTxId'];
 			$void_data['SecurityKey'] = $sagepay_direct_order['SecurityKey'];
@@ -112,6 +114,7 @@ class ModelPaymentSagepayDirect extends Model {
 
 	public function release($order_id, $amount) {
 		$sagepay_direct_order = $this->getOrder($order_id);
+
 		$total_released = $this->getTotalReleased($sagepay_direct_order['sagepay_direct_order_id']);
 
 		if (!empty($sagepay_direct_order) && $sagepay_direct_order['release_status'] == 0 && ($total_released + $amount <= $sagepay_direct_order['total'])) {
@@ -129,7 +132,9 @@ class ModelPaymentSagepayDirect extends Model {
 			}
 
 			$release_data['TxType'] = 'RELEASE';
+
 			$release_data['Vendor'] = $this->config->get('sagepay_direct_vendor');
+
 			$release_data['VendorTxCode'] = $sagepay_direct_order['VendorTxCode'];
 			$release_data['VPSTxId'] = $sagepay_direct_order['VPSTxId'];
 			$release_data['SecurityKey'] = $sagepay_direct_order['SecurityKey'];
@@ -152,7 +157,6 @@ class ModelPaymentSagepayDirect extends Model {
 		$sagepay_direct_order = $this->getOrder($order_id);
 
 		if (!empty($sagepay_direct_order) && $sagepay_direct_order['rebate_status'] != 1) {
-
 			$refund_data = array();
 
 			if ($this->config->get('sagepay_direct_test') == 'live') {
@@ -167,7 +171,9 @@ class ModelPaymentSagepayDirect extends Model {
 			}
 
 			$refund_data['TxType'] = 'REFUND';
+
 			$refund_data['Vendor'] = $this->config->get('sagepay_direct_vendor');
+
 			$refund_data['VendorTxCode'] = $sagepay_direct_order['sagepay_direct_order_id'] . rand();
 			$refund_data['Amount'] = $amount;
 			$refund_data['Currency'] = $sagepay_direct_order['currency_code'];
@@ -196,6 +202,7 @@ class ModelPaymentSagepayDirect extends Model {
 
 		if ($query->num_rows) {
 			$order = $query->row;
+
 			$order['transactions'] = $this->getTransactions($order['sagepay_direct_order_id']);
 
 			$this->logger(print_r($order, 1));
@@ -260,6 +267,7 @@ class ModelPaymentSagepayDirect extends Model {
 				$data[trim($parts[0])] = trim($parts[1]);
 			}
 		}
+
 		return $data;
 	}
 
