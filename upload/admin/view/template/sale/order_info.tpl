@@ -360,10 +360,12 @@
         <?php } ?>
         <?php foreach ($vouchers as $voucher) { ?>
           <tr>
-            <td class="left" colspan="2"><a href="<?php echo $voucher['href']; ?>"><?php echo $voucher['description']; ?></a></td>
-            <td class="left" colspan="2"></td>
+            <td class="left"><a href="<?php echo $voucher['href']; ?>"><?php echo $voucher['description']; ?></a></td>
+            <td class="left"></td>
             <td class="right">1</td>
             <td class="right"><?php echo $voucher['amount']; ?></td>
+            <td class="right">0.00</td>
+            <td class="right">0%</td>
             <td class="right"><?php echo $voucher['amount']; ?></td>
           </tr>
         <?php } ?>

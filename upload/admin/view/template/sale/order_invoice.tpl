@@ -114,9 +114,12 @@
     <?php } ?>
     <?php foreach ($order['voucher'] as $voucher) { ?>
     <tr>
-      <td class="left" colspan="2"><?php echo $voucher['description']; ?></td>
-      <td class="left" colspan="2"></td>
+      <td class="left"><?php echo $voucher['description']; ?></td>
+      <td class="left"></td>
       <td class="right">1</td>
+      <td class="right"><?php echo $voucher['amount']; ?></td>
+      <td class="right">0.00</td>
+      <td class="right">0%</td>
       <td class="right"><?php echo $voucher['amount']; ?></td>
     </tr>
     <?php } ?>
