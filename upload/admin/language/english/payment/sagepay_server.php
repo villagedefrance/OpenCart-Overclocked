@@ -3,6 +3,7 @@
 $_['heading_title']                = 'SagePay Server';
 
 // Link
+$_['text_sagepay_server']     = '<a onclick="window.open(\'https://support.sagepay.com/apply/default.aspx\');"><img src="view/image/payment/sagepay.png" alt="SagePay" title="SagePay" style="border:1px solid #EEEEEE;" /></a>';
 // Text
 $_['text_payment']               = 'Payment';
 $_['text_success']                = 'Success: You have modified <b>Payment SagePay Server</b> account details!';
