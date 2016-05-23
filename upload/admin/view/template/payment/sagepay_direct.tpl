@@ -147,7 +147,7 @@
             <td><input type="text" name="sagepay_direct_cron_job_token" value="<?php echo $sagepay_direct_cron_job_token; ?>" id="sagepay-direct-cron-job-token" size="80" /></td>
           </tr>
           <tr>
-            <td><label for="cron-job-url"><?php echo $entry_cron_job_url; ?><br /><span class="help"><?php echo $help_cron_job_url; ?></span></label></td>
+            <td><label for="input-cron-job-url"><?php echo $entry_cron_job_url; ?><br /><span class="help"><?php echo $help_cron_job_url; ?></span></label></td>
             <td><input type="text" name="sagepay_direct_cron_job_url" value="<?php echo $sagepay_direct_cron_job_url ?>" id="input-cron-job-url" size="80" /></td>
           </tr>
           <?php if ($sagepay_direct_last_cron_job_run) { ?>
