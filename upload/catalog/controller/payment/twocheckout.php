@@ -1,14 +1,14 @@
 <?php
 class ControllerPaymentTwoCheckout extends Controller {
 
-	protected function index() {
+	public function index() {
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
 		$this->load->model('checkout/order');
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		$this->data['action'] = 'https://www.2checkout.com/checkout/spurchase';
+		$this->data['action'] = 'https://www.2checkout.com/checkout/purchase';
 
 		$this->data['sid'] = $this->config->get('twocheckout_account');
 		$this->data['currency_code'] = $order_info['currency_code'];
@@ -49,11 +49,11 @@ class ControllerPaymentTwoCheckout extends Controller {
 
 		foreach ($products as $product) {
 			$this->data['products'][] = array(
-				'product_id'  	=> $product['product_id'],
-				'name'        	=> $product['name'],
-				'description' 	=> $product['name'],
-				'quantity'    	=> $product['quantity'],
-				'price'		  	=> $this->currency->format($product['price'], $order_info['currency_code'], $order_info['currency_value'], false)
+				'product_id'  => $product['product_id'],
+				'name'        => $product['name'],
+				'description' => $product['name'],
+				'quantity'    => $product['quantity'],
+				'price'       => $this->currency->format($product['price'], $order_info['currency_code'], $order_info['currency_value'], false)
 			);
 		}
 
@@ -61,6 +61,12 @@ class ControllerPaymentTwoCheckout extends Controller {
 			$this->data['demo'] = 'Y';
 		} else {
 			$this->data['demo'] = '';
+		}
+
+		if ($this->config->get('twocheckout_display')) {
+			$this->data['display'] = 'Y';
+		} else {
+			$this->data['display'] = '';
 		}
 
 		$this->data['lang'] = $this->session->data['language'];
@@ -94,7 +100,7 @@ class ControllerPaymentTwoCheckout extends Controller {
 			if ($this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) == $this->request->post['total']) {
 				$this->model_checkout_order->confirm($this->request->post['cart_order_id'], $this->config->get('twocheckout_order_status_id'));
 			} else {
-				$this->model_checkout_order->confirm($this->request->post['cart_order_id'], $this->config->get('config_order_status_id')); // Ugh. Some one've faked the sum. What should we do? Probably drop a mail to the shop owner?				
+				$this->model_checkout_order->confirm($this->request->post['cart_order_id'], $this->config->get('config_order_status_id')); // Ugh. Some one've faked the sum. What should we do? Probably drop a mail to the shop owner?
 			}
 
 			// We can't use $this->redirect() here, because of 2CO behavior. It fetches this page
