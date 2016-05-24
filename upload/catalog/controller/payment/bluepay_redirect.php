@@ -132,7 +132,7 @@ class ControllerPaymentBluePayRedirect extends Controller {
 				$this->model_payment_bluepay_redirect->addTransaction($bluepay_redirect_order_id, 'auth', $order_info);
 			}
 
-			$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], $this->config->get('bluepay_redirect_order_status_id'));
+			$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('bluepay_redirect_order_status_id'));
 
 			$json['redirect'] = $this->url->link('checkout/success', '', 'SSL');
 		} else {

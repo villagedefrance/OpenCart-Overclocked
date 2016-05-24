@@ -8,6 +8,8 @@ class ModelPaymentWebPaymentSoftware extends Model {
 
 		if ($this->config->get('web_payment_software_total') > 0 && $this->config->get('web_payment_software_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('web_payment_software_total_max') && $this->config->get('web_payment_software_total_max') > 0 && $total > $this->config->get('web_payment_software_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('web_payment_software_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,9 +22,10 @@ class ModelPaymentWebPaymentSoftware extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'web_payment_software',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('web_payment_software_sort_order')
+				'code'       => 'web_payment_software',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('web_payment_software_sort_order')
 			);
 		}
 

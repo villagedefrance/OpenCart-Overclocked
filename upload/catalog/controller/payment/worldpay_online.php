@@ -105,7 +105,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 		$this->model_payment_worldpay_online->logger($response_data);
 
 		if (isset($response_data->paymentStatus) && $response_data->paymentStatus == 'SUCCESS') {
-			$this->model_checkout_order->addOrderHistory($order_info['order_id'], $this->config->get('config_order_status_id'));
+			$this->model_checkout_order->update($order_info['order_id'], $this->config->get('config_order_status_id'));
 
 			$worldpay_online_order_id = $this->model_payment_worldpay_online->addOrder($order_info, $response_data->orderCode);
 
@@ -205,7 +205,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				$this->model_payment_worldpay_online->logger($order_status_id);
 				if (isset($order['order_id'])) {
 					$this->load->model('checkout/order');
-					$this->model_checkout_order->addOrderHistory($order['order_id'], $order_status_id);
+					$this->model_checkout_order->update($order['order_id'], $order_status_id);
 				}
 			}
 		}
