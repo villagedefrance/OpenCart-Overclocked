@@ -3,7 +3,7 @@
 // Nochex via APC maybe only avaiable to "Merchant" account holders only - site docs a bit vague on this point
 class ControllerPaymentNochex extends Controller {
 
-	protected function index() {
+	public function index() {
 		$this->language->load('payment/nochex');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
@@ -16,7 +16,8 @@ class ControllerPaymentNochex extends Controller {
 
 		// Nochex minimum requirements
 		// The merchant ID is usually your Nochex registered email address but can be altered for "Merchant" accounts see below
-		if ($this->config->get('nochex_email') != $this->config->get('nochex_merchant')) { // This MUST be changed on your Nochex account!!!!
+		if ($this->config->get('nochex_email') != $this->config->get('nochex_merchant')) {
+			// This MUST be changed on your Nochex account!!!!
 			$this->data['merchant_id'] = $this->config->get('nochex_merchant');
 		} else {
 			$this->data['merchant_id'] = $this->config->get('nochex_email');
@@ -52,7 +53,7 @@ class ControllerPaymentNochex extends Controller {
 
 			if ($order_info['payment_address_2']) {
 				$this->data['delivery_address'] = $order_info['payment_address_1'] . "\r\n" . $order_info['payment_address_2'] . "\r\n" . $order_info['payment_city'] . "\r\n" . $order_info['payment_zone'] . "\r\n";
-			} else { 
+			} else {
 				$this->data['delivery_address'] = $order_info['shipping_address_1'] . "\r\n" . $order_info['payment_city'] . "\r\n" . $order_info['payment_zone'] . "\r\n";
 			}
 
