@@ -8,6 +8,8 @@ class ModelPaymentLiqPay extends Model {
 
 		if ($this->config->get('liqpay_total') > 0 && $this->config->get('liqpay_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('liqpay_total_max') && $this->config->get('liqpay_total_max') > 0 && $total > $this->config->get('liqpay_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('liqpay_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,9 +22,10 @@ class ModelPaymentLiqPay extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'liqpay',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('liqpay_sort_order')
+				'code'       => 'liqpay',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('liqpay_sort_order')
 			);
 		}
 
