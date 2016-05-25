@@ -8,6 +8,8 @@ class ModelPaymentPayza extends Model {
 
 		if ($this->config->get('payza_total') > 0 && $this->config->get('payza_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('payza_total_max') && $this->config->get('payza_total_max') > 0 && $total > $this->config->get('payza_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('payza_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,9 +22,10 @@ class ModelPaymentPayza extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'payza',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('payza_sort_order')
+				'code'       => 'payza',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('payza_sort_order')
 			);
 		}
 
