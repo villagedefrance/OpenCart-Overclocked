@@ -39,7 +39,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><label for="input-callback"><?php echo $entry_callback; ?></label></td>
+            <td><label for="input-callback"><?php echo $entry_callback; ?><br /><span class="help"><?php echo $help_callback; ?></span></label></td>
             <td><textarea name="payza_callback" id="input-callback" cols="40" rows="5" readonly="readonly"><?php echo $callback; ?></textarea></td>
           </tr>
           <tr>

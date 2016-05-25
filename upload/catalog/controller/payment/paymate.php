@@ -1,14 +1,14 @@
 <?php
 class ControllerPaymentPaymate extends Controller {
 
-	protected function index() {
+	public function index() {
+		$this->data['button_confirm'] = $this->language->get('button_confirm');
+
 		if (!$this->config->get('paymate_test')) {
 			$this->data['action'] = 'https://www.paymate.com/PayMate/ExpressPayment';
 		} else {
 			$this->data['action'] = 'https://www.paymate.com.au/PayMate/TestExpressPayment';
 		}
-
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
 		$this->load->model('checkout/order');
 
@@ -78,26 +78,26 @@ class ControllerPaymentPaymate extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'href'		=> $this->url->link('common/home'),
-				'text'		=> $this->language->get('text_home'),
+				'href'    => $this->url->link('common/home'),
+				'text'    => $this->language->get('text_home'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'href'		=> $this->url->link('checkout/cart'),
-				'text'		=> $this->language->get('text_basket'),
+				'href'    => $this->url->link('checkout/cart'),
+				'text'    => $this->language->get('text_basket'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'href'		=> $this->url->link('checkout/checkout', '', 'SSL'),
-				'text'		=> $this->language->get('text_checkout'),
+				'href'    => $this->url->link('checkout/checkout', '', 'SSL'),
+				'text'    => $this->language->get('text_checkout'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'href'		=> $this->url->link('checkout/success'),
-				'text'		=> $this->language->get('text_failed'),
+				'href'    => $this->url->link('checkout/success'),
+				'text'    => $this->language->get('text_failed'),
 				'separator' => $this->language->get('text_separator')
 			);
 

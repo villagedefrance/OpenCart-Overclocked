@@ -30,7 +30,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><label for="input-password"><?php echo $entry_password; ?></label></td>
+            <td><label for="input-password"><?php echo $entry_password; ?><br /><span class="help"><?php echo $help_password; ?></span></label></td>
             <td><input type="text" name="paypoint_password" id="input-password" value="<?php echo $paypoint_password; ?>" size="40" /></td>
           </tr>
           <tr>
