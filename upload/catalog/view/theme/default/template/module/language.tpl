@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
     $('#language-option').slideDown(150);
   });
-  $('#language-option').on('mouseleave', function() {
+  $('#language-option').on('mouseleave mouseup', function() {
     $('#language-option').slideUp(150);
   });
 });

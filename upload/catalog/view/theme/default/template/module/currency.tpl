@@ -28,7 +28,7 @@ $(document).ready(function() {
     });
     $('#currency-option').slideDown(150);
   });
-  $('#currency-option').on('mouseleave', function() {
+  $('#currency-option').on('mouseleave mouseup', function() {
     $('#currency-option').slideUp(150);
   });
 });
