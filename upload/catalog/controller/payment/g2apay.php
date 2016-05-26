@@ -145,7 +145,7 @@ class ControllerPaymentG2APay extends Controller {
 
 			$this->model_payment_g2apay->updateOrder($g2apay_order_info['g2apay_order_id'], $g2apay_transaction_id, 'payment', $order_info);
 
-			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('g2apay_order_status_id'));
+			$this->model_checkout_order->update($order_id, $this->config->get('g2apay_order_status_id'));
 		}
 
 		$this->redirect($this->url->link('checkout/success'));
