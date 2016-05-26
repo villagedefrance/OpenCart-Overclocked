@@ -1485,7 +1485,7 @@ class ControllerSaleCustomer extends Controller {
 		$this->load->model('sale/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) { 
-			$this->model_sale_customer->deleteTransactionbyID($this->request->get['transaction_id']);
+			$this->model_sale_customer->deleteTransactionById($this->request->get['transaction_id']);
 
 			$this->data['success'] = $this->language->get('text_success');
 		} else {

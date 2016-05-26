@@ -443,7 +443,7 @@ class ModelSaleCustomer extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE order_id = '" . (int)$order_id . "'");
 	}
 
-	public function deleteTransactionbyID($transaction_id) {
+	public function deleteTransactionById($transaction_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_transaction_id = '" . (int)$transaction_id . "'");
 	}
 

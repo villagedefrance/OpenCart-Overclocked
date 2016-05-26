@@ -21,7 +21,7 @@
     <?php if ($purchases) { ?>
       <?php foreach ($purchases as $purchase) { ?>
         <tr>
-          <td class="left"><?php echo $purchase['order_id']; ?></td>
+          <td class="center"><?php echo $purchase['order_id']; ?></td>
           <td class="left"><?php echo $purchase['date_added']; ?></td>
           <td class="left"><?php echo $purchase['name']; ?><a href="<?php echo $purchase['product_href']; ?>" title=""><span class="color" style="background-color:#4691D2; color:#FFF;">&gt;</span></a></td>
           <td class="left"><?php echo $purchase['model']; ?></td>
