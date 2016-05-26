@@ -180,6 +180,13 @@ $(document).ready(function() {
           <?php if ($profile_exist) { ?>
           <li><a href="<?php echo $recurring_profile; ?>"><?php echo $text_recurring_profile; ?></a></li>
           <?php } ?>
+          <li><a class="arrow"><?php echo $text_supplier; ?></a>
+            <ul>
+              <li><a href="<?php echo $supplier; ?>"><?php echo $text_supplier; ?></a></li>
+              <li><a href="<?php echo $supplier_group; ?>"><?php echo $text_supplier_group; ?></a></li>
+              <li><a href="<?php echo $supplier_product; ?>"><?php echo $text_supplier_product; ?></a></li>
+            </ul>
+          </li>
           <?php if ($allow_affiliate) { ?>
           <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
           <?php } ?>

@@ -2125,6 +2125,129 @@ CREATE TABLE `oc_setting` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_supplier`
+--
+
+DROP TABLE IF EXISTS `oc_supplier`;
+CREATE TABLE `oc_supplier` (
+  `date_modified` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `supplier_group_id` int(11) NOT NULL,
+  `address_id` int(11) NOT NULL DEFAULT '0',
+  `fax` varchar(32) NOT NULL,
+  `telephone` varchar(32) NOT NULL,
+  `email` varchar(96) NOT NULL,
+  `contact` varchar(64) NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `account` varchar(32) NOT NULL,
+  `company` varchar(32) NOT NULL,
+  `reference` varchar(32) NOT NULL,
+  `supplier_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`supplier_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_supplier_address`
+--
+
+DROP TABLE IF EXISTS `oc_supplier_address`;
+CREATE TABLE `oc_supplier_address` (
+  `zone_id` int(11) NOT NULL DEFAULT '0',
+  `country_id` int(11) NOT NULL DEFAULT '0',
+  `postcode` varchar(10) NOT NULL,
+  `city` varchar(128) NOT NULL,
+  `address_2` varchar(128) NOT NULL,
+  `address_1` varchar(128) NOT NULL,
+  `company` varchar(32) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `address_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`supplier_address_id`),
+  KEY `supplier_id` (`supplier_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_supplier_group`
+--
+
+DROP TABLE IF EXISTS `oc_supplier_group`;
+CREATE TABLE `oc_supplier_group` (
+  `sort_order` int(3) NOT NULL,
+  `payment_method` varchar(32) NOT NULL,
+  `order_method` varchar(32) NOT NULL,
+  `supplier_group_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`supplier_group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_supplier_group_description`
+--
+
+DROP TABLE IF EXISTS `oc_supplier_group_description`;
+CREATE TABLE `oc_supplier_group_description` (
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `supplier_group_id` int(11) NOT NULL,
+  PRIMARY KEY (`supplier_group_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_supplier_history`
+--
+
+DROP TABLE IF EXISTS `oc_supplier_history`;
+CREATE TABLE `oc_supplier_history` (
+  `date_added` datetime NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `supplier_history_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`supplier_history_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_supplier_product`
+--
+
+DROP TABLE IF EXISTS `oc_supplier_product`;
+CREATE TABLE `oc_supplier_product` (
+  `date_modified` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `weight_class_id` int(11) NOT NULL DEFAULT '0',
+  `weight` decimal(15,8) NOT NULL DEFAULT '0.00000000',
+  `length_class_id` int(11) NOT NULL DEFAULT '0',
+  `height` decimal(15,8) NOT NULL DEFAULT '0.00000000',
+  `width` decimal(15,8) NOT NULL DEFAULT '0.00000000',
+  `length` decimal(15,8) NOT NULL DEFAULT '0.00000000',
+  `quantity` int(11) NOT NULL,
+  `size` varchar(64) NOT NULL,
+  `color` varchar(64) NOT NULL,
+  `unit` int(11) NOT NULL,
+  `tax_class_id` int(11) NOT NULL,
+  `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `image` varchar(255) DEFAULT NULL,
+  `model` varchar(64) NOT NULL,
+  `manufacturer_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `supplier_product_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`supplier_product_id`,`supplier_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_stock_status`
 --
 

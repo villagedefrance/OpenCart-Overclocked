@@ -132,6 +132,12 @@ class ModelSettingStore extends Model {
 		return $query->row['total'];
 	}
 
+	public function getTotalStoresBySupplierGroupId($supplier_group_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_supplier_group_id' AND `value` = '" . (int)$supplier_group_id . "' AND store_id != '0'");
+
+		return $query->row['total'];
+	}
+
 	public function getTotalStoresByInformationId($information_id) {
 		$account_query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_account_id' AND `value` = '" . (int)$information_id . "' AND store_id != '0'");
 

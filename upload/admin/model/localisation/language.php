@@ -258,6 +258,15 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->cache->delete('stock_status');
 
+		// Supplier Group
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "supplier_group_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		foreach ($query->rows as $supplier_group) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "supplier_group_description SET supplier_group_id = '" . (int)$supplier_group['supplier_group_id'] . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($supplier_group['name']) . "', description = '" . $this->db->escape($supplier_group['description']) . "'");
+		}
+
+		$this->cache->delete('supplier_group');
+
 		// Voucher Theme
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "voucher_theme_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -371,6 +380,9 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "stock_status WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('stock_status');
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "supplier_group_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('supplier_group');
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "voucher_theme_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('voucher_theme');

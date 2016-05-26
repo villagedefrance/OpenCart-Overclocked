@@ -169,6 +169,9 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_shipping'] = $this->language->get('text_shipping');
 		$this->data['text_sitemap'] = $this->language->get('text_sitemap');
 		$this->data['text_stock_status'] = $this->language->get('text_stock_status');
+		$this->data['text_supplier'] = $this->language->get('text_supplier');
+		$this->data['text_supplier_group'] = $this->language->get('text_supplier_group');
+		$this->data['text_supplier_product'] = $this->language->get('text_supplier_product');
 		$this->data['text_support'] = $this->language->get('text_support');
 		$this->data['text_system'] = $this->language->get('text_system');
 		$this->data['text_tax'] = $this->language->get('text_tax');
@@ -226,7 +229,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['coupon'] = $this->url->link('sale/coupon', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['currency'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer'] = $this->url->link('sale/customer', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['customer_fields'] = $this->url->link('sale/customer_field', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer_group'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['customer_ban_ip'] = $this->url->link('sale/customer_ban_ip', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['database'] = $this->url->link('tool/database', 'token=' . $this->session->data['token'], 'SSL');
@@ -295,6 +297,10 @@ class ControllerCommonHeader extends Controller {
 			$this->data['sitemap'] = $this->url->link('tool/sitemap', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['store'] = HTTP_CATALOG . 'index.php';
 			$this->data['stock_status'] = $this->url->link('localisation/stock_status', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['purchase_order'] = $this->url->link('sale/purchase_order', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['supplier'] = $this->url->link('sale/supplier', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['supplier_group'] = $this->url->link('sale/supplier_group', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['supplier_product'] = $this->url->link('sale/supplier_product', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['theme'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');

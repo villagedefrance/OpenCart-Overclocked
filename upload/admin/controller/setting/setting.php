@@ -52,6 +52,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_express'] = $this->language->get('text_express');
 		$this->data['text_stock'] = $this->language->get('text_stock');
+		$this->data['text_supplier'] = $this->language->get('text_supplier');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
@@ -157,6 +158,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_stock_warning'] = $this->language->get('entry_stock_warning');
 		$this->data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
 		$this->data['entry_stock_status'] = $this->language->get('entry_stock_status');
+		$this->data['entry_supplier_group'] = $this->language->get('entry_supplier_group');
 		$this->data['entry_customer_online'] = $this->language->get('entry_customer_online');
 		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
@@ -922,6 +924,16 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/stock_status');
 
 		$this->data['stock_statuses'] = $this->model_localisation_stock_status->getStockStatuses();
+
+		if (isset($this->request->post['config_supplier_group_id'])) {
+			$this->data['config_supplier_group_id'] = $this->request->post['config_supplier_group_id'];
+		} else {
+			$this->data['config_supplier_group_id'] = $this->config->get('config_supplier_group_id');
+		}
+
+		$this->load->model('sale/supplier_group');
+
+		$this->data['supplier_groups'] = $this->model_sale_supplier_group->getSupplierGroups();
 
 		if (isset($this->request->post['config_customer_online'])) {
 			$this->data['config_customer_online'] = $this->request->post['config_customer_online'];

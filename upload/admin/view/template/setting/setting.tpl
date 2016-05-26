@@ -760,6 +760,21 @@
             </select></td>
           </tr>
         </table>
+        <h2><?php echo $text_supplier; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_supplier_group; ?></td>
+            <td><select name="config_supplier_group_id">
+            <?php foreach ($supplier_groups as $supplier_group) { ?>
+              <?php if ($supplier_group['supplier_group_id'] == $config_supplier_group_id) { ?>
+                <option value="<?php echo $supplier_group['supplier_group_id']; ?>" selected="selected"><?php echo $supplier_group['name']; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $supplier_group['supplier_group_id']; ?>"><?php echo $supplier_group['name']; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select></td>
+          </tr>
+        </table>
         <h2><?php echo $text_account; ?></h2>
         <table class="form">
           <tr>

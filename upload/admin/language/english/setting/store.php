@@ -9,6 +9,7 @@ $_['text_tax']                     			= 'Taxes';
 $_['text_account']                 		= 'Account';
 $_['text_checkout']                		= 'Checkout';
 $_['text_stock']                   		= 'Stock';
+$_['text_supplier']						= 'Supplier';
 $_['text_image_resize'] 				= 'Image Dimensions';
 $_['text_image_manager']      		= 'File Manager';
 $_['text_browse']                  		= 'Browse';
@@ -56,6 +57,7 @@ $_['entry_checkout']               		= 'Checkout Terms:<span class="help">Forces
 $_['entry_order_status']         		= 'Order Status:<span class="help">Set the default order status when an order is processed.</span>';
 $_['entry_stock_display']          		= 'Display Stock:<span class="help">Display stock quantity on the product page.</span>';
 $_['entry_stock_checkout']      		= 'Stock Checkout:<span class="help">Allow customers to still checkout if the products they are ordering are not in stock.</span>';
+$_['entry_supplier_group'] 				= 'Supplier Group:<span class="help">Default supplier group.</span>';
 $_['entry_logo']                   		= 'Store Logo:';
 $_['entry_icon']                   		= 'Store Icon:<span class="help">The icon should be a PNG that is 16px x 16px.</span>';
 $_['entry_image_category']      		= 'Category Image Size:';

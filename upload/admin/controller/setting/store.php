@@ -202,6 +202,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
 		$this->data['text_stock'] = $this->language->get('text_stock');
+		$this->data['text_supplier'] = $this->language->get('text_supplier');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
@@ -242,6 +243,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_stock_display'] = $this->language->get('entry_stock_display');
 		$this->data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
+		$this->data['entry_supplier_group'] = $this->language->get('entry_supplier_group');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_image_category'] = $this->language->get('entry_image_category');
@@ -722,6 +724,16 @@ class ControllerSettingStore extends Controller {
 		} else {
 			$this->data['config_stock_checkout'] = '';
 		}
+
+		if (isset($this->request->post['config_supplier_group_id'])) {
+			$this->data['config_supplier_group_id'] = $this->request->post['config_supplier_group_id'];
+		} else {
+			$this->data['config_supplier_group_id'] = $this->config->get('config_supplier_group_id');
+		}
+
+		$this->load->model('sale/supplier_group');
+
+		$this->data['supplier_groups'] = $this->model_sale_supplier_group->getSupplierGroups();
 
 		$this->load->model('tool/image');
 
