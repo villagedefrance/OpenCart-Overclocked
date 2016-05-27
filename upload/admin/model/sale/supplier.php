@@ -283,19 +283,19 @@ class ModelSaleSupplier extends Model {
 
 	// Products
 	public function getSupplierProductsBySupplierId($supplier_id, $data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "supplier_product WHERE supplier_id = '" . (int)$supplier_id . "' GROUP BY supplier_id";
+		$sql = "SELECT * FROM " . DB_PREFIX . "supplier_product sp LEFT JOIN " . DB_PREFIX . "supplier s ON (s.supplier_id = sp.supplier_id) WHERE sp.supplier_id = '" . (int)$supplier_id . "'";
 
 		$sort_data = array(
-			'name',
-			'model',
-			'price',
-			'status'
+			'sp.name',
+			'sp.model',
+			'sp.price',
+			'sp.status'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY name";
+			$sql .= " ORDER BY sp.name";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {

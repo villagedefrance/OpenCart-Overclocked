@@ -979,7 +979,7 @@ class ControllerSaleSupplier extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'name';
+			$sort = 'sp.name';
 		}
 
 		if (isset($this->request->get['order'])) {
@@ -1066,7 +1066,7 @@ class ControllerSaleSupplier extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $this->config->get('config_admin_limit');
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('sale/supplier/update', 'token=' . $this->session->data['token'] . '&supplier_id=' . $this->request->get['supplier_id'] . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('sale/supplier/update', 'token=' . $this->session->data['token'] . '&supplier_id=' . $supplier_id . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
