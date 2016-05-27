@@ -41,6 +41,13 @@ AddDefaultCharset utf-8
   </FilesMatch>
 </IfModule>
 
+## Remove browser bugs
+# This only applies to old browsers
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+Header append Vary User-Agent
+
 ## Prevent some browsers from MIME-sniffing the response.
 # This reduces exposure to drive-by download attacks and cross-origin data leaks, and should be left uncommented,
 # especially if the web server is serving user-uploaded content or content that could potentially be treated as executable by the browser.
