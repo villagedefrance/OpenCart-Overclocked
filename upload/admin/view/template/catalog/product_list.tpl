@@ -29,7 +29,7 @@
         <div class="left"><a id="quantity-button" class="button-filter"><?php echo $button_update_quantity; ?></a></div>
         <div class="left"><a id="special-button" class="button-filter"><?php echo $button_update_special; ?></a></div>
         <div class="left"><a id="discount-button" class="button-filter"><?php echo $button_update_discount; ?></a></div>
-		<div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button-filter"><?php echo $button_refresh; ?></a></div>
+        <div class="right"><a onclick="location = '<?php echo $refresh; ?>';" class="button-filter"><?php echo $button_refresh; ?></a></div>
       </div>
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
@@ -226,8 +226,8 @@ $('input[name=\'filter_name\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 
 $('input[name=\'filter_model\']').autocomplete({
@@ -251,8 +251,8 @@ $('input[name=\'filter_model\']').autocomplete({
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
 //--></script>
 
