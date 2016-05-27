@@ -33,8 +33,8 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 
 			for ($i = 1; $i <= 31; $i++) {
 				$this->data['days'][] = array(
-					'text'    => sprintf('%02d', $i),
-					'value' => $i
+					'text'		=> sprintf('%02d', $i),
+					'value'	=> $i
 				);
 			}
 
@@ -42,8 +42,8 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 
 			for ($i = 1; $i <= 12; $i++) {
 				$this->data['months'][] = array(
-					'text'    => sprintf('%02d', $i),
-					'value' => $i
+					'text'		=> sprintf('%02d', $i),
+					'value'	=> $i
 				);
 			}
 
@@ -51,8 +51,8 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 
 			for ($i = date('Y'); $i >= 1900; $i--) {
 				$this->data['years'][] = array(
-					'text'    => $i,
-					'value' => $i
+					'text'		=> $i,
+					'value'	=> $i
 				);
 			}
 
@@ -101,6 +101,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 					} else {
 						$total_data[$key]['tax_rate'] = 0;
 					}
+
 				} else {
 					$total_data[$key]['tax_rate'] = '0';
 				}
@@ -133,6 +134,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				if ($order_info['payment_iso_code_3'] == 'DEU') {
 					$this->data['street_number'] = trim($address[1] . ' ' . $address[2]);
 				}
+
 			} else {
 				$this->data['street'] = '';
 				$this->data['street_number'] = '';
@@ -266,33 +268,33 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				}
 
 				$address = array(
-					'email'           => $order_info['email'],
-					'telno'           => $this->request->post['phone_no'],
-					'cellno'          => '',
-					'fname'           => $order_info['payment_firstname'],
-					'lname'           => $order_info['payment_lastname'],
-					'company'         => $order_info['payment_company'],
-					'careof'          => '',
-					'street'          => $street,
+					'email'           	=> $order_info['email'],
+					'telno'           	=> $this->request->post['phone_no'],
+					'cellno'          	=> '',
+					'fname'        	=> $order_info['payment_firstname'],
+					'lname'         	=> $order_info['payment_lastname'],
+					'company'     	=> $order_info['payment_company'],
+					'careof'        	=> '',
+					'street'         	=> $street,
 					'house_number'    => $house_no,
 					'house_extension' => $house_ext,
-					'zip'             => $order_info['payment_postcode'],
-					'city'            => $order_info['payment_city'],
-					'country'         => $country,
+					'zip'             	=> $order_info['payment_postcode'],
+					'city'            	=> $order_info['payment_city'],
+					'country'      	=> $country
 				);
 
 				$product_query = $this->db->query("SELECT `name`, `model`, `price`, `quantity`, `tax` / `price` * 100 AS 'tax_rate' FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = " . (int)$order_info['order_id'] . " UNION ALL SELECT '', `code`, `amount`, '1', 0.00 FROM `" . DB_PREFIX . "order_voucher` WHERE `order_id` = " . (int)$order_info['order_id']);
 
 				foreach ($product_query->rows as $product) {
 					$goods_list[] = array(
-						'qty'      => (int)$product['quantity'],
-						'goods'    => array(
-							'artno'    => $product['model'],
-							'title'    => $product['name'],
-							'price'    => (int)str_replace('.', '', $this->currency->format($product['price'], $country_to_currency[$order_info['payment_iso_code_3']], '', false)),
-							'vat'      => (float)$product['tax_rate'],
-							'discount' => 0.0,
-							'flags'    => 0
+						'qty'      	=> (int)$product['quantity'],
+						'goods'    	=> array(
+							'artno'    	=> $product['model'],
+							'title'    		=> $product['name'],
+							'price'    	=> (int)str_replace('.', '', $this->currency->format($product['price'], $country_to_currency[$order_info['payment_iso_code_3']], '', false)),
+							'vat'      	=> (float)$product['tax_rate'],
+							'discount' 	=> 0.0,
+							'flags'    		=> 0
 						)
 					);
 				}
@@ -306,14 +308,14 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				foreach ($totals as $total) {
 					if ($total['code'] != 'sub_total' && $total['code'] != 'tax' && $total['code'] != 'total') {
 						$goods_list[] = array(
-							'qty'   => 1,
-							'goods' => array(
-								'artno'    => '',
-								'title'    => $total['title'],
-								'price'    => (int)str_replace('.', '', $this->currency->format($total['value'], $country_to_currency[$order_info['payment_iso_code_3']], '', false)),
-								'vat'      => (float)$total['tax_rate'],
-								'discount' => 0.0,
-								'flags'    => 0
+							'qty'   	=> 1,
+							'goods' 	=> array(
+								'artno'    	=> '',
+								'title'    		=> $total['title'],
+								'price'    	=> (int)str_replace('.', '', $this->currency->format($total['value'], $country_to_currency[$order_info['payment_iso_code_3']], '', false)),
+								'vat'      	=> (float)$total['tax_rate'],
+								'discount' 	=> 0.0,
+								'flags'    		=> 0
 							)
 						);
 					}
@@ -371,7 +373,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 					array()
 				);
 
-				$xml  = '<methodCall>';
+				$xml = '<methodCall>';
 				$xml .= '  <methodName>add_invoice</methodName>';
 				$xml .= '  <params>';
 
@@ -404,6 +406,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 					$log->write('HTTP Error for order #' . $order_info['order_id'] . '. Code: ' . curl_errno($curl) . ' message: ' . curl_error($curl));
 
 					$json['error'] = $this->language->get('error_network');
+
 				} else {
 					preg_match('/<member><name>faultString<\/name><value><string>(.+)<\/string><\/value><\/member>/', $response, $match);
 
@@ -414,6 +417,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 						$log->write('Failed to create an invoice for order #' . $order_info['order_id'] . '. Message: ' . utf8_encode($match[1]) . ' Code: ' . $match2[1]);
 
 						$json['error'] = utf8_encode($match[1]);
+
 					} else {
 						$xml = new DOMDocument();
 						$xml->loadXML($response);
