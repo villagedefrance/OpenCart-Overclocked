@@ -2,7 +2,7 @@
 class ControllerPaymentWorldpayOnline extends Controller {
 
 	public function index() {
-		$this->load->language('payment/worldpay_online');
+		$this->language->load('payment/worldpay_online');
 
 		$this->data['text_wait'] = $this->language->get('text_wait');
 		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
@@ -36,6 +36,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 		}
 
 		$this->data['existing_cards'] = array();
+
 		if ($this->customer->isLogged() && $this->data['worldpay_online_card']) {
 			$this->load->model('payment/worldpay_online');
 			$this->data['existing_cards'] = $this->model_payment_worldpay_online->getCards($this->customer->getId());
@@ -60,7 +61,8 @@ class ControllerPaymentWorldpayOnline extends Controller {
 	}
 
 	public function send() {
-		$this->load->language('payment/worldpay_online');
+		$this->language->load('payment/worldpay_online');
+
 		$this->load->model('checkout/order');
 		$this->load->model('localisation/country');
 		$this->load->model('payment/worldpay_online');
@@ -78,24 +80,24 @@ class ControllerPaymentWorldpayOnline extends Controller {
 		$country_info = $this->model_localisation_country->getCountry($order_info['payment_country_id']);
 
 		$billing_address = array(
-			"address1" => $order_info['payment_address_1'],
-			"address2" => $order_info['payment_address_2'],
-			"address3" => '',
-			"postalCode" => $order_info['payment_postcode'],
-			"city" => $order_info['payment_city'],
-			"state" => $order_info['payment_zone'],
-			"countryCode" => $country_info['iso_code_2'],
+			"address1" 		=> $order_info['payment_address_1'],
+			"address2" 		=> $order_info['payment_address_2'],
+			"address3" 		=> '',
+			"postalCode" 	=> $order_info['payment_postcode'],
+			"city" 			=> $order_info['payment_city'],
+			"state" 			=> $order_info['payment_zone'],
+			"countryCode"	=> $country_info['iso_code_2']
 		);
 
 		$order = array(
-			"token" => $this->request->post['token'],
-			"orderType" => $order_type,
-			"amount" => round($this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false)*100),
-			"currencyCode" => $order_info['currency_code'],
-			"name" => $order_info['firstname'] . ' ' . $order_info['lastname'],
-			"orderDescription" => $order_info['store_name'] . ' - ' . date('Y-m-d H:i:s'),
+			"token" 					=> $this->request->post['token'],
+			"orderType" 			=> $order_type,
+			"amount" 				=> round($this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) * 100),
+			"currencyCode" 		=> $order_info['currency_code'],
+			"name" 					=> $order_info['firstname'] . ' ' . $order_info['lastname'],
+			"orderDescription" 	=> $order_info['store_name'] . ' - ' . date('Y-m-d H:i:s'),
 			"customerOrderCode" => $order_info['order_id'],
-			"billingAddress" => $billing_address
+			"billingAddress" 		=> $billing_address
 		);
 
 		$this->model_payment_worldpay_online->logger($order);
@@ -125,25 +127,28 @@ class ControllerPaymentWorldpayOnline extends Controller {
 					$card_data['Last4Digits'] = (string)$response->paymentMethod->maskedCardNumber;
 					$card_data['ExpiryDate'] = date("m/y", $expiry_date);
 					$card_data['CardType'] = (string)$response->paymentMethod->cardType;
+
 					$this->model_payment_worldpay_online->addCard($this->session->data['order_id'], $card_data);
 				}
 			}
 
-			//loop through any products that are recurring items
+			// loop through any products that are recurring items
 			foreach ($recurring_products as $item) {
 				$this->model_payment_worldpay_online->recurringPayment($item, $this->session->data['order_id'] . rand(), $this->request->post['token']);
 			}
 
 			$this->response->redirect($this->url->link('checkout/success', '', 'SSL'));
-		} else {
 
+		} else {
 			$this->session->data['error'] = $this->language->get('error_process_order');
+
 			$this->response->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 		}
 	}
 
 	public function deleteCard() {
-		$this->load->language('payment/worldpay_online');
+		$this->language->load('payment/worldpay_online');
+
 		$this->load->model('payment/worldpay_online');
 
 		if (isset($this->request->post['token'])) {
@@ -156,6 +161,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 			if (count($this->model_payment_worldpay_online->getCards($this->customer->getId()))) {
 				$json['existing_cards'] = true;
 			}
+
 		} else {
 			$json['error'] = $this->language->get('text_error');
 		}
@@ -167,11 +173,14 @@ class ControllerPaymentWorldpayOnline extends Controller {
 	public function webhook() {
 		if (isset($this->request->get['token']) && hash_equals($this->config->get('worldpay_online_secret_token'), $this->request->get['token'])) {
 			$this->load->model('payment/worldpay_online');
+
 			$message = json_decode(file_get_contents('php://input'), 'SSL');
 
 			if (isset($message['orderCode'])) {
 				$order = $this->model_payment_worldpay_online->getWorldpayOrder($message['orderCode']);
+
 				$this->model_payment_worldpay_online->logger($order);
+
 				switch ($message['paymentStatus']) {
 					case 'SUCCESS':
 						$order_status_id = $this->config->get('worldpay_online_entry_success_status_id');
@@ -203,8 +212,10 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				}
 
 				$this->model_payment_worldpay_online->logger($order_status_id);
+
 				if (isset($order['order_id'])) {
 					$this->load->model('checkout/order');
+
 					$this->model_checkout_order->update($order['order_id'], $order_status_id);
 				}
 			}
@@ -225,6 +236,5 @@ class ControllerPaymentWorldpayOnline extends Controller {
 			$this->model_payment_worldpay_online->logger($orders);
 		}
 	}
-
 }
 ?>

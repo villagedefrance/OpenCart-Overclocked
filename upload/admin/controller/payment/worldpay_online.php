@@ -282,15 +282,13 @@ class ControllerPaymentWorldpayOnline extends Controller {
 	}
 
 	public function orderAction() {
-
 		if ($this->config->get('worldpay_online_status')) {
-
 			$this->load->model('payment/worldpay_online');
 
 			$worldpay_online_order = $this->model_payment_worldpay_online->getOrder($this->request->get['order_id']);
 
 			if (!empty($worldpay_online_order)) {
-				$this->load->language('payment/worldpay_online');
+				$this->language->load('payment/worldpay_online');
 
 				$worldpay_online_order['total_released'] = $this->model_payment_worldpay_online->getTotalReleased($worldpay_online_order['worldpay_online_order_id']);
 
@@ -335,7 +333,8 @@ class ControllerPaymentWorldpayOnline extends Controller {
 	}
 
 	public function refund() {
-		$this->load->language('payment/worldpay_online');
+		$this->language->load('payment/worldpay_online');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && !empty($this->request->post['order_id'])) {
