@@ -4,35 +4,35 @@ class ModelPaymentGlobalpay extends Model {
 	public function install() {
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "globalpay_order` (
-			  `globalpay_order_id` INT(11) NOT NULL AUTO_INCREMENT,
-			  `order_id` INT(11) NOT NULL,
-			  `order_ref` CHAR(50) NOT NULL,
-			  `order_ref_previous` CHAR(50) NOT NULL,
-			  `pasref` VARCHAR(50) NOT NULL,
-			  `pasref_previous` VARCHAR(50) NOT NULL,
-			  `date_added` DATETIME NOT NULL,
-			  `date_modified` DATETIME NOT NULL,
-			  `capture_status` INT(1) DEFAULT NULL,
-			  `void_status` INT(1) DEFAULT NULL,
-			  `settle_type` INT(1) DEFAULT NULL,
-			  `rebate_status` INT(1) DEFAULT NULL,
-			  `currency_code` CHAR(3) NOT NULL,
-			  `authcode` VARCHAR(30) NOT NULL,
-			  `account` VARCHAR(30) NOT NULL,
-			  `total` DECIMAL(10, 2) NOT NULL,
+			  `globalpay_order_id` int(11) NOT NULL AUTO_INCREMENT,
+			  `order_id` int(11) NOT NULL,
+			  `order_ref` varchar(50) NOT NULL,
+			  `order_ref_previous` varchar(50) NOT NULL,
+			  `pasref` varchar(50) NOT NULL,
+			  `pasref_previous` varchar(50) NOT NULL,
+			  `date_added` datetime NOT NULL,
+			  `date_modified` datetime NOT NULL,
+			  `capture_status` int(1) DEFAULT NULL,
+			  `void_status` int(1) DEFAULT NULL,
+			  `settle_type` int(1) DEFAULT NULL,
+			  `rebate_status` int(1) DEFAULT NULL,
+			  `currency_code` varchar(3) NOT NULL,
+			  `authcode` varchar(30) NOT NULL,
+			  `account` varchar(30) NOT NULL,
+			  `total` decimal(10, 2) NOT NULL,
 			  PRIMARY KEY (`globalpay_order_id`)
-			) ENGINE=MyISAM DEFAULT COLLATE=utf8_general_ci;
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "globalpay_order_transaction` (
-			  `globalpay_order_transaction_id` INT(11) NOT NULL AUTO_INCREMENT,
-			  `globalpay_order_id` INT(11) NOT NULL,
-			  `date_added` DATETIME NOT NULL,
-			  `type` ENUM('auth', 'payment', 'rebate', 'void') DEFAULT NULL,
-			  `amount` DECIMAL(10, 2) NOT NULL,
+			  `globalpay_order_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+			  `globalpay_order_id` int(11) NOT NULL,
+			  `date_added` datetime NOT NULL,
+			  `type` enum('auth', 'payment', 'rebate', 'void') DEFAULT NULL,
+			  `amount` decimal(10, 2) NOT NULL,
 			  PRIMARY KEY (`globalpay_order_transaction_id`)
-			) ENGINE=MyISAM DEFAULT COLLATE=utf8_general_ci;
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 	}
 

@@ -4,56 +4,56 @@ class ModelPaymentWorldpayOnline extends Model {
 	public function install() {
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "worldpay_online_order` (
-				`worldpay_online_order_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`order_id` INT(11) NOT NULL,
-				`order_code` VARCHAR(50),
-				`date_added` DATETIME NOT NULL,
-				`date_modified` DATETIME NOT NULL,
-				`refund_status` INT(1) DEFAULT NULL,
-				`currency_code` CHAR(3) NOT NULL,
-				`total` DECIMAL( 10, 2 ) NOT NULL,
+				`worldpay_online_order_id` int(11) NOT NULL AUTO_INCREMENT,
+				`order_id` int(11) NOT NULL,
+				`order_code` varchar(50),
+				`date_added` datetime NOT NULL,
+				`date_modified` datetime NOT NULL,
+				`refund_status` int(1) DEFAULT NULL,
+				`currency_code` varchar(3) NOT NULL,
+				`total` decimal(10, 2) NOT NULL,
 				PRIMARY KEY (`worldpay_online_order_id`)
-			) ENGINE=MyISAM DEFAULT COLLATE=utf8_general_ci;
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "worldpay_online_order_transaction` (
-				`worldpay_online_order_transaction_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`worldpay_online_order_id` INT(11) NOT NULL,
-				`date_added` DATETIME NOT NULL,
-				`type` ENUM('payment', 'refund') DEFAULT NULL,
-				`amount` DECIMAL( 10, 2 ) NOT NULL,
+				`worldpay_online_order_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+				`worldpay_online_order_id` int(11) NOT NULL,
+				`date_added` datetime NOT NULL,
+				`type` enum('payment', 'refund') DEFAULT NULL,
+				`amount` decimal(10, 2) NOT NULL,
 				PRIMARY KEY (`worldpay_online_order_transaction_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "worldpay_online_order_recurring` (
-				`worldpay_online_order_recurring_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`order_id` INT(11) NOT NULL,
-				`order_recurring_id` INT(11) NOT NULL,
-				`order_code` VARCHAR(50),
-				`token` VARCHAR(50),
-				`date_added` DATETIME NOT NULL,
-				`date_modified` DATETIME NOT NULL,
-				`next_payment` DATETIME NOT NULL,
+				`worldpay_online_order_recurring_id` int(11) NOT NULL AUTO_INCREMENT,
+				`order_id` int(11) NOT NULL,
+				`order_recurring_id` int(11) NOT NULL,
+				`order_code` varchar(50),
+				`token` varchar(50),
+				`date_added` datetime NOT NULL,
+				`date_modified` datetime NOT NULL,
+				`next_payment` datetime NOT NULL,
 				`trial_end` datetime DEFAULT NULL,
 				`subscription_end` datetime DEFAULT NULL,
-				`currency_code` CHAR(3) NOT NULL,
-				`total` DECIMAL( 10, 2 ) NOT NULL,
+				`currency_code` varchar(3) NOT NULL,
+				`total` decimal(10, 2) NOT NULL,
 				PRIMARY KEY (`worldpay_online_order_recurring_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "worldpay_online_card` (
-				`card_id` INT(11) NOT NULL AUTO_INCREMENT,
-				`customer_id` INT(11) NOT NULL,
-				`order_id` INT(11) NOT NULL,
-				`token` VARCHAR(50) NOT NULL,
-				`digits` VARCHAR(22) NOT NULL,
-				`expiry` VARCHAR(5) NOT NULL,
-				`type` VARCHAR(50) NOT NULL,
+				`card_id` int(11) NOT NULL AUTO_INCREMENT,
+				`customer_id` int(11) NOT NULL,
+				`order_id` int(11) NOT NULL,
+				`token` varchar(50) NOT NULL,
+				`digits` varchar(22) NOT NULL,
+				`expiry` varchar(5) NOT NULL,
+				`type` varchar(50) NOT NULL,
 				PRIMARY KEY (`card_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
@@ -143,11 +143,11 @@ class ModelPaymentWorldpayOnline extends Model {
 		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 		curl_setopt($curl, CURLOPT_TIMEOUT, 10);
 		curl_setopt(
-				$curl, CURLOPT_HTTPHEADER, array(
-			"Authorization: " . $this->config->get('worldpay_online_service_key'),
-			"Content-Type: application/json",
-			"Content-Length: " . strlen($json)
-				)
+			$curl, CURLOPT_HTTPHEADER, array(
+				"Authorization: " . $this->config->get('worldpay_online_service_key'),
+				"Content-Type: application/json",
+				"Content-Length: " . strlen($json)
+			)
 		);
 
 		$result = json_decode(curl_exec($curl));
@@ -173,6 +173,5 @@ class ModelPaymentWorldpayOnline extends Model {
 			$log->write($message);
 		}
 	}
-
 }
 ?>
