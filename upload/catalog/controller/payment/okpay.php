@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentOkpay extends Controller {
 
-	public function index() {
+	protected function index() {
 		$this->language->load('payment/okpay');
 
 		$this->load->model('checkout/order');
