@@ -8,6 +8,8 @@ class ModelPaymentPayMate extends Model {
 
 		if ($this->config->get('paymate_total') > 0 && $this->config->get('paymate_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('paymate_total_max') && $this->config->get('paymate_total_max') > 0 && $total > $this->config->get('paymate_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('paymate_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -32,9 +34,10 @@ class ModelPaymentPayMate extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'paymate',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('paymate_sort_order')
+				'code'       => 'paymate',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('paymate_sort_order')
 			);
 		}
 

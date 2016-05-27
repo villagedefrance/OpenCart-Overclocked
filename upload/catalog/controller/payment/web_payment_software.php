@@ -146,7 +146,7 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 
 			$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('web_payment_software_order_status_id'), $message, false);
 
-			$json['success'] = $this->url->link('checkout/success', '', 'SSL');
+			$json['redirect'] = $this->url->link('checkout/success', '', 'SSL');
 
 		} else {
 			$json['error'] = (string)$xml->response_text;

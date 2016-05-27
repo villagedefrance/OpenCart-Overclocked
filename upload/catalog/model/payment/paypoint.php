@@ -8,6 +8,8 @@ class ModelPaymentPayPoint extends Model {
 
 		if ($this->config->get('paypoint_total') > 0 && $this->config->get('paypoint_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('paypoint_total_max') && $this->config->get('paypoint_total_max') > 0 && $total > $this->config->get('paypoint_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('paypoint_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,9 +22,10 @@ class ModelPaymentPayPoint extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'paypoint',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('paypoint_sort_order')
+				'code'       => 'paypoint',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('paypoint_sort_order')
 			);
 		}
 

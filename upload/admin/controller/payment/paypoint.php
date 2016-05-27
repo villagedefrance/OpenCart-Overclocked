@@ -36,10 +36,15 @@ class ControllerPaymentPayPoint extends Controller {
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_test'] = $this->language->get('entry_test');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_password'] = $this->language->get('help_password');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -60,20 +65,20 @@ class ControllerPaymentPayPoint extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_payment'),
-			'href'   	=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
-		); 
+		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('payment/paypoint', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/paypoint', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -103,6 +108,12 @@ class ControllerPaymentPayPoint extends Controller {
 			$this->data['paypoint_total'] = $this->request->post['paypoint_total'];
 		} else {
 			$this->data['paypoint_total'] = $this->config->get('paypoint_total');
+		}
+
+		if (isset($this->request->post['paypoint_total_max'])) {
+			$this->data['paypoint_total_max'] = $this->request->post['paypoint_total_max'];
+		} else {
+			$this->data['paypoint_total_max'] = $this->config->get('paypoint_total_max');
 		}
 
 		if (isset($this->request->post['paypoint_order_status_id'])) {

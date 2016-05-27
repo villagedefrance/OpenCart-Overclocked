@@ -139,11 +139,11 @@ class ControllerPaymentFirstdataRemote extends Controller {
 				if ($this->config->get('firstdata_remote_auto_settle') == 1) {
 					$this->model_payment_firstdata_remote->addTransaction($fd_order_id, 'payment', $order_info);
 
-					$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_remote_order_status_success_settled_id'), $message, false);
+					$this->model_checkout_order->update($order_id, $this->config->get('firstdata_remote_order_status_success_settled_id'), $message, false);
 				} else {
 					$this->model_payment_firstdata_remote->addTransaction($fd_order_id, 'auth');
 
-					$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_remote_order_status_success_unsettled_id'), $message, false);
+					$this->model_checkout_order->update($order_id, $this->config->get('firstdata_remote_order_status_success_unsettled_id'), $message, false);
 				}
 
 			} else {

@@ -15,8 +15,8 @@
 
 <script type="text/javascript"><!--
 $(function() {
-	$('#button-confirm').bind('click', function() {
-		$('#okpay-checkout').submit();
-	});
+  $('#button-confirm').bind('click', function() {
+    $('#okpay-checkout').submit();
+  });
 });
 //--></script>

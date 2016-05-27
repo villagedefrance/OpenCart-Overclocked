@@ -36,10 +36,14 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 		$this->data['entry_mode'] = $this->language->get('entry_mode');
 		$this->data['entry_method'] = $this->language->get('entry_method');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order'); 
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -68,26 +72,26 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_payment'),
-			'href'   	=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('payment/web_payment_software', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/web_payment_software', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = HTTPS_SERVER . 'index.php?route=payment/web_payment_software&token=' . $this->session->data['token'];
+		$this->data['action'] = $this->url->link('payment/web_payment_software', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token'];
+		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['web_payment_software_login'])) {
 			$this->data['web_payment_software_merchant_name'] = $this->request->post['web_payment_software_merchant_name'];
@@ -143,6 +147,12 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 			$this->data['web_payment_software_total'] = $this->request->post['web_payment_software_total'];
 		} else {
 			$this->data['web_payment_software_total'] = $this->config->get('web_payment_software_total');
+		}
+
+		if (isset($this->request->post['web_payment_software_total_max'])) {
+			$this->data['web_payment_software_total_max'] = $this->request->post['web_payment_software_total_max'];
+		} else {
+			$this->data['web_payment_software_total_max'] = $this->config->get('web_payment_software_total_max');
 		}
 
 		if (isset($this->request->post['web_payment_software_sort_order'])) {

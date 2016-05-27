@@ -198,18 +198,18 @@ class ControllerPaymentFirstdata extends Controller {
 							if ($this->config->get('firstdata_auto_settle') == 1) {
 								$this->model_payment_firstdata->addTransaction($fd_order_id, 'payment', $order_info);
 
-								$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_success_settled_id'), $message, false);
+								$this->model_checkout_order->update($order_id, $this->config->get('firstdata_order_status_success_settled_id'), $message, false);
 							} else {
 								$this->model_payment_firstdata->addTransaction($fd_order_id, 'auth');
 
-								$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_success_unsettled_id'), $message, false);
+								$this->model_checkout_order->update($order_id, $this->config->get('firstdata_order_status_success_unsettled_id'), $message, false);
 							}
 
 						} else {
 							$message = $this->request->post['fail_reason'] . '<br />';
 							$message .= $this->language->get('text_response_code_full') . $this->request->post['approval_code'];
 
-							$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_decline_id'), $message);
+							$this->model_checkout_order->update($order_id, $this->config->get('firstdata_order_status_decline_id'), $message);
 						}
 					}
 				}
@@ -222,7 +222,7 @@ class ControllerPaymentFirstdata extends Controller {
 
 						$this->model_payment_firstdata->addTransaction($fd_order['firstdata_order_id'], 'void');
 
-						$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_void_id'), $message, false);
+						$this->model_checkout_order->update($order_id, $this->config->get('firstdata_order_status_void_id'), $message, false);
 					}
 				}
 
@@ -234,7 +234,7 @@ class ControllerPaymentFirstdata extends Controller {
 
 						$this->model_payment_firstdata->addTransaction($fd_order['firstdata_order_id'], 'payment', $order_info);
 
-						$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('firstdata_order_status_success_settled_id'), $message, false);
+						$this->model_checkout_order->update($order_id, $this->config->get('firstdata_order_status_success_settled_id'), $message, false);
 					}
 				}
 
