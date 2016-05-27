@@ -10,7 +10,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$status = false; 
+			$status = false;
 
 			foreach ($this->request->post['klarna_invoice'] as $klarna_invoice) {
 				if ($klarna_invoice['status']) {
@@ -19,12 +19,12 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 				}
 			}
 
-			$data = array(
-				'klarna_invoice_pclasses' 	=> $this->pclasses,
-				'klarna_invoice_status'   	=> $status
+			$klarna_data = array(
+				'klarna_invoice_pclasses' => $this->pclasses,
+				'klarna_invoice_status'   => $status
 			);
 
-			$this->model_setting_setting->editSetting('klarna_invoice', array_merge($this->request->post, $data));
+			$this->model_setting_setting->editSetting('klarna_invoice', array_merge($this->request->post, $klarna_data));
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -53,11 +53,17 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		$this->data['entry_secret'] = $this->language->get('entry_secret');
 		$this->data['entry_server'] = $this->language->get('entry_server');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_pending_status'] = $this->language->get('entry_pending_status');
 		$this->data['entry_accepted_status'] = $this->language->get('entry_accepted_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_merchant'] = $this->language->get('help_merchant');
+		$this->data['help_secret'] = $this->language->get('help_secret');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -73,26 +79,6 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		$this->data['breadcrumbs'] = array();
-
-		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => false
-		);
-
-		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_payment'),
-			'href'   	=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => ' :: '
-		);
-
-		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/klarna_invoice', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => ' :: '
-		);
-
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
 
@@ -101,6 +87,26 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 			$this->data['success'] = '';
 		}
 
+		$this->data['breadcrumbs'] = array();
+
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => false
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => ' :: '
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/klarna_invoice', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => ' :: '
+		);
+
 		$this->data['action'] = $this->url->link('payment/klarna_invoice', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
@@ -108,32 +114,32 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		$this->data['countries'] = array();
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_germany'),
-			'code' 	=> 'DEU'
+			'name'  => $this->language->get('text_germany'),
+			'code'  => 'DEU'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_netherlands'),
-			'code' 	=> 'NLD'
+			'name'  => $this->language->get('text_netherlands'),
+			'code'  => 'NLD'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_denmark'),
-			'code' 	=> 'DNK'
+			'name'  => $this->language->get('text_denmark'),
+			'code'  => 'DNK'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_sweden'),
-			'code' 	=> 'SWE'
+			'name'  => $this->language->get('text_sweden'),
+			'code'  => 'SWE'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_norway'),
-			'code' 	=> 'NOR'
+			'name'  => $this->language->get('text_norway'),
+			'code'  => 'NOR'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_finland'),
+			'name'  => $this->language->get('text_finland'),
 			'code'  => 'FIN'
 		);
 

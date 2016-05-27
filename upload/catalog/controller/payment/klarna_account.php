@@ -1,7 +1,7 @@
 <?php
 class ControllerPaymentKlarnaAccount extends Controller {
 
-	protected function index() {
+	public function index() {
 		$this->load->model('checkout/order');
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
@@ -510,8 +510,10 @@ class ControllerPaymentKlarnaAccount extends Controller {
 				$xml .= '  </params>';
 				$xml .= '</methodCall>';
 
-				$header  = 'Content-Type: text/xml' . "\n";
-				$header .= 'Content-Length: ' . strlen($xml) . "\n";
+				$header = array();
+
+				$header[] = 'Content-Type: text/xml';
+				$header[] = 'Content-Length: ' . strlen($xml);
 
 				$curl = curl_init();
 
@@ -520,7 +522,7 @@ class ControllerPaymentKlarnaAccount extends Controller {
 				curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1);
 				curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curl, CURLOPT_HEADER, $header);
+				curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
 				curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
 
 				$response = curl_exec($curl);
@@ -637,10 +639,8 @@ class ControllerPaymentKlarnaAccount extends Controller {
 				$amount = 89.0;
 				break;
 			case 'DEU':
-				$amount = 6.95;
-				break;
 			case 'NLD':
-				$amount = 5.0;
+				$amount = 5.00;
 				break;
 			default:
 				$log = new Log('klarna.log');
@@ -656,7 +656,12 @@ class ControllerPaymentKlarnaAccount extends Controller {
 	private function splitAddress($address) {
 		$numbers = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 
-		$characters = array('-', '/', ' ', '#', '.', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+		$characters = array('-', '/', ' ', '#', '.', 'a', 'b', 'c', 'd', 'e',
+						'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+						'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A',
+						'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+						'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
+						'X', 'Y', 'Z');
 
 		$specialchars = array('-', '/', ' ', '#', '.');
 
