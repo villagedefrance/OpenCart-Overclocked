@@ -20,12 +20,12 @@ class ControllerPaymentKlarnaAccount extends Controller {
 				}
 			}
 
-			$data = array(
+			$klarna_data = array(
 				'klarna_account_pclasses'	=> $this->pclasses,
 				'klarna_account_status'		=> $status
 			);
 
-			$this->model_setting_setting->editSetting('klarna_account', array_merge($this->request->post, $data));
+			$this->model_setting_setting->editSetting('klarna_account', array_merge($this->request->post, $klarna_data));
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -54,11 +54,17 @@ class ControllerPaymentKlarnaAccount extends Controller {
 		$this->data['entry_secret'] = $this->language->get('entry_secret');
 		$this->data['entry_server'] = $this->language->get('entry_server');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_pending_status'] = $this->language->get('entry_pending_status');
 		$this->data['entry_accepted_status'] = $this->language->get('entry_accepted_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_merchant'] = $this->language->get('help_merchant');
+		$this->data['help_secret'] = $this->language->get('help_secret');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -72,6 +78,14 @@ class ControllerPaymentKlarnaAccount extends Controller {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
 		}
 
 		$this->data['breadcrumbs'] = array();
@@ -93,14 +107,6 @@ class ControllerPaymentKlarnaAccount extends Controller {
 			'href'  	=> $this->url->link('payment/klarna_account', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
-
-		if (isset($this->session->data['success'])) {
-			$this->data['success'] = $this->session->data['success'];
-
-			unset($this->session->data['success']);
-		} else {
-			$this->data['success'] = '';
-		}
 
 		$this->data['action'] = $this->url->link('payment/klarna_account', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -236,15 +242,17 @@ class ControllerPaymentKlarnaAccount extends Controller {
 
 				$curl = curl_init();
 
-				$header  = 'Content-Type: text/xml' . "\n";
-				$header .= 'Content-Length: ' . strlen($xml) . "\n";
+				$header = array();
+
+				$header[] = 'Content-Type: text/xml';
+				$header[] = 'Content-Length: ' . strlen($xml);
 
 				curl_setopt($curl, CURLOPT_URL, $url);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 				curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
 				curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curl, CURLOPT_HEADER, $header);
+				curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
 				curl_setopt($curl, CURLOPT_POSTFIELDS, $xml);
 
 				$response = curl_exec($curl);
@@ -340,11 +348,9 @@ class ControllerPaymentKlarnaAccount extends Controller {
 				$value = array();
 				$xpath = new DOMXPath($document);
 				$entries = $xpath->query('.//array/data/value', $child);
-
 				for ($i = 0; $i < $entries->length; $i++) {
 					$value[] = $this->parseResponse($entries->item($i)->firstChild, $document);
 				}
-
 				break;
 			default:
 				$value = null;

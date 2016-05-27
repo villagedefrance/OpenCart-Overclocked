@@ -36,16 +36,16 @@
           <div id="tab-<?php echo $country['code']; ?>" class="vtabs-content">
             <table class="form">
               <tr>
-                <td><?php echo $entry_merchant; ?></td>
-                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][merchant]" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['merchant'] : ''; ?>" size="40" /></td>
+                <td><label for="input-merchant"><?php echo $entry_merchant; ?><br /><span class="help"><?php echo $help_merchant; ?></span></label></td>
+                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][merchant]" id="input-merchant" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['merchant'] : ''; ?>" size="40" /></td>
               </tr>
               <tr>
-                <td><?php echo $entry_secret; ?></td>
-                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][secret]" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['secret'] : ''; ?>" size="40" /></td>
+                <td><label for="input-secret"><?php echo $entry_secret; ?><br /><span class="help"><?php echo $help_secret; ?></span></label></td>
+                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][secret]" id="input-secret" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['secret'] : ''; ?>" size="40" /></td>
               </tr>
               <tr>
-                <td><?php echo $entry_server; ?></td>
-                <td><select name="klarna_account[<?php echo $country['code']; ?>][server]">
+                <td><label for="input-server"><?php echo $entry_server; ?></label></td>
+                <td><select name="klarna_account[<?php echo $country['code']; ?>][server]" id="input-server">
                   <?php if (isset($klarna_account[$country['code']]) && $klarna_account[$country['code']]['server'] == 'live') { ?>
                     <option value="live" selected="selected"><?php echo $text_live; ?></option>
                   <?php } else { ?>
@@ -59,12 +59,16 @@
                 </select></td>
               </tr>
               <tr>
-                <td><?php echo $entry_total; ?></td>
-                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][total]" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['total'] : ''; ?>" /></td>
+                <td><label for="input-total"><?php echo $entry_total; ?><br /><span class="help"><?php echo $help_total; ?></span></label></td>
+                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][total]" id="input-total" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['total'] : ''; ?>" /></td>
               </tr>
+            <tr>
+              <td><label for="input-total-max"><?php echo $entry_total_max; ?><br /><span class="help"><?php echo $help_total_max; ?></span></label></td>
+              <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][total_max]" id="input-total-max" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['total_max'] : ''; ?>" /></td>
+            </tr>
               <tr>
-                <td><?php echo $entry_pending_status; ?></td>
-                <td><select name="klarna_account[<?php echo $country['code']; ?>][pending_status_id]">
+                <td><label for="input-pending-status"><?php echo $entry_pending_status; ?></label></td>
+                <td><select name="klarna_account[<?php echo $country['code']; ?>][pending_status_id]" id="input-pending-status">
                   <?php foreach ($order_statuses as $order_status) { ?>
                     <?php if (isset($klarna_account[$country['code']]) && $order_status['order_status_id'] == $klarna_account[$country['code']]['pending_status_id']) { ?>
                       <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -75,8 +79,8 @@
                 </select></td>
               </tr>
               <tr>
-                <td><?php echo $entry_accepted_status; ?></td>
-                <td><select name="klarna_account[<?php echo $country['code']; ?>][accepted_status_id]">
+                 <td><label for="input-accepted-status"><?php echo $entry_accepted_status; ?></label></td>
+                <td><select name="klarna_account[<?php echo $country['code']; ?>][accepted_status_id]" id="input-accepted-status">
                   <?php foreach ($order_statuses as $order_status) { ?>
                     <?php if (isset($klarna_account[$country['code']]) && $order_status['order_status_id'] == $klarna_account[$country['code']]['accepted_status_id']) { ?>
                       <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -87,8 +91,8 @@
                 </select></td>
               </tr>
               <tr>
-                <td><?php echo $entry_geo_zone; ?></td>
-                <td><select name="klarna_account[<?php echo $country['code']; ?>][geo_zone_id]">
+                <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
+                <td><select name="klarna_account[<?php echo $country['code']; ?>][geo_zone_id]" id="input-geo-zone">
                   <option value="0"><?php echo $text_all_zones; ?></option>
                   <?php foreach ($geo_zones as $geo_zone) { ?>
                     <?php if (isset($klarna_account[$country['code']]) && $geo_zone['geo_zone_id'] == $klarna_account[$country['code']]['geo_zone_id']) {  ?>
@@ -100,8 +104,8 @@
                 </select></td>
               </tr>
               <tr>
-                <td><?php echo $entry_status; ?></td>
-                <td><select name="klarna_account[<?php echo $country['code']; ?>][status]">
+                <td><label for="input-status"><?php echo $entry_status; ?></label></td>
+                <td><select name="klarna_account[<?php echo $country['code']; ?>][status]" id="input-status">
                   <?php if (isset($klarna_account[$country['code']]) && $klarna_account[$country['code']]['status']) { ?>
                     <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                     <option value="0"><?php echo $text_disabled; ?></option>
@@ -112,8 +116,8 @@
                 </select></td>
               </tr>
               <tr>
-                <td><?php echo $entry_sort_order ?></td>
-                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][sort_order]" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['sort_order'] : ''; ?>" size="3" /></td>
+                <td><label for="input-sort-order"><?php echo $entry_sort_order ?></label></td>
+                <td><input type="text" name="klarna_account[<?php echo $country['code']; ?>][sort_order]" id="input-sort-order" value="<?php echo isset($klarna_account[$country['code']]) ? $klarna_account[$country['code']]['sort_order'] : ''; ?>" size="3" /></td>
               </tr>
             </table>
           </div>
