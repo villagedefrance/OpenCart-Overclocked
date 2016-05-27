@@ -3218,7 +3218,7 @@ CREATE TABLE `oc_supplier_address` (
   `postcode` varchar(10) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT '0',
   `zone_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`supplier_address_id`),
+  PRIMARY KEY (`address_id`),
   KEY `supplier_id` (`supplier_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
