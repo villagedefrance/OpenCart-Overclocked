@@ -24,7 +24,7 @@ So feel free to post your comments or get in touch.
 Latest Scripts:
 - jQuery 1.12.3.
 - jQuery UI 1.11.4.
-- CKEditor 4.5.8 Full.
+- CKEditor 4.5.9 Full.
 - jQuery Flot 0.8.2.
 - Plupload 2.1.8.
 - Camera 1.3.4.
@@ -44,10 +44,10 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-Coming soon in 1.7.7.0!
+Coming soon in 1.8.0.0!
 - Added DomPDF vendor library for document downloads.
-- Added FirstData payment method. Thanks Gob33!
-- Updated MoneyBookers to Skrill. Thanks Gob33!
+- New and updated payment methods. Thanks Gob33!
+- New Supplier management forms!
 - New Cookie Consent code.
 - Added Piwik code field in Settings.
 - ...
@@ -59,16 +59,11 @@ New in 1.7.6.0 (Current Release)!
 - jQuery updated to v1.12.3.
 - Essential bug fixes ...
 
-New in 1.7.5.0:
+Added in previous 1.7.X.0 versions:
 - Added Ip Range blocker (firewall).
 - Added autocomplete for offers.
-- Moved EU Taxes in core files.
 - TimePicker Addon updated to v1.5.0.
 - Stronger Session & Captcha Classes.
-- Improved upgrade script.
-- Bug Fixes ...
-
-Added in previous 1.7.X.0 versions:
 - Added EU taxes for E-medias Law.
 - Added received orders in dashboard graph.
 - Added Seo-Urls cache. Thanks skyosev!
@@ -88,7 +83,6 @@ Added in previous 1.7.X.0 versions:
 - Improved File Managers.
 - Improved Customer Accounts.
 - Improved Affiliate Accounts.
-- Better Responsive Stylesheets.
 - Custom Menu System.
 - Custom Footer System.
 - Responsive Default Theme.
