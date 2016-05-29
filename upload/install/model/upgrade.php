@@ -624,7 +624,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 	}
 
 	// ------------------------------------
-	// Function to update geographic data
+	// Function to insert required Geo data
 	// ------------------------------------
 	public function updateGeoData($file) {
 		ini_set('max_execution_time', 3600);
