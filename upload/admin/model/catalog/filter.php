@@ -5,7 +5,7 @@ class ModelCatalogFilter extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "filter_group SET sort_order = '" . (int)$data['sort_order'] . "'");
 
 		$filter_group_id = $this->db->getLastId();
-		
+
 		// Save and Continue
 		$this->session->data['new_filter_group_id'] = $filter_group_id;
 

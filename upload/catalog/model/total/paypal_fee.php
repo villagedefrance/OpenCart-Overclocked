@@ -5,7 +5,7 @@ class ModelTotalPayPalFee extends Model {
 		$paypal_fee_total = $this->config->get('paypal_fee_total');
 
 		if ($this->cart->getTotal() && (empty($paypal_fee_total) || ($this->cart->getTotal() < $paypal_fee_total))) {
-			$this->load->language('total/paypal_fee');
+			$this->language->load('total/paypal_fee');
 
 			if ((isset($this->session->data['payment_method']) && ((substr($this->session->data['payment_method']['code'], 0, 3) == 'pp_') || ($this->session->data['payment_method']['code'] == "paypal_email"))) || (isset($this->request->post['payment']) && ((substr($this->request->post['payment'], 0, 3) == 'pp_') || ($this->request->post['payment'] == "paypal_email")))) {
 				if ($this->config->get('paypal_fee_fee_type') == 'F') {

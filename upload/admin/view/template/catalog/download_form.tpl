@@ -34,7 +34,7 @@
           <?php } ?></td>
         </tr>
         <tr>
-          <td><?php echo $entry_filename; ?></td>
+          <td><span class="required">*</span> <?php echo $entry_filename; ?></td>
           <td><?php if ($error_filename) { ?>
             <input type="text" name="filename" value="<?php echo $filename; ?>" size="30" class="input-error" /> <a id="button-upload" class="button-form"><?php echo $button_upload; ?></a>
             <span class="error"><?php echo $error_filename; ?></span>
@@ -43,7 +43,7 @@
           <?php } ?></td>
         </tr>
         <tr>
-          <td><?php echo $entry_mask; ?></td>
+          <td><span class="required">*</span> <?php echo $entry_mask; ?></td>
           <td><?php if ($error_mask) { ?>
             <input type="text" name="mask" value="<?php echo $mask; ?>" size="40" class="input-error" />
             <span class="error"><?php echo $error_mask; ?></span>
