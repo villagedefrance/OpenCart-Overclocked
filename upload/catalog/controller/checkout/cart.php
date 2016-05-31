@@ -4,6 +4,7 @@ class ControllerCheckoutCart extends Controller {
 
 	public function index() {
 		$this->language->load('checkout/cart');
+		$this->language->load('total/gift_wrapping');
 
 		if (!isset($this->session->data['vouchers'])) {
 			$this->session->data['vouchers'] = array();
@@ -37,6 +38,7 @@ class ControllerCheckoutCart extends Controller {
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
 			unset($this->session->data['reward']);
+			unset($this->session->data['wrapping']);
 
 			$this->redirect($this->url->link('checkout/cart'));
 		}
@@ -79,6 +81,24 @@ class ControllerCheckoutCart extends Controller {
 			$this->redirect($this->url->link('checkout/cart'));
 		}
 
+		// Add Wrapping
+		if (isset($this->request->post['add_wrapping'])) {
+			$this->session->data['wrapping'] = $this->request->post['add_wrapping'];
+
+			$this->session->data['success'] = $this->language->get('text_add_wrapping');
+
+			$this->redirect($this->url->link('checkout/cart'));
+		}
+
+		// Remove Wrapping
+		if (isset($this->request->post['remove_wrapping'])) {
+			unset($this->session->data['wrapping']);
+
+			$this->session->data['success'] = $this->language->get('text_remove_wrapping');
+
+			$this->redirect($this->url->link('checkout/cart'));
+		}
+
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
@@ -110,6 +130,12 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
 
+			if ($this->config->get('gift_wrapping_status')) {
+				$wrapping_fee = $this->currency->format($this->config->get('gift_wrapping_price'));
+			} else {
+				$wrapping_fee = 0;
+			}
+
 			$this->data['heading_title'] = $this->language->get('heading_title');
 
 			$this->data['text_next'] = $this->language->get('text_next');
@@ -129,6 +155,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['text_freq_month'] = $this->language->get('text_freq_month');
 			$this->data['text_freq_bi_month'] = $this->language->get('text_freq_bi_month');
 			$this->data['text_freq_year'] = $this->language->get('text_freq_year');
+			$this->data['text_wrapping'] = sprintf($this->language->get('text_wrapping'), $wrapping_fee);
 
 			$this->data['lang'] = $this->language->get('code');
 
@@ -159,6 +186,8 @@ class ControllerCheckoutCart extends Controller {
 			$this->data['button_shipping'] = $this->language->get('button_shipping');
 			$this->data['button_shopping'] = $this->language->get('button_shopping');
 			$this->data['button_checkout'] = $this->language->get('button_checkout');
+			$this->data['button_add_wrapping'] = $this->language->get('button_add_wrapping');
+			$this->data['button_remove_wrapping'] = $this->language->get('button_remove_wrapping');
 
 			$this->data['text_trial'] = $this->language->get('text_trial');
 			$this->data['text_recurring'] = $this->language->get('text_recurring');
@@ -460,6 +489,21 @@ class ControllerCheckoutCart extends Controller {
 				$this->data['shipping_method'] = $this->session->data['shipping_method']['code'];
 			} else {
 				$this->data['shipping_method'] = '';
+			}
+
+			// Gift Wrapping
+			if ($this->config->get('gift_wrapping_status')) {
+				$this->data['wrapping_status'] = $this->config->get('gift_wrapping_status');
+			} else {
+				$this->data['wrapping_status'] = 0;
+			}
+
+			if (isset($this->request->post['wrapping'])) {
+				$this->data['wrapping'] = $this->request->post['wrapping'];
+			} elseif (isset($this->session->data['wrapping'])) {
+				$this->data['wrapping'] = $this->session->data['wrapping'];
+			} else {
+				$this->data['wrapping'] = '';
 			}
 
 			// Totals

@@ -116,7 +116,7 @@
       </table>
     </div>
   </form>
-  <?php if (!$free_cart && ($coupon_status || $voucher_status || $reward_status || $shipping_status)) { ?>
+  <?php if (!$free_cart && ($coupon_status || $voucher_status || $reward_status || $shipping_status || $wrapping_status)) { ?>
     <h2><?php echo $text_next; ?></h2>
     <div class="content">
       <p><?php echo $text_next_choice; ?></p>
@@ -159,6 +159,16 @@
             <input type="radio" name="next" value="shipping" id="shipping_estimate" />
           <?php } ?></td>
           <td><label for="shipping_estimate"><?php echo $text_shipping_estimate; ?></label></td>
+        </tr>
+      <?php } ?>
+      <?php if ($wrapping_status) { ?>
+        <tr class="highlight">
+          <td><?php if ($next == 'wrapping') { ?>
+            <input type="radio" name="next" value="wrapping" id="gift_wrapping" checked="checked" />
+          <?php } else { ?>
+            <input type="radio" name="next" value="wrapping" id="gift_wrapping" />
+          <?php } ?></td>
+          <td><label for="gift_wrapping"><?php echo $text_wrapping; ?></label></td>
         </tr>
       <?php } ?>
     </table>
@@ -219,6 +229,13 @@
       </table>
       <br />
       <input type="button" value="<?php echo $button_quotes; ?>" id="button-quote" class="button" />
+    </div>
+    <div id="wrapping" class="content" style="display: <?php echo ($next == 'wrapping' ? 'block' : 'none'); ?>;">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+        <input type="submit" value="<?php echo $button_add_wrapping; ?>" name="add_wrapping" class="button" />
+        &nbsp;&nbsp;
+        <input type="submit" value="<?php echo $button_remove_wrapping; ?>" name="remove_wrapping" class="button" />
+      </form>
     </div>
   </div>
   <?php } ?>

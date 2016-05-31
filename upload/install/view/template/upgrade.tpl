@@ -36,8 +36,8 @@
 <script type="text/javascript"><!--
 function progress() {
 	document.getElementById('start').style.display='none';
-    document.getElementById('progress').style.display='block';
-    return true;
+	document.getElementById('progress').style.display='block';
+	return true;
 }
 //--></script>
 

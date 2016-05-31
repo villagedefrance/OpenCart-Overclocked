@@ -171,6 +171,28 @@ class ControllerUpgrade extends Controller {
 					}
 				}
 
+				$file_7 = DIR_SYSTEM . 'reset/oc_supplier_group.csv';
+				$file_8 = DIR_SYSTEM . 'reset/oc_supplier_group_description.csv';
+
+				if (file_exists($file_7) && file_exists($file_8)) {
+					$content_7 = file_get_contents($file_7);
+					$content_8 = file_get_contents($file_8);
+
+					if ($content_7 && $content_8) {
+						$step_seven = true;
+						$step_eight = false;
+
+						if ($step_seven) {
+							$this->model_upgrade->updateGeoData($file_7);
+							$step_eight = true;
+						}
+
+						if ($step_eight) {
+							$this->model_upgrade->updateGeoData($file_8);
+						}
+					}
+				}
+
 				clearstatcache();
 			}
 

@@ -103,6 +103,7 @@ class ControllerPaymentKlarnaAccount extends Controller {
 					} else {
 						$total_data[$key]['tax_rate'] = 0;
 					}
+
 				} else {
 					$total_data[$key]['tax_rate'] = '0';
 				}
@@ -144,6 +145,7 @@ class ControllerPaymentKlarnaAccount extends Controller {
 				if ($order_info['payment_iso_code_3'] == 'DEU') {
 					$this->data['street_number'] = trim($address[1] . ' ' . $address[2]);
 				}
+
 			} else {
 				$this->data['street'] = '';
 				$this->data['street_number'] = '';
@@ -499,7 +501,7 @@ class ControllerPaymentKlarnaAccount extends Controller {
 					array()
 				);
 
-				$xml  = '<methodCall>';
+				$xml = '<methodCall>';
 				$xml .= '  <methodName>add_invoice</methodName>';
 				$xml .= '  <params>';
 
@@ -532,6 +534,7 @@ class ControllerPaymentKlarnaAccount extends Controller {
 					$log->write('HTTP Error for order #' . $order_info['order_id'] . '. Code: ' . curl_errno($curl) . ' message: ' . curl_error($curl));
 
 					$json['error'] = $this->language->get('error_network');
+
 				} else {
 					preg_match('/<member><name>faultString<\/name><value><string>(.+)<\/string><\/value><\/member>/', $response, $match);
 
@@ -542,6 +545,7 @@ class ControllerPaymentKlarnaAccount extends Controller {
 						$log->write('Failed to create an invoice for order #' . $order_info['order_id'] . '. Message: ' . utf8_encode($match[1]) . ' Code: ' . $match2[1]);
 
 						$json['error'] = utf8_encode($match[1]);
+
 					} else {
 						$xml = new DOMDocument();
 						$xml->loadXML($response);

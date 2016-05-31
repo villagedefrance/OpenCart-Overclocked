@@ -161,6 +161,8 @@ class ModelCheckoutOrder extends Model {
 	public function confirm($order_id, $order_status_id, $comment = '', $notify = false) {
 		$order_info = $this->getOrder($order_id);
 
+		unset($this->session->data['wrapping']);
+
 		if ($order_info && !$order_info['order_status_id']) {
 			// Auto Invoice Number
 			$auto_invoice = $this->config->get('config_auto_invoice');
