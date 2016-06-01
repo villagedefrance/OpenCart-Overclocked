@@ -15,7 +15,7 @@
   </tr>
   <tr>
     <td><?php echo $text_capture_status; ?></td>
-    <td id="capture_status">
+    <td id="capture-status">
       <?php if ($globalpay_order['capture_status'] == 1) { ?>
         <span class="capture-text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
@@ -29,7 +29,7 @@
   </tr>
   <tr>
     <td><?php echo $text_void_status; ?></td>
-    <td id="void_status">
+    <td id="void-status">
       <?php if ($globalpay_order['void_status'] == 1) { ?>
         <span class="void-text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
@@ -40,7 +40,7 @@
   </tr>
   <tr>
     <td><?php echo $text_rebate_status; ?></td>
-    <td id="rebate_status">
+    <td id="rebate-status">
       <?php if ($globalpay_order['rebate_status'] == 1) { ?>
         <span class="rebate_text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
@@ -143,7 +143,7 @@ $("#button-capture").click(function() {
 					html += '</tr>';
 
 					$('#globalpay-transactions').append(html);
-					$('#globalpay-total-captured').text(data.data.total);
+					$('#globalpay-total-captured').text(data.data.total_formatted);
 
 					if (data.data.capture_status == 1) {
 						$('#button-void').hide();
