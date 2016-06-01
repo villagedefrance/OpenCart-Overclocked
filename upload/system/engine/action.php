@@ -1,5 +1,6 @@
 <?php
 final class Action {
+	protected $route;
 	protected $file;
 	protected $class;
 	protected $method;
@@ -7,8 +8,9 @@ final class Action {
 
 	public function __construct($route, $args = array()) {
 		$path = '';
+		$this->route = str_replace('../', '', (string) $route);
 
-		$parts = explode('/', str_replace('../', '', (string)$route));
+		$parts = explode('/', $this->route);
 
 		foreach ($parts as $part) {
 			$path .= $part;
@@ -42,6 +44,10 @@ final class Action {
 		}
 	}
 
+	public function getRoute() {
+		return $this->route;
+	}
+
 	public function getFile() {
 		return $this->file;
 	}
@@ -58,4 +64,3 @@ final class Action {
 		return $this->args;
 	}
 }
-?>

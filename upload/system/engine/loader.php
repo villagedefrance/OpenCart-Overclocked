@@ -15,19 +15,29 @@ final class Loader {
 	}
 
 	public function model($route) {
-		// Sanitize the call
 		$route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
+		$model_name = 'model_' . str_replace(array('/', '-', '.'), array('_', '', ''), $route);
 
-		$file = DIR_APPLICATION . 'model/' . $route . '.php';
-
-		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', (string)$route);
-
-		if (is_file($file)) {
-			include_once($file);
-			$this->registry->set('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), (string)$route), new $class($this->registry));
-		} else {
-			throw new \Exception('Error: Could not load model ' . $route . '!');
+		if ($this->registry->get($model_name) !== null) {
+			return $this->registry->get($model_name);
 		}
+
+		$file  = DIR_APPLICATION . 'model/' . $route . '.php';
+
+		if (!is_file($file)) {
+			throw new RuntimeException('Error: Could not load model file ' . $file . '!');
+		}
+
+		require_once($file);
+
+		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $route);
+
+		$model = new $class($this->registry);
+		$proxy = new Proxy($model, $route, $this->registry->get('event'));
+
+		$this->registry->set($model_name, $proxy);
+
+		return $proxy;
 	}
 
 	public function library($route) {
