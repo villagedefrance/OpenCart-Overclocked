@@ -332,6 +332,8 @@
             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
             <?php if ($is_quote) { ?>
               <a href="<?php echo $is_quote; ?>" class="button" style="margin-left:15px;"><?php echo $button_quote; ?></a>
+            <?php } elseif (!$is_quote && $stock_quantity <= 0) { ?>
+              <span class="stock-status"><?php echo $stock; ?></span>
             <?php } else { ?>
               <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
             <?php } ?>
@@ -345,11 +347,12 @@
           <div class="minimum"><?php echo $text_minimum; ?></div>
         <?php } ?>
       </div>
-      <?php if (($dob && $age_minimum > 0 && !$age_checked) || $is_quote || !$buy_now_button) { ?>
+      <?php if (($dob && $age_minimum > 0 && !$age_checked) || $is_quote || !$buy_now_button || ($stock_quantity <= 0)) { ?>
         <p class="hidden"></p>
       <?php } else { ?>
         <div id="buy-now" style="margin-bottom:15px;"><input type="button" value="<?php echo $button_buy_it_now; ?>" id="button-buy-it-now" class="button-buy-now" /></div>
       <?php } ?>
+      <div id="cart-warnings"></div>
       <?php if ($review_status) { ?>
         <div class="review">
           <div class="rating">
@@ -497,7 +500,13 @@
           <?php if ($product['rating']) { ?>
             <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
           <?php } ?>
-          <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a>
+          <?php if ($product['quote']) { ?>
+            <a href="<?php echo $product['quote']; ?>" class="button"><?php echo $button_quote; ?></a>
+          <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+            <div class="stock-status"><?php echo $product['stock_status']; ?></div>
+          <?php } else { ?>
+            <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a>
+          <?php } ?>
         </div>
       <?php } ?>
       </div>
@@ -606,6 +615,10 @@ $('#button-cart').bind('click', function() {
 					}
 				}
 
+				if (json['error']['quantity']) {
+					$('#cart-warnings').after('<div class="warning" style="margin:5px 0px;">' + json['error']['quantity'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
+				}
+
 				if (json['error']['profile']) {
 					$('select[name="profile_id"]').after('<span class="error">' + json['error']['profile'] + '</span>');
 				}
@@ -642,6 +655,10 @@ $('#button-buy-it-now').bind('click', function() {
 					for (i in json['error']['option']) {
 						$('#option-' + i).after('<span class="error">' + json['error']['option'][i] + '</span>');
 					}
+				}
+
+				if (json['error']['quantity']) {
+					$('#cart-warnings').after('<div class="warning" style="margin:5px 0px;">' + json['error']['quantity'] + '<img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>');
 				}
 
 				if (json['error']['profile']) {

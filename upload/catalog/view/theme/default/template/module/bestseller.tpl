@@ -36,6 +36,8 @@
         <?php if ($addproduct) { ?>
           <?php if ($product['quote']) { ?>
             <div class="cart"><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></div>
+          <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+            <div class="stock-status"><?php echo $product['stock_status']; ?></div>
           <?php } else { ?>
             <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
           <?php } ?>
@@ -81,6 +83,8 @@
         <?php if ($addproduct) { ?>
           <?php if ($product['quote']) { ?>
             <div class="cart"><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></div>
+          <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+            <div class="stock-status"><?php echo $product['stock_status']; ?></div>
           <?php } else { ?>
             <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
           <?php } ?>

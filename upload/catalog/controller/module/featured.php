@@ -134,23 +134,25 @@ class ControllerModuleFeatured extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'product_id'		=> $product_info['product_id'],
-					'thumb'   	 	=> $image,
-					'offer'       		=> $offer,
-					'name'    	 	=> $product_info['name'],
-					'manufacturer'	=> $product_info['manufacturer'],
-					'model' 			=> $product_info['model'],
-					'reward' 			=> $product_info['reward'],
-					'points' 			=> $product_info['points'],
-					'quote'			=> $quote,
-					'price'   	  		=> $price,
-					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
-					'special' 	 		=> $special,
-					'minimum'		=> ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
-					'age_minimum'	=> ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
-					'rating'     		=> (int)$rating,
-					'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-					'href'    	 		=> $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
+					'product_id'			=> $product_info['product_id'],
+					'thumb'   	 		=> $image,
+					'offer'       			=> $offer,
+					'name'    	 		=> $product_info['name'],
+					'manufacturer'		=> $product_info['manufacturer'],
+					'model' 				=> $product_info['model'],
+					'reward' 				=> $product_info['reward'],
+					'points' 				=> $product_info['points'],
+					'stock_status'		=> $product_info['stock_status'],
+					'stock_quantity'	=> $product_info['quantity'],
+					'quote'				=> $quote,
+					'price'   	  			=> $price,
+					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
+					'special' 	 			=> $special,
+					'minimum'			=> ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
+					'age_minimum'		=> ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
+					'rating'     			=> (int)$rating,
+					'reviews'    			=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
+					'href'    	 			=> $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				);
 			}
 		}

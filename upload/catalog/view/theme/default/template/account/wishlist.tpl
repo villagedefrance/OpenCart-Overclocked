@@ -47,7 +47,13 @@
                 <?php } ?>
               <?php } ?></td>
               <td class="action">
-                <img src="catalog/view/theme/<?php echo $template; ?>/image/account/cart-add.png" alt="<?php echo $button_cart; ?>" title="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" />
+                <?php if ($product['quote']) { ?>
+                  <a href="<?php echo $product['quote']; ?>" title=""><img src="catalog/view/theme/<?php echo $template; ?>/image/account/quote.png" alt="" /></a>
+                <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+                  <img src="catalog/view/theme/<?php echo $template; ?>/image/account/cart-no-stock.png" alt="<?php echo $product['stock_status']; ?>" title="<?php echo $product['stock_status']; ?>" />
+                <?php } else { ?>
+                  <img src="catalog/view/theme/<?php echo $template; ?>/image/account/cart-add.png" alt="<?php echo $button_cart; ?>" title="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" />
+                <?php } ?>
                 &nbsp;&nbsp;
                 <a href="<?php echo $product['remove']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_remove; ?>" title="<?php echo $button_remove; ?>" /></a>
               </td>

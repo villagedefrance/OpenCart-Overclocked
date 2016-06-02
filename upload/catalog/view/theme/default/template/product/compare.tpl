@@ -134,6 +134,8 @@
         <?php foreach ($products as $product) { ?>
           <?php if ($product['quote']) { ?>
             <td><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></td>
+          <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+            <span class="stock-status"><?php echo $product['stock_status']; ?></span>
           <?php } else { ?>
             <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" /></td>
           <?php } ?>

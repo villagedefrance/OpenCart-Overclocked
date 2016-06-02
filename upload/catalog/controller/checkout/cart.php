@@ -228,7 +228,6 @@ class ControllerCheckoutCart extends Controller {
 
 			$this->data['action'] = $this->url->link('checkout/cart');
 
-			// Minimum age
 			$age_minimum = 0;
 			$age_logged = false;
 			$age_checked = false;
@@ -247,7 +246,7 @@ class ControllerCheckoutCart extends Controller {
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
-			// Products
+			// Get Products
 			$this->load->model('tool/image');
 
 			$this->data['products'] = array();
@@ -381,12 +380,12 @@ class ControllerCheckoutCart extends Controller {
 					'tax_value'				=> $this->currency->format($product_tax_value),
 					'tax_percent'			=> number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
 					'age_minimum'			=> $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
-					'total'               		=> $total,
-					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
-					'remove'              	=> $this->url->link('checkout/cart', 'remove=' . $product['key']),
 					'recurring'           	=> $product['recurring'],
 					'profile_name'        	=> $product['profile_name'],
-					'profile_description' 	=> $profile_description
+					'profile_description' 	=> $profile_description,
+					'total'               		=> $total,
+					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
+					'remove'              	=> $this->url->link('checkout/cart', 'remove=' . $product['key'])
 				);
 			}
 
@@ -710,6 +709,12 @@ class ControllerCheckoutCart extends Controller {
 				$quantity = $this->request->post['quantity'];
 			} else {
 				$quantity = 1;
+			}
+
+			$allow_no_stock_checkout = $this->config->get('config_stock_checkout');
+
+			if ($quantity > $product_info['quantity'] && !$allow_no_stock_checkout) {
+				$json['error']['quantity'] = sprintf($this->language->get('error_low_stock'), $product_info['quantity']);
 			}
 
 			if (isset($this->request->post['option'])) {

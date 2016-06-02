@@ -84,6 +84,8 @@
             <?php } else { ?>
               <?php if ($product['quote']) { ?>
                 <a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+              <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+                <span class="stock-status"><?php echo $product['stock_status']; ?></span>
               <?php } else { ?>
                 <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" />
               <?php } ?>
