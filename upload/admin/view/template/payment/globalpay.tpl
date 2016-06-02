@@ -27,7 +27,7 @@
         <a href="#tab-advanced"><?php echo $tab_advanced; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-	  <div id="tab-api">
+      <div id="tab-api">
         <table class="form">
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-merchant-id"><?php echo $entry_merchant_id; ?></label></td>
@@ -170,7 +170,7 @@
             <td><label for="input-order-status-success-settled"><?php echo $entry_status_success_settled; ?></label></td>
             <td><select name="globalpay_order_status_success_settled_id" id="input-order-status-success-settled">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $globalpay_order_status_success_settled_id) { ?>
+                <?php if ($order_status['order_status_id'] == $globalpay_order_status_success_settled_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
                 <?php } else { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
@@ -182,7 +182,7 @@
             <td><label for="input-order-status-success-unsettled"><?php echo $entry_status_success_unsettled; ?></label></td>
             <td><select name="globalpay_order_status_success_unsettled_id" id="input-order-status-success-unsettled">
               <?php foreach ($order_statuses as $order_status) { ?>
-              <?php if ($order_status['order_status_id'] == $globalpay_order_status_success_unsettled_id) { ?>
+                <?php if ($order_status['order_status_id'] == $globalpay_order_status_success_unsettled_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
                 <?php } else { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
@@ -306,7 +306,9 @@
     </div>
   </div>
 </div>
-<?php echo $footer; ?>
+
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 //--></script>
+
+<?php echo $footer; ?>

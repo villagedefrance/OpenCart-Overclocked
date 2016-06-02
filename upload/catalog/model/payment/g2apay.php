@@ -22,10 +22,10 @@ class ModelPaymentG2APay extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'       => 'g2apay',
-				'title'      => $this->language->get('text_title'),
-				'terms'      => '',
-				'sort_order' => $this->config->get('g2apay_sort_order')
+				'code'		=> 'g2apay',
+				'title'			=> $this->language->get('text_title'),
+				'terms'		=> '',
+				'sort_order'	=> $this->config->get('g2apay_sort_order')
 			);
 		}
 

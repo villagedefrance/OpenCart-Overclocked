@@ -3,7 +3,7 @@
 $_['heading_title']                  = 'Globalpay Redirect';
 
 // Link
-$_['text_globalpay']                 = '<a onclick="window.open(\'https://www.globalpaymentsinc.com/\');"><img src="view/image/payment/globalpay.png" alt="Globalpay" title="Globalpay" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_globalpay']                 = '<a onclick="window.open(\'https://resourcecentre.globaliris.com/getting-started.php?id=OpenCart/\');"><img src="view/image/payment/globalpay.png" alt="Globalpay" title="Globalpay" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text
 $_['text_payment']                   = 'Payment';
@@ -45,7 +45,6 @@ $_['text_column_date_added']         = 'Created';
 $_['text_confirm_void']              = 'Are you sure you want to void the payment?';
 $_['text_confirm_capture']           = 'Are you sure you want to capture the payment?';
 $_['text_confirm_rebate']            = 'Are you sure you want to rebate the payment?';
-$_['text_globalpay']                 = '<a target="_blank" href="https://resourcecentre.globaliris.com/getting-started.php?id=OpenCart"><img src="view/image/payment/globalpay.png" alt="Globalpay" title="Globalpay" style="border: 1px solid #EEEEEE;" /></a>';
 
 // Entry
 $_['entry_merchant_id']              = 'Merchant ID';

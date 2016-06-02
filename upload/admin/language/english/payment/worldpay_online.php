@@ -2,10 +2,12 @@
 // Heading
 $_['heading_title']                      = 'Worldpay Online Payments';
 
+// Link
+$_['text_worldpay_online']               = '<a onclick="window.open(\'https://online.worldpay.com/signup/\');"><img src="view/image/payment/worldpay.png" alt="Worldpay Online Payments" title="Worldpay Online Payments" style="border:1px solid #EEEEEE;" /></a>';
+
 // Text
 $_['text_payment']                       = 'Payment';
 $_['text_success']                       = 'Success: You have modified <b>Worldpay Online Payments</b> account details!';
-$_['text_worldpay_online']               = '<a href="https://online.worldpay.com/signup/ee48b6e6-d3e3-42aa-a80e-cbee3f4f8b09" target="_blank"><img src="view/image/payment/worldpay.png" alt="Worldpay Online Payments" title="Worldpay Online Payments" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_test']                          = 'Test';
 $_['text_live']                          = 'Live';
 $_['text_authenticate']                  = 'Authenticate';

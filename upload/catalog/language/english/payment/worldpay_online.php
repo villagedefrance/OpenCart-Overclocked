@@ -1,7 +1,8 @@
 <?php
+// Heading
+$_['text_title']          = 'Credit Card / Debit Card (Worldpay Online Payments)';
 
 // Text
-$_['text_title']          = 'Credit Card / Debit Card (Worldpay Online Payments)';
 $_['text_credit_card']    = 'Card Details';
 $_['text_card_type']      = 'Card Type: ';
 $_['text_card_name']      = 'Card Name: ';

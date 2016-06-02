@@ -22,10 +22,10 @@ class ModelPaymentGlobalpayRemote extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'       => 'globalpay_remote',
-				'title'      => $this->language->get('text_title'),
-				'terms'      => '',
-				'sort_order' => $this->config->get('globalpay_remote_sort_order')
+				'code'		=> 'globalpay_remote',
+				'title'			=> $this->language->get('text_title'),
+				'terms'		=> '',
+				'sort_order'	=> $this->config->get('globalpay_remote_sort_order')
 			);
 		}
 
@@ -44,17 +44,17 @@ class ModelPaymentGlobalpayRemote extends Model {
 
 		$xml = '';
 		$xml .= '<request type="3ds-verifyenrolled" timestamp="' . $timestamp . '">';
-			$xml .= '<merchantid>' . $merchant_id . '</merchantid>';
-			$xml .= '<account>' . $account . '</account>';
-			$xml .= '<orderid>' . $order_ref . '</orderid>';
-			$xml .= '<amount currency="' . $currency . '">' . $amount . '</amount>';
-			$xml .= '<card>';
-				$xml .= '<number>' . $this->request->post['cc_number'] . '</number>';
-				$xml .= '<expdate>' . $this->request->post['cc_expire_date_month'] . $this->request->post['cc_expire_date_year'] . '</expdate>';
-				$xml .= '<type>' . $this->request->post['cc_type'] . '</type>';
-				$xml .= '<chname>' . $this->request->post['cc_name'] . '</chname>';
-			$xml .= '</card>';
-			$xml .= '<sha1hash>' . $hash . '</sha1hash>';
+		$xml .= '<merchantid>' . $merchant_id . '</merchantid>';
+		$xml .= '<account>' . $account . '</account>';
+		$xml .= '<orderid>' . $order_ref . '</orderid>';
+		$xml .= '<amount currency="' . $currency . '">' . $amount . '</amount>';
+		$xml .= '<card>';
+		$xml .= '<number>' . $this->request->post['cc_number'] . '</number>';
+		$xml .= '<expdate>' . $this->request->post['cc_expire_date_month'] . $this->request->post['cc_expire_date_year'] . '</expdate>';
+		$xml .= '<type>' . $this->request->post['cc_type'] . '</type>';
+		$xml .= '<chname>' . $this->request->post['cc_name'] . '</chname>';
+		$xml .= '</card>';
+		$xml .= '<sha1hash>' . $hash . '</sha1hash>';
 		$xml .= '</request>';
 
 		$this->logger('checkEnrollment call');
@@ -62,13 +62,16 @@ class ModelPaymentGlobalpayRemote extends Model {
 		$this->logger($xml);
 
 		$ch = curl_init();
+
 		curl_setopt($ch, CURLOPT_URL, "https://remote.globaliris.com/realmpi");
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, "OpenCart " . VERSION);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
 		$response = curl_exec ($ch);
+
 		curl_close ($ch);
 
 		$this->logger('checkEnrollment xml response');
@@ -91,18 +94,18 @@ class ModelPaymentGlobalpayRemote extends Model {
 
 		$xml = '';
 		$xml .= '<request type="3ds-verifysig" timestamp="' . $timestamp . '">';
-			$xml .= '<merchantid>' . $merchant_id . '</merchantid>';
-			$xml .= '<account>' . $account . '</account>';
-			$xml .= '<orderid>' . $order_ref . '</orderid>';
-			$xml .= '<amount currency="' . $currency . '">' . (int)$amount . '</amount>';
-			$xml .= '<card>';
-				$xml .= '<number>' . $card_number . '</number>';
-				$xml .= '<expdate>' . $card_expire . '</expdate>';
-				$xml .= '<type>' . $card_type . '</type>';
-				$xml .= '<chname>' . $card_name . '</chname>';
-			$xml .= '</card>';
-			$xml .= '<pares>' . $pares . '</pares>';
-			$xml .= '<sha1hash>' . $hash . '</sha1hash>';
+		$xml .= '<merchantid>' . $merchant_id . '</merchantid>';
+		$xml .= '<account>' . $account . '</account>';
+		$xml .= '<orderid>' . $order_ref . '</orderid>';
+		$xml .= '<amount currency="' . $currency . '">' . (int)$amount . '</amount>';
+		$xml .= '<card>';
+		$xml .= '<number>' . $card_number . '</number>';
+		$xml .= '<expdate>' . $card_expire . '</expdate>';
+		$xml .= '<type>' . $card_type . '</type>';
+		$xml .= '<chname>' . $card_name . '</chname>';
+		$xml .= '</card>';
+		$xml .= '<pares>' . $pares . '</pares>';
+		$xml .= '<sha1hash>' . $hash . '</sha1hash>';
 		$xml .= '</request>';
 
 		$this->logger('enrollmentSignature call');
@@ -110,13 +113,16 @@ class ModelPaymentGlobalpayRemote extends Model {
 		$this->logger($xml);
 
 		$ch = curl_init();
+
 		curl_setopt($ch, CURLOPT_URL, "https://remote.globaliris.com/realmpi");
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, "OpenCart " . VERSION);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
 		$response = curl_exec ($ch);
+
 		curl_close ($ch);
 
 		$this->logger('enrollmentSignature xml response');
@@ -141,81 +147,81 @@ class ModelPaymentGlobalpayRemote extends Model {
 
 		$xml = '';
 		$xml .= '<request type="auth" timestamp="' . $timestamp . '">';
-			$xml .= '<merchantid>' . $merchant_id . '</merchantid>';
-			$xml .= '<account>' . $account . '</account>';
-			$xml .= '<orderid>' . $order_ref . '</orderid>';
-			$xml .= '<amount currency="' . $currency . '">' . $amount . '</amount>';
-			$xml .= '<comments>';
-				$xml .= '<comment id="1">OpenCart</comment>';
-			$xml .= '</comments>';
-			$xml .= '<card>';
-				$xml .= '<number>' . $card_number . '</number>';
-				$xml .= '<expdate>' . $expire . '</expdate>';
-				$xml .= '<type>' . $type . '</type>';
-				$xml .= '<chname>' . $name . '</chname>';
-				$xml .= '<cvn>';
-					$xml .= '<number>' . (int)$cvv . '</number>';
-					$xml .= '<presind>2</presind>';
-				$xml .= '</cvn>';
-				if (!empty($issue)) {
-					$xml .= '<issueno>' . (int)$issue . '</issueno>';
+		$xml .= '<merchantid>' . $merchant_id . '</merchantid>';
+		$xml .= '<account>' . $account . '</account>';
+		$xml .= '<orderid>' . $order_ref . '</orderid>';
+		$xml .= '<amount currency="' . $currency . '">' . $amount . '</amount>';
+		$xml .= '<comments>';
+		$xml .= '<comment id="1">OpenCart</comment>';
+		$xml .= '</comments>';
+		$xml .= '<card>';
+		$xml .= '<number>' . $card_number . '</number>';
+		$xml .= '<expdate>' . $expire . '</expdate>';
+		$xml .= '<type>' . $type . '</type>';
+		$xml .= '<chname>' . $name . '</chname>';
+		$xml .= '<cvn>';
+		$xml .= '<number>' . (int)$cvv . '</number>';
+		$xml .= '<presind>2</presind>';
+		$xml .= '</cvn>';
+		if (!empty($issue)) {
+			$xml .= '<issueno>' . (int)$issue . '</issueno>';
+		}
+		$xml .= '</card>';
+
+		if ($this->config->get('globalpay_remote_auto_settle') == 0) {
+			$xml .= '<autosettle flag="0" />';
+		} elseif ($this->config->get('globalpay_remote_auto_settle') == 1) {
+			$xml .= '<autosettle flag="1" />';
+		} elseif ($this->config->get('globalpay_remote_auto_settle') == 2) {
+			$xml .= '<autosettle flag="MULTI" />';
+		}
+
+		if ($eci != '' || $cavv != '' || $xid != '') {
+			$xml .= '<mpi>';
+			if ($eci != '') {
+				$xml .= '<eci>' . (string)$eci . '</eci>';
+			}
+			if ($cavv != '') {
+				$xml .= '<cavv>' . (string)$cavv . '</cavv>';
+			}
+			if ($xid != '') {
+				$xml .= '<xid>' . (string)$xid . '</xid>';
+			}
+			$xml .= '</mpi>';
+		}
+
+		$xml .= '<sha1hash>' . $hash . '</sha1hash>';
+
+		if ($this->config->get('globalpay_remote_tss_check') == 1) {
+			$xml .= '<tssinfo>';
+			$xml .= '<custipaddress>' . $order_info['ip'] . '</custipaddress>';
+
+			if ($this->customer->getId() > 0) {
+				$xml .= '<custnum>' . (int)$this->customer->getId() . '</custnum>';
+			}
+
+			if ((isset($order_info['payment_iso_code_2']) && !empty($order_info['payment_iso_code_2'])) || (isset($order_info['payment_postcode']) && !empty($order_info['payment_postcode']))) {
+				$xml .= '<address type="billing">';
+				if ((isset($order_info['payment_postcode']) && !empty($order_info['payment_postcode']))) {
+					$xml .= '<code>' . filter_var($order_info['payment_postcode'], FILTER_SANITIZE_NUMBER_INT) . '|' . filter_var($order_info['payment_address_1'], FILTER_SANITIZE_NUMBER_INT) . '</code>';
 				}
-			$xml .= '</card>';
-
-			if ($this->config->get('globalpay_remote_auto_settle') == 0) {
-				$xml .= '<autosettle flag="0" />';
-			} elseif ($this->config->get('globalpay_remote_auto_settle') == 1) {
-				$xml .= '<autosettle flag="1" />';
-			} elseif ($this->config->get('globalpay_remote_auto_settle') == 2) {
-				$xml .= '<autosettle flag="MULTI" />';
+				if ((isset($order_info['payment_iso_code_2']) && !empty($order_info['payment_iso_code_2']))) {
+					$xml .= '<country>' . $order_info['payment_iso_code_2'] . '</country>';
+				}
+				$xml .= '</address>';
 			}
-
-			if ($eci != '' || $cavv != '' || $xid != '') {
-				$xml .= '<mpi>';
-					if ($eci != '') {
-						$xml .= '<eci>' . (string)$eci . '</eci>';
-					}
-					if ($cavv != '') {
-						$xml .= '<cavv>' . (string)$cavv . '</cavv>';
-					}
-					if ($xid != '') {
-						$xml .= '<xid>' . (string)$xid . '</xid>';
-					}
-				$xml .= '</mpi>';
+			if ((isset($order_info['shipping_iso_code_2']) && !empty($order_info['shipping_iso_code_2'])) || (isset($order_info['shipping_postcode']) && !empty($order_info['shipping_postcode']))) {
+				$xml .= '<address type="shipping">';
+				if ((isset($order_info['shipping_postcode']) && !empty($order_info['shipping_postcode']))) {
+					$xml .= '<code>' . filter_var($order_info['shipping_postcode'], FILTER_SANITIZE_NUMBER_INT) . '|' . filter_var($order_info['shipping_address_1'], FILTER_SANITIZE_NUMBER_INT) . '</code>';
+				}
+				if ((isset($order_info['shipping_iso_code_2']) && !empty($order_info['shipping_iso_code_2']))) {
+					$xml .= '<country>' . $order_info['shipping_iso_code_2'] . '</country>';
+				}
+				$xml .= '</address>';
 			}
-
-			$xml .= '<sha1hash>' . $hash . '</sha1hash>';
-
-			if ($this->config->get('globalpay_remote_tss_check') == 1) {
-				$xml .= '<tssinfo>';
-					$xml .= '<custipaddress>' . $order_info['ip'] . '</custipaddress>';
-
-					if ($this->customer->getId() > 0) {
-						$xml .= '<custnum>' . (int)$this->customer->getId() . '</custnum>';
-					}
-
-					if ((isset($order_info['payment_iso_code_2']) && !empty($order_info['payment_iso_code_2'])) || (isset($order_info['payment_postcode']) && !empty($order_info['payment_postcode']))) {
-						$xml .= '<address type="billing">';
-						if ((isset($order_info['payment_postcode']) && !empty($order_info['payment_postcode']))) {
-							$xml .= '<code>' . filter_var($order_info['payment_postcode'], FILTER_SANITIZE_NUMBER_INT) . '|' . filter_var($order_info['payment_address_1'], FILTER_SANITIZE_NUMBER_INT) . '</code>';
-						}
-						if ((isset($order_info['payment_iso_code_2']) && !empty($order_info['payment_iso_code_2']))) {
-							$xml .= '<country>' . $order_info['payment_iso_code_2'] . '</country>';
-						}
-						$xml .= '</address>';
-					}
-					if ((isset($order_info['shipping_iso_code_2']) && !empty($order_info['shipping_iso_code_2'])) || (isset($order_info['shipping_postcode']) && !empty($order_info['shipping_postcode']))) {
-						$xml .= '<address type="shipping">';
-						if ((isset($order_info['shipping_postcode']) && !empty($order_info['shipping_postcode']))) {
-							$xml .= '<code>' . filter_var($order_info['shipping_postcode'], FILTER_SANITIZE_NUMBER_INT) . '|' . filter_var($order_info['shipping_address_1'], FILTER_SANITIZE_NUMBER_INT) . '</code>';
-						}
-						if ((isset($order_info['shipping_iso_code_2']) && !empty($order_info['shipping_iso_code_2']))) {
-							$xml .= '<country>' . $order_info['shipping_iso_code_2'] . '</country>';
-						}
-						$xml .= '</address>';
-					}
-				$xml .= '</tssinfo>';
-			}
+			$xml .= '</tssinfo>';
+		}
 
 		$xml .= '</request>';
 
@@ -224,13 +230,16 @@ class ModelPaymentGlobalpayRemote extends Model {
 		$this->logger($xml);
 
 		$ch = curl_init();
+
 		curl_setopt($ch, CURLOPT_URL, "https://remote.globaliris.com/realauth");
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, "OpenCart " . VERSION);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
 		$response = curl_exec ($ch);
+
 		curl_close ($ch);
 
 		$this->logger('capturePayment xml response');
