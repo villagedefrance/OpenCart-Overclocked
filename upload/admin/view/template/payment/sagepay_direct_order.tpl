@@ -55,7 +55,8 @@
   </tr>
   <tr>
     <td><?php echo $text_transactions; ?>:</td>
-    <td><table class="list" id="sagepay-direct-transactions">
+    <td>
+      <table class="list" id="sagepay-direct-transactions">
         <thead>
           <tr>
             <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>

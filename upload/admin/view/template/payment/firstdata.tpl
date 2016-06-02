@@ -54,7 +54,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label>
+            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
             <td><select name="firstdata_geo_zone_id" id="input-geo-zone">
                 <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
@@ -79,7 +79,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><label for="input-status"><?php echo $entry_status; ?></label>
+            <td><label for="input-status"><?php echo $entry_status; ?></label></td>
             <td><select name="firstdata_status" id="input-status">
               <?php if ($firstdata_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
@@ -107,7 +107,7 @@
       <div id="tab-order-status">
         <table class="form">
           <tr>
-            <td><label for="input-order-status-success-settled"><?php echo $entry_status_success_settled; ?></label>
+            <td><label for="input-order-status-success-settled"><?php echo $entry_status_success_settled; ?></label></td>
             <td><select name="firstdata_order_status_success_settled_id" id="input-order-status-success-settled">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_success_settled_id) { ?>
@@ -119,7 +119,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><label for="input-order-status-success-unsettled"><?php echo $entry_status_success_unsettled; ?></label>
+            <td><label for="input-order-status-success-unsettled"><?php echo $entry_status_success_unsettled; ?></label></td>
             <td><select name="firstdata_order_status_success_unsettled_id" id="input-order-status-success-unsettled">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_success_unsettled_id) { ?>
@@ -131,7 +131,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><label for="input-order-status-decline"><?php echo $entry_status_decline; ?></label>
+            <td><label for="input-order-status-decline"><?php echo $entry_status_decline; ?></label></td>
             <td><select name="firstdata_order_status_decline_id" id="input-order-status-decline">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_decline_id) { ?>
@@ -143,7 +143,7 @@
             </select></td>
           </tr>
           <tr>
-            <td><label for="input-order-status-void"><?php echo $entry_status_void; ?></label>
+            <td><label for="input-order-status-void"><?php echo $entry_status_void; ?></label></td>
             <td><select name="firstdata_order_status_void_id" id="input-order-status-void">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_void_id) { ?>
