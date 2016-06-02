@@ -23,11 +23,6 @@ class ControllerPaymentG2APay extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_edit'] = $this->language->get('text_edit');
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
-
 		$this->data['entry_username'] = $this->language->get('entry_username');
 		$this->data['entry_secret'] = $this->language->get('entry_secret');
 		$this->data['entry_api_hash'] = $this->language->get('entry_api_hash');
@@ -51,6 +46,11 @@ class ControllerPaymentG2APay extends Controller {
 
 		$this->data['g2apay_environment_live'] = $this->language->get('g2apay_environment_live');
 		$this->data['g2apay_environment_test'] = $this->language->get('g2apay_environment_test');
+
+		$this->data['text_edit'] = $this->language->get('text_edit');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
 
 		$this->data['help_username'] = $this->language->get('help_username');
 		$this->data['help_secret_token'] = $this->language->get('help_secret_token');
@@ -136,19 +136,19 @@ class ControllerPaymentG2APay extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'		  => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_payment'),
-			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		  => $this->language->get('text_payment'),
+			'href'		  => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('payment/g2apay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'		  => $this->language->get('heading_title'),
+			'href'		  => $this->url->link('payment/g2apay', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
