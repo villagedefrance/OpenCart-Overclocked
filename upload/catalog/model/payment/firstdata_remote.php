@@ -8,6 +8,8 @@ class ModelPaymentFirstdataRemote extends Model {
 
 		if ($this->config->get('firstdata_remote_total') > 0 && $this->config->get('firstdata_remote_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('firstdata_remote_total_max') && $this->config->get('firstdata_remote_total_max') > 0 && $total > $this->config->get('firstdata_remote_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('firstdata_remote_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,10 +22,10 @@ class ModelPaymentFirstdataRemote extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'firstdata_remote',
-				'title'			=> $this->language->get('text_title'),
-				'terms'		=> '',
-				'sort_order'	=> $this->config->get('firstdata_remote_sort_order')
+				'code'       => 'firstdata_remote',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('firstdata_remote_sort_order')
 			);
 		}
 
@@ -211,6 +213,7 @@ class ModelPaymentFirstdataRemote extends Model {
 		curl_setopt($ch, CURLOPT_SSLKEYPASSWD, $this->config->get('firstdata_remote_key_pw'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+		//curl_setopt($ch, CURLOPT_STDERR, fopen(DIR_LOGS . "/headers.txt", "w+"));
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 
 		$response = curl_exec ($ch);
@@ -262,9 +265,9 @@ class ModelPaymentFirstdataRemote extends Model {
 
 	public function mapCurrency($code) {
 		$currency = array(
-			'GBP'	=> 826,
-			'USD'	=> 840,
-			'EUR'	=> 978
+			'GBP' => 826,
+			'USD' => 840,
+			'EUR' => 978
 		);
 
 		if (array_key_exists($code, $currency)) {

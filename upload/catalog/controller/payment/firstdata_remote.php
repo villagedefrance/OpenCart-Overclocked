@@ -14,6 +14,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['entry_cc_name'] = $this->language->get('entry_cc_name');
 		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');
 		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
+		$this->data['entry_cc_save'] = $this->language->get('entry_cc_save');
 
 		$this->data['help_start_date'] = $this->language->get('help_start_date');
 		$this->data['help_issue'] = $this->language->get('help_issue');
@@ -41,8 +42,8 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
-				'value'	=> sprintf('%02d', $i)
+				'text'  => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value' => sprintf('%02d', $i)
 			);
 		}
 
@@ -52,18 +53,18 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value'	=> strftime('%y', mktime(0, 0, 0, 1, 1, $i))
+				'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value' => strftime('%y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/firstdata.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/payment/firstdata.tpl';
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/firstdata_remote.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/payment/firstdata_remote.tpl';
 		} else {
-			$this->template = 'default/template/payment/firstdata.tpl';
+			$this->template = 'default/template/payment/firstdata_remote.tpl';
 		}
 
 		$this->render();
@@ -76,23 +77,23 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->load->model('payment/firstdata_remote');
 
 		$address_codes = array(
-			'PPX'	=> $this->language->get('text_address_ppx'),
-			'YYY'	=> $this->language->get('text_address_yyy'),
-			'YNA'	=> $this->language->get('text_address_yna'),
-			'NYZ'	=> $this->language->get('text_address_nyz'),
-			'NNN'	=> $this->language->get('text_address_nnn'),
-			'YPX'	=> $this->language->get('text_address_ypx'),
-			'PYX'	=> $this->language->get('text_address_pyx'),
-			'XXU'	=> $this->language->get('text_address_xxu')
+			'PPX' => $this->language->get('text_address_ppx'),
+			'YYY' => $this->language->get('text_address_yyy'),
+			'YNA' => $this->language->get('text_address_yna'),
+			'NYZ' => $this->language->get('text_address_nyz'),
+			'NNN' => $this->language->get('text_address_nnn'),
+			'YPX' => $this->language->get('text_address_ypx'),
+			'PYX' => $this->language->get('text_address_pyx'),
+			'XXU' => $this->language->get('text_address_xxu')
 		);
 
 		$cvv_codes = array(
-			'M'		=> $this->language->get('text_card_code_m'),
-			'N'		=> $this->language->get('text_card_code_n'),
-			'P' 	=> $this->language->get('text_card_code_p'),
-			'S'		=> $this->language->get('text_card_code_s'),
-			'U' 	=> $this->language->get('text_card_code_u'),
-			'X' 	=> $this->language->get('text_card_code_x'),
+			'M'   => $this->language->get('text_card_code_m'),
+			'N'   => $this->language->get('text_card_code_n'),
+			'P'   => $this->language->get('text_card_code_p'),
+			'S'   => $this->language->get('text_card_code_s'),
+			'U'   => $this->language->get('text_card_code_u'),
+			'X'   => $this->language->get('text_card_code_x'),
 			'NONE' => $this->language->get('text_card_code_blank')
 		);
 
