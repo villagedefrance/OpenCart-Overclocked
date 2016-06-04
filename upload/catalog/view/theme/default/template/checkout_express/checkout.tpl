@@ -20,7 +20,7 @@
     <div style="margin-bottom:10px;">
       <?php if ($this->config->get('config_express_coupon')) { ?>
         <a onclick="$('#coupon').show(500);$('#voucher').hide();$('#reward').hide();" class="button"><?php echo $text_express_coupon; ?></a>
-	  <?php } ?>
+      <?php } ?>
       <?php if ($this->config->get('config_express_voucher')) { ?>
         <a onclick="$('#voucher').show(500);$('#coupon').hide();$('#reward').hide();" class="button"><?php echo $text_express_voucher; ?></a>
       <?php } ?>
@@ -123,7 +123,7 @@ $('.checkout-heading a').live('click', function() {
 });
 
 <?php if (!$logged) { ?> 
-	$(document).ready(function() {
+$(document).ready(function() {
 	<?php if (isset($quickconfirm)) { ?>
 		quickConfirm();
 	<?php } else { ?>
@@ -141,8 +141,10 @@ $('.checkout-heading a').live('click', function() {
 			}
 		});
 	<?php } ?>
-	});
-<?php } else { ?>
+});
+<?php } ?>
+
+<?php if ($logged) { ?>
 	<?php if ($express_billing) { ?>
 		$(document).ready(function() {
 		<?php if (isset($quickconfirm)) { ?>
@@ -284,6 +286,35 @@ $('#button-account').live('click', function() {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
+
+	if (0) {
+		$.ajax({
+			url: 'index.php?route=checkout_express/register',
+			dataType: 'html',
+			beforeSend: function() {
+				$('#button-account').attr('disabled', true);
+				$('#button-account').after('<span class="wait">&nbsp;<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /></span>');
+			},
+			complete: function() {
+				$('#button-account').attr('disabled', false);
+				$('.wait').remove();
+			},
+			success: function(html) {
+				$('.warning, .error').remove();
+
+				$('#payment-address .checkout-content').html(html);
+
+				$('#checkout .checkout-content').fadeOut(100);
+
+				$('#payment-address .checkout-content').fadeIn(100);
+
+				$('.checkout-heading').remove();
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	}
 });
 
 // Login
@@ -319,7 +350,9 @@ $('#button-login').live('click', function() {
 });
 
 // Register
-$('#button-register').live('click', function() {
+$('#button-register').live('click', function() { Registration() });
+
+function Registration() {
 	$.ajax({
 		url: 'index.php?route=checkout_express/register/validate',
 		type: 'post',
@@ -412,6 +445,8 @@ $('#button-register').live('click', function() {
 
 							$('#shipping-method .checkout-content').fadeIn(500);
 
+							$('.wait').remove();
+
 							$.ajax({
 								url: 'index.php?route=checkout/shipping_address',
 								dataType: 'html',
@@ -437,6 +472,8 @@ $('#button-register').live('click', function() {
 							$('#payment-address .checkout-content').fadeOut(100);
 
 							$('#shipping-address .checkout-content').fadeIn(500);
+
+							$('.wait').remove();
 						},
 						error: function(xhr, ajaxOptions, thrownError) {
 							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -453,6 +490,8 @@ $('#button-register').live('click', function() {
 						$('#payment-address .checkout-content').fadeOut(100);
 
 						$('#payment-method .checkout-content').fadeIn(500);
+
+						$('.wait').remove();
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -475,9 +514,9 @@ $('#button-register').live('click', function() {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
-});
+}
 
-// Payment Address	
+// Payment Address
 $('#button-payment-address').live('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout_express/payment_address/validate',

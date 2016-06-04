@@ -60,6 +60,7 @@ class ControllerPaymentGlobalpay extends Controller {
 		$this->data['entry_live_url'] = $this->language->get('entry_live_url');
 		$this->data['entry_demo_url'] = $this->language->get('entry_demo_url');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
 		$this->data['entry_status_success_settled'] = $this->language->get('entry_status_success_settled');
@@ -71,6 +72,13 @@ class ControllerPaymentGlobalpay extends Controller {
 		$this->data['entry_status_void'] = $this->language->get('entry_status_void');
 		$this->data['entry_status_rebate'] = $this->language->get('entry_status_rebate');
 		$this->data['entry_notification_url'] = $this->language->get('entry_notification_url');
+
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
+		$this->data['help_card_select'] = $this->language->get('help_card_select');
+		$this->data['help_debug'] = $this->language->get('help_debug');
+		$this->data['help_dcc_settle'] = $this->language->get('help_dcc_settle');
+		$this->data['help_notification'] = $this->language->get('help_notification');
 
 		$this->data['tab_api'] = $this->language->get('tab_api');
 		$this->data['tab_account'] = $this->language->get('tab_account');
@@ -119,20 +127,20 @@ class ControllerPaymentGlobalpay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      =>  $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_payment'),
-			'href'  	=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/globalpay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/globalpay', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -178,6 +186,12 @@ class ControllerPaymentGlobalpay extends Controller {
 			$this->data['globalpay_total'] = $this->request->post['globalpay_total'];
 		} else {
 			$this->data['globalpay_total'] = $this->config->get('globalpay_total');
+		}
+
+		if (isset($this->request->post['globalpay_total_max'])) {
+			$this->data['globalpay_total_max'] = $this->request->post['globalpay_total_max'];
+		} else {
+			$this->data['globalpay_total_max'] = $this->config->get('globalpay_total_max');
 		}
 
 		if (isset($this->request->post['globalpay_sort_order'])) {
@@ -297,7 +311,13 @@ class ControllerPaymentGlobalpay extends Controller {
 		$this->model_payment_globalpay->install();
 	}
 
-	public function action() {
+	public function uninstall() {
+		$this->load->model('payment/globalpay');
+
+		$this->model_payment_globalpay->uninstall();
+	}
+
+	public function orderAction() {
 		if ($this->config->get('globalpay_status')) {
 			$this->load->model('payment/globalpay');
 
@@ -328,14 +348,17 @@ class ControllerPaymentGlobalpay extends Controller {
 				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
 				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
+
 				$this->data['button_capture'] = $this->language->get('button_capture');
 				$this->data['button_rebate'] = $this->language->get('button_rebate');
 				$this->data['button_void'] = $this->language->get('button_void');
+
 				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
 				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
 				$this->data['text_confirm_rebate'] = $this->language->get('text_confirm_rebate');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/globalpay_order.tpl';
@@ -351,6 +374,7 @@ class ControllerPaymentGlobalpay extends Controller {
 
 	public function void() {
 		$this->language->load('payment/globalpay');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
@@ -374,6 +398,7 @@ class ControllerPaymentGlobalpay extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($void_response->message) && !empty($void_response->message) ? (string)$void_response->message : 'Unable to void';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -385,6 +410,7 @@ class ControllerPaymentGlobalpay extends Controller {
 
 	public function capture() {
 		$this->language->load('payment/globalpay');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '' && isset($this->request->post['amount']) && $this->request->post['amount'] > 0) {
@@ -414,15 +440,18 @@ class ControllerPaymentGlobalpay extends Controller {
 				$this->model_payment_globalpay->updateForRebate($globalpay_order['globalpay_order_id'], $capture_response->pasref, $capture_response->orderid);
 
 				$json['data'] = array();
+
 				$json['data']['date_added'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = $this->request->post['amount'];
 				$json['data']['capture_status'] = $capture_status;
-				$json['data']['total'] = (float)$total_captured;
+				$json['data']['total'] = (double)$total_captured;
+				$json['data']['total_formatted'] = $this->currency->format($total_captured, $globalpay_order['currency_code'], 1, true);
 				$json['error'] = false;
 			} else {
 				$json['error'] = true;
 				$json['msg'] = isset($capture_response->message) && !empty($capture_response->message) ? (string)$capture_response->message : 'Unable to capture';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = $this->language->get('error_data_missing');
@@ -434,6 +463,7 @@ class ControllerPaymentGlobalpay extends Controller {
 
 	public function rebate() {
 		$this->language->load('payment/globalpay');
+
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && !empty($this->request->post['order_id'])) {
@@ -462,16 +492,18 @@ class ControllerPaymentGlobalpay extends Controller {
 				}
 
 				$json['data'] = array();
+
 				$json['data']['date_added'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = $this->request->post['amount'] * -1;
-				$json['data']['total_captured'] = (float)$total_captured;
-				$json['data']['total_rebated'] = (float)$total_rebated;
+				$json['data']['total_captured'] = (double)$total_captured;
+				$json['data']['total_rebated'] = (double)$total_rebated;
 				$json['data']['rebate_status'] = $rebate_status;
 				$json['error'] = false;
 			} else {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response->message) && !empty($rebate_response->message) ? (string)$rebate_response->message : 'Unable to rebate';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';

@@ -16,7 +16,7 @@
   <?php if ($card_select == true) { ?>
   <fieldset id="payment">
     <div>
-      <?php echo $text_select_card; ?> <?php echo $entry_cc_type; ?>
+      <label for="input-cc-type"><?php echo $text_select_card; ?>&nbsp;<?php echo $entry_cc_type; ?></label>
       <div><select name="ACCOUNT" id="input-cc-type">
         <?php foreach ($cards as $card) { ?>
           <option value="<?php echo $card['account']; ?>"><?php echo $card['type']; ?></option>
@@ -27,7 +27,7 @@
   <?php } ?>
   <div class="buttons">
     <div class="right">
-      <input type="submit" value="<?php echo $button_confirm; ?>" class="button" />
+      <input type="submit" id="button-confirm" value="<?php echo $button_confirm; ?>" class="button" />
     </div>
   </div>
 </form>

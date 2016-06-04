@@ -907,6 +907,13 @@ a.button-add {
 	display: block;
 	margin-bottom: 4px;
 }
+.box-product .stock-status {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 4px;
+}
 .box-product .offer a {
 	display: block;
 	color: #444;
@@ -1266,6 +1273,12 @@ ul.box-filter > li ul {
 .product-list .cart {
 	margin: 3px auto;
 }
+.product-list .cart span.stock-status, span.stock-status {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
+}
 .product-list .addons {
 	display: inline-block;
 	margin: 4px auto;
@@ -1543,6 +1556,11 @@ ul.box-filter > li ul {
 .product-info .cart div > span img {
 	vertical-align: middle;
 	cursor: pointer;
+}
+.product-info .cart div > span.stock-status {
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
 }
 .product-info .cart .minimum {
 	margin-top: 5px;

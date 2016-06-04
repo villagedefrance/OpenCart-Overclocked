@@ -154,21 +154,21 @@ class Cart {
 
 							} elseif ($option_query->row['type'] == 'text' || $option_query->row['type'] == 'textarea' || $option_query->row['type'] == 'file' || $option_query->row['type'] == 'date' || $option_query->row['type'] == 'datetime' || $option_query->row['type'] == 'time') {
 								$option_data[] = array(
-									'product_option_id'       => $product_option_id,
-									'product_option_value_id' => '',
-									'option_id'               	=> $option_query->row['option_id'],
-									'option_value_id'   		=> '',
-									'name'                    	=> $option_query->row['name'],
-									'option_value'       		=> $option_value,
-									'type'                    		=> $option_query->row['type'],
-									'quantity'                	=> '',
-									'subtract'                	=> '',
-									'price'                   		=> '',
-									'price_prefix'            	=> '',
-									'points'                  		=> '',
-									'points_prefix'           	=> '',
-									'weight'                  	=> '',
-									'weight_prefix'   			=> ''
+									'product_option_id'       	=> $product_option_id,
+									'product_option_value_id'	=> '',
+									'option_id'               		=> $option_query->row['option_id'],
+									'option_value_id'   			=> '',
+									'name'                    		=> $option_query->row['name'],
+									'option_value'       			=> $option_value,
+									'type'                    			=> $option_query->row['type'],
+									'quantity'                		=> '',
+									'subtract'                		=> '',
+									'price'                   			=> '',
+									'price_prefix'            		=> '',
+									'points'                  			=> '',
+									'points_prefix'           		=> '',
+									'weight'                  		=> '',
+									'weight_prefix'   				=> ''
 								);
 							}
 
@@ -186,7 +186,7 @@ class Cart {
 
 					$price = $product_query->row['price'];
 
-					// Product Discounts
+					// Discounts
 					$discount_quantity = 0;
 
 					foreach ($this->session->data['cart'] as $key_2 => $quantity_2) {
@@ -203,14 +203,14 @@ class Cart {
 						$price = $product_discount_query->row['price'];
 					}
 
-					// Product Specials
+					// Specials
 					$product_special_query = $this->db->query("SELECT price FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$customer_group_id . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
 
 					if ($product_special_query->num_rows) {
 						$price = $product_special_query->row['price'];
 					}
 
-					// Reward Points
+					// Rewards
 					$product_reward_query = $this->db->query("SELECT points FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$customer_group_id . "'");
 
 					if ($product_reward_query->num_rows) {
@@ -235,7 +235,7 @@ class Cart {
 					}
 
 					// Stock
-					if (!$product_query->row['quantity'] || ($product_query->row['quantity'] < $quantity) || ($product_query->row['quantity'] < $discount_quantity)) {
+					if (!$product_query->row['quantity'] || ($product_query->row['quantity'] < $quantity)) {
  						$stock = false;
  					}
 
@@ -333,7 +333,7 @@ class Cart {
 		return $recurring_products;
 	}
 
-	public function add($product_id, $qty = 1, $option, $profile_id = '') {
+	public function add($product_id, $quantity = 1, $option, $profile_id = '') {
 		$key = (int)$product_id . ':';
 
 		if ($option || !is_array($option)) {
@@ -346,20 +346,20 @@ class Cart {
 			$key .= (int)$profile_id;
 		}
 
-		if ((int)$qty && ((int)$qty > 0)) {
+		if ((int)$quantity && ((int)$quantity > 0)) {
 			if (!isset($this->session->data['cart'][$key])) {
-				$this->session->data['cart'][$key] = (int)$qty;
+				$this->session->data['cart'][$key] = (int)$quantity;
 			} else {
-				$this->session->data['cart'][$key] += (int)$qty;
+				$this->session->data['cart'][$key] += (int)$quantity;
 			}
 		}
 
 		$this->data = array();
 	}
 
-	public function update($key, $qty) {
-		if ((int)$qty && ((int)$qty > 0) && isset($this->session->data['cart'][$key])) {
-			$this->session->data['cart'][$key] = (int)$qty;
+	public function update($key, $quantity) {
+		if ((int)$quantity && ((int)$quantity > 0) && isset($this->session->data['cart'][$key])) {
+			$this->session->data['cart'][$key] = (int)$quantity;
 		} else {
 			$this->remove($key);
 		}
@@ -408,27 +408,27 @@ class Cart {
 	}
 
 	public function getPriceFromPriceWithTax($price, $tax_class_id) {
-		$cal_price = $price;
+		$calculated_price = $price;
 
 		if ($this->config->get('config_tax')) {
 			$base = 100;
 
 			$tax_rates = $this->tax->getRates($base, $tax_class_id);
 
-			$rate_p = 0;
+			$rate_percent = 0;
 
 			foreach ($tax_rates as $tax_rate) {
 				if ($tax_rate['type'] == 'F') {
-					$cal_price -= $tax_rate['rate'];
+					$calculated_price -= $tax_rate['rate'];
 				} elseif ($tax_rate['type'] == 'P') {
-					$rate_p += $tax_rate['rate'];
+					$rate_percent += $tax_rate['rate'];
 				}
 			}
 
-			$cal_price = $cal_price / (1 + ((float)$rate_p) / 100);
+			$calculated_price = $calculated_price / (1 + ((float)$rate_percent) / 100);
 		}
 
-		return $cal_price;
+		return $calculated_price;
 	}
 
 	public function getTaxes() {
@@ -487,6 +487,7 @@ class Cart {
 		foreach ($this->getProducts() as $product) {
 			if (!$product['stock']) {
 				$stock = false;
+				break;
 			}
 		}
 

@@ -15,45 +15,39 @@
   </tr>
   <tr>
     <td><?php echo $text_capture_status; ?></td>
-    <td id="capture_status">
+    <td id="capture-status">
       <?php if ($globalpay_order['capture_status'] == 1) { ?>
         <span class="capture-text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
-        <span class="capture-text"><?php echo $text_no; ?></span>
-        &nbsp;&nbsp;
+        <span class="capture-text"><?php echo $text_no; ?></span>&nbsp;&nbsp;
         <?php if ($globalpay_order['void_status'] == 0) { ?>
           <input type="text" id="capture-amount" value="<?php echo $globalpay_order['total']; ?>" size="10" />
-          <a class="button" id="button-capture"><?php echo $button_capture; ?></a>
-          <span class="button" id="loading-capture" style="display:none;"></span>
+          <a class="button" id="button-capture"><?php echo $button_capture; ?></a>&nbsp;<img src="view/image/loading.gif" alt="" id="img-loading-capture" style="display:none;" />
         <?php } ?>
       <?php } ?>
     </td>
   </tr>
   <tr>
     <td><?php echo $text_void_status; ?></td>
-    <td id="void_status">
+    <td id="void-status">
       <?php if ($globalpay_order['void_status'] == 1) { ?>
-        <span class="void_text"><?php echo $text_yes; ?></span>
+        <span class="void-text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
-        <span class="void_text"><?php echo $text_no; ?></span>
-        &nbsp;&nbsp;
-        <a class="button" id="button-void"><?php echo $button_void; ?></a>
-        <span class="button" id="loading-void" style="display:none;"></span>
+        <span class="void-text"><?php echo $text_no; ?></span>&nbsp;&nbsp;
+        <a class="button" id="button-void"><?php echo $button_void; ?></a>&nbsp;<img src="view/image/loading.gif" alt="" id="img-loading-void" style="display:none;" />
       <?php } ?>
     </td>
   </tr>
   <tr>
     <td><?php echo $text_rebate_status; ?></td>
-    <td id="rebate_status">
+    <td id="rebate-status">
       <?php if ($globalpay_order['rebate_status'] == 1) { ?>
         <span class="rebate_text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
-        <span class="rebate_text"><?php echo $text_no; ?></span>
-        &nbsp;&nbsp;
+        <span class="rebate_text"><?php echo $text_no; ?></span>&nbsp;&nbsp;
         <?php if ($globalpay_order['total_captured'] > 0 && $globalpay_order['void_status'] == 0) { ?>
           <input type="text" id="rebate-amount" size="10" />
-          <a class="button" id="button-rebate"><?php echo $button_rebate; ?></a>
-          <span class="button" id="loading-rebate" style="display:none;"></span>
+          <a class="button" id="button-rebate"><?php echo $button_rebate; ?></a>&nbsp;<img src="view/image/loading.gif" alt="" id="img-loading-rebate" style="display:none;" />
         <?php } ?>
       <?php } ?>
     </td>
@@ -61,7 +55,7 @@
   <tr>
     <td><?php echo $text_transactions; ?>:</td>
     <td>
-      <table class="list">
+      <table class="list" id="globalpay-transactions">
         <thead>
           <tr>
             <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>
@@ -93,7 +87,7 @@ $("#button-void").click(function() {
 			url: 'index.php?route=payment/globalpay/void&token=<?php echo $token; ?>',
 			beforeSend: function() {
 				$('#button-void').hide();
-				$('#loading-void').show();
+				$('#img-loading-void').show();
 				$('#globalpay-transaction-msg').hide();
 			},
 			success: function(data) {
@@ -105,7 +99,7 @@ $("#button-void").click(function() {
 					html += '<td class="left">0.00</td>';
 					html += '</tr>';
 
-					$('.void_text').text('<?php echo $text_yes; ?>');
+					$('.void-text').text('<?php echo $text_yes; ?>');
 					$('#globalpay-transactions').append(html);
 					$('#button-capture').hide();
 					$('#capture-amount').hide();
@@ -120,7 +114,7 @@ $("#button-void").click(function() {
 					$('#button-void').show();
 				}
 
-				$('#loading-void').hide();
+				$('#img-loading-void').hide();
 			}
 		});
 	}
@@ -136,7 +130,7 @@ $("#button-capture").click(function() {
 			beforeSend: function() {
 				$('#button-capture').hide();
 				$('#capture-amount').hide();
-				$('#loading-capture').show();
+				$('#img-loading-capture').show();
 				$('#globalpay-transaction-msg').hide();
 			},
 			success: function(data) {
@@ -149,7 +143,7 @@ $("#button-capture").click(function() {
 					html += '</tr>';
 
 					$('#globalpay-transactions').append(html);
-					$('#globalpay-total-captured').text(data.data.total);
+					$('#globalpay-total-captured').text(data.data.total_formatted);
 
 					if (data.data.capture_status == 1) {
 						$('#button-void').hide();
@@ -177,7 +171,7 @@ $("#button-capture").click(function() {
 					$('#capture-amount').show();
 				}
 
-				$('#loading-capture').hide();
+				$('#img-loading-capture').hide();
 			}
 		});
 	}
@@ -193,7 +187,7 @@ $("#button-rebate").click(function() {
 			beforeSend: function() {
 				$('#button-rebate').hide();
 				$('#rebate-amount').hide();
-				$('#loading-rebate').show();
+				$('#img-loading-rebate').show();
 				$('#globalpay-transaction-msg').hide();
 			},
 			success: function(data) {
@@ -225,7 +219,7 @@ $("#button-rebate").click(function() {
 					$('#button-rebate').show();
 				}
 
-				$('#loading-rebate').hide();
+				$('#img-loading-rebate').hide();
 			}
 		});
 	}

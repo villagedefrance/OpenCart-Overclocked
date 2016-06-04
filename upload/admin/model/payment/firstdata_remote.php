@@ -264,7 +264,7 @@ class ModelPaymentFirstdataRemote extends Model {
 	}
 
 	public function getTotalRefunded($firstdata_order_id) {
-		$query = $this->db->query("SELECT SUM(`amount`) AS total FROM " . DB_PREFIX . "firstdata_remote_order_transaction WHERE firstdata_remote_order_id = '" . (int)$firstdata_order_id . "' AND 'refund'");
+		$query = $this->db->query("SELECT SUM(`amount`) AS total FROM " . DB_PREFIX . "firstdata_remote_order_transaction WHERE firstdata_remote_order_id = '" . (int)$firstdata_order_id . "' AND `type` = 'refund'");
 
 		return (float)$query->row['total'];
 	}

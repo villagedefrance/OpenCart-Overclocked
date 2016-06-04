@@ -71,6 +71,8 @@
             <?php } else { ?>
               <?php if ($review['quote']) { ?>
                 <a href="<?php echo $review['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a>
+              <?php } elseif (!$review['quote'] && $review['stock_quantity'] <= 0) { ?>
+                <span class="stock-status"><?php echo $review['stock_status']; ?></span>
               <?php } else { ?>
                 <input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $review['product_id']; ?>');" class="button" />
               <?php } ?>

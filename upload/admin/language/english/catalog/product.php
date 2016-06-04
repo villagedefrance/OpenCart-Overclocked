@@ -70,7 +70,7 @@ $_['entry_quantity']          = 'Total Quantity in Stock:';
 $_['entry_minimum']           = 'Minimum Quantity:<span class="help">Force a minimum ordered amount</span>';
 $_['entry_subtract']          = 'Subtract Stock:';
 $_['entry_stock_status']      = 'Out Of Stock Status:<span class="help">Status shown when the product is Out of stock</span>';
-$_['entry_shipping']          = 'Requires Shipping:';
+$_['entry_shipping']          = 'Requires Shipping:<span class="help">If No, customers will not be offered to choose a delivery address at checkout.</span>';
 $_['entry_store_location']    = 'Stock Locations:<span class="help">Select locations where the product is currently In stock</span>';
 $_['entry_sku']               = 'SKU:<span class="help">Stock Keeping Unit</span>';
 $_['entry_upc']               = 'UPC:<span class="help">Universal Product Code</span>';

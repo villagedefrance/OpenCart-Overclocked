@@ -2,10 +2,12 @@
 // Heading
 $_['heading_title']                      = 'Worldpay Online Payments';
 
+// Link
+$_['text_worldpay_online']               = '<a onclick="window.open(\'https://online.worldpay.com/signup/\');"><img src="view/image/payment/worldpay.png" alt="Worldpay Online Payments" title="Worldpay Online Payments" style="border:1px solid #EEEEEE;" /></a>';
+
 // Text
 $_['text_payment']                       = 'Payment';
-$_['text_success']                       = 'Success: You have modified Worldpay Online Payments account details!';
-$_['text_worldpay_online']               = '<a href="https://online.worldpay.com/signup/ee48b6e6-d3e3-42aa-a80e-cbee3f4f8b09" target="_blank"><img src="view/image/payment/worldpay.png" alt="Worldpay Online Payments" title="Worldpay Online Payments" style="border: 1px solid #EEEEEE;" /></a>';
+$_['text_success']                       = 'Success: You have modified <b>Worldpay Online Payments</b> account details!';
 $_['text_test']                          = 'Test';
 $_['text_live']                          = 'Live';
 $_['text_authenticate']                  = 'Authenticate';
@@ -40,7 +42,6 @@ $_['entry_information_requested_status'] = 'Information Requested Status:';
 $_['entry_information_supplied_status']  = 'Information Supplied Status:';
 $_['entry_chargeback_reversed_status']   = 'Chargeback Reversed Status:';
 
-
 $_['entry_reversed_status']              = 'Reversed Status:';
 $_['entry_voided_status']                = 'Voided Status:';
 
@@ -57,7 +58,7 @@ $_['tab_settings']                       = 'Settings';
 $_['tab_order_status']                   = 'Order Status';
 
 // Error
-$_['error_permission']                   = 'Warning: You do not have permission to modify Worldpay Online Payments!';
+$_['error_permission']                   = 'Warning: You do not have permission to modify <b>Worldpay Online Payments</b> !';
 $_['error_service_key']                  = 'Service Key Required!';
 $_['error_client_key']                   = 'Client Key Required!';
 

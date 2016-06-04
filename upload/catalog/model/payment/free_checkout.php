@@ -12,9 +12,9 @@ class ModelPaymentFreeCheckout extends Model {
 			$free_total = $total;
 		}
 
-		$total_max = $this->config->get('free_checkout_total_max');
-
-		if (($this->config->get('free_checkout_total') > 0 && $this->config->get('free_checkout_total') > $free_total) || (!empty($total_max) && $total_max > 0 && $total_max < $free_total)) {
+		if ($this->config->get('free_checkout_total') > 0 && $this->config->get('free_checkout_total') > $free_total) {
+			$status = false;
+		} elseif ($this->config->has('free_checkout_total_max') && $this->config->get('free_checkout_total_max') > 0 && $free_total > $this->config->get('free_checkout_total_max')) {
 			$status = false;
 		} elseif (!$this->config->get('free_checkout_geo_zone_id')) {
 			$status = true;
@@ -30,6 +30,7 @@ class ModelPaymentFreeCheckout extends Model {
 			$method_data = array(
 				'code'		=> 'free_checkout',
 				'title'			=> $this->language->get('text_title'),
+				'terms'		=> '',
 				'sort_order'	=> $this->config->get('free_checkout_sort_order')
 			);
 		}

@@ -595,7 +595,7 @@
             </td>
             <td class="left">
               <?php foreach ($languages as $language) { ?>
-                <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
+                <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="3"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
                 <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
               <?php } ?>
             </td>
@@ -653,7 +653,7 @@
               <?php if ($product_option['type'] == 'textarea') { ?>
               <tr>
                 <td><?php echo $entry_option_value; ?></td>
-                <td><textarea name="product_option[<?php echo $option_row; ?>][option_value]" cols="40" rows="5"><?php echo $product_option['option_value']; ?></textarea></td>
+                <td><textarea name="product_option[<?php echo $option_row; ?>][option_value]" cols="40" rows="3"><?php echo $product_option['option_value']; ?></textarea></td>
               </tr>
               <?php } ?>
               <?php if ($product_option['type'] == 'file') { ?>
@@ -1397,7 +1397,7 @@ function addAttribute() {
 	html += '    <td class="left"><input type="text" name="product_attribute[' + attribute_row + '][name]" value="" /><input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" /></td>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="5"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
+	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="3"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
@@ -1511,7 +1511,7 @@ $('input[name=\'option\']').catcomplete({
 		if (ui.item.type == 'textarea') {
 			html += '    <tr>';
 			html += '      <td><?php echo $entry_option_value; ?></td>';
-			html += '      <td><textarea name="product_option[' + option_row + '][option_value]" cols="40" rows="5"></textarea></td>';
+			html += '      <td><textarea name="product_option[' + option_row + '][option_value]" cols="40" rows="3"></textarea></td>';
 			html += '    </tr>';
 		}
 

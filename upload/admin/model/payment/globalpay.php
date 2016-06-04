@@ -4,36 +4,41 @@ class ModelPaymentGlobalpay extends Model {
 	public function install() {
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "globalpay_order` (
-			  `globalpay_order_id` int(11) NOT NULL AUTO_INCREMENT,
-			  `order_id` int(11) NOT NULL,
-			  `order_ref` varchar(50) NOT NULL,
-			  `order_ref_previous` varchar(50) NOT NULL,
-			  `pasref` varchar(50) NOT NULL,
-			  `pasref_previous` varchar(50) NOT NULL,
-			  `date_added` datetime NOT NULL,
-			  `date_modified` datetime NOT NULL,
-			  `capture_status` int(1) DEFAULT NULL,
-			  `void_status` int(1) DEFAULT NULL,
-			  `settle_type` int(1) DEFAULT NULL,
-			  `rebate_status` int(1) DEFAULT NULL,
-			  `currency_code` varchar(3) NOT NULL,
-			  `authcode` varchar(30) NOT NULL,
-			  `account` varchar(30) NOT NULL,
-			  `total` decimal(10, 2) NOT NULL,
-			  PRIMARY KEY (`globalpay_order_id`)
+				`globalpay_order_id` int(11) NOT NULL AUTO_INCREMENT,
+				`order_id` int(11) NOT NULL,
+				`order_ref` varchar(50) NOT NULL,
+				`order_ref_previous` varchar(50) NOT NULL,
+				`pasref` varchar(50) NOT NULL,
+				`pasref_previous` varchar(50) NOT NULL,
+				`date_added` datetime NOT NULL,
+				`date_modified` datetime NOT NULL,
+				`capture_status` tinyint(1) DEFAULT NULL,
+				`void_status` tinyint(1) DEFAULT NULL,
+				`settle_type` tinyint(1) DEFAULT NULL,
+				`rebate_status` tinyint(1) DEFAULT NULL,
+				`currency_code` varchar(3) NOT NULL,
+				`authcode` varchar(30) NOT NULL,
+				`account` varchar(30) NOT NULL,
+				`total` decimal(10, 2) NOT NULL,
+				PRIMARY KEY (`globalpay_order_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
 			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "globalpay_order_transaction` (
-			  `globalpay_order_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
-			  `globalpay_order_id` int(11) NOT NULL,
-			  `date_added` datetime NOT NULL,
-			  `type` enum('auth', 'payment', 'rebate', 'void') DEFAULT NULL,
-			  `amount` decimal(10, 2) NOT NULL,
-			  PRIMARY KEY (`globalpay_order_transaction_id`)
+				`globalpay_order_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+				`globalpay_order_id` int(11) NOT NULL,
+				`date_added` datetime NOT NULL,
+				`type` enum('auth', 'payment', 'rebate', 'void') DEFAULT NULL,
+				`amount` decimal(10, 2) NOT NULL,
+				PRIMARY KEY (`globalpay_order_transaction_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
+	}
+
+	public function uninstall() {
+		$this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "globalpay_order`;");
+		$this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "globalpay_order_transaction`;");
 	}
 
 	public function void($order_id) {
@@ -104,12 +109,13 @@ class ModelPaymentGlobalpay extends Model {
 
 				$settle_type = 'multisettle';
 				$xml_amount = '<amount currency="' . (string)$globalpay_order['currency_code'] . '">' . (int)round($amount * 100) . '</amount>';
+
 			} else {
-				//$this->logger('Capture hash construct: ' . $timestamp . '.' . $merchant_id . '.' . $globalpay_order['order_ref'] . '...');
 				$this->logger('Capture hash construct: ' . $timestamp . '.' . $merchant_id . '.' . $globalpay_order['order_ref'] . '.' . (int)round($amount * 100) . '.' . (string)$globalpay_order['currency_code'] . '.');
 
 				$tmp = $timestamp . '.' . $merchant_id . '.' . $globalpay_order['order_ref'] . '.' . (int)round($amount * 100) . '.' . (string)$globalpay_order['currency_code'] . '.';
 				$hash = sha1($tmp);
+
 				$tmp = $hash . '.' . $secret;
 				$hash = sha1($tmp);
 
@@ -174,6 +180,7 @@ class ModelPaymentGlobalpay extends Model {
 				} else {
 					$pas_ref = $globalpay_order['pasref_previous'];
 				}
+
 			} else {
 				$order_ref = $globalpay_order['order_ref'];
 				$pas_ref = $globalpay_order['pasref'];
@@ -232,6 +239,7 @@ class ModelPaymentGlobalpay extends Model {
 
 		if ($query->num_rows) {
 			$order = $query->row;
+
 			$order['transactions'] = $this->getTransactions($order['globalpay_order_id']);
 
 			$this->logger(print_r($order, 1));
@@ -253,7 +261,7 @@ class ModelPaymentGlobalpay extends Model {
 	}
 
 	public function addTransaction($globalpay_order_id, $type, $total) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "globalpay_order_transaction SET globalpay_order_id = '" . (int)$globalpay_order_id . "', date_added = NOW(), `type` = '" . $this->db->escape($type) . "', amount = '" . (float)$total . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "globalpay_order_transaction SET globalpay_order_id = '" . (int)$globalpay_order_id . "', date_added = NOW(), `type` = '" . $this->db->escape($type) . "', amount = '" . (double)$total . "'");
 	}
 
 	public function logger($message) {
@@ -266,13 +274,13 @@ class ModelPaymentGlobalpay extends Model {
 	public function getTotalCaptured($globalpay_order_id) {
 		$query = $this->db->query("SELECT SUM(amount) AS `total` FROM " . DB_PREFIX . "globalpay_order_transaction WHERE globalpay_order_id = '" . (int)$globalpay_order_id . "' AND (`type` = 'payment' OR `type` = 'rebate')");
 
-		return (float)$query->row['total'];
+		return (double)$query->row['total'];
 	}
 
 	public function getTotalRebated($globalpay_order_id) {
-		$query = $this->db->query("SELECT SUM(amount) AS `total` FROM " . DB_PREFIX . "globalpay_order_transaction WHERE globalpay_order_id = '" . (int)$globalpay_order_id . "' AND 'rebate'");
+		$query = $this->db->query("SELECT SUM(amount) AS `total` FROM " . DB_PREFIX . "globalpay_order_transaction WHERE globalpay_order_id = '" . (int)$globalpay_order_id . "' AND `type` = 'rebate'");
 
-		return (float)$query->row['total'];
+		return (double)$query->row['total'];
 	}
 }
 ?>

@@ -69,7 +69,6 @@ class ControllerProductReviewList extends Controller {
 		$review_results = $this->model_catalog_review->getReviews($data);
 
 		if ($review_results) {
-
 			$title_page = ($page > 1) ? ' - Page ' . $page : '';
 
 			if (isset($this->request->get['filter_name'])) {
@@ -199,20 +198,22 @@ class ControllerProductReviewList extends Controller {
 				$review_total_product = $this->model_catalog_review->getTotalReviewsByProductId($result['product_id']);
 
 				$this->data['reviews'][] = array(
-					'product_id'		=> $result['product_id'],
-					'thumb'			=> $image,
-					'offer'       		=> $offer,
-					'name'			=> $result['name'],
-					'text'				=> substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
-					'age_minimum'	=> ($result['age_minimum'] > 0) ? (int)$result['age_minimum'] : '',
-					'age_logged' 	=> $age_logged,
-					'age_checked'	=> $age_checked,
-					'quote'			=> $quote,
-					'rating'			=> $rating,
-					'author'			=> $result['author'],
-					'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-					'reviews'			=> sprintf($this->language->get('text_reviews'), $review_total_product),
-					'href'				=> $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					'product_id'			=> $result['product_id'],
+					'thumb'				=> $image,
+					'offer'       			=> $offer,
+					'name'				=> $result['name'],
+					'text'					=> substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+					'age_minimum'		=> ($result['age_minimum'] > 0) ? (int)$result['age_minimum'] : '',
+					'age_logged' 		=> $age_logged,
+					'age_checked'		=> $age_checked,
+					'stock_status'		=> $result['stock_status'],
+					'stock_quantity'	=> $result['quantity'],
+					'quote'				=> $quote,
+					'rating'				=> $rating,
+					'author'				=> $result['author'],
+					'date_added'		=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+					'reviews'				=> sprintf($this->language->get('text_reviews'), $review_total_product),
+					'href'					=> $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
 

@@ -134,17 +134,26 @@ class ControllerAccountWishList extends Controller {
 					$offer = false;
 				}
 
+				if ($product_info['quote']) {
+					$quote = $this->url->link('information/quote', '', 'SSL');
+				} else {
+					$quote = false;
+				}
+
 				$this->data['products'][] = array(
-					'product_id' 	=> $product_info['product_id'],
-					'thumb'      		=> $image,
-					'offer'       		=> $offer,
-					'name'       		=> $product_info['name'],
-					'model'      		=> $product_info['model'],
-					'stock'      		=> $stock,
-					'price'      		=> $price,
-					'special'    		=> $special,
-					'href'       		=> $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
-					'remove'     	=> $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'], 'SSL')
+					'product_id' 		=> $product_info['product_id'],
+					'thumb'      			=> $image,
+					'offer'       			=> $offer,
+					'quote'				=> $quote,
+					'name'       			=> $product_info['name'],
+					'model'      			=> $product_info['model'],
+					'stock'      			=> $stock,
+					'stock_status'		=> $product_info['stock_status'],
+					'stock_quantity'	=> $product_info['quantity'],
+					'price'      			=> $price,
+					'special'    			=> $special,
+					'href'       			=> $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+					'remove'     		=> $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'], 'SSL')
 				);
 
 			} else {

@@ -27,33 +27,33 @@
         <a href="#tab-advanced"><?php echo $tab_advanced; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-	  <div id="tab-api">
+      <div id="tab-api">
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_merchant_id; ?></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-merchant-id"><?php echo $entry_merchant_id; ?></label></td>
             <td><?php if ($error_merchant_id) { ?>
-              <input type="text" name="globalpay_merchant_id" value="<?php echo $globalpay_merchant_id; ?>" size="30" class="input-error" />
+              <input type="text" name="globalpay_merchant_id" id="input-merchant-id" value="<?php echo $globalpay_merchant_id; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_merchant_id; ?></span>
             <?php } else { ?>
-              <input type="text" name="globalpay_merchant_id" value="<?php echo $globalpay_merchant_id; ?>" size="30" />
+              <input type="text" name="globalpay_merchant_id" id="input-merchant-id" value="<?php echo $globalpay_merchant_id; ?>" size="30" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_secret; ?></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-secret"><?php echo $entry_secret; ?></label></td>
             <td><?php if ($error_secret) { ?>
-              <input type="password" name="globalpay_secret" value="<?php echo $globalpay_secret; ?>" size="30" class="input-error" />
+              <input type="password" name="globalpay_secret" id="input-secret" value="<?php echo $globalpay_secret; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_secret; ?></span>
             <?php } else { ?>
-              <input type="password" name="globalpay_secret" value="<?php echo $globalpay_secret; ?>" size="30" />  
+              <input type="password" name="globalpay_secret" id="input-secret" value="<?php echo $globalpay_secret; ?>" size="30" />  
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_rebate_password; ?></td>
-            <td><input type="password" name="globalpay_rebate_password" value="<?php echo $globalpay_rebate_password; ?>" size="30" /></td>
+            <td><label for="input-rebate-password"><?php echo $entry_rebate_password; ?></label></td>
+            <td><input type="password" name="globalpay_rebate_password" id="input-rebate-password" value="<?php echo $globalpay_rebate_password; ?>" size="30" /></td>
           </td>
           <tr>
-            <td><?php echo $entry_live_demo; ?></td>
-            <td><select name="globalpay_live_demo">
+            <td><label for="input-live-demo"><?php echo $entry_live_demo; ?></label></td>
+            <td><select name="globalpay_live_demo" id="input-live_demo">
               <?php if ($globalpay_live_demo) { ?>
                 <option value="1" selected="selected"><?php echo $text_live; ?></option>
                 <option value="0"><?php echo $text_demo; ?></option>
@@ -64,8 +64,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_geo_zone; ?></td>
-            <td><select name="globalpay_geo_zone_id">
+            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
+            <td><select name="globalpay_geo_zone_id" id="input-geo-zone">
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $globalpay_geo_zone_id) { ?>
@@ -77,8 +77,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_debug; ?></td>
-            <td><select name="globalpay_debug">
+            <td><label for="input-debug"><?php echo $entry_debug; ?><br /><span class="help"><?php echo $help_debug; ?></span></label></td>
+            <td><select name="globalpay_debug" id="input-debug">
               <?php if ($globalpay_debug) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
@@ -89,8 +89,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="globalpay_status">
+            <td><label for="input-status"><?php echo $entry_status; ?></label></td>
+            <td><select name="globalpay_status" id="input-status">
               <?php if ($globalpay_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
@@ -101,12 +101,16 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_total; ?></td>
-            <td><input type="text" name="globalpay_total" value="<?php echo $globalpay_total; ?>" /></td>
+            <td><label for="input-total"><?php echo $entry_total; ?><br /><span class="help"><?php echo $help_total; ?></span></label></td>
+            <td><input type="text" name="globalpay_total" id="input-total" value="<?php echo !empty($globalpay_total) ? $globalpay_total : '0.00'; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="globalpay_sort_order" value="<?php echo $globalpay_sort_order; ?>" size="5" /></td>
+            <td><label for="input-total-max"><?php echo $entry_total_max; ?><br /><span class="help"><?php echo $help_total_max; ?></span></label></td>
+            <td><input type="text" name="globalpay_total_max" id="input-total-max" value="<?php echo !empty($globalpay_total_max) ? $globalpay_total_max : '0.00'; ?>" /></td>
+          </tr>
+          <tr>
+            <td><label for="input-sort-order"><?php echo $entry_sort_order; ?></label></td>
+            <td><input type="text" name="globalpay_sort_order" id="input-sort-order" value="<?php echo $globalpay_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </div>
@@ -163,8 +167,8 @@
       <div id="tab-order-status">
         <table class="form">
           <tr>
-            <td><?php echo $entry_status_success_settled; ?></td>
-            <td><select name="globalpay_order_status_success_settled_id">
+            <td><label for="input-order-status-success-settled"><?php echo $entry_status_success_settled; ?></label></td>
+            <td><select name="globalpay_order_status_success_settled_id" id="input-order-status-success-settled">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $globalpay_order_status_success_settled_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -175,8 +179,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status_success_unsettled; ?></td>
-            <td><select name="globalpay_order_status_success_unsettled_id">
+            <td><label for="input-order-status-success-unsettled"><?php echo $entry_status_success_unsettled; ?></label></td>
+            <td><select name="globalpay_order_status_success_unsettled_id" id="input-order-status-success-unsettled">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $globalpay_order_status_success_unsettled_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -187,8 +191,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status_decline; ?></td>
-            <td><select name="globalpay_order_status_decline_id">
+            <td><label for="input-order-status-decline"><?php echo $entry_status_decline; ?></label></td>
+            <td><select name="globalpay_order_status_decline_id" id="input-order-status-decline">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $globalpay_order_status_decline_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -199,8 +203,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status_decline_pending; ?></td>
-            <td><select name="globalpay_order_status_decline_pending_id">
+            <td><label for="input-order-status-decline-pending"><?php echo $entry_status_decline_pending; ?></label></td>
+            <td><select name="globalpay_order_status_decline_pending_id" id="input-order-status-decline-pending">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $globalpay_order_status_decline_pending_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -211,8 +215,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status_decline_stolen; ?></td>
-            <td><select name="globalpay_order_status_decline_stolen_id">
+            <td><label for="input-order-status-decline-stolen"><?php echo $entry_status_decline_stolen; ?></label></td>
+            <td><select name="globalpay_order_status_decline_stolen_id" id="input-order-status-decline-stolen">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $globalpay_order_status_decline_stolen_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -223,8 +227,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status_decline_bank; ?></td>
-            <td><select name="globalpay_order_status_decline_bank_id">
+            <td><label for="input-order-status-decline-bank"><?php echo $entry_status_decline_bank; ?></label></td>
+            <td><select name="globalpay_order_status_decline_bank_id" id="input-order-status-decline-bank">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $globalpay_order_status_decline_bank_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -239,16 +243,16 @@
       <div id="tab-payment">
         <table class="form">
           <tr>
-            <td><?php echo $entry_auto_settle; ?></td>
-            <td><select name="globalpay_auto_settle">
+            <td><label for="input-auto-settle"><?php echo $entry_auto_settle; ?><br /><span class="help"><?php echo $help_dcc_settle; ?></span></label></td>
+            <td><select name="globalpay_auto_settle" id="input-auto-settle">
               <option value="0" <?php echo ($globalpay_auto_settle == 0 ? ' selected' : ''); ?>><?php echo $text_settle_delayed; ?></option>
               <option value="1" <?php echo ($globalpay_auto_settle == 1 ? ' selected' : ''); ?>><?php echo $text_settle_auto; ?></option>
               <option value="2" <?php echo ($globalpay_auto_settle == 2 ? ' selected' : ''); ?>><?php echo $text_settle_multi; ?></option>
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_card_select; ?></td>
-            <td><select name="globalpay_card_select">
+            <td><label for="input-card-select"><?php echo $entry_card_select; ?><br /><span class="help"><?php echo $help_card_select; ?></span></label></td>
+            <td><select name="globalpay_card_select" id="input-card-select">
               <?php if ($globalpay_card_select) { ?>
                 <option value="1" selected="selected"><?php echo $text_yes; ?></option>
                 <option value="0"><?php echo $text_no; ?></option>
@@ -259,8 +263,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_tss_check; ?></td>
-            <td><select name="globalpay_tss_check">
+            <td><label for="input-tss-check"><?php echo $entry_tss_check; ?></label></td>
+            <td><select name="globalpay_tss_check" id="input-tss-check">
               <?php if ($globalpay_tss_check) { ?>
                 <option value="1" selected="selected"><?php echo $text_yes; ?></option>
                 <option value="0"><?php echo $text_no; ?></option>
@@ -275,26 +279,26 @@
       <div id="tab-advanced">
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_live_url; ?></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-live-url"><?php echo $entry_live_url; ?></label></td>
             <td><?php if ($error_live_url) { ?>
-              <input type="text" name="globalpay_live_url" value="<?php echo $globalpay_live_url; ?>" size="40" class="input-error" />
+              <input type="text" name="globalpay_live_url" id="input-live-url" value="<?php echo $globalpay_live_url; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_live_url; ?></span>
             <?php } else { ?>
-              <input type="text" name="globalpay_live_url" value="<?php echo $globalpay_live_url; ?>" size="40" />
+              <input type="text" name="globalpay_live_url" id="input-live-url" value="<?php echo $globalpay_live_url; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_demo_url; ?></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-demo-url"><?php echo $entry_demo_url; ?></label></td>
             <td><?php if ($error_demo_url) { ?>
-              <input type="text" name="globalpay_demo_url" value="<?php echo $globalpay_demo_url; ?>" size="40" class="input-error" />
+              <input type="text" name="globalpay_demo_url" id="input-demo-url" value="<?php echo $globalpay_demo_url; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_demo_url; ?></span>
             <?php } else { ?>
-              <input type="text" name="globalpay_demo_url" value="<?php echo $globalpay_demo_url; ?>" size="40" />
+              <input type="text" name="globalpay_demo_url" id="input-demo-url" value="<?php echo $globalpay_demo_url; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_notification_url; ?></td>
-            <td><?php echo $notify_url; ?></td>
+            <td><label for="input-notify-url"><?php echo $entry_notification_url; ?><br /><span class="help"><?php echo $help_notification; ?></span></label></td>
+            <td><input type="text" name="globalpay_notify_url" value="<?php echo $notify_url; ?>" id="input-notify-url" size="80" /></td>
           </tr>
         </table>
       </div>
@@ -302,8 +306,9 @@
     </div>
   </div>
 </div>
-<?php echo $footer; ?>
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 //--></script>
+
+<?php echo $footer; ?>

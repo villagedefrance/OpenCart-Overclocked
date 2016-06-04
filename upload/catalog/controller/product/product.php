@@ -391,10 +391,13 @@ class ControllerProductProduct extends Controller {
 
 			if ($product_info['quantity'] <= 0) {
 				$this->data['stock'] = $product_info['stock_status'];
+				$this->data['stock_quantity'] = 0;
 			} elseif ($this->config->get('config_stock_display')) {
 				$this->data['stock'] = $product_info['quantity'];
+				$this->data['stock_quantity'] = $product_info['quantity'];
 			} else {
 				$this->data['stock'] = $this->language->get('text_instock');
+				$this->data['stock_quantity'] = $product_info['quantity'];
 			}
 
 			// Location
@@ -638,6 +641,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
+			// Related
 			$related_offers = $this->model_catalog_offer->getListProductOffers(0);
 
 			$this->data['products'] = array();
@@ -679,17 +683,26 @@ class ControllerProductProduct extends Controller {
 					$offer = false;
 				}
 
+				if ($result['quote']) {
+					$quote = $this->url->link('information/quote', '', 'SSL');
+				} else {
+					$quote = false;
+				}
+
 				$this->data['products'][] = array(
-					'product_id'		=> $result['product_id'],
-					'thumb'  			=> $image,
-					'offer'				=> $offer,
-					'name'    		=> $result['name'],
-					'price'   	 		=> $price,
-					'price_option'	=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
-					'special' 	 		=> $special,
-					'rating'    		=> $rating,
-					'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'    	 		=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'product_id'			=> $result['product_id'],
+					'thumb'  				=> $image,
+					'offer'					=> $offer,
+					'name'    			=> $result['name'],
+					'stock_status'		=> $result['stock_status'],
+					'stock_quantity'	=> $result['quantity'],
+					'quote'				=> $quote,
+					'price'   	 			=> $price,
+					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
+					'special' 	 			=> $special,
+					'rating'    			=> $rating,
+					'reviews'    			=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'href'    	 			=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
 
