@@ -25,7 +25,7 @@
       <?php } else { ?>
       <span class="capture_text"><?php echo $text_no; ?></span>&nbsp;&nbsp;
       <?php if ($firstdata_order['void_status'] == 0) { ?>
-      <a class="button" id="button_capture"><?php echo $button_capture; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
+      <a class="button" id="button_capture"><?php echo $button_capture; ?></a>&nbsp;<img src="view/image/loading.gif" alt="" id="img_loading_capture" style="display:none;" />
       <?php } ?>
     <?php } ?></td>
   </tr>
@@ -34,7 +34,7 @@
     <td id="void_status"><?php if ($firstdata_order['void_status'] == 1) { ?>
       <span class="void_text"><?php echo $text_yes; ?></span>
       <?php } else { ?>
-      <span class="void_text"><?php echo $text_no; ?></span>&nbsp;&nbsp; <img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
+      <span class="void_text"><?php echo $text_no; ?></span>&nbsp;&nbsp;<img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
     <?php } ?></td>
   </tr>
   <tr>

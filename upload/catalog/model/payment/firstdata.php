@@ -8,6 +8,8 @@ class ModelPaymentFirstdata extends Model {
 
 		if ($this->config->get('firstdata_total') > 0 && $this->config->get('firstdata_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('firstdata_total_max') && $this->config->get('firstdata_total_max') > 0 && $total > $this->config->get('firstdata_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('firstdata_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,10 +22,10 @@ class ModelPaymentFirstdata extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'firstdata',
-				'title'			=> $this->language->get('text_title'),
-				'terms'		=> '',
-				'sort_order'	=> $this->config->get('firstdata_sort_order')
+				'code'       => 'firstdata',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('firstdata_sort_order')
 			);
 		}
 
@@ -71,9 +73,9 @@ class ModelPaymentFirstdata extends Model {
 
 	public function mapCurrency($code) {
 		$currency = array(
-			'GBP'	=> 826,
-			'USD'	=> 840,
-			'EUR'	=> 978
+			'GBP' => 826,
+			'USD' => 840,
+			'EUR' => 978
 		);
 
 		if (array_key_exists($code, $currency)) {

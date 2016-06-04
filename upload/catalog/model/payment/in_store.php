@@ -10,6 +10,8 @@ class ModelPaymentInStore extends Model {
 
 		if (($this->config->get('in_store_total') > 0 && $this->config->get('in_store_total') > $total) || (!empty($total_max) && $total_max > 0 && $total_max < $total)) {
 			$status = false;
+		} elseif ($this->config->has('in_store_total_max') && $this->config->get('in_store_total_max') > 0 && $total > $this->config->get('in_store_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('in_store_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
