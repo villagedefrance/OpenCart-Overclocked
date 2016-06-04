@@ -21,16 +21,16 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="form">
           <tr>
-            <td><?php echo $entry_total; ?></td>
-            <td><input type="text" name="cod_total" value="<?php echo $cod_total; ?>" /></td>
+            <td><label for="input-total"><?php echo $entry_total; ?><br /><span class="help"><?php echo $help_total; ?></span></label></td>
+            <td><input type="text" name="cod_total" id="input-total" value="<?php echo !empty($cod_total) ? $cod_total : '0.00'; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_total_max; ?></td>
-            <td><input type="text" name="cod_total_max" value="<?php echo $cod_total_max; ?>" /></td>
+            <td><label for="input-total-max"><?php echo $entry_total_max; ?><br /><span class="help"><?php echo $help_total_max; ?></span></label></td>
+            <td><input type="text" name="cod_total_max" id="input-total-max" value="<?php echo !empty($cod_total_max) ? $cod_total_max : '0.00'; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_order_status; ?></td>
-            <td><select name="cod_order_status_id">
+            <td><label for="input-order-status"><?php echo $entry_order_status; ?></label></td>
+            <td><select name="cod_order_status_id" id="input-order-status">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $cod_order_status_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -41,21 +41,21 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_geo_zone; ?></td>
-            <td><select name="cod_geo_zone_id">
-              <option value="0"><?php echo $text_all_zones; ?></option>
+            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
+            <td><select name="cod_geo_zone_id" id="input-geo-zone">
+                <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $cod_geo_zone_id) { ?>
-                  <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
                 <?php } else { ?>
-                  <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
                 <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="cod_status">
+            <td><label for="input-status"><?php echo $entry_status; ?></label></td>
+            <td><select name="cod_status" id="input-status">
               <?php if ($cod_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
@@ -66,8 +66,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="cod_sort_order" value="<?php echo $cod_sort_order; ?>" size="1" /></td>
+            <td><label for="input-sort-order"><?php echo $entry_sort_order; ?></label></td>
+            <td><input type="text" name="cod_sort_order" id="input-sort-order" value="<?php echo $cod_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </form>
