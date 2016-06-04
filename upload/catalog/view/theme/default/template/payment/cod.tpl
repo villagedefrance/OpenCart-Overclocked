@@ -5,10 +5,19 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
+$('#button-confirm').on('click', function() {
 	$.ajax({
 		type: 'get',
 		url: 'index.php?route=payment/cod/confirm',
+		cache: false,
+		beforeSend: function() {
+			$('#button-confirm').prop('disabled', true);
+			$('.buttons').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
+		},
+		complete: function() {
+			$('#button-confirm').prop('disabled', false);
+			$('.attention').remove();
+		},
 		success: function() {
 			location = '<?php echo $continue; ?>';
 		}

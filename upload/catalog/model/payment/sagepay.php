@@ -8,6 +8,8 @@ class ModelPaymentSagePay extends Model {
 
 		if ($this->config->get('sagepay_total') > 0 && $this->config->get('sagepay_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('sagepay_total_max') && $this->config->get('sagepay_total_max') > 0 && $total > $this->config->get('sagepay_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('sagepay_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {

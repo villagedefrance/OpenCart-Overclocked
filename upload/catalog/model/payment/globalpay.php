@@ -8,6 +8,8 @@ class ModelPaymentGlobalpay extends Model {
 
 		if ($this->config->get('globalpay_total') > 0 && $this->config->get('globalpay_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('globalpay_total_max') && $this->config->get('globalpay_total_max') > 0 && $total > $this->config->get('globalpay_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('globalpay_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {

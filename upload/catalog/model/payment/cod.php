@@ -10,6 +10,8 @@ class ModelPaymentCOD extends Model {
 
 		if (($this->config->get('cod_total') > 0 && $this->config->get('cod_total') > $total) || (!empty($total_max) && $total_max > 0 && $total_max < $total)) {
 			$status = false;
+		} elseif ($this->config->has('cod_total_max') && $this->config->get('cod_total_max') > 0 && $total > $this->config->get('cod_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('cod_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -22,9 +24,10 @@ class ModelPaymentCOD extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'cod',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('cod_sort_order')
+				'code'       => 'cod',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('cod_sort_order')
 			);
 		}
 
