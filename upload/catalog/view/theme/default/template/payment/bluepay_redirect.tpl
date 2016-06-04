@@ -73,57 +73,57 @@
 <script type="text/javascript"><!--
 $(document).ready(function() {
 <?php if (!empty($existing_cards)) { ?>
-	$('#card-new input').prop('disabled', true);
-	$('#card-new select').prop('disabled', true);
+  $('#card-new input').prop('disabled', true);
+  $('#card-new select').prop('disabled', true);
 <?php } ?>
 });
 //--></script>
 
 <script type="text/javascript"><!--
 $('input[name=\'new-existing\']').on('change', function() {
-	if (this.value === 'existing') {
-		$('#card-existing').show();
-		$('#card-new').hide();
-		$('#card-new input').prop('disabled', true);
-		$('#card-new select').prop('disabled', true);
-		$('#card-existing select').prop('disabled', false);
-		$('#card-existing input').prop('disabled', false);
-	} else {
-		$('#card-existing').hide();
-		$('#card-new').show();
-		$('#card-new input').prop('disabled', false);
-		$('#card-new select').prop('disabled', false);
-		$('#card-existing select').prop('disabled', true);
-		$('#card-existing input').prop('disabled', true);
-	}
+  if (this.value === 'existing') {
+    $('#card-existing').show();
+    $('#card-new').hide();
+    $('#card-new input').prop('disabled', true);
+    $('#card-new select').prop('disabled', true);
+    $('#card-existing select').prop('disabled', false);
+    $('#card-existing input').prop('disabled', false);
+  } else {
+    $('#card-existing').hide();
+    $('#card-new').show();
+    $('#card-new input').prop('disabled', false);
+    $('#card-new select').prop('disabled', false);
+    $('#card-existing select').prop('disabled', true);
+    $('#card-existing input').prop('disabled', true);
+  }
 });
 //--></script>
 
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=payment/bluepay_redirect/send',
-		type: 'post',
-		data: $('#card-new :input[type=\'text\']:enabled, #card-new select:enabled, #card-new :input[type=\'checkbox\']:checked:enabled, #payment select:enabled, #card-existing :input:enabled'),
-		dataType: 'json',
-		cache: false,
-		beforeSend: function() {
-			$('#button-confirm').prop('disabled', true);
-			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
-		},
-		complete: function() {
-			$('#button-confirm').prop('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(json) {
-			if (json['error']) {
-				alert(json['error']);
-			}
+  $.ajax({
+    url: 'index.php?route=payment/bluepay_redirect/send',
+    type: 'post',
+    data: $('#card-new :input[type=\'text\']:enabled, #card-new select:enabled, #card-new :input[type=\'checkbox\']:checked:enabled, #payment select:enabled, #card-existing :input:enabled'),
+    dataType: 'json',
+    cache: false,
+    beforeSend: function() {
+      $('#button-confirm').prop('disabled', true);
+      $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
+    },
+    complete: function() {
+      $('#button-confirm').prop('disabled', false);
+      $('.attention').remove();
+    },
+    success: function(json) {
+      if (json['error']) {
+        alert(json['error']);
+      }
 
-			if (json['redirect']) {
-				location = json['redirect'];
-			}
-		}
-	});
+      if (json['redirect']) {
+        location = json['redirect'];
+      }
+    }
+  });
 });
 //--></script>

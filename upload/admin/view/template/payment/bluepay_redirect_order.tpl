@@ -21,7 +21,7 @@
       <span class="release_text"><?php echo $text_no; ?></span>&nbsp;&nbsp;
       <?php if ($bluepay_redirect_order['void_status'] == 0) { ?>
       <input type="text" width="10" id="release_amount" value="<?php echo $bluepay_redirect_order['total']; ?>" />
-      <a class="button" id="button-release"><?php echo $button_release; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_release" style="display:none;" />
+      <a class="button" id="button-release"><?php echo $button_release; ?></a>&nbsp;<img src="view/image/loading.gif" alt="" id="img_loading_release" style="display:none;" />
       <?php } ?>
     <?php } ?></td>
   </tr>
@@ -30,7 +30,7 @@
     <td id="void_status"><?php if ($bluepay_redirect_order['void_status'] == 1) { ?>
       <span class="void_text"><?php echo $text_yes; ?></span>
     <?php } elseif ($bluepay_redirect_order['void_status'] == 0 && $bluepay_redirect_order['release_status'] == 1 && $bluepay_redirect_order['rebate_status'] != 1) { ?>
-      <span class="void_text"><?php echo $text_no; ?></span>&nbsp;&nbsp; <a class="button" id="button-void"><?php echo $button_void; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
+      <span class="void_text"><?php echo $text_no; ?></span>&nbsp;&nbsp;<a class="button" id="button-void"><?php echo $button_void; ?></a> <img src="view/image/loading.gif" alt="" id="img_loading_void" style="display:none;" />
     <?php } else { ?>
       <span class="void_text"><?php echo $text_no; ?></span>
     <?php } ?></td>

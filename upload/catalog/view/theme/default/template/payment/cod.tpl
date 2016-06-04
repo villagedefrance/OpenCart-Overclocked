@@ -1,4 +1,4 @@
-<div class="buttons">
+<div class="buttons" id="div-buttons">
   <div class="right">
     <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="button" />
   </div>
@@ -12,7 +12,7 @@ $('#button-confirm').on('click', function() {
 		cache: false,
 		beforeSend: function() {
 			$('#button-confirm').prop('disabled', true);
-			$('.buttons').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
+			$('#div-buttons').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
 		},
 		complete: function() {
 			$('#button-confirm').prop('disabled', false);

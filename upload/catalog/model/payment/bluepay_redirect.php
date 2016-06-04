@@ -22,10 +22,10 @@ class ModelPaymentBluepayRedirect extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'bluepay_redirect',
-				'title' 			=> $this->language->get('text_title'),
-				'terms' 		=> '',
-				'sort_order'	=> $this->config->get('bluepay_redirect_sort_order')
+				'code'       => 'bluepay_redirect',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('bluepay_redirect_sort_order')
 			);
 		}
 
@@ -41,12 +41,12 @@ class ModelPaymentBluepayRedirect extends Model {
 
 		foreach ($query->rows as $row) {
 			$card_data[] = array(
-				'card_id'			=> $row['card_id'],
-				'customer_id'	=> $row['customer_id'],
-				'token' 			=> $row['token'],
-				'digits' 			=> '**** ' . $row['digits'],
-				'expiry' 			=> $row['expiry'],
-				'type' 			=> $row['type']
+				'card_id'     => $row['card_id'],
+				'customer_id' => $row['customer_id'],
+				'token'       => $row['token'],
+				'digits'      => '**** ' . $row['digits'],
+				'expiry'      => $row['expiry'],
+				'type'        => $row['type']
 			);
 		}
 
