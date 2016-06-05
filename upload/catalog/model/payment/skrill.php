@@ -8,6 +8,8 @@ class ModelPaymentSkrill extends Model {
 
 		if ($this->config->get('skrill_total') > 0 && $this->config->get('skrill_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('skrill_total_max') && $this->config->get('skrill_total_max') > 0 && $total > $this->config->get('skrill_total_max')) {
+			$status = false;
 		} elseif (!$this->config->get('skrill_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {

@@ -1,103 +1,99 @@
-<form id="payment_form">
-  <fieldset id="payment">
-    <legend><?php echo $text_credit_card; ?></legend>
-    <?php if (!empty($accepted_cards)) { ?>
-      <div>
-        <div>
-          <p>
-            <strong><?php echo $text_card_accepted; ?></strong>
-            <ul>
-              <?php if ($accepted_cards['mastercard'] == 1) { ?><li><?php echo $text_card_type_m; ?></li><?php } ?>
-              <?php if ($accepted_cards['visa'] == 1) { ?><li><?php echo $text_card_type_v; ?></li><?php } ?>
-              <?php if ($accepted_cards['diners'] == 1) { ?><li><?php echo $text_card_type_c; ?></li><?php } ?>
-              <?php if ($accepted_cards['amex'] == 1) { ?><li><?php echo $text_card_type_a; ?></li><?php } ?>
-              <?php if ($accepted_cards['maestro'] == 1) { ?><li><?php echo $text_card_type_ma; ?></li><?php } ?>
-            </ul>
-          </p>
-        </div>
-      </div>
-    <?php } ?>
-    <?php if ($card_storage == 1 && count($stored_cards) > 0) { ?>
-    <div>
-      <div>
+<h2><?php echo $text_credit_card; ?></h2>
+<div class="content" id="payment">
+  <table class="form">
+<?php if (!empty($accepted_cards)) { ?>
+    <tbody id="card-accepted">
+    <tr>
+      <td><strong><?php echo $text_card_accepted; ?></strong></td>
+      <td>
+        <ul>
+          <?php if (in_array('mastercard', $accepted_cards)) { ?><li><?php echo $text_card_type_m; ?></li><?php } ?>
+          <?php if (in_array('visa', $accepted_cards)) { ?><li><?php echo $text_card_type_v; ?></li><?php } ?>
+          <?php if (in_array('diners', $accepted_cards)) { ?><li><?php echo $text_card_type_c; ?></li><?php } ?>
+          <?php if (in_array('amex', $accepted_cards)) { ?><li><?php echo $text_card_type_a; ?></li><?php } ?>
+          <?php if (in_array('maestro', $accepted_cards)) { ?><li><?php echo $text_card_type_ma; ?></li><?php } ?>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+<?php } ?>
+<?php if ($card_storage == 1 && count($stored_cards) > 0) { ?>
+    <tbody id="card-existing">
+    <tr>
+      <td></td>
+      <td>
         <?php $i = 0; ?>
         <?php foreach ($stored_cards as $card) { ?>
           <p><input type="radio" name="cc_choice" value="<?php echo $card['token']; ?>" class="stored_card" <?php echo $i == 0 ? 'checked="checked"' : ''; ?>/> <?php echo $card['card_type'] . ' xxxx ' . $card['digits'] . ', ' . $entry_cc_expire_date . ' ' . $card['expire_month'] . '/' . $card['expire_year']; ?></p>
           <?php $i++; ?>
         <?php } ?>
-        <p><input type="radio" name="cc_choice" value="new" class="stored_card" />New card</p>
-      </div>
-    </div>
-    <?php } ?>
-    <div id="card_info" style="display:none;">
-      <div class="required">
-        <label for="input-cc-name"><?php echo $entry_cc_name; ?></label>
-        <div>
-          <input type="text" name="cc_name" value="" placeholder="<?php echo $entry_cc_name; ?>" id="input-cc-name" />
-        </div>
-      </div>
-      <div class="required">
-        <label for="input-cc-number"><?php echo $entry_cc_number; ?></label>
-        <div>
-          <input type="text" name="cc_number" value="" placeholder="<?php echo $entry_cc_number; ?>" id="input-cc-number" />
-        </div>
-      </div>
-      <div class="required">
-        <label for="input-cc-expire-date"><?php echo $entry_cc_expire_date; ?></label>
-        <div><select name="cc_expire_date_month" id="input-cc-expire-date">
+        <p><input type="radio" name="cc_choice" value="new" class="stored_card" /><?php echo $text_card_new; ?></p>
+      </td>
+    </tr>
+    </tbody>
+<?php } ?>
+    <tbody id="card-info" style="display:none;">
+      <tr>
+        <td><span class="required">*</span>&nbsp;<label for="input-cc-name"><?php echo $entry_cc_name; ?></label></td>
+        <td><input type="text" name="cc_name" value="" id="input-cc-name" /></td>
+      </tr>
+      <tr>
+        <td><span class="required">*</span>&nbsp;<label for="input-cc-number"><?php echo $entry_cc_number; ?></label></td>
+        <td><input type="text" name="cc_number" value="" id="input-cc-number" /></td>
+      </tr>
+      <tr>
+        <td><span class="required">*</span>&nbsp;<label for="input-cc-expire-date"><?php echo $entry_cc_expire_date; ?></label></td>
+        <td><select name="cc_expire_date_month" id="input-cc-expire-date">
           <?php foreach ($months as $month) { ?>
             <option value="<?php echo $month['value']; ?>"><?php echo $month['text']; ?></option>
           <?php } ?>
-        </select></div>
-        <div><select name="cc_expire_date_year">
+        </select>
+          /
+        <select name="cc_expire_date_year">
           <?php foreach ($year_expire as $year) { ?>
             <option value="<?php echo $year['value']; ?>"><?php echo $year['text']; ?></option>
           <?php } ?>
-        </select></div>
-      </div>
-      <?php if ($card_storage == 1) { ?>
-        <div>
-          <label for="input-cc-cvv2">Store card details?</label>
-          <div>
-            <input type="hidden" name="cc_store" value="0"/> <input type="checkbox" name="cc_store" value="1" checked/>
-          </div>
-        </div>
-      <?php } ?>
-    </div>
-    <div class="required">
-      <label for="input-cc-cvv2"><?php echo $entry_cc_cvv2; ?></label>
-      <div>
-        <input type="text" name="cc_cvv2" value="" placeholder="<?php echo $entry_cc_cvv2; ?>" id="input-cc-cvv2" />
-      </div>
-    </div>
-  </fieldset>
-</form>
+        </select></td>
+      </tr>
+      <tr>
+        <td><span class="required">*</span>&nbsp;<label for="input-cc-cvv2"><?php echo $entry_cc_cvv2; ?></label></td>
+        <td><input type="text" name="cc_cvv2" value="" id="input-cc-cvv2" size="3" /></td>
+      </tr>
+<?php if ($card_storage == 1) { ?>
+      <tr>
+        <td><label for="input-cc-save"><?php echo $entry_cc_save; ?></label></td>
+        <td><input type="checkbox" name="cc_save" value="1" id="input-cc-save" /></td>
+      </tr>
+<?php } ?>
+    </tbody>
+  </table>
+</div>
 <div class="buttons">
   <div class="right">
-    <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" />
+    <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" data-loading-text="<?php echo $text_loading; ?>" class="button" />
   </div>
 </div>
 
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
+$('#button-confirm').on('click', function() {
   $.ajax({
     url: 'index.php?route=payment/firstdata_remote/send',
     type: 'POST',
     data: $('#payment_form').serialize(),
     dataType: 'json',
-    beforeSend: function () {
-      $('#firstdata_message_error').remove();
-      $('#button-confirm').attr('disabled', true);
-      $('#payment').before('<div id="firstdata_message_wait" class="wait"> <?php echo $text_wait; ?></div>');
+    beforeSend: function() {
+      $('#firstdata-message-error').remove();
+      $('#button-confirm').prop('disabled', true);
+      $('#payment').before('<div id="firstdata-message-wait" class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
     },
-    complete: function () {
-      $('#button-confirm').attr('disabled', false);
-      $('#firstdata_message_wait').remove();
+    complete: function() {
+      $('#button-confirm').prop('disabled', false);
+      $('#firstdata-message-wait').remove();
     },
     success: function (json) {
       // if error
       if (json['error']) {
-        $('#payment').before('<div id="firstdata_message_error" class="warning"> ' + json['error'] + '</div>');
+        $('#payment').before('<div id="firstdata-message-error" class="warning"> ' + json['error'] + '</div>');
       }
       // if success
       if (json['success']) {
@@ -107,22 +103,23 @@ $('#button-confirm').bind('click', function() {
   });
 });
 
-$('.stored_card').bind('change', function() {
+$('.stored_card').on('change', function() {
   if ($(this).val() == 'new') {
-    $('#card_info').slideDown();
+    $('#card-info').slideDown();
   } else {
-    $('#card_info').slideUp();
+    $('#card-info').slideUp();
   }
 });
 
 $(document).ready(function() {
   <?php if ($card_storage == 0) { ?>
-    $('#card_info').show();
+    $('#card-info').show();
   <?php } else { ?>
     var stored_cards = <?php echo count($stored_cards); ?>;
     if (stored_cards == 0) {
-      $('#card_info').show();
+      $('#card-info').show();
     }
   <?php } ?>
 });
 //--></script>
+

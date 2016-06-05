@@ -29,17 +29,21 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-merchant-id"><?php echo $entry_merchant_id; ?></label></td>
-            <td><input type="text" name="firstdata_merchant_id" value="<?php echo $firstdata_merchant_id; ?>" id="input-merchant-id" />
-              <?php if ($error_merchant_id) { ?>
+            <td><?php if ($error_merchant_id) { ?>
+              <input type="text" name="firstdata_merchant_id" value="<?php echo $firstdata_merchant_id; ?>" id="input-merchant-id" class="input-error" />
               <span class="error"><?php echo $error_merchant_id; ?></span>
-              <?php } ?></td>
+            <?php } else { ?>
+              <input type="text" name="firstdata_merchant_id" value="<?php echo $firstdata_merchant_id; ?>" id="input-merchant-id" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-secret"><?php echo $entry_secret; ?></label></td>
-            <td><input type="text" name="firstdata_secret" value="<?php echo $firstdata_secret; ?>" id="input-secret" />
-              <?php if ($error_secret) { ?>
+            <td><?php if ($error_secret) { ?>
+              <input type="text" name="firstdata_secret" value="<?php echo $firstdata_secret; ?>" id="input-secret" class="input-error" />
               <span class="error"><?php echo $error_secret; ?></span>
-              <?php } ?></td>
+            <?php } else { ?>
+              <input type="text" name="firstdata_secret" value="<?php echo $firstdata_secret; ?>" id="input-secret" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><label for="input-live-demo"><?php echo $entry_live_demo; ?></label></td>
@@ -185,17 +189,21 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-live-url"><?php echo $entry_live_url; ?></label></td>
-            <td><input type="text" name="firstdata_live_url" value="<?php echo $firstdata_live_url; ?>" id="input-live-url" size="80" />
-              <?php if ($error_live_url) { ?>
+            <td><?php if ($error_live_url) { ?>
+              <input type="text" name="firstdata_live_url" value="<?php echo $firstdata_live_url; ?>" id="input-live-url" size="80" class="input-error" />
               <span class="error"><?php echo $error_live_url; ?></span>
-              <?php } ?></td>
+            <?php } else { ?>
+              <input type="text" name="firstdata_live_url" value="<?php echo $firstdata_live_url; ?>" id="input-live-url" size="80" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-demo-url"><?php echo $entry_demo_url; ?></label></td>
-            <td><input type="text" name="firstdata_demo_url" value="<?php echo $firstdata_demo_url; ?>" id="input-demo-url" size="80" />
-              <?php if ($error_demo_url) { ?>
+            <td><?php if ($error_demo_url) { ?>
+              <input type="text" name="firstdata_demo_url" value="<?php echo $firstdata_demo_url; ?>" id="input-demo-url" size="80" class="input-error" />
               <span class="error"><?php echo $error_demo_url; ?></span>
-              <?php } ?></td>
+            <?php } else { ?>
+              <input type="text" name="firstdata_demo_url" value="<?php echo $firstdata_demo_url; ?>" id="input-demo-url" size="80" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><label for="input-notify-url"><?php echo $text_notification_url; ?><br /><span class="help"><?php echo $help_notification; ?></span></label></td>
@@ -207,10 +215,9 @@
     </div>
   </div>
 </div>
+<?php echo $footer; ?>
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 $('#tabs a:first').tab('show');
 //--></script>
-
-<?php echo $footer; ?>
