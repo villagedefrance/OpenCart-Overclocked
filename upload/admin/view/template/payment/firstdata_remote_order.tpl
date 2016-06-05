@@ -68,139 +68,139 @@
 
 <script type="text/javascript"><!--
 $('#button-void').bind('click', function() {
-	if (confirm('<?php echo $text_confirm_void; ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: 'order_id=<?php echo $order_id; ?>',
-			url: 'index.php?route=payment/firstdata_remote/void&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#button-void').hide();
-				$('#img_loading_void').show();
-				$('#firstdata-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data['error'] == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">'+data.data.date_added+'</td>';
-					html += '<td class="left">void</td>';
-					html += '<td class="left">0.00</td>';
-					html += '</tr>';
+  if (confirm('<?php echo $text_confirm_void; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: 'order_id=<?php echo $order_id; ?>',
+      url: 'index.php?route=payment/firstdata_remote/void&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#button-void').hide();
+        $('#img_loading_void').show();
+        $('#firstdata-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data['error'] == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">'+data.data.date_added+'</td>';
+          html += '<td class="left">void</td>';
+          html += '<td class="left">0.00</td>';
+          html += '</tr>';
 
-					$('.void_text').text('<?php echo $text_yes; ?>');
+          $('.void_text').text('<?php echo $text_yes; ?>');
 
-					$('#firstdata-transactions').append(html);
+          $('#firstdata-transactions').append(html);
 
-					$('#button-capture').hide();
+          $('#button-capture').hide();
 
-					if (data.msg != '') {
-						$('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
-					}
-				}
+          if (data.msg != '') {
+            $('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
 
-				if (data['error'] == true) {
-					alert(data['msg']);
-					$('#button-void').show();
-				}
+        if (data['error'] == true) {
+          alert(data['msg']);
+          $('#button-void').show();
+        }
 
-				$('#img_loading_void').hide();
-			}
-		});
-	}
+        $('#img_loading_void').hide();
+      }
+    });
+  }
 });
 
 $('#button-capture').bind('click', function() {
-	if (confirm('<?php echo $text_confirm_capture; ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: {'order_id': <?php echo $order_id; ?> },
-			url: 'index.php?route=payment/firstdata_remote/capture&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#button-capture').hide();
-				$('#img-loading-capture').show();
-				$('#firstdata-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">'+data.data.date_added+'</td>';
-					html += '<td class="left">payment</td>';
-					html += '<td class="left">'+data.data.amount+'</td>';
-					html += '</tr>';
+  if (confirm('<?php echo $text_confirm_capture; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: {'order_id': <?php echo $order_id; ?> },
+      url: 'index.php?route=payment/firstdata_remote/capture&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#button-capture').hide();
+        $('#img-loading-capture').show();
+        $('#firstdata-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">'+data.data.date_added+'</td>';
+          html += '<td class="left">payment</td>';
+          html += '<td class="left">'+data.data.amount+'</td>';
+          html += '</tr>';
 
-					$('#firstdata-transactions').append(html);
-					$('#firstdata-total-captured').text(data.data.total_formatted);
+          $('#firstdata-transactions').append(html);
+          $('#firstdata-total-captured').text(data.data.total_formatted);
 
-					if (data.data.capture_status == 1) {
-						$('#button-void').hide();
-						$('#button-refund').show();
-						$('.capture_text').text('<?php echo $text_yes; ?>');
-					} else {
-						$('#button-capture').show();
-					}
+          if (data.data.capture_status == 1) {
+            $('#button-void').hide();
+            $('#button-refund').show();
+            $('.capture_text').text('<?php echo $text_yes; ?>');
+          } else {
+            $('#button-capture').show();
+          }
 
-					if (data.msg != '') {
-						$('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
-					}
-				}
+          if (data.msg != '') {
+            $('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
 
-				if (data.error == true) {
-					alert(data.msg);
-					$('#button-capture').show();
-				}
+        if (data.error == true) {
+          alert(data.msg);
+          $('#button-capture').show();
+        }
 
-				$('#img-loading-capture').hide();
-			}
-		});
-	}
+        $('#img-loading-capture').hide();
+      }
+    });
+  }
 });
 
 $('#button-refund').bind('click', function() {
-	if (confirm('<?php echo $text_confirm_refund; ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: {'order_id': <?php echo $order_id; ?> },
-			url: 'index.php?route=payment/firstdata_remote/refund&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#button-refund').hide();
-				$('#img-loading-refund').show();
-				$('#firstdata-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">'+data.data.date_added+'</td>';
-					html += '<td class="left">refund</td>';
-					html += '<td class="left">'+data.data.amount+'</td>';
-					html += '</tr>';
+  if (confirm('<?php echo $text_confirm_refund; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: {'order_id': <?php echo $order_id; ?> },
+      url: 'index.php?route=payment/firstdata_remote/refund&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#button-refund').hide();
+        $('#img-loading-refund').show();
+        $('#firstdata-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">'+data.data.date_added+'</td>';
+          html += '<td class="left">refund</td>';
+          html += '<td class="left">'+data.data.amount+'</td>';
+          html += '</tr>';
 
-					$('#firstdata-transactions').append(html);
-					$('#firstdata-total-captured').text(data.data.total_captured);
+          $('#firstdata-transactions').append(html);
+          $('#firstdata-total-captured').text(data.data.total_captured);
 
-					if (data.data.refund_status == 1) {
-					$('.refund_text').text('<?php echo $text_yes; ?>');
-				} else {
-					$('#button-refund').show();
-				}
+          if (data.data.refund_status == 1) {
+          $('.refund_text').text('<?php echo $text_yes; ?>');
+        } else {
+          $('#button-refund').show();
+        }
 
-				if (data.msg != '') {
-					$('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
-				}
-			}
+        if (data.msg != '') {
+          $('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
+        }
+      }
 
-			if (data.error == true) {
-				alert(data.msg);
-				$('#button-refund').show();
-			}
+      if (data.error == true) {
+        alert(data.msg);
+        $('#button-refund').show();
+      }
 
-			$('#img-loading-refund').hide();
-			}
-		});
-	}
+      $('#img-loading-refund').hide();
+      }
+    });
+  }
 });
 //--></script>

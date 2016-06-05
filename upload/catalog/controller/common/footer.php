@@ -35,9 +35,9 @@ class ControllerCommonFooter extends Controller {
 				}
 
 				$this->data['footer_routes'][] = array(
-					'footer_id'	=> $route['footer_id'],
-					'title'			=> $route['title'],
-					'route'		=> $href
+					'footer_id' => $route['footer_id'],
+					'title'     => $route['title'],
+					'route'     => $href
 				);
 
 				$this->data['footer_blocks'] = array();
@@ -47,10 +47,10 @@ class ControllerCommonFooter extends Controller {
 				if ($blocks) {
 					foreach ($blocks as $block) {
 						$this->data['footer_blocks'][] = array(
-							'footer_id'	=> $block['footer_id'],
-							'name'		=> $block['name'],
-							'position'		=> $block['position'],
-							'status'		=> $block['status']
+							'footer_id' => $block['footer_id'],
+							'name'      => $block['name'],
+							'position'  => $block['position'],
+							'status'    => $block['status']
 						);
 					}
 				}
@@ -79,7 +79,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
 		// Piwik
-		$this->data['piwik'] = $this->config->get('config_piwik_analytics');
+		$this->data['piwik'] = html_entity_decode($this->config->get('config_piwik_analytics'), ENT_QUOTES, 'UTF-8');
 
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {

@@ -134,20 +134,20 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('text_home'),
+			'href'    => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_payment'),
-			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('text_payment'),
+			'href'    => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('heading_title'),
+			'href'    => $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -292,28 +292,28 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['cards'] = array();
 
 		$this->data['cards'][] = array(
-			'text'		=> $this->language->get('text_mastercard'),
-			'value'	=> 'mastercard'
+			'text'  => $this->language->get('text_mastercard'),
+			'value' => 'mastercard'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> $this->language->get('text_visa'),
-			'value'	=> 'visa'
+			'text'  => $this->language->get('text_visa'),
+			'value' => 'visa'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> $this->language->get('text_diners'),
-			'value'	=> 'diners'
+			'text'  => $this->language->get('text_diners'),
+			'value' => 'diners'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> $this->language->get('text_amex'),
-			'value'	=> 'amex'
+			'text'  => $this->language->get('text_amex'),
+			'value' => 'amex'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> $this->language->get('text_maestro'),
-			'value'	=> 'maestro'
+			'text'  => $this->language->get('text_maestro'),
+			'value' => 'maestro'
 		);
 
 		if (isset($this->request->post['firstdata_remote_cards_accepted'])) {
