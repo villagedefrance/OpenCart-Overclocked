@@ -135,20 +135,20 @@ class ControllerPaymentG2APay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		  => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		  => $this->language->get('text_payment'),
-			'href'		  => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		  => $this->language->get('heading_title'),
-			'href'		  => $this->url->link('payment/g2apay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/g2apay', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -255,6 +255,16 @@ class ControllerPaymentG2APay extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
+	public function install() {
+		$this->load->model('payment/g2apay');
+		$this->model_payment_g2apay->install();
+	}
+
+	public function uninstall() {
+		$this->load->model('payment/g2apay');
+		$this->model_payment_g2apay->uninstall();
+	}
+
 	public function orderAction() {
 		if ($this->config->get('g2apay_status')) {
 			$this->load->model('payment/g2apay');
@@ -329,6 +339,7 @@ class ControllerPaymentG2APay extends Controller {
 				}
 
 				$json['data'] = array();
+
 				$json['data']['date_added'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = $this->currency->format(($this->request->post['amount'] * -1), $g2apay_order['currency_code'], false);
 				$json['data']['total_released'] = (float)$total_released;
@@ -347,18 +358,6 @@ class ControllerPaymentG2APay extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
-	}
-
-	public function install() {
-		$this->load->model('payment/g2apay');
-
-		$this->model_payment_g2apay->install();
-	}
-
-	public function uninstall() {
-		$this->load->model('payment/g2apay');
-
-		$this->model_payment_g2apay->uninstall();
 	}
 
 	protected function validate() {
