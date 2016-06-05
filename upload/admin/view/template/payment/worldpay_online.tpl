@@ -252,10 +252,8 @@
     </div>
   </div>
 </div>
-
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 $('#tabs a:first').tab('show');
 //--></script>
-
 <?php echo $footer; ?>

@@ -79,149 +79,149 @@
 
 <script type="text/javascript"><!--
 $("#button-void").click(function() {
-	if (confirm('<?php echo $text_confirm_void; ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: {'order_id': '<?php echo $order_id; ?>' },
-			url: 'index.php?route=payment/globalpay_remote/void&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#button-void').hide();
-				$('#img-loading-void').show();
-				$('#globalpay-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">' + data.data.date_added + '</td>';
-					html += '<td class="left">void</td>';
-					html += '<td class="left">0.00</td>';
-					html += '</tr>';
+  if (confirm('<?php echo $text_confirm_void; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: {'order_id': '<?php echo $order_id; ?>' },
+      url: 'index.php?route=payment/globalpay_remote/void&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#button-void').hide();
+        $('#img-loading-void').show();
+        $('#globalpay-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">void</td>';
+          html += '<td class="left">0.00</td>';
+          html += '</tr>';
 
-					$('.void-text').text('<?php echo $text_yes; ?>');
-					$('#globalpay-transactions').append(html);
-					$('#button-capture').hide();
-					$('#capture-amount').hide();
+          $('.void-text').text('<?php echo $text_yes; ?>');
+          $('#globalpay-transactions').append(html);
+          $('#button-capture').hide();
+          $('#capture-amount').hide();
 
-					if (data.msg != '') {
-						$('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
-					}
-				}
+          if (data.msg != '') {
+            $('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
 
-				if (data.error == true) {
-					alert(data.msg);
-					$('#button-void').show();
-				}
+        if (data.error == true) {
+          alert(data.msg);
+          $('#button-void').show();
+        }
 
-				$('#img-loading-void').hide();
-			}
-		});
-	}
+        $('#img-loading-void').hide();
+      }
+    });
+  }
 });
 
 $("#button-capture").click(function() {
-	if (confirm('<?php echo $text_confirm_capture; ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: {'order_id' : '<?php echo $order_id; ?>', 'amount' : $('#capture-amount').val() },
-			url: 'index.php?route=payment/globalpay_remote/capture&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#button-capture').hide();
-				$('#capture-amount').hide();
-				$('#img-loading-capture').show();
-				$('#globalpay-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">' + data.data.date_added + '</td>';
-					html += '<td class="left">payment</td>';
-					html += '<td class="left">' + data.data.amount + '</td>';
-					html += '</tr>';
+  if (confirm('<?php echo $text_confirm_capture; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: {'order_id' : '<?php echo $order_id; ?>', 'amount' : $('#capture-amount').val() },
+      url: 'index.php?route=payment/globalpay_remote/capture&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#button-capture').hide();
+        $('#capture-amount').hide();
+        $('#img-loading-capture').show();
+        $('#globalpay-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">payment</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
+          html += '</tr>';
 
-					$('#globalpay-transactions').append(html);
-					$('#globalpay-total-captured').text(data.data.total_formatted);
+          $('#globalpay-transactions').append(html);
+          $('#globalpay-total-captured').text(data.data.total_formatted);
 
-					if (data.data.capture_status == 1) {
-						$('#button-void').hide();
-						$('.capture-text').text('<?php echo $text_yes; ?>');
-					} else {
-						$('#button-capture').show();
-						$('#capture-amount').val(0.00);
+          if (data.data.capture_status == 1) {
+            $('#button-void').hide();
+            $('.capture-text').text('<?php echo $text_yes; ?>');
+          } else {
+            $('#button-capture').show();
+            $('#capture-amount').val(0.00);
 
-						<?php if ($auto_settle == 2) { ?>
-							$('#capture-amount').show();
-						<?php } ?>
-					}
+            <?php if ($auto_settle == 2) { ?>
+              $('#capture-amount').show();
+            <?php } ?>
+          }
 
-					if (data.msg != '') {
-						$('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
-					}
+          if (data.msg != '') {
+            $('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
+          }
 
-					$('#button-rebate').show();
-					$('#rebate-amount').val(0.00).show();
-				}
+          $('#button-rebate').show();
+          $('#rebate-amount').val(0.00).show();
+        }
 
-				if (data.error == true) {
-					alert(data.msg);
-					$('#button-capture').show();
-					$('#capture-amount').show();
-				}
+        if (data.error == true) {
+          alert(data.msg);
+          $('#button-capture').show();
+          $('#capture-amount').show();
+        }
 
-				$('#img-loading-capture').hide();
-			}
-		});
-	}
+        $('#img-loading-capture').hide();
+      }
+    });
+  }
 });
 
 $("#button-rebate").click(function() {
-	if (confirm('<?php echo $text_confirm_rebate; ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: {'order_id': '<?php echo $order_id; ?>', 'amount' : $('#rebate-amount').val() },
-			url: 'index.php?route=payment/globalpay_remote/rebate&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#button-rebate').hide();
-				$('#rebate-amount').hide();
-				$('#img-loading-rebate').show();
-				$('#globalpay-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">' + data.data.date_added + '</td>';
-					html += '<td class="left">rebate</td>';
-					html += '<td class="left">' + data.data.amount + '</td>';
-					html += '</tr>';
+  if (confirm('<?php echo $text_confirm_rebate; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: {'order_id': '<?php echo $order_id; ?>', 'amount' : $('#rebate-amount').val() },
+      url: 'index.php?route=payment/globalpay_remote/rebate&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#button-rebate').hide();
+        $('#rebate-amount').hide();
+        $('#img-loading-rebate').show();
+        $('#globalpay-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">rebate</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
+          html += '</tr>';
 
-					$('#globalpay-transactions').append(html);
-					$('#globalpay-total-captured').text(data.data.total_captured);
+          $('#globalpay-transactions').append(html);
+          $('#globalpay-total-captured').text(data.data.total_captured);
 
-					if (data.data.rebate_status == 1) {
-						$('.rebate_text').text('<?php echo $text_yes; ?>');
-					} else {
-						$('#button-rebate').show();
-						$('#rebate-amount').val(0.00).show();
-					}
+          if (data.data.rebate_status == 1) {
+            $('.rebate_text').text('<?php echo $text_yes; ?>');
+          } else {
+            $('#button-rebate').show();
+            $('#rebate-amount').val(0.00).show();
+          }
 
-					if (data.msg != '') {
-						$('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
-					}
-				}
+          if (data.msg != '') {
+            $('#globalpay-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
 
-				if (data.error == true) {
-					alert(data.msg);
-					$('#button-rebate').show();
-				}
+        if (data.error == true) {
+          alert(data.msg);
+          $('#button-rebate').show();
+        }
 
-				$('#img-loading-rebate').hide();
-			}
-		});
-	}
+        $('#img-loading-rebate').hide();
+      }
+    });
+  }
 });
 //--></script>

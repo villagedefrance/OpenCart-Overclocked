@@ -1,9 +1,9 @@
 <?php echo $header; ?>
 <div id="content">
   <div class="breadcrumb">
-  <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-  <?php } ?>
+    <?php } ?>
   </div>
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
@@ -31,14 +31,14 @@
             <td><span class="required">*</span>&nbsp;<label for="input-merchant-id"><?php echo $entry_merchant_id; ?></label></td>
             <td><input type="text" name="firstdata_merchant_id" value="<?php echo $firstdata_merchant_id; ?>" id="input-merchant-id" />
               <?php if ($error_merchant_id) { ?>
-                <span class="error"><?php echo $error_merchant_id; ?></span>
+              <span class="error"><?php echo $error_merchant_id; ?></span>
               <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-secret"><?php echo $entry_secret; ?></label></td>
             <td><input type="text" name="firstdata_secret" value="<?php echo $firstdata_secret; ?>" id="input-secret" />
               <?php if ($error_secret) { ?>
-                <span class="error"><?php echo $error_secret; ?></span>
+              <span class="error"><?php echo $error_secret; ?></span>
               <?php } ?></td>
           </tr>
           <tr>
@@ -59,9 +59,9 @@
                 <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $firstdata_geo_zone_id) { ?>
-                  <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
                 <?php } else { ?>
-                  <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
+                <option value="<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></option>
                 <?php } ?>
               <?php } ?>
             </select></td>
@@ -111,9 +111,9 @@
             <td><select name="firstdata_order_status_success_settled_id" id="input-order-status-success-settled">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_success_settled_id) { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
               <?php } else { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -123,9 +123,9 @@
             <td><select name="firstdata_order_status_success_unsettled_id" id="input-order-status-success-unsettled">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_success_unsettled_id) { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
               <?php } else { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -135,9 +135,9 @@
             <td><select name="firstdata_order_status_decline_id" id="input-order-status-decline">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_decline_id) { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
               <?php } else { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -147,9 +147,9 @@
             <td><select name="firstdata_order_status_void_id" id="input-order-status-void">
               <?php foreach ($order_statuses as $order_status) { ?>
               <?php if ($order_status['order_status_id'] == $firstdata_order_status_void_id) { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
               <?php } else { ?>
-                <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+              <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
               <?php } ?>
               <?php } ?>
             </select></td>
@@ -161,19 +161,21 @@
           <tr>
             <td><label for="input-auto-settle"><?php echo $entry_auto_settle; ?><br /><span class="help"><?php echo $help_settle; ?></span></label>
             <td><select name="firstdata_auto_settle" id="input-auto-settle">
-              <option value="0" <?php echo ($firstdata_auto_settle == 0 ? ' selected' : ''); ?>><?php echo $text_settle_delayed; ?></option>
-              <option value="1" <?php echo ($firstdata_auto_settle == 1 ? ' selected' : ''); ?>><?php echo $text_settle_auto; ?></option>
+              <option value="0"
+          <?php echo ($firstdata_auto_settle == 0 ? ' selected' : ''); ?>><?php echo $text_settle_delayed; ?></option>
+              <option value="1"
+          <?php echo ($firstdata_auto_settle == 1 ? ' selected' : ''); ?>><?php echo $text_settle_auto; ?></option>
             </select></td>
           </tr>
           <tr>
             <td><label for="input-card-store"><?php echo $entry_enable_card_store; ?></label>
             <td><select name="firstdata_card_storage" id="input-card-store">
               <?php if ($firstdata_card_storage) { ?>
-                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                <option value="0"><?php echo $text_disabled; ?></option>
+              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+              <option value="0"><?php echo $text_disabled; ?></option>
               <?php } else { ?>
-                <option value="1"><?php echo $text_enabled; ?></option>
-                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <option value="1"><?php echo $text_enabled; ?></option>
+              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -185,14 +187,14 @@
             <td><span class="required">*</span>&nbsp;<label for="input-live-url"><?php echo $entry_live_url; ?></label></td>
             <td><input type="text" name="firstdata_live_url" value="<?php echo $firstdata_live_url; ?>" id="input-live-url" size="80" />
               <?php if ($error_live_url) { ?>
-                <span class="error"><?php echo $error_live_url; ?></span>
+              <span class="error"><?php echo $error_live_url; ?></span>
               <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-demo-url"><?php echo $entry_demo_url; ?></label></td>
             <td><input type="text" name="firstdata_demo_url" value="<?php echo $firstdata_demo_url; ?>" id="input-demo-url" size="80" />
               <?php if ($error_demo_url) { ?>
-                <span class="error"><?php echo $error_demo_url; ?></span>
+              <span class="error"><?php echo $error_demo_url; ?></span>
               <?php } ?></td>
           </tr>
           <tr>

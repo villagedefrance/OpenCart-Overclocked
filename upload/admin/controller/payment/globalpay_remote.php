@@ -274,13 +274,11 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 
 	public function install() {
 		$this->load->model('payment/globalpay_remote');
-
 		$this->model_payment_globalpay_remote->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/globalpay_remote');
-
 		$this->model_payment_globalpay_remote->uninstall();
 	}
 
@@ -323,7 +321,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$this->data['text_confirm_rebate'] = $this->language->get('text_confirm_rebate');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
-
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/globalpay_remote_order.tpl';
@@ -339,7 +336,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 
 	public function void() {
 		$this->language->load('payment/globalpay_remote');
-
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '') {
@@ -363,7 +359,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($void_response->message) && !empty($void_response->message) ? (string)$void_response->message : 'Unable to void';
 			}
-
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
@@ -375,7 +370,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 
 	public function capture() {
 		$this->language->load('payment/globalpay_remote');
-
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && $this->request->post['order_id'] != '' && isset($this->request->post['amount']) && $this->request->post['amount'] > 0) {
@@ -415,7 +409,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($capture_response->message) && !empty($capture_response->message) ? (string)$capture_response->message : 'Unable to capture';
 			}
-
 		} else {
 			$json['error'] = true;
 			$json['msg'] = $this->language->get('error_data_missing');
@@ -427,7 +420,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 
 	public function rebate() {
 		$this->language->load('payment/globalpay_remote');
-
 		$json = array();
 
 		if (isset($this->request->post['order_id']) && !empty($this->request->post['order_id'])) {
@@ -466,7 +458,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response->message) && !empty($rebate_response->message) ? (string)$rebate_response->message : 'Unable to rebate';
 			}
-
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';

@@ -59,54 +59,53 @@
 </table>
 
 <script type="text/javascript"><!--
-$('#btn-refund').click(function() {
-	if ($('#worldpay-online-refund-amount').val() != '' && confirm('<?php echo $text_confirm_refund; ?>')) {
-		$.ajax({
-			type:'POST',
-			dataType: 'json',
-			data: {
-				'order_id': <?php echo $order_id; ?>,
-				'amount': $('#worldpay-online-refund-amount').val()
-			},
-			url: 'index.php?route=payment/worldpay_online/refund&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#btn-refund').hide();
-				$('#worldpay-online-refund-amount').hide();
-				$('#img-loading-refund').show();
-				$('#worldpay-online-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">' + data.data.created + '</td>';
-					html += '<td class="left">refund</td>';
-					html += '<td class="left">' + data.data.amount + '</td>';
-					html += '</tr>';
+$('#btn-refund').click(function () {
+  if ($('#worldpay-online-refund-amount').val() != '' && confirm('<?php echo $text_confirm_refund; ?>')) {
+    $.ajax({
+      type:'POST',
+      dataType: 'json',
+      data: {
+        'order_id': <?php echo $order_id; ?>,
+        'amount': $('#worldpay-online-refund-amount').val()
+      },
+      url: 'index.php?route=payment/worldpay_online/refund&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#btn-refund').hide();
+        $('#worldpay-online-refund-amount').hide();
+        $('#img-loading-refund').show();
+        $('#worldpay-online-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">' + data.data.created + '</td>';
+          html += '<td class="left">refund</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
+          html += '</tr>';
 
-					$('#worldpay-online-transactions').append(html);
-					$('#worldpay-online-total-released').text(data.data.total_released);
+          $('#worldpay-online-transactions').append(html);
+          $('#worldpay-online-total-released').text(data.data.total_released);
 
-					if (data.data.refund_status == 1) {
-						$('.refund_text').text('<?php echo $text_yes; ?>');
-					} else {
-						$('#btn_refund').show();
-						$('#refund_amount').val(0.00).show();
-					}
+          if (data.data.refund_status == 1) {
+            $('.refund_text').text('<?php echo $text_yes; ?>');
+          } else {
+            $('#btn_refund').show();
+            $('#refund_amount').val(0.00).show();
+          }
 
-					if (data.msg != '') {
-						$('#worldpay-online-transaction-msg').empty().html(data.msg).fadeIn();
-					}
-				}
+          if (data.msg != '') {
+            $('#worldpay-online-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
+        if (data.error == true) {
+          alert(data.msg);
+          $('#btn-refund').show();
+        }
 
-				if (data.error == true) {
-					alert(data.msg);
-					$('#btn-refund').show();
-				}
-
-				$('#img-loading-refund').hide();
-			}
-		});
-	}
+        $('#img-loading-refund').hide();
+      }
+    });
+  }
 });
 //--></script>
