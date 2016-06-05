@@ -79,7 +79,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
 		// Piwik
-		$this->data['piwik'] = html_entity_decode($this->config->get('config_piwik_analytics'), ENT_QUOTES, 'UTF-8');
+		$this->data['piwik'] = $this->config->get('config_piwik_analytics');
 
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {

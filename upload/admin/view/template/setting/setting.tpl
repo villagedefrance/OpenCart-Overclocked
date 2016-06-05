@@ -1667,15 +1667,15 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_google_analytics; ?></td>
-            <td><textarea name="config_google_analytics" cols="50" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
+            <td><textarea name="config_google_analytics" cols="40" rows="10"><?php echo $config_google_analytics; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_alexa_analytics; ?></td>
-            <td><textarea name="config_alexa_analytics" cols="50" rows="10"><?php echo $config_alexa_analytics; ?></textarea></td>
+            <td><textarea name="config_alexa_analytics" cols="40" rows="10"><?php echo $config_alexa_analytics; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_piwik_analytics; ?></td>
-            <td><textarea name="config_piwik_analytics" cols="50" rows="10"><?php echo $config_piwik_analytics; ?></textarea></td>
+            <td><textarea name="config_piwik_analytics" cols="40" rows="10"><?php echo $config_piwik_analytics; ?></textarea></td>
           </tr>
         </table>
         <div>
