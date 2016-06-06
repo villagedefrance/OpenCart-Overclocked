@@ -1,13 +1,11 @@
 <?php
 // Heading
-$_['heading_title']                      = 'Worldpay Online';
-
-// Link
-$_['text_worldpay_online']               = '<a onclick="window.open(\'https://online.worldpay.com/signup/\');"><img src="view/image/payment/worldpay.png" alt="Worldpay Online" title="Worldpay Online" style="border:1px solid #EEEEEE;" /></a>';
+$_['heading_title']                      = 'Worldpay Online Payments';
 
 // Text
 $_['text_payment']                       = 'Payment';
-$_['text_success']                       = 'Success: You have modified payment<b>Worldpay Online</b> account details!';
+$_['text_success']                       = 'Success: You have modified <b>Worldpay Online Payments</b> account details!';
+$_['text_worldpay_online']               = '<a href="https://online.worldpay.com/signup/ee48b6e6-d3e3-42aa-a80e-cbee3f4f8b09" target="_blank"><img src="view/image/payment/worldpay.png" alt="Worldpay Online Payments" title="Worldpay Online Payments" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_test']                          = 'Test';
 $_['text_live']                          = 'Live';
 $_['text_authenticate']                  = 'Authenticate';
@@ -58,7 +56,7 @@ $_['tab_settings']                       = 'Settings';
 $_['tab_order_status']                   = 'Order Status';
 
 // Error
-$_['error_permission']                   = 'Warning: You do not have permission to modify payment <b>Worldpay Online</b> !';
+$_['error_permission']                   = 'Warning: You do not have permission to modify <b>Worldpay Online Payments</b> !';
 $_['error_service_key']                  = 'Service Key Required!';
 $_['error_client_key']                   = 'Client Key Required!';
 

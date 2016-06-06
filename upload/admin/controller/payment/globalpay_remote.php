@@ -352,7 +352,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$this->model_payment_globalpay_remote->updateVoidStatus($globalpay_order['globalpay_remote_order_id'], 1);
 
 				$json['msg'] = $this->language->get('text_void_ok');
-
 				$json['data'] = array();
 				$json['data']['date_added'] = date("Y-m-d H:i:s");
 				$json['error'] = false;
@@ -400,7 +399,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$this->model_payment_globalpay_remote->updateForRebate($globalpay_order['globalpay_remote_order_id'], $capture_response->pasref, $capture_response->orderid);
 
 				$json['data'] = array();
-
 				$json['data']['date_added'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = (double)$this->request->post['amount'];
 				$json['data']['capture_status'] = $capture_status;
@@ -450,7 +448,6 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				}
 
 				$json['data'] = array();
-
 				$json['data']['date_added'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = $this->request->post['amount'] * -1;
 				$json['data']['total_captured'] = (double)$total_captured;

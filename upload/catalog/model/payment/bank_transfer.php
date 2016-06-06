@@ -22,9 +22,10 @@ class ModelPaymentBankTransfer extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'bank_transfer',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('bank_transfer_sort_order')
+				'code'       => 'bank_transfer',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('bank_transfer_sort_order')
 			);
 		}
 

@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']          = 'BluePay Hosted Form';
+$_['heading_title']          = 'BluePay (Hosted Form)';
 
 // Link
 $_['text_bluepay_hosted']    = '<a onclick="window.open(\'http://www.bluepay.com/\');"><img src="view/image/payment/bluepay.png" alt="BluePay Hosted Form" title="BluePay Hosted Form" style="border:1px solid #EEEEEE;" /></a>';
@@ -62,7 +62,7 @@ $_['button_rebate']          = 'Rebate / refund';
 $_['button_void']            = 'Void';
 
 // Error
-$_['error_permission']       = 'Warning: You do not have permission to modify payment <b>BluePay (Hosted Form)</b>!';
+$_['error_permission']       = 'Warning: You do not have permission to modify payment <b>BluePay (Hosted Form)</b> !';
 $_['error_account_name']     = 'Account Name Required!';
 $_['error_account_id']       = 'Account ID Required!';
 $_['error_secret_key']       = 'Secret Key Required!';

@@ -134,20 +134,20 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('text_home'),
+			'href'    => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_payment'),
-			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('text_payment'),
+			'href'    => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('heading_title'),
+			'href'    => $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -350,7 +350,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 			$firstdata_order = $this->model_payment_firstdata_remote->getOrder($this->request->get['order_id']);
 
 			if (!empty($firstdata_order)) {
-				$this->language->load('payment/firstdata_remote');
+				$this->load->language('payment/firstdata_remote');
 
 				$firstdata_order['total_captured'] = $this->model_payment_firstdata_remote->getTotalCaptured($firstdata_order['firstdata_remote_order_id']);
 
@@ -396,7 +396,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 	}
 
 	public function void() {
-		$this->language->load('payment/firstdata_remote');
+		$this->load->language('payment/firstdata_remote');
 
 		$json = array();
 
@@ -415,7 +415,6 @@ class ControllerPaymentFirstdataRemote extends Controller {
 				$this->model_payment_firstdata_remote->updateVoidStatus($firstdata_order['firstdata_remote_order_id'], 1);
 
 				$json['msg'] = $this->language->get('text_void_ok');
-
 				$json['data'] = array();
 				$json['data']['column_date_added'] = date('Y-m-d H:i:s');
 				$json['error'] = false;
@@ -457,7 +456,6 @@ class ControllerPaymentFirstdataRemote extends Controller {
 				$capture_status = 1;
 
 				$json['msg'] = $this->language->get('text_capture_ok_order');
-
 				$json['data'] = array();
 				$json['data']['column_date_added'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = (float)$firstdata_order['total'];
