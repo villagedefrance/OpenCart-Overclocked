@@ -263,11 +263,13 @@ class ControllerPaymentFirstdata extends Controller {
 
 	public function install() {
 		$this->load->model('payment/firstdata');
+
 		$this->model_payment_firstdata->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/firstdata');
+
 		$this->model_payment_firstdata->uninstall();
 	}
 
@@ -344,15 +346,19 @@ class ControllerPaymentFirstdata extends Controller {
 				$this->data['text_transactions'] = $this->language->get('text_transactions');
 				$this->data['text_yes'] = $this->language->get('text_yes');
 				$this->data['text_no'] = $this->language->get('text_no');
+
 				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
 				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
+
 				$this->data['button_capture'] = $this->language->get('button_capture');
 				$this->data['button_void'] = $this->language->get('button_void');
+
 				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
 				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/firstdata_order.tpl';

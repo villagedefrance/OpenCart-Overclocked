@@ -21,8 +21,8 @@ class ControllerPaymentKlarnaAccount extends Controller {
 			}
 
 			$klarna_data = array(
-				'klarna_account_pclasses'	=> $this->pclasses,
-				'klarna_account_status'		=> $status
+				'klarna_account_pclasses' => $this->pclasses,
+				'klarna_account_status'   => $status
 			);
 
 			$this->model_setting_setting->editSetting('klarna_account', array_merge($this->request->post, $klarna_data));
@@ -91,20 +91,20 @@ class ControllerPaymentKlarnaAccount extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_payment'),
-			'href' 		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/klarna_account', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/klarna_account', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -115,33 +115,33 @@ class ControllerPaymentKlarnaAccount extends Controller {
 		$this->data['countries'] = array();
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_germany'),
-			'code' 	=> 'DEU'
+			'name'  => $this->language->get('text_germany'),
+			'code'  => 'DEU'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_netherlands'),
-			'code' 	=> 'NLD'
+			'name'  => $this->language->get('text_netherlands'),
+			'code'  => 'NLD'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_denmark'),
-			'code' 	=> 'DNK'
+			'name'  => $this->language->get('text_denmark'),
+			'code'  => 'DNK'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_sweden'),
-			'code' 	=> 'SWE'
+			'name'  => $this->language->get('text_sweden'),
+			'code'  => 'SWE'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_norway'),
-			'code' 	=> 'NOR'
+			'name'  => $this->language->get('text_norway'),
+			'code'  => 'NOR'
 		);
 
 		$this->data['countries'][] = array(
-			'name' 	=> $this->language->get('text_finland'),
-			'code' 	=> 'FIN'
+			'name'  => $this->language->get('text_finland'),
+			'code'  => 'FIN'
 		);
 
 		if (isset($this->request->post['klarna_account'])) {
@@ -186,34 +186,34 @@ class ControllerPaymentKlarnaAccount extends Controller {
 
 		$country = array(
 			'NOR' => array(
-				'currency' 	=> 1,
-				'country'  	=> 164,
-				'language' 	=> 97
+				'currency' => 1,
+				'country' => 164,
+				'language' => 97
 			),
 			'SWE' => array(
-				'currency' 	=> 0,
-				'country'  	=> 209,
-				'language' 	=> 138
+				'currency' => 0,
+				'country' => 209,
+				'language' => 138
 			),
 			'FIN' => array(
-				'currency' 	=> 2,
-				'country'  	=> 73,
-				'language' 	=> 101
+				'currency' => 2,
+				'country' => 73,
+				'language' => 101
 			),
 			'DNK' => array(
-				'currency' 	=> 3,
-				'country'  	=> 59,
-				'language' 	=> 27
+				'currency' => 3,
+				'country' => 59,
+				'language' => 27
 			),
 			'DEU' => array(
-				'currency' 	=> 2,
-				'country'  	=> 81,
-				'language' 	=> 28
+				'currency' => 2,
+				'country' => 81,
+				'language' => 28
 			),
 			'NLD' => array(
-				'currency' 	=> 2,
-				'country'  	=> 154,
-				'language' 	=> 101
+				'currency' => 2,
+				'country' => 154,
+				'language' => 101
 			)
 		);
 
@@ -272,7 +272,6 @@ class ControllerPaymentKlarnaAccount extends Controller {
 						$error_message = $xpath->query('//methodResponse/fault/value/struct/member/value/string')->item(0)->nodeValue;
 
 						$log->write(sprintf($this->language->get('error_pclass'), $key, $error_code, $error_message));
-
 						continue;
 					}
 
@@ -291,16 +290,16 @@ class ControllerPaymentKlarnaAccount extends Controller {
 						array_unshift($pclass, $klarna_account['merchant']);
 
 						$this->pclasses[$key][] = array(
-							'eid'          		=> intval($pclass[0]),
-							'id'           		=> intval($pclass[1]),
-							'description'  	=> $pclass[2],
-							'months'       	=> intval($pclass[3]),
-							'startfee'     	=> floatval($pclass[4]),
-							'invoicefee'   	=> floatval($pclass[5]),
-							'interestrate' 	=> floatval($pclass[6]),
-							'minamount'  	=> floatval($pclass[7]),
-							'country'      	=> intval($pclass[8]),
-							'type'         	=> intval($pclass[9])
+							'eid'          => intval($pclass[0]),
+							'id'           => intval($pclass[1]),
+							'description'  => $pclass[2],
+							'months'       => intval($pclass[3]),
+							'startfee'     => floatval($pclass[4]),
+							'invoicefee'   => floatval($pclass[5]),
+							'interestrate' => floatval($pclass[6]),
+							'minamount'    => floatval($pclass[7]),
+							'country'      => intval($pclass[8]),
+							'type'         => intval($pclass[9])
 						);
 					}
 

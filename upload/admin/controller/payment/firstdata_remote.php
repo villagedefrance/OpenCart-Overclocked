@@ -134,20 +134,20 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'    => $this->language->get('text_home'),
-			'href'    => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'    => $this->language->get('text_payment'),
-			'href'    => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'    => $this->language->get('heading_title'),
-			'href'    => $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/firstdata_remote', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -335,11 +335,13 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 	public function install() {
 		$this->load->model('payment/firstdata_remote');
+
 		$this->model_payment_firstdata_remote->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/firstdata_remote');
+
 		$this->model_payment_firstdata_remote->uninstall();
 	}
 
@@ -369,16 +371,18 @@ class ControllerPaymentFirstdataRemote extends Controller {
 				$this->data['text_transactions'] = $this->language->get('text_transactions');
 				$this->data['text_yes'] = $this->language->get('text_yes');
 				$this->data['text_no'] = $this->language->get('text_no');
+
 				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
 				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
-				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
-				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
-				$this->data['text_confirm_refund'] = $this->language->get('text_confirm_refund');
 
 				$this->data['button_capture'] = $this->language->get('button_capture');
 				$this->data['button_refund'] = $this->language->get('button_refund');
 				$this->data['button_void'] = $this->language->get('button_void');
+
+				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
+				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
+				$this->data['text_confirm_refund'] = $this->language->get('text_confirm_refund');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
 
@@ -396,7 +400,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 	}
 
 	public function void() {
-		$this->load->language('payment/firstdata_remote');
+		$this->language->load('payment/firstdata_remote');
 
 		$json = array();
 
@@ -411,7 +415,6 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 			if (strtoupper($void_response['transaction_result']) == 'APPROVED') {
 				$this->model_payment_firstdata_remote->addTransaction($firstdata_order['firstdata_remote_order_id'], 'void', 0.00);
-
 				$this->model_payment_firstdata_remote->updateVoidStatus($firstdata_order['firstdata_remote_order_id'], 1);
 
 				$json['msg'] = $this->language->get('text_void_ok');
@@ -499,6 +502,7 @@ class ControllerPaymentFirstdataRemote extends Controller {
 
 				if ($total_captured <= 0 && $firstdata_order['capture_status'] == 1) {
 					$this->model_payment_firstdata_remote->updateRefundStatus($firstdata_order['firstdata_remote_order_id'], 1);
+
 					$refund_status = 1;
 					$json['msg'] = $this->language->get('text_refund_ok_order');
 				} else {
