@@ -21,30 +21,30 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_login; ?></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-login"><?php echo $entry_login; ?></label></td>
             <td><?php if ($error_login) { ?>
-              <input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" size="40" class="input-error" />
+              <input type="text" name="authorizenet_aim_login" id="input-login" value="<?php echo $authorizenet_aim_login; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_login; ?></span>
             <?php } else { ?>
-              <input type="text" name="authorizenet_aim_login" value="<?php echo $authorizenet_aim_login; ?>" size="40" />
+              <input type="text" name="authorizenet_aim_login" id="input-login" value="<?php echo $authorizenet_aim_login; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_key; ?></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-key"><?php echo $entry_key; ?></label></td>
             <td><?php if ($error_key) { ?>
-              <input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" size="40" class="input-error" />
+              <input type="text" name="authorizenet_aim_key" id="input-key" value="<?php echo $authorizenet_aim_key; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_key; ?></span>
             <?php } else { ?>
-              <input type="text" name="authorizenet_aim_key" value="<?php echo $authorizenet_aim_key; ?>" size="40" />
+              <input type="text" name="authorizenet_aim_key" id="input-key" value="<?php echo $authorizenet_aim_key; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_hash; ?></td>
-            <td><input type="text" name="authorizenet_aim_hash" value="<?php echo $authorizenet_aim_hash; ?>" size="40" /></td>
+            <td><label for="input-hash"><?php echo $entry_hash; ?></label></td>
+            <td><input type="text" name="authorizenet_aim_hash" id="input-hash" value="<?php echo $authorizenet_aim_hash; ?>" size="40" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_server; ?></td>
-            <td><select name="authorizenet_aim_server">
+            <td><label for="input-server"><?php echo $entry_server; ?></label></td>
+            <td><select name="authorizenet_aim_server" id="input-server">
               <?php if ($authorizenet_aim_server == 'live') { ?>
                 <option value="live" selected="selected"><?php echo $text_live; ?></option>
               <?php } else { ?>
@@ -58,8 +58,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_mode; ?></td>
-            <td><select name="authorizenet_aim_mode">
+            <td><label for="input-mode"><?php echo $entry_mode; ?></label></td>
+            <td><select name="authorizenet_aim_mode" id="input-mode">
               <?php if ($authorizenet_aim_mode == 'live') { ?>
                 <option value="live" selected="selected"><?php echo $text_live; ?></option>
               <?php } else { ?>
@@ -73,8 +73,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_method; ?></td>
-            <td><select name="authorizenet_aim_method">
+            <td><label for="input-method"><?php echo $entry_method; ?></label></td>
+            <td><select name="authorizenet_aim_method" id="input-method">
               <?php if ($authorizenet_aim_method == 'authorization') { ?>
                 <option value="authorization" selected="selected"><?php echo $text_authorization; ?></option>
               <?php } else { ?>
@@ -88,12 +88,16 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_total; ?></td>
-            <td><input type="text" name="authorizenet_aim_total" value="<?php echo $authorizenet_aim_total; ?>" /></td>
+            <td><label for="input-total"><?php echo $entry_total; ?><br /><span class="help"><?php echo $help_total; ?></span></label></td>
+            <td><input type="text" name="authorizenet_aim_total" id="input-total" value="<?php echo !empty($authorizenet_aim_total) ? $authorizenet_aim_total : '0.00'; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_order_status; ?></td>
-            <td><select name="authorizenet_aim_order_status_id">
+            <td><label for="input-total-max"><?php echo $entry_total_max; ?><br /><span class="help"><?php echo $help_total_max; ?></span></label></td>
+            <td><input type="text" name="authorizenet_aim_total_max" id="input-total-max" value="<?php echo !empty($authorizenet_aim_total_max) ? $authorizenet_aim_total_max : '0.00'; ?>" /></td>
+          </tr>
+          <tr>
+            <td><label for="input-order-status"><?php echo $entry_order_status; ?></label></td>
+            <td><select name="authorizenet_aim_order_status_id" id="input-order-status">
               <?php foreach ($order_statuses as $order_status) { ?>
                 <?php if ($order_status['order_status_id'] == $authorizenet_aim_order_status_id) { ?>
                   <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
@@ -104,8 +108,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_geo_zone; ?></td>
-            <td><select name="authorizenet_aim_geo_zone_id">
+            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
+            <td><select name="authorizenet_aim_geo_zone_id" id="input-geo-zone">
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $authorizenet_aim_geo_zone_id) { ?>
@@ -117,8 +121,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="authorizenet_aim_status">
+            <td><label for="input-status"><?php echo $entry_status; ?></label></td>
+            <td><select name="authorizenet_aim_status" id="input-status">
               <?php if ($authorizenet_aim_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
@@ -129,8 +133,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="authorizenet_aim_sort_order" value="<?php echo $authorizenet_aim_sort_order; ?>" size="1" /></td>
+            <td><label for="input-sort-order"><?php echo $entry_sort_order; ?></label></td>
+            <td><input type="text" name="authorizenet_aim_sort_order" id="input-sort-order" value="<?php echo $authorizenet_aim_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </form>

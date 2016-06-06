@@ -38,10 +38,14 @@ class ControllerPaymentAuthorizenetAim extends Controller {
 		$this->data['entry_mode'] = $this->language->get('entry_mode');
 		$this->data['entry_method'] = $this->language->get('entry_method');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -129,6 +133,12 @@ class ControllerPaymentAuthorizenetAim extends Controller {
 			$this->data['authorizenet_aim_total'] = $this->request->post['authorizenet_aim_total'];
 		} else {
 			$this->data['authorizenet_aim_total'] = $this->config->get('authorizenet_aim_total');
+		}
+
+		if (isset($this->request->post['authorizenet_aim_total_max'])) {
+			$this->data['authorizenet_aim_total_max'] = $this->request->post['authorizenet_aim_total_max'];
+		} else {
+			$this->data['authorizenet_aim_total_max'] = $this->config->get('authorizenet_aim_total_max');
 		}
 
 		if (isset($this->request->post['authorizenet_aim_order_status_id'])) {
