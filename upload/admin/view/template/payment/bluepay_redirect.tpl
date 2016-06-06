@@ -22,19 +22,21 @@
         <table class="form">
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-vendor"><?php echo $entry_vendor; ?></label></td>
-            <td><input type="text" name="bluepay_redirect_account_id" value="<?php echo $bluepay_redirect_account_id; ?>" id="input-vendor" />
-              <?php if ($error_account_id) { ?>
-                <span class="error"><?php echo $error_account_id; ?></span>
-              <?php } ?>
-            </td>
+            <td><?php if ($error_account_id) { ?>
+              <input type="text" name="bluepay_redirect_account_id" value="<?php echo $bluepay_redirect_account_id; ?>" id="input-account-id" class="input-error" />
+              <span class="error"><?php echo $error_account_id; ?></span>
+            <?php } else { ?>
+              <input type="text" name="bluepay_redirect_account_id" value="<?php echo $bluepay_redirect_account_id; ?>" id="input-account-id" />
+            <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="bluepay_redirect_secret_key"><?php echo $entry_secret_key; ?></label></td>
-            <td><input type="text" name="bluepay_redirect_secret_key" value="<?php echo $bluepay_redirect_secret_key; ?>" id="bluepay_redirect_secret_key" />
-              <?php if ($error_secret_key) { ?>
-                <span class="error"><?php echo $error_secret_key; ?></span>
-              <?php } ?>
-            </td>
+            <td><span class="required">*</span>&nbsp;<label for="input-secret-key"><?php echo $entry_secret_key; ?></label></td>
+            <td><?php if ($error_secret_key) { ?>
+              <input type="text" name="bluepay_redirect_secret_key" value="<?php echo $bluepay_redirect_secret_key; ?>" id="input-secret-key" class="input-error" />
+              <span class="error"><?php echo $error_secret_key; ?></span>
+            <?php } else { ?>
+              <input type="text" name="bluepay_redirect_secret_key" value="<?php echo $bluepay_redirect_secret_key; ?>" id="input-secret-key" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><label for="input-test"><?php echo $entry_test; ?></label></td>

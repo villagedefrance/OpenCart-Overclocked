@@ -1,9 +1,7 @@
 <?php echo $header; ?>
 <div id="content">
   <div class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
-    <?php } ?>
   </div>
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
@@ -31,7 +29,7 @@
             <td><span class="required">*</span>&nbsp;<label for="input-merchant-id"><?php echo $entry_merchant_id; ?></label></td>
             <td><?php if ($error_merchant_id) { ?>
               <input type="text" name="firstdata_merchant_id" value="<?php echo $firstdata_merchant_id; ?>" id="input-merchant-id" class="input-error" />
-              <span class="error"><?php echo $error_merchant_id; ?></span>
+                <span class="error"><?php echo $error_merchant_id; ?></span>
             <?php } else { ?>
               <input type="text" name="firstdata_merchant_id" value="<?php echo $firstdata_merchant_id; ?>" id="input-merchant-id" />
             <?php } ?></td>
@@ -40,7 +38,7 @@
             <td><span class="required">*</span>&nbsp;<label for="input-secret"><?php echo $entry_secret; ?></label></td>
             <td><?php if ($error_secret) { ?>
               <input type="text" name="firstdata_secret" value="<?php echo $firstdata_secret; ?>" id="input-secret" class="input-error" />
-              <span class="error"><?php echo $error_secret; ?></span>
+                <span class="error"><?php echo $error_secret; ?></span>
             <?php } else { ?>
               <input type="text" name="firstdata_secret" value="<?php echo $firstdata_secret; ?>" id="input-secret" />
             <?php } ?></td>
@@ -58,7 +56,6 @@
             </select></td>
           </tr>
           <tr>
-            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
             <td><select name="firstdata_geo_zone_id" id="input-geo-zone">
                 <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
@@ -191,7 +188,7 @@
             <td><span class="required">*</span>&nbsp;<label for="input-live-url"><?php echo $entry_live_url; ?></label></td>
             <td><?php if ($error_live_url) { ?>
               <input type="text" name="firstdata_live_url" value="<?php echo $firstdata_live_url; ?>" id="input-live-url" size="80" class="input-error" />
-              <span class="error"><?php echo $error_live_url; ?></span>
+                <span class="error"><?php echo $error_live_url; ?></span>
             <?php } else { ?>
               <input type="text" name="firstdata_live_url" value="<?php echo $firstdata_live_url; ?>" id="input-live-url" size="80" />
             <?php } ?></td>
@@ -200,7 +197,7 @@
             <td><span class="required">*</span>&nbsp;<label for="input-demo-url"><?php echo $entry_demo_url; ?></label></td>
             <td><?php if ($error_demo_url) { ?>
               <input type="text" name="firstdata_demo_url" value="<?php echo $firstdata_demo_url; ?>" id="input-demo-url" size="80" class="input-error" />
-              <span class="error"><?php echo $error_demo_url; ?></span>
+                <span class="error"><?php echo $error_demo_url; ?></span>
             <?php } else { ?>
               <input type="text" name="firstdata_demo_url" value="<?php echo $firstdata_demo_url; ?>" id="input-demo-url" size="80" />
             <?php } ?></td>

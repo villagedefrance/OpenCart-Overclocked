@@ -22,9 +22,10 @@ class ModelPaymentCheque extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'cheque',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('cheque_sort_order')
+				'code'       => 'cheque',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('cheque_sort_order')
 			);
 		}
 

@@ -22,10 +22,10 @@ class ModelPaymentBluepayHosted extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code' 		=> 'bluepay_hosted',
-				'title' 			=> $this->language->get('text_title'),
-				'terms' 		=> '',
-				'sort_order'	=> $this->config->get('bluepay_hosted_sort_order')
+				'code'    => 'bluepay_hosted',
+				'title'       => $this->language->get('text_title'),
+				'terms'     => '',
+				'sort_order'  => $this->config->get('bluepay_hosted_sort_order')
 			);
 		}
 

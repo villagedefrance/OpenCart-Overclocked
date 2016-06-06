@@ -23,7 +23,6 @@ class ControllerPaymentBluePayHosted extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_edit'] = $this->language->get('text_edit');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
@@ -88,20 +87,20 @@ class ControllerPaymentBluePayHosted extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('text_home'),
+			'href'    => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_payment'),
-			'href'		=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('text_payment'),
+			'href'    => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('payment/bluepay_hosted', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'    => $this->language->get('heading_title'),
+			'href'    => $this->url->link('payment/bluepay_hosted', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
