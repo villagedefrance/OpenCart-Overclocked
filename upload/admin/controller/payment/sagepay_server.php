@@ -202,11 +202,13 @@ class ControllerPaymentSagepayServer extends Controller {
 
 	public function install() {
 		$this->load->model('payment/sagepay_server');
+
 		$this->model_payment_sagepay_server->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/sagepay_server');
+
 		$this->model_payment_sagepay_server->uninstall();
 	}
 
@@ -238,17 +240,21 @@ class ControllerPaymentSagepayServer extends Controller {
 				$this->data['text_transactions'] = $this->language->get('text_transactions');
 				$this->data['text_yes'] = $this->language->get('text_yes');
 				$this->data['text_no'] = $this->language->get('text_no');
+
 				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
 				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
+
 				$this->data['button_release'] = $this->language->get('button_release');
 				$this->data['button_rebate'] = $this->language->get('button_rebate');
 				$this->data['button_void'] = $this->language->get('button_void');
+
 				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
 				$this->data['text_confirm_release'] = $this->language->get('text_confirm_release');
 				$this->data['text_confirm_rebate'] = $this->language->get('text_confirm_rebate');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/sagepay_server_order.tpl';
@@ -369,10 +375,13 @@ class ControllerPaymentSagepayServer extends Controller {
 
 				if ($total_released <= 0 && $sagepay_server_order['release_status'] == 1) {
 					$this->model_payment_sagepay_server->updateRebateStatus($sagepay_server_order['sagepay_server_order_id'], 1);
+
 					$rebate_status = 1;
+
 					$json['msg'] = $this->language->get('text_rebate_ok_order');
 				} else {
 					$rebate_status = 0;
+
 					$json['msg'] = $this->language->get('text_rebate_ok');
 				}
 

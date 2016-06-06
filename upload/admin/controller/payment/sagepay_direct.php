@@ -204,11 +204,13 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 	public function install() {
 		$this->load->model('payment/sagepay_direct');
+
 		$this->model_payment_sagepay_direct->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/sagepay_direct');
+
 		$this->model_payment_sagepay_direct->uninstall();
 	}
 
@@ -251,6 +253,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 				$this->data['text_confirm_rebate'] = $this->language->get('text_confirm_rebate');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/sagepay_direct_order.tpl';
@@ -390,7 +393,9 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 				if ($total_released <= 0 && $sagepay_direct_order['release_status'] == 1) {
 					$this->model_payment_sagepay_direct->updateRebateStatus($sagepay_direct_order['sagepay_direct_order_id'], 1);
+
 					$rebate_status = 1;
+
 					$json['msg'] = $this->language->get('text_rebate_ok_order');
 
 					$this->load->model('sale/order');
@@ -403,6 +408,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 					$this->model_sale_order->addOrderHistory($this->request->post['order_id'], $history);
 				} else {
 					$rebate_status = 0;
+
 					$json['msg'] = $this->language->get('text_rebate_ok');
 				}
 

@@ -87,20 +87,20 @@ class ControllerPaymentBluePayHosted extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'    => $this->language->get('text_home'),
-			'href'    => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'    => $this->language->get('text_payment'),
-			'href'    => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'    => $this->language->get('heading_title'),
-			'href'    => $this->url->link('payment/bluepay_hosted', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/bluepay_hosted', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -249,12 +249,15 @@ class ControllerPaymentBluePayHosted extends Controller {
 				$this->data['text_transactions'] = $this->language->get('text_transactions');
 				$this->data['text_yes'] = $this->language->get('text_yes');
 				$this->data['text_no'] = $this->language->get('text_no');
+
 				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
 				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
+
 				$this->data['button_release'] = $this->language->get('button_release');
 				$this->data['button_rebate'] = $this->language->get('button_rebate');
 				$this->data['button_void'] = $this->language->get('button_void');
+
 				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
 				$this->data['text_confirm_release'] = $this->language->get('text_confirm_release');
 				$this->data['text_confirm_rebate'] = $this->language->get('text_confirm_rebate');
@@ -326,13 +329,13 @@ class ControllerPaymentBluePayHosted extends Controller {
 
 			if ($release_response['Result'] == 'APPROVED') {
 				$this->model_payment_bluepay_hosted->addTransaction($bluepay_hosted_order['bluepay_hosted_order_id'], 'payment', $this->request->post['amount']);
-
 				$this->model_payment_bluepay_hosted->updateTransactionId($bluepay_hosted_order['bluepay_hosted_order_id'], $release_response['RRNO']);
 
 				$total_released = $this->model_payment_bluepay_hosted->getTotalReleased($bluepay_hosted_order['bluepay_hosted_order_id']);
 
 				if ($total_released >= $bluepay_hosted_order['total']) {
 					$this->model_payment_bluepay_hosted->updateReleaseStatus($bluepay_hosted_order['bluepay_hosted_order_id'], 1);
+
 					$release_status = 1;
 					$json['msg'] = $this->language->get('text_release_ok_order');
 				} else {
@@ -382,6 +385,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 
 				if ($total_released <= 0 && $bluepay_hosted_order['release_status'] == 1) {
 					$this->model_payment_bluepay_hosted->updateRebateStatus($bluepay_hosted_order['bluepay_hosted_order_id'], 1);
+
 					$rebate_status = 1;
 					$json['msg'] = $this->language->get('text_rebate_ok_order');
 				} else {
@@ -427,7 +431,11 @@ class ControllerPaymentBluePayHosted extends Controller {
 			$this->error['secret_key'] = $this->language->get('error_secret_key');
 		}
 
-		return !$this->error;
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function callback() {

@@ -25,6 +25,7 @@ class ControllerPaymentPPExpress extends Controller {
 			} else {
 				$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
 			}
+
 		} else {
 			$this->data['error'] = @$this->error;
 		}
@@ -93,20 +94,20 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_payment'),
-			'href'  	=> $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_payment'),
+			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -342,11 +343,11 @@ class ControllerPaymentPPExpress extends Controller {
 	}
 
 	public function resend() {
-		$json = array();
-
 		$this->language->load('payment/pp_express');
 
 		$this->load->model('payment/pp_express');
+
+		$json = array();
 
 		if (isset($this->request->get['paypal_order_transaction_id'])) {
 			$transaction = $this->model_payment_pp_express->getFailedTransaction($this->request->get['paypal_order_transaction_id']);
@@ -438,18 +439,18 @@ class ControllerPaymentPPExpress extends Controller {
 			$result = $this->model_payment_pp_express->call($call_data);
 
 			$transaction = array(
-				'paypal_order_id' 			=> $paypal_order['paypal_order_id'],
-				'transaction_id' 			=> '',
-				'parent_transaction_id' 	=> $paypal_order['authorization_id'],
-				'note' 						=> '',
-				'msgsubid' 					=> $call_data['MSGSUBID'],
-				'receipt_id' 					=> '',
-				'payment_type' 			=> '',
-				'payment_status' 		=> '',
-				'pending_reason' 			=> '',
-				'transaction_entity' 		=> 'payment',
-				'amount' 					=> '',
-				'debug_data' 				=> json_encode($result)
+				'paypal_order_id'       => $paypal_order['paypal_order_id'],
+				'transaction_id'        => '',
+				'parent_transaction_id' => $paypal_order['authorization_id'],
+				'note'                  => '',
+				'msgsubid'              => $call_data['MSGSUBID'],
+				'receipt_id'            => '',
+				'payment_type'          => '',
+				'payment_status'        => '',
+				'pending_reason'        => '',
+				'transaction_entity'    => 'payment',
+				'amount'                => '',
+				'debug_data'            => json_encode($result)
 			);
 
 			if ($result == false) {
@@ -496,18 +497,18 @@ class ControllerPaymentPPExpress extends Controller {
 
 				if ($this->request->post['complete'] == 1 && $transaction['remaining'] > 0) {
 					$transaction['void'] = array(
-						'paypal_order_id' 			=> $paypal_order['paypal_order_id'],
-						'transaction_id' 			=> '',
-						'parent_transaction_id' 	=> $paypal_order['authorization_id'],
-						'note' 						=> '',
-						'msgsubid' 					=> '',
-						'receipt_id' 					=> '',
-						'payment_type' 			=> '',
-						'payment_status' 		=> 'Void',
-						'pending_reason' 			=> '',
-						'amount' 					=> '',
-						'debug_data' 				=> 'Voided after capture',
-						'transaction_entity' 		=> 'auth'
+						'paypal_order_id'       => $paypal_order['paypal_order_id'],
+						'transaction_id'        => '',
+						'parent_transaction_id' => $paypal_order['authorization_id'],
+						'note'                  => '',
+						'msgsubid'              => '',
+						'receipt_id'            => '',
+						'payment_type'          => '',
+						'payment_status'        => 'Void',
+						'pending_reason'        => '',
+						'amount'                => '',
+						'debug_data'            => 'Voided after capture',
+						'transaction_entity'    => 'auth'
 					);
 
 					$this->model_payment_pp_express->addTransaction($transaction['void']);
@@ -551,18 +552,18 @@ class ControllerPaymentPPExpress extends Controller {
 
 			if ($result['ACK'] != 'Failure' && $result['ACK'] != 'FailureWithWarning') {
 				$transaction = array(
-					'paypal_order_id' 			=> $paypal_order['paypal_order_id'],
-					'transaction_id' 			=> '',
-					'parent_transaction_id' 	=> $paypal_order['authorization_id'],
-					'note' 						=> '',
-					'msgsubid' 					=> '',
-					'receipt_id' 					=> '',
-					'payment_type' 			=> 'void',
-					'payment_status' 		=> 'Void',
-					'pending_reason' 			=> '',
-					'transaction_entity' 		=> 'auth',
-					'amount' 					=> '',
-					'debug_data' 				=> json_encode($result)
+					'paypal_order_id'       => $paypal_order['paypal_order_id'],
+					'transaction_id'        => '',
+					'parent_transaction_id' => $paypal_order['authorization_id'],
+					'note'                  => '',
+					'msgsubid'              => '',
+					'receipt_id'            => '',
+					'payment_type'          => 'void',
+					'payment_status'        => 'Void',
+					'pending_reason'        => '',
+					'transaction_entity'    => 'auth',
+					'amount'                => '',
+					'debug_data'            => json_encode($result)
 				);
 
 				$this->model_payment_pp_express->addTransaction($transaction);
@@ -608,20 +609,20 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_pp_express'),
-			'href'  	=> $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_pp_express'),
+			'href'      => $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/pp_express/refund', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/pp_express/refund', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -678,6 +679,7 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->session->data['error'] = $this->language->get('error_partial_amt');
 			} else {
 				$order_id = $this->model_payment_pp_express->getOrderId($this->request->post['transaction_id']);
+
 				$paypal_order = $this->model_payment_pp_express->getOrder($order_id);
 
 				if ($paypal_order) {
@@ -701,23 +703,25 @@ class ControllerPaymentPPExpress extends Controller {
 					$result = $this->model_payment_pp_express->call($call_data);
 
 					$transaction = array(
-						'paypal_order_id' 			=> $paypal_order['paypal_order_id'],
-						'transaction_id' 			=> '',
-						'parent_transaction_id' 	=> $this->request->post['transaction_id'],
-						'note' 						=> $this->request->post['refund_message'],
-						'msgsubid' 					=> $call_data['MSGSUBID'],
-						'receipt_id' 					=> '',
-						'payment_type' 			=> '',
-						'payment_status' 		=> 'Refunded',
-						'transaction_entity' 		=> 'payment',
-						'pending_reason' 			=> '',
-						'amount' 					=> '-' . (isset($call_data['AMT']) ? $call_data['AMT'] : $current_transaction['amount']),
-						'debug_data' 				=> json_encode($result)
+						'paypal_order_id'       => $paypal_order['paypal_order_id'],
+						'transaction_id'        => '',
+						'parent_transaction_id' => $this->request->post['transaction_id'],
+						'note'                  => $this->request->post['refund_message'],
+						'msgsubid'              => $call_data['MSGSUBID'],
+						'receipt_id'            => '',
+						'payment_type'          => '',
+						'payment_status'        => 'Refunded',
+						'transaction_entity'    => 'payment',
+						'pending_reason'        => '',
+						'amount'                => '-' . (isset($call_data['AMT']) ? $call_data['AMT'] : $current_transaction['amount']),
+						'debug_data'            => json_encode($result)
 					);
 
 					if ($result == false) {
 						$transaction['payment_status'] = 'Failed';
+
 						$this->model_payment_pp_express->addTransaction($transaction, $call_data);
+
 						$this->redirect($this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $paypal_order['order_id'], 'SSL'));
 
 					} elseif ($result['ACK'] != 'Failure' && $result['ACK'] != 'FailureWithWarning') {
@@ -758,11 +762,13 @@ class ControllerPaymentPPExpress extends Controller {
 
 	public function install() {
 		$this->load->model('payment/pp_express');
+
 		$this->model_payment_pp_express->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/pp_express');
+
 		$this->model_payment_pp_express->uninstall();
 	}
 
@@ -924,20 +930,20 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_pp_express'),
-			'href'  	=> $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_pp_express'),
+			'href'      => $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/pp_express/search', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/pp_express/search', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -1153,20 +1159,20 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_pp_express'),
-			'href'  	=> $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_pp_express'),
+			'href'      => $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('payment/pp_express/viewTransaction', 'token=' . $this->session->data['token'] . '&transaction_id=' . $this->request->get['transaction_id'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('payment/pp_express/viewTransaction', 'token=' . $this->session->data['token'] . '&transaction_id=' . $this->request->get['transaction_id'], 'SSL'),
 			'separator' => ' :: '
 		);
 

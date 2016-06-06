@@ -273,11 +273,13 @@ class ControllerPaymentWorldpayOnline extends Controller {
 
 	public function install() {
 		$this->load->model('payment/worldpay_online');
+
 		$this->model_payment_worldpay_online->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/worldpay_online');
+
 		$this->model_payment_worldpay_online->uninstall();
 	}
 
@@ -308,17 +310,21 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				$this->data['text_yes'] = $this->language->get('text_yes');
 				$this->data['text_no'] = $this->language->get('text_no');
 				$this->data['text_no_results'] = $this->language->get('text_no_results');
+
 				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
 				$this->data['text_column_type'] = $this->language->get('text_column_type');
 				$this->data['text_column_date_added'] = $this->language->get('text_column_date_added');
+
 				$this->data['button_release'] = $this->language->get('button_release');
 				$this->data['button_refund'] = $this->language->get('button_refund');
 				$this->data['button_void'] = $this->language->get('button_void');
+
 				$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
 				$this->data['text_confirm_release'] = $this->language->get('text_confirm_release');
 				$this->data['text_confirm_refund'] = $this->language->get('text_confirm_refund');
 
 				$this->data['order_id'] = $this->request->get['order_id'];
+
 				$this->data['token'] = $this->request->get['token'];
 
 				$this->template = 'payment/worldpay_online_order.tpl';
@@ -355,6 +361,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				$this->model_payment_worldpay_online->updateRefundStatus($worldpay_online_order['worldpay_online_order_id'], 1);
 
 				$json['msg'] = $this->language->get('text_refund_ok_order');
+
 				$json['data'] = array();
 				$json['data']['created'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = $this->currency->format(($this->request->post['amount'] * -1), $worldpay_online_order['currency_code'], false);
@@ -366,11 +373,13 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				$json['error'] = true;
 				$json['msg'] = isset($refund_response['message']) && !empty($refund_response['message']) ? (string)$refund_response['message'] : 'Unable to refund';
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['msg'] = 'Missing data';
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
