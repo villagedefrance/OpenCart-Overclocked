@@ -355,7 +355,6 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				$this->model_payment_worldpay_online->updateRefundStatus($worldpay_online_order['worldpay_online_order_id'], 1);
 
 				$json['msg'] = $this->language->get('text_refund_ok_order');
-
 				$json['data'] = array();
 				$json['data']['created'] = date("Y-m-d H:i:s");
 				$json['data']['amount'] = $this->currency->format(($this->request->post['amount'] * -1), $worldpay_online_order['currency_code'], false);
