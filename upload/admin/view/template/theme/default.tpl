@@ -74,6 +74,24 @@
               <label for="back-to-top-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_web_design; ?></td>
+            <td><textarea name="default_web_design" cols="40" rows="10"><?php echo $default_web_design; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_powered_by; ?></td>
+            <td><?php if ($default_powered_by) { ?>
+              <input type="radio" name="default_powered_by" value="1" id="powered-by-on" class="radio" checked />
+              <label for="powered-by-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_powered_by" value="0" id="powered-by-off" class="radio" />
+              <label for="powered-by-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_powered_by" value="1" id="powered-by-on" class="radio" />
+              <label for="powered-by-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_powered_by" value="0" id="powered-by-off" class="radio" checked />
+              <label for="powered-by-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
         </table>
       </div>
       <div id="tab-footer">
@@ -207,6 +225,32 @@
       <div id="tab-options">
         <table class="form">
           <tr>
+            <td><?php echo $entry_product_stock_low; ?></td>
+            <td><?php if ($default_product_stock_low) { ?>
+              <input type="radio" name="default_product_stock_low" value="1" id="stock-low-on" class="radio" checked />
+              <label for="stock-low-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_product_stock_low" value="0" id="stock-low-off" class="radio" />
+              <label for="stock-low-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_product_stock_low" value="1" id="stock-low-on" class="radio" />
+              <label for="stock-low-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_product_stock_low" value="0" id="stock-low-off" class="radio" checked />
+              <label for="stock-low-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_product_stock_limit; ?></td>
+            <td><select name="default_product_stock_limit">
+            <?php foreach ($stock_limits as $stock_limit) { ?>
+              <?php if ($stock_limit == $default_product_stock_limit) { ?>
+                <option value="<?php echo $stock_limit; ?>" selected="selected"><?php echo $stock_limit; ?></option>
+              <?php } else { ?>
+                <option value="<?php echo $stock_limit; ?>"><?php echo $stock_limit; ?></option>
+              <?php } ?>
+            <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_manufacturer_name; ?></td>
             <td><?php if ($default_manufacturer_name) { ?>
               <input type="radio" name="default_manufacturer_name" value="1" id="manufacturer-name-on" class="radio" checked />
@@ -232,24 +276,6 @@
               <label for="manufacturer-image-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="default_manufacturer_image" value="0" id="manufacturer-image-off" class="radio" checked />
               <label for="manufacturer-image-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_web_design; ?></td>
-            <td><textarea name="default_web_design" cols="40" rows="10"><?php echo $default_web_design; ?></textarea></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_powered_by; ?></td>
-            <td><?php if ($default_powered_by) { ?>
-              <input type="radio" name="default_powered_by" value="1" id="powered-by-on" class="radio" checked />
-              <label for="powered-by-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="default_powered_by" value="0" id="powered-by-off" class="radio" />
-              <label for="powered-by-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="default_powered_by" value="1" id="powered-by-on" class="radio" />
-              <label for="powered-by-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="default_powered_by" value="0" id="powered-by-off" class="radio" checked />
-              <label for="powered-by-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>

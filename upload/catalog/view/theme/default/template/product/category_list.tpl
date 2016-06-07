@@ -1,5 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
+<!-- theme settings -->
 <?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>

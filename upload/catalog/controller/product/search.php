@@ -127,8 +127,8 @@ class ControllerProductSearch extends Controller {
 		}
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('product/search', $url),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('product/search', $url),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -201,22 +201,22 @@ class ControllerProductSearch extends Controller {
 
 				foreach ($categories_3 as $category_3) {
 					$level_3_data[] = array(
-						'category_id' 	=> $category_3['category_id'],
-						'name'        	=> $category_3['name']
+						'category_id' => $category_3['category_id'],
+						'name'        => $category_3['name']
 					);
 				}
 
 				$level_2_data[] = array(
-					'category_id' 	=> $category_2['category_id'],
-					'name'        	=> $category_2['name'],
-					'children'    		=> $level_3_data
+					'category_id' => $category_2['category_id'],
+					'name'        => $category_2['name'],
+					'children'    => $level_3_data
 				);
 			}
 
 			$this->data['categories'][] = array(
-				'category_id' 	=> $category_1['category_id'],
-				'name'        	=> $category_1['name'],
-				'children'    		=> $level_2_data
+				'category_id' => $category_1['category_id'],
+				'name'        => $category_1['name'],
+				'children'    => $level_2_data
 			);
 		}
 
@@ -224,15 +224,15 @@ class ControllerProductSearch extends Controller {
 
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$data = array(
-				'filter_name'         	=> $search,
-				'filter_tag'          		=> $tag,
-				'filter_description'  	=> $description,
-				'filter_category_id'  	=> $category_id,
-				'filter_sub_category'	=> $sub_category,
-				'sort'                		=> $sort,
-				'order'               		=> $order,
-				'start'               		=> ($page - 1) * $limit,
-				'limit'               		=> $limit
+				'filter_name'         => $search,
+				'filter_tag'          => $tag,
+				'filter_description'  => $description,
+				'filter_category_id'  => $category_id,
+				'filter_sub_category' => $sub_category,
+				'sort'                => $sort,
+				'order'               => $order,
+				'start'               => ($page - 1) * $limit,
+				'limit'               => $limit
 			);
 
 			$product_total = $this->model_catalog_product->getTotalProducts($data);
@@ -286,7 +286,6 @@ class ControllerProductSearch extends Controller {
 					$offer = false;
 				}
 
-				// Minimum age
 				$age_logged = false;
 				$age_checked = false;
 
@@ -324,6 +323,7 @@ class ControllerProductSearch extends Controller {
 					'age_checked'		=> $age_checked,
 					'stock_status'		=> $result['stock_status'],
 					'stock_quantity'	=> $result['quantity'],
+					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
 					'quote'				=> $quote,
 					'price'       			=> $price,
 					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),

@@ -44,6 +44,8 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_widescreen'] = $this->language->get('entry_widescreen');
 		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
+		$this->data['entry_web_design'] = $this->language->get('entry_web_design');
+		$this->data['entry_powered_by'] = $this->language->get('entry_powered_by');
 		$this->data['entry_footer_theme'] = $this->language->get('entry_footer_theme');
 		$this->data['entry_footer_location'] = $this->language->get('entry_footer_location');
 		$this->data['entry_footer_phone'] = $this->language->get('entry_footer_phone');
@@ -53,10 +55,10 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_footer_google'] = $this->language->get('entry_footer_google');
 		$this->data['entry_footer_pinterest'] = $this->language->get('entry_footer_pinterest');
 		$this->data['entry_footer_skype'] = $this->language->get('entry_footer_skype');
+		$this->data['entry_product_stock_low'] = $this->language->get('entry_product_stock_low');
+		$this->data['entry_product_stock_limit'] = $this->language->get('entry_product_stock_limit');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
-		$this->data['entry_web_design'] = $this->language->get('entry_web_design');
-		$this->data['entry_powered_by'] = $this->language->get('entry_powered_by');
 
 		$this->data['info_theme'] = $this->language->get('info_theme');
 		$this->data['info_author'] = $this->language->get('info_author');
@@ -81,20 +83,20 @@ class ControllerThemeDefault extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_theme'),
-			'href'   	=> $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_theme'),
+			'href'      => $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('theme/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('theme/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -130,6 +132,18 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_back_to_top'] = $this->request->post[$this->_name . '_back_to_top'];
 		} else {
 			$this->data[$this->_name . '_back_to_top'] = $this->config->get($this->_name . '_back_to_top');
+		}
+
+		if (isset($this->request->post[$this->_name . '_web_design'])) {
+			$this->data[$this->_name . '_web_design'] = $this->request->post[$this->_name . '_web_design'];
+		} else {
+			$this->data[$this->_name . '_web_design'] = $this->config->get($this->_name . '_web_design');
+		}
+
+		if (isset($this->request->post[$this->_name . '_powered_by'])) {
+			$this->data[$this->_name . '_powered_by'] = $this->request->post[$this->_name . '_powered_by'];
+		} else {
+			$this->data[$this->_name . '_powered_by'] = $this->config->get($this->_name . '_powered_by');
 		}
 
 		// Footer
@@ -188,6 +202,20 @@ class ControllerThemeDefault extends Controller {
 		}
 
 		// Options
+		if (isset($this->request->post[$this->_name . '_product_stock_low'])) {
+			$this->data[$this->_name . '_product_stock_low'] = $this->request->post[$this->_name . '_product_stock_low'];
+		} else {
+			$this->data[$this->_name . '_product_stock_low'] = $this->config->get($this->_name . '_product_stock_low');
+		}
+
+		$this->data['stock_limits'] = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '12', '15', '20', '50', '100');
+
+		if (isset($this->request->post[$this->_name . '_product_stock_limit'])) {
+			$this->data[$this->_name . '_product_stock_limit'] = $this->request->post[$this->_name . '_product_stock_limit'];
+		} else {
+			$this->data[$this->_name . '_product_stock_limit'] = $this->config->get($this->_name . '_product_stock_limit');
+		}
+
 		if (isset($this->request->post[$this->_name . '_manufacturer_name'])) {
 			$this->data[$this->_name . '_manufacturer_name'] = $this->request->post[$this->_name . '_manufacturer_name'];
 		} else {
@@ -198,18 +226,6 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->request->post[$this->_name . '_manufacturer_image'];
 		} else {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->config->get($this->_name . '_manufacturer_image');
-		}
-
-		if (isset($this->request->post[$this->_name . '_web_design'])) {
-			$this->data[$this->_name . '_web_design'] = $this->request->post[$this->_name . '_web_design'];
-		} else {
-			$this->data[$this->_name . '_web_design'] = $this->config->get($this->_name . '_web_design');
-		}
-
-		if (isset($this->request->post[$this->_name . '_powered_by'])) {
-			$this->data[$this->_name . '_powered_by'] = $this->request->post[$this->_name . '_powered_by'];
-		} else {
-			$this->data[$this->_name . '_powered_by'] = $this->config->get($this->_name . '_powered_by');
 		}
 
 		$this->template = 'theme/' . $this->_name . '.tpl';

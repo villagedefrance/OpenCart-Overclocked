@@ -53,10 +53,10 @@ class ControllerProductManufacturer extends Controller {
 			}
 
 			$this->data['categories'][$key]['manufacturer'][] = array(
-				'image'	=> $image,
-				'name' 	=> $result['name'],
-				'status' 	=> $result['status'],
-				'href' 		=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
+				'image'  => $image,
+				'name'   => $result['name'],
+				'status' => $result['status'],
+				'href'   => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}
 
@@ -131,14 +131,14 @@ class ControllerProductManufacturer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_brand'),
-			'href' 		=> $this->url->link('product/manufacturer'),
+			'text'      => $this->language->get('text_brand'),
+			'href'      => $this->url->link('product/manufacturer'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -174,8 +174,8 @@ class ControllerProductManufacturer extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $manufacturer_info['name'],
-				'href'  	=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
+				'text'      => $manufacturer_info['name'],
+				'href'      => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -223,10 +223,10 @@ class ControllerProductManufacturer extends Controller {
 
 			$data = array(
 				'filter_manufacturer_id' => $manufacturer_id,
-				'sort'    	=> $sort,
-				'order' 	=> $order,
-				'start'  	=> ($page - 1) * $limit,
-				'limit'   	=> $limit
+				'sort'                   => $sort,
+				'order'                  => $order,
+				'start'                  => ($page - 1) * $limit,
+				'limit'                  => $limit
 			);
 
 			$product_total = $this->model_catalog_product->getTotalProducts($data);
@@ -274,7 +274,6 @@ class ControllerProductManufacturer extends Controller {
 					$offer = false;
 				}
 
-				// Minimum age
 				$age_logged = false;
 				$age_checked = false;
 
@@ -311,6 +310,7 @@ class ControllerProductManufacturer extends Controller {
 					'age_checked'		=> $age_checked,
 					'stock_status'		=> $result['stock_status'],
 					'stock_quantity'	=> $result['quantity'],
+					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
 					'quote'				=> $quote,
 					'price'       			=> $price,
 					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),

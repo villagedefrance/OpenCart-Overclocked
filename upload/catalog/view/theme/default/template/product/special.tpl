@@ -1,5 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
+<!-- theme settings -->
 <?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -46,6 +47,7 @@
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
           <?php } ?>
+          <!-- theme settings -->
           <div class="manufacturer"><?php echo $this->config->get('default_manufacturer_name') ? $product['manufacturer'] : ""; ?></div>
           <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
           <div class="description"><?php echo $product['description']; ?></div>
@@ -70,6 +72,10 @@
           <?php } ?>
           <?php if ($product['rating']) { ?>
             <div class="rating"><img src="catalog/view/theme/default/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
+          <?php } ?>
+          <!-- theme settings -->
+          <?php if ($product['stock_remaining'] && $this->config->get('default_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get('default_product_stock_limit'))) { ?>
+            <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
           <?php } ?>
           <div class="addons">
             <a onclick="addToWishList('<?php echo $product['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
@@ -143,6 +149,12 @@ function display(view) {
 				html += '<div class="rating">' + rating + '</div>';
 			}
 
+			var remaining = $(element).find('.remaining').html();
+
+			if (remaining != null) {
+				html += '<div class="remaining">' + remaining + '</div>';
+			}
+
 			html += '</div>';
 
 			$(element).html(html);
@@ -184,6 +196,12 @@ function display(view) {
 
 			if (rating != null) {
 				html += '<div class="rating">' + rating + '</div>';
+			}
+
+			var remaining = $(element).find('.remaining').html();
+
+			if (remaining != null) {
+				html += '<div class="remaining">' + remaining + '</div>';
 			}
 
 			html += '<div class="addons">' + $(element).find('.addons').html() + '</div>';

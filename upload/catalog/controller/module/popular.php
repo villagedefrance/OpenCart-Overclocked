@@ -90,6 +90,7 @@ class ControllerModulePopular extends Controller {
 				'name'    			=> $result['name'],
 				'stock_status'		=> $result['stock_status'],
 				'stock_quantity'	=> $result['quantity'],
+				'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
 				'quote'				=> $quote,
 				'price'   	 			=> $price,
 				'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),

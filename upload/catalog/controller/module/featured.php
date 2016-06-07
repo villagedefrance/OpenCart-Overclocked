@@ -48,10 +48,10 @@ class ControllerModuleFeatured extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['manufacturers'][] = array(
-				'store_id' 			=> $result['store_id'],
-				'manufacturer_id'	=> $result['manufacturer_id'],
-				'name' 				=> $result['name'],
-				'href' 					=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
+				'store_id'        => $result['store_id'],
+				'manufacturer_id' => $result['manufacturer_id'],
+				'name'            => $result['name'],
+				'href'            => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}
 
@@ -144,6 +144,7 @@ class ControllerModuleFeatured extends Controller {
 					'points' 				=> $product_info['points'],
 					'stock_status'		=> $product_info['stock_status'],
 					'stock_quantity'	=> $product_info['quantity'],
+					'stock_remaining'	=> ($product_info['subtract']) ? sprintf($this->language->get('text_remaining'), $product_info['quantity']) : '',
 					'quote'				=> $quote,
 					'price'   	  			=> $price,
 					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),

@@ -190,6 +190,7 @@ class ControllerProductCompare extends Controller {
 					'availability' 		=> $availability,
 					'stock_status'		=> $product_info['stock_status'],
 					'stock_quantity'	=> $product_info['quantity'],
+					'stock_remaining'	=> ($product_info['subtract']) ? sprintf($this->language->get('text_remaining'), $product_info['quantity']) : '',
 					'offer_href'			=> $this->url->link('product/product', 'product_id=' . $offer_product),
 					'offer_label'			=> $offer_label,
 					'rating'       		=> (int)$product_info['rating'],

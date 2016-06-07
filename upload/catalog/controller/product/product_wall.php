@@ -34,18 +34,18 @@ class ControllerProductProductWall extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['products'] = array();
 
 		$data = array(
-			'sort'		=> $sort,
-			'order'	=> $order,
-			'start'	=> ($page - 1) * $limit,
-			'limit'		=> $limit
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $limit,
+			'limit' => $limit
 		);
 
 		$product_total = $this->model_catalog_product->getTotalProducts($data);
@@ -82,8 +82,8 @@ class ControllerProductProductWall extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('product/product_wall', $url),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('product/product_wall', $url),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -174,7 +174,6 @@ class ControllerProductProductWall extends Controller {
 					$offer = false;
 				}
 
-				// Minimum age
 				$age_logged = false;
 				$age_checked = false;
 
@@ -212,6 +211,7 @@ class ControllerProductProductWall extends Controller {
 					'age_checked'		=> $age_checked,
 					'stock_status'		=> $result['stock_status'],
 					'stock_quantity'	=> $result['quantity'],
+					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
 					'quote'				=> $quote,
 					'price'       			=> $price,
 					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),

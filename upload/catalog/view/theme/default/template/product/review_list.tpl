@@ -1,5 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
+<!-- theme settings -->
 <?php if ($this->config->get('default_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -58,6 +59,10 @@
           <div class="rating">
             <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $review['rating']; ?>.png" alt="<?php echo $review['reviews']; ?>" />
           </div>
+          <!-- theme settings -->
+          <?php if ($review['stock_remaining'] && $this->config->get('default_product_stock_low') && ($review['stock_quantity'] > 0) && ($review['stock_quantity'] <= $this->config->get('default_product_stock_limit'))) { ?>
+            <div class="remaining"><?php echo $review['stock_remaining']; ?></div>
+          <?php } ?>
           <div class="addons">
             <a onclick="addToWishList('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
             <a onclick="addToCompare('<?php echo $review['product_id']; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
@@ -142,6 +147,12 @@ function display(view) {
 				html += '<div class="date">' + date + '</div>';
 			}
 
+			var remaining = $(element).find('.remaining').html();
+
+			if (remaining != null) {
+				html += '<div class="remaining">' + remaining + '</div>';
+			}
+
 			html += '</div>';
 
 			$(element).html(html);
@@ -191,6 +202,12 @@ function display(view) {
 
 			if (rating != null) {
 				html += '<div class="rating">' + rating + '</div>';
+			}
+
+			var remaining = $(element).find('.remaining').html();
+
+			if (remaining != null) {
+				html += '<div class="remaining">' + remaining + '</div>';
 			}
 
 			html += '<div class="addons">' + $(element).find('.addons').html() + '</div>';

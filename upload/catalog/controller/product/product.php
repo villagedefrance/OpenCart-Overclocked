@@ -9,8 +9,8 @@ class ControllerProductProduct extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
@@ -48,8 +48,8 @@ class ControllerProductProduct extends Controller {
 
 				if ($category_info) {
 					$this->data['breadcrumbs'][] = array(
-						'text'		=> $category_info['name'],
-						'href'		=> $this->url->link('product/category', 'path=' . $path . $url),
+						'text'      => $category_info['name'],
+						'href'      => $this->url->link('product/category', 'path=' . $path . $url),
 						'separator' => $this->language->get('text_separator')
 					);
 				}
@@ -78,8 +78,8 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$this->data['breadcrumbs'][] = array(
-					'text'		=> $category_info['name'],
-					'href'		=> $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
+					'text'      => $category_info['name'],
+					'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
@@ -89,8 +89,8 @@ class ControllerProductProduct extends Controller {
 
 		if (isset($this->request->get['manufacturer_id'])) {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_brand'),
-				'href'		=> $this->url->link('product/manufacturer'),
+				'text'      => $this->language->get('text_brand'),
+				'href'      => $this->url->link('product/manufacturer'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -116,8 +116,8 @@ class ControllerProductProduct extends Controller {
 
 			if ($manufacturer_info) {
 				$this->data['breadcrumbs'][] = array(
-					'text'		=> $manufacturer_info['name'],
-					'href'		=> $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
+					'text'      => $manufacturer_info['name'],
+					'href'      => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
@@ -163,8 +163,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_search'),
-				'href'		=> $this->url->link('product/search', $url),
+				'text'      => $this->language->get('text_search'),
+				'href'      => $this->url->link('product/search', $url),
 				'separator' => $this->language->get('text_separator')
 			);
 		}
@@ -231,8 +231,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $product_info['name'],
-				'href'		=> $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']),
+				'text'      => $product_info['name'],
+				'href'      => $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -389,6 +389,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['reward'] = $product_info['reward'];
 			$this->data['points'] = $product_info['points'];
 
+			// Stock Status
 			if ($product_info['quantity'] <= 0) {
 				$this->data['stock'] = $product_info['stock_status'];
 				$this->data['stock_quantity'] = 0;
@@ -398,6 +399,13 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$this->data['stock'] = $this->language->get('text_instock');
 				$this->data['stock_quantity'] = $product_info['quantity'];
+			}
+
+			// Remaining
+			if ($product_info['subtract'] && ($product_info['quantity'] > 0)) {
+				$this->data['stock_remaining'] = sprintf($this->language->get('text_remaining'), $product_info['quantity']);
+			} else {
+				$this->data['stock_remaining'] = '';
 			}
 
 			// Location
@@ -509,6 +517,7 @@ class ControllerProductProduct extends Controller {
 				$this->data['is_quote'] = false;
 			}
 
+			// Options
 			$this->data['options'] = array();
 
 			foreach ($this->model_catalog_product->getProductOptions($this->request->get['product_id']) as $option) {
@@ -524,33 +533,33 @@ class ControllerProductProduct extends Controller {
 							}
 
 							$option_value_data[] = array(
-								'product_option_value_id'	=> $option_value['product_option_value_id'],
-								'option_value_id'         		=> $option_value['option_value_id'],
-								'name'                    		=> $option_value['name'],
-								'image'                   		=> $this->model_tool_image->resize($option_value['image'], 50, 50),
-								'price'                   			=> $price,
-								'price_prefix'            		=> $option_value['price_prefix']
+								'product_option_value_id' => $option_value['product_option_value_id'],
+								'option_value_id'         => $option_value['option_value_id'],
+								'name'                    => $option_value['name'],
+								'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
+								'price'                   => $price,
+								'price_prefix'            => $option_value['price_prefix']
 							);
 						}
 					}
 
 					$this->data['options'][] = array(
-						'product_option_id' 	=> $option['product_option_id'],
-						'option_id'         		=> $option['option_id'],
-						'name'              		=> $option['name'],
-						'type'              		=> $option['type'],
-						'option_value'      	=> $option_value_data,
-						'required'          		=> $option['required']
+						'product_option_id' => $option['product_option_id'],
+						'option_id'         => $option['option_id'],
+						'name'              => $option['name'],
+						'type'              => $option['type'],
+						'option_value'      => $option_value_data,
+						'required'          => $option['required']
 					);
 
 				} elseif ($option['type'] == 'text' || $option['type'] == 'textarea' || $option['type'] == 'file' || $option['type'] == 'date' || $option['type'] == 'time' || $option['type'] == 'datetime') {
 					$this->data['options'][] = array(
-						'product_option_id' 	=> $option['product_option_id'],
-						'option_id'         		=> $option['option_id'],
-						'name'              		=> $option['name'],
-						'type'              		=> $option['type'],
-						'option_value'      	=> $option['option_value'],
-						'required'          		=> $option['required']
+						'product_option_id' => $option['product_option_id'],
+						'option_id'         => $option['option_id'],
+						'name'              => $option['name'],
+						'type'              => $option['type'],
+						'option_value'      => $option['option_value'],
+						'required'          => $option['required']
 					);
 				}
 			}
@@ -626,10 +635,10 @@ class ControllerProductProduct extends Controller {
 					}
 
 					$this->data['offers'][] = array(
-						'thumb'	=> $offer_image,
-						'name'	=> $offer_name,
-						'href'		=> $this->url->link('product/product', 'product_id=' . $offer_product),
-						'group'	=> $offer_label
+						'thumb' => $offer_image,
+						'name'  => $offer_name,
+						'href'  => $this->url->link('product/product', 'product_id=' . $offer_product),
+						'group' => $offer_label
 					);
 				}
 			}
@@ -696,6 +705,7 @@ class ControllerProductProduct extends Controller {
 					'name'    			=> $result['name'],
 					'stock_status'		=> $result['stock_status'],
 					'stock_quantity'	=> $result['quantity'],
+					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
 					'quote'				=> $quote,
 					'price'   	 			=> $price,
 					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
@@ -803,8 +813,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_error'),
-				'href'   	=> $this->url->link('product/product', $url . '&product_id=' . $product_id),
+				'text'      => $this->language->get('text_error'),
+				'href'      => $this->url->link('product/product', $url . '&product_id=' . $product_id),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -865,11 +875,11 @@ class ControllerProductProduct extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['reviews'][] = array(
-				'author'     		=> $result['author'],
-				'text'       		=> nl2br($result['text']),
-				'rating'     		=> (int)$result['rating'],
-				'reviews'    		=> sprintf($this->language->get('text_reviews'), (int)$review_total),
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'author'     => $result['author'],
+				'text'       => nl2br($result['text']),
+				'rating'     => (int)$result['rating'],
+				'reviews'    => sprintf($this->language->get('text_reviews'), (int)$review_total),
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -926,11 +936,11 @@ class ControllerProductProduct extends Controller {
 
 		if ($product_info && $profile_info && !$json) {
 			$frequencies = array(
-				'day' 				=> $this->language->get('text_day'),
-				'week' 			=> $this->language->get('text_week'),
-				'semi_month' 	=> $this->language->get('text_semi_month'),
-				'month' 			=> $this->language->get('text_month'),
-				'year' 			=> $this->language->get('text_year')
+				'day'        => $this->language->get('text_day'),
+				'week'       => $this->language->get('text_week'),
+				'semi_month' => $this->language->get('text_semi_month'),
+				'month'      => $this->language->get('text_month'),
+				'year'       => $this->language->get('text_year')
 			);
 
 			foreach ($profile_info as $result) {

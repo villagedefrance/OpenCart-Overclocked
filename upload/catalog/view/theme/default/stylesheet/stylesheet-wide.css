@@ -907,6 +907,13 @@ a.button-add {
 	display: block;
 	margin-bottom: 4px;
 }
+.box-product .remaining {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
+	margin-bottom: 4px;
+}
 .box-product .stock-status {
 	display: block;
 	color: #CC2626;
@@ -1249,6 +1256,12 @@ ul.box-filter > li ul {
 .product-list .rating {
 	color: #7B7B7B;
 }
+.product-list .remaining {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
+}
 .product-list .price {
 	float: right;
 	height: 50px;
@@ -1326,6 +1339,12 @@ ul.box-filter > li ul {
 .product-grid .rating {
 	display: block;
 	margin-bottom: 4px;
+}
+.product-grid .remaining {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
 }
 .product-grid .price {
 	display: block;
@@ -1713,6 +1732,12 @@ ul.box-filter > li ul {
 	display: block;
 	margin-bottom: 3px;
 }
+.review-list .remaining {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
+}
 .review-list .cart {
 	margin: 3px auto;
 }
@@ -1760,6 +1785,12 @@ ul.box-filter > li ul {
 .review-grid .rating {
 	display: block;
 	margin-bottom: 4px;
+}
+.review-grid .remaining {
+	display: block;
+	color: #CC2626;
+	font-weight: bold;
+	text-decoration: none;
 }
 .review-grid .cart {
 	margin-bottom: 3px;

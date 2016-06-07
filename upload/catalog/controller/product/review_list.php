@@ -48,20 +48,20 @@ class ControllerProductReviewList extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['reviews'] = array();
 
 		$data = array(
-			'filter_name'      	=> $filter_name,
-			'filter_description'	=> $filter_description,
-			'sort'  				=> $sort,
-			'order' 				=> $order,
-			'start' 				=> ($page - 1) * $limit,
-			'limit' 					=> $limit
+			'filter_name'        => $filter_name,
+			'filter_description' => $filter_description,
+			'sort'               => $sort,
+			'order'              => $order,
+			'start'              => ($page - 1) * $limit,
+			'limit'              => $limit
 		);
 
 		$review_total = $this->model_catalog_review->getTotalReviews();
@@ -106,8 +106,8 @@ class ControllerProductReviewList extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('product/review_list', $url),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('product/review_list', $url),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -169,7 +169,6 @@ class ControllerProductReviewList extends Controller {
 					$offer = false;
 				}
 
-				// Minimum age
 				$age_logged = false;
 				$age_checked = false;
 
@@ -208,6 +207,7 @@ class ControllerProductReviewList extends Controller {
 					'age_checked'		=> $age_checked,
 					'stock_status'		=> $result['stock_status'],
 					'stock_quantity'	=> $result['quantity'],
+					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
 					'quote'				=> $quote,
 					'rating'				=> $rating,
 					'author'				=> $result['author'],
@@ -315,9 +315,9 @@ class ControllerProductReviewList extends Controller {
 
 			foreach ($limits as $value) {
 				$this->data['limits'][] = array(
-					'text'  	=> $value,
-					'value' 	=> $value,
-					'href'  	=> $this->url->link('product/review_list', $url . '&limit=' . $value)
+					'text'  => $value,
+					'value' => $value,
+					'href'  => $this->url->link('product/review_list', $url . '&limit=' . $value)
 				);
 			}
 
