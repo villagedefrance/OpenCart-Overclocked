@@ -106,10 +106,10 @@ class ControllerThemeDefault extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
-		// Check Template
+		// Check active template
 		$template = $this->config->get('config_template');
 
-		if ($template = $this->_name) {
+		if ($template == $this->_name) {
 			$this->data['active'] = true;
 		} else {
 			$this->data['active'] = false;

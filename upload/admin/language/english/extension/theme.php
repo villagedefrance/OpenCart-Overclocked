@@ -5,6 +5,7 @@ $_['heading_title']    = 'Themes';
 // Text
 $_['text_install']     = 'Install';
 $_['text_uninstall']   = 'Uninstall';
+$_['text_is_active']   = '<b>(Active)</b>';
 
 // Column
 $_['column_name']      = 'Theme Name';
