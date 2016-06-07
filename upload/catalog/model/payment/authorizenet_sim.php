@@ -8,6 +8,8 @@ class ModelPaymentAuthorizeNetSim extends Model {
 
 		if ($this->config->get('authorizenet_sim_total') > 0 && $this->config->get('authorizenet_sim_total') > $total) {
 			$status = false;
+		} elseif ($this->config->has('authorizenet_sim_total_max') && $this->config->get('authorizenet_sim_total_max') > 0 && $total > $this->config->get('authorizenet_sim_total_max'))) {
+			$status = false;
 		} elseif (!$this->config->get('authorizenet_sim_geo_zone_id')) {
 			$status = true;
 		} elseif ($query->num_rows) {
@@ -20,10 +22,10 @@ class ModelPaymentAuthorizeNetSim extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'authorizenet_sim',
-				'title'			=> $this->language->get('text_title'),
-				'terms'		=> '',
-				'sort_order'	=> $this->config->get('authorizenet_sim_sort_order')
+				'code'       => 'authorizenet_sim',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('authorizenet_sim_sort_order')
 			);
 		}
 

@@ -1,6 +1,6 @@
 <?php
 class ControllerPaymentAuthorizeNetSim extends Controller {
-	private $error = array(); 
+	private $error = array();
 
 	public function index() {
 		$this->language->load('payment/authorizenet_sim');
@@ -35,10 +35,16 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		$this->data['entry_md5'] = $this->language->get('entry_md5');
 		$this->data['entry_test'] = $this->language->get('entry_test');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_callback'] = $this->language->get('help_callback');
+		$this->data['help_md5'] = $this->language->get('help_md5');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -118,13 +124,19 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 			$this->data['authorizenet_sim_total'] = $this->request->post['authorizenet_sim_total'];
 		} else {
 			$this->data['authorizenet_sim_total'] = $this->config->get('authorizenet_sim_total');
-		} 
+		}
+
+		if (isset($this->request->post['authorizenet_sim_total_max'])) {
+			$this->data['authorizenet_sim_total_max'] = $this->request->post['authorizenet_sim_total_max'];
+		} else {
+			$this->data['authorizenet_sim_total_max'] = $this->config->get('authorizenet_sim_total_max');
+		}
 
 		if (isset($this->request->post['authorizenet_sim_order_status_id'])) {
 			$this->data['authorizenet_sim_order_status_id'] = $this->request->post['authorizenet_sim_order_status_id'];
 		} else {
 			$this->data['authorizenet_sim_order_status_id'] = $this->config->get('authorizenet_sim_order_status_id');
-		} 
+		}
 
 		$this->load->model('localisation/order_status');
 
@@ -134,7 +146,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 			$this->data['authorizenet_sim_geo_zone_id'] = $this->request->post['authorizenet_sim_geo_zone_id'];
 		} else {
 			$this->data['authorizenet_sim_geo_zone_id'] = $this->config->get('authorizenet_sim_geo_zone_id');
-		} 
+		}
 
 		$this->load->model('localisation/geo_zone');
 

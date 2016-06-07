@@ -35,6 +35,9 @@ class ControllerPaymentBankBni extends Controller {
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
+
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -156,7 +159,7 @@ class ControllerPaymentBankBni extends Controller {
 		$languages = $this->model_localisation_language->getLanguages();
 
 		foreach ($languages as $language) {
-			if (!$this->request->post['bank_bni_bank_' . $language['language_id']]) {
+			if (empty($this->request->post['bank_bni_bank_' . $language['language_id']])) {
 				$this->error['bank_' .  $language['language_id']] = $this->language->get('error_bank');
 			}
 		}
