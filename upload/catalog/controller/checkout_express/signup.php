@@ -34,20 +34,20 @@ class ControllerCheckoutExpressSignup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		); 
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_signup'),
-			'href'		=> $this->url->link('checkout_express/signup', '', 'SSL'),
+			'text'      => $this->language->get('heading_signup'),
+			'href'      => $this->url->link('checkout_express/signup', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 

@@ -1,7 +1,6 @@
 <?php echo $header; ?>
 <?php echo $content_header; ?>
-<!-- theme settings -->
-<?php if ($this->config->get('default_breadcrumbs')) { ?>
+<?php if ($this->config->get($template . '_breadcrumbs')) { ?>
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
       <?php echo $breadcrumb['separator']; ?>
@@ -109,8 +108,7 @@
           <span><?php echo $text_age_band; ?></span> <?php echo $age_minimum; ?>+<br />
         <?php } ?>
         <span><?php echo $text_stock; ?></span>&nbsp;
-        <!-- theme settings -->
-        <?php if ($stock_remaining && $this->config->get('default_product_stock_low') && ($stock_quantity <= $this->config->get('default_product_stock_limit'))) { ?>
+        <?php if ($stock_remaining && $this->config->get($template . '_product_stock_low') && ($stock_quantity <= $this->config->get($template . '_product_stock_limit'))) { ?>
           <span style="color:#CC2626; font-weight:bold;"><?php echo $stock_remaining; ?></span><br />
         <?php } else { ?>
           <?php echo $stock; ?><br />
@@ -507,8 +505,7 @@
           <?php if ($product['rating']) { ?>
             <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
           <?php } ?>
-          <!-- theme settings -->
-          <?php if ($product['stock_remaining'] && $this->config->get('default_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get('default_product_stock_limit'))) { ?>
+          <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
             <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
           <?php } ?>
           <?php if ($product['quote']) { ?>

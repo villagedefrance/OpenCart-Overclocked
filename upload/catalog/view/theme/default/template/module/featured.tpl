@@ -42,8 +42,7 @@
         <?php if ($review && $product['rating']) { ?>
           <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
         <?php } ?>
-        <!-- theme settings -->
-        <?php if ($product['stock_remaining'] && $this->config->get('default_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get('default_product_stock_limit'))) { ?>
+        <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
           <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
         <?php } ?>
         <?php if ($viewproduct) { ?>
@@ -105,8 +104,7 @@
         <?php if ($review && $product['rating']) { ?>
           <div class="rating"><img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" /></div>
         <?php } ?>
-        <!-- theme settings -->
-        <?php if ($product['stock_remaining'] && $this->config->get('default_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get('default_product_stock_limit'))) { ?>
+        <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
           <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
         <?php } ?>
         <?php if ($viewproduct) { ?>

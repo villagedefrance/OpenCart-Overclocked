@@ -3,8 +3,7 @@
 <?php if ($success) { ?>
   <div class="success"><?php echo $success; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
 <?php } ?>
-<!-- theme settings -->
-<?php if ($this->config->get('default_breadcrumbs')) { ?>
+<?php if ($this->config->get($template . '_breadcrumbs')) { ?>
   <div class="breadcrumb">
   <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
@@ -69,8 +68,7 @@
           <td><?php echo $text_availability; ?></td>
           <?php foreach ($products as $product) { ?>
             <td><?php echo $products[$product['product_id']]['availability']; ?><br />
-            <!-- theme settings -->
-            <?php if ($products[$product['product_id']]['stock_remaining'] && $this->config->get('default_product_stock_low') && ($products[$product['product_id']]['stock_quantity'] > 0) && ($products[$product['product_id']]['stock_quantity'] <= $this->config->get('default_product_stock_limit'))) { ?>
+            <?php if ($products[$product['product_id']]['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($products[$product['product_id']]['stock_quantity'] > 0) && ($products[$product['product_id']]['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
               <div style="color:#CC2626; font-weight:bold;"><?php echo $products[$product['product_id']]['stock_remaining']; ?></div>
             <?php } ?>
             </td>
