@@ -20,17 +20,24 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  language_width = $('#language-option').width();
-  $('#language-selector').css('width', (language_width + 10) + 'px');
-  $('#language-selector').on('mouseenter touchstart touchend', function() {
-    $('#language-selection').click(function(event) {
-      event.preventDefault();
-    });
-    $('#language-option').slideDown(150);
-  });
-  $('#language-option').on('mouseleave mouseup', function() {
-    $('#language-option').slideUp(150);
-  });
+	language_width = $('#language-option').width();
+	$('#language-selector').css('width', (language_width + 10) + 'px');
+	var timer, options = $("#language-option");
+	function showOptions() { options.slideDown(200); }
+	function hideOptions() { options.slideUp(200); }
+	$('#language-selector').on('mouseenter touchstart touchend', function() {
+		timer = setTimeout(function() { hideOptions(); }, 4000);
+		$('#language-selection').click(function(event) {
+			event.preventDefault();
+			hideOptions();
+			window.clearTimeout(timer);
+		});
+		showOptions();
+	});
+	$('#language-option').on('mouseleave', function() {
+		hideOptions();
+		window.clearTimeout(timer);
+	});
 });
 //--></script>
 <?php } ?>

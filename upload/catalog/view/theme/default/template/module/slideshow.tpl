@@ -10,7 +10,7 @@
         <div data-src="<?php echo $banner['image']; ?>" data-thumb="<?php echo $banner['image']; ?>"></div>
       <?php } ?>
     <?php } ?>
-  </div>
+    </div>
   </div>
 </div>
 <?php } else { ?>

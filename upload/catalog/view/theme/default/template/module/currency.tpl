@@ -9,7 +9,7 @@
   <?php } ?>
   <div id="currency-option" style="display:none;">
   <?php foreach ($currencies as $currency) { ?>
-    <a id="currency_selection" onclick="$('input[name=\'currency_code\']').attr('value', '<?php echo $currency['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $currency['title']; ?></a>
+    <a id="currency-selection" onclick="$('input[name=\'currency_code\']').attr('value', '<?php echo $currency['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $currency['title']; ?></a>
   <?php } ?>
   </div>
   </div>
@@ -20,17 +20,24 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  currency_width = $('#currency-option').width();
-  $('#currency-selector').css('width', (currency_width + 10) + 'px');
-  $('#currency-selector').on('mouseenter touchstart touchend', function() {
-    $('#currency-selection').click(function(event) {
-      event.preventDefault();
-    });
-    $('#currency-option').slideDown(150);
-  });
-  $('#currency-option').on('mouseleave mouseup', function() {
-    $('#currency-option').slideUp(150);
-  });
+	currency_width = $('#currency-option').width();
+	$('#currency-selector').css('width', (currency_width + 10) + 'px');
+	var timer, options = $("#currency-option");
+	function showOptions() { options.slideDown(200); }
+	function hideOptions() { options.slideUp(200); }
+	$('#currency-selector').on('mouseenter touchstart touchend', function() {
+		timer = setTimeout(function() { hideOptions(); }, 4000);
+		$('#currency-selection').click(function(event) {
+			event.preventDefault();
+			hideOptions();
+			window.clearTimeout(timer);
+		});
+		showOptions();
+	});
+	$('#currency-option').on('mouseleave', function() {
+		hideOptions();
+		window.clearTimeout(timer);
+	});
 });
 //--></script>
 <?php } ?>
