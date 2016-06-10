@@ -452,14 +452,14 @@
           <br /><?php echo $text_note; ?>
         </div>
         <div class="review-rating">
-          <b><?php echo $entry_rating; ?></b>
-          <?php echo $entry_bad; ?>
-          <input type="radio" name="rating" value="1" />
-          <input type="radio" name="rating" value="2" />
-          <input type="radio" name="rating" value="3" />
-          <input type="radio" name="rating" value="4" />
-          <input type="radio" name="rating" value="5" />
-          <?php echo $entry_good; ?>
+          <b><?php echo $entry_rating; ?></b>&nbsp;
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-down.png" alt="<?php echo $entry_bad; ?>" title="<?php echo $entry_bad; ?>" />&nbsp;
+          <input type="radio" name="rating" value="1" />&nbsp;
+          <input type="radio" name="rating" value="2" />&nbsp;
+          <input type="radio" name="rating" value="3" />&nbsp;
+          <input type="radio" name="rating" value="4" />&nbsp;
+          <input type="radio" name="rating" value="5" />&nbsp;
+          <img src="catalog/view/theme/<?php echo $template; ?>/image/thumbs-up.png" alt="<?php echo $entry_good; ?>" title="<?php echo $entry_good; ?>" />
         </div>
         <div id="captcha-wrap">
           <div class="captcha-box">
@@ -788,6 +788,26 @@ $('#button-review').bind('click', function() {
 				$('input[name=\'captcha\']').val('');
 			}
 		}
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+$('.review-rating input:radio').wrap('<span></span>').parent()
+	.on('mouseenter touchstart touchend', function() {
+		$(this).css({
+			'background': '#EAFBFF',
+			'padding': '1px 0px 5px 0px',
+			'border-radius': '9px',
+			'outline': 'none',
+			'cursor': 'pointer'
+		});
+	})
+	.on('mouseleave', function() {
+		$(this).css({
+			'background': 'transparent'
+		});
 	});
 });
 //--></script>

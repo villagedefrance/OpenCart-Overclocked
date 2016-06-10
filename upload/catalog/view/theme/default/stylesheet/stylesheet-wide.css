@@ -1653,6 +1653,10 @@ ul.box-filter > li ul {
 	margin-top: 15px;
 	margin-bottom: 10px;
 }
+#add-review .review-rating input, #add-review .review-rating img {
+	height: 20px;
+	vertical-align: middle;
+}
 /* Reviews */
 #review {
 	float: right;
