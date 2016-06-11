@@ -37,10 +37,16 @@ class ControllerPaymentWorldPay extends Controller {
 		$this->data['entry_callback'] = $this->language->get('entry_callback');
 		$this->data['entry_test'] = $this->language->get('entry_test');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_password'] = $this->language->get('help_password');
+		$this->data['help_callback'] = $this->language->get('help_callback');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -114,6 +120,12 @@ class ControllerPaymentWorldPay extends Controller {
 			$this->data['worldpay_total'] = $this->request->post['worldpay_total'];
 		} else {
 			$this->data['worldpay_total'] = $this->config->get('worldpay_total');
+		}
+
+		if (isset($this->request->post['worldpay_total_max'])) {
+			$this->data['worldpay_total_max'] = $this->request->post['worldpay_total_max'];
+		} else {
+			$this->data['worldpay_total_max'] = $this->config->get('worldpay_total_max');
 		}
 
 		if (isset($this->request->post['worldpay_order_status_id'])) {

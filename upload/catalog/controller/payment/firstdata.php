@@ -256,7 +256,7 @@ class ControllerPaymentFirstdata extends Controller {
 			$this->session->data['error'] = $this->language->get('error_failed');
 		}
 
-		$this->redirect($this->url->link('checkout/checkout', '', true));
+		$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 	}
 }
 ?>
