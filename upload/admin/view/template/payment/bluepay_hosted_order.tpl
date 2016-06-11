@@ -53,17 +53,17 @@
       <table class="table table-striped table-bordered" id="bluepay-hosted-transactions">
         <thead>
           <tr>
-            <td class="text-left"><strong><?php echo $text_column_date_added; ?></strong></td>
-            <td class="text-left"><strong><?php echo $text_column_type; ?></strong></td>
-            <td class="text-left"><strong><?php echo $text_column_amount; ?></strong></td>
+            <td class="left"><strong><?php echo $text_column_date_added; ?></strong></td>
+            <td class="left"><strong><?php echo $text_column_type; ?></strong></td>
+            <td class="left"><strong><?php echo $text_column_amount; ?></strong></td>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($bluepay_hosted_order['transactions'] as $transaction) { ?>
           <tr>
-            <td class="text-left"><?php echo $transaction['date_added']; ?></td>
-            <td class="text-left"><?php echo $transaction['type']; ?></td>
-            <td class="text-left"><?php echo $transaction['amount']; ?></td>
+            <td class="left"><?php echo $transaction['date_added']; ?></td>
+            <td class="left"><?php echo $transaction['type']; ?></td>
+            <td class="left"><?php echo $transaction['amount']; ?></td>
           </tr>
           <?php } ?>
         </tbody>
@@ -73,7 +73,7 @@
 </table>
 
 <script type="text/javascript"><!--
-$(document).on('click', '#button-void', function() {
+$("#button-void").click(function() {
   if (confirm('<?php echo $text_confirm_void; ?>')) {
     $.ajax({
       type: 'POST',
@@ -87,11 +87,11 @@ $(document).on('click', '#button-void', function() {
       },
       success: function(data) {
         if (data.error == false) {
-          html = '';
+          var html = '';
           html += '<tr>';
-          html += '<td class="text-left">' + data.data.date_added + '</td>';
-          html += '<td class="text-left">void</td>';
-          html += '<td class="text-left">' + data.data.total + '</td>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">void</td>';
+          html += '<td class="left">' + data.data.total + '</td>';
           html += '</tr>';
 
           $('.void-text').text('<?php echo $text_yes; ?>');
@@ -118,7 +118,7 @@ $(document).on('click', '#button-void', function() {
   }
 });
 
-$(document).on('click', '#button-release', function() {
+$("#button-release").click(function () {
   if (confirm('<?php echo $text_confirm_release; ?>')) {
     $.ajax({
       type: 'POST',
@@ -133,11 +133,11 @@ $(document).on('click', '#button-release', function() {
       },
       success: function(data) {
         if (data.error == false) {
-          html = '';
+          var html = '';
           html += '<tr>';
-          html += '<td class="text-left">' + data.data.date_added + '</td>';
-          html += '<td class="text-left">payment</td>';
-          html += '<td class="text-left">' + data.data.amount + '</td>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">payment</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
           html += '</tr>';
 
           $('#bluepay-hosted-transactions').append(html);
@@ -173,7 +173,7 @@ $(document).on('click', '#button-release', function() {
   }
 });
 
-$(document).on('click', '#button-rebate', function() {
+$("#button-rebate").click(function () {
   if (confirm('<?php echo $text_confirm_rebate ?>')) {
     $.ajax({
       type: 'POST',
@@ -188,11 +188,11 @@ $(document).on('click', '#button-rebate', function() {
       },
       success: function(data) {
         if (data.error == false) {
-          html = '';
+          var html = '';
           html += '<tr>';
-          html += '<td class="text-left">' + data.data.date_added + '</td>';
-          html += '<td class="text-left">rebate</td>';
-          html += '<td class="text-left">' + data.data.amount + '</td>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">rebate</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
           html += '</tr>';
 
           $('#bluepay-hosted-transactions').append(html);
@@ -206,7 +206,7 @@ $(document).on('click', '#button-rebate', function() {
             $('#rebate-amount').show();
           }
 
-          if (data.msg != '') {
+          if (data.msg != '' && data.msg != undefined) {
             $('#bluepay-hosted-transaction-msg').empty().html(data.msg).fadeIn();
           }
         }
