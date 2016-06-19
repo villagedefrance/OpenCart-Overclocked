@@ -1,8 +1,8 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
-    <div class="slick_<?php echo $slick_theme; ?>_skin" id="carousel<?php echo $module; ?>">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin">
+    <div class="slick_<?php echo $skin_color; ?>_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
           <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>
@@ -14,8 +14,8 @@
   </div>
 </div>
 <?php } else { ?>
-  <div style="margin-bottom:15px;">
-    <div class="slick_<?php echo $slick_theme; ?>_skin" id="carousel<?php echo $module; ?>">
+  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px;">
+    <div class="slick_<?php echo $skin_color; ?>_skin" id="carousel<?php echo $module; ?>">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
           <div class="carousel-swipe"><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a></div>

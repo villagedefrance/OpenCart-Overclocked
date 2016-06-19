@@ -1,7 +1,7 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin">
     <ul class="box-filter">
     <?php foreach ($filter_groups as $filter_group) { ?>
       <li><span id="filter-group<?php echo $filter_group['filter_group_id']; ?>"><?php echo $filter_group['name']; ?></span>
@@ -27,7 +27,7 @@
   </div>
 </div>
 <?php } else { ?>
-  <div style="margin-bottom:20px;">
+  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px;">
     <ul class="box-filter">
     <?php foreach ($filter_groups as $filter_group) { ?>
       <li><span id="filter-group<?php echo $filter_group['filter_group_id']; ?>"><?php echo $filter_group['name']; ?></span>

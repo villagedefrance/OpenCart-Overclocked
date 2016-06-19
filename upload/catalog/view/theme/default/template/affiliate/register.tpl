@@ -153,7 +153,7 @@
           <td><input type="text" name="cheque" value="<?php echo $cheque; ?>" size="30" /></td>
         </tr>
       </tbody>
-      <tbody class="payment" id="payment-paypal">
+      <tbody id="payment-paypal" class="payment">
         <tr>
           <td><?php echo $entry_paypal; ?></td>
           <td><input type="text" name="paypal" value="<?php echo $paypal; ?>" size="30" /></td>

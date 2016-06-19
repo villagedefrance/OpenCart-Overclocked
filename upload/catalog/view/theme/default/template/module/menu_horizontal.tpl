@@ -1,7 +1,7 @@
 <div style="margin-bottom:10px;">
 <?php if ($menu_horizontal) { ?>
-  <div id="menu-holder" class="menu-<?php echo $menu_theme; ?>">
-  <div id="menu">
+  <div id="menu-holder" class="<?php echo $menu_class; ?>">
+  <div id="menu" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>-skin">
   <ul>
   <?php if ($menu_home) { ?>
   <li><a href="<?php echo $home; ?>" title=""><span class="home-icon"></span></a></li>
@@ -13,7 +13,7 @@
   <li><a title=""><?php echo $category['name']; ?><?php if ($category['children']) { ?><span></span><?php } ?></a>
   <?php } ?>
   <?php if ($category['children']) { ?>
-  <div>
+  <div class="<?php echo $mod_shape; ?>-bottom <?php echo $mod_color; ?>-skin">
   <?php if (count($category['children']) <= $column_limit) { ?>
   <?php for ($i = 0; $i < count($category['children']);) { ?>
   <ul>
@@ -91,7 +91,7 @@
 </div>
 
 <script type="text/javascript"><!--
-$('#menu-holder').prepend('<div id="menu-trigger"><img src="catalog/view/theme/default/image/menu-button-<?php echo $menu_theme; ?>.png" alt="" style="padding:3px 15px;" /></div>');
+$('#menu-holder').prepend('<div id="menu-trigger" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>-skin"><img src="catalog/view/theme/<?php echo $template; ?>/image/menu/menu-button-<?php echo $menu_theme; ?>.png" alt="" style="padding:3px 15px;" /></div>');
 $('#menu-trigger').live('click', function(e) {
   e.preventDefault();
   $('#menu-phone').slideToggle();

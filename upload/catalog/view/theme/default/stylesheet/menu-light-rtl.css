@@ -1,4 +1,8 @@
-/* Menu Light RTL CSS - OverClocked Edition */
+/* -----------------------------------
+* Overclocked Edition - Menu Light RTL
+* Copyright © 2016 - Villagedefrance
+* ------------------------------------
+*/
 #menu-holder, #menu-holder .menu-light {
 	background: #FFF;
 }
@@ -29,7 +33,7 @@
 	padding: 0;
 }
 .menu-light #menu > ul > li {
-	background: url('../image/menu/sep_lite.png') right top no-repeat;
+	background: url('../image/menu/sep_light.png') right top no-repeat;
 	position: relative;
 	float: right;
 	padding: 0px 0px 0px 2px;
@@ -70,7 +74,7 @@
 	background-image: linear-gradient(to bottom, #FCFCFC, #EDEDED);
 }
 .menu-light #menu > ul > li > a > span {
-	background: url('../image/menu/arrow_down_lite.png') right center no-repeat;
+	background: url('../image/menu/arrow_down_light.png') right center no-repeat;
 	padding: 0px 14px 0px 0px;
 	background-position: right center;
 }
@@ -119,7 +123,7 @@
 	padding-left: 16px;
 }
 .menu-light #menu > ul > li ul > li > a {
-	background: url('../image/menu/sep_vertical_lite.png') bottom left repeat-x;
+	background: url('../image/menu/sep_vertical_light.png') bottom left repeat-x;
 	display: block;
 	text-align: right;
 	min-width: 160px;
@@ -136,7 +140,7 @@
 	outline: none;
 }
 .menu-light #menu > ul > li ul > li > a > span {
-	background: url('../image/menu/arrow_left_lite_rtl.png') 150% center no-repeat;
+	background: url('../image/menu/arrow_left_light_rtl.png') 150% center no-repeat;
 	display: inline-block;
 	transition: all 0.3s;
 	-webkit-transition: all 0.3s;
@@ -151,7 +155,7 @@
 	text-decoration: none;
 }
 .menu-light #menu > ul > li ul > li > a:hover > span {
-	background: url('../image/menu/arrow_left_lite_rtl.png') right center no-repeat;
+	background: url('../image/menu/arrow_left_light_rtl.png') right center no-repeat;
 	padding-left: 0;
 	padding-right: 12px;
 }

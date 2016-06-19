@@ -1,7 +1,7 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content" style="margin:0px; padding:10px 0px 0px 0px; overflow:hidden;">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin" style="padding:0px 0px 10px 0px; overflow:hidden;">
     <div id="banner<?php echo $module; ?>" class="banner" style="padding:0px;">
       <?php foreach ($banners as $banner) { ?>
         <?php if ($banner['link']) { ?>
@@ -14,7 +14,7 @@
   </div>
 </div>
 <?php } else { ?>
-<div style="margin:0px; padding:10px 0px; overflow:hidden;">
+<div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px; padding:10px 0px; overflow:hidden;">
   <div id="banner<?php echo $module; ?>" class="banner" style="padding:0px;">
     <?php foreach ($banners as $banner) { ?>
       <?php if ($banner['link']) { ?>

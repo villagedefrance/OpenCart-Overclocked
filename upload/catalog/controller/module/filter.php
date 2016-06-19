@@ -28,6 +28,16 @@ class ControllerModuleFilter extends Controller {
 				$this->data['title'] = $this->data['heading_title'];
 			}
 
+			$header_color = $this->config->get($this->_name . '_header_color');
+			$header_shape = $this->config->get($this->_name . '_header_shape');
+			$content_color = $this->config->get($this->_name . '_content_color');
+			$content_shape = $this->config->get($this->_name . '_content_shape');
+
+			$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+			$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+			$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+			$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+		
 			$this->data['button_filter'] = $this->language->get('button_filter');
 
 			// Filters
@@ -65,20 +75,20 @@ class ControllerModuleFilter extends Controller {
 
 					foreach ($filter_group['filter'] as $filter) {
 						$data = array(
-							'filter_category_id'	=> $category_id,
-							'filter_filter'      		=> $filter['filter_id']
+							'filter_category_id' => $category_id,
+							'filter_filter'      => $filter['filter_id']
 						);
 
 						$filter_data[] = array(
-							'filter_id'	=> $filter['filter_id'],
-							'name'	=> $filter['name'] . ($this->config->get('config_product_count')) ? ' (' . $this->model_catalog_product->getTotalProducts($data) . ')' : ''
+							'filter_id' => $filter['filter_id'],
+							'name'      => $filter['name'] . ($this->config->get('config_product_count')) ? ' (' . $this->model_catalog_product->getTotalProducts($data) . ')' : ''
 						);
 					}
 
 					$this->data['filter_groups'][] = array(
-						'filter_group_id'	=> $filter_group['filter_group_id'],
-						'name'            	=> $filter_group['name'],
-						'filter'          		=> $filter_data
+						'filter_group_id' => $filter_group['filter_group_id'],
+						'name'            => $filter_group['name'],
+						'filter'          => $filter_data
 					);
 				}
 

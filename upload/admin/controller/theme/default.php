@@ -32,6 +32,7 @@ class ControllerThemeDefault extends Controller {
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_light'] = $this->language->get('text_light');
 		$this->data['text_dark'] = $this->language->get('text_dark');
+		$this->data['text_custom'] = $this->language->get('text_custom');
 		$this->data['text_default'] = $this->language->get('text_default');
 		$this->data['text_active'] = $this->language->get('text_active');
 		$this->data['text_not_active'] = $this->language->get('text_not_active');
@@ -47,6 +48,8 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_web_design'] = $this->language->get('entry_web_design');
 		$this->data['entry_powered_by'] = $this->language->get('entry_powered_by');
 		$this->data['entry_footer_theme'] = $this->language->get('entry_footer_theme');
+		$this->data['entry_footer_color'] = $this->language->get('entry_footer_color');
+		$this->data['entry_footer_shape'] = $this->language->get('entry_footer_shape');
 		$this->data['entry_footer_location'] = $this->language->get('entry_footer_location');
 		$this->data['entry_footer_phone'] = $this->language->get('entry_footer_phone');
 		$this->data['entry_footer_email'] = $this->language->get('entry_footer_email');
@@ -151,6 +154,22 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_footer_theme'] = $this->request->post[$this->_name . '_footer_theme'];
 		} else {
 			$this->data[$this->_name . '_footer_theme'] = $this->config->get($this->_name . '_footer_theme');
+		}
+
+		$this->data['skins'] = $this->model_setting_setting->getColors();
+
+		if (isset($this->request->post[$this->_name . '_footer_color'])) {
+			$this->data[$this->_name . '_footer_color'] = $this->request->post[$this->_name . '_footer_color'];
+		} else {
+			$this->data[$this->_name . '_footer_color'] = $this->config->get($this->_name . '_footer_color');
+		}
+
+		$this->data['shapes'] = $this->model_setting_setting->getShapes();
+
+		if (isset($this->request->post[$this->_name . '_footer_shape'])) {
+			$this->data[$this->_name . '_footer_shape'] = $this->request->post[$this->_name . '_footer_shape'];
+		} else {
+			$this->data[$this->_name . '_footer_shape'] = $this->config->get($this->_name . '_footer_shape');
 		}
 
 		if (isset($this->request->post[$this->_name . '_footer_location'])) {

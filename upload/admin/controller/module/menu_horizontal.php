@@ -30,6 +30,7 @@ class ControllerModuleMenuHorizontal extends Controller {
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_light'] = $this->language->get('text_light');
 		$this->data['text_dark'] = $this->language->get('text_dark');
+		$this->data['text_custom'] = $this->language->get('text_custom');
 		$this->data['text_ltr'] = $this->language->get('text_ltr');
 		$this->data['text_rtl'] = $this->language->get('text_rtl');
 		$this->data['text_icon'] = $this->language->get('text_icon');
@@ -42,6 +43,8 @@ class ControllerModuleMenuHorizontal extends Controller {
 		$this->data['text_menus'] = $this->language->get('text_menus');
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
+		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
+		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
 		$this->data['entry_column_limit'] = $this->language->get('entry_column_limit');
 		$this->data['entry_column_number'] = $this->language->get('entry_column_number');
 
@@ -75,20 +78,20 @@ class ControllerModuleMenuHorizontal extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_module'),
-			'href'   	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_module'),
+			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -104,6 +107,22 @@ class ControllerModuleMenuHorizontal extends Controller {
 			$this->data[$this->_name . '_theme'] = $this->request->post[$this->_name . '_theme'];
 		} else {
 			$this->data[$this->_name . '_theme'] = $this->config->get($this->_name . '_theme');
+		}
+
+		$this->data['skins'] = $this->model_setting_setting->getColors();
+
+		if (isset($this->request->post[$this->_name . '_header_color'])) {
+			$this->data[$this->_name . '_header_color'] = $this->request->post[$this->_name . '_header_color'];
+		} else {
+			$this->data[$this->_name . '_header_color'] = $this->config->get($this->_name . '_header_color');
+		}
+
+		$this->data['shapes'] = $this->model_setting_setting->getShapes();
+
+		if (isset($this->request->post[$this->_name . '_header_shape'])) {
+			$this->data[$this->_name . '_header_shape'] = $this->request->post[$this->_name . '_header_shape'];
+		} else {
+			$this->data[$this->_name . '_header_shape'] = $this->config->get($this->_name . '_header_shape');
 		}
 
 		if (isset($this->request->post[$this->_name . '_column_limit'])) {

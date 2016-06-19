@@ -22,7 +22,13 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$this->data['camera_theme'] = $this->config->get($this->_name . '_skin');
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$skin_color = $this->config->get($this->_name . '_skin_color');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['camera_theme'] = ($skin_color) ? $skin_color : 'charcoal';
 
 		$option_playpause = $this->config->get($this->_name . '_playpause');
 		$option_pagination = $this->config->get($this->_name . '_pagination');
@@ -70,9 +76,9 @@ class ControllerModuleSlideshow extends Controller {
 
 				if (file_exists(DIR_IMAGE . $result['image'])) {
 					$this->data['banners'][] = array(
-						'title'		=> $result['title'],
-						'link'		=> $image_link,
-						'image'	=> $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+						'title' => $result['title'],
+						'link'  => $image_link,
+						'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 					);
 				}
 			}

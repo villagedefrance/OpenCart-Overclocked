@@ -50,7 +50,7 @@
                   <?php } ?>
                 </select></td>
               </tr>
-              <tr> 
+              <tr>
                 <td><?php echo $entry_title; ?></td> 
                 <td><input type="text" name="welcome_module[<?php echo $module_row; ?>][title][<?php echo $language['language_id']; ?>]" value="<?php echo isset($module['title'][$language['language_id']]) ? $module['title'][$language['language_id']] : ''; ?>" size="30" /></td>
               </tr>
@@ -61,6 +61,54 @@
           </div>
         <?php } ?>
           <table class="form">
+            <tr>
+              <td><?php echo $entry_header_color; ?></td>
+              <td><select name="welcome_module[<?php echo $module_row; ?>][header_color]">
+                <?php foreach ($skins as $skin) { ?>
+                  <?php if ($skin['skin'] == $module['header_color']) { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_header_shape; ?></td>
+              <td><select name="welcome_module[<?php echo $module_row; ?>][header_shape]">
+                <?php foreach ($shapes as $shape) { ?>
+                  <?php if ($shape['shape'] == $module['header_shape']) { ?>
+                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_content_color; ?></td>
+              <td><select name="welcome_module[<?php echo $module_row; ?>][content_color]">
+                <?php foreach ($skins as $skin) { ?>
+                  <?php if ($skin['skin'] == $module['content_color']) { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
+            </tr>
+            <tr>
+              <td><?php echo $entry_content_shape; ?></td>
+              <td><select name="welcome_module[<?php echo $module_row; ?>][content_shape]">
+                <?php foreach ($shapes as $shape) { ?>
+                  <?php if ($shape['shape'] == $module['content_shape']) { ?>
+                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
+            </tr>
             <tr style="background:#FCFCFC;">
               <td><?php echo $entry_layout; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][layout_id]">
@@ -160,8 +208,8 @@ function addModule() {
 	<?php } ?>
 	html += '  </div>';
 	<?php foreach ($languages as $language) { ?>
-	html += '  <div id="tab-language-'+ module_row + '-<?php echo $language['language_id']; ?>">';
-	html += '    <table class="form">';
+	html += '  <div id="tab-language-' + module_row + '-<?php echo $language['language_id']; ?>">';
+	html += '  <table class="form">';
 	html += '    <tr>';
 	html += '      <td><?php echo $entry_theme; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][theme]">';
@@ -176,10 +224,42 @@ function addModule() {
 	html += '    <tr>';
 	html += '      <td colspan="2"><textarea name="welcome_module[' + module_row + '][description][<?php echo $language['language_id']; ?>]" id="description-' + module_row + '-<?php echo $language['language_id']; ?>"></textarea></td>';
 	html += '    </tr>';
-	html += '    </table>';
+	html += '  </table>';
 	html += '  </div>';
 	<?php } ?>
 	html += '  <table class="form">';
+	html += '    <tr>';
+	html += '      <td><?php echo $entry_header_color; ?></td>';
+	html += '      <td><select name="welcome_module[' + module_row + '][header_color]">';
+	<?php foreach ($skins as $skin) { ?>
+	html += '        <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>';
+	<?php } ?>
+	html += '      </select></td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '      <td><?php echo $entry_header_shape; ?></td>';
+	html += '      <td><select name="welcome_module[' + module_row + '][header_shape]">';
+	<?php foreach ($shapes as $shape) { ?>
+	html += '        <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>';
+	<?php } ?>
+	html += '      </select></td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '      <td><?php echo $entry_content_color; ?></td>';
+	html += '      <td><select name="welcome_module[' + module_row + '][content_color]">';
+	<?php foreach ($skins as $skin) { ?>
+	html += '        <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>';
+	<?php } ?>
+	html += '      </select></td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '      <td><?php echo $entry_content_shape; ?></td>';
+	html += '      <td><select name="welcome_module[' + module_row + '][content_shape]">';
+	<?php foreach ($shapes as $shape) { ?>
+	html += '        <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>';
+	<?php } ?>
+	html += '      </select></td>';
+	html += '    </tr>';
 	html += '    <tr style="background:#FCFCFC;">';
 	html += '      <td><?php echo $entry_layout; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][layout_id]">';

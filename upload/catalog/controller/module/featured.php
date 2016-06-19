@@ -17,6 +17,16 @@ class ControllerModuleFeatured extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$content_color = $this->config->get($this->_name . '_content_color');
+		$content_shape = $this->config->get($this->_name . '_content_shape');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		$this->data['text_from'] = $this->language->get('text_from');
 		$this->data['text_model'] = $this->language->get('text_model');
 		$this->data['text_reward'] = $this->language->get('text_reward');
@@ -134,26 +144,26 @@ class ControllerModuleFeatured extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'product_id'			=> $product_info['product_id'],
-					'thumb'   	 		=> $image,
-					'offer'       			=> $offer,
-					'name'    	 		=> $product_info['name'],
-					'manufacturer'		=> $product_info['manufacturer'],
-					'model' 				=> $product_info['model'],
-					'reward' 				=> $product_info['reward'],
-					'points' 				=> $product_info['points'],
-					'stock_status'		=> $product_info['stock_status'],
-					'stock_quantity'	=> $product_info['quantity'],
-					'stock_remaining'	=> ($product_info['subtract']) ? sprintf($this->language->get('text_remaining'), $product_info['quantity']) : '',
-					'quote'				=> $quote,
-					'price'   	  			=> $price,
-					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
-					'special' 	 			=> $special,
-					'minimum'			=> ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
-					'age_minimum'		=> ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
-					'rating'     			=> (int)$rating,
-					'reviews'    			=> sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-					'href'    	 			=> $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
+					'product_id'      => $product_info['product_id'],
+					'thumb'           => $image,
+					'offer'           => $offer,
+					'name'            => $product_info['name'],
+					'manufacturer'    => $product_info['manufacturer'],
+					'model'           => $product_info['model'],
+					'reward'          => $product_info['reward'],
+					'points'          => $product_info['points'],
+					'stock_status'    => $product_info['stock_status'],
+					'stock_quantity'  => $product_info['quantity'],
+					'stock_remaining' => ($product_info['subtract']) ? sprintf($this->language->get('text_remaining'), $product_info['quantity']) : '',
+					'quote'           => $quote,
+					'price'           => $price,
+					'price_option'    => $this->model_catalog_product->hasOptionPriceIncrease($product_info['product_id']),
+					'special'         => $special,
+					'minimum'         => ($product_info['minimum'] > 0) ? $product_info['minimum'] : 1,
+					'age_minimum'     => ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
+					'rating'          => (int)$rating,
+					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
+					'href'            => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				);
 			}
 		}

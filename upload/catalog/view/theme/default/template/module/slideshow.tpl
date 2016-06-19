@@ -1,7 +1,7 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content" style="margin:0px; padding:0px; overflow:hidden;">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div style="margin:0px; padding:0px; overflow:hidden;">
     <div class="camera_<?php echo $camera_theme; ?>_skin camera_wrap" id="camera_wrap<?php echo $module; ?>">
     <?php foreach ($banners as $banner) { ?>
       <?php if ($banner['link']) { ?>
@@ -14,7 +14,7 @@
   </div>
 </div>
 <?php } else { ?>
-<div style="padding:0px 0px 15px 0px; overflow:hidden;">
+<div style="margin-bottom:20px; padding:0px; overflow:hidden;">
   <div class="camera_<?php echo $camera_theme; ?>_skin camera_wrap" id="camera_wrap<?php echo $module; ?>">
     <?php foreach ($banners as $banner) { ?>
       <?php if ($banner['link']) { ?>

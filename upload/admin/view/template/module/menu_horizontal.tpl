@@ -20,22 +20,61 @@
     <div class="content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="menu_horizontal">
         <table class="form">
+        <tbody>
           <tr>
             <td><a href="<?php echo $manager; ?>" class="button"><?php echo $button_manager; ?></a></td>
             <td><b><i><?php echo $text_manage_menu; ?></i></b></td>
           </tr>
           <tr>
             <td><?php echo $entry_theme; ?></td>
-            <td><select name="menu_horizontal_theme">
-              <?php if (isset($menu_horizontal_theme)) { $selected = "selected"; ?>
-                <option value="light" <?php if ($menu_horizontal_theme == 'light') { echo $selected; } ?>><?php echo $text_light; ?></option>
-                <option value="dark" <?php if ($menu_horizontal_theme == 'dark') { echo $selected; } ?>><?php echo $text_dark; ?></option>
-              <?php } else { ?>
-                <option value="light"><?php echo $text_light; ?></option>
-                <option value="dark"><?php echo $text_dark; ?></option>
+            <td><?php if ($menu_horizontal_theme == 'light') { ?>
+              <input type="radio" name="menu_horizontal_theme" value="light" id="light" class="checkbox" checked="checked" />
+            <?php } else { ?>
+              <input type="radio" name="menu_horizontal_theme" value="light" id="light" class="checkbox" />
+            <?php } ?>
+            <label for="light"><?php echo $text_light; ?>&nbsp;&nbsp;<span></span></label>
+            <?php if ($menu_horizontal_theme == 'dark') { ?>
+              <input type="radio" name="menu_horizontal_theme" value="dark" id="dark" class="checkbox" checked="checked" />
+            <?php } else { ?>
+              <input type="radio" name="menu_horizontal_theme" value="dark" id="dark" class="checkbox" />
+            <?php } ?>
+            <label for="dark"><?php echo $text_dark; ?>&nbsp;&nbsp;<span></span></label>
+            <?php if ($menu_horizontal_theme == 'custom') { ?>
+              <input type="radio" name="menu_horizontal_theme" value="custom" id="custom" class="checkbox" checked="checked" />
+            <?php } else { ?>
+              <input type="radio" name="menu_horizontal_theme" value="custom" id="custom" class="checkbox" />
+            <?php } ?>
+            <label for="custom"><?php echo $text_custom; ?>&nbsp;&nbsp;<span></span></label>
+            </td>
+          </tr>
+        </tbody>
+        <tbody id="theme-custom" class="menu-theme">
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_header_color; ?></td>
+            <td><select name="menu_horizontal_header_color">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($skin['skin'] == $menu_horizontal_header_color) { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_header_shape; ?></td>
+            <td><select name="menu_horizontal_header_shape">
+              <?php foreach ($shapes as $shape) { ?>
+                <?php if ($shape['shape'] == $menu_horizontal_header_shape) { ?>
+                  <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </tbody>
+        <tbody>
           <tr>
             <td><?php echo $entry_column_limit; ?></a></td>
             <td><input type="text" name="menu_horizontal_column_limit" value="<?php echo $menu_horizontal_column_limit; ?>" size="3" /></td>
@@ -44,6 +83,7 @@
             <td><?php echo $entry_column_number; ?></a></td>
             <td><input type="text" name="menu_horizontal_column_number" value="<?php echo $menu_horizontal_column_number; ?>" size="3" /></td>
           </tr>
+        <tbody>
         </table>
         <h3><?php echo $text_menus; ?></h3>
         <table id="module" class="list">
@@ -152,9 +192,18 @@
 </div>
 
 <script type="text/javascript"><!--
+$('input[name=\'menu_horizontal_theme\']').bind('change', function() {
+	$('.menu-theme').hide();
+	$('#theme-' + this.value).show();
+});
+
+$('input[name=\'menu_horizontal_theme\']:checked').trigger('change');
+//--></script>
+
+<script type="text/javascript"><!--
 var module_row = <?php echo $module_row; ?>;
 
-function addModule() {	
+function addModule() {
 	html  = '<tbody id="module-row' + module_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left">';

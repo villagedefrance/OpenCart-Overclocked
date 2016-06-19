@@ -20,6 +20,7 @@
     <div class="content">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="hangouts">
         <table class="form">
+        <tbody>
           <tr>
             <td><?php echo $entry_theme; ?></td>
             <td><?php if ($google_hangouts_theme) { ?>
@@ -34,22 +35,74 @@
               <label for="theme-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-          <tr>
+        </tbody>
+        <tbody id="header-1" class="module-header">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_title; ?></td>
             <td><?php foreach ($languages as $language) { ?>
               <input type="text" name="google_hangouts_title<?php echo $language['language_id']; ?>" id="google_hangouts_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'google_hangouts_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
           </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_header_color; ?></td>
+            <td><select name="google_hangouts_header_color">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($skin['skin'] == $google_hangouts_header_color) { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_header_shape; ?></td>
+            <td><select name="google_hangouts_header_shape">
+              <?php foreach ($shapes as $shape) { ?>
+                <?php if ($shape['shape'] == $google_hangouts_header_shape) { ?>
+                  <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td><?php echo $entry_content_color; ?></td>
+            <td><select name="google_hangouts_content_color">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($skin['skin'] == $google_hangouts_content_color) { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_content_shape; ?></td>
+            <td><select name="google_hangouts_content_shape">
+              <?php foreach ($shapes as $shape) { ?>
+                <?php if ($shape['shape'] == $google_hangouts_content_shape) { ?>
+                  <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_code; ?></td>
-            <td>
-              <textarea name="google_hangouts_code" cols="80" rows="5"><?php echo $google_hangouts_code; ?></textarea>
+            <td><textarea name="google_hangouts_code" cols="80" rows="5"><?php echo $google_hangouts_code; ?></textarea>
               <?php if ($error_code) { ?>
                 <span class="error"><?php echo $error_code; ?></span>
               <?php } ?>
             </td>
           </tr>
+        </tbody>
         </table>
         <table id="module" class="list">
           <thead>
@@ -136,6 +189,15 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('input[name=\'google_hangouts_theme\']').bind('change', function() {
+	$('.module-header').hide();
+	$('#header-' + this.value).show();
+});
+
+$('input[name=\'google_hangouts_theme\']:checked').trigger('change');
+//--></script>
 
 <script type="text/javascript"><!--
 var module_row = <?php echo $module_row; ?>;

@@ -96,18 +96,57 @@
       </div>
       <div id="tab-footer">
         <table class="form">
+        <tbody>
           <tr>
             <td><?php echo $entry_footer_theme; ?></td>
-            <td><select name="default_footer_theme">
-              <?php if (isset($default_footer_theme)) { $selected = "selected"; ?>
-                <option value="1" <?php if ($default_footer_theme == '1') { echo $selected; } ?>><?php echo $text_light; ?></option>
-                <option value="0" <?php if ($default_footer_theme == '0') { echo $selected; } ?>><?php echo $text_dark; ?></option>
-              <?php } else { ?>
-                <option value="1"><?php echo $text_light; ?></option>
-                <option value="0"><?php echo $text_dark; ?></option>
+            <td><?php if ($default_footer_theme == 'light') { ?>
+              <input type="radio" name="default_footer_theme" value="light" id="light" class="checkbox" checked="checked" />
+            <?php } else { ?>
+              <input type="radio" name="default_footer_theme" value="light" id="light" class="checkbox" />
+            <?php } ?>
+            <label for="light"><?php echo $text_light; ?>&nbsp;&nbsp;<span></span></label>
+            <?php if ($default_footer_theme == 'dark') { ?>
+              <input type="radio" name="default_footer_theme" value="dark" id="dark" class="checkbox" checked="checked" />
+            <?php } else { ?>
+              <input type="radio" name="default_footer_theme" value="dark" id="dark" class="checkbox" />
+            <?php } ?>
+            <label for="dark"><?php echo $text_dark; ?>&nbsp;&nbsp;<span></span></label>
+            <?php if ($default_footer_theme == 'custom') { ?>
+              <input type="radio" name="default_footer_theme" value="custom" id="custom" class="checkbox" checked="checked" />
+            <?php } else { ?>
+              <input type="radio" name="default_footer_theme" value="custom" id="custom" class="checkbox" />
+            <?php } ?>
+            <label for="custom"><?php echo $text_custom; ?>&nbsp;&nbsp;<span></span></label>
+            </td>
+          </tr>
+        </tbody>
+        <tbody id="theme-custom" class="footer-theme">
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_footer_color; ?></td>
+            <td><select name="default_footer_color">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($skin['skin'] == $default_footer_color) { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
               <?php } ?>
             </select></td>
           </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_footer_shape; ?></td>
+            <td><select name="default_footer_shape">
+              <?php foreach ($shapes as $shape) { ?>
+                <?php if ($shape['shape'] == $default_footer_shape) { ?>
+                  <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </tbody>
+        <tbody>
           <tr>
             <td><?php echo $entry_footer_location; ?></td>
             <td><?php if ($default_footer_location) { ?>
@@ -220,6 +259,7 @@
               <label for="footer-skype-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+        </tbody>
         </table>
       </div>
       <div id="tab-options">
@@ -304,6 +344,15 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('input[name=\'default_footer_theme\']').bind('change', function() {
+	$('.footer-theme').hide();
+	$('#theme-' + this.value).show();
+});
+
+$('input[name=\'default_footer_theme\']:checked').trigger('change');
+//--></script>
 
 <script type="text/javascript"><!--
 $('#tabs a').tabs();

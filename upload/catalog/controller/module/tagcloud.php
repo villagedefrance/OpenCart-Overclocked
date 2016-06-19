@@ -17,6 +17,16 @@ class ControllerModuleTagCloud extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$content_color = $this->config->get($this->_name . '_content_color');
+		$content_shape = $this->config->get($this->_name . '_content_shape');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		$this->data['text_notags'] = $this->language->get('text_notags');
 
 		$this->load->model('catalog/tagcloud');

@@ -39,7 +39,11 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-		$this->data['entry_skin'] = $this->language->get('entry_skin');
+		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
+		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
+		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
+		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
+		$this->data['entry_skin_color'] = $this->language->get('entry_skin_color');
 		$this->data['entry_playpause'] = $this->language->get('entry_playpause');
 		$this->data['entry_pagination'] = $this->language->get('entry_pagination');
 		$this->data['entry_thumbnails'] = $this->language->get('entry_thumbnails');
@@ -72,61 +76,26 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_module'),
-			'href'   	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_module'),
+			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
-
-		// Skins
-		$this->data['skins'] = array();
-
-		$this->data['skins'][] = array('skin' => 'amber','color' => '#FFBF00','title' => 'Amber');
-		$this->data['skins'][] = array('skin' => 'ash','color' => '#B2BEB5','title' => 'Ash');
-		$this->data['skins'][] = array('skin' => 'azure','color' => '#007FFF','title' => 'Azure');
-		$this->data['skins'][] = array('skin' => 'beige','color' => '#F5F5DC','title' => 'Beige');
-		$this->data['skins'][] = array('skin' => 'black','color' => '#000000','title' => 'Black');
-		$this->data['skins'][] = array('skin' => 'blue','color' => '#0000FF','title' => 'Blue');
-		$this->data['skins'][] = array('skin' => 'brown','color' => '#964B00','title' => 'Brown');
-		$this->data['skins'][] = array('skin' => 'burgundy','color' => '#800020','title' => 'Burgundy');
-		$this->data['skins'][] = array('skin' => 'charcoal','color' => '#36454F','title' => 'Charcoal');
-		$this->data['skins'][] = array('skin' => 'chocolate','color' => '#D2691E','title' => 'Chocolate');
-		$this->data['skins'][] = array('skin' => 'coffee','color' => '#6F4E37','title' => 'Coffee');
-		$this->data['skins'][] = array('skin' => 'cyan','color' => '#00FFFF','title' => 'Cyan');
-		$this->data['skins'][] = array('skin' => 'fuchsia','color' => '#FF00FF','title' => 'Fuchsia');
-		$this->data['skins'][] = array('skin' => 'gold','color' => '#FFD700','title' => 'Gold');
-		$this->data['skins'][] = array('skin' => 'green','color' => '#00FF00','title' => 'Green');
-		$this->data['skins'][] = array('skin' => 'grey','color' => '#808080','title' => 'Grey');
-		$this->data['skins'][] = array('skin' => 'indigo','color' => '#4B0082','title' => 'Indigo');
-		$this->data['skins'][] = array('skin' => 'khaki','color' => '#BDB76B','title' => 'Khaki');
-		$this->data['skins'][] = array('skin' => 'lime','color' => '#CCFF00','title' => 'Lime');
-		$this->data['skins'][] = array('skin' => 'magenta','color' => '#CA1F7B','title' => 'Magenta');
-		$this->data['skins'][] = array('skin' => 'maroon','color' => '#800000','title' => 'Maroon');
-		$this->data['skins'][] = array('skin' => 'orange','color' => '#FF7F00','title' => 'Orange');
-		$this->data['skins'][] = array('skin' => 'olive','color' => '#808000','title' => 'Olive');
-		$this->data['skins'][] = array('skin' => 'pink','color' => '#FFC0CB','title' => 'Pink');
-		$this->data['skins'][] = array('skin' => 'pistachio','color' => '#93C572','title' => 'Pistachio');
-		$this->data['skins'][] = array('skin' => 'red','color' => '#FF0000','title' => 'Red');
-		$this->data['skins'][] = array('skin' => 'tangerine','color' => '#F28500','title' => 'Tangerine');
-		$this->data['skins'][] = array('skin' => 'turquoise','color' => '#40E0D0','title' => 'Turquoise');
-		$this->data['skins'][] = array('skin' => 'violet','color' => '#7F00FF','title' => 'Violet');
-		$this->data['skins'][] = array('skin' => 'white','color' => '#FFFFFF','title' => 'White');
-		$this->data['skins'][] = array('skin' => 'yellow','color' => '#FFFF00','title' => 'Yellow');
 
 		// Plugin
 		$this->data[$this->_name . '_plugin'] = $this->_plugin;
@@ -159,10 +128,26 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
 		}
 
-		if (isset($this->request->post[$this->_name . '_skin'])) {
-			$this->data[$this->_name . '_skin'] = $this->request->post[$this->_name . '_skin'];
+		$this->data['skins'] = $this->model_setting_setting->getColors();
+
+		if (isset($this->request->post[$this->_name . '_header_color'])) {
+			$this->data[$this->_name . '_header_color'] = $this->request->post[$this->_name . '_header_color'];
 		} else {
-			$this->data[$this->_name . '_skin'] = $this->config->get($this->_name . '_skin');
+			$this->data[$this->_name . '_header_color'] = $this->config->get($this->_name . '_header_color');
+		}
+
+		$this->data['shapes'] = $this->model_setting_setting->getShapes();
+
+		if (isset($this->request->post[$this->_name . '_header_shape'])) {
+			$this->data[$this->_name . '_header_shape'] = $this->request->post[$this->_name . '_header_shape'];
+		} else {
+			$this->data[$this->_name . '_header_shape'] = $this->config->get($this->_name . '_header_shape');
+		}
+
+		if (isset($this->request->post[$this->_name . '_skin_color'])) {
+			$this->data[$this->_name . '_skin_color'] = $this->request->post[$this->_name . '_skin_color'];
+		} else {
+			$this->data[$this->_name . '_skin_color'] = $this->config->get($this->_name . '_skin_color');
 		}
 
 		if (isset($this->request->post[$this->_name . '_playpause'])) {

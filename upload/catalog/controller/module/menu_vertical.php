@@ -16,6 +16,16 @@ class ControllerModuleMenuVertical extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$content_color = $this->config->get($this->_name . '_content_color');
+		$content_shape = $this->config->get($this->_name . '_content_shape');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		// Module
 		$this->load->model('design/menu');
 
@@ -54,17 +64,17 @@ class ControllerModuleMenuVertical extends Controller {
 				}
 
 				$children_data[] = array(
-					'item_id'	=> $child['menu_item_id'],
-					'name'	=> $child['name'],
-					'href'		=> $child_href
+					'item_id' => $child['menu_item_id'],
+					'name'    => $child['name'],
+					'href'    => $child_href
 				);
 			}
 
 			$this->data['menu_vertical'][] = array(
-				'item_id'		=> $menu_item['menu_item_id'],
-				'name'		=> $menu_item['menu_item_name'],
-				'children'		=> $children_data,
-				'href'			=> $href
+				'item_id'  => $menu_item['menu_item_id'],
+				'name'     => $menu_item['menu_item_name'],
+				'children' => $children_data,
+				'href'     => $href
 			);
 		}
 

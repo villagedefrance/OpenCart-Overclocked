@@ -1,0 +1,300 @@
+/* -----------------------------------
+* Overclocked Edition - Style Modifiers
+* Copyright © 2016 - Villagedefrance
+* ------------------------------------
+*/
+
+/* --- SHAPES --- */
+/* Square */
+.rounded-0 { }
+/* Rounded 3 */
+.rounded-3 {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+}
+.rounded-3-top {
+	-webkit-border-radius: 3px 3px 0px 0px;
+	-moz-border-radius: 3px 3px 0px 0px;
+	-khtml-border-radius: 3px 3px 0px 0px;
+	border-radius: 3px 3px 0px 0px;
+}
+.rounded-3-bottom {
+	-webkit-border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0px 0px 3px 3px;
+	-khtml-border-radius: 0px 0px 3px 3px;
+	border-radius: 0px 0px 3px 3px;
+}
+.rounded-3-left {
+	-webkit-border-radius: 3px 0px 0px 3px;
+	-moz-border-radius: 3px 0px 0px 3px;
+	-khtml-border-radius: 3px 0px 0px 3px;
+	border-radius: 3px 0px 0px 3px;
+}
+.rounded-3-right {
+	-webkit-border-radius: 0px 3px 3px 0px;
+	-moz-border-radius: 0px 3px 3px 0px;
+	-khtml-border-radius: 0px 3px 3px 0px;
+	border-radius: 0px 3px 3px 0px;
+}
+/* Rounded 5 */
+.rounded-5 {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+.rounded-5-top {
+	-webkit-border-radius: 5px 5px 0px 0px;
+	-moz-border-radius: 5px 5px 0px 0px;
+	-khtml-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+.rounded-5-bottom {
+	-webkit-border-radius: 0px 0px 5px 5px;
+	-moz-border-radius: 0px 0px 5px 5px;
+	-khtml-border-radius: 0px 0px 5px 5px;
+	border-radius: 0px 0px 5px 5px;
+}
+.rounded-5-left {
+	-webkit-border-radius: 5px 0px 0px 5px;
+	-moz-border-radius: 5px 0px 0px 5px;
+	-khtml-border-radius: 5px 0px 0px 5px;
+	border-radius: 5px 0px 0px 5px;
+}
+.rounded-5-right {
+	-webkit-border-radius: 0px 5px 5px 0px;
+	-moz-border-radius: 0px 5px 5px 0px;
+	-khtml-border-radius: 0px 5px 5px 0px;
+	border-radius: 0px 5px 5px 0px;
+}
+/* Rounded 7 */
+.rounded-7 {
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+}
+.rounded-7-top {
+	-webkit-border-radius: 7px 7px 0px 0px;
+	-moz-border-radius: 7px 7px 0px 0px;
+	-khtml-border-radius: 7px 7px 0px 0px;
+	border-radius: 7px 7px 0px 0px;
+}
+.rounded-7-bottom {
+	-webkit-border-radius: 0px 0px 7px 7px;
+	-moz-border-radius: 0px 0px 7px 7px;
+	-khtml-border-radius: 0px 0px 7px 7px;
+	border-radius: 0px 0px 7px 7px;
+}
+.rounded-7-left {
+	-webkit-border-radius: 7px 0px 0px 7px;
+	-moz-border-radius: 7px 0px 0px 7px;
+	-khtml-border-radius: 7px 0px 0px 7px;
+	border-radius: 7px 0px 0px 7px;
+}
+.rounded-7-right {
+	-webkit-border-radius: 0px 7px 7px 0px;
+	-moz-border-radius: 0px 7px 7px 0px;
+	-khtml-border-radius: 0px 7px 7px 0px;
+	border-radius: 0px 7px 7px 0px;
+}
+/* Rounded 9 */
+.rounded-9 {
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	-khtml-border-radius: 9px;
+	border-radius: 9px;
+}
+.rounded-9-top {
+	-webkit-border-radius: 9px 9px 0px 0px;
+	-moz-border-radius: 9px 9px 0px 0px;
+	-khtml-border-radius: 9px 9px 0px 0px;
+	border-radius: 9px 9px 0px 0px;
+}
+.rounded-9-bottom {
+	-webkit-border-radius: 0px 0px 9px 9px;
+	-moz-border-radius: 0px 0px 9px 9px;
+	-khtml-border-radius: 0px 0px 9px 9px;
+	border-radius: 0px 0px 9px 9px;
+}
+.rounded-9-left {
+	-webkit-border-radius: 9px 0px 0px 9px;
+	-moz-border-radius: 9px 0px 0px 9px;
+	-khtml-border-radius: 9px 0px 0px 9px;
+	border-radius: 9px 0px 0px 9px;
+}
+.rounded-9-right {
+	-webkit-border-radius: 0px 9px 9px 0px;
+	-moz-border-radius: 0px 9px 9px 0px;
+	-khtml-border-radius: 0px 9px 9px 0px;
+	border-radius: 0px 9px 9px 0px;
+}
+/* Rounded 11 */
+.rounded-11 {
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-khtml-border-radius: 11px;
+	border-radius: 11px;
+}
+.rounded-11-top {
+	-webkit-border-radius: 11px 11px 0px 0px;
+	-moz-border-radius: 11px 11px 0px 0px;
+	-khtml-border-radius: 11px 11px 0px 0px;
+	border-radius: 11px 11px 0px 0px;
+}
+.rounded-11-bottom {
+	-webkit-border-radius: 0px 0px 11px 11px;
+	-moz-border-radius: 0px 0px 11px 11px;
+	-khtml-border-radius: 0px 0px 11px 11px;
+	border-radius: 0px 0px 11px 11px;
+}
+.rounded-11-left {
+	-webkit-border-radius: 11px 0px 0px 11px;
+	-moz-border-radius: 11px 0px 0px 11px;
+	-khtml-border-radius: 11px 0px 0px 11px;
+	border-radius: 11px 0px 0px 11px;
+}
+.rounded-11-right {
+	-webkit-border-radius: 0px 11px 11px 0px;
+	-moz-border-radius: 0px 11px 11px 0px;
+	-khtml-border-radius: 0px 11px 11px 0px;
+	border-radius: 0px 11px 11px 0px;
+}
+/* --- COLOURS --- */
+/* White */
+.white-skin {
+	background: #FFFFFF;
+	color: #222;
+}
+/* Beige */
+.beige-skin {
+	background: #F5F5DC;
+	color: #222;
+}
+/* Silver */
+.silver-skin {
+	background: #C2C2C2;
+	color: #222;
+}
+/* Grey */
+.grey-skin {
+	background: #818181;
+	color: #FFF;
+}
+/* Charcoal */
+.charcoal-skin {
+	background: #36454F;
+	color: #FFF;
+}
+/* Black */
+.black-skin {
+	background: #000000;
+	color: #FFF;
+}
+/* Pistachio */
+.pistachio-skin {
+	background: #93C572;
+	color: #FFF;
+}
+/* Lime */
+.lime-skin {
+	background: #A4C400;
+	color: #FFF;
+}
+/* Green */
+.green-skin {
+	background: #60A917;
+	color: #FFF;
+}
+/* Emerald */
+.emerald-skin {
+	background: #008A00;
+	color: #FFF;
+}
+/* Teal */
+.teal-skin {
+	background: #00ABA9;
+	color: #FFF;
+}
+/* Cyan */
+.cyan-skin {
+	background: #1BA1E2;
+	color: #FFF;
+}
+/* Cobalt */
+.cobalt-skin {
+	background: #0050EF;
+	color: #FFF;
+}
+/* Indigo */
+.indigo-skin {
+	background: #6A00FF;
+	color: #FFF;
+}
+/* Violet */
+.violet-skin {
+	background: #AA00FF;
+	color: #FFF;
+}
+/* Pink */
+.pink-skin {
+	background: #F472D0;
+	color: #FFF;
+}
+/* Magenta */
+.magenta-skin {
+	background: #D80073;
+	color: #FFF;
+}
+/* Crimson */
+.crimson-skin {
+	background: #A20025;
+	color: #FFF;
+}
+/* Red */
+.red-skin {
+	background: #E51400;
+	color: #FFF;
+}
+/* Orange */
+.orange-skin {
+	background: #FA6800;
+	color: #FFF;
+}
+/* Amber */
+.amber-skin {
+	background: #F0A30A;
+	color: #FFF;
+}
+/* Yellow */
+.yellow-skin {
+	background: #E3C800;
+	color: #222;
+}
+/* Brown */
+.brown-skin {
+	background: #825A2C;
+	color: #FFF;
+}
+/* Olive */
+.olive-skin {
+	background: #6D8759;
+	color: #FFF;
+}
+/* Steel */
+.steel-skin {
+	background: #647687;
+	color: #FFF;
+}
+/* Mauve */
+.mauve-skin {
+	background: #76608A;
+	color: #FFF;
+}
+/* Sienna */
+.sienna-skin {
+	background: #A0522D;
+	color: #FFF;
+}

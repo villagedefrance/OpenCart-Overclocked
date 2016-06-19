@@ -226,220 +226,193 @@
 	opacity: .75;
 	color: #000;
 }
-/*AMBER SKIN*/
-.slick_amber_skin .slick-prev > span {
-	background-position: 0 -160px;
+
+/*WHITE SKIN*/
+.slick_white_skin .slick-prev > span {
+	background-position: 0 0px;
 }
-.slick_amber_skin .slick-next > span {
-	background-position: -40px -160px;
-}
-/*ASH SKIN*/
-.slick_ash_skin .slick-prev > span {
-	background-position: 0 -200px;
-}
-.slick_ash_skin .slick-next > span {
-	background-position: -40px -200px;
-}
-/*AZURE SKIN*/
-.slick_azure_skin .slick-prev > span {
-	background-position: 0 -240px;
-}
-.slick_azure_skin .slick-next > span {
-	background-position: -40px -240px;
+.slick_white_skin .slick-next > span {
+	background-position: -40px 0px;
 }
 /*BEIGE SKIN*/
 .slick_beige_skin .slick-prev > span {
-	background-position: 0 -120px;
-}
-.slick_beige_skin .slick-next > span {
-	background-position: -40px -120px;
-}
-/*BLACK SKIN*/
-.slick_black_skin .slick-prev > span {
 	background-position: 0 -40px;
 }
-.slick_black_skin .slick-next > span {
+.slick_beige_skin .slick-next > span {
 	background-position: -40px -40px;
 }
-/*BLUE SKIN*/
-.slick_blue_skin .slick-prev > span {
-	background-position: 0 -280px;
+/*SILVER SKIN*/
+.slick_silver_skin .slick-prev > span {
+	background-position: 0 -80px;
 }
-.slick_blue_skin .slick-next > span {
-	background-position: -40px -280px;
-}
-/*BROWN SKIN*/
-.slick_brown_skin .slick-prev > span {
-	background-position: 0 -320px;
-}
-.slick_brown_skin .slick-next > span {
-	background-position: -40px -320px;
-}
-/*BURGUNDY SKIN*/
-.slick_burgundy_skin .slick-prev > span {
-	background-position: 0 -360px;
-}
-.slick_burgundy_skin .slick-next > span {
-	background-position: -40px -360px;
-}
-/*CHARCOAL SKIN*/
-.slick_charcoal_skin .slick-prev > span {
-	background-position: 0 -400px;
-}
-.slick_charcoal_skin .slick-next > span {
-	background-position: -40px -400px;
-}
-/*CHOCOLATE SKIN*/
-.slick_chocolate_skin .slick-prev > span {
-	background-position: 0 -440px;
-}
-.slick_chocolate_skin .slick-next > span {
-	background-position: -40px -440px;
-}
-/*COFFEE SKIN*/
-.slick_coffee_skin .slick-prev > span {
-	background-position: 0 -480px;
-}
-.slick_coffee_skin .slick-next > span {
-	background-position: -40px -480px;
-}
-/*CYAN SKIN*/
-.slick_cyan_skin .slick-prev > span {
-	background-position: 0 -520px;
-}
-.slick_cyan_skin .slick-next > span {
-	background-position: -40px -520px;
-}
-/*FUCHSIA SKIN*/
-.slick_fuchsia_skin .slick-prev > span {
-	background-position: 0 -560px;
-}
-.slick_fuchsia_skin .slick-next > span {
-	background-position: -40px -560px;
-}
-/*GOLD SKIN*/
-.slick_gold_skin .slick-prev > span {
-	background-position: 0 -600px;
-}
-.slick_gold_skin .slick-next > span {
-	background-position: -40px -600px;
-}
-/*GREEN SKIN*/
-.slick_green_skin .slick-prev > span {
-	background-position: 0 -640px;
-}
-.slick_green_skin .slick-next > span {
-	background-position: -40px -640px;
+.slick_silver_skin .slick-next > span {
+	background-position: -40px -80px;
 }
 /*GREY SKIN*/
 .slick_grey_skin .slick-prev > span {
-	background-position: 0 -680px;
+	background-position: 0 -120px;
 }
 .slick_grey_skin .slick-next > span {
-	background-position: -40px -680px;
+	background-position: -40px -120px;
 }
-/*INDIGO SKIN*/
-.slick_indigo_skin .slick-prev > span {
-	background-position: 0 -720px;
+/*CHARCOAL SKIN*/
+.slick_charcoal_skin .slick-prev > span {
+	background-position: 0 -160px;
 }
-.slick_indigo_skin .slick-next > span {
-	background-position: -40px -720px;
+.slick_charcoal_skin .slick-next > span {
+	background-position: -40px -160px;
 }
-/*KHAKI SKIN*/
-.slick_khaki_skin .slick-prev > span {
-	background-position: 0 -760px;
+/*BLACK SKIN*/
+.slick_black_skin .slick-prev > span {
+	background-position: 0 -200px;
 }
-.slick_khaki_skin .slick-next > span {
-	background-position: -40px -760px;
-}
-/*LIME SKIN*/
-.slick_lime_skin .slick-prev > span {
-	background-position: 0 -800px;
-}
-.slick_lime_skin .slick-next > span {
-	background-position: -40px -800px;
-}
-/*MAGENTA SKIN*/
-.slick_magenta_skin .slick-prev > span {
-	background-position: 0 -840px;
-}
-.slick_magenta_skin .slick-next > span {
-	background-position: -40px -840px;
-}
-/*MAROON SKIN*/
-.slick_maroon_skin .slick-prev > span {
-	background-position: 0 -880px;
-}
-.slick_maroon_skin .slick-next > span {
-	background-position: -40px -880px;
-}
-/*ORANGE SKIN*/
-.slick_orange_skin .slick-prev > span {
-	background-position: 0 -920px;
-}
-.slick_orange_skin .slick-next > span {
-	background-position: -40px -920px;
-}
-/*OLIVE SKIN*/
-.slick_olive_skin .slick-prev > span {
-	background-position: 0 -1080px;
-}
-.slick_olive_skin .slick-next > span {
-	background-position: -40px -1080px;
-}
-/*PINK SKIN*/
-.slick_pink_skin .slick-prev > span {
-	background-position: 0 -960px;
-}
-.slick_pink_skin .slick-next > span {
-	background-position: -40px -960px;
+.slick_black_skin .slick-next > span {
+	background-position: -40px -200px;
 }
 /*PISTACHIO SKIN*/
 .slick_pistachio_skin .slick-prev > span {
-	background-position: 0 -1040px;
+	background-position: 0 -240px;
 }
 .slick_pistachio_skin .slick-next > span {
-	background-position: -40px -1040px;
+	background-position: -40px -240px;
 }
-/*RED SKIN*/
-.slick_red_skin .slick-prev > span {
-	background-position: 0 -1000px;
+/*LIME SKIN*/
+.slick_lime_skin .slick-prev > span {
+	background-position: 0 -280px;
 }
-.slick_red_skin .slick-next > span {
-	background-position: -40px -1000px;
+.slick_lime_skin .slick-next > span {
+	background-position: -40px -280px;
 }
-/*TANGERINE SKIN*/
-.slick_tangerine_skin .slick-prev > span {
-	background-position: 0 -1120px;
+/*GREEN SKIN*/
+.slick_green_skin .slick-prev > span {
+	background-position: 0 -320px;
 }
-.slick_tangerine_skin .slick-next > span {
-	background-position: -40px -1120px;
+.slick_green_skin .slick-next > span {
+	background-position: -40px -320px;
 }
-/*TURQUOISE SKIN*/
-.slick_turquoise_skin .slick-prev > span {
-	background-position: 0 -1160px;
+/*EMERALD SKIN*/
+.slick_emerald_skin .slick-prev > span {
+	background-position: 0 -360px;
 }
-.slick_turquoise_skin .slick-next > span {
-	background-position: -40px -1160px;
+.slick_emerald_skin .slick-next > span {
+	background-position: -40px -360px;
+}
+/*TEAL SKIN*/
+.slick_teal_skin .slick-prev > span {
+	background-position: 0 -400px;
+}
+.slick_teal_skin .slick-next > span {
+	background-position: -40px -400px;
+}
+/*CYAN SKIN*/
+.slick_cyan_skin .slick-prev > span {
+	background-position: 0 -440px;
+}
+.slick_cyan_skin .slick-next > span {
+	background-position: -40px -440px;
+}
+/*COBALT SKIN*/
+.slick_cobalt_skin .slick-prev > span {
+	background-position: 0 -480px;
+}
+.slick_cobalt_skin .slick-next > span {
+	background-position: -40px -480px;
+}
+/*INDIGO SKIN*/
+.slick_indigo_skin .slick-prev > span {
+	background-position: 0 -520px;
+}
+.slick_indigo_skin .slick-next > span {
+	background-position: -40px -520px;
 }
 /*VIOLET SKIN*/
 .slick_violet_skin .slick-prev > span {
-	background-position: 0 -1200px;
+	background-position: 0 -560px;
 }
 .slick_violet_skin .slick-next > span {
-	background-position: -40px -1200px;
+	background-position: -40px -560px;
 }
-/*WHITE SKIN*/
-.slick_white_skin .slick-prev > span {
-	background-position: 0 -80px;
+/*PINK SKIN*/
+.slick_pink_skin .slick-prev > span {
+	background-position: 0 -600px;
 }
-.slick_white_skin .slick-next > span {
-	background-position: -40px -80px;
+.slick_pink_skin .slick-next > span {
+	background-position: -40px -600px;
+}
+/*MAGENTA SKIN*/
+.slick_magenta_skin .slick-prev > span {
+	background-position: 0 -640px;
+}
+.slick_magenta_skin .slick-next > span {
+	background-position: -40px -640px;
+}
+/*CRIMSON SKIN*/
+.slick_crimson_skin .slick-prev > span {
+	background-position: 0 -680px;
+}
+.slick_crimson_skin .slick-next > span {
+	background-position: -40px -680px;
+}
+/*RED SKIN*/
+.slick_red_skin .slick-prev > span {
+	background-position: 0 -720px;
+}
+.slick_red_skin .slick-next > span {
+	background-position: -40px -720px;
+}
+/*ORANGE SKIN*/
+.slick_orange_skin .slick-prev > span {
+	background-position: 0 -760px;
+}
+.slick_orange_skin .slick-next > span {
+	background-position: -40px -760px;
+}
+/*AMBER SKIN*/
+.slick_amber_skin .slick-prev > span {
+	background-position: 0 -800px;
+}
+.slick_amber_skin .slick-next > span {
+	background-position: -40px -800px;
 }
 /*YELLOW SKIN*/
 .slick_yellow_skin .slick-prev > span {
-	background-position: 0 -1240px;
+	background-position: 0 -840px;
 }
 .slick_yellow_skin .slick-next > span {
-	background-position: -40px -1240px;
+	background-position: -40px -840px;
+}
+/*BROWN SKIN*/
+.slick_brown_skin .slick-prev > span {
+	background-position: 0 -880px;
+}
+.slick_brown_skin .slick-next > span {
+	background-position: -40px -880px;
+}
+/*OLIVE SKIN*/
+.slick_olive_skin .slick-prev > span {
+	background-position: 0 -920px;
+}
+.slick_olive_skin .slick-next > span {
+	background-position: -40px -920px;
+}
+/*STEEL SKIN*/
+.slick_steel_skin .slick-prev > span {
+	background-position: 0 -960px;
+}
+.slick_steel_skin .slick-next > span {
+	background-position: -40px -960px;
+}
+/*MAUVE SKIN*/
+.slick_mauve_skin .slick-prev > span {
+	background-position: 0 -1000px;
+}
+.slick_mauve_skin .slick-next > span {
+	background-position: -40px -1000px;
+}
+/*SIENNA SKIN*/
+.slick_sienna_skin .slick-prev > span {
+	background-position: 0 -1040px;
+}
+.slick_sienna_skin .slick-next > span {
+	background-position: -40px -1040px;
 }

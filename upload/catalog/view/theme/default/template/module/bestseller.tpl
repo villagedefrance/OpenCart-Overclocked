@@ -1,7 +1,7 @@
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin">
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>
@@ -51,7 +51,7 @@
   </div>
   </div>
 <?php } else { ?>
-  <div style="margin-bottom:20px;">
+  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px;">
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>

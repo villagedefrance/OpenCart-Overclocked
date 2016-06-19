@@ -1,9 +1,9 @@
 <?php if (!$logged) { ?>
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
-    <div style="text-align:left; padding:5px;">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin">
+    <div style="text-align:left; padding:10px 5px;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-affiliate">
         <p>
           <?php echo $entry_email_address; ?><br />
@@ -24,9 +24,9 @@
   </div>
 </div>
 <?php } else { ?>
-<div style="margin-bottom:20px;">
+<div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px;">
   <div>
-    <div style="text-align:left; padding:5px;">
+    <div style="text-align:left; padding:10px 10px;">
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="module-affiliate">
         <p>
           <?php echo $entry_email_address; ?><br />
@@ -51,8 +51,8 @@
 <?php if ($logged && $mode != 0) { ?>
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading"><?php echo $title; ?></div>
-  <div class="box-content">
+  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin">
     <?php if ($mode == 2) { ?>
       <div class="box-information">
         <ul>
@@ -64,7 +64,7 @@
           <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
         </ul>
       </div>
-      <div style="text-align:center; padding:5px 0;">
+      <div style="text-align:center; padding:10px 0px;">
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>
@@ -76,7 +76,7 @@
   </div>
 </div>
 <?php } else { ?>
-<div style="margin-bottom:20px;">
+<div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px;">
   <div>
     <?php if ($mode == 2) { ?>
       <div class="box-information">
@@ -89,7 +89,7 @@
           <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
         </ul>
       </div>
-      <div style="text-align:center; padding:5px 0;">
+      <div style="text-align:center; padding:10px 0px;">
         <a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a>
       </div>
     <?php } ?>

@@ -18,6 +18,16 @@ class ControllerModuleNews extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$content_color = $this->config->get($this->_name . '_content_color');
+		$content_shape = $this->config->get($this->_name . '_content_shape');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		$this->data['show_button'] = $this->config->get($this->_name . '_headline');
 
 		$this->data['text_more'] = $this->language->get('text_more');
@@ -57,11 +67,11 @@ class ControllerModuleNews extends Controller {
 			}
 
 			$this->data['news'][] = array(
-				'title'        		=> $result['title'],
-				'image'			=> $image,
-				'description'	=> $description,
-				'posted'   		=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'href'				=> $this->url->link('information/news', 'news_id=' . $result['news_id'])
+				'title'       => $result['title'],
+				'image'       => $image,
+				'description' => $description,
+				'posted'      => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'href'        => $this->url->link('information/news', 'news_id=' . $result['news_id'])
 			);
 		}
 

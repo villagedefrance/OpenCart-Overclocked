@@ -78,6 +78,36 @@ class ControllerCommonFooter extends Controller {
 
 		$this->data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
+		// Theme
+		$footer_theme = $this->config->get($template . '_footer_theme');
+
+		$footer_color = $this->config->get($template . '_footer_color');
+		$footer_shape = $this->config->get($template . '_footer_shape');
+
+		$mod_color = ($footer_color) ? $footer_color : 'white';
+		$mod_shape = ($footer_shape) ? $footer_shape : 'rounded-3';
+
+		if ($footer_theme == 'custom') {
+			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/footer-custom.css');
+
+			if ($mod_color == 'white' || $mod_color == 'beige' || $mod_color == 'silver') {
+				$footer_class = 'dark';
+			} else {
+				$footer_class = 'light';
+			}
+
+		} else {
+			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/footer.css');
+
+			$footer_class = $footer_theme;
+		}
+
+		$this->data['mod_color'] = $mod_color;
+		$this->data['mod_shape'] = $mod_shape;
+
+		$this->data['footer_class'] = $footer_class;
+		$this->data['footer_theme'] = $footer_theme;
+
 		// Piwik
 		$this->data['piwik'] = html_entity_decode($this->config->get('config_piwik_analytics'), ENT_QUOTES, 'UTF-8');
 

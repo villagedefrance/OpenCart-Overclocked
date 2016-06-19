@@ -19,308 +19,90 @@
     </div>
     <div class="content">
       <div id="tabs" class="htabs">
-        <a href="#tab-1"><span><?php echo $tab_code; ?> 1</span></a>
-        <a href="#tab-2"><span><?php echo $tab_code; ?> 2</span></a>
-        <a href="#tab-3"><span><?php echo $tab_code; ?> 3</span></a>
-        <a href="#tab-4"><span><?php echo $tab_code; ?> 4</span></a>
-        <a href="#tab-5"><span><?php echo $tab_code; ?> 5</span></a>
-        <a href="#tab-6"><span><?php echo $tab_code; ?> 6</span></a>
-        <a href="#tab-7"><span><?php echo $tab_code; ?> 7</span></a>
-        <a href="#tab-8"><span><?php echo $tab_code; ?> 8</span></a>
-        <a href="#tab-9"><span><?php echo $tab_code; ?> 9</span></a>
-        <a href="#tab-10"><span><?php echo $tab_code; ?> 10</span></a>
+      <?php for ($i = 1; $i <= 10; $i++) { ?>
+        <a href="#tab-<?php echo $i; ?>"><span><?php echo $tab_code; ?> <?php echo $i; ?></span></a>
+      <?php } ?>
       </div>
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form"  name="html">
-        <div id="tab-1" style="clear:both;">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="html">
+      <?php for ($i = 1; $i <= 10; $i++) { ?>
+        <div id="tab-<?php echo $i; ?>" style="clear:both;">
           <table class="form">
             <tr>
               <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme1) { ?>
-                <input type="radio" name="html_theme1" value="1" id="theme1-on" class="radio" checked />
-                <label for="theme1-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme1" value="0" id="theme1-off" class="radio" />
-                <label for="theme1-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <td><?php if (${'html_theme' . $i}) { ?>
+                <input type="radio" name="html_theme<?php echo $i; ?>" value="1" id="theme<?php echo $i; ?>-on" class="radio" checked />
+                <label for="theme<?php echo $i; ?>-on"><span><span></span></span><?php echo $text_yes; ?></label>
+                <input type="radio" name="html_theme<?php echo $i; ?>" value="0" id="theme<?php echo $i; ?>-off" class="radio" />
+                <label for="theme<?php echo $i; ?>-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } else { ?>
-                <input type="radio" name="html_theme1" value="1" id="theme1-on" class="radio" />
-                <label for="theme1-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme1" value="0" id="theme1-off" class="radio" checked />
-                <label for="theme1-off"><span><span></span></span><?php echo $text_no; ?></label>
+                <input type="radio" name="html_theme<?php echo $i; ?>" value="1" id="theme<?php echo $i; ?>-on" class="radio" />
+                <label for="theme<?php echo $i; ?>-on"><span><span></span></span><?php echo $text_yes; ?></label>
+                <input type="radio" name="html_theme<?php echo $i; ?>" value="0" id="theme<?php echo $i; ?>-off" class="radio" checked />
+                <label for="theme<?php echo $i; ?>-off"><span><span></span></span><?php echo $text_no; ?></label>
               <?php } ?></td>
             </tr>
             <tr>
               <td><?php echo $entry_title; ?></td>
               <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title1<?php echo $language['language_id']; ?>" id="html_title1<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title1' . $language['language_id']}; ?>" />
+                <input type="text" name="html_title<?php echo $i; ?>_<?php echo $language['language_id']; ?>" id="html_title<?php echo $i; ?>_<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title' . $i . '_' . $language['language_id']}; ?>" />
                 <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
               <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code1" cols="40" rows="10"><?php echo isset(${'html_code1'}) ? ${'html_code1'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-1-->
-        <div id="tab-2" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme2) { ?>
-                <input type="radio" name="html_theme2" value="1" id="theme2-on" class="radio" checked />
-                <label for="theme2-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme2" value="0" id="theme2-off" class="radio" />
-                <label for="theme2-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme2" value="1" id="theme2-on" class="radio" />
-                <label for="theme2-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme2" value="0" id="theme2-off" class="radio" checked />
-                <label for="theme2-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
+              <td><?php echo $entry_header_color; ?></td>
+              <td><select name="html_header_color<?php echo $i; ?>">
+                <?php foreach ($skins as $skin) { ?>
+                  <?php if ($skin['skin'] == ${'html_header_color' . $i}) { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
             </tr>
             <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title2<?php echo $language['language_id']; ?>" id="html_title2<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title2' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
+              <td><?php echo $entry_header_shape; ?></td>
+              <td><select name="html_header_shape<?php echo $i; ?>">
+                <?php foreach ($shapes as $shape) { ?>
+                  <?php if ($shape['shape'] == ${'html_header_shape' . $i}) { ?>
+                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
             </tr>
             <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code2" cols="40" rows="10"><?php echo isset(${'html_code2'}) ? ${'html_code2'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-2-->
-        <div id="tab-3" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme3) { ?>
-                <input type="radio" name="html_theme3" value="1" id="theme3-on" class="radio" checked />
-                <label for="theme3-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme3" value="0" id="theme3-off" class="radio" />
-                <label for="theme3-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme3" value="1" id="theme3-on" class="radio" />
-                <label for="theme3-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme3" value="0" id="theme3-off" class="radio" checked />
-                <label for="theme3-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
+              <td><?php echo $entry_content_color; ?></td>
+              <td><select name="html_content_color<?php echo $i; ?>">
+                <?php foreach ($skins as $skin) { ?>
+                  <?php if ($skin['skin'] == ${'html_content_color' . $i}) { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $skin['skin']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
             </tr>
             <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title3<?php echo $language['language_id']; ?>" id="html_title3<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title3' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
+              <td><?php echo $entry_content_shape; ?></td>
+              <td><select name="html_content_shape<?php echo $i; ?>">
+                <?php foreach ($shapes as $shape) { ?>
+                  <?php if ($shape['shape'] == ${'html_content_shape' . $i}) { ?>
+                    <option value="<?php echo $shape['shape']; ?>" selected="selected"><?php echo $shape['title']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $shape['shape']; ?>"><?php echo $shape['title']; ?></option>
+                  <?php } ?>
+                <?php } ?>
+              </select></td>
             </tr>
             <tr>
               <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code3" cols="40" rows="10"><?php echo isset(${'html_code3'}) ? ${'html_code3'} : ''; ?></textarea></td>
+              <td><textarea name="html_code<?php echo $i; ?>" cols="40" rows="10"><?php echo isset(${'html_code' . $i}) ? ${'html_code' . $i} : ''; ?></textarea></td>
             </tr>
           </table>
-        </div><!--tab-3-->
-        <div id="tab-4" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme4) { ?>
-                <input type="radio" name="html_theme4" value="1" id="theme4-on" class="radio" checked />
-                <label for="theme4-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme4" value="0" id="theme4-off" class="radio" />
-                <label for="theme4-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme4" value="1" id="theme4-on" class="radio" />
-                <label for="theme4-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme4" value="0" id="theme4-off" class="radio" checked />
-                <label for="theme4-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title4<?php echo $language['language_id']; ?>" id="html_title4<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title4' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code4" cols="40" rows="10"><?php echo isset(${'html_code4'}) ? ${'html_code4'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-4-->
-        <div id="tab-5" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme5) { ?>
-                <input type="radio" name="html_theme5" value="1" id="theme5-on" class="radio" checked />
-                <label for="theme5-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme5" value="0" id="theme5-off" class="radio" />
-                <label for="theme5-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme5" value="1" id="theme5-on" class="radio" />
-                <label for="theme5-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme5" value="0" id="theme5-off" class="radio" checked />
-                <label for="theme5-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title5<?php echo $language['language_id']; ?>" id="html_title5<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title5' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code5" cols="40" rows="10"><?php echo isset(${'html_code5'}) ? ${'html_code5'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-5-->
-        <div id="tab-6" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme6) { ?>
-                <input type="radio" name="html_theme6" value="1" id="theme6-on" class="radio" checked />
-                <label for="theme6-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme6" value="0" id="theme6-off" class="radio" />
-                <label for="theme6-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme6" value="1" id="theme6-on" class="radio" />
-                <label for="theme6-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme6" value="0" id="theme6-off" class="radio" checked />
-                <label for="theme6-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title6<?php echo $language['language_id']; ?>" id="html_title6<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title6' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code6" cols="40" rows="10"><?php echo isset(${'html_code6'}) ? ${'html_code6'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-6-->
-        <div id="tab-7" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme7) { ?>
-                <input type="radio" name="html_theme7" value="1" id="theme7-on" class="radio" checked />
-                <label for="theme7-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme7" value="0" id="theme7-off" class="radio" />
-                <label for="theme7-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme7" value="1" id="theme7-on" class="radio" />
-                <label for="theme7-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme7" value="0" id="theme7-off" class="radio" checked />
-                <label for="theme7-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title7<?php echo $language['language_id']; ?>" id="html_title7<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title7' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code7" cols="40" rows="10"><?php echo isset(${'html_code7'}) ? ${'html_code7'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-7-->
-        <div id="tab-8" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme8) { ?>
-                <input type="radio" name="html_theme8" value="1" id="theme8-on" class="radio" checked />
-                <label for="theme8-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme8" value="0" id="theme8-off" class="radio" />
-                <label for="theme8-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme8" value="1" id="theme8-on" class="radio" />
-                <label for="theme8-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme8" value="0" id="theme8-off" class="radio" checked />
-                <label for="theme8-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title8<?php echo $language['language_id']; ?>" id="html_title8<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title8' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code8" cols="40" rows="10"><?php echo isset(${'html_code8'}) ? ${'html_code8'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-8-->
-        <div id="tab-9" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme9) { ?>
-                <input type="radio" name="html_theme9" value="1" id="theme9-on" class="radio" checked />
-                <label for="theme9-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme9" value="0" id="theme9-off" class="radio" />
-                <label for="theme9-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme9" value="1" id="theme9-on" class="radio" />
-                <label for="theme9-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme9" value="0" id="theme9-off" class="radio" checked />
-                <label for="theme9-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title9<?php echo $language['language_id']; ?>" id="html_title9<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title9' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code9" cols="40" rows="10"><?php echo isset(${'html_code9'}) ? ${'html_code9'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-9-->
-        <div id="tab-10" style="clear:both;">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_theme; ?></td>
-              <td><?php if ($html_theme10) { ?>
-                <input type="radio" name="html_theme10" value="1" id="theme10-on" class="radio" checked />
-                <label for="theme10-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme10" value="0" id="theme10-off" class="radio" />
-                <label for="theme10-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } else { ?>
-                <input type="radio" name="html_theme10" value="1" id="theme10-on" class="radio" />
-                <label for="theme10-on"><span><span></span></span><?php echo $text_yes; ?></label>
-                <input type="radio" name="html_theme10" value="0" id="theme10-off" class="radio" checked />
-                <label for="theme10-off"><span><span></span></span><?php echo $text_no; ?></label>
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_title; ?></td>
-              <td><?php foreach ($languages as $language) { ?>
-                <input type="text" name="html_title10<?php echo $language['language_id']; ?>" id="html_title10<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'html_title10' . $language['language_id']}; ?>" />
-                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
-              <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_code; ?></td>
-              <td><textarea name="html_code10" cols="40" rows="10"><?php echo isset(${'html_code10'}) ? ${'html_code10'} : ''; ?></textarea></td>
-            </tr>
-          </table>
-        </div><!--tab-10-->
+        </div>
+      <?php } ?>
         <table id="module" class="list">
           <thead>
             <tr>

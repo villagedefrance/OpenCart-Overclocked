@@ -13,8 +13,6 @@ class ControllerModuleLocation extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
 			$this->model_setting_setting->editSetting($this->_name, $this->request->post);
 
-			$this->cache->delete('product');
-
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->post['apply'])) {
@@ -30,6 +28,7 @@ class ControllerModuleLocation extends Controller {
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_manage_locations'] = $this->language->get('text_manage_locations');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
@@ -39,6 +38,10 @@ class ControllerModuleLocation extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
+		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
+		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
+		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
+		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
 
 		$this->data['entry_limit'] = $this->language->get('entry_limit');
 		$this->data['entry_image'] = $this->language->get('entry_image');
@@ -52,6 +55,7 @@ class ControllerModuleLocation extends Controller {
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_module'] = $this->language->get('button_add_module');
 		$this->data['button_remove'] = $this->language->get('button_remove');
+		$this->data['button_manager'] = $this->language->get('button_manager');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -68,26 +72,29 @@ class ControllerModuleLocation extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_module'),
-			'href'   	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_module'),
+			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Manager
+		$this->data['manager'] = $this->url->link('localisation/location', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {
@@ -114,6 +121,34 @@ class ControllerModuleLocation extends Controller {
 			$this->data[$this->_name . '_title'] = $this->request->post[$this->_name . '_title'];
 		} else {
 			$this->data[$this->_name . '_title'] = $this->config->get($this->_name . '_title');
+		}
+
+		$this->data['skins'] = $this->model_setting_setting->getColors();
+
+		if (isset($this->request->post[$this->_name . '_header_color'])) {
+			$this->data[$this->_name . '_header_color'] = $this->request->post[$this->_name . '_header_color'];
+		} else {
+			$this->data[$this->_name . '_header_color'] = $this->config->get($this->_name . '_header_color');
+		}
+
+		$this->data['shapes'] = $this->model_setting_setting->getShapes();
+
+		if (isset($this->request->post[$this->_name . '_header_shape'])) {
+			$this->data[$this->_name . '_header_shape'] = $this->request->post[$this->_name . '_header_shape'];
+		} else {
+			$this->data[$this->_name . '_header_shape'] = $this->config->get($this->_name . '_header_shape');
+		}
+
+		if (isset($this->request->post[$this->_name . '_content_color'])) {
+			$this->data[$this->_name . '_content_color'] = $this->request->post[$this->_name . '_content_color'];
+		} else {
+			$this->data[$this->_name . '_content_color'] = $this->config->get($this->_name . '_content_color');
+		}
+
+		if (isset($this->request->post[$this->_name . '_content_shape'])) {
+			$this->data[$this->_name . '_content_shape'] = $this->request->post[$this->_name . '_content_shape'];
+		} else {
+			$this->data[$this->_name . '_content_shape'] = $this->config->get($this->_name . '_content_shape');
 		}
 
 		$this->data['modules'] = array();

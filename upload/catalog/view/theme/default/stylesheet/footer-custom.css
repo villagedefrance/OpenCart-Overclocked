@@ -1,0 +1,211 @@
+/* -----------------------------------
+* Overclocked Edition - Footer Custom
+* Copyright © 2016 - Villagedefrance
+* ------------------------------------
+*/
+#footer-holder .footer-light, #footer-holder .footer-dark {
+	background: inherit;
+}
+/* Footer Light */
+.footer-light #footer {
+	clear: both;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-top: 15px;
+	padding: 20px 0px;
+	overflow: auto;
+}
+.footer-light #footer h3 {
+	color: #FFF;
+	font-size: 15px;
+	margin: 0px 0px 0px 18px;
+}
+.footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four {
+	float: left;
+	min-width: 150px;
+	display: block;
+}
+.footer-light #footer > .column-one > ul, .footer-light #footer > .column-two > ul, .footer-light #footer > .column-three > ul, .footer-light #footer > .column-four > ul {
+	list-style: url('../image/bullet-1.png');
+	margin-bottom: 10px;
+}
+.footer-light #footer > .column-one > ul > li, .footer-light #footer > .column-two > ul > li, .footer-light #footer > .column-three > ul > li, .footer-light #footer > .column-four > ul > li {
+	margin-bottom: 4px;
+}
+.footer-light #footer > .column-one a, .footer-light #footer > .column-two a, .footer-light #footer > .column-three a, .footer-light #footer > .column-four a {
+	text-decoration: none;
+	font-size: 13px;
+}
+.footer-light #footer > .column-one a:hover, .footer-light #footer > .column-two a:hover, .footer-light #footer > .column-three a:hover, .footer-light #footer > .column-four a:hover {}
+.footer-light #footer > .big-column {
+	float: right;
+	width: 28%;
+	min-width: 200px;
+	display: block;
+}
+.footer-light #footer > .big-column > p { }
+.footer-light #footer > .big-column span {
+	display: inline-block;
+}
+/* Footer Dark */
+.footer-dark #footer {
+	clear: both;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin-top: 15px;
+	padding: 20px 0px;
+	overflow: auto;
+}
+.footer-dark #footer h3 {
+	color: #444;
+	font-size: 15px;
+	margin: 0px 0px 0px 18px;
+}
+.footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
+	float: left;
+	min-width: 150px;
+	display: block;
+}
+.footer-dark #footer > .column-one > ul, .footer-dark #footer > .column-two > ul, .footer-dark #footer > .column-three > ul, .footer-dark #footer > .column-four > ul {
+	list-style: url('../image/bullet-2.png');
+	margin-bottom: 10px;
+}
+.footer-dark #footer > .column-one > ul > li, .footer-dark #footer > .column-two > ul > li, .footer-dark #footer > .column-three > ul > li, .footer-dark #footer > .column-four > ul > li {
+	margin-bottom: 4px;
+}
+.footer-dark #footer > .column-one a, .footer-dark #footer > .column-two a, .footer-dark #footer > .column-three a, .footer-dark #footer > .column-four a {
+	text-decoration: none;
+	font-size: 13px;
+}
+.footer-dark #footer > .column-one a:hover, .footer-dark #footer > .column-two a:hover, .footer-dark #footer > .column-three a:hover, .footer-dark #footer > .column-four a:hover { }
+.footer-dark #footer > .big-column {
+	float: right;
+	width: 28%;
+	min-width: 200px;
+	display: block;
+}
+.footer-dark #footer > .big-column > p { }
+.footer-dark #footer > .big-column span {
+	display: inline-block;
+}
+/* Footer Icons*/
+.icon-location {
+	font-size: 13px;
+	line-height: 24px;
+	background: url('../image/icon_location.png') left top no-repeat;
+	padding: 0 0 0 32px;
+	margin-bottom: 6px;
+}
+.icon-phone {
+	font-size: 13px;
+	line-height: 24px;
+	background: url('../image/icon_phone.png') left top no-repeat;
+	padding: 0 0 0 32px;
+	margin-bottom: 6px;
+}
+.icon-mail {
+	font-size: 13px;
+	line-height: 24px;
+	background: url('../image/icon_mail.png') left top no-repeat;
+	padding: 0 0 0 32px;
+	margin-bottom: 6px;
+}
+.icon-facebook {
+	float: right;
+	width: 23px;
+	height: 23px;
+	background: url('../image/icon_facebook.png') center -23px no-repeat;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	text-indent: -9999px;
+	margin-top: 8px;
+	margin-right: 12px;
+}
+a.icon-facebook:hover {
+	background: url('../image/icon_facebook.png') center top no-repeat;
+}
+.icon-twitter {
+	float: right;
+	width: 23px;
+	height: 23px;
+	background: url('../image/icon_twitter.png') center -23px no-repeat;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	text-indent: -9999px;
+	margin-top: 8px;
+	margin-right: 12px;
+}
+a.icon-twitter:hover {
+	background: url('../image/icon_twitter.png') center top no-repeat;
+}
+.icon-google {
+	float: right;
+	width: 23px;
+	height: 23px;
+	background: url('../image/icon_google.png') center -23px no-repeat;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	text-indent: -9999px;
+	margin-top: 8px;
+	margin-right: 12px;
+}
+a.icon-google:hover {
+	background: url('../image/icon_google.png') top center no-repeat;
+}
+.icon-pinterest {
+	float: right;
+	width: 23px;
+	height: 23px;
+	background: url('../image/icon_pinterest.png') center -23px no-repeat;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+	text-indent: -9999px;
+	margin-top: 8px;
+	margin-right: 12px;
+}
+a.icon-pinterest:hover {
+	background: url('../image/icon_pinterest.png') center top no-repeat;
+}
+.icon-skype {
+	float: right;
+	width: 23px;
+	height: 23px;
+	background: url('../image/icon_skype.png') center -23px no-repeat;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	text-indent: -9999px;
+	margin-top: 8px;
+	margin-right: 12px;
+}
+a.icon-skype:hover {
+	background: url('../image/icon_skype.png') top center no-repeat;
+}
+/* Tablets */
+@media only screen and (min-width: 620px) and (max-width: 960px) {
+	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
+		clear: left;
+	}
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
+		float: left;
+		margin: 10px 0px 0px 15px;
+	}
+}
+/* Phones */
+@media only screen and (max-width: 620px) {
+	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
+		clear: left;
+	}
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
+		clear: left;
+		float: left;
+		margin-top: 15px;
+		margin-left: 15px;
+	}
+}

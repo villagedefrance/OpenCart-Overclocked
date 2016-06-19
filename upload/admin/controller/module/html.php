@@ -39,7 +39,10 @@ class ControllerModuleHtml extends Controller {
 
 		$this->data['entry_theme'] = $this->language->get('entry_theme');
 		$this->data['entry_title'] = $this->language->get('entry_title');
-
+		$this->data['entry_header_color'] = $this->language->get('entry_header_color');
+		$this->data['entry_header_shape'] = $this->language->get('entry_header_shape');
+		$this->data['entry_content_color'] = $this->language->get('entry_content_color');
+		$this->data['entry_content_shape'] = $this->language->get('entry_content_shape');
 		$this->data['entry_code'] = $this->language->get('entry_code');
 
 		$this->data['entry_tab_id'] = $this->language->get('entry_tab_id');
@@ -63,20 +66,20 @@ class ControllerModuleHtml extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_module'),
-			'href'   	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_module'),
+			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -87,192 +90,59 @@ class ControllerModuleHtml extends Controller {
 		$this->data['token'] = $this->session->data['token'];
 
 		// Module
-		if (isset($this->request->post[$this->_name . '_theme1'])) {
-			$this->data[$this->_name . '_theme1'] = $this->request->post[$this->_name . '_theme1'];
-		} else {
-			$this->data[$this->_name . '_theme1'] = $this->config->get($this->_name . '_theme1');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme2'])) {
-			$this->data[$this->_name . '_theme2'] = $this->request->post[$this->_name . '_theme2'];
-		} else {
-			$this->data[$this->_name . '_theme2'] = $this->config->get($this->_name . '_theme2');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme3'])) {
-			$this->data[$this->_name . '_theme3'] = $this->request->post[$this->_name . '_theme3'];
-		} else {
-			$this->data[$this->_name . '_theme3'] = $this->config->get($this->_name . '_theme3');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme4'])) {
-			$this->data[$this->_name . '_theme4'] = $this->request->post[$this->_name . '_theme4'];
-		} else {
-			$this->data[$this->_name . '_theme4'] = $this->config->get($this->_name . '_theme4');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme5'])) {
-			$this->data[$this->_name . '_theme5'] = $this->request->post[$this->_name . '_theme5'];
-		} else {
-			$this->data[$this->_name . '_theme5'] = $this->config->get($this->_name . '_theme5');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme6'])) {
-			$this->data[$this->_name . '_theme6'] = $this->request->post[$this->_name . '_theme6'];
-		} else {
-			$this->data[$this->_name . '_theme6'] = $this->config->get($this->_name . '_theme6');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme7'])) {
-			$this->data[$this->_name . '_theme7'] = $this->request->post[$this->_name . '_theme7'];
-		} else {
-			$this->data[$this->_name . '_theme7'] = $this->config->get($this->_name . '_theme7');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme8'])) {
-			$this->data[$this->_name . '_theme8'] = $this->request->post[$this->_name . '_theme8'];
-		} else {
-			$this->data[$this->_name . '_theme8'] = $this->config->get($this->_name . '_theme8');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme9'])) {
-			$this->data[$this->_name . '_theme9'] = $this->request->post[$this->_name . '_theme9'];
-		} else {
-			$this->data[$this->_name . '_theme9'] = $this->config->get($this->_name . '_theme9');
-		}
-
-		if (isset( $this->request->post[$this->_name . '_theme10'])) {
-			$this->data[$this->_name . '_theme10'] = $this->request->post[$this->_name . '_theme10'];
-		} else {
-			$this->data[$this->_name . '_theme10'] = $this->config->get($this->_name . '_theme10');
-		}
-
+		$this->data['skins'] = $this->model_setting_setting->getColors();
+		$this->data['shapes'] = $this->model_setting_setting->getShapes();
+		
 		$this->load->model('localisation/language');
 
 		$languages = $this->model_localisation_language->getLanguages();
 
-		foreach ($languages as $language) {
-			if (isset($this->request->post[$this->_name . '_title1' . $language['language_id']])) {
-				$this->data[$this->_name . '_title1' . $language['language_id']] = $this->request->post[$this->_name . '_title1' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title1' . $language['language_id']] = $this->config->get($this->_name . '_title1' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title2' . $language['language_id']])) {
-				$this->data[$this->_name . '_title2' . $language['language_id']] = $this->request->post[$this->_name . '_title2' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title2' . $language['language_id']] = $this->config->get($this->_name . '_title2' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title3' . $language['language_id']])) {
-				$this->data[$this->_name . '_title3' . $language['language_id']] = $this->request->post[$this->_name . '_title3' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title3' . $language['language_id']] = $this->config->get($this->_name . '_title3' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title4' . $language['language_id']])) {
-				$this->data[$this->_name . '_title4' . $language['language_id']] = $this->request->post[$this->_name . '_title4' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title4' . $language['language_id']] = $this->config->get($this->_name . '_title4' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title5' . $language['language_id']])) {
-				$this->data[$this->_name . '_title5' . $language['language_id']] = $this->request->post[$this->_name . '_title5' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title5' . $language['language_id']] = $this->config->get($this->_name . '_title5' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title6' . $language['language_id']])) {
-				$this->data[$this->_name . '_title6' . $language['language_id']] = $this->request->post[$this->_name . '_title6' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title6' . $language['language_id']] = $this->config->get($this->_name . '_title6' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title7' . $language['language_id']])) {
-				$this->data[$this->_name . '_title7' . $language['language_id']] = $this->request->post[$this->_name . '_title7' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title7' . $language['language_id']] = $this->config->get($this->_name . '_title7' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title8' . $language['language_id']])) {
-				$this->data[$this->_name . '_title8' . $language['language_id']] = $this->request->post[$this->_name . '_title8' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title8' . $language['language_id']] = $this->config->get($this->_name . '_title8' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title9' . $language['language_id']])) {
-				$this->data[$this->_name . '_title9' . $language['language_id']] = $this->request->post[$this->_name . '_title9' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title9' . $language['language_id']] = $this->config->get($this->_name . '_title9' . $language['language_id']);
-			}
-
-			if (isset($this->request->post[$this->_name . '_title10' . $language['language_id']])) {
-				$this->data[$this->_name . '_title10' . $language['language_id']] = $this->request->post[$this->_name . '_title10' . $language['language_id']];
-			} else {
-				$this->data[$this->_name . '_title10' . $language['language_id']] = $this->config->get($this->_name . '_title10' . $language['language_id']);
-			}
-		}
-
 		$this->data['languages'] = $languages;
 
-		if (isset($this->request->post[$this->_name . '_code1'])) {
-			$this->data[$this->_name . '_code1'] = $this->request->post[$this->_name . '_code1'];
-		} else {
-			$this->data[$this->_name . '_code1'] = $this->config->get($this->_name . '_code1');
-		}
+		for ($i = 1; $i <= 10; $i++) {
+			if (isset($this->request->post[$this->_name . '_theme' . $i])) {
+				$this->data[$this->_name . '_theme' . $i] = $this->request->post[$this->_name . '_theme' . $i];
+			} else {
+				$this->data[$this->_name . '_theme' . $i] = $this->config->get($this->_name . '_theme' . $i);
+			}
 
-		if (isset($this->request->post[$this->_name . '_code2'])) {
-			$this->data[$this->_name . '_code2'] = $this->request->post[$this->_name . '_code2'];
-		} else {
-			$this->data[$this->_name . '_code2'] = $this->config->get($this->_name . '_code2');
-		}
+			foreach ($languages as $language) {
+				if (isset($this->request->post[$this->_name . '_title' . $i . '_' . $language['language_id']])) {
+					$this->data[$this->_name . '_title' . $i . '_' . $language['language_id']] = $this->request->post[$this->_name . '_title' . $i . '_' . $language['language_id']];
+				} else {
+					$this->data[$this->_name . '_title' . $i . '_' . $language['language_id']] = $this->config->get($this->_name . '_title' . $i . '_' . $language['language_id']);
+				}
+			}
 
-		if (isset($this->request->post[$this->_name . '_code3'])) {
-			$this->data[$this->_name . '_code3'] = $this->request->post[$this->_name . '_code3'];
-		} else {
-			$this->data[$this->_name . '_code3'] = $this->config->get($this->_name . '_code3');
-		}
+			if (isset($this->request->post[$this->_name . '_header_color' . $i])) {
+				$this->data[$this->_name . '_header_color' . $i] = $this->request->post[$this->_name . '_header_color' . $i];
+			} else {
+				$this->data[$this->_name . '_header_color' . $i] = $this->config->get($this->_name . '_header_color' . $i);
+			}
 
-		if (isset($this->request->post[$this->_name . '_code4'])) {
-			$this->data[$this->_name . '_code4'] = $this->request->post[$this->_name . '_code4'];
-		} else {
-			$this->data[$this->_name . '_code4'] = $this->config->get($this->_name . '_code4');
-		}
+			if (isset($this->request->post[$this->_name . '_header_shape' . $i])) {
+				$this->data[$this->_name . '_header_shape' . $i] = $this->request->post[$this->_name . '_header_shape' . $i];
+			} else {
+				$this->data[$this->_name . '_header_shape' . $i] = $this->config->get($this->_name . '_header_shape' . $i);
+			}
 
-		if (isset($this->request->post[$this->_name . '_code5'])) {
-			$this->data[$this->_name . '_code5'] = $this->request->post[$this->_name . '_code5'];
-		} else {
-			$this->data[$this->_name . '_code5'] = $this->config->get($this->_name . '_code5');
-		}
+			if (isset($this->request->post[$this->_name . '_content_color' . $i])) {
+				$this->data[$this->_name . '_content_color' . $i] = $this->request->post[$this->_name . '_content_color' . $i];
+			} else {
+				$this->data[$this->_name . '_content_color' . $i] = $this->config->get($this->_name . '_content_color' . $i);
+			}
 
-		if (isset($this->request->post[$this->_name . '_code6'])) {
-			$this->data[$this->_name . '_code6'] = $this->request->post[$this->_name . '_code6'];
-		} else {
-			$this->data[$this->_name . '_code6'] = $this->config->get($this->_name . '_code6');
-		}
+			if (isset($this->request->post[$this->_name . '_content_shape' . $i])) {
+				$this->data[$this->_name . '_content_shape' . $i] = $this->request->post[$this->_name . '_content_shape' . $i];
+			} else {
+				$this->data[$this->_name . '_content_shape' . $i] = $this->config->get($this->_name . '_content_shape' . $i);
+			}
 
-		if (isset($this->request->post[$this->_name . '_code7'])) {
-			$this->data[$this->_name . '_code7'] = $this->request->post[$this->_name . '_code7'];
-		} else {
-			$this->data[$this->_name . '_code7'] = $this->config->get($this->_name . '_code7');
-		}
-
-		if (isset($this->request->post[$this->_name . '_code8'])) {
-			$this->data[$this->_name . '_code8'] = $this->request->post[$this->_name . '_code8'];
-		} else {
-			$this->data[$this->_name . '_code8'] = $this->config->get($this->_name . '_code8');
-		}
-
-		if (isset($this->request->post[$this->_name . '_code9'])) {
-			$this->data[$this->_name . '_code9'] = $this->request->post[$this->_name . '_code9'];
-		} else {
-			$this->data[$this->_name . '_code9'] = $this->config->get($this->_name . '_code9');
-		}
-
-		if (isset($this->request->post[$this->_name . '_code10'])) {
-			$this->data[$this->_name . '_code10'] = $this->request->post[$this->_name . '_code10'];
-		} else {
-			$this->data[$this->_name . '_code10'] = $this->config->get($this->_name . '_code10');
+			if (isset($this->request->post[$this->_name . '_code' . $i])) {
+				$this->data[$this->_name . '_code' . $i] = $this->request->post[$this->_name . '_code' . $i];
+			} else {
+				$this->data[$this->_name . '_code' . $i] = $this->config->get($this->_name . '_code' . $i);
+			}
 		}
 
 		$this->load->model('design/layout');

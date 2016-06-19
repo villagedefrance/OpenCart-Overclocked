@@ -9,24 +9,48 @@ class ControllerModuleMenuHorizontal extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$template = $this->config->get('config_template');
+
 		// Options
-		$menu_direction = $setting['direction'] ? true : false;
 		$menu_theme = $this->config->get($this->_name . '_theme');
 
-		if ($menu_direction && $menu_theme == 'light') {
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/menu-light.css');
-		} elseif ($menu_direction && $menu_theme == 'dark')  {
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/menu-dark.css');
-		} elseif (!$menu_direction && $menu_theme == 'light')  {
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/menu-light-rtl.css');
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+
+		$mod_color = ($header_color) ? $header_color : 'white';
+		$mod_shape = ($header_shape) ? $header_shape : 'rounded-3';
+
+		$menu_direction = $setting['direction'] ? 'ltr' : 'rtl';
+
+		if ($menu_theme == 'custom') {
+			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-' . $menu_direction . '.css');
+
+			if ($mod_color == 'white' || $mod_color == 'beige' || $mod_color == 'silver') {
+				$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-dark.css');
+				$menu_theme = 'dark';
+			} else {
+				$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-light.css');
+				$menu_theme = 'light';
+			}
+
+			$menu_class = 'menu-' . $menu_direction;
+
 		} else {
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/menu-dark-rtl.css');
+			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-' . $menu_theme . '-' . $menu_direction . '.css');
+
+			$menu_class = 'menu-' . $menu_theme;
 		}
+
+		$this->data['mod_color'] = $mod_color;
+		$this->data['mod_shape'] = $mod_shape;
+
+		$this->data['menu_class'] = $menu_class;
+		$this->data['menu_theme'] = $menu_theme;
+		$this->data['menu_direction'] = $menu_direction;
 
 		$this->data['column_limit'] = $this->config->get($this->_name . '_column_limit') ? $this->config->get($this->_name . '_column_limit') : 10;
 		$this->data['column_number'] = $this->config->get($this->_name . '_column_number') ? $this->config->get($this->_name . '_column_number') : 4;
 
-		$this->data['menu_theme'] = $this->config->get($this->_name . '_theme');
 		$this->data['menu_home'] = isset($setting['home']) ? true : false;
 
 		$this->data['home'] = $this->url->link('common/home');
@@ -71,25 +95,25 @@ class ControllerModuleMenuHorizontal extends Controller {
 				$child_total = $this->model_design_menu->getTotalMenuItemsByParentId($menu_id, $menu_item['parent_id']);
 
 				$children_data[] = array(
-					'item_id'	=> $child['menu_item_id'],
-					'name'	=> $child['name'],
-					'total'		=> $child_total,
-					'href'		=> $child_href
+					'item_id' => $child['menu_item_id'],
+					'name'    => $child['name'],
+					'total'   => $child_total,
+					'href'    => $child_href
 				);
 			}
 
 			$this->data['menu_horizontal'][] = array(
-				'item_id'		=> $menu_item['menu_item_id'],
-				'name'		=> $menu_item['menu_item_name'],
-				'children'		=> $children_data,
-				'href'			=> $href
+				'item_id'  => $menu_item['menu_item_id'],
+				'name'     => $menu_item['menu_item_name'],
+				'children' => $children_data,
+				'href'     => $href
 			);
 		}
 
 		$this->data['module'] = $module++;
 
 		// Template
-		$this->data['template'] = $this->config->get('config_template');
+		$this->data['template'] = $template;
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl';

@@ -19,6 +19,16 @@ class ControllerModuleWelcome extends Controller {
 
 		$this->data['message'] = html_entity_decode($setting['description'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
 
+		$header_color = $setting['header_color'];
+		$header_shape = $setting['header_shape'];
+		$content_color = $setting['content_color'];
+		$content_shape = $setting['content_shape'];
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		$this->data['module'] = $module++;
 
 		// Template

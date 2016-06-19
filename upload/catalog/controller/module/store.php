@@ -26,6 +26,16 @@ class ControllerModuleStore extends Controller {
 				$this->data['title'] = $this->data['heading_title'];
 			}
 
+			$header_color = $this->config->get($this->_name . '_header_color');
+			$header_shape = $this->config->get($this->_name . '_header_shape');
+			$content_color = $this->config->get($this->_name . '_content_color');
+			$content_shape = $this->config->get($this->_name . '_content_shape');
+
+			$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+			$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+			$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+			$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+		
 			$this->data['text_selector'] = $this->language->get('text_selector');
 			$this->data['text_default'] = $this->language->get('text_default');
 
@@ -46,9 +56,9 @@ class ControllerModuleStore extends Controller {
 			$this->data['stores'] = array();
 
 			$this->data['stores'][] = array(
-				'store_id'	=> 0,
-				'name'   		=> $this->language->get('text_default'),
-				'url'     		=> HTTP_SERVER . 'index.php?route=common/home&session_id=' . $this->session->getId()
+				'store_id' => 0,
+				'name'     => $this->language->get('text_default'),
+				'url'      => HTTP_SERVER . 'index.php?route=common/home&session_id=' . $this->session->getId()
 			);
 
 			$this->load->model('setting/store');
@@ -57,9 +67,9 @@ class ControllerModuleStore extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['stores'][] = array(
-					'store_id'	=> $result['store_id'],
-					'name'   		=> $result['name'],
-					'url'     		=> $result['url'] . 'index.php?route=common/home&session_id=' . $this->session->getId()
+					'store_id' => $result['store_id'],
+					'name'     => $result['name'],
+					'url'      => $result['url'] . 'index.php?route=common/home&session_id=' . $this->session->getId()
 				);
 			}
 

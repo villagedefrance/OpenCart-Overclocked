@@ -17,6 +17,16 @@ class ControllerModuleSpecial extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$content_color = $this->config->get($this->_name . '_content_color');
+		$content_shape = $this->config->get($this->_name . '_content_shape');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		$this->data['text_from'] = $this->language->get('text_from');
 		$this->data['text_offer'] = $this->language->get('text_offer');
 
@@ -42,10 +52,10 @@ class ControllerModuleSpecial extends Controller {
 		$this->data['products'] = array();
 
 		$data = array(
-			'sort'  	=> 'pd.name',
-			'order'	=> 'ASC',
-			'start' 	=> 0,
-			'limit' 		=> $setting['limit']
+			'sort'  => 'pd.name',
+			'order' => 'ASC',
+			'start' => 0,
+			'limit' => $setting['limit']
 		);
 
 		$results = $this->model_catalog_product->getProductSpecials($data);
@@ -92,22 +102,22 @@ class ControllerModuleSpecial extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'product_id'			=> $result['product_id'],
-				'thumb'				=> $image,
-				'offer'					=> $offer,
-				'name'    			=> $result['name'],
-				'stock_status'		=> $result['stock_status'],
-				'stock_quantity'	=> $result['quantity'],
-				'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
-				'quote'				=> $quote,
-				'price'   	 			=> $price,
-				'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
-				'special' 				=> $special,
-				'minimum'			=> ($result['minimum'] > 0) ? $result['minimum'] : 1,
-				'age_minimum'		=> ($result['age_minimum'] > 0) ? $result['age_minimum'] : '',
-				'rating'  				=> (int)$rating,
-				'reviews'    			=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-				'href'    				=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
+				'product_id'      => $result['product_id'],
+				'thumb'           => $image,
+				'offer'           => $offer,
+				'name'            => $result['name'],
+				'stock_status'    => $result['stock_status'],
+				'stock_quantity'  => $result['quantity'],
+				'stock_remaining' => ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
+				'quote'           => $quote,
+				'price'           => $price,
+				'price_option'    => $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
+				'special'         => $special,
+				'minimum'         => ($result['minimum'] > 0) ? $result['minimum'] : 1,
+				'age_minimum'     => ($result['age_minimum'] > 0) ? $result['age_minimum'] : '',
+				'rating'          => (int)$rating,
+				'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+				'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 			);
 		}
 

@@ -1,4 +1,8 @@
-/* Menu Dark RTL CSS - OverClocked Edition */
+/* -----------------------------------
+* Overclocked Edition - Menu Dark RTL
+* Copyright © 2016 - Villagedefrance
+* ------------------------------------
+*/
 #menu-holder, #menu-holder .menu-dark {
 	background: #FFF;
 }
@@ -75,7 +79,7 @@
 	background-position: right center;
 }
 .menu-dark #menu > ul > li > a .home-icon {
-	background: url('../image/menu/home_icon_lite.png') center center no-repeat;
+	background: url('../image/menu/home_icon_light.png') center center no-repeat;
 	width: 16px;
 	height: 40px;
 	padding: 0;

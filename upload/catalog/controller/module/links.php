@@ -17,6 +17,16 @@ class ControllerModuleLinks extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
+		$header_color = $this->config->get($this->_name . '_header_color');
+		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$content_color = $this->config->get($this->_name . '_content_color');
+		$content_shape = $this->config->get($this->_name . '_content_shape');
+
+		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
+		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
+		$this->data['content_color'] = ($content_color) ? $content_color : 'white';
+		$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
+
 		// Connections
 		$this->load->model('design/connection');
 
@@ -33,8 +43,8 @@ class ControllerModuleLinks extends Controller {
 
 					foreach ($connection_routes as $connection_route) {
 						$this->data['connections_li'][] = array(
-							'title'		=> $connection_route['title'],
-							'route'	=> html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
+							'title' => $connection_route['title'],
+							'route' => html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
 						);
 					}
 				}
