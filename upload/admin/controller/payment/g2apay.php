@@ -90,12 +90,6 @@ class ControllerPaymentG2APay extends Controller {
 			$this->data['error_api_hash'] = '';
 		}
 
-		if (isset($this->request->post['g2apay_order_status_id'])) {
-			$this->data['g2apay_order_status_id'] = $this->request->post['g2apay_order_status_id'];
-		} else {
-			$this->data['g2apay_order_status_id'] = $this->config->get('g2apay_order_status_id');
-		}
-
 		if (isset($this->request->post['g2apay_complete_status_id'])) {
 			$this->data['g2apay_complete_status_id'] = $this->request->post['g2apay_complete_status_id'];
 		} else {
