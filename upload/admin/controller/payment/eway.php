@@ -3,7 +3,7 @@ class ControllerPaymentEway extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('payment/eway');
+		$this->language->load('payment/eway');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -21,49 +21,47 @@ class ControllerPaymentEway extends Controller {
 			}
 		}
 
-		$this->data['heading_title']             = $this->language->get('heading_title');
+		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_yes']                  = $this->language->get('text_yes');
-		$this->data['text_no']                   = $this->language->get('text_no');
-		$this->data['text_enabled']              = $this->language->get('text_enabled');
-		$this->data['text_disabled']             = $this->language->get('text_disabled');
-		$this->data['text_none']                 = $this->language->get('text_none');
-		$this->data['text_all_zones']            = $this->language->get('text_all_zones');
-		$this->data['text_authorisation']        = $this->language->get('text_authorisation');
-		$this->data['text_sale']                 = $this->language->get('text_sale');
-		$this->data['text_transparent']          = $this->language->get('text_transparent');
-		$this->data['text_iframe']               = $this->language->get('text_iframe');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_none'] = $this->language->get('text_none');
+		$this->data['text_all_zones'] = $this->language->get('text_all_zones');
+		$this->data['text_authorisation'] = $this->language->get('text_authorisation');
+		$this->data['text_sale'] = $this->language->get('text_sale');
+		$this->data['text_transparent'] = $this->language->get('text_transparent');
+		$this->data['text_iframe'] = $this->language->get('text_iframe');
 
-		$this->data['entry_total']               = $this->language->get('entry_total');
-		$this->data['entry_total_max']           = $this->language->get('entry_total_max');
-		$this->data['entry_paymode']             = $this->language->get('entry_paymode');
-		$this->data['entry_test']                = $this->language->get('entry_test');
-		$this->data['entry_payment_type']        = $this->language->get('entry_payment_type');
-		$this->data['entry_transaction']         = $this->language->get('entry_transaction');
-		$this->data['entry_order_status']        = $this->language->get('entry_order_status');
+		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
+		$this->data['entry_paymode'] = $this->language->get('entry_paymode');
+		$this->data['entry_test'] = $this->language->get('entry_test');
+		$this->data['entry_payment_type'] = $this->language->get('entry_payment_type');
+		$this->data['entry_transaction'] = $this->language->get('entry_transaction');
+		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_order_status_refund'] = $this->language->get('entry_order_status_refund');
-		$this->data['entry_order_status_auth']   = $this->language->get('entry_order_status_auth');
-		$this->data['entry_order_status_fraud']  = $this->language->get('entry_order_status_fraud');
-		$this->data['entry_geo_zone']            = $this->language->get('entry_geo_zone');
-		$this->data['entry_username']            = $this->language->get('entry_username');
-		$this->data['entry_password']            = $this->language->get('entry_password');
-		$this->data['entry_transaction_method']  = $this->language->get('entry_transaction_method');
-		$this->data['entry_geo_zone']            = $this->language->get('entry_geo_zone');
-		$this->data['entry_status']              = $this->language->get('entry_status');
-		$this->data['entry_sort_order']          = $this->language->get('entry_sort_order');
+		$this->data['entry_order_status_auth'] = $this->language->get('entry_order_status_auth');
+		$this->data['entry_order_status_fraud'] = $this->language->get('entry_order_status_fraud');
+		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
+		$this->data['entry_username'] = $this->language->get('entry_username');
+		$this->data['entry_password'] = $this->language->get('entry_password');
+		$this->data['entry_transaction_method'] = $this->language->get('entry_transaction_method');
+		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
+		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
-		$this->data['help_total']                = $this->language->get('help_total');
-		$this->data['help_total_max']            = $this->language->get('help_total_max');
-		$this->data['help_testmode']             = $this->language->get('help_testmode');
-		$this->data['help_username']             = $this->language->get('help_username');
-		$this->data['help_password']             = $this->language->get('help_password');
-		$this->data['help_transaction_method']   = $this->language->get('help_transaction_method');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
+		$this->data['help_testmode'] = $this->language->get('help_testmode');
+		$this->data['help_username'] = $this->language->get('help_username');
+		$this->data['help_password'] = $this->language->get('help_password');
+		$this->data['help_transaction_method'] = $this->language->get('help_transaction_method');
 
-		$this->data['button_save']               = $this->language->get('button_save');
-		$this->data['button_apply']              = $this->language->get('button_apply');
-		$this->data['button_cancel']             = $this->language->get('button_cancel');
-
-//    $this->data['tab_general']               = $this->language->get('tab_general');
+		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->load->model('localisation/geo_zone');
 
@@ -118,6 +116,7 @@ class ControllerPaymentEway extends Controller {
 		);
 
 		$this->data['action'] = $this->url->link('payment/eway', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['eway_total'])) {
@@ -233,11 +232,13 @@ class ControllerPaymentEway extends Controller {
 
 	public function install() {
 		$this->load->model('payment/eway');
+
 		$this->model_payment_eway->install();
 	}
 
 	public function uninstall() {
 		$this->load->model('payment/eway');
+
 		$this->model_payment_eway->uninstall();
 	}
 
@@ -263,29 +264,30 @@ class ControllerPaymentEway extends Controller {
 
 				$eway_order['unrefunded'] = $eway_order['total_captured'] - $eway_order['total_refunded'];
 
-				$this->data['text_payment_info']         = $this->language->get('text_payment_info');
-				$this->data['text_order_total']          = $this->language->get('text_order_total');
-				$this->data['text_void_status']          = $this->language->get('text_void_status');
-				$this->data['text_transactions']         = $this->language->get('text_transactions');
-				$this->data['text_column_amount']        = $this->language->get('text_column_amount');
-				$this->data['text_column_type']          = $this->language->get('text_column_type');
-				$this->data['text_column_created']       = $this->language->get('text_column_created');
+				$this->data['text_payment_info'] = $this->language->get('text_payment_info');
+				$this->data['text_order_total'] = $this->language->get('text_order_total');
+				$this->data['text_void_status'] = $this->language->get('text_void_status');
+				$this->data['text_transactions'] = $this->language->get('text_transactions');
+				$this->data['text_column_amount'] = $this->language->get('text_column_amount');
+				$this->data['text_column_type'] = $this->language->get('text_column_type');
+				$this->data['text_column_created'] = $this->language->get('text_column_created');
 				$this->data['text_column_transactionid'] = $this->language->get('text_column_transactionid');
-				$this->data['btn_refund']                = $this->language->get('btn_refund');
-				$this->data['btn_capture']               = $this->language->get('btn_capture');
-				$this->data['text_confirm_refund']       = $this->language->get('text_confirm_refund');
-				$this->data['text_confirm_capture']      = $this->language->get('text_confirm_capture');
+				$this->data['text_confirm_refund'] = $this->language->get('text_confirm_refund');
+				$this->data['text_confirm_capture'] = $this->language->get('text_confirm_capture');
+				$this->data['text_total_captured'] = $this->language->get('text_total_captured');
+				$this->data['text_total_refunded'] = $this->language->get('text_total_refunded');
+				$this->data['text_capture_status'] = $this->language->get('text_capture_status');
+				$this->data['text_refund_status'] = $this->language->get('text_refund_status');
+				$this->data['text_empty_refund'] = $this->language->get('text_empty_refund');
+				$this->data['text_empty_capture'] = $this->language->get('text_empty_capture');
 
-				$this->data['text_total_captured']       = $this->language->get('text_total_captured');
-				$this->data['text_total_refunded']       = $this->language->get('text_total_refunded');
-				$this->data['text_capture_status']       = $this->language->get('text_capture_status');
-				$this->data['text_refund_status']        = $this->language->get('text_refund_status');
-
-				$this->data['text_empty_refund']         = $this->language->get('text_empty_refund');
-				$this->data['text_empty_capture']        = $this->language->get('text_empty_capture');
+				$this->data['btn_refund'] = $this->language->get('btn_refund');
+				$this->data['btn_capture'] = $this->language->get('btn_capture');
 
 				$this->data['eway_order'] = $eway_order;
+
 				$this->data['token'] = $this->request->get['token'];
+
 				$this->data['order_id'] = $this->request->get['order_id'];
 
 				$this->template = 'payment/eway_order.tpl';
@@ -303,36 +305,46 @@ class ControllerPaymentEway extends Controller {
 		$this->language->load('payment/eway');
 
 		$order_id = $this->request->post['order_id'];
+
 		$refund_amount = (double)$this->request->post['refund_amount'];
 
 		if ($order_id && $refund_amount > 0) {
 			$this->load->model('payment/eway');
+
 			$result = $this->model_payment_eway->refund($order_id, $refund_amount);
 
 			// Check if any error returns
 			if (isset($result->Errors) || $result === false) {
 				$json['error'] = true;
+
 				$reason = '';
+
 				if ($result === false) {
 					$reason = $this->language->get('text_unknown_failure');
 				} else {
-  				$errors = explode(",", $result->Errors);
-  				foreach ($errors as $error) {
-  					$lbl_error = $this->language->get('text_card_message_' . $error);
-  					$reason .= $lbl_error . ", ";
-  				}
+					$errors = explode(",", $result->Errors);
+
+					foreach ($errors as $error) {
+						$lbl_error = $this->language->get('text_card_message_' . $error);
+						$reason .= $lbl_error . ", ";
+					}
 				}
+
 				$json['message'] = $this->language->get('text_refund_failed') . $reason;
+
 			} else {
 				$eway_order = $this->model_payment_eway->getOrder($order_id);
+
 				$this->model_payment_eway->addTransaction($eway_order['eway_order_id'], $result->Refund->TransactionID, 'refund', $result->Refund->TotalAmount / 100, $eway_order['currency_code']);
 
 				$total_captured = $this->model_payment_eway->getTotalCaptured($eway_order['eway_order_id']);
 				$total_refunded = $this->model_payment_eway->getTotalRefunded($eway_order['eway_order_id']);
+
 				$refund_status = 0;
 
 				if ($total_captured == $total_refunded) {
 					$refund_status = 1;
+
 					$this->model_payment_eway->updateRefundStatus($eway_order['eway_order_id'], $refund_status);
 				}
 
@@ -346,6 +358,7 @@ class ControllerPaymentEway extends Controller {
 				$json['message'] = $this->language->get('text_refund_success');
 				$json['error'] = false;
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['message'] = 'Missing data';
@@ -356,29 +369,36 @@ class ControllerPaymentEway extends Controller {
 	}
 
 	public function capture() {
-		$this->load->language('payment/eway');
+		$this->language->load('payment/eway');
 
 		$order_id = $this->request->post['order_id'];
+
 		$capture_amount = (double)$this->request->post['capture_amount'];
 
 		if ($order_id && $capture_amount > 0) {
 			$this->load->model('payment/eway');
+
 			$eway_order = $this->model_payment_eway->getOrder($order_id);
+
 			$result = $this->model_payment_eway->capture($order_id, $capture_amount, $eway_order['currency_code']);
+
 			// Check if any error returns
 			if (isset($result->Errors) || $result === false) {
 				$json['error'] = true;
 				$reason = '';
+
 				if ($result === false) {
 					$reason = $this->language->get('text_unknown_failure');
 				} else {
-  				$errors = explode(",", $result->Errors);
-  				foreach ($errors as $error) {
-  					$lbl_error = $this->language->get('text_card_message_' . $error);
-  					$reason .= $lbl_error . ", ";
-  				}
+					$errors = explode(",", $result->Errors);
+					foreach ($errors as $error) {
+						$lbl_error = $this->language->get('text_card_message_' . $error);
+						$reason .= $lbl_error . ", ";
+					}
 				}
+
 				$json['message'] = $this->language->get('text_capture_failed') . $reason;
+
 			} else {
 				$this->model_payment_eway->addTransaction($eway_order['eway_order_id'], $result->TransactionID, 'payment', $capture_amount, $eway_order['currency_code']);
 
@@ -386,6 +406,7 @@ class ControllerPaymentEway extends Controller {
 				$total_refunded = $this->model_payment_eway->getTotalRefunded($eway_order['eway_order_id']);
 
 				$remaining = $eway_order['amount'] - $capture_amount;
+
 				if ($remaining <= 0) {
 					$remaining = 0;
 				}
@@ -403,6 +424,7 @@ class ControllerPaymentEway extends Controller {
 				$json['message'] = $this->language->get('text_capture_success');
 				$json['error'] = false;
 			}
+
 		} else {
 			$json['error'] = true;
 			$json['message'] = 'Missing data';
@@ -416,12 +438,15 @@ class ControllerPaymentEway extends Controller {
 		if (!$this->user->hasPermission('modify', 'payment/eway')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
+
 		if (!$this->request->post['eway_username']) {
 			$this->error['username'] = $this->language->get('error_username');
 		}
+
 		if (!$this->request->post['eway_password']) {
 			$this->error['password'] = $this->language->get('error_password');
 		}
+
 		if (!isset($this->request->post['eway_payment_type'])) {
 			$this->error['payment_type'] = $this->language->get('error_payment_type');
 		}
