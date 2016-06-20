@@ -64,13 +64,13 @@
   </div>
   <div class="big-column">
   <?php if ($this->config->get($template . '_footer_location')) { ?>
-  <p class='icon-location-<?php echo $footer_class; ?>' title='Location'><?php echo $company; ?><br /><?php echo $address; ?></p>
+  <p class="icon-location-<?php echo $footer_class; ?>" title="Location"><?php echo $company; ?><br /><?php echo $address; ?></p>
   <?php } ?>
   <?php if ($this->config->get($template . '_footer_phone')) { ?>
-  <p class='icon-phone-<?php echo $footer_class; ?>' title='Phone'><?php echo $telephone; ?></p>
+  <p class="icon-phone-<?php echo $footer_class; ?>" title="Phone"><?php echo $telephone; ?></p>
   <?php } ?>
   <?php if ($this->config->get($template . '_footer_email')) { ?>
-  <p class='icon-mail-<?php echo $footer_class; ?>' title='Email'><?php echo $email; ?></p>
+  <p class="icon-mail-<?php echo $footer_class; ?>" title="Email"><?php echo $email; ?></p>
   <?php } ?>
   <span>
   <?php if ($this->config->get($template . '_footer_skype') && $skype) { ?>

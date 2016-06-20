@@ -166,14 +166,14 @@ class ControllerSaleCustomerGroup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerSaleCustomerGroup extends Controller {
 		$this->data['customer_groups'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$customer_group_total = $this->model_sale_customer_group->getTotalCustomerGroups();
@@ -201,19 +201,19 @@ class ControllerSaleCustomerGroup extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href' 	=> $this->url->link('sale/customer_group/update', 'token=' . $this->session->data['token'] . '&customer_group_id=' . $result['customer_group_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/customer_group/update', 'token=' . $this->session->data['token'] . '&customer_group_id=' . $result['customer_group_id'] . $url, 'SSL')
 			);
 
 			$this->data['customer_groups'][] = array(
-				'customer_group_id'	=> $result['customer_group_id'],
-				'name'              		=> $result['name'] . (($result['customer_group_id'] == $this->config->get('config_customer_group_id')) ? $this->language->get('text_default') : null),
-				'approval'        		=> $result['approval'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'company_id'        	=> $result['company_id_display'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'tax_id'        			=> $result['tax_id_display'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'sort_order'        		=> $result['sort_order'],
-				'selected'          		=> isset($this->request->post['selected']) && in_array($result['customer_group_id'], $this->request->post['selected']),
-				'action'            		=> $action
+				'customer_group_id' => $result['customer_group_id'],
+				'name'              => $result['name'] . (($result['customer_group_id'] == $this->config->get('config_customer_group_id')) ? $this->language->get('text_default') : null),
+				'approval'          => $result['approval'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'company_id'        => $result['company_id_display'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'tax_id'            => $result['tax_id_display'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'sort_order'        => $result['sort_order'],
+				'selected'          => isset($this->request->post['selected']) && in_array($result['customer_group_id'], $this->request->post['selected']),
+				'action'            => $action
 			);
 		}
 
@@ -299,9 +299,13 @@ class ControllerSaleCustomerGroup extends Controller {
 
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
+		$this->data['text_browse'] = $this->language->get('text_browse');
+		$this->data['text_clear'] = $this->language->get('text_clear');
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_description'] = $this->language->get('entry_description');
+		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_approval'] = $this->language->get('entry_approval');
 		$this->data['entry_company_id_display'] = $this->language->get('entry_company_id_display');
 		$this->data['entry_company_id_required'] = $this->language->get('entry_company_id_required');
@@ -342,14 +346,14 @@ class ControllerSaleCustomerGroup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -360,6 +364,8 @@ class ControllerSaleCustomerGroup extends Controller {
 		}
 
 		$this->data['cancel'] = $this->url->link('sale/customer_group', 'token=' . $this->session->data['token'] . $url, 'SSL');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->get['customer_group_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$customer_group_info = $this->model_sale_customer_group->getCustomerGroup($this->request->get['customer_group_id']);
@@ -376,6 +382,26 @@ class ControllerSaleCustomerGroup extends Controller {
 		} else {
 			$this->data['customer_group_description'] = array();
 		}
+
+		if (isset($this->request->post['image'])) {
+			$this->data['image'] = $this->request->post['image'];
+		} elseif (!empty($customer_group_info)) {
+			$this->data['image'] = $customer_group_info['image'];
+		} else {
+			$this->data['image'] = '';
+		}
+
+		$this->load->model('tool/image');
+
+		if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
+			$this->data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
+		} elseif (!empty($customer_group_info) && $customer_group_info['image'] && file_exists(DIR_IMAGE . $customer_group_info['image'])) {
+			$this->data['thumb'] = $this->model_tool_image->resize($customer_group_info['image'], 100, 100);
+		} else {
+			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
+		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 		if (isset($this->request->post['approval'])) {
 			$this->data['approval'] = $this->request->post['approval'];

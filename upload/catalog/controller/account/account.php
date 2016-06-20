@@ -107,10 +107,25 @@ class ControllerAccountAccount extends Controller {
 			$this->data['firstname'] = $this->customer->getFirstName();
 			$this->data['lastname'] = $this->customer->getLastName();
 			$this->data['email'] = $this->customer->getEmail();
+
+			$this->load->model('tool/image');
+			$this->load->model('account/customer_group');
+
+			$customer_group_id = $this->customer->getCustomerGroupId();
+
+			$customer_group_image = $this->model_account_customer_group->getCustomerGroupImage($customer_group_id);
+
+			if (!empty($customer_group_image['image'])) {
+				$this->data['thumb'] = $this->model_tool_image->resize($customer_group_image['image'], 150, 50);
+			} else {
+				$this->data['thumb'] = '';
+			}
+
 		} else {
 			$this->data['firstname'] = '';
 			$this->data['lastname'] = '';
 			$this->data['email'] = '';
+			$this->data['thumb'] = '';
 		}
 
 		// Theme

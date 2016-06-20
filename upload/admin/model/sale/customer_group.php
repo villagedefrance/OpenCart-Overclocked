@@ -12,6 +12,10 @@ class ModelSaleCustomerGroup extends Model {
 		foreach ($data['customer_group_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_group_description SET customer_group_id = '" . (int)$customer_group_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
+
+		if (isset($data['image'])) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_group_image SET customer_group_id = '" . (int)$customer_group_id . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "'");
+		}
 	}
 
 	public function editCustomerGroup($customer_group_id, $data) {
@@ -22,18 +26,25 @@ class ModelSaleCustomerGroup extends Model {
 		foreach ($data['customer_group_description'] as $language_id => $value) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_group_description SET customer_group_id = '" . (int)$customer_group_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_image WHERE customer_group_id = '" . (int)$customer_group_id . "'");
+
+		if (isset($data['image'])) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "customer_group_image SET customer_group_id = '" . (int)$customer_group_id . "', image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "'");
+		}
 	}
 
 	public function deleteCustomerGroup($customer_group_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group WHERE customer_group_id = '" . (int)$customer_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_description WHERE customer_group_id = '" . (int)$customer_group_id . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_group_image WHERE customer_group_id = '" . (int)$customer_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE customer_group_id = '" . (int)$customer_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE customer_group_id = '" . (int)$customer_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE customer_group_id = '" . (int)$customer_group_id . "'");
 	}
 
 	public function getCustomerGroup($customer_group_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "customer_group cg LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cg.customer_group_id = cgd.customer_group_id) WHERE cg.customer_group_id = '" . (int)$customer_group_id . "' AND cgd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "customer_group cg LEFT JOIN " . DB_PREFIX . "customer_group_description cgd ON (cg.customer_group_id = cgd.customer_group_id) LEFT JOIN " . DB_PREFIX . "customer_group_image cgi ON (cg.customer_group_id = cgi.customer_group_id) WHERE cg.customer_group_id = '" . (int)$customer_group_id . "' AND cgd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -85,12 +96,18 @@ class ModelSaleCustomerGroup extends Model {
 
 		foreach ($query->rows as $result) {
 			$customer_group_data[$result['language_id']] = array(
-				'name'  			=> $result['name'],
-				'description'	=> $result['description']
+				'name'        => $result['name'],
+				'description' => $result['description']
 			);
 		}
 
 		return $customer_group_data;
+	}
+
+	public function getCustomerGroupImage($customer_group_id) {
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "customer_group_image WHERE customer_group_id = '" . (int)$customer_group_id . "'");
+
+		return $query->row;
 	}
 
 	public function getTotalCustomerGroups() {

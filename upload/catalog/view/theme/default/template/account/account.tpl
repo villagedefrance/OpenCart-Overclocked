@@ -12,6 +12,7 @@
 <?php } ?>
 <?php echo $column_left; ?><?php echo $column_right; ?>
 <div id="content"><?php echo $content_top; ?>
+  <div style="float:right;"><img src="<?php echo $thumb; ?>" alt="" /></div>
   <h1><?php echo $heading_title; ?></h1>
   <div class="buttons">
     <div class="left"><h3><?php echo $firstname; ?> <?php echo $lastname; ?> &nbsp; (<?php echo $email; ?>)</h3></div>

@@ -529,6 +529,20 @@ CREATE TABLE `oc_customer_group_description` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_customer_group_image`
+--
+
+DROP TABLE IF EXISTS `oc_customer_group_image`;
+CREATE TABLE `oc_customer_group_image` (
+  `image` varchar(255) NOT NULL,
+  `customer_group_id` int(11) NOT NULL,
+  `customer_group_image_id` int(11) NOT NULL,
+  PRIMARY KEY (`customer_group_image_id`,`customer_group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_customer_history`
 --
 
