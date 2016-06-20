@@ -131,29 +131,44 @@
 	display: inline-block;
 }
 /* Footer Icons*/
-.icon-location {
+.icon-location-light, .icon-location-dark {
 	font-size: 13px;
 	line-height: 24px;
+	padding: 0 0 0 32px;
+	text-shadow: 0px 1px 0px #FCFCFC;
+	margin-bottom: 6px;
+}
+.icon-location-light {
 	background: url('../image/icon_location.png') left top no-repeat;
+}
+.icon-location-dark {
+	background: url('../image/icon_location_light.png') left top no-repeat;
+}
+.icon-phone-light, .icon-phone-dark {
+	font-size: 13px;
+	line-height: 24px;
 	padding: 0 0 0 32px;
 	text-shadow: 0px 1px 0px #FCFCFC;
 	margin-bottom: 6px;
 }
-.icon-phone {
-	font-size: 13px;
-	line-height: 24px;
+.icon-phone-light {
 	background: url('../image/icon_phone.png') left top no-repeat;
+}
+.icon-phone-dark {
+	background: url('../image/icon_phone_light.png') left top no-repeat;
+}
+.icon-mail-light, .icon-mail-dark {
+	font-size: 13px;
+	line-height: 24px;
 	padding: 0 0 0 32px;
 	text-shadow: 0px 1px 0px #FCFCFC;
 	margin-bottom: 6px;
 }
-.icon-mail {
-	font-size: 13px;
-	line-height: 24px;
+.icon-mail-light {
 	background: url('../image/icon_mail.png') left top no-repeat;
-	padding: 0 0 0 32px;
-	text-shadow: 0px 1px 0px #FCFCFC;
-	margin-bottom: 6px;
+}
+.icon-mail-dark {
+	background: url('../image/icon_mail_light.png') left top no-repeat;
 }
 .icon-facebook {
 	float: right;
