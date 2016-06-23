@@ -19,14 +19,14 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -198,11 +198,11 @@ class ControllerToolConfiguration extends Controller {
 		}
 
 		$this->data['database_files'] = array(
-			'mpdo'	=> DIR_SYSTEM . 'database/mpdo.php',
-			'mssql'	=> DIR_SYSTEM . 'database/mssql.php',
-			'mysql'	=> DIR_SYSTEM . 'database/mysql.php',
-			'mysqli'	=> DIR_SYSTEM . 'database/mysqli.php',
-			'pgsql'	=> DIR_SYSTEM . 'database/pgsql.php'
+			'mpdo'   => DIR_SYSTEM . 'database/mpdo.php',
+			'mssql'  => DIR_SYSTEM . 'database/mssql.php',
+			'mysql'  => DIR_SYSTEM . 'database/mysql.php',
+			'mysqli' => DIR_SYSTEM . 'database/mysqli.php',
+			'pgsql'  => DIR_SYSTEM . 'database/pgsql.php'
 		);
 
 		// Engine Files
@@ -215,12 +215,12 @@ class ControllerToolConfiguration extends Controller {
 		}
 
 		$this->data['engine_files'] = array(
-			'action'		=> DIR_SYSTEM . 'engine/action.php',
-			'controller'	=> DIR_SYSTEM . 'engine/controller.php',
-			'front'	 	=> DIR_SYSTEM . 'engine/front.php',
-			'loader'		=> DIR_SYSTEM . 'engine/loader.php',
-			'model'		=> DIR_SYSTEM . 'engine/model.php',
-			'registry'		=> DIR_SYSTEM . 'engine/registry.php'
+			'action'     => DIR_SYSTEM . 'engine/action.php',
+			'controller' => DIR_SYSTEM . 'engine/controller.php',
+			'front'      => DIR_SYSTEM . 'engine/front.php',
+			'loader'     => DIR_SYSTEM . 'engine/loader.php',
+			'model'      => DIR_SYSTEM . 'engine/model.php',
+			'registry'   => DIR_SYSTEM . 'engine/registry.php'
 		);
 
 		// Helper Files
@@ -233,12 +233,12 @@ class ControllerToolConfiguration extends Controller {
 		}
 
 		$this->data['helper_files'] = array(
-			'agent'	=> DIR_SYSTEM . 'helper/agent.php',
-			'crypto'	=> DIR_SYSTEM . 'helper/crypto.php',
-			'json'		=> DIR_SYSTEM . 'helper/json.php',
-			'pdf'		=> DIR_SYSTEM . 'helper/pdf.php',
-			'utf8'		=> DIR_SYSTEM . 'helper/utf8.php',
-			'vat'		=> DIR_SYSTEM . 'helper/vat.php'
+			'agent'  => DIR_SYSTEM . 'helper/agent.php',
+			'crypto' => DIR_SYSTEM . 'helper/crypto.php',
+			'json'   => DIR_SYSTEM . 'helper/json.php',
+			'pdf'    => DIR_SYSTEM . 'helper/pdf.php',
+			'utf8'   => DIR_SYSTEM . 'helper/utf8.php',
+			'vat'    => DIR_SYSTEM . 'helper/vat.php'
 		);
 
 		// Library Files
@@ -251,38 +251,38 @@ class ControllerToolConfiguration extends Controller {
 		}
 
 		$this->data['library_files'] = array(
-			'affiliate'			=> DIR_SYSTEM . 'library/affiliate.php',
-			'amazon'			=> DIR_SYSTEM . 'library/amazon.php',
-			'amazonus'		=> DIR_SYSTEM . 'library/amazonus.php',
-			'browser'		=> DIR_SYSTEM . 'library/browser.php',
-			'cache'			=> DIR_SYSTEM . 'library/cache.php',
-			'captcha'		=> DIR_SYSTEM . 'library/captcha.php',
-			'cart'				=> DIR_SYSTEM . 'library/cart.php',
-			'cba'				=> DIR_SYSTEM . 'library/cba.php',
-			'config'			=> DIR_SYSTEM . 'library/config.php',
-			'currency'		=> DIR_SYSTEM . 'library/currency.php',
-			'customer'		=> DIR_SYSTEM . 'library/customer.php',
-			'db'				=> DIR_SYSTEM . 'library/db.php',
-			'dbmemory'		=> DIR_SYSTEM . 'library/dbmemory.php',
-			'document'		=> DIR_SYSTEM . 'library/document.php',
-			'ebay'			=> DIR_SYSTEM . 'library/ebay.php',
-			'encryption'		=> DIR_SYSTEM . 'library/encryption.php',
-			'eway'			=> DIR_SYSTEM . 'library/eway.php',
-			'image'			=> DIR_SYSTEM . 'library/image.php',
-			'language'		=> DIR_SYSTEM . 'library/language.php',
-			'length'			=> DIR_SYSTEM . 'library/length.php',
-			'log'				=> DIR_SYSTEM . 'library/log.php',
-			'mail'				=> DIR_SYSTEM . 'library/mail.php',
-			'openbay'		=> DIR_SYSTEM . 'library/openbay.php',
-			'pagination'		=> DIR_SYSTEM . 'library/pagination.php',
-			'request'			=> DIR_SYSTEM . 'library/request.php',
-			'response'		=> DIR_SYSTEM . 'library/response.php',
-			'session'			=> DIR_SYSTEM . 'library/session.php',
-			'tax'				=> DIR_SYSTEM . 'library/tax.php',
-			'template'		=> DIR_SYSTEM . 'library/template.php',
-			'url'				=> DIR_SYSTEM . 'library/url.php',
-			'user'				=> DIR_SYSTEM . 'library/user.php',
-			'weight'			=> DIR_SYSTEM . 'library/weight.php'
+			'affiliate'  => DIR_SYSTEM . 'library/affiliate.php',
+			'amazon'     => DIR_SYSTEM . 'library/amazon.php',
+			'amazonus'   => DIR_SYSTEM . 'library/amazonus.php',
+			'browser'    => DIR_SYSTEM . 'library/browser.php',
+			'cache'      => DIR_SYSTEM . 'library/cache.php',
+			'captcha'    => DIR_SYSTEM . 'library/captcha.php',
+			'cart'       => DIR_SYSTEM . 'library/cart.php',
+			'cba'        => DIR_SYSTEM . 'library/cba.php',
+			'config'     => DIR_SYSTEM . 'library/config.php',
+			'currency'   => DIR_SYSTEM . 'library/currency.php',
+			'customer'   => DIR_SYSTEM . 'library/customer.php',
+			'db'         => DIR_SYSTEM . 'library/db.php',
+			'dbmemory'   => DIR_SYSTEM . 'library/dbmemory.php',
+			'document'   => DIR_SYSTEM . 'library/document.php',
+			'ebay'       => DIR_SYSTEM . 'library/ebay.php',
+			'encryption' => DIR_SYSTEM . 'library/encryption.php',
+			'eway'       => DIR_SYSTEM . 'library/eway.php',
+			'image'      => DIR_SYSTEM . 'library/image.php',
+			'language'   => DIR_SYSTEM . 'library/language.php',
+			'length'     => DIR_SYSTEM . 'library/length.php',
+			'log'        => DIR_SYSTEM . 'library/log.php',
+			'mail'       => DIR_SYSTEM . 'library/mail.php',
+			'openbay'    => DIR_SYSTEM . 'library/openbay.php',
+			'pagination' => DIR_SYSTEM . 'library/pagination.php',
+			'request'    => DIR_SYSTEM . 'library/request.php',
+			'response'   => DIR_SYSTEM . 'library/response.php',
+			'session'    => DIR_SYSTEM . 'library/session.php',
+			'tax'        => DIR_SYSTEM . 'library/tax.php',
+			'template'   => DIR_SYSTEM . 'library/template.php',
+			'url'        => DIR_SYSTEM . 'library/url.php',
+			'user'       => DIR_SYSTEM . 'library/user.php',
+			'weight'     => DIR_SYSTEM . 'library/weight.php'
 		);
 
 		// Server
