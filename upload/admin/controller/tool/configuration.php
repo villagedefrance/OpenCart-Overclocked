@@ -267,6 +267,7 @@ class ControllerToolConfiguration extends Controller {
 			'document'		=> DIR_SYSTEM . 'library/document.php',
 			'ebay'			=> DIR_SYSTEM . 'library/ebay.php',
 			'encryption'		=> DIR_SYSTEM . 'library/encryption.php',
+			'eway'			=> DIR_SYSTEM . 'library/eway.php',
 			'image'			=> DIR_SYSTEM . 'library/image.php',
 			'language'		=> DIR_SYSTEM . 'library/language.php',
 			'length'			=> DIR_SYSTEM . 'library/length.php',
