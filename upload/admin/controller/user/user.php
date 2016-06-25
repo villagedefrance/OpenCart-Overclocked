@@ -166,14 +166,14 @@ class ControllerUserUser extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('user/user', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('user/user', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -183,10 +183,10 @@ class ControllerUserUser extends Controller {
 		$this->data['users'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$user_total = $this->model_user_user->getTotalUsers();
@@ -197,8 +197,8 @@ class ControllerUserUser extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $result['user_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $result['user_id'] . $url, 'SSL')
 			);
 
 			if ($result['user_id'] && $result['user_group_id']) {
@@ -208,14 +208,14 @@ class ControllerUserUser extends Controller {
 			}
 
 			$this->data['users'][] = array(
-				'user_id'    		=> $result['user_id'],
-				'username'   	=> $result['username'],
-				'group_name'	=> $group_name,
-				'email'   			=> $result['email'],
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'status'     		=> $result['status'],
-				'selected'   		=> isset($this->request->post['selected']) && in_array($result['user_id'], $this->request->post['selected']),
-				'action'     		=> $action
+				'user_id'    => $result['user_id'],
+				'username'   => $result['username'],
+				'group_name' => $group_name,
+				'email'      => $result['email'],
+				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'status'     => $result['status'],
+				'selected'   => isset($this->request->post['selected']) && in_array($result['user_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 
@@ -378,8 +378,8 @@ class ControllerUserUser extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -387,8 +387,8 @@ class ControllerUserUser extends Controller {
 			$user_name = $this->model_user_user->getUserName($this->request->get['user_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $user_name,
-				'href'		=> $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $this->request->get['user_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $user_name,
+				'href'      => $this->url->link('user/user/update', 'token=' . $this->session->data['token'] . '&user_id=' . $this->request->get['user_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -396,8 +396,8 @@ class ControllerUserUser extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('user/user', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('user/user', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -506,7 +506,6 @@ class ControllerUserUser extends Controller {
 			if ($user_info) {
 				$this->error['warning'] = $this->language->get('error_exists');
 			}
-
 		} else {
 			if ($user_info && ($this->request->get['user_id'] != $user_info['user_id'])) {
 				$this->error['warning'] = $this->language->get('error_exists');

@@ -166,14 +166,14 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		$this->data['offer_category_categories'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$offer_category_category_total = $this->model_sale_offer_category_category->getTotalOfferCategoryCategory();
@@ -201,21 +201,21 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href' 	=> $this->url->link('sale/offer_category_category/update', 'token=' . $this->session->data['token'] . '&offer_category_category_id=' . $result['offer_category_category_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/offer_category_category/update', 'token=' . $this->session->data['token'] . '&offer_category_category_id=' . $result['offer_category_category_id'] . $url, 'SSL')
 			);
 
 			$this->data['offer_category_categories'][] = array(
 				'offer_category_category_id' => $result['offer_category_category_id'],
-				'name'       				=> $result['name'],
-				'discount'   				=> $result['discount'],
-				'type'   					=> $result['type'],
-				'logged'     				=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'date_start'				=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
-				'date_end' 				=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-				'status'     				=> $result['status'],
-				'selected'   				=> isset($this->request->post['selected']) && in_array($result['offer_category_category_id'], $this->request->post['selected']),
-				'action'    				=> $action
+				'name'                       => $result['name'],
+				'discount'                   => $result['discount'],
+				'type'                       => $result['type'],
+				'logged'                     => $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'date_start'                 => date($this->language->get('date_format_short'), strtotime($result['date_start'])),
+				'date_end'                   => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+				'status'                     => $result['status'],
+				'selected'                   => isset($this->request->post['selected']) && in_array($result['offer_category_category_id'], $this->request->post['selected']),
+				'action'                     => $action
 			);
 		}
 
@@ -405,14 +405,14 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/offer_category_category', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -581,17 +581,17 @@ class ControllerSaleOfferCategoryCategory extends Controller {
 			$this->load->model('catalog/category');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_category->getListCategories($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'category_id' 	=> $result['category_id'],
-					'name'        	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+					'category_id' => $result['category_id'],
+					'name'        => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}

@@ -298,14 +298,14 @@ class ControllerSaleSupplier extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('sale/supplier', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/supplier', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -319,16 +319,16 @@ class ControllerSaleSupplier extends Controller {
 		$this->data['suppliers'] = array();
 
 		$data = array(
-			'filter_reference'				=> $filter_reference,
-			'filter_company'				=> $filter_company,
-			'filter_email'             		=> $filter_email,
-			'filter_supplier_group_id'	=> $filter_supplier_group_id,
-			'filter_status'            		=> $filter_status,
-			'filter_date_added'        	=> $filter_date_added,
-			'sort'                     			=> $sort,
-			'order'                    		=> $order,
-			'start'                    		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'                    			=> $this->config->get('config_admin_limit')
+			'filter_reference'         => $filter_reference,
+			'filter_company'           => $filter_company,
+			'filter_email'             => $filter_email,
+			'filter_supplier_group_id' => $filter_supplier_group_id,
+			'filter_status'            => $filter_status,
+			'filter_date_added'        => $filter_date_added,
+			'sort'                     => $sort,
+			'order'                    => $order,
+			'start'                    => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'                    => $this->config->get('config_admin_limit')
 		);
 
 		$supplier_total = $this->model_sale_supplier->getTotalSuppliers($data);
@@ -339,21 +339,21 @@ class ControllerSaleSupplier extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/supplier/update', 'token=' . $this->session->data['token'] . '&supplier_id=' . $result['supplier_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/supplier/update', 'token=' . $this->session->data['token'] . '&supplier_id=' . $result['supplier_id'] . $url, 'SSL')
 			);
 
 			$this->data['suppliers'][] = array(
-				'supplier_id'    		=> $result['supplier_id'],
-				'reference'			=> $result['reference'],
-				'company'			=> $result['company'],
-				'email'          		=> $result['email'],
-				'supplier_group' 	=> $result['supplier_group'],
-				'status'         		=> $result['status'],
-				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'date_modified'	=> date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
-				'selected'       		=> isset($this->request->post['selected']) && in_array($result['supplier_id'], $this->request->post['selected']),
-				'action'         		=> $action
+				'supplier_id'    => $result['supplier_id'],
+				'reference'      => $result['reference'],
+				'company'        => $result['company'],
+				'email'          => $result['email'],
+				'supplier_group' => $result['supplier_group'],
+				'status'         => $result['status'],
+				'date_added'     => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_modified'  => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
+				'selected'       => isset($this->request->post['selected']) && in_array($result['supplier_id'], $this->request->post['selected']),
+				'action'         => $action
 			);
 		}
 
@@ -661,8 +661,8 @@ class ControllerSaleSupplier extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -670,8 +670,8 @@ class ControllerSaleSupplier extends Controller {
 			$supplier_reference = $this->model_sale_supplier->getSupplier($this->request->get['supplier_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $supplier_reference['reference'],
-				'href'		=> $this->url->link('sale/supplier/update', 'token=' . $this->session->data['token'] . '&supplier_id=' . $this->request->get['supplier_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $supplier_reference['reference'],
+				'href'      => $this->url->link('sale/supplier/update', 'token=' . $this->session->data['token'] . '&supplier_id=' . $this->request->get['supplier_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -679,8 +679,8 @@ class ControllerSaleSupplier extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('sale/supplier', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('sale/supplier', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -938,8 +938,8 @@ class ControllerSaleSupplier extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'comment'     	=> $result['comment'],
-				'date_added'  	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'comment'    => $result['comment'],
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1001,10 +1001,10 @@ class ControllerSaleSupplier extends Controller {
 		$this->data['catalog_products'] = array();
 
 		$data = array(
-			'sort'		=> $sort,
-			'order'	=> $order,
-			'start'	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$this->load->model('tool/image');
@@ -1020,8 +1020,8 @@ class ControllerSaleSupplier extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/supplier_product/update', 'token=' . $this->session->data['token'] . '&supplier_product_id=' . $result['supplier_product_id'], 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/supplier_product/update', 'token=' . $this->session->data['token'] . '&supplier_product_id=' . $result['supplier_product_id'], 'SSL')
 			);
 
 			if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
@@ -1031,15 +1031,15 @@ class ControllerSaleSupplier extends Controller {
 			}
 
 			$this->data['catalog_products'][] = array(
-				'supplier_product_id'	=> $result['supplier_product_id'],
-				'image'					=> $image,
-				'name'       				=> $result['name'],
-				'barcode'				=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($result['model'], 'TYPE_CODE_128', 1, 20) : '',
-				'model'      				=> $result['model'],
-				'price'    				=> $result['price'],
-				'status'     				=> $result['status'],
-				'selected' 				=> isset($this->request->post['selected']) && in_array($result['supplier_product_id'], $this->request->post['selected']),
-				'action'   				=> $action
+				'supplier_product_id' => $result['supplier_product_id'],
+				'image'               => $image,
+				'name'                => $result['name'],
+				'barcode'             => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($result['model'], 'TYPE_CODE_128', 1, 20) : '',
+				'model'               => $result['model'],
+				'price'               => $result['price'],
+				'status'              => $result['status'],
+				'selected'            => isset($this->request->post['selected']) && in_array($result['supplier_product_id'], $this->request->post['selected']),
+				'action'              => $action
 			);
 		}
 
@@ -1085,25 +1085,25 @@ class ControllerSaleSupplier extends Controller {
 			$this->load->model('sale/supplier');
 
 			$data = array(
-				'filter_reference'	=> $this->request->get['filter_reference'],
-				'start'       			=> 0,
-				'limit'       			=> 20
+				'filter_reference' => $this->request->get['filter_reference'],
+				'start'            => 0,
+				'limit'            => 20
 			);
 
 			$results = $this->model_sale_supplier->getSuppliers($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'supplier_id'       		=> $result['supplier_id'],
-					'supplier_group_id' 	=> $result['supplier_group_id'],
-					'reference'				=> strip_tags(html_entity_decode($result['reference'], ENT_QUOTES, 'UTF-8')),
-					'supplier_group'    	=> $result['supplier_group'],
-					'company'         		=> $result['company'],
-					'contact'          		=> $result['contact'],
-					'email'             		=> $result['email'],
-					'telephone'         		=> $result['telephone'],
-					'fax'               		=> $result['fax'],
-					'address'           		=> $this->model_sale_supplier->getAddresses($result['supplier_id'])
+					'supplier_id'       => $result['supplier_id'],
+					'supplier_group_id' => $result['supplier_group_id'],
+					'reference'         => strip_tags(html_entity_decode($result['reference'], ENT_QUOTES, 'UTF-8')),
+					'supplier_group'    => $result['supplier_group'],
+					'company'           => $result['company'],
+					'contact'           => $result['contact'],
+					'email'             => $result['email'],
+					'telephone'         => $result['telephone'],
+					'fax'               => $result['fax'],
+					'address'           => $this->model_sale_supplier->getAddresses($result['supplier_id'])
 				);
 			}
 		}
@@ -1131,14 +1131,14 @@ class ControllerSaleSupplier extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'        		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'    	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 

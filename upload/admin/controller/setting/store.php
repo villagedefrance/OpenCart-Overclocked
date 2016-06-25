@@ -103,14 +103,14 @@ class ControllerSettingStore extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -122,16 +122,16 @@ class ControllerSettingStore extends Controller {
 		$action = array();
 
 		$action[] = array(
-			'text'	=> $this->language->get('text_edit'),
-			'href'	=> $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL')
+			'text' => $this->language->get('text_edit'),
+			'href' => $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL')
 		);
 
 		$this->data['stores'][] = array(
-			'store_id' 	=> 0,
-			'name'     	=> $this->config->get('config_name') . $this->language->get('text_default'),
-			'url'      		=> HTTP_CATALOG,
-			'selected' 	=> isset($this->request->post['selected']) && in_array(0, $this->request->post['selected']),
-			'action'   	=> $action
+			'store_id' => 0,
+			'name'     => $this->config->get('config_name') . $this->language->get('text_default'),
+			'url'      => HTTP_CATALOG,
+			'selected' => isset($this->request->post['selected']) && in_array(0, $this->request->post['selected']),
+			'action'   => $action
 		);
 
 		$store_total = $this->model_setting_store->getTotalStores();
@@ -142,16 +142,16 @@ class ControllerSettingStore extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('setting/store/update', 'token=' . $this->session->data['token'] . '&store_id=' . $result['store_id'], 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('setting/store/update', 'token=' . $this->session->data['token'] . '&store_id=' . $result['store_id'], 'SSL')
 			);
 
 			$this->data['stores'][] = array(
-				'store_id' 	=> $result['store_id'],
-				'name'     	=> $result['name'],
-				'url'      		=> $result['url'],
-				'selected' 	=> isset($this->request->post['selected']) && in_array($result['store_id'], $this->request->post['selected']),
-				'action'   	=> $action
+				'store_id' => $result['store_id'],
+				'name'     => $result['name'],
+				'url'      => $result['url'],
+				'selected' => isset($this->request->post['selected']) && in_array($result['store_id'], $this->request->post['selected']),
+				'action'   => $action
 			);
 		}
 
@@ -406,14 +406,14 @@ class ControllerSettingStore extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -1131,14 +1131,14 @@ class ControllerSettingStore extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'        		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'    	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 

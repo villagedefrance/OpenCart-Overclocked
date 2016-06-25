@@ -52,14 +52,14 @@ class ControllerReportCustomerCountry extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('report/customer_country', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('report/customer_country', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -72,11 +72,11 @@ class ControllerReportCustomerCountry extends Controller {
 		$this->data['countries'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'sort' 				=> $sort,
-			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 				=> $this->config->get('config_admin_limit')
+			'filter_name' => $filter_name,
+			'sort'        => $sort,
+			'order'       => $order,
+			'start'       => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'       => $this->config->get('config_admin_limit')
 		);
 
 		$countries_total = $this->model_localisation_country->getTotalCustomerCountries($data);
@@ -85,9 +85,9 @@ class ControllerReportCustomerCountry extends Controller {
 
 		foreach ($countries as $country) {
 			$this->data['countries'][] = array(
-				'country_id'	=> $country['country_id'],
-				'name'		=> $country['name'],
-				'customers'	=> $this->model_localisation_country->getTotalCustomersByCountryId($country['country_id'])
+				'country_id' => $country['country_id'],
+				'name'       => $country['name'],
+				'customers'  => $this->model_localisation_country->getTotalCustomersByCountryId($country['country_id'])
 			);
 		}
 
@@ -174,17 +174,17 @@ class ControllerReportCustomerCountry extends Controller {
 			$this->load->model('localisation/country');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_localisation_country->getCustomerCountries($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'country_id'	=> $result['country_id'],
-					'name'		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+					'country_id' => $result['country_id'],
+					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}

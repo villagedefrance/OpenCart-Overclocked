@@ -10,14 +10,14 @@ class ControllerToolCacheFiles extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/cache_files', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -45,7 +45,7 @@ class ControllerToolCacheFiles extends Controller {
 
 				$i = 0;
 
-				$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
+				$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
 				while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
 			}
@@ -57,10 +57,10 @@ class ControllerToolCacheFiles extends Controller {
 					$time = substr(strrchr(end($data), '.'), 1);
 
 					$this->data['cache_files'][] = array(
-						'name' 		=> end($data),
-						'size'			=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-						'time'			=> round(($time - time()) / 60),
-						'selected'	=> isset($this->request->post['selected']) && in_array(end($data), $this->request->post['selected'])
+						'name'     => end($data),
+						'size'     => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+						'time'     => round(($time - time()) / 60),
+						'selected' => isset($this->request->post['selected']) && in_array(end($data), $this->request->post['selected'])
 					);
 				}
 			}

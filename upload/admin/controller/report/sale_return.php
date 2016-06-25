@@ -61,14 +61,14 @@ class ControllerReportSaleReturn extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('report/sale_return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('report/sale_return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -81,12 +81,12 @@ class ControllerReportSaleReturn extends Controller {
 		$this->data['returns'] = array();
 
 		$data = array(
-			'filter_date_start'	      	=> $filter_date_start,
-			'filter_date_end'	      	=> $filter_date_end,
-			'filter_group'            	=> $filter_group,
-			'filter_return_status_id'	=> $filter_return_status_id,
-			'start'                   		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'                   		=> $this->config->get('config_admin_limit')
+			'filter_date_start'       => $filter_date_start,
+			'filter_date_end'         => $filter_date_end,
+			'filter_group'            => $filter_group,
+			'filter_return_status_id' => $filter_return_status_id,
+			'start'                   => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'                   => $this->config->get('config_admin_limit')
 		);
 
 		$return_total = $this->model_report_return->getTotalReturns($data);
@@ -95,9 +95,9 @@ class ControllerReportSaleReturn extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['returns'][] = array(
-				'date_start' 	=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
-				'date_end'   	=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-				'returns'    		=> $result['returns']
+				'date_start' => date($this->language->get('date_format_short'), strtotime($result['date_start'])),
+				'date_end'   => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+				'returns'    => $result['returns']
 			);
 		}
 
@@ -130,23 +130,23 @@ class ControllerReportSaleReturn extends Controller {
 		$this->data['groups'] = array();
 
 		$this->data['groups'][] = array(
-			'text'  	=> $this->language->get('text_year'),
-			'value' 	=> 'year'
+			'text'  => $this->language->get('text_year'),
+			'value' => 'year'
 		);
 
 		$this->data['groups'][] = array(
-			'text'  	=> $this->language->get('text_month'),
-			'value' 	=> 'month'
+			'text'  => $this->language->get('text_month'),
+			'value' => 'month'
 		);
 
 		$this->data['groups'][] = array(
-			'text'  	=> $this->language->get('text_week'),
-			'value' 	=> 'week'
+			'text'  => $this->language->get('text_week'),
+			'value' => 'week'
 		);
 
 		$this->data['groups'][] = array(
-			'text'  	=> $this->language->get('text_day'),
-			'value' 	=> 'day'
+			'text'  => $this->language->get('text_day'),
+			'value' => 'day'
 		);
 
 		$url = '';

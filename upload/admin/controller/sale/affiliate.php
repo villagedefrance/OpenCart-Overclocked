@@ -341,14 +341,14 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator'	=> false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator'	=> ' :: '
 		);
 
@@ -363,15 +363,15 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['affiliates'] = array();
 
 		$data = array(
-			'filter_name'      		=> $filter_name,
-			'filter_email'      		=> $filter_email,
-			'filter_status'     		=> $filter_status,
-			'filter_approved'   	=> $filter_approved,
-			'filter_date_added'	=> $filter_date_added,
-			'sort'              		=> $sort,
-			'order'             		=> $order,
-			'start'             		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'             			=> $this->config->get('config_admin_limit')
+			'filter_name'       => $filter_name,
+			'filter_email'      => $filter_email,
+			'filter_status'     => $filter_status,
+			'filter_approved'   => $filter_approved,
+			'filter_date_added' => $filter_date_added,
+			'sort'              => $sort,
+			'order'             => $order,
+			'start'             => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'             => $this->config->get('config_admin_limit')
 		);
 
 		$affiliate_total = $this->model_sale_affiliate->getTotalAffiliates($data);
@@ -382,20 +382,20 @@ class ControllerSaleAffiliate extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $result['affiliate_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $result['affiliate_id'] . $url, 'SSL')
 			);
 
 			$this->data['affiliates'][] = array(
-				'affiliate_id' 	=> $result['affiliate_id'],
-				'name'         	=> $result['name'],
-				'email'        	=> $result['email'],
-				'balance'      	=> $this->currency->format($result['balance'], $this->config->get('config_currency')),
-				'approved'     	=> $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'status'       	=> $result['status'],
-				'selected'     	=> isset($this->request->post['selected']) && in_array($result['affiliate_id'], $this->request->post['selected']),
-				'action'       	=> $action
+				'affiliate_id' => $result['affiliate_id'],
+				'name'         => $result['name'],
+				'email'        => $result['email'],
+				'balance'      => $this->currency->format($result['balance'], $this->config->get('config_currency')),
+				'approved'     => $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'date_added'   => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'status'       => $result['status'],
+				'selected'     => isset($this->request->post['selected']) && in_array($result['affiliate_id'], $this->request->post['selected']),
+				'action'       => $action
 			);
 		}
 
@@ -698,8 +698,8 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -707,8 +707,8 @@ class ControllerSaleAffiliate extends Controller {
 			$affiliate_name = $this->model_sale_affiliate->getAffiliate($this->request->get['affiliate_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $affiliate_name['firstname'] . ' ' . $affiliate_name['lastname'],
-				'href'		=> $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $this->request->get['affiliate_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $affiliate_name['firstname'] . ' ' . $affiliate_name['lastname'],
+				'href'      => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $this->request->get['affiliate_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -716,8 +716,8 @@ class ControllerSaleAffiliate extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -1072,14 +1072,14 @@ class ControllerSaleAffiliate extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'       		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'  	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 
@@ -1128,9 +1128,9 @@ class ControllerSaleAffiliate extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
-				'amount'      	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' 	=> $result['description'],
-				'date_added'  	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'description' => $result['description'],
+				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1159,17 +1159,17 @@ class ControllerSaleAffiliate extends Controller {
 			$this->load->model('sale/affiliate');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'    		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_sale_affiliate->getAffiliates($data);
 
 			foreach ($results as $result) {
 				$affiliate_data[] = array(
-					'affiliate_id'	=> $result['affiliate_id'],
-					'name'		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+					'affiliate_id' => $result['affiliate_id'],
+					'name'         => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}

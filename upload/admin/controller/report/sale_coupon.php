@@ -41,14 +41,14 @@ class ControllerReportSaleCoupon extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('report/sale_coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('report/sale_coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -61,10 +61,10 @@ class ControllerReportSaleCoupon extends Controller {
 		$this->data['coupons'] = array();
 
 		$data = array(
-			'filter_date_start'	=> $filter_date_start,
-			'filter_date_end'	=> $filter_date_end,
-			'start'             	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'             		=> $this->config->get('config_admin_limit')
+			'filter_date_start' => $filter_date_start,
+			'filter_date_end'   => $filter_date_end,
+			'start'             => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'             => $this->config->get('config_admin_limit')
 		);
 
 		$coupon_total = $this->model_report_coupon->getTotalCoupons($data);
@@ -75,16 +75,16 @@ class ControllerReportSaleCoupon extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/coupon/update', 'token=' . $this->session->data['token'] . '&coupon_id=' . $result['coupon_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/coupon/update', 'token=' . $this->session->data['token'] . '&coupon_id=' . $result['coupon_id'] . $url, 'SSL')
 			);
 
 			$this->data['coupons'][] = array(
-				'name' 	=> $result['name'],
-				'code'   	=> $result['code'],
-				'orders' 	=> $result['orders'],
-				'total'  	=> $this->currency->format($result['total'], $this->config->get('config_currency')),
-				'action'	=> $action
+				'name'   => $result['name'],
+				'code'   => $result['code'],
+				'orders' => $result['orders'],
+				'total'  => $this->currency->format($result['total'], $this->config->get('config_currency')),
+				'action' => $action
 			);
 		}
 

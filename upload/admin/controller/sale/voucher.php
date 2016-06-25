@@ -166,14 +166,14 @@ class ControllerSaleVoucher extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerSaleVoucher extends Controller {
 		$this->data['vouchers'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$voucher_total = $this->model_sale_voucher->getTotalVouchers();
@@ -201,21 +201,21 @@ class ControllerSaleVoucher extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/voucher/update', 'token=' . $this->session->data['token'] . '&voucher_id=' . $result['voucher_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/voucher/update', 'token=' . $this->session->data['token'] . '&voucher_id=' . $result['voucher_id'] . $url, 'SSL')
 			);
 
 			$this->data['vouchers'][] = array(
-				'voucher_id' 	=> $result['voucher_id'],
-				'code'       		=> $result['code'],
-				'from'       		=> $result['from_name'],
-				'to'         		=> $result['to_name'],
-				'theme'      		=> $result['theme'],
-				'amount'     	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'status'     		=> $result['status'],
-				'selected'   		=> isset($this->request->post['selected']) && in_array($result['voucher_id'], $this->request->post['selected']),
-				'action'     		=> $action
+				'voucher_id' => $result['voucher_id'],
+				'code'       => $result['code'],
+				'from'       => $result['from_name'],
+				'to'         => $result['to_name'],
+				'theme'      => $result['theme'],
+				'amount'     => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'status'     => $result['status'],
+				'selected'   => isset($this->request->post['selected']) && in_array($result['voucher_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 
@@ -402,14 +402,14 @@ class ControllerSaleVoucher extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/voucher', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -611,10 +611,10 @@ class ControllerSaleVoucher extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'order_id'   		=> $result['order_id'],
-				'customer'   	=> $result['customer'],
-				'amount'     	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'order_id'   => $result['order_id'],
+				'customer'   => $result['customer'],
+				'amount'     => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 

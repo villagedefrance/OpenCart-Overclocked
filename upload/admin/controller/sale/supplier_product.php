@@ -330,14 +330,14 @@ class ControllerSaleSupplierProduct extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('sale/supplier_product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/supplier_product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -356,15 +356,15 @@ class ControllerSaleSupplierProduct extends Controller {
 		$this->data['supplier_products'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'filter_model'	=> $filter_model,
-			'filter_supplier'	=> $filter_supplier,
-			'filter_price'		=> $filter_price,
-			'filter_status'	=> $filter_status,
-			'sort'				=> $sort,
-			'order'			=> $order,
-			'start'			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'				=> $this->config->get('config_admin_limit')
+			'filter_name'     => $filter_name,
+			'filter_model'    => $filter_model,
+			'filter_supplier' => $filter_supplier,
+			'filter_price'    => $filter_price,
+			'filter_status'   => $filter_status,
+			'sort'            => $sort,
+			'order'           => $order,
+			'start'           => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'           => $this->config->get('config_admin_limit')
 		);
 
 		$this->load->model('tool/image');
@@ -380,8 +380,8 @@ class ControllerSaleSupplierProduct extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/supplier_product/update', 'token=' . $this->session->data['token'] . '&supplier_product_id=' . $result['supplier_product_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/supplier_product/update', 'token=' . $this->session->data['token'] . '&supplier_product_id=' . $result['supplier_product_id'] . $url, 'SSL')
 			);
 
 			if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
@@ -397,16 +397,16 @@ class ControllerSaleSupplierProduct extends Controller {
 			}
 
 			$this->data['supplier_products'][] = array(
-				'supplier_product_id'	=> $result['supplier_product_id'],
-				'image'					=> $image,
-				'name'       				=> $result['name'],
-				'barcode'				=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($result['model'], 'TYPE_CODE_128', 1, 20) : '',
-				'model'      				=> $result['model'],
-				'supplier'					=> ($supplier) ? $supplier : '',
-				'price'    				=> $result['price'],
-				'status'     				=> $result['status'],
-				'selected' 				=> isset($this->request->post['selected']) && in_array($result['supplier_product_id'], $this->request->post['selected']),
-				'action'   				=> $action
+				'supplier_product_id' => $result['supplier_product_id'],
+				'image'               => $image,
+				'name'                => $result['name'],
+				'barcode'             => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($result['model'], 'TYPE_CODE_128', 1, 20) : '',
+				'model'               => $result['model'],
+				'supplier'            => ($supplier) ? $supplier : '',
+				'price'               => $result['price'],
+				'status'              => $result['status'],
+				'selected'            => isset($this->request->post['selected']) && in_array($result['supplier_product_id'], $this->request->post['selected']),
+				'action'              => $action
 			);
 		}
 
@@ -657,8 +657,8 @@ class ControllerSaleSupplierProduct extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -666,8 +666,8 @@ class ControllerSaleSupplierProduct extends Controller {
 			$supplier_product_name = $this->model_sale_supplier_product->getSupplierProduct($this->request->get['supplier_product_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $supplier_product_name['name'],
-				'href'		=> $this->url->link('sale/supplier_product/update', 'token=' . $this->session->data['token'] . '&supplier_product_id=' . $this->request->get['supplier_product_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $supplier_product_name['name'],
+				'href'      => $this->url->link('sale/supplier_product/update', 'token=' . $this->session->data['token'] . '&supplier_product_id=' . $this->request->get['supplier_product_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -676,8 +676,8 @@ class ControllerSaleSupplierProduct extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('sale/supplier_product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('sale/supplier_product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -1184,26 +1184,26 @@ class ControllerSaleSupplierProduct extends Controller {
 			}
 
 			$data = array(
-				'filter_name'  	=> $filter_name,
-				'filter_model' 	=> $filter_model,
-				'filter_supplier'	=> $filter_supplier,
-				'start'        	=> 0,
-				'limit'        		=> $limit
+				'filter_name'     => $filter_name,
+				'filter_model'    => $filter_model,
+				'filter_supplier' => $filter_supplier,
+				'start'           => 0,
+				'limit'           => $limit
 			);
 
 			$results = $this->model_sale_supplier_product->getSupplierProducts($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'supplier_product_id'	=> $result['supplier_product_id'],
-					'supplier_id'	=> $result['supplier_id'],
-					'supplier'    	=> $this->model_sale_supplier_product->getSupplierNameBySupplierId($result['supplier_id']),
-					'name'       	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'model'    	=> $result['model'],
-					'unit'    		=> $result['unit'],
-					'color'    	=> $result['color'],
-					'size'    		=> $result['size'],
-					'price'   		=> $result['price']
+					'supplier_product_id' => $result['supplier_product_id'],
+					'supplier_id'         => $result['supplier_id'],
+					'supplier'            => $this->model_sale_supplier_product->getSupplierNameBySupplierId($result['supplier_id']),
+					'name'                => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+					'model'               => $result['model'],
+					'unit'                => $result['unit'],
+					'color'               => $result['color'],
+					'size'                => $result['size'],
+					'price'               => $result['price']
 				);
 			}
 		}

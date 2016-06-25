@@ -52,14 +52,14 @@ class ControllerReportProductMarkup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('report/product_markup', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('report/product_markup', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -71,11 +71,11 @@ class ControllerReportProductMarkup extends Controller {
 		$this->load->model('catalog/product');
 
 		$data = array(
-			'filter_name'	  	=> $filter_name,
-			'sort'            		=> $sort,
-			'order'           		=> $order,
-			'start'           		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'           		=> $this->config->get('config_admin_limit')
+			'filter_name' => $filter_name,
+			'sort'        => $sort,
+			'order'       => $order,
+			'start'       => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'       => $this->config->get('config_admin_limit')
 		);
 
 		$products_total = $this->model_report_product->getTotalProducts($data);
@@ -128,17 +128,17 @@ class ControllerReportProductMarkup extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'product_id'			=> $product['product_id'],
-				'product_href'		=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL'),
-				'name'				=> $product['name'],
-				'price_formatted'	=> $this->currency->format($price, $this->config->get('config_currency')),
-				'cost_formatted'	=> $this->currency->format($cost, $this->config->get('config_currency')),
-				'ratio'					=> $ratio,
-				'graph'				=> $graph,
-				'graph_type'		=> (int)$graph_type,
-				'has_special'		=> $has_special,
-				'price'				=> $price,
-				'cost'					=> $cost
+				'product_id'      => $product['product_id'],
+				'product_href'    => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL'),
+				'name'            => $product['name'],
+				'price_formatted' => $this->currency->format($price, $this->config->get('config_currency')),
+				'cost_formatted'  => $this->currency->format($cost, $this->config->get('config_currency')),
+				'ratio'           => $ratio,
+				'graph'           => $graph,
+				'graph_type'      => (int)$graph_type,
+				'has_special'     => $has_special,
+				'price'           => $price,
+				'cost'            => $cost
 			);
 		}
 
@@ -237,18 +237,18 @@ class ControllerReportProductMarkup extends Controller {
 			}
 
 			$data = array(
-				'filter_name'	=> $filter_name,
-				'start'			=> 0,
-				'limit'				=> $limit
+				'filter_name' => $filter_name,
+				'start'       => 0,
+				'limit'       => $limit
 			);
 
 			$results = $this->model_catalog_product->getProducts($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'product_id'	=> $result['product_id'],
-					'name'       	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'price'   		=> $result['price']
+					'product_id' => $result['product_id'],
+					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+					'price'      => $result['price']
 				);
 			}
 		}

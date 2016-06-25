@@ -342,14 +342,14 @@ class ControllerSaleReturn extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -363,18 +363,18 @@ class ControllerSaleReturn extends Controller {
 		$this->data['returns'] = array();
 
 		$data = array(
-			'filter_return_id'   		=> $filter_return_id,
-			'filter_order_id'         	=> $filter_order_id,
-			'filter_customer'         	=> $filter_customer,
-			'filter_product'          	=> $filter_product,
-			'filter_model'            	=> $filter_model,
-			'filter_return_status_id'	=> $filter_return_status_id,
-			'filter_date_added'       	=> $filter_date_added,
-			'filter_date_modified'    	=> $filter_date_modified,
-			'sort'                    		=> $sort,
-			'order'                   		=> $order,
-			'start'                   		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'                   		=> $this->config->get('config_admin_limit')
+			'filter_return_id'        => $filter_return_id,
+			'filter_order_id'         => $filter_order_id,
+			'filter_customer'         => $filter_customer,
+			'filter_product'          => $filter_product,
+			'filter_model'            => $filter_model,
+			'filter_return_status_id' => $filter_return_status_id,
+			'filter_date_added'       => $filter_date_added,
+			'filter_date_modified'    => $filter_date_modified,
+			'sort'                    => $sort,
+			'order'                   => $order,
+			'start'                   => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'                   => $this->config->get('config_admin_limit')
 		);
 
 		$return_total = $this->model_sale_return->getTotalReturns($data);
@@ -385,26 +385,26 @@ class ControllerSaleReturn extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_view'),
-				'href'	=> $this->url->link('sale/return/info', 'token=' . $this->session->data['token'] . '&return_id=' . $result['return_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_view'),
+				'href' => $this->url->link('sale/return/info', 'token=' . $this->session->data['token'] . '&return_id=' . $result['return_id'] . $url, 'SSL')
 			);
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/return/update', 'token=' . $this->session->data['token'] . '&return_id=' . $result['return_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/return/update', 'token=' . $this->session->data['token'] . '&return_id=' . $result['return_id'] . $url, 'SSL')
 			);
 
 			$this->data['returns'][] = array(
-				'return_id'     		=> $result['return_id'],
-				'order_id'      		=> $result['order_id'],
-				'customer'      		=> $result['customer'],
-				'product'       		=> $result['product'],
-				'model'         		=> $result['model'],
-				'status'        		=> $result['status'],
-				'date_added'    	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'date_modified' 	=> date($this->language->get('date_format_time'), strtotime($result['date_modified'])),
-				'selected'      		=> isset($this->request->post['selected']) && in_array($result['return_id'], $this->request->post['selected']),
-				'action'        		=> $action
+				'return_id'     => $result['return_id'],
+				'order_id'      => $result['order_id'],
+				'customer'      => $result['customer'],
+				'product'       => $result['product'],
+				'model'         => $result['model'],
+				'status'        => $result['status'],
+				'date_added'    => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'date_modified' => date($this->language->get('date_format_time'), strtotime($result['date_modified'])),
+				'selected'      => isset($this->request->post['selected']) && in_array($result['return_id'], $this->request->post['selected']),
+				'action'        => $action
 			);
 		}
 
@@ -704,14 +704,14 @@ class ControllerSaleReturn extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -981,14 +981,14 @@ class ControllerSaleReturn extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('heading_title'),
-				'href'   	=> $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('sale/return', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -1083,14 +1083,14 @@ class ControllerSaleReturn extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('heading_title'),
-				'href'  	=> $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -1230,10 +1230,10 @@ class ControllerSaleReturn extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'notify'     		=> $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'status'     		=> $result['status'],
-				'comment'    	=> nl2br($result['comment']),
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added']))
+				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'status'     => $result['status'],
+				'comment'    => nl2br($result['comment']),
+				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added']))
 			);
 		}
 

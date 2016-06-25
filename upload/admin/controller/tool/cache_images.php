@@ -9,14 +9,14 @@ class ControllerToolCacheImages extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/cache_images', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/cache_images', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -43,7 +43,7 @@ class ControllerToolCacheImages extends Controller {
 
 				$i = 0;
 
-				$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
+				$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
 				while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
 			}
@@ -53,9 +53,9 @@ class ControllerToolCacheImages extends Controller {
 			if (strpos(end($data), '.') > 0) {
 				if (end($data) != 'index.html') {
 					$this->data['cache_images'][] = array(
-						'name' 		=> end($data),
-						'size'			=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-						'selected'	=> isset($this->request->post['selected']) && in_array(end($data), $this->request->post['selected'])
+						'name'     => end($data),
+						'size'     => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+						'selected' => isset($this->request->post['selected']) && in_array(end($data), $this->request->post['selected'])
 					);
 				}
 			}

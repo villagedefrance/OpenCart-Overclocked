@@ -393,14 +393,14 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -417,17 +417,17 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['customers'] = array();
 
 		$data = array(
-			'filter_name'              		=> $filter_name,
-			'filter_email'             		=> $filter_email,
-			'filter_customer_group_id'	=> $filter_customer_group_id,
-			'filter_status'            		=> $filter_status,
-			'filter_approved'          		=> $filter_approved,
-			'filter_date_added'        	=> $filter_date_added,
-			'filter_ip'                			=> $filter_ip,
-			'sort'                     			=> $sort,
-			'order'                    		=> $order,
-			'start'                    		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'                    			=> $this->config->get('config_admin_limit')
+			'filter_name'              => $filter_name,
+			'filter_email'             => $filter_email,
+			'filter_customer_group_id' => $filter_customer_group_id,
+			'filter_status'            => $filter_status,
+			'filter_approved'          => $filter_approved,
+			'filter_date_added'        => $filter_date_added,
+			'filter_ip'                => $filter_ip,
+			'sort'                     => $sort,
+			'order'                    => $order,
+			'start'                    => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'                    => $this->config->get('config_admin_limit')
 		);
 
 		$customer_total = $this->model_sale_customer->getTotalCustomers($data);
@@ -438,8 +438,8 @@ class ControllerSaleCustomer extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $result['customer_id'] . $url, 'SSL')
 			);
 
 			if ($this->config->get('config_customer_dob')) {
@@ -449,18 +449,18 @@ class ControllerSaleCustomer extends Controller {
 			}
 
 			$this->data['customers'][] = array(
-				'customer_id'    	=> $result['customer_id'],
-				'name'           		=> $result['name'],
-				'email'          		=> $result['email'],
-				'age'					=> $customer_age,
-				'customer_group' 	=> $result['customer_group'],
-				'status'         		=> $result['status'],
-				'approved'       	=> $result['approved'],
-				'ip'             		=> $result['ip'],
-				'blocked_ip'			=> $this->model_sale_customer->isBlockedIp($result['ip']) ? '<span style="color:#D80000;"><b>( ! )</b></span>' : '',
-				'date_added'     	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'selected'       		=> isset($this->request->post['selected']) && in_array($result['customer_id'], $this->request->post['selected']),
-				'action'         		=> $action
+				'customer_id'    => $result['customer_id'],
+				'name'           => $result['name'],
+				'email'          => $result['email'],
+				'age'            => $customer_age,
+				'customer_group' => $result['customer_group'],
+				'status'         => $result['status'],
+				'approved'       => $result['approved'],
+				'ip'             => $result['ip'],
+				'blocked_ip'     => $this->model_sale_customer->isBlockedIp($result['ip']) ? '<span style="color:#D80000;"><b>( ! )</b></span>' : '',
+				'date_added'     => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'selected'       => isset($this->request->post['selected']) && in_array($result['customer_id'], $this->request->post['selected']),
+				'action'         => $action
 			);
 		}
 
@@ -845,8 +845,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -854,8 +854,8 @@ class ControllerSaleCustomer extends Controller {
 			$customer_name = $this->model_sale_customer->getCustomer($this->request->get['customer_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $customer_name['firstname'] . ' ' . $customer_name['lastname'],
-				'href'		=> $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $customer_name['firstname'] . ' ' . $customer_name['lastname'],
+				'href'      => $this->url->link('sale/customer/update', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -863,8 +863,8 @@ class ControllerSaleCustomer extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -1024,12 +1024,12 @@ class ControllerSaleCustomer extends Controller {
 				$ban_ip_total = $this->model_sale_customer->getTotalBanIpsByIp($result['ip']);
 
 				$this->data['ips'][] = array(
-					'ip'         		=> $result['ip'],
-					'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-					'total'      		=> $this->model_sale_customer->getTotalCustomersByIp($result['ip']),
-					'blocked_ip'		=> $this->model_sale_customer->isBlockedIp($result['ip']) ? '<span class="disabled">' . $this->language->get('text_blocked_ip') . '</span>' : '<span class="enabled">' . $this->language->get('text_allowed_ip') . '</span>',
-					'filter_ip'  		=> $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&filter_ip=' . $result['ip'] . $url, 'SSL'),
-					'ban_ip'     		=> $ban_ip_total
+					'ip'         => $result['ip'],
+					'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+					'total'      => $this->model_sale_customer->getTotalCustomersByIp($result['ip']),
+					'blocked_ip' => $this->model_sale_customer->isBlockedIp($result['ip']) ? '<span class="disabled">' . $this->language->get('text_blocked_ip') . '</span>' : '<span class="enabled">' . $this->language->get('text_allowed_ip') . '</span>',
+					'filter_ip'  => $this->url->link('sale/customer', 'token=' . $this->session->data['token'] . '&filter_ip=' . $result['ip'] . $url, 'SSL'),
+					'ban_ip'     => $ban_ip_total
 				);
 			}
 		}
@@ -1220,14 +1220,14 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('heading_title'),
-				'href' 		=> $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -1281,8 +1281,8 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'comment'     	=> $result['comment'],
-				'date_added'  	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'comment'    => $result['comment'],
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1344,10 +1344,10 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['purchases'] = array();
 
 		$data = array(
-			'sort'		=> $sort,
-			'order'	=> $order,
-			'start'	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$purchase_total = $this->model_sale_customer->getTotalCustomerPurchasedProducts($customer_id, $data);
@@ -1358,22 +1358,22 @@ class ControllerSaleCustomer extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_view'),
-				'href'	=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
+				'text' => $this->language->get('text_view'),
+				'href' => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'], 'SSL')
 			);
 
 			$this->data['purchases'][] = array(
-				'order_id'		=> $result['order_id'],
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'product_id'		=> $result['product_id'],
-				'product_href'	=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'], 'SSL'),
-				'name'			=> $result['name'],
-				'model'        	=> $result['model'],
-				'price'        	=> $this->currency->format(($result['price'] + $result['tax']), $result['currency_code'], $result['currency_value']),
-				'quantity'		=> $result['quantity'],
-				'total'				=> $this->currency->format(($result['total'] + ($result['tax'] * $result['quantity'])), $result['currency_code'], $result['currency_value']),
-				'selected'		=> isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
-				'action'			=> $action
+				'order_id'     => $result['order_id'],
+				'date_added'   => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'product_id'   => $result['product_id'],
+				'product_href' => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'], 'SSL'),
+				'name'         => $result['name'],
+				'model'        => $result['model'],
+				'price'        => $this->currency->format(($result['price'] + $result['tax']), $result['currency_code'], $result['currency_value']),
+				'quantity'     => $result['quantity'],
+				'total'        => $this->currency->format(($result['total'] + ($result['tax'] * $result['quantity'])), $result['currency_code'], $result['currency_value']),
+				'selected'     => isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
+				'action'       => $action
 			);
 		}
 
@@ -1454,10 +1454,10 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
-				'id'      			=> $result['customer_transaction_id'],
-				'amount'      	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' 	=> $result['description'],
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'id'          => $result['customer_transaction_id'],
+				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'description' => $result['description'],
+				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1524,10 +1524,10 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
-				'id'      			=> $result['customer_transaction_id'],
-				'amount'			=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description'	=> $result['description'],
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'id'          => $result['customer_transaction_id'],
+				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'description' => $result['description'],
+				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1591,9 +1591,9 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['rewards'][] = array(
-				'points'      		=> $result['points'],
-				'description' 	=> $result['description'],
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'points'      => $result['points'],
+				'description' => $result['description'],
+				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1666,25 +1666,25 @@ class ControllerSaleCustomer extends Controller {
 			$this->load->model('sale/customer');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_sale_customer->getCustomers($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'customer_id'       	=> $result['customer_id'],
-					'customer_group_id' 	=> $result['customer_group_id'],
-					'name'              		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'customer_group'    	=> $result['customer_group'],
-					'firstname'         		=> $result['firstname'],
-					'lastname'          		=> $result['lastname'],
-					'email'             		=> $result['email'],
-					'telephone'         		=> $result['telephone'],
-					'fax'               		=> $result['fax'],
-					'address'           		=> $this->model_sale_customer->getAddresses($result['customer_id'])
+					'customer_id'       => $result['customer_id'],
+					'customer_group_id' => $result['customer_group_id'],
+					'name'              => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+					'customer_group'    => $result['customer_group'],
+					'firstname'         => $result['firstname'],
+					'lastname'          => $result['lastname'],
+					'email'             => $result['email'],
+					'telephone'         => $result['telephone'],
+					'fax'               => $result['fax'],
+					'address'           => $this->model_sale_customer->getAddresses($result['customer_id'])
 				);
 			}
 		}
@@ -1712,14 +1712,14 @@ class ControllerSaleCustomer extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'        		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'    	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 

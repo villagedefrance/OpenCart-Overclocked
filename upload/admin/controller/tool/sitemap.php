@@ -73,14 +73,14 @@ class ControllerToolSitemap extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -160,7 +160,7 @@ class ControllerToolSitemap extends Controller {
 
 			$i = 0;
 
-			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
+			$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
 			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
 
@@ -192,7 +192,7 @@ class ControllerToolSitemap extends Controller {
 
 			$i = 0;
 
-			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
+			$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
 			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
 
@@ -264,7 +264,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master Text Sitemap
-	Public function download_text() {
+	public function download_text() {
 		if (file_exists("../sitemap.txt") && is_file("../sitemap.txt")) {
 			$file = "../sitemap.txt";
 
@@ -297,7 +297,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master XML Sitemap
-	Public function download_xml() {
+	public function download_xml() {
 		if (file_exists("../sitemap.xml") && is_file("../sitemap.xml")) {
 			$file = "../sitemap.xml";
 
@@ -330,7 +330,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master XML GZ Sitemap
-	Public function download_gzip() {
+	public function download_gzip() {
 		if (file_exists("../sitemap.xml.gz") && is_file("../sitemap.xml.gz")) {
 			$file = "../sitemap.xml.gz";
 
@@ -362,7 +362,7 @@ class ControllerToolSitemap extends Controller {
 		}
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'tool/' . $this->_name)) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

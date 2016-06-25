@@ -279,14 +279,14 @@ class ControllerSaleOrder extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -300,16 +300,16 @@ class ControllerSaleOrder extends Controller {
 		$this->data['orders'] = array();
 
 		$data = array(
-			'filter_order_id'        		=> $filter_order_id,
-			'filter_customer'	     	=> $filter_customer,
-			'filter_order_status_id' 	=> $filter_order_status_id,
-			'filter_date_added'      	=> $filter_date_added,
-			'filter_date_modified'   	=> $filter_date_modified,
-			'filter_total'           		=> $filter_total,
-			'sort'                   		=> $sort,
-			'order'                  		=> $order,
-			'start'                  		=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'                  		=> $this->config->get('config_admin_limit')
+			'filter_order_id'        => $filter_order_id,
+			'filter_customer'        => $filter_customer,
+			'filter_order_status_id' => $filter_order_status_id,
+			'filter_date_added'      => $filter_date_added,
+			'filter_date_modified'   => $filter_date_modified,
+			'filter_total'           => $filter_total,
+			'sort'                   => $sort,
+			'order'                  => $order,
+			'start'                  => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'                  => $this->config->get('config_admin_limit')
 		);
 
 		$order_total = $this->model_sale_order->getTotalOrders($data);
@@ -320,26 +320,26 @@ class ControllerSaleOrder extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_view'),
-				'href'	=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_view'),
+				'href' => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL')
 			);
 
 			if (strtotime($result['date_added']) > strtotime('-' . (int)$this->config->get('config_order_edit') . ' day')) {
 				$action[] = array(
-					'text'	=> $this->language->get('text_edit'),
-					'href'	=> $this->url->link('sale/order/update', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL')
+					'text' => $this->language->get('text_edit'),
+					'href' => $this->url->link('sale/order/update', 'token=' . $this->session->data['token'] . '&order_id=' . $result['order_id'] . $url, 'SSL')
 				);
 			}
 
 			$this->data['orders'][] = array(
-				'order_id'        	=> $result['order_id'],
-				'customer'      		=> $result['customer'],
-				'status'        		=> $result['status'],
-				'date_added'    	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'date_modified' 	=> date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
-				'total'         		=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-				'selected'      		=> isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
-				'action'        		=> $action
+				'order_id'      => $result['order_id'],
+				'customer'      => $result['customer'],
+				'status'        => $result['status'],
+				'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
+				'total'         => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'selected'      => isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
+				'action'        => $action
 			);
 		}
 
@@ -732,14 +732,14 @@ class ControllerSaleOrder extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -1127,17 +1127,17 @@ class ControllerSaleOrder extends Controller {
 			}
 
 			$this->data['order_products'][] = array(
-				'order_product_id'	=> $order_product['order_product_id'],
-				'product_id'       		=> $order_product['product_id'],
-				'name'             		=> $order_product['name'],
-				'model'            		=> $order_product['model'],
-				'option'           		=> $order_option,
-				'download'       		=> $order_download,
-				'quantity'         		=> $order_product['quantity'],
-				'price'            		=> $order_product['price'],
-				'total'            			=> $order_product['total'],
-				'tax'              			=> $order_product['tax'],
-				'reward'           		=> $order_product['reward']
+				'order_product_id' => $order_product['order_product_id'],
+				'product_id'       => $order_product['product_id'],
+				'name'             => $order_product['name'],
+				'model'            => $order_product['model'],
+				'option'           => $order_option,
+				'download'         => $order_download,
+				'quantity'         => $order_product['quantity'],
+				'price'            => $order_product['price'],
+				'total'            => $order_product['total'],
+				'tax'              => $order_product['tax'],
+				'reward'           => $order_product['reward']
 			);
 		}
 
@@ -1391,14 +1391,14 @@ class ControllerSaleOrder extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'        		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'   	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 
@@ -1555,15 +1555,15 @@ class ControllerSaleOrder extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			if (isset($this->request->get['order_id'])) {
 				$this->data['breadcrumbs'][] = array(
-					'text'		=> $this->language->get('heading_title') . ' :: N&deg;' . (int)$this->request->get['order_id'],
-					'href'		=> $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'] . $url, 'SSL'),
+					'text'      => $this->language->get('heading_title') . ' :: N&deg;' . (int)$this->request->get['order_id'],
+					'href'      => $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'] . $url, 'SSL'),
 					'separator' => ' :: '
 				);
 
@@ -1571,8 +1571,8 @@ class ControllerSaleOrder extends Controller {
 
 			} else {
 				$this->data['breadcrumbs'][] = array(
-					'text'		=> $this->language->get('heading_title'),
-					'href'		=> $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+					'text'      => $this->language->get('heading_title'),
+					'href'      => $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 					'separator' => ' :: '
 				);
 
@@ -1708,38 +1708,38 @@ class ControllerSaleOrder extends Controller {
 				foreach ($options as $option) {
 					if ($option['type'] != 'file') {
 						$option_data[] = array(
-							'name'	=> $option['name'],
-							'value'	=> $option['value'],
-							'type' 	=> $option['type']
+							'name'  => $option['name'],
+							'value' => $option['value'],
+							'type'  => $option['type']
 						);
 
 					} else {
 						$option_data[] = array(
-							'name'	=> $option['name'],
-							'value'	=> utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.')),
-							'type' 	=> $option['type'],
-							'href' 		=> $this->url->link('sale/order/download', 'token=' . $this->session->data['token'] . '&order_id=' . $this->request->get['order_id'] . '&order_option_id=' . $option['order_option_id'], 'SSL')
+							'name'  => $option['name'],
+							'value' => utf8_substr($option['value'], 0, utf8_strrpos($option['value'], '.')),
+							'type'  => $option['type'],
+							'href'  => $this->url->link('sale/order/download', 'token=' . $this->session->data['token'] . '&order_id=' . $this->request->get['order_id'] . '&order_option_id=' . $option['order_option_id'], 'SSL')
 						);
 					}
 				}
 
 				$this->data['products'][] = array(
-					'order_product_id'	=> $product['order_product_id'],
-					'product_id'       		=> $product['product_id'],
-					'name'    	 	   		=> $product['name'],
-					'barcode'				=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
-					'model'    		   		=> $product['model'],
-					'option'   		   		=> $option_data,
-					'quantity'		   		=> $product['quantity'],
-					'price'					=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_value'				=> $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_percent'			=> number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
-					'total'						=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'picked'					=> $product['picked'],
-					'backordered'			=> $product['backordered'],
-					'href_picked'			=> $this->url->link('sale/order/picked', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
-					'href_backordered'	=> $this->url->link('sale/order/backordered', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
-					'href'						=> $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
+					'order_product_id' => $product['order_product_id'],
+					'product_id'       => $product['product_id'],
+					'name'             => $product['name'],
+					'barcode'          => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
+					'model'            => $product['model'],
+					'option'           => $option_data,
+					'quantity'         => $product['quantity'],
+					'price'            => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_value'        => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_percent'      => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'total'            => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'picked'           => $product['picked'],
+					'backordered'      => $product['backordered'],
+					'href_picked'      => $this->url->link('sale/order/picked', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
+					'href_backordered' => $this->url->link('sale/order/backordered', 'token=' . $this->session->data['token'] . '&order_product_id=' . $product['order_product_id'], 'SSL'),
+					'href'             => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $product['product_id'], 'SSL')
 				); 
 			} 
 
@@ -1749,9 +1749,9 @@ class ControllerSaleOrder extends Controller {
 
 			foreach ($vouchers as $voucher) {
 				$this->data['vouchers'][] = array(
-					'description'	=> $voucher['description'],
-					'amount'      	=> $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']),
-					'href'        		=> $this->url->link('sale/voucher/update', 'token=' . $this->session->data['token'] . '&voucher_id=' . $voucher['voucher_id'], 'SSL')
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']),
+					'href'        => $this->url->link('sale/voucher/update', 'token=' . $this->session->data['token'] . '&voucher_id=' . $voucher['voucher_id'], 'SSL')
 				);
 			}
 
@@ -1764,9 +1764,9 @@ class ControllerSaleOrder extends Controller {
 
 				foreach ($results as $result) {
 					$this->data['downloads'][] = array(
-						'name'      	=> $result['name'],
-						'filename'  	=> $result['mask'],
-						'remaining'	=> $result['remaining']
+						'name'      => $result['name'],
+						'filename'  => $result['mask'],
+						'remaining' => $result['remaining']
 					);
 				}
 			}
@@ -1791,9 +1791,9 @@ class ControllerSaleOrder extends Controller {
 
 						if ($content) {
 							$this->data['tabs'][] = array(
-								'code'		=> $extension['code'],
-								'title'			=> $this->language->get('heading_title'),
-								'content'	=> $content
+								'code'    => $extension['code'],
+								'title'   => $this->language->get('heading_title'),
+								'content' => $content
 							);
 						}
 					}
@@ -1826,14 +1826,14 @@ class ControllerSaleOrder extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('heading_title'),
-				'href'  	=> $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -2106,10 +2106,10 @@ class ControllerSaleOrder extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'notify'     		=> $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'status'     		=> $result['status'],
-				'comment'    	=> nl2br($result['comment']),
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'status'     => $result['status'],
+				'comment'    => nl2br($result['comment']),
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -2179,14 +2179,14 @@ class ControllerSaleOrder extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('heading_title'),
-				'href'  	=> $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -2396,28 +2396,28 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['shipping_firstname'],
-					'lastname'  		=> $order_info['shipping_lastname'],
-					'company'   	=> $order_info['shipping_company'],
-					'address_1' 	=> $order_info['shipping_address_1'],
-					'address_2' 	=> $order_info['shipping_address_2'],
-					'city'      		=> $order_info['shipping_city'],
-					'postcode'  		=> $order_info['shipping_postcode'],
-					'zone'      		=> $order_info['shipping_zone'],
-					'zone_code' 	=> $order_info['shipping_zone_code'],
-					'country'   		=> $order_info['shipping_country']
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
 				);
 
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
 				$this->data['orders'][] = array(
-					'order_id'	         		=> $order_id,
-					'store_url'          			=> rtrim($order_info['store_url'], '/'),
-					'email'              			=> $order_info['email'],
-					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> $shipping_address,
-					'shipping_method'    		=> $order_info['shipping_method'],
-					'comment'            		=> nl2br($order_info['comment'])
+					'order_id'         => $order_id,
+					'store_url'        => rtrim($order_info['store_url'], '/'),
+					'email'            => $order_info['email'],
+					'telephone'        => $order_info['telephone'],
+					'shipping_address' => $shipping_address,
+					'shipping_method'  => $order_info['shipping_method'],
+					'comment'          => nl2br($order_info['comment'])
 				);
 			}
 		}
@@ -2553,16 +2553,16 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['shipping_firstname'],
-					'lastname'  		=> $order_info['shipping_lastname'],
-					'company'   	=> $order_info['shipping_company'],
-					'address_1' 	=> $order_info['shipping_address_1'],
-					'address_2' 	=> $order_info['shipping_address_2'],
-					'city'      		=> $order_info['shipping_city'],
-					'postcode'  		=> $order_info['shipping_postcode'],
-					'zone'      		=> $order_info['shipping_zone'],
-					'zone_code' 	=> $order_info['shipping_zone_code'],
-					'country'   		=> $order_info['shipping_country']
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
 				);
 
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -2587,16 +2587,16 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['payment_firstname'],
-					'lastname'  		=> $order_info['payment_lastname'],
-					'company'   	=> $order_info['payment_company'],
-					'address_1' 	=> $order_info['payment_address_1'],
-					'address_2' 	=> $order_info['payment_address_2'],
-					'city'      		=> $order_info['payment_city'],
-					'postcode'  		=> $order_info['payment_postcode'],
-					'zone'      		=> $order_info['payment_zone'],
-					'zone_code'		=> $order_info['payment_zone_code'],
-					'country'   		=> $order_info['payment_country']
+					'firstname' => $order_info['payment_firstname'],
+					'lastname'  => $order_info['payment_lastname'],
+					'company'   => $order_info['payment_company'],
+					'address_1' => $order_info['payment_address_1'],
+					'address_2' => $order_info['payment_address_2'],
+					'city'      => $order_info['payment_city'],
+					'postcode'  => $order_info['payment_postcode'],
+					'zone'      => $order_info['payment_zone'],
+					'zone_code' => $order_info['payment_zone_code'],
+					'country'   => $order_info['payment_country']
 				);
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -2631,40 +2631,40 @@ class ControllerSaleOrder extends Controller {
 						}
 
 						$option_data[] = array(
-							'name'	=> $option['name'],
-							'value' 	=> $value
+							'name'  => $option['name'],
+							'value' => $value
 						);
 					}
 
 					$product_data[] = array(
-						'name'     	=> $product['name'],
-						'barcode'	=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
-						'model'    	=> $product['model'],
-						'option'   	=> $option_data,
-						'quantity' 	=> $product['quantity']
+						'name'     => $product['name'],
+						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
+						'model'    => $product['model'],
+						'option'   => $option_data,
+						'quantity' => $product['quantity']
 					);
 				}
 
 				$this->data['orders'][] = array(
-					'order_id'	         		=> $order_id,
-					'invoice_no'         		=> $invoice_no,
-					'date_added'         		=> date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
-					'store_name'         		=> $order_info['store_name'],
-					'store_url'          			=> rtrim($order_info['store_url'], '/'),
-					'store_address'     		=> nl2br($store_address),
-					'store_email'        		=> $store_email,
-					'store_telephone'    		=> $store_telephone,
-					'store_fax'          		=> $store_fax,
-					'email'              			=> $order_info['email'],
-					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> ($same_address) ? '' : $shipping_address,
-					'shipping_method'    		=> $order_info['shipping_method'],
-					'payment_address'    	=> ($same_address) ? $shipping_address : $payment_address,
-					'payment_company_id'	=> $order_info['payment_company_id'],
-					'payment_tax_id'     		=> $order_info['payment_tax_id'],
-					'payment_method'     	=> $order_info['payment_method'],
-					'product'            			=> $product_data,
-					'comment'            		=> nl2br($order_info['comment'])
+					'order_id'           => $order_id,
+					'invoice_no'         => $invoice_no,
+					'date_added'         => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
+					'store_name'         => $order_info['store_name'],
+					'store_url'          => rtrim($order_info['store_url'], '/'),
+					'store_address'      => nl2br($store_address),
+					'store_email'        => $store_email,
+					'store_telephone'    => $store_telephone,
+					'store_fax'          => $store_fax,
+					'email'              => $order_info['email'],
+					'telephone'          => $order_info['telephone'],
+					'shipping_address'   => ($same_address) ? '' : $shipping_address,
+					'shipping_method'    => $order_info['shipping_method'],
+					'payment_address'    => ($same_address) ? $shipping_address : $payment_address,
+					'payment_company_id' => $order_info['payment_company_id'],
+					'payment_tax_id'     => $order_info['payment_tax_id'],
+					'payment_method'     => $order_info['payment_method'],
+					'product'            => $product_data,
+					'comment'            => nl2br($order_info['comment'])
 				);
 			}
 		}
@@ -2801,16 +2801,16 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['shipping_firstname'],
-					'lastname'  		=> $order_info['shipping_lastname'],
-					'company'   	=> $order_info['shipping_company'],
-					'address_1' 	=> $order_info['shipping_address_1'],
-					'address_2' 	=> $order_info['shipping_address_2'],
-					'city'      		=> $order_info['shipping_city'],
-					'postcode'  		=> $order_info['shipping_postcode'],
-					'zone'      		=> $order_info['shipping_zone'],
-					'zone_code' 	=> $order_info['shipping_zone_code'],
-					'country'   		=> $order_info['shipping_country']
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
 				);
 
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -2835,16 +2835,16 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['payment_firstname'],
-					'lastname'  		=> $order_info['payment_lastname'],
-					'company'   	=> $order_info['payment_company'],
-					'address_1' 	=> $order_info['payment_address_1'],
-					'address_2' 	=> $order_info['payment_address_2'],
-					'city'      		=> $order_info['payment_city'],
-					'postcode'  		=> $order_info['payment_postcode'],
-					'zone'      		=> $order_info['payment_zone'],
-					'zone_code'		=> $order_info['payment_zone_code'],
-					'country'   		=> $order_info['payment_country']
+					'firstname' => $order_info['payment_firstname'],
+					'lastname'  => $order_info['payment_lastname'],
+					'company'   => $order_info['payment_company'],
+					'address_1' => $order_info['payment_address_1'],
+					'address_2' => $order_info['payment_address_2'],
+					'city'      => $order_info['payment_city'],
+					'postcode'  => $order_info['payment_postcode'],
+					'zone'      => $order_info['payment_zone'],
+					'zone_code' => $order_info['payment_zone_code'],
+					'country'   => $order_info['payment_country']
 				);
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -2879,42 +2879,42 @@ class ControllerSaleOrder extends Controller {
 						}
 
 						$option_data[] = array(
-							'name'	=> $option['name'],
-							'value' 	=> $value
+							'name'  => $option['name'],
+							'value' => $value
 						);
 					}
 
 					$product_data[] = array(
-						'name'     	=> $product['name'],
-						'barcode'	=> ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
-						'model'    	=> $product['model'],
-						'option'   	=> $option_data,
-						'quantity' 	=> $product['quantity']
+						'name'     => $product['name'],
+						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
+						'model'    => $product['model'],
+						'option'   => $option_data,
+						'quantity' => $product['quantity']
 					);
 				}
 
 				$this->data['orders'][] = array(
-					'order_id'	         		=> $order_id,
-					'invoice_no'         		=> $invoice_no,
-					'date_added'         		=> date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
-					'store_name'         		=> $order_info['store_name'],
-					'store_url'          			=> rtrim($order_info['store_url'], '/'),
-					'store_address'     		=> nl2br($store_address),
-					'store_email'        		=> $store_email,
-					'store_telephone'    		=> $store_telephone,
-					'store_fax'          		=> $store_fax,
-					'store_company_id'		=> $store_company_id,
-					'store_company_tax_id'	=> $store_company_tax_id,
-					'email'              			=> $order_info['email'],
-					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> ($same_address) ? '' : $shipping_address,
-					'shipping_method'    		=> $order_info['shipping_method'],
-					'payment_address'    	=> ($same_address) ? $shipping_address : $payment_address,
-					'payment_company_id'	=> $order_info['payment_company_id'],
-					'payment_tax_id'     		=> $order_info['payment_tax_id'],
-					'payment_method'     	=> $order_info['payment_method'],
-					'product'            			=> $product_data,
-					'comment'            		=> nl2br($order_info['comment'])
+					'order_id'             => $order_id,
+					'invoice_no'           => $invoice_no,
+					'date_added'           => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
+					'store_name'           => $order_info['store_name'],
+					'store_url'            => rtrim($order_info['store_url'], '/'),
+					'store_address'        => nl2br($store_address),
+					'store_email'          => $store_email,
+					'store_telephone'      => $store_telephone,
+					'store_fax'            => $store_fax,
+					'store_company_id'     => $store_company_id,
+					'store_company_tax_id' => $store_company_tax_id,
+					'email'                => $order_info['email'],
+					'telephone'            => $order_info['telephone'],
+					'shipping_address'     => ($same_address) ? '' : $shipping_address,
+					'shipping_method'      => $order_info['shipping_method'],
+					'payment_address'      => ($same_address) ? $shipping_address : $payment_address,
+					'payment_company_id'   => $order_info['payment_company_id'],
+					'payment_tax_id'       => $order_info['payment_tax_id'],
+					'payment_method'       => $order_info['payment_method'],
+					'product'              => $product_data,
+					'comment'              => nl2br($order_info['comment'])
 				);
 			}
 		}
@@ -3040,16 +3040,16 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['shipping_firstname'],
-					'lastname'  		=> $order_info['shipping_lastname'],
-					'company'   	=> $order_info['shipping_company'],
-					'address_1' 	=> $order_info['shipping_address_1'],
-					'address_2' 	=> $order_info['shipping_address_2'],
-					'city'      		=> $order_info['shipping_city'],
-					'postcode'  		=> $order_info['shipping_postcode'],
-					'zone'      		=> $order_info['shipping_zone'],
-					'zone_code' 	=> $order_info['shipping_zone_code'],
-					'country'   		=> $order_info['shipping_country']
+					'firstname' => $order_info['shipping_firstname'],
+					'lastname'  => $order_info['shipping_lastname'],
+					'company'   => $order_info['shipping_company'],
+					'address_1' => $order_info['shipping_address_1'],
+					'address_2' => $order_info['shipping_address_2'],
+					'city'      => $order_info['shipping_city'],
+					'postcode'  => $order_info['shipping_postcode'],
+					'zone'      => $order_info['shipping_zone'],
+					'zone_code' => $order_info['shipping_zone_code'],
+					'country'   => $order_info['shipping_country']
 				);
 
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -3074,16 +3074,16 @@ class ControllerSaleOrder extends Controller {
 				);
 
 				$replace = array(
-					'firstname' 		=> $order_info['payment_firstname'],
-					'lastname'  		=> $order_info['payment_lastname'],
-					'company'   	=> $order_info['payment_company'],
-					'address_1' 	=> $order_info['payment_address_1'],
-					'address_2' 	=> $order_info['payment_address_2'],
-					'city'      		=> $order_info['payment_city'],
-					'postcode'  		=> $order_info['payment_postcode'],
-					'zone'      		=> $order_info['payment_zone'],
-					'zone_code' 	=> $order_info['payment_zone_code'],
-					'country'   		=> $order_info['payment_country']
+					'firstname' => $order_info['payment_firstname'],
+					'lastname'  => $order_info['payment_lastname'],
+					'company'   => $order_info['payment_company'],
+					'address_1' => $order_info['payment_address_1'],
+					'address_2' => $order_info['payment_address_2'],
+					'city'      => $order_info['payment_city'],
+					'postcode'  => $order_info['payment_postcode'],
+					'zone'      => $order_info['payment_zone'],
+					'zone_code' => $order_info['payment_zone_code'],
+					'country'   => $order_info['payment_country']
 				);
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -3118,20 +3118,20 @@ class ControllerSaleOrder extends Controller {
 						}
 
 						$option_data[] = array(
-							'name'	=> $option['name'],
-							'value' 	=> $value
+							'name'  => $option['name'],
+							'value' => $value
 						);
 					}
 
 					$product_data[] = array(
-						'name'     		=> $product['name'],
-						'model'    		=> $product['model'],
-						'option'   		=> $option_data,
-						'quantity' 		=> $product['quantity'],
-						'price'    		=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-						'tax_value'		=> $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-						'tax_percent'	=> number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
-						'total'    			=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
+						'name'        => $product['name'],
+						'model'       => $product['model'],
+						'option'      => $option_data,
+						'quantity'    => $product['quantity'],
+						'price'       => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+						'tax_value'   => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+						'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+						'total'       => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
 					);
 				}
 
@@ -3141,37 +3141,37 @@ class ControllerSaleOrder extends Controller {
 
 				foreach ($vouchers as $voucher) {
 					$voucher_data[] = array(
-						'description'	=> $voucher['description'],
-						'amount'      	=> $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])
+						'description' => $voucher['description'],
+						'amount'      => $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])
 					);
 				}
 
 				$total_data = $this->model_sale_order->getOrderTotals($order_id);
 
 				$this->data['orders'][] = array(
-					'order_id'	         		=> $order_id,
-					'invoice_no'         		=> $invoice_no,
-					'date_added'         		=> date($this->language->get('date_format_time'), strtotime($order_info['date_added'])),
-					'store_name'         		=> $order_info['store_name'],
-					'store_url'          			=> rtrim($order_info['store_url'], '/'),
-					'store_address'     		=> nl2br($store_address),
-					'store_email'        		=> $store_email,
-					'store_telephone'    		=> $store_telephone,
-					'store_fax'          		=> $store_fax,
-					'store_company_id'		=> $store_company_id,
-					'store_company_tax_id'	=> $store_company_tax_id,
-					'email'              			=> $order_info['email'],
-					'telephone'          		=> $order_info['telephone'],
-					'shipping_address'   		=> ($same_address) ? '' : $shipping_address,
-					'shipping_method'    		=> $order_info['shipping_method'],
-					'payment_address'    	=> ($same_address) ? $shipping_address : $payment_address,
-					'payment_company_id'	=> $order_info['payment_company_id'],
-					'payment_tax_id'     		=> $order_info['payment_tax_id'],
-					'payment_method'     	=> $order_info['payment_method'],
-					'product'            			=> $product_data,
-					'voucher'            		=> $voucher_data,
-					'total'              			=> $total_data,
-					'comment'            		=> nl2br($order_info['comment'])
+					'order_id'             => $order_id,
+					'invoice_no'           => $invoice_no,
+					'date_added'           => date($this->language->get('date_format_time'), strtotime($order_info['date_added'])),
+					'store_name'           => $order_info['store_name'],
+					'store_url'            => rtrim($order_info['store_url'], '/'),
+					'store_address'        => nl2br($store_address),
+					'store_email'          => $store_email,
+					'store_telephone'      => $store_telephone,
+					'store_fax'            => $store_fax,
+					'store_company_id'     => $store_company_id,
+					'store_company_tax_id' => $store_company_tax_id,
+					'email'                => $order_info['email'],
+					'telephone'            => $order_info['telephone'],
+					'shipping_address'     => ($same_address) ? '' : $shipping_address,
+					'shipping_method'      => $order_info['shipping_method'],
+					'payment_address'      => ($same_address) ? $shipping_address : $payment_address,
+					'payment_company_id'   => $order_info['payment_company_id'],
+					'payment_tax_id'       => $order_info['payment_tax_id'],
+					'payment_method'       => $order_info['payment_method'],
+					'product'              => $product_data,
+					'voucher'              => $voucher_data,
+					'total'                => $total_data,
+					'comment'              => nl2br($order_info['comment'])
 				);
 			}
 		}

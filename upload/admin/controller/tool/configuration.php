@@ -316,8 +316,8 @@ class ControllerToolConfiguration extends Controller {
 			}
 
 			$this->data['server_responses'][] = array(
-				'request'		=> $argument,
-				'response'	=> $response
+				'request'  => $argument,
+				'response' => $response
 			);
 		}
 

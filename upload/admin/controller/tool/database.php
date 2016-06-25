@@ -15,17 +15,13 @@ class ControllerToolDatabase extends Controller {
 
 			switch($button) {
 				case "optimize":
-				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/optimize', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/optimize', 'token=' . $this->session->data['token'], 'SSL')); break;
 				case "repair":
-				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/repair', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/repair', 'token=' . $this->session->data['token'], 'SSL')); break;
 				case "innodb":
-				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/innodb', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/innodb', 'token=' . $this->session->data['token'], 'SSL')); break;
 				case "myisam":
-				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/myisam', 'token=' . $this->session->data['token'], 'SSL'));
-				break;
+				$this->data['database'] = $this->redirect($this->url->link('tool/' . $this->_name . '/myisam', 'token=' . $this->session->data['token'], 'SSL')); break;
 			}
 		}
 
@@ -46,14 +42,14 @@ class ControllerToolDatabase extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -207,7 +203,7 @@ class ControllerToolDatabase extends Controller {
 		$this->redirect($this->url->link('tool/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'tool/' . $this->_name)) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

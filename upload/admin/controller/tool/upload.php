@@ -131,14 +131,14 @@ class ControllerToolUpload extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/upload', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/upload', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -152,13 +152,13 @@ class ControllerToolUpload extends Controller {
 		$this->data['uploads'] = array();
 
 		$data = array(
-			'filter_name'			=> $filter_name,
-			'filter_filename'		=> $filter_filename,
-			'filter_date_added'	=> $filter_date_added,
-			'sort'						=> $sort,
-			'order'					=> $order,
-			'start'					=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'						=> $this->config->get('config_admin_limit')
+			'filter_name'       => $filter_name,
+			'filter_filename'   => $filter_filename,
+			'filter_date_added' => $filter_date_added,
+			'sort'              => $sort,
+			'order'             => $order,
+			'start'             => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'             => $this->config->get('config_admin_limit')
 		);
 
 		$upload_total = $this->model_tool_upload->getTotalUploads($data);
@@ -167,11 +167,11 @@ class ControllerToolUpload extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['uploads'][] = array(
-				'upload_id'		=> $result['upload_id'],
-				'name'			=> $result['name'],
-				'filename'		=> $result['filename'],
-				'date_added'	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'download'		=> $this->url->link('tool/upload/download', 'token=' . $this->session->data['token'] . '&code=' . $result['code'] . $url, 'SSL')
+				'upload_id'  => $result['upload_id'],
+				'name'       => $result['name'],
+				'filename'   => $result['filename'],
+				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'download'   => $this->url->link('tool/upload/download', 'token=' . $this->session->data['token'] . '&code=' . $result['code'] . $url, 'SSL')
 			);
 		}
 
@@ -336,14 +336,14 @@ class ControllerToolUpload extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_home'),
-				'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('error/not_found', 'token=' . $this->session->data['token'], 'SSL'),
 				'separator' => ' :: '
 			);
 

@@ -166,14 +166,14 @@ class ControllerUserUserPermission extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('user/user_permission', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('user/user_permission', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -183,10 +183,10 @@ class ControllerUserUserPermission extends Controller {
 		$this->data['user_groups'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$user_group_total = $this->model_user_user_group->getTotalUserGroups();
@@ -197,16 +197,16 @@ class ControllerUserUserPermission extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('user/user_permission/update', 'token=' . $this->session->data['token'] . '&user_group_id=' . $result['user_group_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('user/user_permission/update', 'token=' . $this->session->data['token'] . '&user_group_id=' . $result['user_group_id'] . $url, 'SSL')
 			);
 
 			$this->data['user_groups'][] = array(
-				'user_group_id' 	=> $result['user_group_id'],
-				'name'          		=> $result['name'],
-				'users'				=> $this->model_user_user_group->getTotalUsersByUserGroups($result['user_group_id']),
-				'selected'      		=> isset($this->request->post['selected']) && in_array($result['user_group_id'], $this->request->post['selected']),
-				'action'        		=> $action
+				'user_group_id' => $result['user_group_id'],
+				'name'          => $result['name'],
+				'users'         => $this->model_user_user_group->getTotalUsersByUserGroups($result['user_group_id']),
+				'selected'      => isset($this->request->post['selected']) && in_array($result['user_group_id'], $this->request->post['selected']),
+				'action'        => $action
 			);
 		}
 

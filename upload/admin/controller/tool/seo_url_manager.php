@@ -166,14 +166,14 @@ class ControllerToolSeoUrlManager extends Controller {
 		$this->data['breadcrumbs'] =   array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('tool/seo_url_manager', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/seo_url_manager', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -189,10 +189,10 @@ class ControllerToolSeoUrlManager extends Controller {
 		$this->data['seo_urls'] = array();
 
 		$data = array(
-			'sort' 		=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$keyword_total = $this->model_tool_seo_url_manager->getTotalUniqueKeywords();
@@ -207,8 +207,8 @@ class ControllerToolSeoUrlManager extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('tool/seo_url_manager/update', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $result['url_alias_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('tool/seo_url_manager/update', 'token=' . $this->session->data['token'] . '&url_alias_id=' . $result['url_alias_id'] . $url, 'SSL')
 			);
 
 			$query_link = false;
@@ -232,12 +232,12 @@ class ControllerToolSeoUrlManager extends Controller {
 			}
 
 			$this->data['seo_urls'][] = array(
-				'url_alias_id'	=> $result['url_alias_id'],
-				'query'			=> $result['query'],
-				'query_link'		=> $query_link,
-				'keyword'		=> $result['keyword'],
-				'selected'   		=> isset($this->request->post['selected']) && in_array($result['url_alias_id'], $this->request->post['selected']),
-				'action'     		=> $action
+				'url_alias_id' => $result['url_alias_id'],
+				'query'        => $result['query'],
+				'query_link'   => $query_link,
+				'keyword'      => $result['keyword'],
+				'selected'     => isset($this->request->post['selected']) && in_array($result['url_alias_id'], $this->request->post['selected']),
+				'action'       => $action
 			);
 		}
 
@@ -390,14 +390,14 @@ class ControllerToolSeoUrlManager extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('tool/seo_url_manager', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('tool/seo_url_manager', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

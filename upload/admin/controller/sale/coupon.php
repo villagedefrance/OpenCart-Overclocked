@@ -166,14 +166,14 @@ class ControllerSaleCoupon extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerSaleCoupon extends Controller {
 		$this->data['coupons'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$coupon_total = $this->model_sale_coupon->getTotalCoupons();
@@ -201,21 +201,21 @@ class ControllerSaleCoupon extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href' 	=> $this->url->link('sale/coupon/update', 'token=' . $this->session->data['token'] . '&coupon_id=' . $result['coupon_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/coupon/update', 'token=' . $this->session->data['token'] . '&coupon_id=' . $result['coupon_id'] . $url, 'SSL')
 			);
 
 			$this->data['coupons'][] = array(
-				'coupon_id'		=> $result['coupon_id'],
-				'name'       		=> $result['name'],
-				'code'       		=> $result['code'],
-				'type'				=> $result['type'] == 'P' ? '%' : ' ',
-				'discount'   		=> $result['discount'],
-				'date_start'		=> date($this->language->get('date_format_short'), strtotime($result['date_start'])),
-				'date_end' 		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-				'status'     		=> $result['status'],
-				'selected'   		=> isset($this->request->post['selected']) && in_array($result['coupon_id'], $this->request->post['selected']),
-				'action'    		=> $action
+				'coupon_id'  => $result['coupon_id'],
+				'name'       => $result['name'],
+				'code'       => $result['code'],
+				'type'       => $result['type'] == 'P' ? '%' : ' ',
+				'discount'   => $result['discount'],
+				'date_start' => date($this->language->get('date_format_short'), strtotime($result['date_start'])),
+				'date_end'   => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+				'status'     => $result['status'],
+				'selected'   => isset($this->request->post['selected']) && in_array($result['coupon_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 
@@ -387,14 +387,14 @@ class ControllerSaleCoupon extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'   	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/coupon', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -483,8 +483,8 @@ class ControllerSaleCoupon extends Controller {
 
 			if ($product_info) {
 				$this->data['coupon_products'][] = array(
-					'product_id'	=> $product_info['product_id'],
-					'name'       	=> $product_info['name']
+					'product_id' => $product_info['product_id'],
+					'name'       => $product_info['name']
 				);
 			}
 		}
@@ -506,8 +506,8 @@ class ControllerSaleCoupon extends Controller {
 
 			if ($category_info) {
 				$this->data['coupon_categories'][] = array(
-					'category_id'	=> $category_info['category_id'],
-					'name'        	=> ($category_info['path'] ? $category_info['path'] . ' &gt; ' : '') . $category_info['name']
+					'category_id' => $category_info['category_id'],
+					'name'        => ($category_info['path'] ? $category_info['path'] . ' &gt; ' : '') . $category_info['name']
 				);
 			}
 		}
@@ -631,10 +631,10 @@ class ControllerSaleCoupon extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'order_id'   		=> $result['order_id'],
-				'customer'   	=> $result['customer'],
-				'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'amount'     	=> $result['amount']
+				'order_id'   => $result['order_id'],
+				'customer'   => $result['customer'],
+				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'amount'     => $result['amount']
 			);
 		}
 

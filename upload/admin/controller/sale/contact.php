@@ -35,14 +35,14 @@ class ControllerSaleContact extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/contact', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -112,9 +112,9 @@ class ControllerSaleContact extends Controller {
 				switch ($this->request->post['to']) {
 					case 'newsletter':
 						$customer_data = array(
-							'filter_newsletter'	=> 1,
-							'start'	=> ($page - 1) * 10,
-							'limit'		=> 10
+							'filter_newsletter' => 1,
+							'start'             => ($page - 1) * 10,
+							'limit'             => 10
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
@@ -127,8 +127,8 @@ class ControllerSaleContact extends Controller {
 						break;
 					case 'customer_all':
 						$customer_data = array(
-							'start'	=> ($page - 1) * 10,
-							'limit'  	=> 10
+							'start' => ($page - 1) * 10,
+							'limit' => 10
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
@@ -141,9 +141,9 @@ class ControllerSaleContact extends Controller {
 						break;
 					case 'customer_group':
 						$customer_data = array(
-							'filter_customer_group_id'	=> $this->request->post['customer_group_id'],
-							'start'	=> ($page - 1) * 10,
-							'limit'		=> 10
+							'filter_customer_group_id' => $this->request->post['customer_group_id'],
+							'start'                    => ($page - 1) * 10,
+							'limit'                    => 10
 						);
 
 						$email_total = $this->model_sale_customer->getTotalCustomers($customer_data);
@@ -167,8 +167,8 @@ class ControllerSaleContact extends Controller {
 						break;
 					case 'affiliate_all':
 						$affiliate_data = array(
-							'start'	=> ($page - 1) * 10,
-							'limit'		=> 10
+							'start' => ($page - 1) * 10,
+							'limit' => 10
 						);
 
 						$email_total = $this->model_sale_affiliate->getTotalAffiliates($affiliate_data);
@@ -219,7 +219,7 @@ class ControllerSaleContact extends Controller {
 						$json['next'] = '';
 					}
 
-					$message  = '<html dir="ltr" lang="en">' . "\n";
+					$message = '<html dir="ltr" lang="en">' . "\n";
 					$message .= '  <head>' . "\n";
 					$message .= '    <title>' . $this->request->post['subject'] . '</title>' . "\n";
 					$message .= '    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' . "\n";
@@ -249,6 +249,7 @@ class ControllerSaleContact extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

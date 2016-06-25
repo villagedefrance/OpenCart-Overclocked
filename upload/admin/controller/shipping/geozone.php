@@ -53,20 +53,20 @@ class ControllerShippingGeoZone extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_shipping'),
-			'href'		=> $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_shipping'),
+			'href'      => $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('shipping/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('shipping/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -105,9 +105,9 @@ class ControllerShippingGeoZone extends Controller {
 		}
 
 		$other_zones[] = array(
-			'geo_zone_id'	=> '00',
-			'name'			=> 'Other Zone(s)',
-			'description'	=> 'Other Zone(s)'
+			'geo_zone_id' => '00',
+			'name'        => 'Other Zone(s)',
+			'description' => 'Other Zone(s)'
 		);
 
 		$this->data['geo_zones'] = array_merge($geo_zones, $other_zones);

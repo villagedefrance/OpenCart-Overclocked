@@ -166,14 +166,14 @@ class ControllerSaleSupplierGroup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('sale/supplier_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/supplier_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerSaleSupplierGroup extends Controller {
 		$this->data['supplier_groups'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$supplier_group_total = $this->model_sale_supplier_group->getTotalSupplierGroups();
@@ -201,18 +201,18 @@ class ControllerSaleSupplierGroup extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href' 	=> $this->url->link('sale/supplier_group/update', 'token=' . $this->session->data['token'] . '&supplier_group_id=' . $result['supplier_group_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('sale/supplier_group/update', 'token=' . $this->session->data['token'] . '&supplier_group_id=' . $result['supplier_group_id'] . $url, 'SSL')
 			);
 
 			$this->data['supplier_groups'][] = array(
-				'supplier_group_id'	=> $result['supplier_group_id'],
-				'name'              		=> $result['name'] . (($result['supplier_group_id'] == $this->config->get('config_supplier_group_id')) ? $this->language->get('text_default') : null),
-				'order_method'			=> $this->language->get('text_order_' . $result['order_method']),
-				'payment_method'	=> $this->language->get('text_payment_' . $result['payment_method']),
-				'sort_order'        		=> $result['sort_order'],
-				'selected'          		=> isset($this->request->post['selected']) && in_array($result['supplier_group_id'], $this->request->post['selected']),
-				'action'            		=> $action
+				'supplier_group_id' => $result['supplier_group_id'],
+				'name'              => $result['name'] . (($result['supplier_group_id'] == $this->config->get('config_supplier_group_id')) ? $this->language->get('text_default') : null),
+				'order_method'      => $this->language->get('text_order_' . $result['order_method']),
+				'payment_method'    => $this->language->get('text_payment_' . $result['payment_method']),
+				'sort_order'        => $result['sort_order'],
+				'selected'          => isset($this->request->post['selected']) && in_array($result['supplier_group_id'], $this->request->post['selected']),
+				'action'            => $action
 			);
 		}
 
@@ -335,14 +335,14 @@ class ControllerSaleSupplierGroup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('sale/supplier_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/supplier_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

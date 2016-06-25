@@ -51,14 +51,14 @@ class ControllerReportSaleProfit extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('report/sale_profit', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('report/sale_profit', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -71,11 +71,11 @@ class ControllerReportSaleProfit extends Controller {
 		$this->data['products'] = array();
 
 		$data = array(
-			'filter_date_start'			=> $filter_date_start,
-			'filter_date_end'			=> $filter_date_end,
-			'filter_order_status_id'	=> $filter_order_status_id,
-			'start'						=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'							=> $this->config->get('config_admin_limit')
+			'filter_date_start'      => $filter_date_start,
+			'filter_date_end'        => $filter_date_end,
+			'filter_order_status_id' => $filter_order_status_id,
+			'start'                  => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'                  => $this->config->get('config_admin_limit')
 		);
 
 		$price = 0;
@@ -89,12 +89,12 @@ class ControllerReportSaleProfit extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['products'][] = array(
-				'year'					=> $result['year'],
-				'month'				=> $result['month'],
-				'price'				=> $this->currency->format($result['price'], $this->config->get('config_currency')),
-				'cost'					=> $this->currency->format($result['cost'], $this->config->get('config_currency')),
-				'percent_profit'	=> ($result['cost'] > 0) ? number_format(($result['profit'] * 100) / $result['cost'], 2) . '%' : '100%',
-				'profit'				=> $this->currency->format($result['profit'], $this->config->get('config_currency'))
+				'year'           => $result['year'],
+				'month'          => $result['month'],
+				'price'          => $this->currency->format($result['price'], $this->config->get('config_currency')),
+				'cost'           => $this->currency->format($result['cost'], $this->config->get('config_currency')),
+				'percent_profit' => ($result['cost'] > 0) ? number_format(($result['profit'] * 100) / $result['cost'], 2) . '%' : '100%',
+				'profit'         => $this->currency->format($result['profit'], $this->config->get('config_currency'))
 			);
 
 			$price += $result['price'];

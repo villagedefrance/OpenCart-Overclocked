@@ -29,14 +29,14 @@ class ControllerSaleOffer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('sale/offer', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('sale/offer', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -119,15 +119,15 @@ class ControllerSaleOffer extends Controller {
 				}
 
 				$this->data['offer_product_products'][] = array(
-					'group'			=> 'P2P',
-					'name'			=> $result['name'],
-					'type'				=> $result['type'],
-					'discount'		=> $result['discount'],
-					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-					'validity'			=> $validity,
-					'status'			=> $result['status'],
-					'href'				=> $this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $result['offer_product_product_id'], 'SSL')
+					'group'    => 'P2P',
+					'name'     => $result['name'],
+					'type'     => $result['type'],
+					'discount' => $result['discount'],
+					'logged'   => $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'date_end' => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+					'validity' => $validity,
+					'status'   => $result['status'],
+					'href'     => $this->url->link('sale/offer_product_product/update', 'token=' . $this->session->data['token'] . '&offer_product_product_id=' . $result['offer_product_product_id'], 'SSL')
 				);
 			}
 
@@ -153,15 +153,15 @@ class ControllerSaleOffer extends Controller {
 				}
 
 				$this->data['offer_product_categories'][] = array(
-					'group'			=> 'P2C',
-					'name'			=> $result['name'],
-					'type'				=> $result['type'],
-					'discount'		=> $result['discount'],
-					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-					'validity'			=> $validity,
-					'status'			=> $result['status'],
-					'href'				=> $this->url->link('sale/offer_product_category/update', 'token=' . $this->session->data['token'] . '&offer_product_category_id=' . $result['offer_product_category_id'], 'SSL')
+					'group'    => 'P2C',
+					'name'     => $result['name'],
+					'type'     => $result['type'],
+					'discount' => $result['discount'],
+					'logged'   => $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'date_end' => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+					'validity' => $validity,
+					'status'   => $result['status'],
+					'href'     => $this->url->link('sale/offer_product_category/update', 'token=' . $this->session->data['token'] . '&offer_product_category_id=' . $result['offer_product_category_id'], 'SSL')
 				);
 			}
 
@@ -187,15 +187,15 @@ class ControllerSaleOffer extends Controller {
 				}
 
 				$this->data['offer_category_products'][] = array(
-					'group'			=> 'C2P',
-					'name'			=> $result['name'],
-					'type'				=> $result['type'],
-					'discount'		=> $result['discount'],
-					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-					'validity'			=> $validity,
-					'status'			=> $result['status'],
-					'href'				=> $this->url->link('sale/offer_category_product/update', 'token=' . $this->session->data['token'] . '&offer_category_product_id=' . $result['offer_category_product_id'], 'SSL')
+					'group'    => 'C2P',
+					'name'     => $result['name'],
+					'type'     => $result['type'],
+					'discount' => $result['discount'],
+					'logged'   => $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'date_end' => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+					'validity' => $validity,
+					'status'   => $result['status'],
+					'href'     => $this->url->link('sale/offer_category_product/update', 'token=' . $this->session->data['token'] . '&offer_category_product_id=' . $result['offer_category_product_id'], 'SSL')
 				);
 			}
 
@@ -221,15 +221,15 @@ class ControllerSaleOffer extends Controller {
 				}
 
 				$this->data['offer_category_categories'][] = array(
-					'group'			=> 'C2C',
-					'name'			=> $result['name'],
-					'type'				=> $result['type'],
-					'discount'		=> $result['discount'],
-					'logged'			=> $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-					'date_end'		=> date($this->language->get('date_format_short'), strtotime($result['date_end'])),
-					'validity'			=> $validity,
-					'status'			=> $result['status'],
-					'href'				=> $this->url->link('sale/offer_category_category/update', 'token=' . $this->session->data['token'] . '&offer_category_category_id=' . $result['offer_category_category_id'], 'SSL')
+					'group'    => 'C2C',
+					'name'     => $result['name'],
+					'type'     => $result['type'],
+					'discount' => $result['discount'],
+					'logged'   => $result['logged'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+					'date_end' => date($this->language->get('date_format_short'), strtotime($result['date_end'])),
+					'validity' => $validity,
+					'status'   => $result['status'],
+					'href'     => $this->url->link('sale/offer_category_category/update', 'token=' . $this->session->data['token'] . '&offer_category_category_id=' . $result['offer_category_category_id'], 'SSL')
 				);
 			}
 
