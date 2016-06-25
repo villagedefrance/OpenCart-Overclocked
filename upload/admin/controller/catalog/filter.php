@@ -187,10 +187,10 @@ class ControllerCatalogFilter extends Controller {
 		$this->data['filters'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$filter_total = $this->model_catalog_filter->getTotalFilterGroups();
@@ -206,11 +206,11 @@ class ControllerCatalogFilter extends Controller {
 			);
 
 			$this->data['filters'][] = array(
-				'filter_group_id' 	=> $result['filter_group_id'],
-				'name'            	=> $result['name'],
-				'sort_order'      	=> $result['sort_order'],
-				'selected'        	=> isset($this->request->post['selected']) && in_array($result['filter_group_id'], $this->request->post['selected']),
-				'action'          		=> $action
+				'filter_group_id' => $result['filter_group_id'],
+				'name'            => $result['name'],
+				'sort_order'      => $result['sort_order'],
+				'selected'        => isset($this->request->post['selected']) && in_array($result['filter_group_id'], $this->request->post['selected']),
+				'action'          => $action
 			);
 		}
 
@@ -333,14 +333,14 @@ class ControllerCatalogFilter extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -442,17 +442,17 @@ class ControllerCatalogFilter extends Controller {
 			$this->load->model('catalog/filter');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$filters = $this->model_catalog_filter->getFilters($data);
 
 			foreach ($filters as $filter) {
 				$json[] = array(
-					'filter_id' 	=> $filter['filter_id'],
-					'name'      	=> strip_tags(html_entity_decode($filter['group'] . ' &gt; ' . $filter['name'], ENT_QUOTES, 'UTF-8'))
+					'filter_id' => $filter['filter_id'],
+					'name'      => strip_tags(html_entity_decode($filter['group'] . ' &gt; ' . $filter['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}

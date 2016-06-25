@@ -187,10 +187,10 @@ class ControllerCatalogAttribute extends Controller {
 		$this->data['attributes'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$attribute_total = $this->model_catalog_attribute->getTotalAttributes();
@@ -206,12 +206,12 @@ class ControllerCatalogAttribute extends Controller {
 			);
 
 			$this->data['attributes'][] = array(
-				'attribute_id'    	=> $result['attribute_id'],
-				'name'            	=> $result['name'],
-				'attribute_group' 	=> $result['attribute_group'],
-				'sort_order'      	=> $result['sort_order'],
-				'selected'        	=> isset($this->request->post['selected']) && in_array($result['attribute_id'], $this->request->post['selected']),
-				'action'          		=> $action
+				'attribute_id'    => $result['attribute_id'],
+				'name'            => $result['name'],
+				'attribute_group' => $result['attribute_group'],
+				'sort_order'      => $result['sort_order'],
+				'selected'        => isset($this->request->post['selected']) && in_array($result['attribute_id'], $this->request->post['selected']),
+				'action'          => $action
 			);
 		}
 
@@ -439,18 +439,18 @@ class ControllerCatalogAttribute extends Controller {
 			$this->load->model('catalog/attribute');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_attribute->getAttributes($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'attribute_id'    	=> $result['attribute_id'],
-					'name'            	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'attribute_group' 	=> $result['attribute_group']
+					'attribute_id'    => $result['attribute_id'],
+					'name'            => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+					'attribute_group' => $result['attribute_group']
 				);
 			}
 		}

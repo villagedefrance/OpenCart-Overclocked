@@ -187,10 +187,10 @@ class ControllerCatalogAttributeGroup extends Controller {
 		$this->data['attribute_groups'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$attribute_group_total = $this->model_catalog_attribute_group->getTotalAttributeGroups();
@@ -206,11 +206,11 @@ class ControllerCatalogAttributeGroup extends Controller {
 			);
 
 			$this->data['attribute_groups'][] = array(
-				'attribute_group_id' 	=> $result['attribute_group_id'],
-				'name'               		=> $result['name'],
-				'sort_order'         	=> $result['sort_order'],
-				'selected'           		=> isset($this->request->post['selected']) && in_array($result['attribute_group_id'], $this->request->post['selected']),
-				'action'             		=> $action
+				'attribute_group_id' => $result['attribute_group_id'],
+				'name'               => $result['name'],
+				'sort_order'         => $result['sort_order'],
+				'selected'           => isset($this->request->post['selected']) && in_array($result['attribute_group_id'], $this->request->post['selected']),
+				'action'             => $action
 			);
 		}
 
@@ -324,14 +324,14 @@ class ControllerCatalogAttributeGroup extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

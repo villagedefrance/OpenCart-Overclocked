@@ -166,14 +166,14 @@ class ControllerCatalogProfile extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('catalog/profile', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/profile', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerCatalogProfile extends Controller {
 		$this->data['profiles'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$profile_total = $this->model_catalog_profile->getTotalProfiles();
@@ -201,17 +201,17 @@ class ControllerCatalogProfile extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'name' 	=> $this->language->get('text_edit'),
-				'href' 		=> $this->url->link('catalog/profile/update', 'token=' . $this->session->data['token'] . '&profile_id=' . $result['profile_id'], 'SSL')
+				'name' => $this->language->get('text_edit'),
+				'href' => $this->url->link('catalog/profile/update', 'token=' . $this->session->data['token'] . '&profile_id=' . $result['profile_id'], 'SSL')
 			);
 
 			$this->data['profiles'][] = array(
-				'profile_id'	=> $result['profile_id'],
-				'name' 		=> $result['name'],
-				'sort_order'	=> $result['sort_order'],
-				'status' 		=> $result['status'],
-				'selected' 	=> isset($this->request->post['selected']) && in_array($result['profile_id'], $this->request->post['selected']),
-				'action' 		=> $action
+				'profile_id' => $result['profile_id'],
+				'name'       => $result['name'],
+				'sort_order' => $result['sort_order'],
+				'status'     => $result['status'],
+				'selected'   => isset($this->request->post['selected']) && in_array($result['profile_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 

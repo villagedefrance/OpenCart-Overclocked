@@ -257,10 +257,10 @@ class ControllerCatalogInformation extends Controller {
 		$this->data['informations'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order'	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$information_total = $this->model_catalog_information->getTotalInformations();
@@ -276,13 +276,13 @@ class ControllerCatalogInformation extends Controller {
 			);
 
 			$this->data['informations'][] = array(
-				'information_id' 	=> $result['information_id'],
-				'title'          		=> $result['title'],
-				'sort_order'     	=> $result['sort_order'],
-				'bottom'     		=> ($result['bottom']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'status'     			=> $result['status'],
-				'selected'       		=> isset($this->request->post['selected']) && in_array($result['information_id'], $this->request->post['selected']),
-				'action'         		=> $action
+				'information_id' => $result['information_id'],
+				'title'          => $result['title'],
+				'sort_order'     => $result['sort_order'],
+				'bottom'         => ($result['bottom']) ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'status'         => $result['status'],
+				'selected'       => isset($this->request->post['selected']) && in_array($result['information_id'], $this->request->post['selected']),
+				'action'         => $action
 			);
 		}
 
@@ -430,8 +430,8 @@ class ControllerCatalogInformation extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -439,8 +439,8 @@ class ControllerCatalogInformation extends Controller {
 			$information_name = $this->model_catalog_information->getInformation($this->request->get['information_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $information_name['title'],
-				'href'		=> $this->url->link('catalog/information/update', 'token=' . $this->session->data['token'] . '&information_id=' . $this->request->get['information_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $information_name['title'],
+				'href'      => $this->url->link('catalog/information/update', 'token=' . $this->session->data['token'] . '&information_id=' . $this->request->get['information_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -448,8 +448,8 @@ class ControllerCatalogInformation extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('catalog/information', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 

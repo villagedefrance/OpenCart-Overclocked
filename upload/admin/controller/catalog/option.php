@@ -166,14 +166,14 @@ class ControllerCatalogOption extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/option', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerCatalogOption extends Controller {
 		$this->data['options'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$option_total = $this->model_catalog_option->getTotalOptions();
@@ -206,11 +206,11 @@ class ControllerCatalogOption extends Controller {
 			);
 
 			$this->data['options'][] = array(
-				'option_id'  	=> $result['option_id'],
-				'name'       	=> $result['name'],
-				'sort_order'	=> $result['sort_order'],
-				'selected'   	=> isset($this->request->post['selected']) && in_array($result['option_id'], $this->request->post['selected']),
-				'action'  		=> $action
+				'option_id'  => $result['option_id'],
+				'name'       => $result['name'],
+				'sort_order' => $result['sort_order'],
+				'selected'   => isset($this->request->post['selected']) && in_array($result['option_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 
@@ -424,11 +424,11 @@ class ControllerCatalogOption extends Controller {
 			}
 
 			$this->data['option_values'][] = array(
-				'option_value_id'          	=> $option_value['option_value_id'],
-				'option_value_description'	=> $option_value['option_value_description'],
-				'image'                    		=> $image,
-				'thumb'                    		=> $this->model_tool_image->resize($image, 100, 100),
-				'sort_order'               		=> $option_value['sort_order']
+				'option_value_id'          => $option_value['option_value_id'],
+				'option_value_description' => $option_value['option_value_description'],
+				'image'                    => $image,
+				'thumb'                    => $this->model_tool_image->resize($image, 100, 100),
+				'sort_order'               => $option_value['sort_order']
 			);
 		}
 
@@ -508,9 +508,9 @@ class ControllerCatalogOption extends Controller {
 			$this->load->model('tool/image');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$options = $this->model_catalog_option->getOptions($data);
@@ -529,9 +529,9 @@ class ControllerCatalogOption extends Controller {
 						}
 
 						$option_value_data[] = array(
-							'option_value_id' 	=> $option_value['option_value_id'],
-							'name'            	=> strip_tags(html_entity_decode($option_value['name'], ENT_QUOTES, 'UTF-8')),
-							'image'           	=> $image
+							'option_value_id' => $option_value['option_value_id'],
+							'name'            => strip_tags(html_entity_decode($option_value['name'], ENT_QUOTES, 'UTF-8')),
+							'image'           => $image
 						);
 					}
 
@@ -563,11 +563,11 @@ class ControllerCatalogOption extends Controller {
 				}
 
 				$json[] = array(
-					'option_id'    	=> $option['option_id'],
-					'name'         	=> strip_tags(html_entity_decode($option['name'], ENT_QUOTES, 'UTF-8')),
-					'category'     	=> $type,
-					'type'         	=> $option['type'],
-					'option_value' 	=> $option_value_data
+					'option_id'    => $option['option_id'],
+					'name'         => strip_tags(html_entity_decode($option['name'], ENT_QUOTES, 'UTF-8')),
+					'category'     => $type,
+					'type'         => $option['type'],
+					'option_value' => $option_value_data
 				);
 			}
 		}

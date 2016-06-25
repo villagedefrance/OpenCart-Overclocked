@@ -204,18 +204,17 @@ class ControllerCatalogNews extends Controller {
 
 		$this->language->load('catalog/' . $this->_name);
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'text'		=> $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
 			'separator' => ' :: '
 		);
 
@@ -245,10 +244,10 @@ class ControllerCatalogNews extends Controller {
 		$this->data['news'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$news_total = $this->model_catalog_news->getTotalNews();
@@ -261,8 +260,8 @@ class ControllerCatalogNews extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('catalog/news/update', 'token=' . $this->session->data['token'] . '&news_id=' . $result['news_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('catalog/news/update', 'token=' . $this->session->data['token'] . '&news_id=' . $result['news_id'] . $url, 'SSL')
 			);
 
 			if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
@@ -272,14 +271,14 @@ class ControllerCatalogNews extends Controller {
 			}
 
 			$this->data['news'][] = array(
-				'news_id'     	=> $result['news_id'],
-				'title'       		=> $result['title'],
-				'image'      		=> $image,
-				'date_added'  	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'viewed'			=> $result['viewed'],
-				'status'     		=> $result['status'],
-				'selected'    	=> isset($this->request->post['selected']) && in_array($result['news_id'], $this->request->post['selected']),
-				'action'      		=> $action
+				'news_id'    => $result['news_id'],
+				'title'      => $result['title'],
+				'image'      => $image,
+				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+				'viewed'     => $result['viewed'],
+				'status'     => $result['status'],
+				'selected'   => isset($this->request->post['selected']) && in_array($result['news_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 
@@ -426,12 +425,11 @@ class ControllerCatalogNews extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
@@ -439,8 +437,8 @@ class ControllerCatalogNews extends Controller {
 			$news_name = $this->model_catalog_news->getNewsStory($this->request->get['news_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $news_name['title'],
-				'href'		=> $this->url->link('catalog/news/update', 'token=' . $this->session->data['token'] . '&news_id=' . $this->request->get['news_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $news_name['title'],
+				'href'      => $this->url->link('catalog/news/update', 'token=' . $this->session->data['token'] . '&news_id=' . $this->request->get['news_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -448,8 +446,8 @@ class ControllerCatalogNews extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 

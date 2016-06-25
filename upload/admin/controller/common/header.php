@@ -330,9 +330,9 @@ class ControllerCommonHeader extends Controller {
 			$this->data['openbay_link_amazonus_links'] = $this->url->link('openbay/amazonus/itemLinks', 'token=' . $this->session->data['token'], 'SSL');
 
 			$this->data['openbay_markets'] = array(
-				'ebay'		=> $this->config->get('openbay_status'),
-				'amazon'		=> $this->config->get('amazon_status'),
-				'amazonus'	=> $this->config->get('amazonus_status')
+				'ebay'     => $this->config->get('openbay_status'),
+				'amazon'   => $this->config->get('amazon_status'),
+				'amazonus' => $this->config->get('amazonus_status')
 			);
 
 			$this->data['pp_express_status'] = $this->config->get('pp_express_status');
@@ -365,17 +365,17 @@ class ControllerCommonHeader extends Controller {
 				foreach ($connections as $connection) {
 					if ($connection['backend']) {
 						$this->data['connections_ul'][] = array(
-							'connection_id'	=> $connection['connection_id'],
-							'name'				=> $connection['name']
+							'connection_id' => $connection['connection_id'],
+							'name'          => $connection['name']
 						);
 
 						$connection_routes = $this->model_design_connection->getConnectionRoutes($connection['connection_id']);
 
 						foreach ($connection_routes as $connection_route) {
 							$this->data['connections_li'][] = array(
-								'parent_id'	=> $connection_route['connection_id'],
-								'title'			=> $connection_route['title'],
-								'route'		=> html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
+								'parent_id' => $connection_route['connection_id'],
+								'title'     => $connection_route['title'],
+								'route'     => html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
 							);
 						}
 					}
@@ -402,8 +402,8 @@ class ControllerCommonHeader extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['stores'][] = array(
-					'name'	=> $result['name'],
-					'href'		=> $result['url']
+					'name' => $result['name'],
+					'href' => $result['url']
 				);
 			}
 		}

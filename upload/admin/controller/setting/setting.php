@@ -479,14 +479,14 @@ class ControllerSettingSetting extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -1884,14 +1884,14 @@ class ControllerSettingSetting extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'    			=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'    	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 

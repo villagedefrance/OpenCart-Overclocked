@@ -209,11 +209,11 @@ class ControllerCatalogDownload extends Controller {
 		$this->data['downloads'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'sort'  			=> $sort,
-			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'				=> $this->config->get('config_admin_limit')
+			'filter_name' => $filter_name,
+			'sort'        => $sort,
+			'order'       => $order,
+			'start'       => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'       => $this->config->get('config_admin_limit')
 		);
 
 		$download_total = $this->model_catalog_download->getTotalDownloads($data);
@@ -239,12 +239,12 @@ class ControllerCatalogDownload extends Controller {
 			while (($size / 1024) > 1) { $size = $size / 1024; $i++; }
 
 			$this->data['downloads'][] = array(
-				'download_id' 	=> $result['download_id'],
-				'name'        	=> $result['name'],
-				'filesize'   		=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-				'remaining'   	=> $result['remaining'],
-				'selected'    	=> isset($this->request->post['selected']) && in_array($result['download_id'], $this->request->post['selected']),
-				'action'      		=> $action
+				'download_id' => $result['download_id'],
+				'name'        => $result['name'],
+				'filesize'    => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+				'remaining'   => $result['remaining'],
+				'selected'    => isset($this->request->post['selected']) && in_array($result['download_id'], $this->request->post['selected']),
+				'action'      => $action
 			);
 		}
 
@@ -605,17 +605,17 @@ class ControllerCatalogDownload extends Controller {
 			$this->load->model('catalog/download');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_download->getDownloads($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'download_id' 	=> $result['download_id'],
-					'name'        	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+					'download_id' => $result['download_id'],
+					'name'        => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}

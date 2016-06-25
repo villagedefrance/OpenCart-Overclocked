@@ -188,14 +188,14 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -211,11 +211,11 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['manufacturers'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'sort'  			=> $sort,
-			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 				=> $this->config->get('config_admin_limit')
+			'filter_name' => $filter_name,
+			'sort'        => $sort,
+			'order'       => $order,
+			'start'       => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'       => $this->config->get('config_admin_limit')
 		);
 
 		$manufacturer_total = $this->model_catalog_manufacturer->getTotalManufacturers($data);
@@ -226,8 +226,8 @@ class ControllerCatalogManufacturer extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $result['manufacturer_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $result['manufacturer_id'] . $url, 'SSL')
 			);
 
 			$image = $this->model_catalog_manufacturer->getManufacturerImage($result['manufacturer_id']);
@@ -239,13 +239,13 @@ class ControllerCatalogManufacturer extends Controller {
 			}
 
 			$this->data['manufacturers'][] = array(
-				'manufacturer_id'	=> $result['manufacturer_id'],
-				'image'				=> $thumb,
-				'name'            	=> $result['name'],
-				'sort_order'      	=> $result['sort_order'],
-				'status' 				=> $result['status'],
-				'selected'        	=> isset($this->request->post['selected']) && in_array($result['manufacturer_id'], $this->request->post['selected']),
-				'action'          		=> $action
+				'manufacturer_id' => $result['manufacturer_id'],
+				'image'           => $thumb,
+				'name'            => $result['name'],
+				'sort_order'      => $result['sort_order'],
+				'status'          => $result['status'],
+				'selected'        => isset($this->request->post['selected']) && in_array($result['manufacturer_id'], $this->request->post['selected']),
+				'action'          => $action
 			);
 		}
 
@@ -398,8 +398,8 @@ class ControllerCatalogManufacturer extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
@@ -407,8 +407,8 @@ class ControllerCatalogManufacturer extends Controller {
 			$manufacturer_name = $this->model_catalog_manufacturer->getManufacturer($this->request->get['manufacturer_id']);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title') . ' :: ' . $manufacturer_name['name'],
-				'href'		=> $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $this->request->get['manufacturer_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title') . ' :: ' . $manufacturer_name['name'],
+				'href'      => $this->url->link('catalog/manufacturer/update', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $this->request->get['manufacturer_id'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -416,8 +416,8 @@ class ControllerCatalogManufacturer extends Controller {
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 				'separator' => ' :: '
 			);
 
@@ -566,17 +566,17 @@ class ControllerCatalogManufacturer extends Controller {
 			$this->load->model('catalog/manufacturer');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_manufacturer->getManufacturers($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'manufacturer_id'	=> $result['manufacturer_id'],
-					'name'            	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+					'manufacturer_id' => $result['manufacturer_id'],
+					'name'            => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}

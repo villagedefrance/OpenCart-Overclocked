@@ -188,14 +188,14 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -209,11 +209,11 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['palettes'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'sort'  			=> $sort,
-			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 				=> $this->config->get('config_admin_limit')
+			'filter_name' => $filter_name,
+			'sort'        => $sort,
+			'order'       => $order,
+			'start'       => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'       => $this->config->get('config_admin_limit')
 		);
 
 		$palette_total = $this->model_catalog_palette->getTotalPalettes($data);
@@ -224,16 +224,16 @@ class ControllerCatalogPalette extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('catalog/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $result['palette_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('catalog/palette/update', 'token=' . $this->session->data['token'] . '&palette_id=' . $result['palette_id'] . $url, 'SSL')
 			);
 
 			$this->data['palettes'][] = array(
-				'palette_id'	=> $result['palette_id'],
-				'name'		=> $result['name'],
-				'colors'		=> $this->model_catalog_palette->getTotalColorsByPaletteId($result['palette_id']),
-				'selected'	=> isset($this->request->post['selected']) && in_array($result['palette_id'], $this->request->post['selected']),
-				'action'		=> $action
+				'palette_id' => $result['palette_id'],
+				'name'       => $result['name'],
+				'colors'     => $this->model_catalog_palette->getTotalColorsByPaletteId($result['palette_id']),
+				'selected'   => isset($this->request->post['selected']) && in_array($result['palette_id'], $this->request->post['selected']),
+				'action'     => $action
 			);
 		}
 
@@ -376,14 +376,14 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('catalog/palette', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -479,17 +479,17 @@ class ControllerCatalogPalette extends Controller {
 			$this->load->model('catalog/palette');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_palette->getPalettes($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'palette_id'	=> $result['palette_id'],
-					'name'		=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
+					'palette_id' => $result['palette_id'],
+					'name'       => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}
