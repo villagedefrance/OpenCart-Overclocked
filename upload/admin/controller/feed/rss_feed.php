@@ -22,6 +22,26 @@ class ControllerFeedRSSFeed extends Controller {
 			}
 		}
 
+		$this->data['heading_title'] = $this->language->get('heading_title');
+
+		$this->data['text_feed'] = $this->language->get('text_feed');
+		$this->data['text_enabled'] = $this->language->get('text_enabled');
+		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
+
+		$this->data['entry_status'] = $this->language->get('entry_status');
+		$this->data['entry_data_feed'] = $this->language->get('entry_data_feed');
+		$this->data['entry_limit'] = $this->language->get('entry_limit');
+		$this->data['entry_show_price'] = $this->language->get('entry_show_price');
+		$this->data['entry_include_tax'] = $this->language->get('entry_include_tax');
+		$this->data['entry_show_image'] = $this->language->get('entry_show_image');
+		$this->data['entry_image_size'] = $this->language->get('entry_image_size');
+
+		$this->data['button_save'] = $this->language->get('button_save');
+		$this->data['button_apply'] = $this->language->get('button_apply');
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -37,42 +57,22 @@ class ControllerFeedRSSFeed extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_feed'),
-			'href'		=> $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_feed'),
+			'href'      => $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('feed/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('feed/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
-
-		// RSS Feed
-		$this->data['heading_title'] = $this->language->get('heading_title');
-
-		$this->data['text_feed'] = $this->language->get('text_feed');
-		$this->data['text_enabled'] = $this->language->get('text_enabled');
-		$this->data['text_disabled'] = $this->language->get('text_disabled');
-
-		$this->data['entry_status'] = $this->language->get('entry_status');
-		$this->data['entry_data_feed'] = $this->language->get('entry_data_feed');
-		$this->data['entry_limit'] = $this->language->get('entry_limit');
-		$this->data['entry_show_image'] = $this->language->get('entry_show_image');
-		$this->data['entry_show_price'] = $this->language->get('entry_show_price');
-		$this->data['entry_include_tax'] = $this->language->get('entry_include_tax');
-
-		$this->data['entry_image_size'] = $this->language->get('entry_image_size');
-
-		$this->data['button_save'] = $this->language->get('button_save');
-		$this->data['button_apply'] = $this->language->get('button_apply');
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
 		$this->data['action'] = $this->url->link('feed/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
@@ -90,12 +90,6 @@ class ControllerFeedRSSFeed extends Controller {
 			$this->data[$this->_name . '_limit'] = $this->config->get($this->_name . '_limit');
 		}
 
-		if (isset($this->request->post[$this->_name . '_show_image'])) {
-			$this->data[$this->_name . '_show_image'] = $this->request->post[$this->_name . '_show_image'];
-		} else {
-			$this->data[$this->_name . '_show_image'] = $this->config->get($this->_name . '_show_image');
-		}
-
 		if (isset($this->request->post[$this->_name . '_show_price'])) {
 			$this->data[$this->_name . '_show_price'] = $this->request->post[$this->_name . '_show_price'];
 		} else {
@@ -106,6 +100,12 @@ class ControllerFeedRSSFeed extends Controller {
 			$this->data[$this->_name . '_include_tax'] = $this->request->post[$this->_name . '_include_tax'];
 		} else {
 			$this->data[$this->_name . '_include_tax'] = $this->config->get($this->_name . '_include_tax');
+		}
+
+		if (isset($this->request->post[$this->_name . '_show_image'])) {
+			$this->data[$this->_name . '_show_image'] = $this->request->post[$this->_name . '_show_image'];
+		} else {
+			$this->data[$this->_name . '_show_image'] = $this->config->get($this->_name . '_show_image');
 		}
 
 		if (isset($this->request->post[$this->_name . '_image_width'])) {
@@ -131,7 +131,7 @@ class ControllerFeedRSSFeed extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'feed/' . $this->_name)) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

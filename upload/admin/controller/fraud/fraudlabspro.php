@@ -60,23 +60,23 @@ class ControllerFraudFraudLabsPro extends Controller {
 
 		$this->data['breadcrumbs'] = array();
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => false
-   		);
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => false
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'   	=> $this->language->get('text_fraud'),
-			'href'   	=> $this->url->link('extension/fraud', 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_fraud'),
+			'href'      => $this->url->link('extension/fraud', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => ' :: '
+		);
 
-   		$this->data['breadcrumbs'][] = array(
-       		'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('fraud/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
-      		'separator' => ' :: '
-   		);
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('fraud/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'separator' => ' :: '
+		);
 
 		$this->data['action'] = $this->url->link('fraud/fraudlabspro', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -195,24 +195,23 @@ class ControllerFraudFraudLabsPro extends Controller {
 				}
 			}
 
-			// Update fraud status into table
 			$this->db->query("UPDATE " . DB_PREFIX . "fraudlabspro SET fraudlabspro_status = '" . $this->db->escape($flp_status) . "' WHERE order_id = " . $this->db->escape($this->request->get['order_id']));
 
 			// Update history record
 			if (strtolower($flp_status) == 'approve') {
 				$data_temp = array(
-					'order_status_id'	=> $this->config->get('fraudlabspro_approve_status_id'),
-					'notify'				=> 0,
-					'comment'			=> $this->language->get('text_comment_approve')
+					'order_status_id' => $this->config->get('fraudlabspro_approve_status_id'),
+					'notify'          => 0,
+					'comment'         => $this->language->get('text_comment_approve')
 				);
 
 				$this->model_fraud_fraudlabspro->addOrderHistory($this->request->get['order_id'], $data_temp);
 
 			} elseif (strtolower($flp_status) == 'reject') {
 				$data_temp = array(
-					'order_status_id'	=> $this->config->get('fraudlabspro_reject_status_id'),
-					'notify'				=> 0,
-					'comment'			=> $this->language->get('text_comment_reject')
+					'order_status_id' => $this->config->get('fraudlabspro_reject_status_id'),
+					'notify'          => 0,
+					'comment'         => $this->language->get('text_comment_reject')
 				);
 
 				$this->model_fraud_fraudlabspro->addOrderHistory($this->request->get['order_id'], $data_temp);

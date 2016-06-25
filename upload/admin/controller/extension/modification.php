@@ -9,14 +9,14 @@ class ControllerExtensionModification extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'   	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -75,28 +75,28 @@ class ControllerExtensionModification extends Controller {
 
 				if (!in_array($extension, $extensions)) {
 					$action[] = array(
-						'text'	=> $this->language->get('text_install'),
-						'type'	=> 'install',
-						'href'	=> $this->url->link('extension/modification/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
+						'text' => $this->language->get('text_install'),
+						'type' => 'install',
+						'href' => $this->url->link('extension/modification/install', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
 
 				} else {
 					$action[] = array(
-						'text'	=> $this->language->get('text_edit'),
-						'type'	=> 'edit',
-						'href'	=> $this->url->link('modification/' . $extension, 'token=' . $this->session->data['token'], 'SSL')
+						'text' => $this->language->get('text_edit'),
+						'type' => 'edit',
+						'href' => $this->url->link('modification/' . $extension, 'token=' . $this->session->data['token'], 'SSL')
 					);
 
 					$action[] = array(
-						'text'	=> $this->language->get('text_uninstall'),
-						'type'	=> 'uninstall',
-						'href' 	=> $this->url->link('extension/modification/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
+						'text' => $this->language->get('text_uninstall'),
+						'type' => 'uninstall',
+						'href' => $this->url->link('extension/modification/uninstall', 'token=' . $this->session->data['token'] . '&extension=' . $extension, 'SSL')
 					);
 				}
 
 				$this->data['extensions'][] = array(
-					'name' 	=> $this->language->get('heading_title'),
-					'action' 	=> $action
+					'name'   => $this->language->get('heading_title'),
+					'action' => $action
 				);
 			}
 		}

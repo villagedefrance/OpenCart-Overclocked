@@ -35,53 +35,65 @@
         </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_limit; ?></td>
-          <td>
-            <input name="rss_feed_limit" value="<?php echo $rss_feed_limit ? $rss_feed_limit : '100'; ?>" />
-            <?php if ($error_limit) { ?>
-              <span class="error"><?php echo $error_limit; ?></span>
-            <?php } ?>
-          </td>
+          <td><?php if ($error_limit) { ?>
+            <input type="text" name="rss_feed_limit" value="<?php echo $rss_feed_limit ? $rss_feed_limit : '100'; ?>" />
+            <span class="error"><?php echo $error_limit; ?></span>
+          <?php } else { ?>
+            <input type="text" name="rss_feed_limit" value="<?php echo $rss_feed_limit ? $rss_feed_limit : '100'; ?>" />
+          <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_show_price; ?></td>
-          <td><?php if ($rss_feed_show_price == 1) { ?>
-            <input type="checkbox" name="rss_feed_show_price" value="1" id="show-price" class="checkbox" checked />
-            <label for="show-price"><span></span></label>
+          <td><?php if ($rss_feed_show_price) { ?>
+            <input type="radio" name="rss_feed_show_price" value="1" id="price-on" class="radio" checked />
+            <label for="price-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="rss_feed_show_price" value="0" id="price-off" class="radio" />
+            <label for="price-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } else { ?>
-            <input type="checkbox" name="rss_feed_show_price" value="0" id="show-price" class="checkbox" />
-            <label for="show-price"><span></span></label>
+            <input type="radio" name="rss_feed_show_price" value="1" id="price-on" class="radio" />
+            <label for="price-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="rss_feed_show_price" value="0" id="price-off" class="radio" checked />
+            <label for="price-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_include_tax; ?></td>
-          <td><?php if ($rss_feed_include_tax == 1) { ?>
-            <input type="checkbox" name="rss_feed_include_tax" value="1" id="include-tax" class="checkbox" checked />
-            <label for="include-tax"><span></span></label>
+          <td><?php if ($rss_feed_include_tax) { ?>
+            <input type="radio" name="rss_feed_include_tax" value="1" id="tax-on" class="radio" checked />
+            <label for="tax-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="rss_feed_include_tax" value="0" id="tax-off" class="radio" />
+            <label for="tax-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } else { ?>
-            <input type="checkbox" name="rss_feed_include_tax" value="0" id="include-tax" class="checkbox" />
-            <label for="include-tax"><span></span></label>
+            <input type="radio" name="rss_feed_include_tax" value="1" id="tax-on" class="radio" />
+            <label for="tax-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="rss_feed_include_tax" value="0" id="tax-off" class="radio" checked />
+            <label for="tax-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_show_image; ?></td>
-          <td><?php if ($rss_feed_show_image == 1) { ?>
-            <input type="checkbox" name="rss_feed_show_image" value="1" id="show-image" class="checkbox" checked />
-            <label for="show-image"><span></span></label>
+          <td><?php if ($rss_feed_show_image) { ?>
+            <input type="radio" name="rss_feed_show_image" value="1" id="image-on" class="radio" checked />
+            <label for="image-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="rss_feed_show_image" value="0" id="image-off" class="radio" />
+            <label for="image-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } else { ?>
-            <input type="checkbox" name="rss_feed_show_image" value="0" id="show-image" class="checkbox" />
-            <label for="show-image"><span></span></label>
+            <input type="radio" name="rss_feed_show_image" value="1" id="image-on" class="radio" />
+            <label for="image-on"><span><span></span></span><?php echo $text_yes; ?></label>
+            <input type="radio" name="rss_feed_show_image" value="0" id="image-off" class="radio" checked />
+            <label for="image-off"><span><span></span></span><?php echo $text_no; ?></label>
           <?php } ?></td>
         </tr>
         <tr>
           <td><?php echo $entry_image_size; ?></td>
           <td>
-            <input type="text" size="3" value="<?php echo $rss_feed_image_width; ?>" name="rss_feed_image_width" /> x 
-            <input type="text" size="3" value="<?php echo $rss_feed_image_height; ?>" name="rss_feed_image_height" /> px
+            <input type="text" name="rss_feed_image_width" value="<?php echo $rss_feed_image_width; ?>" size="3" /> x 
+            <input type="text" name="rss_feed_image_height" value="<?php echo $rss_feed_image_height; ?>" size="3" /> px
           </td>
         </tr>
         <tr>
           <td><?php echo $entry_data_feed; ?></td>
-          <td><textarea cols="40" rows="5" readonly="readonly"><?php echo $data_feed; ?></textarea></td>
+          <td><textarea name="rss_feed_data_feed" cols="40" rows="5" readonly="readonly"><?php echo $data_feed; ?></textarea></td>
         </tr>
       </table>
       </form>
