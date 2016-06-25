@@ -46,6 +46,7 @@ class ModelSettingSetting extends Model {
 
 		$skins[] = array('skin' => 'white','color' => '#FFFFFF','title' => 'White');
 		$skins[] = array('skin' => 'beige','color' => '#F5F5DC','title' => 'Beige');
+		$skins[] = array('skin' => 'ash','color' => '#E5E5D0','title' => 'Ash');
 		$skins[] = array('skin' => 'silver','color' => '#C2C2C2','title' => 'Silver');
 		$skins[] = array('skin' => 'grey','color' => '#808080','title' => 'Grey');
 		$skins[] = array('skin' => 'charcoal','color' => '#36454F','title' => 'Charcoal');
@@ -57,6 +58,7 @@ class ModelSettingSetting extends Model {
 		$skins[] = array('skin' => 'teal','color' => '#00ABA9','title' => 'Teal');
 		$skins[] = array('skin' => 'cyan','color' => '#1BA1E2','title' => 'Cyan');
 		$skins[] = array('skin' => 'cobalt','color' => '#0000FF','title' => 'Cobalt');
+		$skins[] = array('skin' => 'navy','color' => '#000084','title' => 'Navy');
 		$skins[] = array('skin' => 'indigo','color' => '#6A00FF','title' => 'Indigo');
 		$skins[] = array('skin' => 'violet','color' => '#AA00FF','title' => 'Violet');
 		$skins[] = array('skin' => 'pink','color' => '#F472D0','title' => 'Pink');
@@ -65,12 +67,13 @@ class ModelSettingSetting extends Model {
 		$skins[] = array('skin' => 'red','color' => '#E51400','title' => 'Red');
 		$skins[] = array('skin' => 'orange','color' => '#FA6800','title' => 'Orange');
 		$skins[] = array('skin' => 'amber','color' => '#F0A30A','title' => 'Amber');
+		$skins[] = array('skin' => 'citrus','color' => '#FFF033','title' => 'Citrus');
 		$skins[] = array('skin' => 'yellow','color' => '#E3C800','title' => 'Yellow');
 		$skins[] = array('skin' => 'brown','color' => '#825A2C','title' => 'Brown');
 		$skins[] = array('skin' => 'olive','color' => '#6D8759','title' => 'Olive');
 		$skins[] = array('skin' => 'steel','color' => '#647687','title' => 'Steel');
 		$skins[] = array('skin' => 'mauve','color' => '#76608A','title' => 'Mauve');
-		$skins[] = array('skin' => 'sienna','color' => '#6F4E37','title' => 'Sienna');
+		$skins[] = array('skin' => 'sienna','color' => '#B77733','title' => 'Sienna');
 
 		return $skins;
 	}

@@ -173,6 +173,11 @@
 	background: #F5F5DC;
 	color: #222;
 }
+/* Ash */
+.ash-skin {
+	background: #E5E5D0;
+	color: #222;
+}
 /* Silver */
 .silver-skin {
 	background: #C2C2C2;
@@ -228,6 +233,11 @@
 	background: #0050EF;
 	color: #FFF;
 }
+/* Navy */
+.navy-skin {
+	background: #000084;
+	color: #FFF;
+}
 /* Indigo */
 .indigo-skin {
 	background: #6A00FF;
@@ -268,6 +278,11 @@
 	background: #F0A30A;
 	color: #FFF;
 }
+/* Citrus */
+.citrus-skin {
+	background: #FFF033;
+	color: #222;
+}
 /* Yellow */
 .yellow-skin {
 	background: #E3C800;
@@ -295,6 +310,6 @@
 }
 /* Sienna */
 .sienna-skin {
-	background: #A0522D;
+	background: #B77733;
 	color: #FFF;
 }
