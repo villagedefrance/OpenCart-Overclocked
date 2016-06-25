@@ -36,7 +36,6 @@ class ControllerModificationVQmods extends Controller {
 			$this->vqmod_upload();
 		}
 
-		// Heading
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['header_add'] = $this->language->get('header_add');
@@ -47,7 +46,6 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['header_credits'] = $this->language->get('header_credits');
 		$this->data['header_vqmod'] = $this->language->get('header_vqmod');
 
-		// Tabs
 		$this->data['tab_script_list'] = $this->language->get('tab_script_list');
 		$this->data['tab_script_add'] = $this->language->get('tab_script_add');
 		$this->data['tab_maintain'] = $this->language->get('tab_maintain');
@@ -55,7 +53,6 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['tab_settings'] = $this->language->get('tab_settings');
 		$this->data['tab_about'] = $this->language->get('tab_about');
 
-		// Columns
 		$this->data['column_action'] = $this->language->get('column_action');
 		$this->data['column_author'] = $this->language->get('column_author');
 		$this->data['column_delete'] = $this->language->get('column_delete');
@@ -64,12 +61,10 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['column_version'] = $this->language->get('column_version');
 		$this->data['column_vqmver'] = $this->language->get('column_vqmver');
 
-		// Entry
 		$this->data['entry_backup'] = $this->language->get('entry_backup');
 		$this->data['entry_vqcache'] = $this->language->get('entry_vqcache');
 		$this->data['entry_vqmod_path'] = $this->language->get('entry_vqmod_path');
 
-		// Button
 		$this->data['button_refresh'] = $this->language->get('button_refresh');
 		$this->data['button_close'] = $this->language->get('button_close');
 		$this->data['button_backup'] = $this->language->get('button_backup');
@@ -78,7 +73,6 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['button_download_log'] = $this->language->get('button_download_log');
 		$this->data['button_vqcache_dump'] = $this->language->get('button_vqcache_dump');
 
-		// Installation Errors
 		$this->data['error_error_log_write'] = $this->language->get('error_error_log_write');
 		$this->data['error_error_logs_write'] = $this->language->get('error_error_logs_write');
 		$this->data['error_opencart_version'] = $this->language->get('error_opencart_version');
@@ -96,20 +90,16 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['error_vqmod_script_dir'] = $this->language->get('error_vqmod_script_dir');
 		$this->data['error_vqmod_script_write'] = $this->language->get('error_vqmod_script_write');
 
-		// Dependency Errors
 		$this->data['error_simplexml'] = $this->language->get('error_simplexml');
 		$this->data['error_ziparchive'] = $this->language->get('error_ziparchive');
 
-		// Log Errors
 		$this->data['error_mod_aborted'] = $this->language->get('Mod Aborted');
 		$this->data['error_mod_skipped'] = $this->language->get('Operation Skipped');
 
-		// Success
 		$this->data['success_clear_vqcache'] = $this->language->get('success_clear_vqcache');
 		$this->data['success_clear_log'] = $this->language->get('success_clear_log');
 		$this->data['success_delete'] = $this->language->get('success_delete');
 
-		// Text
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_autodetect'] = $this->language->get('text_autodetect');
@@ -154,19 +144,17 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['vqmod_author'] = $this->language->get('vqmod_author');
 		$this->data['vqmod_license'] = $this->language->get('vqmod_license');
 
-		// Javascript Warnings
+		// Warnings
 		$this->data['warning_required_delete'] = $this->language->get('warning_required_delete');
 		$this->data['warning_required_uninstall'] = $this->language->get('warning_required_uninstall');
 		$this->data['warning_vqmod_delete'] = $this->language->get('warning_vqmod_delete');
 
-		// Check that VQMod is properly installed
 		if ($this->vqmod_installation_check()) {
 			$this->data['vqmod_is_installed'] = true;
 		} else {
 			$this->data['vqmod_is_installed'] = false;
 		}
 
-		// VQMod installation errors
 		if (isset($this->session->data['vqmod_installation_error'])) {
 			$this->data['vqmod_installation_error'] = $this->session->data['vqmod_installation_error'];
 
@@ -175,7 +163,6 @@ class ControllerModificationVQmods extends Controller {
 			$this->data['vqmod_installation_error'] = '';
 		}
 
-		// Warning
 		if (isset($this->session->data['error'])) {
 			$this->data['error_warning'] = $this->session->data['error'];
 
@@ -184,7 +171,6 @@ class ControllerModificationVQmods extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		// Success
 		if (isset($this->session->data['success'])) {
 			$this->data['success'] = $this->session->data['success'];
 
@@ -193,28 +179,26 @@ class ControllerModificationVQmods extends Controller {
 			$this->data['success'] = '';
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_modification'),
+			'href'      => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_modification'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('heading_title'),
+			'href'      => $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
 			'separator' => ' :: '
 		);
 
-		// Action Buttons
 		$this->data['action'] = $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['refresh'] = $this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['close'] = $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL');
@@ -252,13 +236,13 @@ class ControllerModificationVQmods extends Controller {
 
 				if ($extension == 'xml_') {
 					$action[] = array(
-						'text'	=> $this->language->get('text_enable'),
-						'href'	=> $this->url->link('modification/vqmods/vqmod_install', 'token=' . $this->session->data['token'] . '&vqmod=' . $file, 'SSL')
+						'text' => $this->language->get('text_enable'),
+						'href' => $this->url->link('modification/vqmods/vqmod_install', 'token=' . $this->session->data['token'] . '&vqmod=' . $file, 'SSL')
 					);
 				} else {
 					$action[] = array(
-						'text'	=> $this->language->get('text_disable'),
-						'href'	=> $this->url->link('modification/vqmods/vqmod_uninstall', 'token=' . $this->session->data['token'] . '&vqmod=' . $file, 'SSL')
+						'text' => $this->language->get('text_disable'),
+						'href' => $this->url->link('modification/vqmods/vqmod_uninstall', 'token=' . $this->session->data['token'] . '&vqmod=' . $file, 'SSL')
 					);
 				}
 
@@ -274,16 +258,16 @@ class ControllerModificationVQmods extends Controller {
 				}
 
 				$this->data['vqmods'][] = array(
-					'file_name'	=> basename($vqmod_script, ''),
-					'id'				=> isset($xml->id) ? $xml->id : $this->language->get('text_unavailable'),
-					'version'		=> isset($xml->version) ? $xml->version : $this->language->get('text_unavailable'),
-					'vqmver'		=> isset($xml->vqmver) ? $xml->vqmver : $this->language->get('text_unavailable'),
-					'author'		=> isset($xml->author) ? $xml->author : $this->language->get('text_unavailable'),
-					'status'		=> $extension == 'xml_' ? sprintf($this->language->get('highlight'), $this->language->get('text_disabled')) : $this->language->get('text_enabled'),
-					'delete'		=> $this->url->link('modification/vqmods/vqmod_delete', 'token=' . $this->session->data['token'] . '&vqmod=' . basename($vqmod_script), 'SSL'),
-					'action'		=> $action,
-					'extension'	=> $extension,
-					'invalid_xml'	=> $invalid_xml
+					'file_name'   => basename($vqmod_script, ''),
+					'id'          => isset($xml->id) ? $xml->id : $this->language->get('text_unavailable'),
+					'version'     => isset($xml->version) ? $xml->version : $this->language->get('text_unavailable'),
+					'vqmver'      => isset($xml->vqmver) ? $xml->vqmver : $this->language->get('text_unavailable'),
+					'author'      => isset($xml->author) ? $xml->author : $this->language->get('text_unavailable'),
+					'status'      => $extension == 'xml_' ? sprintf($this->language->get('highlight'), $this->language->get('text_disabled')) : $this->language->get('text_enabled'),
+					'delete'      => $this->url->link('modification/vqmods/vqmod_delete', 'token=' . $this->session->data['token'] . '&vqmod=' . basename($vqmod_script), 'SSL'),
+					'action'      => $action,
+					'extension'   => $extension,
+					'invalid_xml' => $invalid_xml
 				);
 			}
 
@@ -359,23 +343,23 @@ class ControllerModificationVQmods extends Controller {
 				// Deprecated VQMod 2.1.7
 				if ($setting == 'useCache') {
 					$this->data['vqmod_vars'][] = array(
-						'setting'	=> $this->language->get('setting_usecache'),
-						'value'	=> ($value === true) ? $this->language->get('text_enabled') : $this->language->get('text_disabled')
+						'setting' => $this->language->get('setting_usecache'),
+						'value'   => ($value === true) ? $this->language->get('text_enabled') : $this->language->get('text_disabled')
 					);
 				}
 
 				if ($setting == 'logging') {
 					$this->data['vqmod_vars'][] = array(
-						'setting'	=> $this->language->get('setting_logging'),
-						'value'	=> ($value === true) ? $this->language->get('text_enabled') : $this->language->get('text_disabled')
+						'setting' => $this->language->get('setting_logging'),
+						'value'   => ($value === true) ? $this->language->get('text_enabled') : $this->language->get('text_disabled')
 					);
 				}
 
 				// Deprecated VQMod 2.2.0
 				if ($setting == 'cacheTime') {
 					$this->data['vqmod_vars'][] = array(
-						'setting'	=> $this->language->get('setting_cachetime'),
-						'value'	=> sprintf($this->language->get('text_cachetime'), $value)
+						'setting' => $this->language->get('setting_cachetime'),
+						'value'   => sprintf($this->language->get('text_cachetime'), $value)
 					);
 				}
 
@@ -388,16 +372,16 @@ class ControllerModificationVQmods extends Controller {
 						$paths = explode("\n", $protected_files);
 
 						$this->data['vqmod_vars'][] = array(
-							'setting'	=> $this->language->get('setting_protected_files'),
-							'value'	=> implode('<br />', $paths)
+							'setting' => $this->language->get('setting_protected_files'),
+							'value'   => implode('<br />', $paths)
 						);
 					}
 				}
 
 				if ($setting == 'directorySeparator' && !empty($value)) {
 					$this->data['vqmod_vars'][] = array(
-						'setting'	=> $this->language->get('setting_dir_separator'),
-						'value'	=> htmlentities($value, ENT_QUOTES, 'UTF-8')
+						'setting' => $this->language->get('setting_dir_separator'),
+						'value'   => htmlentities($value, ENT_QUOTES, 'UTF-8')
 					);
 				}
 			}
@@ -417,8 +401,8 @@ class ControllerModificationVQmods extends Controller {
 				}
 
 				$this->data['vqmod_vars'][] = array(
-					'setting'	=> $this->language->get('setting_path_replaces'),
-					'value'	=> implode('<br />', $replacement_values)
+					'setting' => $this->language->get('setting_path_replaces'),
+					'value'   => implode('<br />', $replacement_values)
 				);
 			}
 		}
@@ -481,29 +465,14 @@ class ControllerModificationVQmods extends Controller {
 
 			if ($this->request->files['vqmod_file']['error'] > 0) {
 				switch($this->request->files['vqmod_file']['error']) {
-					case 1:
-						$this->session->data['error'] = $this->language->get('error_ini_max_file_size');
-						break;
-					case 2:
-						$this->session->data['error'] = $this->language->get('error_form_max_file_size');
-						break;
-					case 3:
-						$this->session->data['error'] = $this->language->get('error_partial_upload');
-						break;
-					case 4:
-						$this->session->data['error'] = $this->language->get('error_no_upload');
-						break;
-					case 6:
-						$this->session->data['error'] = $this->language->get('error_no_temp_dir');
-						break;
-					case 7:
-						$this->session->data['error'] = $this->language->get('error_write_fail');
-						break;
-					case 8:
-						$this->session->data['error'] = $this->language->get('error_php_conflict');
-						break;
-					default:
-						$this->session->data['error'] = $this->language->get('error_unknown');
+					case 1: $this->session->data['error'] = $this->language->get('error_ini_max_file_size'); break;
+					case 2: $this->session->data['error'] = $this->language->get('error_form_max_file_size'); break;
+					case 3: $this->session->data['error'] = $this->language->get('error_partial_upload'); break;
+					case 4: $this->session->data['error'] = $this->language->get('error_no_upload'); break;
+					case 6: $this->session->data['error'] = $this->language->get('error_no_temp_dir'); break;
+					case 7: $this->session->data['error'] = $this->language->get('error_write_fail'); break;
+					case 8: $this->session->data['error'] = $this->language->get('error_php_conflict'); break;
+					default: $this->session->data['error'] = $this->language->get('error_unknown');
 				}
 
 			} else {

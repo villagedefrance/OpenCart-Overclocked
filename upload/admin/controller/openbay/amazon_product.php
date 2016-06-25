@@ -79,14 +79,14 @@ class ControllerOpenbayAmazonProduct extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> 'Products',
-			'href'		=> $this->url->link('extension/openbay/itemList', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => 'Products',
+			'href'      => $this->url->link('extension/openbay/itemList', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -179,9 +179,9 @@ class ControllerOpenbayAmazonProduct extends Controller {
 			$template = (array)$template;
 
 			$categoryData = array(
-				'friendly_name'	=> $template['friendly_name'],
-				'name'			=> $template['name'],
-				'template'		=> $template['xml']
+				'friendly_name' => $template['friendly_name'],
+				'name'          => $template['name'],
+				'template'      => $template['xml']
 			);
 
 			$this->data['amazon_categories'][] = $categoryData;
@@ -324,6 +324,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 		ob_clean();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput($json);
 	}
 
@@ -429,9 +430,9 @@ class ControllerOpenbayAmazonProduct extends Controller {
 					}
 
 					$json = array(
-						"category"	=> $template['category'],
-						"fields"		=> $template['fields'],
-						"tabs"		=> $template['tabs']
+						'category' => $template['category'],
+						'fields'   => $template['fields'],
+						'tabs'     => $template['tabs']
 					);
 
 				} else {
@@ -451,6 +452,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -474,15 +476,15 @@ class ControllerOpenbayAmazonProduct extends Controller {
 
 		// Key must be lowecase
 		$defaults = array(
-			'sku' 					=> $product_info['sku'],
-			'title' 					=> $product_info['name'],
-			'quantity' 			=> $product_info['quantity'],
-			'standardprice'		=> $product_info['price'],
-			'description'		=> $product_info['description'],
-			'mainimage'			=> $product_info['image'],
-			'currency'			=> $this->config->get('config_currency'),
-			'shippingweight'	=> number_format($product_info['weight'], 2, '.', ''),
-			'conditiontype'		=> $default_condition
+			'sku'            => $product_info['sku'],
+			'title'          => $product_info['name'],
+			'quantity'       => $product_info['quantity'],
+			'standardprice'  => $product_info['price'],
+			'description'    => $product_info['description'],
+			'mainimage'      => $product_info['image'],
+			'currency'       => $this->config->get('config_currency'),
+			'shippingweight' => number_format($product_info['weight'], 2, '.', ''),
+			'conditiontype'  => $default_condition
 		);
 
 		$this->load->model('localisation/weight_class');
@@ -604,7 +606,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 	}
 
 	public function resetPending() {
-		$this->db->query("UPDATE `" . DB_PREFIX . "amazon_product` SET `status` = 'saved' WHERE `status` = 'uploaded'");
+		$this->db->query("UPDATE " . DB_PREFIX . "amazon_product SET status = 'saved' WHERE status = 'uploaded'");
 	}
 
 	private function validateForm() {
@@ -622,7 +624,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 			if (!array_key_exists($pattern, $usedPatterns)) {
 				$usedPatterns[$pattern] = true;
 
-				$text = str_replace($pattern, "<a target='_blank' href=" .$pattern .">" . $pattern . "</a>", $text);
+				$text = str_replace($pattern, "<a target='_blank' href=" . $pattern . ">" . $pattern . "</a>", $text);
 			}
 		}
 

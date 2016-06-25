@@ -166,14 +166,14 @@ class ControllerLocalisationLanguage extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerLocalisationLanguage extends Controller {
 		$this->data['languages'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$language_total = $this->model_localisation_language->getTotalLanguages();
@@ -206,14 +206,14 @@ class ControllerLocalisationLanguage extends Controller {
 			);
 
 			$this->data['languages'][] = array(
-				'language_id' 	=> $result['language_id'],
-				'name'        	=> $result['name'] . (($result['code'] == $this->config->get('config_language')) ? $this->language->get('text_default') : null),
-				'code'        	=> $result['code'],
-				'image'        	=> $result['image'],
-				'sort_order'  	=> $result['sort_order'],
-				'status'  		=> $result['status'],
-				'selected'    	=> isset($this->request->post['selected']) && in_array($result['language_id'], $this->request->post['selected']),
-				'action'      		=> $action
+				'language_id' => $result['language_id'],
+				'name'        => $result['name'] . (($result['code'] == $this->config->get('config_language')) ? $this->language->get('text_default') : null),
+				'code'        => $result['code'],
+				'image'       => $result['image'],
+				'sort_order'  => $result['sort_order'],
+				'status'      => $result['status'],
+				'selected'    => isset($this->request->post['selected']) && in_array($result['language_id'], $this->request->post['selected']),
+				'action'      => $action
 			);
 		}
 
@@ -374,14 +374,14 @@ class ControllerLocalisationLanguage extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('localisation/language', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

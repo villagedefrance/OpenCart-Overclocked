@@ -35,20 +35,20 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -108,26 +108,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/settings', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_settings'),
+			'href'      => $this->url->link('openbay/openbay/settings', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_settings'),
 			'separator' => ' :: '
 		);
 
@@ -271,13 +271,13 @@ class ControllerOpenbayOpenbay extends Controller {
 		}
 
 		$this->data['durations'] = array(
-			'Days_1'		=> $this->data['lang_listing_1day'],
-			'Days_3'		=> $this->data['lang_listing_3day'],
-			'Days_5'		=> $this->data['lang_listing_5day'],
-			'Days_7'		=> $this->data['lang_listing_7day'],
-			'Days_10'	=> $this->data['lang_listing_10day'],
-			'Days_30'	=> $this->data['lang_listing_30day'],
-			'GTC'			=> $this->data['lang_listing_gtc']
+			'Days_1'  => $this->data['lang_listing_1day'],
+			'Days_3'  => $this->data['lang_listing_3day'],
+			'Days_5'  => $this->data['lang_listing_5day'],
+			'Days_7'  => $this->data['lang_listing_7day'],
+			'Days_10' => $this->data['lang_listing_10day'],
+			'Days_30' => $this->data['lang_listing_30day'],
+			'GTC'     => $this->data['lang_listing_gtc']
 		);
 
 		if (isset($this->request->post['openbaypro_duration'])) {
@@ -390,6 +390,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->openbay->ebay->loadSettings();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -398,6 +399,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->openbay->ebay->loadCategories();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -406,6 +408,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->openbay->ebay->loadSellerStore();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -414,6 +417,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getCategory($this->request->get['parent']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -422,6 +426,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getSuggestedCategories($this->request->get['qry']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -430,6 +435,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getShippingService($this->request->get['loc']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -438,6 +444,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getEbayCategorySpecifics($this->request->get['category']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -446,6 +453,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getCategoryFeatures($this->request->get['category']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -454,6 +462,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay_product->searchEbayCatalog($this->request->post);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -468,26 +477,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/viewSellerSummary', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->data['lang_heading'],
+			'href'      => $this->url->link('openbay/openbay/viewSellerSummary', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->data['lang_heading'],
 			'separator' => ' :: '
 		);
 
@@ -511,6 +520,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getSellerSummary();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -519,22 +529,24 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->verifyCreds();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function importItems() {
 		$data = array(
-			'adv'	=> $this->request->get['advanced'],
-			'c'		=> 1,
-			'd'		=> $this->request->get['desc'],
-			'n'		=> $this->request->get['note'],
-			'cat'	=> $this->request->get['categories']
+			'adv' => $this->request->get['advanced'],
+			'c'   => 1,
+			'd'   => $this->request->get['desc'],
+			'n'   => $this->request->get['note'],
+			'cat' => $this->request->get['categories']
 		);
 
 		$this->openbay->ebay->callNoResponse('setup/getItemsMain/', $data);
 
 		$json = array('msg' => 'ok');
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -543,6 +555,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = array('msg' => 'ok');
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -551,6 +564,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getProductStock($this->request->get['pid']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -574,6 +588,7 @@ class ControllerOpenbayOpenbay extends Controller {
 			$json['msg'] = $this->language->get('lang_ajax_not_subtract');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -586,6 +601,7 @@ class ControllerOpenbayOpenbay extends Controller {
 		$json['lasterror'] = $this->openbay->ebay->lasterror;
 		$json['lastmsg'] = $this->openbay->ebay->lastmsg;
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -594,6 +610,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getPlans();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -602,6 +619,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->getMyPlan();
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -670,26 +688,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/viewSubscription', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/openbay/viewSubscription', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -723,26 +741,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/viewItemImport', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/openbay/viewItemImport', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -776,26 +794,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/viewOrderImport', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/openbay/viewOrderImport', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -823,26 +841,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/viewSync', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/openbay/viewSync', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -880,26 +898,26 @@ class ControllerOpenbayOpenbay extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay/viewItemLinks', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/openbay/viewItemLinks', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -950,6 +968,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = $this->model_openbay_ebay->saveItemLink($this->request->get);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -960,6 +979,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = array('error' => false, 'msg' => $this->language->get('item_link_removed'));
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1000,6 +1020,7 @@ class ControllerOpenbayOpenbay extends Controller {
 			$json['data'] = null;
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1017,6 +1038,7 @@ class ControllerOpenbayOpenbay extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1076,26 +1098,26 @@ class ControllerOpenbayOpenbay extends Controller {
 				$this->data['breadcrumbs'] = array();
 
 				$this->data['breadcrumbs'][] = array(
-					'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-					'text'		=> $this->language->get('lang_home'),
+					'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+					'text'      => $this->language->get('lang_home'),
 					'separator' => false
 				);
 
 				$this->data['breadcrumbs'][] = array(
-					'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-					'text'		=> $this->language->get('lang_title'),
+					'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+					'text'      => $this->language->get('lang_title'),
 					'separator' => ' :: '
 				);
 
 				$this->data['breadcrumbs'][] = array(
-					'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-					'text'		=> $this->language->get('lang_ebay'),
+					'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+					'text'      => $this->language->get('lang_ebay'),
 					'separator' => ' :: '
 				);
 
 				$this->data['breadcrumbs'][] = array(
-					'href'		=> $this->url->link('openbay/openbay/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'], 'SSL'),
-					'text'		=> $this->language->get('lang_pageaction'),
+					'href'      => $this->url->link('openbay/openbay/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'], 'SSL'),
+					'text'      => $this->language->get('lang_pageaction'),
 					'separator' => ' :: '
 				);
 
@@ -1205,10 +1227,10 @@ class ControllerOpenbayOpenbay extends Controller {
 			if ($reserve == false) { $reserve = 0; }
 
 			$data = array(
-				'listing'	=> $listings,
-				'stock'	=> $stock,
-				'reserve'	=> $reserve,
-				'variant'	=> $variant
+				'listing' => $listings,
+				'stock'   => $stock,
+				'reserve' => $reserve,
+				'variant' => $variant
 			);
 
 			if (!empty($listings)) {
@@ -1229,6 +1251,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 			$json = $this->model_openbay_ebay->editSave($this->request->post);
 
+			$this->response->addHeader('Content-Type: application/json');
 			$this->response->setOutput(json_encode($json));
 
 		} else {
@@ -1348,11 +1371,11 @@ class ControllerOpenbayOpenbay extends Controller {
 					$img_info = getimagesize(HTTPS_CATALOG . 'image/' . $product_info['image']);
 
 					$product_info['product_images'][] = array(
-						'image'	=> $product_info['image'],
-						'preview'	=> $this->model_tool_image->resize($product_info['image'], 100, 100),
-						'full'		=> HTTPS_CATALOG . 'image/' . $product_info['image'],
-						'width'	=> $img_info[0],
-						'height'	=> $img_info[1]
+						'image'   => $product_info['image'],
+						'preview' => $this->model_tool_image->resize($product_info['image'], 100, 100),
+						'full'    => HTTPS_CATALOG . 'image/' . $product_info['image'],
+						'width'   => $img_info[0],
+						'height'  => $img_info[1]
 					);
 				}
 
@@ -1361,11 +1384,11 @@ class ControllerOpenbayOpenbay extends Controller {
 						$img_info = getimagesize(HTTPS_CATALOG . 'image/' . $product_image['image']);
 
 						$product_info['product_images'][] = array(
-							'image'	=> $product_image['image'],
-							'preview'	=> $this->model_tool_image->resize($product_image['image'], 100, 100),
-							'full'		=> HTTPS_CATALOG . 'image/' . $product_image['image'],
-							'width'	=> $img_info[0],
-							'height'	=> $img_info[1]
+							'image'   => $product_image['image'],
+							'preview' => $this->model_tool_image->resize($product_image['image'], 100, 100),
+							'full'    => HTTPS_CATALOG . 'image/' . $product_image['image'],
+							'width'   => $img_info[0],
+							'height'  => $img_info[1]
 						);
 					}
 				}
@@ -1438,7 +1461,6 @@ class ControllerOpenbayOpenbay extends Controller {
 
 				foreach ($this->request->post['selected'] as $product_id) {
 					if (!array_key_exists($product_id, $activeList)) {
-
 						$prod = $this->model_catalog_product->getProduct($product_id);
 
 						if ($openstock == 1 && isset($prod['has_option']) && $prod['has_option'] == 1) {
@@ -1483,11 +1505,15 @@ class ControllerOpenbayOpenbay extends Controller {
 
 							$setting['dispatch_times'] = $this->openbay->ebay->getSetting('dispatch_time_max');
 
-							if (is_array($setting['dispatch_times'])) { ksort($setting['dispatch_times']); }
+							if (is_array($setting['dispatch_times'])) {
+								ksort($setting['dispatch_times']);
+							}
 
 							$setting['countries'] = $this->openbay->ebay->getSetting('countries');
 
-							if (is_array($setting['countries'])) { ksort($setting['countries']); }
+							if (is_array($setting['countries'])) {
+								ksort($setting['countries']);
+							}
 
 							$setting['returns'] = $this->openbay->ebay->getSetting('returns');
 
@@ -1643,9 +1669,11 @@ class ControllerOpenbayOpenbay extends Controller {
 
 					$json = $this->model_openbay_ebay->ebayVerifyAddItem($data, $this->request->get['options']);
 
+					$this->response->addHeader('Content-Type: application/json');
 					$this->response->setOutput(json_encode($json));
 
 				} else {
+					$this->response->addHeader('Content-Type: application/json');
 					$this->response->setOutput(json_encode(array('error' => true, 'msg' => 'This item is already listed in your eBay account', 'item' => $item_id)));
 				}
 			}
@@ -1816,14 +1844,15 @@ class ControllerOpenbayOpenbay extends Controller {
 				$verifyResponse = $this->model_openbay_ebay->ebayVerifyAddItem($data, 'no');
 
 				$json = array(
-					'errors'	=> $verifyResponse['data']['Errors'],
-					'fees'		=> $verifyResponse['data']['Fees'],
-					'itemid'	=> (string)$verifyResponse['data']['ItemID'],
-					'preview'	=> (string)$verifyResponse['data']['link'],
-					'i'			=> $this->request->get['i'],
-					'ack'		=> (string)$verifyResponse['data']['Ack']
+					'errors'  => $verifyResponse['data']['Errors'],
+					'fees'    => $verifyResponse['data']['Fees'],
+					'itemid'  => (string)$verifyResponse['data']['ItemID'],
+					'preview' => (string)$verifyResponse['data']['link'],
+					'i'       => $this->request->get['i'],
+					'ack'     => (string)$verifyResponse['data']['Ack']
 				);
 
+				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($json));
 			}
 
@@ -1873,6 +1902,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 			$json = $this->model_openbay_ebay->ebayAddItem($data, $this->request->get['options']);
 
+			$this->response->addHeader('Content-Type: application/json');
 			$this->response->setOutput(json_encode($json));
 
 		} else {
@@ -2038,14 +2068,15 @@ class ControllerOpenbayOpenbay extends Controller {
 				$verifyResponse = $this->model_openbay_ebay->ebayAddItem($data, 'no');
 
 				$json = array(
-					'errors'	=> $verifyResponse['data']['Errors'],
-					'fees'		=> $verifyResponse['data']['Fees'],
-					'itemid'	=> (string)$verifyResponse['data']['ItemID'],
-					'preview'	=> (string)$verifyResponse['data']['link'],
-					'i'			=> $this->request->get['i'],
-					'ack'		=> (string)$verifyResponse['data']['Ack']
+					'errors'  => $verifyResponse['data']['Errors'],
+					'fees'    => $verifyResponse['data']['Fees'],
+					'itemid'  => (string)$verifyResponse['data']['ItemID'],
+					'preview' => (string)$verifyResponse['data']['link'],
+					'i'       => $this->request->get['i'],
+					'ack'     => (string)$verifyResponse['data']['Ack']
 				);
 
+				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($json));
 			}
 
@@ -2061,6 +2092,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = array('error' => false, 'msg' => 'OK');
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2071,6 +2103,7 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = array('msg' => 'Links repaired');
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -2081,12 +2114,14 @@ class ControllerOpenbayOpenbay extends Controller {
 
 		$json = array('msg' => 'Locks deleted');
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
 	public function endItem() {
 		$json = $this->openbay->ebay->endItem($this->request->get['id']);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

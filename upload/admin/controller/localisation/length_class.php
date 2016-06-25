@@ -166,14 +166,14 @@ class ControllerLocalisationLengthClass extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerLocalisationLengthClass extends Controller {
 		$this->data['length_classes'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$length_class_total = $this->model_localisation_length_class->getTotalLengthClasses();
@@ -201,17 +201,17 @@ class ControllerLocalisationLengthClass extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('localisation/length_class/update', 'token=' . $this->session->data['token'] . '&length_class_id=' . $result['length_class_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('localisation/length_class/update', 'token=' . $this->session->data['token'] . '&length_class_id=' . $result['length_class_id'] . $url, 'SSL')
 			);
 
 			$this->data['length_classes'][] = array(
-				'length_class_id' 	=> $result['length_class_id'],
-				'title'           		=> $result['title'] . (($result['length_class_id'] == $this->config->get('config_length_class')) ? $this->language->get('text_default') : null),
-				'unit'            		=> $result['unit'],
-				'value'           		=> $result['value'],
-				'selected'        	=> isset($this->request->post['selected']) && in_array($result['length_class_id'], $this->request->post['selected']),
-				'action'          		=> $action
+				'length_class_id' => $result['length_class_id'],
+				'title'           => $result['title'] . (($result['length_class_id'] == $this->config->get('config_length_class')) ? $this->language->get('text_default') : null),
+				'unit'            => $result['unit'],
+				'value'           => $result['value'],
+				'selected'        => isset($this->request->post['selected']) && in_array($result['length_class_id'], $this->request->post['selected']),
+				'action'          => $action
 			);
 		}
 

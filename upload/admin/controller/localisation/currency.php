@@ -178,14 +178,14 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -200,10 +200,10 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->data['currencies'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$currency_total = $this->model_localisation_currency->getTotalCurrencies();
@@ -219,14 +219,14 @@ class ControllerLocalisationCurrency extends Controller {
 			);
 
 			$this->data['currencies'][] = array(
-				'currency_id'   	=> $result['currency_id'],
-				'title'         			=> $result['title'] . (($result['code'] == $this->config->get('config_currency')) ? $this->language->get('text_default') : null),
-				'code'          		=> $result['code'],
-				'status'     			=> $result['status'],
-				'value'         		=> $result['value'],
-				'date_modified' 	=> date($this->language->get('date_format_time'), strtotime($result['date_modified'])),
-				'selected'      		=> isset($this->request->post['selected']) && in_array($result['currency_id'], $this->request->post['selected']),
-				'action'        		=> $action
+				'currency_id'   => $result['currency_id'],
+				'title'         => $result['title'] . (($result['code'] == $this->config->get('config_currency')) ? $this->language->get('text_default') : null),
+				'code'          => $result['code'],
+				'status'        => $result['status'],
+				'value'         => $result['value'],
+				'date_modified' => date($this->language->get('date_format_time'), strtotime($result['date_modified'])),
+				'selected'      => isset($this->request->post['selected']) && in_array($result['currency_id'], $this->request->post['selected']),
+				'action'        => $action
 			);
 		}
 
@@ -365,14 +365,14 @@ class ControllerLocalisationCurrency extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('localisation/currency', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

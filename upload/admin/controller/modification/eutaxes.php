@@ -141,7 +141,7 @@ class ControllerModificationEutaxes extends Controller {
 		$this->getList();
 	}
 
-	public function getModification() {
+	protected function getModification() {
 		$this->language->load('modification/' . $this->_name);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
@@ -170,24 +170,23 @@ class ControllerModificationEutaxes extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_modification'),
-			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_modification'),
+			'href'      => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('modification/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('modification/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -200,8 +199,8 @@ class ControllerModificationEutaxes extends Controller {
 
 		foreach ($geo_zone_results as $geo_zone_result) {
 			$this->data['geo_zones'][] = array(
-				'geo_zone_id' 	=> $geo_zone_result['geo_zone_id'],
-				'name'        	=> $geo_zone_result['name']
+				'geo_zone_id' => $geo_zone_result['geo_zone_id'],
+				'name'        => $geo_zone_result['name']
 			);
 		}
 
@@ -216,9 +215,9 @@ class ControllerModificationEutaxes extends Controller {
 
 		foreach ($tax_rates_results as $tax_rates_result) {
 			$this->data['tax_rates'][] = array(
-				'tax_rate_id'	=> $tax_rates_result['tax_rate_id'],
-				'name'			=> $tax_rates_result['name'],
-				'geo_zone'		=> $tax_rates_result['geo_zone']
+				'tax_rate_id' => $tax_rates_result['tax_rate_id'],
+				'name'        => $tax_rates_result['name'],
+				'geo_zone'    => $tax_rates_result['geo_zone']
 			);
 		}
 
@@ -239,9 +238,9 @@ class ControllerModificationEutaxes extends Controller {
 			}
 
 			$this->data['tax_classes'][] = array(
-				'tax_class_id' 	=> $tax_classes_result['tax_class_id'],
-				'title'        		=> $tax_classes_result['title'],
-				'tax_rules' 		=> $tax_rule
+				'tax_class_id' => $tax_classes_result['tax_class_id'],
+				'title'        => $tax_classes_result['title'],
+				'tax_rules'    => $tax_rule
 			);
 		}
 
@@ -267,9 +266,7 @@ class ControllerModificationEutaxes extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function getList() {
-		$this->language->load('modification/' . $this->_name);
-
+	protected function getList() {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -302,24 +299,23 @@ class ControllerModificationEutaxes extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_modification'),
-			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_modification'),
+			'href'      => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('modification/eutaxes/listing', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('modification/eutaxes/listing', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -337,10 +333,10 @@ class ControllerModificationEutaxes extends Controller {
 		$this->data['eucountries'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$eucountries_total = $this->model_modification_eutaxes->getTotalEUCountries();
@@ -353,8 +349,8 @@ class ControllerModificationEutaxes extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('modification/eutaxes/update', 'token=' . $this->session->data['token'] . '&eucountry_id=' . $result['eucountry_id'], 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('modification/eutaxes/update', 'token=' . $this->session->data['token'] . '&eucountry_id=' . $result['eucountry_id'], 'SSL')
 			);
 
 			if ($result['code'] && file_exists(DIR_APPLICATION . 'view/image/flags/' . strtolower($result['code']) . '.png')) {
@@ -368,14 +364,14 @@ class ControllerModificationEutaxes extends Controller {
 			}
 
 			$this->data['eucountries'][] = array(
-				'eucountry_id'	=> $result['eucountry_id'],
-				'flag'				=> $flagcode,
-				'eucountry'		=> $result['eucountry'],
-				'code'			=> $result['code'],
-				'rate'				=> $result['rate'],
-				'status'			=> $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-				'selected'		=> isset($this->request->post['selected']) && in_array($result['eucountry_id'], $this->request->post['selected']),
-				'action'			=> $action
+				'eucountry_id' => $result['eucountry_id'],
+				'flag'         => $flagcode,
+				'eucountry'    => $result['eucountry'],
+				'code'         => $result['code'],
+				'rate'         => $result['rate'],
+				'status'       => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+				'selected'     => isset($this->request->post['selected']) && in_array($result['eucountry_id'], $this->request->post['selected']),
+				'action'       => $action
 			);
 		}
 
@@ -456,9 +452,7 @@ class ControllerModificationEutaxes extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function getForm() {
-		$this->language->load('modification/' . $this->_name);
-
+	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
@@ -511,24 +505,23 @@ class ControllerModificationEutaxes extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_modification'),
-			'href'		=> $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_modification'),
+			'href'      => $this->url->link('extension/modification', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('modification/eutaxes/listing', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('modification/eutaxes/listing', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

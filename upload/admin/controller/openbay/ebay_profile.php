@@ -42,26 +42,26 @@ class ControllerOpenbayEbayProfile extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_ebay'),
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_ebay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/ebay_profile/profileAll', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('lang_heading'),
+			'href'      => $this->url->link('openbay/ebay_profile/profileAll', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_heading'),
 			'separator' => ' :: '
 		);
 
@@ -142,13 +142,19 @@ class ControllerOpenbayEbayProfile extends Controller {
 		$setting['countries'] = $this->openbay->ebay->getSetting('countries');
 		$setting['returns'] = $this->openbay->ebay->getSetting('returns');
 
-		if (empty($setting['dispatch_times']) || empty($setting['countries']) || empty($setting['returns'])){
+		if (empty($setting['dispatch_times']) || empty($setting['countries']) || empty($setting['returns'])) {
 			$this->session->data['warning'] = $this->language->get('lang_error_missing_settings');
+
 			$this->redirect($this->url->link('openbay/openbay/viewSync&token=' . $this->session->data['token'], 'SSL'));
 		}
 
-		if (is_array($setting['dispatch_times'])){ ksort($setting['dispatch_times']); }
-		if (is_array($setting['countries'])){ ksort($setting['countries']); }
+		if (is_array($setting['dispatch_times'])){
+			ksort($setting['dispatch_times']);
+		}
+
+		if (is_array($setting['countries'])){
+			ksort($setting['countries']);
+		}
 
 		$this->data['setting'] = $setting;
 
@@ -191,26 +197,26 @@ class ControllerOpenbayEbayProfile extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> 'OpenBay Pro',
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => 'OpenBay Pro',
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> 'eBay',
+			'href'      => $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => 'eBay',
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('openbay/ebay_profile/profileAll', 'token=' . $this->session->data['token'], 'SSL'),
-			'text'		=> 'Profiles',
+			'href'      => $this->url->link('openbay/ebay_profile/profileAll', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => 'Profiles',
 			'separator' => ' :: '
 		);
 
@@ -266,10 +272,10 @@ class ControllerOpenbayEbayProfile extends Controller {
 			if (isset($profile_info['data']['service_national']) && is_array($profile_info['data']['service_national'])) {
 				foreach ($profile_info['data']['service_national'] as $key => $service) {
 					$national[] = array(
-						'id'				=> $service,
-						'price'		=> $profile_info['data']['price_national'][$key],
-						'additional'	=> $profile_info['data']['priceadditional_national'][$key],
-						'name'		=> $this->model_openbay_ebay->getShippingServiceName('0', $service)
+						'id'         => $service,
+						'price'      => $profile_info['data']['price_national'][$key],
+						'additional' => $profile_info['data']['priceadditional_national'][$key],
+						'name'       => $this->model_openbay_ebay->getShippingServiceName('0', $service)
 					);
 					$i++;
 				}
@@ -290,11 +296,11 @@ class ControllerOpenbayEbayProfile extends Controller {
 					}
 
 					$international[] = array(
-						'id'				=> $service,
-						'price'		=> $profile_info['data']['price_international'][$key],
-						'additional'	=> $profile_info['data']['priceadditional_international'][$key],
-						'name'		=> $this->model_openbay_ebay->getShippingServiceName('1', $service),
-						'shipto'		=> $profile_info['data']['shipto_international'][$key]
+						'id'         => $service,
+						'price'      => $profile_info['data']['price_international'][$key],
+						'additional' => $profile_info['data']['priceadditional_international'][$key],
+						'name'       => $this->model_openbay_ebay->getShippingServiceName('1', $service),
+						'shipto'     => $profile_info['data']['shipto_international'][$key]
 					);
 					$i++;
 				}
@@ -325,10 +331,10 @@ class ControllerOpenbayEbayProfile extends Controller {
 				$i++;
 
 				$national[$i] = array(
-					'id'				=> $service,
-					'price'		=> $profile_info['data']['price_national'][$key],
-					'additional'	=> $profile_info['data']['priceadditional_national'][$key],
-					'name'		=> $this->model_openbay_ebay->getShippingServiceName('0', $service)
+					'id'         => $service,
+					'price'      => $profile_info['data']['price_national'][$key],
+					'additional' => $profile_info['data']['priceadditional_national'][$key],
+					'name'       => $this->model_openbay_ebay->getShippingServiceName('0', $service)
 				);
 			}
 		}
@@ -345,11 +351,11 @@ class ControllerOpenbayEbayProfile extends Controller {
 				$i++;
 
 				$international[$i] = array(
-					'id'				=> $service,
-					'price'		=> $profile_info['data']['price_international'][$key],
-					'additional'	=> $profile_info['data']['priceadditional_international'][$key],
-					'name'		=> $this->model_openbay_ebay->getShippingServiceName('1', $service),
-					'shipto'		=> $profile_info['data']['shipto_international'][$key]
+					'id'         => $service,
+					'price'      => $profile_info['data']['price_international'][$key],
+					'additional' => $profile_info['data']['priceadditional_international'][$key],
+					'name'       => $this->model_openbay_ebay->getShippingServiceName('1', $service),
+					'shipto'     => $profile_info['data']['shipto_international'][$key]
 				);
 			}
 		}
@@ -363,11 +369,11 @@ class ControllerOpenbayEbayProfile extends Controller {
 
 		if (is_array($shipping_national)) {
 			foreach ($shipping_national as $key => $service) {
-				$tmp .= '<p class="shipping_national_'.$key.'"><label><strong>'.$this->language->get('lang_shipping_service').': </strong><label> ';
-				$tmp .= '<input type="hidden" name="service_national['.$key.']" value="'.$service['id'].'" />'.$service['name'].'</p><p class="shipping_national_'.$key.'"><label>'.$this->language->get('lang_shipping_first').': </label>';
-				$tmp .= '<input type="text" name="price_national['.$key.']" style="width:50px;" value="'.$service['price'].'" />';
-				$tmp .= '&nbsp;&nbsp;<label>'.$this->language->get('lang_shipping_add').': </label>';
-				$tmp .= '<input type="text" name="priceadditional_national['.$key.']" style="width:50px;" value="'.$service['additional'].'" />&nbsp;&nbsp;<a onclick="removeShipping(\'national\',\''.$key.'\');" class="button"><span>'.$this->language->get('lang_btn_remove').'</span></a></p>';
+				$tmp .= '<p class="shipping_national_' . $key . '"><label><strong>' . $this->language->get('lang_shipping_service') . ': </strong><label> ';
+				$tmp .= '<input type="hidden" name="service_national[' . $key . ']" value="'.$service['id'] . '" />' . $service['name'] . '</p><p class="shipping_national_' . $key . '"><label>' . $this->language->get('lang_shipping_first') . ': </label>';
+				$tmp .= '<input type="text" name="price_national[' . $key . ']" style="width:50px;" value="' . $service['price'] . '" />';
+				$tmp .= '&nbsp;&nbsp;<label>' . $this->language->get('lang_shipping_add') . ': </label>';
+				$tmp .= '<input type="text" name="priceadditional_national[' . $key . ']" style="width:50px;" value="' . $service['additional'] . '" />&nbsp;&nbsp;<a onclick="removeShipping(\'national\',\'' . $key . '\');" class="button"><span>' . $this->language->get('lang_btn_remove') . '</span></a></p>';
 			}
 		}
 
@@ -390,7 +396,9 @@ class ControllerOpenbayEbayProfile extends Controller {
 				foreach ($zones as $zone) {
 					$tmp .= '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
 					$tmp .= '<input type="checkbox" name="shipto_international[' . $key . '][]" value="'. $zone['shipping_location'] . '"';
-					if (in_array($zone['shipping_location'], $service['shipto'])) { $tmp .= ' checked="checked"'; }
+					if (in_array($zone['shipping_location'], $service['shipto'])) {
+						$tmp .= ' checked="checked"';
+					}
 					$tmp .= '/> ' . $zone['description'] . '</div>';
 				}
 
@@ -408,6 +416,7 @@ class ControllerOpenbayEbayProfile extends Controller {
 
 		$profile_info['html'] = $return;
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($profile_info));
 	}
 
