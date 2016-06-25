@@ -130,7 +130,7 @@ class ControllerDesignPayment extends Controller {
 		$this->getList();
 	}
 
-	public function getList() {
+	protected function getList() {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -166,14 +166,14 @@ class ControllerDesignPayment extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href'   	=> $this->url->link('design/payment', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/payment', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -191,10 +191,10 @@ class ControllerDesignPayment extends Controller {
 		$this->data['payment_images'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$payment_image_total = $this->model_design_payment->getTotalPaymentImages();
@@ -205,8 +205,8 @@ class ControllerDesignPayment extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('design/payment/update', 'token=' . $this->session->data['token'] . '&payment_image_id=' . $result['payment_image_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('design/payment/update', 'token=' . $this->session->data['token'] . '&payment_image_id=' . $result['payment_image_id'] . $url, 'SSL')
 			);
 
 			$image = $this->model_design_payment->getPaymentImageImage($result['payment_image_id']);
@@ -218,13 +218,13 @@ class ControllerDesignPayment extends Controller {
 			}
 
 			$this->data['payment_images'][] = array(
-				'payment_image_id' 	=> $result['payment_image_id'],
-				'image'					=> $thumb,
-				'name'             		=> $result['name'],
-				'method'					=> $this->config->get(strtolower($result['payment']) . '_status'),
-				'status'     				=> $result['status'],
-				'selected'        		=> isset($this->request->post['selected']) && in_array($result['payment_image_id'], $this->request->post['selected']),
-				'action'          			=> $action
+				'payment_image_id' => $result['payment_image_id'],
+				'image'            => $thumb,
+				'name'             => $result['name'],
+				'method'           => $this->config->get(strtolower($result['payment']) . '_status'),
+				'status'           => $result['status'],
+				'selected'         => isset($this->request->post['selected']) && in_array($result['payment_image_id'], $this->request->post['selected']),
+				'action'           => $action
 			);
 		}
 
@@ -303,7 +303,7 @@ class ControllerDesignPayment extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function getForm() {
+	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
@@ -365,14 +365,14 @@ class ControllerDesignPayment extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('design/payment', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/payment', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -407,8 +407,8 @@ class ControllerDesignPayment extends Controller {
 				$this->language->load('payment/' . $filename);
 
 				$this->data['payment_methods'][] = array(
-					'filename'	=> $filename,
-					'name'		=> $this->language->get('heading_title')
+					'filename' => $filename,
+					'name'     => $this->language->get('heading_title')
 				);
 			}
 		}

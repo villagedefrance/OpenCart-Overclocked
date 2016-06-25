@@ -166,14 +166,14 @@ class ControllerDesignConnection extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/connection', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/connection', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -187,10 +187,10 @@ class ControllerDesignConnection extends Controller {
 		$this->data['connections'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$connection_total = $this->model_design_connection->getTotalConnections();
@@ -201,17 +201,17 @@ class ControllerDesignConnection extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('design/connection/update', 'token=' . $this->session->data['token'] . '&connection_id=' . $result['connection_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('design/connection/update', 'token=' . $this->session->data['token'] . '&connection_id=' . $result['connection_id'] . $url, 'SSL')
 			);
 
 			$this->data['connections'][] = array(
-				'connection_id'	=> $result['connection_id'],
-				'name'      			=> $result['name'],
-				'backend'			=> $result['backend'],
-				'frontend'			=> $result['frontend'],
-				'selected'			=> isset($this->request->post['selected']) && in_array($result['connection_id'], $this->request->post['selected']),
-				'action'				=> $action
+				'connection_id' => $result['connection_id'],
+				'name'          => $result['name'],
+				'backend'       => $result['backend'],
+				'frontend'      => $result['frontend'],
+				'selected'      => isset($this->request->post['selected']) && in_array($result['connection_id'], $this->request->post['selected']),
+				'action'        => $action
 			);
 		}
 
@@ -338,14 +338,14 @@ class ControllerDesignConnection extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/connection', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/connection', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -397,9 +397,9 @@ class ControllerDesignConnection extends Controller {
 
 		foreach ($connection_routes as $connection_route) {
 			$this->data['connection_routes'][] = array(
-				'route_id'	=> $connection_route['connection_route_id'],
-				'title'			=> $connection_route['title'],
-				'route'		=> $connection_route['route']
+				'route_id' => $connection_route['connection_route_id'],
+				'title'    => $connection_route['title'],
+				'route'    => $connection_route['route']
 			);
 		}
 

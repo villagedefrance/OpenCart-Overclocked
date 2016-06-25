@@ -11,14 +11,14 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('common/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('common/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -183,17 +183,7 @@ class ControllerCommonFileManagerFull extends Controller {
 			$directory = DIR_IMAGE . 'data/';
 		}
 
-		$allowed = array(
-			'jpg',
-			'jpeg',
-			'png',
-			'gif',
-			'zip',
-			'rar',
-			'pdf',
-			'swf',
-			'flv'
-		);
+		$allowed = array('jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'pdf', 'swf', 'flv');
 
 		$files = glob(rtrim($directory, '/') . '/*');
 
@@ -210,17 +200,7 @@ class ControllerCommonFileManagerFull extends Controller {
 
 					$i = 0;
 
-					$suffix = array(
-						'B',
-						'KB',
-						'MB',
-						'GB',
-						'TB',
-						'PB',
-						'EB',
-						'ZB',
-						'YB'
-					);
+					$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
 					while (($size / 1024) > 1) {
 						$size = $size / 1024;
@@ -230,10 +210,10 @@ class ControllerCommonFileManagerFull extends Controller {
 					$filename_path_data = htmlspecialchars(utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')), ENT_QUOTES, 'UTF-8');
 
 					$json[] = array(
-						'filename'	=> htmlspecialchars(basename($file), ENT_QUOTES, 'UTF-8'),
-						'file'			=> $filename_path_data,
-						'size'			=> round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
-						'image'		=> $this->image($filename_path_data)
+						'filename' => htmlspecialchars(basename($file), ENT_QUOTES, 'UTF-8'),
+						'file'     => $filename_path_data,
+						'size'     => round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
+						'image'    => $this->image($filename_path_data)
 					);
 				}
 			}

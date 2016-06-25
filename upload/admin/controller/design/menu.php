@@ -107,7 +107,7 @@ class ControllerDesignMenu extends Controller {
 		$this->getList();
 	}
 
-	public function getList() {
+	protected function getList() {
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
@@ -123,14 +123,14 @@ class ControllerDesignMenu extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/menu', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/menu', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -147,8 +147,8 @@ class ControllerDesignMenu extends Controller {
 		$this->data['menus'] = array();
 
 		$data = array(
-			'start'	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit'		=> $this->config->get('config_admin_limit')
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$this->load->model('design/menu_items');
@@ -162,8 +162,8 @@ class ControllerDesignMenu extends Controller {
 				$action = array();
 
 				$action[] = array(
-					'text'	=> $this->language->get('text_menu_edit'),
-					'href'	=> $this->url->link('design/menu/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL')
+					'text' => $this->language->get('text_menu_edit'),
+					'href' => $this->url->link('design/menu/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL')
 				);
 
 				$count_menu_item = $this->model_design_menu_items->getTotalMenuItems($result['menu_id'], $data);
@@ -172,14 +172,14 @@ class ControllerDesignMenu extends Controller {
 				$menu_item_view = $count_menu_item ? '<a href="' . $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $result['menu_id'] . $url, 'SSL') . '" class="button">' . $this->language->get('text_menu_item_view') . '</a>' : '';
 
 				$this->data['menus'][] = array(
-					'menu_id' 				=> $result['menu_id'],
-					'title'   					=> $result['title'],
-					'menu_items' 			=> $count_menu_item,
-					'selected'    			=> isset($this->request->post['selected']) && in_array($result['menu_id'], $this->request->post['selected']),
-					'status'    				=> $result['status'],
-					'menu_item_add' 		=> $menu_item_add,
-					'menu_item_view'		=> $menu_item_view,
-					'action'					=> $action
+					'menu_id'        => $result['menu_id'],
+					'title'          => $result['title'],
+					'menu_items'     => $count_menu_item,
+					'selected'       => isset($this->request->post['selected']) && in_array($result['menu_id'], $this->request->post['selected']),
+					'status'         => $result['status'],
+					'menu_item_add'  => $menu_item_add,
+					'menu_item_view' => $menu_item_view,
+					'action'         => $action
 				);
 			}
 		}
@@ -239,7 +239,7 @@ class ControllerDesignMenu extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function getForm() {
+	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_none'] = $this->language->get('text_none');
@@ -274,14 +274,14 @@ class ControllerDesignMenu extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -334,7 +334,7 @@ class ControllerDesignMenu extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function validateForm() {
+	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'design/menu')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -354,7 +354,7 @@ class ControllerDesignMenu extends Controller {
 		}
 	}
 
-	private function validateDelete() {
+	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'design/menu')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

@@ -22,7 +22,7 @@ class ControllerCommonForgotten extends Controller {
 
 			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
 
-			$message  = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
+			$message = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
 			$message .= sprintf($this->language->get('text_change'), $this->config->get('config_name')) . "\n\n";
 			$message .= $this->url->link('common/reset', 'code=' . $code, 'SSL') . "\n\n";
 			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
@@ -50,14 +50,14 @@ class ControllerCommonForgotten extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', '', 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_forgotten'),
-			'href'		=> $this->url->link('common/forgotten', '', 'SSL'),
+			'text'      => $this->language->get('text_forgotten'),
+			'href'      => $this->url->link('common/forgotten', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 

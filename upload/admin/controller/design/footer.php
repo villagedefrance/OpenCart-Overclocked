@@ -167,14 +167,14 @@ class ControllerDesignFooter extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -188,10 +188,10 @@ class ControllerDesignFooter extends Controller {
 		$this->data['footer_blocks'] = array();
 
 		$data = array(
-			'sort'  	=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 		=> $this->config->get('config_admin_limit')
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit' => $this->config->get('config_admin_limit')
 		);
 
 		$footer_total = $this->model_design_footer->getTotalFooters();
@@ -202,17 +202,17 @@ class ControllerDesignFooter extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('design/footer/update', 'token=' . $this->session->data['token'] . '&footer_id=' . $result['footer_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('design/footer/update', 'token=' . $this->session->data['token'] . '&footer_id=' . $result['footer_id'] . $url, 'SSL')
 			);
 
 			$this->data['footer_blocks'][] = array(
-				'footer_id'	=> $result['footer_id'],
-				'name'		=> $result['name'],
-				'position'		=> $result['position'],
-				'status'		=> $result['status'],
-				'selected'	=> isset($this->request->post['selected']) && in_array($result['footer_id'], $this->request->post['selected']),
-				'action'		=> $action
+				'footer_id' => $result['footer_id'],
+				'name'      => $result['name'],
+				'position'  => $result['position'],
+				'status'    => $result['status'],
+				'selected'  => isset($this->request->post['selected']) && in_array($result['footer_id'], $this->request->post['selected']),
+				'action'    => $action
 			);
 		}
 
@@ -362,14 +362,14 @@ class ControllerDesignFooter extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -439,10 +439,10 @@ class ControllerDesignFooter extends Controller {
 
 		foreach ($footer_routes as $footer_route) {
 			$this->data['footer_routes'][] = array(
-				'footer_route_description'	=> $footer_route['footer_route_description'],
-				'route'							=> $footer_route['route'],
-				'external_link'					=> $footer_route['external_link'],
-				'sort_order'						=> $footer_route['sort_order']
+				'footer_route_description' => $footer_route['footer_route_description'],
+				'route'                    => $footer_route['route'],
+				'external_link'            => $footer_route['external_link'],
+				'sort_order'               => $footer_route['sort_order']
 			);
 		}
 

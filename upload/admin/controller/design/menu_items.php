@@ -227,14 +227,14 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
@@ -252,11 +252,11 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['menu_items'] = array();
 
 		$data = array(
-			'filter_name'	=> $filter_name,
-			'sort'  			=> $sort,
-			'order' 			=> $order,
-			'start' 			=> ($page - 1) * $this->config->get('config_admin_limit'),
-			'limit' 				=> $this->config->get('config_admin_limit')
+			'filter_name' => $filter_name,
+			'sort'        => $sort,
+			'order'       => $order,
+			'start'       => ($page - 1) * $this->config->get('config_admin_limit'),
+			'limit'       => $this->config->get('config_admin_limit')
 		);
 
 		$menu_item_total = $this->model_design_menu_items->getTotalMenuItems($menu_id, $data);
@@ -267,18 +267,18 @@ class ControllerDesignMenuItems extends Controller {
 			$action = array();
 
 			$action[] = array(
-				'text'	=> $this->language->get('text_edit'),
-				'href'	=> $this->url->link('design/menu_items/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . '&menu_item_id=' . $result['menu_item_id'] . $url, 'SSL')
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('design/menu_items/update', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . '&menu_item_id=' . $result['menu_item_id'] . $url, 'SSL')
 			); 
 
 			$this->data['menu_items'][] = array(
-				'menu_item_id'	=> $result['menu_item_id'],
-				'name'			=> $result['name'],
-				'external'		=> $result['external_link'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
-				'sort_order'		=> $result['sort_order'],
-				'status'			=> $result['status'],
-				'selected'		=> isset($this->request->post['selected']) && in_array($result['menu_item_id'], $this->request->post['selected']),
-				'action'			=> $action
+				'menu_item_id' => $result['menu_item_id'],
+				'name'         => $result['name'],
+				'external'     => $result['external_link'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'sort_order'   => $result['sort_order'],
+				'status'       => $result['status'],
+				'selected'     => isset($this->request->post['selected']) && in_array($result['menu_item_id'], $this->request->post['selected']),
+				'action'       => $action
 			);
 		}
 
@@ -432,20 +432,20 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_menu'),
-			'href'		=> $this->url->link('design/menu', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+			'text'      => $this->language->get('text_menu'),
+			'href'      => $this->url->link('design/menu', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('design/menu_items', 'token=' . $this->session->data['token'] . '&menu_id=' . $menu_id . $url, 'SSL'),
 			'separator' => ' :: '
 		);
 

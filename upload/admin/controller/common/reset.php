@@ -31,14 +31,14 @@ class ControllerCommonReset extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_home'),
-				'href'		=> $this->url->link('common/home', '', 'SSL'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_reset'),
-				'href'		=> $this->url->link('common/reset', '', 'SSL'),
+				'text'      => $this->language->get('text_reset'),
+				'href'      => $this->url->link('common/reset', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
