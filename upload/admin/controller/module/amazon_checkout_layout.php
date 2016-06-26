@@ -55,20 +55,20 @@ class ControllerModuleAmazonCheckoutLayout extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_home'),
-			'href'  	=> $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_module'),
-			'href'  	=> $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_module'),
+			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('heading_title'),
-			'href'  	=> $this->url->link('module/amazon_checkout_layout', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('module/amazon_checkout_layout', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 

@@ -37,7 +37,6 @@ class ControllerFeedRSSFeed extends Controller {
 
 			foreach ($products as $product) {
 				if ($product['description']) {
-
 					$title = $product['name'];
 
 					// Redirects to All products (SEO Url is ON)
@@ -47,13 +46,13 @@ class ControllerFeedRSSFeed extends Controller {
 
 					if ($show_price) {
 						if ($include_tax) {
-							if ((float) $product['special']) {
+							if ((float)$product['special']) {
 								$price = $this->currency->format($this->tax->calculate($product['special'], $product['tax_class_id']), $currency, false, true);
 							} else {
 								$price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id']), $currency, false, true);
 							}
 						} else {
-							if ((float) $product['special']) {
+							if ((float)$product['special']) {
 								$price = $this->currency->format($product['special'], $currency, false, true);
 							} else {
 								$price = $this->currency->format($product['price'], $currency, false, true);

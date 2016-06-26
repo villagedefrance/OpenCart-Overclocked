@@ -1,19 +1,19 @@
 <?php
 // Heading
-$_['heading_title']    	= 'Return Reason';
+$_['heading_title']    = 'Return Reason';
 
 // Text
-$_['text_success']     	= 'Success: You have modified <b>Return Reasons</b> !';
+$_['text_success']     = 'Success: You have modified <b>Return Reasons</b> !';
 
 // Column
-$_['column_name']  		= 'Return Reason Name';
-$_['column_action'] 		= 'Action';
+$_['column_name']      = 'Return Reason Name';
+$_['column_action']    = 'Action';
 
 // Entry
-$_['entry_name']       	= 'Return Reason Name:';
+$_['entry_name']       = 'Return Reason Name:';
 
 // Error
-$_['error_permission'] 	= 'Warning: You do not have permission to modify <b>Return Reasons</b> !';
-$_['error_name']       	= 'Return Reason Name must be between 3 and 128 characters!';
-$_['error_return']     	= 'Warning: This return reason cannot be deleted as it is currently assigned to %s returned products!';
+$_['error_permission'] = 'Warning: You do not have permission to modify <b>Return Reasons</b> !';
+$_['error_name']       = 'Return Reason Name must be between 3 and 128 characters!';
+$_['error_return']     = 'Warning: This return reason cannot be deleted as it is currently assigned to %s returned products!';
 ?>
