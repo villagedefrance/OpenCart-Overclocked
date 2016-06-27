@@ -23,24 +23,23 @@ class ControllerAffiliatePassword extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('affiliate/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('affiliate/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('affiliate/password', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('affiliate/password', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 

@@ -8,12 +8,11 @@ class ControllerProductProductList extends Controller {
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
@@ -34,8 +33,8 @@ class ControllerProductProductList extends Controller {
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('product/product_list'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('product/product_list'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -58,26 +57,26 @@ class ControllerProductProductList extends Controller {
 
 					foreach ($categories_3 as $category_3) {
 						$level_3_data[] = array(
-							'name'	=> $category_3['name'],
-							'href'		=> $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
+							'name' => $category_3['name'],
+							'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
 						);
 
 						$this->data['ctotal3'] = $this->data['ctotal3'] + 1;
 					}
 
 					$level_2_data[] = array(
-						'name'	=> $category_2['name'],
-						'children'	=> $level_3_data,
-						'href'		=> $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
+						'name'     => $category_2['name'],
+						'children' => $level_3_data,
+						'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
 					);
 
 					$this->data['ctotal2'] = $this->data['ctotal2'] + 1;
 				}
 
 				$this->data['categories'][] = array(
-					'name'	=> $category_1['name'],
-					'children'	=> $level_2_data,
-					'href'		=> $this->url->link('product/category', 'path=' . $category_1['category_id'])
+					'name'     => $category_1['name'],
+					'children' => $level_2_data,
+					'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'])
 				);
 
 				$this->data['ctotal1'] = $this->data['ctotal1'] + 1;
@@ -94,10 +93,10 @@ class ControllerProductProductList extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['products'][] = array(
-					'product_id'	=> $result['product_id'],
-					'name'		=> $result['name'],
-					'href'			=> $this->url->link('product/product', 'product_id=' . $result['product_id']),
-					'count'		=> $this->data['pcount']
+					'product_id' => $result['product_id'],
+					'name'       => $result['name'],
+					'href'       => $this->url->link('product/product', 'product_id=' . $result['product_id']),
+					'count'      => $this->data['pcount']
 				);
 
 				$this->data['pcount'] = $this->data['pcount'] + 1;
@@ -139,8 +138,8 @@ class ControllerProductProductList extends Controller {
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('product/product_list'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('product/product_list'),
 				'separator' => $this->language->get('text_separator')
 			);
 

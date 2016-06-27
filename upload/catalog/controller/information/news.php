@@ -7,12 +7,11 @@ class ControllerInformationNews extends Controller {
 
 		$this->load->model('catalog/news');
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
@@ -33,15 +32,15 @@ class ControllerInformationNews extends Controller {
 			$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('information/news_list'),
-				'separator' 	=> $this->language->get('text_separator')
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('information/news_list'),
+				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $news_info['title'],
-				'href'		=> $this->url->link('information/news', 'news_id=' . $news_id),
-				'separator' 	=> $this->language->get('text_separator')
+				'text'      => $news_info['title'],
+				'href'      => $this->url->link('information/news', 'news_id=' . $news_id),
+				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['news_info'] = $news_info;
@@ -70,12 +69,10 @@ class ControllerInformationNews extends Controller {
 			if ($news_info['image']) {
 				$this->data['thumb'] = $this->model_tool_image->resize($news_info['image'], $this->config->get('config_image_newsthumb_width'), $this->config->get('config_image_newsthumb_height'));
 				$this->data['popup'] = $this->model_tool_image->resize($news_info['image'], $this->config->get('config_image_newspopup_width'), $this->config->get('config_image_newspopup_height'));
-
 				$this->data['image'] = true;
 			} else {
 				$this->data['thumb'] = false;
 				$this->data['popup'] = false;
-
 				$this->data['image'] = false;
 			}
 
@@ -113,8 +110,8 @@ class ControllerInformationNews extends Controller {
 			$this->document->setTitle($this->language->get('text_error'));
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_error'),
-				'href'		=> $this->url->link('information/news', 'news_id=' . $news_id),
+				'text'      => $this->language->get('text_error'),
+				'href'      => $this->url->link('information/news', 'news_id=' . $news_id),
 				'separator' => $this->language->get('text_separator')
 			);
 

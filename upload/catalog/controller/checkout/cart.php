@@ -99,18 +99,17 @@ class ControllerCheckoutCart extends Controller {
 			$this->redirect($this->url->link('checkout/cart'));
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('common/home'),
-			'text'		=> $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href'		=> $this->url->link('checkout/cart'),
-			'text'		=> $this->language->get('heading_title'),
+			'href'      => $this->url->link('checkout/cart'),
+			'text'      => $this->language->get('heading_title'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -290,8 +289,8 @@ class ControllerCheckoutCart extends Controller {
 					}
 
 					$option_data[] = array(
-						'name'	=> $option['name'],
-						'value' 	=> (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
+						'name'  => $option['name'],
+						'value' => (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
 					);
 				}
 
@@ -318,11 +317,11 @@ class ControllerCheckoutCart extends Controller {
 
 				if ($product['recurring']) {
 					$frequencies = array(
-						'day'				=> $this->language->get('text_day'),
-						'week'			=> $this->language->get('text_week'),
-						'semi_month'	=> $this->language->get('text_semi_month'),
-						'month'			=> $this->language->get('text_month'),
-						'year'				=> $this->language->get('text_year')
+						'day'        => $this->language->get('text_day'),
+						'week'       => $this->language->get('text_week'),
+						'semi_month' => $this->language->get('text_semi_month'),
+						'month'      => $this->language->get('text_month'),
+						'year'       => $this->language->get('text_year')
 					);
 
 					if ($product['recurring_trial']) {
@@ -365,27 +364,27 @@ class ControllerCheckoutCart extends Controller {
 				$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
 
 				$this->data['products'][] = array(
-					'product_id'				=> $product['product_id'],
-					'key'                 		=> $product['key'],
-					'thumb'               	=> $image,
-					'offer'						=> $offer,
-					'name'                	=> $product['name'],
-					'model'               	=> $product['model'],
-					'option'              		=> $option_data,
-					'quantity'           		=> $product['quantity'],
-					'stock'               		=> $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-					'reward'              	=> $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
-					'price'               		=> $price,
-					'cost' 					=> $product['cost'],
-					'tax_value'				=> $this->currency->format($product_tax_value),
-					'tax_percent'			=> number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
-					'age_minimum'			=> $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
-					'recurring'           	=> $product['recurring'],
-					'profile_name'        	=> $product['profile_name'],
-					'profile_description' 	=> $profile_description,
-					'total'               		=> $total,
-					'href'                		=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
-					'remove'              	=> $this->url->link('checkout/cart', 'remove=' . $product['key'])
+					'product_id'          => $product['product_id'],
+					'key'                 => $product['key'],
+					'thumb'               => $image,
+					'offer'               => $offer,
+					'name'                => $product['name'],
+					'model'               => $product['model'],
+					'option'              => $option_data,
+					'quantity'            => $product['quantity'],
+					'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+					'reward'              => $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
+					'price'               => $price,
+					'cost'                => $product['cost'],
+					'tax_value'           => $this->currency->format($product_tax_value),
+					'tax_percent'         => number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'age_minimum'         => $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
+					'recurring'           => $product['recurring'],
+					'profile_name'        => $product['profile_name'],
+					'profile_description' => $profile_description,
+					'total'               => $total,
+					'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+					'remove'              => $this->url->link('checkout/cart', 'remove=' . $product['key'])
 				);
 			}
 
@@ -401,10 +400,10 @@ class ControllerCheckoutCart extends Controller {
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $key => $voucher) {
 					$this->data['vouchers'][] = array(
-						'key'				=> $key,
-						'description'	=> $voucher['description'],
-						'amount'			=> $this->currency->format($voucher['amount']),
-						'remove'			=> $this->url->link('checkout/cart', 'remove=' . $key)
+						'key'         => $key,
+						'description' => $voucher['description'],
+						'amount'      => $this->currency->format($voucher['amount']),
+						'remove'      => $this->url->link('checkout/cart', 'remove=' . $key)
 					);
 				}
 			}
@@ -870,21 +869,21 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			$address_data = array(
-				'firstname'      		=> '',
-				'lastname'       	=> '',
-				'company'        	=> '',
-				'address_1'      	=> '',
-				'address_2'      	=> '',
-				'postcode'       	=> $this->request->post['postcode'],
-				'city'           		=> '',
-				'zone_id'        		=> $this->request->post['zone_id'],
-				'zone'           		=> $zone,
-				'zone_code'      	=> $zone_code,
-				'country_id'     	=> $this->request->post['country_id'],
-				'country'        		=> $country,
-				'iso_code_2'     	=> $iso_code_2,
-				'iso_code_3'     	=> $iso_code_3,
-				'address_format' 	=> $address_format
+				'firstname'      => '',
+				'lastname'       => '',
+				'company'        => '',
+				'address_1'      => '',
+				'address_2'      => '',
+				'postcode'       => $this->request->post['postcode'],
+				'city'           => '',
+				'zone_id'        => $this->request->post['zone_id'],
+				'zone'           => $zone,
+				'zone_code'      => $zone_code,
+				'country_id'     => $this->request->post['country_id'],
+				'country'        => $country,
+				'iso_code_2'     => $iso_code_2,
+				'iso_code_3'     => $iso_code_3,
+				'address_format' => $address_format
 			);
 
 			$quote_data = array();
@@ -901,10 +900,10 @@ class ControllerCheckoutCart extends Controller {
 
 					if ($quote) {
 						$quote_data[$result['code']] = array(
-							'title'			=> $quote['title'],
-							'quote'		=> $quote['quote'],
-							'sort_order'	=> $quote['sort_order'],
-							'error'			=> $quote['error']
+							'title'      => $quote['title'],
+							'quote'      => $quote['quote'],
+							'sort_order' => $quote['sort_order'],
+							'error'      => $quote['error']
 						);
 					}
 				}
@@ -942,14 +941,14 @@ class ControllerCheckoutCart extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'        		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'        	=> $country_info['iso_code_2'],
-				'iso_code_3'        	=> $country_info['iso_code_3'],
-				'address_format'    	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 

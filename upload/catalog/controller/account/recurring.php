@@ -13,18 +13,17 @@ class ControllerAccountRecurring extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -35,8 +34,8 @@ class ControllerAccountRecurring extends Controller {
 		}
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('account/recurring', $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('account/recurring', $url, 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -72,11 +71,11 @@ class ControllerAccountRecurring extends Controller {
 		if ($results) {
 			foreach ($results as $result) {
 				$this->data['profiles'][] = array(
-					'id'				=> $result['order_recurring_id'],
-					'name'		=> $result['product_name'],
-					'status'		=> $result['status'],
-					'created'		=> date($this->language->get('date_format_short'), strtotime($result['created'])),
-					'href'			=> $this->url->link('account/recurring/info','recurring_id='.$result['order_recurring_id'],'SSL')
+					'id'      => $result['order_recurring_id'],
+					'name'    => $result['product_name'],
+					'status'  => $result['status'],
+					'created' => date($this->language->get('date_format_short'), strtotime($result['created'])),
+					'href'    => $this->url->link('account/recurring/info','recurring_id='.$result['order_recurring_id'],'SSL')
 				);
 			}
 		}
@@ -202,18 +201,17 @@ class ControllerAccountRecurring extends Controller {
 		if ($profile) {
 			$this->document->setTitle($this->language->get('text_recurring'));
 
-			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_home'),
-				'href'		=> $this->url->link('common/home'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_account'),
-				'href'		=> $this->url->link('account/account', '', 'SSL'),
+				'text'      => $this->language->get('text_account'),
+				'href'      => $this->url->link('account/account', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -224,14 +222,14 @@ class ControllerAccountRecurring extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('account/recurring', $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('account/recurring', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_recurring'),
-				'href'		=> $this->url->link('account/recurring/info', 'recurring_id=' . $this->request->get['recurring_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('text_recurring'),
+				'href'      => $this->url->link('account/recurring/info', 'recurring_id=' . $this->request->get['recurring_id'] . $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 

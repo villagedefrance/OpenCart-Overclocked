@@ -20,24 +20,23 @@ class ControllerAccountTransaction extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_transaction'),
-			'href'		=> $this->url->link('account/transaction', '', 'SSL'),
+			'text'      => $this->language->get('text_transaction'),
+			'href'      => $this->url->link('account/transaction', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -63,10 +62,10 @@ class ControllerAccountTransaction extends Controller {
 		$this->data['transactions'] = array();
 
 		$data = array(
-			'sort'  	=> 'date_added',
-			'order' 	=> 'DESC',
-			'start' 	=> ($page - 1) * 10,
-			'limit' 		=> 10
+			'sort'  => 'date_added',
+			'order' => 'DESC',
+			'start' => ($page - 1) * 10,
+			'limit' => 10
 		);
 
 		$transaction_total = $this->model_account_transaction->getTotalTransactions($data);
@@ -75,9 +74,9 @@ class ControllerAccountTransaction extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
-				'amount'      	=> $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' 	=> $result['description'],
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'description' => $result['description'],
+				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 

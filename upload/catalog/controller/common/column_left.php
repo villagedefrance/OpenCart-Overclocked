@@ -50,9 +50,9 @@ class ControllerCommonColumnLeft extends Controller {
 				foreach ($modules as $module) {
 					if ($module['layout_id'] == $layout_id && $module['position'] == 'column_left' && $module['status']) {
 						$module_data[] = array(
-							'code'       	=> $extension['code'],
-							'setting'		=> $module,
-							'sort_order'	=> $module['sort_order']
+							'code'       => $extension['code'],
+							'setting'    => $module,
+							'sort_order' => $module['sort_order']
 						);
 					}
 				}

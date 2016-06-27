@@ -50,9 +50,9 @@ class ControllerCommonContentFooter extends Controller {
 				foreach ($modules as $module) {
 					if ($module['layout_id'] == $layout_id && $module['position'] == 'content_footer' && $module['status']) {
 						$module_data[] = array(
-							'code'		=> $extension['code'],
-							'setting'		=> $module,
-							'sort_order'	=> $module['sort_order']
+							'code'       => $extension['code'],
+							'setting'    => $module,
+							'sort_order' => $module['sort_order']
 						);
 					}
 				}
@@ -76,6 +76,9 @@ class ControllerCommonContentFooter extends Controller {
 				$this->data['modules'][] = $module;
 			}
 		}
+
+		// Theme
+		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_footer.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/content_footer.tpl';

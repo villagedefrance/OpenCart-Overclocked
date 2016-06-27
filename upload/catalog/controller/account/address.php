@@ -197,24 +197,23 @@ class ControllerAccountAddress extends Controller {
 	}
 
 	protected function getList() {
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('account/address', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('account/address', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -266,23 +265,23 @@ class ControllerAccountAddress extends Controller {
 			);
 
 			$replace = array(
-				'firstname' 		=> $result['firstname'],
-				'lastname' 		=> $result['lastname'],
-				'company'  		=> $result['company'],
-				'address_1' 	=> $result['address_1'],
-				'address_2' 	=> $result['address_2'],
-				'city'      		=> $result['city'],
-				'postcode'  		=> $result['postcode'],
-				'zone'      		=> $result['zone'],
-				'zone_code' 	=> $result['zone_code'],
-				'country'   		=> $result['country']
+				'firstname' => $result['firstname'],
+				'lastname'  => $result['lastname'],
+				'company'   => $result['company'],
+				'address_1' => $result['address_1'],
+				'address_2' => $result['address_2'],
+				'city'      => $result['city'],
+				'postcode'  => $result['postcode'],
+				'zone'      => $result['zone'],
+				'zone_code' => $result['zone_code'],
+				'country'   => $result['country']
 			);
 
 			$this->data['addresses'][] = array(
-				'address_id' 	=> $result['address_id'],
-				'address'    		=> str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format)))),
-				'update'     		=> $this->url->link('account/address/update', 'address_id=' . $result['address_id'], 'SSL'),
-				'delete'     		=> $this->url->link('account/address/delete', 'address_id=' . $result['address_id'] . '&customer_token=' . $this->session->data['customer_token'], 'SSL')
+				'address_id' => $result['address_id'],
+				'address'    => str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format)))),
+				'update'     => $this->url->link('account/address/update', 'address_id=' . $result['address_id'], 'SSL'),
+				'delete'     => $this->url->link('account/address/delete', 'address_id=' . $result['address_id'] . '&customer_token=' . $this->session->data['customer_token'], 'SSL')
 			);
 		}
 
@@ -313,38 +312,37 @@ class ControllerAccountAddress extends Controller {
 	}
 
 	protected function getForm() {
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('account/address', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('account/address', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		if (!isset($this->request->get['address_id'])) {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_edit_address'),
-				'href'		=> $this->url->link('account/address/insert', '', 'SSL'),
+				'text'      => $this->language->get('text_edit_address'),
+				'href'      => $this->url->link('account/address/insert', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_edit_address'),
-				'href'		=> $this->url->link('account/address/update', 'address_id=' . $this->request->get['address_id'], 'SSL'),
+				'text'      => $this->language->get('text_edit_address'),
+				'href'      => $this->url->link('account/address/update', 'address_id=' . $this->request->get['address_id'], 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 		}
@@ -654,14 +652,14 @@ class ControllerAccountAddress extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'        		=> $country_info['country_id'],
-				'name'              		=> $country_info['name'],
-				'iso_code_2'			=> $country_info['iso_code_2'],
-				'iso_code_3'			=> $country_info['iso_code_3'],
-				'address_format'    	=> $country_info['address_format'],
-				'postcode_required' 	=> $country_info['postcode_required'],
-				'zone'              		=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            		=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 

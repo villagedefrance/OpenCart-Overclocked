@@ -3,7 +3,7 @@ class ControllerFeedGoogleBase extends Controller {
 
 	public function index() {
 		if ($this->config->get('google_base_status')) {
-			$output  = '<?xml version="1.0" encoding="UTF-8" ?>';
+			$output = '<?xml version="1.0" encoding="UTF-8" ?>';
 			$output .= '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">';
 			$output .= '<channel>';
 			$output .= '<title>' . $this->config->get('config_name') . '</title>';
@@ -48,11 +48,7 @@ class ControllerFeedGoogleBase extends Controller {
 						$output .= '<g:ean>' . $product['ean'] . '</g:ean>';
 					}
 
-					$currencies = array(
-						'USD',
-						'EUR',
-						'GBP'
-					);
+					$currencies = array('USD', 'EUR', 'GBP');
 
 					if (in_array($this->currency->getCode(), $currencies)) {
 						$currency_code = $this->currency->getCode();

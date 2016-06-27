@@ -17,37 +17,36 @@ class ControllerAccountVoucher extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->session->data['vouchers'][mt_rand()] = array(
-				'description'      		=> sprintf($this->language->get('text_for'), $this->currency->format($this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency'))), $this->request->post['to_name']),
-				'to_name'          		=> $this->request->post['to_name'],
-				'to_email'         		=> $this->request->post['to_email'],
-				'from_name'			=> $this->request->post['from_name'],
-				'from_email'       		=> $this->request->post['from_email'],
-				'voucher_theme_id' 	=> $this->request->post['voucher_theme_id'],
-				'message'          		=> $this->request->post['message'],
-				'amount'           		=> $this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency'))
+				'description'      => sprintf($this->language->get('text_for'), $this->currency->format($this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency'))), $this->request->post['to_name']),
+				'to_name'          => $this->request->post['to_name'],
+				'to_email'         => $this->request->post['to_email'],
+				'from_name'        => $this->request->post['from_name'],
+				'from_email'       => $this->request->post['from_email'],
+				'voucher_theme_id' => $this->request->post['voucher_theme_id'],
+				'message'          => $this->request->post['message'],
+				'amount'           => $this->currency->convert($this->request->post['amount'], $this->currency->getCode(), $this->config->get('config_currency'))
 			);
 
 			$this->redirect($this->url->link('account/voucher/success'));
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_voucher'),
-			'href'		=> $this->url->link('account/voucher', '', 'SSL'),
+			'text'      => $this->language->get('text_voucher'),
+			'href'      => $this->url->link('account/voucher', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -194,18 +193,17 @@ class ControllerAccountVoucher extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('account/voucher'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('account/voucher'),
 			'separator' => $this->language->get('text_separator')
 		);
 

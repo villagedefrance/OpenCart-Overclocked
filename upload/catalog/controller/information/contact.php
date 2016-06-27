@@ -43,18 +43,17 @@ class ControllerInformationContact extends Controller {
 			$this->redirect($this->url->link('information/contact/success', '', 'SSL'));
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('information/contact', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('information/contact', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -196,18 +195,17 @@ class ControllerInformationContact extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('information/contact', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('information/contact', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 

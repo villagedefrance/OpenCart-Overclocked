@@ -20,24 +20,23 @@ class ControllerAccountDownload extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		); 
 
 		$this->data['breadcrumbs'][] = array(
-			'text' 	=> $this->language->get('text_account'),
-			'href'  	=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_downloads'),
-			'href'   	=> $this->url->link('account/download', '', 'SSL'),
+			'text'      => $this->language->get('text_downloads'),
+			'href'      => $this->url->link('account/download', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -73,17 +72,7 @@ class ControllerAccountDownload extends Controller {
 
 					$i = 0;
 
-					$suffix = array(
-						'B',
-						'KB',
-						'MB',
-						'GB',
-						'TB',
-						'PB',
-						'EB',
-						'ZB',
-						'YB'
-					);
+					$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 
 					while (($size / 1024) > 1) {
 						$size = $size / 1024;
@@ -91,12 +80,12 @@ class ControllerAccountDownload extends Controller {
 					}
 
 					$this->data['downloads'][] = array(
-						'order_id'   		=> $result['order_id'],
-						'date_added' 	=> date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-						'name'       		=> $result['name'],
-						'remaining'  	=> $result['remaining'],
-						'size'       		=> round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
-						'href'       		=> $this->url->link('account/download/download', 'order_download_id=' . $result['order_download_id'], 'SSL')
+						'order_id'   => $result['order_id'],
+						'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
+						'name'       => $result['name'],
+						'remaining'  => $result['remaining'],
+						'size'       => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
+						'href'       => $this->url->link('account/download/download', 'order_download_id=' . $result['order_download_id'], 'SSL')
 					);
 				}
 			}

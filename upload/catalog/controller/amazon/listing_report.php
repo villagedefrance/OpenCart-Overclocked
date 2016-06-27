@@ -35,11 +35,11 @@ class ControllerAmazonListingReport extends Controller {
 
 		foreach ($request['products'] as $product) {
 			$data[] = array(
-				'marketplace'	=> $request['marketplace'],
-				'sku'				=> $product['sku'],
-				'quantity'		=> $product['quantity'],
-				'asin'				=> $product['asin'],
-				'price'			=> $product['price']
+				'marketplace' => $request['marketplace'],
+				'sku'         => $product['sku'],
+				'quantity'    => $product['quantity'],
+				'asin'        => $product['asin'],
+				'price'       => $product['price']
 			);
 		}
 

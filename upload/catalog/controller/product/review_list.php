@@ -44,7 +44,6 @@ class ControllerProductReviewList extends Controller {
 			$page = 1;
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -197,23 +196,23 @@ class ControllerProductReviewList extends Controller {
 				$review_total_product = $this->model_catalog_review->getTotalReviewsByProductId($result['product_id']);
 
 				$this->data['reviews'][] = array(
-					'product_id'			=> $result['product_id'],
-					'thumb'				=> $image,
-					'offer'       			=> $offer,
-					'name'				=> $result['name'],
-					'text'					=> substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
-					'age_minimum'		=> ($result['age_minimum'] > 0) ? (int)$result['age_minimum'] : '',
-					'age_logged' 		=> $age_logged,
-					'age_checked'		=> $age_checked,
-					'stock_status'		=> $result['stock_status'],
-					'stock_quantity'	=> $result['quantity'],
-					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
-					'quote'				=> $quote,
-					'rating'				=> $rating,
-					'author'				=> $result['author'],
-					'date_added'		=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-					'reviews'				=> sprintf($this->language->get('text_reviews'), $review_total_product),
-					'href'					=> $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					'product_id'      => $result['product_id'],
+					'thumb'           => $image,
+					'offer'           => $offer,
+					'name'            => $result['name'],
+					'text'            => substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
+					'age_minimum'     => ($result['age_minimum'] > 0) ? (int)$result['age_minimum'] : '',
+					'age_logged'      => $age_logged,
+					'age_checked'     => $age_checked,
+					'stock_status'    => $result['stock_status'],
+					'stock_quantity'  => $result['quantity'],
+					'stock_remaining' => ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
+					'quote'           => $quote,
+					'rating'          => $rating,
+					'author'          => $result['author'],
+					'date_added'      => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+					'reviews'         => sprintf($this->language->get('text_reviews'), $review_total_product),
+					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);
 			}
 
@@ -230,59 +229,59 @@ class ControllerProductReviewList extends Controller {
 			$this->data['sorts'] = array();
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_default'),
-				'value' 	=> 'p.sort_order-DESC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=p.sort_order&order=DESC' . $url)
+				'text' => $this->language->get('text_default'),
+				'value' => 'p.sort_order-DESC',
+				'href' => $this->url->link('product/review_list', 'sort=p.sort_order&order=DESC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_name_asc'),
-				'value' 	=> 'pd.name-ASC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=pd.name&order=ASC' . $url)
+				'text' => $this->language->get('text_name_asc'),
+				'value' => 'pd.name-ASC',
+				'href' => $this->url->link('product/review_list', 'sort=pd.name&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_name_desc'),
-				'value' 	=> 'pd.name-DESC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=pd.name&order=DESC' . $url)
+				'text' => $this->language->get('text_name_desc'),
+				'value' => 'pd.name-DESC',
+				'href' => $this->url->link('product/review_list', 'sort=pd.name&order=DESC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_price_asc'),
-				'value' 	=> 'p.price-ASC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=p.price&order=ASC' . $url)
+				'text' => $this->language->get('text_price_asc'),
+				'value' => 'p.price-ASC',
+				'href' => $this->url->link('product/review_list', 'sort=p.price&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_price_desc'),
-				'value' 	=> 'p.price-DESC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=p.price&order=DESC' . $url)
+				'text' => $this->language->get('text_price_desc'),
+				'value' => 'p.price-DESC',
+				'href' => $this->url->link('product/review_list', 'sort=p.price&order=DESC' . $url)
 			);
 
 			if ($this->config->get('config_review_status')) {
 				$this->data['sorts'][] = array(
-					'text'  	=> $this->language->get('text_rating_desc'),
-					'value' 	=> 'r.rating-DESC',
-					'href'  	=> $this->url->link('product/review_list', 'sort=r.rating&order=DESC' . $url)
+					'text' => $this->language->get('text_rating_desc'),
+					'value' => 'r.rating-DESC',
+					'href' => $this->url->link('product/review_list', 'sort=r.rating&order=DESC' . $url)
 				);
 
 				$this->data['sorts'][] = array(
-					'text'  	=> $this->language->get('text_rating_asc'),
-					'value' 	=> 'r.rating-ASC',
-					'href'  	=> $this->url->link('product/review_list', 'sort=r.rating&order=ASC' . $url)
+					'text' => $this->language->get('text_rating_asc'),
+					'value' => 'r.rating-ASC',
+					'href' => $this->url->link('product/review_list', 'sort=r.rating&order=ASC' . $url)
 				);
 			}
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_date_asc'),
-				'value' 	=> 'r.date_added-ASC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=r.date_added&order=ASC' . $url)
+				'text' => $this->language->get('text_date_asc'),
+				'value' => 'r.date_added-ASC',
+				'href' => $this->url->link('product/review_list', 'sort=r.date_added&order=ASC' . $url)
 			);
 
 			$this->data['sorts'][] = array(
-				'text'  	=> $this->language->get('text_date_desc'),
-				'value' 	=> 'r.date_added-DESC',
-				'href'  	=> $this->url->link('product/review_list', 'sort=r.date_added&order=DESC' . $url)
+				'text' => $this->language->get('text_date_desc'),
+				'value' => 'r.date_added-DESC',
+				'href' => $this->url->link('product/review_list', 'sort=r.date_added&order=DESC' . $url)
 			);
 
 			if (isset($this->request->get['limit'])) {
@@ -429,8 +428,8 @@ class ControllerProductReviewList extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('product/review_list', $url),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('product/review_list', $url),
 				'separator' => $this->language->get('text_separator')
 			);
 

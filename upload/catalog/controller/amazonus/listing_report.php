@@ -35,10 +35,10 @@ class ControllerAmazonusListingReport extends Controller {
 
 		foreach ($request['products'] as $product) {
 			$data[] = array(
-				'sku'			=> $product['sku'],
-				'quantity'	=> $product['quantity'],
-				'asin'			=> $product['asin'],
-				'price'		=> $product['price']
+				'sku'      => $product['sku'],
+				'quantity' => $product['quantity'],
+				'asin'     => $product['asin'],
+				'price'    => $product['price']
 			);
 		}
 

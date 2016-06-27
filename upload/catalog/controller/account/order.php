@@ -55,18 +55,17 @@ class ControllerAccountOrder extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_home'),
-			'href' 		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('text_account'),
-			'href'  	=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -77,8 +76,8 @@ class ControllerAccountOrder extends Controller {
 		}
 
 		$this->data['breadcrumbs'][] = array(
-			'text'  	=> $this->language->get('heading_title'),
-			'href' 		=> $this->url->link('account/order', $url, 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('account/order', $url, 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -114,15 +113,15 @@ class ControllerAccountOrder extends Controller {
 			$voucher_total = $this->model_account_order->getTotalOrderVouchersByOrderId($result['order_id']);
 
 			$this->data['orders'][] = array(
-				'order_id'   		=> $result['order_id'],
-				'name'       		=> $result['firstname'] . ' ' . $result['lastname'],
-				'status'     		=> $result['status'],
-				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'products'   	=> ($product_total + $voucher_total),
-				'total'      		=> $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
-				'picklist'   		=> $this->url->link('account/order/picklist', 'order_id=' . $result['order_id'], 'SSL'),
-				'href'       		=> $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
-				'reorder'    		=> $this->url->link('account/order', 'order_id=' . $result['order_id'], 'SSL')
+				'order_id'   => $result['order_id'],
+				'name'       => $result['firstname'] . ' ' . $result['lastname'],
+				'status'     => $result['status'],
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'products'   => ($product_total + $voucher_total),
+				'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'picklist'   => $this->url->link('account/order/picklist', 'order_id=' . $result['order_id'], 'SSL'),
+				'href'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
+				'reorder'    => $this->url->link('account/order', 'order_id=' . $result['order_id'], 'SSL')
 			);
 		}
 
@@ -195,28 +194,28 @@ class ControllerAccountOrder extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_home'),
-				'href'		=> $this->url->link('common/home'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_account'),
-				'href'		=> $this->url->link('account/account', '', 'SSL'),
+				'text'      => $this->language->get('text_account'),
+				'href'      => $this->url->link('account/account', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$url = '';
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('account/order', $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('account/order', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_order_pick_list'),
-				'href'		=> $this->url->link('account/order/picklist', 'order_id=' . $this->request->get['order_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('text_order_pick_list'),
+				'href'      => $this->url->link('account/order/picklist', 'order_id=' . $this->request->get['order_id'] . $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -248,15 +247,15 @@ class ControllerAccountOrder extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'name'			=> $product['name'],
-					'model'			=> $product['model'],
-					'option'			=> $option_data,
-					'quantity'		=> $product['quantity'],
-					'price'			=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'total'				=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'return'			=> $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL'),
-					'picked'			=> $product['picked'],
-					'backordered'	=> $product['backordered']
+					'name'        => $product['name'],
+					'model'       => $product['model'],
+					'option'      => $option_data,
+					'quantity'    => $product['quantity'],
+					'price'       => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'total'       => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'return'      => $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL'),
+					'picked'      => $product['picked'],
+					'backordered' => $product['backordered']
 				);
 			}
 
@@ -298,26 +297,26 @@ class ControllerAccountOrder extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_home'),
-				'href'		=> $this->url->link('common/home'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_account'),
-				'href'		=> $this->url->link('account/account', '', 'SSL'),
+				'text'      => $this->language->get('text_account'),
+				'href'      => $this->url->link('account/account', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('heading_title'),
-				'href'		=> $this->url->link('account/order', '', 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('account/order', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'		=> $this->language->get('text_order'),
-				'href'		=> $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL'),
+				'text'      => $this->language->get('text_order'),
+				'href'      => $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -378,18 +377,17 @@ class ControllerAccountOrder extends Controller {
 		if ($order_info) {
 			$this->document->setTitle($this->language->get('text_order'));
 
-			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_home'),
-				'href' 		=> $this->url->link('common/home'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_account'),
-				'href' 		=> $this->url->link('account/account', '', 'SSL'),
+				'text'      => $this->language->get('text_account'),
+				'href'      => $this->url->link('account/account', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -400,14 +398,14 @@ class ControllerAccountOrder extends Controller {
 			}
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('heading_title'),
-				'href' 		=> $this->url->link('account/order', $url, 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('account/order', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_order'),
-				'href'  	=> $this->url->link('account/order/info', 'order_id=' . $this->request->get['order_id'] . $url, 'SSL'),
+				'text'      => $this->language->get('text_order'),
+				'href'      => $this->url->link('account/order/info', 'order_id=' . $this->request->get['order_id'] . $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -469,16 +467,16 @@ class ControllerAccountOrder extends Controller {
 			);
 
 			$replace = array(
-				'firstname' 		=> $order_info['payment_firstname'],
-				'lastname'  		=> $order_info['payment_lastname'],
-				'company'   	=> $order_info['payment_company'],
-				'address_1' 	=> $order_info['payment_address_1'],
-				'address_2' 	=> $order_info['payment_address_2'],
-				'city'      		=> $order_info['payment_city'],
-				'postcode'  		=> $order_info['payment_postcode'],
-				'zone'      		=> $order_info['payment_zone'],
-				'zone_code' 	=> $order_info['payment_zone_code'],
-				'country'   		=> $order_info['payment_country']
+				'firstname' => $order_info['payment_firstname'],
+				'lastname'  => $order_info['payment_lastname'],
+				'company'   => $order_info['payment_company'],
+				'address_1' => $order_info['payment_address_1'],
+				'address_2' => $order_info['payment_address_2'],
+				'city'      => $order_info['payment_city'],
+				'postcode'  => $order_info['payment_postcode'],
+				'zone'      => $order_info['payment_zone'],
+				'zone_code' => $order_info['payment_zone_code'],
+				'country'   => $order_info['payment_country']
 			);
 
 			$this->data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -505,16 +503,16 @@ class ControllerAccountOrder extends Controller {
 			);
 
 			$replace = array(
-				'firstname' 		=> $order_info['shipping_firstname'],
-				'lastname'  		=> $order_info['shipping_lastname'],
-				'company'   	=> $order_info['shipping_company'],
-				'address_1' 	=> $order_info['shipping_address_1'],
-				'address_2' 	=> $order_info['shipping_address_2'],
-				'city'      		=> $order_info['shipping_city'],
-				'postcode'  		=> $order_info['shipping_postcode'],
-				'zone'      		=> $order_info['shipping_zone'],
-				'zone_code' 	=> $order_info['shipping_zone_code'],
-				'country'   		=> $order_info['shipping_country']
+				'firstname' => $order_info['shipping_firstname'],
+				'lastname'  => $order_info['shipping_lastname'],
+				'company'   => $order_info['shipping_company'],
+				'address_1' => $order_info['shipping_address_1'],
+				'address_2' => $order_info['shipping_address_2'],
+				'city'      => $order_info['shipping_city'],
+				'postcode'  => $order_info['shipping_postcode'],
+				'zone'      => $order_info['shipping_zone'],
+				'zone_code' => $order_info['shipping_zone_code'],
+				'country'   => $order_info['shipping_country']
 			);
 
 			$this->data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -538,21 +536,21 @@ class ControllerAccountOrder extends Controller {
 					}
 
 					$option_data[] = array(
-						'name'	=> $option['name'],
-						'value'	=> (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+						'name'  => $option['name'],
+						'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
 					);
 				}
 
 				$this->data['products'][] = array(
-					'name' 			=> $product['name'],
-					'model'    		=> $product['model'],
-					'option'   		=> $option_data,
-					'quantity' 		=> $product['quantity'],
-					'price'    		=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_value'		=> $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'tax_percent'	=> number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
-					'total'    			=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'return'   		=> $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL')
+					'name'        => $product['name'],
+					'model'       => $product['model'],
+					'option'      => $option_data,
+					'quantity'    => $product['quantity'],
+					'price'       => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_value'   => $this->currency->format(($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'tax_percent' => number_format(((($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0) * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
+					'total'       => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'return'      => $this->url->link('account/return/insert', 'order_id=' . $order_info['order_id'] . '&product_id=' . $product['product_id'], 'SSL')
 				);
 			}
 
@@ -565,8 +563,8 @@ class ControllerAccountOrder extends Controller {
 
 			foreach ($vouchers as $voucher) {
 				$this->data['vouchers'][] = array(
-					'description' 	=> $voucher['description'],
-					'amount'      	=> $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])
 				);
 			}
 
@@ -580,9 +578,9 @@ class ControllerAccountOrder extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['histories'][] = array(
-					'date_added' 	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-					'status'     		=> $result['status'],
-					'comment'    	=> nl2br($result['comment'])
+					'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+					'status'     => $result['status'],
+					'comment'    => nl2br($result['comment'])
 				);
 			}
 
@@ -613,30 +611,29 @@ class ControllerAccountOrder extends Controller {
 		} else {
 			$this->document->setTitle($this->language->get('text_order'));
 
-			// Breadcrumbs
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_home'),
-				'href'  	=> $this->url->link('common/home'),
+				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('text_account'),
-				'href'   	=> $this->url->link('account/account', '', 'SSL'),
+				'text'      => $this->language->get('text_account'),
+				'href'      => $this->url->link('account/account', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text'  	=> $this->language->get('heading_title'),
-				'href'   	=> $this->url->link('account/order', '', 'SSL'),
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('account/order', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'text' 	=> $this->language->get('text_order'),
-				'href' 		=> $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL'),
+				'text'      => $this->language->get('text_order'),
+				'href'      => $this->url->link('account/order/info', 'order_id=' . $order_id, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 

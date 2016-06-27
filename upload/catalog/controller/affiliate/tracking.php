@@ -20,24 +20,23 @@ class ControllerAffiliateTracking extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('affiliate/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('affiliate/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('affiliate/tracking', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('affiliate/tracking', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -84,17 +83,17 @@ class ControllerAffiliateTracking extends Controller {
 			$this->load->model('catalog/product');
 
 			$data = array(
-				'filter_name'	=> $this->request->get['filter_name'],
-				'start'       		=> 0,
-				'limit'       		=> 20
+				'filter_name' => $this->request->get['filter_name'],
+				'start'       => 0,
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_product->getProducts($data);
 
 			foreach ($results as $result) {
 				$json[] = array(
-					'name' 	=> strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
-					'link'		=> str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $result['product_id']) . '&tracking=' . $this->affiliate->getCode())
+					'name' => strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')),
+					'link' => str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $result['product_id']) . '&tracking=' . $this->affiliate->getCode())
 				);
 			}
 		}

@@ -5,7 +5,6 @@ class ControllerProductProduct extends Controller {
 	public function index() {
 		$this->language->load('product/product');
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -372,9 +371,9 @@ class ControllerProductProduct extends Controller {
 
 			foreach ($results as $result) {
 				$this->data['images'][] = array(
-					'zoom' 	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2),
-					'popup'	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
-					'thumb' 	=> $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
+					'zoom'  => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width') * 2, $this->config->get('config_image_popup_height') * 2),
+					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height')),
+					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
 				);
 			}
 
@@ -435,9 +434,9 @@ class ControllerProductProduct extends Controller {
 					if ($palette_colors) {
 						foreach ($palette_colors as $palette_color) {
 							$this->data['product_colors'][] = array(
-								'palette_color_id'	=> $palette_color['palette_color_id'],
-								'color'				=> $palette_color['color'],
-								'title'					=> $palette_color['title']
+								'palette_color_id' => $palette_color['palette_color_id'],
+								'color'            => $palette_color['color'],
+								'title'            => $palette_color['title']
 							);
 						}
 					}
@@ -475,8 +474,8 @@ class ControllerProductProduct extends Controller {
 
 			foreach ($discounts as $discount) {
 				$this->data['discounts'][] = array(
-					'quantity' 	=> $discount['quantity'],
-					'price'    	=> $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')))
+					'quantity' => $discount['quantity'],
+					'price'    => $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')))
 				);
 			}
 
@@ -699,20 +698,20 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'product_id'			=> $result['product_id'],
-					'thumb'  				=> $image,
-					'offer'					=> $offer,
-					'name'    			=> $result['name'],
-					'stock_status'		=> $result['stock_status'],
-					'stock_quantity'	=> $result['quantity'],
-					'stock_remaining'	=> ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
-					'quote'				=> $quote,
-					'price'   	 			=> $price,
-					'price_option'		=> $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
-					'special' 	 			=> $special,
-					'rating'    			=> $rating,
-					'reviews'    			=> sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'    	 			=> $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'product_id'      => $result['product_id'],
+					'thumb'           => $image,
+					'offer'           => $offer,
+					'name'            => $result['name'],
+					'stock_status'    => $result['stock_status'],
+					'stock_quantity'  => $result['quantity'],
+					'stock_remaining' => ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
+					'quote'           => $quote,
+					'price'           => $price,
+					'price_option'    => $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
+					'special'         => $special,
+					'rating'          => $rating,
+					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
 
@@ -854,7 +853,6 @@ class ControllerProductProduct extends Controller {
 	public function review() {
 		$this->language->load('product/product');
 
-		// Review
 		$this->load->model('catalog/review');
 
 		$this->data['text_latest'] = $this->language->get('text_latest');

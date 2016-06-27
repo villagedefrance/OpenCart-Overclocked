@@ -32,12 +32,11 @@ class ControllerInformationNewsList extends Controller {
 			$page = 1;
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
@@ -60,8 +59,8 @@ class ControllerInformationNewsList extends Controller {
 		}
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('information/news_list', $url),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('information/news_list', $url),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -72,10 +71,10 @@ class ControllerInformationNewsList extends Controller {
 		$this->data['news_data'] = array();
 
 		$data = array(
-			'sort' 		=> $sort,
-			'order' 	=> $order,
-			'start' 	=> ($page - 1) * $limit,
-			'limit' 		=> $limit
+			'sort'  => $sort,
+			'order' => $order,
+			'start' => ($page - 1) * $limit,
+			'limit' => $limit
 		);
 
 		$total_news = $this->model_catalog_news->getTotalNews();
@@ -100,13 +99,13 @@ class ControllerInformationNewsList extends Controller {
 			}
 
 			$this->data['news_data'][] = array(
-				'news_id'		=> $result['news_id'],
-				'image'			=> $image,
-				'title'				=> $result['title'],
-				'description'  	=> $description,
-				'viewed'			=> $result['viewed'],
-				'date_added'	=> date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'href'				=> $this->url->link('information/news', 'news_id=' . $result['news_id'] . $url)
+				'news_id'     => $result['news_id'],
+				'image'       => $image,
+				'title'       => $result['title'],
+				'description' => $description,
+				'viewed'      => $result['viewed'],
+				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'href'        => $this->url->link('information/news', 'news_id=' . $result['news_id'] . $url)
 			);
 		}
 
@@ -133,39 +132,39 @@ class ControllerInformationNewsList extends Controller {
 		$this->data['sorts'] = array();
 
 		$this->data['sorts'][] = array(
-			'text'  	=> $this->language->get('text_name_asc'),
-			'value' 	=> 'nd.title-ASC',
-			'href'  	=> $this->url->link('information/news_list', 'sort=nd.title&order=ASC' . $url)
+			'text' => $this->language->get('text_name_asc'),
+			'value' => 'nd.title-ASC',
+			'href' => $this->url->link('information/news_list', 'sort=nd.title&order=ASC' . $url)
 		);
 
 		$this->data['sorts'][] = array(
-			'text'  	=> $this->language->get('text_name_desc'),
-			'value' 	=> 'nd.title-DESC',
-			'href'  	=> $this->url->link('information/news_list', 'sort=nd.title&order=DESC' . $url)
+			'text' => $this->language->get('text_name_desc'),
+			'value' => 'nd.title-DESC',
+			'href' => $this->url->link('information/news_list', 'sort=nd.title&order=DESC' . $url)
 		);
 
 		$this->data['sorts'][] = array(
-			'text'  	=> $this->language->get('text_date_asc'),
-			'value' 	=> 'n.date_added-ASC',
-			'href'  	=> $this->url->link('information/news_list', 'sort=n.date_added&order=ASC' . $url)
+			'text' => $this->language->get('text_date_asc'),
+			'value' => 'n.date_added-ASC',
+			'href' => $this->url->link('information/news_list', 'sort=n.date_added&order=ASC' . $url)
 		);
 
 		$this->data['sorts'][] = array(
-			'text'  	=> $this->language->get('text_date_desc'),
-			'value' 	=> 'n.date_added-DESC',
-			'href'  	=> $this->url->link('information/news_list', 'sort=n.date_added&order=DESC' . $url)
+			'text' => $this->language->get('text_date_desc'),
+			'value' => 'n.date_added-DESC',
+			'href' => $this->url->link('information/news_list', 'sort=n.date_added&order=DESC' . $url)
 		);
 
 		$this->data['sorts'][] = array(
-			'text'  	=> $this->language->get('text_view_asc'),
-			'value' 	=> 'n.viewed-ASC',
-			'href'  	=> $this->url->link('information/news_list', 'sort=n.viewed&order=ASC' . $url)
+			'text' => $this->language->get('text_view_asc'),
+			'value' => 'n.viewed-ASC',
+			'href' => $this->url->link('information/news_list', 'sort=n.viewed&order=ASC' . $url)
 		);
 
 		$this->data['sorts'][] = array(
-			'text'  	=> $this->language->get('text_view_desc'),
-			'value' 	=> 'n.viewed-DESC',
-			'href'  	=> $this->url->link('information/news_list', 'sort=n.viewed&order=DESC' . $url)
+			'text' => $this->language->get('text_view_desc'),
+			'value' => 'n.viewed-DESC',
+			'href' => $this->url->link('information/news_list', 'sort=n.viewed&order=DESC' . $url)
 		);
 
 		if (isset($this->request->get['limit'])) {
@@ -194,9 +193,9 @@ class ControllerInformationNewsList extends Controller {
 
 		foreach ($limits as $value) {
 			$this->data['limits'][] = array(
-				'text'  	=> $value,
-				'value' 	=> $value,
-				'href'  	=> $this->url->link('information/news_list', $url . '&limit=' . $value)
+				'text'  => $value,
+				'value' => $value,
+				'href'  => $this->url->link('information/news_list', $url . '&limit=' . $value)
 			);
 		}
 

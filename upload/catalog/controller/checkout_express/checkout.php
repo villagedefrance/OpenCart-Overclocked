@@ -107,10 +107,10 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		if (!empty($this->session->data['vouchers'])) {
 			foreach ($this->session->data['vouchers'] as $key => $voucher) {
 				$this->data['vouchers'][] = array(
-					'key'				=> $key,
-					'description'	=> $voucher['description'],
-					'amount'			=> $this->currency->format($voucher['amount']),
-					'remove'			=> $this->url->link('checkout_express/checkout', 'remove=' . $key)
+					'key'         => $key,
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount']),
+					'remove'      => $this->url->link('checkout_express/checkout', 'remove=' . $key)
 				);
 			}
 		}
@@ -171,7 +171,6 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -263,14 +262,14 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			$this->load->model('localisation/zone');
 
 			$json = array(
-				'country_id'				=> $country_info['country_id'],
-				'name'					=> $country_info['name'],
-				'iso_code_2'			=> $country_info['iso_code_2'],
-				'iso_code_3'			=> $country_info['iso_code_3'],
-				'address_format'		=> $country_info['address_format'],
-				'postcode_required'	=> $country_info['postcode_required'],
-				'zone'						=> $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'					=> $country_info['status']
+				'country_id'        => $country_info['country_id'],
+				'name'              => $country_info['name'],
+				'iso_code_2'        => $country_info['iso_code_2'],
+				'iso_code_3'        => $country_info['iso_code_3'],
+				'address_format'    => $country_info['address_format'],
+				'postcode_required' => $country_info['postcode_required'],
+				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+				'status'            => $country_info['status']
 			);
 		}
 
@@ -278,7 +277,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	private function validateCoupon() {
+	protected function validateCoupon() {
 		$this->load->model('checkout/coupon');
 
 		$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);
@@ -294,7 +293,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		}
 	}
 
-	private function validateVoucher() {
+	protected function validateVoucher() {
 		$this->load->model('checkout/voucher');
 
 		$voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);
@@ -310,7 +309,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		}
 	}
 
-	private function validateReward() {
+	protected function validateReward() {
 		$points = $this->customer->getRewardPoints();
 
 		$points_total = 0;

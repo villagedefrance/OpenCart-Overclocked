@@ -46,7 +46,7 @@ class ControllerAmazonOrder extends Controller {
 
 		// If the order already exists on opencart, ignore it.
 		if ($orderId) {
-			$logger->write("Duplicate order $amazonOrderId. Terminating.");
+			$logger->write('Duplicate order' . $amazonOrderId . '. Terminating.');
 			$this->response->setOutput('Ok');
 			return;
 		}
@@ -115,20 +115,20 @@ class ControllerAmazonOrder extends Controller {
 			$productVar = $this->model_openbay_amazon_order->getProductVar((string)$item->Sku);
 
 			$products[] = array(
-				'product_id'		=> $product_id,
-				'var' 				=> $productVar,
-				'sku' 				=> (string)$item->Sku,
-				'asin' 				=> (string)$item->Asin,
-				'order_item_id'	=> (string)$item->OrderItemId,
-				'name' 			=> (string)$item->Title,
-				'model' 			=> (string)$item->Sku,
-				'quantity' 		=> (int)$item->Ordered,
-				'price' 			=> sprintf('%.4f', ($totalPrice - $taxTotal) / (int)$item->Ordered),
-				'total' 			=> sprintf('%.4f', $totalPrice - $taxTotal),
-				'tax' 				=> $taxTotal / (int)$item->Ordered,
-				'reward' 			=> '0',
-				'option' 			=> $this->model_openbay_amazon_order->getProductOptionsByVar($productVar),
-				'download' 		=> array()
+				'product_id'    => $product_id,
+				'var'           => $productVar,
+				'sku'           => (string)$item->Sku,
+				'asin'          => (string)$item->Asin,
+				'order_item_id' => (string)$item->OrderItemId,
+				'name'          => (string)$item->Title,
+				'model'         => (string)$item->Sku,
+				'quantity'      => (int)$item->Ordered,
+				'price'         => sprintf('%.4f', ($totalPrice - $taxTotal) / (int)$item->Ordered),
+				'total'         => sprintf('%.4f', $totalPrice - $taxTotal),
+				'tax'           => $taxTotal / (int)$item->Ordered,
+				'reward'        => '0',
+				'option'        => $this->model_openbay_amazon_order->getProductOptionsByVar($productVar),
+				'download'      => array()
 			);
 
 			$productMapping[(string)$item->Sku] = (string)$item->OrderItemId;
@@ -151,15 +151,15 @@ class ControllerAmazonOrder extends Controller {
 		} else {
 			// Add a new customer
 			$customerData = array(
-				'firstname'				=> (string)$orderXml->Shipping->Name,
-				'lastname' 				=> '',
-				'email' 					=> (string)$orderXml->Payment->Email,
-				'telephone' 				=> (string)$orderXml->Shipping->Phone,
-				'fax' 						=> '',
-				'newsletter' 			=> '0',
-				'customer_group_id'	=> $this->config->get('openbay_amazon_order_customer_group'),
-				'password' 				=> '',
-				'status' 					=> '0'
+				'firstname'         => (string)$orderXml->Shipping->Name,
+				'lastname'          => '',
+				'email'             => (string)$orderXml->Payment->Email,
+				'telephone'         => (string)$orderXml->Shipping->Phone,
+				'fax'               => '',
+				'newsletter'        => '0',
+				'customer_group_id' => $this->config->get('openbay_amazon_order_customer_group'),
+				'password'          => '',
+				'status'            => '0'
 			);
 
 			$this->db->query("
@@ -315,11 +315,11 @@ class ControllerAmazonOrder extends Controller {
 		}
 
 		$logger->write('Order ' . $amazonOrderId . ' was added to the database (ID: ' . $orderId . ')');
-		$logger->write("Finished processing the order");
+		$logger->write('Finished processing the order');
 
-		$logger->write("Notifying Openbay::orderNew($orderId)");
+		$logger->write('Notifying Openbay::orderNew(' . $orderId . ')');
 		$this->openbay->orderNew($orderId);
-		$logger->write("Openbay notified");
+		$logger->write('Openbay notified');
 
 		$this->model_openbay_amazon_order->acknowledgeOrder($orderId);
 
@@ -327,7 +327,7 @@ class ControllerAmazonOrder extends Controller {
 			$this->openbay->newOrderAdminNotify($orderId, $orderStatus);
 		}
 
-		$logger->write("Ok");
+		$logger->write('Ok');
 		$this->response->setOutput('Ok');
 	}
 }

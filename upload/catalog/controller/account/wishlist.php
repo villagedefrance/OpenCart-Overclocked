@@ -39,24 +39,23 @@ class ControllerAccountWishList extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_home'),
-			'href'		=> $this->url->link('common/home'),
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('text_account'),
-			'href'		=> $this->url->link('account/account', '', 'SSL'),
+			'text'      => $this->language->get('text_account'),
+			'href'      => $this->url->link('account/account', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text'		=> $this->language->get('heading_title'),
-			'href'		=> $this->url->link('account/wishlist', '', 'SSL'),
+			'text'      => $this->language->get('heading_title'),
+			'href'      => $this->url->link('account/wishlist', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -141,19 +140,19 @@ class ControllerAccountWishList extends Controller {
 				}
 
 				$this->data['products'][] = array(
-					'product_id' 		=> $product_info['product_id'],
-					'thumb'      			=> $image,
-					'offer'       			=> $offer,
-					'quote'				=> $quote,
-					'name'       			=> $product_info['name'],
-					'model'      			=> $product_info['model'],
-					'stock'      			=> $stock,
-					'stock_status'		=> $product_info['stock_status'],
-					'stock_quantity'	=> $product_info['quantity'],
-					'price'      			=> $price,
-					'special'    			=> $special,
-					'href'       			=> $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
-					'remove'     		=> $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'], 'SSL')
+					'product_id'     => $product_info['product_id'],
+					'thumb'          => $image,
+					'offer'          => $offer,
+					'quote'          => $quote,
+					'name'           => $product_info['name'],
+					'model'          => $product_info['model'],
+					'stock'          => $stock,
+					'stock_status'   => $product_info['stock_status'],
+					'stock_quantity' => $product_info['quantity'],
+					'price'          => $price,
+					'special'        => $special,
+					'href'           => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+					'remove'         => $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'], 'SSL')
 				);
 
 			} else {

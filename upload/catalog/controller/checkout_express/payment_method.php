@@ -126,9 +126,9 @@ class ControllerCheckoutExpressPaymentMethod extends Controller {
 				}
 
 				$this->data['payment_images'][] = array(
-					'payment'	=> strtolower($image_result['payment']),
-					'image'		=> $method_image,
-					'status'		=> $image_result['status']
+					'payment' => strtolower($image_result['payment']),
+					'image'   => $method_image,
+					'status'  => $image_result['status']
 				);
 			}
 		}

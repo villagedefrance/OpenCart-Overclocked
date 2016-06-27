@@ -50,9 +50,9 @@ class ControllerCommonContentHeader extends Controller {
 				foreach ($modules as $module) {
 					if ($module['layout_id'] == $layout_id && $module['position'] == 'content_header' && $module['status']) {
 						$module_data[] = array(
-							'code'		=> $extension['code'],
-							'setting'		=> $module,
-							'sort_order'	=> $module['sort_order']
+							'code'       => $extension['code'],
+							'setting'    => $module,
+							'sort_order' => $module['sort_order']
 						);
 					}
 				}
@@ -86,6 +86,7 @@ class ControllerCommonContentHeader extends Controller {
 			$this->data['error'] = '';
 		}
 
+		// Theme
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/content_header.tpl')) {
