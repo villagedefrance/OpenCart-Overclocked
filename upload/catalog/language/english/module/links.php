@@ -1,4 +1,4 @@
 <?php
 // Heading
-$_['heading_title']	= 'Links';
+$_['heading_title'] = 'Links';
 ?>

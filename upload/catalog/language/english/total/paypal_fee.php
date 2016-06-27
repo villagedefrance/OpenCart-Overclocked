@@ -1,3 +1,3 @@
 <?php
-$_['text_paypal_fee']	= 'PayPal Fee';
+$_['text_paypal_fee'] = 'PayPal Fee';
 ?>

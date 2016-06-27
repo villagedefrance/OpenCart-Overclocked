@@ -1,10 +1,10 @@
 <?php
 // Heading 
-$_['heading_title']	= 'Latest News';
+$_['heading_title'] = 'Latest News';
 
 // Text
-$_['text_more']		= 'Read more';
+$_['text_more']     = 'Read more';
 
 // Buttons
-$_['button_list']		= 'Headlines';
+$_['button_list']   = 'Headlines';
 ?>
