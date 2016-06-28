@@ -2,10 +2,12 @@
 // Heading
 $_['heading_title']             = 'eWAY Payment';
 
+// Link
+$_['text_eway']                 = '<a onclick="window.open(\'http://www.eway.com.au/\');"><img src="view/image/payment/eway.png" alt="eWAY" title="eWAY" style="border:1px solid #EEEEEE;" /></a>';
+
 // Text
 $_['text_payment']              = 'Payment';
 $_['text_success']              = 'Success: You have modified your eWAY details!';
-$_['text_eway']                 = '<a target="_BLANK" href="http://www.eway.com.au/"><img src="view/image/payment/eway.png" alt="eWAY" title="eWAY" style="border: 1px solid #EEEEEE;" /></a>';
 $_['text_authorisation']        = 'Authorisation';
 $_['text_sale']                 = 'Sale';
 $_['text_transparent']          = 'Transparent Redirect (payment form on site)';
