@@ -18,7 +18,7 @@ Project Philosophy:
 Opencart Overclocked Edition's main objective is to keep the code simple, efficient and flexible for the final user, aka the shop owner. 
 OpenCart always has been a great tool for people wanting to start and run their own business. Not only because it is open-source, but also because up to version 1.5.6.4 the code was pure HTML, PHP and CSS, making it very easy to customise and tweak with only limited coding skills or even no experience at all.
 For this reason Opencart Overclocked Edition is based on OpenCart v1.5.6.4, and its ambition is to become the most user friendly, the most stable, the most secure, the most practical and the easiest open-source shopping cart package available.
-Each new release will bring newer and better features, upgraded scripts, bug fixes and general improvements. Being a "Community Edition" means that anybody can get involved, you don't need to be a "Coding Guru" to participate because it is not about the code, it is about the ideas!
+Each new release will bring newer and better features, upgraded scripts, bug fixes and general improvements. Being a "Community Edition" means that everybody can get involved, you don't need to be a "Coding Guru" to participate because it is not about the code, it is about the ideas!
 So feel free to post your comments or get in touch.
 
 Latest Scripts:
@@ -37,7 +37,6 @@ Main Features:
 - Responsive Default Theme.
 - Template Option Control System.
 - "Save and Continue" for all essential Admin forms.
-- "Filter Name" for all essential Admin forms.
 - Full Page Image Manager, with multi-uploads.
 - Cache Managers for Files and Images.
 - SEO Keywords Manager.
@@ -45,11 +44,14 @@ Main Features:
 - ... and more!
 
 Coming soon in 1.8.0.0!
-- Added DomPDF vendor library for document downloads.
+- Added DomPDF library for PDF document downloads.
+- Added custom Colour & Style for all modules and footer.
 - New and updated payment methods. Thanks Gob33!
 - New Supplier management forms!
 - New Cookie Consent code.
 - Added Piwik code field in Settings.
+- Added Customer Group image.
+- Fixed Product RSS Feed.
 - ...
 
 New in 1.7.6.0 (Current Release)!
