@@ -54,23 +54,23 @@ class ModelAccountAddress extends Model {
 			}
 
 			$address_data = array(
-				'firstname'      		=> $address_query->row['firstname'],
-				'lastname'       	=> $address_query->row['lastname'],
-				'company'        	=> $address_query->row['company'],
-				'company_id'     	=> $address_query->row['company_id'],
-				'tax_id'         		=> $address_query->row['tax_id'],
-				'address_1'      	=> $address_query->row['address_1'],
-				'address_2'      	=> $address_query->row['address_2'],
-				'postcode'       	=> $address_query->row['postcode'],
-				'city'           		=> $address_query->row['city'],
-				'zone_id'        		=> $address_query->row['zone_id'],
-				'zone'           		=> $zone,
-				'zone_code'      	=> $zone_code,
-				'country_id'     	=> $address_query->row['country_id'],
-				'country'        		=> $country,
-				'iso_code_2'     	=> $iso_code_2,
-				'iso_code_3'     	=> $iso_code_3,
-				'address_format' 	=> $address_format
+				'firstname'      => $address_query->row['firstname'],
+				'lastname'       => $address_query->row['lastname'],
+				'company'        => $address_query->row['company'],
+				'company_id'     => $address_query->row['company_id'],
+				'tax_id'         => $address_query->row['tax_id'],
+				'address_1'      => $address_query->row['address_1'],
+				'address_2'      => $address_query->row['address_2'],
+				'postcode'       => $address_query->row['postcode'],
+				'city'           => $address_query->row['city'],
+				'zone_id'        => $address_query->row['zone_id'],
+				'zone'           => $zone,
+				'zone_code'      => $zone_code,
+				'country_id'     => $address_query->row['country_id'],
+				'country'        => $country,
+				'iso_code_2'     => $iso_code_2,
+				'iso_code_3'     => $iso_code_3,
+				'address_format' => $address_format
 			);
 
 			return $address_data;
@@ -110,24 +110,24 @@ class ModelAccountAddress extends Model {
 			}
 
 			$address_data[$result['address_id']] = array(
-				'address_id'     	=> $result['address_id'],
-				'firstname'      		=> $result['firstname'],
-				'lastname'       	=> $result['lastname'],
-				'company'        	=> $result['company'],
-				'company_id'     	=> $result['company_id'],
-				'tax_id'         		=> $result['tax_id'],
-				'address_1'      	=> $result['address_1'],
-				'address_2'      	=> $result['address_2'],
-				'postcode'       	=> $result['postcode'],
-				'city'           		=> $result['city'],
-				'zone_id'        		=> $result['zone_id'],
-				'zone'           		=> $zone,
-				'zone_code'      	=> $zone_code,
-				'country_id'     	=> $result['country_id'],
-				'country'        		=> $country,
-				'iso_code_2'     	=> $iso_code_2,
-				'iso_code_3'     	=> $iso_code_3,
-				'address_format' 	=> $address_format
+				'address_id'     => $result['address_id'],
+				'firstname'      => $result['firstname'],
+				'lastname'       => $result['lastname'],
+				'company'        => $result['company'],
+				'company_id'     => $result['company_id'],
+				'tax_id'         => $result['tax_id'],
+				'address_1'      => $result['address_1'],
+				'address_2'      => $result['address_2'],
+				'postcode'       => $result['postcode'],
+				'city'           => $result['city'],
+				'zone_id'        => $result['zone_id'],
+				'zone'           => $zone,
+				'zone_code'      => $zone_code,
+				'country_id'     => $result['country_id'],
+				'country'        => $country,
+				'iso_code_2'     => $iso_code_2,
+				'iso_code_3'     => $iso_code_3,
+				'address_format' => $address_format
 			);
 		}
 

@@ -8,9 +8,9 @@ class ModelDesignPayment extends Model {
 
 		foreach ($payment_images_query->rows as $payment_image) {
 			$payment_image_data[] = array(
-				'payment'	=> $payment_image['payment'],
-				'image'		=> $payment_image['image'],
-				'status'		=> $payment_image['status']
+				'payment' => $payment_image['payment'],
+				'image'   => $payment_image['image'],
+				'status'  => $payment_image['status']
 			);
 		}
 

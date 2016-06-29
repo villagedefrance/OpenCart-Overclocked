@@ -65,19 +65,19 @@ class ModelShippingParcelforce48 extends Model {
 				}
 
 				$quote_data['parcelforce_48'] = array(
-					'code'         	=> 'parcelforce_48.parcelforce_48',
-					'title'        		=> $text,
-					'cost'         	=> $cost,
-					'tax_class_id' 	=> $this->config->get('parcelforce_48_tax_class_id'),
-					'text'         	=> $this->currency->format($this->tax->calculate($cost, $this->config->get('parcelforce_48_tax_class_id'), $this->config->get('config_tax')))
+					'code'         => 'parcelforce_48.parcelforce_48',
+					'title'        => $text,
+					'cost'         => $cost,
+					'tax_class_id' => $this->config->get('parcelforce_48_tax_class_id'),
+					'text'         => $this->currency->format($this->tax->calculate($cost, $this->config->get('parcelforce_48_tax_class_id'), $this->config->get('config_tax')))
 				);
 
 				$method_data = array(
-					'code'		=> 'parcelforce_48',
-					'title'			=> $this->language->get('text_title'),
-					'quote'		=> $quote_data,
-					'sort_order'	=> $this->config->get('parcelforce_48_sort_order'),
-					'error'			=> false
+					'code'       => 'parcelforce_48',
+					'title'      => $this->language->get('text_title'),
+					'quote'      => $quote_data,
+					'sort_order' => $this->config->get('parcelforce_48_sort_order'),
+					'error'      => false
 				);
 			}
 		}

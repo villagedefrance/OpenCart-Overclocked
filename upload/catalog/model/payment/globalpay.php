@@ -22,10 +22,10 @@ class ModelPaymentGlobalpay extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'globalpay',
-				'title'			=> $this->language->get('text_title'),
-				'terms'		=> '',
-				'sort_order'	=> $this->config->get('globalpay_sort_order')
+				'code'       => 'globalpay',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('globalpay_sort_order')
 			);
 		}
 

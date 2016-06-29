@@ -70,7 +70,7 @@ class ModelDesignConnection extends Model {
 	}
 
 	public function getConnectionName($connection_id) {
-		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
 
 		return $query->row['name'];
 	}
@@ -78,25 +78,21 @@ class ModelDesignConnection extends Model {
 	public function getTotalConnections() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection");
 
-		return $query->row['total'];
+		if (isset($query->row['total'])) {
+			return $query->row['total'];
+		} else {
+			return 0;
+		}
 	}
 
 	public function getTotalCatalogConnections() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection WHERE frontend = '1'";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "connection WHERE frontend = '1'");
 
-		$cache_id = 'connections.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
+		if (isset($query->row['total'])) {
+			return $query->row['total'];
+		} else {
+			return 0;
 		}
-
-		return $total;
 	}
 }
 ?>

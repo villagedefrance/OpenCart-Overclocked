@@ -24,9 +24,10 @@ class ModelPaymentInStore extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'in_store',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('in_store_sort_order')
+				'code'       => 'in_store',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('in_store_sort_order')
 			);
 		}
 

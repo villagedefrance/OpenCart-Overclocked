@@ -26,11 +26,11 @@ class ModelTotalPayPalFee extends Model {
 				}
 
 				$total_data[] = array(
-					'code'		=> 'paypal_fee',
-					'title'			=> $this->language->get('text_paypal_fee'),
-					'text'			=> $this->currency->format($paypal_fee),
-					'value'		=> $paypal_fee,
-					'sort_order'	=> $this->config->get('paypal_fee_sort_order')
+					'code'       => 'paypal_fee',
+					'title'      => $this->language->get('text_paypal_fee'),
+					'text'       => $this->currency->format($paypal_fee),
+					'value'      => $paypal_fee,
+					'sort_order' => $this->config->get('paypal_fee_sort_order')
 				);
 
 				if ($this->config->get('paypal_fee_tax_class_id')) {

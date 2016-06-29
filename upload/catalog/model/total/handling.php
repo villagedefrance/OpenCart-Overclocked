@@ -6,11 +6,11 @@ class ModelTotalHandling extends Model {
 			$this->language->load('total/handling');
 
 			$total_data[] = array(
-				'code'		=> 'handling',
-				'title'			=> $this->language->get('text_handling'),
-				'text'			=> $this->currency->format($this->config->get('handling_fee')),
-				'value'		=> $this->config->get('handling_fee'),
-				'sort_order'	=> $this->config->get('handling_sort_order')
+				'code'       => 'handling',
+				'title'      => $this->language->get('text_handling'),
+				'text'       => $this->currency->format($this->config->get('handling_fee')),
+				'value'      => $this->config->get('handling_fee'),
+				'sort_order' => $this->config->get('handling_sort_order')
 			);
 
 			if ($this->config->get('handling_tax_class_id')) {

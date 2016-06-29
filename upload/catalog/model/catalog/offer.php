@@ -23,26 +23,26 @@ class ModelCatalogOffer extends Model {
 
 				if (($result['one'] == $product_id) && ($result['two'] == $product_id)) {
 					$offer_products[] = array(
-						'group'	=> 'G241',
-						'one'		=> $result['one'],
-						'two'		=> $result['two'],
-						'type'		=> $type
+						'group' => 'G241',
+						'one'   => $result['one'],
+						'two'   => $result['two'],
+						'type'  => $type
 					);
 
 				} elseif ($result['two'] == $product_id) {
 					$offer_products[] = array(
-						'group'	=> 'G142D',
-						'one'		=> $result['one'],
-						'two'		=> $result['two'],
-						'type'		=> $type
+						'group' => 'G142D',
+						'one'   => $result['one'],
+						'two'   => $result['two'],
+						'type'  => $type
 					);
 
 				} elseif ($result['one'] == $product_id) {
 					$offer_products[] = array(
-						'group'	=> 'G242D',
-						'one'		=> $result['one'],
-						'two'		=> $result['two'],
-						'type'		=> $type
+						'group' => 'G242D',
+						'one'   => $result['one'],
+						'two'   => $result['two'],
+						'type'  => $type
 					);
 
 				} else {
@@ -74,26 +74,26 @@ class ModelCatalogOffer extends Model {
 					foreach ($product_lists as $product) {
 						if (($result['one'] == $product_id) && ($product == $product_id)) {
 							$offer_products[] = array(
-								'group'	=> 'G241D',
-								'one'		=> $result['one'],
-								'two'		=> $product,
-								'type'		=> $type
+								'group' => 'G241D',
+								'one'   => $result['one'],
+								'two'   => $product,
+								'type'  => $type
 							);
 
 						} elseif ($product == $product_id) {
 							$offer_products[] = array(
-								'group'	=> 'G142D',
-								'one'		=> $result['one'],
-								'two'		=> $product,
-								'type'		=> $type
+								'group' => 'G142D',
+								'one'   => $result['one'],
+								'two'   => $product,
+								'type'  => $type
 							);
 
 						} elseif ($result['one'] == $product_id) {
 							$offer_products[] = array(
-								'group'	=> 'G242D',
-								'one'		=> $result['one'],
-								'two'		=> $product,
-								'type'		=> $type
+								'group' => 'G242D',
+								'one'   => $result['one'],
+								'two'   => $product,
+								'type'  => $type
 							);
 
 						} else {
@@ -130,26 +130,26 @@ class ModelCatalogOffer extends Model {
 					foreach ($product_lists as $product) {
 						if (($product == $product_id) && ($result['two'] == $product_id)) {
 							$offer_products[] = array(
-								'group'	=> 'G241D',
-								'one'		=> $product,
-								'two'		=> $result['two'],
-								'type'		=> $type
+								'group' => 'G241D',
+								'one'   => $product,
+								'two'   => $result['two'],
+								'type'  => $type
 							);
 
 						} elseif ($result['two'] == $product_id) {
 							$offer_products[] = array(
-								'group'	=> 'G142D',
-								'one'		=> $product,
-								'two'		=> $result['two'],
-								'type'		=> $type
+								'group' => 'G142D',
+								'one'   => $product,
+								'two'   => $result['two'],
+								'type'  => $type
 							);
 
 						} elseif ($product == $product_id) {
 							$offer_products[] = array(
-								'group'	=> 'G242D',
-								'one'		=> $product,
-								'two'		=> $result['two'],
-								'type'		=> $type
+								'group' => 'G242D',
+								'one'   => $product,
+								'two'   => $result['two'],
+								'type'  => $type
 							);
 
 						} else {
@@ -192,26 +192,26 @@ class ModelCatalogOffer extends Model {
 						foreach ($product_two_lists as $product_two) {
 							if (($product_one == $product_id) && ($product_two == $product_id)) {
 								$offer_products[] = array(
-									'group'	=> 'G241D',
-									'one'		=> $product_one,
-									'two'		=> $product_two,
-									'type'		=> $type
+									'group' => 'G241D',
+									'one'   => $product_one,
+									'two'   => $product_two,
+									'type'  => $type
 								);
 
 							} elseif ($product_two == $product_id) {
 								$offer_products[] = array(
-									'group'	=> 'G142D',
-									'one'		=> $product_one,
-									'two'		=> $product_two,
-									'type'		=> $type
+									'group' => 'G142D',
+									'one'   => $product_one,
+									'two'   => $product_two,
+									'type'  => $type
 								);
 
 							} elseif ($product_one == $product_id) {
 								$offer_products[] = array(
-									'group'	=> 'G242D',
-									'one'		=> $product_one,
-									'two'		=> $product_two,
-									'type'		=> $type
+									'group' => 'G242D',
+									'one'   => $product_one,
+									'two'   => $product_two,
+									'type'  => $type
 								);
 
 							} else {

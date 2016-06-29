@@ -22,10 +22,10 @@ class ModelPaymentSkrill extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'skrill',
-				'title'			=> $this->language->get('text_title'),
-				'terms'		=> '',
-				'sort_order'	=> $this->config->get('skrill_sort_order')
+				'code'       => 'skrill',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('skrill_sort_order')
 			);
 		}
 

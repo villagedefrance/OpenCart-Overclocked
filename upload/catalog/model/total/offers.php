@@ -189,11 +189,11 @@ class ModelTotalOffers {
 			$this->load->language('total/offers');
 
 			$total_data[] = array(
-				'code'		=> 'offers',
-				'title'			=> $this->language->get('text_offers'),
-				'text'			=> '-' . $this->currency->format($discount_total),
-				'value'		=> '-' . number_format($discount_total, 2, '.', ''),
-				'sort_order'	=> $this->config->get('offers_sort_order')
+				'code'       => 'offers',
+				'title'      => $this->language->get('text_offers'),
+				'text'       => '-' . $this->currency->format($discount_total),
+				'value'      => '-' . number_format($discount_total, 2, '.', ''),
+				'sort_order' => $this->config->get('offers_sort_order')
 			);
 
 			$total -= number_format($discount_total, 2, '.', '');

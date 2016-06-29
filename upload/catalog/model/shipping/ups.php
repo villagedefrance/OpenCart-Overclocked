@@ -122,14 +122,14 @@ class ModelShippingUps extends Model {
 			$xml .= '		<RequestAction>Rate</RequestAction>';
 			$xml .= '		<RequestOption>shop</RequestOption>';
 			$xml .= '	</Request>';
-			$xml .= '   <PickupType>';
-			$xml .= '       <Code>' . $this->config->get('ups_pickup') . '</Code>';
-			$xml .= '   </PickupType>';
+			$xml .= '		<PickupType>';
+			$xml .= '			<Code>' . $this->config->get('ups_pickup') . '</Code>';
+			$xml .= '		</PickupType>';
 
 			if ($this->config->get('ups_country') == 'US' && $this->config->get('ups_pickup') == '11') {
-				$xml .= '   <CustomerClassification>';
-				$xml .= '       <Code>' . $this->config->get('ups_classification') . '</Code>';
-				$xml .= '   </CustomerClassification>';
+				$xml .= '		<CustomerClassification>';
+				$xml .= '			<Code>' . $this->config->get('ups_classification') . '</Code>';
+				$xml .= '		</CustomerClassification>';
 			}
 
 			$xml .= '	<Shipment>';
@@ -185,12 +185,12 @@ class ModelShippingUps extends Model {
 			$xml .= '			</PackageWeight>';
 
 			if ($this->config->get('ups_insurance')) {
-				$xml .= '           <PackageServiceOptions>';
-				$xml .= '               <InsuredValue>';
-				$xml .= '                   <CurrencyCode>' . $this->currency->getCode() . '</CurrencyCode>';
-				$xml .= '                   <MonetaryValue>' . $this->currency->format($this->cart->getSubTotal(), false, false, false) . '</MonetaryValue>';
-				$xml .= '               </InsuredValue>';
-				$xml .= '           </PackageServiceOptions>';
+				$xml .= '		<PackageServiceOptions>';
+				$xml .= '			<InsuredValue>';
+				$xml .= '				<CurrencyCode>' . $this->currency->getCode() . '</CurrencyCode>';
+				$xml .= '				<MonetaryValue>' . $this->currency->format($this->cart->getSubTotal(), false, false, false) . '</MonetaryValue>';
+				$xml .= '			</InsuredValue>';
+				$xml .= '		</PackageServiceOptions>';
 			}
 
 			$xml .= '		</Package>';
@@ -259,11 +259,11 @@ class ModelShippingUps extends Model {
 
 						if ($this->config->get('ups_' . strtolower($this->config->get('ups_origin')) . '_' . $code)) {
 							$quote_data[$code] = array(
-								'code'         	=> 'ups.' . $code,
-								'title'        		=> $service_code[$this->config->get('ups_origin')][$code],
-								'cost'         	=> $this->currency->convert($cost, $currency, $this->config->get('config_currency')),
-								'tax_class_id' 	=> $this->config->get('ups_tax_class_id'),
-								'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($cost, $currency, $this->currency->getCode()), $this->config->get('ups_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
+								'code'         => 'ups.' . $code,
+								'title'        => $service_code[$this->config->get('ups_origin')][$code],
+								'cost'         => $this->currency->convert($cost, $currency, $this->config->get('config_currency')),
+								'tax_class_id' => $this->config->get('ups_tax_class_id'),
+								'text'         => $this->currency->format($this->tax->calculate($this->currency->convert($cost, $currency, $this->currency->getCode()), $this->config->get('ups_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
 							);
 						}
 					}
@@ -277,11 +277,11 @@ class ModelShippingUps extends Model {
 			}
 
 			$method_data = array(
-				'code'		=> 'ups',
-				'title'			=> $title,
-				'quote'		=> $quote_data,
-				'sort_order'	=> $this->config->get('ups_sort_order'),
-				'error'			=> $error
+				'code'       => 'ups',
+				'title'      => $title,
+				'quote'      => $quote_data,
+				'sort_order' => $this->config->get('ups_sort_order'),
+				'error'      => $error
 			);
 		}
 

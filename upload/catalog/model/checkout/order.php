@@ -86,71 +86,71 @@ class ModelCheckoutOrder extends Model {
 			}
 
 			return array(
-				'order_id'                		=> $order_query->row['order_id'],
-				'invoice_no'              		=> $order_query->row['invoice_no'],
-				'invoice_prefix'          		=> $order_query->row['invoice_prefix'],
-				'store_id'                		=> $order_query->row['store_id'],
-				'store_name'              		=> $order_query->row['store_name'],
-				'store_url'               		=> $order_query->row['store_url'],
-				'customer_id'             		=> $order_query->row['customer_id'],
-				'firstname'               		=> $order_query->row['firstname'],
-				'lastname'                		=> $order_query->row['lastname'],
-				'telephone'               		=> $order_query->row['telephone'],
-				'fax'                     			=> $order_query->row['fax'],
-				'email'                   			=> $order_query->row['email'],
-				'payment_firstname'   		=> $order_query->row['payment_firstname'],
-				'payment_lastname'   		=> $order_query->row['payment_lastname'],
-				'payment_company'      	=> $order_query->row['payment_company'],
-				'payment_company_id'		=> $order_query->row['payment_company_id'],
-				'payment_tax_id'          	=> $order_query->row['payment_tax_id'],
-				'payment_address_1' 		=> $order_query->row['payment_address_1'],
-				'payment_address_2'   		=> $order_query->row['payment_address_2'],
-				'payment_postcode'  		=> $order_query->row['payment_postcode'],
-				'payment_city'            		=> $order_query->row['payment_city'],
-				'payment_zone_id'   			=> $order_query->row['payment_zone_id'],
-				'payment_zone'       			=> $order_query->row['payment_zone'],
-				'payment_zone_code' 		=> $payment_zone_code,
-				'payment_country_id'   		=> $order_query->row['payment_country_id'],
-				'payment_country'     		=> $order_query->row['payment_country'],
-				'payment_iso_code_2'  		=> $payment_iso_code_2,
-				'payment_iso_code_3'   	=> $payment_iso_code_3,
-				'payment_address_format'	=> $order_query->row['payment_address_format'],
-				'payment_method'    		=> $order_query->row['payment_method'],
-				'payment_code'         		=> $order_query->row['payment_code'],
-				'shipping_firstname' 			=> $order_query->row['shipping_firstname'],
-				'shipping_lastname'    		=> $order_query->row['shipping_lastname'],
-				'shipping_company'   		=> $order_query->row['shipping_company'],
-				'shipping_address_1'      	=> $order_query->row['shipping_address_1'],
-				'shipping_address_2'      	=> $order_query->row['shipping_address_2'],
-				'shipping_postcode'       	=> $order_query->row['shipping_postcode'],
-				'shipping_city'           		=> $order_query->row['shipping_city'],
-				'shipping_zone_id'        		=> $order_query->row['shipping_zone_id'],
-				'shipping_zone'           		=> $order_query->row['shipping_zone'],
-				'shipping_zone_code'  		=> $shipping_zone_code,
-				'shipping_country_id'     	=> $order_query->row['shipping_country_id'],
-				'shipping_country'        	=> $order_query->row['shipping_country'],
-				'shipping_iso_code_2'  		=> $shipping_iso_code_2,
-				'shipping_iso_code_3'  		=> $shipping_iso_code_3,
-				'shipping_address_format'	=> $order_query->row['shipping_address_format'],
-				'shipping_method'         	=> $order_query->row['shipping_method'],
-				'shipping_code'           		=> $order_query->row['shipping_code'],
-				'comment'                 		=> $order_query->row['comment'],
-				'total'                   			=> $order_query->row['total'],
-				'order_status_id'         		=> $order_query->row['order_status_id'],
-				'order_status'            		=> $order_query->row['order_status'],
-				'language_id'             		=> $order_query->row['language_id'],
-				'language_code'           	=> $language_code,
-				'language_filename'       	=> $language_filename,
-				'language_directory'      	=> $language_directory,
-				'currency_id'             		=> $order_query->row['currency_id'],
-				'currency_code'           	=> $order_query->row['currency_code'],
-				'currency_value'          		=> $order_query->row['currency_value'],
-				'ip'                      			=> $order_query->row['ip'],
-				'forwarded_ip'            		=> $order_query->row['forwarded_ip'],
-				'user_agent'              		=> $order_query->row['user_agent'],
-				'accept_language'         	=> $order_query->row['accept_language'],
-				'date_modified'           		=> $order_query->row['date_modified'],
-				'date_added'              		=> $order_query->row['date_added']
+				'order_id'                => $order_query->row['order_id'],
+				'invoice_no'              => $order_query->row['invoice_no'],
+				'invoice_prefix'          => $order_query->row['invoice_prefix'],
+				'store_id'                => $order_query->row['store_id'],
+				'store_name'              => $order_query->row['store_name'],
+				'store_url'               => $order_query->row['store_url'],
+				'customer_id'             => $order_query->row['customer_id'],
+				'firstname'               => $order_query->row['firstname'],
+				'lastname'                => $order_query->row['lastname'],
+				'telephone'               => $order_query->row['telephone'],
+				'fax'                     => $order_query->row['fax'],
+				'email'                   => $order_query->row['email'],
+				'payment_firstname'       => $order_query->row['payment_firstname'],
+				'payment_lastname'        => $order_query->row['payment_lastname'],
+				'payment_company'         => $order_query->row['payment_company'],
+				'payment_company_id'      => $order_query->row['payment_company_id'],
+				'payment_tax_id'          => $order_query->row['payment_tax_id'],
+				'payment_address_1'       => $order_query->row['payment_address_1'],
+				'payment_address_2'       => $order_query->row['payment_address_2'],
+				'payment_postcode'        => $order_query->row['payment_postcode'],
+				'payment_city'            => $order_query->row['payment_city'],
+				'payment_zone_id'         => $order_query->row['payment_zone_id'],
+				'payment_zone'            => $order_query->row['payment_zone'],
+				'payment_zone_code'       => $payment_zone_code,
+				'payment_country_id'      => $order_query->row['payment_country_id'],
+				'payment_country'         => $order_query->row['payment_country'],
+				'payment_iso_code_2'      => $payment_iso_code_2,
+				'payment_iso_code_3'      => $payment_iso_code_3,
+				'payment_address_format'  => $order_query->row['payment_address_format'],
+				'payment_method'          => $order_query->row['payment_method'],
+				'payment_code'            => $order_query->row['payment_code'],
+				'shipping_firstname'      => $order_query->row['shipping_firstname'],
+				'shipping_lastname'       => $order_query->row['shipping_lastname'],
+				'shipping_company'        => $order_query->row['shipping_company'],
+				'shipping_address_1'      => $order_query->row['shipping_address_1'],
+				'shipping_address_2'      => $order_query->row['shipping_address_2'],
+				'shipping_postcode'       => $order_query->row['shipping_postcode'],
+				'shipping_city'           => $order_query->row['shipping_city'],
+				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
+				'shipping_zone'           => $order_query->row['shipping_zone'],
+				'shipping_zone_code'      => $shipping_zone_code,
+				'shipping_country_id'     => $order_query->row['shipping_country_id'],
+				'shipping_country'        => $order_query->row['shipping_country'],
+				'shipping_iso_code_2'     => $shipping_iso_code_2,
+				'shipping_iso_code_3'     => $shipping_iso_code_3,
+				'shipping_address_format' => $order_query->row['shipping_address_format'],
+				'shipping_method'         => $order_query->row['shipping_method'],
+				'shipping_code'           => $order_query->row['shipping_code'],
+				'comment'                 => $order_query->row['comment'],
+				'total'                   => $order_query->row['total'],
+				'order_status_id'         => $order_query->row['order_status_id'],
+				'order_status'            => $order_query->row['order_status'],
+				'language_id'             => $order_query->row['language_id'],
+				'language_code'           => $language_code,
+				'language_filename'       => $language_filename,
+				'language_directory'      => $language_directory,
+				'currency_id'             => $order_query->row['currency_id'],
+				'currency_code'           => $order_query->row['currency_code'],
+				'currency_value'          => $order_query->row['currency_value'],
+				'ip'                      => $order_query->row['ip'],
+				'forwarded_ip'            => $order_query->row['forwarded_ip'],
+				'user_agent'              => $order_query->row['user_agent'],
+				'accept_language'         => $order_query->row['accept_language'],
+				'date_modified'           => $order_query->row['date_modified'],
+				'date_added'              => $order_query->row['date_added']
 			);
 
 		} else {
@@ -383,16 +383,16 @@ class ModelCheckoutOrder extends Model {
 			);
 
 			$replace = array(
-				'firstname' 		=> $order_info['payment_firstname'],
-				'lastname'  		=> $order_info['payment_lastname'],
-				'company'   	=> $order_info['payment_company'],
-				'address_1' 	=> $order_info['payment_address_1'],
-				'address_2' 	=> $order_info['payment_address_2'],
-				'city'      		=> $order_info['payment_city'],
-				'postcode'  		=> $order_info['payment_postcode'],
-				'zone'      		=> $order_info['payment_zone'],
-				'zone_code' 	=> $order_info['payment_zone_code'],
-				'country'   		=> $order_info['payment_country']
+				'firstname' => $order_info['payment_firstname'],
+				'lastname'  => $order_info['payment_lastname'],
+				'company'   => $order_info['payment_company'],
+				'address_1' => $order_info['payment_address_1'],
+				'address_2' => $order_info['payment_address_2'],
+				'city'      => $order_info['payment_city'],
+				'postcode'  => $order_info['payment_postcode'],
+				'zone'      => $order_info['payment_zone'],
+				'zone_code' => $order_info['payment_zone_code'],
+				'country'   => $order_info['payment_country']
 			);
 
 			$template->data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -417,16 +417,16 @@ class ModelCheckoutOrder extends Model {
 			);
 
 			$replace = array(
-				'firstname' 		=> $order_info['shipping_firstname'],
-				'lastname'  		=> $order_info['shipping_lastname'],
-				'company'		=> $order_info['shipping_company'],
-				'address_1' 	=> $order_info['shipping_address_1'],
-				'address_2' 	=> $order_info['shipping_address_2'],
-				'city'      		=> $order_info['shipping_city'],
-				'postcode'  		=> $order_info['shipping_postcode'],
-				'zone'      		=> $order_info['shipping_zone'],
-				'zone_code' 	=> $order_info['shipping_zone_code'],
-				'country'   		=> $order_info['shipping_country']
+				'firstname' => $order_info['shipping_firstname'],
+				'lastname'  => $order_info['shipping_lastname'],
+				'company'   => $order_info['shipping_company'],
+				'address_1' => $order_info['shipping_address_1'],
+				'address_2' => $order_info['shipping_address_2'],
+				'city'      => $order_info['shipping_city'],
+				'postcode'  => $order_info['shipping_postcode'],
+				'zone'      => $order_info['shipping_zone'],
+				'zone_code' => $order_info['shipping_zone_code'],
+				'country'   => $order_info['shipping_country']
 			);
 
 			$template->data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -447,18 +447,18 @@ class ModelCheckoutOrder extends Model {
 					}
 
 					$option_data[] = array(
-						'name'	=> $option['name'],
-						'value' 	=> (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
+						'name'  => $option['name'],
+						'value' => (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value
 					);
 				}
 
 				$template->data['products'][] = array(
-					'name'     	=> $product['name'],
-					'model'    	=> $product['model'],
-					'option'   	=> $option_data,
-					'quantity' 	=> $product['quantity'],
-					'price'    	=> $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-					'total'    		=> $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
+					'name'     => $product['name'],
+					'model'    => $product['model'],
+					'option'   => $option_data,
+					'quantity' => $product['quantity'],
+					'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
+					'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
 				);
 			}
 
@@ -467,8 +467,8 @@ class ModelCheckoutOrder extends Model {
 
 			foreach ($order_voucher_query->rows as $voucher) {
 				$template->data['vouchers'][] = array(
-					'description'	=> $voucher['description'],
-					'amount'      	=> $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])
 				);
 			}
 

@@ -45,19 +45,19 @@ class ModelCheckoutVoucher extends Model {
 
 		if ($status) {
 			return array(
-				'voucher_id'       		=> $voucher_query->row['voucher_id'],
-				'code'             		=> $voucher_query->row['code'],
-				'from_name'        	=> $voucher_query->row['from_name'],
-				'from_email'       		=> $voucher_query->row['from_email'],
-				'to_name'          		=> $voucher_query->row['to_name'],
-				'to_email'         		=> $voucher_query->row['to_email'],
-				'voucher_theme_id'	=> $voucher_query->row['voucher_theme_id'],
-				'theme'            		=> $voucher_query->row['theme'],
-				'message'          		=> $voucher_query->row['message'],
-				'image'            		=> $voucher_query->row['image'],
-				'amount'           		=> $amount,
-				'status'           		=> $voucher_query->row['status'],
-				'date_added'       	=> $voucher_query->row['date_added']
+				'voucher_id'       => $voucher_query->row['voucher_id'],
+				'code'             => $voucher_query->row['code'],
+				'from_name'        => $voucher_query->row['from_name'],
+				'from_email'       => $voucher_query->row['from_email'],
+				'to_name'          => $voucher_query->row['to_name'],
+				'to_email'         => $voucher_query->row['to_email'],
+				'voucher_theme_id' => $voucher_query->row['voucher_theme_id'],
+				'theme'            => $voucher_query->row['theme'],
+				'message'          => $voucher_query->row['message'],
+				'image'            => $voucher_query->row['image'],
+				'amount'           => $amount,
+				'status'           => $voucher_query->row['status'],
+				'date_added'       => $voucher_query->row['date_added']
 			);
 		}
 	}

@@ -14,21 +14,13 @@ class ModelLocalisationLocation extends Model {
 	}
 
 	public function getTotalLocations() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "location";
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "location");
 
-		$cache_id = 'locations.total';
-
-		$total = $this->cache->get($cache_id);
-
-		if (!$total || $total === null) {
-			$query = $this->db->query($sql);
-
-			$total = $query->row['total'];
-
-			$this->cache->set($cache_id, $total);
+		if (isset($query->row['total'])) {
+			return $query->row['total'];
+		} else {
+			return 0;
 		}
-
-		return $total;
 	}
 }
 ?>

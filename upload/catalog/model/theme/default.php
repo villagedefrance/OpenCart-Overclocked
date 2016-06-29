@@ -27,17 +27,17 @@ class ModelThemeDefault extends Model {
 
 		// Theme
 		$theme = array(
-			'breadcrumbs' 				=> $breadcrumbs,
-			'manufacturer_name'		=> $manufacturer_name,
-			'manufacturer_image'	=> $manufacturer_image,
-			'category_menu'			=> $category_menu,
-			'default_viewer' 			=> $default_viewer,
-			'cookie_consent' 			=> $cookie_consent,
-			'cookie_privacy' 			=> $cookie_privacy,
-			'back_to_top'				=> $back_to_top,
-			'cookie_message'			=> $cookie_message,
-			'cookie_yes'				=> $cookie_yes,
-			'cookie_no'					=> $cookie_no
+			'breadcrumbs'        => $breadcrumbs,
+			'manufacturer_name'  => $manufacturer_name,
+			'manufacturer_image' => $manufacturer_image,
+			'category_menu'      => $category_menu,
+			'default_viewer'     => $default_viewer,
+			'cookie_consent'     => $cookie_consent,
+			'cookie_privacy'     => $cookie_privacy,
+			'back_to_top'        => $back_to_top,
+			'cookie_message'     => $cookie_message,
+			'cookie_yes'         => $cookie_yes,
+			'cookie_no'          => $cookie_no
 		);
 
 		return $theme;

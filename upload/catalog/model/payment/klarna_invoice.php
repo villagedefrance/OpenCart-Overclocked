@@ -56,10 +56,10 @@ class ModelPaymentKlarnaInvoice extends Model {
 			}
 
 			$method = array(
-				'code'       	=> 'klarna_invoice',
-				'title'      	=> $this->language->get('text_title'),
-				'terms'      	=> $terms,
-				'sort_order'	=> $klarna_invoice[$address['iso_code_3']]['sort_order']
+				'code'       => 'klarna_invoice',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => $terms,
+				'sort_order' => $klarna_invoice[$address['iso_code_3']]['sort_order']
 			);
 		}
 

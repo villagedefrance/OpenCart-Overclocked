@@ -1,5 +1,6 @@
 <?php
 class ModelPaymentEway extends Model {
+
 	public function log($data, $title = null) {
 		if ($this->config->get('eway_debug')) {
 			$this->log->write('eWAY debug (' . $title . '): ' . json_encode($data));
@@ -42,12 +43,11 @@ class ModelPaymentEway extends Model {
 	}
 
 	public function addOrder($order_data) {
-
-		$cap = '';
 		if ($this->config->get('eway_transaction_method') == 'payment') {
-			$cap = ",`capture_status` = '1'";
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "eway_order` SET `order_id` = '" . (int)$order_data['order_id'] . "', `created` = NOW(), `modified` = NOW(), `debug_data` = '" . $this->db->escape($order_data['debug_data']) . "', `amount` = '" . $this->currency->format($order_data['amount'], $order_data['currency_code'], false, false) . "', `currency_code` = '" . $this->db->escape($order_data['currency_code']) . "', `transaction_id` = '" . $this->db->escape($order_data['transaction_id']) . "', `capture_status` = '1'");
+		} else {
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "eway_order` SET `order_id` = '" . (int)$order_data['order_id'] . "', `created` = NOW(), `modified` = NOW(), `debug_data` = '" . $this->db->escape($order_data['debug_data']) . "', `amount` = '" . $this->currency->format($order_data['amount'], $order_data['currency_code'], false, false) . "', `currency_code` = '" . $this->db->escape($order_data['currency_code']) . "', `transaction_id` = '" . $this->db->escape($order_data['transaction_id']) . "'");
 		}
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "eway_order` SET `order_id` = '" . (int)$order_data['order_id'] . "', `created` = NOW(), `modified` = NOW(), `debug_data` = '" . $this->db->escape($order_data['debug_data']) . "', `amount` = '" . $this->currency->format($order_data['amount'], $order_data['currency_code'], false, false) . "', `currency_code` = '" . $this->db->escape($order_data['currency_code']) . "', `transaction_id` = '" . $this->db->escape($order_data['transaction_id']) . "'{$cap}");
 
 		return $this->db->getLastId();
 	}
@@ -169,18 +169,24 @@ class ModelPaymentEway extends Model {
 
 		if (curl_errno($ch) != CURLE_OK) {
 			$response = new stdClass();
-			$response->Errors = (($is_post) ? "POST Error: " : "GET Error: ") . curl_error($ch) . " URL: $url";
+
+			$response->Errors = (($is_post) ? "POST Error: " : "GET Error: ") . curl_error($ch) . " URL: " . $url;
+
 			$this->log(array('error' => curl_error($ch), 'errno' => curl_errno($ch)), 'cURL failed');
+
 			$response = json_encode($response);
 		} else {
 			$info = curl_getinfo($ch);
+
 			if ($info['http_code'] != 200) {
 				$response = new stdClass();
+
 				if ($info['http_code'] == 401 || $info['http_code'] == 404 || $info['http_code'] == 403) {
 					$response->Errors = $this->language->get('text_card_message_40X');
 				} else {
 					$response->Errors = 'Error connecting to eWAY: ' . $info['http_code'];
 				}
+
 				$response = json_encode($response);
 			}
 		}

@@ -22,11 +22,11 @@ class ModelPaymentPPExpress extends Model {
 		}
 
 		$settings = array(
-			'USER'				=> $this->config->get('pp_express_username'),
-			'PWD'					=> $this->config->get('pp_express_password'),
-			'SIGNATURE'		=> $this->config->get('pp_express_signature'),
-			'VERSION'			=> '65.2',
-			'BUTTONSOURCE'	=> 'OpenCart_Cart_EC'
+			'USER'         => $this->config->get('pp_express_username'),
+			'PWD'          => $this->config->get('pp_express_password'),
+			'SIGNATURE'    => $this->config->get('pp_express_signature'),
+			'VERSION'      => '65.2',
+			'BUTTONSOURCE' => 'OpenCart_Cart_EC'
 		);
 
 		$this->log($data, 'Call data');
@@ -98,9 +98,10 @@ class ModelPaymentPPExpress extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'pp_express',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('pp_express_sort_order')
+				'code'       => 'pp_express',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('pp_express_sort_order')
 			);
 		}
 
@@ -325,9 +326,9 @@ class ModelPaymentPPExpress extends Model {
 
 	public function recurringCancel($ref) {
 		$data = array(
-			'METHOD' 		=> 'ManageRecurringPaymentsProfileStatus',
-			'PROFILEID' 	=> $ref,
-			'ACTION' 		=> 'Cancel'
+			'METHOD'    => 'ManageRecurringPaymentsProfileStatus',
+			'PROFILEID' => $ref,
+			'ACTION'    => 'Cancel'
 		);
 
 		return $this->call($data);

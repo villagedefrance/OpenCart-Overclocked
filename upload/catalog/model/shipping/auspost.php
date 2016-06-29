@@ -53,11 +53,11 @@ class ModelShippingAusPost extends Model {
 						}
 
 						$quote_data['standard'] = array(
-							'code'         	=> 'auspost.standard',
-							'title'        		=> $title,
-							'cost'         	=> $this->currency->convert($response_info['charge'], 'AUD', $this->config->get('config_currency')),
-							'tax_class_id' 	=> $this->config->get('auspost_tax_class_id'),
-							'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($response_info['charge'], 'AUD', $this->currency->getCode()), $this->config->get('auspost_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
+							'code'         => 'auspost.standard',
+							'title'        => $title,
+							'cost'         => $this->currency->convert($response_info['charge'], 'AUD', $this->config->get('config_currency')),
+							'tax_class_id' => $this->config->get('auspost_tax_class_id'),
+							'text'         => $this->currency->format($this->tax->calculate($this->currency->convert($response_info['charge'], 'AUD', $this->currency->getCode()), $this->config->get('auspost_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
 						);
 					}
 				}
@@ -95,11 +95,11 @@ class ModelShippingAusPost extends Model {
 						}
 
 						$quote_data['express'] = array(
-							'code'     		=> 'auspost.express',
-							'title'     			=> $title,
-							'cost'         	=> $this->currency->convert($response_info['charge'], 'AUD', $this->config->get('config_currency')),
-							'tax_class_id' 	=> $this->config->get('auspost_tax_class_id'),
-							'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($response_info['charge'], 'AUD', $this->currency->getCode()), $this->config->get('auspost_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
+							'code'         => 'auspost.express',
+							'title'        => $title,
+							'cost'         => $this->currency->convert($response_info['charge'], 'AUD', $this->config->get('config_currency')),
+							'tax_class_id' => $this->config->get('auspost_tax_class_id'),
+							'text'         => $this->currency->format($this->tax->calculate($this->currency->convert($response_info['charge'], 'AUD', $this->currency->getCode()), $this->config->get('auspost_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
 						);
 					}
 				}
@@ -110,11 +110,11 @@ class ModelShippingAusPost extends Model {
 
 		if ($quote_data) {
 			$method_data = array(
-				'code'		=> 'auspost',
-				'title'			=> $this->language->get('text_title'),
-				'quote'		=> $quote_data,
-				'sort_order'	=> $this->config->get('auspost_sort_order'),
-				'error'			=> $error
+				'code'       => 'auspost',
+				'title'      => $this->language->get('text_title'),
+				'quote'      => $quote_data,
+				'sort_order' => $this->config->get('auspost_sort_order'),
+				'error'      => $error
 			);
 		}
 

@@ -20,9 +20,10 @@ class ModelPaymentPPProPF extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'		=> 'pp_pro_pf',
-				'title'			=> $this->language->get('text_title'),
-				'sort_order'	=> $this->config->get('pp_pro_pf_sort_order')
+				'code'       => 'pp_pro_pf',
+				'title'      => $this->language->get('text_title'),
+				'terms'      => '',
+				'sort_order' => $this->config->get('pp_pro_pf_sort_order')
 			);
 		}
 

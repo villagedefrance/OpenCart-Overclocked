@@ -203,11 +203,11 @@ class ModelShippingFedex extends Model {
 						$currency = $total_net_charge->getElementsByTagName('Currency')->item(0)->nodeValue;
 
 						$quote_data[$code] = array(
-							'code'         	=> 'fedex.' . $code,
-							'title'        		=> $title,
-							'cost'         	=> $this->currency->convert($cost, $currency, $this->config->get('config_currency')),
-							'tax_class_id' 	=> $this->config->get('fedex_tax_class_id'),
-							'text'         	=> $this->currency->format($this->tax->calculate($this->currency->convert($cost, $currency, $this->currency->getCode()), $this->config->get('fedex_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
+							'code'         => 'fedex.' . $code,
+							'title'        => $title,
+							'cost'         => $this->currency->convert($cost, $currency, $this->config->get('config_currency')),
+							'tax_class_id' => $this->config->get('fedex_tax_class_id'),
+							'text'         => $this->currency->format($this->tax->calculate($this->currency->convert($cost, $currency, $this->currency->getCode()), $this->config->get('fedex_tax_class_id'), $this->config->get('config_tax')), $this->currency->getCode(), 1.0000000)
 						);
 					}
 				}
@@ -224,11 +224,11 @@ class ModelShippingFedex extends Model {
 			}
 
 			$method_data = array(
-				'code'		=> 'fedex',
-				'title'			=> $title,
-				'quote'		=> $quote_data,
-				'sort_order'	=> $this->config->get('fedex_sort_order'),
-				'error'			=> $error
+				'code'       => 'fedex',
+				'title'      => $title,
+				'quote'      => $quote_data,
+				'sort_order' => $this->config->get('fedex_sort_order'),
+				'error'      => $error
 			);
 		}
 

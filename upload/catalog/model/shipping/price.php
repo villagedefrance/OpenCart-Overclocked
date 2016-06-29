@@ -41,11 +41,11 @@ class ModelShippingPrice extends Model {
 
 				if ((string)$cost != '') { 
 					$quote_data['price_' . $result['geo_zone_id']] = array(
-						'code'			=> 'price.price_' . $result['geo_zone_id'],
-						'title'				=> $result['name'] . ' (' . $this->language->get('text_price') . ' ' . $this->currency->format($this->tax->calculate($cost, $this->config->get('price_tax_class_id'), $this->config->get('config_tax'))) . ')',
-						'cost'				=> $cost,
-						'tax_class_id'	=> $this->config->get('price_tax_class_id'),
-						'text'				=> $this->currency->format($this->tax->calculate($cost, $this->config->get('price_tax_class_id'), $this->config->get('config_tax')))
+						'code'         => 'price.price_' . $result['geo_zone_id'],
+						'title'        => $result['name'] . ' (' . $this->language->get('text_price') . ' ' . $this->currency->format($this->tax->calculate($cost, $this->config->get('price_tax_class_id'), $this->config->get('config_tax'))) . ')',
+						'cost'         => $cost,
+						'tax_class_id' => $this->config->get('price_tax_class_id'),
+						'text'         => $this->currency->format($this->tax->calculate($cost, $this->config->get('price_tax_class_id'), $this->config->get('config_tax')))
 					);
 				}
 			}
@@ -55,11 +55,11 @@ class ModelShippingPrice extends Model {
 
 		if ($quote_data) {
 			$method_data = array(
-				'code'		=> 'price',
-				'title'			=> $this->language->get('text_title'),
-				'quote'		=> $quote_data,
-				'sort_order'	=> $this->config->get('price_sort_order'),
-				'error'			=> false
+				'code'       => 'price',
+				'title'      => $this->language->get('text_title'),
+				'quote'      => $quote_data,
+				'sort_order' => $this->config->get('price_sort_order'),
+				'error'      => false
 			);
 		}
 

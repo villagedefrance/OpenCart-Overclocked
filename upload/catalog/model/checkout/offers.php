@@ -18,10 +18,10 @@ class ModelCheckoutOffers extends Model {
 
 			if ($product_query->num_rows) {
 				$product_product_data[] = array(
-					'one'	=> $product_query->row['product_one'],
-					'two'	=> $product_query->row['product_two'],
-					'type'	=> $product_query->row['type'],
-					'disc'	=> $product_query->row['discount']
+					'one'  => $product_query->row['product_one'],
+					'two'  => $product_query->row['product_two'],
+					'type' => $product_query->row['type'],
+					'disc' => $product_query->row['discount']
 				);
 
 			} else {
@@ -51,10 +51,10 @@ class ModelCheckoutOffers extends Model {
 
 			if ($product_query->num_rows) {
 				$product_category_data[] = array(
-					'one'	=> $product_query->row['product_one'],
-					'two'	=> $product_query->row['category_two'],
-					'type'	=> $product_query->row['type'],
-					'disc'	=> $product_query->row['discount']
+					'one'  => $product_query->row['product_one'],
+					'two'  => $product_query->row['category_two'],
+					'type' => $product_query->row['type'],
+					'disc' => $product_query->row['discount']
 				);
 
 			} else {
@@ -84,10 +84,10 @@ class ModelCheckoutOffers extends Model {
 
 			if ($category_query->num_rows) {
 				$category_product_data[] = array(
-					'one'	=> $category_query->row['category_one'],
-					'two'	=> $category_query->row['product_two'],
-					'type'	=> $category_query->row['type'],
-					'disc'	=> $category_query->row['discount']
+					'one'  => $category_query->row['category_one'],
+					'two'  => $category_query->row['product_two'],
+					'type' => $category_query->row['type'],
+					'disc' => $category_query->row['discount']
 				);
 
 			} else {
@@ -117,10 +117,10 @@ class ModelCheckoutOffers extends Model {
 
 			if ($category_query->num_rows) {
 				$category_category_data[] = array(
-					'one'	=> $category_query->row['category_one'],
-					'two'	=> $category_query->row['category_two'],
-					'type'	=> $category_query->row['type'],
-					'disc'	=> $category_query->row['discount']
+					'one'  => $category_query->row['category_one'],
+					'two'  => $category_query->row['category_two'],
+					'type' => $category_query->row['type'],
+					'disc' => $category_query->row['discount']
 				);
 
 			} else {

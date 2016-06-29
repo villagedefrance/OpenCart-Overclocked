@@ -390,11 +390,11 @@ class ModelOpenbayEbayOpenbay extends Model {
 
 							if (!empty($option_qry->row)) {
 								$p_options[] = array(
-									'product_option_id'			=> $option_qry->row['product_option_id'],
-									'product_option_value_id'	=> $option_qry->row['product_option_value_id'],
-									'name'                      		=> $option_qry->row['name'],
-									'value'                     		=> $option_qry->row['value'],
-									'type'                      		=> $option_qry->row['type']
+									'product_option_id'       => $option_qry->row['product_option_id'],
+									'product_option_value_id' => $option_qry->row['product_option_value_id'],
+									'name'                    => $option_qry->row['name'],
+									'value'                   => $option_qry->row['value'],
+									'type'                    => $option_qry->row['type']
 								);
 							}
 						}
@@ -403,8 +403,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 						foreach ($p_options as $option) {
 							$this->db->query("
 								INSERT INTO `" . DB_PREFIX . "order_option`
-								SET
-								`order_id` = '" . (int)$order_id . "',
+								SET `order_id` = '" . (int)$order_id . "',
 								`order_product_id` = '" . (int)$order_product_id . "',
 								`product_option_id` = '" . (int)$option['product_option_id'] . "',
 								`product_option_value_id` = '" . (int)$option['product_option_value_id'] . "',
@@ -451,8 +450,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 
 		$this->db->query("
 			UPDATE `" . DB_PREFIX . "order`
-			SET
-			   `customer_id` = '" . (int)$user['id'] . "',
+			SET`customer_id` = '" . (int)$user['id'] . "',
 			   `customer_group_id` = '" . (int)$this->config->get('openbay_def_customer_grp') . "',
 			   `firstname` = '" . $this->db->escape($user['fname']) . "',
 			   `lastname` = '" . $this->db->escape($user['lname']) . "',
@@ -539,45 +537,45 @@ class ModelOpenbayEbayOpenbay extends Model {
 		$data = array();
 
 		$data['totals'][0] = array(
-			'code'		=> 'sub_total',
-			'title'			=> $totals_language['lang_subtotal'],
-			'text'			=> $this->db->escape($currency['symbol_left']).number_format($total_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'		=> number_format((double)$total_net, 4,'.',''),
-			'sort_order'	=> '1'
+			'code'       => 'sub_total',
+			'title'      => $totals_language['lang_subtotal'],
+			'text'       => $this->db->escape($currency['symbol_left']).number_format($total_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+			'value'      => number_format((double)$total_net, 4,'.',''),
+			'sort_order' => '1'
 		);
 
 		$data['totals'][1] = array(
-			'code'		=> 'shipping',
-			'title'			=> $totals_language['lang_shipping'],
-			'text'			=> $this->db->escape($currency['symbol_left']).number_format($shipping_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'		=> number_format((double)$shipping_net, 4,'.',''),
-			'sort_order'	=> '3'
+			'code'       => 'shipping',
+			'title'      => $totals_language['lang_shipping'],
+			'text'       => $this->db->escape($currency['symbol_left']).number_format($shipping_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+			'value'      => number_format((double)$shipping_net, 4,'.',''),
+			'sort_order' => '3'
 		);
 
 		if ($discount_net != 0.00) {
 			$data['totals'][2] = array(
-				'code'		=> 'coupon',
-				'title'			=> $totals_language['lang_discount'],
-				'text'			=> $this->db->escape($currency['symbol_left']).number_format($discount_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-				'value'		=> number_format((double)$discount_net, 4,'.',''),
-				'sort_order'	=> '4'
+				'code'       => 'coupon',
+				'title'      => $totals_language['lang_discount'],
+				'text'       => $this->db->escape($currency['symbol_left']).number_format($discount_net, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+				'value'      => number_format((double)$discount_net, 4,'.',''),
+				'sort_order' => '4'
 			);
 		}
 
 		$data['totals'][3] = array(
-			'code'		=> 'tax',
-			'title'			=> $totals_language['lang_tax'],
-			'text'			=> $this->db->escape($currency['symbol_left']).number_format($tax, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'		=> number_format((double)$tax, 3,'.',''),
-			'sort_order'	=> '5'
+			'code'       => 'tax',
+			'title'      => $totals_language['lang_tax'],
+			'text'       => $this->db->escape($currency['symbol_left']).number_format($tax, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+			'value'      => number_format((double)$tax, 3,'.',''),
+			'sort_order' => '5'
 		);
 
 		$data['totals'][4] = array(
-			'code'		=> 'total',
-			'title'			=> $totals_language['lang_total'],
-			'text'			=> $this->db->escape($currency['symbol_left']).number_format($totals, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
-			'value'		=> $totals,
-			'sort_order'	=> '6'
+			'code'       => 'total',
+			'title'      => $totals_language['lang_total'],
+			'text'       => $this->db->escape($currency['symbol_left']).number_format($totals, $currency['decimal_place'],'.','').$this->db->escape($currency['symbol_right']),
+			'value'      => $totals,
+			'sort_order' => '6'
 		);
 
 		foreach ($data['totals'] as $total) {
@@ -586,13 +584,15 @@ class ModelOpenbayEbayOpenbay extends Model {
 	}
 
 	private function handleUserAccount($order) {
-		$name_parts     = $this->openbay->splitName((string)$order->address->name);
-		$user           = array();
-		$user['fname']  = $name_parts['firstname'];
-		$user['lname']  = $name_parts['surname'];
+		$name_parts = $this->openbay->splitName((string)$order->address->name);
+
+		$user = array();
+
+		$user['fname'] = $name_parts['firstname'];
+		$user['lname'] = $name_parts['surname'];
 
 		if (!empty($order->address->iso2)) {
-			$country_qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '".$this->db->escape($order->address->iso2)."'");
+			$country_qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($order->address->iso2) . "'");
 		}
 
 		if (!empty($country_qry->num_rows)) {
@@ -610,7 +610,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 			$this->db->query("UPDATE `" . DB_PREFIX . "customer` SET
 				`firstname` = '" . $this->db->escape($name_parts['firstname']) . "',
 				`lastname` = '" . $this->db->escape($name_parts['surname']) . "',
-				`telephone` = '" . str_replace(array(' ', '+', '-'), '', $this->db->escape($order->address->phone))."',
+				`telephone` = '" . str_replace(array(' ', '+', '-'), '', $this->db->escape($order->address->phone)) . "',
 				`status` = '1'
 			 WHERE `customer_id` = '" . (int)$user['id'] . "'");
 		} else {
@@ -619,7 +619,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 				`firstname` = '" . $this->db->escape($name_parts['firstname']) . "',
 				`lastname` = '" . $this->db->escape($name_parts['surname']) . "',
 				`email` = '" . $this->db->escape($user['email']) . "',
-				`telephone` = '" . str_replace(array(' ', '+', '-'), '', $this->db->escape($order->address->phone))."',
+				`telephone` = '" . str_replace(array(' ', '+', '-'), '', $this->db->escape($order->address->phone)) . "',
 				`password` = '" . $this->db->escape(md5($order->user->userid)) . "',
 				`newsletter` = '0',
 				`customer_group_id` = '" . (int)$this->config->get('openbay_def_customer_grp') . "',
@@ -636,9 +636,9 @@ class ModelOpenbayEbayOpenbay extends Model {
 	private function externalApplicationNotify($order_id) {
 		/* This is used by the Mosaic Fullfilment solutions @ www.mosaic-fs.co.uk */
 		if ($this->openbay->addonLoad('mosaic') && !$this->mosaic->isOrderAdded($order_id)) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `shipping_code` = 'ebay.STD' WHERE `order_id` = '".(int)$order_id."' LIMIT 1");
+			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `shipping_code` = 'ebay.STD' WHERE `order_id` = '" . (int)$order_id . "' LIMIT 1");
 			$this->mosaic->sendOrder($order_id, 'PP', '');
-			$this->openbay->ebay->log('Mosaic module has been notified about order ID: '.$order_id);
+			$this->openbay->ebay->log('Mosaic module has been notified about order ID: ' . $order_id);
 		}
 
 		/* send the new order notification to openbay so the other markets can update the stock */
@@ -651,7 +651,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 		header('Pragma: public');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Cache-Control: private',false);
+		header('Cache-Control: private', false);
 		header('Content-Type: application/force-download');
 		header('Content-Length: ' . filesize(DIR_LOGS."ebaylog.log"));
 		header('Content-Disposition: attachment; filename="ebaylog.log"');
@@ -665,7 +665,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 		header('Pragma: public');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Cache-Control: private',false);
+		header('Cache-Control: private', false);
 		header('Content-Type: application/force-download');
 		header('Content-Length: ' . filesize(DIR_LOGS."update.log"));
 		header('Content-Disposition: attachment; filename="update.log"');

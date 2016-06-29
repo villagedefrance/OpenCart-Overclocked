@@ -17,15 +17,15 @@ class ModelLocalisationLanguage extends Model {
 
 			foreach ($query->rows as $result) {
 				$language_data[$result['code']] = array(
-					'language_id' 	=> $result['language_id'],
-					'name'        	=> $result['name'],
-					'code'        	=> $result['code'],
-					'locale'      		=> $result['locale'],
-					'image'       	=> $result['image'],
-					'directory'   	=> $result['directory'],
-					'filename'    	=> $result['filename'],
-					'sort_order'  	=> $result['sort_order'],
-					'status'      	=> $result['status']
+					'language_id' => $result['language_id'],
+					'name'        => $result['name'],
+					'code'        => $result['code'],
+					'locale'      => $result['locale'],
+					'image'       => $result['image'],
+					'directory'   => $result['directory'],
+					'filename'    => $result['filename'],
+					'sort_order'  => $result['sort_order'],
+					'status'      => $result['status']
 				);
 			}
 
