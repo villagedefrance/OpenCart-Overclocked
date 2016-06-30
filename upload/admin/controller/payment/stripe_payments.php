@@ -31,8 +31,8 @@ class ControllerPaymentStripePayments extends Controller {
 		$this->data['text_authorization'] = $this->language->get('text_authorization');
 		$this->data['text_charge'] = $this->language->get('text_charge');
 
-		$this->data['entry_public'] = $this->language->get('entry_public');
-		$this->data['entry_key'] = $this->language->get('entry_key');
+		$this->data['entry_secret_key'] = $this->language->get('entry_secret_key');
+		$this->data['entry_publish_key'] = $this->language->get('entry_publish_key');
 		$this->data['entry_mode'] = $this->language->get('entry_mode');
 		$this->data['entry_method'] = $this->language->get('entry_method');
 		$this->data['entry_total'] = $this->language->get('entry_total');
@@ -51,16 +51,16 @@ class ControllerPaymentStripePayments extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		if (isset($this->error['public'])) {
-			$this->data['error_public'] = $this->error['public'];
+		if (isset($this->error['secret_key'])) {
+			$this->data['error_secret_key'] = $this->error['secret_key'];
 		} else {
-			$this->data['error_public'] = '';
+			$this->data['error_secret_key'] = '';
 		}
 
-		if (isset($this->error['key'])) {
-			$this->data['error_key'] = $this->error['key'];
+		if (isset($this->error['publish_key'])) {
+			$this->data['error_publish_key'] = $this->error['publish_key'];
 		} else {
-			$this->data['error_key'] = '';
+			$this->data['error_publish_key'] = '';
 		}
 
 		$this->data['breadcrumbs'] = array();
@@ -87,16 +87,16 @@ class ControllerPaymentStripePayments extends Controller {
 
 		$this->data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token'];
 
-		if (isset($this->request->post['stripe_payments_public_key'])) {
-			$this->data['stripe_payments_public_key'] = $this->request->post['stripe_payments_public_key'];
+		if (isset($this->request->post['stripe_payments_secret_key'])) {
+			$this->data['stripe_payments_secret_key'] = $this->request->post['stripe_payments_secret_key'];
 		} else {
-			$this->data['stripe_payments_public_key'] = $this->config->get('stripe_payments_public_key');
+			$this->data['stripe_payments_secret_key'] = $this->config->get('stripe_payments_secret_key');
 		}
 
-		if (isset($this->request->post['stripe_payments_private_key'])) {
-			$this->data['stripe_payments_private_key'] = $this->request->post['stripe_payments_private_key'];
+		if (isset($this->request->post['stripe_payments_publish_key'])) {
+			$this->data['stripe_payments_publish_key'] = $this->request->post['stripe_payments_publish_key'];
 		} else {
-			$this->data['stripe_payments_private_key'] = $this->config->get('stripe_payments_private_key');
+			$this->data['stripe_payments_publish_key'] = $this->config->get('stripe_payments_publish_key');
 		}
 
 		if (isset($this->request->post['stripe_payments_mode'])) {
@@ -163,12 +163,12 @@ class ControllerPaymentStripePayments extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['stripe_payments_public_key']) {
-			$this->error['public'] = $this->language->get('error_public');
+		if (!$this->request->post['stripe_payments_secret_key']) {
+			$this->error['secret_key'] = $this->language->get('error_secret_key');
 		}
 
-		if (!$this->request->post['stripe_payments_private_key']) {
-			$this->error['key'] = $this->language->get('error_key');
+		if (!$this->request->post['stripe_payments_publish_key']) {
+			$this->error['publish_key'] = $this->language->get('error_publish_key');
 		}
 
 		if (!$this->error) {

@@ -3,13 +3,13 @@
 <span class="payment-errors error"></span>
 <div class="content" id="payment">
   <table class="form">
-    <!--<tr>
+    <tr>
       <td><?php echo $entry_cc_owner; ?></td>
-      <td><input type="text" name="cc_owner" data-stripe="name" value="" /></td>
-    </tr>-->
+      <td><input type="text" name="cc_owner" data-stripe="name" value="" size="30" /></td>
+    </tr>
     <tr>
       <td><?php echo $entry_cc_number; ?></td>
-      <td><input type="text" name="cc_number" id="cc_number" data-stripe="number" value="" /></td>
+      <td><input type="text" name="cc_number" id="cc_number" data-stripe="number" value="" size="35" /></td>
     </tr>
     <tr>
       <td><?php echo $entry_cc_expire_date; ?></td>
@@ -31,7 +31,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <div class="credit-cards"></div>
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/stripe-cc-logos.png" alt="" />
       </td>
     </tr>
   </table>
@@ -45,10 +45,10 @@
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
-<script type="text/javascript">
+<script type="text/javascript"><!--
 function wait_for_stripe_to_load() {
 	if (window.Stripe) {
-		Stripe.setPublishableKey('<?php echo $stripe_payments_public_key; ?>');
+		Stripe.setPublishableKey('<?php echo $stripe_payments_publish_key; ?>');
 	} else {
 		setTimeout(function() {wait_for_stripe_to_load() }, 50);
 	}
@@ -100,4 +100,4 @@ jQuery(function($) {
 		$('#payment-form .credit-cards').removeClass().addClass('credit-cards ' + cctype);
 	});
 });
-</script>
+//--></script>

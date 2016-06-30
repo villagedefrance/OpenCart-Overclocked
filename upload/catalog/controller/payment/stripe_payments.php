@@ -15,7 +15,7 @@ class ControllerPaymentStripePayments extends Controller {
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 		$this->data['button_back'] = $this->language->get('button_back');
 
-        $this->data['stripe_payments_public_key'] = $this->config->get('stripe_payments_public_key');
+        $this->data['stripe_payments_publish_key'] = $this->config->get('stripe_payments_publish_key');
 
 		$this->data['months'] = array();
 
@@ -38,8 +38,6 @@ class ControllerPaymentStripePayments extends Controller {
 		}
 
 		// Theme
-		$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/stripe_payments.css');
-
 		$this->data['template'] = $this->config->get('config_template');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/stripe_payments.tpl')) {
@@ -59,11 +57,11 @@ class ControllerPaymentStripePayments extends Controller {
 		$amount = (int)($this->currency->format($order_info['total'], $order_info['currency_code'], 1.00000, false) * 100);
 
 		// Load Stripe Library
-		require_once(DIR_SYSTEM . 'vendor/stripe/stripe-php/lib/Stripe.php');
+		require_once(DIR_SYSTEM . 'vendor/stripe-php/init.php');
 
 		$stripe = array(
-			"secret_key"      => $this->config->get('stripe_payments_private_key'),
-			"publishable_key" => $this->config->get('stripe_payments_public_key')
+			"secret_key"      => $this->config->get('stripe_payments_secret_key'),
+			"publishable_key" => $this->config->get('stripe_payments_publish_key')
 		);
 
 		Stripe::setApiKey($stripe['secret_key']);
@@ -97,7 +95,6 @@ class ControllerPaymentStripePayments extends Controller {
 		// If successful log transaction
 		if (!$error) {
 			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('stripe_payments_order_status_id'));
-
 			$json['success'] = $this->url->link('checkout/success', '', 'SSL');
 		} else {
 			$json['error'] = (string)$error['message'];

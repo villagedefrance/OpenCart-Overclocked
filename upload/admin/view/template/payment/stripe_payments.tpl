@@ -21,17 +21,17 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_public; ?></td>
-          <td><input type="text" name="stripe_payments_public_key" value="<?php echo $stripe_payments_public_key; ?>" size="40" />
-          <?php if ($error_public) { ?>
-            <span class="error"><?php echo $error_public; ?></span>
+          <td><span class="required">*</span> <?php echo $entry_secret_key; ?></td>
+          <td><input type="text" name="stripe_payments_secret_key" value="<?php echo $stripe_payments_secret_key; ?>" size="42" />
+          <?php if ($error_secret_key) { ?>
+            <span class="error"><?php echo $error_secret_key; ?></span>
           <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_key; ?></td>
-          <td><input type="text" name="stripe_payments_private_key" value="<?php echo $stripe_payments_private_key; ?>" size="40" />
-          <?php if ($error_key) { ?>
-            <span class="error"><?php echo $error_key; ?></span>
+          <td><span class="required">*</span> <?php echo $entry_publish_key; ?></td>
+          <td><input type="text" name="stripe_payments_publish_key" value="<?php echo $stripe_payments_publish_key; ?>" size="42" />
+          <?php if ($error_publish_key) { ?>
+            <span class="error"><?php echo $error_publish_key; ?></span>
           <?php } ?></td>
         </tr>
         <tr>
