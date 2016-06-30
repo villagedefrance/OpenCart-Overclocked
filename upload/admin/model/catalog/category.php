@@ -274,10 +274,10 @@ class ModelCatalogCategory extends Model {
 
 		foreach ($query->rows as $result) {
 			$category_description_data[$result['language_id']] = array(
-				'name'             		=> $result['name'],
-				'meta_keyword'  		=> $result['meta_keyword'],
-				'meta_description'	=> $result['meta_description'],
-				'description'      		=> $result['description']
+				'name'             => $result['name'],
+				'meta_keyword'     => $result['meta_keyword'],
+				'meta_description' => $result['meta_description'],
+				'description'      => $result['description']
 			);
 		}
 

@@ -150,9 +150,9 @@ class ModelCatalogNews extends Model {
 
 		foreach ($query->rows as $result) {
 			$news_description_data[$result['language_id']] = array(
-				'title'            			=> $result['title'],
-				'meta_description' 	=> $result['meta_description'],
-				'description'      		=> $result['description']
+				'title'            => $result['title'],
+				'meta_description' => $result['meta_description'],
+				'description'      => $result['description']
 			);
 		}
 

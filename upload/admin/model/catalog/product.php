@@ -502,11 +502,11 @@ class ModelCatalogProduct extends Model {
 
 		foreach ($query->rows as $result) {
 			$product_description_data[$result['language_id']] = array(
-				'name'             		=> $result['name'],
-				'meta_description'	=> $result['meta_description'],
-				'meta_keyword'  		=> $result['meta_keyword'],
-				'description'      		=> $result['description'],
-				'tag'              		=> $result['tag']
+				'name'             => $result['name'],
+				'meta_description' => $result['meta_description'],
+				'meta_keyword'     => $result['meta_keyword'],
+				'description'      => $result['description'],
+				'tag'              => $result['tag']
 			);
 		}
 
@@ -570,8 +570,8 @@ class ModelCatalogProduct extends Model {
 			}
 
 			$product_attribute_data[] = array(
-				'product_attribute_description' 	=> $product_attribute_description_data,
-				'attribute_id'		=> $product_attribute['attribute_id']
+				'product_attribute_description' => $product_attribute_description_data,
+				'attribute_id'                  => $product_attribute['attribute_id']
 			);
 		}
 
@@ -590,27 +590,27 @@ class ModelCatalogProduct extends Model {
 
 			foreach ($product_option_value_query->rows as $product_option_value) {
 				$product_option_value_data[] = array(
-					'product_option_value_id'	=> $product_option_value['product_option_value_id'],
-					'option_value_id'         		=> $product_option_value['option_value_id'],
-					'quantity'               			=> $product_option_value['quantity'],
-					'subtract'                		=> $product_option_value['subtract'],
-					'price'                   			=> $product_option_value['price'],
-					'price_prefix'          			=> $product_option_value['price_prefix'],
-					'points'                  			=> $product_option_value['points'],
-					'points_prefix'      			=> $product_option_value['points_prefix'],
-					'weight'                			=> $product_option_value['weight'],
-					'weight_prefix'           		=> $product_option_value['weight_prefix']
+					'product_option_value_id' => $product_option_value['product_option_value_id'],
+					'option_value_id'         => $product_option_value['option_value_id'],
+					'quantity'                => $product_option_value['quantity'],
+					'subtract'                => $product_option_value['subtract'],
+					'price'                   => $product_option_value['price'],
+					'price_prefix'            => $product_option_value['price_prefix'],
+					'points'                  => $product_option_value['points'],
+					'points_prefix'           => $product_option_value['points_prefix'],
+					'weight'                  => $product_option_value['weight'],
+					'weight_prefix'           => $product_option_value['weight_prefix']
 				);
 			}
 
 			$product_option_data[] = array(
-				'product_option_id'		=> $product_option['product_option_id'],
-				'option_id'            		=> $product_option['option_id'],
-				'name'                 		=> $product_option['name'],
-				'type'                 		=> $product_option['type'],
-				'product_option_value'	=> $product_option_value_data,
-				'option_value'         		=> $product_option['option_value'],
-				'required'             		=> $product_option['required']
+				'product_option_id'    => $product_option['product_option_id'],
+				'option_id'            => $product_option['option_id'],
+				'name'                 => $product_option['name'],
+				'type'                 => $product_option['type'],
+				'product_option_value' => $product_option_value_data,
+				'option_value'         => $product_option['option_value'],
+				'required'             => $product_option['required']
 			);
 		}
 

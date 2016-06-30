@@ -165,9 +165,9 @@ class ModelCatalogFilter extends Model {
 
 			foreach ($filter_value_query->rows as $filter_value) {
 				$filter_all_data[] = array(
-					'filter_group_id'	=> $filter_group['filter_group_id'],
-					'filter_id'        		=> $filter_value['filter_id'],
-					'name' 				=> $filter_group['name'] . ' &gt; ' . $filter_value['name']
+					'filter_group_id' => $filter_group['filter_group_id'],
+					'filter_id'       => $filter_value['filter_id'],
+					'name'            => $filter_group['name'] . ' &gt; ' . $filter_value['name']
 				);
 			}
 		}
@@ -193,9 +193,9 @@ class ModelCatalogFilter extends Model {
 				}
 
 				$filter_data[] = array(
-					'filter_id'          	=> $filter['filter_id'],
-					'filter_description'	=> $filter_description_data,
-					'sort_order'   		=> $filter['sort_order']
+					'filter_id'          => $filter['filter_id'],
+					'filter_description' => $filter_description_data,
+					'sort_order'         => $filter['sort_order']
 				);
 			}
 

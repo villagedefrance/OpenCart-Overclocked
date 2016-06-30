@@ -138,8 +138,8 @@ class ModelCatalogManufacturer extends Model {
 
 		foreach ($query->rows as $result) {
 			$manufacturer_data[$result['language_id']] = array(
-				'name'			=> $result['name'],
-				'description'	=> $result['description']
+				'name'        => $result['name'],
+				'description' => $result['description']
 			);
 		}
 

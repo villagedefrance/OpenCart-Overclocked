@@ -64,13 +64,13 @@ class ModelCatalogReview extends Model {
 	}
 
 	public function getRandomReviews($limit) {
-		$query = $this->db->query("SELECT r.author, r.text, r.rating, r.date_added, p.* FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY RAND() LIMIT " . $limit);
+		$query = $this->db->query("SELECT r.author, r.text, r.rating, r.date_added, p.* FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY RAND() LIMIT 0," . $limit);
 
 		return $query->rows;
 	}
 
 	public function getLatestReviews($limit) {
-		$query = $this->db->query("SELECT r.author, r.text, r.rating, r.date_added, p.* FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT " . $limit);
+		$query = $this->db->query("SELECT r.author, r.text, r.rating, r.date_added, p.* FROM " . DB_PREFIX . "review r LEFT JOIN " . DB_PREFIX . "product p ON (r.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT 0," . $limit);
 
 		return $query->rows;
 	}

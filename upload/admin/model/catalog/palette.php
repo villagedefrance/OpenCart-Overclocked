@@ -129,9 +129,9 @@ class ModelCatalogPalette extends Model {
 				}
 
 				$color_data[] = array(
-					'palette_color_id'		=> $color['palette_color_id'],
-					'color_description'	=> $color_description_data,
-					'color'   					=> $color['color']
+					'palette_color_id'  => $color['palette_color_id'],
+					'color_description' => $color_description_data,
+					'color'             => $color['color']
 				);
 			}
 
@@ -150,9 +150,9 @@ class ModelCatalogPalette extends Model {
 
 		foreach ($query->rows as $result) {
 			$colors_data[] = array(
-				'palette_color_id'	=> $result['palette_color_id'],
-				'color'				=> $result['color'],
-				'title'					=> $result['title']
+				'palette_color_id' => $result['palette_color_id'],
+				'color'            => $result['color'],
+				'title'            => $result['title']
 			);
 		}
 
@@ -166,9 +166,9 @@ class ModelCatalogPalette extends Model {
 
 		foreach ($query->rows as $result) {
 			$colors_data[] = array(
-				'palette_color_id'	=> $result['palette_color_id'],
-				'color'				=> $result['color'],
-				'title'					=> $result['title']
+				'palette_color_id' => $result['palette_color_id'],
+				'color'            => $result['color'],
+				'title'            => $result['title']
 			);
 		}
 
@@ -182,9 +182,9 @@ class ModelCatalogPalette extends Model {
 
 		foreach ($query->rows as $result) {
 			$palette_colors_data[] = array(
-				'palette_color_id'	=> $result['palette_color_id'],
-				'color'				=> $result['color'],
-				'title'					=> $result['title']
+				'palette_color_id' => $result['palette_color_id'],
+				'color'            => $result['color'],
+				'title'            => $result['title']
 			);
 		}
 
