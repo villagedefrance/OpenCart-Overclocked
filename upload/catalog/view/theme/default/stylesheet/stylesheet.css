@@ -1594,6 +1594,7 @@ ul.box-filter > li ul {
 	display: inline-block;
 	width: 100%;
 	padding-top: 10px;
+	margin-bottom: 15px;
 	border-top: 1px solid #E7E7E7;
 	font-size: 13px;
 }
