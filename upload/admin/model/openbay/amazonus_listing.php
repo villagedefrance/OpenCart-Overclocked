@@ -3,6 +3,7 @@ class ModelOpenbayAmazonusListing extends Model {
 	private $tabs = array();
 
 	public function search($search_string) {
+
 		$search_params = array(
 			'search_string' => $search_string,
 		);
@@ -12,6 +13,7 @@ class ModelOpenbayAmazonusListing extends Model {
 		$products = array();
 
 		foreach ($results['Products'] as $result) {
+
 			$price = '';
 
 			if ($result['price']['amount'] && $result['price']['currency']) {
@@ -23,11 +25,11 @@ class ModelOpenbayAmazonusListing extends Model {
 			$link = 'http://www.amazon.com/gp/product/' . $result['asin'] . '/';
 
 			$products[] = array(
-				'name'	=> $result['name'],
-				'asin'		=> $result['asin'],
-				'image'	=> $result['image'],
-				'price'	=> $price,
-				'link'		=> $link
+				'name' => $result['name'],
+				'asin' => $result['asin'],
+				'image' => $result['image'],
+				'price' => $price,
+				'link' => $link,
 			);
 		}
 
@@ -44,8 +46,8 @@ class ModelOpenbayAmazonusListing extends Model {
 
 	public function getBestPrice($asin, $condition) {
 		$search_params = array(
-			'asin'			=> $asin,
-			'condition'	=> $condition
+			'asin' => $asin,
+			'condition' => $condition,
 		);
 
 		$bestPrice = '';
@@ -63,34 +65,31 @@ class ModelOpenbayAmazonusListing extends Model {
 
 	public function simpleListing($data) {
 		$request = array(
-			'asin'			=> $data['asin'],
-			'sku'			=> $data['sku'],
-			'quantity'	=> $data['quantity'],
-			'price'		=> $data['price'],
-			'sale'			=> array(
-				'price'		=> $data['sale_price'],
-				'from'			=> $data['sale_from'],
-				'to'			=> $data['sale_to'],
+			'asin' => $data['asin'],
+			'sku' => $data['sku'],
+			'quantity' => $data['quantity'],
+			'price' => $data['price'],
+			'sale' => array(
+				'price' => $data['sale_price'],
+				'from' => $data['sale_from'],
+				'to' => $data['sale_to'],
 			),
-			'condition'			=> $data['condition'],
-			'condition_note'	=> $data['condition_note'],
-			'start_selling'		=> $data['start_selling'],
-			'restock_date'		=> $data['restock_date'],
-			'response_url'		=> HTTPS_CATALOG . 'index.php?route=amazonus/listing',
-			'product_id'			=> $data['product_id']
+			'condition' => $data['condition'],
+			'condition_note' => $data['condition_note'],
+			'start_selling' => $data['start_selling'],
+			'restock_date' => $data['restock_date'],
+			'response_url' => HTTPS_CATALOG . 'index.php?route=amazonus/listing',
+			'product_id' => $data['product_id'],
 		);
 
 		$response = $this->openbay->amazonus->callWithResponse('productv3/simpleListing', $request);
-
 		$response = json_decode($response);
-
 		if (empty($response)) {
 			return array(
-				'status'		=> 0,
-				'message'	=> 'Problem connecting OpenBay: API'
+				'status' => 0,
+				'message' => 'Problem connecting OpenBay: API'
 			);
 		}
-
 		$response = (array)$response;
 
 		if ($response['status'] === 1) {
@@ -100,7 +99,7 @@ class ModelOpenbayAmazonusListing extends Model {
 		return $response;
 	}
 
-	public function getBrowseNodes($request) {
+	public function getBrowseNodes($request){
 		return $this->openbay->amazonus->callWithResponse('productv3/getBrowseNodes', $request);
 	}
 
@@ -121,10 +120,9 @@ class ModelOpenbayAmazonusListing extends Model {
 
 	public function doBulkListing($data) {
 		$this->load->model('catalog/product');
-
 		$request = array();
 
-		foreach ($data['products'] as $product_id => $asin) {
+		foreach($data['products'] as $product_id => $asin) {
 			$product = $this->model_catalog_product->getProduct($product_id);
 
 			if ($product) {
@@ -135,17 +133,17 @@ class ModelOpenbayAmazonusListing extends Model {
 				}
 
 				$request[] = array(
-					'asin'					=> $asin,
-					'sku' 					=> $product['sku'],
-					'quantity'			=> $product['quantity'],
-					'price'				=> number_format($price, 2, '.', ''),
-					'sale'					=> array(),
-					'condition'			=> (isset($data['condition']) ? $data['condition'] : ''),
-					'condition_note'	=> (isset($data['condition_note']) ? $data['condition_note'] : ''),
-					'start_selling'		=> (isset($data['start_selling']) ? $data['start_selling'] : ''),
-					'restock_date'		=> '',
-					'response_url'		=> HTTPS_CATALOG . 'index.php?route=amazonus/listing',
-					'product_id'			=> $product['product_id']
+					'asin' => $asin,
+					'sku' => $product['sku'],
+					'quantity' => $product['quantity'],
+					'price' => number_format($price, 2, '.', ''),
+					'sale' => array(),
+					'condition' => (isset($data['condition']) ? $data['condition'] : ''),
+					'condition_note' => (isset($data['condition_note']) ? $data['condition_note'] : ''),
+					'start_selling' => (isset($data['start_selling']) ? $data['start_selling'] : ''),
+					'restock_date' => '',
+					'response_url' => HTTPS_CATALOG . 'index.php?route=amazonus/listing',
+					'product_id' => $product['product_id'],
 				);
 			}
 		}
@@ -183,8 +181,8 @@ class ModelOpenbayAmazonusListing extends Model {
 		}
 
 		$request_data = array(
-			'search'			=> $search_data,
-			'response_url'	=> HTTPS_CATALOG . 'index.php?route=amazonus/search'
+			'search' => $search_data,
+			'response_url' => HTTPS_CATALOG . 'index.php?route=amazonus/search'
 		);
 
 		$response = $this->openbay->amazonus->callWithResponse('productv3/bulkSearch', $request_data);

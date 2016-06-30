@@ -88,11 +88,13 @@
               <td>
                 <select class="width250" name="openbay_amazonus_listing_default_condition">
                   <option></option>
-                  <?php foreach($conditions as $value => $condition): ?><?php if($value == $openbay_amazonus_listing_default_condition): ?>
-                  <option selected="selected" value="<?php echo $value; ?>"><?php echo $condition; ?></option>
-                  <? else: ?>
-                  <option value="<?php echo $value; ?>"><?php echo $condition; ?></option>
-                  <?php endif; ?><?php endforeach; ?>
+                  <?php foreach ($conditions as $value => $condition) { ?>
+                    <?php if ($value == $openbay_amazonus_listing_default_condition) { ?>
+                      <option selected="selected" value="<?php echo $value; ?>"><?php echo $condition; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $value; ?>"><?php echo $condition; ?></option>
+                    <?php } ?>
+                  <?php } ?>
                 </select>
               </td>
             </tr>

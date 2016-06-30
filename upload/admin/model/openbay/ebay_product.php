@@ -1,6 +1,5 @@
 <?php
 class ModelOpenbayEbayProduct extends Model {
-
 	public function getTaxRate($class_id) {
 		return $this->openbay->getTaxRate($class_id);
 	}
@@ -24,29 +23,29 @@ class ModelOpenbayEbayProduct extends Model {
 
 				foreach ($product_option_value_query->rows as $product_option_value) {
 					$product_option_value_data[] = array(
-						'product_option_value_id'	=> $product_option_value['product_option_value_id'],
-						'option_value_id'				=> $product_option_value['option_value_id'],
-						'name'                      		=> $product_option_value['name'],
-						'image'                     		=> $product_option_value['image'],
-						'image_thumb'					=> (!empty($product_option_value['image'])?$this->model_tool_image->resize($product_option_value['image'], 100, 100):''),
-						'quantity'                  		=> $product_option_value['quantity'],
-						'subtract'						=> $product_option_value['subtract'],
-						'price'                     		=> $product_option_value['price'],
-						'price_prefix'              		=> $product_option_value['price_prefix'],
-						'points'							=> $product_option_value['points'],
-						'points_prefix'             		=> $product_option_value['points_prefix'],
-						'weight'                    		=> $product_option_value['weight'],
-						'weight_prefix'             	=> $product_option_value['weight_prefix']
+						'product_option_value_id'   => $product_option_value['product_option_value_id'],
+						'option_value_id'           => $product_option_value['option_value_id'],
+						'name'                      => $product_option_value['name'],
+						'image'                     => $product_option_value['image'],
+						'image_thumb'               => (!empty($product_option_value['image'])?$this->model_tool_image->resize($product_option_value['image'], 100, 100):''),
+						'quantity'                  => $product_option_value['quantity'],
+						'subtract'                  => $product_option_value['subtract'],
+						'price'                     => $product_option_value['price'],
+						'price_prefix'              => $product_option_value['price_prefix'],
+						'points'                    => $product_option_value['points'],
+						'points_prefix'             => $product_option_value['points_prefix'],
+						'weight'                    => $product_option_value['weight'],
+						'weight_prefix'             => $product_option_value['weight_prefix']
 					);
 				}
 
 				$product_option_data[] = array(
-					'product_option_id'		=> $product_option['product_option_id'],
-					'option_id'             		=> $product_option['option_id'],
-					'name'                  		=> $product_option['name'],
-					'type'                  		=> $product_option['type'],
-					'product_option_value'	=> $product_option_value_data,
-					'required'              		=> $product_option['required']
+					'product_option_id'     => $product_option['product_option_id'],
+					'option_id'             => $product_option['option_id'],
+					'name'                  => $product_option['name'],
+					'type'                  => $product_option['type'],
+					'product_option_value'  => $product_option_value_data,
+					'required'              => $product_option['required']
 				);
 			}
 		}
@@ -55,17 +54,17 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	public function repairLinks() {
-		// get distinct product id's where they are active
+		//get distinct product id's where they are active
 		$sql = $this->db->query("
 			SELECT DISTINCT `product_id`
 			FROM `" . DB_PREFIX . "ebay_listing`
 			WHERE `status` = '1'");
 
-		// loop over products and if count is more than 1, update all older entries to 0
-		foreach ($sql->rows as $row) {
+		//loop over products and if count is more than 1, update all older entries to 0
+		foreach($sql->rows as $row){
 			$sql2 = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_listing` WHERE `product_id` = '".(int)$row['product_id']."' AND `status` = 1 ORDER BY `ebay_listing_id` DESC");
 
-			if ($sql2->num_rows > 1) {
+			if($sql2->num_rows > 1){
 				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_listing` SET `status` = 0  WHERE `product_id` = '".(int)$row['product_id']."'");
 				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_listing` SET `status` = 1  WHERE `ebay_listing_id` = '".(int)$sql2->row['ebay_listing_id']."'");
 			}
@@ -73,15 +72,16 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	public function searchEbayCatalog($data) {
-		if (!isset($data['page'])) { $page = 1; } else { $page = $data['page']; }
 
-		// validation for category id
-		// validation for search term
-		$response['data'] = $this->openbay->ebay->call('listing/searchCatalog/', array('page' => (int)$page, 'categoryId' => $data['categoryId'], 'search' => $data['search']));
+		if(!isset($data['page'])){ $page = 1; }else{ $page = $data['page']; }
 
-		$response['error'] = $this->openbay->ebay->lasterror;
-		$response['msg'] = $this->openbay->ebay->lastmsg;
+		//validation for category id
 
+		//validation for saerch term
+
+	$response['data']   = $this->openbay->ebay->call('listing/searchCatalog/', array('page' => (int)$page, 'categoryId' => $data['categoryId'], 'search' => $data['search']));
+		$response['error']  = $this->openbay->ebay->lasterror;
+		$response['msg']    = $this->openbay->ebay->lastmsg;
 		return $response;
 	}
 }

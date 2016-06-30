@@ -17,10 +17,10 @@ $_['lang_text_success']         = 'Your settings have been saved';
 
 $_['lang_error_save_settings']  = 'You need to save your settings first.';
 
-$_['lang_tab_token']            = 'API details'; 
-$_['lang_tab_general']          = 'Settings'; 
-$_['lang_tab_setup']            = 'Settings'; 
-$_['lang_tab_defaults']         = 'Listing defaults'; 
+$_['lang_tab_token']            = 'API details';
+$_['lang_tab_general']          = 'Settings';
+$_['lang_tab_setup']            = 'Settings';
+$_['lang_tab_defaults']         = 'Listing defaults';
 $_['lang_tab_shipping']         = 'Shipping defaults';
 
 $_['lang_legend_api']           = 'API connection details';
@@ -68,8 +68,8 @@ $_['lang_import_refund_id']     = 'Refunded status:';
 $_['lang_import_part_refund_id']= 'Partially Refunded status:';
 
 $_['lang_developer']            = 'Developer / support';
-$_['lang_developer_desc']       = 'You should not use this area unless instructed to do so.'; 
-$_['lang_developer_empty']      = 'Empty ALL data?'; 
+$_['lang_developer_desc']       = 'You should not use this area unless instructed to do so.';
+$_['lang_developer_empty']      = 'Empty ALL data?';
 $_['lang_developer_locks']      = 'Remove order locks?';
 $_['lang_setting_desc']         = 'Default settings are used to pre-set many eBay listing options. All defaults can be changed on the listing page for each item.';
 $_['lang_payment_instruction']  = 'Payment instructions';
@@ -119,4 +119,5 @@ $_['lang_obp_detail_update']        = 'Click here to update your store URL & con
 $_['lang_developer_repairlinks']    = 'Repair item links';
 
 $_['lang_timezone_offset']          = 'Timezone offset<span class="help">Based on hours. 0 is GMT timezone. Only works if eBay time is used for order creation.</span>';
+$_['entry_measurement']				= 'Measurement system';
 ?>

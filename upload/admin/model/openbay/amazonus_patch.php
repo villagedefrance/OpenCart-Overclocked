@@ -1,12 +1,11 @@
 <?php
 class ModelOpenbayAmazonusPatch extends Model {
-
 	public function runPatch($manual = true) {
 		$this->load->model('setting/setting');
 
 		$settings = $this->model_setting_setting->getSetting('openbay_amazonus');
 
-		if ($settings) {
+		if($settings) {
 			$this->db->query("
 				CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "amazonus_product_search` (
 					`product_id` int(11) NOT NULL,

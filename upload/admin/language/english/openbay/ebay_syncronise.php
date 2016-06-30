@@ -2,7 +2,7 @@
 $_['lang_openbay']              = 'OpenBay Pro';
 $_['lang_page_title']           = 'OpenBay Pro for eBay';
 $_['lang_ebay']                 = 'eBay';
-$_['lang_heading']              = 'Syncronise';
+$_['lang_heading']              = 'Synchronise';
 $_['lang_btn_return']           = 'Return';
 $_['lang_legend_ebay_sync']     = 'Sync with eBay';
 $_['lang_sync_desc']            = 'You need to sync your store with the latest available shipping options and categories from eBay, this data is only for the options when listing an item to eBay - it will not import categories to your store etc. <br /><strong>You should update these frequently to ensure you always have the latest data from eBay.</strong>';

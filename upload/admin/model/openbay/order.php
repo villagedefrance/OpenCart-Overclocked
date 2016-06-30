@@ -1,6 +1,5 @@
 <?php
 class ModelOpenbayOrder extends Model {
-
 	public function getTotalOrders($data = array()) {
 		$sql = "SELECT COUNT(*) AS `total` FROM `" . DB_PREFIX . "order` o";
 		
@@ -97,7 +96,7 @@ class ModelOpenbayOrder extends Model {
 			'customer',
 			'status',
 			'o.date_added',
-			'channel'
+			'channel',
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -154,5 +153,6 @@ class ModelOpenbayOrder extends Model {
 		
 		return $this->db->query($sql)->row;
 	}
+	
 }
 ?>

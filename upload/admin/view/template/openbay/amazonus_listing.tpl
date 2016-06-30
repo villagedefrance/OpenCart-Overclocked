@@ -5,7 +5,7 @@
         <?php echo $breadcrumb['separator'] ?><a href="<?php echo $breadcrumb['href'] ?>"><?php echo $breadcrumb['text'] ?></a>
       <?php } ?>
     </div>
-    
+
     <?php if (isset($error_warning)) { ?>
       <div class="warning">
         <ul>
@@ -13,7 +13,7 @@
         </ul>
       </div>
     <?php } ?>
-        
+
     <?php if ($listing_errors) { ?>
       <div class="warning">
         <ul>
@@ -96,13 +96,13 @@
                                 <td><span class="required">*</span> <label for="condition"><?php echo $entry_condition; ?></label></td>
                                 <td>
                                     <select name="condition" id="condition" class="width200">
-                                        <?php foreach ($conditions as $value => $title): ?>
-                                            <?php if($value == $default_condition): ?>
+                                        <?php foreach ($conditions as $value => $title) { ?>
+                                            <?php if ($value == $default_condition) { ?>
                                                 <option selected="selected" value="<?php echo $value; ?>"><?php echo $title; ?></option>
-                                            <? else: ?>
+                                            <?php } else { ?>
                                                 <option value="<?php echo $value; ?>"><?php echo $title; ?></option>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </select>
                                 </td>
                             </tr>

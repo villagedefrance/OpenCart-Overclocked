@@ -10,7 +10,6 @@ $_['lang_usage_title']          = 'Usage';
 $_['lang_subscription_current'] = 'Current plan';
 $_['lang_subscription_avail']   = 'Available plans';
 $_['lang_subscription_avail1']  = 'Changing plans will be immediate and unused calls will not be credited.';
-$_['lang_subscription_avail2']  = 'To downgrade to the basic plan please cancel your active subscription in PayPal.';
 $_['lang_ajax_acc_load_plan']   = 'PayPal subscription ID: ';
 $_['lang_ajax_acc_load_plan2']  = ', you should cancel ALL other subscriptions from us';
 $_['lang_ajax_acc_load_text1']  = 'Plan name';

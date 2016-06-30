@@ -1,8 +1,8 @@
 <?php
-// Headings
+//Headings
 $_['lang_page_title']               = 'Bulk listing';
 
-// Buttons
+//Buttons
 $_['lang_cancel']                   = 'Cancel';
 $_['lang_none']                     = 'None';
 $_['lang_preview']                  = 'Preview';
@@ -17,20 +17,20 @@ $_['lang_features']                 = 'Edit features';
 $_['lang_catalog']                  = 'Select catalog';
 $_['lang_catalog_search']           = 'Search catalog';
 
-// Form options / text
+//Form options / text
 $_['lang_pixels']                   = 'Pixels';
 $_['lang_yes']                      = 'Yes';
 $_['lang_no']                       = 'No';
 $_['lang_other']                    = 'Other';
 $_['lang_select']                   = 'Select';
 
-// Profile names
+//Profile names
 $_['lang_profile_theme']            = 'Theme profile:';
 $_['lang_profile_shipping']         = 'Shipping profile:';
 $_['lang_profile_returns']          = 'Returns profile:';
 $_['lang_profile_generic']          = 'Generic profile:';
 
-// Text
+//Text
 $_['lang_title']                    = 'Title';
 $_['lang_price']                    = 'Price';
 $_['lang_stock']                    = 'Stock';
@@ -55,7 +55,13 @@ $_['lang_catalog_no_products']      = 'No catalog items found';
 $_['lang_search_failed']            = 'Search failed';
 $_['lang_esc_key']                  = 'The splash page has been hidden but may not have finished loading';
 
-// Errors
+$_['text_product_identifiers']    	= 'Product identifiers';
+$_['text_ean']    					= 'EAN';
+$_['text_upc']    					= 'UPC';
+$_['text_isbn']    					= 'ISBN';
+$_['text_identifier_not_required']  = 'Not required';
+
+//Errors
 $_['lang_error_ship_profile']       = 'You need to have a default shipping profile set up';
 $_['lang_error_generic_profile']    = 'You need to have a default generic profile set up';
 $_['lang_error_return_profile']     = 'You need to have a default return profile set up';

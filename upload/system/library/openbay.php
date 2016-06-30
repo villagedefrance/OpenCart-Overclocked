@@ -8,10 +8,25 @@ final class Openbay {
 		$this->ebay = new Ebay($registry);
 		$this->amazon = new Amazon($registry);
 		$this->amazonus = new Amazonus($registry);
+
+		$this->logger = new Log('openbay.log');
 	}
 
 	public function __get($name) {
 		return $this->registry->get($name);
+	}
+
+	public function log($data, $write = true) {
+		if ($this->logging == 1) {
+			if (function_exists('getmypid')) {
+				$process_id = getmypid();
+				$data = $process_id . ' - ' . $data;
+			}
+
+			if ($write == true) {
+				$this->logger->write($data);
+			}
+		}
 	}
 
 	public function orderNew($order_id) {
@@ -94,11 +109,10 @@ final class Openbay {
 
 	public function testDbColumn($table, $column) {
 		//check profile table for default column
-		$res = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . $table . "` LIKE '" . $column . "'");
-
-		if ($res->num_rows != 0) {
+		$res = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX.$table."` LIKE '".$column."'");
+		if($res->num_rows != 0) {
 			return true;
-		} else {
+		}else{
 			return false;
 		}
 	}
@@ -108,13 +122,13 @@ final class Openbay {
 
 		$tables = array();
 
-		foreach ($res->rows as $row) {
+		foreach($res->rows as $row) {
 			$tables[] = $row['c'];
 		}
 
-		if (in_array($table, $tables)) {
+		if(in_array($table, $tables)) {
 			return true;
-		} else {
+		}else{
 			return false;
 		}
 	}
@@ -122,41 +136,43 @@ final class Openbay {
 	public function splitName($name) {
 		$name = explode(' ', $name);
 		$fname = $name[0];
-
 		unset($name[0]);
-
 		$lname = implode(' ', $name);
 
 		return array(
-			'firstname'	=> $fname,
-			'surname'	=> $lname
+			'firstname' => $fname,
+			'surname'   => $lname
 		);
 	}
 
 	public function getTaxRates($tax_class_id) {
 		$tax_rates = array();
 
-		$tax_query = $this->db->query("SELECT tr2.tax_rate_id, tr2.name, tr2.rate, tr2.type, tr1.priority
-			FROM " . DB_PREFIX . "tax_rule tr1
-			LEFT JOIN " . DB_PREFIX . "tax_rate tr2 ON (tr1.tax_rate_id = tr2.tax_rate_id)
-			INNER JOIN " . DB_PREFIX . "tax_rate_to_customer_group tr2cg ON (tr2.tax_rate_id = tr2cg.tax_rate_id)
-			LEFT JOIN " . DB_PREFIX . "zone_to_geo_zone z2gz ON (tr2.geo_zone_id = z2gz.geo_zone_id)
-			LEFT JOIN " . DB_PREFIX . "geo_zone gz ON (tr2.geo_zone_id = gz.geo_zone_id)
-			WHERE tr1.tax_class_id = '" . (int)$tax_class_id . "'
-			AND tr1.based = 'shipping'
-			AND tr2cg.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "'
-			AND z2gz.country_id = '" . (int)$this->config->get('config_country_id') . "'
-			AND (z2gz.zone_id = '0' OR z2gz.zone_id = '" . (int)$this->config->get('config_zone_id') . "')
-			ORDER BY tr1.priority ASC"
-		);
+		$tax_query = $this->db->query("SELECT
+					tr2.tax_rate_id,
+					tr2.name,
+					tr2.rate,
+					tr2.type,
+					tr1.priority
+				FROM " . DB_PREFIX . "tax_rule tr1
+				LEFT JOIN " . DB_PREFIX . "tax_rate tr2 ON (tr1.tax_rate_id = tr2.tax_rate_id)
+				INNER JOIN " . DB_PREFIX . "tax_rate_to_customer_group tr2cg ON (tr2.tax_rate_id = tr2cg.tax_rate_id)
+				LEFT JOIN " . DB_PREFIX . "zone_to_geo_zone z2gz ON (tr2.geo_zone_id = z2gz.geo_zone_id)
+				LEFT JOIN " . DB_PREFIX . "geo_zone gz ON (tr2.geo_zone_id = gz.geo_zone_id)
+				WHERE tr1.tax_class_id = '" . (int)$tax_class_id . "'
+				AND tr1.based = 'shipping'
+				AND tr2cg.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "'
+				AND z2gz.country_id = '" . (int)$this->config->get('config_country_id') . "'
+				AND (z2gz.zone_id = '0' OR z2gz.zone_id = '" . (int)$this->config->get('config_zone_id') . "')
+				ORDER BY tr1.priority ASC");
 
 		foreach ($tax_query->rows as $result) {
 			$tax_rates[$result['tax_rate_id']] = array(
-				'tax_rate_id'	=> $result['tax_rate_id'],
-				'name'			=> $result['name'],
-				'rate'				=> $result['rate'],
-				'type'				=> $result['type'],
-				'priority'			=> $result['priority']
+				'tax_rate_id' => $result['tax_rate_id'],
+				'name'        => $result['name'],
+				'rate'        => $result['rate'],
+				'type'        => $result['type'],
+				'priority'    => $result['priority']
 			);
 		}
 
@@ -165,11 +181,10 @@ final class Openbay {
 
 	public function getTaxRate($class_id) {
 		$rates = $this->getTaxRates($class_id);
-
 		$percentage = 0.00;
 
-		foreach ($rates as $rate) {
-			if ($rate['type'] == 'P') {
+		foreach($rates as $rate) {
+			if($rate['type'] == 'P') {
 				$percentage += $rate['rate'];
 			}
 		}
@@ -178,18 +193,17 @@ final class Openbay {
 	}
 
 	public function getZoneId($name, $country_id) {
-		$query = $this->db->query("SELECT zone_id FROM `" . DB_PREFIX . "zone` WHERE country_id = '" . (int)$country_id . "' AND status = '1' AND name = '" . $this->db->escape($name) . "'");
+		$query = $this->db->query("SELECT `zone_id` FROM `" . DB_PREFIX . "zone` WHERE `country_id` = '" . (int)$country_id . "' AND status = '1' AND `name` = '".$this->db->escape($name)."'");
 
-		if ($query->num_rows > 0) {
+		if($query->num_rows > 0) {
 			return $query->row['zone_id'];
-		} else {
+		}else{
 			return 0;
 		}
 	}
 
 	public function newOrderAdminNotify($order_id, $order_status_id) {
 		$this->load->model('checkout/order');
-
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
 		$language = new Language($order_info['language_directory']);
@@ -199,15 +213,15 @@ final class Openbay {
 		$order_status = $this->db->query("SELECT `name` FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "' LIMIT 1")->row['name'];
 
 		// Order Totals
-		$order_total_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_total WHERE order_id = '" . (int)$order_id . "' ORDER BY sort_order ASC");
+		$order_total_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '" . (int)$order_id . "' ORDER BY `sort_order` ASC");
 
-		// Order contents
-		$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+		//Order contents
+		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		$subject = sprintf($language->get('text_new_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'), $order_id);
 
 		// Text
-		$text = $language->get('text_new_received') . "\n\n";
+		$text  = $language->get('text_new_received') . "\n\n";
 		$text .= $language->get('text_new_order_id') . ' ' . $order_info['order_id'] . "\n";
 		$text .= $language->get('text_new_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n";
 		$text .= $language->get('text_new_order_status') . ' ' . $order_status . "\n\n";
@@ -229,7 +243,7 @@ final class Openbay {
 			}
 		}
 
-		if (isset($order_voucher_query) && is_array($order_voucher_query)) {
+		if(isset($order_voucher_query) && is_array($order_voucher_query)) {
 			foreach ($order_voucher_query->rows as $voucher) {
 				$text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
 			}
@@ -268,7 +282,7 @@ final class Openbay {
 		$emails = explode(',', $this->config->get('config_alert_emails'));
 
 		foreach ($emails as $email) {
-			if ($email && preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $email)) {
+			if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
 				$mail->setTo($email);
 				$mail->send();
 			}
@@ -313,21 +327,21 @@ final class Openbay {
 	}
 
 	public function getProductModelNumber($product_id, $sku = null) {
-		if ($sku != null) {
-			$qry = $this->db->query("SELECT `sku` FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($sku) . "'");
+		if($sku != null) {
+			$qry = $this->db->query("SELECT `sku` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '".(int)$product_id."' AND `var` = '".$this->db->escape($sku)."'");
 
-			if ($qry->num_rows > 0) {
+			if($qry->num_rows > 0) {
 				return $qry->row['sku'];
-			} else {
+			}else{
 				return false;
 			}
 
-		} else {
-			$qry = $this->db->query("SELECT `model` FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "' LIMIT 1");
+		}else{
+			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".(int)$product_id."' LIMIT 1");
 
-			if ($qry->num_rows > 0) {
+			if($qry->num_rows > 0) {
 				return $qry->row['model'];
-			} else {
+			}else{
 				return false;
 			}
 		}
@@ -350,11 +364,11 @@ final class Openbay {
 	}
 
 	public function getUserByEmail($email) {
-		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE email = '" . $this->db->escape($email) . "'");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer` WHERE `email` = '".$this->db->escape($email)."'");
 
-		if ($qry->num_rows){
+		if($qry->num_rows){
 			return $qry->row['customer_id'];
-		} else {
+		}else{
 			return false;
 		}
 	}
@@ -373,37 +387,36 @@ final class Openbay {
 				foreach ($product_option_value_query->rows as $product_option_value) {
 					$product_option_value_data[] = array(
 						'product_option_value_id' => $product_option_value['product_option_value_id'],
-						'option_value_id'		=> $product_option_value['option_value_id'],
-						'name'					=> $product_option_value['name'],
-						'image'					=> $product_option_value['image'],
-						'quantity'				=> $product_option_value['quantity'],
-						'subtract'				=> $product_option_value['subtract'],
-						'price'					=> $product_option_value['price'],
-						'price_prefix'			=> $product_option_value['price_prefix'],
-						'points'					=> $product_option_value['points'],
-						'points_prefix'			=> $product_option_value['points_prefix'],
-						'weight'					=> $product_option_value['weight'],
-						'weight_prefix'			=> $product_option_value['weight_prefix']
+						'option_value_id'         => $product_option_value['option_value_id'],
+						'name'                    => $product_option_value['name'],
+						'image'                   => $product_option_value['image'],
+						'quantity'                => $product_option_value['quantity'],
+						'subtract'                => $product_option_value['subtract'],
+						'price'                   => $product_option_value['price'],
+						'price_prefix'            => $product_option_value['price_prefix'],
+						'points'                  => $product_option_value['points'],
+						'points_prefix'           => $product_option_value['points_prefix'],
+						'weight'                  => $product_option_value['weight'],
+						'weight_prefix'           => $product_option_value['weight_prefix']
 					);
 				}
 
 				$product_option_data[] = array(
-					'product_option_id'		=> $product_option['product_option_id'],
-					'option_id'					=> $product_option['option_id'],
-					'name'						=> $product_option['name'],
-					'type'							=> $product_option['type'],
-					'product_option_value'	=> $product_option_value_data,
-					'required'					=> $product_option['required']
+					'product_option_id'    => $product_option['product_option_id'],
+					'option_id'            => $product_option['option_id'],
+					'name'                 => $product_option['name'],
+					'type'                 => $product_option['type'],
+					'product_option_value' => $product_option_value_data,
+					'required'             => $product_option['required']
 				);
-
 			} else {
 				$product_option_data[] = array(
-					'product_option_id'	=> $product_option['product_option_id'],
-					'option_id'				=> $product_option['option_id'],
-					'name'					=> $product_option['name'],
-					'type'						=> $product_option['type'],
-					'option_value'			=> $product_option['option_value'],
-					'required'				=> $product_option['required']
+					'product_option_id' => $product_option['product_option_id'],
+					'option_id'         => $product_option['option_id'],
+					'name'              => $product_option['name'],
+					'type'              => $product_option['type'],
+					'option_value'      => $product_option['option_value'],
+					'required'          => $product_option['required']
 				);
 			}
 		}

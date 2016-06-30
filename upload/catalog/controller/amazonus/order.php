@@ -1,6 +1,5 @@
 <?php
 class ControllerAmazonusOrder extends Controller {
-
 	public function index() {
 		if ($this->config->get('amazonus_status') != '1') {
 			return;
@@ -8,10 +7,8 @@ class ControllerAmazonusOrder extends Controller {
 
 		$this->load->library('log');
 		$this->load->library('amazonus');
-
 		$this->load->model('checkout/order');
 		$this->load->model('openbay/amazonus_order');
-
 		$this->language->load('openbay/amazonus_order');
 
 		$logger = new Log('amazonus.log');
@@ -46,12 +43,13 @@ class ControllerAmazonusOrder extends Controller {
 
 		// If the order already exists on opencart, ignore it.
 		if ($orderId) {
-			$logger->write('Duplicate order ' . $amazonusOrderId . '. Terminating.');
+			$logger->write("Duplicate order $amazonusOrderId. Terminating.");
 			$this->response->setOutput('Ok');
 			return;
 		}
 
-		// Check if order comes from subscribed marketplace
+		/* Check if order comes from subscribed marketplace */
+
 		$currencyTo = $this->config->get('config_currency');
 		$orderCurrency = (string)$orderXml->Payment->CurrencyCode;
 
@@ -68,12 +66,12 @@ class ControllerAmazonusOrder extends Controller {
 
 		$amazonusOrderId = (string)$orderXml->AmazonOrderId;
 
-		// SKU => ORDER_ITEM_ID
+		/* SKU => ORDER_ITEM_ID */
 		$productMapping = array();
 
 		foreach ($orderXml->Items->Item as $item) {
-			$totalPrice = $this->currency->convert((double)$item->Totals->Price, $orderCurrency, $currencyTo);
 
+			$totalPrice = $this->currency->convert((double)$item->Totals->Price, $orderCurrency, $currencyTo);
 			$taxTotal = (double)$item->Totals->Tax;
 
 			if ($taxTotal == 0 && $this->config->get('openbay_amazonus_order_tax') > 0) {
@@ -115,20 +113,20 @@ class ControllerAmazonusOrder extends Controller {
 			$productVar = $this->model_openbay_amazonus_order->getProductVar((string)$item->Sku);
 
 			$products[] = array(
-				'product_id'    => $product_id,
-				'var'           => $productVar,
-				'sku'           => (string)$item->Sku,
-				'asin'          => (string)$item->Asin,
+				'product_id' => $product_id,
+				'var' => $productVar,
+				'sku' => (string)$item->Sku,
+				'asin' => (string)$item->Asin,
 				'order_item_id' => (string)$item->OrderItemId,
-				'name'          => (string)$item->Title,
-				'model'         => (string)$item->Sku,
-				'quantity'      => (int)$item->Ordered,
-				'price'         => sprintf('%.4f', ($totalPrice - $taxTotal) / (int)$item->Ordered),
-				'total'         => sprintf('%.4f', $totalPrice - $taxTotal),
-				'tax'           => $taxTotal / (int)$item->Ordered,
-				'reward'        => '0',
-				'option'        => $this->model_openbay_amazonus_order->getProductOptionsByVar($productVar),
-				'download'      => array()
+				'name' => (string)$item->Title,
+				'model' => (string)$item->Sku,
+				'quantity' => (int)$item->Ordered,
+				'price' => sprintf('%.4f', ($totalPrice - $taxTotal) / (int)$item->Ordered),
+				'total' => sprintf('%.4f', $totalPrice - $taxTotal),
+				'tax' => $taxTotal / (int)$item->Ordered,
+				'reward' => '0',
+				'option' => $this->model_openbay_amazonus_order->getProductOptionsByVar($productVar),
+				'download' => array(),
 			);
 
 			$productMapping[(string)$item->Sku] = (string)$item->OrderItemId;
@@ -137,44 +135,41 @@ class ControllerAmazonusOrder extends Controller {
 		$total = sprintf('%.4f', $this->currency->convert((double)$orderXml->Payment->Amount, $orderCurrency, $currencyTo));
 
 		$addressLine2 = (string)$orderXml->Shipping->AddressLine2;
-
 		if ((string)$orderXml->Shipping->AddressLine3 != '') {
 			$addressLine2 .= ', ' . (string)$orderXml->Shipping->AddressLine3;
 		}
 
 		$customer_info = $this->db->query("SELECT `customer_id` FROM " . DB_PREFIX . "customer WHERE email = '" . $this->db->escape((string)$orderXml->Payment->Email) . "'")->row;
-
 		$customer_id = '0';
 
-		if (isset($customer_info['customer_id'])) {
+		if(isset($customer_info['customer_id'])) {
 			$customer_id = $customer_info['customer_id'];
 		} else {
-			// Add a new customer
+			/* Add a new customer */
 			$customerData = array(
-				'firstname'         => (string)$orderXml->Shipping->Name,
-				'lastname'          => '',
-				'email'             => (string)$orderXml->Payment->Email,
-				'telephone'         => (string)$orderXml->Shipping->Phone,
-				'fax'               => '',
-				'newsletter'        => '0',
+				'firstname' => (string)$orderXml->Shipping->Name,
+				'lastname' => '',
+				'email' => (string)$orderXml->Payment->Email,
+				'telephone' => (string)$orderXml->Shipping->Phone,
+				'fax' => '',
+				'newsletter' => '0',
 				'customer_group_id' => $this->config->get('openbay_amazonus_order_customer_group'),
-				'password'          => '',
-				'status'            => '0'
+				'password' => '',
+				'status' => '0',
 			);
 
 			$this->db->query("
 				INSERT INTO " . DB_PREFIX . "customer
 				SET firstname = '" . $this->db->escape($customerData['firstname']) . "',
-				lastname = '" . $this->db->escape($customerData['lastname']) . "',
-				email = '" . $this->db->escape($customerData['email']) . "',
-				telephone = '" . $this->db->escape($customerData['telephone']) . "',
-				fax = '" . $this->db->escape($customerData['fax']) . "',
-				newsletter = '" . (int)$customerData['newsletter'] . "',
-				customer_group_id = '" . (int)$customerData['customer_group_id'] . "',
-				password = '',
-				status = '" . (int)$customerData['status'] . "',
-				date_added = NOW()
-			");
+					lastname = '" . $this->db->escape($customerData['lastname']) . "',
+					email = '" . $this->db->escape($customerData['email']) . "',
+					telephone = '" . $this->db->escape($customerData['telephone']) . "',
+					fax = '" . $this->db->escape($customerData['fax']) . "',
+					newsletter = '" . (int)$customerData['newsletter'] . "',
+					customer_group_id = '" . (int)$customerData['customer_group_id'] . "',
+					password = '',
+					status = '" . (int)$customerData['status'] . "',
+					date_added = NOW()");
 
 			$customer_id = $this->db->getLastId();
 		}
@@ -308,28 +303,27 @@ class ControllerAmazonusOrder extends Controller {
 		$this->model_openbay_amazonus_order->addAmazonusOrder($orderId, $amazonusOrderId);
 		$this->model_openbay_amazonus_order->addAmazonusOrderProducts($orderId, $productMapping);
 
-		foreach ($products as $product) {
-			if ($product['product_id'] != 0) {
+		foreach($products as $product) {
+			if($product['product_id'] != 0) {
 				$this->model_openbay_amazonus_order->decreaseProductQuantity($product['product_id'], $product['quantity'], $product['var']);
 			}
 		}
 
 		$logger->write('Order ' . $amazonusOrderId . ' was added to the database (ID: ' . $orderId . ')');
-		$logger->write('Finished processing the order');
+		$logger->write("Finished processing the order");
 
-		$logger->write('Notifying Openbay::orderNew(' . $orderId . ')');
+		$logger->write("Notifying Openbay::orderNew($orderId)");
 		$this->openbay->orderNew($orderId);
-		$logger->write('Openbay notified');
+		$logger->write("Openbay notified");
 
 		$this->model_openbay_amazonus_order->acknowledgeOrder($orderId);
 
-		// Send an email to the administrator about the sale
-		if ($this->config->get('openbay_amazonus_notify_admin') == 1) {
+		//send an email to the administrator about the sale
+		if($this->config->get('openbay_amazonus_notify_admin') == 1){
 			$this->openbay->newOrderAdminNotify($orderId, $orderStatus);
 		}
 
-		$logger->write('Ok');
-
+		$logger->write("Ok");
 		$this->response->setOutput('Ok');
 	}
 }

@@ -1,6 +1,5 @@
 <?php
 class ControllerAmazonusListingReport extends Controller {
-
 	public function index() {
 		if ($this->config->get('amazonus_status') != '1') {
 			return;
@@ -35,10 +34,10 @@ class ControllerAmazonusListingReport extends Controller {
 
 		foreach ($request['products'] as $product) {
 			$data[] = array(
-				'sku'      => $product['sku'],
+				'sku' => $product['sku'],
 				'quantity' => $product['quantity'],
-				'asin'     => $product['asin'],
-				'price'    => $product['price']
+				'asin' => $product['asin'],
+				'price' => $product['price'],
 			);
 		}
 

@@ -426,21 +426,21 @@
                         <td><label><?php echo $lang_developer_empty; ?></td>
                         <td>
                           <a onclick="devClearData();" class="button" id="devClearData"><span><?php echo $lang_clear; ?></span></a>
-                          <img src="view/image/loading.gif" id="imageDevClearData" class="displayNone"/>
+                          <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" id="imageDevClearData" class="displayNone"/>
                         </td>
                       </tr>
                       <tr>
                         <td><label><?php echo $lang_developer_locks; ?></td>
                         <td>
                           <a onclick="removeLocks();" class="button" id="removeLocks"><span><?php echo $lang_clear; ?></span></a>
-                          <img src="view/image/loading.gif" id="imageRemoveLocks" class="displayNone"/>
+                          <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" id="imageRemoveLocks" class="displayNone"/>
                         </td>
                       </tr>
                       <tr>
                         <td><label><?php echo $lang_developer_repairlinks; ?></td>
                         <td>
                           <a onclick="repairLinks();" class="button" id="repairLinks"><span><?php echo $lang_update; ?></span></a>
-                          <img src="view/image/loading.gif" id="imageRepairLinks" class="displayNone"/>
+                          <img src="<?php echo HTTPS_SERVER; ?>view/image/loading.gif" id="imageRepairLinks" class="displayNone"/>
                         </td>
                       </tr>
                     </table>
@@ -462,6 +462,18 @@
                                     }
                                     ?>
                                 </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label><?php echo $entry_measurement; ?></td>
+                            <td>
+                              <select name="ebay_measurement" id="entry-measurement" class="form-control">
+                                <?php if (!empty($measurement_types)) { ?>
+                                <?php foreach ($measurement_types as $key => $type) { ?>
+                                <?php echo'<option value="'.$key.'"'.($key == $ebay_measurement ? ' selected=selected' : '').'>'.$type.'</option>'; ?>
+                                <?php } ?>
+                                <?php } ?>
+                              </select>
                             </td>
                         </tr>
 
@@ -614,7 +626,7 @@
 
     function checkCredentials() {
         $.ajax({
-            url: 'index.php?route=openbay/openbay/verifyCreds&token=<?php echo $token; ?>',
+            url: 'index.php?route=openbay/openbay/verifycredentials&token=<?php echo $token; ?>',
             type: 'POST',
             dataType: 'json',
             data: {token: $('#openbaypro_token').val(), secret: $('#openbaypro_secret').val(), string1: $('#openbaypro_string1').val(), string2: $('#openbaypro_string2').val()},
@@ -657,5 +669,4 @@
         changeTaxHandler();
     });
 //--></script>
-
 <?php echo $footer; ?>
