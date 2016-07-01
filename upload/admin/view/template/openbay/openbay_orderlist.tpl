@@ -127,6 +127,7 @@
     </div>
   </form>
 </div>
+
 <script type="text/javascript"><!--
   function filter() {
     url = 'index.php?route=extension/openbay/orderList&token=<?php echo $token; ?>';
@@ -159,11 +160,13 @@
     location = url;
   }
 //--></script>
+
 <script type="text/javascript"><!--
   $(document).ready(function() {
 	  $('.date').datepicker({dateFormat: 'yy-mm-dd'});
   });
 //--></script>
+
 <script type="text/javascript"><!--
   $('#form input').keydown(function(e) {
     if (e.keyCode == 13) {
@@ -171,6 +174,7 @@
     }
   });
 //--></script>
+
 <script type="text/javascript"><!--
     $.widget('custom.catcomplete', $.ui.autocomplete, {
         _renderMenu: function(ul, items) {

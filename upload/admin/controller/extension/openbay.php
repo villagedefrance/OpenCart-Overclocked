@@ -302,7 +302,7 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->template = 'openbay/openbay_manage.tpl';
 		$this->children = array(
 			'common/header',
-			'common/footer',
+			'common/footer'
 		);
 
 		$this->response->setOutput($this->render());
@@ -1052,7 +1052,7 @@ class ControllerExtensionOpenbay extends Controller {
 			$status_mapped[$status['order_status_id']] = $status['name'];
 		}
 
-		//Amazon EU
+		// Amazon EU
 		if ($this->config->get('amazon_status') == 1) {
 			$this->load->model('openbay/amazon');
 
@@ -1097,7 +1097,7 @@ class ControllerExtensionOpenbay extends Controller {
 			}
 		}
 
-		//Amazon US
+		// Amazon US
 		if ($this->config->get('amazonus_status') == 1) {
 			$this->load->model('openbay/amazonus');
 
@@ -1591,7 +1591,6 @@ class ControllerExtensionOpenbay extends Controller {
 			foreach ($product_specials  as $product_special) {
 				if (($product_special['date_start'] == '0000-00-00' || $product_special['date_start'] < date('Y-m-d')) && ($product_special['date_end'] == '0000-00-00' || $product_special['date_end'] > date('Y-m-d'))) {
 					$special = $product_special['price'];
-
 					break;
 				}
 			}

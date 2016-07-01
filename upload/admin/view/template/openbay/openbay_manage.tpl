@@ -5,13 +5,15 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
-
   <div class="box mBottom130">
     <div class="left"></div>
     <div class="right"></div>
     <div class="heading">
       <h1><?php echo $lang_text_manager; ?></h1>
-      <div class="buttons"><a onclick="validateForm(); return false;" class="button"><span><?php echo $lang_btn_save; ?></span></a><a onclick="location = '<?php echo $cancel; ?>';" class="button"><span><?php echo $lang_btn_cancel; ?></span></a></div>
+      <div class="buttons">
+        <a onclick="validateForm(); return false;" class="button"><span><?php echo $lang_btn_save; ?></span></a>
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button"><span><?php echo $lang_btn_cancel; ?></span></a>
+      </div>
     </div>
     <div class="content">
       <div id="tabs" class="htabs">
@@ -20,7 +22,6 @@
         <a href="#tab-patch"><?php echo $lang_btn_patch; ?></a>
         <a href="#tab-help"><?php echo $lang_tab_help; ?></a>
       </div>
-
       <div id="tab-updates">
         <p><?php echo $lang_patch_notes1; ?> <a href="http://shop.openbaypro.com/index.php?route=information/information/changelog" title="OpenBay Pro change log" target="_BLANK"><?php echo $lang_patch_notes2; ?></a></p>
         <div id="update-types" class="htabs">
@@ -53,7 +54,6 @@
             </tr>
           </table>
         </div>
-
         <div id="v1-update-tab">
           <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
             <p><?php echo $lang_patch_notes3; ?></p>
@@ -91,14 +91,14 @@
                 <td><label for="openbay_ftp_pasv"><?php echo $lang_use_pasv; ?></label></td>
                 <td>
                   <input class="ftpsetting" type="hidden" name="openbay_ftp_pasv" value="0" />
-                  <input class="ftpsetting" type="checkbox" name="openbay_ftp_pasv" id="openbay_ftp_pasv" value="1" <?php if(isset($openbay_ftp_pasv) && $openbay_ftp_pasv == 1){ echo 'checked="checked"'; } ?> />
+                  <input class="ftpsetting" type="checkbox" name="openbay_ftp_pasv" id="openbay_ftp_pasv" value="1" <?php if (isset($openbay_ftp_pasv) && $openbay_ftp_pasv == 1){ echo 'checked="checked"'; } ?> />
                 </td>
               </tr>
               <tr>
                 <td><label for="openbay_ftp_beta"><?php echo $lang_use_beta; ?><span class="help"><?php echo $lang_use_beta_2; ?></span></label></td>
                 <td>
                   <input class="ftpsetting" type="hidden" name="openbay_ftp_beta" value="0" />
-                  <input class="ftpsetting" type="checkbox" name="openbay_ftp_beta" id="openbay_ftp_beta" value="1" <?php if(isset($openbay_ftp_beta) && $openbay_ftp_beta == 1){ echo 'checked="checked"'; } ?> />
+                  <input class="ftpsetting" type="checkbox" name="openbay_ftp_beta" id="openbay_ftp_beta" value="1" <?php if (isset($openbay_ftp_beta) && $openbay_ftp_beta == 1){ echo 'checked="checked"'; } ?> />
                 </td>
               </tr>
               <tr id="ftpTestRow">
@@ -122,7 +122,6 @@
           </form>
         </div>
       </div>
-
       <div id="tab-settings">
           <table class="form">
               <tr>
@@ -130,7 +129,7 @@
                   <td>
                       <select name="openbay_language">
                           <?php foreach($languages as $key => $language){ ?>
-                              <option value="<?php echo $key; ?>" <?php if($key == $openbay_language){ echo'selected="selected"'; } ?>><?php echo $language; ?></option>
+                              <option value="<?php echo $key; ?>" <?php if ($key == $openbay_language){ echo'selected="selected"'; } ?>><?php echo $language; ?></option>
                           <?php } ?>
                       </select>
                   </td>
@@ -141,7 +140,6 @@
               </tr>
           </table>
       </div>
-
       <div id="tab-patch">
           <table class="form">
               <tr>
@@ -150,7 +148,6 @@
               </tr>
           </table>
       </div>
-
       <div id="tab-help">
           <h2><?php echo $lang_help_title; ?></h2>
           <table class="form">
@@ -173,27 +170,27 @@
 </div>
 
 <script type="text/javascript"><!--
-  $('.ftpsetting').keypress(function(){
+  $('.ftpsetting').keypress(function() {
       $('#preFtpTestText').show();
       $('#moduleUpdate').hide();
       $('#ftpTestRow').show();
       $('#ftpUpdateRow').hide();
   });
 
-  function ftpTest(){
+  function ftpTest() {
       $.ajax({
           url: 'index.php?route=extension/openbay/ftpTestConnection&token=<?php echo $token; ?>',
           type: 'post',
           data: $('.ftpsetting').serialize(),
           dataType: 'json',
-          beforeSend: function(){
+          beforeSend: function() {
               $('#ftpTest').hide();
               $('#imageFtpTest').show();
           },
           success: function(json) {
               alert(json.msg);
 
-              if(json.connection == true){
+              if (json.connection == true) {
                   $('#preFtpTestText').hide();
                   $('#moduleUpdate').show();
                   $('#ftpTestRow').hide();
@@ -203,7 +200,7 @@
               $('#ftpTest').show();
               $('#imageFtpTest').hide();
           },
-          error: function (xhr, ajaxOptions, thrownError) {
+          error: function(xhr, ajaxOptions, thrownError) {
             if (xhr.status != 0) {
               alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
@@ -211,12 +208,12 @@
       });
   }
 
-  function runPatch(){
+  function runPatch() {
       $.ajax({
           url: 'index.php?route=extension/openbay/runPatch&token=<?php echo $token; ?>',
           type: 'post',
           dataType: 'json',
-          beforeSend: function(){
+          beforeSend: function() {
               $('#runPatch').hide();
               $('#imageRunPatch').show();
           },
@@ -225,7 +222,7 @@
               $('#runPatch').show();
               $('#imageRunPatch').hide();
           },
-          error: function (xhr, ajaxOptions, thrownError) {
+          error: function(xhr, ajaxOptions, thrownError) {
             if (xhr.status != 0) {
               alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
@@ -233,13 +230,13 @@
       });
   }
 
-  function updateModule(){
+  function updateModule() {
       $.ajax({
           url: 'index.php?route=extension/openbay/ftpUpdateModule&token=<?php echo $token; ?>',
           type: 'post',
           data: $('.ftpsetting').serialize(),
           dataType: 'json',
-          beforeSend: function(){
+          beforeSend: function() {
               $('#moduleUpdate').hide();
               $('#imageModuleUpdate').show();
           },
@@ -250,7 +247,7 @@
               $('#moduleUpdate').show();
               $('#imageModuleUpdate').hide();
           },
-          error: function (xhr, ajaxOptions, thrownError) {
+          error: function(xhr, ajaxOptions, thrownError) {
             if (xhr.status != 0) {
               alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
@@ -258,14 +255,14 @@
       });
   }
 
-  function validateForm(){
+  function validateForm() {
       $('#form').submit();
   }
 
-  function clearFaq(){
+  function clearFaq() {
       $.ajax({
           url: 'index.php?route=extension/openbay/faqClear&token=<?php echo $token; ?>',
-          beforeSend: function(){
+          beforeSend: function() {
               $('#clearFaq').hide();
               $('#imageClearFaq').show();
           },
@@ -274,11 +271,11 @@
           success: function(json) {
               $('#clearFaq').show(); $('#imageClearFaq').hide();
           },
-          failure: function(){
+          failure: function() {
               $('#imageClearFaq').hide();
               $('#clearFaq').show();
           },
-          error: function(){
+          error: function() {
               $('#imageClearFaq').hide();
               $('#clearFaq').show();
           }
@@ -321,7 +318,7 @@
           updateCheckVersion(beta);
         }
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -346,7 +343,7 @@
           updateDownload(beta);
         }
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -369,7 +366,7 @@
           updateExtract(beta);
         }
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -392,7 +389,7 @@
           updateRemove(beta);
         }
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -415,7 +412,7 @@
         $('#v2-update-percent').text(json.percent_complete + '%');
         updatePatch(beta);
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -438,7 +435,7 @@
           updateVersion(beta);
         }
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
@@ -461,7 +458,7 @@
           $('#v2-update-percent').text(json.percent_complete + '%');
         }
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError) {
         if (xhr.status != 0) {
           alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }

@@ -5,6 +5,7 @@ final class Openbay {
 
 	public function __construct($registry) {
 		$this->registry = $registry;
+
 		$this->ebay = new Ebay($registry);
 		$this->amazon = new Amazon($registry);
 		$this->amazonus = new Amazonus($registry);
@@ -108,11 +109,12 @@ final class Openbay {
 	}
 
 	public function testDbColumn($table, $column) {
-		//check profile table for default column
-		$res = $this->db->query("SHOW COLUMNS FROM `".DB_PREFIX.$table."` LIKE '".$column."'");
-		if($res->num_rows != 0) {
+		// check profile table for default column
+		$res = $this->db->query("SHOW COLUMNS FROM `" . DB_PREFIX . $table . "` LIKE '" . $column . "'");
+
+		if ($res->num_rows != 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -122,21 +124,24 @@ final class Openbay {
 
 		$tables = array();
 
-		foreach($res->rows as $row) {
+		foreach ($res->rows as $row) {
 			$tables[] = $row['c'];
 		}
 
-		if(in_array($table, $tables)) {
+		if (in_array($table, $tables)) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 
 	public function splitName($name) {
 		$name = explode(' ', $name);
+
 		$fname = $name[0];
+
 		unset($name[0]);
+
 		$lname = implode(' ', $name);
 
 		return array(
@@ -181,10 +186,11 @@ final class Openbay {
 
 	public function getTaxRate($class_id) {
 		$rates = $this->getTaxRates($class_id);
+
 		$percentage = 0.00;
 
-		foreach($rates as $rate) {
-			if($rate['type'] == 'P') {
+		foreach ($rates as $rate) {
+			if ($rate['type'] == 'P') {
 				$percentage += $rate['rate'];
 			}
 		}
@@ -193,20 +199,22 @@ final class Openbay {
 	}
 
 	public function getZoneId($name, $country_id) {
-		$query = $this->db->query("SELECT `zone_id` FROM `" . DB_PREFIX . "zone` WHERE `country_id` = '" . (int)$country_id . "' AND status = '1' AND `name` = '".$this->db->escape($name)."'");
+		$query = $this->db->query("SELECT `zone_id` FROM `" . DB_PREFIX . "zone` WHERE `country_id` = '" . (int)$country_id . "' AND status = '1' AND `name` = '" . $this->db->escape($name) . "'");
 
-		if($query->num_rows > 0) {
+		if ($query->num_rows > 0) {
 			return $query->row['zone_id'];
-		}else{
+		} else {
 			return 0;
 		}
 	}
 
 	public function newOrderAdminNotify($order_id, $order_status_id) {
 		$this->load->model('checkout/order');
+
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
 		$language = new Language($order_info['language_directory']);
+
 		$language->load($order_info['language_filename']);
 		$language->load('mail/order');
 
@@ -215,13 +223,13 @@ final class Openbay {
 		// Order Totals
 		$order_total_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '" . (int)$order_id . "' ORDER BY `sort_order` ASC");
 
-		//Order contents
+		// Order contents
 		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		$subject = sprintf($language->get('text_new_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'), $order_id);
 
 		// Text
-		$text  = $language->get('text_new_received') . "\n\n";
+		$text = $language->get('text_new_received') . "\n\n";
 		$text .= $language->get('text_new_order_id') . ' ' . $order_info['order_id'] . "\n";
 		$text .= $language->get('text_new_date_added') . ' ' . date($language->get('date_format_short'), strtotime($order_info['date_added'])) . "\n";
 		$text .= $language->get('text_new_order_status') . ' ' . $order_status . "\n\n";
@@ -243,7 +251,7 @@ final class Openbay {
 			}
 		}
 
-		if(isset($order_voucher_query) && is_array($order_voucher_query)) {
+		if (isset($order_voucher_query) && is_array($order_voucher_query)) {
 			foreach ($order_voucher_query->rows as $voucher) {
 				$text .= '1x ' . $voucher['description'] . ' ' . $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value']);
 			}
@@ -271,6 +279,7 @@ final class Openbay {
 		$mail->password = $this->config->get('config_smtp_password');
 		$mail->port = $this->config->get('config_smtp_port');
 		$mail->timeout = $this->config->get('config_smtp_timeout');
+
 		$mail->setTo($this->config->get('config_email'));
 		$mail->setFrom($this->config->get('config_email'));
 		$mail->setSender($order_info['store_name']);
@@ -282,7 +291,7 @@ final class Openbay {
 		$emails = explode(',', $this->config->get('config_alert_emails'));
 
 		foreach ($emails as $email) {
-			if ($email && preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $email)) {
+			if ($email && preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $email)) {
 				$mail->setTo($email);
 				$mail->send();
 			}
@@ -327,21 +336,21 @@ final class Openbay {
 	}
 
 	public function getProductModelNumber($product_id, $sku = null) {
-		if($sku != null) {
-			$qry = $this->db->query("SELECT `sku` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '".(int)$product_id."' AND `var` = '".$this->db->escape($sku)."'");
+		if ($sku != null) {
+			$qry = $this->db->query("SELECT `sku` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '" . (int)$product_id . "' AND `var` = '" . $this->db->escape($sku) . "'");
 
-			if($qry->num_rows > 0) {
+			if ($qry->num_rows > 0) {
 				return $qry->row['sku'];
-			}else{
+			} else {
 				return false;
 			}
 
-		}else{
-			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".(int)$product_id."' LIMIT 1");
+		} else {
+			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "' LIMIT 1");
 
-			if($qry->num_rows > 0) {
+			if ($qry->num_rows > 0) {
 				return $qry->row['model'];
-			}else{
+			} else {
 				return false;
 			}
 		}
@@ -364,11 +373,11 @@ final class Openbay {
 	}
 
 	public function getUserByEmail($email) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer` WHERE `email` = '".$this->db->escape($email)."'");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "customer` WHERE `email` = '" . $this->db->escape($email) . "'");
 
-		if($qry->num_rows){
+		if ($qry->num_rows) {
 			return $qry->row['customer_id'];
-		}else{
+		} else {
 			return false;
 		}
 	}
