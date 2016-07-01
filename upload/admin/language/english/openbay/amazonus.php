@@ -1,9 +1,9 @@
 <?php
-//Heading
+// Heading
 $_['heading_title'] = 'Amazon (US)';
 $_['lang_heading_title'] = 'OpenBay Pro for Amazon US';
 
-//Settings tab
+// Settings tab
 $_['token_text'] = 'Token:';
 $_['enc_string1_text'] = 'Encryption String 1:';
 $_['enc_string2_text'] = 'Encryption String 2:';
@@ -12,7 +12,7 @@ $_['yes_text'] = 'Yes';
 $_['no_text']  = 'No';
 $_['save_text'] = 'Save';
 
-//Orders tab
+// Orders tab
 $_['order_statuses_text'] = 'Order Statuses';
 $_['unshipped_text'] = 'Unshipped';
 $_['partially_shipped_text'] = 'Partialy Shipped';
@@ -31,7 +31,7 @@ $_['it_text'] = "Italy";
 $_['es_text'] = "Spain";
 $_['uk_text'] = "United Kingdom";
 
-//Subscription tab
+// Subscription tab
 $_['register_invite_text'] = "Don't have the credentials? Register now to get them";
 $_['register_text'] = 'Register';
 $_['loading_text'] = 'Loading';
@@ -47,11 +47,11 @@ $_['product_listings_text'] = 'New product listings per month';
 $_['listings_remaining_text'] = 'Product listings remaining';
 $_['listings_reserved_text'] = 'Products being processed';
 
-//Listings tab
+// Listings tab
 $_['tax_percentage_text'] = 'Percentage added to default product\'s price';
 $_['default_mp_text'] = 'Default marketplaces for product listing and lookups';
 
-//Misc
+// Misc
 $_['setttings_updated_text'] = 'Settings were successfully updated.';
 $_['error_permission'] = 'You do not have access to this module';
 $_['settings_text'] = 'Main Settings';

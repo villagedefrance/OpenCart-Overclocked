@@ -3,7 +3,6 @@ class ModelOpenbayAmazonusListing extends Model {
 	private $tabs = array();
 
 	public function search($search_string) {
-
 		$search_params = array(
 			'search_string' => $search_string,
 		);
@@ -13,7 +12,6 @@ class ModelOpenbayAmazonusListing extends Model {
 		$products = array();
 
 		foreach ($results['Products'] as $result) {
-
 			$price = '';
 
 			if ($result['price']['amount'] && $result['price']['currency']) {
@@ -84,12 +82,14 @@ class ModelOpenbayAmazonusListing extends Model {
 
 		$response = $this->openbay->amazonus->callWithResponse('productv3/simpleListing', $request);
 		$response = json_decode($response);
+
 		if (empty($response)) {
 			return array(
 				'status' => 0,
 				'message' => 'Problem connecting OpenBay: API'
 			);
 		}
+
 		$response = (array)$response;
 
 		if ($response['status'] === 1) {
@@ -120,9 +120,10 @@ class ModelOpenbayAmazonusListing extends Model {
 
 	public function doBulkListing($data) {
 		$this->load->model('catalog/product');
+
 		$request = array();
 
-		foreach($data['products'] as $product_id => $asin) {
+		foreach ($data['products'] as $product_id => $asin) {
 			$product = $this->model_catalog_product->getProduct($product_id);
 
 			if ($product) {

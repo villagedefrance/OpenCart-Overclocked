@@ -202,7 +202,7 @@ class ModelOpenbayOpenbay extends Model {
 		$this->openbay->log("Remove Files: " . print_r($files, 1));
 
 		if (!empty($files['asset']) && is_array($files['asset'])) {
-			foreach($files['asset'] as $file) {
+			foreach ($files['asset'] as $file) {
 				$filename = $web_root . implode('/', $file['locations']['location']) . '/' . $file['name'];
 
 				if (file_exists($filename)) {
@@ -247,7 +247,9 @@ class ModelOpenbayOpenbay extends Model {
 		} else {
 			$settings = $this->model_setting_setting->getSetting('openbaymanager');
 			$settings['openbay_version'] = $data['version'];
+
 			$this->model_setting_setting->editSetting('openbaymanager', $settings);
+
 			return array('error' => 0, 'response' => $data['version'], 'percent_complete' => 100, 'status_message' => $this->language->get('text_updated_ok') . $data['version']);
 		}
 	}
@@ -260,6 +262,7 @@ class ModelOpenbayOpenbay extends Model {
 		$this->load->language('extension/openbay');
 
 		$data = $this->request->post;
+
 		$data['user'] = $data['openbay_ftp_username'];
 		$data['pw'] = html_entity_decode($data['openbay_ftp_pw']);
 		$data['server'] = trim($data['openbay_ftp_server'], '/\\');
@@ -268,9 +271,11 @@ class ModelOpenbayOpenbay extends Model {
 		if (empty($data['user'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_username'));
 		}
+
 		if (empty($data['pw'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_password'));
 		}
+
 		if (empty($data['server'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_server'));
 		}
@@ -286,6 +291,7 @@ class ModelOpenbayOpenbay extends Model {
 				$directory_list = ftp_nlist($connection, ".");
 
 				$folders = array();
+
 				foreach ($directory_list as $key => $list) {
 					if ($this->ftpDir($list, $connection)) {
 						$folders[] = $list;
@@ -294,15 +300,19 @@ class ModelOpenbayOpenbay extends Model {
 
 				$folder_error = false;
 				$folder_error_admin = false;
+
 				if (!in_array('catalog', $folders)) {
 					$folder_error = true;
 				}
+
 				if (!in_array('system', $folders)) {
 					$folder_error = true;
 				}
+
 				if (!in_array('image', $folders)) {
 					$folder_error = true;
 				}
+
 				if (!in_array($data['openbay_admin_directory'], $folders)) {
 					$folder_error_admin = true;
 				}
@@ -321,6 +331,7 @@ class ModelOpenbayOpenbay extends Model {
 			} else {
 				return array('connection' => false, 'msg' => $this->language->get('update_failed_user'));
 			}
+
 		} else {
 			return array('connection' => false, 'msg' => $this->language->get('update_failed_connect'));
 		}
@@ -335,10 +346,12 @@ class ModelOpenbayOpenbay extends Model {
 		set_time_limit(0);
 		ob_start();
 
+		$this->language->load('extension/openbay');
+
 		$this->load->model('setting/setting');
-		$this->load->language('extension/openbay');
 
 		$data = $this->request->post;
+
 		$data['user'] = $data['openbay_ftp_username'];
 		$data['pw'] = html_entity_decode($data['openbay_ftp_pw']);
 		$data['server'] = $data['openbay_ftp_server'];
@@ -349,17 +362,21 @@ class ModelOpenbayOpenbay extends Model {
 		if (empty($data['user'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_username'));
 		}
+
 		if (empty($data['pw'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_password'));
 		}
+
 		if (empty($data['server'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_server'));
 		}
+
 		if (empty($data['adminDir'])) {
 			return array('connection' => false, 'msg' => $this->language->get('update_error_admindir'));
 		}
 
 		$connection = @ftp_connect($data['server']);
+
 		$updatelog = "Connecting to server\n";
 
 		if ($connection != false) {
@@ -438,7 +455,6 @@ class ModelOpenbayOpenbay extends Model {
 							$updatelog .= "FAILED TO UPDATE FILE: " . $dir . $file['name'] . "\n";
 						}
 
-
 						unlink($tmpFile);
 
 						while ($dirLevel != 0) {
@@ -449,6 +465,7 @@ class ModelOpenbayOpenbay extends Model {
 
 					$openbay_settings = $this->model_setting_setting->getSetting('openbaymanager');
 					$openbay_settings['openbay_version'] = $files['version'];
+
 					$this->model_setting_setting->editSetting('openbaymanager', $openbay_settings);
 
 					@ftp_close($connection);
@@ -664,10 +681,12 @@ class ModelOpenbayOpenbay extends Model {
 		);
 
 		$ch = curl_init();
-		curl_setopt_array($ch, ($options + $defaults));
-		$result = curl_exec($ch);
-		curl_close($ch);
 
+		curl_setopt_array($ch, ($options + $defaults));
+
+		$result = curl_exec($ch);
+
+		curl_close($ch);
 
 		if ($content_type == 'json') {
 			$encoding = mb_detect_encoding($result);
@@ -678,6 +697,7 @@ class ModelOpenbayOpenbay extends Model {
 			}
 
 			$result = json_decode($result, 1);
+
 			$this->lasterror = $result['error'];
 			$this->lastmsg = $result['msg'];
 
@@ -686,8 +706,10 @@ class ModelOpenbayOpenbay extends Model {
 			} else {
 				return false;
 			}
+
 		} elseif ($content_type == 'xml') {
 			$result = simplexml_load_string($result);
+
 			$this->lasterror = $result->error;
 			$this->lastmsg = $result->msg;
 

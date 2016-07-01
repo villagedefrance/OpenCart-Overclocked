@@ -1,5 +1,4 @@
 <?php
-
 $_['lang_title'] = 'OpenBay Pro for Amazon';
 $_['lang_heading'] = 'Amazon Overview';
 $_['lang_overview'] = 'Amazon Overview';

@@ -1,15 +1,15 @@
 <?php
-//Headings
+// Headings
 $_['lang_title']                    = 'OpenBay Pro for Amazon | Stock updates';
 
-//Text
+// Text
 $_['lang_stock_updates']            = 'Stock updates';
 $_['lang_openbay']                  = 'OpenBay Pro';
 $_['lang_overview']                 = 'Amazon Overview';
 $_['lang_my_account']               = 'My account';
 $_['lang_btn_return']               = 'Cancel';
 
-//Table columns
+// Table columns
 $_['lang_ref']                      = 'Ref';
 $_['lang_date_requested']           = 'Date requested';
 $_['lang_date_updated']             = 'Date updated';

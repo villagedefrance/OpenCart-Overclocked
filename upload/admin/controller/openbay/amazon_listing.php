@@ -132,6 +132,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 
 		if (isset($this->session->data['error'])) {
 			$this->data['error_warning'] = $this->session->data['error'];
+
 			unset($this->session->data['error']);
 		}
 
@@ -234,26 +235,26 @@ class ControllerOpenbayAmazonListing extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('openbay/amazon', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('lang_amazon'),
+			'href'      => $this->url->link('openbay/amazon', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_amazon'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('openbay/amazon_listing/create', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('lang_title'),
+			'href'      => $this->url->link('openbay/amazon_listing/create', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_title'),
 			'separator' => ' :: '
 		);
 
@@ -359,26 +360,26 @@ class ControllerOpenbayAmazonListing extends Controller {
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('text_home'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('lang_openbay'),
+			'href'      => $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_openbay'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('openbay/amazon', 'token=' . $this->session->data['token'], 'SSL'),
-			'text' => $this->language->get('lang_amazon'),
+			'href'      => $this->url->link('openbay/amazon', 'token=' . $this->session->data['token'], 'SSL'),
+			'text'      => $this->language->get('lang_amazon'),
 			'separator' => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'href' => $this->url->link('openbay/amazon_listing/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product_id . $url, 'SSL'),
-			'text' => $this->language->get('text_edit_heading'),
+			'href'      => $this->url->link('openbay/amazon_listing/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $product_id . $url, 'SSL'),
+			'text'      => $this->language->get('text_edit_heading'),
 			'separator' => ' :: '
 		);
 

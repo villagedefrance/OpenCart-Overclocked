@@ -1,20 +1,21 @@
 <?php
 class ModelOpenbayOrder extends Model {
+
 	public function getTotalOrders($data = array()) {
 		$sql = "SELECT COUNT(*) AS `total` FROM `" . DB_PREFIX . "order` o";
-		
+
 		if ($this->config->get('openbay_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "ebay_order eo ON o.order_id = eo.order_id";
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) eo ";
 		}
-		
+
 		if ($this->config->get('amazon_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_order ao ON o.order_id = ao.order_id ";
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) ao ";
 		}
-		
+
 		if ($this->config->get('amazonus_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_order auso ON o.order_id = auso.order_id ";
 		} else {
@@ -38,7 +39,7 @@ class ModelOpenbayOrder extends Model {
 		if (!empty($data['filter_date_added'])) {
 			$sql .= " AND DATE(`date_added`) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
-		
+
 		if (!empty($data['filter_channel'])) {
 			$sql .= " AND IF(ao.order_id IS NULL, IF(auso.order_id IS NULL, IF(eo.order_id IS NULL, 'web', 'ebay'), 'amazonus'), 'amazon') = '" . $this->db->escape($data['filter_channel']) . "'";
 		}
@@ -56,19 +57,19 @@ class ModelOpenbayOrder extends Model {
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) eo ";
 		}
-		
+
 		if ($this->config->get('amazon_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_order ao ON o.order_id = ao.order_id ";
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) ao ";
 		}
-		
+
 		if ($this->config->get('amazonus_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_order auso ON o.order_id = auso.order_id ";
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) auso ";
 		}
-		
+
 		if (isset($data['filter_order_status_id']) && !is_null($data['filter_order_status_id'])) {
 			$sql .= " WHERE o.order_status_id = '" . (int)$data['filter_order_status_id'] . "'";
 		} else {
@@ -86,7 +87,7 @@ class ModelOpenbayOrder extends Model {
 		if (!empty($data['filter_date_added'])) {
 			$sql .= " AND DATE(o.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
-		
+
 		if (!empty($data['filter_channel'])) {
 			$sql .= " HAVING channel = '" . $this->db->escape($data['filter_channel']) . "'";
 		}
@@ -136,23 +137,22 @@ class ModelOpenbayOrder extends Model {
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) eo ";
 		}
-		
+
 		if ($this->config->get('amazon_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_order ao ON o.order_id = ao.order_id ";
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) ao ";
 		}
-		
+
 		if ($this->config->get('amazonus_status')) {
 			$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_order auso ON o.order_id = auso.order_id ";
 		} else {
 			$sql .= " JOIN (SELECT NULL AS order_id) auso ";
 		}
-		
+
 		$sql .= " WHERE `o`.`order_id` = '".(int)$order_id."'";
-		
+
 		return $this->db->query($sql)->row;
 	}
-	
 }
 ?>

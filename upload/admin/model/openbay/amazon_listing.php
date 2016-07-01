@@ -109,7 +109,7 @@ class ModelOpenbayAmazonListing extends Model {
 		$response = $this->openbay->amazon->callWithResponse('productv3/simpleListing', $request);
 		$response = json_decode($response);
 
-		if(empty($response)) {
+		if (empty($response)) {
 			return array(
 				'status' => 0,
 				'message' => 'Problem connecting OpenBay: API'
@@ -118,7 +118,7 @@ class ModelOpenbayAmazonListing extends Model {
 
 		$response = (array)$response;
 
-		if($response['status'] === 1) {
+		if ($response['status'] === 1) {
 			$this->db->query("REPLACE INTO `" . DB_PREFIX . "amazon_product` SET `product_id` = " . (int)$data['product_id'] . ", `status` = 'uploaded', `marketplaces` = '" . $this->db->escape($data['marketplace']) . "', `version` = 3, `var` = '" . $this->db->escape(isset($data['var']) ? $data['var'] : '') . "'");
 		}
 
@@ -173,7 +173,7 @@ class ModelOpenbayAmazonListing extends Model {
 			'es' => 'A1RKKUPIHCS9HS',
 		);
 
-		foreach($data['products'] as $product_id => $asin) {
+		foreach ($data['products'] as $product_id => $asin) {
 			$product = $this->model_catalog_product->getProduct($product_id);
 
 			if ($product) {

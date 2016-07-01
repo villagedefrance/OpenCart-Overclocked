@@ -1,5 +1,6 @@
 <?php
 class ModelOpenbayEbayProduct extends Model {
+
 	public function getTaxRate($class_id) {
 		return $this->openbay->getTaxRate($class_id);
 	}
@@ -54,17 +55,17 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	public function repairLinks() {
-		//get distinct product id's where they are active
+		// get distinct product id's where they are active
 		$sql = $this->db->query("
 			SELECT DISTINCT `product_id`
 			FROM `" . DB_PREFIX . "ebay_listing`
 			WHERE `status` = '1'");
 
-		//loop over products and if count is more than 1, update all older entries to 0
-		foreach($sql->rows as $row){
+		// loop over products and if count is more than 1, update all older entries to 0
+		foreach ($sql->rows as $row) {
 			$sql2 = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_listing` WHERE `product_id` = '".(int)$row['product_id']."' AND `status` = 1 ORDER BY `ebay_listing_id` DESC");
 
-			if($sql2->num_rows > 1){
+			if ($sql2->num_rows > 1) {
 				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_listing` SET `status` = 0  WHERE `product_id` = '".(int)$row['product_id']."'");
 				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_listing` SET `status` = 1  WHERE `ebay_listing_id` = '".(int)$sql2->row['ebay_listing_id']."'");
 			}
@@ -72,16 +73,21 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	public function searchEbayCatalog($data) {
-
-		if(!isset($data['page'])){ $page = 1; }else{ $page = $data['page']; }
+		if (!isset($data['page'])) {
+			$page = 1;
+		} else {
+			$page = $data['page'];
+		}
 
 		//validation for category id
 
-		//validation for saerch term
+		//validation for search term
 
-	$response['data']   = $this->openbay->ebay->call('listing/searchCatalog/', array('page' => (int)$page, 'categoryId' => $data['categoryId'], 'search' => $data['search']));
-		$response['error']  = $this->openbay->ebay->lasterror;
-		$response['msg']    = $this->openbay->ebay->lastmsg;
+		$response['data'] = $this->openbay->ebay->call('listing/searchCatalog/', array('page' => (int)$page, 'categoryId' => $data['categoryId'], 'search' => $data['search']));
+
+		$response['error'] = $this->openbay->ebay->lasterror;
+		$response['msg'] = $this->openbay->ebay->lastmsg;
+
 		return $response;
 	}
 }
