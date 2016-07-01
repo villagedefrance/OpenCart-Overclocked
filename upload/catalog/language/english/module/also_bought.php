@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title'] = 'Customers who bought this product also bought';
+$_['heading_title'] = 'Customers also bought';
 
 // Text
 $_['text_from']     = 'from';
