@@ -1,5 +1,6 @@
 <?php
 class ControllerAmazonListing extends Controller {
+
 	public function index() {
 		if ($this->config->get('amazon_status') != '1') {
 			return;
@@ -7,6 +8,7 @@ class ControllerAmazonListing extends Controller {
 
 		$this->load->library('log');
 		$this->load->library('amazon');
+
 		$this->load->model('openbay/amazon_listing');
 		$this->load->model('openbay/amazon_product');
 

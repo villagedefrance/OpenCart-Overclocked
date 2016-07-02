@@ -187,7 +187,7 @@ class ModelOpenbayEbay extends Model {
 		");
 
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".DB_PREFIX."ebay_image_import` (
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_image_import` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`image_original` text NOT NULL,
 				`image_new` text NOT NULL,
@@ -209,7 +209,7 @@ class ModelOpenbayEbay extends Model {
 		");
 
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".DB_PREFIX."ebay_stock_reserve` (
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_stock_reserve` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`product_id` int(11) NOT NULL,
 				`variant_id` varchar(100) NOT NULL,
@@ -221,14 +221,14 @@ class ModelOpenbayEbay extends Model {
 		");
 
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".DB_PREFIX."ebay_order_lock` (
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_order_lock` (
 				`smp_id` int(11) NOT NULL,
 				PRIMARY KEY (`smp_id`)
 			) DEFAULT COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
-			CREATE TABLE IF NOT EXISTS `".DB_PREFIX."ebay_template` (
+			CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "ebay_template` (
 				`template_id` INT(11) NOT NULL AUTO_INCREMENT,
 				`name` VARCHAR(100) NOT NULL,
 				`html` MEDIUMTEXT NOT NULL,
@@ -314,11 +314,11 @@ class ModelOpenbayEbay extends Model {
 
 	public function totalLinked() {
 		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total
-				FROM `" . DB_PREFIX . "ebay_listing` `el`
-				LEFT JOIN `" . DB_PREFIX . "product` `p` ON (`el`.`product_id` = `p`.`product_id`)
-				LEFT JOIN `" . DB_PREFIX . "product_description` `pd` ON (`p`.`product_id` = `pd`.`product_id`)
-				WHERE `el`.`status` = '1'
-				AND `pd`.`language_id` = '" . (int)$this->config->get('config_language_id') . "'";
+			 FROM `" . DB_PREFIX . "ebay_listing` `el`
+			 LEFT JOIN `" . DB_PREFIX . "product` `p` ON (`el`.`product_id` = `p`.`product_id`)
+			 LEFT JOIN `" . DB_PREFIX . "product_description` `pd` ON (`p`.`product_id` = `pd`.`product_id`)
+			 WHERE `el`.`status` = '1'
+			 AND `pd`.`language_id` = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$query = $this->db->query($sql);
 
@@ -337,22 +337,12 @@ class ModelOpenbayEbay extends Model {
 			$has_option = '`p`.`has_option`, ';
 		}
 
-		$sql = "
-		SELECT
-			".$has_option."
-			`el`.`ebay_item_id`,
-			`p`.`product_id`,
-			`p`.`sku`,
-			`p`.`model`,
-			`p`.`quantity`,
-			`pd`.`name`,
-			`esr`.`reserve`
-		FROM `" . DB_PREFIX . "ebay_listing` `el`
-		LEFT JOIN `" . DB_PREFIX . "product` `p` ON (`el`.`product_id` = `p`.`product_id`)
-		LEFT JOIN `" . DB_PREFIX . "product_description` `pd` ON (`p`.`product_id` = `pd`.`product_id`)
-		LEFT JOIN `" . DB_PREFIX . "ebay_stock_reserve` `esr` ON (`esr`.`product_id` = `p`.`product_id`)
-		WHERE `el`.`status` = '1'
-		AND `pd`.`language_id` = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT " . $has_option . " `el`.`ebay_item_id`, `p`.`product_id`, `p`.`sku`, `p`.`model`, `p`.`quantity`, `pd`.`name`, `esr`.`reserve`
+		 FROM `" . DB_PREFIX . "ebay_listing` `el`
+		 LEFT JOIN `" . DB_PREFIX . "product` `p` ON (`el`.`product_id` = `p`.`product_id`)
+		 LEFT JOIN `" . DB_PREFIX . "product_description` `pd` ON (`p`.`product_id` = `pd`.`product_id`)
+		 LEFT JOIN `" . DB_PREFIX . "ebay_stock_reserve` `esr` ON (`esr`.`product_id` = `p`.`product_id`)
+		 WHERE `el`.`status` = '1' AND `pd`.`language_id` = '" . (int)$this->config->get('config_language_id') . "'";
 
 		$sql .= " LIMIT " . (int)$start . "," . (int)$limit;
 
@@ -368,7 +358,7 @@ class ModelOpenbayEbay extends Model {
 					'model'         => $row['model'],
 					'qty'           => $row['quantity'],
 					'name'          => $row['name'],
-					'link_edit'     => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id='.$row['product_id'], 'SSL'),
+					'link_edit'     => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $row['product_id'], 'SSL'),
 					'link_ebay'     => $this->config->get('openbaypro_ebay_itm_link').$row['ebay_item_id'],
 					'reserve'       => (int)$row['reserve'],
 				);
@@ -728,19 +718,19 @@ class ModelOpenbayEbay extends Model {
 		}
 
 		if ($err == false) {
-			$res = $this->db->query("SELECT `used` FROM `" . DB_PREFIX . "ebay_category_history` WHERE `CategoryID` = '".$originalId."' LIMIT 1");
+			$res = $this->db->query("SELECT `used` FROM `" . DB_PREFIX . "ebay_category_history` WHERE `CategoryID` = '" . $originalId . "' LIMIT 1");
 
 			if ($res->num_rows) {
 				$new = $res->row['used'] + 1;
-				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_category_history` SET `used` = '".$new."' WHERE `CategoryID` = '".$originalId."' LIMIT 1");
+				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_category_history` SET `used` = '" . $new . "' WHERE `CategoryID` = '" . $originalId . "' LIMIT 1");
 			} else {
-				$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_category_history` SET `CategoryID` = '".$originalId."', `breadcrumb` = '".  $this->db->escape(implode(' > ', array_reverse($breadcrumb)))."', `used` = '1'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_category_history` SET `CategoryID` = '" . $originalId . "', `breadcrumb` = '" . $this->db->escape(implode(' > ', array_reverse($breadcrumb))) . "', `used` = '1'");
 			}
 		}
 	}
 
 	public function getProductStock($id) {
-		$res = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product` WHERE `product_id` = '".$this->db->escape($id)."' LIMIT 1");
+		$res = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . $this->db->escape($id) . "' LIMIT 1");
 
 		if (isset($res->row['has_option']) && $res->row['has_option'] == 1) {
 			if ($this->openbay->addonLoad('openstock')) {
@@ -828,6 +818,7 @@ class ModelOpenbayEbay extends Model {
 
 			//finish the revise item call
 			return $this->openbay->ebay->call('listing/reviseItem/', $data);
+
 		} else {
 			$this->openbay->ebay->log('editSave() - variant item');
 
