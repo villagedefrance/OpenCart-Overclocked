@@ -62,7 +62,7 @@ class ControllerOpenbayEbayTemplate extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function add() {
@@ -196,7 +196,7 @@ class ControllerOpenbayEbayTemplate extends Controller {
 			$this->data['template_id'] = '';
 		}
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	private function templateValidate() {

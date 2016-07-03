@@ -3,7 +3,7 @@
     <div class="breadcrumb">
 <?php
         foreach ($breadcrumbs as $breadcrumb) {
-            echo $breadcrumb['separator'].'<a href="'.$breadcrumb['href'].'">'.$breadcrumb['text'].'</a>';
+            echo $breadcrumb['separator'] . '<a href="' . $breadcrumb['href'] . '">' . $breadcrumb['text'].'</a>';
         }
 ?>
     </div>
@@ -23,7 +23,7 @@
                     <h3><?php echo $lang_heading_settings; ?></h3>
                 </div>
 
-                <?php if($validation == true){ ?>
+                <?php if ($validation == true) { ?>
                     <div class="openbayPod" onclick="location='<?php echo $links_sync; ?>'">
                         <img src="view/image/openbay/openbay_icon10.png" title="" alt="" border="0" />
                         <h3><?php echo $lang_heading_sync; ?></h3>
@@ -60,7 +60,7 @@
                       <img src="view/image/openbay/openbay_icon3.png" title="" alt="" border="0" />
                       <h3><?php echo $lang_heading_bulkcategory; ?></h3>
                     </div>
-                <?php }else{ ?>
+                <?php } else { ?>
                     <a class="openbayPod" href="https://account.openbaypro.com/ebay/apiRegister/" target="_BLANK">
                         <img src="view/image/openbay/openbay_icon2.png" title="" alt="" border="0" />
                         <h3><?php echo $lang_heading_register; ?></h3>
@@ -73,10 +73,10 @@
 
 <script type="text/javascript"><!--
     $(document).ready(function() {
-        $('.openbayPod').hover( function(){
+        $('.openbayPod').hover(function() {
             $(this).css('background-color', '#CCCCCC').css('border-color', '#003366');
         },
-        function(){
+        function() {
             $(this).css('background-color', '#FFFFFF').css('border-color', '#CCCCCC');
         });
     });

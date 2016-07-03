@@ -10,7 +10,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 		$this->load->model('catalog/product');
 
-		//check for ebay import img table
+		// check for ebay import img table
 		$res = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "ebay_image_import'");
 
 		if ($res->num_rows == 0) {
@@ -23,7 +23,7 @@ class ModelOpenbayEbayProduct extends Model {
 				  `product_id` int(11) NOT NULL,
 				  `imgcount` int(11) NOT NULL,
 				  PRIMARY KEY (`id`)
-				) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 			");
 		}
 
@@ -41,7 +41,7 @@ class ModelOpenbayEbayProduct extends Model {
 		$newData = base64_decode($data['data']);
 		$options = json_decode($data['options'], 1);
 
-		$this->openbay->ebay->log('Options: '.$data['options']);
+		$this->openbay->ebay->log('Options: ' . $data['options']);
 
 		unset($data['data']);
 
@@ -58,7 +58,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 			foreach ($newData1 as $item) {
 				$itemCountLoop++;
-				$this->openbay->ebay->log('Processing item: '.$itemCountLoop);
+				$this->openbay->ebay->log('Processing item: ' . $itemCountLoop);
 
 				$parts = explode(':', $item['CategoryName']);
 
@@ -245,7 +245,7 @@ class ModelOpenbayEbayProduct extends Model {
 					}
 
 					if (isset($item['advanced']['package']['weight']['major'])) {
-						$weight = $item['advanced']['package']['weight']['major'].'.'.$item['advanced']['package']['weight']['minor'];
+						$weight = $item['advanced']['package']['weight']['major'] . '.' . $item['advanced']['package']['weight']['minor'];
 					}
 
 					if (isset($item['advanced']['package']['size']['length'])) {
@@ -385,7 +385,7 @@ class ModelOpenbayEbayProduct extends Model {
 					foreach ($item['pictures'] as $img) {
 						if (!empty($img)) {
 							$name = rand(500000, 1000000000);
-							$this->addImage($img, DIR_IMAGE.'data/'.$name.'.jpg', $name.'.jpg', $product_id, $image_count);
+							$this->addImage($img, DIR_IMAGE . 'data/' . $name . '.jpg', $name . '.jpg', $product_id, $image_count);
 							$image_count++;
 						}
 					}
@@ -591,13 +591,15 @@ class ModelOpenbayEbayProduct extends Model {
 	private function attributeGroupExists($name) {
 		$this->openbay->ebay->log('Checking attribute group: '.$name);
 
-		$qry = $this->db->query("SELECT * FROM  `" . DB_PREFIX . "attribute_group_description` WHERE `name` = '".$this->db->escape(htmlspecialchars($name, ENT_COMPAT))."' AND `language_id` = '".(int)$this->config->get('config_language_id')."' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM  `" . DB_PREFIX . "attribute_group_description` WHERE `name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' AND `language_id` = '" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Group exists');
+
 			return $qry->row['attribute_group_id'];
 		} else {
 			$this->openbay->ebay->log('New group');
+
 			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "attribute_group` ORDER BY `sort_order` DESC LIMIT 1");
 
 			if ($qry2->num_rows) {
@@ -610,7 +612,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 			$id = $this->db->getLastId();
 
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "attribute_group_description` SET `attribute_group_id` = '" . (int)$id . "', `language_id` = '".(int)$this->config->get('config_language_id')."', `name` = '".$this->db->escape(htmlspecialchars($name, ENT_COMPAT))."'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "attribute_group_description` SET `attribute_group_id` = '" . (int)$id . "', `language_id` = '" . (int)$this->config->get('config_language_id') . "', `name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "'");
 
 			return $id;
 		}
@@ -623,6 +625,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Attribute exists');
+
 			return $qry->row['attribute_id'];
 		} else {
 			$this->openbay->ebay->log('New attribute');
@@ -638,7 +641,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 			$id = $this->db->getLastId();
 
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "attribute_description` SET `attribute_id` = '" . (int)$id . "', `language_id` = '".(int)$this->config->get('config_language_id')."', `name` = '".$this->db->escape(htmlspecialchars($name, ENT_COMPAT))."'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "attribute_description` SET `attribute_id` = '" . (int)$id . "', `language_id` = '" . (int)$this->config->get('config_language_id') . "', `name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "'");
 
 			return (int)$id;
 		}
@@ -682,7 +685,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 			$id = $this->db->getLastId();
 
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "manufacturer_description` SET `manufacturer_id` = '" . (int)$id . "', `name` = '".$this->db->escape(htmlspecialchars($name, ENT_COMPAT))."'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "manufacturer_description` SET `manufacturer_id` = '" . (int)$id . "', `name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "'");
 
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "manufacturer_to_store` SET `manufacturer_id` = '" . (int)$id . "', `store_id` = '0'");
 
@@ -691,7 +694,7 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	private function weightClassExists($name) {
-		$this->openbay->ebay->log('Checking weight class: '.$name);
+		$this->openbay->ebay->log('Checking weight class: ' . $name);
 
 		$qry = $this->db->query("SELECT `weight_class_id` FROM `" . DB_PREFIX . "weight_class_description` WHERE LCASE(`title`) = '" . $this->db->escape(strtolower($name)) . "' LIMIT 1");
 
@@ -713,7 +716,7 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	private function lengthClassExists($name) {
-		$this->openbay->ebay->log('Checking length class: '.$name);
+		$this->openbay->ebay->log('Checking length class: ' . $name);
 
 		$qry = $this->db->query("SELECT `length_class_id` FROM `" . DB_PREFIX . "length_class_description` WHERE LCASE(`title`) = '" . $this->db->escape(strtolower($name)) . "' LIMIT 1");
 

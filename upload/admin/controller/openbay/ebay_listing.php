@@ -88,7 +88,7 @@ class ControllerOpenbayEbayListing extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function bulkStep2() {
@@ -238,7 +238,7 @@ class ControllerOpenbayEbayListing extends Controller {
 			$this->data['error_warning'] = $this->language->get('error_no_products');
 		}
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function bulkStep3() {
@@ -275,8 +275,8 @@ class ControllerOpenbayEbayListing extends Controller {
 			'common/footer'
 		);
 
-		$this->data['url_return']  = $this->url->link('openbay/ebay/dashboard', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['url_back']  = $this->url->link('openbay/ebay_listing/bulkstep2', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['url_return'] = $this->url->link('openbay/ebay/dashboard', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['url_back'] = $this->url->link('openbay/ebay_listing/bulkstep2', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['form_action'] = $this->url->link('openbay/ebay_listing/bulkstep3', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -365,7 +365,7 @@ class ControllerOpenbayEbayListing extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function bulkStep4() {
@@ -660,7 +660,7 @@ class ControllerOpenbayEbayListing extends Controller {
 				$this->data['error_warning'] = '';
 			}
 
-			$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+			$this->response->setOutput($this->render());
 		} else {
 			$this->redirect($this->url->link('openbay/ebay_listing/bulkstep1', 'token=' . $this->session->data['token'], 'SSL'));
 		}

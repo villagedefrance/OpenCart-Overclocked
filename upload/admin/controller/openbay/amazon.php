@@ -62,6 +62,7 @@ class ControllerOpenbayAmazon extends Controller {
 
 		$xml = $this->openbay->amazon->getStockUpdatesStatus($requestArgs);
 		$simpleXmlObj = simplexml_load_string($xml);
+
 		$this->data['tableData'] = array();
 
 		if ($simpleXmlObj !== false) {
@@ -961,7 +962,7 @@ class ControllerOpenbayAmazon extends Controller {
 						$search_results[] = array(
 							'title' => $search_result['title'],
 							'asin' => $search_result['asin'],
-							'href' => $link,
+							'href' => $link
 						);
 					}
 				}
@@ -974,7 +975,7 @@ class ControllerOpenbayAmazon extends Controller {
 					'image' => $image,
 					'matches' => $result['matches'],
 					'search_status' => $search_status,
-					'search_results' => $search_results,
+					'search_results' => $search_results
 				);
 			}
 
@@ -1117,18 +1118,18 @@ class ControllerOpenbayAmazon extends Controller {
 
 		foreach ($results as $result) {
 			$products[] = array(
-				'asin' => $result['asin'],
-				'href_amazon' => $this->model_openbay_amazon->getAsinLink($result['asin'], $marketplace_code),
-				'amazon_sku' => $result['amazon_sku'],
+				'asin'            => $result['asin'],
+				'href_amazon'     => $this->model_openbay_amazon->getAsinLink($result['asin'], $marketplace_code),
+				'amazon_sku'      => $result['amazon_sku'],
 				'amazon_quantity' => $result['amazon_quantity'],
-				'amazon_price' => $result['amazon_price'],
-				'name' => $result['name'],
-				'sku' => $result['sku'],
-				'quantity' => $result['quantity'],
-				'combination' => $result['combination'],
-				'product_id' => $result['product_id'],
-				'var' => $result['var'],
-				'href_product' => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'], 'SSL'),
+				'amazon_price'    => $result['amazon_price'],
+				'name'            => $result['name'],
+				'sku'             => $result['sku'],
+				'quantity'        => $result['quantity'],
+				'combination'     => $result['combination'],
+				'product_id'      => $result['product_id'],
+				'var'             => $result['var'],
+				'href_product'    => $this->url->link('catalog/product/update', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'], 'SSL')
 			);
 		}
 
