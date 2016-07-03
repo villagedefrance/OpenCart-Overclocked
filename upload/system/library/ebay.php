@@ -42,7 +42,7 @@ final class Ebay {
 		if ($this->logging == 1) {
 			if (function_exists('getmypid')) {
 				$pId = getmypid();
-				$data = $pId.' - '.$data;
+				$data = $pId . ' - ' . $data;
 			}
 
 			if ($write == true) {
@@ -143,7 +143,7 @@ final class Ebay {
 
 	public function callNoResponse($call, array $post = null, array $options = array(), $content_type = 'json') {
 		if ($this->config->get('openbay_status') == 1) {
-			$this->log('openbay_noresponse_call('.$call.') - Data :'.  json_encode($post));
+			$this->log('openbay_noresponse_call(' . $call . ') - Data :' . json_encode($post));
 
 			if (defined("HTTPS_CATALOG")) {
 				$domain = HTTPS_CATALOG;
@@ -151,7 +151,16 @@ final class Ebay {
 				$domain = HTTPS_SERVER;
 			}
 
-			$data = array('token' => $this->token, 'secret' => $this->secret, 'server' => $this->server, 'domain' => $domain, 'openbay_version' => (int)$this->config->get('openbay_version'), 'data' => $post, 'content_type' => $content_type, 'language' => $this->config->get('openbay_language'));
+			$data = array(
+				'token'           => $this->token,
+				'secret'          => $this->secret,
+				'server'          => $this->server,
+				'domain'          => $domain,
+				'openbay_version' => (int)$this->config->get('openbay_version'),
+				'data'            => $post,
+				'content_type'    => $content_type,
+				'language'        => $this->config->get('openbay_language')
+			);
 
 			$defaults = array(
 				CURLOPT_POST => 1,
@@ -215,7 +224,7 @@ final class Ebay {
 			$this->log('getEndedEbayItemId() - No link');
 			return false;
 		} else {
-			$this->log('getEndedEbayItemId() - Returning '.$qry->row['ebay_item_id']);
+			$this->log('getEndedEbayItemId() - Returning ' . $qry->row['ebay_item_id']);
 			return $qry->row['ebay_item_id'];
 		}
 	}
@@ -313,7 +322,7 @@ final class Ebay {
 	}
 
 	public function endItem($item_id) {
-		$this->log('endItem() - ID "'.$item_id);
+		$this->log('endItem() - ID "' . $item_id);
 
 		if ($this->config->get('openbaypro_enditems') == 1) {
 			$this->call('item/endItem/', array('id' => $item_id));
@@ -355,14 +364,14 @@ final class Ebay {
 				$this->decideEbayStockAction($product_id, $query->row['quantity'], $query->row['subtract']);
 			} else {
 				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '" . (int)$product_id . "' AND `var` = '" . $sku . "' LIMIT 1");
-				$this->log('ebaySaleStockReduce() - Send item ID: ' . $product_id . ', VAR: '.$sku.', passing ' . $query->row['stock'].' to decideEbayStockAction()');
+				$this->log('ebaySaleStockReduce() - Send item ID: ' . $product_id . ', VAR: ' . $sku . ', passing ' . $query->row['stock'] . ' to decideEbayStockAction()');
 				$this->decideEbayStockAction($product_id, $query->row['stock'], $query->row['subtract'], $sku);
 			}
 		}
 	}
 
 	public function notifyAdmin($subject, $message) {
-		$this->log('Sending email to: '.$this->config->get('config_email').' - notifyAdmin()');
+		$this->log('Sending email to: ' . $this->config->get('config_email') . ' - notifyAdmin()');
 
 		$mail = new Mail();
 		$mail->protocol = $this->config->get('config_mail_protocol');
@@ -381,7 +390,7 @@ final class Ebay {
 		$mail->send();
 	}
 
-	public function encrypt($msg,$k,$base64 = false) {
+	public function encrypt($msg, $k, $base64 = false) {
 		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) { return false; }
 
 		$msg = serialize($msg);
@@ -403,7 +412,7 @@ final class Ebay {
 		return $msg;
 	}
 
-	public function decrypt($msg,$k,$base64 = false) {
+	public function decrypt($msg, $k, $base64 = false) {
 		if ($base64) { $msg = base64_decode($msg); }
 
 		if (!$td = mcrypt_module_open('rijndael-256', '', 'ctr', '')) {
@@ -447,8 +456,8 @@ final class Ebay {
 		for ($block = 1; $block <= $kb; $block ++) {
 			$ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
 
-			for ( $i = 1; $i < $c; $i ++ ) {
-					$ib ^= ($b = hash_hmac($a, $b, $p, true));
+			for ($i = 1; $i < $c; $i ++) {
+				$ib ^= ($b = hash_hmac($a, $b, $p, true));
 			}
 
 			$dk .= $ib;
@@ -463,8 +472,8 @@ final class Ebay {
 		$encoding = mb_detect_encoding($data);
 
 		if ($encoding == 'UTF-8') {
-			$data = preg_replace('/[^(\x20-\x7F)]*/','',$data);
-			$data = preg_replace('#\\\\x[0-9a-fA-F]{2,2}#','',$data);
+			$data = preg_replace('/[^(\x20-\x7F)]*/', '', $data);
+			$data = preg_replace('#\\\\x[0-9a-fA-F]{2,2}#', '', $data);
 		}
 
 		$data = json_decode($data);
@@ -502,24 +511,27 @@ final class Ebay {
 	}
 
 	private function eBayShippingStatus($item, $txn, $status, $tracking_no = '', $carrier_id = '') {
-		$this->log('eBayShippingStatus() - Update order shipping status (Item: '.$item.',Txn: '.$txn.',Status:'.$status.',Tracking: '.$tracking_no.', Carrier: '.$carrier_id.')');
+		$this->log('eBayShippingStatus() - Update order shipping status (Item: ' . $item . ',Txn: ' . $txn . ',Status:' . $status . ',Tracking: ' . $tracking_no . ', Carrier: ' . $carrier_id . ')');
+
 		return $this->call('order/shippingStatus/', array('item' => $item, 'txn' => $txn, 'status' => $status, 'carrier' => $carrier_id, 'tracking' => $tracking_no));
 	}
 
 	private function eBayPaymentStatus($item, $txn, $status) {
-		$this->log('eBayPaymentStatus() - Updates order payment status (Item: '.$item.',Txn: '.$txn.',Status:'.$status.')');
+		$this->log('eBayPaymentStatus() - Updates order payment status (Item: ' . $item . ',Txn: ' . $txn . ',Status:' . $status . ')');
+
 		return $this->call('order/paymentStatus/', array('item' => $item, 'txn' => $txn, 'status' => $status));
 	}
 
 	private function getSaleRecord($saleId) {
-		$this->log('getSaleRecord() - Get ebay sale record ID: '.$saleId);
+		$this->log('getSaleRecord() - Get ebay sale record ID: ' . $saleId);
+
 		return $this->call('order/getSmpRecord/', array('id' => $saleId));
 	}
 
 	public function isEbayOrder($id) {
 		$this->log('isEbayOrder() - Is eBay order? ID: '.$id);
 
-		$qry = $this->db->query("SELECT `comment` FROM `" . DB_PREFIX . "order_history` WHERE `comment` LIKE '[eBay Import:%]' AND `order_id` = '".(int)$id."' LIMIT 1");
+		$qry = $this->db->query("SELECT `comment` FROM `" . DB_PREFIX . "order_history` WHERE `comment` LIKE '[eBay Import:%]' AND `order_id` = '" . (int)$id . "' LIMIT 1");
 
 		if ($qry->num_rows) {
 			$this->log('isEbayOrder() - Yes');
@@ -532,7 +544,7 @@ final class Ebay {
 	}
 
 	public function orderNew($order_id) {
-		$this->log('orderNew() - Order id:'.$order_id.' passed');
+		$this->log('orderNew() - Order id:' . $order_id . ' passed');
 
 		if (!$this->isEbayOrder($order_id)) {
 			if ($this->openbay->addonLoad('openstock') == true) {
@@ -604,11 +616,13 @@ final class Ebay {
 
 	public function getEbayActiveListings() {
 		$this->log('getEbayActiveListings() - Get active eBay items from API');
+
 		return $this->call('item/getItemAllList/');
 	}
 
 	public function getEbayItemList($limit = 100, $page = 1, $filter = array()) {
 		$this->log('getEbayItemList() - Get active eBay items from API');
+
 		return $this->call('item/getItemListLimited/', array('page' => $page, 'limit' => $limit, 'filter' => $filter));
 	}
 
@@ -666,7 +680,7 @@ final class Ebay {
 
 				foreach ($listing['variation']['vars'] as $var) {
 					if (($var['sku'] != $sku) && ($var['qty'] > 0)) {
-						//other variations have stock
+						// other variations have stock
 						$variantStock = true;
 						$this->log('Another variation has stock (SKU: ' . $var['sku'] . ')');
 						break;
@@ -703,7 +717,7 @@ final class Ebay {
 				}
 			}
 
-			$this->log('putStockUpdate() - Listing not active, item id: '. $item_id .', status returned: '.$listing['statusActual']);
+			$this->log('putStockUpdate() - Listing not active, item id: ' . $item_id . ', status returned: ' . $listing['statusActual']);
 		}
 	}
 
@@ -755,11 +769,11 @@ final class Ebay {
 			}
 
 			if (empty($options)) {
-				//get the stock level of the linked items
+				// get the stock level of the linked items
 				$local_stock = $this->getProductStockLevel($item['productId']);
 
 				if ((int)$local_stock['quantity'] > 0 && $local_stock['status'] == 1) {
-					//product has stock and is enabled, so re list it.
+					// product has stock and is enabled, so re list it.
 					$reserve = $this->getReserve($item['productId'], $item['itemId']);
 
 					if ($reserve != false) {
@@ -769,7 +783,7 @@ final class Ebay {
 					}
 
 					if ($this->config->get('openbaypro_relistitems') == 1) {
-						//relist item with new stock
+						// relist item with new stock
 						$this->relistItem($item['itemId'], $item['productId'], (int)$local_stock['quantity']);
 					}
 				}
@@ -787,7 +801,8 @@ final class Ebay {
 
 			// check if the itemid was returned by ebay, if not unlink it as it is ended.
 			if (!isset($ebay_listings[$item['itemId']])) {
-				$this->log('eBay item was not returned, removing link ('.$item['itemId'].')');
+				$this->log('eBay item was not returned, removing link (' . $item['itemId'] . ')');
+
 				$this->removeItemByItemId($item['itemId']);
 			} else {
 				// check if the local item is now inactive - end if it is
@@ -845,7 +860,7 @@ final class Ebay {
 										}
 									}
 
-									$this->log('putStockUpdateBulk() - Revising variant item: ' . $item['itemId'] . ',Stock: ' . $options[$option_id]['stock'] . ', SKU ' . $ebay_variant['sku']);
+									$this->log('putStockUpdateBulk() - Revising variant item: ' . $item['itemId'] . ', Stock: ' . $options[$option_id]['stock'] . ', SKU ' . $ebay_variant['sku']);
 									$this->call('item/reviseStock/', array('itemId' => $item['itemId'], 'stock' => $options[$option_id]['stock'], 'sku' => $ebay_variant['sku']));
 								}
 							}
@@ -862,7 +877,7 @@ final class Ebay {
 	}
 
 	public function getProductStockLevel($product_id, $sku = '') {
-		$this->log('getProductStockLevel() - ID: '.(int)$product_id.', SKU: '.$sku);
+		$this->log('getProductStockLevel() - ID: ' . (int)$product_id . ', SKU: ' . $sku);
 
 		if ($sku == '' || $sku == null) {
 			$qry = $this->db->query("SELECT `quantity`, `status` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "' LIMIT 1");
@@ -925,10 +940,10 @@ final class Ebay {
 					$reserve = $this->getReserve($product_id, $item_id, $option['var']);
 
 					if ($reserve != false) {
-						$this->log('productUpdateListen() / Variant ('.$option['var'].') - Reserve stock: '.$reserve);
+						$this->log('productUpdateListen() / Variant (' . $option['var'] . ') - Reserve stock: ' . $reserve);
 
 						if ($option['stock'] > $reserve) {
-							$this->log('putStockUpdate() - Stock ('.$option['stock'].') is larger than reserve ('.$reserve.'), setting level to reserve');
+							$this->log('putStockUpdate() - Stock (' . $option['stock'] . ') is larger than reserve (' . $reserve . '), setting level to reserve');
 							$option['stock'] = $reserve;
 						}
 					}
@@ -948,6 +963,7 @@ final class Ebay {
 				// send to the api to process
 				if ($stock == true) {
 					$this->log('productUpdateListen() - Sending to API');
+
 					$response = $this->call('item/reviseStockVariants', $varData);
 					return $response;
 				} else {
@@ -973,7 +989,7 @@ final class Ebay {
 					// yes, mutli variant listing
 					$this->log('productUpdateListen() - multi variant items relist not supported');
 				} else {
-					$this->log('productUpdateListen() - Normal item, checking stock('.$data['quantity'].') > 0');
+					$this->log('productUpdateListen() - Normal item, checking stock(' . $data['quantity'] . ') > 0');
 					// no, its a normal item, is there now stock?
 					if ($data['quantity'] > 0) {
 						// yes, is relist setting yes?
@@ -997,12 +1013,12 @@ final class Ebay {
 		$this->log('orderStatusListen() - Order '. $order_id .' changed status');
 
 		if ($ebay_id != false) {
-			$this->log('orderStatusListen() - It is an eBay order, new status: '.$status_id);
+			$this->log('orderStatusListen() - It is an eBay order, new status: ' . $status_id);
 
 			$item_txn_array = $this->getSaleRecord($ebay_id);
 
 			if (!empty($item_txn_array)) {
-				//Has it been marked as paid?
+				// Has it been marked as paid?
 				if ($status_id == $this->config->get('EBAY_DEF_PAID_ID')) {
 					$this->log('orderStatusListen() - Updating to paid status');
 
@@ -1111,6 +1127,7 @@ final class Ebay {
 
 	public function getAllocatedStock($product_id) {
 		$qry = $this->db->query("SELECT SUM(`qty`) AS `total` FROM `" . DB_PREFIX . "ebay_transaction` WHERE `product_id` = '" . (int)$product_id . "' AND `order_id` = '0' LIMIT 1");
+
 		return (int)$qry->row['total'];
 	}
 
@@ -1130,6 +1147,7 @@ final class Ebay {
 				$ch = curl_init($img_large);
 
 				curl_setopt($ch, CURLOPT_NOBODY, true);
+
 				curl_exec($ch);
 				$header_response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 				curl_close($ch);
@@ -1165,6 +1183,7 @@ final class Ebay {
 
 	public function getEbayListing($itemId) {
 		$this->log('getEbayListing()');
+
 		return $this->call('item/getItem/', array('itemId' => $itemId));
 	}
 
@@ -1250,6 +1269,7 @@ final class Ebay {
 
 	public function deleteReserve($product_id, $item_id, $sku = '') {
 		$this->log('deleteReserve()');
+
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_stock_reserve` WHERE `product_id` = '" . (int)$product_id . "' AND `variant_id` = '" . $this->db->escape($sku) . "' AND `item_id` = '" . $this->db->escape($item_id) . "'  LIMIT 1");
 	}
 
@@ -1287,8 +1307,8 @@ final class Ebay {
 
 			if (!empty($cat_array)) {
 				foreach ($cat_array as $cat) {
-					if ($cat['BestOfferEnabled'] == true) { $cat['BestOfferEnabled'] = 1; }else{ $cat['BestOfferEnabled'] = 0; }
-					if ($cat['AutoPayEnabled'] == true) { $cat['AutoPayEnabled'] = 1; }else{ $cat['AutoPayEnabled'] = 0; }
+					if ($cat['BestOfferEnabled'] == true) { $cat['BestOfferEnabled'] = 1; } else { $cat['BestOfferEnabled'] = 0; }
+					if ($cat['AutoPayEnabled'] == true) { $cat['AutoPayEnabled'] = 1; } else { $cat['AutoPayEnabled'] = 0; }
 
 					$this->db->query("
 						INSERT INTO `" . DB_PREFIX . "ebay_category` SET `CategoryID` = '" . (int)$cat['CategoryID'] . "', `CategoryParentID` = '" . (int)$cat['CategoryParentID'] . "', `CategoryLevel` = '" . (int)$cat['CategoryLevel'] . "', `BestOfferEnabled` = '" . (int)$cat['BestOfferEnabled'] . "', `AutoPayEnabled` = '" . (int)$cat['AutoPayEnabled'] . "', `CategoryName` = '" . $this->db->escape((string)$cat['CategoryName']) . "'");
@@ -1457,7 +1477,7 @@ final class Ebay {
 				$this->log('No countries set!');
 			}
 
-			//returns
+			// returns
 			if (isset($response['returns'])) {
 				$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_setting_option` WHERE `key` = 'returns' LIMIT 1");
 

@@ -16,7 +16,8 @@ class ControllerEbayOpenbay extends Controller {
 			$this->response->setOutput(json_encode(array('msg' => 'error 002')));
 		} else {
 			$token = $this->openbay->ebay->pbkdf2($s1, $s2, 1000, 32);
-			$data = $this->openbay->ebay->decrypt($encrypted['data'],$token, true);
+
+			$data = $this->openbay->ebay->decrypt($encrypted['data'], $token, true);
 
 			if ($secret == $data['secret'] && $active == 1) {
 				if ($data['action'] == 'ItemUnsold') {
@@ -48,7 +49,9 @@ class ControllerEbayOpenbay extends Controller {
 
 					if ($product_id != false) {
 						$this->openbay->ebay->createLink($product_id, $data['itemId'], '');
+
 						$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_listing_pending` WHERE `key` = '" . $data['key'] . "' LIMIT 1");
+
 						$this->openbay->ebay->log('A link was found with product id: ' . $product_id . ', item id: ' . $data['itemId'] . ' and key: ' . $data['key']);
 					} else {
 						$this->openbay->ebay->log('No link found to previous item');
@@ -59,13 +62,17 @@ class ControllerEbayOpenbay extends Controller {
 
 				if ($data['action'] == 'newOrder') {
 					$this->openbay->ebay->log('Action: newOrder / Order data from polling');
+
 					$this->model_openbay_ebay_openbay->importOrders($data['data2']);
+
 					$this->response->setOutput(json_encode(array('msg' => 'ok')));
 				}
 
 				if ($data['action'] == 'notificationOrder') {
 					$this->openbay->ebay->log('Action: notificationOrder / Order data from notification');
+
 					$this->model_openbay_ebay_openbay->importOrders($data['data']);
+
 					$this->response->setOutput(json_encode(array('msg' => 'ok')));
 				}
 
@@ -134,23 +141,18 @@ class ControllerEbayOpenbay extends Controller {
 		$this->response->addHeader('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		$this->response->addHeader('Content-type: application/json; charset=utf-8');
 
-		if(
-			(isset($settings['openbaypro_token']) && !empty($settings['openbaypro_token'])) ||
-			(isset($settings['openbaypro_secret']) && !empty($settings['openbaypro_secret'])) ||
-			(isset($settings['openbaypro_string1']) && !empty($settings['openbaypro_string1'])) ||
-			(isset($settings['openbaypro_string2']) && !empty($settings['openbaypro_string2'])) ||
-			!isset($this->request->post['token']) ||
-			!isset($this->request->post['secret']) ||
-			!isset($this->request->post['s1']) ||
-			!isset($this->request->post['s2'])
-		) {
+		if ((isset($settings['openbaypro_token']) && !empty($settings['openbaypro_token'])) || (isset($settings['openbaypro_secret']) && !empty($settings['openbaypro_secret'])) ||
+		(isset($settings['openbaypro_string1']) && !empty($settings['openbaypro_string1'])) || (isset($settings['openbaypro_string2']) && !empty($settings['openbaypro_string2'])) ||
+		!isset($this->request->post['token']) || !isset($this->request->post['secret']) || !isset($this->request->post['s1']) || !isset($this->request->post['s2'])) {
 			$this->response->setOutput(json_encode(array('msg' => 'fail', 'reason' => 'Tokens are already setup or data missing')));
+
 		} else {
 			$settings['openbaypro_token']   = $this->request->post['token'];
 			$settings['openbaypro_secret']  = $this->request->post['secret'];
 			$settings['openbaypro_string1'] = $this->request->post['s1'];
 			$settings['openbaypro_string2'] = $this->request->post['s2'];
-			$this->openbay->ebay->editSetting('openbay',$settings);
+
+			$this->openbay->ebay->editSetting('openbay', $settings);
 
 			$this->response->setOutput(json_encode(array('msg' => 'ok', 'reason' => 'Auto setup has been completed', 'version' => (int)$this->config->get('openbay_version'))));
 		}

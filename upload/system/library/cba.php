@@ -14,6 +14,7 @@ class CBA {
 
 	public function scheduleReports() {
 		$args = $this->getCommonParameters();
+
 		$args['Merchant'] = $this->getMerchantId();
 		$args['Action'] = 'ManageReportSchedule';
 		$args['Version'] = '2009-01-01';
@@ -36,6 +37,7 @@ class CBA {
 			$ids = array_slice($submission_ids, $i, 50);
 
 			$args = $this->getCommonParameters();
+
 			$args['Merchant'] = $this->getMerchantId();
 			$args['Action'] = 'GetReportList';
 			$args['Version'] = '2009-01-01';
@@ -68,6 +70,7 @@ class CBA {
 
 				foreach ($list as $list_item) {
 					$args = $this->getCommonParameters();
+
 					$args['Merchant'] = $this->getMerchantId();
 					$args['Action'] = 'GetReport';
 					$args['Version'] = '2009-01-01';
@@ -81,6 +84,7 @@ class CBA {
 
 					foreach ($lines as $line) {
 						$values = explode("\t", $line);
+
 						if (isset($values[5]) && ($values[4] == 'Error' || $values[4] == 'Fatal')) {
 							$errors[] = 'Order ID: ' . $values[1] . '<br /> Order Item ID: ' . $values[2] . '<br /> Error Message: ' . trim($values[5]);
 						}
@@ -102,6 +106,7 @@ class CBA {
 				}
 
 				$args = $this->getCommonParameters();
+
 				$args['Merchant'] = $this->getMerchantId();
 				$args['Action'] = 'UpdateReportAcknowledgements';
 				$args['Version'] = '2009-01-01';
@@ -121,6 +126,7 @@ class CBA {
 		$log->write('Started cron job');
 
 		$args = $this->getCommonParameters();
+
 		$args['Merchant'] = $this->getMerchantId();
 		$args['Action'] = 'GetReportList';
 		$args['Version'] = '2009-01-01';
@@ -145,6 +151,7 @@ class CBA {
 			foreach ($list as $list_item) {
 				// retrieve report
 				$args = $this->getCommonParameters();
+
 				$args['Merchant'] = $this->getMerchantId();
 				$args['Action'] = 'GetReport';
 				$args['Version'] = '2009-01-01';
@@ -193,6 +200,7 @@ class CBA {
 			}
 
 			$args = $this->getCommonParameters();
+
 			$args['Merchant'] = $this->getMerchantId();
 			$args['Action'] = 'UpdateReportAcknowledgements';
 			$args['Version'] = '2009-01-01';
@@ -206,6 +214,7 @@ class CBA {
 
 			if ($next_token) {
 				$args = $this->getCommonParameters();
+
 				$args['Merchant'] = $this->getMerchantId();
 				$args['Action'] = 'GetReportListByNextToken';
 				$args['Version'] = '2009-01-01';
@@ -234,6 +243,7 @@ class CBA {
 		);
 
 		$args = $this->getCommonParameters();
+
 		$args['Merchant'] = $this->getMerchantId();
 		$args['Action'] = 'SubmitFeed';
 		$args['Version'] = '2009-01-01';
@@ -263,6 +273,7 @@ class CBA {
 		);
 
 		$args = $this->getCommonParameters();
+
 		$args['Merchant'] = $this->getMerchantId();
 		$args['Action'] = 'SubmitFeed';
 		$args['Version'] = '2009-01-01';
@@ -311,6 +322,7 @@ class CBA {
 		);
 
 		$args = $this->getCommonParameters();
+
 		$args['Merchant'] = $this->getMerchantId();
 		$args['Action'] = 'SubmitFeed';
 		$args['Version'] = '2009-01-01';
@@ -326,6 +338,7 @@ class CBA {
 
 	public function setPurchaseItems($parameters) {
 		$url_params = $this->getCommonParameters();
+
 		$url_params['Action'] = 'SetPurchaseItems';
 		$url_params['PurchaseContractId'] = $parameters['contract_id'];
 
@@ -354,6 +367,7 @@ class CBA {
 
 	public function setContractCharges($parameters) {
 		$url_params = $this->getCommonParameters();
+
 		$url_params['Action'] = 'SetContractCharges';
 		$url_params['PurchaseContractId'] = $parameters['contract_id'];
 		$url_params['Charges.Shipping.Amount'] = $parameters['shipping_price'];
@@ -379,6 +393,7 @@ class CBA {
 
 	public function completePurchaseContracts($parameters) {
 		$url_params = $this->getCommonParameters();
+
 		$url_params['Action'] = 'CompletePurchaseContract';
 		$url_params['PurchaseContractId'] = $parameters['contract_id'];
 		$url_params['IntegratorId'] = 'WelfordMedia';
@@ -401,6 +416,7 @@ class CBA {
 
 	public function getPurchaseContract($contract_id) {
 		$parameters = $this->getCommonParameters();
+
 		$parameters['Action'] = 'GetPurchaseContract';
 		$parameters['PurchaseContractId'] = $contract_id;
 
@@ -521,11 +537,11 @@ class CBA {
 
 	private function getCommonParameters() {
 		return array(
-			'SignatureMethod'	=> 'HmacSHA256',
-			'AWSAccessKeyId'	=> $this->getAccessKey(),
-			'SignatureVersion'		=> '2',
-			'Timestamp'				=> date('c'),
-			'Version'					=> '2010-08-31'
+			'SignatureMethod'  => 'HmacSHA256',
+			'AWSAccessKeyId'   => $this->getAccessKey(),
+			'SignatureVersion' => '2',
+			'Timestamp'        => date('c'),
+			'Version'          => '2010-08-31'
 		);
 	}
 

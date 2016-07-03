@@ -32,6 +32,7 @@ class Amazonus {
 			$this->load->library('log');
 
 			$logger = new Log('amazonus_stocks.log');
+
 			$logger->write('orderNew() called with order id: ' . $orderId);
 
 			// Stock levels update
@@ -54,6 +55,7 @@ class Amazonus {
 
 				if (!empty($quantityData)) {
 					$logger->write('Updating quantities with data: ' . print_r($quantityData, true));
+
 					$this->updateQuantities($quantityData);
 				} else {
 					$logger->write('No quantity data need to be posted.');
@@ -77,6 +79,7 @@ class Amazonus {
 
 	public function productUpdateListen($productId, $data) {
 		$logger = new Log('amazonus_stocks.log');
+
 		$logger->write('productUpdateListen called for product id: ' . $productId);
 
 		if ($this->openbay->addonLoad('openstock') && (isset($data['has_option']) && $data['has_option'] == 1)) {
@@ -94,6 +97,7 @@ class Amazonus {
 
 			if (!empty($quantityData)) {
 				$logger->write('Updating quantities with data: ' . print_r($quantityData, true));
+
 				$this->updateQuantities($quantityData);
 			} else {
 				$logger->write('No quantity data need to be posted.');
@@ -115,6 +119,7 @@ class Amazonus {
 		$this->load->model('openbay/amazonus');
 
 		$log = new Log('amazonus.log');
+
 		$log->write('Called bulkUpdateOrders method');
 
 		$request = array(
@@ -130,14 +135,14 @@ class Amazonus {
 			foreach ($amazon_order_products as $amazon_order_product) {
 				$products[] = array(
 					'amazon_order_item_id' => $amazon_order_product['amazonus_order_item_id'],
-					'quantity' => $amazon_order_product['quantity'],
+					'quantity'             => $amazon_order_product['quantity']
 				);
 			}
 
 			$order_info = array(
 				'amazon_order_id' => $amazon_order['amazonus_order_id'],
-				'status' => $order['status'],
-				'products' => $products,
+				'status'          => $order['status'],
+				'products'        => $products
 			);
 
 			if ($order['status'] == 'shipped' && !empty($order['carrier'])) {
@@ -179,6 +184,7 @@ class Amazonus {
 		$amazonusOrderId = $amazonusOrder['amazonus_order_id'];
 
 		$log = new Log('amazonus.log');
+
 		$log->write("Order's $amazonusOrderId status changed to $orderStatusString");
 
 		$this->load->model('openbay/amazonus');
@@ -295,7 +301,7 @@ class Amazonus {
 			CURLOPT_TIMEOUT => 2,
 			CURLOPT_SSL_VERIFYPEER => 0,
 			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt),
+			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt)
 		);
 
 		$ch = curl_init();
@@ -328,7 +334,7 @@ class Amazonus {
 			CURLOPT_TIMEOUT => 30,
 			CURLOPT_SSL_VERIFYPEER => 0,
 			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt),
+			CURLOPT_POSTFIELDS => 'token=' . $this->token . '&data=' . rawurlencode($crypt)
 		);
 
 		$ch = curl_init();
@@ -441,6 +447,7 @@ class Amazonus {
 		$this->load->library('log');
 
 		$logger = new Log('amazonus_stocks.log');
+
 		$logger->write('Updating stock using putStockUpdateBulk()');
 
 		$quantityData = array();
@@ -463,7 +470,9 @@ class Amazonus {
 
 		if (!empty($quantityData)) {
 			$logger->write('Quantity data to be sent:' . print_r($quantityData, true));
+
 			$response = $this->updateQuantities($quantityData);
+
 			$logger->write('Submit to API. Response: ' . print_r($response, true));
 		} else {
 			$logger->write('No quantity data need to be posted.');
@@ -580,7 +589,7 @@ class Amazonus {
 			"UPS",
 			"UPS Mail Innovations",
 			"USPS",
-			"YamatoTransport",
+			"YamatoTransport"
 		);
 	}
 
@@ -601,8 +610,8 @@ class Amazonus {
 			$attributes = $tab->attributes();
 
 			$tabs[] = array(
-				'id' => (string)$attributes['id'],
-				'name' => (string)$tab->name,
+				'id'   => (string)$attributes['id'],
+				'name' => (string)$tab->name
 			);
 		}
 
@@ -614,29 +623,29 @@ class Amazonus {
 			foreach ($simplexml->fields->$type->field as $field) {
 				$attributes = $field->attributes();
 				$fields[] = array(
-					'name' => (string)$attributes['name'],
-					'title' => (string)$field->title,
+					'name'       => (string)$attributes['name'],
+					'title'      => (string)$field->title,
 					'definition' => (string)$field->definition,
-					'accepted' => (array)$field->accepted,
-					'type' => (string)$type,
-					'child' => false,
-					'order' => isset($attributes['order']) ? (string)$attributes['order'] : '',
-					'tab' => (string)$attributes['tab'],
+					'accepted'   => (array)$field->accepted,
+					'type'       => (string)$type,
+					'child'      => false,
+					'order'      => isset($attributes['order']) ? (string)$attributes['order'] : '',
+					'tab'        => (string)$attributes['tab']
 				);
 			}
 
 			foreach ($simplexml->fields->$type->childfield as $field) {
 				$attributes = $field->attributes();
 				$fields[] = array(
-					'name' => (string)$attributes['name'],
-					'title' => (string)$field->title,
+					'name'       => (string)$attributes['name'],
+					'title'      => (string)$field->title,
 					'definition' => (string)$field->definition,
-					'accepted' => (array)$field->accepted,
-					'type' => (string)$type,
-					'child' => true,
-					'parent' => (array)$field->parent,
-					'order' => isset($attributes['order']) ? (string)$attributes['order'] : '',
-					'tab' => (string)$attributes['tab'],
+					'accepted'   => (array)$field->accepted,
+					'type'       => (string)$type,
+					'child'      => true,
+					'parent'     => (array)$field->parent,
+					'order'      => isset($attributes['order']) ? (string)$attributes['order'] : '',
+					'tab'        => (string)$attributes['tab']
 				);
 			}
 		}
@@ -645,12 +654,12 @@ class Amazonus {
 			$fields[$index]['unordered_index'] = $index;
 		}
 
-		usort($fields, array('Amazonus','compareFields'));
+		usort($fields, array('Amazonus', 'compareFields'));
 
 		return array(
 			'category' => $category,
-			'fields' => $fields,
-			'tabs' => $tabs,
+			'fields'   => $fields,
+			'tabs'     => $tabs
 		);
 	}
 
