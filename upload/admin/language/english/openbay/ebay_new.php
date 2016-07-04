@@ -72,11 +72,11 @@ $_['lang_images_text_2']            = 'Template images will be added to your lis
 $_['lang_image_gallery']            = 'Gallery image size';
 $_['lang_image_thumb']              = 'Thumb image size';
 $_['lang_main_image_ebay']          = 'Main image';
-$_['lang_image_size']          		= 'Image size';
+$_['lang_image_size']               = 'Image size';
 $_['lang_images_none']              = 'You have no images for this product';
 $_['lang_images_supersize']         = 'Supersize images<span class="help">Extra large pictures</span>';
 $_['lang_images_gallery_plus']      = 'Gallery plus<span class="help">Large picture in search results</span>';
-$_['lang_ebay_imagesize']      		= 'Image must be at least 500px on 1 side to use on eBay';
+$_['lang_ebay_imagesize']           = 'Image must be at least 500px on 1 side to use on eBay';
 
 // Price and details
 $_['lang_listing_condition']        = 'Item condition';
@@ -123,20 +123,20 @@ $_['lang_shipping_post_ww']         = 'Worldwide';
 $_['lang_shipping_post_dm']         = 'Domestic and the following';
 $_['lang_shipping_max_national']    = 'For your chosen category, eBay allows a maximum national shipping charge of ';
 $_['lang_shipping_getitfast']       = 'Get It Fast!';
-$_['text_unit']       				= 'Unit';
-$_['text_unit_english']       		= 'English';
-$_['text_unit_metric']       		= 'Metric';
-$_['text_weight_major']       		= 'Weight major';
-$_['text_weight_minor']       		= 'Weight minor';
-$_['text_package']       			= 'Package type';
-$_['text_shape']       				= 'Irregular shape';
-$_['text_width']       				= 'Width';
-$_['text_length']       			= 'Length';
-$_['text_depth']       				= 'Depth / Height';
-$_['text_product_identifiers']    	= 'Product identifiers';
-$_['text_ean']    					= 'EAN';
-$_['text_upc']    					= 'UPC';
-$_['text_isbn']    					= 'ISBN';
+$_['text_unit']                     = 'Unit';
+$_['text_unit_english']             = 'English';
+$_['text_unit_metric']              = 'Metric';
+$_['text_weight_major']             = 'Weight major';
+$_['text_weight_minor']             = 'Weight minor';
+$_['text_package']                  = 'Package type';
+$_['text_shape']                    = 'Irregular shape';
+$_['text_width']                    = 'Width';
+$_['text_length']                   = 'Length';
+$_['text_depth']                    = 'Depth / Height';
+$_['text_product_identifiers']      = 'Product identifiers';
+$_['text_ean']                      = 'EAN';
+$_['text_upc']                      = 'UPC';
+$_['text_isbn']                     = 'ISBN';
 $_['text_identifier_not_required']  = 'Not required';
 
 // Returns
