@@ -2,7 +2,7 @@
 <div id="content">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+      <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
   <?php if ($error_warning) { ?>
@@ -166,7 +166,8 @@
                     <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" checked="checked" />
                   <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $product['product_id']; ?>" />
-                  <?php } ?></td>
+                  <?php } ?>
+                </td>
                 <td class="center"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>" style="padding: 1px; border: 1px solid #DDDDDD;" /></td>
                 <td class="left"><a href="<?php echo $product['edit']; ?>"><?php echo $product['name']; ?></a></td>
                 <td class="left"><?php echo $product['model']; ?></td>
@@ -176,7 +177,8 @@
                     <span style="color: #b00;"><?php echo $product['special']; ?></span>
                   <?php } else { ?>
                     <?php echo $product['price']; ?>
-                  <?php } ?></td>
+                  <?php } ?>
+                </td>
                 <td class="right">
                   <?php if ($product['has_option'] == 0) { ?>
                     <?php if ($product['quantity'] <= 0) { ?>
@@ -187,8 +189,8 @@
                       <span style="color: #008000;"><?php echo $product['quantity']; ?></span>
                     <?php } ?>
                   <?php } else { ?>
-                      <span style="color: #000000;"><?php echo $product['vCount']; ?> <?php echo $text_variations; ?></span><br />
-                      <span style="color: #000000;"><?php echo $product['vsCount']; ?> <?php echo $text_variations_stock; ?></span>
+                    <span style="color: #000000;"><?php echo $product['vCount']; ?> <?php echo $text_variations; ?></span><br />
+                    <span style="color: #000000;"><?php echo $product['vsCount']; ?> <?php echo $text_variations_stock; ?></span>
                   <?php } ?>
                 </td>
                 <td class="left"><?php echo $product['status']; ?></td>
@@ -202,7 +204,7 @@
                       <?php } ?>
                     <?php } ?>
                   </td>
-              </tr>
+                </tr>
               <?php } ?>
             <?php } else { ?>
               <tr>
@@ -219,85 +221,85 @@
 
 <script type="text/javascript"><!--
 function filter() {
-    url = 'index.php?route=extension/openbay/itemList&token=<?php echo $token; ?>';
+	url = 'index.php?route=extension/openbay/itemList&token=<?php echo $token; ?>';
 
-    var filter_name = $('input[name=\'filter_name\']').attr('value');
+	var filter_name = $('input[name=\'filter_name\']').attr('value');
 
-    if (filter_name) {
-      url += '&filter_name=' + encodeURIComponent(filter_name);
-    }
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
 
-    var filter_model = $('input[name=\'filter_model\']').attr('value');
+	var filter_model = $('input[name=\'filter_model\']').attr('value');
 
-    if (filter_model) {
-      url += '&filter_model=' + encodeURIComponent(filter_model);
-    }
+	if (filter_model) {
+		url += '&filter_model=' + encodeURIComponent(filter_model);
+	}
 
-    var filter_price = $('input[name=\'filter_price\']').attr('value');
+	var filter_price = $('input[name=\'filter_price\']').attr('value');
 
-    if (filter_price) {
-        url += '&filter_price=' + encodeURIComponent(filter_price);
-    }
+	if (filter_price) {
+		url += '&filter_price=' + encodeURIComponent(filter_price);
+	}
 
-    var filter_price_to = $('input[name=\'filter_price_to\']').attr('value');
+	var filter_price_to = $('input[name=\'filter_price_to\']').attr('value');
 
-    if (filter_price) {
-        url += '&filter_price_to=' + encodeURIComponent(filter_price_to);
-    }
+	if (filter_price) {
+		url += '&filter_price_to=' + encodeURIComponent(filter_price_to);
+	}
 
-    var filter_quantity = $('input[name=\'filter_quantity\']').attr('value');
+	var filter_quantity = $('input[name=\'filter_quantity\']').attr('value');
 
-    if (filter_quantity) {
-        url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
-    }
+	if (filter_quantity) {
+		url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
+	}
 
-    var filter_quantity_to = $('input[name=\'filter_quantity_to\']').attr('value');
+	var filter_quantity_to = $('input[name=\'filter_quantity_to\']').attr('value');
 
-    if (filter_quantity_to) {
-        url += '&filter_quantity_to=' + encodeURIComponent(filter_quantity_to);
-    }
+	if (filter_quantity_to) {
+		url += '&filter_quantity_to=' + encodeURIComponent(filter_quantity_to);
+	}
 
-    var filter_status = $('select[name=\'filter_status\']').attr('value');
+	var filter_status = $('select[name=\'filter_status\']').attr('value');
 
-    if (filter_status != '*') {
-        url += '&filter_status=' + encodeURIComponent(filter_status);
-    }
+	if (filter_status != '*') {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
 
-    var filter_sku = $('input[name=\'filter_sku\']:checked').attr('value');
+	var filter_sku = $('input[name=\'filter_sku\']:checked').attr('value');
 
-    if (filter_sku) {
-        url += '&filter_sku=' + encodeURIComponent(filter_sku);
-    }
+	if (filter_sku) {
+		url += '&filter_sku=' + encodeURIComponent(filter_sku);
+	}
 
-    var filter_desc = $('input[name=\'filter_desc\']:checked').attr('value');
+	var filter_desc = $('input[name=\'filter_desc\']:checked').attr('value');
 
-    if (filter_desc) {
-        url += '&filter_desc=' + encodeURIComponent(filter_desc);
-    }
+	if (filter_desc) {
+		url += '&filter_desc=' + encodeURIComponent(filter_desc);
+	}
 
-    var filter_category = $('select[name=\'filter_category\']').attr('value');
+	var filter_category = $('select[name=\'filter_category\']').attr('value');
 
-    if (filter_category) {
-        url += '&filter_category=' + encodeURIComponent(filter_category);
-    }
+	if (filter_category) {
+		url += '&filter_category=' + encodeURIComponent(filter_category);
+	}
 
-    var filter_manufacturer = $('select[name=\'filter_manufacturer\']').attr('value');
+	var filter_manufacturer = $('select[name=\'filter_manufacturer\']').attr('value');
 
-    if (filter_manufacturer) {
-        url += '&filter_manufacturer=' + encodeURIComponent(filter_manufacturer);
-    }
+	if (filter_manufacturer) {
+		url += '&filter_manufacturer=' + encodeURIComponent(filter_manufacturer);
+	}
 
-    var filter_marketplace = $('select[name=\'filter_marketplace\']').attr('value');
+	var filter_marketplace = $('select[name=\'filter_marketplace\']').attr('value');
 
-    if (filter_marketplace) {
-        url += '&filter_marketplace=' + encodeURIComponent(filter_marketplace);
-    }
+	if (filter_marketplace) {
+		url += '&filter_marketplace=' + encodeURIComponent(filter_marketplace);
+	}
 
-    location = url;
+	location = url;
 }
 //--></script>
 
-<?php  if ($this->config->get('openbay_status') == '1') { ?>
+<?php if ($this->config->get('openbay_status') == '1') { ?>
 <script type="text/javascript"><!--
 	$('.buttons').prepend('<a onclick="bulkUpload();" class="button"><span><?php echo $lang_bulk_btn; ?></span></a>');
 

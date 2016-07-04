@@ -705,7 +705,7 @@ class ModelOpenbayEbay extends Model {
 			if (!empty($cat)) {
 				$breadcrumb[] = $cat['CategoryName'];
 
-				if ($cat['CategoryParentID'] == $categoryId){
+				if ($cat['CategoryParentID'] == $categoryId) {
 					$stop = true;
 				} else {
 					$categoryId = $cat['CategoryParentID'];
@@ -771,7 +771,7 @@ class ModelOpenbayEbay extends Model {
 
 		$data = array();
 
-		if ($qry->num_rows){
+		if ($qry->num_rows) {
 			foreach ($qry->rows as $row) {
 				$data[$row['product_id']] = $row['ebay_item_id'];
 			}
