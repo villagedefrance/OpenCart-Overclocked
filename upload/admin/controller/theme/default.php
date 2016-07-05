@@ -43,6 +43,8 @@ class ControllerThemeDefault extends Controller {
 		$this->data['tab_credits'] = $this->language->get('tab_credits');
 
 		$this->data['entry_widescreen'] = $this->language->get('entry_widescreen');
+		$this->data['entry_body_color'] = $this->language->get('entry_body_color');
+		$this->data['entry_container_color'] = $this->language->get('entry_container_color');
 		$this->data['entry_breadcrumbs'] = $this->language->get('entry_breadcrumbs');
 		$this->data['entry_back_to_top'] = $this->language->get('entry_back_to_top');
 		$this->data['entry_web_design'] = $this->language->get('entry_web_design');
@@ -125,6 +127,20 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_widescreen'] = $this->config->get($this->_name . '_widescreen');
 		}
 
+		$this->data['skins'] = $this->model_setting_setting->getColors();
+
+		if (isset($this->request->post[$this->_name . '_body_color'])) {
+			$this->data[$this->_name . '_body_color'] = $this->request->post[$this->_name . '_body_color'];
+		} else {
+			$this->data[$this->_name . '_body_color'] = $this->config->get($this->_name . '_body_color');
+		}
+
+		if (isset($this->request->post[$this->_name . '_container_color'])) {
+			$this->data[$this->_name . '_container_color'] = $this->request->post[$this->_name . '_container_color'];
+		} else {
+			$this->data[$this->_name . '_container_color'] = $this->config->get($this->_name . '_container_color');
+		}
+
 		if (isset($this->request->post[$this->_name . '_breadcrumbs'])) {
 			$this->data[$this->_name . '_breadcrumbs'] = $this->request->post[$this->_name . '_breadcrumbs'];
 		} else {
@@ -155,8 +171,6 @@ class ControllerThemeDefault extends Controller {
 		} else {
 			$this->data[$this->_name . '_footer_theme'] = $this->config->get($this->_name . '_footer_theme');
 		}
-
-		$this->data['skins'] = $this->model_setting_setting->getColors();
 
 		if (isset($this->request->post[$this->_name . '_footer_color'])) {
 			$this->data[$this->_name . '_footer_color'] = $this->request->post[$this->_name . '_footer_color'];

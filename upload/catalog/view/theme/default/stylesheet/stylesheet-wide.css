@@ -4,7 +4,6 @@ html {
 	padding: 0;
 }
 body {
-	background-color: #FFF;
 	color: #111;
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0px;
@@ -18,6 +17,7 @@ h1, .welcome {
 	font-family: Arial, Helvetica, sans-serif;
 	margin-top: 0px;
 	margin-bottom: 20px;
+	margin-left: 6px;
 	font-size: 32px;
 	font-weight: normal;
 	text-shadow: 0 0 1px rgba(0, 0, 0, .01);
@@ -27,6 +27,7 @@ h2 {
 	font-size: 16px;
 	margin-top: 0px;
 	margin-bottom: 10px;
+	margin-left: 6px;
 }
 h3 {
 	color: #555;
@@ -63,7 +64,7 @@ form {
 }
 input[type='text'], input[type='password'], textarea {
 	padding: 3px 0px 3px 4px;
-	min-height: 16px;
+	min-height: 17px;
 	margin-left: 0px;
 	margin-right: 0px;
 	border-top: 1px solid #B6B6B6;
@@ -136,6 +137,7 @@ span.from {
 #content {
 	min-height: 400px;
 	margin-bottom: 25px;
+	background-color: #FFF;
 }
 #column-left + #column-right + #content, #column-left + #content {
 	margin-left: 240px;
@@ -813,7 +815,7 @@ a.button-add {
 	font-size: 15px;
 	font-weight: normal;
 	line-height: 15px;
-	padding: 7px 10px 10px 10px;
+	padding: 8px 10px;
 	margin: 0px;
 }
 .box .box-content {

@@ -86,8 +86,8 @@ $(document).ready(function() {
 <link rel="alternate" type="application/rss+xml" href="<?php echo $rss_href; ?>" />
 <?php } ?>
 </head>
-<body>
-<div id="container">
+<body style="background-color:<?php echo $body_color; ?>;">
+<div id="container" style="background-color:<?php echo $container_color; ?>;">
 <div id="header">
   <?php if ($logo) { ?>
     <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>

@@ -46,6 +46,30 @@
               <label for="widescreen-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_body_color; ?></td>
+            <td><select name="default_body_color">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($skin['color'] == $default_body_color) { ?>
+                  <option value="<?php echo $skin['color']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['color']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_container_color; ?></td>
+            <td><select name="default_container_color">
+              <?php foreach ($skins as $skin) { ?>
+                <?php if ($skin['color'] == $default_container_color) { ?>
+                  <option value="<?php echo $skin['color']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;" selected="selected"><?php echo $skin['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $skin['color']; ?>" style="background-color:<?php echo $skin['color']; ?>; padding:2px 4px;"><?php echo $skin['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
           <tr>
             <td><?php echo $entry_breadcrumbs; ?></td>
             <td><?php if ($default_breadcrumbs) { ?>
