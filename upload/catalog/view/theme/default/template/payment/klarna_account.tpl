@@ -18,7 +18,7 @@
           <?php } ?></td>
           <td><label for="plan-id<?php echo $payment_option['code']; ?>"><?php echo $payment_option['title']; ?></label></td>
           <td style="width:1%;"><?php if ($iso_code_3 == 'NLD') { ?>
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/klarna_nld_banner.png" alt="" />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/payment/klarna_nld_banner.png" alt="" />
           <?php } ?></td>
         </tr>
       <?php } ?>
@@ -112,32 +112,32 @@
 
 <script type="text/javascript"><!--
 $('#button-confirm').on('click', function() {
-  $.ajax({
-    url: 'index.php?route=payment/klarna_account/send',
-    type: 'post',
-    data: $('#payment input[type=\'text\'], #payment input[type=\'checkbox\']:checked, #payment input[type=\'radio\']:checked, #payment select'),
-    dataType: 'json',
-    cache: false,
-    beforeSend: function() {
-      $('#button-confirm').prop('disabled', true);
-      $('.warning, .error').remove();
-      $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-    },
-    complete: function() {
-      $('#button-confirm').prop('disabled', false);
-      $('.attention').remove();
-    },
-    success: function(json) {
-      $('.warning, .error').remove();
+	$.ajax({
+		url: 'index.php?route=payment/klarna_account/send',
+		type: 'post',
+		data: $('#payment input[type=\'text\'], #payment input[type=\'checkbox\']:checked, #payment input[type=\'radio\']:checked, #payment select'),
+		dataType: 'json',
+		cache: false,
+		beforeSend: function() {
+			$('#button-confirm').prop('disabled', true);
+			$('.warning, .error').remove();
+			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+		},
+		complete: function() {
+			$('#button-confirm').prop('disabled', false);
+			$('.attention').remove();
+		},
+		success: function(json) {
+			$('.warning, .error').remove();
 
-      if (json['error']) {
-        $('#payment').before('<div class="warning">' + json['error'] + '</div>');
-      }
+			if (json['error']) {
+				$('#payment').before('<div class="warning">' + json['error'] + '</div>');
+			}
 
-      if (json['redirect']) {
-        location = json['redirect'];
-      }
-    }
-  });
+			if (json['redirect']) {
+				location = json['redirect'];
+			}
+		}
+	});
 });
 //--></script>

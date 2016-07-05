@@ -31,7 +31,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <img src="catalog/view/theme/<?php echo $template; ?>/image/stripe-cc-logos.png" alt="" />
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/payment/stripe-cc-logos.png" alt="" />
       </td>
     </tr>
   </table>
