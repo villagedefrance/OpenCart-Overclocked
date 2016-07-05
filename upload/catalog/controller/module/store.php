@@ -35,7 +35,7 @@ class ControllerModuleStore extends Controller {
 			$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
 			$this->data['content_color'] = ($content_color) ? $content_color : 'white';
 			$this->data['content_shape'] = ($content_shape) ? $content_shape : 'rounded-3';
-		
+
 			$this->data['text_selector'] = $this->language->get('text_selector');
 			$this->data['text_default'] = $this->language->get('text_default');
 
@@ -50,7 +50,7 @@ class ControllerModuleStore extends Controller {
 			} else {
 				$this->data['userid'] = '';
 			}
-			
+
 			$this->data['store_id'] = $this->config->get('config_store_id');
 
 			$this->data['stores'] = array();

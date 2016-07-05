@@ -2,7 +2,7 @@
 <div class="box">
   <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
   <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin" style="text-align:center;">
-    <div style="padding:5px;"><?php echo $text_selector; ?></div>
+    <div style="padding-bottom:5px;"><?php echo $text_selector; ?></div>
     <select name="store" onchange="location=this.value">
       <?php foreach ($stores as $store) { ?>
         <?php if ($store['store_id'] == $store_id) { ?>
@@ -15,11 +15,10 @@
     <?php if ($access) { ?>
       <div style="padding-top:10px;"><a href="admin/index.php?route=common/login" class="button"><?php echo $button_adminlogin; ?></a></div>
     <?php } ?>
-    <br />
   </div>
 </div>
 <?php } else { ?>
-  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px; text-align:center;">
+  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px; text-align:center; padding-bottom:12px;">
     <div style="padding:5px;"><?php echo $text_selector; ?></div>
     <select name="store" onchange="location=this.value">
       <?php foreach ($stores as $store) { ?>
@@ -33,6 +32,5 @@
     <?php if ($access) { ?>
       <div style="padding-top:10px;"><a href="admin/index.php?route=common/login" class="button"><?php echo $button_adminlogin; ?></a></div>
     <?php } ?>
-    <br />
   </div>
 <?php } ?>

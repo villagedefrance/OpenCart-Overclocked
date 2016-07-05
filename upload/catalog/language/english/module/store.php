@@ -3,7 +3,7 @@
 $_['heading_title']     = 'Store';
 
 // Text
-$_['text_selector']     = 'Please Select a Store';
+$_['text_selector']     = 'Select a Store';
 $_['text_default']      = 'Home Store';
 
 // Buttons
