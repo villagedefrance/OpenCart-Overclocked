@@ -75,7 +75,7 @@
           <?php if ($map) { ?>
            <br />
            <br />
-           <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" /> &nbsp <b><?php echo $text_geolocation; ?></b>
+           <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" /> &nbsp; <b><?php echo $text_geolocation; ?></b>
            <br />
            <br />
            <i><?php echo $text_latitude; ?></i> <?php echo $map_latitude; ?> <i>&deg; N</i>

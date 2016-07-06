@@ -391,7 +391,7 @@ class ControllerDesignMenuItems extends Controller {
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
-		$this->data['entry_parent']=$this->language->get('entry_parent');
+		$this->data['entry_parent'] = $this->language->get('entry_parent');
 		$this->data['entry_link'] = $this->language->get('entry_link');
 		$this->data['entry_external_link'] = $this->language->get('entry_external_link');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
