@@ -1,10 +1,6 @@
 <?php
 class ControllerShippingCanadaPost extends Controller {
 	private $error = array();
-	private $version = 'v1.7.1';
-	private $author = 'Olivier Labbé, Jason Mitchell, Philippe Marion';
-	private $email = 'olivier.labbe@votreespace.net, jason@attemptone.com, contact@villagedefrance.net';
-	private $web = 'http://www.votreespace.net, http://www.attemptone.com, http://www.villagedefrance.net';
 
 	public function index() {
 		$this->language->load('shipping/canadapost');
@@ -58,11 +54,6 @@ class ControllerShippingCanadaPost extends Controller {
 
 		$this->data['credit_version'] = $this->language->get('credit_version');
 		$this->data['credit_author'] = $this->language->get('credit_author');
-
-		$this->data['version'] = $this->version;
-		$this->data['author'] = $this->author;
-		$this->data['email'] = $this->email;
-		$this->data['web'] = $this->web;
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
