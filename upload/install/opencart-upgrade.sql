@@ -93,6 +93,21 @@ CREATE TABLE `oc_affiliate_transaction` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_api_key`
+--
+
+DROP TABLE IF EXISTS `oc_api_key`;
+CREATE TABLE `oc_api_key` (
+  `status` tinyint(1) NOT NULL,
+  `code`varchar(128) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `api_key_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`api_key_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_attribute`
 --
 

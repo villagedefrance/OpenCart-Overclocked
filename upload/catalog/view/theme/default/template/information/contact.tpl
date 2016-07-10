@@ -110,6 +110,7 @@ $('img#captcha-image').trigger('load');
 var mapDiv, map, infobox;
 var lat = <?php echo $map_latitude; ?>;
 var lon = <?php echo $map_longitude; ?>;
+
 jQuery(document).ready(function($) {
 	mapDiv = $("#contact-map");
 	mapDiv.height(360).gmap3({

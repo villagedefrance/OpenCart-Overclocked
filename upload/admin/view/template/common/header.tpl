@@ -231,6 +231,7 @@ $(document).ready(function() {
             </ul>
           </li>
           <li><a href="<?php echo $seo_url_manager; ?>"><?php echo $text_seo_url_manager; ?></a></li>
+          <li><a href="<?php echo $api_key_manager; ?>"><?php echo $text_api_key_manager; ?></a></li>
           <li><a href="<?php echo $file_manager; ?>"><?php echo $text_file_manager; ?></a></li>
           <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
         </ul>

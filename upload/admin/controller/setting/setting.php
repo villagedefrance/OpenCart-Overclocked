@@ -702,14 +702,18 @@ class ControllerSettingSetting extends Controller {
 
 		if (isset($this->request->post['config_latitude'])) {
 			$this->data['config_latitude'] = $this->request->post['config_latitude'];
-		} else {
+		} elseif ($this->config->get('config_latitude')) {
 			$this->data['config_latitude'] = $this->config->get('config_latitude');
+		} else {
+			$this->data['config_latitude'] = '0.000';
 		}
 
 		if (isset($this->request->post['config_longitude'])) {
 			$this->data['config_longitude'] = $this->request->post['config_longitude'];
-		} else {
+		} elseif ($this->config->get('config_longitude')) {
 			$this->data['config_longitude'] = $this->config->get('config_longitude');
+		} else {
+			$this->data['config_longitude'] = '0.000';
 		}
 
 		if (isset($this->request->post['config_contact_map'])) {
