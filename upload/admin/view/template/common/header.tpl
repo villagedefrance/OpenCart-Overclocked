@@ -187,6 +187,18 @@ $(document).ready(function() {
               <li><a href="<?php echo $supplier_product; ?>"><?php echo $text_supplier_product; ?></a></li>
             </ul>
           </li>
+          <li><a class="arrow"><?php echo $text_marketing; ?></a>
+            <ul>
+              <li><a href="<?php echo $marketing; ?>"><?php echo $text_marketing; ?></a></li>
+<!-- disconnected
+              <?php if ($allow_affiliate) { ?>
+              <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
+              <?php } ?>
+              <li><a href="<?php echo $coupon; ?>"><?php echo $text_coupon; ?></a></li>
+              <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
+//-->
+            </ul>
+          </li>
           <?php if ($allow_affiliate) { ?>
           <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
           <?php } ?>
@@ -336,6 +348,17 @@ $(document).ready(function() {
               <li><a href="<?php echo $report_customer_credit; ?>"><?php echo $text_report_customer_credit; ?></a></li>
               <li><a href="<?php echo $report_customer_country; ?>"><?php echo $text_report_customer_country; ?></a></li>
               <li><a href="<?php echo $report_customer_online; ?>"><?php echo $text_report_customer_online; ?></a></li>
+            </ul>
+          </li>
+          <li><a class="arrow"><?php echo $text_marketing; ?></a>
+            <ul>
+              <li><a href="<?php echo $report_marketing; ?>"><?php echo $text_marketing; ?></a></li>
+<!-- disconnected
+              <?php if ($allow_affiliate) { ?>
+              <li><a href="<?php echo $report_affiliate; ?>"><?php echo $text_report_affiliate; ?></a></li>
+              <li><a href="<?php echo $report_affiliate_activity; ?>"><?php echo $text_report_affiliate_activity; ?></a></li>
+              <?php } ?>
+//-->
             </ul>
           </li>
           <li><a class="arrow"><?php echo $text_affiliate; ?></a>
