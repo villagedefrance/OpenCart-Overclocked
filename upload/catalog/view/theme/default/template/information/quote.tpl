@@ -83,7 +83,7 @@
           <br />
           <br />
           <br />
-          <?php if (!$hide_location) { ?>
+          <?php if (!$hide_address) { ?>
             <h2><?php echo $text_location; ?></h2>
             <br />
             <img src="catalog/view/theme/<?php echo $template; ?>/image/location/address.png" alt="" /> &nbsp; <b><?php echo $store; ?></b><br />

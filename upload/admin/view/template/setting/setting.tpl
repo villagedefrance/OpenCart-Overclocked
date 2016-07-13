@@ -275,43 +275,63 @@
         <h2><?php echo $text_location; ?></h2>
         <table class="form">
           <tr>
-            <td><?php echo $entry_our_location; ?></td>
-            <td><?php if ($config_our_location) { ?>
-              <input type="radio" name="config_our_location" value="1" id="our-location-on" class="radio" checked />
-              <label for="our-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_our_location" value="0" id="our-location-off" class="radio" />
-              <label for="our-location-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_store_address; ?></td>
+            <td><?php if ($config_store_address) { ?>
+              <input type="radio" name="config_store_address" value="1" id="store-address-on" class="radio" checked />
+              <label for="store-address-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_store_address" value="0" id="store-address-off" class="radio" />
+              <label for="store-address-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="config_our_location" value="1" id="our-location-on" class="radio" />
-              <label for="our-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_our_location" value="0" id="our-location-off" class="radio" checked />
-              <label for="our-location-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="config_store_address" value="1" id="store-address-on" class="radio" />
+              <label for="store-address-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_store_address" value="0" id="store-address-off" class="radio" checked />
+              <label for="store-address-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_location; ?></td>
-            <td><input id="search_address" name="config_location" type="text" value="<?php echo isset($config_location) ? $config_location : ''; ?>" autocomplete="on" runat="server" size="80" /></td>
+            <td><?php echo $entry_store_latitude; ?></td>
+            <td><input id="location_store_latitude" name="config_store_latitude" value="<?php echo isset($config_store_latitude) ? $config_store_latitude : ''; ?>" size="30" /> &deg; N</td>
           </tr>
           <tr>
-            <td><?php echo $entry_latitude; ?></td>
-            <td><input id="location_latitude" name="config_latitude" value="<?php echo isset($config_latitude) ? $config_latitude : ''; ?>" size="30" readonly="readonly" /> &deg; N</td>
+            <td><?php echo $entry_store_longitude; ?></td>
+            <td><input id="location_store_longitude" name="config_store_longitude" value="<?php echo isset($config_store_longitude) ? $config_store_longitude : ''; ?>" size="30" /> &deg; E</td>
           </tr>
           <tr>
-            <td><?php echo $entry_longitude; ?></td>
-            <td><input id="location_longitude" name="config_longitude" value="<?php echo isset($config_longitude) ? $config_longitude : ''; ?>" size="30" readonly="readonly" /> &deg; E</td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_contact_map; ?></td>
-            <td><?php if ($config_contact_map) { ?>
-              <input type="radio" name="config_contact_map" value="1" id="contact-map-on" class="radio" checked />
-              <label for="contact-map-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_contact_map" value="0" id="contact-map-off" class="radio" />
-              <label for="contact-map-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_store_location; ?></td>
+            <td><?php if ($config_store_location) { ?>
+              <input type="radio" name="config_store_location" value="1" id="store-location-on" class="radio" checked />
+              <label for="store-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_store_location" value="0" id="store-location-off" class="radio" />
+              <label for="store-location-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="config_contact_map" value="1" id="contact-map-on" class="radio" />
-              <label for="contact-map-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_contact_map" value="0" id="contact-map-off" class="radio" checked />
-              <label for="contact-map-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="config_store_location" value="1" id="store-location-on" class="radio" />
+              <label for="store-location-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_store_location" value="0" id="store-location-off" class="radio" checked />
+              <label for="store-location-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_map_code; ?></td>
+            <td><textarea name="config_map_code" cols="50" rows="7"><?php echo $config_map_code; ?></textarea></td>
+          </tr>
+          <tr>
+            <td><?php echo $text_preview; ?></td>
+            <td><?php if (!empty($config_map_code)) { ?>
+              <?php echo html_entity_decode($config_map_code, ENT_QUOTES, 'UTF-8'); ?>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_map_display; ?></td>
+            <td><?php if ($config_map_display) { ?>
+              <input type="radio" name="config_map_display" value="1" id="map-display-on" class="radio" checked />
+              <label for="map-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_map_display" value="0" id="map-display-off" class="radio" />
+              <label for="map-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_map_display" value="1" id="map-display-on" class="radio" />
+              <label for="map-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_map_display" value="0" id="map-display-off" class="radio" checked />
+              <label for="map-display-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
         </table>
@@ -1911,25 +1931,6 @@ $(document).ready(function() {
 
 <script type="text/javascript"><!--
 $('#template').load('index.php?route=setting/setting/template&token=<?php echo $token; ?>&template=' + encodeURIComponent($('select[name=\'config_template\']').attr('value')));
-//--></script>
-
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-
-<script type="text/javascript"><!--
-function initialize() {
-	var input = document.getElementById('search_address');
-	var autocomplete = new google.maps.places.Autocomplete(input);
-	google.maps.event.addListener(autocomplete, 'place_changed', function() {
-		var place = autocomplete.getPlace();
-
-		var lat = place.geometry.location.lat();
-		var lon = place.geometry.location.lng();
-
-		document.getElementById('location_latitude').value = lat;
-		document.getElementById('location_longitude').value = lon;
-	});
-}
-google.maps.event.addDomListener(window, 'load', initialize);
 //--></script>
 
 <script type="text/javascript"><!--

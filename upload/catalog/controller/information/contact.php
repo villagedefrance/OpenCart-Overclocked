@@ -70,25 +70,16 @@ class ControllerInformationContact extends Controller {
 		$this->data['entry_enquiry'] = $this->language->get('entry_enquiry');
 		$this->data['entry_captcha'] = $this->language->get('entry_captcha');
 
-		$this->data['hide_location'] = $this->config->get('config_our_location');
+		$this->data['hide_address'] = $this->config->get('config_store_address');
+		$this->data['hide_location'] = $this->config->get('config_store_location');
 
-		$map_location = $this->config->get('config_location');
-		$map_display = $this->config->get('config_contact_map');
+		$this->data['latitude'] = $this->config->get('config_store_latitude');
+		$this->data['longitude'] = $this->config->get('config_store_longitude');
 
-		if (isset($map_display) && !empty($map_location)) {
-			$this->document->addScript('catalog/view/javascript/gmap/gmap3.min.js');
-			$this->document->addScript('catalog/view/javascript/gmap/gmap3.infobox.js');
+		// Google Map
+		$this->data['display_map'] = $this->config->get('config_map_display');
 
-			$this->data['map_location'] = $map_location;
-			$this->data['map_latitude'] = $this->config->get('config_latitude');
-			$this->data['map_longitude'] = $this->config->get('config_longitude');
-			$this->data['map'] = true;
-		} else {
-			$this->data['map_location'] = '';
-			$this->data['map_latitude'] = '';
-			$this->data['map_longitude'] = '';
-			$this->data['map'] = false;
-		}
+		$this->data['google_map'] = $this->config->get('config_map_code');
 
 		if (isset($this->error['name'])) {
 			$this->data['error_name'] = $this->error['name'];

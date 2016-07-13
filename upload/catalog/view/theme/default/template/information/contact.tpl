@@ -57,7 +57,7 @@
             <div class="right"><input type="submit" value="<?php echo $button_continue; ?>" class="button" /></div>
           </div>
         </div>
-        <?php if (!$hide_location) { ?>
+        <?php if (!$hide_address) { ?>
         <div class="info-right">
           <h2><?php echo $text_location; ?></h2>
           <br />
@@ -72,24 +72,24 @@
             <img src="catalog/view/theme/<?php echo $template; ?>/image/location/fax.png" alt="" /> &nbsp; <?php echo $fax; ?><br />
             <br />
           <?php } ?>
-          <?php if ($map) { ?>
-           <br />
-           <br />
-           <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" /> &nbsp; <b><?php echo $text_geolocation; ?></b>
-           <br />
-           <br />
-           <i><?php echo $text_latitude; ?></i> <?php echo $map_latitude; ?> <i>&deg; N</i>
-           <br />
-           <br />
-           <i><?php echo $text_longitude; ?></i> <?php echo $map_longitude; ?> <i>&deg; E</i>
-           <br />
+          <?php if (!$hide_location && $latitude && $longitude) { ?>
+            <br />
+            <br />
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/location/global.png" alt="" /> &nbsp; <b><?php echo $text_geolocation; ?></b>
+            <br />
+            <br />
+            <i><?php echo $text_latitude; ?></i> <?php echo $latitude; ?> <i>&deg; N</i>
+            <br />
+            <br />
+            <i><?php echo $text_longitude; ?></i> <?php echo $longitude; ?> <i>&deg; E</i>
+            <br />
           <?php } ?>
         </div>
         <?php } ?>
+        <?php if ($display_map && !empty($google_map)) { ?>
+          <div style="margin-left:5px;"><?php echo html_entity_decode($google_map, ENT_QUOTES, 'UTF-8'); ?></div>
+        <?php } ?>
       </div>
-      <?php if ($map) { ?>
-        <div id="contact-map"></div>
-      <?php } ?>
     </div>
   </form>
   <?php echo $content_bottom; ?>
@@ -102,58 +102,5 @@ $('img#captcha-image').on('load', function(event) {
 });
 $('img#captcha-image').trigger('load');
 //--></script>
-
-<?php if ($map) { ?>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;language=en"></script>
-
-<script type="text/javascript"><!--
-var mapDiv, map, infobox;
-var lat = <?php echo $map_latitude; ?>;
-var lon = <?php echo $map_longitude; ?>;
-
-jQuery(document).ready(function($) {
-	mapDiv = $("#contact-map");
-	mapDiv.height(360).gmap3({
-		map:{
-			options:{
-				center:[lat,lon],
-				zoom: 15
-			}
-		},
-		marker:{
-			values:[
-				{latLng:[lat, lon], data:"<?php echo $map_location; ?>"},
-			],
-			options:{
-				draggable: false
-			},
-			events:{
-				mouseover: function(marker, event, context) {
-					var map = $(this).gmap3("get"),
-					infowindow = $(this).gmap3({get:{name:"infowindow"}});
-					if (infowindow) {
-						infowindow.open(map, marker);
-						infowindow.setContent(context.data);
-					} else {
-						$(this).gmap3({
-							infowindow:{
-								anchor:marker, 
-								options:{content: context.data}
-							}
-						});
-					}
-				},
-				mouseout: function() {
-					var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-					if (infowindow) {
-						infowindow.close();
-					}
-				}
-			}
-		}
-	});
-});
-//--></script>
-<?php } ?>
 
 <?php echo $footer; ?>

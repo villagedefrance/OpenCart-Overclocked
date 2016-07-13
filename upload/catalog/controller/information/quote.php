@@ -77,7 +77,7 @@ class ControllerInformationQuote extends Controller {
 
 		$this->data['button_upload'] = $this->language->get('button_upload');
 
-		$this->data['hide_location'] = $this->config->get('config_our_location');
+		$this->data['hide_address'] = $this->config->get('config_store_address');
 
 		if (isset($this->error['name'])) {
 			$this->data['error_name'] = $this->error['name'];

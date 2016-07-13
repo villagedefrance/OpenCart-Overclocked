@@ -48,6 +48,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_datetime'] = $this->language->get('text_datetime');
 		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_location'] = $this->language->get('text_location');
+		$this->data['text_preview'] = $this->language->get('text_preview');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_express'] = $this->language->get('text_express');
@@ -98,6 +99,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['tab_media'] = $this->language->get('tab_media');
 		$this->data['tab_server'] = $this->language->get('tab_server');
 
+		$google_api_link = 'https://developers.google.com/maps/documentation/embed/start';
+
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_owner'] = $this->language->get('entry_owner');
 		$this->data['entry_address'] = $this->language->get('entry_address');
@@ -121,11 +124,12 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
 		$this->data['entry_date_format'] = $this->language->get('entry_date_format');
 		$this->data['entry_time_offset'] = $this->language->get('entry_time_offset');
-		$this->data['entry_our_location'] = $this->language->get('entry_our_location');
-		$this->data['entry_location'] = $this->language->get('entry_location');
-		$this->data['entry_latitude'] = $this->language->get('entry_latitude');
-		$this->data['entry_longitude'] = $this->language->get('entry_longitude');
-		$this->data['entry_contact_map'] = $this->language->get('entry_contact_map');
+		$this->data['entry_store_address'] = $this->language->get('entry_store_address');
+		$this->data['entry_store_latitude'] = $this->language->get('entry_store_latitude');
+		$this->data['entry_store_longitude'] = $this->language->get('entry_store_longitude');
+		$this->data['entry_store_location'] = $this->language->get('entry_store_location');
+		$this->data['entry_map_code'] = sprintf($this->language->get('entry_map_code'), html_entity_decode($google_api_link, ENT_QUOTES, 'UTF-8'));
+		$this->data['entry_map_display'] = $this->language->get('entry_map_display');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
 		$this->data['entry_buy_now'] = $this->language->get('entry_buy_now');
@@ -688,38 +692,40 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_time_offset'] = '0';
 		}
 
-		if (isset($this->request->post['config_our_location'])) {
-			$this->data['config_our_location'] = $this->request->post['config_our_location'];
+		if (isset($this->request->post['config_store_address'])) {
+			$this->data['config_store_address'] = $this->request->post['config_store_address'];
 		} else {
-			$this->data['config_our_location'] = $this->config->get('config_our_location');
+			$this->data['config_store_address'] = $this->config->get('config_store_address');
 		}
 
-		if (isset($this->request->post['config_location'])) {
-			$this->data['config_location'] = $this->request->post['config_location'];
+		if (isset($this->request->post['config_store_latitude'])) {
+			$this->data['config_store_latitude'] = $this->request->post['config_store_latitude'];
 		} else {
-			$this->data['config_location'] = $this->config->get('config_location');
+			$this->data['config_store_latitude'] = $this->config->get('config_store_latitude');
 		}
 
-		if (isset($this->request->post['config_latitude'])) {
-			$this->data['config_latitude'] = $this->request->post['config_latitude'];
-		} elseif ($this->config->get('config_latitude')) {
-			$this->data['config_latitude'] = $this->config->get('config_latitude');
+		if (isset($this->request->post['config_store_longitude'])) {
+			$this->data['config_store_longitude'] = $this->request->post['config_store_longitude'];
 		} else {
-			$this->data['config_latitude'] = '0.000';
+			$this->data['config_store_longitude'] = $this->config->get('config_store_longitude');
 		}
 
-		if (isset($this->request->post['config_longitude'])) {
-			$this->data['config_longitude'] = $this->request->post['config_longitude'];
-		} elseif ($this->config->get('config_longitude')) {
-			$this->data['config_longitude'] = $this->config->get('config_longitude');
+		if (isset($this->request->post['config_store_location'])) {
+			$this->data['config_store_location'] = $this->request->post['config_store_location'];
 		} else {
-			$this->data['config_longitude'] = '0.000';
+			$this->data['config_store_location'] = $this->config->get('config_store_location');
 		}
 
-		if (isset($this->request->post['config_contact_map'])) {
-			$this->data['config_contact_map'] = $this->request->post['config_contact_map'];
+		if (isset($this->request->post['config_map_code'])) {
+			$this->data['config_map_code'] = $this->request->post['config_map_code'];
 		} else {
-			$this->data['config_contact_map'] = $this->config->get('config_contact_map');
+			$this->data['config_map_code'] = $this->config->get('config_map_code');
+		}
+
+		if (isset($this->request->post['config_map_display'])) {
+			$this->data['config_map_display'] = $this->request->post['config_map_display'];
+		} else {
+			$this->data['config_map_display'] = $this->config->get('config_map_display');
 		}
 
 		// Checkout
