@@ -26,7 +26,9 @@
     </div>
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-general">
+        <h2><?php echo $text_affiliate_detail; ?></h2>
         <table class="form">
+          <tbody>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
             <td><?php if ($error_firstname) { ?>
@@ -69,6 +71,48 @@
             <td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
           </tr>
            <?php } ?>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_code; ?></td>
+            <td><input type="code" name="code" value="<?php echo $code; ?>" />
+            <?php if ($error_code) { ?>
+              <span class="error"><?php echo $error_code; ?></span>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_password; ?></td>
+            <td><?php if ($error_password) { ?>
+              <input type="password" name="password" value="<?php echo $password; ?>" class="input-error" />
+              <span class="error"><?php echo $error_password; ?></span>
+            <?php } else { ?>
+              <input type="password" name="password" value="<?php echo $password; ?>" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_confirm; ?></td>
+            <td><?php if ($error_confirm) { ?>
+              <input type="password" name="confirm" value="<?php echo $confirm; ?>" class="input-error" />
+              <span class="error"><?php echo $error_confirm; ?></span>
+            <?php } else { ?>
+              <input type="password" name="confirm" value="<?php echo $confirm; ?>" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_status; ?></td>
+            <td><select name="status">
+            <?php if ($status) { ?>
+              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+              <option value="0"><?php echo $text_disabled; ?></option>
+            <?php } else { ?>
+              <option value="1"><?php echo $text_enabled; ?></option>
+              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+            <?php } ?>
+            </select></td>
+          </tr>
+          </tbody>
+        </table>
+        <h2><?php echo $text_affiliate_address; ?></h2>
+        <table class="form">
+          <tbody>
           <tr>
             <td><?php echo $entry_company; ?></td>
             <td><input type="text" name="company" value="<?php echo $company; ?>" size="40" /></td>
@@ -146,43 +190,7 @@
               </select>
             <?php } ?></td>
           </tr>
-          <tr>
-            <td><span class="required">*</span> <?php echo $entry_code; ?></td>
-            <td><input type="code" name="code" value="<?php echo $code; ?>" />
-            <?php if ($error_code) { ?>
-              <span class="error"><?php echo $error_code; ?></span>
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_password; ?></td>
-            <td><?php if ($error_password) { ?>
-              <input type="password" name="password" value="<?php echo $password; ?>" class="input-error" />
-              <span class="error"><?php echo $error_password; ?></span>
-            <?php } else { ?>
-              <input type="password" name="password" value="<?php echo $password; ?>" />
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_confirm; ?></td>
-            <td><?php if ($error_confirm) { ?>
-              <input type="password" name="confirm" value="<?php echo $confirm; ?>" class="input-error" />
-              <span class="error"><?php echo $error_confirm; ?></span>
-            <?php } else { ?>
-              <input type="password" name="confirm" value="<?php echo $confirm; ?>" />
-            <?php } ?></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="status">
-            <?php if ($status) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-            <?php } ?>
-            </select></td>
-          </tr>
+          </tbody>
         </table>
       </div>
       <div id="tab-payment">
@@ -257,6 +265,7 @@
       <?php if ($affiliate_id) { ?>
       <div id="tab-transaction">
         <table class="form">
+          <tbody>
           <tr>
             <td><?php echo $entry_description; ?></td>
             <td><input type="text" name="description" value="" /></td>
@@ -268,6 +277,7 @@
           <tr>
             <td colspan="2" style="text-align:right;"><a id="button-reward" onclick="addTransaction();" class="button"><?php echo $button_add_transaction; ?></a></td>
           </tr>
+          </tbody>
         </table>
         <div id="transaction"></div>
       </div>
@@ -278,12 +288,12 @@
 </div>
 
 <script type="text/javascript"><!--
-$('select[name=\'country_id\']').bind('change', function() {
+$('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
-		url: 'index.php?route=sale/affiliate/country&token=<?php echo $token; ?>&country_id=' + this.value,
+    url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-			$('select[name=\'payment_country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
+      $('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
 			$('.wait').remove();
@@ -324,7 +334,7 @@ $('select[name=\'country_id\']').trigger('change');
 //--></script>
 
 <script type="text/javascript"><!--
-$('input[name=\'payment\']').bind('change', function() {
+$('input[name=\'payment\']').on('change', function() {
 	$('.payment').hide();
 	$('#payment-' + this.value).show();
 });

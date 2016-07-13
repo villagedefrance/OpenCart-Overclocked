@@ -187,6 +187,13 @@ $(document).ready(function() {
               <li><a href="<?php echo $supplier_product; ?>"><?php echo $text_supplier_product; ?></a></li>
             </ul>
           </li>
+<!-- PB
+          <li><a class="arrow"><?php echo $text_marketing; ?></a>
+            <ul>
+              <li><a href="<?php echo $marketing; ?>"><?php echo $text_marketing; ?></a></li>
+            </ul>
+          </li>
+//-->
           <?php if ($allow_affiliate) { ?>
           <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
           <?php } ?>
@@ -340,6 +347,7 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_affiliate; ?></a>
             <ul>
+              <li><a href="<?php echo $report_affiliate_activity; ?>"><?php echo $text_report_affiliate_activity; ?></a></li>
               <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo $text_report_affiliate_commission; ?></a></li>
             </ul>
           </li>
