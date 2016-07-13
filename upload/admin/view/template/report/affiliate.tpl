@@ -18,8 +18,8 @@
     <?php } ?>
       <div class="report">
         <div class="left"><img src="view/image/filter.png" alt="" /></div>
-        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
-        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="input-date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="input-date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
         <div class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></div>
       </div>
       <table class="list">
@@ -85,8 +85,8 @@ function filter() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  $('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
-  $('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
+  $('#input-date-start').datepicker({dateFormat: 'yy-mm-dd'});
+  $('#input-date-end').datepicker({dateFormat: 'yy-mm-dd'});
 });
 //--></script>
 

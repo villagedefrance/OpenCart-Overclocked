@@ -18,32 +18,25 @@
     <?php } ?>
       <div class="report">
         <div class="left"><img src="view/image/filter.png" alt="" /></div>
-        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
-        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_start; ?> <input type="text" name="filter_date_start" value="<?php echo $filter_date_start; ?>" id="input-date-start" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
+        <div class="left"><?php echo $entry_date_end; ?> <input type="text" name="filter_date_end" value="<?php echo $filter_date_end; ?>" id="input-date-end" size="12" /> <img src="view/image/calendar.png" alt="" /></div>
         <div class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></div>
       </div>
       <table class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $column_affiliate; ?></td>
-            <td class="left"><?php echo $column_email; ?></td>
-            <td class="left"><?php echo $column_status; ?></td>
-            <td class="right"><?php echo $column_commission; ?></td>
-            <td class="right"><?php echo $column_orders; ?></td>
-            <td class="right"><?php echo $column_total; ?></td>
-            <td class="right"><?php echo $column_action; ?></td>
+            <td class="left"><?php echo $column_comment; ?></td>
+            <td class="left"><?php echo $column_ip; ?></td>
+            <td class="left"><?php echo $column_date_added; ?></td>
           </tr>
         </thead>
         <tbody>
-        <?php if ($affiliates) { ?>
-          <?php foreach ($affiliates as $affiliate) { ?>
+        <?php if ($activities) { ?>
+          <?php foreach ($activities as $activity) { ?>
           <tr>
-            <td class="left"><?php echo $affiliate['affiliate']; ?></td>
-            <td class="left"><?php echo $affiliate['email']; ?></td>
-            <td class="left"><?php echo $affiliate['status']; ?></td>
-            <td class="right"><?php echo $affiliate['commission']; ?></td>
-            <td class="right"><?php echo $affiliate['orders']; ?></td>
-            <td class="right"><?php echo $affiliate['total']; ?></td>
+            <td class="left"><?php echo $activity['comment']; ?></td>
+            <td class="left"><?php echo $activity['ip']; ?></td>
+            <td class="left"><?php echo $activity['date_added']; ?></td>
             <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -51,7 +44,7 @@
         <?php } ?>
       <?php } else { ?>
         <tr>
-          <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
+          <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
         </tr>
       <?php } ?>
       </tbody>
@@ -65,7 +58,18 @@
 
 <script type="text/javascript"><!--
 function filter() {
-  url = 'index.php?route=report/affiliate_commission&token=<?php echo $token; ?>';
+  url = 'index.php?route=report/affiliate_activity&token=<?php echo $token; ?>';
+
+  var filter_affiliate = $('input[name=\'filter_affiliate\']').val();
+
+  if (filter_affiliate) {
+    url += '&filter_affiliate=' + encodeURIComponent(filter_affiliate);
+  }
+  var filter_ip = $('input[name=\'filter_ip\']').val();
+
+  if (filter_ip) {
+    url += '&filter_ip=' + encodeURIComponent(filter_ip);
+  }
 
   var filter_date_start = $('input[name=\'filter_date_start\']').attr('value');
 
@@ -85,8 +89,8 @@ function filter() {
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  $('#date-start').datepicker({dateFormat: 'yy-mm-dd'});
-  $('#date-end').datepicker({dateFormat: 'yy-mm-dd'});
+  $('#input-date-start').datepicker({dateFormat: 'yy-mm-dd'});
+  $('#input-date-end').datepicker({dateFormat: 'yy-mm-dd'});
 });
 //--></script>
 
