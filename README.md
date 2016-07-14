@@ -24,7 +24,7 @@ So feel free to post your comments or get in touch.
 Latest Scripts:
 - jQuery 1.12.3.
 - jQuery UI 1.11.4.
-- CKEditor 4.5.9 Full.
+- CKEditor 4.5.10 Full.
 - jQuery Flot 0.8.2.
 - Plupload 2.1.8.
 - Camera 1.3.4.
@@ -51,6 +51,7 @@ Coming soon in 1.8.0.0!
 - New Cookie Consent code.
 - Added Piwik code field in Settings.
 - Added Customer Group image.
+- Updated Google Maps feature.
 - Fixed Product RSS Feed.
 - ...
 
