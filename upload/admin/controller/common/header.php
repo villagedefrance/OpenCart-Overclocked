@@ -153,6 +153,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_customer_credit'] = $this->language->get('text_report_customer_credit');
 		$this->data['text_report_customer_country'] = $this->language->get('text_report_customer_country');
 		$this->data['text_report_customer_online'] = $this->language->get('text_report_customer_online');
+		$this->data['text_report_affiliate_activity'] = $this->language->get('text_report_affiliate_activity');
 		$this->data['text_report_affiliate_commission'] = $this->language->get('text_report_affiliate_commission');
 		$this->data['text_report_sale_return'] = $this->language->get('text_report_sale_return');
 		$this->data['text_report_product_viewed'] = $this->language->get('text_report_product_viewed');

@@ -1,6 +1,6 @@
 <?php
 class ControllerReportAffiliateActivity extends Controller {
-	
+
 	public function index() {
 		$this->language->load('report/affiliate_activity');
 
@@ -81,10 +81,10 @@ class ControllerReportAffiliateActivity extends Controller {
 		$this->data['activities'] = array();
 
 		$filter_data = array(
-			'filter_affiliate'   => $filter_affiliate,
+			'filter_affiliate'  => $filter_affiliate,
 			'filter_ip'         => $filter_ip,
 			'filter_date_start' => $filter_date_start,
-			'filter_date_end' => $filter_date_end,
+			'filter_date_end'   => $filter_date_end,
 			'start'             => ($page - 1) * $this->config->get('config_admin_limit'),
 			'limit'             => $this->config->get('config_admin_limit')
 		);
