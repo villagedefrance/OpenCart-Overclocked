@@ -95,9 +95,9 @@ class ControllerModuleCart extends Controller {
 				}
 
 				$option_data[] = array(
-					'name' 	=> $option['name'],
-					'value'	=> (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value,
-					'type'  	=> $option['type']
+					'name'  => $option['name'],
+					'value' => (utf8_strlen($value) > 20) ? utf8_substr($value, 0, 20) . '..' : $value,
+					'type'  => $option['type']
 				);
 			}
 
@@ -116,18 +116,18 @@ class ControllerModuleCart extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'key'       	=> $product['key'],
-				'thumb' 		=> $image,
-				'offer'			=> $offer,
-				'name'   		=> $product['name'],
-				'model' 		=> $product['model'],
-				'option'    	=> $option_data,
-				'quantity' 	=> $product['quantity'],
-				'price'     	=> $price,
-				'total'     	=> $total,
-				'href'      	=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
-				'recurring' 	=> $product['recurring'],
-				'profile'   	=> $product['profile_name']
+				'key'       => $product['key'],
+				'thumb'     => $image,
+				'offer'     => $offer,
+				'name'      => $product['name'],
+				'model'     => $product['model'],
+				'option'    => $option_data,
+				'quantity'  => $product['quantity'],
+				'price'     => $price,
+				'total'     => $total,
+				'href'      => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+				'recurring' => $product['recurring'],
+				'profile'   => $product['profile_name']
 			);
 		}
 
@@ -137,9 +137,9 @@ class ControllerModuleCart extends Controller {
 		if (!empty($this->session->data['vouchers'])) {
 			foreach ($this->session->data['vouchers'] as $key => $voucher) {
 				$this->data['vouchers'][] = array(
-					'key'         		=> $key,
-					'description' 	=> $voucher['description'],
-					'amount'      	=> $this->currency->format($voucher['amount'])
+					'key'         => $key,
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount'])
 				);
 			}
 		}

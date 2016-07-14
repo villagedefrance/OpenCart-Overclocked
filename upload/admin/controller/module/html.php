@@ -57,6 +57,8 @@ class ControllerModuleHtml extends Controller {
 		$this->data['button_add_module'] = $this->language->get('button_add_module');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -87,7 +89,7 @@ class ControllerModuleHtml extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['token'] = $this->session->data['token'];
+		$this->data['stylesheet_mode'] = $this->config->get('config_stylesheet');
 
 		// Module
 		$this->data['skins'] = $this->model_setting_setting->getColors();

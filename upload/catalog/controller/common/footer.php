@@ -81,25 +81,29 @@ class ControllerCommonFooter extends Controller {
 		// Theme
 		$footer_theme = $this->config->get($template . '_footer_theme');
 
+		$stylesheet_mode = $this->config->get('config_stylesheet');
+
 		$footer_color = $this->config->get($template . '_footer_color');
 		$footer_shape = $this->config->get($template . '_footer_shape');
 
-		$mod_color = ($footer_color) ? $footer_color : 'white';
-		$mod_shape = ($footer_shape) ? $footer_shape : 'rounded-3';
+		$mod_color = ($footer_color) ? $footer_color . '-skin' : 'white-skin';
+		$mod_shape = ($footer_shape) ? $footer_shape : 'rounded-0';
 
 		if ($footer_theme == 'custom') {
 			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/footer-custom.css');
 
-			if ($mod_color == 'white' || $mod_color == 'beige' || $mod_color == 'ash' || $mod_color == 'silver' || $mod_color == 'citrus' || $mod_color == 'yellow') {
-				$footer_class = 'dark';
+			if ($mod_color == 'white-skin' || $mod_color == 'beige-skin' || $mod_color == 'ash-skin' || $mod_color == 'silver-skin' || $mod_color == 'citrus-skin' || $mod_color == 'yellow-skin') {
+				$footer_class = '-dark';
 			} else {
-				$footer_class = 'light';
+				$footer_class = '-light';
 			}
 
 		} else {
 			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/footer.css');
 
-			$footer_class = $footer_theme;
+			$mod_color = '';
+			$mod_shape = '';
+			$footer_class = '-' . $footer_theme;
 		}
 
 		$this->data['mod_color'] = $mod_color;

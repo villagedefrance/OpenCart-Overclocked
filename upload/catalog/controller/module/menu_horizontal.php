@@ -17,15 +17,15 @@ class ControllerModuleMenuHorizontal extends Controller {
 		$header_color = $this->config->get($this->_name . '_header_color');
 		$header_shape = $this->config->get($this->_name . '_header_shape');
 
-		$mod_color = ($header_color) ? $header_color : 'white';
-		$mod_shape = ($header_shape) ? $header_shape : 'rounded-3';
+		$mod_color = ($header_color) ? $header_color . '-skin' : 'white-skin';
+		$mod_shape = ($header_shape) ? $header_shape : 'rounded-0';
 
 		$menu_direction = $setting['direction'] ? 'ltr' : 'rtl';
 
 		if ($menu_theme == 'custom') {
 			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-' . $menu_direction . '.css');
 
-			if ($mod_color == 'white' || $mod_color == 'beige' || $mod_color == 'ash' || $mod_color == 'silver' || $mod_color == 'citrus' || $mod_color == 'yellow') {
+			if ($mod_color == 'white-skin' || $mod_color == 'beige-skin' || $mod_color == 'ash-skin' || $mod_color == 'silver-skin' || $mod_color == 'citrus-skin' || $mod_color == 'yellow-skin') {
 				$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-dark.css');
 				$menu_theme = 'dark';
 			} else {

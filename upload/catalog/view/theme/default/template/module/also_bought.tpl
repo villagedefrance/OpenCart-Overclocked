@@ -1,8 +1,8 @@
 <?php if ($products && $set_product_id) { ?>
 <?php if ($theme) { ?>
 <div class="box">
-  <div class="box-heading <?php echo $header_shape; ?>-top <?php echo $header_color; ?>-skin"><?php echo $title; ?></div>
-  <div class="box-content <?php echo $content_shape; ?>-bottom <?php echo $content_color; ?>-skin">
+  <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
+  <div class="box-content <?php echo $content_shape; ?> <?php echo $content_color; ?>">
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>
@@ -52,7 +52,7 @@
   </div>
   </div>
 <?php } else { ?>
-  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>-skin" style="margin-bottom:20px;">
+  <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>" style="margin-bottom:20px;">
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>

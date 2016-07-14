@@ -6,7 +6,7 @@
 
 /* --- SHAPES --- */
 /* Square */
-.rounded-0 { }
+.rounded-0, .rounded-0-top, .rounded-0-bottom, .rounded-0-left, .rounded-0-right { }
 /* Rounded 3 */
 .rounded-3 {
 	-webkit-border-radius: 3px;

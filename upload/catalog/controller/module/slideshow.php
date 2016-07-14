@@ -22,13 +22,24 @@ class ControllerModuleSlideshow extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		$header_color = $this->config->get($this->_name . '_header_color');
-		$header_shape = $this->config->get($this->_name . '_header_shape');
+		$stylesheet_mode = $this->config->get('config_stylesheet');
+
+		if (!$stylesheet_mode) {
+			$header_color = $this->config->get($this->_name . '_header_color');
+			$header_shape = $this->config->get($this->_name . '_header_shape');
+
+			$this->data['header_color'] = ($header_color) ? $header_color . '-skin' : 'white-skin';
+			$this->data['header_shape'] = ($header_shape) ? $header_shape . '-top' : 'rounded-0';
+		} else {
+			$this->data['header_color'] = '';
+			$this->data['header_shape'] = '';
+		}
+
+		$this->data['stylesheet_mode'] = $stylesheet_mode;
+
 		$skin_color = $this->config->get($this->_name . '_skin_color');
 
-		$this->data['header_color'] = ($header_color) ? $header_color : 'white';
-		$this->data['header_shape'] = ($header_shape) ? $header_shape : 'rounded-3';
-		$this->data['camera_theme'] = ($skin_color) ? $skin_color : 'charcoal';
+		$this->data['camera_theme'] = ($skin_color) ? $skin_color . '_skin' : 'charcoal_skin';
 
 		$option_playpause = $this->config->get($this->_name . '_playpause');
 		$option_pagination = $this->config->get($this->_name . '_pagination');

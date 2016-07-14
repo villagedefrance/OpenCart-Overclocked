@@ -48,7 +48,7 @@
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr style="background:#FCFCFC;">'; ?>
             <td><?php echo $entry_header_color; ?></td>
             <td><select name="location_header_color">
               <?php foreach ($skins as $skin) { ?>
@@ -60,7 +60,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr style="background:#FCFCFC;">'; ?>
             <td><?php echo $entry_header_shape; ?></td>
             <td><select name="location_header_shape">
               <?php foreach ($shapes as $shape) { ?>
@@ -74,7 +74,7 @@
           </tr>
         </tbody>
         <tbody>
-          <tr>
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
             <td><?php echo $entry_content_color; ?></td>
             <td><select name="location_content_color">
               <?php foreach ($skins as $skin) { ?>
@@ -86,7 +86,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr>
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
             <td><?php echo $entry_content_shape; ?></td>
             <td><select name="location_content_shape">
               <?php foreach ($shapes as $shape) { ?>

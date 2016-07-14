@@ -4,13 +4,15 @@ $_['heading_title']                = 'Settings';
 
 // Text
 $_['text_success']                 = 'Success: You have modified <b>Settings</b> !';
+$_['text_multiple']                = 'Multiple Stylesheets';
+$_['text_single']                  = 'Single Stylesheet';
 $_['text_required']                = 'Required';
 $_['text_choice']                  = 'Customer\'s choice';
 $_['text_automatic']               = 'Automatic';
 $_['text_hide']                    = 'Hide';
 $_['text_datetime']                = 'Date &amp; Time';
 $_['text_location']                = 'Map &amp; Location';
-$_['text_preview']                = 'Map Preview:';
+$_['text_preview']                 = 'Map Preview:';
 $_['text_express']                 = 'Express Checkout';
 $_['text_product']                 = 'Products';
 $_['text_tax']                     = 'Taxes';
@@ -63,8 +65,9 @@ $_['entry_company_id']             = 'Company Registration:';
 $_['entry_company_tax_id']         = 'Company Tax Id:';
 $_['entry_title']                  = 'Title:';
 $_['entry_meta_description']       = 'Meta Tag Description:';
-$_['entry_layout']                 = 'Default Layout:';
 $_['entry_template']               = 'Template:';
+$_['entry_stylesheet']             = 'Template Stylesheet Mode:<span class="help">This settings affects the footer and all modules.</span>';
+$_['entry_layout']                 = 'Default Layout:';
 $_['entry_country']                = 'Country:';
 $_['entry_zone']                   = 'Region / State:';
 $_['entry_language']               = 'Language:';

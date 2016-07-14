@@ -41,10 +41,10 @@ class ControllerModuleCurrency extends Controller {
 		foreach ($results as $result) {
 			if ($result['status']) {
 				$this->data['currencies'][] = array(
-					'title'        		=> $result['title'],
-					'code'         	=> $result['code'],
-					'symbol_left'  	=> $result['symbol_left'],
-					'symbol_right' 	=> $result['symbol_right']
+					'title'        => $result['title'],
+					'code'         => $result['code'],
+					'symbol_left'  => $result['symbol_left'],
+					'symbol_right' => $result['symbol_right']
 				);
 			}
 		}

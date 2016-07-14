@@ -79,6 +79,8 @@ class ControllerThemeDefault extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 
+		$this->data['token'] = $this->session->data['token'];
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -109,7 +111,7 @@ class ControllerThemeDefault extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['token'] = $this->session->data['token'];
+		$this->data['stylesheet_mode'] = $this->config->get('config_stylesheet');
 
 		// Check active template
 		$template = $this->config->get('config_template');

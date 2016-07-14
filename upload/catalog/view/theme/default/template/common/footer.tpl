@@ -3,8 +3,8 @@
   <a href="#" title=""><span></span></a>
 </p>
 <?php } ?>
-<div id="footer-holder" class="footer-<?php echo $footer_class; ?>">
-  <div id="footer" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>-skin">
+<div id="footer-holder" class="footer<?php echo $footer_class; ?>">
+  <div id="footer" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>">
   <?php if ($footer_blocks) { ?>
   <div class="column-one" style="width:<?php echo $column_width; ?>;">
   <?php foreach ($footer_blocks as $footer_block) { ?>

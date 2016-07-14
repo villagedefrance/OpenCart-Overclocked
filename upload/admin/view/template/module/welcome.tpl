@@ -61,7 +61,7 @@
           </div>
         <?php } ?>
           <table class="form">
-            <tr>
+            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
               <td><?php echo $entry_header_color; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][header_color]">
                 <?php foreach ($skins as $skin) { ?>
@@ -73,7 +73,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr>
+            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
               <td><?php echo $entry_header_shape; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][header_shape]">
                 <?php foreach ($shapes as $shape) { ?>
@@ -85,7 +85,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr>
+            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
               <td><?php echo $entry_content_color; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][content_color]">
                 <?php foreach ($skins as $skin) { ?>
@@ -97,7 +97,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr>
+            <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>
               <td><?php echo $entry_content_shape; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][content_shape]">
                 <?php foreach ($shapes as $shape) { ?>
@@ -228,7 +228,7 @@ function addModule() {
 	html += '  </div>';
 	<?php } ?>
 	html += '  <table class="form">';
-	html += '    <tr>';
+	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
 	html += '      <td><?php echo $entry_header_color; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][header_color]">';
 	<?php foreach ($skins as $skin) { ?>
@@ -236,7 +236,7 @@ function addModule() {
 	<?php } ?>
 	html += '      </select></td>';
 	html += '    </tr>';
-	html += '    <tr>';
+	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
 	html += '      <td><?php echo $entry_header_shape; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][header_shape]">';
 	<?php foreach ($shapes as $shape) { ?>
@@ -244,7 +244,7 @@ function addModule() {
 	<?php } ?>
 	html += '      </select></td>';
 	html += '    </tr>';
-	html += '    <tr>';
+	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
 	html += '      <td><?php echo $entry_content_color; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][content_color]">';
 	<?php foreach ($skins as $skin) { ?>
@@ -252,7 +252,7 @@ function addModule() {
 	<?php } ?>
 	html += '      </select></td>';
 	html += '    </tr>';
-	html += '    <tr>';
+	html += '    <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr>'; ?>';
 	html += '      <td><?php echo $entry_content_shape; ?></td>';
 	html += '      <td><select name="welcome_module[' + module_row + '][content_shape]">';
 	<?php foreach ($shapes as $shape) { ?>

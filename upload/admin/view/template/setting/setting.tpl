@@ -138,6 +138,18 @@
             <td id="template"></td>
           </tr>
           <tr>
+            <td><?php echo $entry_stylesheet; ?></td>
+            <td><select name="config_stylesheet">
+              <?php if (isset($config_stylesheet)) { $selected = "selected"; ?>
+                <option value="0" <?php if ($config_stylesheet == '0') { echo $selected; } ?>><?php echo $text_multiple; ?> <?php echo $text_default; ?></option>
+                <option value="1" <?php if ($config_stylesheet == '1') { echo $selected; } ?>><?php echo $text_single; ?></option>
+              <?php } else { ?>
+                <option value="0"><?php echo $text_multiple; ?> <?php echo $text_default; ?></option>
+                <option value="1"><?php echo $text_single; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_layout; ?></td>
             <td><select name="config_layout_id">
             <?php foreach ($layouts as $layout) { ?>

@@ -87,6 +87,8 @@ class ControllerModuleWelcome extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
+		$this->data['stylesheet_mode'] = $this->config->get('config_stylesheet');
+
 		// Module
 		$this->data['skins'] = $this->model_setting_setting->getColors();
 		$this->data['shapes'] = $this->model_setting_setting->getShapes();

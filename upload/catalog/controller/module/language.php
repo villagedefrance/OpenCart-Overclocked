@@ -38,9 +38,9 @@ class ControllerModuleLanguage extends Controller {
 		foreach ($results as $result) {
 			if ($result['status']) {
 				$this->data['languages'][] = array(
-					'name'	=> $result['name'],
-					'code'	=> $result['code'],
-					'image'	=> $result['image']
+					'name'  => $result['name'],
+					'code'  => $result['code'],
+					'image' => $result['image']
 				);
 			}
 		}

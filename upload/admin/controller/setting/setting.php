@@ -40,6 +40,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_multiple'] = $this->language->get('text_multiple');
+		$this->data['text_single'] = $this->language->get('text_single');
 		$this->data['text_required'] = $this->language->get('text_required');
 		$this->data['text_choice'] = $this->language->get('text_choice');
 		$this->data['text_automatic'] = $this->language->get('text_automatic');
@@ -112,6 +114,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_company_tax_id'] = $this->language->get('entry_company_tax_id');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
+		$this->data['entry_stylesheet'] = $this->language->get('entry_stylesheet');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_template'] = $this->language->get('entry_template');
 		$this->data['entry_country'] = $this->language->get('entry_country');
@@ -590,6 +593,12 @@ class ControllerSettingSetting extends Controller {
 
 		foreach ($directories as $directory) {
 			$this->data['templates'][] = basename($directory);
+		}
+
+		if (isset($this->request->post['config_stylesheet'])) {
+			$this->data['config_stylesheet'] = $this->request->post['config_stylesheet'];
+		} else {
+			$this->data['config_stylesheet'] = $this->config->get('config_stylesheet');
 		}
 
 		if (isset($this->request->post['config_layout_id'])) {
