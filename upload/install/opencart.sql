@@ -76,6 +76,42 @@ CREATE TABLE `oc_affiliate` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_affiliate_activity`
+--
+
+DROP TABLE IF EXISTS `oc_affiliate_activity`;
+CREATE TABLE `oc_affiliate_activity` (
+  `affiliate_activity_id` int(11) NOT NULL AUTO_INCREMENT,
+  `affiliate_id` int(11) NOT NULL,
+  `key` varchar(64) NOT NULL,
+  `data` text CHARACTER SET utf8 NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`affiliate_activity_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_affiliate_login`
+--
+
+DROP TABLE IF EXISTS `oc_affiliate_login`;
+CREATE TABLE `oc_affiliate_login` (
+  `affiliate_login_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(96) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `total` int(4) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`affiliate_login_id`),
+  KEY `email` (`email`),
+  KEY `ip` (`ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_affiliate_transaction`
 --
 
@@ -2866,7 +2902,7 @@ CREATE TABLE `oc_order_option` (
   `product_option_id` int(11) NOT NULL,
   `product_option_value_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
-  `value` text NOT NULL,
+  `value` text CHARACTER SET utf8 NOT NULL,
   `type` varchar(32) NOT NULL,
   PRIMARY KEY (`order_option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -3976,7 +4012,7 @@ CREATE TABLE `oc_setting` (
   `store_id` int(11) NOT NULL DEFAULT '0',
   `group` varchar(32) NOT NULL,
   `key` varchar(64) NOT NULL,
-  `value` text NOT NULL,
+  `value` text CHARACTER SET utf8 NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -4153,7 +4189,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (597, 0, 'config', 'config_return_id', '0', 0),
 (596, 0, 'config', 'config_affiliate_disable', '0', 0),
 (595, 0, 'config', 'config_affiliate_fax', '0', 0),
-(594, 0, 'config', 'config_commission', '5', 0),
+(594, 0, 'config', 'config_affiliate_commission', '5', 0),
 (593, 0, 'config', 'config_affiliate_id', '5', 0),
 (592, 0, 'config', 'config_account_id', '3', 0),
 (591, 0, 'config', 'config_picklist_status', '1', 0),

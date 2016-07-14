@@ -3113,7 +3113,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (597, 0, 'config', 'config_return_id', '0', 0),
 (596, 0, 'config', 'config_affiliate_disable', '0', 0),
 (595, 0, 'config', 'config_affiliate_fax', '0', 0),
-(594, 0, 'config', 'config_commission', '5', 0),
+(594, 0, 'config', 'config_affiliate_commission', '5', 0),
 (593, 0, 'config', 'config_affiliate_id', '5', 0),
 (592, 0, 'config', 'config_account_id', '3', 0),
 (591, 0, 'config', 'config_picklist_status', '1', 0),

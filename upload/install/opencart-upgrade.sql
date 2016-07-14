@@ -76,6 +76,42 @@ CREATE TABLE `oc_affiliate` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_affiliate_activity`
+--
+
+DROP TABLE IF EXISTS `oc_affiliate_activity`;
+CREATE TABLE `oc_affiliate_activity` (
+  `date_added` datetime NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `data` text CHARACTER SET utf8 NOT NULL,
+  `key` varchar(64) NOT NULL,
+  `affiliate_id` int(11) NOT NULL,
+  `affiliate_activity_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`affiliate_activity_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_affiliate_login`
+--
+
+DROP TABLE IF EXISTS `oc_affiliate_login`;
+CREATE TABLE `oc_affiliate_login` (
+  `date_modified` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  `total` int(4) NOT NULL,
+  `ip` varchar(40) NOT NULL,
+  `email` varchar(96) NOT NULL,
+  `affiliate_login_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`affiliate_login_id`),
+  KEY `email` (`email`),
+  KEY `ip` (`ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_affiliate_transaction`
 --
 

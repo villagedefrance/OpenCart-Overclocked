@@ -122,10 +122,14 @@ $_['entry_customer_gender']        = 'Request Gender:';
 $_['entry_customer_dob']           = 'Request Date of Birth:<span class="help">Required if some products have age restrictions.</span>';
 $_['entry_picklist_status']        = 'Enable Pick List:<span class="help">Facilitates back-order tracking and provides order updates for your customers.</span>';
 $_['entry_account']                = 'Account Terms:<span class="help">Forces people to agree to terms before an account can be created.</span>';
+
 $_['entry_affiliate']              = 'Affiliate Terms:<span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
-$_['entry_commission']             = 'Affiliate Commission (%):<span class="help">The default affiliate commission percentage.</span>';
+$_['entry_affiliate_commission']   = 'Affiliate Commission (%):<span class="help">The default affiliate commission percentage.</span>';
 $_['entry_affiliate_fax']          = 'Request Affiliate\'s Fax:';
 $_['entry_affiliate_disable']      = 'Disable Affiliates:<span class="help">Select Yes if you don\'t want to use affiliate functions in your store.</span>';
+$_['entry_affiliate_approval']     = 'Affiliate Requires Approval:<span class="help">Automatically approve any new affiliates who sign up.</span>';
+$_['entry_affiliate_auto']         = 'Automatic Commission:<span class="help">Automatically add commission when each order reaches the complete status.</span>';
+$_['entry_affiliate_mail']         = 'New Affiliate Alert Mail:<span class="help">Send an email to the store owner when a new affiliate is registered.</span>';
 $_['entry_return']                 = 'Return Terms:<span class="help">Forces people to agree to terms before a return account can be created.</span>';
 $_['entry_return_status']          = 'Return Status:<span class="help">Set the default return status when a return request is submitted.</span>';
 $_['entry_return_disable']         = 'Disable Returns:<span class="help">Caution! Returns are a legal requirement in many countries. Disable only if you sell non-returnable goods, such as digital downloads.</span>';

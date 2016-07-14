@@ -925,6 +925,38 @@
         <h2><?php echo $text_affiliate; ?></h2>
         <table class="form">
           <tr>
+            <td><?php echo $entry_affiliate_approval; ?></td>
+            <td><?php if ($config_affiliate_approval) { ?>
+              <input type="radio" name="config_affiliate_approval" value="1" id="affiliate-approval-on" class="radio" checked />
+              <label for="affiliate-approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_approval" value="0" id="affiliate-approval-off" class="radio" />
+              <label for="affiliate-approval-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_affiliate_approval" value="1" id="affiliate-approval-on" class="radio" />
+              <label for="affiliate-approval-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_approval" value="0" id="affiliate-approval-off" class="radio" checked />
+              <label for="affiliate-approval-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_affiliate_auto; ?></td>
+            <td><?php if ($config_affiliate_auto) { ?>
+              <input type="radio" name="config_affiliate_auto" value="1" id="affiliate-auto-on" class="radio" checked />
+              <label for="affiliate-auto-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_auto" value="0" id="affiliate-auto-off" class="radio" />
+              <label for="affiliate-auto-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_affiliate_auto" value="1" id="affiliate-auto-on" class="radio" />
+              <label for="affiliate-auto-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_auto" value="0" id="affiliate-auto-off" class="radio" checked />
+              <label for="affiliate-auto-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_affiliate_commission; ?></td>
+            <td><input type="text" name="config_affiliate_commission" value="<?php echo $config_affiliate_commission; ?>" size="3" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_affiliate; ?></td>
             <td><select name="config_affiliate_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -938,8 +970,18 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_commission; ?></td>
-            <td><input type="text" name="config_commission" value="<?php echo $config_commission; ?>" size="3" /></td>
+            <td><?php echo $entry_affiliate_mail; ?></td>
+            <td><?php if ($config_affiliate_mail) { ?>
+              <input type="radio" name="config_affiliate_mail" value="1" id="affiliate-mail-on" class="radio" checked />
+              <label for="affiliate-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_mail" value="0" id="affiliate-mail-off" class="radio" />
+              <label for="affiliate-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_affiliate_mail" value="1" id="affiliate-mail-on" class="radio" />
+              <label for="affiliate-mail-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_mail" value="0" id="affiliate-mail-off" class="radio" checked />
+              <label for="affiliate-mail-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_affiliate_fax; ?></td>

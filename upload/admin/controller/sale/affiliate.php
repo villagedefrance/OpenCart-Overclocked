@@ -968,7 +968,7 @@ class ControllerSaleAffiliate extends Controller {
 		} elseif (!empty($affiliate_info)) {
 			$this->data['commission'] = $affiliate_info['commission'];
 		} else {
-			$this->data['commission'] = $this->config->get('config_commission');
+			$this->data['commission'] = $this->config->get('config_affiliate_commission');
 		}
 
 		if (isset($this->request->post['tax'])) {
