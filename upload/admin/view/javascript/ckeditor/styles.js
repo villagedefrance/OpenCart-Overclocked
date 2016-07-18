@@ -49,7 +49,7 @@ CKEDITOR.stylesSet.add('default', [
 	// (This requires the "stylescombo" plugin)
 	/*
 	{ name: 'Strong', element: 'strong', overrides: 'b' },
-	{ name: 'Emphasis', element: 'em'	, overrides: 'i' },
+	{ name: 'Emphasis', element: 'em', overrides: 'i' },
 	{ name: 'Underline', element: 'u' },
 	{ name: 'Strikethrough', element: 'strike' },
 	{ name: 'Subscript', element: 'sub' },

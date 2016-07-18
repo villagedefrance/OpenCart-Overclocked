@@ -595,7 +595,7 @@
             </td>
             <td class="left">
               <?php foreach ($languages as $language) { ?>
-                <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="3"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
+                <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" class="mark-it-up"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
                 <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
               <?php } ?>
             </td>
@@ -1388,16 +1388,30 @@ function addColor() {
 }
 //--></script>
 
+<script type="text/javascript" src="view/javascript/jquery/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/markitup/sets/default/set.js"></script>
+
+<link rel="stylesheet" type="text/css" href="view/javascript/jquery/markitup/skins/overclocked/style.css" />
+<link rel="stylesheet" type="text/css" href="view/javascript/jquery/markitup/sets/default/style.css" />
+
+<script type="text/javascript"><!--
+$('.mark-it-up').markItUp(mySettings);
+//--></script>
+
 <script type="text/javascript"><!--
 var attribute_row = <?php echo $attribute_row; ?>;
 
 function addAttribute() {
 	html  = '<tbody id="attribute-row' + attribute_row + '">';
 	html += '  <tr>';
-	html += '    <td class="left"><input type="text" name="product_attribute[' + attribute_row + '][name]" value="" /><input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" /></td>';
+	html += '    <td class="left">';
+	html += '      <input type="text" name="product_attribute[' + attribute_row + '][name]" value="" />';
+	html += '      <input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" />';
+	html += '    </td>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
-	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" cols="40" rows="3"></textarea><img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
+	html += '      <textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" class="mark-it-up"></textarea>';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
 	<?php } ?>
 	html += '    </td>';
 	html += '    <td class="center"><a onclick="$(\'#attribute-row' + attribute_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
@@ -1405,6 +1419,9 @@ function addAttribute() {
 	html += '</tbody>';
 
 	$('#attribute tfoot').before(html);
+
+	$('.mark-it-up').markItUpRemove();
+	$('.mark-it-up').markItUp(mySettings);
 
 	attributeautocomplete(attribute_row);
 

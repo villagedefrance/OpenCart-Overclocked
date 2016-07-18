@@ -413,7 +413,7 @@
             <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
               <div>
                 <div class="attribute-list-left"><?php echo $attribute['name']; ?></div>
-                <div class="attribute-list-right"><?php echo $attribute['text']; ?></div>
+                <div class="attribute-list-right"><?php echo html_entity_decode($attribute['text'], ENT_QUOTES, 'UTF-8'); ?></div>
               </div>
             <?php } ?>
           </div>

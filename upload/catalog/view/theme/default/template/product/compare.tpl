@@ -124,7 +124,7 @@
               <td><?php echo $attribute['name']; ?></td>
               <?php foreach ($products as $product) { ?>
                 <?php if (isset($products[$product['product_id']]['attribute'][$key])) { ?>
-                  <td><?php echo $products[$product['product_id']]['attribute'][$key]; ?></td>
+                  <td><?php echo html_entity_decode($products[$product['product_id']]['attribute'][$key], ENT_QUOTES, 'UTF-8'); ?></td>
                 <?php } else { ?>
                   <td></td>
                 <?php } ?>
