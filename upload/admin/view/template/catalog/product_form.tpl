@@ -97,7 +97,15 @@
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_price; ?></td>
-            <td><input type="text" name="price" value="<?php echo $price; ?>" /></td>
+            <td>
+              <?php if ($vat_rate && $vat_rate != 0) { ?>
+                <input type="text" name="price" class="excvat" value="<?php echo $price; ?>" /> &nbsp; <?php echo $text_exc_vat; ?>
+              <br /><br />
+                <input type="text" name="incvat" class="incvat" value="<?php echo number_format(($price * $vat_rate), 4, '.', ''); ?>" /> &nbsp; <?php echo $text_inc_vat; ?> (<?php echo $base_rate; ?>%)
+              <?php } else { ?>
+                <input type="text" name="price" value="<?php echo $price; ?>" />
+              <?php } ?>
+            </td>
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_cost; ?></td>
@@ -1365,6 +1373,16 @@ getProducts();
 getRelated();
 //--></script>
 <?php } ?>
+
+<script type="text/javascript"><!--
+$('.incvat').bind('change keydown keyup', function() {
+   $('input.excvat').val(($(this).val()/<?php echo $vat_rate; ?>).toFixed(4));
+});
+
+$('.excvat').bind('change keydown keyup', function() {
+   $('input.incvat').val(($(this).val()*<?php echo $vat_rate; ?>).toFixed(4));
+});
+//--></script>
 
 <script type="text/javascript"><!--
 var color_row = <?php echo $color_row; ?>;

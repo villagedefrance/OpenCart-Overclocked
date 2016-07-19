@@ -602,6 +602,8 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_percent'] = $this->language->get('text_percent');
 		$this->data['text_amount'] = $this->language->get('text_amount');
+		$this->data['text_exc_vat'] = $this->language->get('text_exc_vat');
+		$this->data['text_inc_vat'] = $this->language->get('text_inc_vat');
 		$this->data['text_autocomplete'] = $this->language->get('text_autocomplete');
 
 		$this->data['column_attribute'] = $this->language->get('column_attribute');
@@ -925,6 +927,19 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['keyword'] = $product_info['keyword'];
 		} else {
 			$this->data['keyword'] = '';
+		}
+
+		// Price
+		$base_rate = $this->config->get('config_base_rate');
+
+		if (is_numeric($base_rate) && $base_rate > 0) {
+			$vat_rate = number_format(($base_rate * 100), 0, '.', '');
+
+			$this->data['vat_rate'] = '1.' . $vat_rate;
+			$this->data['base_rate'] = $base_rate;
+		} else {
+			$this->data['vat_rate'] = false;
+			$this->data['base_rate'] = '';
 		}
 
 		if (isset($this->request->post['price'])) {

@@ -16,6 +16,8 @@ $_['text_option']             = 'Option';
 $_['text_option_value']       = 'Option Value';
 $_['text_percent']            = 'Percentage';
 $_['text_amount']             = 'Fixed Amount';
+$_['text_exc_vat']            = 'exc. VAT';
+$_['text_inc_vat']            = 'inc. VAT';
 $_['text_autocomplete']       = '<span class="help">(Autocomplete)</span>';
 
 // Column Form

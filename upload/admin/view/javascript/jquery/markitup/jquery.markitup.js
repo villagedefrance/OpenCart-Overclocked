@@ -39,7 +39,7 @@
 			nameSpace: '',
 			root: '',
 			previewHandler: false,
-			previewInWindow: 'scrollbars=yes', // 'width=800, height=600, resizable=yes, scrollbars=yes'
+			previewInWindow: '', // 'width=800, height=600, resizable=yes, scrollbars=yes'
 			previewInElement: '',
 			previewAutoRefresh: true,
 			previewPosition: 'after',
@@ -231,7 +231,7 @@
 							return false;
 						}).bind('click.markItUp', function(e) {
 							e.preventDefault();
-						}).bind("focusin.markItUp", function() {
+						}).bind('focusin.markItUp', function() {
                             $$.focus();
 						}).bind('mouseup', function() {
 							if (button.call) {

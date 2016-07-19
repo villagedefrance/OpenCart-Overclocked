@@ -233,6 +233,10 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_base_rate; ?></td>
+            <td><input type="text" name="config_base_rate" value="<?php echo $config_base_rate; ?>" size="20" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_length_class; ?></td>
             <td><select name="config_length_class_id">
             <?php foreach ($length_classes as $length_class) { ?>

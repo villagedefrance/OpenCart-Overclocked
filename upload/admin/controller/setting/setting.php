@@ -123,6 +123,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_admin_language'] = $this->language->get('entry_admin_language');
 		$this->data['entry_currency'] = $this->language->get('entry_currency');
 		$this->data['entry_currency_auto'] = $this->language->get('entry_currency_auto');
+		$this->data['entry_base_rate'] = $this->language->get('entry_base_rate');
 		$this->data['entry_length_class'] = $this->language->get('entry_length_class');
 		$this->data['entry_weight_class'] = $this->language->get('entry_weight_class');
 		$this->data['entry_date_format'] = $this->language->get('entry_date_format');
@@ -654,6 +655,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_currency_auto'] = $this->request->post['config_currency_auto'];
 		} else {
 			$this->data['config_currency_auto'] = $this->config->get('config_currency_auto');
+		}
+
+		if (isset($this->request->post['config_base_rate'])) {
+			$this->data['config_base_rate'] = $this->request->post['config_base_rate'];
+		} else {
+			$this->data['config_base_rate'] = $this->config->get('config_base_rate');
 		}
 
 		$this->load->model('localisation/currency');
