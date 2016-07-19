@@ -7,10 +7,6 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
-		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
-			$this->redirect($this->url->link('affiliate/forgotten', '', 'SSL'), 301);
-		}
-
 		$this->language->load('affiliate/forgotten');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -24,9 +20,9 @@ class ControllerAffiliateForgotten extends Controller {
 
 			$this->model_affiliate_affiliate->editPassword($this->request->post['email'], $password);
 
-			$subject = sprintf($this->language->get('text_subject'), $this->config->get('config_name'));
+			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 
-			$message = sprintf($this->language->get('text_greeting'), $this->config->get('config_name')) . "\n\n";
+			$message  = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
 			$message .= $this->language->get('text_password') . "\n\n";
 			$message .= $password;
 
@@ -35,18 +31,34 @@ class ControllerAffiliateForgotten extends Controller {
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->hostname = $this->config->get('config_smtp_host');
 			$mail->username = $this->config->get('config_smtp_username');
-			$mail->password = $this->config->get('config_smtp_password');
+			$mail->password = html_entity_decode($this->config->get('config_smtp_password'), ENT_QUOTES, 'UTF-8');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
 
 			$mail->setTo($this->request->post['email']);
 			$mail->setFrom($this->config->get('config_email'));
-			$mail->setSender($this->config->get('config_name'));
-			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject($subject);
+			$mail->setText($message);
 			$mail->send();
 
 			$this->session->data['success'] = $this->language->get('text_success');
+
+			// Add to activity log
+			if ($this->config->get('config_customer_activity')) {
+			$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
+
+			if ($affiliate_info) {
+				$this->load->model('affiliate/activity');
+
+				$activity_data = array(
+					'affiliate_id' => $affiliate_info['affiliate_id'],
+					'name'         => $affiliate_info['firstname'] . ' ' . $affiliate_info['lastname']
+				);
+
+				$this->model_affiliate_activity->addActivity('forgotten', $activity_data);
+			}
+			}
 
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
@@ -120,11 +132,13 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->error['warning'] = $this->language->get('error_email');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
+		$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
+
+		if ($affiliate_info && !$affiliate_info['approved']) {
+		    $this->error['warning'] = $this->language->get('error_approved');
 		}
+
+		return empty($this->error);
 	}
 }
 ?>

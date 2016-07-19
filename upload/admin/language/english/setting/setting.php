@@ -121,8 +121,8 @@ $_['entry_customer_fax']           = 'Request Customer\'s Fax:';
 $_['entry_customer_gender']        = 'Request Gender:';
 $_['entry_customer_dob']           = 'Request Date of Birth:<span class="help">Required if some products have age restrictions.</span>';
 $_['entry_picklist_status']        = 'Enable Pick List:<span class="help">Facilitates back-order tracking and provides order updates for your customers.</span>';
+$_['entry_login_attempts']         = 'Max Login Attempts:<span class="help">Maximum login attempts allowed before the account is locked for 1 hour. Customer and affliate accounts can be unlocked on the customer or affliate admin pages.</span>';
 $_['entry_account']                = 'Account Terms:<span class="help">Forces people to agree to terms before an account can be created.</span>';
-
 $_['entry_affiliate']              = 'Affiliate Terms:<span class="help">Forces people to agree to terms before an affiliate account can be created.</span>';
 $_['entry_affiliate_commission']   = 'Affiliate Commission (%):<span class="help">The default affiliate commission percentage.</span>';
 $_['entry_affiliate_fax']          = 'Request Affiliate\'s Fax:';
@@ -230,6 +230,7 @@ $_['error_email_noreply']          = 'E-Mail Address does not appear to be valid
 $_['error_telephone']              = 'Telephone must be between 3 and 32 characters!';
 $_['error_title']                  = 'Title must be between 3 and 32 characters!';
 $_['error_limit']                  = 'A Limit is required!';
+$_['error_login_attempts']         = 'Login Attempts must be greater than 0!';
 $_['error_customer_group_display'] = 'You must include the default customer group if you are going to use this feature!';
 $_['error_voucher_min']            = 'Minimum voucher amount required!';
 $_['error_voucher_max']            = 'Maximum voucher amount required!';

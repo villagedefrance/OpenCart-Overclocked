@@ -294,6 +294,7 @@ class ControllerCheckoutConfirm extends Controller {
 			$data['total'] = $total;
 
 			if (isset($this->request->cookie['tracking'])) {
+				// Affiliate
 				$this->load->model('affiliate/affiliate');
 
 				$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByCode($this->request->cookie['tracking']);

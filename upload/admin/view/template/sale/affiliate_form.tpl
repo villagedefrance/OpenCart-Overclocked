@@ -197,7 +197,7 @@
         <table class="form">
           <tbody>
           <tr>
-            <td><?php echo $entry_affiliate_commission; ?></td>
+            <td><?php echo $entry_commission; ?></td>
             <td><input type="text" name="commission" value="<?php echo $commission; ?>" /></td>
           </tr>
           <tr>

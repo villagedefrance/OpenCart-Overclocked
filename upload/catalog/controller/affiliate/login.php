@@ -7,10 +7,6 @@ class ControllerAffiliateLogin extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
-		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
-			$this->redirect($this->url->link('affiliate/login', '', 'SSL'), 301);
-		}
-
 		$this->language->load('affiliate/login');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -18,6 +14,18 @@ class ControllerAffiliateLogin extends Controller {
 		$this->load->model('affiliate/affiliate');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && isset($this->request->post['email']) && isset($this->request->post['password']) && $this->validate()) {
+			// Add to activity log
+			if ($this->config->get('config_customer_activity')) {
+			$this->load->model('affiliate/activity');
+
+			$activity_data = array(
+				'affiliate_id' => $this->affiliate->getId(),
+				'name'         => $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName()
+			);
+
+			$this->model_affiliate_activity->addActivity('login', $activity_data);
+			}
+
 			// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
 				$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
@@ -48,7 +56,7 @@ class ControllerAffiliateLogin extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
-		$this->data['text_description'] = sprintf($this->language->get('text_description'), $this->config->get('config_name'), $this->config->get('config_name'), $this->config->get('config_commission') . '%');
+		$this->data['text_description'] = sprintf($this->language->get('text_description'), $this->config->get('config_name'), $this->config->get('config_name'), $this->config->get('config_affiliate_commission') . '%');
 		$this->data['text_new_affiliate'] = $this->language->get('text_new_affiliate');
 		$this->data['text_register_account'] = $this->language->get('text_register_account');
 		$this->data['text_returning_affiliate'] = $this->language->get('text_returning_affiliate');
@@ -125,10 +133,15 @@ class ControllerAffiliateLogin extends Controller {
 	}
 
 	protected function validate() {
-		if (!$this->affiliate->login($this->request->post['email'], $this->request->post['password'])) {
-			$this->error['warning'] = $this->language->get('error_login');
+		// Check how many login attempts have been made.
+    $this->load->model('affiliate/affiliate');
+		$login_info = $this->model_affiliate_affiliate->getTotalLoginAttempts($this->request->post['email']);
+				
+		if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
+			$this->error['warning'] = $this->language->get('error_attempts');
 		}
 
+		// Check if affiliate has been approved.
 		$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
 
 		if ($affiliate_info && !$affiliate_info['approved']) {
@@ -136,10 +149,16 @@ class ControllerAffiliateLogin extends Controller {
 		}
 
 		if (!$this->error) {
-			return true;
+			if (!$this->affiliate->login($this->request->post['email'], $this->request->post['password'])) {
+				$this->error['warning'] = $this->language->get('error_login');
+			
+				$this->model_affiliate_affiliate->addLoginAttempt($this->request->post['email']);
 		} else {
-			return false;
+				$this->model_affiliate_affiliate->deleteLoginAttempts($this->request->post['email']);
 		}
+	}
+		
+		return empty($this->error);
 	}
 }
 ?>

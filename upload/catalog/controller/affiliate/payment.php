@@ -20,6 +20,18 @@ class ControllerAffiliatePayment extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
+			// Add to activity log
+			if ($this->config->get('config_customer_activity')) {
+			$this->load->model('affiliate/activity');
+
+			$activity_data = array(
+				'affiliate_id' => $this->affiliate->getId(),
+				'name'         => $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName()
+			);
+
+			$this->model_affiliate_activity->addActivity('payment', $activity_data);
+			}
+
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 

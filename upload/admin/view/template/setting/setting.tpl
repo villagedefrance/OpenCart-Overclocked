@@ -909,6 +909,10 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_login_attempts; ?></td>
+            <td><input type="text" name="config_login_attempts" value="<?php echo $config_login_attempts; ?>" size="3" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_account; ?></td>
             <td><select name="config_account_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -1977,7 +1981,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <script type="text/javascript"><!--
 $('select[name=\'config_country_id\']').bind('change', function() {
 	$.ajax({
-		url: 'index.php?route=setting/setting/country&token=<?php echo $token; ?>&country_id=' + this.value,
+		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
 			$('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');

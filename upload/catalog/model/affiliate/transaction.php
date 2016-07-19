@@ -39,7 +39,7 @@ class ModelAffiliateTransaction extends Model {
 		return $query->rows;
 	}
 
-	public function getTotalTransactions() {
+	public function getTotalTransactions($data = array()) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate_transaction WHERE affiliate_id = '" . (int)$this->affiliate->getId() . "'");
 
 		if ($query->num_rows) {
