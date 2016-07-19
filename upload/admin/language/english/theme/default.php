@@ -24,7 +24,7 @@ $_['entry_breadcrumbs']         = 'Show Breadcrumbs:<span class="help">If "No" i
 $_['entry_back_to_top']         = 'Enable Scroll Back to Top:';
 $_['entry_web_design']          = 'Display Web Design Credits:<span class="help">Html and links are accepted.</span>';
 $_['entry_powered_by']          = 'Display Powered by:<span class="help">Show "Powered by OpenCart Overclocked".</span>';
-$_['entry_footer_theme']        = 'Footer Theme:<span class="help">Choose between a Light or a Dark theme.</span>';
+$_['entry_footer_theme']        = 'Footer Theme:<span class="help">Choose between a Light, Dark or Custom theme.</span>';
 $_['entry_footer_color']        = 'Select Footer Color:';
 $_['entry_footer_shape']        = 'Select Footer Shape:';
 $_['entry_footer_location']     = 'Display Address:';
