@@ -93,9 +93,9 @@ class ControllerCommonFooter extends Controller {
 			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/footer-custom.css');
 
 			if ($mod_color == 'white-skin' || $mod_color == 'beige-skin' || $mod_color == 'ash-skin' || $mod_color == 'silver-skin' || $mod_color == 'citrus-skin' || $mod_color == 'yellow-skin') {
-				$footer_class = '-dark';
+				$footer_class = 'footer-dark';
 			} else {
-				$footer_class = '-light';
+				$footer_class = 'footer-light';
 			}
 
 		} else {
@@ -103,14 +103,14 @@ class ControllerCommonFooter extends Controller {
 
 			$mod_color = '';
 			$mod_shape = '';
-			$footer_class = '-' . $footer_theme;
+
+			$footer_class = 'footer-' . $footer_theme;
 		}
 
 		$this->data['mod_color'] = $mod_color;
 		$this->data['mod_shape'] = $mod_shape;
 
 		$this->data['footer_class'] = $footer_class;
-		$this->data['footer_theme'] = $footer_theme;
 
 		// Piwik
 		$this->data['piwik'] = html_entity_decode($this->config->get('config_piwik_analytics'), ENT_QUOTES, 'UTF-8');
