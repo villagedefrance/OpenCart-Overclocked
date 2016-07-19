@@ -8,17 +8,7 @@ class ControllerAffiliateAccount extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
-		if (!$this->affiliate->isSecure()) {
-			$this->affiliate->logout();
-
-			$this->session->data['redirect'] = $this->url->link('affiliate/account', '', 'SSL');
-
-			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
-		}
-
 		$this->language->load('affiliate/account');
-
-		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['breadcrumbs'] = array();
 
@@ -34,13 +24,7 @@ class ControllerAffiliateAccount extends Controller {
 			'separator' => $this->language->get('text_separator')
 		);
 
-		if (isset($this->session->data['success'])) {
-			$this->data['success'] = $this->session->data['success'];
-
-			unset($this->session->data['success']);
-		} else {
-			$this->data['success'] = '';
-		}
+		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -52,6 +36,14 @@ class ControllerAffiliateAccount extends Controller {
 		$this->data['text_payment'] = $this->language->get('text_payment');
 		$this->data['text_tracking'] = $this->language->get('text_tracking');
 		$this->data['text_transaction'] = $this->language->get('text_transaction');
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
 
 		$this->data['edit'] = $this->url->link('affiliate/edit', '', 'SSL');
 		$this->data['password'] = $this->url->link('affiliate/password', '', 'SSL');

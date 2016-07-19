@@ -20,6 +20,18 @@ class ControllerAffiliatePassword extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
+			// Add to activity log
+			if ($this->config->get('config_customer_activity')) {
+			$this->load->model('affiliate/activity');
+
+			$activity_data = array(
+				'affiliate_id' => $this->affiliate->getId(),
+				'name'         => $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName()
+			);
+
+			$this->model_affiliate_activity->addActivity('password', $activity_data);
+			}
+
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
@@ -113,11 +125,7 @@ class ControllerAffiliatePassword extends Controller {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

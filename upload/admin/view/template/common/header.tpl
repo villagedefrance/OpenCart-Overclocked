@@ -340,6 +340,7 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo $text_affiliate; ?></a>
             <ul>
+              <li><a href="<?php echo $report_affiliate_activity; ?>"><?php echo $text_report_affiliate_activity; ?></a></li>
               <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo $text_report_affiliate_commission; ?></a></li>
             </ul>
           </li>

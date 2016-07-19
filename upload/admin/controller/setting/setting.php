@@ -176,9 +176,13 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_customer_gender'] = $this->language->get('entry_customer_gender');
 		$this->data['entry_customer_dob'] = $this->language->get('entry_customer_dob');
 		$this->data['entry_picklist_status'] = $this->language->get('entry_picklist_status');
+		$this->data['entry_login_attempts'] = $this->language->get('entry_login_attempts');
 		$this->data['entry_account'] = $this->language->get('entry_account');
+		$this->data['entry_affiliate_approval'] = $this->language->get('entry_affiliate_approval');
+		$this->data['entry_affiliate_auto'] = $this->language->get('entry_affiliate_auto');
+		$this->data['entry_affiliate_commission'] = $this->language->get('entry_affiliate_commission');
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
-		$this->data['entry_commission'] = $this->language->get('entry_commission');
+		$this->data['entry_affiliate_mail'] = $this->language->get('entry_affiliate_mail');
 		$this->data['entry_affiliate_fax'] = $this->language->get('entry_affiliate_fax');
 		$this->data['entry_affiliate_disable'] = $this->language->get('entry_affiliate_disable');
 		$this->data['entry_return'] = $this->language->get('entry_return');
@@ -326,6 +330,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_customer_group_display'] = $this->error['customer_group_display'];
 		} else {
 			$this->data['error_customer_group_display'] = '';
+		}
+
+		if (isset($this->error['login_attempts'])) {
+			$this->data['error_login_attempts'] = $this->error['login_attempts'];
+		} else {
+			$this->data['error_login_attempts'] = '';
 		}
 
 		if (isset($this->error['voucher_min'])) {
@@ -1021,6 +1031,14 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_picklist_status'] = $this->config->get('config_picklist_status');
 		}
 
+		if (isset($this->request->post['config_login_attempts'])) {
+			$this->data['config_login_attempts'] = $this->request->post['config_login_attempts'];
+		} elseif ($this->config->has('config_login_attempts')) {
+			$this->data['config_login_attempts'] = $this->config->get('config_login_attempts');
+		} else {
+			$this->data['config_login_attempts'] = 5;
+		}
+
 		if (isset($this->request->post['config_account_id'])) {
 			$this->data['config_account_id'] = $this->request->post['config_account_id'];
 		} else {
@@ -1031,24 +1049,50 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['informations'] = $this->model_catalog_information->getInformations();
 
+		if (isset($this->request->post['config_affiliate_approval'])) {
+			$this->data['config_affiliate_approval'] = $this->request->post['config_affiliate_approval'];
+		} elseif ($this->config->has('config_affiliate_approval')) {
+			$this->data['config_affiliate_approval'] = $this->config->get('config_affiliate_approval');
+		} else {
+			$this->data['config_affiliate_approval'] = '';
+		}
+
+		if (isset($this->request->post['config_affiliate_auto'])) {
+			$this->data['config_affiliate_auto'] = $this->request->post['config_affiliate_auto'];
+		} elseif ($this->config->has('config_affiliate_auto')) {
+			$this->data['config_affiliate_auto'] = $this->config->get('config_affiliate_auto');
+		} else {
+			$this->data['config_affiliate_auto'] = '';
+		}
+
+		if (isset($this->request->post['config_affiliate_commission'])) {
+			$this->data['config_affiliate_commission'] = $this->request->post['config_affiliate_commission'];
+		} elseif ($this->config->has('config_affiliate_commission')) {
+			$this->data['config_affiliate_commission'] = $this->config->get('config_affiliate_commission');
+		} else {
+			$this->data['config_affiliate_commission'] = '5.00';
+		}
+
 		if (isset($this->request->post['config_affiliate_id'])) {
 			$this->data['config_affiliate_id'] = $this->request->post['config_affiliate_id'];
 		} else {
 			$this->data['config_affiliate_id'] = $this->config->get('config_affiliate_id');
 		}
 
-		if (isset($this->request->post['config_commission'])) {
-			$this->data['config_commission'] = $this->request->post['config_commission'];
-		} elseif ($this->config->has('config_commission')) {
-			$this->data['config_commission'] = $this->config->get('config_commission');
+		if (isset($this->request->post['config_affiliate_mail'])) {
+			$this->data['config_affiliate_mail'] = $this->request->post['config_affiliate_mail'];
+		} elseif ($this->config->has('config_affiliate_mail')) {
+			$this->data['config_affiliate_mail'] = $this->config->get('config_affiliate_mail');
 		} else {
-			$this->data['config_commission'] = '5.00';
+			$this->data['config_affiliate_mail'] = '';
 		}
 
 		if (isset($this->request->post['config_affiliate_fax'])) {
 			$this->data['config_affiliate_fax'] = $this->request->post['config_affiliate_fax'];
-		} else {
+		} elseif ($this->config->has('config_affiliate_fax')) {
 			$this->data['config_affiliate_fax'] = $this->config->get('config_affiliate_fax');
+		} else {
+			$this->data['config_affiliate_fax'] = '';
 		}
 
 		if (isset($this->request->post['config_affiliate_disable'])) {
@@ -1257,7 +1301,7 @@ class ControllerSettingSetting extends Controller {
 			$this->data['icon'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
 
-		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100); 
+		$this->data['no_image'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 
 		if (isset($this->request->post['config_image_category_width'])) {
 			$this->data['config_image_category_width'] = $this->request->post['config_image_category_width'];
@@ -1461,7 +1505,7 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_smtp_host'] = $this->request->post['config_smtp_host'];
 		} else {
 			$this->data['config_smtp_host'] = $this->config->get('config_smtp_host');
-		} 
+		}
 
 		if (isset($this->request->post['config_smtp_username'])) {
 			$this->data['config_smtp_username'] = $this->request->post['config_smtp_username'];
@@ -1758,6 +1802,10 @@ class ControllerSettingSetting extends Controller {
 			$this->error['customer_group_display'] = $this->language->get('error_customer_group_display');
 		}
 
+		if ($this->request->post['config_login_attempts'] < 1) {
+			$this->error['login_attempts'] = $this->language->get('error_login_attempts');
+		}
+
 		if (!$this->request->post['config_voucher_min']) {
 			$this->error['voucher_min'] = $this->language->get('error_voucher_min');
 		}
@@ -1837,7 +1885,7 @@ class ControllerSettingSetting extends Controller {
 
 			if (!$this->request->post['config_ftp_username']) {
 				$this->error['ftp_username'] = $this->language->get('error_ftp_username');
-			} 
+			}
 
 			if (!$this->request->post['config_ftp_password']) {
 				$this->error['ftp_password'] = $this->language->get('error_ftp_password');

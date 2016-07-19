@@ -8,14 +8,6 @@ class ControllerAffiliateTransaction extends Controller {
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
 		}
 
-		if (!$this->affiliate->isSecure()) {
-			$this->customer->logout();
-
-			$this->session->data['redirect'] = $this->url->link('affiliate/transaction', '', 'SSL');
-
-			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
-		}
-
 		$this->language->load('affiliate/transaction');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -61,16 +53,16 @@ class ControllerAffiliateTransaction extends Controller {
 
 		$this->data['transactions'] = array();
 
-		$data = array(
-			'sort'  => 't.date_added',
+		$filter_data = array(
+			'sort'  => 'date_added',
 			'order' => 'DESC',
 			'start' => ($page - 1) * 10,
 			'limit' => 10
 		);
 
-		$transaction_total = $this->model_affiliate_transaction->getTotalTransactions($data);
+		$transaction_total = $this->model_affiliate_transaction->getTotalTransactions($filter_data);
 
-		$results = $this->model_affiliate_transaction->getTransactions($data);
+		$results = $this->model_affiliate_transaction->getTransactions($filter_data);
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
@@ -80,6 +72,10 @@ class ControllerAffiliateTransaction extends Controller {
 			);
 		}
 
+		$this->data['balance'] = $this->currency->format($this->model_affiliate_transaction->getBalance());
+
+		$this->data['continue'] = $this->url->link('affiliate/account', '', 'SSL');
+
 		$pagination = new Pagination();
 		$pagination->total = $transaction_total;
 		$pagination->page = $page;
@@ -88,10 +84,6 @@ class ControllerAffiliateTransaction extends Controller {
 		$pagination->url = $this->url->link('affiliate/transaction', 'page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
-
-		$this->data['balance'] = $this->currency->format($this->model_affiliate_transaction->getBalance());
-
-		$this->data['continue'] = $this->url->link('affiliate/account', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');

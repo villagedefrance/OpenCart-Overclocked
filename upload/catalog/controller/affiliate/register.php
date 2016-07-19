@@ -7,10 +7,6 @@ class ControllerAffiliateRegister extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
-		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
-			$this->redirect($this->url->link('affiliate/register', '', 'SSL'), 301);
-		}
-
 		$this->language->load('affiliate/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -21,9 +17,24 @@ class ControllerAffiliateRegister extends Controller {
 		$this->load->model('affiliate/affiliate');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_affiliate_affiliate->addAffiliate($this->request->post);
+			$affiliate_id = $this->model_affiliate_affiliate->addAffiliate($this->request->post);
+
+			// Clear any previous login attempts in not registered.
+			$this->model_affiliate_affiliate->deleteLoginAttempts($this->request->post['email']);
 
 			$this->affiliate->login($this->request->post['email'], $this->request->post['password']);
+
+			// Add to activity log
+			if ($this->config->get('config_customer_activity')) {
+			$this->load->model('affiliate/activity');
+
+			$activity_data = array(
+				'affiliate_id' => $affiliate_id,
+				'name'         => $this->request->post['firstname'] . ' ' . $this->request->post['lastname']
+			);
+
+			$this->model_affiliate_activity->addActivity('register', $activity_data);
+			}
 
 			$this->redirect($this->url->link('affiliate/success'));
 		}
@@ -371,7 +382,7 @@ class ControllerAffiliateRegister extends Controller {
 		}
 
 		if (isset($this->request->post['email'])) {
-			// Email exists check
+			// Check email exists
 			$this->load->model('affiliate/affiliate');
 
 			$email_exist = $this->model_affiliate_affiliate->getTotalAffiliatesByEmail($this->request->post['email']) ? true : false;
@@ -436,11 +447,7 @@ class ControllerAffiliateRegister extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function country() {
