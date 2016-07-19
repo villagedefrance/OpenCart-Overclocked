@@ -44,7 +44,7 @@ $_['help_username']             = 'Your eWAY API Key from your MYeWAY account.';
 $_['help_password']             = 'Your eWAY API Password from your MYeWAY account.';
 $_['help_transaction_method']   = 'Authorisation is only available for Australian banks';
 
-// Order page - payment tab
+// Order page - Payment tab
 $_['text_payment_info']         = 'Payment information';
 $_['text_order_total']          = 'Total authorised';
 $_['text_transactions']         = 'Transactions';

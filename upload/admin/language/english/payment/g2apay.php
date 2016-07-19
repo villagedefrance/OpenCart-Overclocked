@@ -61,7 +61,7 @@ $_['error_secret']                    = 'Secret required!';
 $_['error_api_hash']                  = 'API Hash required!';
 $_['entry_status']                    = 'Status';
 
-//Button
+// Button
 $_['btn_refund']                      = 'refund';
 
 $_['g2apay_environment_live']         = 'Live';

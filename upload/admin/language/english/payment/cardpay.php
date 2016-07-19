@@ -12,7 +12,7 @@ $_['text_success']                          = 'Success: You have modified <b>Car
 // Entry
 $_['entry_cardpay_server']                  = 'CardPay server URL:';
 $_['entry_cardpay_hold_only']               = 'Hold only?';
-$_['entry_cardpay_shop_id']                 = 'Shop id:';
+$_['entry_cardpay_shop_id']                 = 'Shop ID:';
 $_['entry_cardpay_secret_key']              = 'Secret key:';
 $_['entry_order_status']                    = 'Order Status:';
 $_['entry_geo_zone']                        = 'Geo Zone:';
