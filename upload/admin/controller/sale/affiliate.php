@@ -260,7 +260,13 @@ class ControllerSaleAffiliate extends Controller {
 		$this->load->model('sale/affiliate');
 
 		if (isset($this->request->post['selected']) && $this->validateUnlock()) {
-			$this->model_sale_affiliate->deleteLoginAttempts($this->request->get['email']);
+			foreach ($this->request->post['selected'] as $affiliate_id) {
+				$affiliate_info = $this->model_sale_affiliate->getAffiliate($affiliate_id);
+
+				if ($affiliate_info && $affiliate_info['email']) {
+					$this->model_sale_affiliate->deleteLoginAttempts($affiliate_info['email']);
+				}
+			}
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -401,6 +407,7 @@ class ControllerSaleAffiliate extends Controller {
 			'separator'	=> ' :: '
 		);
 
+		$this->data['unlock'] = $this->url->link('sale/affiliate/unlock', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['approve'] = $this->url->link('sale/affiliate/approve', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('sale/affiliate/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('sale/affiliate/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -430,21 +437,22 @@ class ControllerSaleAffiliate extends Controller {
 		foreach ($results as $result) {
 			$action = array();
 
-			if ($this->config->has('config_login_attempts')) {
-				$login_info = $this->model_sale_affiliate->getTotalLoginAttempts($result['email']);
-
-				if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts'))) {
-					$action[] = array(
-						'text' => $this->language->get('text_unlock'),
-						'href' => $this->url->link('sale/affiliate/unlock', 'token=' . $this->session->data['token'] . '&email=' . $result['email'] . $url, 'SSL')
-					);
-				}
-			}
-
 			$action[] = array(
 				'text' => $this->language->get('text_edit'),
 				'href' => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $result['affiliate_id'] . $url, 'SSL')
 			);
+
+			$attempts = $this->config->get('config_login_attempts');
+
+			if ($attempts > 0) {
+				$login_info = $this->model_sale_affiliate->getLoginAttempts($result['email']);
+
+				if ($login_info && ($login_info['total'] >= $attempts)) {
+					$lock = true;
+				} else {
+					$lock = false;
+				}
+			}
 
 			$this->data['affiliates'][] = array(
 				'affiliate_id' => $result['affiliate_id'],
@@ -454,6 +462,7 @@ class ControllerSaleAffiliate extends Controller {
 				'approved'     => $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
 				'date_added'   => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'status'       => $result['status'],
+				'lock'         => $lock,
 				'selected'     => isset($this->request->post['selected']) && in_array($result['affiliate_id'], $this->request->post['selected']),
 				'action'       => $action
 			);
@@ -475,6 +484,7 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_unlock'] = $this->language->get('button_unlock');
 		$this->data['button_approve'] = $this->language->get('button_approve');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');

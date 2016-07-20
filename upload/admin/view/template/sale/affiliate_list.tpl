@@ -15,6 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a onclick="$('form').attr('action','<?php echo $unlock; ?>'); $('form').submit();" class="button-repair"><?php echo $button_unlock; ?></a>
         <a onclick="$('form').attr('action','<?php echo $approve; ?>'); $('form').submit();" class="button-save"><?php echo $button_approve; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').attr('action','<?php echo $delete; ?>'); $('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
@@ -104,7 +105,11 @@
               <input type="checkbox" name="selected[]" value="<?php echo $affiliate['affiliate_id']; ?>" id="<?php echo $affiliate['affiliate_id']; ?>" class="checkbox" />
               <label for="<?php echo $affiliate['affiliate_id']; ?>"><span></span></label>
             <?php } ?></td>
-            <td class="left"><?php echo $affiliate['name']; ?></td>
+            <td class="left"><?php if ($affiliate['lock']) { ?>
+              <img src="view/image/theme/lock.png" alt="" /> &nbsp; <?php echo $affiliate['name']; ?>
+            <?php } else { ?>
+              <?php echo $affiliate['name']; ?>
+            <?php } ?></td>
             <td class="left"><?php echo $affiliate['email']; ?></td>
             <td class="center"><?php echo $affiliate['balance']; ?></td>
             <td class="center"><?php echo $affiliate['approved']; ?></td>

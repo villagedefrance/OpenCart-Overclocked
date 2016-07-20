@@ -293,14 +293,14 @@ class ModelSaleAffiliate extends Model {
 		return $query->row['total'];
 	}
 
-	public function getTotalLoginAttempts($email) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_login WHERE email = '" . $this->db->escape($email) . "'");
+	public function getLoginAttempts($email) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_login WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 
 		return $query->row;
 	}
 
 	public function deleteLoginAttempts($email) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_login WHERE email = '" . $this->db->escape($email) . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_login WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 	}
 }
 ?>

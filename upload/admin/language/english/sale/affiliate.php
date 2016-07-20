@@ -5,7 +5,6 @@ $_['heading_title']             = 'Affiliates';
 // Text
 $_['text_success']              = 'Success: You have modified <b>Affiliates</b> !';
 $_['text_approved']             = 'You have approved %s accounts!';
-$_['text_unlock']               = 'Unlock';
 $_['text_affiliate_detail']     = 'Affiliate Details';
 $_['text_affiliate_address']    = 'Affiliate Address';
 $_['text_wait']                 = 'Please Wait!';
@@ -54,8 +53,8 @@ $_['entry_bank_branch_number']  = 'ABA/BSB number (Branch Number)';
 $_['entry_bank_swift_code']     = 'SWIFT Code';
 $_['entry_bank_account_name']   = 'Account Name';
 $_['entry_bank_account_number'] = 'Account Number';
-$_['entry_amount']              = 'Amount';
 $_['entry_description']         = 'Description';
+$_['entry_amount']              = 'Amount';
 $_['entry_name']                = 'Affiliate Name';
 $_['entry_approved']            = 'Approved';
 $_['entry_date_added']          = 'Date Added';
@@ -64,6 +63,9 @@ $_['entry_date_added']          = 'Date Added';
 $_['help_code']                 = 'The tracking code that will be used to track referrals.';
 $_['help_commission']           = 'Percentage the affiliate receives on each order.';
 $_['help_amount']               = 'Enter an amount without the currency symbol.';
+
+// Button
+$_['button_unlock']          = 'Unlock';
 
 // Error
 $_['error_warning']             = 'Warning: Please check the form carefully for errors!';

@@ -32,8 +32,6 @@ class ControllerAffiliateLogin extends Controller {
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
 				$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
 			} else {
-				$this->model_affiliate_affiliate->deleteLoginAttempts($this->request->post['email']);
-
 				$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 			}
 		}
@@ -140,7 +138,7 @@ class ControllerAffiliateLogin extends Controller {
 		// Check how many login attempts have been made.
 		$this->load->model('affiliate/affiliate');
 
-		$login_info = $this->model_affiliate_affiliate->getTotalLoginAttempts($this->request->post['email']);
+		$login_info = $this->model_affiliate_affiliate->getLoginAttempts($this->request->post['email']);
 
 		if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
 			$this->error['warning'] = $this->language->get('error_attempts');
