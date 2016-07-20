@@ -7,6 +7,10 @@ class ControllerAffiliateLogin extends Controller {
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 		}
 
+		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
+			$this->redirect($this->url->link('affiliate/login', '', 'SSL'), 301);
+		}
+
 		$this->language->load('affiliate/login');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -15,21 +19,21 @@ class ControllerAffiliateLogin extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && isset($this->request->post['email']) && isset($this->request->post['password']) && $this->validate()) {
 			// Add to activity log
-			if ($this->config->get('config_customer_activity')) {
-			$this->load->model('affiliate/activity');
+			if ($this->config->get('config_affiliate_activity')) {
+				$this->load->model('affiliate/activity');
 
-			$activity_data = array(
-				'affiliate_id' => $this->affiliate->getId(),
-				'name'         => $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName()
-			);
+				$affiliate_id = $this->affiliate->getId();
+				$affiliate_name = $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName();
 
-			$this->model_affiliate_activity->addActivity('login', $activity_data);
+				$this->model_affiliate_activity->addActivity($affiliate_id, 'login', $affiliate_name);
 			}
 
 			// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
 				$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
 			} else {
+				$this->model_affiliate_affiliate->deleteLoginAttempts($this->request->post['email']);
+
 				$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
 			}
 		}
@@ -134,9 +138,10 @@ class ControllerAffiliateLogin extends Controller {
 
 	protected function validate() {
 		// Check how many login attempts have been made.
-    $this->load->model('affiliate/affiliate');
+		$this->load->model('affiliate/affiliate');
+
 		$login_info = $this->model_affiliate_affiliate->getTotalLoginAttempts($this->request->post['email']);
-				
+
 		if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
 			$this->error['warning'] = $this->language->get('error_attempts');
 		}
@@ -151,14 +156,18 @@ class ControllerAffiliateLogin extends Controller {
 		if (!$this->error) {
 			if (!$this->affiliate->login($this->request->post['email'], $this->request->post['password'])) {
 				$this->error['warning'] = $this->language->get('error_login');
-			
+
 				$this->model_affiliate_affiliate->addLoginAttempt($this->request->post['email']);
-		} else {
+			} else {
 				$this->model_affiliate_affiliate->deleteLoginAttempts($this->request->post['email']);
+			}
 		}
-	}
-		
-		return empty($this->error);
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

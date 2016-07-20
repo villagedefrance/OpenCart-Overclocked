@@ -138,7 +138,7 @@
             <td><span class="required">*</span> <?php echo $entry_city; ?></td>
             <td><?php if ($error_city) { ?>
               <input type="text" name="city" value="<?php echo $city; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_city ?></span>
+              <span class="error"><?php echo $error_city; ?></span>
             <?php } else { ?>
               <input type="text" name="city" value="<?php echo $city; ?>" size="40" />
             <?php } ?></td>
@@ -147,7 +147,7 @@
             <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
             <td><?php if ($error_postcode) { ?>
               <input type="text" name="postcode" value="<?php echo $postcode; ?>" class="input-error" />
-              <span class="error"><?php echo $error_postcode ?></span>
+              <span class="error"><?php echo $error_postcode; ?></span>
             <?php } else { ?>
               <input type="text" name="postcode" value="<?php echo $postcode; ?>" />
             <?php } ?></td>
@@ -228,14 +228,24 @@
           </tbody>
           <tbody id="payment-cheque" class="payment">
           <tr>
-            <td><?php echo $entry_cheque; ?></td>
-            <td><input type="text" name="cheque" value="<?php echo $cheque; ?>" size="40" /></td>
+            <td><span class="required">*</span> <?php echo $entry_cheque; ?></td>
+            <td><?php if ($error_cheque) { ?>
+              <input type="text" name="cheque" value="<?php echo $cheque; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_cheque; ?></span>
+            <?php } else { ?>
+              <input type="text" name="cheque" value="<?php echo $cheque; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           </tbody>
           <tbody id="payment-paypal" class="payment">
           <tr>
-            <td><?php echo $entry_paypal; ?></td>
-            <td><input type="text" name="paypal" value="<?php echo $paypal; ?>" size="40" /></td>
+            <td><span class="required">*</span> <?php echo $entry_paypal; ?></td>
+            <td><?php if ($error_paypal) { ?>
+              <input type="text" name="paypal" value="<?php echo $paypal; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_paypal; ?></span>
+            <?php } else { ?>
+              <input type="text" name="paypal" value="<?php echo $paypal; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           </tbody>
           <tbody id="payment-bank" class="payment">
@@ -253,11 +263,21 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_bank_account_name; ?></td>
-            <td><input type="text" name="bank_account_name" value="<?php echo $bank_account_name; ?>" /></td>
+            <td><?php if ($error_bank_account_name) { ?>
+              <input type="text" name="bank_account_name" value="<?php echo $bank_account_name; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_bank_account_name; ?></span>
+            <?php } else { ?>
+              <input type="text" name="bank_account_name" value="<?php echo $bank_account_name; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_bank_account_number; ?></td>
-            <td><input type="text" name="bank_account_number" value="<?php echo $bank_account_number; ?>" /></td>
+            <td><?php if ($error_bank_account_number) { ?>
+              <input type="text" name="bank_account_number" value="<?php echo $bank_account_number; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_bank_account_number; ?></span>
+            <?php } else { ?>
+              <input type="text" name="bank_account_number" value="<?php echo $bank_account_number; ?>" size="40" />
+            <?php } ?></td>
           </tr>
           </tbody>
         </table>
@@ -290,10 +310,10 @@
 <script type="text/javascript"><!--
 $('select[name=\'country_id\']').on('change', function() {
 	$.ajax({
-    url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
+		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
-      $('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
+			$('select[name=\'country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
 		},
 		complete: function() {
 			$('.wait').remove();

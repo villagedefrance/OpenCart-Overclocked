@@ -945,10 +945,6 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_login_attempts; ?></td>
-            <td><input type="text" name="config_login_attempts" value="<?php echo $config_login_attempts; ?>" size="3" /></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_account; ?></td>
             <td><select name="config_account_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -997,6 +993,10 @@
             <td><input type="text" name="config_affiliate_commission" value="<?php echo $config_affiliate_commission; ?>" size="3" /></td>
           </tr>
           <tr>
+            <td><?php echo $entry_login_attempts; ?></td>
+            <td><input type="text" name="config_login_attempts" value="<?php echo $config_login_attempts; ?>" size="3" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_affiliate; ?></td>
             <td><select name="config_affiliate_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -1035,6 +1035,20 @@
               <label for="affiliate-fax-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_affiliate_fax" value="0" id="affiliate-fax-off" class="radio" checked />
               <label for="affiliate-fax-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_affiliate_activity; ?></td>
+            <td><?php if ($config_affiliate_activity) { ?>
+              <input type="radio" name="config_affiliate_activity" value="1" id="affiliate-activity-on" class="radio" checked />
+              <label for="affiliate-activity-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_activity" value="0" id="affiliate-activity-off" class="radio" />
+              <label for="affiliate-activity-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_affiliate_activity" value="1" id="affiliate-activity-on" class="radio" />
+              <label for="affiliate-activity-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_affiliate_activity" value="0" id="affiliate-activity-off" class="radio" checked />
+              <label for="affiliate-activity-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>

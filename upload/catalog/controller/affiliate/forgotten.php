@@ -22,7 +22,7 @@ class ControllerAffiliateForgotten extends Controller {
 
 			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 
-			$message  = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
+			$message = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
 			$message .= $this->language->get('text_password') . "\n\n";
 			$message .= $password;
 
@@ -45,19 +45,17 @@ class ControllerAffiliateForgotten extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			// Add to activity log
-			if ($this->config->get('config_customer_activity')) {
-			$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
+			if ($this->config->get('config_affiliate_activity')) {
+				$affiliate_info = $this->model_affiliate_affiliate->getAffiliateByEmail($this->request->post['email']);
 
-			if ($affiliate_info) {
-				$this->load->model('affiliate/activity');
+				if ($affiliate_info) {
+					$this->load->model('affiliate/activity');
 
-				$activity_data = array(
-					'affiliate_id' => $affiliate_info['affiliate_id'],
-					'name'         => $affiliate_info['firstname'] . ' ' . $affiliate_info['lastname']
-				);
+					$affiliate_id = $this->affiliate->getId();
+					$affiliate_name = $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName();
 
-				$this->model_affiliate_activity->addActivity('forgotten', $activity_data);
-			}
+					$this->model_affiliate_activity->addActivity($affiliate_id, 'forgotten', $affiliate_name);
+				}
 			}
 
 			$this->redirect($this->url->link('affiliate/login', '', 'SSL'));
@@ -138,7 +136,11 @@ class ControllerAffiliateForgotten extends Controller {
 		    $this->error['warning'] = $this->language->get('error_approved');
 		}
 
-		return empty($this->error);
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

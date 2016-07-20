@@ -118,17 +118,9 @@ class ModelReportAffiliate extends Model {
 	}
 
 	public function getAffiliateActivities($data = array()) {
-		$sql = "SELECT aa.affiliate_activity_id, aa.affiliate_id, aa.key, aa.data, aa.ip, aa.date_added FROM " . DB_PREFIX . "affiliate_activity aa LEFT JOIN " . DB_PREFIX . "affiliate a ON (aa.affiliate_id = a.affiliate_id)";
+		$sql = "SELECT aa.affiliate_activity_id, aa.affiliate_id, aa.key, aa.name, aa.ip, aa.date_added FROM " . DB_PREFIX . "affiliate_activity aa LEFT JOIN " . DB_PREFIX . "affiliate a ON (aa.affiliate_id = a.affiliate_id)";
 
 		$implode = array();
-
-		if (!empty($data['filter_affiliate'])) {
-			$implode[] = "CONCAT(a.firstname, ' ', a.lastname) LIKE '" . $this->db->escape($data['filter_affiliate']) . "'";
-		}
-
-		if (!empty($data['filter_ip'])) {
-			$implode[] = "aa.ip LIKE '" . $this->db->escape($data['filter_ip']) . "'";
-		}
 
 		if (!empty($data['filter_date_start'])) {
 			$implode[] = "DATE(aa.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";
@@ -162,17 +154,9 @@ class ModelReportAffiliate extends Model {
 	}
 
 	public function getTotalAffiliateActivities($data = array()) {
-		$sql = "SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "affiliate_activity` aa LEFT JOIN " . DB_PREFIX . "affiliate a ON (aa.affiliate_id = a.affiliate_id)";
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate_activity aa LEFT JOIN " . DB_PREFIX . "affiliate a ON (aa.affiliate_id = a.affiliate_id)";
 
 		$implode = array();
-
-		if (!empty($data['filter_affiliate'])) {
-			$implode[] = "CONCAT(a.firstname, ' ', a.lastname) LIKE '" . $this->db->escape($data['filter_affiliate']) . "'";
-		}
-
-		if (!empty($data['filter_ip'])) {
-			$implode[] = "aa.ip LIKE '" . $this->db->escape($data['filter_ip']) . "'";
-		}
 
 		if (!empty($data['filter_date_start'])) {
 			$implode[] = "DATE(aa.date_added) >= '" . $this->db->escape($data['filter_date_start']) . "'";

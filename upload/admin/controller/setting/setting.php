@@ -184,6 +184,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
 		$this->data['entry_affiliate_mail'] = $this->language->get('entry_affiliate_mail');
 		$this->data['entry_affiliate_fax'] = $this->language->get('entry_affiliate_fax');
+		$this->data['entry_affiliate_activity'] = $this->language->get('entry_affiliate_activity');
 		$this->data['entry_affiliate_disable'] = $this->language->get('entry_affiliate_disable');
 		$this->data['entry_return'] = $this->language->get('entry_return');
 		$this->data['entry_return_status'] = $this->language->get('entry_return_status');
@@ -1033,7 +1034,7 @@ class ControllerSettingSetting extends Controller {
 
 		if (isset($this->request->post['config_login_attempts'])) {
 			$this->data['config_login_attempts'] = $this->request->post['config_login_attempts'];
-		} elseif ($this->config->has('config_login_attempts')) {
+		} elseif ($this->config->get('config_login_attempts')) {
 			$this->data['config_login_attempts'] = $this->config->get('config_login_attempts');
 		} else {
 			$this->data['config_login_attempts'] = 5;
@@ -1051,23 +1052,19 @@ class ControllerSettingSetting extends Controller {
 
 		if (isset($this->request->post['config_affiliate_approval'])) {
 			$this->data['config_affiliate_approval'] = $this->request->post['config_affiliate_approval'];
-		} elseif ($this->config->has('config_affiliate_approval')) {
-			$this->data['config_affiliate_approval'] = $this->config->get('config_affiliate_approval');
 		} else {
-			$this->data['config_affiliate_approval'] = '';
+			$this->data['config_affiliate_approval'] = $this->config->get('config_affiliate_approval');
 		}
 
 		if (isset($this->request->post['config_affiliate_auto'])) {
 			$this->data['config_affiliate_auto'] = $this->request->post['config_affiliate_auto'];
-		} elseif ($this->config->has('config_affiliate_auto')) {
-			$this->data['config_affiliate_auto'] = $this->config->get('config_affiliate_auto');
 		} else {
-			$this->data['config_affiliate_auto'] = '';
+			$this->data['config_affiliate_auto'] = $this->config->get('config_affiliate_auto');
 		}
 
 		if (isset($this->request->post['config_affiliate_commission'])) {
 			$this->data['config_affiliate_commission'] = $this->request->post['config_affiliate_commission'];
-		} elseif ($this->config->has('config_affiliate_commission')) {
+		} elseif ($this->config->get('config_affiliate_commission')) {
 			$this->data['config_affiliate_commission'] = $this->config->get('config_affiliate_commission');
 		} else {
 			$this->data['config_affiliate_commission'] = '5.00';
@@ -1081,7 +1078,7 @@ class ControllerSettingSetting extends Controller {
 
 		if (isset($this->request->post['config_affiliate_mail'])) {
 			$this->data['config_affiliate_mail'] = $this->request->post['config_affiliate_mail'];
-		} elseif ($this->config->has('config_affiliate_mail')) {
+		} elseif ($this->config->get('config_affiliate_mail')) {
 			$this->data['config_affiliate_mail'] = $this->config->get('config_affiliate_mail');
 		} else {
 			$this->data['config_affiliate_mail'] = '';
@@ -1089,10 +1086,16 @@ class ControllerSettingSetting extends Controller {
 
 		if (isset($this->request->post['config_affiliate_fax'])) {
 			$this->data['config_affiliate_fax'] = $this->request->post['config_affiliate_fax'];
-		} elseif ($this->config->has('config_affiliate_fax')) {
+		} elseif ($this->config->get('config_affiliate_fax')) {
 			$this->data['config_affiliate_fax'] = $this->config->get('config_affiliate_fax');
 		} else {
 			$this->data['config_affiliate_fax'] = '';
+		}
+
+		if (isset($this->request->post['config_affiliate_activity'])) {
+			$this->data['config_affiliate_activity'] = $this->request->post['config_affiliate_activity'];
+		} else {
+			$this->data['config_affiliate_activity'] = $this->config->get('config_affiliate_activity');
 		}
 
 		if (isset($this->request->post['config_affiliate_disable'])) {

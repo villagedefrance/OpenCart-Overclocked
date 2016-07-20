@@ -20,7 +20,7 @@ class ControllerSaleAffiliate extends Controller {
 		$this->load->model('sale/affiliate');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$new_affiliate_id = $this->model_sale_affiliate->addAffiliate($this->request->post);
+			$this->model_sale_affiliate->addAffiliate($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -59,9 +59,12 @@ class ControllerSaleAffiliate extends Controller {
 			}
 
 			if (isset($this->request->post['apply'])) {
+				$affiliate_id = $this->session->data['new_affiliate_id'];
 
-				if ($new_affiliate_id) {
-					$this->redirect($this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $new_affiliate_id . $url, 'SSL'));
+				if ($affiliate_id) {
+					unset($this->session->data['new_affiliate_id']);
+
+					$this->redirect($this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $affiliate_id . $url, 'SSL'));
 				}
 
 			} else {
@@ -295,7 +298,7 @@ class ControllerSaleAffiliate extends Controller {
 				$url .= '&page=' . $this->request->get['page'];
 			}
 
-			$this->response->redirect($this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, true));
+			$this->redirect($this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
 		$this->getList();
@@ -491,12 +494,6 @@ class ControllerSaleAffiliate extends Controller {
 			unset($this->session->data['success']);
 		} else {
 			$this->data['success'] = '';
-		}
-
-		if (isset($this->request->post['selected'])) {
-			$this->data['selected'] = (array)$this->request->post['selected'];
-		} else {
-			$this->data['selected'] = array();
 		}
 
 		$url = '';
@@ -1165,7 +1162,11 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		return (empty($this->error));
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	protected function validateDelete() {
@@ -1173,7 +1174,11 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		return (empty($this->error));
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	protected function validateApprove() {
@@ -1181,7 +1186,11 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		return (empty($this->error));
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	protected function validateUnlock() {
@@ -1189,7 +1198,11 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		return (empty($this->error));
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function transaction() {

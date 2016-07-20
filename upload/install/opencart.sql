@@ -84,7 +84,7 @@ CREATE TABLE `oc_affiliate_activity` (
   `affiliate_activity_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
   `key` varchar(64) NOT NULL,
-  `data` text CHARACTER SET utf8 NOT NULL,
+  `name` text CHARACTER SET utf8 NOT NULL,
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`affiliate_activity_id`)

@@ -21,15 +21,13 @@ class ControllerAffiliateEdit extends Controller {
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			// Add to activity log
-			if ($this->config->get('config_customer_activity')) {
-			$this->load->model('affiliate/activity');
+			if ($this->config->get('config_affiliate_activity')) {
+				$this->load->model('affiliate/activity');
 
-			$activity_data = array(
-				'affiliate_id' => $this->affiliate->getId(),
-				'name'         => $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName()
-			);
+				$affiliate_id = $this->affiliate->getId();
+				$affiliate_name = $this->affiliate->getFirstName() . ' ' . $this->affiliate->getLastName();
 
-			$this->model_affiliate_activity->addActivity('edit', $activity_data);
+				$this->model_affiliate_activity->addActivity($affiliate_id, 'edit', $affiliate_name);
 			}
 
 			$this->redirect($this->url->link('affiliate/account', '', 'SSL'));
@@ -325,7 +323,11 @@ class ControllerAffiliateEdit extends Controller {
  			$this->error['zone'] = $this->language->get('error_zone');
 		}
 
-		return empty($this->error);
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function country() {

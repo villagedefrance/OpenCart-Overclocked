@@ -25,19 +25,20 @@
       <table class="list">
         <thead>
           <tr>
-            <td class="left"><?php echo $column_comment; ?></td>
+            <td class="left"><?php echo $column_activity; ?></td>
             <td class="left"><?php echo $column_ip; ?></td>
             <td class="left"><?php echo $column_date_added; ?></td>
+			<td></td>
           </tr>
         </thead>
         <tbody>
       <?php if ($activities) { ?>
         <?php foreach ($activities as $activity) { ?>
           <tr>
-            <td class="left"><?php echo $activity['comment']; ?></td>
+            <td class="left"><?php echo $activity['activity']; ?></td>
             <td class="left"><?php echo $activity['ip']; ?></td>
             <td class="left"><?php echo $activity['date_added']; ?></td>
-            <td class="right"><?php foreach ($affiliate['action'] as $action) { ?>
+            <td class="right"><?php foreach ($activity['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
           </tr>
@@ -58,39 +59,40 @@
 
 <script type="text/javascript"><!--
 function filter() {
-  url = 'index.php?route=report/affiliate_activity&token=<?php echo $token; ?>';
+	url = 'index.php?route=report/affiliate_activity&token=<?php echo $token; ?>';
 
-  var filter_affiliate = $('input[name=\'filter_affiliate\']').val();
+	var filter_affiliate = $('input[name=\'filter_affiliate\']').val();
 
-  if (filter_affiliate) {
-    url += '&filter_affiliate=' + encodeURIComponent(filter_affiliate);
-  }
-  var filter_ip = $('input[name=\'filter_ip\']').val();
+	if (filter_affiliate) {
+		url += '&filter_affiliate=' + encodeURIComponent(filter_affiliate);
+	}
 
-  if (filter_ip) {
-    url += '&filter_ip=' + encodeURIComponent(filter_ip);
-  }
+	var filter_ip = $('input[name=\'filter_ip\']').val();
 
-  var filter_date_start = $('input[name=\'filter_date_start\']').attr('value');
+	if (filter_ip) {
+		url += '&filter_ip=' + encodeURIComponent(filter_ip);
+	}
 
-  if (filter_date_start) {
-    url += '&filter_date_start=' + encodeURIComponent(filter_date_start);
-  }
+	var filter_date_start = $('input[name=\'filter_date_start\']').attr('value');
 
-  var filter_date_end = $('input[name=\'filter_date_end\']').attr('value');
+	if (filter_date_start) {
+		url += '&filter_date_start=' + encodeURIComponent(filter_date_start);
+	}
 
-  if (filter_date_end) {
-    url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
-  }
+	var filter_date_end = $('input[name=\'filter_date_end\']').attr('value');
 
-  location = url;
+	if (filter_date_end) {
+		url += '&filter_date_end=' + encodeURIComponent(filter_date_end);
+	}
+
+	location = url;
 }
 //--></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  $('#input-date-start').datepicker({dateFormat: 'yy-mm-dd'});
-  $('#input-date-end').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#input-date-start').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#input-date-end').datepicker({dateFormat: 'yy-mm-dd'});
 });
 //--></script>
 

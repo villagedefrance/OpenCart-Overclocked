@@ -75,7 +75,7 @@ class ControllerCommonHome extends Controller {
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['entry_range'] = $this->language->get('entry_range');
-/*
+
 		// Delete install directory
 		if (is_dir(dirname(DIR_APPLICATION) . '/install')) {
 			$this->load->model('tool/system');
@@ -84,7 +84,7 @@ class ControllerCommonHome extends Controller {
 
 			clearstatcache();
 		}
-*/
+
 		// Check image directory is writeable
 		$file = DIR_IMAGE . 'test';
 		$handle = fopen($file, 'a+');
