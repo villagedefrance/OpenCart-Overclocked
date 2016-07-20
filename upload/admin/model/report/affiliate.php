@@ -153,6 +153,10 @@ class ModelReportAffiliate extends Model {
 		return $query->rows;
 	}
 
+	public function deleteActivity($affiliate_activity_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_activity WHERE affiliate_activity_id = " . (int)$affiliate_activity_id);
+	}
+
 	public function getTotalAffiliateActivities($data = array()) {
 		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate_activity aa LEFT JOIN " . DB_PREFIX . "affiliate a ON (aa.affiliate_id = a.affiliate_id)";
 
