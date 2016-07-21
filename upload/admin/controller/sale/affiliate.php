@@ -432,6 +432,8 @@ class ControllerSaleAffiliate extends Controller {
 
 		$affiliate_total = $this->model_sale_affiliate->getTotalAffiliates($filter_data);
 
+		$login_attempts = (int)($this->config->has('config_login_attempts') ? $this->config->get('config_login_attempts') : 0),
+
 		$results = $this->model_sale_affiliate->getAffiliates($filter_data);
 
 		foreach ($results as $result) {
@@ -442,16 +444,11 @@ class ControllerSaleAffiliate extends Controller {
 				'href' => $this->url->link('sale/affiliate/update', 'token=' . $this->session->data['token'] . '&affiliate_id=' . $result['affiliate_id'] . $url, 'SSL')
 			);
 
-			$attempts = $this->config->get('config_login_attempts');
-
-			if ($attempts > 0) {
+			$lock = false;
+			if ($login_attempts > 0) {
 				$login_info = $this->model_sale_affiliate->getLoginAttempts($result['email']);
 
-				if ($login_info && ($login_info['total'] >= $attempts)) {
-					$lock = true;
-				} else {
-					$lock = false;
-				}
+				if ($login_info && ($login_info['total'] >= $login_attempts)) $lock = true;
 			}
 
 			$this->data['affiliates'][] = array(

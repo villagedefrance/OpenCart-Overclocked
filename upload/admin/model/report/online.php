@@ -14,7 +14,7 @@ class ModelReportOnline extends Model {
 			$implode[] = "co.customer_id > '0' AND CONCAT(c.firstname, ' ', c.lastname) LIKE '" . $this->db->escape($data['filter_customer']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -48,7 +48,7 @@ class ModelReportOnline extends Model {
 			$implode[] = "co.customer_id > 0 AND CONCAT(c.firstname, ' ', c.lastname) LIKE '" . $this->db->escape($data['filter_customer']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

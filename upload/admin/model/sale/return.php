@@ -66,7 +66,7 @@ class ModelSaleReturn extends Model {
 			$implode[] = "DATE(r.date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -147,7 +147,7 @@ class ModelSaleReturn extends Model {
 			$implode[] = "DATE(r.date_modified) = DATE('" . $this->db->escape($data['filter_date_modified']) . "')";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

@@ -102,7 +102,7 @@ class ModelReportCustomer extends Model {
 			$implode[] = "DATE(date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -154,7 +154,7 @@ class ModelReportCustomer extends Model {
 			$implode[] = "DATE(date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

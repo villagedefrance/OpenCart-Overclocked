@@ -88,7 +88,7 @@ class ModelSaleSupplier extends Model {
 			$implode[] = "DATE(s.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " AND " . implode(" AND ", $implode);
 		}
 
@@ -223,7 +223,7 @@ class ModelSaleSupplier extends Model {
 			$implode[] = "DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

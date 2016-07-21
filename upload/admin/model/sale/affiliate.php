@@ -65,7 +65,7 @@ class ModelSaleAffiliate extends Model {
 			$implode[] = "a.status = '" . (int)$data['filter_status'] . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -184,7 +184,7 @@ class ModelSaleAffiliate extends Model {
 			$implode[] = "status = '" . (int)$data['filter_status'] . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

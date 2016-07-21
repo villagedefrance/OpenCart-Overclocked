@@ -14,7 +14,7 @@ class ModelReportAffiliate extends Model {
 			$implode[] = "DATE(at.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -50,7 +50,7 @@ class ModelReportAffiliate extends Model {
 			$implode[] = "DATE(date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -72,7 +72,7 @@ class ModelReportAffiliate extends Model {
 			$implode[] = "DATE(at.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -108,7 +108,7 @@ class ModelReportAffiliate extends Model {
 			$implode[] = "DATE(date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -130,7 +130,7 @@ class ModelReportAffiliate extends Model {
 			$implode[] = "DATE(aa.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -170,7 +170,7 @@ class ModelReportAffiliate extends Model {
 			$implode[] = "DATE(aa.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
