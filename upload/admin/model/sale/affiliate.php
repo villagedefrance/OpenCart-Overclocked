@@ -211,6 +211,20 @@ class ModelSaleAffiliate extends Model {
 		return $query->row['total'];
 	}
 
+	// Product
+	public function getAffiliateProducts($affiliate_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_product WHERE affiliate_id = '" . (int)$affiliate_id . "'");
+
+		return $query->rows;
+	}
+
+	public function getTotalAffiliateProducts($affiliate_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate_product WHERE affiliate_id = '" . (int)$affiliate_id . "'");
+
+		return $query->row['total'];
+	}
+
+	// Transaction
 	public function addTransaction($affiliate_id, $description = '', $amount = '', $order_id = 0) {
 		$affiliate_info = $this->getAffiliate($affiliate_id);
 
@@ -293,6 +307,7 @@ class ModelSaleAffiliate extends Model {
 		return $query->row['total'];
 	}
 
+	// Login
 	public function getLoginAttempts($email) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_login WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 

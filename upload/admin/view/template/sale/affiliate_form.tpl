@@ -19,8 +19,10 @@
   </div>
   <div class="content">
     <div id="htabs" class="htabs">
-      <a href="#tab-general"><?php echo $tab_general; ?></a> <a href="#tab-payment"><?php echo $tab_payment; ?></a>
+      <a href="#tab-general"><?php echo $tab_general; ?></a>
+      <a href="#tab-payment"><?php echo $tab_payment; ?></a>
       <?php if ($affiliate_id) { ?>
+        <a href="#tab-product"><?php echo $tab_product; ?></a>
         <a href="#tab-transaction"><?php echo $tab_transaction; ?></a>
       <?php } ?>
     </div>
@@ -283,6 +285,32 @@
         </table>
       </div>
       <?php if ($affiliate_id) { ?>
+      <div id="tab-product">
+        <table class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $column_product_id; ?></td>
+            <td class="left"><?php echo $column_product; ?></td>
+            <td class="left"><?php echo $column_date_added; ?></td>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if ($products && $total_products > 0) { ?>
+            <?php foreach ($products as $product) { ?>
+              <tr>
+                <td class="center"><?php echo $product['product_id']; ?></td>
+                <td class="left"><?php echo $product['name']; ?></td>
+                <td class="left"><?php echo $product['date_added']; ?></td>
+              </tr>
+            <?php } ?>
+          <?php } else { ?>
+            <tr>
+              <td colspan="3"><?php echo $text_no_results; ?></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+        </table>
+      </div>
       <div id="tab-transaction">
         <table class="form">
           <tbody>

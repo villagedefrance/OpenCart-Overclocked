@@ -454,9 +454,11 @@ class ControllerSaleAffiliate extends Controller {
 				}
 			}
 
+			$total_products = $this->model_sale_affiliate->getTotalAffiliateProducts($result['affiliate_id']);
+
 			$this->data['affiliates'][] = array(
 				'affiliate_id' => $result['affiliate_id'],
-				'name'         => $result['name'],
+				'name'         => $result['name'] . ' [' . (int)$total_products . ']',
 				'email'        => $result['email'],
 				'balance'      => $this->currency->format($result['balance'], $this->config->get('config_currency')),
 				'approved'     => $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
@@ -614,6 +616,7 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['text_cheque'] = $this->language->get('text_cheque');
 		$this->data['text_paypal'] = $this->language->get('text_paypal');
 		$this->data['text_bank'] = $this->language->get('text_bank');
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
@@ -655,8 +658,13 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['button_add_transaction'] = $this->language->get('button_add_transaction');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
+		$this->data['column_product_id'] = $this->language->get('column_product_id');
+		$this->data['column_product'] = $this->language->get('column_product');
+		$this->data['column_date_added'] = $this->language->get('column_date_added');
+
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_payment'] = $this->language->get('tab_payment');
+		$this->data['tab_product'] = $this->language->get('tab_product');
 		$this->data['tab_transaction'] = $this->language->get('tab_transaction');
 
 		$this->data['token'] = $this->session->data['token'];
@@ -1068,6 +1076,29 @@ class ControllerSaleAffiliate extends Controller {
 			$this->data['confirm'] = $this->request->post['confirm'];
 		} else {
 			$this->data['confirm'] = '';
+		}
+
+		// Products
+		$this->data['products'] = array();
+
+		if (isset($this->request->get['affiliate_id'])) {
+			$total_products = $this->model_sale_affiliate->getTotalAffiliateProducts($this->request->get['affiliate_id']);
+
+			$results = $this->model_sale_affiliate->getAffiliateProducts($this->request->get['affiliate_id']);
+
+			foreach ($results as $result) {
+				$this->data['products'][] = array(
+					'affiliate_product_id' => $result['affiliate_product_id'],
+					'product_id'           => $result['product_id'],
+					'name'                 => $result['name'],
+					'code'                 => $result['code'],
+					'date_added'           => $result['date_added']
+				);
+			}
+
+			$this->data['total_products'] = $total_products;
+		} else {
+			$this->data['total_products'] = 0;
 		}
 
 		$this->template = 'sale/affiliate_form.tpl';
