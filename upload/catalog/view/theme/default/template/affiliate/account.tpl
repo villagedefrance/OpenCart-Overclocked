@@ -31,6 +31,7 @@
   <div class="content">
     <div class="box-account">
       <ul>
+        <li><a href="<?php echo $product; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/history.png" alt="" /><?php echo $text_product; ?></a></li>
         <li><a href="<?php echo $tracking; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/tracking.png" alt="" /><?php echo $text_tracking; ?></a></li>
       </ul>
     </div>

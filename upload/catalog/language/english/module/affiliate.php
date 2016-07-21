@@ -11,6 +11,7 @@ $_['text_account']        = 'My Account';
 $_['text_edit']           = 'Edit Account';
 $_['text_password']       = 'Change Password';
 $_['text_payment']        = 'Payment Options';
+$_['text_product']        = 'Product Portfolio';
 $_['text_tracking']       = 'Product Tracking';
 $_['text_transaction']    = 'Transactions';
 

@@ -117,6 +117,54 @@ class ModelAffiliateAffiliate extends Model {
 		return $query->row['total'];
 	}
 
+	// Product
+	public function addAffiliateProduct($data) {
+		$affiliate_id = $this->affiliate->getId();
+
+		if (!empty($data['product_id'])) {
+			$code = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $data['product_id'] . '&tracking=' . $this->affiliate->getCode()));
+		} else {
+			$code = $this->affiliate->getCode();
+		}
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate_product SET affiliate_id = '" . (int)$affiliate_id . "', product_id = '" . (int)$data['product_id'] . "', name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($code) . "', date_added = NOW()");
+	}
+
+	public function editAffiliateProduct($affiliate_product_id, $data) {
+		$affiliate_id = $this->affiliate->getId();
+
+		if (!empty($data['product_id'])) {
+			$code = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $data['product_id'] . '&tracking=' . $this->affiliate->getCode()));
+		} else {
+			$code = $this->affiliate->getCode();
+		}
+
+		$this->db->query("UPDATE " . DB_PREFIX . "affiliate_product SET affiliate_id = '" . (int)$affiliate_id . "', product_id = '" . (int)$data['product_id'] . "', name = '" . $this->db->escape($data['name']) . "', code = '" . $this->db->escape($code) . "' WHERE affiliate_product_id = '" . (int)$affiliate_product_id . "'");
+	}
+
+	public function deleteAffiliateProduct($affiliate_product_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_product WHERE affiliate_product_id = '" . (int)$affiliate_product_id . "'");
+	}
+
+	public function getAffiliateProducts($affiliate_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_product WHERE affiliate_id = '" . (int)$affiliate_id . "'");
+
+		return $query->rows;
+	}
+
+	public function getAffiliateProduct($affiliate_product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_product WHERE affiliate_product_id = '" . (int)$affiliate_product_id . "'");
+
+		return $query->row;
+	}
+
+	public function getTotalAffiliateProducts($affiliate_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate_product WHERE affiliate_id = '" . (int)$affiliate_id . "'");
+
+		return $query->row['total'];
+	}
+
+	// Transaction
 	public function addTransaction($affiliate_id, $amount = '', $order_id = 0) {
 		$affiliate_info = $this->getAffiliate($affiliate_id);
 
@@ -166,6 +214,7 @@ class ModelAffiliateAffiliate extends Model {
 		return $query->row['total'];
 	}
 
+	// Login
 	public function getLoginAttempts($email) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate_login WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "'");
 

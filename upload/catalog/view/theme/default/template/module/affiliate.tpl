@@ -60,6 +60,7 @@
           <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
           <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
           <li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
+          <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
           <li><a href="<?php echo $tracking; ?>"><?php echo $text_tracking; ?></a></li>
           <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
         </ul>
@@ -85,6 +86,7 @@
           <li><a href="<?php echo $edit; ?>"><?php echo $text_edit; ?></a></li>
           <li><a href="<?php echo $password; ?>"><?php echo $text_password; ?></a></li>
           <li><a href="<?php echo $payment; ?>"><?php echo $text_payment; ?></a></li>
+          <li><a href="<?php echo $product; ?>"><?php echo $text_product; ?></a></li>
           <li><a href="<?php echo $tracking; ?>"><?php echo $text_tracking; ?></a></li>
           <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
         </ul>

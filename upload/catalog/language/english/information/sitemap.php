@@ -34,6 +34,7 @@ $_['text_affiliate_login']       = 'Account Login';
 $_['text_affiliate_edit']        = 'Account information';
 $_['text_affiliate_password']    = 'Password';
 $_['text_affiliate_payment']     = 'Payment Options';
+$_['text_affiliate_product']     = 'Product Portfolio';
 $_['text_affiliate_tracking']    = 'Tracking Codes';
 $_['text_affiliate_transaction'] = 'Transactions';
 

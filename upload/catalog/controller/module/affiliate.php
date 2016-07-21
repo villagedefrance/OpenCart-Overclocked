@@ -49,6 +49,7 @@ class ControllerModuleAffiliate extends Controller {
 		$this->data['text_edit'] = $this->language->get('text_edit');
 		$this->data['text_password'] = $this->language->get('text_password');
 		$this->data['text_payment'] = $this->language->get('text_payment');
+		$this->data['text_product'] = $this->language->get('text_product');
 		$this->data['text_tracking'] = $this->language->get('text_tracking');
 		$this->data['text_transaction'] = $this->language->get('text_transaction');
 		$this->data['text_code'] = $this->language->get('text_code');
@@ -66,6 +67,7 @@ class ControllerModuleAffiliate extends Controller {
 		$this->data['edit'] = $this->url->link($this->_name . '/edit', '', 'SSL');
 		$this->data['password'] = $this->url->link($this->_name . '/password', '', 'SSL');
 		$this->data['payment'] = $this->url->link($this->_name . '/payment', '', 'SSL');
+		$this->data['product'] = $this->url->link($this->_name . '/product', '', 'SSL');
 		$this->data['tracking'] = $this->url->link($this->_name . '/tracking', '', 'SSL');
 		$this->data['transaction'] = $this->url->link($this->_name . '/transaction', '', 'SSL');
 

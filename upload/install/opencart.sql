@@ -112,6 +112,23 @@ CREATE TABLE `oc_affiliate_login` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_affiliate_product`
+--
+
+DROP TABLE IF EXISTS `oc_affiliate_product`;
+CREATE TABLE `oc_affiliate_product` (
+  `affiliate_product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `affiliate_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`affiliate_product_id`,`affiliate_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_affiliate_transaction`
 --
 

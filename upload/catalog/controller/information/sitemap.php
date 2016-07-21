@@ -53,6 +53,7 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['text_affiliate_edit'] = $this->language->get('text_affiliate_edit');
 		$this->data['text_affiliate_password'] = $this->language->get('text_affiliate_password');
 		$this->data['text_affiliate_payment'] = $this->language->get('text_affiliate_payment');
+		$this->data['text_affiliate_product'] = $this->language->get('text_affiliate_product');
 		$this->data['text_affiliate_tracking'] = $this->language->get('text_affiliate_tracking');
 		$this->data['text_affiliate_transaction'] = $this->language->get('text_affiliate_transaction');
 
@@ -130,6 +131,7 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['affiliate_edit'] = $this->url->link('affiliate/edit', '', 'SSL');
 		$this->data['affiliate_password'] = $this->url->link('affiliate/password', '', 'SSL');
 		$this->data['affiliate_payment'] = $this->url->link('affiliate/payment', '', 'SSL');
+		$this->data['affiliate_product'] = $this->url->link('affiliate/product', '', 'SSL');
 		$this->data['affiliate_tracking'] = $this->url->link('affiliate/tracking', '', 'SSL');
 		$this->data['affiliate_transaction'] = $this->url->link('affiliate/transaction', '', 'SSL');
 

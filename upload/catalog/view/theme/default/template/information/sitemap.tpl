@@ -71,6 +71,7 @@
             <li><a href="<?php echo $affiliate_edit; ?>"><?php echo $text_affiliate_edit; ?></a></li>
             <li><a href="<?php echo $affiliate_password; ?>"><?php echo $text_affiliate_password; ?></a></li>
             <li><a href="<?php echo $affiliate_payment; ?>"><?php echo $text_affiliate_payment; ?></a></li>
+            <li><a href="<?php echo $affiliate_product; ?>"><?php echo $text_affiliate_product; ?></a></li>
             <li><a href="<?php echo $affiliate_tracking; ?>"><?php echo $text_affiliate_tracking; ?></a></li>
             <li><a href="<?php echo $affiliate_transaction; ?>"><?php echo $text_affiliate_transaction; ?></a></li>
           </ul>
