@@ -4,14 +4,14 @@ class ControllerThemeDefault extends Controller {
 	private $_name = 'default';
 
 	public function index() {
-		$this->language->load('theme/default');
+		$this->language->load('theme/' . $this->_name);
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('default', $this->request->post);
+			$this->model_setting_setting->editSetting($this->_name, $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -107,7 +107,7 @@ class ControllerThemeDefault extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = $this->url->link('theme/default', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('theme/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -273,7 +273,7 @@ class ControllerThemeDefault extends Controller {
 	}
 
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'theme/default')) {
+		if (!$this->user->hasPermission('modify', 'theme/' . $this->_name)) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
