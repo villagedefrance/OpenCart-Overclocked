@@ -10,7 +10,7 @@ class ControllerPaymentLiqPay extends Controller {
 
 		$this->data['action'] = 'https://liqpay.com/?do=clickNbuy';
 
-		$xml  = '<request>';
+		$xml = '<request>';
 		$xml .= '	<version>1.2</version>';
 		$xml .= '	<result_url>' . $this->url->link('checkout/success', '', 'SSL') . '</result_url>';
 		$xml .= '	<server_url>' . $this->url->link('payment/liqpay/callback', '', 'SSL') . '</server_url>';

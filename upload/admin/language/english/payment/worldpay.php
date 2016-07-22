@@ -27,7 +27,7 @@ $_['entry_sort_order']   = 'Sort Order:';
 // Help
 $_['help_password']      = 'This has to be set in the WorldPay control panel.';
 $_['help_callback']      = 'This has to be set in the WorldPay control panel. You will also need to check the "Enable the Shopper Response".';
-$_['help_total']         = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']         = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']     = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 
 // Error

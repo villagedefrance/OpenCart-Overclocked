@@ -39,6 +39,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 
 		if ($this->customer->isLogged() && $this->data['worldpay_online_card']) {
 			$this->load->model('payment/worldpay_online');
+
 			$this->data['existing_cards'] = $this->model_payment_worldpay_online->getCards($this->customer->getId());
 		}
 
@@ -122,6 +123,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 
 				if (isset($response->paymentMethod)) {
 					$card_data = array();
+
 					$card_data['customer_id'] = $this->customer->getId();
 					$card_data['Token'] = $response->token;
 					$card_data['Last4Digits'] = (string)$response->paymentMethod->maskedCardNumber;

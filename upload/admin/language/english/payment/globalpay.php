@@ -73,7 +73,7 @@ $_['entry_status_rebate']            = 'Rebated';
 $_['entry_notification_url']         = 'Notification URL';
 
 // Help
-$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']                 = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_card_select']               = 'Ask the user to choose their card type before they are redirected';
 $_['help_notification']              = 'You need to supply this URL to Globalpay to get payment notifications';

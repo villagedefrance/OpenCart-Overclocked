@@ -28,31 +28,31 @@ class ControllerPaymentPPProPF extends Controller {
 		$this->data['cards'] = array();
 
 		$this->data['cards'][] = array(
-			'text'		=> 'Visa',
-			'value'	=> '0'
+			'text' => 'Visa',
+			'value' => '0'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> 'MasterCard',
-			'value'	=> '1'
+			'text' => 'MasterCard',
+			'value' => '1'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> 'Maestro',
-			'value'	=> '9'
+			'text' => 'Maestro',
+			'value' => '9'
 		);
 
 		$this->data['cards'][] = array(
-			'text'		=> 'Solo',
-			'value'	=> 'S'
+			'text' => 'Solo',
+			'value' => 'S'
 		);
 
 		$this->data['months'] = array();
 
 		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
-				'value'	=> sprintf('%02d', $i)
+				'text' => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value' => sprintf('%02d', $i)
 			);
 		}
 
@@ -62,8 +62,8 @@ class ControllerPaymentPPProPF extends Controller {
 
 		for ($i = $today['year'] - 10; $i < $today['year'] + 1; $i++) {
 			$this->data['year_valid'][] = array(
-				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+				'text' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -71,8 +71,8 @@ class ControllerPaymentPPProPF extends Controller {
 
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+				'text' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -101,7 +101,7 @@ class ControllerPaymentPPProPF extends Controller {
 			$payment_type = 'S';
 		}
 
-		$request  = 'USER=' . urlencode($this->config->get('pp_pro_pf_user'));
+		$request = 'USER=' . urlencode($this->config->get('pp_pro_pf_user'));
 		$request .= '&VENDOR=' . urlencode($this->config->get('pp_pro_pf_vendor'));
 		$request .= '&PARTNER=' . urlencode($this->config->get('pp_pro_pf_partner'));
 		$request .= '&PWD=' . urlencode($this->config->get('pp_pro_pf_password'));

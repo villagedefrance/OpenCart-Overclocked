@@ -64,7 +64,7 @@ $_['entry_enable_card_store']        = 'Enable card storage tokens';
 $_['entry_cards_accepted']           = 'Card types accepted';
 
 // Help
-$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes active';
+$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes <b>active</b>';
 $_['help_total_max']                 = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_certificate']               = 'Certificates and private keys should be stored outside of your public web folders';
 $_['help_card_select']               = 'Ask the user to choose their card type before they are redirected';

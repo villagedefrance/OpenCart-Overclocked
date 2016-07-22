@@ -41,8 +41,8 @@ class ControllerPaymentPPStandard extends Controller {
 					}
 
 					$option_data[] = array(
-						'name'	=> $option['name'],
-						'value' 	=> (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
+						'name'  => $option['name'],
+						'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
 					);
 				}
 
@@ -51,12 +51,12 @@ class ControllerPaymentPPStandard extends Controller {
 				$subtotal += $price * $product['quantity'];
 
 				$this->data['products'][] = array(
-					'name'     	=> $product['name'],
-					'model'    	=> $product['model'],
-					'price'    	=> $price,
-					'quantity' 	=> $product['quantity'],
-					'option'   	=> $option_data,
-					'weight'   	=> $product['weight']
+					'name'     => $product['name'],
+					'model'    => $product['model'],
+					'price'    => $price,
+					'quantity' => $product['quantity'],
+					'option'   => $option_data,
+					'weight'   => $product['weight']
 				);
 			}
 
@@ -66,12 +66,12 @@ class ControllerPaymentPPStandard extends Controller {
 
 			if ($total > 0) {
 				$this->data['products'][] = array(
-					'name'     	=> $this->language->get('text_total'),
-					'model'    	=> '',
-					'price'    	=> $total,
-					'quantity' 	=> 1,
-					'option'   	=> array(),
-					'weight'   	=> 0
+					'name'     => $this->language->get('text_total'),
+					'model'    => '',
+					'price'    => $total,
+					'quantity' => 1,
+					'option'   => array(),
+					'weight'   => 0
 				);
 
 			} else {

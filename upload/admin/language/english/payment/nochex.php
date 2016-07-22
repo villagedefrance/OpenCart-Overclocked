@@ -18,13 +18,14 @@ $_['entry_merchant']     = 'Merchant ID';
 $_['entry_template']     = 'Pass Template';
 $_['entry_test']         = 'Test';
 $_['entry_total']        = 'Total';
+$_['entry_total_max']    = 'Total Maximum';
 $_['entry_order_status'] = 'Order Status';
 $_['entry_geo_zone']     = 'Geo Zone';
 $_['entry_status']       = 'Status';
 $_['entry_sort_order']   = 'Sort Order';
 
 // Help
-$_['help_total']         = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']         = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']     = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 
 // Error

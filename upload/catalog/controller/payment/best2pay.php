@@ -132,6 +132,7 @@ class ControllerPaymentBest2pay extends Controller {
 
 		$this->data['text_success'] = $this->language->get('text_success');
 		$this->data['text_success_wait'] = sprintf($this->language->get('text_success_wait'), $this->url->link('checkout/success'));
+
 		$this->data['text_failure'] = $this->language->get('text_failure');
 		$this->data['text_failure_wait'] = sprintf($this->language->get('text_failure_wait'), $this->url->link('checkout/cart', '', 'SSL'));
 
@@ -158,7 +159,7 @@ class ControllerPaymentBest2pay extends Controller {
 				),
 			);
 
-			$context  = stream_context_create($options);
+			$context = stream_context_create($options);
 
 			$operation = file_get_contents($action . 'Operation', false, $context);
 
@@ -244,13 +245,13 @@ class ControllerPaymentBest2pay extends Controller {
 					$error = true;
 
 					if (isset($result->reason_code)) {
-						$this->data['text_failure'] .= '<br>' . $this->language->get('text_reason_' . (int)$result->reason_code);
+						$this->data['text_failure'] .= '<br />' . $this->language->get('text_reason_' . (int)$result->reason_code);
 					}
 
 				} else {
 					$error = true;
 
-					$this->data['text_failure'] .= '<br>' . sprintf($this->language->get('text_error_code'), isset($result->code) ? $result->code : '');
+					$this->data['text_failure'] .= '<br />' . sprintf($this->language->get('text_error_code'), isset($result->code) ? $result->code : '');
 				}
 
 			} else {

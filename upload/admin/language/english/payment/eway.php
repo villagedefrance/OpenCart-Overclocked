@@ -37,7 +37,7 @@ $_['error_password']            = 'eWAY password is required!';
 $_['error_payment_type']        = 'At least one payment type is required!';
 
 // Help
-$_['help_total']                = 'The checkout total the order must reach before this payment method becomes active';
+$_['help_total']                = 'The checkout total the order must reach before this payment method becomes <b>active</b>';
 $_['help_total_max']            = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_testmode']             = 'Set to Yes to use the eWAY Sandbox.';
 $_['help_username']             = 'Your eWAY API Key from your MYeWAY account.';

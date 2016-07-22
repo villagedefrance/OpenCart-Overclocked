@@ -50,7 +50,7 @@ $_['entry_cron_job_url']      = 'Cron Job\'s URL';
 $_['entry_last_cron_job_run'] = 'Last cron job\'s run time:';
 
 // Help
-$_['help_total']              = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']              = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']          = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_debug']              = 'Enabling debug will write sensitive data to a log file. You should always disable unless instructed otherwise';
 $_['help_transaction']        = 'Transaction method MUST be set to Payment to allow subscription payments';

@@ -1,5 +1,6 @@
 <?php
 class ControllerPaymentGlobalpayRemote extends Controller {
+
 	public function index() {
 		$this->language->load('payment/globalpay_remote');
 
@@ -22,12 +23,12 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 		$accounts = $this->config->get('globalpay_remote_account');
 
 		$card_types = array(
-			'visa' => $this->language->get('text_card_visa'),
-			'mc' => $this->language->get('text_card_mc'),
-			'amex' => $this->language->get('text_card_amex'),
+			'visa'   => $this->language->get('text_card_visa'),
+			'mc'     => $this->language->get('text_card_mc'),
+			'amex'   => $this->language->get('text_card_amex'),
 			'switch' => $this->language->get('text_card_switch'),
-			'laser' => $this->language->get('text_card_laser'),
-			'diners' => $this->language->get('text_card_diners'),
+			'laser'  => $this->language->get('text_card_laser'),
+			'diners' => $this->language->get('text_card_diners')
 		);
 
 		$this->data['cards'] = array();
@@ -36,7 +37,7 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 			if (isset($account['enabled']) && $account['enabled'] == 1) {
 				$this->data['cards'][] = array(
 					'code' => $card,
-					'text' => $card_types[$card],
+					'text' => $card_types[$card]
 				);
 			}
 		}
@@ -128,17 +129,17 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				// Proceed to 3D secure
 				if (isset($verify_3ds->result) && $verify_3ds->result == '00') {
 					$enc_data = array(
-						'account' => $account,
-						'amount' => $amount,
-						'currency' => $currency,
-						'order_id' => $order_id,
+						'account'   => $account,
+						'amount'    => $amount,
+						'currency'  => $currency,
+						'order_id'  => $order_id,
 						'order_ref' => $order_ref,
 						'cc_number' => $this->request->post['cc_number'],
 						'cc_expire' => $this->request->post['cc_expire_date_month'] . $this->request->post['cc_expire_date_year'],
-						'cc_name' => $this->request->post['cc_name'],
-						'cc_type' => $this->request->post['cc_type'],
-						'cc_cvv2' => $this->request->post['cc_cvv2'],
-						'cc_issue' => $this->request->post['cc_issue']
+						'cc_name'   => $this->request->post['cc_name'],
+						'cc_type'   => $this->request->post['cc_type'],
+						'cc_cvv2'   => $this->request->post['cc_cvv2'],
+						'cc_issue'  => $this->request->post['cc_issue']
 					);
 
 					$md = $this->encryption->encrypt(json_encode($enc_data));
@@ -353,6 +354,7 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 			} else {
 				$this->redirect($this->url->link('checkout/success'));
 			}
+
 		} else {
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}

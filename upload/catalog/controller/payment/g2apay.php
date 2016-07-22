@@ -50,6 +50,7 @@ class ControllerPaymentG2APay extends Controller {
 				if (isset($order_data['totals'][$i])) {
 					if (strstr(strtolower($order_data['totals'][$i]['code']), 'total') === false) {
 						$item = new stdClass();
+
 						$item->sku = $order_data['totals'][$i]['code'];
 						$item->name = $order_data['totals'][$i]['title'];
 						$item->amount = number_format($order_data['totals'][$i]['value'], 2);
@@ -57,6 +58,7 @@ class ControllerPaymentG2APay extends Controller {
 						$item->id = $order_data['totals'][$i]['code'];
 						$item->price = $order_data['totals'][$i]['value'];
 						$item->url = $this->url->link('common/home', '', 'SSL');
+
 						$items[] = $item;
 					}
 
@@ -69,6 +71,7 @@ class ControllerPaymentG2APay extends Controller {
 
 		foreach ($ordered_products as $product) {
 			$item = new stdClass();
+
 			$item->sku = $product['product_id'];
 			$item->name = $product['name'];
 			$item->amount = $product['price'] * $product['quantity'];
@@ -76,6 +79,7 @@ class ControllerPaymentG2APay extends Controller {
 			$item->id = $product['product_id'];
 			$item->price = $product['price'];
 			$item->url = $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL');
+
 			$items[] = $item;
 		}
 
@@ -90,15 +94,15 @@ class ControllerPaymentG2APay extends Controller {
 		$string = $this->session->data['order_id'] . $order_total . $order_info['currency_code'] . html_entity_decode($this->config->get('g2apay_secret'), ENT_QUOTES, 'UTF-8');
 
 		$fields = array(
-			'api_hash'	=> $this->config->get('g2apay_api_hash'),
-			'hash'			=> hash('sha256', $string),
-			'order_id'	=> $this->session->data['order_id'],
-			'amount'		=> $order_total,
-			'currency'	=> $order_info['currency_code'],
-			'email'		=> $order_info['email'],
-			'url_failure'	=> $this->url->link('checkout/failure'),
-			'url_ok'		=> $this->url->link('payment/g2apay/success'),
-			'items'		=> json_encode($items)
+			'api_hash'    => $this->config->get('g2apay_api_hash'),
+			'hash'        => hash('sha256', $string),
+			'order_id'    => $this->session->data['order_id'],
+			'amount'      => $order_total,
+			'currency'    => $order_info['currency_code'],
+			'email'       => $order_info['email'],
+			'url_failure' => $this->url->link('checkout/failure'),
+			'url_ok'      => $this->url->link('payment/g2apay/success'),
+			'items'       => json_encode($items)
 		);
 
 		$response_data = $this->model_payment_g2apay->sendCurl($url, $fields);

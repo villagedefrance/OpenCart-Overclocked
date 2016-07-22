@@ -103,6 +103,7 @@ class ControllerPaymentCardPay extends Controller {
 			/* If both hashes are the same, the post should come from CardPay Inc */
 			if ($sha512 == $request_sha512) {
 				$orderDoc = simplexml_load_string($orderXML);
+
 				$order_id = (string)$orderDoc['number'];
 				$order_status = strtoupper((string)$orderDoc['status']);
 

@@ -32,7 +32,7 @@ $_['entry_sort_order']      = 'Sort Order';
 // Help
 $_['help_merchant']         = '(e-store id) to use for the Klarna service (provided by Klarna).';
 $_['help_secret']           = 'Shared secret to use with the Klarna service (provided by Klarna).';
-$_['help_total']            = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']            = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']        = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 
 // Error

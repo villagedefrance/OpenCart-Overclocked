@@ -362,14 +362,14 @@ class ControllerPaymentAmazonCheckout extends Controller {
 				}
 
 				$option_data[] = array(
-					'product_option_id' 			=> (isset($option['product_option_id']) ? $option['product_option_id'] : ''),
-					'product_option_value_id'	=> $option['product_option_value_id'],
-					'option_id' 						=> (isset($option['option_id'])) ? $option['option_id'] : '',
-					'option_value_id' 				=> (isset($option['option_value_id'])) ? $option['option_value_id'] : '',
-					'name' 							=> $option['name'],
-					'value' 							=> $value,
-					'type' 							=> (isset($option['type'])) ? $option['type'] : '',
-					'prefix' 							=> (isset($option['prefix'])) ? $option['prefix'] : ''
+					'product_option_id'       => (isset($option['product_option_id']) ? $option['product_option_id'] : ''),
+					'product_option_value_id' => $option['product_option_value_id'],
+					'option_id'               => (isset($option['option_id'])) ? $option['option_id'] : '',
+					'option_value_id'         => (isset($option['option_value_id'])) ? $option['option_value_id'] : '',
+					'name'                    => $option['name'],
+					'value'                   => $value,
+					'type'                    => (isset($option['type'])) ? $option['type'] : '',
+					'prefix'                  => (isset($option['prefix'])) ? $option['prefix'] : ''
 				);
 			}
 
@@ -389,16 +389,16 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 			$product_data[] = array(
 				'product_id'	=> $product['product_id'],
-				'name'		=> $product['name'],
-				'model' 		=> $product['model'],
-				'option' 		=> $option_data,
-				'download' 	=> $product['download'],
-				'quantity'	=> $product['quantity'],
-				'subtract'	=> $subtract,
-				'price'		=> $product['price'],
-				'total'			=> $product['total'],
-				'tax' 			=> $product_tax,
-				'reward' 		=> $reward
+				'name'          => $product['name'],
+				'model'         => $product['model'],
+				'option'        => $option_data,
+				'download'      => $product['download'],
+				'quantity'      => $product['quantity'],
+				'subtract'      => $subtract,
+				'price'         => $product['price'],
+				'total'         => $product['total'],
+				'tax'           => $product_tax,
+				'reward'        => $reward
 			);
 		}
 
@@ -491,13 +491,13 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'product_id'	=> $product['product_id'],
-				'name'		=> $product['name'],
-				'model' 		=> $product['model'],
-				'option' 		=> $option_data,
-				'quantity'	=> $product['quantity'],
-				'price'		=> $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
-				'total'			=> $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity'])
+				'product_id' => $product['product_id'],
+				'name'       => $product['name'],
+				'model'      => $product['model'],
+				'option'     => $option_data,
+				'quantity'   => $product['quantity'],
+				'price'      => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
+				'total'      => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity'])
 			);
 		}
 
@@ -589,10 +589,10 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		foreach ($ordered_products as $product) {
 			$parameters_items['products'][] = array(
-				'title' 			=> html_entity_decode($product['name'], ENT_QUOTES, 'UTF-8'),
-				'model' 		=> $product['order_product_id'],
-				'quantity' 	=> $product['quantity'],
-				'price' 		=> $this->currency->format($product['price'] + $product['tax'], $currency_code, '', false)
+				'title'    => html_entity_decode($product['name'], ENT_QUOTES, 'UTF-8'),
+				'model'    => $product['order_product_id'],
+				'quantity' => $product['quantity'],
+				'price'    => $this->currency->format($product['price'] + $product['tax'], $currency_code, '', false)
 			);
 
 			$total += ($product['price'] + $product['tax']) * $product['quantity'];
@@ -602,10 +602,10 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		foreach ($order_totals as $order_total) {
 			$parameters_items['products'][] = array(
-				'title' 			=> $order_total['title'],
-				'model' 		=> 'ot_' . $order_total['order_total_id'],
-				'quantity' 	=> 1,
-				'price' 		=> $this->currency->format($order_total['price'], $currency_code, '', false)
+				'title'    => $order_total['title'],
+				'model'    => 'ot_' . $order_total['order_total_id'],
+				'quantity' => 1,
+				'price'    => $this->currency->format($order_total['price'], $currency_code, '', false)
 			);
 
 			$total += $order_total['price'];
@@ -809,23 +809,23 @@ class ControllerPaymentAmazonCheckout extends Controller {
 			$this->tax->setShippingAddress($country_id, $zone_id);
 
 			$address = array(
-				'firstname' 			=> (string)$address_xml->Name,
-				'lastname' 			=> '',
-				'company' 			=> '',
-				'company_id' 		=> '',
-				'tax_id' 				=> '',
-				'address_1' 		=> '',
-				'address_2' 		=> '',
-				'postcode' 			=> (string)$address_xml->PostalCode,
-				'city' 					=> (string)$address_xml->City,
-				'zone_id' 			=> $zone_id,
-				'zone' 				=> (string)$address_xml->StateOrProvinceCode,
-				'zone_code' 		=> $zone_code,
-				'country_id' 		=> $country_id,
-				'country' 			=> $country_name,
-				'iso_code_2' 		=> $iso_code2,
-				'iso_code_3' 		=> $iso_code3,
-				'address_format'	=> $address_format
+				'firstname'      => (string)$address_xml->Name,
+				'lastname'       => '',
+				'company'        => '',
+				'company_id'     => '',
+				'tax_id'         => '',
+				'address_1'      => '',
+				'address_2'      => '',
+				'postcode'       => (string)$address_xml->PostalCode,
+				'city'           => (string)$address_xml->City,
+				'zone_id'        => $zone_id,
+				'zone'           => (string)$address_xml->StateOrProvinceCode,
+				'zone_code'      => $zone_code,
+				'country_id'     => $country_id,
+				'country'        => $country_name,
+				'iso_code_2'     => $iso_code2,
+				'iso_code_3'     => $iso_code3,
+				'address_format' => $address_format
 			);
 
 			$quotes = array();
@@ -846,10 +846,10 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 					if ($quote && empty($quote['error'])) {
 						$quotes[$code] = array(
-							'title'			=> $quote['title'],
-							'quote'		=> $quote['quote'],
-							'sort_order'	=> $quote['sort_order'],
-							'error'			=> $quote['error']
+							'title'      => $quote['title'],
+							'quote'      => $quote['quote'],
+							'sort_order' => $quote['sort_order'],
+							'error'      => $quote['error']
 						);
 					}
 				}

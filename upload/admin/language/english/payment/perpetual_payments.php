@@ -3,7 +3,7 @@
 $_['heading_title']           = 'Perpetual Payments';
 
 // Link
-$_['text_perpetual_payments'] = '<a onclick="window.open(\'https://secure.perpetualpayments.com/\');"><img src="view/image/payment/payza.png" alt="Perpetual Payments" title="Perpetual Payments" style="border:1px solid #EEEEEE;" /></a>';
+$_['text_perpetual_payments'] = '<a onclick="window.open(\'https://secure.perpetualpayments.com/\');"><img src="view/image/payment/perpetual_payments.png" alt="Perpetual Payments" title="Perpetual Payments" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text
 $_['text_payment']            = 'Payment';

@@ -56,7 +56,7 @@ $_['entry_status_void']              = 'Voided';
 $_['entry_enable_card_store']        = 'Enable card storage tokens';
 
 // Help
-$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes active';
+$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes <b>active</b>';
 $_['help_total_max']                 = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_notification']              = 'You need to supply this URL to First Data to get payment notifications';
 $_['help_debug']                     = 'Enabling debug will write sensitive data to a log file. You should always disable unless instructed otherwise';

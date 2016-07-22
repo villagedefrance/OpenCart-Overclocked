@@ -26,7 +26,7 @@ $_['entry_status']                   = 'Status:';
 $_['entry_sort_order']               = 'Sort Order:';
 $_['entry_icon_sort_order']          = 'Icon Sort Order:';
 $_['entry_debug']                    = 'Debug logging:';
-$_['entry_total']                    = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
+$_['entry_total']                    = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
 $_['entry_currency']                 = 'Default currency<span class="help">Used for transaction searches</span>';
 $_['entry_profile_cancellation']     = 'Allow customers to cancel profiles';
 

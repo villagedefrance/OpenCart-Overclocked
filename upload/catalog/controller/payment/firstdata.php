@@ -124,32 +124,32 @@ class ControllerPaymentFirstdata extends Controller {
 						$response_parts = explode(':', $this->request->post['approval_code']);
 
 						$address_codes = array(
-							'PPX'	=> $this->language->get('text_address_ppx'),
-							'YYY'	=> $this->language->get('text_address_yyy'),
-							'YNA'	=> $this->language->get('text_address_yna'),
-							'NYZ'	=> $this->language->get('text_address_nyz'),
-							'NNN'	=> $this->language->get('text_address_nnn'),
-							'YPX'	=> $this->language->get('text_address_ypx'),
-							'PYX'	=> $this->language->get('text_address_pyx'),
-							'XXU'	=> $this->language->get('text_address_xxu')
+							'PPX' => $this->language->get('text_address_ppx'),
+							'YYY' => $this->language->get('text_address_yyy'),
+							'YNA' => $this->language->get('text_address_yna'),
+							'NYZ' => $this->language->get('text_address_nyz'),
+							'NNN' => $this->language->get('text_address_nnn'),
+							'YPX' => $this->language->get('text_address_ypx'),
+							'PYX' => $this->language->get('text_address_pyx'),
+							'XXU' => $this->language->get('text_address_xxu')
 						);
 
 						$cvv_codes = array(
-							'M'		=> $this->language->get('text_card_code_m'),
-							'N'		=> $this->language->get('text_card_code_n'),
-							'P'		=> $this->language->get('text_card_code_p'),
-							'S'		=> $this->language->get('text_card_code_s'),
-							'U'		=> $this->language->get('text_card_code_u'),
-							'X'		=> $this->language->get('text_card_code_x'),
+							'M'    => $this->language->get('text_card_code_m'),
+							'N'    => $this->language->get('text_card_code_n'),
+							'P'    => $this->language->get('text_card_code_p'),
+							'S'    => $this->language->get('text_card_code_s'),
+							'U'    => $this->language->get('text_card_code_u'),
+							'X'    => $this->language->get('text_card_code_x'),
 							'NONE' => $this->language->get('text_card_code_blank')
 						);
 
 						$card_types = array(
-							'M'			=> $this->language->get('text_card_type_m'),
-							'V'			=> $this->language->get('text_card_type_v'),
-							'C'			=> $this->language->get('text_card_type_c'),
-							'A'			=> $this->language->get('text_card_type_a'),
-							'MA'		=> $this->language->get('text_card_type_ma'),
+							'M'         => $this->language->get('text_card_type_m'),
+							'V'         => $this->language->get('text_card_type_v'),
+							'C'         => $this->language->get('text_card_type_c'),
+							'A'         => $this->language->get('text_card_type_a'),
+							'MA'        => $this->language->get('text_card_type_ma'),
 							'MAESTROUK' => $this->language->get('text_card_type_mauk')
 						);
 
@@ -248,7 +248,7 @@ class ControllerPaymentFirstdata extends Controller {
 	}
 
 	public function fail() {
-		$this->load->language('payment/firstdata');
+		$this->language->load('payment/firstdata');
 
 		if (isset($this->request->post['fail_reason']) && !empty($this->request->post['fail_reason'])) {
 			$this->session->data['error'] = $this->request->post['fail_reason'];

@@ -65,20 +65,20 @@ class ControllerPaymentPPExpress extends Controller {
 		$max_amount = $this->currency->format($max_amount, $this->currency->getCode(), '', false);
 
 		$data = array(
-			'METHOD' => 'SetExpressCheckout',
-			'MAXAMT' => $max_amount,
-			'RETURNURL' => $this->url->link('payment/pp_express/expressReturn', '', 'SSL'),
-			'CANCELURL' => $this->url->link('checkout/cart'),
+			'METHOD'             => 'SetExpressCheckout',
+			'MAXAMT'             => $max_amount,
+			'RETURNURL'          => $this->url->link('payment/pp_express/expressReturn', '', 'SSL'),
+			'CANCELURL'          => $this->url->link('checkout/cart'),
 			'REQCONFIRMSHIPPING' => 0,
-			'NOSHIPPING' => $shipping,
-			'ALLOWNOTE' => $this->config->get('pp_express_allow_note'),
-			'LOCALECODE' => 'EN',
-			'LANDINGPAGE' => 'Login',
-			'HDRIMG' => $this->model_tool_image->resize($this->config->get('pp_express_logo'), 790, 90),
-			'HDRBORDERCOLOR' => $this->config->get('pp_express_border_colour'),
-			'HDRBACKCOLOR' => $this->config->get('pp_express_header_colour'),
-			'PAYFLOWCOLOR' => $this->config->get('pp_express_page_colour'),
-			'CHANNELTYPE' => 'Merchant'
+			'NOSHIPPING'         => $shipping,
+			'ALLOWNOTE'          => $this->config->get('pp_express_allow_note'),
+			'LOCALECODE'         => 'EN',
+			'LANDINGPAGE'        => 'Login',
+			'HDRIMG'             => $this->model_tool_image->resize($this->config->get('pp_express_logo'), 790, 90),
+			'HDRBORDERCOLOR'     => $this->config->get('pp_express_border_colour'),
+			'HDRBACKCOLOR'       => $this->config->get('pp_express_header_colour'),
+			'PAYFLOWCOLOR'       => $this->config->get('pp_express_page_colour'),
+			'CHANNELTYPE'        => 'Merchant'
 		);
 
 		$data = array_merge($data, $this->model_payment_pp_express->paymentRequestInfo());
@@ -308,17 +308,17 @@ class ControllerPaymentPPExpress extends Controller {
 					$zone_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE `name` = '" . $this->db->escape($result['PAYMENTREQUEST_0_SHIPTOSTATE']) . "' AND `status` = '1' AND `country_id` = '" . (int)$country_info['country_id'] . "'")->row;
 
 					$address_data= array(
-						'firstname' 		=> $shipping_first_name,
-						'lastname' 		=> $shipping_last_name,
-						'company' 		=> '',
-						'company_id' 	=> '',
-						'tax_id' 			=> '',
-						'address_1' 	=> $result['PAYMENTREQUEST_0_SHIPTOSTREET'],
-						'address_2' 	=> (isset($result['PAYMENTREQUEST_0_SHIPTOSTREET2']) ? $result['PAYMENTREQUEST_0_SHIPTOSTREET2'] : ''),
-						'postcode' 		=> $result['PAYMENTREQUEST_0_SHIPTOZIP'],
-						'city' 				=> $result['PAYMENTREQUEST_0_SHIPTOCITY'],
-						'zone_id' 		=> (isset($zone_info['zone_id']) ? $zone_info['zone_id'] : 0),
-						'country_id' 	=> (isset($country_info['country_id']) ? $country_info['country_id'] : 0)
+						'firstname'  => $shipping_first_name,
+						'lastname'   => $shipping_last_name,
+						'company'    => '',
+						'company_id' => '',
+						'tax_id'     => '',
+						'address_1'  => $result['PAYMENTREQUEST_0_SHIPTOSTREET'],
+						'address_2'  => (isset($result['PAYMENTREQUEST_0_SHIPTOSTREET2']) ? $result['PAYMENTREQUEST_0_SHIPTOSTREET2'] : ''),
+						'postcode'   => $result['PAYMENTREQUEST_0_SHIPTOZIP'],
+						'city'       => $result['PAYMENTREQUEST_0_SHIPTOCITY'],
+						'zone_id'    => (isset($zone_info['zone_id']) ? $zone_info['zone_id'] : 0),
+						'country_id' => (isset($country_info['country_id']) ? $country_info['country_id'] : 0)
 					);
 
 					$address_id = $this->model_account_address->addAddress($address_data);
@@ -516,11 +516,11 @@ class ControllerPaymentPPExpress extends Controller {
 
 			if ($product['recurring']) {
 				$frequencies = array(
-					'day' 				=> $this->language->get('text_day'),
-					'week' 			=> $this->language->get('text_week'),
-					'semi_month' 	=> $this->language->get('text_semi_month'),
-					'month' 			=> $this->language->get('text_month'),
-					'year' 			=> $this->language->get('text_year')
+					'day'        => $this->language->get('text_day'),
+					'week'       => $this->language->get('text_week'),
+					'semi_month' => $this->language->get('text_semi_month'),
+					'month'      => $this->language->get('text_month'),
+					'year'       => $this->language->get('text_year')
 				);
 
 				if ($product['recurring_trial']) {
@@ -539,21 +539,21 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'key' 						=> $product['key'],
-				'thumb' 					=> $image,
-				'name' 					=> $product['name'],
-				'model' 					=> $product['model'],
-				'option' 					=> $option_data,
-				'quantity' 				=> $product['quantity'],
-				'stock' 					=> $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
-				'reward' 					=> ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
-				'price' 					=> $price,
-				'total' 					=> $total,
-				'href' 						=> $this->url->link('product/product', 'product_id=' . $product['product_id']),
-				'remove' 				=> $this->url->link('checkout/cart', 'remove=' . $product['key']),
-				'recurring' 				=> $product['recurring'],
-				'profile_name' 			=> $product['profile_name'],
-				'profile_description' 	=> $profile_description
+				'key'                 => $product['key'],
+				'thumb'               => $image,
+				'name'                => $product['name'],
+				'model'               => $product['model'],
+				'option'              => $option_data,
+				'quantity'            => $product['quantity'],
+				'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
+				'reward'              => ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
+				'price'               => $price,
+				'total'               => $total,
+				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+				'remove'              => $this->url->link('checkout/cart', 'remove=' . $product['key']),
+				'recurring'           => $product['recurring'],
+				'profile_name'        => $product['profile_name'],
+				'profile_description' => $profile_description
 			);
 		}
 
@@ -589,10 +589,10 @@ class ControllerPaymentPPExpress extends Controller {
 
 							if ($quote) {
 								$quote_data[$result['code']] = array(
-									'title' 			=> $quote['title'],
-									'quote' 		=> $quote['quote'],
-									'sort_order'	=> $quote['sort_order'],
-									'error' 		=> $quote['error']
+									'title'      => $quote['title'],
+									'quote'      => $quote['quote'],
+									'sort_order' => $quote['sort_order'],
+									'error'      => $quote['error']
 								);
 							}
 						}
@@ -995,28 +995,28 @@ class ControllerPaymentPPExpress extends Controller {
 					}
 
 					$option_data[] = array(
-						'product_option_id' 			=> $option['product_option_id'],
-						'product_option_value_id'	=> $option['product_option_value_id'],
-						'option_id' 						=> $option['option_id'],
-						'option_value_id' 				=> $option['option_value_id'],
-						'name' 							=> $option['name'],
-						'value' 							=> $value,
-						'type' 							=> $option['type']
+						'product_option_id'       => $option['product_option_id'],
+						'product_option_value_id' => $option['product_option_value_id'],
+						'option_id'               => $option['option_id'],
+						'option_value_id'         => $option['option_value_id'],
+						'name'                    => $option['name'],
+						'value'                   => $value,
+						'type'                    => $option['type']
 					);
 				}
 
 				$product_data[] = array(
-					'product_id' 	=> $product['product_id'],
-					'name' 			=> $product['name'],
-					'model' 			=> $product['model'],
-					'option' 			=> $option_data,
-					'download' 		=> $product['download'],
-					'quantity' 		=> $product['quantity'],
-					'subtract' 		=> $product['subtract'],
-					'price' 			=> $product['price'],
-					'total' 			=> $product['total'],
-					'tax' 				=> $this->tax->getTax($product['price'], $product['tax_class_id']),
-					'reward' 			=> $product['reward']
+					'product_id' => $product['product_id'],
+					'name'       => $product['name'],
+					'model'      => $product['model'],
+					'option'     => $option_data,
+					'download'   => $product['download'],
+					'quantity'   => $product['quantity'],
+					'subtract'   => $product['subtract'],
+					'price'      => $product['price'],
+					'total'      => $product['total'],
+					'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
+					'reward'     => $product['reward']
 				);
 			}
 
@@ -1026,15 +1026,15 @@ class ControllerPaymentPPExpress extends Controller {
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $voucher) {
 					$voucher_data[] = array(
-						'description' 			=> $voucher['description'],
-						'code' 					=> substr(md5(mt_rand()), 0, 10),
-						'to_name' 				=> $voucher['to_name'],
-						'to_email' 				=> $voucher['to_email'],
-						'from_name' 			=> $voucher['from_name'],
-						'from_email' 			=> $voucher['from_email'],
-						'voucher_theme_id' 	=> $voucher['voucher_theme_id'],
-						'message' 				=> $voucher['message'],
-						'amount' 				=> $voucher['amount']
+						'description'      => $voucher['description'],
+						'code'             => substr(md5(mt_rand()), 0, 10),
+						'to_name'          => $voucher['to_name'],
+						'to_email'         => $voucher['to_email'],
+						'from_name'        => $voucher['from_name'],
+						'from_email'       => $voucher['from_email'],
+						'voucher_theme_id' => $voucher['voucher_theme_id'],
+						'message'          => $voucher['message'],
+						'amount'           => $voucher['amount']
 					);
 				}
 			}
@@ -1150,29 +1150,29 @@ class ControllerPaymentPPExpress extends Controller {
 
 				// Add order to paypal table
 				$paypal_order_data = array(
-					'order_id' 			=> $order_id,
-					'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
-					'currency_code' 	=> $result['PAYMENTINFO_0_CURRENCYCODE'],
-					'authorization_id' 	=> $result['PAYMENTINFO_0_TRANSACTIONID'],
-					'total' 				=> $result['PAYMENTINFO_0_AMT']
+					'order_id'         => $order_id,
+					'capture_status'   => ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
+					'currency_code'    => $result['PAYMENTINFO_0_CURRENCYCODE'],
+					'authorization_id' => $result['PAYMENTINFO_0_TRANSACTIONID'],
+					'total'            => $result['PAYMENTINFO_0_AMT']
 				);
 
 				$paypal_order_id = $this->model_payment_pp_express->addOrder($paypal_order_data);
 
 				// Add transaction to paypal transaction table
 				$paypal_transaction_data = array(
-					'paypal_order_id' 			=> $paypal_order_id,
-					'transaction_id' 			=> $result['PAYMENTINFO_0_TRANSACTIONID'],
-					'parent_transaction_id' 	=> '',
-					'note' 						=> '',
-					'msgsubid' 					=> '',
-					'receipt_id' 					=> (isset($result['PAYMENTINFO_0_RECEIPTID']) ? $result['PAYMENTINFO_0_RECEIPTID'] : ''),
-					'payment_type' 			=> $result['PAYMENTINFO_0_PAYMENTTYPE'],
-					'payment_status' 		=> $result['PAYMENTINFO_0_PAYMENTSTATUS'],
-					'pending_reason' 			=> $result['PAYMENTINFO_0_PENDINGREASON'],
-					'transaction_entity' 		=> ($this->config->get('pp_express_method') == 'Sale') ? 'payment' : 'auth',
-					'amount' 					=> $result['PAYMENTINFO_0_AMT'],
-					'debug_data' 				=> json_encode($result)
+					'paypal_order_id'       => $paypal_order_id,
+					'transaction_id'        => $result['PAYMENTINFO_0_TRANSACTIONID'],
+					'parent_transaction_id' => '',
+					'note'                  => '',
+					'msgsubid'              => '',
+					'receipt_id'            => (isset($result['PAYMENTINFO_0_RECEIPTID']) ? $result['PAYMENTINFO_0_RECEIPTID'] : ''),
+					'payment_type'          => $result['PAYMENTINFO_0_PAYMENTTYPE'],
+					'payment_status'        => $result['PAYMENTINFO_0_PAYMENTSTATUS'],
+					'pending_reason'        => $result['PAYMENTINFO_0_PENDINGREASON'],
+					'transaction_entity'    => ($this->config->get('pp_express_method') == 'Sale') ? 'payment' : 'auth',
+					'amount'                => $result['PAYMENTINFO_0_AMT'],
+					'debug_data'            => json_encode($result)
 				);
 
 				$this->model_payment_pp_express->addTransaction($paypal_transaction_data);
@@ -1186,11 +1186,11 @@ class ControllerPaymentPPExpress extends Controller {
 					$this->load->model('checkout/recurring');
 
 					$billing_period = array(
-						'day' 				=> 'Day',
-						'week' 			=> 'Week',
-						'semi_month' 	=> 'SemiMonth',
-						'month' 			=> 'Month',
-						'year' 			=> 'Year'
+						'day'        => 'Day',
+						'week'       => 'Week',
+						'semi_month' => 'SemiMonth',
+						'month'      => 'Month',
+						'year'       => 'Year'
 					);
 
 					foreach($recurring_products as $item) {
@@ -1414,29 +1414,29 @@ class ControllerPaymentPPExpress extends Controller {
 
 			// Add order to paypal table
 			$paypal_order_data = array(
-				'order_id' 			=> $order_id,
-				'capture_status' 	=> ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
-				'currency_code' 	=> $result['PAYMENTINFO_0_CURRENCYCODE'],
-				'authorization_id' 	=> $result['PAYMENTINFO_0_TRANSACTIONID'],
-				'total' 				=> $result['PAYMENTINFO_0_AMT']
+				'order_id'         => $order_id,
+				'capture_status'   => ($this->config->get('pp_express_method') == 'Sale') ? 'Complete' : 'NotComplete',
+				'currency_code'    => $result['PAYMENTINFO_0_CURRENCYCODE'],
+				'authorization_id' => $result['PAYMENTINFO_0_TRANSACTIONID'],
+				'total'            => $result['PAYMENTINFO_0_AMT']
 			);
 
 			$paypal_order_id = $this->model_payment_pp_express->addOrder($paypal_order_data);
 
 			// Add transaction to paypal transaction table
 			$paypal_transaction_data = array(
-				'paypal_order_id' 			=> $paypal_order_id,
-				'transaction_id' 			=> $result['PAYMENTINFO_0_TRANSACTIONID'],
-				'parent_transaction_id' 	=> '',
-				'note' 						=> '',
-				'msgsubid' 					=> '',
-				'receipt_id' 					=> (isset($result['PAYMENTINFO_0_RECEIPTID']) ? $result['PAYMENTINFO_0_RECEIPTID'] : ''),
-				'payment_type' 			=> $result['PAYMENTINFO_0_PAYMENTTYPE'],
-				'payment_status' 		=> $result['PAYMENTINFO_0_PAYMENTSTATUS'],
-				'pending_reason' 			=> $result['PAYMENTINFO_0_PENDINGREASON'],
-				'transaction_entity' 		=> ($this->config->get('pp_express_method') == 'Sale') ? 'payment' : 'auth',
-				'amount' 					=> $result['PAYMENTINFO_0_AMT'],
-				'debug_data' 				=> json_encode($result)
+				'paypal_order_id'       => $paypal_order_id,
+				'transaction_id'        => $result['PAYMENTINFO_0_TRANSACTIONID'],
+				'parent_transaction_id' => '',
+				'note'                  => '',
+				'msgsubid'              => '',
+				'receipt_id'            => (isset($result['PAYMENTINFO_0_RECEIPTID']) ? $result['PAYMENTINFO_0_RECEIPTID'] : ''),
+				'payment_type'          => $result['PAYMENTINFO_0_PAYMENTTYPE'],
+				'payment_status'        => $result['PAYMENTINFO_0_PAYMENTSTATUS'],
+				'pending_reason'        => $result['PAYMENTINFO_0_PENDINGREASON'],
+				'transaction_entity'    => ($this->config->get('pp_express_method') == 'Sale') ? 'payment' : 'auth',
+				'amount'                => $result['PAYMENTINFO_0_AMT'],
+				'debug_data'            => json_encode($result)
 			);
 
 			$this->model_payment_pp_express->addTransaction($paypal_transaction_data);
@@ -1448,11 +1448,11 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->load->model('checkout/recurring');
 
 				$billing_period = array(
-					'day' 				=> 'Day',
-					'week' 			=> 'Week',
-					'semi_month' 	=> 'SemiMonth',
-					'month' 			=> 'Month',
-					'year' 			=> 'Year'
+					'day'        => 'Day',
+					'week'       => 'Week',
+					'semi_month' => 'SemiMonth',
+					'month'      => 'Month',
+					'year'       => 'Year'
 				);
 
 				foreach ($recurring_products as $item) {
@@ -1543,20 +1543,20 @@ class ControllerPaymentPPExpress extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'href'		=> $this->url->link('common/home'),
-				'text'		=> $this->language->get('text_home'),
-				'separator'	=> false
+				'href'      => $this->url->link('common/home'),
+				'text'      => $this->language->get('text_home'),
+				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'href'		=> $this->url->link('checkout/cart'),
-				'text'		=> $this->language->get('text_cart'),
-				'separator'	=> $this->language->get('text_separator')
+				'href'      => $this->url->link('checkout/cart'),
+				'text'      => $this->language->get('text_cart'),
+				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['heading_title'] = $this->language->get('error_heading_title');
 
-			$this->data['text_error'] = '<div class="warning">'.$result['L_ERRORCODE0'].' : '.$result['L_LONGMESSAGE0'].'</div>';
+			$this->data['text_error'] = '<div class="warning">' . $result['L_ERRORCODE0'] . ' : ' . $result['L_LONGMESSAGE0'] . '</div>';
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
@@ -1666,18 +1666,18 @@ class ControllerPaymentPPExpress extends Controller {
 
 					// Insert new related transaction
 					$transaction = array(
-						'paypal_order_id' 		=> $parent_transaction['paypal_order_id'],
-						'transaction_id' 		=> $this->request->post['txn_id'],
+						'paypal_order_id'       => $parent_transaction['paypal_order_id'],
+						'transaction_id'        => $this->request->post['txn_id'],
 						'parent_transaction_id' => $this->request->post['parent_txn_id'],
-						'note' 					=> '',
-						'msgsubid' 				=> '',
-						'receipt_id' 				=> (isset($this->request->post['receipt_id']) ? $this->request->post['receipt_id'] : ''),
-						'payment_type' 		=> (isset($this->request->post['payment_type']) ? $this->request->post['payment_type'] : ''),
-						'payment_status' 	=> (isset($this->request->post['payment_status']) ? $this->request->post['payment_status'] : ''),
-						'pending_reason' 		=> (isset($this->request->post['pending_reason']) ? $this->request->post['pending_reason'] : ''),
-						'amount' 				=> $this->request->post['mc_gross'],
-						'debug_data' 			=> json_encode($this->request->post),
-						'transaction_entity' 	=> (isset($this->request->post['transaction_entity']) ? $this->request->post['transaction_entity'] : '')
+						'note'                  => '',
+						'msgsubid'              => '',
+						'receipt_id'            => (isset($this->request->post['receipt_id']) ? $this->request->post['receipt_id'] : ''),
+						'payment_type'          => (isset($this->request->post['payment_type']) ? $this->request->post['payment_type'] : ''),
+						'payment_status'        => (isset($this->request->post['payment_status']) ? $this->request->post['payment_status'] : ''),
+						'pending_reason'        => (isset($this->request->post['pending_reason']) ? $this->request->post['pending_reason'] : ''),
+						'amount'                => $this->request->post['mc_gross'],
+						'debug_data'            => json_encode($this->request->post),
+						'transaction_entity'    => (isset($this->request->post['transaction_entity']) ? $this->request->post['transaction_entity'] : '')
 					);
 
 					$this->model_payment_pp_express->addTransaction($transaction);
@@ -1705,18 +1705,18 @@ class ControllerPaymentPPExpress extends Controller {
 
 						if ($remaining > 0.00) {
 							$transaction = array(
-								'paypal_order_id' 		=> $parent_transaction['paypal_order_id'],
-								'transaction_id' 		=> '',
+								'paypal_order_id'       => $parent_transaction['paypal_order_id'],
+								'transaction_id'        => '',
 								'parent_transaction_id' => $this->request->post['parent_txn_id'],
-								'note' 					=> '',
-								'msgsubid' 				=> '',
-								'receipt_id' 				=> '',
-								'payment_type' 		=> '',
-								'payment_status' 	=> 'Void',
-								'pending_reason' 		=> '',
-								'amount' 				=> '',
-								'debug_data' 			=> 'Voided after capture',
-								'transaction_entity' 	=> 'auth'
+								'note'                  => '',
+								'msgsubid'              => '',
+								'receipt_id'            => '',
+								'payment_type'          => '',
+								'payment_status'        => 'Void',
+								'pending_reason'        => '',
+								'amount'                => '',
+								'debug_data'            => 'Voided after capture',
+								'transaction_entity'    => 'auth'
 							);
 
 							$this->model_payment_pp_express->addTransaction($transaction);

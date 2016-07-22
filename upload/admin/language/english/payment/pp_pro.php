@@ -17,7 +17,7 @@ $_['entry_password']     = 'API Password:';
 $_['entry_signature']    = 'API Signature:';
 $_['entry_test']         = 'Test Mode:<span class="help">Use the live or testing (sandbox) gateway server to process transactions?</span>';
 $_['entry_transaction']  = 'Transaction Method:';
-$_['entry_total']        = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
+$_['entry_total']        = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
 $_['entry_order_status'] = 'Order Status:';
 $_['entry_geo_zone']     = 'Geo Zone:';
 $_['entry_status']       = 'Status:';

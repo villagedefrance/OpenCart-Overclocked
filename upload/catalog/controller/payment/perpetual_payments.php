@@ -1,22 +1,23 @@
 <?php
 class ControllerPaymentPerpetualPayments extends Controller {
+
 	public function index() {
 		$this->language->load('payment/perpetual_payments');
 
-		$this->data['text_credit_card'] = $this->language->get('text_credit_card');               
-		$this->data['text_loading'] = $this->language->get('text_loading');                   
+		$this->data['text_credit_card'] = $this->language->get('text_credit_card');
+		$this->data['text_loading'] = $this->language->get('text_loading');
 		$this->data['text_wait'] = $this->language->get('text_wait');
-                                                                                                  
-		$this->data['entry_cc_number'] = $this->language->get('entry_cc_number');                
-		$this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date');            
-		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');           
-		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');                  
-		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');                 
-                                                                                                  
-		$this->data['help_start_date'] = $this->language->get('help_start_date');                
-		$this->data['help_issue'] = $this->language->get('help_issue');                     
-                                                                                                  
-		$this->data['button_confirm'] = $this->language->get('button_confirm');                 
+
+		$this->data['entry_cc_number'] = $this->language->get('entry_cc_number');
+		$this->data['entry_cc_start_date'] = $this->language->get('entry_cc_start_date');
+		$this->data['entry_cc_expire_date'] = $this->language->get('entry_cc_expire_date');
+		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
+		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');
+
+		$this->data['help_start_date'] = $this->language->get('help_start_date');
+		$this->data['help_issue'] = $this->language->get('help_issue');
+
+		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
 		$this->data['months'] = array();
 
@@ -85,7 +86,7 @@ class ControllerPaymentPerpetualPayments extends Controller {
 			'tran_currency' => $order_info['currency_code'],
 			'tran_testmode' => $this->config->get('perpetual_payments_test'),
 			'tran_type'     => 'Sale',
-			'tran_class'    => 'MoTo',
+			'tran_class'    => 'MoTo'
 		);
 
 		$curl = curl_init('https://secure.voice-pay.com/gateway/remote');

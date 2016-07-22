@@ -19,8 +19,8 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 
 		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
-				'value'	=> sprintf('%02d', $i)
+				'text'  => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value' => sprintf('%02d', $i)
 			);
 		}
 
@@ -30,8 +30,8 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+				'text'  => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -52,7 +52,7 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		$request  = 'MERCHANT_ID=' . urlencode($this->config->get('web_payment_software_merchant_name'));
+		$request = 'MERCHANT_ID=' . urlencode($this->config->get('web_payment_software_merchant_name'));
 		$request .= '&MERCHANT_KEY=' . urlencode($this->config->get('web_payment_software_merchant_key'));
 		$request .= '&TRANS_TYPE=' . urlencode($this->config->get('web_payment_software_method') == 'capture' ? 'AuthCapture' : 'AuthOnly');
 		$request .= '&AMOUNT=' . urlencode($this->currency->format($order_info['total'], $order_info['currency_code'], 1.00000, false));

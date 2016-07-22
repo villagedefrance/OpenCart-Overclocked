@@ -37,6 +37,8 @@ $_['text_last_cron_job_run']        = 'Last cron job run time:';
 $_['text_allowed_ips']              = 'IPs allowed';
 $_['text_add']                      = 'Add';
 $_['text_upload_success']           = 'File was uploaded successfully';
+
+// Help
 $_['help_adjustment']               = 'Bold fields and at least one "-adj" field are required';
 $_['help_allowed_ips']              = 'Leave empty if you want everyone to see the checkout button';
 
@@ -76,6 +78,7 @@ $_['text_amazon_order_id']          = 'Amazon Order ID:';
 $_['text_upload']                   = 'Upload';
 $_['text_upload_template']          = 'Upload the filled in template by clicking on the button below. Make sure it is saved as a tab-delimited file.';
 
+// Tab
 $_['tab_order_adjustment']          = 'Order Adjustment';
 
 // Columns

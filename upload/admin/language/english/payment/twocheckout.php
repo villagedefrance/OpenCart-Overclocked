@@ -23,7 +23,7 @@ $_['entry_sort_order']   = 'Sort Order';
 
 // Help
 $_['help_secret']        = 'The secret word to confirm transactions with (must be the same as defined on the merchant account configuration page).';
-$_['help_total']         = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']         = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']     = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 
 // Error

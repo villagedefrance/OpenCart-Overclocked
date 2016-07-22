@@ -46,7 +46,7 @@ $_['entry_partially_refunded_status'] = 'Partially Refunded Status:';
 $_['help_username']                   = 'The email address used for your account';
 $_['help_secret_token']               = 'Make this long and hard to guess';
 $_['help_ipn_url']                    = 'Set this as your IPN URL';
-$_['help_total']                      = 'The checkout total the order must reach before this payment method becomes active.';
+$_['help_total']                      = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']                  = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_debug']                      = 'Enabling debug will write sensitive data to a log file. You should always disable unless instructed otherwise';
 

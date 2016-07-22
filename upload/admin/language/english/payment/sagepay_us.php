@@ -12,7 +12,7 @@ $_['text_success']       = 'Success: You have modified <b>Payment SagePay US</b>
 // Entry
 $_['entry_merchant_id']  = 'Merchant ID:';
 $_['entry_merchant_key'] = 'Merchant Key:';
-$_['entry_total']        = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
+$_['entry_total']        = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
 $_['entry_order_status'] = 'Order Status:';
 $_['entry_geo_zone']     = 'Geo Zone:';
 $_['entry_status']       = 'Status:';

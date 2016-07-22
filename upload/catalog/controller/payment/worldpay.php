@@ -62,8 +62,10 @@ class ControllerPaymentWorldPay extends Controller {
 		$this->data['heading_title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
 
 		$this->data['text_response'] = $this->language->get('text_response');
+
 		$this->data['text_success'] = $this->language->get('text_success');
 		$this->data['text_success_wait'] = sprintf($this->language->get('text_success_wait'), $this->url->link('checkout/success'));
+
 		$this->data['text_failure'] = $this->language->get('text_failure');
 		$this->data['text_failure_wait'] = sprintf($this->language->get('text_failure_wait'), $this->url->link('checkout/checkout', '', 'SSL'));
 

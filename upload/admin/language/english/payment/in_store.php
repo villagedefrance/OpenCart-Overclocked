@@ -10,7 +10,7 @@ $_['text_payment']       = 'Payment';
 $_['text_success']       = 'Success: You have modified <b>Payment In Store</b> !';
 
 // Entry
-$_['entry_total']        = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
+$_['entry_total']        = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
 $_['entry_total_max']    = 'Total Maximum:<span class="help">The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.</span>';
 $_['entry_order_status'] = 'Order Status:';
 $_['entry_geo_zone']     = 'Geo Zone:';

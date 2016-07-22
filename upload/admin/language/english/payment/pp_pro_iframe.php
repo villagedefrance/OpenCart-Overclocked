@@ -138,7 +138,7 @@ $_['entry_user']                     = 'API User:<span class="help">API username
 $_['entry_password']                 = 'API Password:<span class="help">API password (NOT your PayPal password)</span>';
 $_['entry_sig']                      = 'API Signature:<span class="help">API signature key</span>';
 $_['entry_test']                     = 'Test Mode:<span class="help">Use the live or testing (sandbox) gateway server to process transactions? Test may fail in Internet Explorer</span>';
-$_['entry_total']                    = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
+$_['entry_total']                    = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
 $_['entry_order_status']             = 'Order Status:';
 $_['entry_geo_zone']                 = 'Geo Zone:';
 $_['entry_status']                   = 'Status:';

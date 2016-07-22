@@ -25,7 +25,7 @@ $_['entry_sort_order']      = 'Sort Order';
 // Help
 $_['help_callback']         = 'Please login and set this at <a onclick="window.open(\'https://secure.authorize.net\');">https://secure.authorize.net</a>.';
 $_['help_md5']              = 'The MD5 Hash feature enables you to authenticate that a transaction response is securely received from Authorize.Net. Please login and set this at <a onclick="window.open(\'https://secure.authorize.net\');">https://secure.authorize.net</a>. (Optional)';
-$_['help_total']            = 'The checkout total the order must reach before this payment method becomes active';
+$_['help_total']            = 'The checkout total the order must reach before this payment method becomes <b>active</b>';
 $_['help_total_max']        = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 
 // Error

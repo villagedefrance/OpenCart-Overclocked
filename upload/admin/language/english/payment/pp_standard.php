@@ -16,7 +16,7 @@ $_['entry_email']                    = 'E-Mail:';
 $_['entry_test']                     = 'Sandbox Mode:';
 $_['entry_transaction']              = 'Transaction Method:';
 $_['entry_debug']                    = 'Debug Mode:<span class="help">Logs additional information to the system log.</span>';
-$_['entry_total']                    = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes active.</span>';
+$_['entry_total']                    = 'Total:<span class="help">The checkout total the order must reach before this payment method becomes <b>active</b>.</span>';
 $_['entry_canceled_reversal_status'] = 'Canceled Reversal Status:';
 $_['entry_completed_status']         = 'Completed Status:';
 $_['entry_denied_status']            = 'Denied Status:';

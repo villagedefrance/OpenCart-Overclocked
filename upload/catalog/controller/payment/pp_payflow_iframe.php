@@ -69,9 +69,9 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		}
 
 		$iframe_params = array(
-			'MODE'				=> $mode,
-			'SECURETOKENID'	=> $secure_token_id,
-			'SECURETOKEN'	=> $secure_token
+			'MODE'          => $mode,
+			'SECURETOKENID' => $secure_token_id,
+			'SECURETOKEN'   => $secure_token
 		);
 
 		$this->data['iframe_url'] = $payflow_url . '?' . http_build_query($iframe_params, '', "&");
@@ -148,9 +148,9 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
 			$urlParams = array(
-				'TENDER'		=> 'C',
-				'TRXTYPE'	=> 'I',
-				'ORIGID'		=> $this->request->post['PNREF']
+				'TENDER'  => 'C',
+				'TRXTYPE' => 'I',
+				'ORIGID'  => $this->request->post['PNREF']
 			);
 
 			$response_params = $this->model_payment_pp_payflow_iframe->call($urlParams);
@@ -165,19 +165,19 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 				}
 
 				$data = array(
-					'secure_token_id'			=> $this->request->post['SECURETOKENID'],
-					'transaction_reference'	=> $this->request->post['PNREF'],
-					'transaction_type'		=> $this->request->post['TYPE'],
-					'complete'					=> $complete
+					'secure_token_id'       => $this->request->post['SECURETOKENID'],
+					'transaction_reference' => $this->request->post['PNREF'],
+					'transaction_type'      => $this->request->post['TYPE'],
+					'complete'              => $complete
 				);
 
 				$this->model_payment_pp_payflow_iframe->updateOrder($data);
 
 				$data = array(
-					'order_id'					=> $order_id,
-					'type'							=> $this->request->post['TYPE'],
-					'transaction_reference'	=> $this->request->post['PNREF'],
-					'amount'						=> $this->request->post['AMT']
+					'order_id'              => $order_id,
+					'type'                  => $this->request->post['TYPE'],
+					'transaction_reference' => $this->request->post['PNREF'],
+					'amount'                => $this->request->post['AMT']
 				);
 
 				$this->model_payment_pp_payflow_iframe->addTransaction($data);

@@ -53,7 +53,7 @@ class ControllerPaymentSagepayUS extends Controller {
 
 		$url = 'https://www.sagepayments.net/cgi-bin/eftbankcard.dll?transaction';
 
-		$data  = 'm_id=' . $this->config->get('sagepay_us_merchant_id');
+		$data = 'm_id=' . $this->config->get('sagepay_us_merchant_id');
 		$data .= '&m_key=' . $this->config->get('sagepay_us_merchant_key');
 		$data .= '&T_amt=' . urlencode($this->currency->format($order_info['total'], $order_info['currency_code'], 1.00000, false));
 		$data .= '&T_ordernum=' . $this->session->data['order_id'];
@@ -84,7 +84,7 @@ class ControllerPaymentSagepayUS extends Controller {
 		if ($response[1] == 'A') {
 			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('config_order_status_id'));
 
-			$message  = 'Approval Indicator: ' . $response[1] . "\n";
+			$message = 'Approval Indicator: ' . $response[1] . "\n";
 			$message .= 'Approval/Error Code: ' . substr($response, 2, 6) . "\n";
 			$message .= 'Approval/Error Message: ' . substr($response, 8, 32) . "\n";
 			$message .= 'Front-End Indicator: ' . substr($response, 40, 2) . "\n";
