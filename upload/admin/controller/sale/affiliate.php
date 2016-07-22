@@ -430,9 +430,9 @@ class ControllerSaleAffiliate extends Controller {
 			'limit'             => $this->config->get('config_admin_limit')
 		);
 
-		$affiliate_total = $this->model_sale_affiliate->getTotalAffiliates($filter_data);
+		$login_attempts = $this->config->get('config_login_attempts');
 
-		$login_attempts = (int)($this->config->has('config_login_attempts') ? $this->config->get('config_login_attempts') : 0),
+		$affiliate_total = $this->model_sale_affiliate->getTotalAffiliates($filter_data);
 
 		$results = $this->model_sale_affiliate->getAffiliates($filter_data);
 
@@ -445,10 +445,13 @@ class ControllerSaleAffiliate extends Controller {
 			);
 
 			$lock = false;
+
 			if ($login_attempts > 0) {
 				$login_info = $this->model_sale_affiliate->getLoginAttempts($result['email']);
 
-				if ($login_info && ($login_info['total'] >= $login_attempts)) $lock = true;
+				if ($login_info && ($login_info['total'] >= $login_attempts)) {
+					$lock = true;
+				}
 			}
 
 			$total_products = $this->model_sale_affiliate->getTotalAffiliateProducts($result['affiliate_id']);
