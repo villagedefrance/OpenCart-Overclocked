@@ -1,21 +1,21 @@
 <?php
-class ControllerShippingDhl extends Controller {
+class ControllerShippingTnt extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('shipping/dhl');
+		$this->language->load('shipping/tnt');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('dhl', $this->request->post);
+			$this->model_setting_setting->editSetting('tnt', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->post['apply'])) {
-				$this->redirect($this->url->link('shipping/dhl', 'token=' . $this->session->data['token'], 'SSL'));
+				$this->redirect($this->url->link('shipping/tnt', 'token=' . $this->session->data['token'], 'SSL'));
 			} else {
 				$this->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
 			}
@@ -38,7 +38,7 @@ class ControllerShippingDhl extends Controller {
 
 		$this->data['tab_general'] = $this->language->get('tab_general');
 
- 		if (isset($this->error['warning'])) {
+		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
@@ -60,11 +60,11 @@ class ControllerShippingDhl extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('shipping/dhl', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('shipping/tnt', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = $this->url->link('shipping/dhl', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('shipping/tnt', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -73,44 +73,44 @@ class ControllerShippingDhl extends Controller {
 		$geo_zones = $this->model_localisation_geo_zone->getGeoZones();
 
 		foreach ($geo_zones as $geo_zone) {
-			if (isset($this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_rate'])) {
-				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_rate'];
+			if (isset($this->request->post['tnt_' . $geo_zone['geo_zone_id'] . '_rate'])) {
+				$this->data['tnt_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->request->post['tnt_' . $geo_zone['geo_zone_id'] . '_rate'];
 			} else {
-				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->config->get('dhl_' . $geo_zone['geo_zone_id'] . '_rate');
+				$this->data['tnt_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->config->get('tnt_' . $geo_zone['geo_zone_id'] . '_rate');
 			}
 
-			if (isset($this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_status'])) {
-				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_status'] = $this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_status'];
+			if (isset($this->request->post['tnt_' . $geo_zone['geo_zone_id'] . '_status'])) {
+				$this->data['tnt_' . $geo_zone['geo_zone_id'] . '_status'] = $this->request->post['tnt_' . $geo_zone['geo_zone_id'] . '_status'];
 			} else {
-				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_status'] = $this->config->get('dhl_' . $geo_zone['geo_zone_id'] . '_status');
+				$this->data['tnt_' . $geo_zone['geo_zone_id'] . '_status'] = $this->config->get('tnt_' . $geo_zone['geo_zone_id'] . '_status');
 			}
 		}
 
 		$this->data['geo_zones'] = $geo_zones;
 
-		if (isset($this->request->post['dhl_tax_class_id'])) {
-			$this->data['dhl_tax_class_id'] = $this->request->post['dhl_tax_class_id'];
+		if (isset($this->request->post['tnt_tax_class_id'])) {
+			$this->data['tnt_tax_class_id'] = $this->request->post['tnt_tax_class_id'];
 		} else {
-			$this->data['dhl_tax_class_id'] = $this->config->get('dhl_tax_class_id');
+			$this->data['tnt_tax_class_id'] = $this->config->get('tnt_tax_class_id');
 		}
 
-		if (isset($this->request->post['dhl_status'])) {
-			$this->data['dhl_status'] = $this->request->post['dhl_status'];
+		if (isset($this->request->post['tnt_status'])) {
+			$this->data['tnt_status'] = $this->request->post['tnt_status'];
 		} else {
-			$this->data['dhl_status'] = $this->config->get('dhl_status');
+			$this->data['tnt_status'] = $this->config->get('tnt_status');
 		}
 
-		if (isset($this->request->post['dhl_sort_order'])) {
-			$this->data['dhl_sort_order'] = $this->request->post['dhl_sort_order'];
+		if (isset($this->request->post['tnt_sort_order'])) {
+			$this->data['tnt_sort_order'] = $this->request->post['tnt_sort_order'];
 		} else {
-			$this->data['dhl_sort_order'] = $this->config->get('dhl_sort_order');
+			$this->data['tnt_sort_order'] = $this->config->get('tnt_sort_order');
 		}
 
 		$this->load->model('localisation/tax_class');
 
 		$this->data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
 
-		$this->template = 'shipping/dhl.tpl';
+		$this->template = 'shipping/tnt.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -120,7 +120,7 @@ class ControllerShippingDhl extends Controller {
 	}
 
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'shipping/dhl')) {
+		if (!$this->user->hasPermission('modify', 'shipping/tnt')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 

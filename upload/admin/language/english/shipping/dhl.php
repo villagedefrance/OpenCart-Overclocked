@@ -7,7 +7,7 @@ $_['text_shipping']    = 'Shipping';
 $_['text_success']     = 'Success: You have modified <b>DHL</b> Shipping!';
 
 // Entry
-$_['entry_rate']       = 'DHL Rates:<br /><span class="help">Example: 5:10.00,7:12.00 Weight:Cost,Weight:Cost, etc..</span>';
+$_['entry_rate']       = 'DHL Rates:<span class="help">Example: 5:10.00,7:12.00 Weight:Cost,Weight:Cost, etc..</span>';
 $_['entry_tax_class']  = 'Tax Class:';
 $_['entry_geo_zone']   = 'Geo Zone:';
 $_['entry_status']     = 'Status:';
