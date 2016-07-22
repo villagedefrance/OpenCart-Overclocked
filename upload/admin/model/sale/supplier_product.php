@@ -75,7 +75,7 @@ class ModelSaleSupplierProduct extends Model {
 			$implode[] = "sp.status = '" . (int)$data['filter_status'] . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -183,7 +183,7 @@ class ModelSaleSupplierProduct extends Model {
 			$implode[] = "sp.status = '" . (int)$data['filter_status'] . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

@@ -36,7 +36,7 @@ class ModelToolUpload extends Model {
 			$implode[] = "date_added = '" . $this->db->escape($data['filter_date_added']) . "%'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 
@@ -92,7 +92,7 @@ class ModelToolUpload extends Model {
 			$implode[] = "date_added = '" . $this->db->escape($data['filter_date_added']) . "'";
 		}
 
-		if ($implode) {
+		if (!empty($implode)) {
 			$sql .= " WHERE " . implode(" AND ", $implode);
 		}
 

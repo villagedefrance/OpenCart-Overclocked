@@ -127,7 +127,7 @@ class ModelCatalogProduct extends Model {
 					$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
 				}
 
-				if ($implode) {
+				if (!empty($implode)) {
 					$sql .= " " . implode(" AND ", $implode) . "";
 				}
 
@@ -695,7 +695,7 @@ class ModelCatalogProduct extends Model {
 					$implode[] = "pd.name LIKE '%" . $this->db->escape($word) . "%'";
 				}
 
-				if ($implode) {
+				if (!empty($implode)) {
 					$sql .= " " . implode(" AND ", $implode) . "";
 				}
 
