@@ -42,11 +42,11 @@ class ModelSaleAffiliate extends Model {
 		$implode = array();
 
 		if (!empty($data['filter_name'])) {
-			$implode[] = "CONCAT(a.firstname, ' ', a.lastname) LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+			$implode[] = "CONCAT(a.firstname, ' ', a.lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
 		if (!empty($data['filter_email'])) {
-			$implode[] = "LCASE(a.email) = '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "'";
+			$implode[] = "LOWER(a.email) LIKE '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "%'";
 		}
 
 		if (!empty($data['filter_code'])) {
@@ -117,7 +117,7 @@ class ModelSaleAffiliate extends Model {
 
 			$message = sprintf($this->language->get('text_approve_welcome'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
 			$message .= $this->language->get('text_approve_login') . "\n";
-			$message .= HTTP_CATALOG . 'index.php?route=affiliate/login' . "\n\n";
+			$message .= ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=affiliate/login' . "\n\n";
 			$message .= $this->language->get('text_approve_services') . "\n\n";
 			$message .= $this->language->get('text_approve_thanks') . "\n";
 			$message .= html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8');
@@ -128,9 +128,9 @@ class ModelSaleAffiliate extends Model {
 			$template = new Template();
 
 			$template->data['title'] = $subject;
-			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['logo'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'image/' . $this->config->get('config_logo');
 			$template->data['store_name'] = $this->config->get('config_name');
-			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['store_url'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG);
 			$template->data['message'] = nl2br($message);
 
 			$html = $template->fetch('mail/default.tpl');
@@ -169,7 +169,7 @@ class ModelSaleAffiliate extends Model {
 		}
 
 		if (!empty($data['filter_email'])) {
-			$implode[] = "LCASE(email) = '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "'";
+			$implode[] = "LOWER(email) LIKE '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "%'";
 		}
 
 		if (isset($data['filter_approved']) && !is_null($data['filter_approved'])) {
@@ -244,9 +244,9 @@ class ModelSaleAffiliate extends Model {
 			$template = new Template();
 
 			$template->data['title'] = $subject;
-			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['logo'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'image/' . $this->config->get('config_logo');
 			$template->data['store_name'] = $this->config->get('config_name');
-			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['store_url'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG);
 			$template->data['message'] = nl2br($message);
 
 			$html = $template->fetch('mail/default.tpl');
