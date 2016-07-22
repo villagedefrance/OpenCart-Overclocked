@@ -24,15 +24,15 @@
           <a href="#tab-geo-zone<?php echo $geo_zone['geo_zone_id']; ?>"><?php echo $geo_zone['name']; ?></a>
         <?php } ?>
       </div>
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="airmail">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="dhl">
         <div id="tab-general" class="vtabs-content">
           <table class="form">
             <tr>
               <td><?php echo $entry_tax_class; ?></td>
-              <td><select name="airmail_tax_class_id">
+              <td><select name="dhl_tax_class_id">
                 <option value="0"><?php echo $text_none; ?></option>
                 <?php foreach ($tax_classes as $tax_class) { ?>
-                  <?php if ($tax_class['tax_class_id'] == $airmail_tax_class_id) { ?>
+                  <?php if ($tax_class['tax_class_id'] == $dhl_tax_class_id) { ?>
                     <option value="<?php echo $tax_class['tax_class_id']; ?>" selected="selected"><?php echo $tax_class['title']; ?></option>
                   <?php } else { ?>
                     <option value="<?php echo $tax_class['tax_class_id']; ?>"><?php echo $tax_class['title']; ?></option>
@@ -42,8 +42,8 @@
             </tr>
             <tr>
               <td><?php echo $entry_status; ?></td>
-              <td><select name="airmail_status">
-                <?php if ($airmail_status) { ?>
+              <td><select name="dhl_status">
+                <?php if ($dhl_status) { ?>
                   <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                   <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>
@@ -54,7 +54,7 @@
             </tr>
             <tr>
               <td><?php echo $entry_sort_order; ?></td>
-              <td><input type="text" name="airmail_sort_order" value="<?php echo $airmail_sort_order; ?>" size="1" /></td>
+              <td><input type="text" name="dhl_sort_order" value="<?php echo $dhl_sort_order; ?>" size="1" /></td>
             </tr>
           </table>
         </div>
@@ -63,12 +63,12 @@
           <table class="form">
             <tr>
               <td><?php echo $entry_rate; ?></td>
-              <td><textarea name="airmail_<?php echo $geo_zone['geo_zone_id']; ?>_rate" cols="40" rows="5"><?php echo ${'airmail_' . $geo_zone['geo_zone_id'] . '_rate'}; ?></textarea></td>
+              <td><textarea name="dhl_<?php echo $geo_zone['geo_zone_id']; ?>_rate" cols="40" rows="5"><?php echo ${'dhl_' . $geo_zone['geo_zone_id'] . '_rate'}; ?></textarea></td>
             </tr>
             <tr>
               <td><?php echo $entry_status; ?></td>
-              <td><select name="airmail_<?php echo $geo_zone['geo_zone_id']; ?>_status">
-                <?php if (${'airmail_' . $geo_zone['geo_zone_id'] . '_status'}) { ?>
+              <td><select name="dhl_<?php echo $geo_zone['geo_zone_id']; ?>_status">
+                <?php if (${'dhl_' . $geo_zone['geo_zone_id'] . '_status'}) { ?>
                   <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                   <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>

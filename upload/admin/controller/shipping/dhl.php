@@ -1,21 +1,21 @@
 <?php
-class ControllerShippingAirmail extends Controller {
+class ControllerShippingDhl extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->language->load('shipping/airmail');
+		$this->load->language('shipping/dhl');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('airmail', $this->request->post);
+			$this->model_setting_setting->editSetting('dhl', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
 			if (isset($this->request->post['apply'])) {
-				$this->redirect($this->url->link('shipping/airmail', 'token=' . $this->session->data['token'], 'SSL'));
+				$this->redirect($this->url->link('shipping/dhl', 'token=' . $this->session->data['token'], 'SSL'));
 			} else {
 				$this->redirect($this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL'));
 			}
@@ -60,11 +60,11 @@ class ControllerShippingAirmail extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('shipping/airmail', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('shipping/dhl', 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = $this->url->link('shipping/airmail', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('shipping/dhl', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/shipping', 'token=' . $this->session->data['token'], 'SSL');
 
@@ -73,44 +73,44 @@ class ControllerShippingAirmail extends Controller {
 		$geo_zones = $this->model_localisation_geo_zone->getGeoZones();
 
 		foreach ($geo_zones as $geo_zone) {
-			if (isset($this->request->post['airmail_' . $geo_zone['geo_zone_id'] . '_rate'])) {
-				$this->data['airmail_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->request->post['airmail_' . $geo_zone['geo_zone_id'] . '_rate'];
+			if (isset($this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_rate'])) {
+				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_rate'];
 			} else {
-				$this->data['airmail_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->config->get('airmail_' . $geo_zone['geo_zone_id'] . '_rate');
+				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_rate'] = $this->config->get('dhl_' . $geo_zone['geo_zone_id'] . '_rate');
 			}
 
-			if (isset($this->request->post['airmail_' . $geo_zone['geo_zone_id'] . '_status'])) {
-				$this->data['airmail_' . $geo_zone['geo_zone_id'] . '_status'] = $this->request->post['airmail_' . $geo_zone['geo_zone_id'] . '_status'];
+			if (isset($this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_status'])) {
+				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_status'] = $this->request->post['dhl_' . $geo_zone['geo_zone_id'] . '_status'];
 			} else {
-				$this->data['airmail_' . $geo_zone['geo_zone_id'] . '_status'] = $this->config->get('airmail_' . $geo_zone['geo_zone_id'] . '_status');
+				$this->data['dhl_' . $geo_zone['geo_zone_id'] . '_status'] = $this->config->get('dhl_' . $geo_zone['geo_zone_id'] . '_status');
 			}
 		}
 
 		$this->data['geo_zones'] = $geo_zones;
 
-		if (isset($this->request->post['airmail_tax_class_id'])) {
-			$this->data['airmail_tax_class_id'] = $this->request->post['airmail_tax_class_id'];
+		if (isset($this->request->post['dhl_tax_class_id'])) {
+			$this->data['dhl_tax_class_id'] = $this->request->post['dhl_tax_class_id'];
 		} else {
-			$this->data['airmail_tax_class_id'] = $this->config->get('airmail_tax_class_id');
+			$this->data['dhl_tax_class_id'] = $this->config->get('dhl_tax_class_id');
 		}
 
-		if (isset($this->request->post['airmail_status'])) {
-			$this->data['airmail_status'] = $this->request->post['airmail_status'];
+		if (isset($this->request->post['dhl_status'])) {
+			$this->data['dhl_status'] = $this->request->post['dhl_status'];
 		} else {
-			$this->data['airmail_status'] = $this->config->get('airmail_status');
+			$this->data['dhl_status'] = $this->config->get('dhl_status');
 		}
 
-		if (isset($this->request->post['airmail_sort_order'])) {
-			$this->data['airmail_sort_order'] = $this->request->post['airmail_sort_order'];
+		if (isset($this->request->post['dhl_sort_order'])) {
+			$this->data['dhl_sort_order'] = $this->request->post['dhl_sort_order'];
 		} else {
-			$this->data['airmail_sort_order'] = $this->config->get('airmail_sort_order');
+			$this->data['dhl_sort_order'] = $this->config->get('dhl_sort_order');
 		}
 
 		$this->load->model('localisation/tax_class');
 
 		$this->data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
 
-		$this->template = 'shipping/airmail.tpl';
+		$this->template = 'shipping/dhl.tpl';
 		$this->children = array(
 			'common/header',
 			'common/footer'
@@ -120,7 +120,7 @@ class ControllerShippingAirmail extends Controller {
 	}
 
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'shipping/airmail')) {
+		if (!$this->user->hasPermission('modify', 'shipping/dhl')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
