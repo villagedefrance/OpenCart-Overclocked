@@ -19,19 +19,22 @@
   <h2><?php echo $text_portfolio; ?></h2>
   <div class="content">
     <table style="width:100%;">
-      <?php if ($products) { ?>
-        <?php foreach ($products as $product) { ?>
-          <tr>
-            <td><?php echo $product['name']; ?></td>
-            <td><?php echo $product['code']; ?></td>
-            <td style="text-align:right;">
-              <a href="<?php echo $product['update']; ?>" class="button"><?php echo $button_edit; ?></a> &nbsp; <a href="<?php echo $product['delete']; ?>" class="button"><?php echo $button_delete; ?></a>
-            </td>
-          </tr>
-        <?php } ?>
-      <?php } else { ?>
-        <?php echo $text_no_results; ?>
+    <?php if ($products) { ?>
+      <?php foreach ($products as $product) { ?>
+        <tr>
+          <td><?php echo $product['name']; ?></td>
+          <td><?php echo $product['code']; ?></td>
+          <td style="width:28px; text-align:right;">
+            <a href="<?php echo $product['update']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/update.png" alt="<?php echo $button_edit; ?>" /></a>
+          </td>
+          <td style="width:28px; text-align:right;">
+            <a href="<?php echo $product['delete']; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/account/remove.png" alt="<?php echo $button_delete; ?>" /></a>
+          </td>
+        </tr>
       <?php } ?>
+    <?php } else { ?>
+      <?php echo $text_no_results; ?>
+    <?php } ?>
     </table>
   </div>
   <div class="buttons">
