@@ -9,6 +9,11 @@ class ControllerCommonHome extends Controller {
 		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.min.js');
 		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.resize.min.js');
 
+		$this->document->addStyle('view/javascript/jquery/jqvmap/jqvmap.min.css');
+
+		$this->document->addScript('view/javascript/jquery/jqvmap/jquery.vmap.min.js');
+		$this->document->addScript('view/javascript/jquery/jqvmap/maps/jquery.vmap.world.js');
+
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_overview'] = $this->language->get('text_overview');
@@ -39,6 +44,7 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
+		$this->data['tab_map'] = $this->language->get('tab_map');
 		$this->data['tab_order'] = $this->language->get('tab_order');
 		$this->data['tab_customer'] = $this->language->get('tab_customer');
 		$this->data['tab_review'] = $this->language->get('tab_review');
@@ -891,6 +897,28 @@ class ControllerCommonHome extends Controller {
 				return $this->forward('common/login');
 			}
 		}
+	}
+
+	public function map() {
+		$json = array();
+
+		$this->language->load('common/home');
+
+		$this->load->model('report/sale');
+
+		$results = $this->model_report_sale->getTotalOrdersByCountry();
+
+		foreach ($results as $result) {
+			$json[strtolower($result['iso_code_2'])] = array(
+				'orders' => $this->language->get('text_total_order'),
+				'total'  => $result['total'],
+				'sales'  => $this->language->get('text_total_sale'),
+				'amount' => $this->currency->format($result['amount'], $this->config->get('config_currency'))
+			);
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 
 	public function permission() {

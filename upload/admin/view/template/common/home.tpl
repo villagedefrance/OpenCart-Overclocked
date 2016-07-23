@@ -144,7 +144,10 @@
         <div class="dashboard-heading"><?php echo $text_latest; ?></div>
         <div class="dashboard-content">
         <div id="latest-tabs" class="htabs">
-          <a href="#tab-latest-order"><?php echo $tab_order; ?></a>
+          <a href="#tab-latest-map"><?php echo $tab_map; ?></a>
+          <?php if ($orders) { ?>
+            <a href="#tab-latest-order"><?php echo $tab_order; ?></a>
+          <?php } ?>
           <?php if ($customers) { ?>
             <a href="#tab-latest-customer"><?php echo $tab_customer; ?></a>
           <?php } ?>
@@ -161,6 +164,10 @@
             <a href="#tab-latest-upload"><?php echo $tab_upload; ?></a>
           <?php } ?>
         </div>
+        <div id="tab-latest-map" class="htabs-content">
+          <div id="vmap" style="width:100%; height:400px;"></div>
+        </div>
+        <?php if ($orders) { ?>
         <div id="tab-latest-order" class="htabs-content">
           <table class="list">
             <thead>
@@ -201,6 +208,7 @@
             </tbody>
           </table>
         </div>
+        <?php } ?>
         <?php if ($customers) { ?>
         <div id="tab-latest-customer" class="htabs-content">
           <table class="list">
@@ -584,6 +592,44 @@ function getSalesChart(range) {
 jQuery(document).ready(function() {
 	getSalesChart($('#range').val());
 })(jQuery);
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$.ajax({
+		type: 'get',
+		url: 'index.php?route=common/home/map&token=<?php echo $token; ?>',
+		dataType: 'json',
+		success: function(json) {
+			data = [];
+
+			for (i in json) {
+				data[i] = json[i]['total'];
+			}
+
+			$('#vmap').vectorMap({
+				map: 'world_en',
+				backgroundColor: '#FFFFFF',
+				borderColor: '#FFFFFF',
+				color: '#9FD5F1',
+				hoverOpacity: 0.7,
+				selectedColor: '#666666',
+				enableZoom: true,
+				showTooltip: true,
+				values: data,
+				normalizeFunction: 'polynomial',
+				onLabelShow: function(event, label, code) {
+					if (json[code]) {
+						label.html('<strong>' + label.text() + '</strong><br />' + json[code]['orders'] + '  ' + json[code]['total'] + '<br />' + json[code]['sales'] + '  ' + json[code]['amount']);
+					}
+				}
+			});
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
 //--></script>
 
 <script type="text/javascript"><!--

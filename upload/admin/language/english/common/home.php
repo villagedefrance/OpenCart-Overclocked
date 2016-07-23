@@ -34,6 +34,7 @@ $_['text_download']                 = 'Download';
 $_['text_guest']                    = 'Guest';
 
 // Tab
+$_['tab_map']                       = 'Map';
 $_['tab_order']                     = 'Orders';
 $_['tab_customer']                  = 'Customers';
 $_['tab_review']                    = 'Reviews';
