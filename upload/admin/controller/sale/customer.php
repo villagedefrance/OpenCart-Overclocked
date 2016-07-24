@@ -221,10 +221,7 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->load->model('sale/customer');
 
-		if (!$this->user->hasPermission('modify', 'sale/customer')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-
-		} elseif (isset($this->request->post['selected'])) {
+		if (isset($this->request->post['selected']) && $this->validateApprove()) {
 			$approved = 0;
 
 			foreach ($this->request->post['selected'] as $customer_id) {
@@ -416,7 +413,7 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->data['customers'] = array();
 
-		$data = array(
+		$filter_data = array(
 			'filter_name'              => $filter_name,
 			'filter_email'             => $filter_email,
 			'filter_customer_group_id' => $filter_customer_group_id,
@@ -430,9 +427,9 @@ class ControllerSaleCustomer extends Controller {
 			'limit'                    => $this->config->get('config_admin_limit')
 		);
 
-		$customer_total = $this->model_sale_customer->getTotalCustomers($data);
+		$customer_total = $this->model_sale_customer->getTotalCustomers($filter_data);
 
-		$results = $this->model_sale_customer->getCustomers($data);
+		$results = $this->model_sale_customer->getCustomers($filter_data);
 
 		foreach ($results as $result) {
 			$action = array();
@@ -1165,6 +1162,18 @@ class ControllerSaleCustomer extends Controller {
 	}
 
 	protected function validateDelete() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function validateApprove() {
 		if (!$this->user->hasPermission('modify', 'sale/customer')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}

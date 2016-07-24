@@ -112,7 +112,7 @@
             <?php } ?></td>
             <td class="left"><?php echo $affiliate['email']; ?></td>
             <td class="center"><?php echo $affiliate['balance']; ?></td>
-            <td class="center"><?php echo $affiliate['approved']; ?></td>
+            <td class="center"><?php echo $affiliate['approved'] ? '<img src="view/image/success.png" alt="'.$text_yes.'" />' : '<img src="view/image/warning.png" alt="'.$text_no.'" />'; ?></td>
             <td class="center"><?php echo $affiliate['date_added']; ?></td>
             <?php if ($affiliate['status'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
@@ -207,7 +207,7 @@ $('input[name=\'filter_email\']').autocomplete({
   delay: 10,
   source: function(request, response) {
     $.ajax({
-      url: 'index.php?route=sale/affiliate/autocomplete&token=<?php echo $token; ?>&filter_email=' +  encodeURIComponent(request),
+      url: 'index.php?route=sale/affiliate/autocomplete&token=<?php echo $token; ?>&filter_email=' + encodeURIComponent(request.term),
       dataType: 'json',
       success: function(json) {
         response($.map(json, function(item) {

@@ -461,7 +461,7 @@ class ControllerSaleAffiliate extends Controller {
 				'name'         => $result['name'] . ' [' . (int)$total_products . ']',
 				'email'        => $result['email'],
 				'balance'      => $this->currency->format($result['balance'], $this->config->get('config_currency')),
-				'approved'     => $result['approved'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'approved'     => $result['approved'],
 				'date_added'   => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'status'       => $result['status'],
 				'lock'         => $lock,
@@ -1337,7 +1337,7 @@ class ControllerSaleAffiliate extends Controller {
 		$affiliate_data = array();
 
 		if (isset($this->request->get['filter_name']) || isset($this->request->get['filter_email'])) {
-		if (isset($this->request->get['filter_name'])) {
+			if (isset($this->request->get['filter_name'])) {
 				$filter_name = $this->request->get['filter_name'];
 			} else {
 				$filter_name = '';
