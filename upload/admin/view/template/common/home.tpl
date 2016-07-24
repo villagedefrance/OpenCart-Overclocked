@@ -165,7 +165,7 @@
           <?php } ?>
         </div>
         <div id="tab-latest-map" class="htabs-content">
-          <div id="vmap" style="width:100%; height:400px;"></div>
+          <div id="vmap" style="width:100%;"></div>
         </div>
         <?php if ($orders) { ?>
         <div id="tab-latest-order" class="htabs-content">

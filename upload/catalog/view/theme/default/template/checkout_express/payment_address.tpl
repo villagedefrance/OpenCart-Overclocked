@@ -37,18 +37,18 @@
     </tr>
     <?php if ($company_id_display) { ?>
     <tr id="company_row2" <?php if (!$company_id_required) { ?>style="display:none;"<?php } ?>>
-      <td><?php if ($company_id_required) { ?><span class="required">* </span><?php } ?><?php echo $entry_company_id; ?></td>
+      <td><?php if ($company_id_required) { ?><span class="required">*</span> <?php } ?><?php echo $entry_company_id; ?></td>
       <td><input type="text" name="company_id" value="" class="large-field" /></td>
     </tr>
     <?php } ?>
     <?php if ($tax_id_display) { ?>
     <tr>
-      <td><?php if ($tax_id_required) { ?><span class="required">* </span><?php } ?><?php echo $entry_tax_id; ?></td>
+      <td><?php if ($tax_id_required) { ?><span class="required">*</span> <?php } ?><?php echo $entry_tax_id; ?></td>
       <td><input type="text" name="tax_id" value="" class="large-field" /></td>
     </tr>
     <?php } ?>
     <tr>
-      <td><span class="required">* </span><?php echo $text_express_address; ?></td>
+      <td><span class="required">*</span> <?php echo $text_express_address; ?></td>
       <td><input type="text" name="address_1" value="" class="large-field" /></td>
     </tr>
     <tr>
@@ -80,7 +80,7 @@
       <td><input type="text" name="city" value="" class="large-field" /></td>
     </tr>
     <tr id="codes" style="display:none">
-      <td><span id="payment-postcode-required" class="required">* </span><?php echo $entry_postcode; ?></td>
+      <td><span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
       <td><input type="text" name="postcode" value="" class="large-field" /></td>
     </tr>
   </table>
