@@ -70,6 +70,7 @@ class ModelToolSitemap extends Model {
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=common/home');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/contact');
+		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/quote');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=information/sitemap');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=account/login');
 		$output .= $this->standardLinkNode(HTTP_CATALOG . 'index.php?route=account/register');
@@ -90,6 +91,7 @@ class ModelToolSitemap extends Model {
 					$output .= $this->standardLinkNode($store_url . 'index.php');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=common/home');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/contact');
+					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/quote');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=information/sitemap');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=account/login');
 					$output .= $this->standardLinkNode($store_url . 'index.php?route=account/register');
@@ -307,6 +309,7 @@ class ModelToolSitemap extends Model {
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=common/home') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=information/contact') . "\r";
+		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=information/quote') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=information/sitemap') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=account/login') . "\r";
 		$output .= utf8_encode(HTTP_CATALOG . 'index.php?route=account/register') . "\r";
@@ -327,6 +330,7 @@ class ModelToolSitemap extends Model {
 					$output .= utf8_encode($store_url . 'index.php') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=common/home') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=information/contact') . "\r";
+					$output .= utf8_encode($store_url . 'index.php?route=information/quote') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=information/sitemap') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=account/login') . "\r";
 					$output .= utf8_encode($store_url . 'index.php?route=account/register') . "\r";
