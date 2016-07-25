@@ -163,7 +163,7 @@
 		position: static;
 		visibility: visible;
 		opacity: 1;
-		margin: 0px 0px 10px 0px;
+		margin: 0px 0px 5px 0px;
 		background: none;
 		box-shadow: none;
 		list-style: none;
@@ -177,7 +177,7 @@
 		position: static;
 		display: block;
 		float: none;
-		margin-left: 5px;
+		margin-left: 2px;
 		padding-bottom: 2px;
 		border-bottom: 1px dotted #AAA;
 		border-right: none;

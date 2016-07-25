@@ -27,10 +27,10 @@ class ControllerModuleMenuHorizontal extends Controller {
 
 			if ($mod_color == 'white-skin' || $mod_color == 'beige-skin' || $mod_color == 'ash-skin' || $mod_color == 'silver-skin' || $mod_color == 'citrus-skin' || $mod_color == 'yellow-skin') {
 				$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-dark.css');
-				$menu_theme = 'dark';
+				$menu_theme = 'light';
 			} else {
 				$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-light.css');
-				$menu_theme = 'light';
+				$menu_theme = 'dark';
 			}
 
 			$menu_class = 'menu-' . $menu_direction;
