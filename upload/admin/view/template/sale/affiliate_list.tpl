@@ -143,13 +143,13 @@
 function filter() {
 	url = 'index.php?route=sale/affiliate&token=<?php echo $token; ?>';
 
-  var filter_name = $('input[name=\'filter_name\']').val();
+	var filter_name = $('input[name=\'filter_name\']').val();
 
 	if (filter_name) {
 		url += '&filter_name=' + encodeURIComponent(filter_name);
 	}
 
-  var filter_email = $('input[name=\'filter_email\']').val();
+	var filter_email = $('input[name=\'filter_email\']').val();
 
 	if (filter_email) {
 		url += '&filter_email=' + encodeURIComponent(filter_email);
@@ -161,13 +161,13 @@ function filter() {
 		url += '&filter_approved=' + encodeURIComponent(filter_approved);
 	}
 
-  var filter_date_added = $('input[name=\'filter_date_added\']').val();
+	var filter_date_added = $('input[name=\'filter_date_added\']').val();
 
 	if (filter_date_added) {
 		url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
 	}
 
-  var filter_status = $('select[name=\'filter_status\']').val();
+	var filter_status = $('select[name=\'filter_status\']').val();
 
 	if (filter_status != '*') {
 		url += '&filter_status=' + encodeURIComponent(filter_status);
@@ -204,34 +204,34 @@ $('input[name=\'filter_name\']').autocomplete({
 });
 
 $('input[name=\'filter_email\']').autocomplete({
-  delay: 10,
-  source: function(request, response) {
-    $.ajax({
-      url: 'index.php?route=sale/affiliate/autocomplete&token=<?php echo $token; ?>&filter_email=' + encodeURIComponent(request.term),
-      dataType: 'json',
-      success: function(json) {
-        response($.map(json, function(item) {
-          return {
-            label: item.email,
-            value: item.affiliate_id
-          }
-        }));
-      }
-    });
-  },
-  select: function(event, ui) {
-    $('input[name=\'filter_email\']').val(ui.item.label);
-    return false;
-  },
-  focus: function(event, ui) {
-    return false;
-  }
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=sale/affiliate/autocomplete&token=<?php echo $token; ?>&filter_email=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item.email,
+						value: item.affiliate_id
+					}
+				}));
+			}
+		});
+	},
+	select: function(event, ui) {
+		$('input[name=\'filter_email\']').val(ui.item.label);
+		return false;
+	},
+	focus: function(event, ui) {
+		return false;
+	}
 });
 //--></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-  $('#date').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#date').datepicker({dateFormat: 'yy-mm-dd'});
 });
 //--></script>
 
