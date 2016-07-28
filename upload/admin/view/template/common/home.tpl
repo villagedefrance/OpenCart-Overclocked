@@ -169,7 +169,7 @@
           <?php if ($top_countries) { ?>
             <div  style="width:26%; float:right;">
               <h2><?php echo $text_topcountry; ?></h2>
-			  <br /><br />
+              <br /><br />
               <div class="chart">
               <?php foreach ($top_countries as $top_country) { ?>
                 <div class="donut-chart fill" data-percent="<?php echo $top_country['amount']; ?>" data-title="<?php echo $top_country['country']; ?> %"></div>
