@@ -6,13 +6,16 @@ class ControllerCommonHome extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.min.js');
-		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.resize.min.js');
-
 		$this->document->addStyle('view/javascript/jquery/jqvmap/jqvmap.min.css');
+		$this->document->addStyle('view/javascript/jquery/chart/chart-donut.css');
 
 		$this->document->addScript('view/javascript/jquery/jqvmap/jquery.vmap.min.js');
 		$this->document->addScript('view/javascript/jquery/jqvmap/maps/jquery.vmap.world.js');
+
+		$this->document->addScript('view/javascript/jquery/chart/jquery.chart.min.js');
+
+		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.min.js');
+		$this->document->addScript('view/javascript/jquery/flot/jquery.flot.resize.min.js');
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
@@ -40,6 +43,7 @@ class ControllerCommonHome extends Controller {
 		$this->data['text_topseller'] = $this->language->get('text_topseller');
 		$this->data['text_topview'] = $this->language->get('text_topview');
 		$this->data['text_topcustomer'] = $this->language->get('text_topcustomer');
+		$this->data['text_topcountry'] = $this->language->get('text_topcountry');
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
@@ -308,6 +312,33 @@ class ControllerCommonHome extends Controller {
 		$this->data['view_online'] = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['show_dob'] = $this->config->get('config_customer_dob');
+
+		// Tab Map
+		$this->load->model('report/sale');
+
+		$this->data['top_countries'] = array();
+
+		$total_sales = $this->model_report_sale->getTotalSales(0);
+
+		$limit = 1;
+
+		$top_countries = $this->model_report_sale->getTopOrdersByCountry($limit);
+
+		foreach ($top_countries as $top_country) {
+			if ($total_sales > 0) {
+				$sale_amount = round((float)$top_country['amount'], 2);
+				$sale_total = round((float)$total_sales, 2);
+
+				$circle_percent = $sale_amount / $sale_total;
+			} else {
+				$circle_percent = 1;
+			}
+
+			$this->data['top_countries'][] = array(
+				'amount' => $circle_percent,
+				'country' => ($top_country['iso_code_2']) ? $top_country['iso_code_2'] : '00'
+			);
+		}
 
 		// Tab Orders
 		$this->data['orders'] = array();

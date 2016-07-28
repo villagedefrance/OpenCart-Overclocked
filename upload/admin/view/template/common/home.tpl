@@ -165,7 +165,22 @@
           <?php } ?>
         </div>
         <div id="tab-latest-map" class="htabs-content">
-          <div id="vmap" style="width:100%;"></div>
+          <div style="width:100%;">
+          <?php if ($top_countries) { ?>
+            <div  style="width:26%; float:right;">
+              <h2><?php echo $text_topcountry; ?></h2>
+			  <br /><br />
+              <div class="chart">
+              <?php foreach ($top_countries as $top_country) { ?>
+                <div class="donut-chart fill" data-percent="<?php echo $top_country['amount']; ?>" data-title="<?php echo $top_country['country']; ?> %"></div>
+              <?php } ?>
+              </div>
+            </div>
+            <div id="vmap" style="width:72%;"></div>
+          <?php } else { ?>
+            <div id="vmap" style="width:100%;"></div>
+          <?php } ?>
+          </div>
         </div>
         <?php if ($orders) { ?>
         <div id="tab-latest-order" class="htabs-content">
@@ -629,6 +644,12 @@ $(document).ready(function() {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 		}
 	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.donut-chart').cssCharts({type:"donut"}).trigger('show-donut-chart');
 });
 //--></script>
 

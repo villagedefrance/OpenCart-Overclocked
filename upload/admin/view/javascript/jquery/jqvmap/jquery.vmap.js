@@ -5,6 +5,8 @@
  * @link http://jqvmap.com
  * @license https://github.com/manifestinteractive/jqvmap/blob/master/LICENSE
  * @builddate 2016/05/18
+ *
+ * Overclocked Edition © 2016 | Villagedefrance
  */
 
 var VectorCanvas = function (width, height, params) {

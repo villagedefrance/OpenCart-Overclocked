@@ -1654,7 +1654,7 @@ table.tool > tr > td {
 		padding: 10px 20px 128px 20px;
 	}
 	#vmap {
-		height: 360px;
+		height: 350px;
 	}
 }
 /* Tablets */
@@ -1663,7 +1663,7 @@ table.tool > tr > td {
 		padding: 10px 10px 128px 10px;
 	}
 	#vmap {
-		height: 280px;
+		height: 300px;
 	}
 }
 /* Phones */
@@ -1672,6 +1672,6 @@ table.tool > tr > td {
 		padding: 10px 5px 128px 5px;
 	}
 	#vmap {
-		height: 200px;
+		height: 250px;
 	}
 }

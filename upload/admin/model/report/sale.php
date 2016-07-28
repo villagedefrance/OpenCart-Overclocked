@@ -104,14 +104,19 @@ class ModelReportSale extends Model {
 	}
 
 	public function getTotalOrdersByCountry() {
-		$express_checkout = $this->config->get('config_express_checkout');
-		$express_billing = $this->config->get('config_express_billing');
+		$query = $this->db->query("SELECT COUNT(*) AS total, SUM(o.total) AS amount, c.iso_code_2 AS iso_code_2 FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "country c ON ((o.payment_country_id = c.country_id) OR (o.shipping_country_id = c.country_id)) WHERE o.order_status_id > '0' GROUP BY c.country_id");
 
-		if ($express_checkout && !$express_billing) {
-			$query = $this->db->query("SELECT COUNT(*) AS total, SUM(o.total) AS amount, c.iso_code_2 AS iso_code_2 FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "country c ON (o.shipping_country_id = c.country_id) WHERE o.order_status_id > '0' GROUP BY o.shipping_country_id");
+		return $query->rows;
+	}
+
+	public function getTopOrdersByCountry($limit) {
+		if (isset($limit) && $limit > 0) {
+			$limit = (int)$limit;
 		} else {
-			$query = $this->db->query("SELECT COUNT(*) AS total, SUM(o.total) AS amount, c.iso_code_2 AS iso_code_2 FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "country c ON (o.payment_country_id = c.country_id) WHERE o.order_status_id > '0' GROUP BY o.payment_country_id");
+			$limit = 1;
 		}
+
+		$query = $this->db->query("SELECT SUM(o.total) AS amount, c.iso_code_2 AS iso_code_2 FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "country c ON ((o.payment_country_id = c.country_id) OR (o.shipping_country_id = c.country_id)) WHERE o.order_status_id > '0' GROUP BY c.country_id ORDER BY amount DESC LIMIT 0," . (int)$limit);
 
 		return $query->rows;
 	}
@@ -124,6 +129,12 @@ class ModelReportSale extends Model {
 		}
 
       	$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
+	public function getTotalOrdersByCurrencyId($currency_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE currency_id = '" . (int)$currency_id . "' AND order_status_id > '0'");
 
 		return $query->row['total'];
 	}
