@@ -1734,7 +1734,7 @@ function addDiscount() {
 
 	$('#discount tfoot').before(html);
 
-	$('#discount-row' + discount_row + '.date').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#discount-row' + discount_row + ' .date').datepicker({dateFormat: 'yy-mm-dd'});
 
 	discount_row++;
 };
@@ -1763,7 +1763,7 @@ function addSpecial() {
 
 	$('#special tfoot').before(html);
 
-	$('#special-row' + special_row + '.date').datepicker({dateFormat: 'yy-mm-dd'});
+	$('#special-row' + special_row + ' .date').datepicker({dateFormat: 'yy-mm-dd'});
 
 	special_row++;
 };
