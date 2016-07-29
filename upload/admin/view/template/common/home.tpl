@@ -168,7 +168,7 @@
           <div style="width:100%;">
           <?php if ($top_countries) { ?>
             <div  style="width:26%; float:right;">
-              <h2><?php echo $text_topcountry; ?></h2>
+              <h2><?php echo $text_topcountry; ?> &nbsp; <?php echo (!empty($top_flag)) ? "<img src='" . $top_flag . "' alt='' />" : ''; ?></h2>
               <br /><br />
               <div class="chart">
               <?php foreach ($top_countries as $top_country) { ?>

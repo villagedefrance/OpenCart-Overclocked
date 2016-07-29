@@ -320,6 +320,7 @@ class ControllerCommonHome extends Controller {
 
 		$total_sales = $this->model_report_sale->getTotalSales(0);
 
+		$flag = '';
 		$limit = 1;
 
 		$top_countries = $this->model_report_sale->getTopOrdersByCountry($limit);
@@ -329,8 +330,10 @@ class ControllerCommonHome extends Controller {
 				$sale_amount = round((float)$top_country['amount'], 2);
 				$sale_total = round((float)$total_sales, 2);
 
+				$flag = ($top_country['iso_code_2']) ? 'view/image/flags/' . strtolower($top_country['iso_code_2']) . '.png' : '';
 				$circle_percent = $sale_amount / $sale_total;
 			} else {
+				$flag = '';
 				$circle_percent = 1;
 			}
 
@@ -339,6 +342,8 @@ class ControllerCommonHome extends Controller {
 				'country' => ($top_country['iso_code_2']) ? $top_country['iso_code_2'] : '00'
 			);
 		}
+
+		$this->data['top_flag'] = $flag;
 
 		// Tab Orders
 		$this->data['orders'] = array();
