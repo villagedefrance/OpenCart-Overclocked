@@ -24,6 +24,7 @@ So feel free to post your comments or get in touch.
 Latest Scripts:
 - jQuery 1.12.4.
 - jQuery UI 1.12.0.
+- jQuery Migrate 1.4.1.
 - CKEditor 4.5.10 Full.
 - jQuery Flot 0.8.2.
 - cssCharts 0.3.0.

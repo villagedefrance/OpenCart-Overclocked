@@ -9,7 +9,7 @@
 <link type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.0.custom.css" rel="stylesheet" />
 
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.4.0.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.12.0.custom.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/external/jquery.bgiframe-2.1.2.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/jquery.tree.min.js"></script>
