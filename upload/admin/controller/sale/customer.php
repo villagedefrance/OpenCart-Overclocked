@@ -695,16 +695,18 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
-		if (isset($this->request->get['customer_id'])) {
-			$this->data['customer_id'] = $this->request->get['customer_id'];
-		} else {
-			$this->data['customer_id'] = 0;
-		}
-
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
 		}
 
 		if (isset($this->error['firstname'])) {
@@ -878,6 +880,12 @@ class ControllerSaleCustomer extends Controller {
 
 		if (isset($this->request->get['customer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$customer_info = $this->model_sale_customer->getCustomer($this->request->get['customer_id']);
+		}
+
+		if (isset($this->request->get['customer_id'])) {
+			$this->data['customer_id'] = $this->request->get['customer_id'];
+		} else {
+			$this->data['customer_id'] = 0;
 		}
 
 		if (isset($this->request->post['firstname'])) {
