@@ -13,7 +13,7 @@
       <td class="left"><?php echo $column_date_added; ?></td>
       <td class="left"><?php echo $column_description; ?></td>
       <td class="right"><?php echo $column_amount; ?></td>
-      <td class="center" id="column-delete-transaction" width="20"><img src="view/image/bin_closed.png" alt="" /></td>
+      <td class="center" id="column-delete-transaction" width="20"><img src="view/image/bin-closed.png" alt="" /></td>
     </tr>
   </thead>
   <tbody>

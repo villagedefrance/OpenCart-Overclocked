@@ -359,7 +359,6 @@ class ControllerSaleAffiliate extends Controller {
 			$page = 1;
 		}
 
-		// URL GET parameters
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -394,7 +393,6 @@ class ControllerSaleAffiliate extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -419,7 +417,6 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
 		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
 
-		// List datas
 		$this->data['affiliates'] = array();
 
 		$filter_data = array(
@@ -474,7 +471,6 @@ class ControllerSaleAffiliate extends Controller {
 			);
 		}
 
-		// Texts
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
@@ -497,10 +493,8 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_filter'] = $this->language->get('button_filter');
 
-		// Security Key
 		$this->data['token'] = $this->session->data['token'];
 
-		// Errors
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
@@ -515,7 +509,6 @@ class ControllerSaleAffiliate extends Controller {
 			$this->data['success'] = '';
 		}
 
-		// Sort links in header
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -554,7 +547,6 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['sort_date_added'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . '&sort=a.date_added' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . '&sort=a.status' . $url, 'SSL');
 
-		// Pagination
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -667,6 +659,7 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_transaction'] = $this->language->get('button_add_transaction');
+		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
 		$this->data['column_product_id'] = $this->language->get('column_product_id');
@@ -792,7 +785,6 @@ class ControllerSaleAffiliate extends Controller {
 			$this->data['error_code'] = '';
 		}
 
-		// URL GET parameters
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -827,7 +819,6 @@ class ControllerSaleAffiliate extends Controller {
 			$url .= '&page=' . $this->request->get['page'];
 		}
 
-		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -866,7 +857,6 @@ class ControllerSaleAffiliate extends Controller {
 
 		$this->data['cancel'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-		// Form datas
 		if (isset($this->request->get['affiliate_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$affiliate_info = $this->model_sale_affiliate->getAffiliate($this->request->get['affiliate_id']);
 		}
@@ -1273,11 +1263,6 @@ class ControllerSaleAffiliate extends Controller {
 	}
 
 	public function add_transaction() {
-		/*
-		 The response from server to the ajax call will be safe with the 'html' type.
-		 A 'json' response type would be malformed and rejected when errors are returned by the mail server (e.g: no connection).
-		 The 'html' type passes through these errors. OC2.x uses badly 'json' here.
-		*/
 		$this->language->load('sale/affiliate');
 
 		$this->load->model('sale/affiliate');
@@ -1313,7 +1298,8 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['column_description'] = $this->language->get('column_description');
 		$this->data['column_amount'] = $this->language->get('column_amount');
 
-		// Errors
+		$this->data['button_delete'] = $this->language->get('button_delete');
+
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
