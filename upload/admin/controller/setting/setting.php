@@ -136,7 +136,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_map_display'] = $this->language->get('entry_map_display');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
-		$this->data['entry_buy_now'] = $this->language->get('entry_buy_now');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_invoice_prefix'] = $this->language->get('entry_invoice_prefix');
 		$this->data['entry_auto_invoice'] = $this->language->get('entry_auto_invoice');
@@ -200,6 +199,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_offer'] = $this->language->get('entry_autocomplete_offer');
 		$this->data['entry_catalog_barcode'] = $this->language->get('entry_catalog_barcode');
 		$this->data['entry_admin_barcode'] = $this->language->get('entry_admin_barcode');
+		$this->data['entry_buy_now'] = $this->language->get('entry_buy_now');
 		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_share_addthis'] = $this->language->get('entry_share_addthis');
@@ -768,12 +768,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_guest_checkout'] = $this->config->get('config_guest_checkout');
 		}
 
-		if (isset($this->request->post['config_buy_now'])) {
-			$this->data['config_buy_now'] = $this->request->post['config_buy_now'];
-		} else {
-			$this->data['config_buy_now'] = $this->config->get('config_buy_now');
-		}
-
 		if (isset($this->request->post['config_checkout_id'])) {
 			$this->data['config_checkout_id'] = $this->request->post['config_checkout_id'];
 		} else {
@@ -1191,6 +1185,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_admin_barcode'] = $this->request->post['config_admin_barcode'];
 		} else {
 			$this->data['config_admin_barcode'] = $this->config->get('config_admin_barcode');
+		}
+
+		if (isset($this->request->post['config_buy_now'])) {
+			$this->data['config_buy_now'] = $this->request->post['config_buy_now'];
+		} else {
+			$this->data['config_buy_now'] = $this->config->get('config_buy_now');
 		}
 
 		if (isset($this->request->post['config_lightbox'])) {

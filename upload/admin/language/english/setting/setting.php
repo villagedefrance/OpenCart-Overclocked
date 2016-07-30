@@ -87,7 +87,6 @@ $_['entry_map_code']               = 'Google Maps Code:<span class="help">Visit 
 $_['entry_map_display']            = 'Display Google Map:<span class="help">Show Google Map on Contact page.</span>';
 $_['entry_cart_weight']            = 'Display Weight on Cart Page:<span class="help">Show the cart weight on the cart page.</span>';
 $_['entry_guest_checkout']         = 'Guest Checkout:<span class="help">Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.</span>';
-$_['entry_buy_now']                = 'Display a "Buy it Now!" Button:<span class="help">Show the "Buy it Now!" button on all product pages with a selling price.</span>';
 $_['entry_checkout']               = 'Checkout Terms:<span class="help">Forces people to agree to terms before an a customer can checkout.</span>';
 $_['entry_invoice_prefix']         = 'Invoice Prefix:<span class="help">Set the invoice prefix (e.g. INV-2016-00). Invoice ID\'s will start at 1 for each unique prefix.</span>';
 $_['entry_auto_invoice']           = 'Auto Invoice Number:<span class="help">Automatically generate the invoice number when a new order is received.</span>';
@@ -151,6 +150,7 @@ $_['entry_autocomplete_product']   = 'Disable Product Auto-complete:<span class=
 $_['entry_autocomplete_offer']     = 'Disable Offer Auto-complete:<span class="help">Use standard html selectors in Offer form.</span>';
 $_['entry_catalog_barcode']        = 'Product Model Barcode (<b>Catalog</b>):<span class="help">If Yes, a product model barcode will be displayed on every product page.</span>';
 $_['entry_admin_barcode']          = 'Product Model Barcode (<b>Admin</b>):<span class="help">If Yes, the product model barcode will be presented on every relevant page, including printable documents.</span>';
+$_['entry_buy_now']                = 'Display a "Buy it Now!" Button:<span class="help">Show the "Buy it Now!" button on all product pages with a selling price.</span>';
 $_['entry_lightbox']               = 'Product Image Viewer:<span class="help">If "Zoom Lens" is selected, the Product Image size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']            = 'Hide Offer Labels:<span class="help">Valid offers will still be processed at checkout.</span>';
 $_['entry_share_addthis']          = 'Hide AddThis:<span class="help">Hiding AddThis could help your product pages load faster.</span>';
