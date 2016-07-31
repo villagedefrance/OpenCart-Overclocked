@@ -633,20 +633,15 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_wait'] = $this->language->get('text_wait');
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_blocked_ip'] = $this->language->get('text_blocked_ip');
 		$this->data['text_allowed_ip'] = $this->language->get('text_allowed_ip');
 		$this->data['text_add_ban_ip'] = $this->language->get('text_add_ban_ip');
 		$this->data['text_remove_ban_ip'] = $this->language->get('text_remove_ban_ip');
 		$this->data['text_female'] = $this->language->get('text_female');
 		$this->data['text_male'] = $this->language->get('text_male');
-
-		$this->data['column_ip'] = $this->language->get('column_ip');
-		$this->data['column_location'] = $this->language->get('column_location');
-		$this->data['column_total'] = $this->language->get('column_total');
-		$this->data['column_firewall'] = $this->language->get('column_firewall');
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
-		$this->data['column_action'] = $this->language->get('column_action');
+		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_delete_transaction_confirm'] = $this->language->get('text_delete_transaction_confirm');
+		$this->data['text_delete_reward_confirm'] = $this->language->get('text_delete_reward_confirm');
 
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
@@ -675,6 +670,13 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['entry_description'] = $this->language->get('entry_description');
 		$this->data['entry_amount'] = $this->language->get('entry_amount');
 		$this->data['entry_points'] = $this->language->get('entry_points');
+
+		$this->data['column_ip'] = $this->language->get('column_ip');
+		$this->data['column_location'] = $this->language->get('column_location');
+		$this->data['column_total'] = $this->language->get('column_total');
+		$this->data['column_firewall'] = $this->language->get('column_firewall');
+		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -934,7 +936,7 @@ class ControllerSaleCustomer extends Controller {
 
 		if (isset($this->request->post['gender'])) {
 			$this->data['gender'] = $this->request->post['gender'];
-		} elseif (isset($customer_info)) {
+		} elseif (!empty($customer_info)) {
 			$this->data['gender'] = $customer_info['gender'];
 		} else {
 			$this->data['gender'] = '';
@@ -944,7 +946,7 @@ class ControllerSaleCustomer extends Controller {
 
 		if (isset($this->request->post['date_of_birth'])) {
 			$this->data['date_of_birth'] = $this->request->post['date_of_birth'];
-		} elseif (isset($customer_info)) {
+		} elseif (!empty($customer_info)) {
 			$this->data['date_of_birth'] = date('Y-m-d', strtotime($customer_info['date_of_birth']));
 		} else {
 			$this->data['date_of_birth'] = '0000-00-00';
@@ -1501,8 +1503,9 @@ class ControllerSaleCustomer extends Controller {
 
 		$this->load->model('sale/customer');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) { 
-			$this->model_sale_customer->deleteTransactionById($this->request->get['transaction_id']);
+		if (!$this->request->post['amount']) {
+			$this->error['warning'] = $this->language->get('error_amount');
+		}
 
 			$this->data['success'] = $this->language->get('text_success');
 		} else {
@@ -1566,31 +1569,62 @@ class ControllerSaleCustomer extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function reward() {
+	public function rewards() {
 		$this->language->load('sale/customer');
 
 		$this->load->model('sale/customer');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) {
+		$this->listRewards();
+	}
+
+	public function add_reward() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateAddReward()) {
 			$this->model_sale_customer->addReward($this->request->get['customer_id'], $this->request->post['description'], $this->request->post['points']);
 
-			$this->data['success'] = $this->language->get('text_success');
-		} else {
-			$this->data['success'] = '';
+			$this->error['success'] = $this->language->get('text_reward_added');
 		}
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$this->user->hasPermission('modify', 'sale/customer')) {
-			$this->data['error_warning'] = $this->language->get('error_permission');
-		} else {
-			$this->data['error_warning'] = '';
+		$this->listRewards();
+	}
+
+	public function delete_reward() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateDeleteReward()) {
+			$this->model_sale_customer->deleteRewardById($this->request->post['customer_reward_id']);
+
+			$this->error['success'] = $this->language->get('text_reward_removed');
 		}
 
+		$this->listRewards();
+	}
+	
+	protected function listRewards() {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_balance'] = $this->language->get('text_balance');
 
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_description'] = $this->language->get('column_description');
 		$this->data['column_points'] = $this->language->get('column_points');
+
+		// Errors
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->error['success'])) {
+			$this->data['success'] = $this->error['success'];
+		} else {
+			$this->data['success'] = '';
+		}
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -1608,9 +1642,10 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['rewards'][] = array(
-				'points'      => $result['points'],
-				'description' => $result['description'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'customer_reward_id' => $result['customer_reward_id'],
+				'points'             => $result['points'],
+				'description'        => $result['description'],
+				'date_added'         => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1623,7 +1658,7 @@ class ControllerSaleCustomer extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = 10;
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('sale/customer/reward', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('sale/customer/rewards', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
@@ -1632,6 +1667,42 @@ class ControllerSaleCustomer extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
+	protected function validateAddReward() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->request->get['customer_id']) {
+			$this->error['warning'] = $this->language->get('error_action');
+		}
+
+		if (!$this->request->post['points']) {
+			$this->error['warning'] = $this->language->get('error_points');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function validateDeleteReward() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->request->get['customer_id']) {
+			$this->error['warning'] = $this->language->get('error_action');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
 	public function addBanIP() {
 		$json = array();
 

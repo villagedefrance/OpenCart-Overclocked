@@ -239,7 +239,7 @@ class ModelSaleAffiliate extends Model {
 			$message .= sprintf($this->language->get('text_transaction_total'), $this->currency->format($this->getTransactionTotal($affiliate_id), $this->config->get('config_currency')));
 
 			// HTML Mail
-			$subject = html_entity_decode(sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name')), ENT_QUOTES, 'UTF-8');
+			$subject = sprintf($this->language->get('text_transaction_subject'), $this->config->get('config_name'));
 
 			$template = new Template();
 
@@ -263,12 +263,16 @@ class ModelSaleAffiliate extends Model {
 			$mail->setTo($affiliate_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject($subject);
+			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 			$mail->setHtml($html);
 			$mail->send();
 
 			return $affiliate_transaction_id;
 		}
+	}
+
+	public function deleteTransaction($order_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "affiliate_transaction WHERE order_id = '" . (int)$order_id . "'");
 	}
 
 	public function deleteTransactionById($affiliate_transaction_id) {

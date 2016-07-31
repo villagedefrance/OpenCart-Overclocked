@@ -427,25 +427,27 @@ function addTransaction() {
 }
 
 function deleteTransaction(affiliate_transaction_id) {
-  if (confirm('<?php echo addslashes($text_delete_transaction_confirm); ?>')) {
-    $.ajax({
-      url: 'index.php?route=sale/affiliate/delete_transaction&token=<?php echo $token; ?>&affiliate_id=<?php echo $affiliate_id; ?>',
-      type: 'POST',
-      data: {"affiliate_id":<?php echo (isset($affiliate_id) ? $affiliate_id : 0); ?>, "affiliate_transaction_id":affiliate_transaction_id},
-      dataType: 'html',
-      beforeSend: function() {
-        $(".success, .warning").remove();
-        $("#column-delete-transaction").html('<img src="view/image/loading.gif" alt="" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(html) {
-      $("#transaction").html(html);
-    })
-    .always(function() {
-      $("#column-delete-transaction").html('<img src="view/image/bin_closed.png" alt="" />');
-    });
-  }
+	if (confirm('<?php echo addslashes($text_delete_transaction_confirm); ?>')) {
+		$.ajax({
+			url: 'index.php?route=sale/affiliate/delete_transaction&token=<?php echo $token; ?>&affiliate_id=<?php echo $affiliate_id; ?>',
+			type: 'POST',
+			data: {"affiliate_id":<?php echo (isset($affiliate_id) ? $affiliate_id : 0); ?>, "affiliate_transaction_id":affiliate_transaction_id},
+			dataType: 'html',
+			beforeSend: function() {
+				$(".success, .warning").remove();
+        $("#button-transaction").attr('disabled', true);
+				$("#column-delete-transaction").html('<img src="view/image/loading.gif" alt="" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(html) {
+			$("#transaction").html(html);
+		})
+		.always(function() {
+			$("#column-delete-transaction").html('<img src="view/image/bin-closed.png" alt="" />');
+      $("#button-transaction").attr('disabled', false);
+		});
+	}
 }
 //--></script>
 

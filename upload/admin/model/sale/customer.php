@@ -443,8 +443,8 @@ class ModelSaleCustomer extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE order_id = '" . (int)$order_id . "'");
 	}
 
-	public function deleteTransactionById($transaction_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_transaction_id = '" . (int)$transaction_id . "'");
+	public function deleteTransactionById($customer_transaction_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_transaction WHERE customer_transaction_id = '" . (int)$customer_transaction_id . "'");
 	}
 
 	public function getTransactions($customer_id, $start = 0, $limit = 10) {
@@ -507,12 +507,14 @@ class ModelSaleCustomer extends Model {
 			$message .= sprintf($this->language->get('text_reward_total'), $this->getRewardTotal($customer_id));
 
 			// HTML Mail
+			$subject = sprintf($this->language->get('text_reward_subject'), $store_name);
+
 			$template = new Template();
 
 			$template->data['title'] = sprintf($this->language->get('text_reward_subject'), $store_name);
-			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['logo'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'image/' . $this->config->get('config_logo');
 			$template->data['store_name'] = $this->config->get('config_name');
-			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['store_url'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG);
 			$template->data['message'] = nl2br($message);
 
 			$html = $template->fetch('mail/default.tpl');
@@ -521,15 +523,15 @@ class ModelSaleCustomer extends Model {
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');
 			$mail->hostname = $this->config->get('config_smtp_host');
-			$mail->username = $this->config->get('config_smtp_username');
-			$mail->password = $this->config->get('config_smtp_password');
+			$mail->username = html_entity_decode($this->config->get('config_smtp_username'), ENT_QUOTES, 'UTF-8');
+			$mail->password = html_entity_decode($this->config->get('config_smtp_password'), ENT_QUOTES, 'UTF-8');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
 			
 			$mail->setTo($customer_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject(html_entity_decode(sprintf($this->language->get('text_reward_subject'), $store_name), ENT_QUOTES, 'UTF-8'));
+			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
 			$mail->setHtml($html);
 			$mail->send();
 		}
@@ -537,6 +539,10 @@ class ModelSaleCustomer extends Model {
 
 	public function deleteReward($order_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE order_id = '" . (int)$order_id . "'");
+	}
+
+	public function deleteRewardById($customer_reward_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE customer_reward_id = '" . (int)$customer_reward_id . "'");
 	}
 
 	public function getRewards($customer_id, $start = 0, $limit = 10) {

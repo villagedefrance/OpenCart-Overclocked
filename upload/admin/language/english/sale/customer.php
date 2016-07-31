@@ -15,6 +15,9 @@ $_['text_remove_ban_ip']    = 'Remove Ban IP';
 $_['text_female']           = 'Female';
 $_['text_male']             = 'Male';
 $_['text_no_purchases']     = 'No purchases!';
+$_['text_delete_reward_confirm']      = 'Are you sure you want to delete this reward ?';
+$_['text_reward_added']               = 'Success: Reward added !';
+$_['text_reward_removed']             = 'Success: Reward removed !';
 
 // Column
 $_['column_name']           = 'Customer Name';
@@ -92,4 +95,5 @@ $_['error_city']            = 'City must be between 2 and 128 characters!';
 $_['error_postcode']        = 'Postcode must be between 2 and 10 characters for this country!';
 $_['error_country']         = 'Please select a country!';
 $_['error_zone']            = 'Please select a region / state!';
+$_['error_points']                    = 'Points required!';
 ?>
