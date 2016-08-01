@@ -443,7 +443,7 @@ function deleteTransaction(affiliate_transaction_id) {
 			$("#transaction").html(html);
 		})
 		.always(function() {
-			$("#column-delete-transaction").html('<img src="view/image/bin_closed.png" alt="" />');
+			$("#column-delete-transaction").html('<img src="view/image/bin-closed.png" alt="" />');
 		});
 	}
 }

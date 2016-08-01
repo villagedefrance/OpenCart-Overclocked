@@ -18,6 +18,9 @@ $_['text_no_purchases']               = 'No purchases!';
 $_['text_delete_transaction_confirm'] = 'Are you sure you want to delete this transaction ?';
 $_['text_transaction_added']          = 'Success: Transaction added !';
 $_['text_transaction_removed']        = 'Success: Transaction removed !';
+$_['text_delete_reward_confirm']      = 'Are you sure you want to delete this reward ?';
+$_['text_reward_added']               = 'Success: Reward added !';
+$_['text_reward_removed']             = 'Success: Reward removed !';
 
 // Column
 $_['column_name']                     = 'Customer Name';
@@ -95,4 +98,6 @@ $_['error_city']                      = 'City must be between 2 and 128 characte
 $_['error_postcode']                  = 'Postcode must be between 2 and 10 characters for this country!';
 $_['error_country']                   = 'Please select a country!';
 $_['error_zone']                      = 'Please select a region / state!';
+$_['error_amount']                    = 'Amount required!';
+$_['error_points']                    = 'Points required!';
 ?>
