@@ -25,7 +25,7 @@ class ControllerModuleMenuHorizontal extends Controller {
 		if ($menu_theme == 'custom') {
 			$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-' . $menu_direction . '.css');
 
-			if ($mod_color == 'white-skin' || $mod_color == 'beige-skin' || $mod_color == 'ash-skin' || $mod_color == 'silver-skin' || $mod_color == 'citrus-skin' || $mod_color == 'yellow-skin') {
+			if ($mod_color == 'white-skin' || $mod_color == 'beige-skin' || $mod_color == 'ash-skin' || $mod_color == 'silver-skin' || $mod_color == 'citrus-skin' || $mod_color == 'yellow-skin' || $mod_color == 'mist-skin') {
 				$this->document->addStyle('catalog/view/theme/' . $template . '/stylesheet/menu-dark.css');
 				$menu_theme = 'light';
 			} else {

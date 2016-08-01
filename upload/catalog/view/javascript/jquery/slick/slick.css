@@ -432,8 +432,15 @@
 }
 /*SIENNA SKIN*/
 .slick_sienna_skin .slick-prev > span {
-	background-position: 0 -1180px;
+	background-position: 0 -1160px;
 }
 .slick_sienna_skin .slick-next > span {
-	background-position: -40px -1180px;
+	background-position: -40px -1160px;
+}
+/*MIST SKIN*/
+.slick_mist_skin .slick-prev > span {
+	background-position: 0 -1200px;
+}
+.slick_mist_skin .slick-next > span {
+	background-position: -40px -1200px;
 }
