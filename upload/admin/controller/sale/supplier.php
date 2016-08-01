@@ -318,7 +318,7 @@ class ControllerSaleSupplier extends Controller {
 
 		$this->data['suppliers'] = array();
 
-		$data = array(
+		$filter_data = array(
 			'filter_reference'         => $filter_reference,
 			'filter_company'           => $filter_company,
 			'filter_email'             => $filter_email,
@@ -331,9 +331,9 @@ class ControllerSaleSupplier extends Controller {
 			'limit'                    => $this->config->get('config_admin_limit')
 		);
 
-		$supplier_total = $this->model_sale_supplier->getTotalSuppliers($data);
+		$supplier_total = $this->model_sale_supplier->getTotalSuppliers($filter_data);
 
-		$results = $this->model_sale_supplier->getSuppliers($data);
+		$results = $this->model_sale_supplier->getSuppliers($filter_data);
 
 		foreach ($results as $result) {
 			$action = array();
@@ -554,16 +554,18 @@ class ControllerSaleSupplier extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
-		if (isset($this->request->get['supplier_id'])) {
-			$this->data['supplier_id'] = $this->request->get['supplier_id'];
-		} else {
-			$this->data['supplier_id'] = 0;
-		}
-
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
 		} else {
 			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
 		}
 
 		if (isset($this->error['reference'])) {
@@ -697,6 +699,12 @@ class ControllerSaleSupplier extends Controller {
 
 		if (isset($this->request->get['supplier_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$supplier_info = $this->model_sale_supplier->getSupplier($this->request->get['supplier_id']);
+		}
+
+		if (isset($this->request->get['supplier_id'])) {
+			$this->data['supplier_id'] = $this->request->get['supplier_id'];
+		} else {
+			$this->data['supplier_id'] = 0;
 		}
 
 		if (isset($this->request->post['reference'])) {
@@ -1115,32 +1123,6 @@ class ControllerSaleSupplier extends Controller {
 		}
 
 		array_multisort($sort_order, SORT_ASC, $json);
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function country() {
-		$json = array();
-
-		$this->load->model('localisation/country');
-
-		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
-
-		if ($country_info) {
-			$this->load->model('localisation/zone');
-
-			$json = array(
-				'country_id'        => $country_info['country_id'],
-				'name'              => $country_info['name'],
-				'iso_code_2'        => $country_info['iso_code_2'],
-				'iso_code_3'        => $country_info['iso_code_3'],
-				'address_format'    => $country_info['address_format'],
-				'postcode_required' => $country_info['postcode_required'],
-				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            => $country_info['status']
-			);
-		}
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));

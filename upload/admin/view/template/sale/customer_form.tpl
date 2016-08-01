@@ -425,7 +425,7 @@ $('select[name=\'customer_group_id\']').trigger('change');
 function country(element, index, zone_id) {
   if (element.value != '') {
 		$.ajax({
-			url: 'index.php?route=sale/customer/country&token=<?php echo $token; ?>&country_id=' + element.value,
+			url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + element.value,
 			dataType: 'json',
 			beforeSend: function() {
 				$('select[name=\'address[' + index + '][country_id]\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
@@ -442,7 +442,7 @@ function country(element, index, zone_id) {
 
 				html = '<option value=""><?php echo $text_select; ?></option>';
 
-				if (json['zone'] != '') {
+				if (json['zone'] && json['zone'] != '') {
 					for (i = 0; i < json['zone'].length; i++) {
 						html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
@@ -453,7 +453,7 @@ function country(element, index, zone_id) {
 						html += '>' + json['zone'][i]['name'] + '</option>';
 					}
 				} else {
-					html += '<option value="0"><?php echo $text_none; ?></option>';
+					html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
 				}
 
 				$('select[name=\'address[' + index + '][zone_id]\']').html(html);
@@ -615,25 +615,32 @@ function deleteTransaction(transaction_id) {
 	});
 }
 
-$('#transaction').load('index.php?route=sale/customer/transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
+$('#transaction').load('index.php?route=sale/customer/transactions&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
 
-$('#button-transaction').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=sale/customer/transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
-		type: 'post',
-		dataType: 'html',
-		data: 'description=' + encodeURIComponent($('#tab-transaction input[name=\'description\']').val()) + '&amount=' + encodeURIComponent($('#tab-transaction input[name=\'amount\']').val()),
-		beforeSend: function() {
-			$('.success, .warning').remove();
-			$('#button-transaction').attr('disabled', true);
-			$('#transaction').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-transaction').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(html) {
-			$('#transaction').html(html);
+function addTransaction() {
+  $.ajax({
+    url: 'index.php?route=sale/customer/add_transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
+    type: 'POST',
+    dataType: 'html',
+    data: 'description=' + encodeURIComponent($("#tab-transaction input[name='description']").val()) + '&amount=' + encodeURIComponent($("#tab-transaction input[name='amount']").val()),
+    beforeSend: function() {
+      $(".success, .warning").remove();
+      $("#button-transaction").attr('disabled', true);
+      $("#transaction").before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+    },
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+  .done(function(html) {
+    $("#transaction").html(html);
+
+    $("#tab-transaction input[name='amount']").val('');
+    $("#tab-transaction input[name='description']").val('');
+  })
+  .always(function() {
+    $(".attention").remove();
+    $("#button-transaction").attr('disabled', false);
+  });
+}
 
 			$('#tab-transaction input[name=\'amount\']').val('');
 			$('#tab-transaction input[name=\'description\']').val('');

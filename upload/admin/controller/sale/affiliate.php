@@ -662,10 +662,6 @@ class ControllerSaleAffiliate extends Controller {
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_remove'] = $this->language->get('button_remove');
 
-		$this->data['column_product_id'] = $this->language->get('column_product_id');
-		$this->data['column_product'] = $this->language->get('column_product');
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
-
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_payment'] = $this->language->get('tab_payment');
 		$this->data['tab_product'] = $this->language->get('tab_product');

@@ -10,7 +10,6 @@
 <table class="list">
   <thead>
     <tr>
-      <td></td>
       <td class="left"><?php echo $column_date_added; ?></td>
       <td class="left"><?php echo $column_description; ?></td>
       <td class="right"><?php echo $column_amount; ?></td>
@@ -20,14 +19,14 @@
   <?php if ($transactions) { ?>
     <?php foreach ($transactions as $transaction) { ?>
     <tr>
-      <td class="center"><img src="view/image/delete.png" title="<?php echo $button_delete; ?>" alt="<?php echo $button_delete; ?>" onclick="deleteTransaction(<?php echo $transaction['id']; ?>);" style="cursor:pointer;" /></td>
       <td class="left"><?php echo $transaction['date_added']; ?></td>
       <td class="left"><?php echo $transaction['description']; ?></td>
       <td class="right"><?php echo $transaction['amount']; ?></td>
+      <td class="center"><a id="button-delete-transaction-<?php echo $transaction['customer_transaction_id']; ?>" onclick="deleteTransaction(<?php echo $transaction['customer_transaction_id']; ?>);"><img src="view/image/delete.png" alt="<?php echo $button_delete; ?>" /></a></td>
     </tr>
   <?php } ?>
     <tr>
-      <td colspan="2"></td>
+      <td>&nbsp;</td>
       <td class="right"><b><?php echo $text_balance; ?></b></td>
       <td class="right"><?php echo $balance; ?></td>
     </tr>
