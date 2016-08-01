@@ -6,6 +6,7 @@ class ModelTotalCoupon extends Model {
 			$this->language->load('total/coupon');
 
 			$this->load->model('checkout/coupon');
+			$this->load->model('catalog/product');
 
 			$coupon_info = $this->model_checkout_coupon->getCoupon($this->session->data['coupon']);
 
@@ -28,6 +29,8 @@ class ModelTotalCoupon extends Model {
 					$coupon_info['discount'] = min($coupon_info['discount'], $sub_total);
 				}
 
+				$coupon_special = $this->config->get('config_coupon_special');
+
 				foreach ($this->cart->getProducts() as $product) {
 					$discount = 0;
 
@@ -38,6 +41,14 @@ class ModelTotalCoupon extends Model {
 							$status = true;
 						} else {
 							$status = false;
+						}
+					}
+
+					if (!$coupon_special) {
+						$results = $this->model_catalog_product->getProduct($product['product_id']);
+
+						if ($results['special']) {
+							continue;
 						}
 					}
 

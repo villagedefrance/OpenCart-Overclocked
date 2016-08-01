@@ -634,6 +634,21 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_coupon_special; ?></td>
+            <td><?php if ($config_coupon_special) { ?>
+              <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" checked />
+              <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_coupon_special" value="0" id="coupon-special-off" class="radio" />
+              <label for="coupon-special-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_coupon_special" value="1" id="coupon-special-on" class="radio" />
+              <label for="coupon-special-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_coupon_special" value="0" id="coupon-special-off" class="radio" checked />
+              <label for="coupon-special-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            </td>
+          </tr>
+          <tr>
             <td><?php echo $entry_review; ?></td>
             <td><?php if ($config_review_status) { ?>
               <input type="radio" name="config_review_status" value="1" id="review-status-on" class="radio" checked />

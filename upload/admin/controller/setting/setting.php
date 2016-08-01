@@ -155,6 +155,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_express_voucher'] = $this->language->get('entry_express_voucher');
 		$this->data['entry_express_point'] = $this->language->get('entry_express_point');
 		$this->data['entry_product_count'] = $this->language->get('entry_product_count');
+		$this->data['entry_coupon_special'] = $this->language->get('entry_coupon_special');
 		$this->data['entry_review'] = $this->language->get('entry_review');
 		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_tax'] = $this->language->get('entry_tax');
@@ -890,6 +891,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_product_count'] = $this->request->post['config_product_count'];
 		} else {
 			$this->data['config_product_count'] = $this->config->get('config_product_count');
+		}
+
+		if (isset($this->request->post['config_coupon_special'])) {
+			$this->data['config_coupon_special'] = $this->request->post['config_coupon_special'];
+		} else {
+			$this->data['config_coupon_special'] = $this->config->get('config_coupon_special');
 		}
 
 		if (isset($this->request->post['config_review_status'])) {
