@@ -46,26 +46,28 @@ Main Features:
 - Integrated News (Blog).
 - ... and more!
 
-Coming soon in 1.8.0.0!
+New in 1.8.0.0 (Current Release)!
+- jQuery updated to v1.12.4.
+- jQuery UI updated to v1.12.0.
 - Added DomPDF library for PDF document downloads.
 - Added custom Colour & Style for all modules and footer.
 - New and updated payment methods. Thanks Gob33!
+- Improved Affiliates features. Thanks Gob33!
+- New Api Keys management forms!
 - New Supplier management forms!
-- New Cookie Consent code.
+- New improved Cookie Consent code.
+- New Modules and Shipping methods.
 - Added Piwik code field in Settings.
 - Added Customer Group image.
 - Updated Google Maps feature.
 - Fixed Product RSS Feed.
+- Essential bug fixes ...
 - ...
 
-New in 1.7.6.0 (Current Release)!
+Added in previous 1.7.X.0 versions:
 - Added direct printing of invoices.
 - Added Country and Zone update on upgrade.
 - Improved invoicing, with tax breakdown.
-- jQuery updated to v1.12.3.
-- Essential bug fixes ...
-
-Added in previous 1.7.X.0 versions:
 - Added Ip Range blocker (firewall).
 - Added autocomplete for offers.
 - TimePicker Addon updated to v1.5.0.
