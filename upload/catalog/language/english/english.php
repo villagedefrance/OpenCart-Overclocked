@@ -21,6 +21,7 @@ $_['text_separator']        = ' &gt; ';
 $_['text_offer']            = 'Offer!';
 $_['text_free']             = 'Free';
 $_['text_remaining']        = 'Only %s left!';
+$_['text_wait']             = 'Please wait!';
 
 // Buttons
 $_['button_add_address']    = 'Add Address';
