@@ -640,6 +640,8 @@ class ControllerSaleCustomer extends Controller {
 		$this->data['text_remove_ban_ip'] = $this->language->get('text_remove_ban_ip');
 		$this->data['text_female'] = $this->language->get('text_female');
 		$this->data['text_male'] = $this->language->get('text_male');
+		$this->data['text_delete_transaction_confirm'] = $this->language->get('text_delete_transaction_confirm');
+		$this->data['text_delete_reward_confirm'] = $this->language->get('text_delete_reward_confirm');
 
 		$this->data['column_ip'] = $this->language->get('column_ip');
 		$this->data['column_location'] = $this->language->get('column_location');
@@ -1426,34 +1428,64 @@ class ControllerSaleCustomer extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function transaction() {
+	public function transactions() {
 		$this->language->load('sale/customer');
 
 		$this->load->model('sale/customer');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) {
+		$this->listTransactions();
+	}
+
+	public function add_transaction() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateAddTransaction()) {
 			$this->model_sale_customer->addTransaction($this->request->get['customer_id'], $this->request->post['description'], $this->request->post['amount']);
 
-			$this->data['success'] = $this->language->get('text_success');
-		} else {
-			$this->data['success'] = '';
+			$this->error['success'] = $this->language->get('text_transaction_added');
 		}
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$this->user->hasPermission('modify', 'sale/customer')) {
-			$this->data['error_warning'] = $this->language->get('error_permission');
-		} else {
-			$this->data['error_warning'] = '';
+		$this->listTransactions();
+	}
+
+	public function delete_transaction() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateDeleteTransaction()) {
+			$this->model_sale_customer->deleteTransactionById($this->request->post['customer_transaction_id']);
+
+			$this->error['success'] = $this->language->get('text_transaction_removed');
 		}
 
+		$this->listTransactions();
+	}
+
+	protected function listTransactions() {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_balance'] = $this->language->get('text_balance');
 
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_description'] = $this->language->get('column_description');
 		$this->data['column_amount'] = $this->language->get('column_amount');
-		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_delete'] = $this->language->get('button_delete');
+
+		// Errors
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->error['success'])) {
+			$this->data['success'] = $this->error['success'];
+		} else {
+			$this->data['success'] = '';
+		}
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -1471,10 +1503,10 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['transactions'][] = array(
-				'id'          => $result['customer_transaction_id'],
-				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' => $result['description'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'customer_transaction_id' => $result['customer_transaction_id'],
+				'description'             => $result['description'],
+				'amount'                  => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+				'date_added'              => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
@@ -1487,7 +1519,7 @@ class ControllerSaleCustomer extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = 10;
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('sale/customer/transaction', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('sale/customer/transactions', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
@@ -1496,101 +1528,99 @@ class ControllerSaleCustomer extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function deleteTransaction() {
-		$this->language->load('sale/customer');
-
-		$this->load->model('sale/customer');
-
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) { 
-			$this->model_sale_customer->deleteTransactionById($this->request->get['transaction_id']);
-
-			$this->data['success'] = $this->language->get('text_success');
-		} else {
-			$this->data['success'] = '';
+	protected function validateAddTransaction() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$this->user->hasPermission('modify', 'sale/customer')) {
-			$this->data['error_warning'] = $this->language->get('error_permission');
-		} else {
-			$this->data['error_warning'] = '';
+		if (!$this->request->get['customer_id']) {
+			$this->error['warning'] = $this->language->get('error_action');
 		}
 
-		$this->data['text_no_results'] = $this->language->get('text_no_results');
-		$this->data['text_balance'] = $this->language->get('text_balance');
-
-		$this->data['column_date_added'] = $this->language->get('column_date_added');
-		$this->data['column_description'] = $this->language->get('column_description');
-		$this->data['column_amount'] = $this->language->get('column_amount');
-		$this->data['column_action'] = $this->language->get('column_action');
-
-		$this->data['button_delete'] = $this->language->get('button_delete');
-
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}  
-
-		// Pagination
-		$this->data['navigation_hi'] = $this->config->get('config_pagination_hi');
-		$this->data['navigation_lo'] = $this->config->get('config_pagination_lo');
-
-		$this->data['transactions'] = array();
-
-		$results = $this->model_sale_customer->getTransactions($this->request->get['customer_id'], ($page - 1) * 10, 10);
-
-		foreach ($results as $result) {
-			$this->data['transactions'][] = array(
-				'id'          => $result['customer_transaction_id'],
-				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' => $result['description'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
-			);
+ 		if (!$this->request->post['amount']) {
+			$this->error['warning'] = $this->language->get('error_amount');
 		}
 
-		$this->data['balance'] = $this->currency->format($this->model_sale_customer->getTransactionTotal($this->request->get['customer_id']), $this->config->get('config_currency'));
-
-		$transaction_total = $this->model_sale_customer->getTotalTransactions($this->request->get['customer_id']);
-
-		$pagination = new Pagination();
-		$pagination->total = $transaction_total;
-		$pagination->page = $page;
-		$pagination->limit = 10; 
-		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('sale/customer/transaction', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
-
-		$this->data['pagination'] = $pagination->render();
-
-		$this->template = 'sale/customer_transaction.tpl';
-
-		$this->response->setOutput($this->render());
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	public function reward() {
+	protected function validateDeleteTransaction() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->request->get['customer_id']) {
+			$this->error['warning'] = $this->language->get('error_action');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function rewards() {
 		$this->language->load('sale/customer');
 
 		$this->load->model('sale/customer');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->user->hasPermission('modify', 'sale/customer')) {
+		$this->listRewards();
+	}
+
+	public function add_reward() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateAddReward()) {
 			$this->model_sale_customer->addReward($this->request->get['customer_id'], $this->request->post['description'], $this->request->post['points']);
 
-			$this->data['success'] = $this->language->get('text_success');
-		} else {
-			$this->data['success'] = '';
+			$this->error['success'] = $this->language->get('text_reward_added');
 		}
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && !$this->user->hasPermission('modify', 'sale/customer')) {
-			$this->data['error_warning'] = $this->language->get('error_permission');
-		} else {
-			$this->data['error_warning'] = '';
+		$this->listRewards();
+	}
+
+	public function delete_reward() {
+		$this->language->load('sale/customer');
+
+		$this->load->model('sale/customer');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateDeleteReward()) {
+			$this->model_sale_customer->deleteRewardById($this->request->post['customer_reward_id']);
+
+			$this->error['success'] = $this->language->get('text_reward_removed');
 		}
 
+		$this->listRewards();
+	}
+
+	protected function listRewards() {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_balance'] = $this->language->get('text_balance');
 
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_description'] = $this->language->get('column_description');
 		$this->data['column_points'] = $this->language->get('column_points');
+
+		$this->data['button_delete'] = $this->language->get('button_delete');
+
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->error['success'])) {
+			$this->data['success'] = $this->error['success'];
+		} else {
+			$this->data['success'] = '';
+		}
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -1608,13 +1638,14 @@ class ControllerSaleCustomer extends Controller {
 
 		foreach ($results as $result) {
 			$this->data['rewards'][] = array(
-				'points'      => $result['points'],
-				'description' => $result['description'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
+				'customer_reward_id' => $result['customer_reward_id'],
+				'description'        => $result['description'],
+				'points'             => $result['points'],
+				'date_added'         => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 			);
 		}
 
-		$this->data['balance'] = $this->model_sale_customer->getRewardTotal($this->request->get['customer_id']);
+		$this->data['balance'] = $this->currency->format($this->model_sale_customer->getRewardTotal($this->request->get['customer_id']), $this->config->get('config_currency'));
 
 		$reward_total = $this->model_sale_customer->getTotalRewards($this->request->get['customer_id']);
 
@@ -1623,13 +1654,49 @@ class ControllerSaleCustomer extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = 10;
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('sale/customer/reward', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
+		$pagination->url = $this->url->link('sale/customer/rewards', 'token=' . $this->session->data['token'] . '&customer_id=' . $this->request->get['customer_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 
 		$this->template = 'sale/customer_reward.tpl';
 
 		$this->response->setOutput($this->render());
+	}
+
+	protected function validateAddReward() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->request->get['customer_id']) {
+			$this->error['warning'] = $this->language->get('error_action');
+		}
+
+ 		if (!$this->request->post['points']) {
+			$this->error['warning'] = $this->language->get('error_points');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	protected function validateDeleteReward() {
+		if (!$this->user->hasPermission('modify', 'sale/customer')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if (!$this->request->get['customer_id']) {
+			$this->error['warning'] = $this->language->get('error_action');
+		}
+
+		if (!$this->error) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function addBanIP() {
@@ -1713,32 +1780,6 @@ class ControllerSaleCustomer extends Controller {
 		}
 
 		array_multisort($sort_order, SORT_ASC, $json);
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
-
-	public function country() {
-		$json = array();
-
-		$this->load->model('localisation/country');
-
-		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
-
-		if ($country_info) {
-			$this->load->model('localisation/zone');
-
-			$json = array(
-				'country_id'        => $country_info['country_id'],
-				'name'              => $country_info['name'],
-				'iso_code_2'        => $country_info['iso_code_2'],
-				'iso_code_3'        => $country_info['iso_code_3'],
-				'address_format'    => $country_info['address_format'],
-				'postcode_required' => $country_info['postcode_required'],
-				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            => $country_info['status']
-			);
-		}
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));

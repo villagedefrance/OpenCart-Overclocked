@@ -807,9 +807,9 @@ $('input[name=\'affiliate\']').autocomplete({
 
 var payment_zone_id = '<?php echo $payment_zone_id; ?>';
 
-$('select[name=\'payment_country_id\']').bind('change', function() {
+$('select[name=\'payment_country_id\']').on('change', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/country&token=<?php echo $token; ?>&country_id=' + this.value,
+		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
 			$('select[name=\'payment_country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
@@ -826,7 +826,7 @@ $('select[name=\'payment_country_id\']').bind('change', function() {
 
 			html = '<option value=""><?php echo $text_select; ?></option>';
 
-			if (json != '' && json['zone'] != '') {
+      if (json['zone'] && json['zone'] != '') {
 				for (i = 0; i < json['zone'].length; i++) {
 					html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
@@ -880,7 +880,7 @@ var shipping_zone_id = '<?php echo $shipping_zone_id; ?>';
 
 $('select[name=\'shipping_country_id\']').bind('change', function() {
 	$.ajax({
-		url: 'index.php?route=sale/order/country&token=<?php echo $token; ?>&country_id=' + this.value,
+		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 		dataType: 'json',
 		beforeSend: function() {
 			$('select[name=\'payment_country_id\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');

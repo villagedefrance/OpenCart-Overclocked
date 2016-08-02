@@ -539,6 +539,10 @@ class ModelSaleCustomer extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE order_id = '" . (int)$order_id . "'");
 	}
 
+	public function deleteRewardById($reward_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_reward WHERE customer_reward_id = '" . (int)$reward_id . "'");
+	}
+
 	public function getRewards($customer_id, $start = 0, $limit = 10) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$customer_id . "' ORDER BY date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
 

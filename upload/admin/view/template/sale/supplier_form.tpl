@@ -8,6 +8,9 @@
   <?php if ($error_warning) { ?>
     <div class="warning"><?php echo $error_warning; ?></div>
   <?php } ?>
+  <?php if ($success) { ?>
+    <div class="success"><?php echo $success; ?></div>
+  <?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/customer.png" alt="" /> <?php echo $supplier_title; ?></h1>
@@ -233,7 +236,7 @@
 function country(element, index, zone_id) {
 	if (element.value != '') {
 		$.ajax({
-			url: 'index.php?route=sale/supplier/country&token=<?php echo $token; ?>&country_id=' + element.value,
+			url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + element.value,
 			dataType: 'json',
 			beforeSend: function() {
 				$('select[name=\'address[' + index + '][country_id]\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
@@ -250,7 +253,7 @@ function country(element, index, zone_id) {
 
 				html = '<option value=""><?php echo $text_select; ?></option>';
 
-				if (json['zone'] != '') {
+				if (json['zone'] && json['zone'] != '') {
 					for (i = 0; i < json['zone'].length; i++) {
 						html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
@@ -261,7 +264,7 @@ function country(element, index, zone_id) {
 						html += '>' + json['zone'][i]['name'] + '</option>';
 					}
 				} else {
-					html += '<option value="0"><?php echo $text_none; ?></option>';
+					html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
 				}
 
 				$('select[name=\'address[' + index + '][zone_id]\']').html(html);

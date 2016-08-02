@@ -425,7 +425,7 @@ $('select[name=\'customer_group_id\']').trigger('change');
 function country(element, index, zone_id) {
   if (element.value != '') {
 		$.ajax({
-			url: 'index.php?route=sale/customer/country&token=<?php echo $token; ?>&country_id=' + element.value,
+			url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + element.value,
 			dataType: 'json',
 			beforeSend: function() {
 				$('select[name=\'address[' + index + '][country_id]\']').after('<span class="wait">&nbsp;<img src="view/image/loading.gif" alt="" /></span>');
@@ -442,7 +442,7 @@ function country(element, index, zone_id) {
 
 				html = '<option value=""><?php echo $text_select; ?></option>';
 
-				if (json['zone'] != '') {
+				if (json['zone'] && json['zone'] != '') {
 					for (i = 0; i < json['zone'].length; i++) {
 						html += '<option value="' + json['zone'][i]['zone_id'] + '"';
 
@@ -453,7 +453,7 @@ function country(element, index, zone_id) {
 						html += '>' + json['zone'][i]['name'] + '</option>';
 					}
 				} else {
-					html += '<option value="0"><?php echo $text_none; ?></option>';
+					html += '<option value="0" selected="selected"><?php echo $text_none; ?></option>';
 				}
 
 				$('select[name=\'address[' + index + '][zone_id]\']').html(html);
@@ -595,51 +595,54 @@ $('#transaction .pagination a').live('click', function() {
 	return false;
 });
 
-function deleteTransaction(transaction_id) {
-	$.ajax({
-		url: 'index.php?route=sale/customer/deleteTransaction&token=<?php echo $token; ?>&transaction_id=' + transaction_id + '&customer_id=<?php echo $customer_id; ?>',
-		type: 'post',
-		dataType: 'html',
-		beforeSend: function() {
-			$('.success, .warning').remove();
-			$('#button-transaction').attr('disabled', true);
-			$('#transaction').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-transaction').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(html) {
-			$('#transaction').html(html);
-		}
-	});
+$('#transaction').load('index.php?route=sale/customer/transactions&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
+
+function addTransaction() {
+  $.ajax({
+    url: 'index.php?route=sale/customer/add_transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
+    type: 'POST',
+    dataType: 'html',
+    data: 'description=' + encodeURIComponent($("#tab-transaction input[name='description']").val()) + '&amount=' + encodeURIComponent($("#tab-transaction input[name='amount']").val()),
+    beforeSend: function() {
+      $(".success, .warning").remove();
+      $("#button-transaction").attr('disabled', true);
+      $("#transaction").before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+    },
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+  .done(function(html) {
+    $("#transaction").html(html);
+
+    $("#tab-transaction input[name='amount']").val('');
+    $("#tab-transaction input[name='description']").val('');
+  })
+  .always(function() {
+    $(".attention").remove();
+    $("#button-transaction").attr('disabled', false);
+  });
 }
 
-$('#transaction').load('index.php?route=sale/customer/transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
-
-$('#button-transaction').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=sale/customer/transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
-		type: 'post',
-		dataType: 'html',
-		data: 'description=' + encodeURIComponent($('#tab-transaction input[name=\'description\']').val()) + '&amount=' + encodeURIComponent($('#tab-transaction input[name=\'amount\']').val()),
-		beforeSend: function() {
-			$('.success, .warning').remove();
-			$('#button-transaction').attr('disabled', true);
-			$('#transaction').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-transaction').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(html) {
-			$('#transaction').html(html);
-
-			$('#tab-transaction input[name=\'amount\']').val('');
-			$('#tab-transaction input[name=\'description\']').val('');
-		}
-	});
-});
+function deleteTransaction(customer_transaction_id) {
+	if (confirm('<?php echo addslashes($text_delete_transaction_confirm); ?>')) {
+		$.ajax({
+			url: 'index.php?route=sale/customer/delete_transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
+			type: 'POST',
+			data: {"customer_id":<?php echo (isset($customer_id) ? $customer_id : 0); ?>, "customer_transaction_id":customer_transaction_id},
+			dataType: 'html',
+			beforeSend: function() {
+				$(".success, .warning").remove();
+				$("#column-delete-transaction").html('<img src="view/image/loading.gif" alt="" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(html) {
+			$("#transaction").html(html);
+		})
+		.always(function() {
+			$("#column-delete-transaction").html('<img src="view/image/bin-closed.png" alt="" />');
+		});
+	}
+}
 //--></script>
 
 <script type="text/javascript"><!--
@@ -648,30 +651,53 @@ $('#reward .pagination a').live('click', function() {
 	return false;
 });
 
-$('#reward').load('index.php?route=sale/customer/reward&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
+$('#reward').load('index.php?route=sale/customer/rewards&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
 
 function addRewardPoints() {
 	$.ajax({
-		url: 'index.php?route=sale/customer/reward&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
-		type: 'post',
+		url: 'index.php?route=sale/customer/add_reward&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
+		type: 'POST',
 		dataType: 'html',
-		data: 'description=' + encodeURIComponent($('#tab-reward input[name=\'description\']').val()) + '&points=' + encodeURIComponent($('#tab-reward input[name=\'points\']').val()),
+		data: 'description=' + encodeURIComponent($("#tab-reward input[name='description']").val()) + '&points=' + encodeURIComponent($("#tab-reward input[name='points']").val()),
 		beforeSend: function() {
-			$('.success, .warning').remove();
-			$('#button-reward').attr('disabled', true);
-			$('#reward').before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+			$(".success, .warning").remove();
+			$("#button-reward").attr('disabled', true);
+			$("#reward").before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
-		complete: function() {
-			$('#button-reward').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(html) {
-			$('#reward').html(html);
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+	.done(function(html) {
+		$("#reward").html(html);
 
-			$('#tab-reward input[name=\'points\']').val('');
-			$('#tab-reward input[name=\'description\']').val('');
-		}
+		$("#tab-reward input[name='points']").val('');
+		$("#tab-reward input[name='description']").val('');
+	})
+	.always(function() {
+		$(".attention").remove();
+		$("#button-reward").attr('disabled', false);
 	});
+}
+
+function deleteReward(customer_reward_id) {
+	if (confirm('<?php echo addslashes($text_delete_reward_confirm); ?>')) {
+		$.ajax({
+			url: 'index.php?route=sale/customer/delete_reward&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
+			type: 'POST',
+			data: {"customer_id":<?php echo (isset($customer_id) ? $customer_id : 0); ?>, "customer_reward_id":customer_reward_id},
+			dataType: 'html',
+			beforeSend: function() {
+				$(".success, .warning").remove();
+				$("#column-delete-reward").html('<img src="view/image/loading.gif" alt="" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(html) {
+			$("#reward").html(html);
+		})
+		.always(function() {
+			$("#column-delete-reward").html('<img src="view/image/bin-closed.png" alt="" />');
+		});
+	}
 }
 
 function addBanIP(ip) {
