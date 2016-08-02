@@ -24,6 +24,11 @@ class ControllerPaymentFreeCheckout extends Controller {
 	}
 
 	public function confirm() {
+		// Helps prevent free checkout direct access exploit.
+		if (strtolower($this->session->data['payment_method']['code']) != 'free_checkout') {
+			return;
+		}
+
 		if ($this->session->data['payment_method']['code'] == 'free_checkout') {
 			$this->load->model('checkout/order');
 
