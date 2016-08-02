@@ -570,7 +570,7 @@ $('#button-history').bind('click', function() {
 		complete: function() {
 			$('#button-history').attr('disabled', false);
 			$('.attention').remove();
-      		$('#tab-history textarea[name=\'comment\']').val('');
+			$('#tab-history textarea[name=\'comment\']').val('');
 		},
 		success: function(html) {
 			$('#history').html(html);
@@ -598,28 +598,28 @@ $('#transaction .pagination a').live('click', function() {
 $('#transaction').load('index.php?route=sale/customer/transactions&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>');
 
 function addTransaction() {
-  $.ajax({
-    url: 'index.php?route=sale/customer/add_transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
-    type: 'POST',
-    dataType: 'html',
-    data: 'description=' + encodeURIComponent($("#tab-transaction input[name='description']").val()) + '&amount=' + encodeURIComponent($("#tab-transaction input[name='amount']").val()),
-    beforeSend: function() {
-      $(".success, .warning").remove();
-      $("#button-transaction").attr('disabled', true);
-      $("#transaction").before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-    },
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-  .done(function(html) {
-    $("#transaction").html(html);
+	$.ajax({
+		url: 'index.php?route=sale/customer/add_transaction&token=<?php echo $token; ?>&customer_id=<?php echo $customer_id; ?>',
+		type: 'POST',
+		dataType: 'html',
+		data: 'description=' + encodeURIComponent($("#tab-transaction input[name='description']").val()) + '&amount=' + encodeURIComponent($("#tab-transaction input[name='amount']").val()),
+		beforeSend: function() {
+			$(".success, .warning").remove();
+			$("#button-transaction").attr('disabled', true);
+			$("#transaction").before('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+		},
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+	.done(function(html) {
+		$("#transaction").html(html);
 
-    $("#tab-transaction input[name='amount']").val('');
-    $("#tab-transaction input[name='description']").val('');
-  })
-  .always(function() {
-    $(".attention").remove();
-    $("#button-transaction").attr('disabled', false);
-  });
+		$("#tab-transaction input[name='amount']").val('');
+		$("#tab-transaction input[name='description']").val('');
+	})
+	.always(function() {
+		$(".attention").remove();
+		$("#button-transaction").attr('disabled', false);
+	});
 }
 
 function deleteTransaction(customer_transaction_id) {
