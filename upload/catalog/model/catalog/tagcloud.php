@@ -4,7 +4,7 @@ class ModelCatalogTagCloud extends Model {
 	public function getRandomTags($limit, $min_font_size, $max_font_size, $font_weight, $random) {
 		$product_id = array();
 		$names = array();
-		$totals	= array();
+		$totals = array();
 		$tags = array();
 		$start = 0;
 
@@ -15,6 +15,7 @@ class ModelCatalogTagCloud extends Model {
 		if (count($query->rows) > 0) {
 			foreach ($query->rows as $row) {
 				$tagcount = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_tag WHERE tag= '" . $row['tag'] . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
 				$names[] = $row['tag'];
 				$totals[] = $tagcount->num_rows;
 			}
