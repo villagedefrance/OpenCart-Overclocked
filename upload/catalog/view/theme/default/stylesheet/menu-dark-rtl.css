@@ -4,7 +4,7 @@
 * ------------------------------------
 */
 #menu-holder, #menu-holder .menu-dark {
-	background: #FFF;
+	background-color: transparent;
 }
 .menu-dark #menu {
 	height: 40px;

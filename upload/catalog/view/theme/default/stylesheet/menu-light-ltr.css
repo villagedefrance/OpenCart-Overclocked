@@ -4,7 +4,7 @@
 * ------------------------------------
 */
 #menu-holder, #menu-holder .menu-light {
-	background: #FFF;
+	background-color: transparent;
 }
 .menu-light #menu {
 	height: 40px;
