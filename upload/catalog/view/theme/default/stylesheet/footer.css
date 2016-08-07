@@ -4,7 +4,7 @@
 * ------------------------------------
 */
 #footer-holder .footer-light, #footer-holder .footer-dark {
-	background: inherit;
+	background-color: transparent;
 }
 /* Footer Light */
 .footer-light #footer {

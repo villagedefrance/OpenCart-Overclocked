@@ -15,7 +15,7 @@
   <div style="float:right;"><img src="<?php echo $thumb; ?>" alt="" /></div>
   <h1><?php echo $heading_title; ?></h1>
   <div class="buttons">
-    <div class="left"><h3><?php echo $firstname; ?> <?php echo $lastname; ?> &nbsp; (<?php echo $email; ?>)</h3></div>
+    <div class="left"><h4><?php echo $firstname; ?> <?php echo $lastname; ?> &nbsp; (<?php echo $email; ?>)</h4></div>
     <div class="right"><a href="<?php echo $logout; ?>" class="button"><?php echo $button_logout; ?></a></div>
   </div>
   <h2><?php echo $text_my_account; ?></h2>
