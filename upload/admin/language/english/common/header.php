@@ -39,6 +39,7 @@ $_['text_export_import_raw']           = 'Export / Import CSV';
 $_['text_export_import_tool']          = 'Export / Import XLSX';
 $_['text_extension']                   = 'Extensions';
 $_['text_feed']                        = 'Feeds';
+$_['text_field']                       = 'Fields';
 $_['text_file_manager']                = 'File Manager';
 $_['text_filter']                      = 'Filters';
 $_['text_fraud']                       = 'Fraud';

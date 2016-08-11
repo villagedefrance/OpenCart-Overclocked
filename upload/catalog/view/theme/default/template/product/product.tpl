@@ -101,6 +101,11 @@
         <?php } ?>
         <?php echo $barcode; ?>
         <span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
+        <?php if ($product_fields) { ?>
+          <?php foreach ($product_fields as $product_field) { ?>
+            <span><?php echo $product_field['title']; ?>:</span> <?php echo $product_field['text']; ?><br />
+          <?php } ?>
+        <?php } ?>
         <?php if ($reward) { ?>
           <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
         <?php } ?>

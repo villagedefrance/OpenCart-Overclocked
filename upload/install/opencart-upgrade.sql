@@ -780,6 +780,35 @@ CREATE TABLE `oc_extension` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_field`
+--
+
+DROP TABLE IF EXISTS `oc_field`;
+CREATE TABLE `oc_field` (
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `sort_order` int(3) NOT NULL DEFAULT '0',
+  `field_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`field_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_field_description`
+--
+
+DROP TABLE IF EXISTS `oc_field_description`;
+CREATE TABLE `oc_field_description` (
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `field_id` int(11) NOT NULL,
+  PRIMARY KEY (`field_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_filter`
 --
 
@@ -1809,6 +1838,21 @@ CREATE TABLE `oc_product_discount` (
   `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_product_field`
+--
+
+DROP TABLE IF EXISTS `oc_product_field`;
+CREATE TABLE `oc_product_field` (
+  `text` text CHARACTER SET utf8 NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `field_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`field_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------

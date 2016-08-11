@@ -387,6 +387,22 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 
+	public function getProductFields($product_id) {
+		$product_field_data = array();
+
+		$product_field_query = $this->db->query("SELECT f.field_id, fd.title, pf.text FROM " . DB_PREFIX . "field f LEFT JOIN " . DB_PREFIX . "field_description fd ON (fd.field_id = f.field_id) LEFT JOIN " . DB_PREFIX . "product_field pf ON (pf.field_id = f.field_id) WHERE pf.product_id = '" . (int)$product_id . "' AND pf.language_id = '" . (int)$this->config->get('config_language_id') . "' AND fd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND f.status = '1' ORDER BY f.sort_order ASC, fd.title ASC");
+
+		foreach ($product_field_query->rows as $product_field) {
+			$product_field_data[] = array(
+				'field_id' => $product_field['field_id'],
+				'title'    => $product_field['title'],
+				'text'     => $product_field['text']
+			);
+		}
+
+		return $product_field_data;
+	}
+
 	public function getProductAttributes($product_id) {
 		$product_attribute_group_data = array();
 

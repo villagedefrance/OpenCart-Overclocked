@@ -22,6 +22,7 @@ $_['text_autocomplete']       = '<span class="help">(Autocomplete)</span>';
 
 // Column Form
 $_['column_attribute']        = 'Attribute';
+$_['column_field']            = 'Field';
 $_['column_text']             = 'Text';
 $_['column_option_value']     = 'Option Value';
 $_['column_option_points']    = 'Points';

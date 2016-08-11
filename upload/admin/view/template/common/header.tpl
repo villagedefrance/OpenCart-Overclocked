@@ -112,6 +112,7 @@ $(document).ready(function() {
               <li><a href="<?php echo $attribute_group; ?>"><?php echo $text_attribute_group; ?></a></li>
             </ul>
           </li>
+          <li><a href="<?php echo $field; ?>"><?php echo $text_field; ?></a></li>
           <li><a href="<?php echo $filter; ?>"><?php echo $text_filter; ?></a></li>
           <li><a href="<?php echo $profile; ?>"><?php echo $text_profile; ?></a></li>
           <li><a href="<?php echo $palette; ?>"><?php echo $text_palette; ?></a></li>

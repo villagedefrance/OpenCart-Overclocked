@@ -385,6 +385,22 @@ class ControllerProductProduct extends Controller {
 			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
 			$this->data['barcode'] = ($catalog_barcode) ? $this->model_tool_barcode->getBarcode($product_info['model'], 'TYPE_CODE_128', 1, 20) : '';
 			$this->data['model'] = $product_info['model'];
+
+			// Fields
+			$this->data['product_fields'] = array();
+
+			$product_fields = $this->model_catalog_product->getProductFields($this->request->get['product_id']);
+
+			if ($product_fields) {
+				foreach ($product_fields as $product_field) {
+					$this->data['product_fields'][] = array(
+						'field_id' => $product_field['field_id'],
+						'title'    => $product_field['title'],
+						'text'     => html_entity_decode($product_field['text'], ENT_QUOTES, 'UTF-8')
+					);
+				}
+			}
+
 			$this->data['reward'] = $product_info['reward'];
 			$this->data['points'] = $product_info['points'];
 
@@ -422,7 +438,7 @@ class ControllerProductProduct extends Controller {
 				}
 			}
 
-			// Color
+			// Colors
 			$this->data['product_colors'] = array();
 
 			$product_colors = $this->model_catalog_product->getProductColors($this->request->get['product_id']);

@@ -79,6 +79,15 @@ class ModelLocalisationLanguage extends Model {
 
 		$this->cache->delete('eucountry');
 
+		// Field
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "field_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
+
+		foreach ($query->rows as $field) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "field_description SET field_id = '" . (int)$field['field_id'] . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($field['title']) . "', description = '" . $this->db->escape($field['description']) . "'");
+		}
+
+		$this->cache->delete('field');
+
 		// Filter
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
@@ -328,6 +337,9 @@ class ModelLocalisationLanguage extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "eucountry_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('eucountry');
 
+		$this->db->query("DELETE FROM " . DB_PREFIX . "field_description WHERE language_id = '" . (int)$language_id . "'");
+		$this->cache->delete('field');
+
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_description WHERE language_id = '" . (int)$language_id . "'");
 		$this->cache->delete('filter');
 
@@ -459,15 +471,15 @@ class ModelLocalisationLanguage extends Model {
 
 				foreach ($query->rows as $result) {
 					$language_data[$result['code']] = array(
-						'language_id'	=> $result['language_id'],
-						'name'        	=> $result['name'],
-						'code'        	=> $result['code'],
-						'locale'      		=> $result['locale'],
-						'image'       	=> $result['image'],
-						'directory'   	=> $result['directory'],
-						'filename'    	=> $result['filename'],
-						'sort_order'  	=> $result['sort_order'],
-						'status'      	=> $result['status']
+						'language_id' => $result['language_id'],
+						'name'        => $result['name'],
+						'code'        => $result['code'],
+						'locale'      => $result['locale'],
+						'image'       => $result['image'],
+						'directory'   => $result['directory'],
+						'filename'    => $result['filename'],
+						'sort_order'  => $result['sort_order'],
+						'status'      => $result['status']
 					);
 				}
 

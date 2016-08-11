@@ -607,6 +607,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['text_autocomplete'] = $this->language->get('text_autocomplete');
 
 		$this->data['column_attribute'] = $this->language->get('column_attribute');
+		$this->data['column_field'] = $this->language->get('column_field');
 		$this->data['column_text'] = $this->language->get('column_text');
 		$this->data['column_option_value'] = $this->language->get('column_option_value');
 		$this->data['column_option_points'] = $this->language->get('column_option_points');
@@ -717,6 +718,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_color'] = $this->language->get('button_add_color');
 		$this->data['button_add_attribute'] = $this->language->get('button_add_attribute');
+		$this->data['button_add_field'] = $this->language->get('button_add_field');
 		$this->data['button_add_option'] = $this->language->get('button_add_option');
 		$this->data['button_add_option_value'] = $this->language->get('button_add_option_value');
 		$this->data['button_add_discount'] = $this->language->get('button_add_discount');
@@ -729,6 +731,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['tab_data'] = $this->language->get('tab_data');
 		$this->data['tab_links'] = $this->language->get('tab_links');
 		$this->data['tab_colors'] = $this->language->get('tab_colors');
+		$this->data['tab_fields'] = $this->language->get('tab_fields');
 		$this->data['tab_attribute'] = $this->language->get('tab_attribute');
 		$this->data['tab_option'] = $this->language->get('tab_option');
 		$this->data['tab_profile'] = $this->language->get('tab_profile');
@@ -1360,6 +1363,33 @@ class ControllerCatalogProduct extends Controller {
 						'title'            => $palette_color['title']
 					);
 				}
+			}
+		}
+
+		// Fields
+		$this->load->model('catalog/field');
+
+		$this->data['fields'] = $this->model_catalog_field->getFields(0);
+
+		if (isset($this->request->post['product_field'])) {
+			$product_fields = $this->request->post['product_field'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$product_fields = $this->model_catalog_product->getProductFields($this->request->get['product_id']);
+		} else {
+			$product_fields = array();
+		}
+
+		$this->data['product_fields'] = array();
+
+		foreach ($product_fields as $product_field) {
+			$field_info = $this->model_catalog_field->getField($product_field['field_id']);
+
+			if ($field_info) {
+				$this->data['product_fields'][] = array(
+					'product_field_description' => $product_field['product_field_description'],
+					'field_id'                  => $product_field['field_id'],
+					'title'                     => $field_info['title']
+				);
 			}
 		}
 

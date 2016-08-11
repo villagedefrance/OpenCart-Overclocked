@@ -22,10 +22,17 @@
       <a href="#tab-general"><?php echo $tab_general; ?></a>
       <a href="#tab-data"><?php echo $tab_data; ?></a>
       <a href="#tab-links"><?php echo $tab_links; ?></a>
+      <?php if ($palettes) { ?>
       <a href="#tab-colors"><?php echo $tab_colors; ?></a>
+      <?php } ?>
+      <?php if ($fields) { ?>
+      <a href="#tab-fields"><?php echo $tab_fields; ?></a>
+      <?php } ?>
       <a href="#tab-attribute"><?php echo $tab_attribute; ?></a>
       <a href="#tab-option"><?php echo $tab_option; ?></a>
+      <?php if ($profiles) { ?>
       <a href="#tab-profile"><?php echo $tab_profile; ?></a>
+      <?php } ?>
       <a href="#tab-discount"><?php echo $tab_discount; ?></a>
       <a href="#tab-special"><?php echo $tab_special; ?></a>
       <a href="#tab-reward"><?php echo $tab_reward; ?></a>
@@ -535,6 +542,7 @@
         <?php } ?>
         </table>
       </div>
+      <?php if ($palettes) { ?>
       <div id="tab-colors">
         <table class="form">
           <tr>
@@ -584,6 +592,45 @@
         </tfoot>
         </table>
       </div>
+      <?php } ?>
+      <?php if ($fields) { ?>
+      <div id="tab-fields">
+        <table id="fields" class="list">
+        <thead>
+          <tr>
+            <td class="left"><?php echo $column_field; ?></td>
+            <td class="left"><?php echo $column_text; ?></td>
+            <td></td>
+          </tr>
+        </thead>
+        <?php $field_row = 0; ?>
+        <?php foreach ($product_fields as $product_field) { ?>
+        <tbody id="field-row<?php echo $field_row; ?>">
+          <tr>
+            <td class="left">
+              <input type="text" name="product_field[<?php echo $field_row; ?>][title]" value="<?php echo $product_field['title']; ?>" />
+              <input type="hidden" name="product_field[<?php echo $field_row; ?>][field_id]" value="<?php echo $product_field['field_id']; ?>" />
+            </td>
+            <td class="left">
+              <?php foreach ($languages as $language) { ?>
+                <textarea name="product_field[<?php echo $field_row; ?>][product_field_description][<?php echo $language['language_id']; ?>][text]" cols="30" rows="3"><?php echo isset($product_field['product_field_description'][$language['language_id']]) ? $product_field['product_field_description'][$language['language_id']]['text'] : ''; ?></textarea>
+                <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />
+              <?php } ?>
+            </td>
+            <td class="center"><a onclick="$('#field-row<?php echo $field_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
+          </tr>
+        </tbody>
+        <?php $field_row++; ?>
+        <?php } ?>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td class="center"><a onclick="addField();" class="button"><?php echo $button_add_field; ?></a></td>
+          </tr>
+        </tfoot>
+        </table>
+      </div>
+      <?php } ?>
       <div id="tab-attribute">
         <table id="attribute" class="list">
         <thead>
@@ -802,6 +849,7 @@
         <?php $option_row++; ?>
         <?php } ?>
       </div>
+      <?php if ($profiles) { ?>
       <div id="tab-profile">
         <table id="profile" class="list">
         <thead>
@@ -851,6 +899,7 @@
         </tfoot>
         </table>
       </div>
+      <?php } ?>
       <div id="tab-discount">
         <table id="discount" class="list">
         <thead>
@@ -1384,6 +1433,7 @@ $('.excvat').bind('change keydown keyup', function() {
 });
 //--></script>
 
+<?php if ($palettes) { ?>
 <script type="text/javascript"><!--
 var color_row = <?php echo $color_row; ?>;
 
@@ -1405,6 +1455,71 @@ function addColor() {
 	color_row++;
 }
 //--></script>
+<?php } ?>
+
+<?php if ($fields) { ?>
+<script type="text/javascript"><!--
+var field_row = <?php echo $field_row; ?>;
+
+function addField() {
+	html  = '<tbody id="field-row' + field_row + '">';
+	html += '  <tr>';
+	html += '    <td class="left">';
+	html += '      <input type="text" name="product_field[' + field_row + '][title]" value="" />';
+	html += '      <input type="hidden" name="product_field[' + field_row + '][field_id]" value="" />';
+	html += '    </td>';
+	html += '    <td class="left">';
+	<?php foreach ($languages as $language) { ?>
+	html += '      <textarea name="product_field[' + field_row + '][product_field_description][<?php echo $language['language_id']; ?>][text]" cols="30" rows="3"></textarea>';
+	html += '      <img src="view/image/flags/<?php echo $language['image']; ?>" alt="" title="<?php echo $language['name']; ?>" align="top" /><br />';
+	<?php } ?>
+	html += '    </td>';
+	html += '    <td class="center"><a onclick="$(\'#field-row' + field_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';
+	html += '  </tr>';
+	html += '</tbody>';
+
+	$('#fields tfoot').before(html);
+
+	fieldAutocomplete(field_row);
+
+	field_row++;
+}
+
+function fieldAutocomplete(field_row) {
+	$('input[name=\'product_field[' + field_row + '][title]\']').catcomplete({
+		delay: 10,
+		source: function(request, response) {
+			$.ajax({
+				url: 'index.php?route=catalog/field/autocomplete&token=<?php echo $token; ?>&filter_title=' + encodeURIComponent(request.term),
+				dataType: 'json',
+				success: function(json) {
+					response($.map(json, function(item) {
+						return [{
+							category: item.category,
+							label: item.title,
+							value: item.field_id
+						}]
+					}));
+				}
+			});
+		},
+		select: function(event, ui) {
+			$('input[name=\'product_field[' + field_row + '][title]\']').attr('value', ui.item.label);
+			$('input[name=\'product_field[' + field_row + '][field_id]\']').attr('value', ui.item.value);
+
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+   		}
+	});
+}
+
+$('#fields tbody').each(function(index, element) {
+	fieldAutocomplete(index);
+});
+//--></script>
+<?php } ?>
 
 <script type="text/javascript" src="view/javascript/jquery/markitup/jquery.markitup.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/markitup/sets/default/set.js"></script>
@@ -1441,12 +1556,12 @@ function addAttribute() {
 	$('.mark-it-up').markItUpRemove();
 	$('.mark-it-up').markItUp(mySettings);
 
-	attributeautocomplete(attribute_row);
+	attributeAutocomplete(attribute_row);
 
 	attribute_row++;
 }
 
-function attributeautocomplete(attribute_row) {
+function attributeAutocomplete(attribute_row) {
 	$('input[name=\'product_attribute[' + attribute_row + '][name]\']').catcomplete({
 		delay: 10,
 		source: function(request, response) {
@@ -1477,7 +1592,7 @@ function attributeautocomplete(attribute_row) {
 }
 
 $('#attribute tbody').each(function(index, element) {
-	attributeautocomplete(index);
+	attributeAutocomplete(index);
 });
 //--></script>
 
@@ -1683,6 +1798,7 @@ function addOptionValue(option_row) {
 };
 //--></script>
 
+<?php if ($profiles) { ?>
 <script type="text/javascript"><!--
 var profile_row = <?php echo $profile_row; ?>;
 
@@ -1709,6 +1825,7 @@ function addProfile() {
 	profile_row++;
 };
 //--></script>
+<?php } ?>
 
 <script type="text/javascript"><!--
 var discount_row = <?php echo $discount_row; ?>;
