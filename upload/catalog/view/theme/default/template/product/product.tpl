@@ -99,8 +99,10 @@
         <?php if ($manufacturer) { ?>
           <span><?php echo $text_manufacturer; ?></span> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a><br />
         <?php } ?>
-        <?php echo $barcode; ?>
         <span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
+        <?php if ($barcode) { ?>
+          <?php echo $barcode; ?>
+        <?php } ?>
         <?php if ($product_fields) { ?>
           <?php foreach ($product_fields as $product_field) { ?>
             <span><?php echo $product_field['title']; ?>:</span> <?php echo $product_field['text']; ?><br />

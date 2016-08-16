@@ -1,9 +1,9 @@
 <?php
 // Heading
-$_['heading_title']          = 'Field';
+$_['heading_title']          = 'Fields';
 
 // Text
-$_['text_success']           = 'Success: You have modified <b>Field</b> !';
+$_['text_success']           = 'Success: You have modified <b>Fields</b> !';
 $_['text_default']           = 'Default';
 
 // Column
@@ -19,7 +19,7 @@ $_['entry_status']           = 'Status:';
 $_['entry_sort_order']       = 'Sort Order:';
 
 // Error 
-$_['error_permission']       = 'Warning: You do not have permission to modify <b>Field</b> !';
+$_['error_permission']       = 'Warning: You do not have permission to modify <b>Fields</b> !';
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_title']            = 'Information Title must be between 3 and 64 characters!';
 $_['error_description']      = 'Description must be more than 3 characters!';

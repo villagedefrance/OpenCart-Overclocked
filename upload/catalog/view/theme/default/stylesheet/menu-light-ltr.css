@@ -52,13 +52,7 @@
 	-moz-transition: all 0.2s;
 	z-index: 516;
 	color: #222;
-	background-color: #F6F6F6;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F6F6F6), to(#E7E7E7));
-	background-image: -webkit-linear-gradient(top, #F6F6F6, #E7E7E7);
-	background-image: -moz-linear-gradient(top, #F6F6F6, #E7E7E7);
-	background-image: -ms-linear-gradient(top, #F6F6F6, #E7E7E7);
-	background-image: -o-linear-gradient(top, #F6F6F6, #E7E7E7);
-	background-image: linear-gradient(to bottom, #F6F6F6, #E7E7E7);
+	background-color: inherit;
 	text-shadow: 0px 1px 0px #FFF;
 	outline: none;
 	cursor: pointer;
@@ -73,7 +67,7 @@
 	background-image: linear-gradient(to bottom, #FCFCFC, #EDEDED);
 }
 .menu-light #menu > ul > li > a > span {
-	background: url('../image/menu/arrow_down_light.png') right center no-repeat;
+	background: url('../image/menu/arrow_down_dark.png') right center no-repeat;
 	padding: 0px 0px 0px 14px;
 }
 .menu-light #menu > ul > li > a .home-icon {
@@ -136,7 +130,7 @@
 	outline: none;
 }
 .menu-light #menu > ul > li ul > li > a > span {
-	background: url('../image/menu/arrow_left_light.png') -20px center no-repeat;
+	background: url('../image/menu/arrow_left_dark.png') -20px center no-repeat;
 	display: inline-block;
 	transition: all 0.3s;
 	-webkit-transition: all 0.3s;
@@ -151,7 +145,7 @@
 	text-decoration: none;
 }
 .menu-light #menu > ul > li ul > li > a:hover > span {
-	background: url('../image/menu/arrow_left_light.png') left center no-repeat;
+	background: url('../image/menu/arrow_left_dark.png') left center no-repeat;
 	padding-left: 12px;
 }
 .menu-light #menu > ul > li > div > ul > li > a {
