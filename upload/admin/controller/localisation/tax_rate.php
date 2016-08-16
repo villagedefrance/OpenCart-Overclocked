@@ -441,11 +441,7 @@ class ControllerLocalisationTaxRate extends Controller {
 			$this->error['rate'] = $this->language->get('error_rate');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -463,11 +459,7 @@ class ControllerLocalisationTaxRate extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

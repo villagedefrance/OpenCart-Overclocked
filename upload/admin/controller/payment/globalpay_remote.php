@@ -492,11 +492,7 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 			$this->error['error_secret'] = $this->language->get('error_secret');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

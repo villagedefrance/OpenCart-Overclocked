@@ -468,11 +468,7 @@ class ControllerCatalogOption extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -490,11 +486,7 @@ class ControllerCatalogOption extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function autocomplete() {
@@ -580,6 +572,7 @@ class ControllerCatalogOption extends Controller {
 
 		array_multisort($sort_order, SORT_ASC, $json);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 }

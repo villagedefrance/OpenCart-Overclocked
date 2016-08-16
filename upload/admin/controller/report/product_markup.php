@@ -1,6 +1,5 @@
 <?php
 class ControllerReportProductMarkup extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('report/product_markup');

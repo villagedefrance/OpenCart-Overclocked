@@ -147,11 +147,7 @@ class ControllerPaymentOkpay extends Controller {
 			$this->error['receiver'] = $this->language->get('error_receiver');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

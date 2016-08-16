@@ -1,6 +1,5 @@
 <?php
 class ControllerReportCustomerCountry extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('report/customer_country');

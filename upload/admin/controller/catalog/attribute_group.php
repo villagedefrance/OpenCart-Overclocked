@@ -387,11 +387,7 @@ class ControllerCatalogAttributeGroup extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -409,11 +405,7 @@ class ControllerCatalogAttributeGroup extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

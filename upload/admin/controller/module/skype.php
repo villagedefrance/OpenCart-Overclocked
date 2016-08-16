@@ -186,11 +186,7 @@ class ControllerModuleSkype extends Controller {
 			$this->error['skypename'] = $this->language->get('error_skypename');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

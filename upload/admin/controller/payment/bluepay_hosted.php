@@ -431,11 +431,7 @@ class ControllerPaymentBluePayHosted extends Controller {
 			$this->error['secret_key'] = $this->language->get('error_secret_key');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function callback() {

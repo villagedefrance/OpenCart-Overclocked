@@ -182,11 +182,7 @@ class ControllerPaymentWorldPay extends Controller {
 			$this->error['password'] = $this->language->get('error_password');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

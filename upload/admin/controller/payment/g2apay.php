@@ -377,11 +377,7 @@ class ControllerPaymentG2APay extends Controller {
 			$this->error['api_hash'] = $this->language->get('error_api_hash');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

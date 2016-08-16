@@ -415,11 +415,7 @@ class ControllerPaymentSagepayServer extends Controller {
 			$this->error['vendor'] = $this->language->get('error_vendor');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

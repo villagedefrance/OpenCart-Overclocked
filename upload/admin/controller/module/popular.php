@@ -198,11 +198,7 @@ class ControllerModulePopular extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

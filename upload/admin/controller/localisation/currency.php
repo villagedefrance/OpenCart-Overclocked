@@ -466,11 +466,7 @@ class ControllerLocalisationCurrency extends Controller {
 			$this->error['code'] = $this->language->get('error_code');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -503,11 +499,7 @@ class ControllerLocalisationCurrency extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

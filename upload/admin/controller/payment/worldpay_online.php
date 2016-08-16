@@ -396,11 +396,7 @@ class ControllerPaymentWorldpayOnline extends Controller {
 			$this->error['error_client_key'] = $this->language->get('error_client_key');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

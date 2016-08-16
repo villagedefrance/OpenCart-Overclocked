@@ -162,11 +162,7 @@ class ControllerShippingAusPost extends Controller {
 			$this->error['postcode'] = $this->language->get('error_postcode');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

@@ -1164,11 +1164,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -1176,11 +1172,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateApprove() {
@@ -1188,11 +1180,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function login() {
@@ -1541,11 +1529,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_amount');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDeleteTransaction() {
@@ -1557,11 +1541,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_action');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function rewards() {
@@ -1676,11 +1656,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_points');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDeleteReward() {
@@ -1692,11 +1668,7 @@ class ControllerSaleCustomer extends Controller {
 			$this->error['warning'] = $this->language->get('error_action');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function addBanIP() {

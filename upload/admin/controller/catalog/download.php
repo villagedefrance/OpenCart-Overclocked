@@ -493,11 +493,7 @@ class ControllerCatalogDownload extends Controller {
 			$this->error['mask'] = $this->language->get('error_mask');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -515,11 +511,7 @@ class ControllerCatalogDownload extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function upload() {

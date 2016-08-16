@@ -409,11 +409,7 @@ class ControllerToolBlockIp extends Controller {
 			$this->error['range'] = $this->language->get('error_range');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	private function validateDelete() { 
@@ -421,11 +417,7 @@ class ControllerToolBlockIp extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

@@ -171,11 +171,7 @@ class ControllerPaymentStripePayments extends Controller {
 			$this->error['publish_key'] = $this->language->get('error_publish_key');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

@@ -887,11 +887,7 @@ class ControllerSaleSupplier extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -899,11 +895,7 @@ class ControllerSaleSupplier extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function history() {

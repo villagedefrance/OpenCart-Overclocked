@@ -107,11 +107,7 @@ class ControllerTotalGiftWrapping extends Controller {
 			$this->error['price'] = $this->language->get('error_price');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

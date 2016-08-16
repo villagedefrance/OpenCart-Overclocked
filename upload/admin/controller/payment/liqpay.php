@@ -178,11 +178,7 @@ class ControllerPaymentLiqPay extends Controller {
 			$this->error['signature'] = $this->language->get('error_signature');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

@@ -106,11 +106,7 @@ class ControllerCommonReset extends Controller {
 			$this->error['confirm'] = $this->language->get('error_confirm');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

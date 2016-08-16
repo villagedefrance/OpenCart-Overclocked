@@ -140,11 +140,7 @@ class ControllerFeedRSSFeed extends Controller {
 			$this->error['limit'] = $this->language->get('error_integer');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

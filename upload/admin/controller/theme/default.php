@@ -281,11 +281,7 @@ class ControllerThemeDefault extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

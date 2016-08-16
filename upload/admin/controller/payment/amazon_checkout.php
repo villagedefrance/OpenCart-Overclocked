@@ -1,6 +1,6 @@
 <?php
 class ControllerPaymentAmazonCheckout extends Controller {
-	private $errors = array();
+	private $error = array();
 
 	public function index() {
 		$this->language->load('payment/amazon_checkout');
@@ -462,19 +462,19 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$this->load->model('localisation/currency');
 
 		if (!$this->user->hasPermission('modify', 'payment/amazon_checkout')) {
-			$this->errors[] = $this->language->get('error_permission');
+			$this->error[] = $this->language->get('error_permission');
 		}
 
 		if (empty($this->request->post['amazon_checkout_merchant_id'])) {
-			$this->errors[] = $this->language->get('error_empty_merchant_id');
+			$this->error[] = $this->language->get('error_empty_merchant_id');
 		}
 
 		if (empty($this->request->post['amazon_checkout_access_key'])) {
-			$this->errors[] = $this->language->get('error_empty_access_key');
+			$this->error[] = $this->language->get('error_empty_access_key');
 		}
 
 		if (empty($this->request->post['amazon_checkout_access_secret'])) {
-			$this->errors[] = $this->language->get('error_empty_access_secret');
+			$this->error[] = $this->language->get('error_empty_access_secret');
 		}
 
 		switch ($this->request->post['amazon_checkout_marketplace']) {
@@ -489,10 +489,10 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$currency = $this->model_localisation_currency->getCurrency($this->currency->getId($currency_code));
 
 		if (empty($currency) || $currency['status'] != '1') {
-			$this->errors[] = sprintf($this->language->get('error_currency'), $currency_code);
+			$this->error[] = sprintf($this->language->get('error_currency'), $currency_code);
 		}
 
-		return empty($this->errors);
+		return empty($this->error);
 	}
 }
 ?>

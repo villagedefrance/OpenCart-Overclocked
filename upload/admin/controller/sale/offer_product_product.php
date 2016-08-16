@@ -553,11 +553,7 @@ class ControllerSaleOfferProductProduct extends Controller {
 			$this->error['product_two'] = $this->language->get('error_product');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -565,11 +561,7 @@ class ControllerSaleOfferProductProduct extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function autocompletePro() {

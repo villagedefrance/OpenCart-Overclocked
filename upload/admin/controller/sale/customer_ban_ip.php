@@ -373,11 +373,7 @@ class ControllerSaleCustomerBanIp extends Controller {
 			$this->error['ip'] = $this->language->get('error_ip');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -385,11 +381,7 @@ class ControllerSaleCustomerBanIp extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

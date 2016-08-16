@@ -1207,11 +1207,7 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -1219,11 +1215,7 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateApprove() {
@@ -1231,11 +1223,7 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateUnlock() {
@@ -1243,11 +1231,7 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function transactions() {
@@ -1362,11 +1346,7 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_amount');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDeleteTransaction() {
@@ -1378,11 +1358,7 @@ class ControllerSaleAffiliate extends Controller {
 			$this->error['warning'] = $this->language->get('error_action');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function autocomplete() {

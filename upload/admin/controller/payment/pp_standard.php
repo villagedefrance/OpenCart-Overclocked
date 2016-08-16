@@ -222,15 +222,21 @@ class ControllerPaymentPPStandard extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->request->post['pp_standard_email']) {
+		if ($this->request->post['pp_standard_email']) {
+			// Email MX Record check
+			$this->load->model('tool/email');
+
+			$email_valid = $this->model_tool_email->verifyMail($this->request->post['pp_standard_email']);
+
+			if (!preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['pp_standard_email']) || !$email_valid) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
+
+		} else {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

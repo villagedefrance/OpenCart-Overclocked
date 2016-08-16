@@ -560,11 +560,7 @@ class ControllerLocalisationCountry extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -614,11 +610,15 @@ class ControllerLocalisationCountry extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
+		return empty($this->error);
+	}
+
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'localisation/country')) {
+			$this->error['warning'] = $this->language->get('error_permission');
 		}
+
+		return empty($this->error);
 	}
 
 	public function country() {
@@ -645,19 +645,6 @@ class ControllerLocalisationCountry extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
-	}	
-
-
-	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'localisation/country')) {
-			$this->error['warning'] = $this->language->get('error_permission');
-		}
-
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	public function autocomplete() {

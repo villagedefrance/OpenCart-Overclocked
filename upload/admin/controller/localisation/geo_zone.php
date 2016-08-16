@@ -409,11 +409,7 @@ class ControllerLocalisationGeoZone extends Controller {
 			$this->error['description'] = $this->language->get('error_description');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -431,11 +427,7 @@ class ControllerLocalisationGeoZone extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function zone() {

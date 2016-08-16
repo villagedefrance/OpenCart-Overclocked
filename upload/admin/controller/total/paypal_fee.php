@@ -148,11 +148,7 @@ class ControllerTotalPayPalFee extends Controller {
 			$this->error['fee'] = $this->language->get('error_fee');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

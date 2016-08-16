@@ -451,11 +451,7 @@ class ControllerPaymentEway extends Controller {
 			$this->error['payment_type'] = $this->language->get('error_payment_type');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

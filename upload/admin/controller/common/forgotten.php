@@ -35,6 +35,7 @@ class ControllerCommonForgotten extends Controller {
 			$mail->password = $this->config->get('config_smtp_password');
 			$mail->port = $this->config->get('config_smtp_port');
 			$mail->timeout = $this->config->get('config_smtp_timeout');
+
 			$mail->setTo($this->request->post['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender($this->config->get('config_name'));
@@ -103,11 +104,7 @@ class ControllerCommonForgotten extends Controller {
 			$this->error['warning'] = $this->language->get('error_email');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

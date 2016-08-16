@@ -550,11 +550,7 @@ class ControllerShippingUsps extends Controller {
 			$this->error['height'] = $this->language->get('error_height');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>

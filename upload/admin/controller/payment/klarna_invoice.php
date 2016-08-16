@@ -181,11 +181,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	private function parseResponse($node, $document) {

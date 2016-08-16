@@ -183,11 +183,7 @@ class ControllerModuleGoogleHangouts extends Controller {
 			$this->error['code'] = $this->language->get('error_code');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
 ?>
