@@ -6,6 +6,7 @@ Opencart Overclocked - Community Edition
 <a href="https://codecov.io/gh/villagedefrance/OpenCart-Overclocked">
   <img src="https://codecov.io/gh/villagedefrance/OpenCart-Overclocked/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
+
 For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
 
 Description:
