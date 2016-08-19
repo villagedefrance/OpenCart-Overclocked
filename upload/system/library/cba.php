@@ -6,6 +6,9 @@ class CBA {
 	private $contract_id;
 	private $mode;
 
+	protected $db;
+	protected $settings;
+
 	public function __construct($merchant_id, $access_key, $secret_key) {
 		$this->setMerchantId($merchant_id);
 		$this->setAccessKey($access_key);
@@ -24,7 +27,7 @@ class CBA {
 		$this->getMwsResponse('POST', '/', array(), $args);
 	}
 
-	public function processFeedResponses($db) {
+	public function processFeedResponses(Database $db) {
 		$qry = $db->query("SELECT `submission_id` FROM " . DB_PREFIX . "order_amazon_report WHERE status = 'processing'");
 
 		$submission_ids = array();

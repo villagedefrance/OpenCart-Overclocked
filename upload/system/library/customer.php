@@ -12,7 +12,9 @@ class Customer {
 	private $customer_group_id;
 	private $address_id;
 
-	public function __construct($registry) {
+	protected $registry;
+
+    public function __construct(Registry $registry) {
 		$this->config = $registry->get('config');
 		$this->db = $registry->get('db');
 		$this->request = $registry->get('request');

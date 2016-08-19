@@ -7,6 +7,8 @@ class Image {
 	private $bits;
 	private $mime;
 
+	protected $watermark;
+
 	public function __construct($file) {
 		if (file_exists($file)) {
 			$this->file = $file;
@@ -124,7 +126,7 @@ class Image {
 		$this->height = $height;
 	}
 
-	public function watermark($watermark, $position = 'bottomright') {
+	public function watermark(Image $watermark, $position = 'bottomright') {
 		switch($position) {
 			case 'topleft':
 				$watermark_pos_x = 0;

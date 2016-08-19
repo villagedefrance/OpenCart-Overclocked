@@ -3,7 +3,9 @@ class Currency {
 	private $code;
 	private $currencies = array();
 
-	public function __construct($registry) {
+	protected $registry;
+
+    public function __construct(Registry $registry) {
 		$this->config = $registry->get('config');
 		$this->db = $registry->get('db');
 		$this->language = $registry->get('language');
@@ -14,13 +16,13 @@ class Currency {
 
 		foreach ($query->rows as $result) {
 			$this->currencies[$result['code']] = array(
-				'currency_id' 		=> $result['currency_id'],
-				'title'         			=> $result['title'],
-				'symbol_left'		=> $result['symbol_left'],
-				'symbol_right' 		=> $result['symbol_right'],
-				'decimal_place' 	=> $result['decimal_place'],
-				'value'         		=> $result['value'],
-				'status'        		=> $result['status']
+				'currency_id'   => $result['currency_id'],
+				'title'         => $result['title'],
+				'symbol_left'   => $result['symbol_left'],
+				'symbol_right'  => $result['symbol_right'],
+				'decimal_place' => $result['decimal_place'],
+				'value'         => $result['value'],
+				'status'        => $result['status']
 			);
 		}
 

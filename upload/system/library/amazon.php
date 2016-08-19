@@ -4,9 +4,10 @@ class Amazon {
 	private $encPass;
 	private $encSalt;
 	private $server = 'http://uk-amazon.openbaypro.com/';
-	private $registry;
 
-	public function __construct($registry) {
+	protected $registry;
+
+    public function __construct(Registry $registry) {
 		$this->registry = $registry;
 
 		$this->token = $registry->get('config')->get('openbay_amazon_token');

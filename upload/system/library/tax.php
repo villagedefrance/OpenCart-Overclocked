@@ -4,7 +4,9 @@ final class Tax {
 	private $payment_address;
 	private $store_address;
 
-	public function __construct($registry) {
+	protected $registry;
+
+    public function __construct(Registry $registry) {
 		$this->config = $registry->get('config');
 		$this->customer = $registry->get('customer');
 		$this->db = $registry->get('db');
