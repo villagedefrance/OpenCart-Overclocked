@@ -490,7 +490,6 @@ class ModelOpenbayOpenbay extends Model {
 
 					if (!empty($data['rootpath'])) {
 						@ftp_chdir($connection, $data['rootpath']);
-						$directory_list = ftp_nlist($connection, $data['rootpath']);
 					}
 
 					$filesUpdate = $files;

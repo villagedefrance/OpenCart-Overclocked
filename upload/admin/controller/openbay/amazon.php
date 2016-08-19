@@ -1203,8 +1203,6 @@ class ControllerOpenbayAmazon extends Controller {
 			foreach ($links as $link) {
 				$this->model_openbay_amazon->linkProduct($link['amazon_sku'], $link['product_id'], $link['var']);
 			}
-
-			//$this->model_openbay_amazon->updateAmazonSkusQuantities($amazonSkus);
 		}
 	}
 

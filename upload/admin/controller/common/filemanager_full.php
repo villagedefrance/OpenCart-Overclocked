@@ -1,6 +1,5 @@
 <?php
 class ControllerCommonFileManagerFull extends Controller {
-	private $error = array();
 	private $_name = 'filemanager_full';
 
 	public function index() {

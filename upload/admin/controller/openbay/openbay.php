@@ -685,19 +685,6 @@ class ControllerOpenbayOpenbay extends Controller {
 			if ($this->request->post['pass'] != $this->config->get('openbaypro_secret')) {
 				$json = array('msg' => 'Wrong password');
 			} else {
-				/*
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "order`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "order_history`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "order_option`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "order_product`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "order_total`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "customer`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "customer_transaction`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "address`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "ebay_transaction`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "ebay_order`");
-				  $this->db->query("TRUNCATE `" . DB_PREFIX . "ebay_order_lock`");
-				 */
 				$this->db->query("TRUNCATE `" . DB_PREFIX . "manufacturer`");
 				$this->db->query("TRUNCATE `" . DB_PREFIX . "manufacturer_to_store`");
 				$this->db->query("TRUNCATE `" . DB_PREFIX . "attribute`");

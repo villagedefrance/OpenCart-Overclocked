@@ -2340,8 +2340,6 @@ class ControllerSaleOrder extends Controller {
 			$order_info = $this->model_sale_order->getOrder($order_id);
 
 			if ($order_info) {
-				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
-
 				if ($order_info['shipping_address_format']) {
 					$format = $order_info['shipping_address_format'];
 				} else {
@@ -2570,7 +2568,7 @@ class ControllerSaleOrder extends Controller {
 				if (!empty($payment_address)) {
 					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if (number_format($similarity, 0) > 90) {
+					if ($similar_address && number_format($similarity, 0) > 90) {
 						$same_address = true;
 					} else {
 						$same_address = false;
@@ -2818,7 +2816,7 @@ class ControllerSaleOrder extends Controller {
 				if (!empty($payment_address)) {
 					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if (number_format($similarity, 0) > 90) {
+					if ($similar_address && number_format($similarity, 0) > 90) {
 						$same_address = true;
 					} else {
 						$same_address = false;
@@ -3057,7 +3055,7 @@ class ControllerSaleOrder extends Controller {
 				if (!empty($payment_address)) {
 					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if (number_format($similarity, 0) > 90) {
+					if ($similar_address && number_format($similarity, 0) > 90) {
 						$same_address = true;
 					} else {
 						$same_address = false;

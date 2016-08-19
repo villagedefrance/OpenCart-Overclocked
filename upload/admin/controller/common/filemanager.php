@@ -1,6 +1,5 @@
 <?php
 class ControllerCommonFileManager extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('common/filemanager');
