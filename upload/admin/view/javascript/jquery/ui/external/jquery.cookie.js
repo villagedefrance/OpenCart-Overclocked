@@ -10,8 +10,6 @@
  *
  */
 
-// TODO JsDoc
-
 /**
  * Create a cookie with the given key and value and other optional parameters.
  *
@@ -57,9 +55,8 @@
  * @cat Plugins/Cookie
  * @author Klaus Hartl/klaus.hartl@stilbuero.de
  */
-jQuery.cookie = function (key, value, options){ 
-
-	// key and value given, set cookie...
+ 
+jQuery.cookie = function(key, value, options) { 
 	if (arguments.length > 1 && (value === null || typeof value !== "object")) { 
 		options = jQuery.extend({}, options); 
 
@@ -75,7 +72,7 @@ jQuery.cookie = function (key, value, options){
 		return (document.cookie = [
 			encodeURIComponent(key), '=',
 			options.raw ? String(value) : encodeURIComponent(String(value)),
-			options.expires ? '; expires=' + options.expires.toUTCString() : '',// use expires attribute, max-age is not supported by IE
+			options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
 			options.path ? '; path=' + options.path : '',
 			options.domain ? '; domain=' + options.domain : '',
 			options.secure ? '; secure' : ''
@@ -84,6 +81,6 @@ jQuery.cookie = function (key, value, options){
 
 	// key and possibly options given, get cookie...
 	options = value || {}; 
-	var result, decode = options.raw ? function (s){ return s; } : decodeURIComponent; 
+	var result, decode = options.raw ? function(s) { return s; } : decodeURIComponent; 
 	return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? decode(result[1]) : null; 
-}; 
+};

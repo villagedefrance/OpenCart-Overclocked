@@ -1162,7 +1162,7 @@ define("moxie/core/utils/Env", [
 		Env.log = function() {
 			
 			function logObj(data) {
-				// TODO: this should recursively print out the object in a pretty way
+				// This should recursively print out the object in a pretty way
 				console.appendChild(document.createTextNode(data + "\n"));
 			}
 
@@ -1334,9 +1334,7 @@ define("moxie/core/utils/Mime", [
 	
 	
 	var Mime = {
-
 		mimes: {},
-
 		extensions: {},
 
 		// Parses the default mime types string into a mimes and extensions lookup maps
@@ -1387,7 +1385,6 @@ define("moxie/core/utils/Mime", [
 			return mimes;
 		},
 
-
 		mimes2exts: function(mimes) {
 			var self = this, exts = [];
 			
@@ -1415,7 +1412,6 @@ define("moxie/core/utils/Mime", [
 			return exts;
 		},
 
-
 		mimes2extList: function(mimes) {
 			var accept = [], exts = [];
 
@@ -1435,7 +1431,6 @@ define("moxie/core/utils/Mime", [
 
 			return accept;
 		},
-
 
 		getFileExtension: function(fileName) {
 			var matches = fileName && fileName.match(/\.([^.]+)$/);
@@ -2217,8 +2212,7 @@ define('moxie/runtime/Runtime', [
 			// e.g. runtime.can('use_http_method', 'put')
 			use_http_method: true
 		}, caps);
-			
-	
+
 		// default to the mode that is compatible with preferred caps
 		if (options.preferred_caps) {
 			defaultMode = Runtime.getMode(modeCaps, options.preferred_caps, defaultMode);
@@ -2227,7 +2221,7 @@ define('moxie/runtime/Runtime', [
 		if (MXI_DEBUG && Env.debug.runtime) {
 			Env.log("\tdefault mode: %s", defaultMode);	
 		}
-		
+
 		// small extension factory here (is meant to be extended with actual extensions constructors)
 		_shim = (function() {
 			var objpool = {};
@@ -2261,7 +2255,6 @@ define('moxie/runtime/Runtime', [
 				}
 			};
 		}());
-
 
 		// public methods
 		Basic.extend(this, {
@@ -2464,7 +2457,6 @@ define('moxie/runtime/Runtime', [
 		}	
 	}
 
-
 	/**
 	Default order to try different runtime types
 
@@ -2488,7 +2480,6 @@ define('moxie/runtime/Runtime', [
 		return runtimes[uid] ? runtimes[uid] : false;
 	};
 
-
 	/**
 	Register constructor for the Runtime of new (or perhaps modified) type
 
@@ -2502,7 +2493,6 @@ define('moxie/runtime/Runtime', [
 		runtimeConstructors[type] = constructor;
 	};
 
-
 	/**
 	Get the constructor for the specified type.
 
@@ -2514,7 +2504,6 @@ define('moxie/runtime/Runtime', [
 	Runtime.getConstructor = function(type) {
 		return runtimeConstructors[type] || null;
 	};
-
 
 	/**
 	Get info about the runtime (uid, type, capabilities)
@@ -2539,7 +2528,6 @@ define('moxie/runtime/Runtime', [
 		}
 		return null;
 	};
-
 
 	/**
 	Convert caps represented by a comma-separated string to the object representation.
@@ -2588,7 +2576,6 @@ define('moxie/runtime/Runtime', [
 		return false;
 	};
 
-
 	/**
 	Figure out a runtime that supports specified capabilities.
 
@@ -2607,7 +2594,6 @@ define('moxie/runtime/Runtime', [
 		}
 		return null;
 	};
-
 
 	/**
 	Figure out an operational mode for the specified set of capabilities.
@@ -2638,7 +2624,7 @@ define('moxie/runtime/Runtime', [
 					}
 					
 					if (!mode) {
-						mode = capMode;						
+						mode = capMode;
 					} else if (!(mode = Basic.arrayIntersect(mode, capMode))) {
 						// if cap requires conflicting mode - runtime cannot fulfill required caps
 
@@ -2647,7 +2633,7 @@ define('moxie/runtime/Runtime', [
 						}
 
 						return (mode = false);
-					}					
+					}
 				}
 
 				if (MXI_DEBUG && Env.debug.runtime) {
@@ -2663,7 +2649,6 @@ define('moxie/runtime/Runtime', [
 		}
 		return defaultMode; 
 	};
-
 
 	/**
 	Capability check that always returns true
@@ -2829,7 +2814,6 @@ define('moxie/runtime/RuntimeClient', [
 				initialize((options.runtime_order || Runtime.order).split(/\s*,\s*/));
 			},
 
-
 			/**
 			Disconnects from the runtime. Decrements number of clients connected to the specified runtime.
 
@@ -2844,7 +2828,6 @@ define('moxie/runtime/RuntimeClient', [
 				// once the component is disconnected, it shouldn't have access to the runtime
 				runtime = null;
 			},
-
 
 			/**
 			Returns the runtime to which the client is currently connected.
@@ -2969,8 +2952,7 @@ define('moxie/file/FileInput', [
 		@param {Object} event
 		*/
 		'change',
-
-		'cancel', // TODO: might be useful
+		'cancel', // might be useful
 
 		/**
 		Dispatched when mouse cursor enters file-picker area. Can be used to style element
@@ -3038,14 +3020,14 @@ define('moxie/file/FileInput', [
 			required_caps: false,
 			container: browseButton.parentNode || document.body
 		};
-		
+
 		options = Basic.extend({}, defaults, options);
 
 		// convert to object representation
 		if (typeof(options.required_caps) === 'string') {
 			options.required_caps = Runtime.parseCaps(options.required_caps);
 		}
-					
+
 		// normalize accept option (could be list of mime types or array of title/extensions pairs)
 		if (typeof(options.accept) === 'string') {
 			options.accept = Mime.mimes2extList(options.accept);
@@ -3063,9 +3045,9 @@ define('moxie/file/FileInput', [
 		}
 
 		container = browseButton = null; // IE
-						
+
 		RuntimeClient.call(self);
-		
+
 		Basic.extend(self, {
 			/**
 			Unique id of the component
@@ -3077,7 +3059,7 @@ define('moxie/file/FileInput', [
 			@default UID
 			*/
 			uid: Basic.guid('uid_'),
-			
+
 			/**
 			Unique id of the connected runtime, if any.
 
@@ -3141,7 +3123,7 @@ define('moxie/file/FileInput', [
 						}
 						shimContainer = browseButton = null;
 					});
-					
+
 					runtime.exec.call(self, 'FileInput', 'init', options);
 				});
 
@@ -3166,7 +3148,6 @@ define('moxie/file/FileInput', [
 				}
 			},
 
-
 			/**
 			Reposition and resize dialog trigger to match the position and size of browse_button element.
 
@@ -3175,7 +3156,6 @@ define('moxie/file/FileInput', [
 			refresh: function() {
 				self.trigger("Refresh");
 			},
-
 
 			/**
 			Destroy component.
@@ -3222,7 +3202,6 @@ define('moxie/file/FileInput', [
  */
 
 define('moxie/core/utils/Encode', [], function() {
-
 	/**
 	Encode string with UTF-8
 
@@ -3235,7 +3214,7 @@ define('moxie/core/utils/Encode', [], function() {
 	var utf8_encode = function(str) {
 		return unescape(encodeURIComponent(str));
 	};
-	
+
 	/**
 	Decode UTF-8 encoded string
 
@@ -3247,7 +3226,7 @@ define('moxie/core/utils/Encode', [], function() {
 	var utf8_decode = function(str_data) {
 		return decodeURIComponent(escape(str_data));
 	};
-	
+
 	/**
 	Decode Base64 encoded string (uses browser's default method if available),
 	from: https://raw.github.com/kvz/phpjs/master/functions/url/base64_decode.js
@@ -3380,7 +3359,6 @@ define('moxie/core/utils/Encode', [], function() {
 		return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
 	};
 
-
 	return {
 		utf8_encode: utf8_encode,
 		utf8_decode: utf8_decode,
@@ -3406,7 +3384,6 @@ define('moxie/file/Blob', [
 	'moxie/core/utils/Encode',
 	'moxie/runtime/RuntimeClient'
 ], function(Basic, Encode, RuntimeClient) {
-	
 	var blobpool = {};
 
 	/**
@@ -3435,7 +3412,7 @@ define('moxie/file/Blob', [
 
 		RuntimeClient.call(this);
 
-		if (ruid) {	
+		if (ruid) {
 			this.connectRuntime(ruid);
 		}
 
@@ -3446,7 +3423,6 @@ define('moxie/file/Blob', [
 		}
 
 		Basic.extend(this, {
-			
 			/**
 			Unique id of the component
 
@@ -3454,7 +3430,7 @@ define('moxie/file/Blob', [
 			@type {String}
 			*/
 			uid: blob.uid || Basic.guid('uid_'),
-			
+
 			/**
 			Unique id of the connected runtime, if falsy, then runtime will have to be initialized 
 			before this Blob can be used, modified or sent
@@ -3463,7 +3439,7 @@ define('moxie/file/Blob', [
 			@type {String}
 			*/
 			ruid: ruid,
-	
+
 			/**
 			Size of blob
 
@@ -3472,7 +3448,7 @@ define('moxie/file/Blob', [
 			@default 0
 			*/
 			size: blob.size || 0,
-			
+
 			/**
 			Mime type of blob
 
@@ -3481,7 +3457,7 @@ define('moxie/file/Blob', [
 			@default ''
 			*/
 			type: blob.type || '',
-			
+
 			/**
 			@method slice
 			@param {Number} [start=0]
@@ -3544,7 +3520,7 @@ define('moxie/file/Blob', [
 			isDetached: function() {
 				return !this.ruid && Basic.typeOf(blobpool[this.uid]) === 'string';
 			},
-			
+
 			/** 
 			Destroy Blob and free any resources it was using
 
@@ -3556,14 +3532,13 @@ define('moxie/file/Blob', [
 			}
 		});
 
-		
 		if (blob.data) {
 			this.detach(blob.data); // auto-detach if payload has been passed
 		} else {
 			blobpool[this.uid] = blob;	
 		}
 	}
-	
+
 	return Blob;
 });
 
@@ -3615,8 +3590,7 @@ define('moxie/file/File', [
 				name += '.' + Mime.extensions[this.type][0]; // append proper extension if possible
 			}
 		}
-		
-		
+
 		Basic.extend(this, {
 			/**
 			File name
@@ -3797,13 +3771,13 @@ define('moxie/file/FileDrop', [
 
 			files: null,
 
-			init: function() {		
+			init: function() {
 				self.bind('RuntimeInit', function(e, runtime) {
 					self.ruid = runtime.uid;
 					runtime.exec.call(self, 'FileDrop', 'init', options);
 					self.dispatchEvent('ready');
 				});
-							
+
 				// runtime needs: options.required_features, options.runtime_order and options.container
 				self.connectRuntime(options); // throws RuntimeError
 			},
@@ -3815,7 +3789,7 @@ define('moxie/file/FileDrop', [
 					this.disconnectRuntime();
 				}
 				this.files = null;
-				
+
 				this.unbindAll();
 			}
 		});
@@ -3907,9 +3881,8 @@ define('moxie/file/FileReader', [
 		*/
 		'loadend'
 	];
-	
-	function FileReader() {
 
+	function FileReader() {
 		RuntimeClient.call(this);
 
 		Basic.extend(this, {
@@ -3930,7 +3903,7 @@ define('moxie/file/FileReader', [
 			@default FileReader.EMPTY
 			*/
 			readyState: FileReader.EMPTY,
-			
+
 			/**
 			Result of the successful read operation.
 
@@ -3938,7 +3911,7 @@ define('moxie/file/FileReader', [
 			@type {String}
 			*/
 			result: null,
-			
+
 			/**
 			Stores the error of failed asynchronous read operation.
 
@@ -3946,7 +3919,7 @@ define('moxie/file/FileReader', [
 			@type {DOMError}
 			*/
 			error: null,
-			
+
 			/**
 			Initiates reading of File/Blob object contents to binary string.
 
@@ -3956,7 +3929,7 @@ define('moxie/file/FileReader', [
 			readAsBinaryString: function(blob) {
 				_read.call(this, 'readAsBinaryString', blob);
 			},
-			
+
 			/**
 			Initiates reading of File/Blob object contents to dataURL string.
 
@@ -3966,7 +3939,7 @@ define('moxie/file/FileReader', [
 			readAsDataURL: function(blob) {
 				_read.call(this, 'readAsDataURL', blob);
 			},
-			
+
 			/**
 			Initiates reading of File/Blob object contents to string.
 
@@ -3976,7 +3949,7 @@ define('moxie/file/FileReader', [
 			readAsText: function(blob) {
 				_read.call(this, 'readAsText', blob);
 			},
-			
+
 			/**
 			Aborts preloading process.
 
@@ -3984,7 +3957,7 @@ define('moxie/file/FileReader', [
 			*/
 			abort: function() {
 				this.result = null;
-				
+
 				if (Basic.inArray(this.readyState, [FileReader.EMPTY, FileReader.DONE]) !== -1) {
 					return;
 				} else if (this.readyState === FileReader.LOADING) {
@@ -3992,7 +3965,7 @@ define('moxie/file/FileReader', [
 				}
 
 				this.exec('FileReader', 'abort');
-				
+
 				this.trigger('abort');
 				this.trigger('loadend');
 			},
@@ -4022,9 +3995,8 @@ define('moxie/file/FileReader', [
 			this.readyState = FileReader.DONE;
 		}, 999);
 
-		
 		function _read(op, blob) {
-			var self = this;			
+			var self = this;
 
 			this.trigger('loadstart');
 
@@ -4043,7 +4015,7 @@ define('moxie/file/FileReader', [
 
 			this.result = null;
 			this.readyState = FileReader.LOADING;
-			
+
 			if (blob.isDetached()) {
 				var src = blob.getSource();
 				switch (op) {
@@ -4064,7 +4036,7 @@ define('moxie/file/FileReader', [
 			}
 		}
 	}
-	
+
 	/**
 	Initial FileReader state
 
@@ -4137,7 +4109,7 @@ define('moxie/core/utils/Url', [], function() {
 		, regex = /^(?:([^:\/?#]+):)?(?:\/\/()(?:(?:()(?:([^:@\/]*):?([^:@\/]*))?@)?([^:\/?#]*)(?::(\d*))?))?()(?:(()(?:(?:[^?#\/]*\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)/
 		, m = regex.exec(url || '')
 		;
-					
+
 		while (i--) {
 			if (m[i]) {
 				uri[key[i]] = m[i];
@@ -4215,11 +4187,11 @@ define('moxie/core/utils/Url', [], function() {
 		function origin(url) {
 			return [url.scheme, url.host, url.port].join('/');
 		}
-			
+
 		if (typeof url === 'string') {
 			url = parseUrl(url);
-		}	
-		
+		}
+
 		return origin(parseUrl()) === origin(url);
 	};
 
@@ -4258,7 +4230,7 @@ define('moxie/runtime/RuntimeTarget', [
 	*/
 	function RuntimeTarget() {
 		this.uid = Basic.guid('uid_');
-		
+
 		RuntimeClient.call(this);
 
 		this.destroy = function() {
@@ -4307,15 +4279,15 @@ define('moxie/file/FileReaderSync', [
 			readAsBinaryString: function(blob) {
 				return _read.call(this, 'readAsBinaryString', blob);
 			},
-			
+
 			readAsDataURL: function(blob) {
 				return _read.call(this, 'readAsDataURL', blob);
 			},
-			
+
 			/*readAsArrayBuffer: function(blob) {
 				return _read.call(this, 'readAsArrayBuffer', blob);
 			},*/
-			
+
 			readAsText: function(blob) {
 				return _read.call(this, 'readAsText', blob);
 			}
@@ -4552,7 +4524,7 @@ define("moxie/xhr/XMLHttpRequest", [
 	function XMLHttpRequestUpload() {
 		this.uid = Basic.guid('uid_');
 	}
-	
+
 	XMLHttpRequestUpload.prototype = EventTarget.instance;
 
 	/**
@@ -4565,24 +4537,18 @@ define("moxie/xhr/XMLHttpRequest", [
 	*/
 	var dispatches = [
 		'loadstart',
-
 		'progress',
-
 		'abort',
-
 		'error',
-
 		'load',
-
 		'timeout',
-
 		'loadend'
 
 		// readystatechange (for historical reasons)
 	]; 
-	
+
 	var NATIVE = 1, RUNTIME = 2;
-					
+
 	function XMLHttpRequest() {
 		var self = this,
 			// this (together with _p() @see below) is here to gracefully upgrade to setter/getter syntax where possible
@@ -4648,7 +4614,7 @@ define("moxie/xhr/XMLHttpRequest", [
 				/**
 				Returns the response type. Can be set to change the response type. Values are:
 				the empty string (default), "arraybuffer", "blob", "document", "json", and "text".
-				
+
 				@property responseType
 				@type String
 				*/
@@ -4656,7 +4622,7 @@ define("moxie/xhr/XMLHttpRequest", [
 
 				/**
 				Returns the document response entity body.
-				
+
 				Throws an "InvalidStateError" exception if responseType is not the empty string or "document".
 
 				@property responseXML
@@ -4666,7 +4632,7 @@ define("moxie/xhr/XMLHttpRequest", [
 
 				/**
 				Returns the text response entity body.
-				
+
 				Throws an "InvalidStateError" exception if responseType is not the empty string or "text".
 
 				@property responseText
@@ -4714,7 +4680,6 @@ define("moxie/xhr/XMLHttpRequest", [
 			_responseHeadersBag
 			;
 
-		
 		Basic.extend(this, props, {
 			/**
 			Unique id of the component
@@ -4731,7 +4696,6 @@ define("moxie/xhr/XMLHttpRequest", [
 			@type XMLHttpRequestUpload
 			*/
 			upload: new XMLHttpRequestUpload(),
-			
 
 			/**
 			Sets the request method, request URL, synchronous flag, request username, and request password.
@@ -4749,7 +4713,6 @@ define("moxie/xhr/XMLHttpRequest", [
 			There is an associated XMLHttpRequest document and either the timeout attribute is not zero,
 			the withCredentials attribute is true, or the responseType attribute is not the empty string.
 
-
 			@method open
 			@param {String} method HTTP method to use on request
 			@param {String} url URL to request
@@ -4759,12 +4722,12 @@ define("moxie/xhr/XMLHttpRequest", [
 			*/
 			open: function(method, url, async, user, password) {
 				var urlp;
-				
+
 				// first two arguments are required
 				if (!method || !url) {
 					throw new x.DOMException(x.DOMException.SYNTAX_ERR);
 				}
-				
+
 				// 2 - check if any code point in method is higher than U+00FF or after deflating method it does not match the method
 				if (/[\u0100-\uffff]/.test(method) || Encode.utf8_encode(method) !== method) {
 					throw new x.DOMException(x.DOMException.SYNTAX_ERR);
@@ -4774,8 +4737,7 @@ define("moxie/xhr/XMLHttpRequest", [
 				if (!!~Basic.inArray(method.toUpperCase(), ['CONNECT', 'DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'TRACE', 'TRACK'])) {
 					_method = method.toUpperCase();
 				}
-				
-				
+
 				// 4 - allowing these methods poses a security risk
 				if (!!~Basic.inArray(_method, ['CONNECT', 'TRACE', 'TRACK'])) {
 					throw new x.DOMException(x.DOMException.SECURITY_ERR);
@@ -4788,10 +4750,10 @@ define("moxie/xhr/XMLHttpRequest", [
 				urlp = Url.parseUrl(url);
 
 				_same_origin_flag = Url.hasSameOrigin(urlp);
-																
+
 				// 7 - manually build up absolute url
 				_url = Url.resolveUrl(url);
-		
+
 				// 9-10, 12-13
 				if ((user || password) && !_same_origin_flag) {
 					throw new x.DOMException(x.DOMException.INVALID_ACCESS_ERR);
@@ -4799,16 +4761,15 @@ define("moxie/xhr/XMLHttpRequest", [
 
 				_user = user || urlp.user;
 				_password = password || urlp.pass;
-				
+
 				// 11
 				_async = async || true;
-				
+
 				if (_async === false && (_p('timeout') || _p('withCredentials') || _p('responseType') !== "")) {
 					throw new x.DOMException(x.DOMException.INVALID_ACCESS_ERR);
 				}
-				
+
 				// 14 - terminate abort()
-				
 				// 15 - terminate send()
 
 				// 18
@@ -4819,11 +4780,11 @@ define("moxie/xhr/XMLHttpRequest", [
 
 				// 19
 				_p('readyState', XMLHttpRequest.OPENED);
-				
+
 				// 20
 				this.dispatchEvent('readystatechange');
 			},
-			
+
 			/**
 			Appends an header to the list of author request headers, or if header is already
 			in the list of author request headers, combines its value with value.
@@ -4831,7 +4792,7 @@ define("moxie/xhr/XMLHttpRequest", [
 			Throws an "InvalidStateError" exception if the state is not OPENED or if the send() flag is set.
 			Throws a "SyntaxError" exception if header is not a valid HTTP header field name or if value
 			is not a valid HTTP header field value.
-			
+
 			@method setRequestHeader
 			@param {String} header
 			@param {String|Number} value
@@ -4860,7 +4821,7 @@ define("moxie/xhr/XMLHttpRequest", [
 						"user-agent",
 						"via"
 					];
-				
+
 				// 1-2
 				if (_p('readyState') !== XMLHttpRequest.OPENED || _send_flag) {
 					throw new x.DOMException(x.DOMException.INVALID_STATE_ERR);
@@ -4887,7 +4848,7 @@ define("moxie/xhr/XMLHttpRequest", [
 				// camelize
 				// browsers lowercase header names (at least for custom ones)
 				// header = header.replace(/\b\w/g, function($1) { return $1.toUpperCase(); });
-				
+
 				if (!_headers[header]) {
 					_headers[header] = value;
 				} else {
@@ -4943,7 +4904,7 @@ define("moxie/xhr/XMLHttpRequest", [
 				}
 				return null;
 			},
-			
+
 			/**
 			Sets the Content-Type header for the response to mime.
 			Throws an "InvalidStateError" exception if the state is LOADING or DONE.
@@ -4954,7 +4915,7 @@ define("moxie/xhr/XMLHttpRequest", [
 			*/
 			overrideMimeType: function(mime) {
 				var matches, charset;
-			
+
 				// 1
 				if (!!~Basic.inArray(_p('readyState'), [XMLHttpRequest.LOADING, XMLHttpRequest.DONE])) {
 					throw new x.DOMException(x.DOMException.INVALID_STATE_ERR);
@@ -4989,7 +4950,7 @@ define("moxie/xhr/XMLHttpRequest", [
 			@param {Blob|Document|String|FormData} [data] Request entity body
 			@param {Object} [options] Set of requirements and pre-requisities for runtime initialization
 			*/
-			send: function(data, options) {					
+			send: function(data, options) {
 				if (Basic.typeOf(options) === 'string') {
 					_options = { ruid: options };
 				} else if (!options) {
@@ -4997,19 +4958,19 @@ define("moxie/xhr/XMLHttpRequest", [
 				} else {
 					_options = options;
 				}
-															
+
 				// 1-2
 				if (this.readyState !== XMLHttpRequest.OPENED || _send_flag) {
 					throw new x.DOMException(x.DOMException.INVALID_STATE_ERR);
 				}
-				
-				// 3					
+
+				// 3
 				// sending Blob
 				if (data instanceof Blob) {
 					_options.ruid = data.ruid;
 					_mimeType = data.type || 'application/octet-stream';
 				}
-				
+
 				// FormData
 				else if (data instanceof FormData) {
 					if (data.hasBlob()) {
@@ -5018,12 +4979,12 @@ define("moxie/xhr/XMLHttpRequest", [
 						_mimeType = blob.type || 'application/octet-stream';
 					}
 				}
-				
+
 				// DOMString
 				else if (typeof data === 'string') {
 					_encoding = 'UTF-8';
 					_mimeType = 'text/plain;charset=UTF-8';
-					
+
 					// data should be converted to Unicode and encoded as UTF-8
 					data = Encode.utf8_encode(data);
 				}
@@ -5054,10 +5015,10 @@ define("moxie/xhr/XMLHttpRequest", [
 				// 8.5 - Return the send() method call, but continue running the steps in this algorithm.
 				_doXHR.call(this, data);
 			},
-			
+
 			/**
 			Cancels any network activity.
-			
+
 			@method abort
 			*/
 			abort: function() {
@@ -5267,15 +5228,14 @@ define("moxie/xhr/XMLHttpRequest", [
 		
 		/*
 		function _toASCII(str, AllowUnassigned, UseSTD3ASCIIRules) {
-			// TODO: http://tools.ietf.org/html/rfc3490#section-4.1
+			// http://tools.ietf.org/html/rfc3490#section-4.1
 			return str.toLowerCase();
 		}
 		*/
-		
-		
+
 		function _doXHR(data) {
 			var self = this;
-			
+
 			_start_time = new Date().getTime();
 
 			_xhr = new RuntimeTarget();
@@ -5295,12 +5255,12 @@ define("moxie/xhr/XMLHttpRequest", [
 					self.dispatchEvent('readystatechange');
 
 					self.dispatchEvent(e);
-					
+
 					if (_upload_events_flag) {
 						self.upload.dispatchEvent(e);
 					}
 				});
-				
+
 				_xhr.bind('Progress', function(e) {
 					if (_p('readyState') !== XMLHttpRequest.LOADING) {
 						_p('readyState', XMLHttpRequest.LOADING); // LoadStart unreliable (in Flash for example)
@@ -5308,7 +5268,7 @@ define("moxie/xhr/XMLHttpRequest", [
 					}
 					self.dispatchEvent(e);
 				});
-				
+
 				_xhr.bind('UploadProgress', function(e) {
 					if (_upload_events_flag) {
 						self.upload.dispatchEvent({
@@ -5319,12 +5279,12 @@ define("moxie/xhr/XMLHttpRequest", [
 						});
 					}
 				});
-				
+
 				_xhr.bind('Load', function(e) {
 					_p('readyState', XMLHttpRequest.DONE);
 					_p('status', Number(runtime.exec.call(_xhr, 'XMLHttpRequest', 'getStatus') || 0));
 					_p('statusText', httpCode[_p('status')] || "");
-					
+
 					_p('response', runtime.exec.call(_xhr, 'XMLHttpRequest', 'getResponse', _p('responseType')));
 
 					if (!!~Basic.inArray(_p('responseType'), ['text', ''])) {
@@ -5336,7 +5296,7 @@ define("moxie/xhr/XMLHttpRequest", [
 					_responseHeaders = runtime.exec.call(_xhr, 'XMLHttpRequest', 'getAllResponseHeaders');
 
 					self.dispatchEvent('readystatechange');
-					
+
 					if (_p('status') > 0) { // status 0 usually means that server is unreachable
 						if (_upload_events_flag) {
 							self.upload.dispatchEvent(e);
@@ -5353,7 +5313,7 @@ define("moxie/xhr/XMLHttpRequest", [
 					self.dispatchEvent(e);
 					loadEnd();
 				});
-				
+
 				_xhr.bind('Error', function(e) {
 					_error_flag = true;
 					_p('readyState', XMLHttpRequest.DONE);
@@ -5412,8 +5372,7 @@ define("moxie/xhr/XMLHttpRequest", [
 				_xhr.connectRuntime(_options);
 			}
 		}
-	
-		
+
 		function _reset() {
 			_p('responseText', "");
 			_p('responseXML', null);
@@ -5507,7 +5466,6 @@ define("moxie/runtime/Transporter", [
 
 				_reset.call(self);
 			},
-
 
 			destroy: function() {
 				this.unbindAll();
@@ -5616,7 +5574,6 @@ define("moxie/image/Image", [
 		@param {Object} event
 		*/
 		'load',
-
 		'error',
 
 		/**
@@ -5732,7 +5689,7 @@ define("moxie/image/Image", [
 				var img = new mOxie.Image();
 				img.onload = function() {
 					var blob = img.getAsBlob();
-					
+
 					var formData = new mOxie.FormData();
 					formData.append('file', blob);
 
@@ -5744,7 +5701,6 @@ define("moxie/image/Image", [
 					xhr.send(formData);
 				};
 				img.load("http://www.moxiecode.com/images/mox-logo.jpg"); // notice file extension (.jpg)
-			
 
 			@method load
 			@param {Image|Blob|File|String} src Source for the image
@@ -6017,14 +5973,12 @@ define("moxie/image/Image", [
 			}
 		});
 
-
 		// this is here, because in order to bind properly, we need uid, which is created above
 		this.handleEventProps(dispatches);
 
 		this.bind('Load Resize', function() {
 			_updateInfo.call(this);
 		}, 999);
-
 
 		function _updateInfo(info) {
 			if (!info) {
@@ -6042,7 +5996,6 @@ define("moxie/image/Image", [
 				this.name = info.name;
 			}
 		}
-		
 
 		function _load(src) {
 			var srcType = Basic.typeOf(src);
@@ -6090,13 +6043,11 @@ define("moxie/image/Image", [
 			}
 		}
 
-
 		function _loadFromImage(img, exact) {
 			var runtime = this.connectRuntime(img.ruid);
 			this.ruid = runtime.uid;
 			runtime.exec.call(this, 'Image', 'loadFromImage', img, (Basic.typeOf(exact) === 'undefined' ? true : exact));
 		}
-
 
 		function _loadFromBlob(blob, options) {
 			var self = this;
@@ -6128,7 +6079,6 @@ define("moxie/image/Image", [
 				exec(this.connectRuntime(blob.ruid));
 			}
 		}
-
 
 		function _loadFromUrl(url, options) {
 			var self = this, xhr;
@@ -6273,9 +6223,7 @@ define("moxie/runtime/html5/Runtime", [
 
 		Runtime.call(this, options, (arguments[1] || type), caps);
 
-
 		Basic.extend(this, {
-
 			init : function() {
 				this.trigger("Init");
 			},
@@ -6336,13 +6284,13 @@ define('moxie/core/utils/Events', [
 	*/
 	var addEvent = function(obj, name, callback, key) {
 		var func, events;
-					
+
 		name = name.toLowerCase();
 
 		// Add event listener
 		if (obj.addEventListener) {
 			func = callback;
-			
+
 			obj.addEventListener(name, func, false);
 		} else if (obj.attachEvent) {
 			func = function() {
@@ -6360,22 +6308,22 @@ define('moxie/core/utils/Events', [
 
 			obj.attachEvent('on' + name, func);
 		}
-		
+
 		// Log event handler to objects internal mOxie registry
 		if (!obj[uid]) {
 			obj[uid] = Basic.guid();
 		}
-		
+
 		if (!eventhash.hasOwnProperty(obj[uid])) {
 			eventhash[obj[uid]] = {};
 		}
-		
+
 		events = eventhash[obj[uid]];
-		
+
 		if (!events.hasOwnProperty(name)) {
 			events[name] = [];
 		}
-				
+
 		events[name].push({
 			func: func,
 			orig: callback, // store original callback for IE
@@ -6383,11 +6331,10 @@ define('moxie/core/utils/Events', [
 		});
 	};
 	
-	
 	/**
 	Remove event handler from the specified object. If third argument (callback)
 	is not specified remove all events with the specified name.
-	
+
 	@method removeEvent
 	@static
 	@param {Object} obj DOM element to remove event listener(s) from.
@@ -6396,15 +6343,15 @@ define('moxie/core/utils/Events', [
 	*/
 	var removeEvent = function(obj, name, callback) {
 		var type, undef;
-		
+
 		name = name.toLowerCase();
-		
+
 		if (obj[uid] && eventhash[obj[uid]] && eventhash[obj[uid]][name]) {
 			type = eventhash[obj[uid]][name];
 		} else {
 			return;
 		}
-			
+
 		for (var i = type.length - 1; i >= 0; i--) {
 			// undefined or not, key should match
 			if (type[i].orig === callback || type[i].key === callback) {
@@ -6413,27 +6360,27 @@ define('moxie/core/utils/Events', [
 				} else if (obj.detachEvent) {
 					obj.detachEvent('on'+name, type[i].func);
 				}
-				
+
 				type[i].orig = null;
 				type[i].func = null;
 				type.splice(i, 1);
-				
+
 				// If callback was passed we are done here, otherwise proceed
 				if (callback !== undef) {
 					break;
 				}
 			}
 		}
-		
+
 		// If event array got empty, remove it
 		if (!type.length) {
 			delete eventhash[obj[uid]][name];
 		}
-		
+
 		// If mOxie registry has become empty, remove it
 		if (Basic.isEmptyObj(eventhash[obj[uid]])) {
 			delete eventhash[obj[uid]];
-			
+
 			// IE doesn't let you remove DOM object property with - delete
 			try {
 				delete obj[uid];
@@ -6442,11 +6389,10 @@ define('moxie/core/utils/Events', [
 			}
 		}
 	};
-	
-	
+
 	/**
 	Remove all kind of events from the specified object
-	
+
 	@method removeAllEvents
 	@static
 	@param {Object} obj DOM element to remove event listeners from.
@@ -6456,7 +6402,7 @@ define('moxie/core/utils/Events', [
 		if (!obj || !obj[uid]) {
 			return;
 		}
-		
+
 		Basic.each(eventhash[obj[uid]], function(events, name) {
 			removeEvent(obj, name, key);
 		});
@@ -6525,7 +6471,6 @@ define("moxie/runtime/html5/file/FileInput", [
 					height: '100%'
 				});
 
-
 				browseButton = Dom.get(_options.browse_button);
 
 				// Route click event to the input[type=file] element for browsers that support such behavior
@@ -6567,7 +6512,6 @@ define("moxie/runtime/html5/file/FileInput", [
 				Events.addEvent(Dom.get(_options.container), 'mouseup', function() {
 					comp.trigger('mouseup');
 				}, comp.uid);
-
 
 				input.onchange = function onChange(e) { // there should be only one handler for this
 					comp.files = [];
@@ -6616,7 +6560,6 @@ define("moxie/runtime/html5/file/FileInput", [
 
 				shimContainer = null;
 			},
-
 
 			disable: function(state) {
 				var I = this.getRuntime(), input;
@@ -6796,7 +6739,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 				;
 		}
 
-
 		function _addFile(file, relativePath) {
 			if (_isAcceptable(file)) {
 				var fileObj = new File(_ruid, file);
@@ -6805,7 +6747,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 			}
 		}
 
-		
 		function _extractExts(accept) {
 			var exts = [];
 			for (var i = 0; i < accept.length; i++) {
@@ -6814,7 +6755,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 			return Basic.inArray('*', exts) === -1 ? exts : [];
 		}
 
-
 		function _isAcceptable(file) {
 			if (!_allowedExts.length) {
 				return true;
@@ -6822,7 +6762,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 			var ext = Mime.getFileExtension(file.name);
 			return !ext || Basic.inArray(ext, _allowedExts) !== -1;
 		}
-
 
 		function _readItems(items, cb) {
 			var entries = [];
@@ -6846,7 +6785,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 			}
 		}
 
-
 		function _readEntries(entries, cb) {
 			var queue = [];
 			Basic.each(entries, function(entry) {
@@ -6858,7 +6796,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 				cb();
 			});
 		}
-
 
 		function _readEntry(entry, cb) {
 			if (entry.isFile) {
@@ -6875,7 +6812,6 @@ define("moxie/runtime/html5/file/FileDrop", [
 				cb(); // not file, not directory? what then?..
 			}
 		}
-
 
 		function _readDirEntry(dirEntry, cb) {
 			var entries = [], dirReader = dirEntry.createReader();
@@ -6928,7 +6864,6 @@ define("moxie/runtime/html5/file/FileReader", [
 		var _fr, _convertToBinary = false;
 
 		Basic.extend(this, {
-
 			read: function(op, blob) {
 				var comp = this;
 
@@ -7011,7 +6946,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 	"moxie/core/Exceptions",
 	"moxie/core/utils/Env"
 ], function(extensions, Basic, Mime, Url, File, Blob, FormData, x, Env) {
-	
+
 	function XMLHttpRequest() {
 		var self = this
 		, _xhr
@@ -7031,7 +6966,6 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 
 				_xhr = _getNativeXHR();
 				_xhr.open(meta.method, meta.url, meta.async, meta.user, meta.password);
-
 
 				// prepare data to be sent
 				if (data instanceof Blob) {
@@ -7066,7 +7000,6 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 						data = fd;
 					}
 				}
-
 
 				// if XHR L2
 				if (_xhr.upload) {
@@ -7104,15 +7037,15 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 							case 1: // XMLHttpRequest.OPENED
 								// readystatechanged is fired twice for OPENED state (in IE and Mozilla) - neu
 								break;
-							
+
 							// looks like HEADERS_RECEIVED (state 2) is not reported in Opera (or it's old versions) - neu
 							case 2: // XMLHttpRequest.HEADERS_RECEIVED
 								break;
-								
+
 							case 3: // XMLHttpRequest.LOADING 
 								// try to fire progress event for not XHR L2
 								var total, loaded;
-								
+
 								try {
 									if (Url.hasSameOrigin(meta.url)) { // Content-Length not accessible for cross-domain on some browsers
 										total = _xhr.getResponseHeader('Content-Length') || 0; // old Safari throws an exception here
@@ -7132,7 +7065,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 									loaded: loaded
 								});
 								break;
-								
+
 							case 4: // XMLHttpRequest.DONE
 								// release readystatechange handler (mostly for IE)
 								_xhr.onreadystatechange = function() {};
@@ -7142,12 +7075,11 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 									target.trigger('error');
 								} else {
 									target.trigger('load');
-								}							
+								}
 								break;
 						}
 					};
 				}
-				
 
 				// set request headers
 				if (!Basic.isEmptyObj(meta.headers)) {
@@ -7203,7 +7135,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 					switch (responseType) {
 						case 'blob':
 							var file = new File(I.uid, _xhr.response);
-							
+
 							// try to extract file name from content-disposition if possible (might be - not, if CORS for example)	
 							var disposition = _xhr.getResponseHeader('Content-Disposition');
 							if (disposition) {
@@ -7235,7 +7167,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 					}
 				} catch(ex) {
 					return null;
-				}				
+				}
 			},
 
 			getAllResponseHeaders: function() {
@@ -7256,14 +7188,13 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 			}
 		});
 
-
 		// here we go... ugly fix for ugly bug
 		function _preloadAndSend(meta, data) {
 			var target = this, blob, fr;
-				
+
 			// get original blob
 			blob = data.getBlob().getSource();
-			
+
 			// preload blob in memory to be sent as binary string
 			fr = new window.FileReader();
 			fr.onload = function() {
@@ -7278,7 +7209,6 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 			fr.readAsBinaryString(blob);
 		}
 
-		
 		function _getNativeXHR() {
 			if (window.XMLHttpRequest && !(Env.browser === 'IE' && Env.verComp(Env.version, 8, '<'))) { // IE7 has native XHR but it's buggy
 				return new window.XMLHttpRequest();
@@ -7293,12 +7223,12 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 				})();
 			}
 		}
-		
+
 		// @credits Sergey Ilinsky	(http://www.ilinsky.com/)
 		function _getDocument(xhr) {
 			var rXML = xhr.responseXML;
 			var rText = xhr.responseText;
-			
+
 			// Try parsing responseText (@see: http://www.ilinsky.com/articles/XMLHttpRequest/#bugs-ie-responseXML-content-type)
 			if (Env.browser === 'IE' && rText && rXML && !rXML.documentElement && /[^\/]+\/[^\+]+\+xml/.test(xhr.getResponseHeader("Content-Type"))) {
 				rXML = new window.ActiveXObject("Microsoft.XMLDOM");
@@ -7306,7 +7236,7 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 				rXML.validateOnParse = false;
 				rXML.loadXML(rText);
 			}
-	
+
 			// Check if there is no error in document
 			if (rXML) {
 				if ((Env.browser === 'IE' && rXML.parseError !== 0) || !rXML.documentElement || rXML.documentElement.tagName === "parsererror") {
@@ -7315,7 +7245,6 @@ define("moxie/runtime/html5/xhr/XMLHttpRequest", [
 			}
 			return rXML;
 		}
-
 
 		function _prepareMultipart(fd) {
 			var boundary = '----moxieboundary' + new Date().getTime()
@@ -7385,12 +7314,9 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 			UTF16StringReader.apply(this, arguments);
 		}
 	}
-	 
 
 	Basic.extend(BinaryReader.prototype, {
-		
 		littleEndian: false,
-
 
 		read: function(idx, size) {
 			var sum, mv, i;
@@ -7398,7 +7324,7 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 			if (idx + size > this.length()) {
 				throw new Error("You are trying to read outside the source boundaries.");
 			}
-			
+
 			mv = this.littleEndian 
 				? 0 
 				: -8 * (size - 1)
@@ -7409,7 +7335,6 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 			}
 			return sum;
 		},
-
 
 		write: function(idx, num, size) {
 			var mv, i, str = '';
@@ -7428,37 +7353,30 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 			}
 		},
 
-
 		BYTE: function(idx) {
 			return this.read(idx, 1);
 		},
-
 
 		SHORT: function(idx) {
 			return this.read(idx, 2);
 		},
 
-
 		LONG: function(idx) {
 			return this.read(idx, 4);
 		},
-
 
 		SLONG: function(idx) { // 2's complement notation
 			var num = this.read(idx, 4);
 			return (num > 2147483647 ? num - 4294967296 : num);
 		},
 
-
 		CHAR: function(idx) {
 			return String.fromCharCode(this.read(idx, 1));
 		},
 
-
 		STRING: function(idx, count) {
 			return this.asArray('CHAR', idx, count).join('');
 		},
-
 
 		asArray: function(type, idx, count) {
 			var values = [];
@@ -7470,21 +7388,17 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 		}
 	});
 
-
 	function ArrayBufferReader(data) {
 		var _dv = new DataView(data);
 
 		Basic.extend(this, {
-			
 			readByteAt: function(idx) {
 				return _dv.getUint8(idx);
 			},
 
-
 			writeByteAt: function(idx, value) {
 				_dv.setUint8(idx, value);
 			},
-			
 
 			SEGMENT: function(idx, size, value) {
 				switch (arguments.length) {
@@ -7517,7 +7431,6 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 				}
 			},
 
-
 			length: function() {
 				return data ? data.byteLength : 0;
 			},
@@ -7529,19 +7442,15 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 		});
 	}
 
-
 	function UTF16StringReader(data) {
 		Basic.extend(this, {
-			
 			readByteAt: function(idx) {
 				return data.charCodeAt(idx);
 			},
 
-
 			writeByteAt: function(idx, value) {
 				putstr(String.fromCharCode(value), idx, 1);
 			},
-
 
 			SEGMENT: function(idx, length, segment) {
 				switch (arguments.length) {
@@ -7556,7 +7465,6 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 				}
 			},
 
-
 			length: function() {
 				return data ? data.length : 0;
 			}, 
@@ -7566,13 +7474,11 @@ define("moxie/runtime/html5/utils/BinaryReader", [
 			}
 		});
 
-
 		function putstr(segment, idx, length) {
 			length = arguments.length === 3 ? length : data.length - idx - 1;
 			data = data.substr(0, idx) + segment + data.substr(length + idx);
 		}
 	}
-
 
 	return BinaryReader;
 });
@@ -7676,7 +7582,7 @@ define("moxie/runtime/html5/image/JPEGHeaders", [
 				while (i--) {
 					br.SEGMENT(headers[i].start, headers[i].length, '');
 				}
-				
+
 				data = br.SEGMENT();
 				br.clear();
 				return data;
@@ -7745,7 +7651,7 @@ define("moxie/runtime/html5/image/ExifParser", [
 	
 	function ExifParser(data) {
 		var __super__, tags, tagDescs, offsets, idx, Tiff;
-		
+
 		BinaryReader.call(this, data);
 
 		tags = {
@@ -7932,7 +7838,6 @@ define("moxie/runtime/html5/image/ExifParser", [
 
 		// Public functions
 		Basic.extend(this, {
-			
 			read: function() {
 				try {
 					return ExifParser.prototype.read.apply(this, arguments);
@@ -7940,7 +7845,6 @@ define("moxie/runtime/html5/image/ExifParser", [
 					throw new x.ImageError(x.ImageError.INVALID_META_ERR);
 				}
 			},
-
 
 			write: function() {
 				try {
@@ -7950,16 +7854,13 @@ define("moxie/runtime/html5/image/ExifParser", [
 				}
 			},
 
-
 			UNDEFINED: function() {
 				return this.BYTE.apply(this, arguments);
 			},
 
-
 			RATIONAL: function(idx) {
 				return this.LONG(idx) / this.LONG(idx + 4)
 			},
-
 
 			SRATIONAL: function(idx) {
 				return this.SLONG(idx) / this.SLONG(idx + 4)
@@ -7972,7 +7873,6 @@ define("moxie/runtime/html5/image/ExifParser", [
 			TIFF: function() {
 				return Tiff || null;
 			},
-
 
 			EXIF: function() {
 				var Exif = null;
@@ -7996,7 +7896,6 @@ define("moxie/runtime/html5/image/ExifParser", [
 				return Exif;
 			},
 
-
 			GPS: function() {
 				var GPS = null;
 
@@ -8016,7 +7915,6 @@ define("moxie/runtime/html5/image/ExifParser", [
 				return GPS;
 			},
 
-
 			thumb: function() {
 				if (offsets.IFD1) {
 					try {
@@ -8030,7 +7928,6 @@ define("moxie/runtime/html5/image/ExifParser", [
 				return null;
 			},
 
-
 			setExif: function(tag, value) {
 				// Right now only setting of width/height is possible
 				if (tag !== 'PixelXDimension' && tag !== 'PixelYDimension') { return false; }
@@ -8038,13 +7935,11 @@ define("moxie/runtime/html5/image/ExifParser", [
 				return setTag.call(this, 'exif', tag, value);
 			},
 
-
 			clear: function() {
 				__super__.clear();
 				data = tags = tagDescs = Tiff = offsets = __super__ = null;
 			}
 		});
-
 
 		// Check if that's APP1 and that it has EXIF
 		if (this.SHORT(0) !== 0xFFE1 || this.STRING(4, 5).toUpperCase() !== "EXIF\0") {
@@ -8082,11 +7977,10 @@ define("moxie/runtime/html5/image/ExifParser", [
 			offsets.IFD1 = offsets.tiffHeader + IFD1Offset;
 		}
 
-
 		function extractTags(IFD_offset, tags2extract) {
 			var data = this;
 			var length, i, tag, type, count, size, offset, value, values = [], hash = {};
-			
+
 			var types = {
 				1 : 'BYTE',
 				7 : 'UNDEFINED',

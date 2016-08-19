@@ -156,20 +156,20 @@ if (!document.createElement('canvas').getContext) {
 
         var attrs = el.attributes;
         if (attrs.width && attrs.width.specified) {
-          // TODO: use runtimeStyle and coordsize
+          // use runtimeStyle and coordsize
           // el.getContext().setWidth_(attrs.width.nodeValue);
           el.style.width = attrs.width.nodeValue + 'px';
         } else {
           el.width = el.clientWidth;
         }
         if (attrs.height && attrs.height.specified) {
-          // TODO: use runtimeStyle and coordsize
+          // use runtimeStyle and coordsize
           // el.getContext().setHeight_(attrs.height.nodeValue);
           el.style.height = attrs.height.nodeValue + 'px';
         } else {
           el.height = el.clientHeight;
         }
-        //el.getContext().setCoordsize_()
+        // el.getContext().setCoordsize_()
       }
       return el;
     }
@@ -390,7 +390,6 @@ if (!document.createElement('canvas').getContext) {
     yellowgreen: '#9ACD32'
   };
 
-
   function getRgbHslContent(styleString) {
     var start = styleString.indexOf('(', 3);
     var end = styleString.indexOf(')', start + 1);
@@ -458,6 +457,7 @@ if (!document.createElement('canvas').getContext) {
     var str, alpha = 1;
 
     styleString = String(styleString);
+
     if (styleString.charAt(0) == '#') {
       str = styleString;
     } else if (/^rgb/.test(styleString)) {
@@ -616,8 +616,7 @@ if (!document.createElement('canvas').getContext) {
   };
 
   contextPrototype.beginPath = function() {
-    // TODO: Branch current matrix so that save/restore has no effect
-    //       as per safari docs.
+    // Branch current matrix so that save/restore has no effect as per safari docs.
     this.currentPath_ = [];
   };
 
@@ -692,8 +691,7 @@ if (!document.createElement('canvas').getContext) {
 
     // IE won't render arches drawn counter clockwise if xStart == xEnd.
     if (xStart == xEnd && !aClockwise) {
-      xStart += 0.125; // Offset xStart by 1/80 of a pixel. Use something
-                       // that can be represented in binary
+      xStart += 0.125; // Offset xStart by 1/80 of a pixel. Use something that can be represented in binary
     }
 
     var p = getCoords(this, aX, aY);
@@ -756,8 +754,7 @@ if (!document.createElement('canvas').getContext) {
     return gradient;
   };
 
-  contextPrototype.createRadialGradient = function(aX0, aY0, aR0,
-                                                   aX1, aY1, aR1) {
+  contextPrototype.createRadialGradient = function(aX0, aY0, aR0, aX1, aY1, aR1) {
     var gradient = new CanvasGradient_('gradientradial');
     gradient.x0_ = aX0;
     gradient.y0_ = aY0;
@@ -940,12 +937,8 @@ if (!document.createElement('canvas').getContext) {
             break;
         }
   
-  
-        // TODO: Following is broken for curves due to
-        //       move to proper paths.
-  
-        // Figure out dimensions so we can do gradient fills
-        // properly
+        // Following is broken for curves due to move to proper paths.
+        // Figure out dimensions so we can do gradient fills properly
         if (p) {
           if (min.x == null || p.x < min.x) {
             min.x = p.x;
@@ -1005,7 +998,7 @@ if (!document.createElement('canvas').getContext) {
     var width = max.x - min.x;
     var height = max.y - min.y;
     if (fillStyle instanceof CanvasGradient_) {
-      // TODO: Gradients transformed with the transformation matrix.
+      // Gradients transformed with the transformation matrix.
       var angle = 0;
       var focus = {x: 0, y: 0};
 
@@ -1088,7 +1081,7 @@ if (!document.createElement('canvas').getContext) {
                      deltaLeft / width * arcScaleX * arcScaleX, ',',
                      deltaTop / height * arcScaleY * arcScaleY, '"',
                      ' type="tile"',
-                     // TODO: Figure out the correct size to fit the scale.
+                     // Figure out the correct size to fit the scale.
                      //' size="', w, 'px ', h, 'px"',
                      ' src="', fillStyle.src_, '" />');
        }
@@ -1281,7 +1274,7 @@ if (!document.createElement('canvas').getContext) {
     if (stroke) {
       appendStroke(this, lineStr);
     } else {
-      // TODO: Fix the min and max params.
+      // Fix the min and max params.
       appendFill(this, lineStr, {x: -left, y: 0},
                  {x: right, y: fontStyle.size});
     }
@@ -1329,11 +1322,11 @@ if (!document.createElement('canvas').getContext) {
 
   /******** STUBS ********/
   contextPrototype.clip = function() {
-    // TODO: Implement
+    // Implement
   };
 
   contextPrototype.arcTo = function() {
-    // TODO: Implement
+    // Implement
   };
 
   contextPrototype.createPattern = function(image, repetition) {

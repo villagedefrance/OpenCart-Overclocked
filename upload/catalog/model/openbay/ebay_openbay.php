@@ -50,14 +50,14 @@ class ModelOpenbayEbayOpenbay extends Model {
 			return;
 		}
 
-		/* force array type */
+		/* Force array type */
 		if (!is_array($order->txn)) { $order->txn = array($order->txn); }
 
 		$order_id = $this->model_openbay_ebay_order->find($order->smpId);
 
 		$created_hours = (int)$this->config->get('openbaypro_created_hours');
 
-		if ($created_hours == 0 || $created_hours == ''){ $created_hours = 24; } // This is a fallback value.
+		if ($created_hours == 0 || $created_hours == '') { $created_hours = 24; } // This is a fallback value.
 
 		$from = date("Y-m-d H:i:00", mktime(date("H")-(int)$created_hours, date("i"), date("s"), date("m"), date("d"), date("y")));
 
@@ -108,7 +108,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 				$this->openbay->ebay->log('Order ID: ' . $order_id . ' -> Paid');
 
 			} elseif (($order->payment->status == 'Refunded' || $order->payment->status == 'Unpaid') && ($order_loaded['order_status_id'] != $this->default_refunded_id) && in_array($this->default_paid_id, $order_history)) {
-				/* @todo what happens if the order has never been paid? - need to find a cancelled in ebay flag*/
+				/* what happens if the order has never been paid? - need to find a cancelled in ebay flag*/
 				$this->model_openbay_ebay_order->update($order_id, $this->default_refunded_id);
 				$this->model_openbay_ebay_order->cancel($order_id);
 
@@ -133,7 +133,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 				$this->openbay->ebay->log('Paid date: ' . $order->payment->date);
 			}
 			/**
-			 * @TODO - FOLLOWING ORDER STATE TESTS REQUIRED
+			 * FOLLOWING ORDER STATE TESTS REQUIRED
 			 *
 			 * - single item order, not checked out but then marked as paid. i.e. user wants to pay by manual method such as cheque
 			 * - multi item order, same as above. Is this possible? i dont think the order will combine if checkout not done.
@@ -500,7 +500,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 		$total_tax = 0;
 		$total_net = 0;
 
-		/* force array type */
+		/* Force array type */
 		if (!is_array($order->txn)) {
 			$order->txn = array($order->txn);
 		}
@@ -652,7 +652,6 @@ class ModelOpenbayEbayOpenbay extends Model {
 		}
 
 		/* send the new order notification to openbay so the other markets can update the stock */
-		/* @todo */
 		/* improve this to update when products are subtracted, NOT just when they are paid */
 		$this->openbay->orderNew($order_id);
 	}
