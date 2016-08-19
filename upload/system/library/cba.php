@@ -124,7 +124,7 @@ class CBA {
 		}
 	}
 
-	public function processOrderReports($settings, $db) {
+	public function processOrderReports(Settings $settings, Database $db) {
 		$log = new Log('cba_cron.log');
 		$log->write('Started cron job');
 
