@@ -25,10 +25,6 @@ class Amazon {
 
 		/* Is called from front-end? */
 		if (!defined('HTTPS_CATALOG')) {
-			$this->load->model('openbay/amazon_order');
-
-			$amazonOrderId = $this->model_openbay_amazon_order->getAmazonOrderId($orderId);
-
 			$this->load->library('log');
 
 			$logger = new Log('amazon_stocks.log');
@@ -686,18 +682,6 @@ class Amazon {
 			'fields' => $fields,
 			'tabs' => $tabs
 		);
-	}
-
-	private static function compareFields($field1, $field2) {
-		if ($field1['order'] == $field2['order']) {
-			return ($field1['unordered_index'] < $field2['unordered_index']) ? -1 : 1;
-		} elseif (!empty($field1['order']) && empty($field2['order'])) {
-			return -1;
-		} elseif (!empty($field2['order']) && empty($field1['order'])) {
-			return 1;
-		} else {
-			return ($field1['order'] < $field2['order']) ? -1 : 1;
-		}
 	}
 }
 ?>

@@ -80,9 +80,6 @@ class ControllerCommonFooter extends Controller {
 
 		// Theme
 		$footer_theme = $this->config->get($template . '_footer_theme');
-
-		$stylesheet_mode = $this->config->get('config_stylesheet');
-
 		$footer_color = $this->config->get($template . '_footer_color');
 		$footer_shape = $this->config->get($template . '_footer_shape');
 

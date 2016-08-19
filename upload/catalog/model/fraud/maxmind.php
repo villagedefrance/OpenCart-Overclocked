@@ -36,7 +36,6 @@ class ModelFraudMaxMind extends Model {
 			$request .= '&user_agent=' . urlencode($data['user_agent']);
 			$request .= '&forwardedIP=' . urlencode($data['forwarded_ip']);
 			$request .= '&emailMD5=' . urlencode(md5(utf8_strtolower($data['email'])));
-			//$request .= '&passwordMD5=' . urlencode($data['password']);
 			$request .= '&accept_language=' .  urlencode($data['accept_language']);
 			$request .= '&order_amount=' . urlencode($this->currency->format($data['total'], $data['currency_code'], $data['currency_value'], false));
 			$request .= '&order_currency=' . urlencode($data['currency_code']);

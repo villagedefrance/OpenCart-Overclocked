@@ -11,6 +11,7 @@ class Customer {
 	private $newsletter;
 	private $customer_group_id;
 	private $address_id;
+	private $registry;
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');

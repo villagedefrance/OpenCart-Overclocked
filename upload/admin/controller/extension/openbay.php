@@ -313,9 +313,6 @@ class ControllerExtensionOpenbay extends Controller {
 
 		$this->load->model('openbay/openbay');
 
-		// Set base var
-		$web_root = preg_replace('/system\/$/', '', DIR_SYSTEM);
-
 		if (!isset($this->request->get['stage'])) {
 			$stage = 'check_server';
 		} else {

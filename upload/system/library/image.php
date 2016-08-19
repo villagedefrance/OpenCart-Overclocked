@@ -6,6 +6,9 @@ class Image {
 	private $height;
 	private $bits;
 	private $mime;
+	private $color;
+	private $degree = null;
+	private $watermark = null;
 
 	public function __construct($file) {
 		if (file_exists($file)) {
@@ -169,21 +172,7 @@ class Image {
 		$this->height = imagesy($this->image);
 	}
 
-	private function filter($filter) {
-		imagefilter($this->image, $filter);
-	}
-
-	private function text($text, $x = 0, $y = 0, $size = 5, $color = '000000') {
-		$rgb = $this->html2rgb($color);
-
-		imagestring($this->image, $size, $x, $y, $text, imagecolorallocate($this->image, $rgb[0], $rgb[1], $rgb[2]));
-	}
-
-	private function merge($merge, $x = 0, $y = 0, $opacity = 100) {
-		imagecopymerge($this->image, $merge->getImage(), $x, $y, 0, 0, $merge->getWidth(), $merge->getHeight(), $opacity);
-	}
-
-	private function html2rgb($color) {
+	public function html2rgb($color) {
 		if ($color[0] == '#') {
 			$color = substr($color, 1);
 		}

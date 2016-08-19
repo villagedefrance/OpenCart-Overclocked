@@ -1,6 +1,5 @@
 <?php
 class ControllerSaleContact extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('sale/contact');
@@ -237,6 +236,7 @@ class ControllerSaleContact extends Controller {
 							$mail->password = $this->config->get('config_smtp_password');
 							$mail->port = $this->config->get('config_smtp_port');
 							$mail->timeout = $this->config->get('config_smtp_timeout');
+
 							$mail->setTo($email);
 							$mail->setFrom($this->config->get('config_email'));
 							$mail->setSender($store_name);

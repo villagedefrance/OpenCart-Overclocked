@@ -88,9 +88,7 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		if (isset($this->session->data['cba'])) {
-			$contract_id = $this->session->data['cba']['contract_id'];
-		} else {
+		if (!isset($this->session->data['cba']) || !isset($this->session->data['cba']['contract_id'])) {
 			$this->redirect($this->url->link('common/home'));
 		}
 
@@ -553,12 +551,6 @@ class ControllerPaymentAmazonCheckout extends Controller {
 
 		if (!isset($this->session->data['cba']['order_id'])) {
 			$this->redirect($this->url->link('common/home'));
-		}
-
-		if (isset($this->session->data['coupon'])) {
-			$coupon = $this->model_checkout_coupon->getCoupon($this->session->data['coupon']);
-		} else {
-			$coupon = array();
 		}
 
 		$order = $this->model_checkout_order->getOrder($this->session->data['cba']['order_id']);

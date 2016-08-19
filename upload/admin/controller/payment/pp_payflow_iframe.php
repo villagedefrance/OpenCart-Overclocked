@@ -360,7 +360,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$order_id = $this->request->post['order_id'];
 
 			$paypal_order = $this->model_payment_pp_payflow_iframe->getOrder($order_id);
-			$paypal_transactions = $this->model_payment_pp_payflow_iframe->getTransactions($order_id);
+
 			$order_info = $this->model_sale_order->getOrder($order_id);
 
 			if ($paypal_order && $order_info) {

@@ -44,8 +44,6 @@ class ControllerModuleMenuVertical extends Controller {
 
 		$menu_id = $setting['menu_id'];
 
-		$menu = $this->model_design_menu->getMenu($menu_id);
-
 		$menu_items = $this->model_design_menu->getMenuItems(0, $menu_id);
 
 		foreach ($menu_items as $menu_item) {

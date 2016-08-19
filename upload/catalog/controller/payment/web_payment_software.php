@@ -92,7 +92,7 @@ class ControllerPaymentWebPaymentSoftware extends Controller {
 		// If in test mode strip results to only contain xml data
 		if ($this->config->get('web_payment_software_mode') == 'test') {
 			$end_index = strpos($response, '</WebPaymentSoftwareResponse>');
-			$debug = substr($response, $end_index + 30);
+
 			$response = substr($response, 0, $end_index)  .'</WebPaymentSoftwareResponse>';
 		}
 

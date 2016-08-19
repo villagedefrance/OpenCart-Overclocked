@@ -403,7 +403,6 @@ class ControllerPaymentEway extends Controller {
 				$this->model_payment_eway->addTransaction($eway_order['eway_order_id'], $result->TransactionID, 'payment', $capture_amount, $eway_order['currency_code']);
 
 				$total_captured = $this->model_payment_eway->getTotalCaptured($eway_order['eway_order_id']);
-				$total_refunded = $this->model_payment_eway->getTotalRefunded($eway_order['eway_order_id']);
 
 				$remaining = $eway_order['amount'] - $capture_amount;
 

@@ -213,7 +213,6 @@ class ModelPaymentFirstdataRemote extends Model {
 		curl_setopt($ch, CURLOPT_SSLKEYPASSWD, $this->config->get('firstdata_remote_key_pw'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
-		//curl_setopt($ch, CURLOPT_STDERR, fopen(DIR_LOGS . "/headers.txt", "w+"));
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 
 		$response = curl_exec ($ch);

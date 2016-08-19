@@ -1,6 +1,5 @@
 <?php 
 class ControllerToolMailLog extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('tool/mail_log');

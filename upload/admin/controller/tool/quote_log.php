@@ -1,6 +1,5 @@
 <?php 
 class ControllerToolQuoteLog extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('tool/quote_log');

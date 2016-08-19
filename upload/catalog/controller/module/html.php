@@ -54,7 +54,7 @@ class ControllerModuleHtml extends Controller {
 				$this->data['theme'] = $this->data['theme' . $i];
 				$this->data['title'] = $this->data['title' . $i];
 				break;
-				default: $code = ''; $content_shape = ''; $content_color = ''; $header_shape = ''; $header_color = ''; $theme = ''; $title = '';
+				default: $content_shape = ''; $content_color = ''; $header_shape = ''; $header_color = '';
 			}
 		}
 
@@ -63,10 +63,10 @@ class ControllerModuleHtml extends Controller {
 		// Template
 		$this->data['template'] = $this->config->get('config_template');
 
-		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/'.$this->_name.'.tpl')) {
-			$this->template = $this->config->get('config_template') . '/template/module/'.$this->_name.'.tpl';
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/module/' . $this->_name . '.tpl';
 		} else {
-			$this->template = 'default/template/module/'.$this->_name.'.tpl';
+			$this->template = 'default/template/module/' . $this->_name . '.tpl';
 		}
 
 		$this->render();

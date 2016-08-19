@@ -1,6 +1,11 @@
 <?php
 class Weight {
 	private $weights = array();
+	private $weight_class_id;
+	private $value;
+	private $from;
+	private $to;
+	private $registry;
 
 	public function __construct($registry) {
 		$this->db = $registry->get('db');

@@ -81,7 +81,6 @@ class ControllerReportSaleProfit extends Controller {
 		$price = 0;
 		$cost = 0;
 		$profit = 0;
-		$total = 0;
 
 		$product_total = $this->model_report_product->getTotalProfit($data);
 

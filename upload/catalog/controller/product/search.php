@@ -328,7 +328,7 @@ class ControllerProductSearch extends Controller {
 					'price_option'    => $this->model_catalog_product->hasOptionPriceIncrease($result['product_id']),
 					'special'         => $special,
 					'tax'             => $tax,
-					'rating'          => $result['rating'],
+					'rating'          => $rating,
 					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 				);

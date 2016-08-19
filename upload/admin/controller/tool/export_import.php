@@ -27,7 +27,7 @@ class ControllerToolExportImport extends Controller {
 
 				$incremental = ($this->request->post['incremental']) ? true : false;
 
-				if ($this->model_tool_export_import->upload($file, $this->request->post['incremental']) === true) {
+				if ($this->model_tool_export_import->upload($file, $incremental) === true) {
 					$this->session->data['success'] = $this->language->get('text_success');
 
 					$this->redirect($this->url->link('tool/export_import', 'token=' . $this->session->data['token'], 'SSL'));

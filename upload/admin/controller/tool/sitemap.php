@@ -96,12 +96,12 @@ class ControllerToolSitemap extends Controller {
 			$button = $this->request->post['buttonForm'];
 
 			switch($button) {
-				case "gentext": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generate_text', 'token=' . $this->session->data['token'], 'SSL')); break;
-				case "genxml": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generate_xml', 'token=' . $this->session->data['token'], 'SSL')); break;
-				case "gengzip": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generate_gzip', 'token=' . $this->session->data['token'], 'SSL')); break;
-				case "loadtext": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/download_text', 'token=' . $this->session->data['token'], 'SSL')); break;
-				case "loadxml": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/download_xml', 'token=' . $this->session->data['token'], 'SSL')); break;
-				case "loadgzip": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/download_gzip', 'token=' . $this->session->data['token'], 'SSL')); break;
+				case "gentext": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generateText', 'token=' . $this->session->data['token'], 'SSL')); break;
+				case "genxml": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generateXml', 'token=' . $this->session->data['token'], 'SSL')); break;
+				case "gengzip": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/generateGzip', 'token=' . $this->session->data['token'], 'SSL')); break;
+				case "loadtext": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/downloadText', 'token=' . $this->session->data['token'], 'SSL')); break;
+				case "loadxml": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/downloadXml', 'token=' . $this->session->data['token'], 'SSL')); break;
+				case "loadgzip": $this->data['sitemap'] = $this->redirect($this->url->link('tool/' . $this->_name . '/downloadGzip', 'token=' . $this->session->data['token'], 'SSL')); break;
 			}
 		}
 
@@ -185,7 +185,6 @@ class ControllerToolSitemap extends Controller {
 			$FileSize = end($extract);
 			$FileRead = "../sitemap.xml.gz";
 			$HandleRead = gzopen($FileRead, "rb");
-			$ContentRead = gzread($HandleRead, $FileSize);
 			gzclose($HandleRead);
 
 			$size = filesize("../sitemap.xml.gz");
@@ -218,14 +217,14 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master Text Sitemap
-	public function generate_text() {
+	public function generateText() {
 		$this->language->load('tool/' . $this->_name);
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('tool/' . $this->_name);
 
-		$this->session->data['output'] = $this->model_tool_sitemap->generate_text();
+		$this->session->data['output'] = $this->model_tool_sitemap->generateText();
 
 		$this->session->data['success_text'] = $this->language->get('text_success_text');
 
@@ -233,7 +232,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master XML Sitemap
-	public function generate_xml() {
+	public function generateXml() {
 
 		$this->language->load('tool/' . $this->_name);
 
@@ -241,7 +240,7 @@ class ControllerToolSitemap extends Controller {
 
 		$this->load->model('tool/' . $this->_name);
 
-		$this->session->data['output'] = $this->model_tool_sitemap->generate_xml();
+		$this->session->data['output'] = $this->model_tool_sitemap->generateXml();
 
 		$this->session->data['success_xml'] = $this->language->get('text_success_xml');
 
@@ -249,14 +248,14 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master XML GZ Sitemap
-	public function generate_gzip() {
+	public function generateGzip() {
 		$this->language->load('tool/' . $this->_name);
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('tool/' . $this->_name);
 
-		$this->session->data['output'] = $this->model_tool_sitemap->generate_gzip();
+		$this->session->data['output'] = $this->model_tool_sitemap->generateGzip();
 
 		$this->session->data['success_gzip'] = $this->language->get('text_success_gzip');
 
@@ -264,7 +263,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master Text Sitemap
-	public function download_text() {
+	public function downloadText() {
 		if (file_exists("../sitemap.txt") && is_file("../sitemap.txt")) {
 			$file = "../sitemap.txt";
 
@@ -297,7 +296,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master XML Sitemap
-	public function download_xml() {
+	public function downloadXml() {
 		if (file_exists("../sitemap.xml") && is_file("../sitemap.xml")) {
 			$file = "../sitemap.xml";
 
@@ -330,7 +329,7 @@ class ControllerToolSitemap extends Controller {
 	}
 
 	// Master XML GZ Sitemap
-	public function download_gzip() {
+	public function downloadGzip() {
 		if (file_exists("../sitemap.xml.gz") && is_file("../sitemap.xml.gz")) {
 			$file = "../sitemap.xml.gz";
 

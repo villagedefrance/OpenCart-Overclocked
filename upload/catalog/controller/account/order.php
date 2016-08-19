@@ -1,6 +1,5 @@
 <?php
 class ControllerAccountOrder extends Controller {
-	private $error = array();
 
 	public function index() {
 		if (!$this->customer->isLogged()) {
@@ -348,8 +347,6 @@ class ControllerAccountOrder extends Controller {
 	}
 
 	public function info() {
-		$this->language->load('account/order');
-
 		if (isset($this->request->get['order_id'])) {
 			$order_id = $this->request->get['order_id'];
 		} else {
@@ -369,6 +366,8 @@ class ControllerAccountOrder extends Controller {
 
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
+
+		$this->language->load('account/order');
 
 		$this->load->model('account/order');
 

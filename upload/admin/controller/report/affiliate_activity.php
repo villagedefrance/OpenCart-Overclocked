@@ -29,15 +29,11 @@ class ControllerReportAffiliateActivity extends Controller {
 			$url = '';
 
 			if (isset($this->request->get['filter_date_start'])) {
-				$filter_date_start = $this->request->get['filter_date_start'];
-			} else {
-				$filter_date_start = date('Y-01-01', time());
+				$url .= '&filter_date_start=' . $this->request->get['filter_date_start'];
 			}
 
 			if (isset($this->request->get['filter_date_end'])) {
-				$filter_date_end = $this->request->get['filter_date_end'];
-			} else {
-				$filter_date_end = date('Y-m-d', time());
+				$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 			}
 
 			if (isset($this->request->get['page'])) {

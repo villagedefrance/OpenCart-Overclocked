@@ -18,7 +18,7 @@ class ModelShippingCanadaPost extends Model {
 			$status = false;
 		}
 
-		$weight = intval($this->weight->convert($this->cart->getWeight(), $this->config->get('config_weight_class_id'), 2));
+		$modified_weight = intval($this->weight->convert($this->cart->getWeight(), $this->config->get('config_weight_class_id'), 2));
 
 		$method_data = array();
 
@@ -26,9 +26,6 @@ class ModelShippingCanadaPost extends Model {
 			$quote_data = array();
 
 			$return_error = false;
-
-			$cp_title = $this->language->get('text_title');
-			$cp_estdelevery = $this->language->get('text_estimated');
 
 			$cp_server = $this->config->get('canadapost_server');
 			$cp_port = $this->config->get('canadapost_port');
@@ -91,8 +88,8 @@ class ModelShippingCanadaPost extends Model {
 				$j=0;
 
 				if ($this->parseResults($resultXML)) {
-					foreach ($this->parseResults($resultXML) as $myResult) {
-						$quote_data['canadapost_' . $j] = $myResult;
+					foreach ($this->parseResults($resultXML) as $canada_result) {
+						$quote_data['canadapost_' . $j] = $canada_result;
 						$j++;
 					}
 				} else {
@@ -167,8 +164,6 @@ class ModelShippingCanadaPost extends Model {
 		$cp_estdelevery = $this->language->get('text_estimated');
 
 		if ($statusMessage == 'OK') {
-			$strProduct = substr($resultXML, strpos($resultXML, "<product id=") + strlen("<product id=>"), strpos($resultXML, "</product>") - strlen("<product id=>") - strpos($resultXML, "<product id="));
-
 			$index = 0;
 
 			$aryProducts = false;
@@ -177,11 +172,7 @@ class ModelShippingCanadaPost extends Model {
 				$name = substr($resultXML, strpos($resultXML, "<name>") + strlen("<name>"), strpos($resultXML, "</name>") - strlen("<name>") - strpos($resultXML, "<name>"));
 				$rate = substr($resultXML, strpos($resultXML, "<rate>") + strlen("<rate>"), strpos($resultXML, "</rate>") - strlen("<rate>") - strpos($resultXML, "<rate>"));
 
-				$shippingDate = substr($resultXML, strpos($resultXML, "<shippingDate>") + strlen("<shippingDate>"), strpos($resultXML, "</shippingDate>") - strlen("<shippingDate>") - strpos($resultXML, "<shippingDate>"));
 				$deliveryDate = substr($resultXML, strpos($resultXML, "<deliveryDate>") + strlen("<deliveryDate>"), strpos($resultXML, "</deliveryDate>") - strlen("<deliveryDate>") - strpos($resultXML, "<deliveryDate>"));
-				$deliveryDayOfWeek = substr($resultXML, strpos($resultXML, "<deliveryDayOfWeek>") + strlen("<deliveryDayOfWeek>"), strpos($resultXML, "</deliveryDayOfWeek>") - strlen("<deliveryDayOfWeek>") - strpos($resultXML, "<deliveryDayOfWeek>"));
-				$nextDayAM = substr($resultXML, strpos($resultXML, "<nextDayAM>") + strlen("<nextDayAM>"), strpos($resultXML, "</nextDayAM>") - strlen("<nextDayAM>") - strpos($resultXML, "<nextDayAM>"));
-				$packingID = substr($resultXML, strpos($resultXML, "<packingID>") + strlen("<packingID>"), strpos($resultXML, "</packingID>") - strlen("<packingID>") - strpos($resultXML, "<packingID>"));
 
 				$cp_handling = $this->config->get('canadapost_handling');
 

@@ -1,6 +1,7 @@
 <?php
 class Length {
 	private $lengths = array();
+	private $registry;
 
 	public function __construct($registry) {
 		$this->db = $registry->get('db');

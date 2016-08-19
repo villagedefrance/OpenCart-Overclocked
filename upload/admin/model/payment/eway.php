@@ -46,14 +46,13 @@ class ModelPaymentEway extends Model {
 	}
 
 	public function uninstall() {
-		//$this->model_setting_setting->deleteSetting($this->request->get['extension']);
 		$this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "eway_order`;");
 		$this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "eway_transactions`;");
 		$this->db->query("DROP TABLE IF EXISTS `" . DB_PREFIX . "eway_card`;");
 	}
 
 	public function getOrder($order_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "eway_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "eway_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 0,1");
 
 		if ($query->num_rows) {
 			$order = $query->row;

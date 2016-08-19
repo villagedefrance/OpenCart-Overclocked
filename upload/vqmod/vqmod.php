@@ -482,17 +482,6 @@ abstract class VQMod {
 
 		return $return;
 	}
-
-	/**
-	 * VQMod::_quotePath()
-	 *
-	 * @param string $matches callback matches
-	 * @return string
-	 * @description apply's preg_quote to string from callback
-	 */
-	private static function _quotePath($matches) {
-		return preg_quote($matches[1], '~');
-	}
 }
 
 /**
@@ -820,7 +809,7 @@ class VQModObject {
 	 * @return null
 	 * @description Parses modifications in preparation for the applyMod method to work
 	 */
-	private function _parseMods(DOMNode $node) {
+	protected function _parseMods(DOMNode $node) {
 		$files = $node->getElementsByTagName('file');
 
 		$replaces = VQMod::$replaces;

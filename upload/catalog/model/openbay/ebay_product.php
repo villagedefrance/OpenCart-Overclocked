@@ -436,36 +436,28 @@ class ModelOpenbayEbayProduct extends Model {
 				$vars[$s] = $product_option_value_id;
 			}
 
-			//$this->openbay->ebay->log('Unsorted: '.serialize($vars));
-
-			//sort the array to the natural sort order
+			// sort the array to the natural sort order
 			ksort($vars);
 
-			//$this->openbay->ebay->log('Sorted: '.serialize($vars));
-
-			//remove the key from the array to pass to implode
+			// remove the key from the array to pass to implode
 			$vars2 = array();
 
 			foreach ($vars as $k=>$v) {
 				$vars2[] = $v;
 			}
 
-			//implode the values
+			// implode the values
 			$vars = implode(':', $vars2);
 
-			//$this->openbay->ebay->log('Vars: '.$vars);
-
-			//create the variant
+			// create the variant
 			$this->createProductVariant(array('var' => $vars, 'price' => $variant['price'], 'stock' => $variant['qty'], 'product_id' => $product_id, 'sku' => $variant['sku']));
 		}
 
 		$this->updateVariantListing($product_id, $data['ItemID']);
-
-		//$this->openbay->ebay->log('Item variant stuff done..');
 	}
 
 	private function getOption($name) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option` `o` LEFT JOIN `" . DB_PREFIX . "option_description` `od` ON (`od`.`option_id` = `o`.`option_id`) WHERE `od`.`name` = '" . $this->db->escape($name) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option` `o` LEFT JOIN `" . DB_PREFIX . "option_description` `od` ON (`od`.`option_id` = `o`.`option_id`) WHERE `od`.`name` = '" . $this->db->escape($name) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Option found: "' . $name . ' / ' . $qry->row['option_id'] . '" with sort order of "' . $qry->row['sort_order'] . '"');
@@ -481,7 +473,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 		$option_id = $this->db->getLastId();
 
-		$qry_sort = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option` WHERE `option_id` = '" . $option_id . "' LIMIT 1");
+		$qry_sort = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option` WHERE `option_id` = '" . $option_id . "' LIMIT 0,1");
 
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "option_description` SET `language_id` = '" . (int)$this->config->get('config_language_id') . "', `name` = '" . $this->db->escape($name) . "', `option_id` = '" . $this->db->escape($option_id) . "'");
 
@@ -491,13 +483,11 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	private function getOptionValue($name, $option_id) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option_value` ov LEFT JOIN `" . DB_PREFIX . "option_value_description` `ovd` ON (`ovd`.`option_value_id` = `ov`.`option_value_id`) WHERE `ovd`.`name` = '" . $this->db->escape($name) . "' AND `ovd`.`option_id` = '" . (int)$option_id . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "option_value` ov LEFT JOIN `" . DB_PREFIX . "option_value_description` `ovd` ON (`ovd`.`option_value_id` = `ov`.`option_value_id`) WHERE `ovd`.`name` = '" . $this->db->escape($name) . "' AND `ovd`.`option_id` = '" . (int)$option_id . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
-			//$this->openbay->ebay->log('Option value found: "'.$name.'"');
 			return array('id' => (int)$qry->row['option_value_id'], 'sort' => (int)$qry->row['sort_order']);
 		} else {
-			//$this->openbay->ebay->log('No option value found, creating "'.$name.'"');
 			return $this->createOptionValue($name, $option_id);
 		}
 	}
@@ -513,7 +503,7 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	private function getProductOption($product_id, $option_id) {
-		$qry = $this->db->query("SELECT * FROM  " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "' AND option_id = '" . (int)$option_id . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM  " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "' AND option_id = '" . (int)$option_id . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			return $qry->row['product_option_id'];
@@ -524,7 +514,7 @@ class ModelOpenbayEbayProduct extends Model {
 	}
 
 	private function getProductOptionValue($product_id, $option_id, $option_value_id, $product_option_id) {
-		$qry = $this->db->query("SELECT * FROM  `" . DB_PREFIX . "product_option_value` WHERE `product_id` = '" . (int)$product_id . "' AND `option_id` = '" . (int)$option_id . "' AND `product_option_id` = '" . (int)$product_option_id . "' AND `option_value_id` = '" . (int)$option_value_id . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM  `" . DB_PREFIX . "product_option_value` WHERE `product_id` = '" . (int)$product_id . "' AND `option_id` = '" . (int)$option_id . "' AND `product_option_id` = '" . (int)$product_option_id . "' AND `option_value_id` = '" . (int)$option_value_id . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			return $qry->row['product_option_value_id'];
@@ -566,7 +556,7 @@ class ModelOpenbayEbayProduct extends Model {
 
 		foreach ($variants as $option) {
 			if ($v == 0) {
-				//create a php version of the option element array to use on server side
+				// create a php version of the option element array to use on server side
 				$varData['option_list'] = base64_encode(serialize($option['opts']));
 			}
 
@@ -591,7 +581,7 @@ class ModelOpenbayEbayProduct extends Model {
 	private function attributeGroupExists($name) {
 		$this->openbay->ebay->log('Checking attribute group: '.$name);
 
-		$qry = $this->db->query("SELECT * FROM  `" . DB_PREFIX . "attribute_group_description` WHERE `name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' AND `language_id` = '" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM  `" . DB_PREFIX . "attribute_group_description` WHERE `name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' AND `language_id` = '" . (int)$this->config->get('config_language_id') . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Group exists');
@@ -600,7 +590,7 @@ class ModelOpenbayEbayProduct extends Model {
 		} else {
 			$this->openbay->ebay->log('New group');
 
-			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "attribute_group` ORDER BY `sort_order` DESC LIMIT 1");
+			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "attribute_group` ORDER BY `sort_order` DESC LIMIT 0,1");
 
 			if ($qry2->num_rows) {
 				$sort = $qry2->row['sort_order'] + 1;
@@ -621,7 +611,7 @@ class ModelOpenbayEbayProduct extends Model {
 	private function attributeExists($group_id, $name) {
 		$this->openbay->ebay->log('Checking attribute: '.$name);
 
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "attribute_description` `ad`, `" . DB_PREFIX . "attribute` `a` WHERE `ad`.`name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' AND `ad`.`language_id` = '" . (int)$this->config->get('config_language_id') . "' AND `a`.`attribute_id` = `ad`.`attribute_id` AND `a`.`attribute_group_id` = '" . $this->db->escape($group_id) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "attribute_description` `ad`, `" . DB_PREFIX . "attribute` `a` WHERE `ad`.`name` = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' AND `ad`.`language_id` = '" . (int)$this->config->get('config_language_id') . "' AND `a`.`attribute_id` = `ad`.`attribute_id` AND `a`.`attribute_group_id` = '" . $this->db->escape($group_id) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Attribute exists');
@@ -629,7 +619,7 @@ class ModelOpenbayEbayProduct extends Model {
 			return $qry->row['attribute_id'];
 		} else {
 			$this->openbay->ebay->log('New attribute');
-			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "attribute` ORDER BY `sort_order` DESC LIMIT 1");
+			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "attribute` ORDER BY `sort_order` DESC LIMIT 0,1");
 
 			if ($qry2->num_rows) {
 				$sort = $qry2->row['sort_order'] + 1;
@@ -664,7 +654,7 @@ class ModelOpenbayEbayProduct extends Model {
 	private function manufacturerExists($name) {
 		$this->openbay->ebay->log('Checking manufacturer: ' . $name);
 
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "manufacturer_description` WHERE LCASE(`name`) = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "manufacturer_description` WHERE LCASE(`name`) = '" . $this->db->escape(htmlspecialchars($name, ENT_COMPAT)) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Manufacturer exists');
@@ -673,7 +663,7 @@ class ModelOpenbayEbayProduct extends Model {
 		} else {
 			$this->openbay->ebay->log('New manufacturer');
 
-			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "manufacturer` ORDER BY `sort_order` DESC LIMIT 1");
+			$qry2 = $this->db->query("SELECT `sort_order` FROM  `" . DB_PREFIX . "manufacturer` ORDER BY `sort_order` DESC LIMIT 0,1");
 
 			if ($qry2->num_rows) {
 				$sort = $qry2->row['sort_order'] + 1;
@@ -696,7 +686,7 @@ class ModelOpenbayEbayProduct extends Model {
 	private function weightClassExists($name) {
 		$this->openbay->ebay->log('Checking weight class: ' . $name);
 
-		$qry = $this->db->query("SELECT `weight_class_id` FROM `" . DB_PREFIX . "weight_class_description` WHERE LCASE(`title`) = '" . $this->db->escape(strtolower($name)) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT `weight_class_id` FROM `" . DB_PREFIX . "weight_class_description` WHERE LCASE(`title`) = '" . $this->db->escape(strtolower($name)) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Checking weight class exists');
@@ -718,7 +708,7 @@ class ModelOpenbayEbayProduct extends Model {
 	private function lengthClassExists($name) {
 		$this->openbay->ebay->log('Checking length class: ' . $name);
 
-		$qry = $this->db->query("SELECT `length_class_id` FROM `" . DB_PREFIX . "length_class_description` WHERE LCASE(`title`) = '" . $this->db->escape(strtolower($name)) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT `length_class_id` FROM `" . DB_PREFIX . "length_class_description` WHERE LCASE(`title`) = '" . $this->db->escape(strtolower($name)) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$this->openbay->ebay->log('Checking length class exists');

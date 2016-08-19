@@ -134,8 +134,6 @@ class ControllerSettingStore extends Controller {
 			'action'   => $action
 		);
 
-		$store_total = $this->model_setting_store->getTotalStores();
-
 		$results = $this->model_setting_store->getStores();
 
 		foreach ($results as $result) {

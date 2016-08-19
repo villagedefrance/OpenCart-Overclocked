@@ -230,13 +230,7 @@ class RapidAPI {
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-
-		// Uncomment this if you are getting SSL errors (common in WAMP)
-		// Make sure it is enabled when you go live!
-		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		// Uncomment for CURL debugging
-		//curl_setopt($ch, CURLOPT_VERBOSE, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		$response = curl_exec($ch);
 

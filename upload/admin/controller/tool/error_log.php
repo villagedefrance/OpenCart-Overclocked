@@ -1,6 +1,5 @@
 <?php
 class ControllerToolErrorLog extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('tool/error_log');

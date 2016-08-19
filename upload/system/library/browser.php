@@ -38,7 +38,7 @@ class Browser {
 	}
 
 	// Compile the User Agent data
-	private function _load_agent_file() {
+	protected function _load_agent_file() {
 		if (file_exists(DIR_SYSTEM . 'helper/agent.php') && is_file(DIR_SYSTEM . 'helper/agent.php')) {
 			include(DIR_SYSTEM . 'helper/agent.php');
 		} else {
@@ -81,7 +81,7 @@ class Browser {
 	}
 
 	// Compile the User Agent data
-	private function _compile_data() {
+	protected function _compile_data() {
 		$this->_set_platform();
 
 		foreach (array('_set_robot', '_set_browser', '_set_pad', '_set_mobile') as $function) {
@@ -92,7 +92,7 @@ class Browser {
 	}
 
 	// Set the Platform
-	private function _set_platform() {
+	protected function _set_platform() {
 		if (is_array($this->platforms) && count($this->platforms) > 0) {
 			foreach ($this->platforms as $key => $val) {
 				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
@@ -107,7 +107,7 @@ class Browser {
 	}
 
 	// Set the Robot
-	private function _set_robot() {
+	protected function _set_robot() {
 		if (is_array($this->robots) && count($this->robots) > 0) {
 			foreach ($this->robots as $key => $val) {
 				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
@@ -124,7 +124,7 @@ class Browser {
 	}
 
 	// Set the Browser
-	private function _set_browser() {
+	protected function _set_browser() {
 		if (is_array($this->browsers) && count($this->browsers) > 0) {
 			foreach ($this->browsers as $key => $val) {
 				if (preg_match("|" . preg_quote($key) . ".*?([0-9\.]+)|i", $this->agent, $match)) {
@@ -147,7 +147,7 @@ class Browser {
 	}
 
 	// Set the Pad Device
-	private function _set_pad() {
+	protected function _set_pad() {
 		if (is_array($this->pads) && count($this->pads) > 0) {
 			foreach ($this->pads as $key => $val) {
 				if (strpos(strtolower($this->agent), $key) !== false) {
@@ -164,7 +164,7 @@ class Browser {
 	}
 
 	// Set the Mobile Device
-	private function _set_mobile() {
+	protected function _set_mobile() {
 		if (is_array($this->mobiles) && count($this->mobiles) > 0) {
 			foreach ($this->mobiles as $key => $val) {
 				if (strpos(strtolower($this->agent), $key) !== false) {
@@ -181,7 +181,7 @@ class Browser {
 	}
 
 	// Set the accepted languages
-	private function _set_languages() {
+	protected function _set_languages() {
 		if ((count($this->accept_languages) == 0) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && $_SERVER['HTTP_ACCEPT_LANGUAGE'] != '') {
 			$languages = preg_replace('/(;q=[0-9\.]+)/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_LANGUAGE'])));
 
@@ -194,7 +194,7 @@ class Browser {
 	}
 
 	// Set the accepted character sets
-	private function _set_charsets() {
+	protected function _set_charsets() {
 		if ((count($this->accept_charsets) == 0) && isset($_SERVER['HTTP_ACCEPT_CHARSET']) && $_SERVER['HTTP_ACCEPT_CHARSET'] != '') {
 			$charsets = preg_replace('/(;q=.+)/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_CHARSET'])));
 

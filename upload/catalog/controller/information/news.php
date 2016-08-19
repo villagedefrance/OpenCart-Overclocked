@@ -1,6 +1,5 @@
 <?php
 class ControllerInformationNews extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('information/news');

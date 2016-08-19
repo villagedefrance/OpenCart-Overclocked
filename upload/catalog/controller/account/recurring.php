@@ -1,6 +1,5 @@
 <?php
 class ControllerAccountRecurring extends Controller {
-	private $error = array();
 
 	public function index() {
 		if (!$this->customer->isLogged()) {
@@ -124,8 +123,6 @@ class ControllerAccountRecurring extends Controller {
 	}
 
 	public function info() {
-		$this->load->language('account/recurring');
-
 		if (isset($this->request->get['recurring_id'])) {
 			$recurring_id = $this->request->get['recurring_id'];
 		} else {
@@ -153,6 +150,8 @@ class ControllerAccountRecurring extends Controller {
 		} else {
 			$this->data['success'] = '';
 		}
+
+		$this->load->language('account/recurring');
 
 		$this->load->model('account/recurring');
 

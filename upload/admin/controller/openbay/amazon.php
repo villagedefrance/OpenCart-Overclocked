@@ -1194,7 +1194,6 @@ class ControllerOpenbayAmazon extends Controller {
 			foreach ($this->request->post['link'] as $link) {
 				if (!empty($link['product_id'])) {
 					$links[] = $link;
-					$amazonSkus[] = $link['amazon_sku'];
 				}
 			}
 		}

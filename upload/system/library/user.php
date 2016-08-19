@@ -2,7 +2,9 @@
 class User {
 	private $user_id;
 	private $username;
+	private $password;
 	private $permission = array();
+	private $registry;
 
 	public function __construct($registry) {
 		$this->db = $registry->get('db');

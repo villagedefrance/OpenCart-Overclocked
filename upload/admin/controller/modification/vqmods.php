@@ -1,6 +1,5 @@
 <?php
 class ControllerModificationVQmods extends Controller {
-	private $error = array();
 
 	public function __construct($registry) {
 		parent::__construct($registry);
@@ -571,7 +570,7 @@ class ControllerModificationVQmods extends Controller {
 		$this->redirect($this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
-	private function list_vqmod_scripts() {
+	protected function list_vqmod_scripts() {
 		$vqmod_scripts = array();
 
 		if ($this->userPermission('access')) {
@@ -590,7 +589,7 @@ class ControllerModificationVQmods extends Controller {
 		return $vqmod_scripts;
 	}
 
-	private function count_vqmod_scripts() {
+	protected function count_vqmod_scripts() {
 		$total_scripts = 0;
 
 		if ($this->userPermission('access')) {
@@ -665,7 +664,7 @@ class ControllerModificationVQmods extends Controller {
 		}
 	}
 
-	private function zip_send($targets, $filename = 'download') {
+	protected function zip_send($targets, $filename = 'download') {
 		$temp = tempnam('tmp', 'zip');
 
 		$zip = new ZipArchive();
@@ -691,7 +690,7 @@ class ControllerModificationVQmods extends Controller {
 		unlink($temp);
 	}
 
-	private function vqmod_installation_check() {
+	protected function vqmod_installation_check() {
 		// Check SimpleXML for VQManager use
 		if (!function_exists('simplexml_load_file')) {
 			$this->session->data['vqmod_installation_error'] = $this->language->get('error_simplexml');
@@ -807,7 +806,7 @@ class ControllerModificationVQmods extends Controller {
 		return true;
 	}
 
-	private function userPermission($permission = 'modify') {
+	protected function userPermission($permission = 'modify') {
 		$this->language->load('modification/vqmods');
 
 		if (!$this->user->hasPermission($permission, 'modification/vqmods')) {

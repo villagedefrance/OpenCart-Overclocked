@@ -5,7 +5,7 @@ class ModelToolRoute extends Model {
 		$routes_data = array();
 
 		$links_data = $this->getLinks();
-		$categories_data = $this->getCategories(0, $current_path = '');
+		$categories_data = $this->getCategories(0);
 
 		$routes_data = array_merge($links_data, $categories_data);
 

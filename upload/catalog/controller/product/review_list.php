@@ -1,6 +1,5 @@
 <?php
 class ControllerProductReviewList extends Controller {
-	private $error = array();
 
 	public function index() {
 		$this->language->load('product/review_list');

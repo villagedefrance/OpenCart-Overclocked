@@ -73,7 +73,7 @@ class ControllerPaymentStripePayments extends Controller {
 		try {
 			$customer = Stripe_Customer::create(array('email' => $order_info['email'], 'card' => $token));
 
-			$charge = Stripe_Charge::create(array(
+			Stripe_Charge::create(array(
 				'customer'     => $customer->id,
 				'amount'       => $amount,
 				'currency'     => $order_info['currency_code'],

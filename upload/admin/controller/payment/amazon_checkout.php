@@ -334,8 +334,6 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		$json = array();
 
 		if (!empty($this->request->files['file']['name'])) {
-			$filename = basename(html_entity_decode($this->request->files['file']['name'], ENT_QUOTES, 'UTF-8'));
-
 			if ($this->request->files['file']['error'] != UPLOAD_ERR_OK) {
 				$json['error'] = $this->language->get('error_upload');
 			}

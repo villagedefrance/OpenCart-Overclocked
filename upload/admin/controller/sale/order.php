@@ -1547,9 +1547,9 @@ class ControllerSaleOrder extends Controller {
 
 			$this->data['close'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
-			$this->data['pick_list'] = $this->url->link('sale/order/pick_list', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
-			$this->data['shipping_label'] = $this->url->link('sale/order/shipping_label', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
-			$this->data['delivery_note'] = $this->url->link('sale/order/delivery_note', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
+			$this->data['pick_list'] = $this->url->link('sale/order/pickList', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
+			$this->data['shipping_label'] = $this->url->link('sale/order/shippingLabel', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
+			$this->data['delivery_note'] = $this->url->link('sale/order/deliveryNote', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
 			$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
 
 			$this->data['order_id'] = (int)$this->request->get['order_id'];
@@ -2289,7 +2289,7 @@ class ControllerSaleOrder extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function shipping_label() {
+	public function shippingLabel() {
 		$this->language->load('sale/order');
 
 		$this->data['title'] = $this->language->get('heading_title');
@@ -2397,7 +2397,7 @@ class ControllerSaleOrder extends Controller {
 		}
 	}
 
-	public function pick_list() {
+	public function pickList() {
 		$this->language->load('sale/order');
 
 		$this->data['title'] = $this->language->get('heading_title');
@@ -2644,7 +2644,7 @@ class ControllerSaleOrder extends Controller {
 		}
 	}
 
-	public function delivery_note() {
+	public function deliveryNote() {
 		$this->language->load('sale/order');
 
 		$this->data['title'] = $this->language->get('heading_title');

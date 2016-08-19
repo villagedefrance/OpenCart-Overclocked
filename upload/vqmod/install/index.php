@@ -63,8 +63,8 @@ if (!empty($write_errors)) {
 // Create new UGRSR class
 $u = new UGRSR($opencart_path);
 
-// remove the # before this to enable debugging info
-#$u->debug = true;
+// Change to true to enable debugging info
+$u->debug = false;
 
 // Set file searching to off
 $u->file_search = false;

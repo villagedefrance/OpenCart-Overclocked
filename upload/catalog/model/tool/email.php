@@ -1,6 +1,5 @@
 <?php
 class ModelToolEmail extends Model {
-	private $domain = '';
 
 	function verifyMail($email) {
 		$valid = false;

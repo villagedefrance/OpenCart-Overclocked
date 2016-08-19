@@ -35,9 +35,8 @@ class ControllerAmazonusOrder extends Controller {
 
 		$orderXml = simplexml_load_string($decrypted);
 
-		$amazonusOrderStatus = trim(strtolower((string)$orderXml->Status));
-
 		$amazonusOrderId = (string)$orderXml->AmazonOrderId;
+
 		$orderStatus = $this->model_openbay_amazonus_order->getMappedStatus((string)$orderXml->Status);
 
 		$logger->write('Received order ' . $amazonusOrderId);
