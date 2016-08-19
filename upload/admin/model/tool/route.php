@@ -40,6 +40,7 @@ class ModelToolRoute extends Model {
 		$links_data[] = array('link'	=> 'affiliate/edit', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/password', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/payment', 'name' => '');
+		$links_data[] = array('link'	=> 'affiliate/product', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/tracking', 'name' => '');
 		$links_data[] = array('link'	=> 'affiliate/transaction', 'name' => '');
 		$links_data[] = array('link'	=> 'product/search', 'name' => '');
@@ -59,8 +60,8 @@ class ModelToolRoute extends Model {
 
 		foreach ($informations as $information) {
 			$links_data[] = array(
-				'link'		=> str_replace('&', '&amp;', 'information/information&information_id=' . $information['information_id']),
-				'name'	=> ' [ ' . $information['title'] . ' ] '
+				'link' => str_replace('&', '&amp;', 'information/information&information_id=' . $information['information_id']),
+				'name' => ' [ ' . $information['title'] . ' ] '
 			);
 		}
 
@@ -69,8 +70,8 @@ class ModelToolRoute extends Model {
 
 		foreach ($manufacturers as $manufacturer) {
 			$links_data[] = array(
-				'link'		=> str_replace('&', '&amp;', 'product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']),
-				'name'	=> ' [ ' . $manufacturer['name'] . ' ] '
+				'link' => str_replace('&', '&amp;', 'product/manufacturer/info&manufacturer_id=' . $manufacturer['manufacturer_id']),
+				'name' => ' [ ' . $manufacturer['name'] . ' ] '
 			);
 		}
 
@@ -94,8 +95,8 @@ class ModelToolRoute extends Model {
 			}
 
 			$categories_data[] = array(
-				'link' 		=> str_replace('&', '&amp;', 'product/category&path=' . $new_path),
-				'name'	=> ' [ ' . $result['name'] . ' ] '
+				'link' => str_replace('&', '&amp;', 'product/category&path=' . $new_path),
+				'name' => ' [ ' . $result['name'] . ' ] '
 			);
 
 			$this->getCategories($result['category_id'], $new_path);
