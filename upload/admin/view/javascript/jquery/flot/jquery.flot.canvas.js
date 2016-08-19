@@ -28,7 +28,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 */
 
 (function($) {
-
 	var options = {
 		canvas: true
 	};
@@ -40,7 +39,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 	function init(plot, classes) {
-
 		var Canvas = classes.Canvas;
 
 		// We only want to replace the functions once; the second time around
@@ -56,7 +54,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		// Finishes rendering the canvas, including overlaid text
 
 		Canvas.prototype.render = function() {
-
 			if (!plot.getOptions().canvas) {
 				return render.call(this);
 			}
@@ -145,7 +142,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		// }
 
 		Canvas.prototype.getTextInfo = function(layer, text, font, angle, width) {
-
 			if (!plot.getOptions().canvas) {
 				return getTextInfo.call(this, layer, text, font, angle, width);
 			}
@@ -181,7 +177,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			info = styleCache[text];
 
 			if (info == null) {
-
 				var context = this.context;
 
 				// If the font was provided as CSS, create a div with those
@@ -264,7 +259,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		// Adds a text string to the canvas text overlay.
 
 		Canvas.prototype.addText = function(layer, x, y, text, font, angle, width, halign, valign) {
-
 			if (!plot.getOptions().canvas) {
 				return addText.call(this, layer, x, y, text, font, angle, width, halign, valign);
 			}
@@ -288,7 +282,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				y = Math.round(y);
 			}
 
-			// FIXME: LEGACY BROWSER FIX
+			// LEGACY BROWSER FIX
 			// AFFECTS: Opera < 12.00
 
 			// Offset the y coordinate, since Opera is off pretty

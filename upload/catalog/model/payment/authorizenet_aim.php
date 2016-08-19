@@ -8,7 +8,7 @@ class ModelPaymentAuthorizeNetAim extends Model {
 
 		if ($this->config->get('authorizenet_aim_total') > 0 && $this->config->get('authorizenet_aim_total') > $total) {
 			$status = false;
-		} elseif ($this->config->has('authorizenet_aim_total_max') && $this->config->get('authorizenet_aim_total_max') > 0 && $total > $this->config->get('authorizenet_aim_total_max'))) {
+		} elseif ($this->config->has('authorizenet_aim_total_max') && $this->config->get('authorizenet_aim_total_max') > 0 && $total > $this->config->get('authorizenet_aim_total_max')) {
 			$status = false;
 		} elseif (!$this->config->get('authorizenet_aim_geo_zone_id')) {
 			$status = true;

@@ -76,7 +76,7 @@ class ModelOpenbayOpenbay extends Model {
 			$this->openbay->log('Finished update test - no errors');
 			return array('error' => 0, 'response' => '', 'percent_complete' => 20, 'status_message' => $this->language->get('text_check_new'));
 		} else {
-			$this->openbay->log('Finished update test - errors: ' . print_r($this->error));
+			$this->openbay->log('Finished update test - errors: ' . $this->error);
 			return array('error' => 1, 'response' => $this->error);
 		}
 	}

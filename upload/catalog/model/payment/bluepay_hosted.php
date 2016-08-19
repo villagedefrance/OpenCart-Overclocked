@@ -8,7 +8,7 @@ class ModelPaymentBluepayHosted extends Model {
 
 		if ($this->config->get('bluepay_hosted_total') > 0 && $this->config->get('bluepay_hosted_total') > $total) {
 			$status = false;
-		} elseif ($this->config->has('bluepay_hosted_total_max') && $this->config->get('bluepay_hosted_total_max') > 0 && $total > $this->config->get('bluepay_hosted_total_max'))) {
+		} elseif ($this->config->has('bluepay_hosted_total_max') && $this->config->get('bluepay_hosted_total_max') > 0 && $total > $this->config->get('bluepay_hosted_total_max')) {
 			$status = false;
 		} elseif (!$this->config->get('bluepay_hosted_geo_zone_id')) {
 			$status = true;

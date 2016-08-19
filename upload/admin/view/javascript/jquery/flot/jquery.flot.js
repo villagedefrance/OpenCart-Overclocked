@@ -38,21 +38,21 @@ Licensed under the MIT license.
 
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-    // A shim to provide 'detach' to jQuery versions prior to 1.4.  Using a DOM
-    // operation produces the same effect as detach, i.e. removing the element
-    // without touching its jQuery data.
+	// A shim to provide 'detach' to jQuery versions prior to 1.4.  Using a DOM
+	// operation produces the same effect as detach, i.e. removing the element
+	// without touching its jQuery data.
 
-    // Do not merge this into Flot 0.9, since it requires jQuery 1.4.4+.
+	// Do not merge this into Flot 0.9, since it requires jQuery 1.4.4+.
 
-    if (!$.fn.detach) {
-        $.fn.detach = function() {
-            return this.each(function() {
-                if (this.parentNode) {
-                    this.parentNode.removeChild( this );
-                }
-            });
-        };
-    }
+	if (!$.fn.detach) {
+		$.fn.detach = function() {
+			return this.each(function() {
+				if (this.parentNode) {
+					this.parentNode.removeChild( this );
+				}
+			});
+		};
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// The Canvas object is a wrapper around an HTML5 <canvas> tag.
@@ -65,11 +65,9 @@ Licensed under the MIT license.
 	// operations don't work unless the canvas is attached to the DOM.
 
 	function Canvas(cls, container) {
-
 		var element = container.children("." + cls)[0];
 
 		if (element == null) {
-
 			element = document.createElement("canvas");
 			element.className = cls;
 
@@ -130,14 +128,11 @@ Licensed under the MIT license.
 	// @param {number} width New height of the canvas, in pixels.
 
 	Canvas.prototype.resize = function(width, height) {
-
 		if (width <= 0 || height <= 0) {
 			throw new Error("Invalid dimensions for plot, width = " + width + ", height = " + height);
 		}
 
-		var element = this.element,
-			context = this.context,
-			pixelRatio = this.pixelRatio;
+		var element = this.element, context = this.context, pixelRatio = this.pixelRatio;
 
 		// Resize the canvas, increasing its density based on the display's
 		// pixel ratio; basically giving it more pixels without increasing the
@@ -181,7 +176,6 @@ Licensed under the MIT license.
 	// Finishes rendering the canvas, including managing the text overlay.
 
 	Canvas.prototype.render = function() {
-
 		var cache = this._textCache;
 
 		// For each text layer, add elements marked as active that haven't
@@ -189,7 +183,6 @@ Licensed under the MIT license.
 
 		for (var layerKey in cache) {
 			if (hasOwnProperty.call(cache, layerKey)) {
-
 				var layer = this.getTextLayer(layerKey),
 					layerCache = cache[layerKey];
 
@@ -243,7 +236,6 @@ Licensed under the MIT license.
 		// Create the text layer if it doesn't exist
 
 		if (layer == null) {
-
 			// Create the text layer container, if it doesn't exist
 
 			if (this.textContainer == null) {
@@ -316,7 +308,6 @@ Licensed under the MIT license.
 	// @return {object} a text info object.
 
 	Canvas.prototype.getTextInfo = function(layer, text, font, angle, width) {
-
 		var textStyle, layerCache, styleCache, info;
 
 		// Cast the value to a string, in case we were given a number or such
@@ -402,7 +393,6 @@ Licensed under the MIT license.
 	//     "middle" or "bottom".
 
 	Canvas.prototype.addText = function(layer, x, y, text, font, angle, width, halign, valign) {
-
 		var info = this.getTextInfo(layer, text, font, angle, width),
 			positions = info.positions;
 
@@ -642,16 +632,16 @@ Licensed under the MIT license.
         plot.getPlaceholder = function() { return placeholder; };
         plot.getCanvas = function() { return surface.element; };
         plot.getPlotOffset = function() { return plotOffset; };
-        plot.width = function () { return plotWidth; };
-        plot.height = function () { return plotHeight; };
-        plot.offset = function () {
+        plot.width = function() { return plotWidth; };
+        plot.height = function() { return plotHeight; };
+        plot.offset = function() {
             var o = eventHolder.offset();
             o.left += plotOffset.left;
             o.top += plotOffset.top;
             return o;
         };
-        plot.getData = function () { return series; };
-        plot.getAxes = function () {
+        plot.getData = function() { return series; };
+        plot.getAxes = function() {
             var res = {}, i;
             $.each(xaxes.concat(yaxes), function (_, axis) {
                 if (axis)
@@ -659,11 +649,11 @@ Licensed under the MIT license.
             });
             return res;
         };
-        plot.getXAxes = function () { return xaxes; };
-        plot.getYAxes = function () { return yaxes; };
+        plot.getXAxes = function() { return xaxes; };
+        plot.getYAxes = function() { return yaxes; };
         plot.c2p = canvasToAxisCoords;
         plot.p2c = axisToCanvasCoords;
-        plot.getOptions = function () { return options; };
+        plot.getOptions = function() { return options; };
         plot.highlight = highlight;
         plot.unhighlight = unhighlight;
         plot.triggerRedrawOverlay = triggerRedrawOverlay;
@@ -674,7 +664,7 @@ Licensed under the MIT license.
             };
         };
         plot.shutdown = shutdown;
-        plot.destroy = function () {
+        plot.destroy = function() {
             shutdown();
             placeholder.removeData("plot").empty();
 
@@ -691,7 +681,7 @@ Licensed under the MIT license.
             highlights = [];
             plot = null;
         };
-        plot.resize = function () {
+        plot.resize = function() {
         	var width = placeholder.width(),
         		height = placeholder.height();
             surface.resize(width, height);
@@ -709,7 +699,6 @@ Licensed under the MIT license.
         setupGrid();
         draw();
         bindEvents();
-
 
         function executeHooks(hook, args) {
             args = [plot].concat(args);
@@ -2119,7 +2108,6 @@ Licensed under the MIT license.
                 ctx.stroke();
             }
 
-
             // draw border
             if (bw) {
                 // If either borderWidth or borderColor is an object, then draw the border
@@ -2466,7 +2454,7 @@ Licensed under the MIT license.
 
             var lw = series.lines.lineWidth,
                 sw = series.shadowSize;
-            // FIXME: consider another form of shadow when filling is turned on
+            // Consider another form of shadow when filling is turned on
             if (lw > 0 && sw > 0) {
                 // draw shadow as a thick and thin line with transparency
                 ctx.lineWidth = sw;
@@ -2637,7 +2625,7 @@ Licensed under the MIT license.
             if (lineWidth > 0 && (drawLeft || drawRight || drawTop || drawBottom)) {
                 c.beginPath();
 
-                // FIXME: inline moveTo is buggy with excanvas
+                // Inline moveTo is buggy with excanvas
                 c.moveTo(left, bottom);
                 if (drawLeft)
                     c.lineTo(left, top);
@@ -2673,7 +2661,7 @@ Licensed under the MIT license.
             ctx.save();
             ctx.translate(plotOffset.left, plotOffset.top);
 
-            // FIXME: figure out a way to add shadows (for instance along the right edge)
+            // Figure out a way to add shadows (for instance along the right edge)
             ctx.lineWidth = series.bars.lineWidth;
             ctx.strokeStyle = series.color;
 

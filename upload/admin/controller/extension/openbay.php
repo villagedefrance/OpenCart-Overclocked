@@ -332,28 +332,24 @@ class ControllerExtensionOpenbay extends Controller {
 			case 'check_server': // step 1
 				$response = $this->model_openbay_openbay->updateV2Test();
 
-				sleep(1);
 				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($response));
 				break;
 			case 'check_version': // step 2
 				$response = $this->model_openbay_openbay->updateV2CheckVersion($beta);
 
-				sleep(1);
 				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($response));
 				break;
 			case 'download': // step 3
 				$response = $this->model_openbay_openbay->updateV2Download($beta);
 
-				sleep(1);
 				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($response));
 				break;
 			case 'extract': // step 4
 				$response = $this->model_openbay_openbay->updateV2Extract();
 
-				sleep(1);
 				$this->response->addHeader('Content-Type: application/json');
 				$this->response->setOutput(json_encode($response));
 				break;
@@ -418,8 +414,6 @@ class ControllerExtensionOpenbay extends Controller {
 	}
 
 	public function version() {
-		sleep(1);
-
 		$this->load->model('openbay/openbay');
 		$this->response->setOutput(json_encode($this->model_openbay_openbay->version()));
 	}
@@ -452,8 +446,6 @@ class ControllerExtensionOpenbay extends Controller {
 			$this->model_user_user_group->addPermission($this->user->getId(), 'modify', 'module/openbaypro');
 		}
 
-		sleep(1);
-
 		$json = array();
 		$json['msg'] = 'ok';
 
@@ -481,8 +473,6 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->load->model('openbay/openbay');
 
 		$this->model_openbay_openbay->faqClear();
-
-		sleep(1);
 
 		$json = array();
 		$json['msg'] = 'ok';
@@ -535,7 +525,6 @@ class ControllerExtensionOpenbay extends Controller {
 				}
 			}
 		}
-
 	}
 
 	public function ajaxAddOrderInfo(){
