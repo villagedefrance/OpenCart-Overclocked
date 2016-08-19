@@ -394,7 +394,6 @@ class ModelOpenbayOpenbay extends Model {
 				if (!empty($data['rootpath'])) {
 					$updatelog .= "Setting root path\n";
 					@ftp_chdir($connection, $data['rootpath']);
-					$directory_list = ftp_nlist($connection, $data['rootpath']);
 				}
 
 				$current_version = $this->config->get('openbay_version');

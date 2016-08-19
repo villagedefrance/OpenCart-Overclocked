@@ -206,15 +206,15 @@ $mobiles = array(
 
 // Most common robots
 $robots = array(
-	'googlebot' => 'Googlebot',
-	'msnbot' => 'MSNBot',
-	'bingbot' => 'Bing',
-	'slurp' => 'Inktomi Slurp',
-	'yahoo' => 'Yahoo',
-	'askjeeves' => 'AskJeeves',
+	'googlebot'   => 'Googlebot',
+	'msnbot'      => 'MSNBot',
+	'bingbot'     => 'Bing',
+	'slurp'       => 'Inktomi Slurp',
+	'yahoo'       => 'Yahoo',
+	'askjeeves'   => 'AskJeeves',
 	'fastcrawler' => 'FastCrawler',
-	'infoseek' => 'InfoSeek Robot 1.0',
-	'facebot' => 'Facebook',
-	'lycos' => 'Lycos'
+	'infoseek'    => 'InfoSeek Robot 1.0',
+	'facebot'     => 'Facebook',
+	'lycos'       => 'Lycos'
 );
 ?>

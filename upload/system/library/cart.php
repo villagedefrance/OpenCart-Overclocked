@@ -3,7 +3,6 @@ class Cart {
 	private $config;
 	private $db;
 	private $data = array();
-	private $registry;
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');

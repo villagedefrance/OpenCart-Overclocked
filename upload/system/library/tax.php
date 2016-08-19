@@ -3,12 +3,6 @@ final class Tax {
 	private $shipping_address;
 	private $payment_address;
 	private $store_address;
-	private $country_id;
-	private $zone_id;
-	private $tax_class_id;
-	private $tax_rate_id;
-	private $value;
-	private $registry;
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');

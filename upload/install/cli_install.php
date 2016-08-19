@@ -44,7 +44,7 @@ $loader = new Loader($registry);
 
 $registry->set('load', $loader);
 
-function handleError($errno, $errstr, $errfile, $errline, array $errcontext) {
+function handleError($errno, $errstr, $errfile, $errline) {
 	if (0 === error_reporting()) {
 		return false;
 	}
@@ -75,12 +75,12 @@ function usage() {
 
 function get_options($argv) {
 	$defaults = array(
-		'db_hostname'	=> 'localhost',
-		'db_database'	=> 'opencart',
-		'db_prefix'		=> 'oc_',
-		'db_driver'		=> 'mysqli',
-		'db_port'			=> '3306',
-		'username'		=> 'admin'
+		'db_hostname' => 'localhost',
+		'db_database' => 'opencart',
+		'db_prefix'   => 'oc_',
+		'db_driver'   => 'mysqli',
+		'db_port'     => '3306',
+		'username'    => 'admin'
 	);
 
 	$options = array();
@@ -106,8 +106,8 @@ function valid($options) {
 		'db_username',
 		'db_password',
 		'db_database',
-		'db_prefix',
 		'db_port',
+		'db_prefix',
 		'username',
 		'password',
 		'email',
@@ -205,6 +205,10 @@ function check_requirements() {
 		$error = 'Warning: Logs directory needs to be writable for OpenCart OCE to work!';
 	}
 
+	if (!is_writable(DIR_SYSTEM . 'upload')) {
+		$error = 'Warning: Upload directory needs to be writable for OpenCart OCE to work!';
+	}
+
 	if (!is_writable(DIR_OPENCART . 'download')) {
 		$error = 'Warning: Download directory needs to be writable for OpenCart OCE to work!';
 	}
@@ -276,7 +280,7 @@ function setup_db($data) {
 }
 
 function write_config_files($options) {
-	$output  = '<?php' . "\n";
+	$output = '<?php' . "\n";
 	$output .= '// HTTP' . "\n";
 	$output .= 'define(\'HTTP_SERVER\', \'' . $options['http_server'] . '\');' . "\n";
 	$output .= 'define(\'HTTP_IMAGE\', \'' . $options['http_server'] . 'image/\');' . "\n";
@@ -295,16 +299,18 @@ function write_config_files($options) {
 	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_OPENCART . 'system/config/\');' . "\n";
 	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
 	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/cache/\');' . "\n";
+	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');' . "\n";
 	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');' . "\n";
 	$output .= 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');' . "\n";
-	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');' . "\n\n";
+	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');' . "\n";
 
 	$output .= '// DB' . "\n";
 	$output .= 'define(\'DB_DRIVER\', \'mysql\');' . "\n";
-	$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($options['db_host']) . '\');' . "\n";
-	$output .= 'define(\'DB_USERNAME\', \'' . addslashes($options['db_user']) . '\');' . "\n";
+	$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($options['db_hostname']) . '\');' . "\n";
+	$output .= 'define(\'DB_USERNAME\', \'' . addslashes($options['db_username']) . '\');' . "\n";
 	$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($options['db_password']) . '\');' . "\n";
-	$output .= 'define(\'DB_DATABASE\', \'' . addslashes($options['db_name']) . '\');' . "\n";
+	$output .= 'define(\'DB_DATABASE\', \'' . addslashes($options['db_database']) . '\');' . "\n";
+	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
 	$output .= 'define(\'DB_PREFIX\', \'' . addslashes($options['db_prefix']) . '\');' . "\n";
 	$output .= '?>';
 
@@ -314,16 +320,16 @@ function write_config_files($options) {
 
 	fclose($file);
 
-	$output  = '<?php' . "\n";
+	$output = '<?php' . "\n";
 	$output .= '// HTTP' . "\n";
 	$output .= 'define(\'HTTP_SERVER\', \'' . $options['http_server'] . 'admin/\');' . "\n";
-	$output .= 'define(\'HTTP_CATALOG\', \'' . $options['http_server'] . '\');' . "\n";
-	$output .= 'define(\'HTTP_IMAGE\', \'' . $options['http_server'] . 'image/\');' . "\n\n";
+	$output .= 'define(\'HTTP_IMAGE\', \'' . $options['http_server'] . 'image/\');' . "\n";
+	$output .= 'define(\'HTTP_CATALOG\', \'' . $options['http_server'] . '\');' . "\n\n";
 
 	$output .= '// HTTPS' . "\n";
 	$output .= 'define(\'HTTPS_SERVER\', \'' . $options['http_server'] . 'admin/\');' . "\n";
-	$output .= 'define(\'HTTPS_CATALOG\', \'' . $options['http_server'] . '\');' . "\n";
-	$output .= 'define(\'HTTPS_IMAGE\', \'' . $options['http_server'] . 'image/\');' . "\n\n";
+	$output .= 'define(\'HTTPS_IMAGE\', \'' . $options['http_server'] . 'image/\');' . "\n";
+	$output .= 'define(\'HTTPS_CATALOG\', \'' . $options['http_server'] . '\');' . "\n\n";
 
 	$output .= '// DIR' . "\n";
 	$output .= 'define(\'DIR_APPLICATION\', \'' . DIR_OPENCART . 'admin/\');' . "\n";
@@ -334,6 +340,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DIR_CONFIG\', \'' . DIR_OPENCART . 'system/config/\');' . "\n";
 	$output .= 'define(\'DIR_IMAGE\', \'' . DIR_OPENCART . 'image/\');' . "\n";
 	$output .= 'define(\'DIR_CACHE\', \'' . DIR_OPENCART . 'system/cache/\');' . "\n";
+	$output .= 'define(\'DIR_UPLOAD\', \'' . DIR_OPENCART . 'system/upload/\');' . "\n";
 	$output .= 'define(\'DIR_DOWNLOAD\', \'' . DIR_OPENCART . 'download/\');' . "\n";
 	$output .= 'define(\'DIR_VQMOD\', \'' . DIR_OPENCART . 'vqmod/\');' . "\n";
 	$output .= 'define(\'DIR_LOGS\', \'' . DIR_OPENCART . 'system/logs/\');' . "\n";
@@ -341,10 +348,11 @@ function write_config_files($options) {
 
 	$output .= '// DB' . "\n";
 	$output .= 'define(\'DB_DRIVER\', \'mysql\');' . "\n";
-	$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($options['db_host']) . '\');' . "\n";
-	$output .= 'define(\'DB_USERNAME\', \'' . addslashes($options['db_user']) . '\');' . "\n";
+	$output .= 'define(\'DB_HOSTNAME\', \'' . addslashes($options['db_hostname']) . '\');' . "\n";
+	$output .= 'define(\'DB_USERNAME\', \'' . addslashes($options['db_username']) . '\');' . "\n";
 	$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($options['db_password']) . '\');' . "\n";
-	$output .= 'define(\'DB_DATABASE\', \'' . addslashes($options['db_name']) . '\');' . "\n";
+	$output .= 'define(\'DB_DATABASE\', \'' . addslashes($options['db_database']) . '\');' . "\n";
+	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
 	$output .= 'define(\'DB_PREFIX\', \'' . addslashes($options['db_prefix']) . '\');' . "\n";
 	$output .= '?>';
 
@@ -359,6 +367,7 @@ function dir_permissions() {
 	$dirs = array(
 		DIR_OPENCART . 'image/',
 		DIR_OPENCART . 'download/',
+		DIR_SYSTEM . 'upload/',
 		DIR_SYSTEM . 'cache/',
 		DIR_SYSTEM . 'logs/'
 	);

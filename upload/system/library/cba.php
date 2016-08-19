@@ -5,7 +5,6 @@ class CBA {
 	private $merchant_id;
 	private $contract_id;
 	private $mode;
-	private $db = null;
 
 	public function __construct($merchant_id, $access_key, $secret_key) {
 		$this->setMerchantId($merchant_id);

@@ -1188,7 +1188,6 @@ class ControllerOpenbayAmazon extends Controller {
 		$this->load->model('openbay/amazon');
 
 		$links = array();
-		$amazonSkus = array();
 
 		if (!empty($this->request->post['link'])) {
 			foreach ($this->request->post['link'] as $link) {

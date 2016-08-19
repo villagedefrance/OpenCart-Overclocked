@@ -8,7 +8,6 @@ class Affiliate {
 	private $fax;
 	private $website;
 	private $code;
-	private $registry;
 
 	public function __construct($registry) {
 		$this->config = $registry->get('config');

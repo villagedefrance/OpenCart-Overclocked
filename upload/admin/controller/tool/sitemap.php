@@ -182,7 +182,6 @@ class ControllerToolSitemap extends Controller {
 
 			$length = substr($getsitemapgzip, -4);
 			$extract = unpack("V", $length);
-			$FileSize = end($extract);
 			$FileRead = "../sitemap.xml.gz";
 			$HandleRead = gzopen($FileRead, "rb");
 			gzclose($HandleRead);

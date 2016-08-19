@@ -6,9 +6,6 @@ class Image {
 	private $height;
 	private $bits;
 	private $mime;
-	private $color;
-	private $degree = null;
-	private $watermark = null;
 
 	public function __construct($file) {
 		if (file_exists($file)) {
