@@ -53,9 +53,7 @@ abstract class VQMod {
 		}
 
 		self::_setCwd($path);
-
 		self::$logging = (bool)$logging;
-
 		self::$log = new VQModLog();
 
 		$replacesPath = self::path(self::$pathReplaces);
@@ -108,7 +106,7 @@ abstract class VQMod {
 		}
 
 		if ($modificationFile !== false) {
-			if(!preg_match('%^([a-z]:)?[\\\\/]%i', $modificationFile)) {
+			if (!preg_match('%^([a-z]:)?[\\\\/]%i', $modificationFile)) {
 				$modificationsPath = self::path($modificationFile);
 			} else {
 				$modificationsPath = self::_realpath($modificationFile);
@@ -450,7 +448,6 @@ abstract class VQMod {
 
 			if (count($modParts) !== count($checkParts)) {
 				$return = false;
-
 			} else {
 				$toCheck = array_diff_assoc($modParts, $checkParts);
 
@@ -459,7 +456,7 @@ abstract class VQMod {
 						continue;
 
 					} elseif (strpos($part, '*') !== false) {
-						$part = preg_replace_callback('~([^*]+)~', array('self', '_quotePath'), $part);
+						$part = preg_replace_callback('~([^*]+)~', function ($matches) { return preg_quote($matches[1], '~'); }, $part);
 						$part = str_replace('*', '[^/]*', $part);
 						$part = (bool)preg_match('~^' . $part . '$~', $checkParts[$k]);
 
@@ -884,12 +881,12 @@ class VQModObject {
 
 					if (!$skipOperation) {
 						$this->mods[$fullPath][] = array(
-							'search' 		=> new VQSearchNode($search),
-							'add' 			=> new VQAddNode($add),
-							'ignoreif'		=> $ignoreif,
-							'error'		 	=> $error,
-							'fileToMod'	=> $fileToMod,
-							'opIndex'	=> $opIndex
+							'search'    => new VQSearchNode($search),
+							'add'       => new VQAddNode($add),
+							'ignoreif'  => $ignoreif,
+							'error'     => $error,
+							'fileToMod' => $fileToMod,
+							'opIndex'   => $opIndex
 						);
 					}
 				}

@@ -9,10 +9,10 @@
 //
 //   cd install
 //   php cli_install.php install 
-//		--db_host localhost \
-//		--db_user root \
+//		--db_hostname localhost \
+//		--db_username root \
 //		--db_password pass \
-//		--db_name opencart \
+//		--db_database opencart \
 //		--username admin \
 //		--password admin \
 //		--email youremail@example.com \
@@ -68,6 +68,7 @@ function usage() {
 		'--username', 'admin',
 		'--password', 'admin',
 		'--email', 'youremail@example.com',
+		'--agree_tnc', 'yes',
 		'--http_server', 'http://localhost/opencart')
 	);
 	echo 'php cli_install.php install ' . $options . "\n\n";
@@ -80,7 +81,8 @@ function get_options($argv) {
 		'db_prefix'   => 'oc_',
 		'db_driver'   => 'mysqli',
 		'db_port'     => '3306',
-		'username'    => 'admin'
+		'username'    => 'admin',
+		'agree_tnc'   => 'no'
 	);
 
 	$options = array();
@@ -111,6 +113,7 @@ function valid($options) {
 		'username',
 		'password',
 		'email',
+		'agree_tnc',
 		'http_server'
 	);
 

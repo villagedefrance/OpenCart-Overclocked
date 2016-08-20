@@ -70,7 +70,7 @@ if (file_exists('../config.php')) {
 
 		foreach ($lines as $line) {
 			if (strpos(strtoupper($line), 'DB_') !== false) {
-				call_user_func($line);
+				eval($line);
 			}
 		}
 	}
