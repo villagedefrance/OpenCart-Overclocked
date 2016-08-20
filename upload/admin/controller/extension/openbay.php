@@ -1874,4 +1874,5 @@ class ControllerExtensionOpenbay extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
+
 ?>

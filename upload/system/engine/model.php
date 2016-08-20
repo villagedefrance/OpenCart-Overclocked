@@ -14,4 +14,5 @@ abstract class Model {
 		$this->registry->set($key, $value);
 	}
 }
+
 ?>

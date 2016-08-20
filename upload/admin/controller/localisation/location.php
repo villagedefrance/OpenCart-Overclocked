@@ -506,4 +506,5 @@ class ControllerLocalisationLocation extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

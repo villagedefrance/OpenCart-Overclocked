@@ -121,7 +121,7 @@ class ControllerToolCacheImages extends Controller {
 		}
 	}
 
-	private function validateDelete() {
+	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'tool/cache_images')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -129,4 +129,5 @@ class ControllerToolCacheImages extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

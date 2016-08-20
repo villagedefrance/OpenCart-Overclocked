@@ -33,4 +33,5 @@ class ControllerErrorNotFound extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
+
 ?>

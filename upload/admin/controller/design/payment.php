@@ -498,4 +498,5 @@ class ControllerDesignPayment extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

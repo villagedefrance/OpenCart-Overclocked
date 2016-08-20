@@ -211,4 +211,5 @@ class ModelCatalogFilter extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

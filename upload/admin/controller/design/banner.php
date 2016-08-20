@@ -501,4 +501,5 @@ class ControllerDesignBanner extends Controller {
 		}
 	}
 }
+
 ?>

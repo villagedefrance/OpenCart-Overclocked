@@ -32,4 +32,5 @@ $_['error_permission']      = 'Warning: You do not have permission to modify <b>
 $_['error_query']           = 'Query must be between 3 and 255 characters!';
 $_['error_keyword']         = 'Keyword must be between 3 and 255 characters!';
 $_['error_keyword_exist']   = 'Warning: Keyword already exists!';
+
 ?>

@@ -71,6 +71,7 @@ class ModelPaymentEway extends Model {
 		if (isset($order['refund_transaction_id']) && !empty($order['refund_transaction_id'])) {
 			$order['refund_transaction_id'] .= ',';
 		}
+
 		$order['refund_transaction_id'] .= $transaction_id;
 
 		$this->db->query("UPDATE `" . DB_PREFIX . "eway_order` SET `modified` = NOW(), refund_amount = '" . (double)$refund_amount . "', `refund_transaction_id` = '" . $this->db->escape($order['refund_transaction_id']) . "' WHERE eway_order_id = '" . $order['eway_order_id'] . "'");
@@ -224,4 +225,5 @@ class ModelPaymentEway extends Model {
 		return (double)$query->row['total'];
 	}
 }
+
 ?>

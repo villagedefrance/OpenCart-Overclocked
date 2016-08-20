@@ -90,4 +90,5 @@ $_['error_certificate']              = 'Certificate path is required';
 $_['error_key']                      = 'Certificate key is required';
 $_['error_key_pw']                   = 'Certificate key password is required';
 $_['error_ca']                       = 'Certificate Authority (CA) is required';
+
 ?>

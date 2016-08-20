@@ -181,4 +181,5 @@ class ControllerPaymentLiqPay extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

@@ -124,7 +124,7 @@ $_['amazon_sku_column_text']          = 'Amazon item SKU';
 $_['actions_column_text']             = 'Action';
 $_['saved_localy_text']               = 'Listing saved localy.';
 $_['uploaded_alert_text']             = 'Saved listing(s) uploaded!';
-$_['upload_failed']                   = 'Failed uploading product with SKU: "%s". Reason: "%s" Uploading process canceled.';
+$_['upload_failed']                   = 'Failed uploading product with SKU: "%s". Reason: "%s" Uploading process cancelled.';
 
 // Item links
 $_['links_header_text']               = 'Link items';
@@ -150,7 +150,7 @@ $_['links_product_warning']           = 'Product does not exist. Please use auto
 $_['option_default']                  = '-- Select option --';
 
 // Listing edit page
-                 $_['tex              t_edit_heading'] = 'Listing overview';
+$_['text_edit_heading']               = 'Listing overview';
 $_['text_has_saved_listings']         = 'This product has one or more localy saved listings.';
 $_['text_product_links']              = 'Product links';
 $_['button_create_new_listing']       = "Create new listing";
@@ -178,4 +178,5 @@ $_['error_not_searched']              = 'Search for matching items before you tr
 $_['text_product_sent']               = 'Product was successfully sent to Amazon.';
 $_['text_product_not_sent']           = 'Product was not sent to Amazon. Reason: %s';
 $_['text_links_removed']              = 'Amazon product links deleted';
+
 ?>

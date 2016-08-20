@@ -385,6 +385,7 @@ class ControllerPaymentEway extends Controller {
 			// Check if any error returns
 			if (isset($result->Errors) || $result === false) {
 				$json['error'] = true;
+
 				$reason = '';
 
 				if ($result === false) {
@@ -420,7 +421,9 @@ class ControllerPaymentEway extends Controller {
 				$json['data']['total_captured_formatted'] = $this->currency->format($total_captured, $eway_order['currency_code'], 1, true);
 				$json['data']['capture_status'] = 1;
 				$json['data']['remaining'] = $remaining;
+
 				$json['message'] = $this->language->get('text_capture_success');
+
 				$json['error'] = false;
 			}
 
@@ -433,7 +436,7 @@ class ControllerPaymentEway extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'payment/eway')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -453,4 +456,5 @@ class ControllerPaymentEway extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

@@ -33,4 +33,5 @@ class ModelSettingExtension extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

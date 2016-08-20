@@ -151,4 +151,5 @@ class ModelCatalogAttribute extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

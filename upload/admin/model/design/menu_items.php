@@ -206,9 +206,9 @@ class ModelDesignMenuItems extends Model {
 
 		foreach ($query->rows as $result) {
 			$menu_description_data[$result['language_id']] = array(
-				'name'        			=> $result['menu_item_name'],
-				'meta_description'	=> $result['meta_description'],
-				'meta_keyword'		=> $result['meta_keyword']
+				'name'             => $result['menu_item_name'],
+				'meta_description' => $result['meta_description'],
+				'meta_keyword'     => $result['meta_keyword']
 			);
 		}
 
@@ -223,8 +223,8 @@ class ModelDesignMenuItems extends Model {
 		if ($query->rows) {
 			foreach ($query->rows as $result) {
 				$parents_data[] = array(
-					'menu_item_id'	=> $result['menu_item_id'],
-					'name'			=> $result['menu_item_name']
+					'menu_item_id' => $result['menu_item_id'],
+					'name'         => $result['menu_item_name']
 				);
 			}
 
@@ -248,4 +248,5 @@ class ModelDesignMenuItems extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

@@ -143,4 +143,5 @@ class ModelFraudFraudLabsPro extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `group` = 'fraudlabspro', `key` = 'fraudlabspro_reject_status_id', `value` = '8'");
 	}
 }
+
 ?>

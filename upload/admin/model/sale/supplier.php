@@ -159,21 +159,21 @@ class ModelSaleSupplier extends Model {
 			}
 
 			return array(
-				'address_id'			=> $address_query->row['address_id'],
-				'supplier_id'    		=> $address_query->row['supplier_id'],
-				'company'        	=> $address_query->row['company'],
-				'address_1'      	=> $address_query->row['address_1'],
-				'address_2'      	=> $address_query->row['address_2'],
-				'postcode'       	=> $address_query->row['postcode'],
-				'city'           		=> $address_query->row['city'],
-				'zone_id'        		=> $address_query->row['zone_id'],
-				'zone'           		=> $zone,
-				'zone_code'      	=> $zone_code,
-				'country_id' 		=> $address_query->row['country_id'],
-				'country'        		=> $country,	
-				'iso_code_2'     	=> $iso_code_2,
-				'iso_code_3'     	=> $iso_code_3,
-				'address_format'	=> $address_format
+				'address_id'     => $address_query->row['address_id'],
+				'supplier_id'    => $address_query->row['supplier_id'],
+				'company'        => $address_query->row['company'],
+				'address_1'      => $address_query->row['address_1'],
+				'address_2'      => $address_query->row['address_2'],
+				'postcode'       => $address_query->row['postcode'],
+				'city'           => $address_query->row['city'],
+				'zone_id'        => $address_query->row['zone_id'],
+				'zone'           => $zone,
+				'zone_code'      => $zone_code,
+				'country_id'     => $address_query->row['country_id'],
+				'country'        => $country,	
+				'iso_code_2'     => $iso_code_2,
+				'iso_code_3'     => $iso_code_3,
+				'address_format' => $address_format
 			);
 		}
 	}
@@ -327,4 +327,5 @@ class ModelSaleSupplier extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

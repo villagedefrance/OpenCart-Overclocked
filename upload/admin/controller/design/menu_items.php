@@ -681,4 +681,5 @@ class ControllerDesignMenuItems extends Controller {
 		}
 	}
 }
+
 ?>

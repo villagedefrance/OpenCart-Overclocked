@@ -118,4 +118,5 @@ class ControllerTotalHandling extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

@@ -57,4 +57,5 @@ class ModelReportOnline extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

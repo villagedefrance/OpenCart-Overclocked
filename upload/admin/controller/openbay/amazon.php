@@ -1181,6 +1181,7 @@ class ControllerOpenbayAmazon extends Controller {
 			$json['message'] = $this->language->get('text_report_request_failed');
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -1225,4 +1226,5 @@ class ControllerOpenbayAmazon extends Controller {
 		$this->openbay->amazon->putStockUpdateBulk($bulk_array);
 	}
 }
+
 ?>

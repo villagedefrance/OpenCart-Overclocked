@@ -43,4 +43,5 @@ $_['button_refresh']    = 'Refresh';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>Sitemaps</b> !';
+
 ?>

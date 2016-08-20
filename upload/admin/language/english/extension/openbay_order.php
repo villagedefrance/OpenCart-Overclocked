@@ -26,4 +26,5 @@ $_['text_amazon']               = 'Amazon EU';
 $_['text_amazonus']             = 'Amazon US';
 
 $_['column_channel']            = 'Channel';
+
 ?>

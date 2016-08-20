@@ -60,4 +60,5 @@ final class DBMySQLi {
 		$this->connection->close();
 	}
 }
+
 ?>

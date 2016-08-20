@@ -21,4 +21,5 @@ $_['error_permission'] = 'Warning: You do not have permission to modify <b>Palet
 $_['error_name']       = 'Palette Name must be between 3 and 64 characters!';
 $_['error_title']      = 'Color Title must be between 3 and 64 characters!';
 $_['error_color']      = 'Color must be a valid hexadecimal value and contain no less than 6 characters!';
+
 ?>

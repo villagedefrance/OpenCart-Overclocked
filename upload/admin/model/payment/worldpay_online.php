@@ -174,4 +174,5 @@ class ModelPaymentWorldpayOnline extends Model {
 		}
 	}
 }
+
 ?>

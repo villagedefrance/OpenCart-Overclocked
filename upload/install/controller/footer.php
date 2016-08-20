@@ -13,4 +13,5 @@ class ControllerFooter extends Controller {
 		$this->render();
 	}
 }
+
 ?>

@@ -23,4 +23,5 @@ $_['error_permission']       = 'Warning: You do not have permission to modify <b
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_title']            = 'Information Title must be between 3 and 64 characters!';
 $_['error_description']      = 'Description must be more than 3 characters!';
+
 ?>

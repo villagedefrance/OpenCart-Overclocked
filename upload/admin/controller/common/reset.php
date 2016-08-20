@@ -109,4 +109,5 @@ class ControllerCommonReset extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

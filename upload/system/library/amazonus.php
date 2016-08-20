@@ -512,14 +512,14 @@ class Amazonus {
 						$var = implode(':', $pOptions);
 
 						$qtyLeftRow = $this->db->query("SELECT stock FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$order_product['product_id'] . "' AND var = '" . $this->db->escape($var) . "'")->row;
-	
+
 						if (empty($qtyLeftRow)) {
 							$qtyLeftRow['stock'] = 0;
 						}
 	
 						$passArray[] = array('pid' => $order_product['product_id'], 'qty_left' => $qtyLeftRow['stock'], 'var' => $var);
 					}
-	
+
 				} else {
 					$passArray[] = array('pid' => $order_product['product_id'], 'qty_left' => $product_query->row['quantity'], 'var' => '');
 				}
@@ -542,9 +542,7 @@ class Amazonus {
 	}
 
 	public function deleteOrder($order_id) {
-		/**
-		 * @todo
-		 */
+		/* @todo */
 	}
 
 	public function getOrder($orderId) {
@@ -657,4 +655,5 @@ class Amazonus {
 		);
 	}
 }
+
 ?>

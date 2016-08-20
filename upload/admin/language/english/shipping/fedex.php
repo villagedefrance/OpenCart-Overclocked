@@ -70,4 +70,5 @@ $_['error_account']                            = 'Account Required!';
 $_['error_meter']                              = 'Meter Required!';
 $_['error_postcode']                           = 'Post Code Required!';
 $_['error_dimension']                          = 'Length, Width &amp; Height required!';
+
 ?>

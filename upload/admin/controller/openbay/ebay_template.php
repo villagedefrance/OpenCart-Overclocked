@@ -199,7 +199,7 @@ class ControllerOpenbayEbayTemplate extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function templateValidate() {
+	protected function templateValidate() {
 		if (!$this->user->hasPermission('modify', 'openbay/ebay_template')) {
 			$this->error['warning'] = $this->language->get('invalid_permission');
 		}
@@ -212,11 +212,8 @@ class ControllerOpenbayEbayTemplate extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
+
 ?>

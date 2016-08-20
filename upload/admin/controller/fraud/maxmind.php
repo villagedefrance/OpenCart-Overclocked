@@ -459,4 +459,5 @@ class ControllerFraudMaxMind extends Controller {
 		}
 	}
 }
+
 ?>

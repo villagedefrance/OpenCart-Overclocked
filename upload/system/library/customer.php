@@ -226,4 +226,5 @@ class Customer {
 		}
 	}
 }
+
 ?>

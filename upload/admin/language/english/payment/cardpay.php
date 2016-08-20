@@ -31,4 +31,5 @@ $_['cardpay_default_url_production_server'] = 'https://cardpay.com/MI/cardpaymen
 
 // Error
 $_['error_permission']                      = 'Warning: You do not have permission to modify payment <b>CardPay</b> !';
+
 ?>

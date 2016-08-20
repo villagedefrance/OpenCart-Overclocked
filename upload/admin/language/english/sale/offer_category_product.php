@@ -39,4 +39,5 @@ $_['error_percent']      = 'Percent Discount must be a number and can not be hig
 $_['error_price']        = 'Fixed Discount can not be higher than the lowest product price!';
 $_['error_product']      = 'Product is required!';
 $_['error_category']     = 'Category is required!';
+
 ?>

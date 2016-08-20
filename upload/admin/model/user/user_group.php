@@ -38,8 +38,8 @@ class ModelUserUserGroup extends Model {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_group_id . "'");
 
 		$user_group = array(
-			'name'  		=> $query->row['name'],
-			'permission'	=> unserialize($query->row['permission'])
+			'name'       => $query->row['name'],
+			'permission' => unserialize($query->row['permission'])
 		);
 
 		return $user_group;
@@ -85,4 +85,5 @@ class ModelUserUserGroup extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

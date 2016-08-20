@@ -947,4 +947,5 @@ class ModelSaleOrder extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

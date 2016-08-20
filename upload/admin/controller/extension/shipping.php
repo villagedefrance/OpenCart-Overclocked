@@ -185,4 +185,5 @@ class ControllerExtensionShipping extends Controller {
 		}
 	}
 }
+
 ?>

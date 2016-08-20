@@ -201,4 +201,5 @@ class ControllerModuleLatest extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

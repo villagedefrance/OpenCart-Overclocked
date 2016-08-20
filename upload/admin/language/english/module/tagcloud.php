@@ -38,4 +38,5 @@ $_['error_permission']      = 'Warning: You do not have permission to modify mod
 $_['error_limit']           = 'Limit is required!';
 $_['error_min_font_size']   = 'Minimum font size is required and must be at least 9px!';
 $_['error_max_font_size']   = 'Maximum font size is required and must be below 30px!';
+
 ?>

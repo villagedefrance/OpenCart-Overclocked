@@ -464,7 +464,9 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$json['data']['total_captured'] = (double)$total_captured;
 				$json['data']['total_rebated'] = (double)$total_rebated;
 				$json['data']['rebate_status'] = $rebate_status;
+
 				$json['error'] = false;
+
 			} else {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response->message) && !empty($rebate_response->message) ? (string)$rebate_response->message : 'Unable to rebate';
@@ -495,4 +497,5 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

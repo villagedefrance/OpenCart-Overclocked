@@ -68,4 +68,5 @@ class ModelToolApiKeyManager extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

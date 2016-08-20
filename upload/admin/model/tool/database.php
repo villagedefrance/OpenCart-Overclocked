@@ -77,4 +77,5 @@ class ModelToolDatabase extends Model {
 		}
 	}
 }
+
 ?>

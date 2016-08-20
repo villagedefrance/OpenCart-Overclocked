@@ -621,6 +621,7 @@ class ControllerOpenbayAmazonusListing extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($response));
 	}
 
@@ -649,4 +650,5 @@ class ControllerOpenbayAmazonusListing extends Controller {
 		$this->response->setOutput($response);
 	}
 }
+
 ?>

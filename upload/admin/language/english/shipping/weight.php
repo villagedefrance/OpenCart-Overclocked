@@ -15,4 +15,5 @@ $_['entry_sort_order'] = 'Sort Order:';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Weight Based</b> shipping !';
+
 ?>

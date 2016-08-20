@@ -131,5 +131,6 @@ $_['lang_pod_shop']                  = 'Store';
 
 $_['lang_checking_messages']         = 'Checking for messages';
 $_['lang_title_messages']            = 'Messages &amp; notifications';
-$_['lang_error_retry']               = 'Could not connect to the OpenBay server. ';
+$_['lang_error_retry']               = 'Could not connect to the OpenBay server.';
+
 ?>

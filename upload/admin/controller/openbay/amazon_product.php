@@ -447,6 +447,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -601,7 +602,7 @@ class ControllerOpenbayAmazonProduct extends Controller {
 		$this->db->query("UPDATE `" . DB_PREFIX . "amazon_product` SET `status` = 'saved' WHERE `status` = 'uploaded'");
 	}
 
-	private function validateForm() {
+	protected function validateForm() {
 		return true;
 	}
 
@@ -622,4 +623,5 @@ class ControllerOpenbayAmazonProduct extends Controller {
 		return $text;
 	}
 }
+
 ?>

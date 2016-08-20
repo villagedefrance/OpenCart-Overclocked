@@ -90,4 +90,5 @@ class ModelToolSystem extends Model {
 		return $token;
 	}
 }
+
 ?>

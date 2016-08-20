@@ -90,8 +90,8 @@ class ModelPaymentAmazonCheckout extends Model {
 
 			foreach ($results as $result) { 
 				$order['products'][$result['order_product_id']] = array(
-					'amazon_order_item_code'	=> $result['amazon_order_item_code'],
-					'quantity' 						=> $result['quantity']
+					'amazon_order_item_code' => $result['amazon_order_item_code'],
+					'quantity'               => $result['quantity']
 				);
 			}
 		}
@@ -99,4 +99,5 @@ class ModelPaymentAmazonCheckout extends Model {
 		return $order;
 	}
 }
+
 ?>

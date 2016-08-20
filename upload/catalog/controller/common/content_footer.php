@@ -89,4 +89,5 @@ class ControllerCommonContentFooter extends Controller {
 		$this->render();
 	}
 }
+
 ?>

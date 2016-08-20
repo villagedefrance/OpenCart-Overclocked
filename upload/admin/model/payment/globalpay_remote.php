@@ -278,4 +278,5 @@ class ModelPaymentGlobalpayRemote extends Model {
 		return (double)$query->row['total'];
 	}
 }
+
 ?>

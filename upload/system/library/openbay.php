@@ -429,4 +429,5 @@ final class Openbay {
 		return $product_option_data;
 	}
 }
+
 ?>

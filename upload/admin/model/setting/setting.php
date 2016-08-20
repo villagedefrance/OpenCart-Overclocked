@@ -92,4 +92,5 @@ class ModelSettingSetting extends Model {
 		return $shapes;
 	}
 }
+
 ?>

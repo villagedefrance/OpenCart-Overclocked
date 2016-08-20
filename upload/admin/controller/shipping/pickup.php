@@ -105,4 +105,5 @@ class ControllerShippingPickup extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

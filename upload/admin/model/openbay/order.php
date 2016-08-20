@@ -130,29 +130,30 @@ class ModelOpenbayOrder extends Model {
 	}
 
 	public function getOrder($order_id) {
-		$sql = "SELECT o.order_id, o.order_status_id, o.shipping_method, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.currency_code, o.currency_value, o.date_added, IF(ao.order_id IS NULL, IF(auso.order_id IS NULL, IF(eo.order_id IS NULL, 'web', 'ebay'), 'amazonus'), 'amazon') AS channel FROM `" . DB_PREFIX . "order` o";
+		$sql = "SELECT o.order_id, o.order_status_id, o.shipping_method, CONCAT(o.firstname, ' ', o.lastname) AS customer, (SELECT os.name FROM " . DB_PREFIX . "order_status os WHERE os.order_status_id = o.order_status_id AND os.language_id = '" . (int)$this->config->get('config_language_id') . "') AS status, o.currency_code, o.currency_value, o.date_added, IF(ao.order_id IS NULL, IF(auso.order_id IS NULL, IF(eo.order_id IS NULL, 'web', 'ebay'), 'amazonus'), 'amazon') AS channel FROM " . DB_PREFIX . "order o";
 
 		if ($this->config->get('openbay_status')) {
-			$sql .= " LEFT JOIN " . DB_PREFIX . "ebay_order eo ON o.order_id = eo.order_id ";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "ebay_order eo ON (o.order_id = eo.order_id)";
 		} else {
-			$sql .= " JOIN (SELECT NULL AS order_id) eo ";
+			$sql .= " JOIN (SELECT NULL AS order_id) eo";
 		}
 
 		if ($this->config->get('amazon_status')) {
-			$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_order ao ON o.order_id = ao.order_id ";
+		$sql .= " LEFT JOIN " . DB_PREFIX . "amazon_order ao ON (o.order_id = ao.order_id)";
 		} else {
-			$sql .= " JOIN (SELECT NULL AS order_id) ao ";
+			$sql .= " JOIN (SELECT NULL AS order_id) ao";
 		}
 
 		if ($this->config->get('amazonus_status')) {
-			$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_order auso ON o.order_id = auso.order_id ";
+			$sql .= " LEFT JOIN " . DB_PREFIX . "amazonus_order auso ON (o.order_id = auso.order_id)";
 		} else {
-			$sql .= " JOIN (SELECT NULL AS order_id) auso ";
+			$sql .= " JOIN (SELECT NULL AS order_id) auso";
 		}
 
-		$sql .= " WHERE `o`.`order_id` = '".(int)$order_id."'";
+		$sql .= " WHERE o.order_id = '" . (int)$order_id . "'";
 
 		return $this->db->query($sql)->row;
 	}
 }
+
 ?>

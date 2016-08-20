@@ -86,4 +86,5 @@ class ControllerCommonColumnLeft extends Controller {
 		$this->render();
 	}
 }
+
 ?>

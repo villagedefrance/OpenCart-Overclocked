@@ -418,7 +418,9 @@ class ControllerPaymentSagepayDirect extends Controller {
 				$json['data']['total_released'] = (double)$total_released;
 				$json['data']['total_rebated'] = (double)$total_rebated;
 				$json['data']['rebate_status'] = $rebate_status;
+
 				$json['error'] = false;
+
 			} else {
 				$json['error'] = true;
 				$json['msg'] = isset($rebate_response['StatusDetail']) && !empty($rebate_response['StatusDetail']) ? (string)$rebate_response['StatusDetail'] : 'Unable to rebate';
@@ -445,4 +447,5 @@ class ControllerPaymentSagepayDirect extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

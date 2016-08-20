@@ -126,4 +126,5 @@ class ControllerModuleWelcome extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

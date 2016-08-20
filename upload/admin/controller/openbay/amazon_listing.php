@@ -591,6 +591,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 			);
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -634,6 +635,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -647,6 +649,7 @@ class ControllerOpenbayAmazonListing extends Controller {
 			'img' => (!isset($data['ItemAttributes']['SmallImage']['URL']) ? '' : $data['ItemAttributes']['SmallImage']['URL'])
 		);
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
 
@@ -663,4 +666,5 @@ class ControllerOpenbayAmazonListing extends Controller {
 		$this->response->setOutput($response);
 	}
 }
+
 ?>

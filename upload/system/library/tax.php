@@ -195,4 +195,5 @@ final class Tax {
 		return isset($this->taxes[$tax_class_id]);
 	}
 }
+
 ?>

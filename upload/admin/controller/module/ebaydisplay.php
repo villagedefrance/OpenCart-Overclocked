@@ -199,4 +199,5 @@ class ControllerModuleEbaydisplay extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

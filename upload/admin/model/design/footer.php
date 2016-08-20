@@ -170,10 +170,10 @@ class ModelDesignFooter extends Model {
 			}
 
 			$footer_route_data[] = array(
-				'footer_route_description'	=> $footer_route_description_data,
-				'route'                			=> $footer_route['route'],
-				'external_link'					=> $footer_route['external_link'],
-				'sort_order'           			=> $footer_route['sort_order']
+				'footer_route_description' => $footer_route_description_data,
+				'route'                    => $footer_route['route'],
+				'external_link'            => $footer_route['external_link'],
+				'sort_order'               => $footer_route['sort_order']
 			);
 		}
 
@@ -210,4 +210,5 @@ class ModelDesignFooter extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

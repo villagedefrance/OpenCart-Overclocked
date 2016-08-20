@@ -95,11 +95,11 @@ class ModelPaymentPPProIframe extends Model {
 		}
 
 		$settings = array(
-			'USER' 				=> $this->config->get('pp_pro_iframe_user'),
-			'PWD' 				=> $this->config->get('pp_pro_iframe_password'),
-			'SIGNATURE' 		=> $this->config->get('pp_pro_iframe_sig'),
-			'VERSION' 			=> '84',
-			'BUTTONSOURCE'	=> 'WM_PRO_OPENCART_UK_' . VERSION
+			'USER'         => $this->config->get('pp_pro_iframe_user'),
+			'PWD'          => $this->config->get('pp_pro_iframe_password'),
+			'SIGNATURE'    => $this->config->get('pp_pro_iframe_sig'),
+			'VERSION'      => '84',
+			'BUTTONSOURCE' => 'WM_PRO_OPENCART_UK_' . VERSION
 		);
 
 		$this->log($data, 'Call data');
@@ -124,8 +124,8 @@ class ModelPaymentPPProIframe extends Model {
 
 		if (!$result = curl_exec($ch)) {
 			$log_data = array(
-				'curl_error' 	=> curl_error($ch),
-				'curl_errno' 	=> curl_errno($ch)
+				'curl_error' => curl_error($ch),
+				'curl_errno' => curl_errno($ch)
 			);
 
 			$this->log($log_data, 'CURL failed');
@@ -188,8 +188,8 @@ class ModelPaymentPPProIframe extends Model {
 
 	public function getTransaction($transaction_id) {
 		$call_data = array(
-			'METHOD' 			=> 'GetTransactionDetails',
-			'TRANSACTIONID'	=> $transaction_id
+			'METHOD'        => 'GetTransactionDetails',
+			'TRANSACTIONID' => $transaction_id
 		);
 
 		return $this->call($call_data);
@@ -246,4 +246,5 @@ class ModelPaymentPPProIframe extends Model {
 		return $arr;
 	}
 }
+
 ?>

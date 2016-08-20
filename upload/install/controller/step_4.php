@@ -24,4 +24,5 @@ class ControllerStep4 extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
+
 ?>

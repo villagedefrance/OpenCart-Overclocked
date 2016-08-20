@@ -589,4 +589,5 @@ if (extension_loaded('mbstring')) {
 		return $string;
 	}
 }
+
 ?>

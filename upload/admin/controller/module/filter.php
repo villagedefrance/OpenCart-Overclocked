@@ -169,4 +169,5 @@ class ControllerModulefilter extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

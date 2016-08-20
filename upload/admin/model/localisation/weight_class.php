@@ -107,8 +107,8 @@ class ModelLocalisationWeightClass extends Model {
 
 		foreach ($query->rows as $result) {
 			$weight_class_data[$result['language_id']] = array(
-				'title' 	=> $result['title'],
-				'unit'	=> $result['unit']
+				'title' => $result['title'],
+				'unit'  => $result['unit']
 			);
 		}
 
@@ -121,4 +121,5 @@ class ModelLocalisationWeightClass extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

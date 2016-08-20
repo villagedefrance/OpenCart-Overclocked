@@ -53,4 +53,5 @@ function vat_validation($prefix, $number) {
 		return 'unknown';
 	}
 }
+
 ?>

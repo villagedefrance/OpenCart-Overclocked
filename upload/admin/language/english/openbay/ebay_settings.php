@@ -120,4 +120,5 @@ $_['lang_developer_repairlinks']          = 'Repair item links';
 
 $_['lang_timezone_offset']                = 'Timezone offset<span class="help">Based on hours. 0 is GMT timezone. Only works if eBay time is used for order creation.</span>';
 $_['entry_measurement']                   = 'Measurement system';
+
 ?>

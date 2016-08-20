@@ -35,4 +35,5 @@ $_['button_news']           = 'Add / Edit News';
 // Error
 $_['error_permission']      = 'Warning: You do not have permission to modify module <b>News</b> !';
 $_['error_dimension']       = 'Width &amp; Height dimensions required!';
+
 ?>

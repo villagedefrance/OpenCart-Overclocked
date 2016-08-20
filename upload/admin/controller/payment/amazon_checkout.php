@@ -493,4 +493,5 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		return empty($this->errors);
 	}
 }
+
 ?>

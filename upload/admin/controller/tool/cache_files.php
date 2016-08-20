@@ -126,7 +126,7 @@ class ControllerToolCacheFiles extends Controller {
 		}
 	}
 
-	private function validateDelete() {
+	protected function validateDelete() {
 		if (!$this->user->hasPermission('modify', 'tool/cache_files')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -134,4 +134,5 @@ class ControllerToolCacheFiles extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

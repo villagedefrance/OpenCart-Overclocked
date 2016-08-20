@@ -152,4 +152,5 @@ class ModelSettingStore extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

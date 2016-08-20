@@ -165,4 +165,5 @@ $_['vqmod_license']                    = 'GPLv3 (GNU General Public License)';
 $_['warning_required_delete']          = 'WARNING: Deleting \\\'vqmod_opencart.xml\\\' will cause VQMod to STOP WORKING!  Continue?';
 $_['warning_required_uninstall']       = 'WARNING: Uninstalling \\\'vqmod_opencart.xml\\\' will cause VQMod to STOP WORKING!  Continue?';
 $_['warning_vqmod_delete']             = 'WARNING: Deleting a VQMod script cannot be undone!  Are you sure you want to do this?';
+
 ?>

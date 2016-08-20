@@ -84,4 +84,5 @@ class ModelDesignPayment extends Model {
 		return $query->rows;
 	}
 }
+
 ?>

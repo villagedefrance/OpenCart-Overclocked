@@ -32,4 +32,5 @@ class Session {
 		return session_destroy();
 	}
 }
+
 ?>

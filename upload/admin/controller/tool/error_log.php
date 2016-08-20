@@ -111,4 +111,5 @@ class ControllerToolErrorLog extends Controller {
 		$this->redirect($this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 }
+
 ?>

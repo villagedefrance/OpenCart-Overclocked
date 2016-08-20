@@ -28,4 +28,5 @@ $_['error_permission']   = 'Warning: You do not have permission to modify <b>Pay
 $_['error_username']     = 'API Username Required!';
 $_['error_password']     = 'API Password Required!';
 $_['error_signature']    = 'API Signature Required!';
+
 ?>

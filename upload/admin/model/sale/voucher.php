@@ -217,4 +217,5 @@ class ModelSaleVoucher extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

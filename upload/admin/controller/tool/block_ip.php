@@ -392,7 +392,7 @@ class ControllerToolBlockIp extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function validateForm() {
+	protected function validateForm() {
 		if (!$this->user->hasPermission('modify', 'tool/block_ip')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -412,7 +412,7 @@ class ControllerToolBlockIp extends Controller {
 		return empty($this->error);
 	}
 
-	private function validateDelete() { 
+	protected function validateDelete() { 
 		if (!$this->user->hasPermission('modify', 'tool/block_ip')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -420,4 +420,5 @@ class ControllerToolBlockIp extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

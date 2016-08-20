@@ -80,4 +80,5 @@ final class Loader {
 		return $this->language->load($route);
 	}
 }
+
 ?>

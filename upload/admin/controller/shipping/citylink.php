@@ -125,4 +125,5 @@ class ControllerShippingCitylink extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

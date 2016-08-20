@@ -66,4 +66,5 @@ $_['error_permission']       = 'Warning: You do not have permission to modify pa
 $_['error_account_name']     = 'Account Name Required!';
 $_['error_account_id']       = 'Account ID Required!';
 $_['error_secret_key']       = 'Secret Key Required!';
+
 ?>

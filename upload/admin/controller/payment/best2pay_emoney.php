@@ -197,4 +197,5 @@ class ControllerPaymentBest2payEmoney extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

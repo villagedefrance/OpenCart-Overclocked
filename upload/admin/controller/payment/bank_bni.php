@@ -167,4 +167,5 @@ class ControllerPaymentBankBni extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

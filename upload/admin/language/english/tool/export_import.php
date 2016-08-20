@@ -209,4 +209,5 @@ $_['export_tool_license']                               = 'GPLv3 (GNU General Pu
 $_['phpexcel_version']                                  = 'PHPExcel v1.8.1 (GitHub)';
 $_['phpexcel_author']                                   = 'phpexcel.codeplex.com';
 $_['phpexcel_license']                                  = 'LGPL (GNU LESSER GENERAL PUBLIC LICENSE)';
+
 ?>

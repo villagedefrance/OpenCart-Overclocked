@@ -40,4 +40,5 @@ $_['tab_international_economy']        = 'International<br />Economy';
 
 // Error
 $_['error_permission']                 = 'Warning: You do not have permission to modify <b>Royal Mail</b> shipping !';
+
 ?>

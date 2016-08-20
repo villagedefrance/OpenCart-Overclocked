@@ -219,9 +219,9 @@ class ModelPaymentFirstdata extends Model {
 
 	public function mapCurrency($code) {
 		$currency = array(
-			'GBP'	=> 826,
-			'USD'	=> 840,
-			'EUR'	=> 978
+			'GBP' => 826,
+			'USD' => 840,
+			'EUR' => 978
 		);
 
 		if (array_key_exists($code, $currency)) {
@@ -231,4 +231,5 @@ class ModelPaymentFirstdata extends Model {
 		}
 	}
 }
+
 ?>

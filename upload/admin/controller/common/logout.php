@@ -9,4 +9,5 @@ class ControllerCommonLogout extends Controller {
 		$this->redirect($this->url->link('common/login', '', 'SSL'));
 	}
 }
+
 ?>

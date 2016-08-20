@@ -68,4 +68,5 @@ $_['button_collapse']     = 'Collapse Tree';
 $_['button_view_text']    = 'Text View';
 $_['button_view_list']    = 'List View';
 $_['button_view_thumb']   = 'Thumb View';
+
 ?>

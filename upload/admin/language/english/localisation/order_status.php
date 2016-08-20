@@ -20,4 +20,5 @@ $_['error_default']    = 'Warning: This order status cannot be deleted as it is 
 $_['error_download']   = 'Warning: This order status cannot be deleted as it is currently assigned as the default download status!';
 $_['error_store']      = 'Warning: This order status cannot be deleted as it is currently assigned to %s stores!';
 $_['error_order']      = 'Warning: This order status cannot be deleted as it is currently assigned to %s orders!';
+
 ?>

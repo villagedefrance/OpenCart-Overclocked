@@ -651,15 +651,15 @@ class ModelOpenbayOpenbay extends Model {
 		}
 
 		$data = array(
-			'token' => '',
-			'language' => $this->config->get('openbay_language'),
-			'secret' => '',
-			'server' => 1,
-			'domain' => $domain,
+			'token'           => '',
+			'language'        => $this->config->get('openbay_language'),
+			'secret'          => '',
+			'server'          => 1,
+			'domain'          => $domain,
 			'openbay_version' => (int)$this->config->get('openbay_version'),
-			'data' => $post,
-			'content_type' => $content_type,
-			'ocversion' => VERSION
+			'data'            => $post,
+			'content_type'    => $content_type,
+			'ocversion'       => VERSION
 		);
 
 		$useragent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1";
@@ -1003,4 +1003,5 @@ class ModelOpenbayOpenbay extends Model {
 		return $query->rows;
 	}
 }
+
 ?>

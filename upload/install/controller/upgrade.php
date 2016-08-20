@@ -244,4 +244,5 @@ class ControllerUpgrade extends Controller {
 		}
 	}
 }
+
 ?>

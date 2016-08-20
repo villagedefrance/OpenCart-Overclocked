@@ -61,15 +61,15 @@ class ModelUpgrade extends Model {
 
 			foreach (array_keys($match[0]) as $key) {
 				$field_data[] = array(
-					'name'          		=> trim($match[1][$key]),
-					'type'          		=> strtoupper(trim($match[3][$key])),
-					'size'          		=> str_replace(array('(', ')'), '', trim($match[4][$key])),
-					'sizeext'       		=> trim($match[6][$key]),
-					'collation'     		=> trim($match[7][$key]),
-					'unsigned'      		=> trim($match[8][$key]),
-					'notnull'       		=> trim($match[9][$key]),
-					'autoincrement' 	=> trim($match[12][$key]),
-					'default'       		=> trim($match[14][$key])
+					'name'          => trim($match[1][$key]),
+					'type'          => strtoupper(trim($match[3][$key])),
+					'size'          => str_replace(array('(', ')'), '', trim($match[4][$key])),
+					'sizeext'       => trim($match[6][$key]),
+					'collation'     => trim($match[7][$key]),
+					'unsigned'      => trim($match[8][$key]),
+					'notnull'       => trim($match[9][$key]),
+					'autoincrement' => trim($match[12][$key]),
+					'default'       => trim($match[14][$key])
 				);
 			}
 
@@ -571,7 +571,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		}
 
 		// Create News layout
-		$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout WHERE name LIKE 'News' LIMIT 1";
+		$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout WHERE name LIKE 'News' LIMIT 0,1";
 
 		$query_name = $this->db->query($sql);
 
@@ -584,7 +584,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 		foreach ($stores as $store_id) {
 			foreach ($news_routes as $news_route) {
-				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $news_route . "' LIMIT 1";
+				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $news_route . "' LIMIT 0,1";
 
 				$query = $this->db->query($sql);
 
@@ -608,7 +608,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 		foreach ($stores as $store_id) {
 			foreach ($special_routes as $special_route) {
-				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $special_route . "' LIMIT 1";
+				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $special_route . "' LIMIT 0,1";
 
 				$query = $this->db->query($sql);
 
@@ -785,4 +785,5 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		return $checked_columns;
 	}
 }
+
 ?>

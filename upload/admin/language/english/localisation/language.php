@@ -35,4 +35,5 @@ $_['error_default']     = 'Warning: This language cannot be deleted as it is cur
 $_['error_admin']       = 'Warning: This language cannot be deleted as it is currently assigned as the administration language!';
 $_['error_store']       = 'Warning: This language cannot be deleted as it is currently assigned to %s stores!';
 $_['error_order']       = 'Warning: This language cannot be deleted as it is currently assigned to %s orders!';
+
 ?>

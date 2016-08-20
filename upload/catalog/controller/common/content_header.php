@@ -98,4 +98,5 @@ class ControllerCommonContentHeader extends Controller {
 		$this->render();
 	}
 }
+
 ?>

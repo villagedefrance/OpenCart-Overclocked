@@ -107,4 +107,5 @@ class ModelToolUpload extends Model {
 		return $query->row;
 	}
 }
+
 ?>

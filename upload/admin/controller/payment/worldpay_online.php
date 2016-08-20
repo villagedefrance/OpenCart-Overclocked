@@ -368,7 +368,9 @@ class ControllerPaymentWorldpayOnline extends Controller {
 				$json['data']['total_released'] = $this->currency->format($total_released, $worldpay_online_order['currency_code'], false);
 				$json['data']['total_refund'] = $this->currency->format($total_refunded, $worldpay_online_order['currency_code'], false);
 				$json['data']['refund_status'] = 1;
+
 				$json['error'] = false;
+
 			} else {
 				$json['error'] = true;
 				$json['msg'] = isset($refund_response['message']) && !empty($refund_response['message']) ? (string)$refund_response['message'] : 'Unable to refund';
@@ -399,4 +401,5 @@ class ControllerPaymentWorldpayOnline extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

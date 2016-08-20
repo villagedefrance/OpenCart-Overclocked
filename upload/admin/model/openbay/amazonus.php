@@ -762,16 +762,16 @@ class ModelOpenbayAmazonus extends Model {
 
 		foreach ($rows as $row) {
 			$products[] = array(
-				'product_id' => $row['product_id'],
-				'name' => $row['name'],
-				'sku' => $row['sku'],
-				'var' => $row['var'],
-				'quantity' => $row['quantity'],
-				'amazon_sku' => $row['amazon_sku'],
+				'product_id'      => $row['product_id'],
+				'name'            => $row['name'],
+				'sku'             => $row['sku'],
+				'var'             => $row['var'],
+				'quantity'        => $row['quantity'],
+				'amazon_sku'      => $row['amazon_sku'],
 				'amazon_quantity' => $row['amazon_quantity'],
-				'amazon_price' => number_format($row['amazon_price'], 2, '.', ''),
-				'asin' => $row['asin'],
-				'combination' => $row['combination'],
+				'amazon_price'    => number_format($row['amazon_price'], 2, '.', ''),
+				'asin'            => $row['asin'],
+				'combination'     => $row['combination']
 			);
 		}
 
@@ -784,4 +784,5 @@ class ModelOpenbayAmazonus extends Model {
 		");
 	}
 }
+
 ?>

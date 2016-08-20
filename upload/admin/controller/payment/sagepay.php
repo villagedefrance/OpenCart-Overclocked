@@ -178,4 +178,5 @@ class ControllerPaymentSagepay extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

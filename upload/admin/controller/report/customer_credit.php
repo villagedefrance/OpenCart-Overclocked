@@ -141,4 +141,5 @@ class ControllerReportCustomerCredit extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
+
 ?>

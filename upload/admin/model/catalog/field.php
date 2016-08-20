@@ -131,4 +131,5 @@ class ModelCatalogField extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

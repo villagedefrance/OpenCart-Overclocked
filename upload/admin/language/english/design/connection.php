@@ -22,4 +22,5 @@ $_['entry_route']      = 'Address (Url)';
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Links</b> !';
 $_['error_name']       = 'Connection Name must be between 3 and 64 characters!';
+
 ?>

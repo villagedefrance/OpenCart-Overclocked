@@ -216,4 +216,5 @@ class ModelReportProduct extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

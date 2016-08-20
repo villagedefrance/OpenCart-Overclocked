@@ -87,4 +87,5 @@ class ControllerTotalOffers extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

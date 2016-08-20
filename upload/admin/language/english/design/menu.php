@@ -33,4 +33,5 @@ $_['button_horizontal']   = 'Menu Horizontal';
 $_['error_permission']    = 'Warning: You do not have permission to modify <b>Menus</b> !';
 $_['error_warning']       = 'Warning: Please check the form carefully for errors !';
 $_['error_title']         = 'Menu Title must be between 2 and 32 characters !';
+
 ?>

@@ -62,9 +62,9 @@ class ModelDesignMenu extends Model {
 
 		foreach ($query->rows as $result) {
 			$menu_data[] = array(
-				'menu_id'	=> $result['menu_id'],
-				'title'			=> $result['title'],
-				'status'		=> $result['status']
+				'menu_id' => $result['menu_id'],
+				'title'   => $result['title'],
+				'status'  => $result['status']
 			);
 		}
 
@@ -93,4 +93,5 @@ class ModelDesignMenu extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

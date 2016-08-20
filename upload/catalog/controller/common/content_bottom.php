@@ -89,4 +89,5 @@ class ControllerCommonContentBottom extends Controller {
 		$this->render();
 	}
 }
+
 ?>

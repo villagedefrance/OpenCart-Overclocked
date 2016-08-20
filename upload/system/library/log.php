@@ -16,4 +16,5 @@ class Log {
 		fclose($handle);
 	}
 }
+
 ?>

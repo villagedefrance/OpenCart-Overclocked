@@ -99,4 +99,5 @@ class ModelReportReturn extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

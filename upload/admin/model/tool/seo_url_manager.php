@@ -74,4 +74,5 @@ class ModelToolSeoUrlManager extends Model {
 		return $query->row['keyword_total'];
 	}
 }
+
 ?>

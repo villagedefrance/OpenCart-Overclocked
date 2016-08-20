@@ -143,7 +143,7 @@ class ControllerToolExportImportRaw extends Controller {
 		}
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (!$this->user->hasPermission('modify', 'tool/export_import_raw')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
@@ -151,4 +151,5 @@ class ControllerToolExportImportRaw extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

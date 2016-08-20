@@ -140,7 +140,7 @@ $_['amazonus_sku_column_text']        = 'Amazon item SKU';
 $_['actions_column_text']             = 'Action';
 $_['saved_localy_text']               = 'Listing saved localy.';
 $_['uploaded_alert_text']             = 'Saved listing(s) uploaded!';
-$_['upload_failed']                   = 'Failed uploading product with SKU: "%s". Reason: "%s" Uploading process canceled.';
+$_['upload_failed']                   = 'Failed uploading product with SKU: "%s". Reason: "%s" Uploading process cancelled.';
 
 // Item links
 $_['links_header_text']               = 'Link items';
@@ -182,4 +182,5 @@ $_['column_amazonus_sku']             = 'Amazon item SKU';
 
 // Messages
 $_['text_links_removed']              = 'Amazon product links deleted';
+
 ?>

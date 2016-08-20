@@ -236,4 +236,5 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		$this->redirect($this->url->link('payment/klarna_invoice', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 }
+
 ?>

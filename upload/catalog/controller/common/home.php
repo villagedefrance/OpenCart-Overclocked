@@ -31,4 +31,5 @@ class ControllerCommonHome extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
+
 ?>

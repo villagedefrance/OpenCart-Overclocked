@@ -123,4 +123,5 @@ class ControllerShippingFlat3 extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

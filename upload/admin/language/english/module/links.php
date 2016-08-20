@@ -31,4 +31,5 @@ $_['button_manager']      = 'Links Manager';
 
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to modify module <b>Links</b> !';
+
 ?>

@@ -117,4 +117,5 @@ class ControllerToolMailLog extends Controller {
 		$this->redirect($this->url->link('tool/mail_log', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 }
+
 ?>

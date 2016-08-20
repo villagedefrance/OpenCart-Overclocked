@@ -122,4 +122,5 @@ class ModelSaleSupplierGroup extends Model {
 		return $query->row['total'];
 	}
 }
+
 ?>

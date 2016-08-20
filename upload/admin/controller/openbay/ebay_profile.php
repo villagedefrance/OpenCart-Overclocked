@@ -67,7 +67,7 @@ class ControllerOpenbayEbayProfile extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->response->setOutput($this->render(true), $this->config->get('config_compression'));
+		$this->response->setOutput($this->render());
 	}
 
 	public function add() {
@@ -362,11 +362,11 @@ class ControllerOpenbayEbayProfile extends Controller {
 
 		if (is_array($shipping_national)) {
 			foreach ($shipping_national as $key => $service) {
-				$tmp .= '<p class="shipping_national_' . $key . '"><label><strong>'.$this->language->get('lang_shipping_service').': </strong><label> ';
-				$tmp .= '<input type="hidden" name="service_national['.$key.']" value="'.$service['id'].'" />'.$service['name'].'</p><p class="shipping_national_'.$key.'"><label>'.$this->language->get('lang_shipping_first').': </label>';
-				$tmp .= '<input type="text" name="price_national['.$key.']" style="width:50px;" value="'.$service['price'].'" />';
-				$tmp .= '&nbsp;&nbsp;<label>'.$this->language->get('lang_shipping_add').': </label>';
-				$tmp .= '<input type="text" name="priceadditional_national['.$key.']" style="width:50px;" value="'.$service['additional'].'" />&nbsp;&nbsp;<a onclick="removeShipping(\'national\',\''.$key.'\');" class="button"><span>'.$this->language->get('lang_btn_remove').'</span></a></p>';
+				$tmp .= '<p class="shipping_national_' . $key . '"><label><strong>' . $this->language->get('lang_shipping_service') . ': </strong><label> ';
+				$tmp .= '<input type="hidden" name="service_national[' . $key . ']" value="' . $service['id'] . '" />' . $service['name'] . '</p><p class="shipping_national_' . $key . '"><label>' . $this->language->get('lang_shipping_first') . ': </label>';
+				$tmp .= '<input type="text" name="price_national[' . $key . ']" style="width:50px;" value="' . $service['price'] . '" />';
+				$tmp .= '&nbsp;&nbsp;<label>' . $this->language->get('lang_shipping_add') . ': </label>';
+				$tmp .= '<input type="text" name="priceadditional_national[' . $key . ']" style="width:50px;" value="' . $service['additional'] . '" />&nbsp;&nbsp;<a onclick="removeShipping(\'national\',\'' . $key . '\');" class="button"><span>' . $this->language->get('lang_btn_remove') . '</span></a></p>';
 			}
 		}
 		$return['national_count'] = (int)$shipping_national_count;
@@ -375,29 +375,29 @@ class ControllerOpenbayEbayProfile extends Controller {
 
 		if (is_array($shipping_international)) {
 			foreach ($shipping_international as $key => $service) {
-				$tmp .= '<p class="shipping_international_'.$key.'" style="border-top:1px dotted; margin:0; padding:8px 0;"><label><strong>'.$this->language->get('lang_shipping_service').': </strong><label> ';
-				$tmp .= '<input type="hidden" name="service_international['.$key.']" value="'.$service['id'].'" />'.$service['name'].'</p>';
+				$tmp .= '<p class="shipping_international_' . $key . '" style="border-top:1px dotted; margin:0; padding:8px 0;"><label><strong>' . $this->language->get('lang_shipping_service') . ': </strong><label> ';
+				$tmp .= '<input type="hidden" name="service_international[' . $key . ']" value="' . $service['id'] . '" />' . $service['name'] . '</p>';
 
-				$tmp .= '<h5 style="margin:5px 0;" class="shipping_international_'.$key.'">'.$this->language->get('lang_shipping_zones').'</h5>';
-				$tmp .= '<div style="border:1px solid #000; background-color:#F5F5F5; width:100%; min-height:40px; margin-bottom:10px; display:inline-block;" class="shipping_international_'.$key.'">';
+				$tmp .= '<h5 style="margin:5px 0;" class="shipping_international_' . $key . '">' . $this->language->get('lang_shipping_zones') . '</h5>';
+				$tmp .= '<div style="border:1px solid #000; background-color:#F5F5F5; width:100%; min-height:40px; margin-bottom:10px; display:inline-block;" class="shipping_international_' . $key . '">';
 				$tmp .= '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
-				$tmp .= '<input type="checkbox" name="shipto_international['.$key.'][]" value="Worldwide" ';
+				$tmp .= '<input type="checkbox" name="shipto_international[' . $key . '][]" value="Worldwide" ';
 				if (in_array('Worldwide', $service['shipto'])) { $tmp .= ' checked="checked"'; }
-				$tmp .= '/> '.$this->language->get('lang_shipping_worldwide').'</div>';
+				$tmp .= '/> ' . $this->language->get('lang_shipping_worldwide') . '</div>';
 
 				foreach ($zones as $zone) {
 					$tmp .= '<div style="display:inline; float:left; padding:10px 6px;line-height:20px; height:20px;">';
-					$tmp .= '<input type="checkbox" name="shipto_international['.$key.'][]" value="'. $zone['shipping_location'] . '"';
+					$tmp .= '<input type="checkbox" name="shipto_international[' . $key . '][]" value="' . $zone['shipping_location'] . '"';
 					if (in_array($zone['shipping_location'], $service['shipto'])) { $tmp .= ' checked="checked"'; }
-					$tmp .= '/> '.$zone['description'].'</div>';
+					$tmp .= '/> ' . $zone['description'] . '</div>';
 				}
 
 				$tmp .= '</div>';
-				$tmp .= '<div style="clear:both;" class="shipping_international_'.$key.'"></div>';
-				$tmp .= '<p class="shipping_international_'.$key.'"><label>'.$this->language->get('lang_shipping_first').': </label>';
-				$tmp .= '<input type="text" name="price_international['.$key.']" style="width:50px;" value="'.$service['price'].'" />';
-				$tmp .= '&nbsp;&nbsp;<label>'.$this->language->get('lang_shipping_add').': </label>';
-				$tmp .= '<input type="text" name="priceadditional_international['.$key.']" style="width:50px;" value="'.$service['additional'].'" />&nbsp;&nbsp;<a onclick="removeShipping(\'international\',\''.$key.'\');" class="button"><span>'.$this->language->get('lang_btn_remove').'</span></a></p>';
+				$tmp .= '<div style="clear:both;" class="shipping_international_' . $key . '"></div>';
+				$tmp .= '<p class="shipping_international_' . $key . '"><label>' . $this->language->get('lang_shipping_first') . ': </label>';
+				$tmp .= '<input type="text" name="price_international[' . $key . ']" style="width:50px;" value="' . $service['price'] . '" />';
+				$tmp .= '&nbsp;&nbsp;<label>' . $this->language->get('lang_shipping_add') . ': </label>';
+				$tmp .= '<input type="text" name="priceadditional_international[' . $key . ']" style="width:50px;" value="' . $service['additional'] . '" />&nbsp;&nbsp;<a onclick="removeShipping(\'international\',\'' . $key . '\');" class="button"><span>' . $this->language->get('lang_btn_remove') . '</span></a></p>';
 			}
 		}
 
@@ -406,10 +406,11 @@ class ControllerOpenbayEbayProfile extends Controller {
 
 		$profile_info['html'] = $return;
 
+		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($profile_info));
 	}
 
-	private function profileValidate() {
+	protected function profileValidate() {
 		if (!$this->user->hasPermission('modify', 'openbay/ebay_profile')) {
 			$this->error['warning'] = $this->language->get('invalid_permission');
 		}
@@ -422,11 +423,8 @@ class ControllerOpenbayEbayProfile extends Controller {
 			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 }
+
 ?>

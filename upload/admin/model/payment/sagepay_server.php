@@ -279,4 +279,5 @@ class ModelPaymentSagepayServer extends Model {
 		}
 	}
 }
+
 ?>

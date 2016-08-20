@@ -1123,4 +1123,5 @@ class PHPExcel {
 		return $this->_uniqueID;
 	}
 }
+
 ?>

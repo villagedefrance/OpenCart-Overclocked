@@ -108,4 +108,5 @@ class ControllerModulePPLayout extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

@@ -174,4 +174,5 @@ class ControllerModuleLinks extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

@@ -120,8 +120,8 @@ class ModelModificationEutaxes extends Model {
 
 		foreach ($query->rows as $result) {
 			$eucountry_description_data[$result['language_id']] = array(
-				'eucountry'		=> $result['eucountry'],
-				'description'	=> $result['description']
+				'eucountry'   => $result['eucountry'],
+				'description' => $result['description']
 			);
 		}
 
@@ -286,4 +286,5 @@ class ModelModificationEutaxes extends Model {
 		}
 	}
 }
+
 ?>

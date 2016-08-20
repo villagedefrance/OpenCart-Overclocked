@@ -58,4 +58,5 @@ final class Action {
 		return $this->args;
 	}
 }
+
 ?>

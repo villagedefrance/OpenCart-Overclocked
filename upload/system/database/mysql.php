@@ -86,4 +86,5 @@ final class DBMySQL {
 		}
 	}
 }
+
 ?>

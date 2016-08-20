@@ -165,4 +165,5 @@ class ControllerShippingAusPost extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

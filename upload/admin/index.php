@@ -1,8 +1,8 @@
 <?php
 // Version
 define('VERSION', '1.8.1 RC1');
-define('REVISION', 20160816);
-define('RELEASED', '2016-08-16');
+define('REVISION', 20160820);
+define('RELEASED', '2016-08-20');
 
 // Configuration
 if (file_exists('config.php')) {
@@ -167,4 +167,5 @@ $controller->dispatch($action, new Action('error/not_found'));
 
 // Output
 $response->output();
+
 ?>

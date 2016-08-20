@@ -53,4 +53,5 @@ $_['button_apply']          = 'Apply';
 $_['error_permission']      = 'Warning: You do not have permission to modify module <b>EU VAT Manager</b> !';
 $_['error_eucountry']       = 'EU Country Name must be greater than 3 and less than 128 characters!';
 $_['error_description']     = 'Description must be greater than 3 characters!';
+
 ?>

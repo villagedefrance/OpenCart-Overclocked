@@ -173,4 +173,5 @@ class ControllerModuleStore extends Controller {
 		return empty($this->error);
 	}
 }
+
 ?>

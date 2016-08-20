@@ -26,8 +26,9 @@ $_['entry_sort_order']   = 'Sort Order:';
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify <b>PayPal Payments Pro Payflow</b> !';
-$_['error_vendor']       = 'Vendor Required!'; 
-$_['error_user']         = 'User Required!'; 
-$_['error_password']     = 'Password Required!'; 
-$_['error_partner']      = 'Partner Required!'; 
+$_['error_vendor']       = 'Vendor Required!';
+$_['error_user']         = 'User Required!';
+$_['error_password']     = 'Password Required!';
+$_['error_partner']      = 'Partner Required!';
+
 ?>

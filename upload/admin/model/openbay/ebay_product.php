@@ -76,10 +76,7 @@ class ModelOpenbayEbayProduct extends Model {
 			$page = $data['page'];
 		}
 
-		//validation for category id
-
-		//validation for search term
-
+		// validation for category id and search term
 		$response['data'] = $this->openbay->ebay->call('listing/searchCatalog/', array('page' => (int)$page, 'categoryId' => $data['categoryId'], 'search' => $data['search']));
 
 		$response['error'] = $this->openbay->ebay->lasterror;
@@ -88,4 +85,5 @@ class ModelOpenbayEbayProduct extends Model {
 		return $response;
 	}
 }
+
 ?>

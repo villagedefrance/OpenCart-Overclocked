@@ -109,4 +109,5 @@ class ModelInstall extends Model {
 		}
 	}
 }
+
 ?>

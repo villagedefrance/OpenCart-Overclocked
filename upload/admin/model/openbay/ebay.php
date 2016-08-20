@@ -916,4 +916,5 @@ class ModelOpenbayEbay extends Model {
 		return $product_attribute_group_data;
 	}
 }
+
 ?>
