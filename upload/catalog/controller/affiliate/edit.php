@@ -323,11 +323,7 @@ class ControllerAffiliateEdit extends Controller {
  			$this->error['zone'] = $this->language->get('error_zone');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function country() {

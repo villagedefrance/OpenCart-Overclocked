@@ -328,11 +328,7 @@ class ControllerAffiliateProduct extends Controller {
 			$this->error['product'] = $this->language->get('error_product');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function autocomplete() {

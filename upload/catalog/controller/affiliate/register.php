@@ -445,11 +445,7 @@ class ControllerAffiliateRegister extends Controller {
 			}
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function country() {

@@ -616,11 +616,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->error['warning'] = $this->language->get('error_coupon');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateVoucher() {
@@ -632,11 +628,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->error['warning'] = $this->language->get('error_voucher');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateReward() {
@@ -662,11 +654,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateShipping() {
@@ -681,11 +669,7 @@ class ControllerCheckoutCart extends Controller {
 			$this->error['warning'] = $this->language->get('error_shipping');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function add() {
