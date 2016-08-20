@@ -618,11 +618,7 @@ class ControllerAccountAddress extends Controller {
 			$this->error['zone'] = $this->language->get('error_zone');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	protected function validateDelete() {
@@ -634,11 +630,7 @@ class ControllerAccountAddress extends Controller {
 			$this->error['warning'] = $this->language->get('error_default');
 		}
 
-		if (!$this->error) {
-			return true;
-		} else {
-			return false;
-		}
+		return empty($this->error);
 	}
 
 	public function country() {
