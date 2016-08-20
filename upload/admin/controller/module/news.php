@@ -196,5 +196,4 @@ class ControllerModuleNews extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

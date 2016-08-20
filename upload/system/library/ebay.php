@@ -1581,5 +1581,4 @@ final class Ebay {
 		}
 	}
 }
-
 ?>

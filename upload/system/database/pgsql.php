@@ -64,5 +64,4 @@ final class DBPgSQL {
 		pg_close($this->link);
 	}
 }
-
 ?>

@@ -582,5 +582,4 @@ class ControllerProductCategory extends Controller {
 		}
 	}
 }
-
 ?>

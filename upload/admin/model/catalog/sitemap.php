@@ -55,5 +55,4 @@ class ModelCatalogSitemap extends Model {
 		return $query->row;
 	}
 }
-
 ?>

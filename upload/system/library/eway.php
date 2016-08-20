@@ -685,5 +685,4 @@ class CardDetails {
 	public $IssueNumber;
 	public $CVN;
 }
-
 ?>

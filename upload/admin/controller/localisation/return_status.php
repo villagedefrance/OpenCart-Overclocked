@@ -404,5 +404,4 @@ class ControllerLocalisationReturnStatus extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

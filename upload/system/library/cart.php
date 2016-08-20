@@ -521,5 +521,4 @@ class Cart {
 		return $download;
 	}
 }
-
 ?>

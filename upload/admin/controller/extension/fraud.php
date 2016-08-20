@@ -169,5 +169,4 @@ class ControllerExtensionFraud extends Controller {
 		}
 	}
 }
-
 ?>

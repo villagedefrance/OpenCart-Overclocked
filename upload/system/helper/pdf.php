@@ -10,5 +10,4 @@ function pdf($data, $type, $number) {
 
     $pdf->stream($title . '.pdf');
 }
-
 ?>

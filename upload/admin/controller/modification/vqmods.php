@@ -818,5 +818,4 @@ class ControllerModificationVQmods extends Controller {
 		}
 	}
 }
-
 ?>

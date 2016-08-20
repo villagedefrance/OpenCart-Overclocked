@@ -677,5 +677,4 @@ class ControllerCommonFileManager extends Controller {
 		die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
 	}
 }
-
 ?>

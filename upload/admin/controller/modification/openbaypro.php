@@ -76,5 +76,4 @@ class ControllerModificationOpenbaypro extends Controller {
 		$this->model_setting_setting->editSetting('openbaymanager', $settings);
 	}
 }
-
 ?>

@@ -33,5 +33,4 @@ class ControllerErrorPermission extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-
 ?>

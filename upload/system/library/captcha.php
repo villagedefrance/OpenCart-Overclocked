@@ -50,5 +50,4 @@ class Captcha {
 		imagedestroy($image);
 	}
 }
-
 ?>

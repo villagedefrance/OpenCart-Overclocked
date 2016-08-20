@@ -201,5 +201,4 @@ class ControllerModulePopular extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

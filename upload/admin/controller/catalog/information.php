@@ -597,5 +597,4 @@ class ControllerCatalogInformation extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

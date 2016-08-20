@@ -435,5 +435,4 @@ class ControllerDesignLayout extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

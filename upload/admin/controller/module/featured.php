@@ -268,5 +268,4 @@ class ControllerModuleFeatured extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

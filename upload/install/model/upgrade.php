@@ -128,12 +128,12 @@ class ModelUpgrade extends Model {
 
 			if (isset($table[1][0])) {
 				$table_new_data[] = array(
-					'sql'     	=> $sql,
-					'name'  	=> $table[1][0],
-					'field'   	=> $field_data,
-					'primary'	=> $primary_data,
-					'index'   	=> $index_data,
-					'option'  	=> $option_data
+					'sql'     => $sql,
+					'name'    => $table[1][0],
+					'field'   => $field_data,
+					'primary' => $primary_data,
+					'index'   => $index_data,
+					'option'  => $option_data
 				);
 			}
 		}
@@ -785,5 +785,4 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		return $checked_columns;
 	}
 }
-
 ?>

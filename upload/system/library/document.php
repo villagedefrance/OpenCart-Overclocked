@@ -73,5 +73,4 @@ class Document {
 		return $this->links;
 	}
 }
-
 ?>

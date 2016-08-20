@@ -571,5 +571,4 @@ class ControllerCatalogNews extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

@@ -399,5 +399,4 @@ class ControllerFraudFraudLabsPro extends Controller {
 		return $s;
 	}
 }
-
 ?>

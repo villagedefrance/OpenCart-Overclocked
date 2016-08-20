@@ -97,5 +97,4 @@ class User {
 		return $this->user_group_id;
 	}
 }
-
 ?>

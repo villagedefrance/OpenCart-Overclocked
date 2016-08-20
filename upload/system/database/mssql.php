@@ -76,5 +76,4 @@ final class MSSQL {
 		mssql_close($this->connection);
 	}
 }
-
 ?>

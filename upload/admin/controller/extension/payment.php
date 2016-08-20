@@ -208,5 +208,4 @@ class ControllerExtensionPayment extends Controller {
 		}
 	}
 }
-
 ?>

@@ -180,5 +180,4 @@ class ControllerModuleMenuHorizontal extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

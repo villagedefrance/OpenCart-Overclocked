@@ -83,5 +83,4 @@ class ControllerFeedGoogleBase extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>
