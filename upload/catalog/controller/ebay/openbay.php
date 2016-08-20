@@ -147,8 +147,8 @@ class ControllerEbayOpenbay extends Controller {
 			$this->response->setOutput(json_encode(array('msg' => 'fail', 'reason' => 'Tokens are already setup or data missing')));
 
 		} else {
-			$settings['openbaypro_token']   = $this->request->post['token'];
-			$settings['openbaypro_secret']  = $this->request->post['secret'];
+			$settings['openbaypro_token'] = $this->request->post['token'];
+			$settings['openbaypro_secret'] = $this->request->post['secret'];
 			$settings['openbaypro_string1'] = $this->request->post['s1'];
 			$settings['openbaypro_string2'] = $this->request->post['s2'];
 
