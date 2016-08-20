@@ -25,7 +25,6 @@ final class DBPgSQL {
 
 				while ($result = pg_fetch_assoc($resource)) {
 					$data[$i] = $result;
-
 					$i++;
 				}
 

@@ -29,22 +29,22 @@ final class Tax {
 
 	public function setShippingAddress($country_id, $zone_id) {
 		$this->shipping_address = array(
-			'country_id'	=> $country_id,
-			'zone_id'		=> $zone_id
+			'country_id' => $country_id,
+			'zone_id'    => $zone_id
 		);
 	}
 
 	public function setPaymentAddress($country_id, $zone_id) {
 		$this->payment_address = array(
-			'country_id'	=> $country_id,
-			'zone_id'		=> $zone_id
+			'country_id' => $country_id,
+			'zone_id'    => $zone_id
 		);
 	}
 
 	public function setStoreAddress($country_id, $zone_id) {
 		$this->store_address = array(
-			'country_id'	=> $country_id,
-			'zone_id'		=> $zone_id
+			'country_id' => $country_id,
+			'zone_id'    => $zone_id
 		);
 	}
 

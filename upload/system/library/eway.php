@@ -49,7 +49,7 @@ class RapidAPI {
 	* @param string $password your eWAY API Password
 	* @param string $params set $params['sandbox'] to true to use the sandbox for testing
 	*/
-	function __construct($username, $password, $params=array()) {
+	function __construct($username, $password, $params = array()) {
 		if (strlen($username) === 0 || strlen($password) === 0) {
 			die("Username and Password are required");
 		}

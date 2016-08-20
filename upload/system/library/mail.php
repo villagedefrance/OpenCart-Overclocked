@@ -105,12 +105,12 @@ class Mail {
 		$header .= 'Content-Type: multipart/mixed; boundary="' . $boundary . '"' . PHP_EOL . PHP_EOL;
 
 		if (!$this->html) {
-			$message  = '--' . $boundary . PHP_EOL;
+			$message = '--' . $boundary . PHP_EOL;
 			$message .= 'Content-Type: text/plain; charset="utf-8"' . PHP_EOL;
 			$message .= 'Content-Transfer-Encoding: 8bit' . PHP_EOL . PHP_EOL;
 			$message .= $this->text . PHP_EOL;
 		} else {
-			$message  = '--' . $boundary . PHP_EOL;
+			$message = '--' . $boundary . PHP_EOL;
 			$message .= 'Content-Type: multipart/alternative; boundary="' . $boundary . '_alt"' . PHP_EOL . PHP_EOL;
 			$message .= '--' . $boundary . '_alt' . PHP_EOL;
 			$message .= 'Content-Type: text/plain; charset="utf-8"' . PHP_EOL;

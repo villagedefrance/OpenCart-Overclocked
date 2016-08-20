@@ -33,8 +33,8 @@ class Document {
 
 	public function addMeta($name, $content) {
 		$this->metas[$name] = array(
-			'name'		=> $name,
-			'content'	=> $content
+			'name'    => $name,
+			'content' => $content
 		);
 	}
 
@@ -44,9 +44,9 @@ class Document {
 
 	public function addStyle($href, $rel = 'stylesheet', $media = 'screen') {
 		$this->styles[md5($href)] = array(
-			'href' 		=> $href,
-			'rel'   		=> $rel,
-			'media'	=> $media
+			'href'  => $href,
+			'rel'   => $rel,
+			'media' => $media
 		);
 	}
 
@@ -64,8 +64,8 @@ class Document {
 
 	public function addLink($href, $rel) {
 		$this->links[md5($href)] = array(
-			'href'	=> $href,
-			'rel'  	=> $rel
+			'href' => $href,
+			'rel'  => $rel
 		);
 	}
 

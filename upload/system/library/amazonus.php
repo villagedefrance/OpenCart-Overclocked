@@ -24,7 +24,7 @@ class Amazonus {
 			return;
 		}
 
-		/* Is called from front-end? */
+		/* Is called from front-end ? */
 		if (!defined('HTTPS_CATALOG')) {
 			$this->load->library('log');
 
@@ -108,7 +108,7 @@ class Amazonus {
 	}
 
 	public function bulkUpdateOrders($orders) {
-		// Is the module enabled and called from admin?
+		// Is the module enabled and called from admin ?
 		if ($this->config->get('amazonus_status') != 1 || !defined('HTTPS_CATALOG')) {
 			return;
 		}
@@ -167,7 +167,7 @@ class Amazonus {
 			return;
 		}
 
-		/* Is called from admin? */
+		/* Is called from admin ? */
 		if (!defined('HTTPS_CATALOG')) {
 			return;
 		}
@@ -453,7 +453,7 @@ class Amazonus {
 			$amazonusRows = $this->getLinkedSkus($productId);
 
 			foreach ($amazonusRows as $amazonusRow) {
-				$productRow = $this->db->query("SELECT quantity, status FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$productId . "'")->row;
+				$productRow = $this->db->query("SELECT quantity, status FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$productId . "'")->row;
 
 				if (!empty($productRow)) {
 					if ($endInactive && $productRow['status'] == '0') {
@@ -477,33 +477,30 @@ class Amazonus {
 	}
 
 	public function getLinkedSkus($productId, $var='') {
-		return $this->db->query("SELECT `amazonus_sku` FROM `" . DB_PREFIX . "amazonus_product_link` WHERE `product_id` = '" . (int)$productId . "' AND `var` = '" . $this->db->escape($var) . "'")->rows;
+		return $this->db->query("SELECT amazonus_sku FROM " . DB_PREFIX . "amazonus_product_link WHERE product_id = '" . (int)$productId . "' AND var = '" . $this->db->escape($var) . "'")->rows;
 	}
 
 	public function getOrderdProducts($orderId) {
-		return $this->db->query("SELECT `op`.`product_id`, `p`.`quantity` AS `quantity_left` FROM `" . DB_PREFIX . "order_product` AS `op` LEFT JOIN `" . DB_PREFIX . "product` AS `p` ON (`p`.`product_id` = `op`.`product_id`) WHERE `op`.`order_id` = '" . (int)$orderId . "'")->rows;
+		return $this->db->query("SELECT op.product_id, p.quantity AS quantity_left FROM " . DB_PREFIX . "order_product op LEFT JOIN " . DB_PREFIX . "product p ON (p.product_id = op.product_id) WHERE op.order_id = '" . (int)$orderId . "'")->rows;
 	}
 
 	public function osProducts($order_id) {
-		$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
+		$order_product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
 
 		$passArray = array();
 
 		foreach ($order_product_query->rows as $order_product) {
-			$product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$order_product['product_id'] . "' LIMIT 1");
+			$product_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$order_product['product_id'] . "' LIMIT 0,1");
 
 			if (!empty($product_query->row)) {
 				if (isset($product_query->row['has_option']) && ($product_query->row['has_option'] == 1)) {
 					$pOption_query = $this->db->query("
-						SELECT `oo`.`product_option_value_id`
-						FROM `" . DB_PREFIX . "order_option` `oo`
-							LEFT JOIN `" . DB_PREFIX . "product_option_value` `pov` ON (`pov`.`product_option_value_id` = `oo`.`product_option_value_id`)
-							LEFT JOIN `" . DB_PREFIX . "option` `o` ON (`o`.`option_id` = `pov`.`option_id`)
-						WHERE `oo`.`order_product_id` = '" . (int)$order_product['order_product_id'] . "'
-						AND `oo`.`order_id` = '" . (int)$order_id . "'
-						AND ((`o`.`type` = 'radio') OR (`o`.`type` = 'select') OR (`o`.`type` = 'image'))
-						ORDER BY `oo`.`order_option_id`
-						ASC");
+						SELECT oo.product_option_value_id FROM " . DB_PREFIX . "order_option oo
+						LEFT JOIN " . DB_PREFIX . "product_option_value pov ON (pov.product_option_value_id = oo.product_option_value_id)
+						LEFT JOIN `" . DB_PREFIX . "option` o ON (o.option_id = pov.option_id)
+						WHERE oo.order_product_id = '" . (int)$order_product['order_product_id'] . "' AND oo.order_id = '" . (int)$order_id . "'
+						AND ((o.`type` = 'radio') OR (o.`type` = 'select') OR (o.`type` = 'image')) ORDER BY oo.order_option_id ASC
+					");
 
 					if ($pOption_query->num_rows != 0) {
 						$pOptions = array();
@@ -514,7 +511,7 @@ class Amazonus {
 
 						$var = implode(':', $pOptions);
 
-						$qtyLeftRow = $this->db->query("SELECT `stock` FROM `" . DB_PREFIX . "product_option_relation` WHERE `product_id` = '" . (int)$order_product['product_id'] . "' AND `var` = '" . $this->db->escape($var) . "'")->row;
+						$qtyLeftRow = $this->db->query("SELECT stock FROM " . DB_PREFIX . "product_option_relation WHERE product_id = '" . (int)$order_product['product_id'] . "' AND var = '" . $this->db->escape($var) . "'")->row;
 	
 						if (empty($qtyLeftRow)) {
 							$qtyLeftRow['stock'] = 0;
@@ -541,7 +538,7 @@ class Amazonus {
 	}
 
 	public function deleteProduct($product_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "amazonus_product_link` WHERE `product_id` = '" . $this->db->escape($product_id) . "'");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "amazonus_product_link WHERE product_id = '" . $this->db->escape($product_id) . "'");
 	}
 
 	public function deleteOrder($order_id) {
@@ -551,7 +548,7 @@ class Amazonus {
 	}
 
 	public function getOrder($orderId) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "amazonus_order` WHERE `order_id` = '" . (int)$orderId . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "amazonus_order WHERE order_id = '" . (int)$orderId . "' LIMIT 0,1");
 
 		if ($qry->num_rows > 0) {
 			return $qry->row;

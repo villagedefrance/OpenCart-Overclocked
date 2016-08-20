@@ -30,7 +30,6 @@ final class DBMySQL {
 
 					while ($result = mysql_fetch_assoc($resource)) {
 						$data[$i] = $result;
-
 						$i++;
 					}
 

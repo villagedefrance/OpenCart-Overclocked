@@ -76,6 +76,7 @@ final class DBmPDO {
 			$result->row = array();
 			$result->rows = array();
 			$result->num_rows = 0;
+
 			return $result;
 		}
 	}
