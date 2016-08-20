@@ -12,7 +12,7 @@ $_['entry_status']     = 'Status:';
 $_['entry_limits']     = 'Product Limit:';
 $_['entry_currency']   = 'Currency';
 $_['entry_language']   = 'Language';
-$_['entry_data_feed']  = 'Data Feed Url:<span class="help">(Not editable)</span>';
+$_['entry_data_feed']  = 'Data Feed Url:';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>StoreYa</b> feed!';

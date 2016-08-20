@@ -66,7 +66,7 @@ $_['entry_company_tax_id']         = 'Company Tax Id:';
 $_['entry_title']                  = 'Title:';
 $_['entry_meta_description']       = 'Meta Tag Description:';
 $_['entry_template']               = 'Template:';
-$_['entry_stylesheet']             = 'Template Stylesheet Mode:<span class="help">Select "Single Stylesheet" if your custom theme only uses 1 stylesheet. This setting affects the footer and all modules.</span>';
+$_['entry_stylesheet']             = 'Template Stylesheet Mode:<span class="help">Select "Single Stylesheet" if your custom theme uses a single stylesheet. This will limit the available options in all modules.</span>';
 $_['entry_layout']                 = 'Default Layout:';
 $_['entry_country']                = 'Country:';
 $_['entry_zone']                   = 'Region / State:';

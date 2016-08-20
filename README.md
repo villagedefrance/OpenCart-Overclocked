@@ -21,17 +21,11 @@ For this reason Opencart Overclocked Edition is based on OpenCart v1.5.6.4, and 
 Each new release will bring newer and better features, upgraded scripts, bug fixes and general improvements. Being a "Community Edition" means that everybody can get involved, you don't need to be a "Coding Guru" to participate because it is not about the code, it is about the ideas!
 So feel free to post your comments or get in touch.
 
-Latest Scripts:
+Powered by the Latest Scripts:
 - jQuery 1.12.4.
 - jQuery UI 1.12.0.
 - jQuery Migrate 1.4.1.
 - CKEditor 4.5.10 Full.
-- jQuery Flot 0.8.2.
-- cssCharts 0.3.0.
-- Colorbox 1.6.3.
-- Plupload 2.1.8.
-- Camera 1.3.4.
-- Slick 1.5.9.
 - ...
 
 Main Features:
