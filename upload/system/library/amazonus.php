@@ -542,7 +542,7 @@ class Amazonus {
 	}
 
 	public function deleteOrder($order_id) {
-		/* @todo */
+		return false;
 	}
 
 	public function getOrder($orderId) {
