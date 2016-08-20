@@ -29,5 +29,4 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>Paymate</b> !';
 $_['error_username']     = 'Paymate Username required!';
 $_['error_password']     = 'Password required!';
-
 ?>

@@ -15,5 +15,4 @@ $_['lang_heading_template']     = 'Templates';
 $_['lang_heading_ebayacc']      = 'eBay account';
 $_['lang_heading_register']     = 'Register here';
 $_['lang_heading_bulkcategory'] = 'Category listing';
-
 ?>

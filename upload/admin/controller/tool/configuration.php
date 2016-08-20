@@ -338,5 +338,4 @@ class ControllerToolConfiguration extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

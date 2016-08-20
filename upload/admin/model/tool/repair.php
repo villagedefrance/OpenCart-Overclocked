@@ -160,5 +160,4 @@ class ModelToolRepair extends Model {
 		return $checked_columns;
 	}
 }
-
 ?>

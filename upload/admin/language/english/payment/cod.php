@@ -23,5 +23,4 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>Cash On Delivery</b> !';
-
 ?>

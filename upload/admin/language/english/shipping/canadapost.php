@@ -40,5 +40,4 @@ $_['link_sellonline']          = 'http://sellonline.canadapost.ca/servlet/LogonS
 // Error
 $_['error_permission']         = 'Warning: You do not have permission to modify <b>Canada Post</b> shipping!';
 $_['error_postcode']           = 'Post Code must be 4 digits!';
-
 ?>

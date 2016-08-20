@@ -123,5 +123,4 @@ class ControllerShippingItem extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

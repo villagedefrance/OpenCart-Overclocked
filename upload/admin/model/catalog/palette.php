@@ -221,5 +221,4 @@ class ModelCatalogPalette extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

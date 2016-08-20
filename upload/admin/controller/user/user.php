@@ -563,5 +563,4 @@ class ControllerUserUser extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

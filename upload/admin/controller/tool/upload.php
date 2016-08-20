@@ -435,5 +435,4 @@ class ControllerToolUpload extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
-
 ?>

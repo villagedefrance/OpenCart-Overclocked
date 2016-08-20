@@ -264,5 +264,4 @@ $_['error_mail_filename']          = 'Mail Log Filename is required and must end
 $_['error_quote_filename']         = 'Quote Log Filename is required and must end with the ".txt" extension!';
 $_['error_file_max_size']          = 'File Maximum Size should be greater than 100000 (100kb)!';
 $_['error_encryption']             = 'Encryption key must be between 3 and 32 characters!';
-
 ?>

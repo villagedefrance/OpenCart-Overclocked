@@ -401,5 +401,4 @@ class ControllerPaymentWorldpayOnline extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

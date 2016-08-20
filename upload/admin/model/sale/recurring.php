@@ -214,5 +214,4 @@ class ModelSaleRecurring extends Model {
 		return $result;
 	}
 }
-
 ?>

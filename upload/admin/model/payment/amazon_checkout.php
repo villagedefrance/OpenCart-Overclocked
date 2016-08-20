@@ -99,5 +99,4 @@ class ModelPaymentAmazonCheckout extends Model {
 		return $order;
 	}
 }
-
 ?>

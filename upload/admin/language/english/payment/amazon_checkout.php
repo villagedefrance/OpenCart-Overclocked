@@ -86,5 +86,4 @@ $_['column_submission_id']          = 'Submission ID';
 $_['column_status']                 = 'Status';
 $_['column_text']                   = 'Response';
 $_['column_amazon_order_item_code'] = 'Amazon Order Product Code';
-
 ?>

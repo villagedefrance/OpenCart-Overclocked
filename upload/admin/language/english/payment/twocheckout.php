@@ -30,5 +30,4 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>2Checkout</b> !';
 $_['error_account']      = 'Account No. Required!';
 $_['error_secret']       = 'Secret Word Required!';
-
 ?>

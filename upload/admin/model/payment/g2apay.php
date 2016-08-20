@@ -148,5 +148,4 @@ class ModelPaymentG2aPay extends Model {
 		}
 	}
 }
-
 ?>

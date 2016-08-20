@@ -77,5 +77,4 @@ $_['text_searching']           = 'Searching';
 $_['text_name']                = 'Name';
 $_['text_buyer_info']          = 'Buyer information';
 $_['text_view']                = 'View';
-
 ?>

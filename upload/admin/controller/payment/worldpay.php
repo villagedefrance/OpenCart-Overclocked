@@ -185,5 +185,4 @@ class ControllerPaymentWorldPay extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

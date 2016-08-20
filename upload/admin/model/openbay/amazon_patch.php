@@ -41,5 +41,4 @@ class ModelOpenbayAmazonPatch extends Model {
 		return true;
 	}
 }
-
 ?>

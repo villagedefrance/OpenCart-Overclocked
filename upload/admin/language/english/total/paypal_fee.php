@@ -21,5 +21,4 @@ $_['entry_sort_order'] = 'Sort Order:';
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>PayPal Fee</b>!';
 $_['error_fee']        = 'Error: PayPal Fee is required and must be a number equal or greater than zero!';
-
 ?>

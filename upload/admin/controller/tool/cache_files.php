@@ -134,5 +134,4 @@ class ControllerToolCacheFiles extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

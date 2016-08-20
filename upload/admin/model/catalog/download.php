@@ -122,5 +122,4 @@ class ModelCatalogDownload extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

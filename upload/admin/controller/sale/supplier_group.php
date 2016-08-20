@@ -457,5 +457,4 @@ class ControllerSaleSupplierGroup extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

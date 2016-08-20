@@ -92,5 +92,4 @@ class ControllerTotalSubTotal extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

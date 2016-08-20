@@ -231,5 +231,4 @@ class ModelPaymentFirstdata extends Model {
 		}
 	}
 }
-
 ?>

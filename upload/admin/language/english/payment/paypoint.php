@@ -31,5 +31,4 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>PayPoint</b> !';
 $_['error_merchant']     = 'Merchant ID Required!';
-
 ?>

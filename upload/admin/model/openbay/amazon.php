@@ -824,5 +824,4 @@ class ModelOpenbayAmazon extends Model {
 		return $link;
 	}
 }
-
 ?>

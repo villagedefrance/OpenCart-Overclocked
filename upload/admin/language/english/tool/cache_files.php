@@ -14,5 +14,4 @@ $_['column_expire']    = 'Cache Expire Time (Minutes)';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Cache Files</b> !';
-
 ?>

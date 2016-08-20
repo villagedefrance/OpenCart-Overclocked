@@ -19,5 +19,4 @@ $_['entry_message']        = 'Message';
 // Error
 $_['error_partial_amt']    = 'You must enter a partial refund amount!';
 $_['error_data']           = 'Data missing from request!';
-
 ?>

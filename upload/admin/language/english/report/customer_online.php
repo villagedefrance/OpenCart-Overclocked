@@ -14,5 +14,4 @@ $_['column_referer']    = 'Referer';
 $_['column_user_agent'] = 'System';
 $_['column_date_added'] = 'Last Login';
 $_['column_action']     = 'Action';
-
 ?>

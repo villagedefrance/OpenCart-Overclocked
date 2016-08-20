@@ -26,5 +26,4 @@ $_['lang_change_merchantid']  = 'Change';
 $_['lang_bulk_listing']       = 'Bulk Listing';
 $_['lang_allowed']            = 'Allowed';
 $_['lang_not_allowed']        = 'Not Allowed';
-
 ?>

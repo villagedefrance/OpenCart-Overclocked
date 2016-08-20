@@ -55,5 +55,4 @@ $_['text_info_support']         = '<a onclick="window.open(\'http://villagedefra
 // Error
 $_['error_permission']          = 'Warning: You do not have permission to modify Theme <b>Default</b> !';
 $_['error_warning']             = 'Warning: Please check the form carefully for errors!';
-
 ?>

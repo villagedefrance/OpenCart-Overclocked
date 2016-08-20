@@ -102,5 +102,4 @@ class ModelCatalogAttributeGroup extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

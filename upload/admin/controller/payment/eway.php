@@ -456,5 +456,4 @@ class ControllerPaymentEway extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

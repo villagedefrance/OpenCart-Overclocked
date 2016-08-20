@@ -42,5 +42,4 @@ $_['error_email']       = 'E-Mail Address does not appear to be valid!';
 $_['error_message']     = 'Message must contain between 3 and 128 characters!';
 $_['error_amount']      = 'Amount must be greater than or equal to 1.00!';
 $_['error_order']       = 'Warning: This voucher cannot be deleted as it is part of an <a href="%s">order</a>!';
-
 ?>

@@ -22,5 +22,4 @@ $_['lang_empty']          = 'No results!';
 $_['lang_date_start']     = 'Date Start:';
 $_['lang_date_end']       = 'Date End:';
 $_['lang_filter_btn']     = 'Filter';
-
 ?>

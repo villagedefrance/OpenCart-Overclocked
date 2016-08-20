@@ -12,5 +12,4 @@ $_['entry_data_feed']  = 'Data Feed Url:';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Google Base feed</b> !';
-
 ?>

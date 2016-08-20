@@ -25,5 +25,4 @@ $_['error_permission']   = 'Warning: You do not have permission to modify <b>Pay
 $_['error_merchant']     = 'Merchant Required!';
 $_['error_password']     = 'Passphrase Required!';
 $_['error_gateway']      = 'Gateway URL Required!';
-
 ?>

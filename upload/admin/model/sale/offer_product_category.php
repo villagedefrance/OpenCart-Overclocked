@@ -96,5 +96,4 @@ class ModelSaleOfferProductCategory extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

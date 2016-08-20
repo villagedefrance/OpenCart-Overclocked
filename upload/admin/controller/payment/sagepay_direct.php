@@ -447,5 +447,4 @@ class ControllerPaymentSagepayDirect extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

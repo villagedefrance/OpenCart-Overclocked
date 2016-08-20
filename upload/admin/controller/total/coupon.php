@@ -92,5 +92,4 @@ class ControllerTotalCoupon extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

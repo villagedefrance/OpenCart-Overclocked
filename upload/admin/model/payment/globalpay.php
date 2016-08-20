@@ -278,5 +278,4 @@ class ModelPaymentGlobalpay extends Model {
 		return (double)$query->row['total'];
 	}
 }
-
 ?>

@@ -1401,5 +1401,4 @@ class ControllerSaleAffiliate extends Controller {
 		$this->response->setOutput(json_encode($affiliate_data));
 	}
 }
-
 ?>

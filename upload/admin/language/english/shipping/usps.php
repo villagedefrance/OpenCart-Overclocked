@@ -74,5 +74,4 @@ $_['error_postcode']        = 'Zip Code Required!';
 $_['error_length']          = 'Length Required!';
 $_['error_width']           = 'Width Required!';
 $_['error_height']          = 'Height Required!';
-
 ?>

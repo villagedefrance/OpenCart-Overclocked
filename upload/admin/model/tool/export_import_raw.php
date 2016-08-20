@@ -234,5 +234,4 @@ class ModelToolExportImportRaw extends Model {
 		return $checked_columns;
 	}
 }
-
 ?>

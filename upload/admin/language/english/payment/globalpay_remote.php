@@ -96,5 +96,4 @@ $_['error_merchant_id']              = 'Merchant ID is required!';
 $_['error_secret']                   = 'Shared secret is required!';
 $_['error_data_missing']             = 'Data missing!';
 $_['error_use_select_card']          = 'You must have "Select Card" enabled, for subaccount routing by card type to work!';
-
 ?>

@@ -72,5 +72,4 @@ class ModelFraudMaxMind extends Model {
 		return $query->row;
 	}
 }
-
 ?>

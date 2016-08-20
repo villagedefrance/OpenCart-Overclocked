@@ -127,5 +127,4 @@ class ControllerShippingPrice extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

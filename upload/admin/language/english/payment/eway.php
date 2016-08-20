@@ -174,5 +174,4 @@ $_['text_card_message_V6150']   = 'Invalid Refund Amount';
 $_['text_card_message_V6151']   = 'Refund amount greater than original transaction';
 $_['text_card_message_D4406']   = 'Unknown error';
 $_['text_card_message_S5010']   = 'Unknown error';
-
 ?>

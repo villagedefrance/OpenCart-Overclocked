@@ -784,5 +784,4 @@ class ModelOpenbayAmazonus extends Model {
 		");
 	}
 }
-
 ?>

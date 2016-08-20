@@ -119,5 +119,4 @@ $_['help_error']                              = 'Returns an error string with a 
 // Error
 $_['error_permission']                        = 'Warning: You do not have permission to modify <b>MaxMind</b> !';
 $_['error_key']                               = 'A license key is required!';
-
 ?>

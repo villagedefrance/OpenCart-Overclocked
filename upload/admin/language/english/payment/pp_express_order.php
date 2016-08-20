@@ -34,5 +34,4 @@ $_['success_transaction_resent'] = 'Transaction was successfully resent';
 $_['error_capture_amt']          = 'Enter an amount to capture!';
 $_['error_timeout']              = 'Request timed out!';
 $_['error_transaction_missing']  = 'Transaction could not be found!';
-
 ?>

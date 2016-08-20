@@ -170,5 +170,4 @@ class ControllerPaymentPayza extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

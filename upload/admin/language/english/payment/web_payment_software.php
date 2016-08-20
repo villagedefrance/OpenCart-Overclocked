@@ -33,5 +33,4 @@ $_['help_total_max']            = 'The maximum checkout total the order must rea
 $_['error_permission']          = 'Warning: You do not have permission to modify payment <b>Web Payment Software</b> !';
 $_['error_login']               = 'Login ID Required!';
 $_['error_key']                 = 'Transaction Key Required!';
-
 ?>

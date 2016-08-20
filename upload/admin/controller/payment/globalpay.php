@@ -538,5 +538,4 @@ class ControllerPaymentGlobalpay extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

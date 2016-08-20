@@ -430,5 +430,4 @@ class ControllerToolApiKeyManager extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

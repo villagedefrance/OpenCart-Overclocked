@@ -36,5 +36,4 @@ $_['button_manager']        = 'Menus Manager';
 // Error
 $_['error_permission']      = 'Warning: You do not have permission to modify module <b>Menu Vertical</b> !';
 $_['error_menu']            = 'Warning: You must select a Menu !';
-
 ?>

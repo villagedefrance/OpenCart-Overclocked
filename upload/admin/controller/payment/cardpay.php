@@ -144,5 +144,4 @@ class ControllerPaymentCardPay extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

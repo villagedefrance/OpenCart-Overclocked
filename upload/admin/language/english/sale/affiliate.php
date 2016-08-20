@@ -94,5 +94,4 @@ $_['error_country']                    = 'Please select a country!';
 $_['error_zone']                       = 'Please select a region / state!';
 $_['error_code']                       = 'Tracking Code required!';
 $_['error_amount']                     = 'Amount required!';
-
 ?>

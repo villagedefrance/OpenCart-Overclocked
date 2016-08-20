@@ -42,5 +42,4 @@ $_['entry_layout']           = 'Layout Override:';
 $_['error_permission']       = 'Warning: You do not have permission to modify <b>Categories</b> !';
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_name']             = 'Category Name must be between 2 and 32 characters!';
-
 ?>

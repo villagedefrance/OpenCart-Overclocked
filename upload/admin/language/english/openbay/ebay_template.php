@@ -28,5 +28,4 @@ $_['lang_error_name']      = 'You must enter a template name';
 $_['lang_confirm_delete']  = 'Are you sure you want to delete the template?';
 
 $_['invalid_permission']   = 'You do not have permission to edit templates';
-
 ?>

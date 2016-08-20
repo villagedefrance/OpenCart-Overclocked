@@ -104,5 +104,4 @@ class ModelLocalisationTaxRate extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

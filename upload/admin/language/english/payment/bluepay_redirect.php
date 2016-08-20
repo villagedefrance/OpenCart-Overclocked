@@ -64,5 +64,4 @@ $_['button_void']            = 'Void';
 $_['error_permission']       = 'Warning: You do not have permission to modify payment <b>BluePay Redirect</b>!';
 $_['error_account_id']       = 'Account ID Required!';
 $_['error_secret_key']       = 'Secret Key Required!';
-
 ?>

@@ -225,5 +225,4 @@ class ModelSaleOffer extends Model {
 		return $query->row['price'];
 	}
 }
-
 ?>

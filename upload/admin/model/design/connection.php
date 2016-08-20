@@ -119,5 +119,4 @@ class ModelDesignConnection extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

@@ -176,5 +176,4 @@ class ModelCatalogOption extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

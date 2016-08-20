@@ -25,5 +25,4 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>Bank Transfer</b> !';
 $_['error_bank']         = 'Bank Transfer Instructions Required!';
-
 ?>

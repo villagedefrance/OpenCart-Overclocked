@@ -85,5 +85,4 @@ class ModelOpenbayEbayProduct extends Model {
 		return $response;
 	}
 }
-
 ?>

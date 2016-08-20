@@ -1173,5 +1173,4 @@ class ControllerOpenbayAmazonus extends Controller {
 		$this->openbay->amazonus->putStockUpdateBulk($bulk_array);
 	}
 }
-
 ?>

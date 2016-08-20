@@ -28,5 +28,4 @@ $_['entry_sort_order']     = 'Sort Order:';
 $_['error_permission']     = 'Warning: You do not have permission to modify <b>Stripe Payments</b>!';
 $_['error_secret_key']     = 'A Secret Key is Required!';
 $_['error_publish_key']    = 'A Publishable Key is Required!';
-
 ?>

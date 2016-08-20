@@ -174,5 +174,4 @@ class ControllerPaymentStripePayments extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

@@ -99,5 +99,4 @@ class ModelLocalisationReturnReason extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

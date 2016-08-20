@@ -32,5 +32,4 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 $_['error_permission']   = 'Warning: You do not have permission to modify payment <b>NOCHEX</b> !';
 $_['error_email']        = 'E-Mail Required!';
 $_['error_merchant']     = 'Merchant ID Required!';
-
 ?>

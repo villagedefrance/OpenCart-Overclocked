@@ -30,5 +30,4 @@ $_['error_vendor']       = 'Vendor Required!';
 $_['error_user']         = 'User Required!';
 $_['error_password']     = 'Password Required!';
 $_['error_partner']      = 'Partner Required!';
-
 ?>

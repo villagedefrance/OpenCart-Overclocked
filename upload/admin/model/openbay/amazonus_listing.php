@@ -181,5 +181,4 @@ class ModelOpenbayAmazonusListing extends Model {
 		return !empty($response);
 	}
 }
-
 ?>

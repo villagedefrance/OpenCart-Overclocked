@@ -129,5 +129,4 @@ class ControllerToolCacheImages extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

@@ -14,5 +14,4 @@ $_['lang_bulk_amazon_btn']          = 'Amazon EU bulk upload';
 $_['lang_marketplace']              = 'Marketplace';
 $_['lang_status']                   = 'Status';
 $_['lang_option']                   = 'Option';
-
 ?>

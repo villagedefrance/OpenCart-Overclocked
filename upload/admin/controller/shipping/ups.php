@@ -813,5 +813,4 @@ class ControllerShippingUPS extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

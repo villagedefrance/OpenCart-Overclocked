@@ -116,5 +116,4 @@ class ModelSaleCustomerGroup extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

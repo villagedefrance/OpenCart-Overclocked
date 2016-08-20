@@ -127,5 +127,4 @@ class ControllerShippingTnt extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

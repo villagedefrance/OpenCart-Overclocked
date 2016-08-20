@@ -384,5 +384,4 @@ class ControllerSaleCustomerBanIp extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

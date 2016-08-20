@@ -29,5 +29,4 @@ $_['entry_sort_order']    = 'Sort Order';
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to modify module <b>Google Hangouts</b> !';
 $_['error_code']          = 'Google Code is Required!';
-
 ?>

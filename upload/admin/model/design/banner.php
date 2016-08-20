@@ -139,5 +139,4 @@ class ModelDesignBanner extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

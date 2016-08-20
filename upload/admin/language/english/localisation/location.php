@@ -34,5 +34,4 @@ $_['error_permission']   = 'Warning: You do not have permission to modify <b>Sto
 $_['error_name']         = 'Store name must be at least 1 character!';
 $_['error_address']      = 'Address must be between 3 and 128 characters!';
 $_['error_telephone']    = 'Telephone must be between 3 and 32 characters!';
-
 ?>

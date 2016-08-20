@@ -489,5 +489,4 @@ class ControllerSaleRecurring extends Controller {
 		}
 	}
 }
-
 ?>

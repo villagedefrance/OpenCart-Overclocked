@@ -92,5 +92,4 @@ class ControllerTotalTax extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

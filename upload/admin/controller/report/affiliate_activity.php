@@ -214,5 +214,4 @@ class ControllerReportAffiliateActivity extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

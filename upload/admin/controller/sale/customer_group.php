@@ -503,5 +503,4 @@ class ControllerSaleCustomerGroup extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

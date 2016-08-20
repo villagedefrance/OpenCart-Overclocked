@@ -283,5 +283,4 @@ class ModelPaymentFirstdataRemote extends Model {
 		}
 	}
 }
-
 ?>

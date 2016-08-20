@@ -3151,5 +3151,4 @@ class ControllerSaleOrder extends Controller {
 		}
 	}
 }
-
 ?>

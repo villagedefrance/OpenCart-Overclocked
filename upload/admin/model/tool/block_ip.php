@@ -90,5 +90,4 @@ class ModelToolBlockIp extends Model {
 		return $query->row['total'];
 	}
 }
-
 ?>

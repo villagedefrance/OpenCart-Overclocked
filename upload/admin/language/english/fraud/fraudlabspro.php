@@ -55,5 +55,4 @@ $_['button_reject']              = 'Reject';
 // Error
 $_['error_permission']           = 'Warning: You do not have permission to modify <b>FraudLabs Pro</b> !';
 $_['error_key']                  = 'A license key is required!';
-
 ?>

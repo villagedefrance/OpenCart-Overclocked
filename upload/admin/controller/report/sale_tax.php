@@ -195,5 +195,4 @@ class ControllerReportSaleTax extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-
 ?>

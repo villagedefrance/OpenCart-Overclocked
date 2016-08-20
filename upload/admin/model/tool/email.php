@@ -15,5 +15,4 @@ class ModelToolEmail extends Model {
 		return $valid;
 	}
 }
-
 ?>

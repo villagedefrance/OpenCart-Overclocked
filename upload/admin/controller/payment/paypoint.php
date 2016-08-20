@@ -169,5 +169,4 @@ class ControllerPaymentPayPoint extends Controller {
 		return empty($this->error);
 	}
 }
-
 ?>

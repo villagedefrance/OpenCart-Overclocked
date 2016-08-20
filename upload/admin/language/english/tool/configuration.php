@@ -60,5 +60,4 @@ $_['text_mbstring_note']    = '<span class="help">mbstring is required only when
 // Error
 $_['error_permission']      = 'Warning: You do not have permission to modify <b>Configuration</b>!';
 $_['error_install']         = 'Warning: Install folder still exists and should be deleted for security reasons!';
-
 ?>

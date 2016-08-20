@@ -30,5 +30,4 @@ $_['error_name']          = 'Reference Name must be between 3 and 128 characters
 $_['error_payment_exist'] = 'Warning: Payment Method already exists!';
 $_['error_payment']       = 'Payment Method is required!';
 $_['error_image']         = 'Image is required!';
-
 ?>

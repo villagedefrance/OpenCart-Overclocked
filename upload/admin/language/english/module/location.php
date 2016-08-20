@@ -34,5 +34,4 @@ $_['button_manager']        = 'Location Manager';
 // Error
 $_['error_permission']      = 'Warning: You do not have permission to modify module <b>Location</b> !';
 $_['error_image']           = 'Width &amp; Height dimensions required!';
-
 ?>

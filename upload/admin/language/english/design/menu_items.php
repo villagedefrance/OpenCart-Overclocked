@@ -43,5 +43,4 @@ $_['button_back']            = 'Menus';
 $_['error_permission']       = 'Warning: You do not have permission to modify <b>Menu Items</b> !';
 $_['error_warning']          = 'Warning: Please check the form carefully for errors !';
 $_['error_name']             = 'Menu Item Name must be between 1 and 32 characters !';
-
 ?>
