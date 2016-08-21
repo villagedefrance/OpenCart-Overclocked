@@ -64,8 +64,8 @@ class ModelOpenbayEbayOpenbay extends Model {
 		$this->openbay->ebay->log('Accepting orders newer than: ' . $from);
 
 		if ($order_id != false) {
-			$order_loaded   = $this->model_checkout_order->getOrder($order_id);
-			$order_history  = $this->model_openbay_ebay_order->getHistory($order_id);
+			$order_loaded = $this->model_checkout_order->getOrder($order_id);
+			$order_history = $this->model_openbay_ebay_order->getHistory($order_id);
 
 			$this->openbay->ebay->log('Order ID: ' . $order_id . ' -> Updating');
 

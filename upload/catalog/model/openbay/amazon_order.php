@@ -13,10 +13,7 @@ class ModelOpenbayAmazonOrder extends Model {
 	}
 
 	public function getProductId($sku) {
-		$row = $this->db->query("SELECT `product_id`
-			FROM `" . DB_PREFIX . "amazon_product_link`
-			WHERE `amazon_sku` = '" . $this->db->escape($sku) . "'
-			")->row;
+		$row = $this->db->query("SELECT `product_id` FROM `" . DB_PREFIX . "amazon_product_link` WHERE `amazon_sku` = '" . $this->db->escape($sku) . "'")->row;
 
 		if (isset($row['product_id']) && !empty($row['product_id'])) {
 			return $row['product_id'];
@@ -35,17 +32,17 @@ class ModelOpenbayAmazonOrder extends Model {
 		return '';
 	}
 
-    public function decreaseProductQuantity($productId, $delta, $var = '') {
-        if ($productId == 0) {
-            return;
-        }
+	public function decreaseProductQuantity($productId, $delta, $var = '') {
+		if ($productId == 0) {
+			return;
+		}
 
-        if ($var == '') {
-            $this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = GREATEST(`quantity` - '" . (int)$delta . "', 0) WHERE `product_id` = '" . (int)$productId . "' AND `subtract` = '1'");
-        } else {
-            $this->db->query("UPDATE `" . DB_PREFIX . "product_option_relation` SET `stock` = GREATEST(`stock` - '" . (int)$delta . "', 0) WHERE `product_id` = '" . (int)$productId . "' AND `var` = '" . $this->db->escape($var) . "' AND `subtract` = '1'");
-        }
-    }
+		if ($var == '') {
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = GREATEST(`quantity` - '" . (int)$delta . "', 0) WHERE `product_id` = '" . (int)$productId . "' AND `subtract` = '1'");
+		} else {
+			$this->db->query("UPDATE `" . DB_PREFIX . "product_option_relation` SET `stock` = GREATEST(`stock` - '" . (int)$delta . "', 0) WHERE `product_id` = '" . (int)$productId . "' AND `var` = '" . $this->db->escape($var) . "' AND `subtract` = '1'");
+		}
+	}
 
 	public function getMappedStatus($amazonStatus) {
 		$amazonStatus = trim(strtolower($amazonStatus));
