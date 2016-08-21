@@ -4,7 +4,7 @@ OpenCart-Overclocked
 Opencart Overclocked - Community Edition
 -----------------------------------------
 
-<a href="https://insight.sensiolabs.com/account/widget?project=89962cba-03ba-48e7-b107-eb00742a6fc0"><img src="https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0/small.png" /></a>
+<img src="https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0/small.png" alt="" />
 
 For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
 
