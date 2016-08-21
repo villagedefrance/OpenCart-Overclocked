@@ -22,10 +22,10 @@ Each new release will bring newer and better features, upgraded scripts, bug fix
 So feel free to post your comments or get in touch!
 
 Requirements:
-Server: Linux/Windows Server (Apache Linux is preferred).
-Database: MySQL, MySQLi, PDO (MySQLi is preferred).
-PHP: PHP 5.3+ (with MySQLi extension).
-Curl: Curl extensions.
+- Server: Linux/Windows Server (Apache Linux is preferred).
+- Database: MySQL, MySQLi, PDO (MySQLi is preferred).
+- PHP: PHP 5.3+ (with MySQLi extension).
+- Curl: Curl extensions.
 
 Powered by the Latest Scripts:
 - jQuery 1.12.4.
