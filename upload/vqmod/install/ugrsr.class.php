@@ -383,8 +383,8 @@ class UGRSR {
 
 		// Pass back the number of changes and writes matched
 		return array(
-			'changes'	=> $global_change_count,
-			'writes'		=> $global_write_count
+			'changes' => $global_change_count,
+			'writes'  => $global_write_count
 		);
 	}
 
@@ -467,7 +467,7 @@ class UGRSR {
 			}
 		}
 
-		// Pass file array back		
+		// Pass file array back
 		return $files;
 	}
 }
