@@ -64,7 +64,9 @@ class CBA {
 				if (isset($xml->GetReportListResult)) {
 					$list = $xml->GetReportListResult->ReportInfo;
 					$next_token = ((string)$xml->GetReportListResult->HasNext == 'true') ? (string)$xml->GetReportListResult->NextToken : false;
-				} else {
+				}
+
+				if (isset($xml->GetReportListByNextTokenResult) && !$next_token) {
 					$list = $xml->GetReportListByNextTokenResult->ReportInfo;
 					$next_token = ((string)$xml->GetReportListByNextTokenResult->HasNext == 'true') ? (string)$xml->GetReportListByNextTokenResult->NextToken : false;
 				}

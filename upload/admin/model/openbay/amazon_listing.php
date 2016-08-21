@@ -158,14 +158,6 @@ class ModelOpenbayAmazonListing extends Model {
 
 		$request = array();
 
-		$marketplaceMapping = array(
-			'uk' => 'A1F83G8C2ARO7P',
-			'de' => 'A1PA6795UKMFR9',
-			'fr' => 'A13V1IB3VIYZZH',
-			'it' => 'APJ6JRA9NG5V4',
-			'es' => 'A1RKKUPIHCS9HS'
-		);
-
 		foreach ($data['products'] as $product_id => $asin) {
 			$product = $this->model_catalog_product->getProduct($product_id);
 

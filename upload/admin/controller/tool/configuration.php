@@ -286,8 +286,6 @@ class ControllerToolConfiguration extends Controller {
 		);
 
 		// Server
-		$server_responses = array();
-
 		$server_requests = array(
 			'PHP_SELF',
 			'GATEWAY_INTERFACE',

@@ -1053,7 +1053,7 @@ final class Ebay {
 						$tmp = simplexml_load_string($this->eBayPaymentStatus($item['item'], $item['txn'], false));
 					}
 
-					foreach($item_txn_array as $item) {
+					foreach ($item_txn_array as $item) {
 						$tmp = simplexml_load_string($this->eBayShippingStatus($item['item'], $item['txn'], false));
 					}
 				}

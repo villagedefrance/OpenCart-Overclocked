@@ -102,11 +102,11 @@ class ControllerSaleOffer extends Controller {
 		$this->data['button_edit'] = $this->language->get('button_edit');
 
 		// P2P
-		$offer_product_products = array();
-
 		$product_product_infos = $this->model_sale_offer->getOfferProductProducts(0);
 
 		if ($product_product_infos) {
+			$offer_product_products = array();
+
 			foreach ($product_product_infos as $result) {
 				$end_date = date('Y-m-d', strtotime($result['date_end']));
 
@@ -136,11 +136,11 @@ class ControllerSaleOffer extends Controller {
 		}
 
 		// P2C
-		$offer_product_categories = array();
-
 		$product_category_infos = $this->model_sale_offer->getOfferProductCategories(0);
 
 		if ($product_category_infos) {
+			$offer_product_categories = array();
+
 			foreach ($product_category_infos as $result) {
 				$end_date = date('Y-m-d', strtotime($result['date_end']));
 
@@ -170,11 +170,11 @@ class ControllerSaleOffer extends Controller {
 		}
 
 		// C2P
-		$offer_category_products = array();
-
 		$category_product_infos = $this->model_sale_offer->getOfferCategoryProducts(0);
 
 		if ($category_product_infos) {
+			$offer_category_products = array();
+
 			foreach ($category_product_infos as $result) {
 				$end_date = date('Y-m-d', strtotime($result['date_end']));
 
@@ -204,11 +204,11 @@ class ControllerSaleOffer extends Controller {
 		}
 
 		// C2C
-		$offer_category_categories = array();
-
 		$category_category_infos = $this->model_sale_offer->getOfferCategoryCategories(0);
 
 		if ($category_category_infos) {
+			$offer_category_categories = array();
+
 			foreach ($category_category_infos as $result) {
 				$end_date = date('Y-m-d', strtotime($result['date_end']));
 
