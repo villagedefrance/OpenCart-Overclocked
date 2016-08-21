@@ -4,6 +4,8 @@ OpenCart-Overclocked
 Opencart Overclocked - Community Edition
 -----------------------------------------
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0/mini.png)](https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0)
+
 For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
 
 Description:
