@@ -34,18 +34,22 @@ New in 1.8.1.0 (upcoming release)!
 - Bug fixes.
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
--------------------------------------------------------------------------
-	Custom Menu System, Custom Footer System, Responsive Default Theme, Template Option Control System, Touch/Swipe enabled,
-	Full Page Image Manager with multi-uploads, Cache Managers for Files and Images, SEO Keywords Manager, Integrated News (Blog),
-	DomPDF library for PDF document downloads, Custom Colour & Style for all modules and footer, New and updated payment methods,
-	Improved Affiliates features, Api Keys management forms, Supplier management forms, Cookie Consent code, New Modules and Shipping methods,
-	Piwik code field in Settings, Customer Group image, Google Maps feature, Product RSS Feed, Direct printing of invoices, Admin User Agent detector,
-	Country and Zone update on upgrade, Improved invoicing (with tax breakdown), Ip Range blocker (firewall), Autocomplete for offers,
-	"Save and Continue" for all Admin forms, Stronger Session & Captcha Classes, EU taxes for E-medias Law, Seo-Urls caching, Extended Import/Export Tool,
-	Customer Order Picklist, Customer Order History, Customer Gender and Date of Birth (optional), Product Minimum Age limit, Product Quoting system,
-	Profit Margins and Stock Levels reports, Colours for Product, VQmod and VQmanager, Improved Install and Upgrade scripts, Multi-language Manufacturers,
-	Multi-language Countries, FraudLabs Pro integration, Option "Free" for zero prices, All fixes from Community Edition RC1/2 applied, Express Checkout,
-	Database CSV Import/Export, Product Wall page, Custom Payment labels, Contact-us Email log, Improved jQuery scripts, Improved Dashboard ...
+
+	Custom Menu System, Custom Footer System, Responsive Default Theme, Template Options Control System,
+	Touch/Swipe enabled, Full Page Image Manager with multi-uploads, Cache Managers for Files and Images,
+	SEO Keywords Manager, Integrated News (Blog), DomPDF library for PDF document downloads, StoreYa Feed,
+	Direct printing of invoices, Custom Colour & Style for all modules and footer, Improved Affiliates features,
+	Api Keys management forms, Supplier management forms, Admin User Agent detector, Product RSS Feed,
+	Cookie Consent code, New Modules and Shipping methods, New and updated Payment methods, Tag cloud,
+	Piwik code field in Settings, Customer Group image, Google Maps feature, Country and Zone update on upgrade,
+	Improved invoicing (with tax breakdown), Ip Range blocker (firewall), Stronger Session & Captcha Classes,
+	Autocomplete for offers, "Save and Continue" for all Admin forms, EU taxes for E-medias Law, Seo-Urls caching,
+	Import/Export Tool, Customer Order Picklist, Customer Order History, Customer Gender & Date of Birth (optional),
+	Product Minimum Age limit, Product Wall page, Product Quoting system, Profit Margins and Stock Levels reports,
+	Colours for Product, VQmod and VQmanager, Improved Install and Upgrade scripts, Express Checkout (optional),
+	Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration, Option "Free" for zero prices,
+	All fixes from Community Edition RC1/2 applied, Custom Payment labels, Email log, Improved Dashboard ...
+
 
 
 WANT TO CONTRIBUTE?
@@ -54,8 +58,9 @@ WANT TO CONTRIBUTE?
 - Propose new features.
 
 
-LICENCE: <a onclick="window.open(\'http://www.gnu.org/licenses/gpl-3.0.en.html\');">GPLv3 (GNU General Public License)</a>
 
-FORUM: <a onclick="window.open(\'http://forum.villagedefrance.net/index.php\');">Overclocked Edition Forum</a>
+LICENCE: <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">GPLv3 (GNU General Public License)</a>
+
+FORUM: <a href="http://forum.villagedefrance.net/index.php">Overclocked Edition Forum</a>
 
 EMAIL: contact@villagedefrance.net
