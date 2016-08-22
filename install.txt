@@ -1,5 +1,5 @@
 // ---------------------------------------
-//  OpenCart v1.7.0 - OverClocked Edition
+//  OpenCart v1.8.x - OverClocked Edition
 //  Install Instructions
 //  http://www.opencart.com
 //  http://villagedefrance.net
@@ -23,14 +23,14 @@ These instructions are for a manual installation using FTP, cPanel or other web 
 
 3. For Linux/Unix make sure the following folders and files are writable.
 
-		chmod 0755 or 0777 image/
-		chmod 0755 or 0777 image/cache/
-		chmod 0755 or 0777 cache/
-		chmod 0755 or 0777 download/
-		chmod 0755 or 0777 config.php
-		chmod 0755 or 0777 admin/config.php
+	chmod 0755 or 0777 image/
+	chmod 0755 or 0777 image/cache/
+	chmod 0755 or 0777 cache/
+	chmod 0755 or 0777 download/
+	chmod 0755 or 0777 config.php
+	chmod 0755 or 0777 admin/config.php
 
-		If 0755 does not work try 0777.
+	If 0755 does not work try 0777.
 
 4. Make sure you have installed a MySQL Database which has a user assigned to it.
 	DO NOT USE YOUR ROOT USERNAME AND ROOT PASSWORD
@@ -50,12 +50,12 @@ These instructions are for a manual installation using FTP, cPanel or other web 
 
 3. For Windows make sure the following folders and files permissions allow Read and Write.
 
-		image/
-		image/cache/
-		cache/
-		download/
-		config.php
-		admin/config.php
+	image/
+	image/cache/
+	cache/
+	download/
+	config.php
+	admin/config.php
 
 4. Make sure you have installed a MySQL Database which has a user assigned to it.
 	DO NOT USE YOUR ROOT USERNAME AND ROOT PASSWORD
@@ -73,5 +73,3 @@ There are many all-in-one webservers out there and most of them should work with
 http://www.apachefriends.org/en/xampp.html
 http://www.ampps.com/
 http://www.usbwebserver.net
-
-EOF
