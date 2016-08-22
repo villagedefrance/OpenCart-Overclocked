@@ -1,8 +1,3 @@
-rspec:
-  script: test
-  cache:
-    untracked: true
-
 trigger:
   type: deploy
   script:
