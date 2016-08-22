@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
 	backupStaticAttributes="false"
-
 	cacheTokens="false"
 	colors="false"
 	convertErrorsToExceptions="true"
@@ -9,15 +8,12 @@
 	convertWarningsToExceptions="true"
 	forceCoversAnnotation="false"
 	mapTestClassNameToCoveredClassName="false"
-	printerClass="PHPUnit_TextUI_ResultPrinter"
-
 	processIsolation="false"
 	stopOnError="false"
 	stopOnFailure="false"
 	stopOnIncomplete="false"
 	stopOnSkipped="false"
 	testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
-
 	strict="false"
 	verbose="false"
 >
@@ -30,19 +26,30 @@
 
 	<filter>
 		<blacklist>
-			<directory suffix=".php"></directory>
+			<directory>image/cache</directory>
+			<directory>image/data</directory>
+			<directory>image/data/*</directory>
+			<directory>image/flags</directory>
+			<directory>image/templates</directory>
+			<directory>system/cache</directory>
+			<directory>system/config</directory>
+			<directory>system/fonts</directory>
+			<directory>system/logs</directory>
+			<directory>system/reset</directory>
+			<directory>system/upload</directory>
+			<directory>system/vendor</directory>
 			<file></file>
 			<exclude>
-				<directory suffix=".php"></directory>
-				<file></file>
+				<directory></directory>
+				<file suffix=".tpl"></file>
 			</exclude>
 		</blacklist>
 		<whitelist processUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php"></directory>
-			<file></file>
+			<directory></directory>
+			<file suffix=".php"></file>
 			<exclude>
-				<directory suffix=".php"></directory>
-				<file></file>
+				<directory></directory>
+				<file suffix=".tpl"></file>
 			</exclude>
 		</whitelist>
 	</filter>
