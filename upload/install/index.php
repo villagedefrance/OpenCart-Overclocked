@@ -66,11 +66,12 @@ if (file_exists('../config.php')) {
 	if (filesize('../config.php') > 0) {
 		$upgrade = true;
 
-		$lines = file(DIR_OPENCART . 'config.php');
+		$subject = file_get_contents(DIR_OPENCART . 'config.php');
+		$pattern = "/define\s*?\('\s*?(DB_[A-Z]+)\s*?'\s*?,\s*?'(.*)'\s*?\)\s*?;/";
 
-		foreach ($lines as $line) {
-			if (strpos(strtoupper($line), 'DB_') !== false) {
-				eval($line);
+		if (preg_match_all($pattern, $subject, $matches)) {
+			foreach ($matches[1] as $i => $var) {
+				define($var, trim($matches[2][$i]));
 			}
 		}
 	}
