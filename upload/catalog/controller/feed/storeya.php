@@ -46,9 +46,9 @@ class ControllerFeedStoreya extends Controller {
 		foreach ($products as $product) {
 			if ($product['description']) {
 				$output .= '<item>'. "\n";
-				$output .= '<title>' . $this->strip_html_tags($this->replace_problem_characters($this->encodeIfNeeded($product['name']))) . '</title>' . "\n";
+				$output .= '<title>' . $this->stripHtmlTags($this->replaceProblemCharacters($this->encodeIfNeeded($product['name']))) . '</title>' . "\n";
 				$output .= '<link>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</link>' . "\n";
-				$output .= '<description>' . $this->strip_html_tags($this->replace_problem_characters($this->encodeIfNeeded(html_entity_decode($product['description'])))) . '</description>' . "\n";
+				$output .= '<description>' . $this->stripHtmlTags($this->replaceProblemCharacters($this->encodeIfNeeded(html_entity_decode($product['description'])))) . '</description>' . "\n";
 				$output .= '<g:brand>' . html_entity_decode($product['manufacturer'], ENT_QUOTES, 'UTF-8') . '</g:brand>' . "\n";
 				$output .= '<g:condition>new</g:condition>' . "\n";
 				$output .= '<g:id>' . $product['product_id'] . '</g:id>'. "\n";
@@ -139,11 +139,11 @@ class ControllerFeedStoreya extends Controller {
 	}
 
 	protected function encodeIfNeeded($text) {
-		$text= iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
+		$text = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
 		return $text;
 	}
 
-	protected function replace_problem_characters($text) {
+	protected function replaceProblemCharacters($text) {
 		$formattags = array("&");
 		$replacevals = array("&#38;");
 
@@ -171,7 +171,7 @@ class ControllerFeedStoreya extends Controller {
 		return $text;
 	}
 
-	protected function strip_html_tags($str) {
+	protected function stripHtmlTags($str) {
 		// $document should contain an HTML document.
 		// This will remove HTML tags, javascript sections and white spaces.
 		// It will also convert some common HTML entities to their text equivalent.

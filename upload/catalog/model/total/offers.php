@@ -200,7 +200,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function add_pro_to_pro($item1, $item2, $type, $amount) {
+	private function addProToPro($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, PRO_TO_PRO);
@@ -210,7 +210,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function add_pro_to_cat($item1, $item2, $type, $amount) {
+	private function addProToCat($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, PRO_TO_CAT);
@@ -220,7 +220,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function add_cat_to_cat($item1, $item2, $type, $amount) {
+	private function addCatToCat($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, CAT_TO_CAT);
@@ -230,7 +230,7 @@ class ModelTotalOffers {
 		}
 	}
 
-	private function add_cat_to_pro($item1, $item2, $type, $amount) {
+	private function addCatToPro($item1, $item2, $type, $amount) {
 		$add_to_list = new Offer;
 
 		$add_to_list->init($item1, $item2, $type, $amount, CAT_TO_PRO);
@@ -254,7 +254,7 @@ class ModelTotalOffers {
 					$type = "%";
 				}
 
-				$this->add_pro_to_pro($result['one'], $result['two'], $type, $result['disc']);
+				$this->addProToPro($result['one'], $result['two'], $type, $result['disc']);
 			}
 		}
 
@@ -269,7 +269,7 @@ class ModelTotalOffers {
 					$type = "%";
 				}
 
-				$this->add_pro_to_cat($result['one'], $result['two'], $type, $result['disc']);
+				$this->addProToCat($result['one'], $result['two'], $type, $result['disc']);
 			}
 		}
 
@@ -284,7 +284,7 @@ class ModelTotalOffers {
 					$type = "%";
 				}
 
-				$this->add_cat_to_pro($result['one'], $result['two'], $type, $result['disc']);
+				$this->addCatToPro($result['one'], $result['two'], $type, $result['disc']);
 			}
 		}
 
@@ -299,7 +299,7 @@ class ModelTotalOffers {
 					$type = "%";
 				}
 
-				$this->add_cat_to_cat($result['one'], $result['two'], $type, $result['disc']);
+				$this->addCatToCat($result['one'], $result['two'], $type, $result['disc']);
 			}
 		}
 	}

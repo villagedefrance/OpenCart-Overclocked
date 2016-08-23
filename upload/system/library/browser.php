@@ -2,10 +2,10 @@
 class Browser {
 	var $agent = null;
 
-	var $is_robot = false;
-	var $is_browser = false;
-	var $is_pad = false;
-	var $is_mobile = false;
+	var $isRobot = false;
+	var $isBrowser = false;
+	var $isPad = false;
+	var $isMobile = false;
 
 	var $languages = array();
 	var $charsets = array();
@@ -31,14 +31,14 @@ class Browser {
 		}
 
 		if (!is_null($this->agent)) {
-			if ($this->_load_agent_file()) {
-				$this->_compile_data();
+			if ($this->loadAgentFile()) {
+				$this->compileData();
 			}
 		}
 	}
 
 	// Compile the User Agent data
-	protected function _load_agent_file() {
+	protected function loadAgentFile() {
 		if (file_exists(DIR_SYSTEM . 'helper/agent.php') && is_file(DIR_SYSTEM . 'helper/agent.php')) {
 			include(DIR_SYSTEM . 'helper/agent.php');
 		} else {
@@ -81,10 +81,10 @@ class Browser {
 	}
 
 	// Compile the User Agent data
-	protected function _compile_data() {
-		$this->_set_platform();
+	protected function compileData() {
+		$this->setPlatform();
 
-		foreach (array('_set_robot', '_set_browser', '_set_pad', '_set_mobile') as $function) {
+		foreach (array('setRobot', 'setBrowser', 'setPad', 'setMobile') as $function) {
 			if ($this->$function() === true) {
 				break;
 			}
@@ -92,7 +92,7 @@ class Browser {
 	}
 
 	// Set the Platform
-	protected function _set_platform() {
+	protected function setPlatform() {
 		if (is_array($this->platforms) && count($this->platforms) > 0) {
 			foreach ($this->platforms as $key => $val) {
 				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
@@ -107,11 +107,11 @@ class Browser {
 	}
 
 	// Set the Robot
-	protected function _set_robot() {
+	protected function setRobot() {
 		if (is_array($this->robots) && count($this->robots) > 0) {
 			foreach ($this->robots as $key => $val) {
 				if (preg_match("|" . preg_quote($key) . "|i", $this->agent)) {
-					$this->is_robot = true;
+					$this->isRobot = true;
 
 					$this->robot = $val;
 
@@ -124,18 +124,18 @@ class Browser {
 	}
 
 	// Set the Browser
-	protected function _set_browser() {
+	protected function setBrowser() {
 		if (is_array($this->browsers) && count($this->browsers) > 0) {
 			foreach ($this->browsers as $key => $val) {
 				if (preg_match("|" . preg_quote($key) . ".*?([0-9\.]+)|i", $this->agent, $match)) {
-					$this->is_browser = true;
+					$this->isBrowser = true;
 
-					$this->browser_version = (isset($match[1]) ? $match[1] : '');
+					$this->browserVersion = (isset($match[1]) ? $match[1] : '');
 
 					$this->browser = $val;
 
-					if ($this->_set_pad() == false) {
-					    $this->_set_mobile();
+					if ($this->setPad() == false) {
+					    $this->setMobile();
 					}
 
 					return true;
@@ -147,11 +147,11 @@ class Browser {
 	}
 
 	// Set the Pad Device
-	protected function _set_pad() {
+	protected function setPad() {
 		if (is_array($this->pads) && count($this->pads) > 0) {
 			foreach ($this->pads as $key => $val) {
 				if (strpos(strtolower($this->agent), $key) !== false) {
-					$this->is_pad = true;
+					$this->isPad = true;
 
 					$this->pad = $val;
 
@@ -164,11 +164,11 @@ class Browser {
 	}
 
 	// Set the Mobile Device
-	protected function _set_mobile() {
+	protected function setMobile() {
 		if (is_array($this->mobiles) && count($this->mobiles) > 0) {
 			foreach ($this->mobiles as $key => $val) {
 				if (strpos(strtolower($this->agent), $key) !== false) {
-					$this->is_mobile = true;
+					$this->isMobile = true;
 
 					$this->mobile = $val;
 
@@ -181,34 +181,34 @@ class Browser {
 	}
 
 	// Set the accepted languages
-	protected function _set_languages() {
-		if ((count($this->accept_languages) == 0) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && $_SERVER['HTTP_ACCEPT_LANGUAGE'] != '') {
+	protected function setLanguages() {
+		if ((count($this->acceptLanguages) == 0) && isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && $_SERVER['HTTP_ACCEPT_LANGUAGE'] != '') {
 			$languages = preg_replace('/(;q=[0-9\.]+)/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_LANGUAGE'])));
 
-			$this->accept_languages = explode(',', $languages);
+			$this->acceptLanguages = explode(',', $languages);
 		}
 
-		if (count($this->accept_languages) == 0) {
-			$this->accept_languages = array('Undefined');
+		if (count($this->acceptLanguages) == 0) {
+			$this->acceptLanguages = array('Undefined');
 		}
 	}
 
 	// Set the accepted character sets
-	protected function _set_charsets() {
-		if ((count($this->accept_charsets) == 0) && isset($_SERVER['HTTP_ACCEPT_CHARSET']) && $_SERVER['HTTP_ACCEPT_CHARSET'] != '') {
+	protected function setCharsets() {
+		if ((count($this->acceptCharsets) == 0) && isset($_SERVER['HTTP_ACCEPT_CHARSET']) && $_SERVER['HTTP_ACCEPT_CHARSET'] != '') {
 			$charsets = preg_replace('/(;q=.+)/i', '', strtolower(trim($_SERVER['HTTP_ACCEPT_CHARSET'])));
 
-			$this->accept_charsets = explode(',', $charsets);
+			$this->acceptCharsets = explode(',', $charsets);
 		}
 
-		if (count($this->accept_charsets) == 0) {
-			$this->accept_charsets = array('Undefined');
+		if (count($this->acceptCharsets) == 0) {
+			$this->acceptCharsets = array('Undefined');
 		}
 	}
 
 	// Is Robot
-	public function is_robot($key = null) {
-		if (!$this->is_robot) {
+	public function isRobot($key = null) {
+		if (!$this->isRobot) {
 			return false;
 		}
 
@@ -220,8 +220,8 @@ class Browser {
 	}
 
 	// Is Browser
-	public function is_browser($key = null) {
-		if (!$this->is_browser) {
+	public function isBrowser($key = null) {
+		if (!$this->isBrowser) {
 			return false;
 		}
 
@@ -233,8 +233,8 @@ class Browser {
 	}
 
 	// Is Pad
-	public function is_pad($key = null) {
-		if (!$this->is_pad) {
+	public function isPad($key = null) {
+		if (!$this->isPad) {
 			return false;
 		}
 
@@ -246,8 +246,8 @@ class Browser {
 	}
 
 	// Is Mobile
-	public function is_mobile($key = null) {
-		if (!$this->is_mobile) {
+	public function isMobile($key = null) {
+		if (!$this->isMobile) {
 			return false;
 		}
 
@@ -260,11 +260,11 @@ class Browser {
 
 	// Get Medium: robot, pad, mobile, web
 	public function getMedium() {
-		if ($this->is_robot) {
+		if ($this->isRobot) {
 			return 'robot';
-		} elseif ($this->is_pad) {
+		} elseif ($this->isPad) {
 			return 'pad';
-		} elseif ($this->is_mobile) {
+		} elseif ($this->isMobile) {
 			return 'mobile';
 		} else {
 			return 'web';
@@ -272,7 +272,7 @@ class Browser {
 	}
 
 	// Is this a referral from another site?
-	public function is_referral() {
+	public function isReferral() {
 		if (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_REFERER'] == '') {
 			return false;
 		}
@@ -281,7 +281,7 @@ class Browser {
 	}
 
 	// Agent String
-	public function agent_string() {
+	public function agentString() {
 		return $this->agent;
 	}
 
@@ -302,7 +302,7 @@ class Browser {
 
 	// Get the Browser Version
 	public function getBrowserVersion() {
-		return (isset($this->browser_version)) ? $this->browser_version : '000';
+		return (isset($this->browserVersion)) ? $this->browserVersion : '000';
 	}
 
 	// Get the Tablet Device
@@ -323,28 +323,28 @@ class Browser {
 	// Get the accepted languages
 	public function getAcceptLanguages() {
 		if (count($this->languages) == 0) {
-			$this->_set_languages();
+			$this->setLanguages();
 		}
 
-		return $this->accept_languages;
+		return $this->acceptLanguages;
 	}
 
 	// Get the accepted Character Sets
 	public function getAcceptCharsets() {
 		if (count($this->charsets) == 0) {
-			$this->_set_charsets();
+			$this->setCharsets();
 		}
 
-		return $this->accept_charsets;
+		return $this->acceptCharsets;
 	}
 
 	// Test for a particular language
-	public function accept_lang($lang = 'en') {
+	public function acceptLang($lang = 'en') {
 		return (in_array(strtolower($lang), $this->languages(), true));
 	}
 
 	// Test for a particular character set
-	public function accept_charset($charset = 'utf-8') {
+	public function acceptCharset($charset = 'utf-8') {
 		return (in_array(strtolower($charset), $this->charsets(), true));
 	}
 }

@@ -54,123 +54,123 @@ class ModelToolBarcode extends Model {
 	protected function getBarcodeData($code, $type) {
 		switch (strtoupper($type)) {
 			case 'TYPE_CODE_39': { // CODE 39 - ANSI MH10.8M-1983 - USD-3 - 3 of 9.
-				$arrcode = $this->barcode_code39($code, false, false);
+				$arrcode = $this->barcodeCode39($code, false, false);
 				break;
 			}
 			case 'TYPE_CODE_39_CHECKSUM': { // CODE 39 with checksum
-				$arrcode = $this->barcode_code39($code, false, true);
+				$arrcode = $this->barcodeCode39($code, false, true);
 				break;
 			}
 			case 'TYPE_CODE_39E': { // CODE 39 EXTENDED
-				$arrcode = $this->barcode_code39($code, true, false);
+				$arrcode = $this->barcodeCode39($code, true, false);
 				break;
 			}
 			case 'TYPE_CODE_39E_CHECKSUM': { // CODE 39 EXTENDED + CHECKSUM
-				$arrcode = $this->barcode_code39($code, true, true);
+				$arrcode = $this->barcodeCode39($code, true, true);
 				break;
 			}
 			case 'TYPE_CODE_93': { // CODE 93 - USS-93
-				$arrcode = $this->barcode_code93($code);
+				$arrcode = $this->barcodeCode93($code);
 				break;
 			}
 			case 'TYPE_STANDARD_2_5': { // Standard 2 of 5
-				$arrcode = $this->barcode_s25($code, false);
+				$arrcode = $this->barcodeS25($code, false);
 				break;
 			}
 			case 'TYPE_STANDARD_2_5_CHECKSUM': { // Standard 2 of 5 + CHECKSUM
-				$arrcode = $this->barcode_s25($code, true);
+				$arrcode = $this->barcodeS25($code, true);
 				break;
 			}
 			case 'TYPE_INTERLEAVED_2_5': { // Interleaved 2 of 5
-				$arrcode = $this->barcode_i25($code, false);
+				$arrcode = $this->barcodeI25($code, false);
 				break;
 			}
 			case 'TYPE_INTERLEAVED_2_5_CHECKSUM': { // Interleaved 2 of 5 + CHECKSUM
-				$arrcode = $this->barcode_i25($code, true);
+				$arrcode = $this->barcodeI25($code, true);
 				break;
 			}
 			case 'TYPE_CODE_128': { // CODE 128
-				$arrcode = $this->barcode_c128($code, '');
+				$arrcode = $this->barcodeC128($code, '');
 				break;
 			}
 			case 'TYPE_CODE_128_A': { // CODE 128 A
-				$arrcode = $this->barcode_c128($code, 'A');
+				$arrcode = $this->barcodeC128($code, 'A');
 				break;
 			}
 			case 'TYPE_CODE_128_B': { // CODE 128 B
-				$arrcode = $this->barcode_c128($code, 'B');
+				$arrcode = $this->barcodeC128($code, 'B');
 				break;
 			}
 			case 'TYPE_CODE_128_C': { // CODE 128 C
-				$arrcode = $this->barcode_c128($code, 'C');
+				$arrcode = $this->barcodeC128($code, 'C');
 				break;
 			}
 			case 'TYPE_EAN_2': { // 2-Digits UPC-Based Extention
-				$arrcode = $this->barcode_eanext($code, 2);
+				$arrcode = $this->barcodeEanext($code, 2);
 				break;
 			}
 			case 'TYPE_EAN_5': { // 5-Digits UPC-Based Extention
-				$arrcode = $this->barcode_eanext($code, 5);
+				$arrcode = $this->barcodeEanext($code, 5);
 				break;
 			}
 			case 'TYPE_EAN_8': { // EAN 8
-				$arrcode = $this->barcode_eanupc($code, 8);
+				$arrcode = $this->barcodeEanupc($code, 8);
 				break;
 			}
 			case 'TYPE_EAN_13': { // EAN 13
-				$arrcode = $this->barcode_eanupc($code, 13);
+				$arrcode = $this->barcodeEanupc($code, 13);
 				break;
 			}
 			case 'TYPE_UPC_A': { // UPC-A
-				$arrcode = $this->barcode_eanupc($code, 12);
+				$arrcode = $this->barcodeEanupc($code, 12);
 				break;
 			}
 			case 'TYPE_UPC_E': { // UPC-E
-				$arrcode = $this->barcode_eanupc($code, 6);
+				$arrcode = $this->barcodeEanupc($code, 6);
 				break;
 			}
 			case 'TYPE_MSI': { // MSI (Variation of Plessey code)
-				$arrcode = $this->barcode_msi($code, false);
+				$arrcode = $this->barcodeMsi($code, false);
 				break;
 			}
 			case 'TYPE_MSI_CHECKSUM': { // MSI + CHECKSUM (modulo 11)
-				$arrcode = $this->barcode_msi($code, true);
+				$arrcode = $this->barcodeMsi($code, true);
 				break;
 			}
 			case 'TYPE_POSTNET': { // POSTNET
-				$arrcode = $this->barcode_postnet($code, false);
+				$arrcode = $this->barcodePostnet($code, false);
 				break;
 			}
 			case 'TYPE_PLANET': { // PLANET
-				$arrcode = $this->barcode_postnet($code, true);
+				$arrcode = $this->barcodePostnet($code, true);
 				break;
 			}
 			case 'TYPE_RMS4CC': { // RMS4CC (Royal Mail 4-state Customer Code) - CBC (Customer Bar Code)
-				$arrcode = $this->barcode_rms4cc($code, false);
+				$arrcode = $this->barcodeRms4cc($code, false);
 				break;
 			}
 			case 'TYPE_KIX': { // KIX (Klant index - Customer index)
-				$arrcode = $this->barcode_rms4cc($code, true);
+				$arrcode = $this->barcodeRms4cc($code, true);
 				break;
 			}
 			case 'TYPE_IMB': { // IMB - Intelligent Mail Barcode - Onecode - USPS-B-3200
-				$arrcode = $this->barcode_imb($code);
+				$arrcode = $this->barcodeImb($code);
 				break;
 			}
 			case 'TYPE_CODABAR': { // CODABAR
-				$arrcode = $this->barcode_codabar($code);
+				$arrcode = $this->barcodeCodabar($code);
 				break;
 			}
 			case 'TYPE_CODE_11': { // CODE 11
-				$arrcode = $this->barcode_code11($code);
+				$arrcode = $this->barcodeCode11($code);
 				break;
 			}
 			case 'TYPE_PHARMA_CODE': { // PHARMACODE
-				$arrcode = $this->barcode_pharmacode($code);
+				$arrcode = $this->barcodePharmacode($code);
 				break;
 			}
 			case 'TYPE_PHARMA_CODE_TWO_TRACKS': { // PHARMACODE TWO-TRACKS
-				$arrcode = $this->barcode_pharmacode2t($code);
+				$arrcode = $this->barcodePharmacode2t($code);
 				break;
 			}
 			default: {
@@ -193,7 +193,7 @@ class ModelToolBarcode extends Model {
 	* @param $checksum (boolean) if true add a checksum to the code.
 	* @return array barcode representation.
 	*/
-	protected function barcode_code39($code, $extended = false, $checksum = false) {
+	protected function barcodeCode39($code, $extended = false, $checksum = false) {
 		$chr = [];
 		$chr['0'] = '111331311';
 		$chr['1'] = '311311113';
@@ -243,7 +243,7 @@ class ModelToolBarcode extends Model {
 		$code = strtoupper($code);
 
 		if ($extended) {
-			$code = $this->encode_code39_ext($code);
+			$code = $this->encodeCode39Ext($code);
 		}
 
 		if ($code === false) {
@@ -251,7 +251,7 @@ class ModelToolBarcode extends Model {
 		}
 
 		if ($checksum) {
-			$code .= $this->checksum_code39($code);
+			$code .= $this->checksumCode39($code);
 		}
 
 		// Add start and stop codes
@@ -299,7 +299,7 @@ class ModelToolBarcode extends Model {
 	* @param string $code code to represent.
 	* @return bool|string encoded string.
 	*/
-	protected function encode_code39_ext($code) {
+	protected function encodeCode39Ext($code) {
 		$encode = array(
 			chr(0)   => '%U',
 			chr(1)   => '$A',
@@ -452,7 +452,7 @@ class ModelToolBarcode extends Model {
 	* @param string $code code to represent.
 	* @return string char checksum.
 	*/
-	protected function checksum_code39($code) {
+	protected function checksumCode39($code) {
 		$chars = array(
 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -480,7 +480,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to represent.
 	* @return array barcode representation.
 	*/
-	protected function barcode_code93($code) {
+	protected function barcodeCode93($code) {
 		$chr = [];
 
 		$chr[48] = '131112'; // 0
@@ -678,7 +678,7 @@ class ModelToolBarcode extends Model {
 		}
 
 		// Checksum
-		$code_ext .= $this->checksum_code93($code_ext);
+		$code_ext .= $this->checksumCode93($code_ext);
 
 		// Add start and stop codes
 		$code = '*' . $code_ext . '*';
@@ -723,7 +723,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to represent.
 	* @return string checksum code.
 	*/
-	protected function checksum_code93($code) {
+	protected function checksumCode93($code) {
 		$chars = array(
 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -781,7 +781,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to process.
 	* @return int checksum.
 	*/
-	protected function checksum_s25($code) {
+	protected function checksumS25($code) {
 		$len = strlen($code);
 
 		$sum = 0;
@@ -814,7 +814,7 @@ class ModelToolBarcode extends Model {
 	* @param $checksum (boolean) if true add a checksum to the code (modulo 11)
 	* @return array barcode representation.
 	*/
-	protected function barcode_msi($code, $checksum = false) {
+	protected function barcodeMsi($code, $checksum = false) {
 		$chr['0'] = '100100100100';
 		$chr['1'] = '100100100110';
 		$chr['2'] = '100100110100';
@@ -872,7 +872,7 @@ class ModelToolBarcode extends Model {
 
 		$bararray = array('code' => $code, 'maxw' => 0, 'maxh' => 1, 'bcode' => array());
 
-		return $this->binseq_to_array($seq, $bararray);
+		return $this->binseqToArray($seq, $bararray);
 	}
 
 	/**
@@ -884,7 +884,7 @@ class ModelToolBarcode extends Model {
 	* @param $checksum (boolean) if true add a checksum to the code
 	* @return array barcode representation.
 	*/
-	protected function barcode_s25($code, $checksum = false) {
+	protected function barcodeS25($code, $checksum = false) {
 		$chr['0'] = '10101110111010';
 		$chr['1'] = '11101010101110';
 		$chr['2'] = '10111010101110';
@@ -898,7 +898,7 @@ class ModelToolBarcode extends Model {
 
 		// Checksum
 		if ($checksum) {
-			$code .= $this->checksum_s25($code);
+			$code .= $this->checksumS25($code);
 		}
 
 		// Add leading zero if code-length is odd
@@ -924,7 +924,7 @@ class ModelToolBarcode extends Model {
 
 		$bararray = array('code' => $code, 'maxw' => 0, 'maxh' => 1, 'bcode' => array());
 
-		return $this->binseq_to_array($seq, $bararray);
+		return $this->binseqToArray($seq, $bararray);
 	}
 
 	/**
@@ -935,7 +935,7 @@ class ModelToolBarcode extends Model {
 	* @param array $bararray barcode array to fill up
 	* @return array barcode representation.
 	*/
-	protected function binseq_to_array($seq, $bararray) {
+	protected function binseqToArray($seq, $bararray) {
 		$len = strlen($seq);
 		$w = 0;
 		$k = 0;
@@ -969,7 +969,7 @@ class ModelToolBarcode extends Model {
 	* @param $checksum (boolean) if true add a checksum to the code
 	* @return array barcode representation.
 	*/
-	protected function barcode_i25($code, $checksum = false) {
+	protected function barcodeI25($code, $checksum = false) {
 		$chr['0'] = '11221';
 		$chr['1'] = '21112';
 		$chr['2'] = '12112';
@@ -985,7 +985,7 @@ class ModelToolBarcode extends Model {
 
 		// Checksum
 		if ($checksum) {
-			$code .= $this->checksum_s25($code);
+			$code .= $this->checksumS25($code);
 		}
 
 		// Add leading zero if code-length is odd
@@ -1047,7 +1047,7 @@ class ModelToolBarcode extends Model {
 	* @param $type (string) barcode type: A, B, C or empty for automatic switch (AUTO mode)
 	* @return array barcode representation.
 	*/
-	protected function barcode_c128($code, $type = '') {
+	protected function barcodeC128($code, $type = '') {
 		$chr = array(
 			'212222', /* 00 */
 			'222122', /* 01 */
@@ -1472,7 +1472,7 @@ class ModelToolBarcode extends Model {
 	* @param $len (string) barcode type: 6 = UPC-E, 8 = EAN8, 13 = EAN13, 12 = UPC-A
 	* @return array barcode representation.
 	*/
-	protected function barcode_eanupc($code, $len = 13) {
+	protected function barcodeEanupc($code, $len = 13) {
 		$upce = false;
 
 		if ($len == 6) {
@@ -1710,7 +1710,7 @@ class ModelToolBarcode extends Model {
 	* @param $len (string) barcode type: 2 = 2-Digit, 5 = 5-Digit
 	* @return array barcode representation.
 	*/
-	protected function barcode_eanext($code, $len = 5) {
+	protected function barcodeEanext($code, $len = 5) {
 		// Padding
 		$code = str_pad($code, $len, '0', STR_PAD_LEFT);
 
@@ -1786,7 +1786,7 @@ class ModelToolBarcode extends Model {
 
 		$bararray = array('code' => $code, 'maxw' => 0, 'maxh' => 1, 'bcode' => array());
 
-		return $this->binseq_to_array($seq, $bararray);
+		return $this->binseqToArray($seq, $bararray);
 	}
 
 	/**
@@ -1797,7 +1797,7 @@ class ModelToolBarcode extends Model {
 	* @param $planet (boolean) if true print the PLANET barcode, otherwise print POSTNET
 	* @return array barcode representation.
 	*/
-	protected function barcode_postnet($code, $planet = false) {
+	protected function barcodePostnet($code, $planet = false) {
 		// Bar length
 		if ($planet) {
 			$barlen = array(
@@ -1893,7 +1893,7 @@ class ModelToolBarcode extends Model {
 	*     - in this case the house number must be suffixed with an X and placed at the end of the code.
 	* @return array barcode representation.
 	*/
-	protected function barcode_rms4cc($code, $kix = false) {
+	protected function barcodeRms4cc($code, $kix = false) {
 		$notkix = ! $kix;
 		// Bar mode
 		// 1 = pos 1, length 2
@@ -2062,7 +2062,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to represent.
 	* @return array barcode representation.
 	*/
-	protected function barcode_codabar($code) {
+	protected function barcodeCodabar($code) {
 		$chr = array(
 			'0' => '11111221',
 			'1' => '11112211',
@@ -2126,7 +2126,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to represent.
 	* @return array barcode representation.
 	*/
-	protected function barcode_code11($code) {
+	protected function barcodeCode11($code) {
 		$chr = array(
 			'0' => '111121',
 			'1' => '211121',
@@ -2241,7 +2241,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to represent.
 	* @return array barcode representation.
 	*/
-	protected function barcode_pharmacode($code) {
+	protected function barcodePharmacode($code) {
 		$seq = '';
 		$code = intval($code);
 
@@ -2262,7 +2262,7 @@ class ModelToolBarcode extends Model {
 
 		$bararray = array('code' => $code, 'maxw' => 0, 'maxh' => 1, 'bcode' => array());
 
-		return $this->binseq_to_array($seq, $bararray);
+		return $this->binseqToArray($seq, $bararray);
 	}
 
 	/**
@@ -2272,7 +2272,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) code to represent.
 	* @return array barcode representation.
 	*/
-	protected function barcode_pharmacode2t($code) {
+	protected function barcodePharmacode2t($code) {
 		$seq = '';
 		$code = intval($code);
 
@@ -2359,7 +2359,7 @@ class ModelToolBarcode extends Model {
 	*     (BarcodeID_ServiceTypeID_MailerID_SerialNumber-RoutingCode)
 	* @return array barcode representation.
 	*/
-	protected function barcode_imb($code) {
+	protected function barcodeImb($code) {
 		$asc_chr = array(
 			4,
 			0,
@@ -2674,7 +2674,7 @@ class ModelToolBarcode extends Model {
 		$binary_code .= substr($tracking_number, 2, 18);
 
 		// Convert to hexadecimal
-		$binary_code = $this->dec_to_hex($binary_code);
+		$binary_code = $this->decToHex($binary_code);
 
 		// Pad to get 13 bytes
 		$binary_code = str_pad($binary_code, 26, '0', STR_PAD_LEFT);
@@ -2685,7 +2685,7 @@ class ModelToolBarcode extends Model {
 		$binary_code_arr = explode("\r", $binary_code_arr);
 
 		// Calculate frame check sequence
-		$fcs = $this->imb_crc11fcs($binary_code_arr);
+		$fcs = $this->imbCrc11fcs($binary_code_arr);
 
 		// Exclude first 2 bits from first byte
 		$first_byte = sprintf('%2s', dechex((hexdec($binary_code_arr[0]) << 2) >> 2));
@@ -2694,7 +2694,7 @@ class ModelToolBarcode extends Model {
 		// Convert binary data to codewords
 		$codewords = array();
 
-		$data = $this->hex_to_dec($binary_code_102bit);
+		$data = $this->hexToDec($binary_code_102bit);
 		$codewords[0] = bcmod($data, 636) * 2;
 		$data = bcdiv($data, 636);
 
@@ -2710,8 +2710,8 @@ class ModelToolBarcode extends Model {
 		}
 
 		// Generate lookup tables
-		$table2of13 = $this->imb_tables(2, 78);
-		$table5of13 = $this->imb_tables(5, 1287);
+		$table2of13 = $this->imbTables(2, 78);
+		$table5of13 = $this->imbTables(5, 1287);
 
 		// Convert codewords to characters
 		$characters = array();
@@ -2781,7 +2781,7 @@ class ModelToolBarcode extends Model {
 	* @param $code (string) pre-formatted IMB barcode (65 chars "FADT")
 	* @return array barcode representation.
 	*/
-	protected function barcode_imb_pre($code) {
+	protected function barcodeImbPre($code) {
 		if (!preg_match('/^[fadtFADT]{65}$/', $code) == 1) {
 			return false;
 		}
@@ -2840,7 +2840,7 @@ class ModelToolBarcode extends Model {
 	* @param $number (string) number to convert specified as a string
 	* @return string hexadecimal representation
 	*/
-	public function dec_to_hex($number) {
+	protected function decToHex($number) {
 		$hex = array();
 
 		if ($number == 0) {
@@ -2869,7 +2869,7 @@ class ModelToolBarcode extends Model {
 	* @param $hex (string) hexadecimal number to convert specified as a string
 	* @return string hexadecimal representation
 	*/
-	public function hex_to_dec($hex) {
+	protected function hexToDec($hex) {
 		$dec = 0;
 		$bitval = 1;
 		$len = strlen($hex);
@@ -2889,7 +2889,7 @@ class ModelToolBarcode extends Model {
 	* @param $code_arr (string) array of hexadecimal values (13 bytes holding 102 bits right justified).
 	* @return int 11 bit Frame Check Sequence as integer (decimal base)
 	*/
-	protected function imb_crc11fcs($code_arr) {
+	protected function imbCrc11fcs($code_arr) {
 		$genpoly = 0x0F35; // Generator polynomial
 		$fcs = 0x07FF; // Frame Check Sequence
 
@@ -2932,7 +2932,7 @@ class ModelToolBarcode extends Model {
 	* @param $num (int) value to reversr
 	* @return int reversed value
 	*/
-	protected function imb_reverse_us($num) {
+	protected function imbReverseUs($num) {
 		$rev = 0;
 
 		for ($i = 0; $i < 16; ++$i) {
@@ -2951,7 +2951,7 @@ class ModelToolBarcode extends Model {
 	* @param $size (int) size of table (78 for n=2 and 1287 for n=5)
 	* @return array requested table
 	*/
-	protected function imb_tables($n, $size) {
+	protected function imbTables($n, $size) {
 		$table = array();
 
 		$lli = 0; // LUT lower index
@@ -2966,7 +2966,7 @@ class ModelToolBarcode extends Model {
 
 			// If we don't have the right number of bits on, go on to the next value
 			if ($bit_count == $n) {
-				$reverse = ($this->imb_reverse_us($count) >> 3);
+				$reverse = ($this->imbReverseUs($count) >> 3);
 
 				// If the reverse is less than count, we have already visited this pair before
 				if ($reverse >= $count) {
