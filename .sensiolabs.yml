@@ -1,0 +1,133 @@
+global_exclude_dirs:
+    - vendor
+    - vendors
+    - test
+    - tests
+    - Tests
+    - library/vendor
+
+exclude_patterns:
+    - app/check.php
+    - app/SymfonyRequirements.php
+    - web/config.php
+    - web/app_*.php
+
+rules:
+    doctrine.database_query_contains_string_and_variable_concatenation:
+        enabled: false
+    doctrine.invalid_schema:
+        enabled: true
+    doctrine.use_flush_in_loop:
+        enabled: true
+    git.user_specific_ignored_file:
+        enabled: false
+    html.html_link_contains_javascript:
+        enabled: true
+    php.absolute_path_present:
+        enabled: true
+        allowed_paths: [/dev, /etc, /proc]
+    php.bad_mutator_method_name_for_boolean_property:
+        enabled: true
+    php.duplicated_code:
+        enabled: false
+    php.silenced_error:
+        enabled: false
+    php.strict_boolean_comparison_should_be_used:
+        enabled: false
+    twig.template_too_long:
+        enabled: false
+    php.psr1:
+        enabled: false
+    php.method_too_long:
+        enabled: false
+        max_length: 50
+        threshold: 5
+    php.class_too_long:
+        enabled: false
+        max_length: 500
+        threshold: 5
+    php.commented_out_code:
+        enabled: true
+    php.contaminant_third_party_component_license:
+        enabled: true
+    php.debug_statements:
+        enabled: true
+    php.dynamically_change_configuration:
+        enabled: false
+    php.file_contains_more_than_one_class:
+        enabled: false
+    php.for_loop_uses_test_function:
+        enabled: false
+    php.missing_use_statement:
+        enabled: true
+    php.neglected_tests:
+        enabled: true
+    php.object_parameter_not_type_hinted:
+        enabled: true
+    php.php_magic_methods:
+        enabled: true
+    php.php_syntax_error:
+        enabled: true
+    php.too_many_files_per_folder_for_performance:
+        enabled: true
+        max_count: 10000
+    php.too_permissive_file_permissions:
+        enabled: true
+        allowed_dirs: [bin, scripts]
+    php.unreachable_code:
+        enabled: true
+    php.unused_local_variable_or_private_member:
+        enabled: true
+    php.unused_use_statement:
+        enabled: true
+    php.use_deprecated_function:
+        enabled: true
+    php.use_exit_function:
+        enabled: false
+    php.use_global_variable_or_function:
+        enabled: true
+    php.use_php_ereg_function:
+        enabled: true
+    php.use_php_eval_function:
+        enabled: true
+    php.use_php_sleep_function:
+        enabled: true
+    php.method_or_property_missing_visibility:
+        enabled: false
+    missing_e_o_l:
+        enabled: true
+    web.apache_config:
+        enabled: false
+    task_fixme_comment:
+        enabled: true
+    task_todo_comment:
+        enabled: true
+    task_xxx_comment:
+        enabled: true
+    third_party.use_deprecated_class:
+        enabled: true
+    third_party.use_deprecated_service:
+        enabled: true
+    twig.disabled_escaper:
+        enabled: true
+    twig.template_too_complex:
+        enabled: true
+        max_depth: 5
+    twig.template_too_long:
+        enabled: true
+        max_length: 200
+        threshold: 5
+    twig.twig_syntax_error:
+        enabled: true
+    twig.xss_vulnerability:
+        enabled: true
+    web.default_favicon:
+        enabled: true
+    web.missing_favicon:
+        enabled: true
+    web.missing_robots_txt:
+        enabled: true
+    web.non_utf8_encoding:
+        enabled: true
+    xml.syntax_error:
+        enabled: true

@@ -4,7 +4,7 @@ OpenCart-Overclocked
 Opencart Overclocked - Community Edition
 -----------------------------------------
 
-[![build status](https://gitlab.com/villagedefrance/OpenCart-Overclocked/badges/master/build.svg)](https://gitlab.com/villagedefrance/OpenCart-Overclocked/commits/master)
+[![build status](https://gitlab.com/villagedefrance/OpenCart-Overclocked/badges/master/build.svg)](https://gitlab.com/villagedefrance/OpenCart-Overclocked/commits/master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0/mini.png)](https://insight.sensiolabs.com/projects/89962cba-03ba-48e7-b107-eb00742a6fc0)
 
 
 For a Demo of the current release, click <a href="http://villagedefrance.net/demonstration" title="Demo">HERE</a>.
