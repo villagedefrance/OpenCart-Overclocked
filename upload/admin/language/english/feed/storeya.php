@@ -5,7 +5,7 @@ $_['heading_title']    = 'StoreYa';
 // Text
 $_['text_feed']        = 'Product Feeds';
 $_['text_success']     = 'Success: You have modified <b>StoreYa</b> feed!';
-$_['text_link']        = '<span class="help">Go to StoreYa page, select a plan and paste the Data Feed Url link !</span>';
+$_['text_link']        = '<span class="help">Click to go to the StoreYa page, choose a plan and then paste the link in the "Data Feed Url" field above!</span>';
 
 // Entry
 $_['entry_status']     = 'Status:';
