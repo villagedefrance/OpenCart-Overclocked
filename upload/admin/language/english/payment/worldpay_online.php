@@ -75,4 +75,3 @@ $_['text_column_date_added']             = 'Added';
 
 // Button
 $_['button_refund']                      = 'Rebate / refund';
-?>

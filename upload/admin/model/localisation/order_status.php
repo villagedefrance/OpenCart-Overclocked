@@ -110,4 +110,3 @@ class ModelLocalisationOrderStatus extends Model {
 		return $query->row['total'];
 	}
 }
-?>

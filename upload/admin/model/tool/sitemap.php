@@ -580,4 +580,3 @@ class ModelToolSitemap extends Model {
 		return $output;
 	}
 }
-?>

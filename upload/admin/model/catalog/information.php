@@ -213,4 +213,3 @@ class ModelCatalogInformation extends Model {
 		return $query->row['total'];
 	}
 }
-?>

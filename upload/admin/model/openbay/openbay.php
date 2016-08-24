@@ -1003,4 +1003,3 @@ class ModelOpenbayOpenbay extends Model {
 		return $query->rows;
 	}
 }
-?>

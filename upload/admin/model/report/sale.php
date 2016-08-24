@@ -343,4 +343,3 @@ class ModelReportSale extends Model {
 		return $query->row['total'];
 	}
 }
-?>

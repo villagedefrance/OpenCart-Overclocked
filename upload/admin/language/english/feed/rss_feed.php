@@ -22,4 +22,3 @@ $_['button_cancel']     = 'Cancel';
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>RSS Product Feed</b> !';
 $_['error_integer']     = 'Limit must be an integer!';
-?>

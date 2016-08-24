@@ -54,4 +54,3 @@ $_['lang_filter']                 = 'Filter results';
 $_['lang_filter_title']           = 'Title';
 $_['lang_filter_range']           = 'Stock range';
 $_['lang_filter_var']             = 'Include variants';
-?>

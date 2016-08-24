@@ -160,4 +160,3 @@ class ModelToolReset extends Model {
 		return $checked_columns;
 	}
 }
-?>

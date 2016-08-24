@@ -107,8 +107,8 @@ class ModelLocalisationLengthClass extends Model {
 
 		foreach ($query->rows as $result) {
 			$length_class_data[$result['language_id']] = array(
-				'title'	=> $result['title'],
-				'unit'	=> $result['unit']
+				'title' => $result['title'],
+				'unit'  => $result['unit']
 			);
 		}
 
@@ -121,4 +121,3 @@ class ModelLocalisationLengthClass extends Model {
 		return $query->row['total'];
 	}
 }
-?>

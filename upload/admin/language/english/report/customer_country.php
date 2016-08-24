@@ -8,4 +8,3 @@ $_['column_name']       = 'Country Name';
 $_['column_customers']  = 'Customers';
 $_['column_ratio']      = 'Ratio';
 $_['column_graph']      = 'Graph';
-?>

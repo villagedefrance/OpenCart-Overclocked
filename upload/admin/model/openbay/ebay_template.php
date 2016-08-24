@@ -51,4 +51,3 @@ class ModelOpenbayEbayTemplate extends Model {
 		return $templates;
 	}
 }
-?>

@@ -32,4 +32,3 @@ $_['error_permission']   = 'Warning: You do not have permission to modify <b>Man
 $_['error_warning']      = 'Warning: Please check the form carefully for errors!';
 $_['error_name']         = 'Manufacturer\'s Name must be between 2 and 128 characters!';
 $_['error_product']      = 'Warning: This manufacturer cannot be deleted as it is currently assigned to %s products!';
-?>

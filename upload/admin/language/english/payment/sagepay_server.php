@@ -65,4 +65,3 @@ $_['button_void']             = 'Void';
 // Error
 $_['error_permission']        = 'Warning: You do not have permission to modify <b>Payment SagePay Server</b>!';
 $_['error_vendor']            = 'Vendor ID Required!';
-?>

@@ -161,4 +161,3 @@ class ModelToolSeoUrl extends Controller {
 		}
 	}
 }
-?>

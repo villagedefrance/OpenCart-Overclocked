@@ -535,9 +535,7 @@ class ModelOpenbayAmazonus extends Model {
 	public function updateAmazonusOrderTracking($orderId, $courierId, $courierFromList, $trackingNo) {
 		$this->db->query("
 			UPDATE `" . DB_PREFIX . "amazonus_order`
-			SET `courier_id` = '" . $courierId . "',
-				`courier_other` = " . (int)!$courierFromList . ",
-				`tracking_no` = '" . $trackingNo . "'
+			SET `courier_id` = '" . $courierId . "', `courier_other` = " . (int)!$courierFromList . ", `tracking_no` = '" . $trackingNo . "'
 			WHERE `order_id` = " . (int)$orderId . "");
 	}
 
@@ -559,8 +557,8 @@ class ModelOpenbayAmazonus extends Model {
 		return $this->db->query("
 			SELECT `aop`.`amazonus_order_item_id`, `op`.`quantity`
 			FROM `" . DB_PREFIX . "amazonus_order_product` `aop`
-			JOIN `" . DB_PREFIX . "order_product` `op` ON `op`.`order_product_id` = `aop`.`order_product_id`
-				AND `op`.`order_id` = " . (int)$orderId)->rows;
+			JOIN `" . DB_PREFIX . "order_product` `op` ON (`op`.`order_product_id` = `aop`.`order_product_id`)
+			AND `op`.`order_id` = " . (int)$orderId)->rows;
 	}
 
 	public function getProductQuantity($product_id, $var = '') {
@@ -602,9 +600,9 @@ class ModelOpenbayAmazonus extends Model {
 		$sql = "
 			SELECT COUNT(*) AS product_total
 			FROM " . DB_PREFIX . "product p
-			LEFT JOIN " . DB_PREFIX . "amazonus_product_search aps ON p.product_id = aps.product_id
-			LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON p.product_id = apl.product_id
-			LEFT JOIN " . DB_PREFIX . "amazonus_product ap ON p.product_id = ap.product_id
+			LEFT JOIN " . DB_PREFIX . "amazonus_product_search aps ON (p.product_id = aps.product_id)
+			LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (p.product_id = apl.product_id)
+			LEFT JOIN " . DB_PREFIX . "amazonus_product ap ON (p.product_id = ap.product_id)
 			WHERE apl.product_id IS NULL AND ap.product_id IS NULL ";
 
 		if (!empty($data['status'])) {
@@ -618,9 +616,9 @@ class ModelOpenbayAmazonus extends Model {
 		$sql = "
 			SELECT p.product_id, aps.status, aps.data, aps.matches
 			FROM " . DB_PREFIX . "product p
-			LEFT JOIN " . DB_PREFIX . "amazonus_product_search aps ON p.product_id = aps.product_id
-			LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON p.product_id = apl.product_id
-			LEFT JOIN " . DB_PREFIX . "amazonus_product ap ON p.product_id = ap.product_id
+			LEFT JOIN " . DB_PREFIX . "amazonus_product_search aps ON (p.product_id = aps.product_id)
+			LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (p.product_id = apl.product_id)
+			LEFT JOIN " . DB_PREFIX . "amazonus_product ap ON (p.product_id = ap.product_id)
 			WHERE apl.product_id IS NULL AND ap.product_id IS NULL ";
 
 		if (!empty($data['status'])) {
@@ -636,9 +634,9 @@ class ModelOpenbayAmazonus extends Model {
 		foreach ($rows as $row) {
 			$results[] = array(
 				'product_id' => $row['product_id'],
-				'status' => $row['status'],
-				'matches' => $row['matches'],
-				'data' => json_decode($row['data'], 1),
+				'status'     => $row['status'],
+				'matches'    => $row['matches'],
+				'data'       => json_decode($row['data'], 1)
 			);
 		}
 
@@ -656,7 +654,7 @@ class ModelOpenbayAmazonus extends Model {
 			$rows = $this->db->query("
 				SELECT apl.amazon_sku, IF(por.product_id IS NULL, p.quantity, por.stock) AS 'quantity'
 				FROM " . DB_PREFIX . "amazonus_product_link apl
-				JOIN " . DB_PREFIX . "product p ON apl.product_id = p.product_id
+				JOIN " . DB_PREFIX . "product p ON (apl.product_id = p.product_id)
 				LEFT JOIN " . DB_PREFIX . "product_option_relation por ON apl.product_id = por.product_id AND apl.var = por.var
 				WHERE apl.amazon_sku IN (" . implode(',', $skuArray) . ")
 			")->rows;
@@ -664,7 +662,7 @@ class ModelOpenbayAmazonus extends Model {
 			$rows = $this->db->query("
 				SELECT apl.amazon_sku, p.quantity
 				FROM " . DB_PREFIX . "amazonus_product_link apl
-				JOIN " . DB_PREFIX . "product p ON apl.product_id = p.product_id
+				JOIN " . DB_PREFIX . "product p ON (apl.product_id = p.product_id)
 				WHERE apl.amazon_sku IN (" . implode(',', $skuArray) . ")
 			")->rows;
 		}
@@ -686,7 +684,7 @@ class ModelOpenbayAmazonus extends Model {
 					SELECT GROUP_CONCAT(ovd.name ORDER BY o.sort_order SEPARATOR ' > ')
 					FROM " . DB_PREFIX . "product_option_value pov
 					JOIN " . DB_PREFIX . "option_value_description ovd ON ovd.option_value_id = pov.option_value_id AND ovd.language_id = " . (int)$this->config->get('config_language_id') . "
-					JOIN `" . DB_PREFIX . "option` o ON o.option_id = pov.option_id
+					JOIN `" . DB_PREFIX . "option` o ON (o.option_id = pov.option_id)
 					WHERE oc_sku.var LIKE CONCAT('%:', pov.product_option_value_id ,':%') OR oc_sku.var LIKE CONCAT(pov.product_option_value_id ,':%')
 					  OR oc_sku.var LIKE CONCAT('%:', pov.product_option_value_id) OR oc_sku.var LIKE pov.product_option_value_id
 				  ) AS 'combination'
@@ -695,9 +693,9 @@ class ModelOpenbayAmazonus extends Model {
 				  SELECT p.product_id, IF(por.product_id IS NULL, p.sku, por.sku) AS 'sku', IF(por.product_id IS NULL, NULL, por.var) AS 'var', IF(por.product_id IS NULL, p.quantity, por.stock) AS 'quantity'
 				  FROM " . DB_PREFIX . "product p
 				  LEFT JOIN " . DB_PREFIX . "product_option_relation por USING(product_id)
-				) AS oc_sku ON alr.sku = oc_sku.sku
+				) AS oc_sku ON (alr.sku = oc_sku.sku)
 				LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (oc_sku.var IS NULL AND oc_sku.product_id = apl.product_id) OR (oc_sku.var IS NOT NULL AND oc_sku.product_id = apl.product_id AND oc_sku.var = apl.var)
-				LEFT JOIN " . DB_PREFIX . "product_description pd ON oc_sku.product_id = pd.product_id AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
+				LEFT JOIN " . DB_PREFIX . "product_description pd ON (oc_sku.product_id = pd.product_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
 				WHERE apl.product_id IS NULL
 			");
 		} else {
@@ -707,9 +705,9 @@ class ModelOpenbayAmazonus extends Model {
 				LEFT JOIN (
 					SELECT p.product_id, p.sku, NULL AS 'var', p.quantity
 					FROM " . DB_PREFIX . "product p
-				) AS oc_sku ON alr.sku = oc_sku.sku
+				) AS oc_sku ON (alr.sku = oc_sku.sku)
 				LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (oc_sku.var IS NULL AND oc_sku.product_id = apl.product_id) OR (oc_sku.var IS NOT NULL AND oc_sku.product_id = apl.product_id AND oc_sku.var = apl.var)
-				LEFT JOIN " . DB_PREFIX . "product_description pd ON oc_sku.product_id = pd.product_id AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
+				LEFT JOIN " . DB_PREFIX . "product_description pd ON (oc_sku.product_id = pd.product_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
 				WHERE apl.product_id IS NULL
 				ORDER BY alr.sku
 			");
@@ -730,7 +728,7 @@ class ModelOpenbayAmazonus extends Model {
 					SELECT GROUP_CONCAT(ovd.name ORDER BY o.sort_order SEPARATOR ' > ')
 					FROM " . DB_PREFIX . "product_option_value pov
 					JOIN " . DB_PREFIX . "option_value_description ovd ON ovd.option_value_id = pov.option_value_id AND ovd.language_id = " . (int)$this->config->get('config_language_id') . "
-					JOIN `" . DB_PREFIX . "option` o ON o.option_id = pov.option_id
+					JOIN `" . DB_PREFIX . "option` o ON (o.option_id = pov.option_id)
 					WHERE oc_sku.var LIKE CONCAT('%:', pov.product_option_value_id ,':%') OR oc_sku.var LIKE CONCAT(pov.product_option_value_id ,':%')
 					  OR oc_sku.var LIKE CONCAT('%:', pov.product_option_value_id) OR oc_sku.var LIKE pov.product_option_value_id
 				  ) AS 'combination'
@@ -739,9 +737,9 @@ class ModelOpenbayAmazonus extends Model {
 				  SELECT p.product_id, IF(por.product_id IS NULL, p.sku, por.sku) AS 'sku', IF(por.product_id IS NULL, NULL, por.var) AS 'var', IF(por.product_id IS NULL, p.quantity, por.stock) AS 'quantity'
 				  FROM " . DB_PREFIX . "product p
 				  LEFT JOIN " . DB_PREFIX . "product_option_relation por USING(product_id)
-				) AS oc_sku ON alr.sku = oc_sku.sku
+				) AS oc_sku ON (alr.sku = oc_sku.sku)
 				LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (oc_sku.var IS NULL AND oc_sku.product_id = apl.product_id) OR (oc_sku.var IS NOT NULL AND oc_sku.product_id = apl.product_id AND oc_sku.var = apl.var)
-				LEFT JOIN " . DB_PREFIX . "product_description pd ON oc_sku.product_id = pd.product_id AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
+				LEFT JOIN " . DB_PREFIX . "product_description pd ON (oc_sku.product_id = pd.product_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
 				WHERE apl.product_id IS NULL
 				ORDER BY alr.sku
 				LIMIT " . (int)$start . "," . (int)$limit)->rows;
@@ -752,9 +750,9 @@ class ModelOpenbayAmazonus extends Model {
 				LEFT JOIN (
 					SELECT p.product_id, p.sku, NULL AS 'var', p.quantity
 					FROM " . DB_PREFIX . "product p
-				) AS oc_sku ON alr.sku = oc_sku.sku
+				) AS oc_sku ON (alr.sku = oc_sku.sku)
 				LEFT JOIN " . DB_PREFIX . "amazonus_product_link apl ON (oc_sku.var IS NULL AND oc_sku.product_id = apl.product_id) OR (oc_sku.var IS NOT NULL AND oc_sku.product_id = apl.product_id AND oc_sku.var = apl.var)
-				LEFT JOIN " . DB_PREFIX . "product_description pd ON oc_sku.product_id = pd.product_id AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
+				LEFT JOIN " . DB_PREFIX . "product_description pd ON (oc_sku.product_id = pd.product_id) AND pd.language_id = " . (int)$this->config->get('config_language_id') . "
 				WHERE apl.product_id IS NULL
 				ORDER BY alr.sku
 				LIMIT " . (int)$start . "," . (int)$limit)->rows;
@@ -779,9 +777,6 @@ class ModelOpenbayAmazonus extends Model {
 	}
 
 	public function deleteListingReports() {
-		$this->db->query("
-			DELETE FROM " . DB_PREFIX . "amazonus_listing_report
-		");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "amazonus_listing_report");
 	}
 }
-?>

@@ -80,4 +80,3 @@ class ModelToolBackup extends Model {
 		return $output;
 	}
 }
-?>

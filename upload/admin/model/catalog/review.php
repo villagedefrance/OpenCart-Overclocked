@@ -99,4 +99,3 @@ class ModelCatalogReview extends Model {
 		return $query->row['total'];
 	}
 }
-?>

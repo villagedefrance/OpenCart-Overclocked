@@ -127,4 +127,3 @@ class ModelLocalisationGeoZone extends Model {
 		return $query->row['total'];
 	}
 }
-?>

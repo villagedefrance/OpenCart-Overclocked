@@ -17,4 +17,3 @@ $_['button_download']   = 'Download';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>Uploads</b>!';
-?>

@@ -80,4 +80,3 @@ $_['error_demo_url']                 = 'Demo URL is required';
 $_['error_data_missing']             = 'Data missing';
 $_['error_void_error']               = 'Unable to void transaction';
 $_['error_capture_error']            = 'Unable to capture transaction';
-?>

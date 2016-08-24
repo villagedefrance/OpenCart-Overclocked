@@ -25,4 +25,3 @@ $_['help_total_max']     = 'The maximum checkout total the order must reach befo
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify <b>Payment Bank BNI</b>!';
 $_['error_bank']         = 'You must specify your BNI Account Number!';
-?>

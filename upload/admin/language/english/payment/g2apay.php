@@ -66,4 +66,3 @@ $_['btn_refund']                      = 'refund';
 
 $_['g2apay_environment_live']         = 'Live';
 $_['g2apay_environment_test']         = 'Test';
-?>

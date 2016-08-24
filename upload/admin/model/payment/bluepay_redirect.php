@@ -231,4 +231,3 @@ class ModelPaymentBluepayRedirect extends Model {
 		}
 	}
 }
-?>

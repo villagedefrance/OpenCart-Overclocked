@@ -201,4 +201,3 @@ class ModelLocalisationCountry extends Model {
 		return $query->row['total'];
 	}
 }
-?>

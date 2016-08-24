@@ -17,4 +17,3 @@ $_['column_cost']     = 'Cost';
 $_['column_status']   = 'Status';
 $_['column_quantity'] = 'Quantity';
 $_['column_action']   = 'Action';
-?>

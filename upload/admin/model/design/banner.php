@@ -115,9 +115,9 @@ class ModelDesignBanner extends Model {
 
 				$banner_image_data[] = array(
 					'banner_image_description' => $banner_image_description_data,
-					'link'                	=> $banner_image['link'],
-					'external_link'		=> $banner_image['external_link'],
-					'image'           	=> $banner_image['image']
+					'link'                     => $banner_image['link'],
+					'external_link'            => $banner_image['external_link'],
+					'image'                    => $banner_image['image']
 				);
 			}
 
@@ -139,4 +139,3 @@ class ModelDesignBanner extends Model {
 		return $query->row['total'];
 	}
 }
-?>

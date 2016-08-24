@@ -85,4 +85,3 @@ class ModelUserUserGroup extends Model {
 		return $query->row['total'];
 	}
 }
-?>

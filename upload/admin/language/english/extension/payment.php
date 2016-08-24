@@ -17,4 +17,3 @@ $_['button_images']     = 'Payment Images';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>Payments</b> !';
-?>

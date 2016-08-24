@@ -16,4 +16,3 @@ $_['entry_sort_order']      = 'Sort Order:';
 // Error
 $_['error_permission']      = 'Warning: You do not have permission to modify <b>Gift Wrapping</b>!';
 $_['error_price']           = 'Error: Price is required and must be a number equal or greater than zero!';
-?>

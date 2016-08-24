@@ -719,4 +719,3 @@ class ModelSaleCustomer extends Model {
 		return $status;
 	}
 }
-?>

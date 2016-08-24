@@ -32,4 +32,3 @@ $_['help_total_max']        = 'The maximum checkout total the order must reach b
 $_['error_permission']      = 'Warning: You do not have permission to modify payment <b>Authorize.Net (SIM)</b> !';
 $_['error_merchant']        = 'Merchant ID Required!';
 $_['error_key']             = 'Transaction Key Required!';
-?>

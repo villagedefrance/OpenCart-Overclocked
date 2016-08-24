@@ -110,4 +110,3 @@ class ModelLocalisationReturnStatus extends Model {
 		return $query->row['total'];
 	}
 }
-?>

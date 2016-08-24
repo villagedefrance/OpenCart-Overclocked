@@ -286,4 +286,3 @@ class ModelModificationEutaxes extends Model {
 		}
 	}
 }
-?>

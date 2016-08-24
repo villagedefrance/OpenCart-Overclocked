@@ -12,4 +12,3 @@ $_['column_price']       = 'Price';
 $_['column_cost']        = 'Cost';
 $_['column_ratio']       = 'Ratio';
 $_['column_graph']       = 'Graph';
-?>

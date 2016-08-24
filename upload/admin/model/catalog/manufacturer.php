@@ -184,4 +184,3 @@ class ModelCatalogManufacturer extends Model {
 		return $query->row['total'];
 	}
 }
-?>

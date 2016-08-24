@@ -60,4 +60,3 @@ $_['error_upload_fail']          = 'Unable to send the data to the API, please c
 $_['error_permission_bulk']      = 'Your current subscription plan does not allow you to use bulk listing';
 $_['error_active_jobs']          = 'There is an active bulk listing job running, please wait for this to complete';
 $_['error_limit_available']      = 'You have reached the maximum number of products you can link on your current plan';
-?>

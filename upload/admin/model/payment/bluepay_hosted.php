@@ -239,4 +239,3 @@ class ModelPaymentBluepayHosted extends Model {
 		}
 	}
 }
-?>

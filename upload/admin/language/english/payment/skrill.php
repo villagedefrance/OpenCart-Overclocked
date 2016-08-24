@@ -30,4 +30,3 @@ $_['help_total_max']          = 'The maximum checkout total the order must reach
 // Error
 $_['error_permission']        = 'Warning: You do not have permission to modify <b>Payment Skrill</b> !';
 $_['error_email']             = 'E-Mail Required!';
-?>

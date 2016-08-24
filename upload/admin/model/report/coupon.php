@@ -59,4 +59,3 @@ class ModelReportCoupon extends Model {
 		return $query->row['total'];
 	}
 }
-?>

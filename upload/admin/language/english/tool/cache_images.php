@@ -13,4 +13,3 @@ $_['column_size']      = 'Cache Image Size';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Cache Images</b> !';
-?>

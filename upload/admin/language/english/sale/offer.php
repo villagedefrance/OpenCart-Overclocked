@@ -46,4 +46,3 @@ $_['success_offers']      = 'Extension "Totals/Offers" is Enabled and set to app
 
 // Error
 $_['error_offers']        = 'IMPORTANT: Extension "Totals/Offers" must be Installed and Enabled!';
-?>

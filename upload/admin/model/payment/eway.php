@@ -225,4 +225,3 @@ class ModelPaymentEway extends Model {
 		return (double)$query->row['total'];
 	}
 }
-?>

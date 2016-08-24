@@ -102,8 +102,8 @@ class ModelSaleSupplierGroup extends Model {
 
 		foreach ($query->rows as $result) {
 			$supplier_group_data[$result['language_id']] = array(
-				'name'  			=> $result['name'],
-				'description'	=> $result['description']
+				'name'        => $result['name'],
+				'description' => $result['description']
 			);
 		}
 
@@ -122,4 +122,3 @@ class ModelSaleSupplierGroup extends Model {
 		return $query->row['total'];
 	}
 }
-?>

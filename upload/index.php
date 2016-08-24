@@ -248,4 +248,3 @@ if ($url_map = $registry->get('new_seo_url_map')) {
 
 // Output
 $response->output();
-?>

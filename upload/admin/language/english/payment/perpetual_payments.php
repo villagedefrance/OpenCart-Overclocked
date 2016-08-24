@@ -29,4 +29,3 @@ $_['help_test']               = 'Use this module in Test (YES) or Production mod
 $_['error_permission']        = 'Warning: You do not have permission to modify payment <b>Perpetual Payments</b>!';
 $_['error_auth_id']           = 'Authorization ID Required!';
 $_['error_auth_pass']         = 'Authorization Password Required!';
-?>

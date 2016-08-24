@@ -105,4 +105,3 @@ class ModelToolRoute extends Model {
 		return $categories_data;
 	}
 }
-?>

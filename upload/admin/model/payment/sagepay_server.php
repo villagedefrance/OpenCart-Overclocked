@@ -155,7 +155,7 @@ class ModelPaymentSagepayServer extends Model {
 	}
 
 	public function updateForRebate($sagepay_server_order_id, $order_ref) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "sagepay_server_order` SET `order_ref_previous` = '_multisettle_" . $this->db->escape($order_ref) . "' WHERE `sagepay_server_order_id` = '" . (int)$sagepay_server_order_id . "' LIMIT 1");
+		$this->db->query("UPDATE `" . DB_PREFIX . "sagepay_server_order` SET `order_ref_previous` = '_multisettle_" . $this->db->escape($order_ref) . "' WHERE `sagepay_server_order_id` = '" . (int)$sagepay_server_order_id . "' LIMIT 0,1");
 	}
 
 	public function rebate($order_id, $amount) {
@@ -199,7 +199,7 @@ class ModelPaymentSagepayServer extends Model {
 	public function getOrder($order_id) {
 		$this->logger('getOrder - ' . $order_id);
 
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_order` WHERE order_id = '" . (int)$order_id . "' LIMIT 0,1");
 
 		if ($query->num_rows) {
 			$order = $query->row;
@@ -225,7 +225,7 @@ class ModelPaymentSagepayServer extends Model {
 	}
 
 	public function addTransaction($sagepay_server_order_id, $type, $total) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_server_order_transaction` SET `sagepay_server_order_id` = '" . (int)$sagepay_server_order_id . "', `date_added` = now(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . (float)$total . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "sagepay_server_order_transaction` SET `sagepay_server_order_id` = '" . (int)$sagepay_server_order_id . "', `date_added` = NOW(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . (float)$total . "'");
 	}
 
 	public function getTotalReleased($sagepay_server_order_id) {
@@ -279,4 +279,3 @@ class ModelPaymentSagepayServer extends Model {
 		}
 	}
 }
-?>

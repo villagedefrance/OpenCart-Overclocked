@@ -484,7 +484,7 @@ class ModelSaleOrder extends Model {
 			$amazonOrderId = '';
 
 			if ($this->config->get('amazon_status') == 1) {
-				$amazon_query = $this->db->query("SELECT amazon_order_id FROM " . DB_PREFIX . "amazon_order WHERE order_id = " . (int)$order_query->row['order_id'] . " LIMIT 1")->row;
+				$amazon_query = $this->db->query("SELECT amazon_order_id FROM " . DB_PREFIX . "amazon_order WHERE order_id = " . (int)$order_query->row['order_id'] . " LIMIT 0,1")->row;
 
 				if (isset($amazon_query['amazon_order_id']) && !empty($amazon_query['amazon_order_id'])) {
 					$amazonOrderId = $amazon_query['amazon_order_id'];
@@ -492,7 +492,7 @@ class ModelSaleOrder extends Model {
 			}
 
 			if ($this->config->get('amazonus_status') == 1) {
-				$amazon_query = $this->db->query("SELECT amazonus_order_id FROM " . DB_PREFIX . "amazonus_order WHERE order_id = " . (int)$order_query->row['order_id'] . " LIMIT 1")->row;
+				$amazon_query = $this->db->query("SELECT amazonus_order_id FROM " . DB_PREFIX . "amazonus_order WHERE order_id = " . (int)$order_query->row['order_id'] . " LIMIT 0,1")->row;
 
 				if (isset($amazon_query['amazonus_order_id']) && !empty($amazon_query['amazonus_order_id'])) {
 					$amazonOrderId = $amazon_query['amazonus_order_id'];
@@ -947,4 +947,3 @@ class ModelSaleOrder extends Model {
 		return $query->row['total'];
 	}
 }
-?>

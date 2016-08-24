@@ -70,4 +70,3 @@ $_['error_warning']           = 'Warning: Please check the form carefully for er
 $_['error_supplier_id']       = 'Product Supplier is required!';
 $_['error_name']              = 'Product Name must be greater than 3 and less than 255 characters!';
 $_['error_model']             = 'Product Model must be greater than 3 and less than 64 characters!';
-?>

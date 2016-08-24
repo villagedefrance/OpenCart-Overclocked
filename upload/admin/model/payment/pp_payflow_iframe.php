@@ -120,4 +120,3 @@ class ModelPaymentPPPayflowIFrame extends Model {
 		return $response_params;
 	}
 }
-?>

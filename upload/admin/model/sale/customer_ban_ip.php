@@ -58,4 +58,3 @@ class ModelSaleCustomerBanIp extends Model {
 		return $query->row['total'];
 	}
 }
-?>

@@ -231,7 +231,7 @@ class ModelPaymentGlobalpayRemote extends Model {
 	public function getOrder($order_id) {
 		$this->logger('getOrder - ' . $order_id);
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "globalpay_remote_order WHERE order_id = '" . (int)$order_id . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "globalpay_remote_order WHERE order_id = '" . (int)$order_id . "' LIMIT 0,1");
 
 		if ($query->num_rows) {
 			$order = $query->row;
@@ -256,7 +256,7 @@ class ModelPaymentGlobalpayRemote extends Model {
 	}
 
 	public function addTransaction($globalpay_remote_order_id, $type, $total) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "globalpay_remote_order_transaction` SET `globalpay_remote_order_id` = '" . (int)$globalpay_remote_order_id . "', `date_added` = now(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . (double)$total . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "globalpay_remote_order_transaction` SET `globalpay_remote_order_id` = '" . (int)$globalpay_remote_order_id . "', date_added = NOW(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . (double)$total . "'");
 	}
 
 	public function logger($message) {
@@ -278,4 +278,3 @@ class ModelPaymentGlobalpayRemote extends Model {
 		return (double)$query->row['total'];
 	}
 }
-?>

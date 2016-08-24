@@ -34,4 +34,3 @@ $_['help_warning']      = 'All changes must be consistent, otherwise the integri
 $_['error_permission']  = 'Warning: You do not have permission to modify <b>Export / Import (CSV)</b>!';
 $_['error_empty']       = 'Warning: No file selected or the file was empty!';
 $_['error_export']      = 'Error: The CSV file cannot be generated!';
-?>

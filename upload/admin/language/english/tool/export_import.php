@@ -199,7 +199,7 @@ $_['text_phpexcel_license']                             = 'PHPExcel License:';
 
 // Version
 $_['export_import_description']                         = '<b>Export / Import</b> is a spreadsheet importer-exporter for Opencart Overclocked Edition, based on the original <b>Export/Import Tool</b> by JNeuhoff, and integrating the latest <b>PHPExcel</b> Core Files!';
-$_['export_import_version']                             = '1.8.0 - Overclocked Edition';
+$_['export_import_version']                             = '1.8.1 - Overclocked Edition';
 $_['export_import_author']                              = 'Villagedefrance';
 $_['export_import_support']                             = 'contact@villagedefrance.net';
 $_['export_import_license']                             = 'GPLv3 (GNU General Public License)';
@@ -209,4 +209,3 @@ $_['export_tool_license']                               = 'GPLv3 (GNU General Pu
 $_['phpexcel_version']                                  = 'PHPExcel v1.8.1 (GitHub)';
 $_['phpexcel_author']                                   = 'phpexcel.codeplex.com';
 $_['phpexcel_license']                                  = 'LGPL (GNU LESSER GENERAL PUBLIC LICENSE)';
-?>

@@ -72,7 +72,7 @@ class ModelPaymentPPProIframe extends Model {
 	}
 
 	public function getOrder($order_id) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "paypal_iframe_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "paypal_iframe_order` WHERE order_id = '" . (int)$order_id . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$order = $qry->row;
@@ -141,7 +141,7 @@ class ModelPaymentPPProIframe extends Model {
 	}
 
 	public function updateOrder($capture_status, $order_id) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "paypal_iframe_order` SET `modified` = now(), `capture_status` = '" . $this->db->escape($capture_status) . "' WHERE `order_id` = '" . (int)$order_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "paypal_iframe_order` SET `modified` = NOW(), `capture_status` = '" . $this->db->escape($capture_status) . "' WHERE `order_id` = '" . (int)$order_id . "'");
 	}
 
 	public function updateTransaction($transaction) {
@@ -196,7 +196,7 @@ class ModelPaymentPPProIframe extends Model {
 	}
 
 	public function getOrderId($transaction_id) {
-		$qry = $this->db->query("SELECT `o`.`order_id` FROM `" . DB_PREFIX . "paypal_iframe_order_transaction` `ot` LEFT JOIN `" . DB_PREFIX . "paypal_iframe_order` `o`  ON `o`.`paypal_iframe_order_id` = `ot`.`paypal_iframe_order_id`  WHERE `ot`.`transaction_id` = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT `o`.`order_id` FROM `" . DB_PREFIX . "paypal_iframe_order_transaction` `ot` LEFT JOIN `" . DB_PREFIX . "paypal_iframe_order` `o`  ON (`o`.`paypal_iframe_order_id` = `ot`.`paypal_iframe_order_id`)  WHERE `ot`.`transaction_id` = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
 
 		if ($qry->num_rows) {
 			return $qry->row['order_id'];
@@ -210,7 +210,7 @@ class ModelPaymentPPProIframe extends Model {
 	}
 
 	public function updateRefundTransaction($transaction_id, $transaction_type) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "paypal_iframe_order_transaction` SET `payment_status` = '" . $this->db->escape($transaction_type) . "' WHERE `transaction_id` = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$this->db->query("UPDATE `" . DB_PREFIX . "paypal_iframe_order_transaction` SET `payment_status` = '" . $this->db->escape($transaction_type) . "' WHERE `transaction_id` = '" . $this->db->escape($transaction_id) . "' LIMIT 0,1");
 	}
 
 	public function getFailedTransaction($paypl_iframe_order_transaction_id) {
@@ -246,4 +246,3 @@ class ModelPaymentPPProIframe extends Model {
 		return $arr;
 	}
 }
-?>

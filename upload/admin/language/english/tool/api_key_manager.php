@@ -26,4 +26,3 @@ $_['link_twitter']     = 'Twitter Apis';
 $_['error_permission'] = 'Warning: You do not have permission to modify <b>Api Key Manager</b> !';
 $_['error_name']       = 'Key Name must be between 3 and 64 characters!';
 $_['error_code']       = 'Key Code must be between 3 and 128 characters!';
-?>

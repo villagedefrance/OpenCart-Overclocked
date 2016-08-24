@@ -100,4 +100,3 @@ class ModelDesignLayout extends Model {
 		return $query->row['total'];
 	}
 }
-?>
