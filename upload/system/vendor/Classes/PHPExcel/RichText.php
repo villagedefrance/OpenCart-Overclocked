@@ -191,4 +191,3 @@ class PHPExcel_RichText implements PHPExcel_IComparable {
         }
     }
 }
-?>

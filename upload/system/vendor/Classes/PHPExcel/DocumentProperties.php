@@ -591,4 +591,3 @@ class PHPExcel_DocumentProperties {
         return self::PROPERTY_TYPE_UNKNOWN;
     }
 }
-?>

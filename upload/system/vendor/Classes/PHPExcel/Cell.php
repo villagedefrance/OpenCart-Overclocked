@@ -997,4 +997,3 @@ class PHPExcel_Cell {
 		return (string)$this->getValue();
 	}
 }
-?>

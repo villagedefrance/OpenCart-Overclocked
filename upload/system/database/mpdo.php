@@ -109,4 +109,3 @@ final class DBmPDO {
 		$this->connection = null;
 	}
 }
-?>

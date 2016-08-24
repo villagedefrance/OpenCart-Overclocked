@@ -643,4 +643,3 @@ class PHPExcel_Chart {
 		return $renderer->render($outputDestination);
 	}
 }
-?>

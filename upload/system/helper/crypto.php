@@ -171,4 +171,3 @@ function hash_rand($algo = 'md5', $len = 12) {
 
 	return hash($algo, base64_encode(substr($str, 0, $len)));
 }
-?>

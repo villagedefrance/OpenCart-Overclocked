@@ -220,4 +220,3 @@ class PHPExcel_DocumentSecurity {
 		}
 	}
 }
-?>

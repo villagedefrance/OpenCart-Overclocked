@@ -107,4 +107,3 @@ class PHPExcel_WorksheetIterator implements Iterator {
         return $this->_position < $this->_subject->getSheetCount();
     }
 }
-?>

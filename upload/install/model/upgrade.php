@@ -785,4 +785,3 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		return $checked_columns;
 	}
 }
-?>

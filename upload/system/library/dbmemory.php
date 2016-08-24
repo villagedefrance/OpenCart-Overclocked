@@ -35,4 +35,3 @@ class Dbmemory {
 		return $this->db->getLastId();
 	}
 }
-?>

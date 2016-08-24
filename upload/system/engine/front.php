@@ -52,4 +52,3 @@ final class Front {
 		return $action;
 	}
 }
-?>

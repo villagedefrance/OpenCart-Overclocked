@@ -613,4 +613,3 @@ class PHPExcel_Style extends PHPExcel_Style_Supervisor implements PHPExcel_IComp
         $this->_index = $pValue;
     }
 }
-?>

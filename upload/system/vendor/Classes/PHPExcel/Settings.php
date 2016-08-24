@@ -354,4 +354,3 @@ class PHPExcel_Settings {
         return self::$_libXmlLoaderOptions;
     }
 }
-?>

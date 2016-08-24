@@ -81,4 +81,3 @@ class PHPExcel_Autoloader {
 		clearstatcache();
 	}
 }
-?>

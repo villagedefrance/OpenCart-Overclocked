@@ -2928,4 +2928,3 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable {
 		return !(is_null($this->_codeName));
 	}
 }
-?>

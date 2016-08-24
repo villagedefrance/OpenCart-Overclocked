@@ -44,4 +44,3 @@ final class Encryption {
 		return $decrypted;
 	}
 }
-?>

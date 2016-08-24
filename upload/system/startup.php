@@ -128,4 +128,3 @@ require_once(DIR_SYSTEM . 'helper/utf8.php');
 
 // Vendor
 require_once(DIR_SYSTEM . 'vendor/dompdf/dompdf_config.inc.php');
-?>

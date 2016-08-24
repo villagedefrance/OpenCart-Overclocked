@@ -348,4 +348,3 @@ class Browser {
 		return (in_array(strtolower($charset), $this->charsets(), true));
 	}
 }
-?>

@@ -394,4 +394,3 @@ def('DEBUG_LAYOUT_LINES', true);
 def('DEBUG_LAYOUT_BLOCKS', true);
 def('DEBUG_LAYOUT_INLINE', true);
 def('DEBUG_LAYOUT_PADDINGBOX', true);
-?>

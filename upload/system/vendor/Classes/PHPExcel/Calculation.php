@@ -4367,4 +4367,3 @@ class PHPExcel_Calculation {
 		return $returnValue;
 	}
 }
-?>

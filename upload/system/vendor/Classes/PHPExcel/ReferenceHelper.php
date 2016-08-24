@@ -968,4 +968,3 @@ class PHPExcel_ReferenceHelper {
 		throw new PHPExcel_Exception("Cloning a Singleton is not allowed!");
 	}
 }
-?>

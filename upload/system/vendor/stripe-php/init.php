@@ -64,4 +64,3 @@ require(dirname(__FILE__) . '/lib/Subscription.php');
 require(dirname(__FILE__) . '/lib/Token.php');
 require(dirname(__FILE__) . '/lib/Transfer.php');
 require(dirname(__FILE__) . '/lib/TransferReversal.php');
-?>

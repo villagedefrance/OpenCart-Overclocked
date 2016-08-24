@@ -167,4 +167,3 @@ class Currency {
 		return isset($this->currencies[$currency]);
 	}
 }
-?>

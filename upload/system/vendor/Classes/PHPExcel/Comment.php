@@ -331,4 +331,3 @@ class PHPExcel_Comment implements PHPExcel_IComparable {
         return $this->_text->getPlainText();
     }
 }
-?>

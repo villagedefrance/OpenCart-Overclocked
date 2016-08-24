@@ -25,7 +25,7 @@ class Response {
 		$this->output = $output;
 	}
 
-	private function compress($data, $level = 0) {
+	protected function compress($data, $level = 0) {
 		if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false)) {
 			$encoding = 'gzip';
 		}
@@ -85,4 +85,3 @@ class Response {
 		}
 	}
 }
-?>

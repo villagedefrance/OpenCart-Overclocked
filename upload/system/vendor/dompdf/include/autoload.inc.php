@@ -84,4 +84,3 @@ elseif ( !function_exists("__autoload") ) {
     DOMPDF_autoload($class);
   }
 }
-?>

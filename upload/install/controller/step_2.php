@@ -192,4 +192,3 @@ class ControllerStep2 extends Controller {
 		return empty($this->error);
 	}
 }
-?>

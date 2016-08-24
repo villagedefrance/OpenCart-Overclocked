@@ -291,4 +291,3 @@ class PHPExcel_IOFactory {
 		throw new PHPExcel_Reader_Exception('Unable to identify a reader for this file');
 	}
 }
-?>

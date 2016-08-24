@@ -32,4 +32,3 @@ class Language {
 		return $this->data;
 	}
 }
-?>

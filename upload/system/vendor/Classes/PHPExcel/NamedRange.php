@@ -249,4 +249,3 @@ class PHPExcel_NamedRange {
 		}
 	}
 }
-?>

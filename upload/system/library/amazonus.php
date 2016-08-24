@@ -655,4 +655,3 @@ class Amazonus {
 		);
 	}
 }
-?>

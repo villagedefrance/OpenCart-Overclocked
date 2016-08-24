@@ -415,4 +415,3 @@ switch ($subcommand) {
 	default:
 	echo usage();
 }
-?>

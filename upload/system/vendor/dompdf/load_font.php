@@ -175,4 +175,3 @@ if ($_SERVER["argv"][1] === "system_fonts") {
 } else {
 	call_user_func_array("install_font_family", array_slice($_SERVER["argv"], 1));
 }
-?>

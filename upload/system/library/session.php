@@ -20,7 +20,7 @@ class Session {
 		$this->data =& $_SESSION;
 	}
 
-	function getId() {
+	public function getId() {
 		return session_id();
 	}
 
@@ -32,4 +32,3 @@ class Session {
 		return session_destroy();
 	}
 }
-?>

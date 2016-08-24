@@ -471,4 +471,3 @@ class UGRSR {
 		return $files;
 	}
 }
-?>

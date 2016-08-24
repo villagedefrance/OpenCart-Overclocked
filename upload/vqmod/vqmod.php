@@ -1003,4 +1003,3 @@ class VQSearchNode extends VQNode {
  * @description Object for the <add> xml tags
  */
 class VQAddNode extends VQNode {}
-?>

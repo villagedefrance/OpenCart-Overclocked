@@ -214,7 +214,7 @@ final class Openbay {
 		$language->load($order_info['language_filename']);
 		$language->load('mail/order');
 
-		$order_status = $this->db->query("SELECT `name` FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "' LIMIT 1")->row['name'];
+		$order_status = $this->db->query("SELECT `name` FROM " . DB_PREFIX . "order_status WHERE order_status_id = '" . (int)$order_status_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "' LIMIT 0,1")->row['name'];
 
 		// Order Totals
 		$order_total_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '" . (int)$order_id . "' ORDER BY `sort_order` ASC");
@@ -342,7 +342,7 @@ final class Openbay {
 			}
 
 		} else {
-			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "' LIMIT 1");
+			$qry = $this->db->query("SELECT `model` FROM `" . DB_PREFIX . "product` WHERE `product_id` = '" . (int)$product_id . "' LIMIT 0,1");
 
 			if ($qry->num_rows > 0) {
 				return $qry->row['model'];
@@ -429,4 +429,3 @@ final class Openbay {
 		return $product_option_data;
 	}
 }
-?>

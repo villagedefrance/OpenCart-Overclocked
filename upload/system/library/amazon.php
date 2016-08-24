@@ -682,4 +682,3 @@ class Amazon {
 		);
 	}
 }
-?>

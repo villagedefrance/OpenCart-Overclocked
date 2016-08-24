@@ -590,4 +590,3 @@ class CBA {
 		$this->mode = $mode;
 	}
 }
-?>
