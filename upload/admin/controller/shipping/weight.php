@@ -127,4 +127,3 @@ class ControllerShippingWeight extends Controller {
 		return empty($this->error);
 	}
 }
-?>

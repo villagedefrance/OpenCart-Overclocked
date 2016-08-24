@@ -104,4 +104,3 @@ class ControllerCommonLogin extends Controller {
 		return empty($this->error);
 	}
 }
-?>

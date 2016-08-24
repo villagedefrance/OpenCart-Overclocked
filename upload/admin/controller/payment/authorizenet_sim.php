@@ -189,4 +189,3 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 		return empty($this->error);
 	}
 }
-?>

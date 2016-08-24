@@ -987,4 +987,3 @@ class ControllerCommonHome extends Controller {
 		}
 	}
 }
-?>

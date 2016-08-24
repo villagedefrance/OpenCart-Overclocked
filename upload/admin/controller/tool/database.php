@@ -211,4 +211,3 @@ class ControllerToolDatabase extends Controller {
 		return empty($this->error);
 	}
 }
-?>

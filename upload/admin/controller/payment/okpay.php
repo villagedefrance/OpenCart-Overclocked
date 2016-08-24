@@ -150,4 +150,3 @@ class ControllerPaymentOkpay extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -178,4 +178,3 @@ class ControllerPaymentPayMate extends Controller {
 		return empty($this->error);
 	}
 }
-?>

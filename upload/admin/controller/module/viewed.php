@@ -201,4 +201,3 @@ class ControllerModuleViewed extends Controller {
 		return empty($this->error);
 	}
 }
-?>

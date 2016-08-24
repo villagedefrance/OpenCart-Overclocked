@@ -92,4 +92,3 @@ class ControllerTotalReward extends Controller {
 		return empty($this->error);
 	}
 }
-?>

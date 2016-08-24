@@ -145,4 +145,3 @@ class ControllerReportCustomerReward extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-?>

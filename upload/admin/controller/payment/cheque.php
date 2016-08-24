@@ -149,4 +149,3 @@ class ControllerPaymentCheque extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -201,4 +201,3 @@ class ControllerModuleAlsoBought extends Controller {
 		return empty($this->error);
 	}
 }
-?>

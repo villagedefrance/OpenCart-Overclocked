@@ -179,4 +179,3 @@ class ControllerExtensionTheme extends Controller {
 		}
 	}
 }
-?>

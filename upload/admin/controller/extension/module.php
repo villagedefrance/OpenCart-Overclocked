@@ -179,4 +179,3 @@ class ControllerExtensionModule extends Controller {
 		}
 	}
 }
-?>

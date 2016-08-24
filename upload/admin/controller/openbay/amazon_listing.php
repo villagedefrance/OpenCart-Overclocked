@@ -666,4 +666,3 @@ class ControllerOpenbayAmazonListing extends Controller {
 		$this->response->setOutput($response);
 	}
 }
-?>

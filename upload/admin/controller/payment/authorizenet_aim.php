@@ -198,4 +198,3 @@ class ControllerPaymentAuthorizenetAim extends Controller {
 		return empty($this->error);
 	}
 }
-?>

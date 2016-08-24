@@ -650,4 +650,3 @@ class ControllerOpenbayAmazonusListing extends Controller {
 		$this->response->setOutput($response);
 	}
 }
-?>

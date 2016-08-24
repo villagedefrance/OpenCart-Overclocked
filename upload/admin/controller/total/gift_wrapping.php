@@ -110,4 +110,3 @@ class ControllerTotalGiftWrapping extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -117,4 +117,3 @@ class ControllerToolQuoteLog extends Controller {
 		$this->redirect($this->url->link('tool/quote_log', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 }
-?>

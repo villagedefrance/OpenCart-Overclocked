@@ -599,4 +599,3 @@ class ControllerOpenbayAmazonusProduct extends Controller {
 		return $text;
 	}
 }
-?>

@@ -170,4 +170,3 @@ class ControllerExtensionModification extends Controller {
 		}
 	}
 }
-?>

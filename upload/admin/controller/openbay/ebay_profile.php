@@ -426,4 +426,3 @@ class ControllerOpenbayEbayProfile extends Controller {
 		return empty($this->error);
 	}
 }
-?>

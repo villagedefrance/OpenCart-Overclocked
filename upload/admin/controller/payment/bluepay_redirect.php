@@ -412,4 +412,3 @@ class ControllerPaymentBluepayredirect extends Controller {
 		$this->response->setOutput(json_encode($this->request->get));
 	}
 }
-?>

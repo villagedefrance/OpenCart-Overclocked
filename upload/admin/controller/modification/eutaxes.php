@@ -636,4 +636,3 @@ class ControllerModificationEutaxes extends Controller {
 		$this->cache->delete('eucountry');
 	}
 }
-?>

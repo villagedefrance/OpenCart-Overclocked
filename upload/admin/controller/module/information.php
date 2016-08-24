@@ -169,4 +169,3 @@ class ControllerModuleInformation extends Controller {
 		return empty($this->error);
 	}
 }
-?>

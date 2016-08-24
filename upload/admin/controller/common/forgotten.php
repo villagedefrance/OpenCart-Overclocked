@@ -107,4 +107,3 @@ class ControllerCommonForgotten extends Controller {
 		return empty($this->error);
 	}
 }
-?>

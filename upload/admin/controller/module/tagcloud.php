@@ -223,4 +223,3 @@ class ControllerModuleTagCloud extends Controller {
 		return empty($this->error);
 	}
 }
-?>

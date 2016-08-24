@@ -189,4 +189,3 @@ class ControllerModuleSkype extends Controller {
 		return empty($this->error);
 	}
 }
-?>

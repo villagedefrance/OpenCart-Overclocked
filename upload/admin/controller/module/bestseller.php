@@ -201,4 +201,3 @@ class ControllerModuleBestSeller extends Controller {
 		return empty($this->error);
 	}
 }
-?>

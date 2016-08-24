@@ -436,4 +436,3 @@ class ControllerUserUserPermission extends Controller {
 		return empty($this->error);
 	}
 }
-?>

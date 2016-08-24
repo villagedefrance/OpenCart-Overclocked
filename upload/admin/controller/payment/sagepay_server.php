@@ -420,4 +420,3 @@ class ControllerPaymentSagepayServer extends Controller {
 		return empty($this->error);
 	}
 }
-?>

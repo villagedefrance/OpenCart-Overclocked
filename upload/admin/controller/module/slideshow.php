@@ -211,4 +211,3 @@ class ControllerModuleSlideshow extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -215,4 +215,3 @@ class ControllerOpenbayEbayTemplate extends Controller {
 		return empty($this->error);
 	}
 }
-?>

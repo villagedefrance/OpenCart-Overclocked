@@ -455,4 +455,3 @@ class ControllerShippingRoyalMail extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -567,4 +567,3 @@ class ControllerPaymentFirstdataRemote extends Controller {
 		return empty($this->error);
 	}
 }
-?>

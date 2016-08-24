@@ -176,4 +176,3 @@ class ControllerModuleHtml extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -519,4 +519,3 @@ class ControllerDesignFooter extends Controller {
 		}
 	}
 }
-?>

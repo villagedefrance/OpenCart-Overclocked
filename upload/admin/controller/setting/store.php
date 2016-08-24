@@ -1110,4 +1110,3 @@ class ControllerSettingStore extends Controller {
 		$this->response->setOutput('<img src="' . $image . '" alt="" title="" style="border:1px solid #EEE;" />');
 	}
 }
-?>

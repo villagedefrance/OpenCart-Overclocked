@@ -99,4 +99,3 @@ class ControllerTotalShipping extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -426,4 +426,3 @@ class ControllerLocalisationLengthClass extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -151,4 +151,3 @@ class ControllerTotalPayPalFee extends Controller {
 		return empty($this->error);
 	}
 }
-?>

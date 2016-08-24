@@ -193,4 +193,3 @@ class ControllerPaymentPPProUK extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -159,4 +159,3 @@ class ControllerShippingParcelforce48 extends Controller {
 		return empty($this->error);
 	}
 }
-?>

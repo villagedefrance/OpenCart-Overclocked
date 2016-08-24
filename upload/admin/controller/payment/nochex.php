@@ -191,4 +191,3 @@ class ControllerPaymentNOCHEX extends Controller {
 		return empty($this->error);
 	}
 }
-?>

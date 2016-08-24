@@ -201,4 +201,3 @@ class ControllerModuleSpecial extends Controller {
 		return empty($this->error);
 	}
 }
-?>

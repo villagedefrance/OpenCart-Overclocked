@@ -408,4 +408,3 @@ class ControllerCatalogAttributeGroup extends Controller {
 		return empty($this->error);
 	}
 }
-?>

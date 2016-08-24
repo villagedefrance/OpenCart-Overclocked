@@ -130,4 +130,3 @@ class ControllerFeedStoreya extends Controller {
 		return empty($this->error);
 	}
 }
-?>

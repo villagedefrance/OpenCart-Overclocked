@@ -92,4 +92,3 @@ class ControllerTotalVoucher extends Controller {
 		return empty($this->error);
 	}
 }
-?>

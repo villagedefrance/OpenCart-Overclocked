@@ -167,4 +167,3 @@ class ControllerPaymentBankTransfer extends Controller {
 		return empty($this->error);
 	}
 }
-?>

@@ -190,4 +190,3 @@ class ControllerModuleLocation extends Controller {
 		return empty($this->error);
 	}
 }
-?>

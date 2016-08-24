@@ -666,4 +666,3 @@ class ControllerOpenbayEbayListing extends Controller {
 		}
 	}
 }
-?>

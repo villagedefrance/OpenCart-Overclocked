@@ -1009,4 +1009,3 @@ class ControllerPaymentPPProIframe extends Controller {
 		return empty($this->error);
 	}
 }
-?>
