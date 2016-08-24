@@ -1,4 +1,4 @@
 trigger:
   type: deploy
   script:
-    - "curl -X POST -F token=TOKEN -F ref=REF_NAME https://gitlab.com/api/v3/projects/1567292/trigger/builds"
+    - "curl -X POST -F token=TOKEN -F ref=REF_NAME https://gitlab.com/api/v3/projects/1567532/trigger/builds"
