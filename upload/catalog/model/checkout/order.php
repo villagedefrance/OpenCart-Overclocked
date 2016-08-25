@@ -747,4 +747,3 @@ class ModelCheckoutOrder extends Model {
 		}
 	}
 }
-?>

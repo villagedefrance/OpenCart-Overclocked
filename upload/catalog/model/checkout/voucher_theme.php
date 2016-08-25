@@ -48,4 +48,3 @@ class ModelCheckoutVoucherTheme extends Model {
 		}
 	}
 }
-?>

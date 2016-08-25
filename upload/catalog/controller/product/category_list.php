@@ -140,4 +140,3 @@ class ControllerProductCategoryList extends Controller {
 		}
 	}
 }
-?>

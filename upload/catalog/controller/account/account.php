@@ -151,4 +151,3 @@ class ControllerAccountAccount extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-?>

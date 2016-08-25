@@ -23,4 +23,3 @@ class ModelLocalisationLocation extends Model {
 		}
 	}
 }
-?>

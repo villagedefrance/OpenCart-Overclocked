@@ -2,8 +2,7 @@
 class ModelOpenbayAmazonProduct extends Model {
 
 	public function setStatus($insertionId, $statusString) {
-		$this->db->query("
-			UPDATE `" . DB_PREFIX . "amazon_product` SET `status` = '" . $statusString . "' WHERE `insertion_id` = '" . $this->db->escape($insertionId) . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "amazon_product` SET `status` = '" . $statusString . "' WHERE `insertion_id` = '" . $this->db->escape($insertionId) . "'");
 	}
 
 	public function getProductRows($insertionId) {
@@ -60,7 +59,7 @@ class ModelOpenbayAmazonProduct extends Model {
 	 }
 
 	public function linkProduct($amazon_sku, $product_id, $var = '') {
-		$count = $this->db->query("SELECT COUNT(*) as 'count' FROM `" . DB_PREFIX . "amazon_product_link` WHERE `product_id` = '" . (int)$product_id . "' AND `amazon_sku` = '" . $this->db->escape($amazon_sku) . "' AND `var` = '" . $this->db->escape($var) . "' LIMIT 1")->row;
+		$count = $this->db->query("SELECT COUNT(*) as 'count' FROM `" . DB_PREFIX . "amazon_product_link` WHERE `product_id` = '" . (int)$product_id . "' AND `amazon_sku` = '" . $this->db->escape($amazon_sku) . "' AND `var` = '" . $this->db->escape($var) . "' LIMIT 0,1")->row;
 
 		if ($count['count'] == 0) {
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "amazon_product_link` SET `product_id` = '" . (int)$product_id . "', `amazon_sku` = '" . $this->db->escape($amazon_sku) . "', `var` = '" . $this->db->escape($var) . "'");
@@ -110,12 +109,9 @@ class ModelOpenbayAmazonProduct extends Model {
 
 			$this->db->query("
 				UPDATE " . DB_PREFIX . "amazon_product_search
-				SET matches = " . (int)$resultsFound . ",
-					`data` = '" . $this->db->escape($data) . "',
-					`status` = 'finished'
-				WHERE product_id = " . (int)$result['product_id'] . " AND
-					  marketplace = '" . $this->db->escape($result['marketplace']) . "'
-				LIMIT 1
+				SET matches = " . (int)$resultsFound . ", `data` = '" . $this->db->escape($data) . "', `status` = 'finished'
+				WHERE product_id = " . (int)$result['product_id'] . " AND marketplace = '" . $this->db->escape($result['marketplace']) . "'
+				LIMIT 0,1
 			");
 		}
 	}
@@ -146,4 +142,3 @@ class ModelOpenbayAmazonProduct extends Model {
 		}
 	}
 }
-?>

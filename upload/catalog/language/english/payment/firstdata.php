@@ -40,4 +40,3 @@ $_['text_response_ref']       = 'Ref number: ';
 
 // Error
 $_['error_failed']            = 'Unable to process your payment, please try again';
-?>

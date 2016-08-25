@@ -54,4 +54,3 @@ class ControllerModuleGoogleHangouts extends Controller {
 		$this->render();
 	}
 }
-?>

@@ -32,4 +32,3 @@ class ModelPaymentBankBni extends Model {
 		return $method_data;
 	}
 }
-?>

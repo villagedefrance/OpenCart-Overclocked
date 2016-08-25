@@ -147,4 +147,3 @@ class ControllerModuleAlsoBought extends Controller {
 		$this->render();
 	}
 }
-?>

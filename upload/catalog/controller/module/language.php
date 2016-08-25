@@ -74,4 +74,3 @@ class ControllerModuleLanguage extends Controller {
 		$this->render();
 	}
 }
-?>

@@ -66,4 +66,3 @@ class ModelShippingTnt extends Model {
 		return $method_data;
 	}
 }
-?>

@@ -29,4 +29,3 @@ $_['entry_cc_choice']        = 'Choose an Existing Card';
 
 // Button
 $_['button_delete_card']     = 'Delete selected card';
-?>

@@ -99,4 +99,3 @@ class ModelCatalogCategory extends Model {
 		return $total;
 	}
 }
-?>

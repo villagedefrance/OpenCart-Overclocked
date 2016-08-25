@@ -136,4 +136,3 @@ class ControllerAccountPassword extends Controller {
 		return empty($this->error);
 	}
 }
-?>

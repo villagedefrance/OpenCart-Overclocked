@@ -437,4 +437,3 @@ class ControllerProductProductWall extends Controller {
 		}
 	}
 }
-?>

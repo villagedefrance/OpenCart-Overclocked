@@ -58,4 +58,3 @@ $_['error_card_cvv']                   = 'Please check the CVV2 is valid';
 $_['error_3d_unable']                  = 'Merchant requires 3D secure but unable to verify with your bank, please try later';
 $_['error_3d_500_response_no_payment'] = 'An invalid response was received from the card processor, no payment has been taken';
 $_['error_3d_unsuccessful']            = '3D secure authorisation failed';
-?>

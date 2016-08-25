@@ -148,4 +148,3 @@ class ModelCheckoutOffers extends Model {
 		return $category_list;
 	}
 }
-?>

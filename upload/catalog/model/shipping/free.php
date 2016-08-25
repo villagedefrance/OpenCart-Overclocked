@@ -43,4 +43,3 @@ class ModelShippingFree extends Model {
 		return $method_data;
 	}
 }
-?>

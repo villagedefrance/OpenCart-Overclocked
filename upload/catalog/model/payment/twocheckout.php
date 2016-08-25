@@ -32,4 +32,3 @@ class ModelPaymentTwoCheckout extends Model {
 		return $method_data;
 	}
 }
-?>

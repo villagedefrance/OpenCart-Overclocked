@@ -358,4 +358,3 @@ class ControllerInformationQuote extends Controller {
 		$captcha->showImage($this->config->get('config_captcha_font'));
 	}
 }
-?>

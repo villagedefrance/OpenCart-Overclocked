@@ -66,4 +66,3 @@ class ModelShippingWeight extends Model {
 		return $method_data;
 	}
 }
-?>

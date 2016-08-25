@@ -363,4 +363,3 @@ class ModelPaymentGlobalpayRemote extends Model {
 		}
 	}
 }
-?>

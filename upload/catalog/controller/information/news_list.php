@@ -249,4 +249,3 @@ class ControllerInformationNewsList extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-?>

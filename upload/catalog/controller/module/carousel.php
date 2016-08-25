@@ -104,4 +104,3 @@ class ControllerModuleCarousel extends Controller {
 		$this->render();
 	}
 }
-?>

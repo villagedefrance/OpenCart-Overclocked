@@ -337,4 +337,3 @@ class ControllerPaymentEway extends Controller {
 		}
 	}
 }
-?>

@@ -235,4 +235,3 @@ class ModelShippingFedex extends Model {
 		return $method_data;
 	}
 }
-?>

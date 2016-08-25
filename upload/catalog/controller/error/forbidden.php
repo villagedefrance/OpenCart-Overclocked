@@ -62,4 +62,3 @@ class ControllerErrorForbidden extends Controller {
 		}
 	}
 }
-?>

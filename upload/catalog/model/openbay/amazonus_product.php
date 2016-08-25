@@ -123,4 +123,3 @@ class ModelOpenbayAmazonusProduct extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '0', serialized = 0 WHERE `key` = 'openbay_amazonus_processing_listing_reports'");
 	}
 }
-?>

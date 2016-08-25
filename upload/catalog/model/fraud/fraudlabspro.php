@@ -158,4 +158,3 @@ class ModelFraudFraudLabsPro extends Model {
 		return $query->row;
 	}
 }
-?>

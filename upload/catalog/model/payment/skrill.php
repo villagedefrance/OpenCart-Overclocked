@@ -32,4 +32,3 @@ class ModelPaymentSkrill extends Model {
 		return $method_data;
 	}
 }
-?>

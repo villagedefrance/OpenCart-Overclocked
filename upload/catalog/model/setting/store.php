@@ -71,4 +71,3 @@ class ModelSettingStore extends Model {
 		return $total;
 	}
 }
-?>

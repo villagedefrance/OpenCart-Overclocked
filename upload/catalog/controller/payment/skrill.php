@@ -118,4 +118,3 @@ class ControllerPaymentSkrill extends Controller {
 		}
 	}
 }
-?>

@@ -239,4 +239,3 @@ class ControllerPaymentWorldpayOnline extends Controller {
 		}
 	}
 }
-?>

@@ -59,4 +59,3 @@ class ModelDesignFooter extends Model {
 		return $query->row['position'];
 	}
 }
-?>

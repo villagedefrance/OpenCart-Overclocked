@@ -45,4 +45,3 @@ class ControllerPaymentCheque extends Controller {
 		}
 	}
 }
-?>

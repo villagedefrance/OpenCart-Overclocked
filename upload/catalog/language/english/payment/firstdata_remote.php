@@ -56,4 +56,3 @@ $_['error_card_number']       = 'Please check your card number is valid';
 $_['error_card_name']         = 'Please check the card holder name is valid';
 $_['error_card_cvv']          = 'Please check the CVV2 is valid';
 $_['error_failed']            = 'Unable to process your payment, please contact the merchant';
-?>

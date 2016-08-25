@@ -20,4 +20,3 @@ $_['button_new_product'] = 'New Product';
 
 // Error
 $_['error_product']      = 'You must select a product!';
-?>

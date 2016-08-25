@@ -121,4 +121,3 @@ class ControllerPaymentOkpay extends Controller {
 		}
 	}
 }
-?>

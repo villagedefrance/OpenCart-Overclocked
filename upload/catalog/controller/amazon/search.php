@@ -34,4 +34,3 @@ class ControllerAmazonSearch extends Controller {
 		$this->model_openbay_amazon_product->updateSearch($json);
 	}
 }
-?>

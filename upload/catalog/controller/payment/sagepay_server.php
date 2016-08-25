@@ -518,4 +518,3 @@ class ControllerPaymentSagepayServer extends Controller {
 		}
 	}
 }
-?>

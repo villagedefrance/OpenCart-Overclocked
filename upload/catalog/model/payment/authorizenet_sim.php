@@ -32,4 +32,3 @@ class ModelPaymentAuthorizeNetSim extends Model {
 		return $method_data;
 	}
 }
-?>

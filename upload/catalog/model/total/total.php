@@ -13,4 +13,3 @@ class ModelTotalTotal extends Model {
 		);
 	}
 }
-?>

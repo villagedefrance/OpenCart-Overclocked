@@ -131,4 +131,3 @@ class ControllerModuleAccount extends Controller {
 		}
 	}
 }
-?>

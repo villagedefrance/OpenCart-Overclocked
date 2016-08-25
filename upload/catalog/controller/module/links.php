@@ -80,4 +80,3 @@ class ControllerModuleLinks extends Controller {
 		$this->render();
 	}
 }
-?>

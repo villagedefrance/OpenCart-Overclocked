@@ -4,4 +4,3 @@ $_['heading_title'] = 'Refine Search';
 
 // Button
 $_['button_filter'] = 'Filter';
-?>

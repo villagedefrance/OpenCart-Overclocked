@@ -283,4 +283,3 @@ class ControllerPaymentGlobalpay extends Controller {
 		$this->render();
 	}
 }
-?>

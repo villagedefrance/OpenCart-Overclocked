@@ -330,4 +330,3 @@ class ControllerAmazonOrder extends Controller {
 		$this->response->setOutput('Ok');
 	}
 }
-?>

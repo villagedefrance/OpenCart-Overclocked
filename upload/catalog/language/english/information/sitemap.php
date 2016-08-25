@@ -42,4 +42,3 @@ $_['text_information']           = 'Information';
 $_['text_news']                  = 'News';
 $_['text_quote']                 = 'Get a Quote';
 $_['text_contact']               = 'Contact us';
-?>

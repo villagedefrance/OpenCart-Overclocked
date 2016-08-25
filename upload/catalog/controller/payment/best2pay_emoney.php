@@ -264,4 +264,3 @@ class ControllerPaymentBest2payEmoney extends Controller {
 		}
 	}
 }
-?>

@@ -7,4 +7,3 @@ $_['text_more']     = 'Read more';
 
 // Buttons
 $_['button_list']   = 'Headlines';
-?>

@@ -471,4 +471,3 @@ class ControllerCheckoutExpressSignup extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
-?>

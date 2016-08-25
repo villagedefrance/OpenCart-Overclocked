@@ -288,4 +288,3 @@ class ModelPaymentFirstdataRemote extends Model {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "firstdata_remote_card SET customer_id = '" . (int)$customer_id . "', date_added = NOW(), token = '" . $this->db->escape($token) . "', card_type = '" . $this->db->escape($type) . "', expire_month = '" . $this->db->escape($month) . "', expire_year = '" . $this->db->escape($year) . "', digits = '" . $this->db->escape($digits) . "'");
 	}
 }
-?>

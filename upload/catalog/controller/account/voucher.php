@@ -270,4 +270,3 @@ class ControllerAccountVoucher extends Controller {
 		return empty($this->error);
 	}
 }
-?>

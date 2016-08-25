@@ -669,4 +669,3 @@ class ControllerAccountOrder extends Controller {
 		}
 	}
 }
-?>

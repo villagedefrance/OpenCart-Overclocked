@@ -127,4 +127,3 @@ class ModelShippingGeoZone extends Model {
 		return $method_data;
 	}
 }
-?>

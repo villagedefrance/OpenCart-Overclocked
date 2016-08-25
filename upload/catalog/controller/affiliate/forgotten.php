@@ -139,4 +139,3 @@ class ControllerAffiliateForgotten extends Controller {
 		return empty($this->error);
 	}
 }
-?>

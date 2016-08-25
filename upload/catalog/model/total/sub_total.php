@@ -23,4 +23,3 @@ class ModelTotalSubTotal extends Model {
 		$total += $sub_total;
 	}
 }
-?>

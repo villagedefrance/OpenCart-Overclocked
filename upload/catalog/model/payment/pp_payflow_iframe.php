@@ -106,4 +106,3 @@ class ModelPaymentPPPayflowIframe extends Model {
 		}
 	}
 }
-?>

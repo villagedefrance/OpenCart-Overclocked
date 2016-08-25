@@ -138,4 +138,3 @@ class ControllerModuleBestSeller extends Controller {
 		$this->render();
 	}
 }
-?>

@@ -258,4 +258,3 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
-?>

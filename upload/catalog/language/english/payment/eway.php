@@ -232,4 +232,3 @@ $_['text_card_message_F9032'] = 'Invalid Customer Last Name';
 $_['text_card_message_F9033'] = 'Invalid Billing Street';
 $_['text_card_message_F9034'] = 'Invalid Shipping Street';
 $_['text_card_message_F9037'] = 'Suspicious Customer Email Address';
-?>

@@ -138,4 +138,3 @@ class ControllerAccountForgotten extends Controller {
 		return empty($this->error);
 	}
 }
-?>

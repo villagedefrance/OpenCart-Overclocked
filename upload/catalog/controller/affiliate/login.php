@@ -164,4 +164,3 @@ class ControllerAffiliateLogin extends Controller {
 		return empty($this->error);
 	}
 }
-?>

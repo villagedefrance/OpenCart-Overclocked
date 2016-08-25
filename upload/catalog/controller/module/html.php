@@ -72,4 +72,3 @@ class ControllerModuleHtml extends Controller {
 		$this->render();
 	}
 }
-?>

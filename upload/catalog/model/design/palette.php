@@ -77,4 +77,3 @@ class ModelDesignPalette extends Model {
 		return $total;
 	}
 }
-?>

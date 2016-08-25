@@ -32,4 +32,3 @@ class ModelPaymentCheque extends Model {
 		return $method_data;
 	}
 }
-?>

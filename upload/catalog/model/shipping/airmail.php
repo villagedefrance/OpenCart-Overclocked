@@ -66,4 +66,3 @@ class ModelShippingAirmail extends Model {
 		return $method_data;
 	}
 }
-?>

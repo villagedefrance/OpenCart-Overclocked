@@ -38,4 +38,3 @@ class ModelPaymentFreeCheckout extends Model {
 		return $method_data;
 	}
 }
-?>

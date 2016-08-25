@@ -101,4 +101,3 @@ class ControllerModuleMenuVertical extends Controller {
 		$this->render();
 	}
 }
-?>

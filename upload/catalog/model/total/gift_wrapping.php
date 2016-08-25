@@ -17,4 +17,3 @@ class ModelTotalGiftWrapping extends Model {
 		}
 	}
 }
-?>

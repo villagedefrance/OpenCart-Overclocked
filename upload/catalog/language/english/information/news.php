@@ -29,4 +29,3 @@ $_['text_error']      = 'Page not found!';
 $_['button_read']     = 'Read more';
 $_['button_news']     = 'Headlines';
 $_['button_continue'] = 'Continue';
-?>

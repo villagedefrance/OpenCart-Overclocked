@@ -46,4 +46,3 @@ $_['text_card_amex']     = 'American Express';
 $_['text_card_switch']   = 'Switch';
 $_['text_card_laser']    = 'Laser';
 $_['text_card_diners']   = 'Diners';
-?>

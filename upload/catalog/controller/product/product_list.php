@@ -170,4 +170,3 @@ class ControllerProductProductList extends Controller {
 		}
 	}
 }
-?>

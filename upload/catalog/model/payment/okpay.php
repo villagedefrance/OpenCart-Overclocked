@@ -36,4 +36,3 @@ class ModelPaymentOkpay extends Model {
 		return $method_data;
 	}
 }
-?>

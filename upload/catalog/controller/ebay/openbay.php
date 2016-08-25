@@ -187,4 +187,3 @@ class ControllerEbayOpenbay extends Controller {
 		*/
 	}
 }
-?>

@@ -259,4 +259,3 @@ class ControllerPaymentSagepay extends Controller {
 		return $output;
 	}
 }
-?>

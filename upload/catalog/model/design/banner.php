@@ -7,4 +7,3 @@ class ModelDesignBanner extends Model {
 		return $query->rows;
 	}
 }
-?>

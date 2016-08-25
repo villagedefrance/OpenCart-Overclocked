@@ -360,4 +360,3 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 		}
 	}
 }
-?>

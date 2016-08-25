@@ -259,4 +259,3 @@ class ControllerPaymentFirstdata extends Controller {
 		$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 	}
 }
-?>

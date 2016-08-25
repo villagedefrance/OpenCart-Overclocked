@@ -215,4 +215,3 @@ class ControllerCheckoutExpressShippingAddress extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 }
-?>

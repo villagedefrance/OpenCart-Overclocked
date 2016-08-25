@@ -25,4 +25,3 @@ class ControllerModulePPLayout extends Controller {
 		}
 	}
 }
-?>

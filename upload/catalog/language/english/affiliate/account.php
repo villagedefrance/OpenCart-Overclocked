@@ -13,4 +13,3 @@ $_['text_payment']         = 'Change your payment preferences';
 $_['text_product']         = 'Edit your product portfolio';
 $_['text_tracking']        = 'Custom product tracking code';
 $_['text_transaction']     = 'View your transaction history';
-?>

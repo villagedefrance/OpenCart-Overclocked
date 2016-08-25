@@ -62,4 +62,3 @@ class ModelPaymentPPStandard extends Model {
 		return $method_data;
 	}
 }
-?>

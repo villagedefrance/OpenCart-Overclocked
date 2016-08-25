@@ -51,4 +51,3 @@ class ControllerAmazonusListingReport extends Controller {
 		$logger->write('amazonus/listing_reports - Finished');
 	}
 }
-?>

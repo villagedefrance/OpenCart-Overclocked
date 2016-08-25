@@ -8,4 +8,3 @@ $_['text_remove_wrapping']   = 'Success: Gift Wrapping Removed!';
 // Button
 $_['button_add_wrapping']    = 'Add';
 $_['button_remove_wrapping'] = 'Remove';
-?>

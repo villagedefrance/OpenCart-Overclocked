@@ -75,4 +75,3 @@ class ControllerModuleManufacturer extends Controller {
 		$this->render();
 	}
 }
-?>

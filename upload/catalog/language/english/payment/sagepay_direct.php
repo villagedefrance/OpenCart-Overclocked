@@ -9,7 +9,7 @@ $_['text_card_expiry']     = 'Expiry: ';
 $_['text_trial']           = '%s every %s %s for %s payments then ';
 $_['text_recurring']       = '%s every %s %s';
 $_['text_length']          = ' for %s payments';
-$_['text_fail_card']       = 'There was an issue removing your SagePay card, Please contact the shop administrator for help.';
+$_['text_fail_card']       = "There was an issue removing your SagePay card, Please contact the shop's administrator for help.";
 $_['text_confirm_delete']  = 'Are you sure you want to delete the card?';
 $_['text_wait']            = 'Please Wait!';
 
@@ -27,4 +27,3 @@ $_['entry_cc_choice']      = 'Choose an Existing Card';
 
 // Button
 $_['button_delete_card']   = 'Delete selected card';
-?>

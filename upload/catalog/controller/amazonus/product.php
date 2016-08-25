@@ -151,4 +151,3 @@ class ControllerAmazonusProduct extends Controller {
 		}
 	}
 }
-?>

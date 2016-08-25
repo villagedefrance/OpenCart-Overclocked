@@ -34,4 +34,3 @@ class ModelPaymentInStore extends Model {
 		return $method_data;
 	}
 }
-?>

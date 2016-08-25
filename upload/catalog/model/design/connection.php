@@ -95,4 +95,3 @@ class ModelDesignConnection extends Model {
 		}
 	}
 }
-?>

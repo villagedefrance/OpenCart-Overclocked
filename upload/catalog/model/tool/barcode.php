@@ -3015,4 +3015,3 @@ class ModelToolBarcode extends Model {
 		return $newBarcodeArray;
 	}
 }
-?>

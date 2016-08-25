@@ -76,4 +76,3 @@ class ControllerErrorNotFound extends Controller {
 		$this->response->setoutput($this->render());
 	}
 }
-?>

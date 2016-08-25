@@ -10,4 +10,3 @@ $_['text_estimated']          = 'Est. Delivery';
 // Error
 $_['text_returnerror']        = 'Error connecting to Canada Post';
 $_['text_invalidepostalcode'] = 'A Valid Ship To Postal Code is Required';
-?>

@@ -117,4 +117,3 @@ class ControllerModuleFilter extends Controller {
 		}
   	}
 }
-?>

@@ -120,4 +120,3 @@ class ControllerPaymentCardPay extends Controller {
 		}
 	}
 }
-?>

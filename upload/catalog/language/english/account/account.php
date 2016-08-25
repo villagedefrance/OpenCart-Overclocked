@@ -19,4 +19,3 @@ $_['text_return']        = 'View your return requests';
 $_['text_addreturn']     = 'Add a return request';
 $_['text_recurring']     = 'Your recurring payments';
 $_['text_newsletter']    = 'Subscribe / unsubscribe to newsletter';
-?>

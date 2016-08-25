@@ -6,4 +6,3 @@ $_['text_payable']     = 'Make Payable To: ';
 $_['text_address']     = 'Send To: ';
 $_['text_payment']     = 'Your order will not ship until we receive payment.';
 $_['text_wait']        = 'Please Wait!';
-?>

@@ -27,7 +27,7 @@ class ModelCatalogTagCloud extends Model {
 		return $tagcloud;
 	}
 
-	private function generateTagCloud($tags, $resize = true, $min_font_size, $max_font_size, $font_weight, $random) {
+	protected function generateTagCloud($tags, $resize = true, $min_font_size, $max_font_size, $font_weight, $random) {
 		if ($resize == true) {
 			arsort($tags);
 
@@ -68,4 +68,3 @@ class ModelCatalogTagCloud extends Model {
 		return $tagcloud;
 	}
 }
-?>

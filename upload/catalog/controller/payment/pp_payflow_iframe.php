@@ -187,4 +187,3 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		$this->response->setOutput('Ok');
 	}
 }
-?>

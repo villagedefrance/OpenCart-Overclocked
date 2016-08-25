@@ -24,4 +24,3 @@ $_['text_limit']       = 'Show';
 
 // Button
 $_['button_view']      = 'View Product';
-?>

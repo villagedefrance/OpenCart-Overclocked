@@ -164,4 +164,3 @@ class ControllerModuleViewed extends Controller {
 		$this->render();
 	}
 }
-?>

@@ -50,4 +50,3 @@ class ModelTotalPayPalFee extends Model {
 		}
 	}
 }
-?>

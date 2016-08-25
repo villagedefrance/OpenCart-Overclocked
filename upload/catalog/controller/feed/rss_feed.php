@@ -87,4 +87,3 @@ class ControllerFeedRSSFeed extends Controller {
 		}
 	}
 }
-?>

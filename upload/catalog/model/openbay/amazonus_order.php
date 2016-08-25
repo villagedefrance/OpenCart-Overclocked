@@ -171,17 +171,12 @@ class ModelOpenbayAmazonusOrder extends Model {
 		$optionValueIds = explode(':', $productVar);
 
 		foreach ($optionValueIds as $optionValueId) {
-			$optionDetailsRow = $this->db->query("SELECT
-				pov.product_option_id,
-				pov.product_option_value_id,
-				od.name,
-				ovd.name as value,
-				opt.type
-			FROM `" . DB_PREFIX . "product_option_value` as pov,
-				 `" . DB_PREFIX . "product_option` as po,
-				 `" . DB_PREFIX . "option` as opt,
-				 `" . DB_PREFIX . "option_value_description` as ovd,
-				 `" . DB_PREFIX . "option_description` as od
+			$optionDetailsRow = $this->db->query("SELECT pov.product_option_id, pov.product_option_value_id, od.name, ovd.name as value, opt.type
+			FROM `" . DB_PREFIX . "product_option_value` pov,
+				 `" . DB_PREFIX . "product_option` po,
+				 `" . DB_PREFIX . "option` opt,
+				 `" . DB_PREFIX . "option_value_description` ovd,
+				 `" . DB_PREFIX . "option_description` od
 			WHERE pov.product_option_value_id = '" . (int)$optionValueId . "' AND
 				po.product_option_id = pov.product_option_id AND
 				opt.option_id = pov.option_id AND
@@ -203,4 +198,3 @@ class ModelOpenbayAmazonusOrder extends Model {
 		return $options;
 	}
 }
-?>

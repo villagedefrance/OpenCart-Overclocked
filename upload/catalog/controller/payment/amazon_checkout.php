@@ -915,4 +915,3 @@ class ControllerPaymentAmazonCheckout extends Controller {
 		}
 	}
 }
-?>

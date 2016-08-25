@@ -126,4 +126,3 @@ class ControllerAffiliatePassword extends Controller {
 		return empty($this->error);
 	}
 }
-?>

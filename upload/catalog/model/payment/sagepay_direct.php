@@ -447,4 +447,3 @@ class ModelPaymentSagePayDirect extends Model {
 		return true;
 	}
 }
-?>

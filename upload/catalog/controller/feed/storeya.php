@@ -194,4 +194,3 @@ class ControllerFeedStoreya extends Controller {
 		return preg_replace($search, $replace, $str);
 	}
 }
-?>

@@ -20,4 +20,3 @@ class ModelToolOnline extends Model {
 		return $status;
 	}
 }
-?>

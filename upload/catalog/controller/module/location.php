@@ -123,4 +123,3 @@ class ControllerModuleLocation extends Controller {
 		}
 	}
 }
-?>

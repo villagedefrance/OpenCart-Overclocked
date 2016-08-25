@@ -59,4 +59,3 @@ class ModelAccountReward extends Model {
 		}
 	}
 }
-?>

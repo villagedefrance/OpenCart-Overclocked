@@ -59,4 +59,3 @@ class ModelPaymentGlobalpay extends Model {
 		}
 	}
 }
-?>

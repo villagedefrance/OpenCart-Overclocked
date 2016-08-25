@@ -299,7 +299,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function getTransactionRow($transaction_id) {
-		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON pt.paypal_order_id = po.paypal_order_id  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id)  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
 
 		if ($qry->num_rows > 0) {
 			return $qry->row;
@@ -321,7 +321,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function updateOrder($capture_status, $order_id) {
-		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order SET modified = now(), capture_status = '" . $this->db->escape($capture_status) . "' WHERE order_id = '" . (int)$order_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order SET modified = NOW(), capture_status = '" . $this->db->escape($capture_status) . "' WHERE order_id = '" . (int)$order_id . "'");
 	}
 
 	public function recurringCancel($ref) {
@@ -342,4 +342,3 @@ class ModelPaymentPPExpress extends Model {
 		return true;
 	}
 }
-?>

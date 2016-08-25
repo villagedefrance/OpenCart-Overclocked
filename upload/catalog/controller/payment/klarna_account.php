@@ -709,4 +709,3 @@ class ControllerPaymentKlarnaAccount extends Controller {
 		return $defpos;
 	}
 }
-?>

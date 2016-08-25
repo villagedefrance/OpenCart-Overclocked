@@ -23,4 +23,3 @@ class ModelDesignPayment extends Model {
 		return $image_query->row;
 	}
 }
-?>

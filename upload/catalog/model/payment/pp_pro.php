@@ -30,4 +30,3 @@ class ModelPaymentPPPro extends Model {
 		return $method_data;
 	}
 }
-?>

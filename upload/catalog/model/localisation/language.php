@@ -35,4 +35,3 @@ class ModelLocalisationLanguage extends Model {
 		return $language_data;
 	}
 }
-?>

@@ -69,4 +69,3 @@ class ModelCheckoutCheckoutTools extends Model {
 		}
 	}
 }
-?>

@@ -33,4 +33,3 @@ class ModelPaymentCardPay extends Model {
 		return $method_data;
 	}
 }
-?>

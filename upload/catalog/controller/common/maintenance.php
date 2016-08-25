@@ -57,4 +57,3 @@ class ControllerCommonMaintenance extends Controller {
 		$this->response->setOutput($this->render());
 	}
 }
-?>

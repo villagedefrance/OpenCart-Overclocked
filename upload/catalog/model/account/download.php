@@ -35,4 +35,3 @@ class ModelAccountDownload extends Model {
 		}
 	}
 }
-?>

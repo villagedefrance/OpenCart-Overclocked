@@ -199,4 +199,3 @@ class ModelShippingCanadaPost extends Model {
 		}
 	}
 }
-?>

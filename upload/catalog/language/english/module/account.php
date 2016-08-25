@@ -29,4 +29,3 @@ $_['entry_password']      = 'Password:';
 // Buttons
 $_['button_logout']       = 'Logout';
 $_['button_login']        = 'Login';
-?>

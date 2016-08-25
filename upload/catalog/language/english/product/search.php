@@ -36,4 +36,3 @@ $_['text_limit']        = 'Show';
 // Entry
 $_['entry_search']      = 'Search:';
 $_['entry_description'] = 'Search in product descriptions';
-?>

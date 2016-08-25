@@ -13,4 +13,3 @@ $_['text_checkout']      = 'Checkout';
 $_['text_message']       = 'This website makes use of cookies to enhance browsing experience and provide additional functionality.';
 $_['text_policy']        = 'Cookie Policy';
 $_['text_accept']        = 'Accept';
-?>

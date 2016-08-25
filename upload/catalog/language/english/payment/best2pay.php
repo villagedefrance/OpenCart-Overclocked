@@ -27,4 +27,3 @@ $_['text_reason_11']    = 'Payment declined. Please contact the bank that issued
 $_['text_reason_12']    = 'Payment declined. Possible reasons: insufficient funds, wrong card details, Internet transactions are prohibited for your card. Please retry the payment or contact the bank that issued your card.';
 $_['text_reason_13']    = 'Payment declined. Please retry later or contact the on-line shop.';
 $_['text_reason_14']    = 'Payment declined. Please contact the payment system you use.';
-?>

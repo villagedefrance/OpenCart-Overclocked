@@ -84,4 +84,3 @@ class ModelDesignMenu extends Model {
 		return $total;
 	}
 }
-?>

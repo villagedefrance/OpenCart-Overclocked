@@ -58,4 +58,3 @@ class ControllerModuleTagCloud extends Controller {
 		$this->render();
 	}
 }
-?>

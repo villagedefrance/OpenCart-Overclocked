@@ -9,4 +9,3 @@ $_['text_cart']            = 'View Cart';
 $_['text_checkout']        = 'Checkout';
 
 $_['text_payment_profile'] = 'Payment Profile';
-?>

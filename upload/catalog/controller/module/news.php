@@ -100,4 +100,3 @@ class ControllerModuleNews extends Controller {
 		$this->render();
 	}
 }
-?>

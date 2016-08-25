@@ -77,4 +77,3 @@ class ModelAccountRecurring extends Model {
 		}
 	}
 }
-?>

@@ -55,4 +55,3 @@ class ControllerModuleWelcome extends Controller {
 		$this->render();
 	}
 }
-?>

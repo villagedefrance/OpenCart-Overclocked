@@ -32,4 +32,3 @@ class ModelPaymentBankTransfer extends Model {
 		return $method_data;
 	}
 }
-?>

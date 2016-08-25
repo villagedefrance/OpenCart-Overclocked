@@ -36,4 +36,3 @@ class ModelPaymentCOD extends Model {
 		return $method_data;
 	}
 }
-?>

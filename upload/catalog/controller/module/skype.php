@@ -56,4 +56,3 @@ class ControllerModuleSkype extends Controller {
 		$this->render();
 	}
 }
-?>

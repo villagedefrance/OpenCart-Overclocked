@@ -77,4 +77,3 @@ $_['error_zone']                              = 'Please select a region / state!
 $_['error_shipping']                          = 'Warning: Shipping method required!';
 $_['error_no_shipping']                       = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_profile_required']                  = 'Please select a payment profile!';
-?>

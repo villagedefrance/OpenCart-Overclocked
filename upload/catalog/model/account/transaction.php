@@ -59,4 +59,3 @@ class ModelAccountTransaction extends Model {
 		}
 	}
 }
-?>

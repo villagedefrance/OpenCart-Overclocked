@@ -47,4 +47,3 @@ class ControllerAmazonListing extends Controller {
 		}
 	}
 }
-?>

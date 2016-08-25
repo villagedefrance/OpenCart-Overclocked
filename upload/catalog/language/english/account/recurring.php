@@ -61,4 +61,3 @@ $_['error_not_found']                      = 'Could not cancel profile';
 
 // Success
 $_['success_cancelled']                    = 'Recurring payment has been cancelled';
-?>

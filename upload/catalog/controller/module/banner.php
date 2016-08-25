@@ -94,4 +94,3 @@ class ControllerModuleBanner extends Controller {
 		$this->render();
 	}
 }
-?>

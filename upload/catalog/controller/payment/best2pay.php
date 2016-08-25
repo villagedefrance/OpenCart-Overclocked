@@ -275,4 +275,3 @@ class ControllerPaymentBest2pay extends Controller {
 		}
 	}
 }
-?>

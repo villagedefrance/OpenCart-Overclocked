@@ -146,4 +146,3 @@ class ControllerModuleSpecial extends Controller {
 		$this->render();
 	}
 }
-?>

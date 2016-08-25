@@ -623,7 +623,8 @@ class ModelOpenbayEbayOpenbay extends Model {
 				`lastname` = '" . $this->db->escape($name_parts['surname']) . "',
 				`telephone` = '" . str_replace(array(' ', '+', '-'), '', $this->db->escape($order->address->phone))."',
 				`status` = '1'
-			 WHERE `customer_id` = '" . (int)$user['id'] . "'");
+				WHERE `customer_id` = '" . (int)$user['id'] . "'
+			 ");
 		} else {
 			$this->db->query("INSERT INTO `" . DB_PREFIX . "customer` SET
 				`store_id` = '" . (int)$this->config->get('config_store_id') . "',
@@ -636,7 +637,9 @@ class ModelOpenbayEbayOpenbay extends Model {
 				`customer_group_id` = '" . (int)$this->config->get('openbay_def_customer_grp') . "',
 				`approved` = '1',
 				`status` = '1',
-				`date_added` = NOW()");
+				`date_added` = NOW()
+			");
+
 			$user['id'] = $this->db->getLastId();
 		}
 
@@ -646,7 +649,7 @@ class ModelOpenbayEbayOpenbay extends Model {
 	private function externalApplicationNotify($order_id) {
 		/* This is used by the Mosaic Fullfilment solutions @ www.mosaic-fs.co.uk */
 		if ($this->openbay->addonLoad('mosaic') && !$this->mosaic->isOrderAdded($order_id)) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `shipping_code` = 'ebay.STD' WHERE `order_id` = '".(int)$order_id."' LIMIT 1");
+			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `shipping_code` = 'ebay.STD' WHERE `order_id` = '" . (int)$order_id . "' LIMIT 0,1");
 			$this->mosaic->sendOrder($order_id, 'PP', '');
 			$this->openbay->ebay->log('Mosaic module has been notified about order ID: '.$order_id);
 		}
@@ -684,4 +687,3 @@ class ModelOpenbayEbayOpenbay extends Model {
 		exit();
 	}
 }
-?>

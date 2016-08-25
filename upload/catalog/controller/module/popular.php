@@ -138,4 +138,3 @@ class ControllerModulePopular extends Controller {
 		$this->render();
 	}
 }
-?>

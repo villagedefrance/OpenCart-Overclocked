@@ -203,4 +203,3 @@ class ControllerPaymentG2APay extends Controller {
 		}
 	}
 }
-?>

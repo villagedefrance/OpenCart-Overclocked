@@ -39,4 +39,3 @@ class ModelShippingFlat1 extends Model {
 		return $method_data;
 	}
 }
-?>

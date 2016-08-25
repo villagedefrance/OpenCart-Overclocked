@@ -66,4 +66,3 @@ class ModelShippingDhl extends Model {
 		return $method_data;
 	}
 }
-?>

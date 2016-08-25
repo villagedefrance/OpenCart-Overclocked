@@ -29,4 +29,3 @@ class ModelTotalLowOrderFee extends Model {
 		}
 	}
 }
-?>

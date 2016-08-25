@@ -59,4 +59,3 @@ class ModelAffiliateTransaction extends Model {
 		}
 	}
 }
-?>

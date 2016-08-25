@@ -147,4 +147,3 @@ class ControllerInformationNews extends Controller {
 		}
 	}
 }
-?>

@@ -353,4 +353,3 @@ class ModelCatalogOffer extends Model {
 		return $query->row['name'];
 	}
 }
-?>

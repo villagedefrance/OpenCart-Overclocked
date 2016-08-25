@@ -78,4 +78,3 @@ class ControllerModuleCurrency extends Controller {
 		$this->render();
 	}
 }
-?>

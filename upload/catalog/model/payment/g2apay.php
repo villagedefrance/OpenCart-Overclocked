@@ -49,7 +49,7 @@ class ModelPaymentG2APay extends Model {
 	}
 
 	public function getG2aOrder($order_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "g2apay_order WHERE order_id = '" . (int)$order_id . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "g2apay_order WHERE order_id = '" . (int)$order_id . "' LIMIT 0,1");
 
 		if ($query->num_rows) {
 			return $query->row;
@@ -84,4 +84,3 @@ class ModelPaymentG2APay extends Model {
 		}
 	}
 }
-?>

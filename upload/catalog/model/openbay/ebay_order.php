@@ -579,13 +579,13 @@ class ModelOpenbayEbayOrder extends Model {
 	public function orderLinkCreate($order_id, $smp_id) {
 		$this->openbay->ebay->log('orderLinkCreate() - order_id: '.$order_id.', smp_id: '.$smp_id);
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_order` SET `order_id` = '" . (int)$order_id . "', `smp_id` = '".(int)$smp_id."', `parent_ebay_order_id` = 0");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_order` SET `order_id` = '" . (int)$order_id . "', `smp_id` = '" . (int)$smp_id . "', `parent_ebay_order_id` = 0");
 
 		return $this->db->getLastId();
 	}
 
 	public function orderLinkGet($smp_id) {
-		$query = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "ebay_order` WHERE `smp_id` = '".(int)$smp_id."' LIMIT 1");
+		$query = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "ebay_order` WHERE `smp_id` = '" . (int)$smp_id . "' LIMIT 0,1");
 
 		if ($query->num_rows > 0) {
 			return (int)$query->row['order_id'];
@@ -595,26 +595,26 @@ class ModelOpenbayEbayOrder extends Model {
 	}
 
 	public function delete($order_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "order` WHERE `order_id` = '".(int)$order_id."' LIMIT 1");
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '".(int)$order_id."'");
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_option` WHERE `order_id` = '".(int)$order_id."'");
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_history` WHERE `order_id` = '".(int)$order_id."'");
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '".(int)$order_id."'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 0,1");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_option` WHERE `order_id` = '" . (int)$order_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_history` WHERE `order_id` = '" . (int)$order_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "order_total` WHERE `order_id` = '" . (int)$order_id . "'");
 	}
 
 	public function lockAdd($smp_id) {
 		$this->openbay->ebay->log('lockAdd() - Added lock, smp_id: '.$smp_id);
-		$this->db->query("INSERT INTO`" . DB_PREFIX . "ebay_order_lock` SET `smp_id` = '".(int)$smp_id."'");
+		$this->db->query("INSERT INTO`" . DB_PREFIX . "ebay_order_lock` SET `smp_id` = '" . (int)$smp_id . "'");
 	}
 
 	public function lockDelete($smp_id) {
 		$this->openbay->ebay->log('lockDelete() - Delete lock, smp_id: '.$smp_id);
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_order_lock` WHERE `smp_id` = '".(int)$smp_id."'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_order_lock` WHERE `smp_id` = '" . (int)$smp_id . "'");
 	}
 
 	public function lockExists($smp_id) {
 		$this->openbay->ebay->log('lockExists() - Check lock, smp_id: '.(int)$smp_id);
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_order_lock` WHERE `smp_id` = '".(int)$smp_id."' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_order_lock` WHERE `smp_id` = '" . (int)$smp_id . "' LIMIT 1");
 
 		if ($query->num_rows > 0) {
 			$this->openbay->ebay->log('lockExists() - Lock found, stopping order.');
@@ -625,4 +625,3 @@ class ModelOpenbayEbayOrder extends Model {
 		}
 	}
 }
-?>

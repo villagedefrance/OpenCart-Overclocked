@@ -147,4 +147,3 @@ $_['error_points']                            = 'Warning: You don\'t have %s rew
 $_['error_maximum']                           = 'Warning: The maximum number of points that can be applied is %s!';
 $_['error_minimum']                           = 'Minimum order amount for %s is %s!';
 $_['error_required']                          = '%s required!';
-?>

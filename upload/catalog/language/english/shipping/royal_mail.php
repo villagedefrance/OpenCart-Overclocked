@@ -13,4 +13,3 @@ $_['text_international_tracked_signed'] = 'International Tracked & Signed';
 $_['text_international_tracked']        = 'International Tracked';
 $_['text_international_signed']         = 'International Signed';
 $_['text_international_economy']        = 'International Economy';
-?>

@@ -60,4 +60,3 @@ class ModelCatalogManufacturer extends Model {
 		}
 	}
 }
-?>

@@ -30,4 +30,3 @@ class ModelPaymentBest2payEmoney extends Model {
 		return $method_data;
 	}
 }
-?>

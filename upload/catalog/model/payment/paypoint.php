@@ -32,4 +32,3 @@ class ModelPaymentPayPoint extends Model {
 		return $method_data;
 	}
 }
-?>

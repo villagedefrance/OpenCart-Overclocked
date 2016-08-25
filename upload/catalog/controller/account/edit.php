@@ -243,4 +243,3 @@ class ControllerAccountEdit extends Controller {
 		return empty($this->error);
 	}
 }
-?>

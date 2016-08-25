@@ -66,4 +66,3 @@ class ModelShippingPrice extends Model {
 		return $method_data;
 	}
 }
-?>

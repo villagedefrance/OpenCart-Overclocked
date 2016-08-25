@@ -42,4 +42,3 @@ $_['text_history']            = 'Order History';
 $_['text_success']            = 'You have successfully added the products from order ID #%s to your cart!';
 $_['text_empty']              = 'You have not made any previous orders!';
 $_['text_error']              = 'The order you requested could not be found!';
-?>

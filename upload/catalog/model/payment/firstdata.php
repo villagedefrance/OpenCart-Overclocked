@@ -94,7 +94,7 @@ class ModelPaymentFirstdata extends Model {
 	}
 
 	public function storeCard($token, $customer_id, $month, $year, $digits) {
-		$existing_card = $this->db->query("SELECT * FROM " . DB_PREFIX . "firstdata_card WHERE token = '" . $this->db->escape($token) . "' AND customer_id = '" . (int)$customer_id . "' LIMIT 1");
+		$existing_card = $this->db->query("SELECT * FROM " . DB_PREFIX . "firstdata_card WHERE token = '" . $this->db->escape($token) . "' AND customer_id = '" . (int)$customer_id . "' LIMIT 0,1");
 
 		if ($existing_card->num_rows > 0) {
 			$this->db->query("UPDATE " . DB_PREFIX . "firstdata_card SET expire_month = '" . $this->db->escape($month) . "', expire_year = '" . $this->db->escape($year) . "', digits = '" . $this->db->escape($digits) . "'");
@@ -119,4 +119,3 @@ class ModelPaymentFirstdata extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "firstdata_order SET capture_status = '" . (int)$status . "' WHERE order_id = '" . (int)$order_id . "'");
 	}
 }
-?>

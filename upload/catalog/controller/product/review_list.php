@@ -465,4 +465,3 @@ class ControllerProductReviewList extends Controller {
 		}
 	}
 }
-?>

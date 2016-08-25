@@ -77,7 +77,7 @@ class ModelPaymentSagePayServer extends Model {
 	}
 
 	public function getOrder($order_id, $vpstx_id = null) {
-		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_order` WHERE `order_id` = '" . (int)$order_id . "' OR `VPSTxId` = '" . $this->db->escape($vpstx_id) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM `" . DB_PREFIX . "sagepay_server_order` WHERE `order_id` = '" . (int)$order_id . "' OR `VPSTxId` = '" . $this->db->escape($vpstx_id) . "' LIMIT 0,1");
 
 		if ($qry->num_rows) {
 			$order = $qry->row;
@@ -453,4 +453,3 @@ class ModelPaymentSagePayServer extends Model {
 		return true;
 	}
 }
-?>

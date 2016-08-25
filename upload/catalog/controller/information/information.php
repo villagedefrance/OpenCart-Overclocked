@@ -133,4 +133,3 @@ class ControllerInformationInformation extends Controller {
 		}
 	}
 }
-?>

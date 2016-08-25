@@ -17,4 +17,3 @@ class ModelSettingTheme extends Model {
 		}
 	}
 }
-?>

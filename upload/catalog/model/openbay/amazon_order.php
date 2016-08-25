@@ -113,7 +113,7 @@ class ModelOpenbayAmazonOrder extends Model {
 	public function updateOrderStatus($orderId, $statusId) {
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "order_history` (`order_id`, `order_status_id`, `notify`, `comment`, `date_added`) VALUES (" . (int)$orderId . ", " . (int)$statusId . ", 0, '', NOW())");
 
-		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `order_status_id` = " . (int)$statusId . " WHERE `order_id` = " . (int)$orderId);
+		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `order_status_id` = " . (int)$statusId . " WHERE order_id = " . (int)$orderId);
 	}
 
 	public function addAmazonOrder($orderId, $amazonOrderId) {
@@ -122,7 +122,7 @@ class ModelOpenbayAmazonOrder extends Model {
 
 	public function addAmazonOrderProducts($orderId, $data) {
 		foreach ($data as $sku => $orderItemId) {
-			$row = $this->db->query("SELECT `order_product_id` FROM `" . DB_PREFIX . "order_product` WHERE `model` = '" . $this->db->escape($sku) . "' AND `order_id` = " . (int)$orderId . " LIMIT 1")->row;
+			$row = $this->db->query("SELECT `order_product_id` FROM `" . DB_PREFIX . "order_product` WHERE `model` = '" . $this->db->escape($sku) . "' AND order_id = " . (int)$orderId . " LIMIT 0,1")->row;
 
 			if (!isset($row['order_product_id']) || empty($row['order_product_id'])) {
 				continue;
@@ -135,7 +135,7 @@ class ModelOpenbayAmazonOrder extends Model {
 	}
 
 	public function getOrderId($amazonOrderId) {
-		$row = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "amazon_order` WHERE `amazon_order_id` = '" . $this->db->escape($amazonOrderId) . "' LIMIT 1")->row;
+		$row = $this->db->query("SELECT `order_id` FROM " . DB_PREFIX . "amazon_order WHERE amazon_order_id = '" . $this->db->escape($amazonOrderId) . "' LIMIT 0,1")->row;
 
 		if (isset($row['order_id']) && !empty($row['order_id'])) {
 			return $row['order_id'];
@@ -145,7 +145,7 @@ class ModelOpenbayAmazonOrder extends Model {
 	}
 
 	public function getOrderStatus($orderId) {
-		$row = $this->db->query("SELECT `order_status_id` FROM `" . DB_PREFIX . "order` WHERE `order_id` = " . (int)$orderId)->row;
+		$row = $this->db->query("SELECT `order_status_id` FROM `" . DB_PREFIX . "order` WHERE order_id = " . (int)$orderId)->row;
 
 		if (isset($row['order_status_id']) && !empty($row['order_status_id'])) {
 			return $row['order_status_id'];
@@ -155,7 +155,7 @@ class ModelOpenbayAmazonOrder extends Model {
 	}
 
 	public function getAmazonOrderId($orderId) {
-		$row = $this->db->query("SELECT `amazon_order_id` FROM `" . DB_PREFIX . "amazon_order` WHERE `order_id` = " . (int)$orderId . " LIMIT 1")->row;
+		$row = $this->db->query("SELECT `amazon_order_id` FROM " . DB_PREFIX . "amazon_order WHERE order_id = " . (int)$orderId . " LIMIT 0,1")->row;
 
 		if (isset($row['amazon_order_id']) && !empty($row['amazon_order_id'])) {
 			return $row['amazon_order_id'];
@@ -170,17 +170,12 @@ class ModelOpenbayAmazonOrder extends Model {
 		$optionValueIds = explode(':', $productVar);
 
 		foreach ($optionValueIds as $optionValueId) {
-			$optionDetailsRow = $this->db->query("SELECT
-				pov.product_option_id,
-				pov.product_option_value_id,
-				od.name,
-				ovd.name as value,
-				opt.type
-			FROM `" . DB_PREFIX . "product_option_value` as pov,
-				 `" . DB_PREFIX . "product_option` as po,
-				 `" . DB_PREFIX . "option` as opt,
-				 `" . DB_PREFIX . "option_value_description` as ovd,
-				 `" . DB_PREFIX . "option_description` as od
+			$optionDetailsRow = $this->db->query("SELECT pov.product_option_id, pov.product_option_value_id, od.name, ovd.name as value, opt.type
+			FROM `" . DB_PREFIX . "product_option_value` pov,
+				 `" . DB_PREFIX . "product_option` po,
+				 `" . DB_PREFIX . "option` opt,
+				 `" . DB_PREFIX . "option_value_description` ovd,
+				 `" . DB_PREFIX . "option_description` od
 			WHERE pov.product_option_value_id = '" . (int)$optionValueId . "' AND
 				po.product_option_id = pov.product_option_id AND
 				opt.option_id = pov.option_id AND
@@ -202,4 +197,3 @@ class ModelOpenbayAmazonOrder extends Model {
 		return $options;
 	}
 }
-?>

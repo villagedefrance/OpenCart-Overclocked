@@ -10,4 +10,3 @@ $_['gift_wrap_tax_text']  = 'Gift Wrap tax';
 $_['sub_total_text']      = 'Sub-Total';
 $_['tax_text']            = 'Tax';
 $_['total_text']          = 'Total';
-?>

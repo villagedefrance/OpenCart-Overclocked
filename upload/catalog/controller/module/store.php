@@ -107,4 +107,3 @@ class ControllerModuleStore extends Controller {
 		}
 	}
 }
-?>

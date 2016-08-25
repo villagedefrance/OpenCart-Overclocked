@@ -443,4 +443,3 @@ class ControllerProductSpecial extends Controller {
 		}
 	}
 }
-?>

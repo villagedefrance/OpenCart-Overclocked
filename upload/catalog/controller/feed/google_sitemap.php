@@ -97,4 +97,3 @@ class ControllerFeedGoogleSitemap extends Controller {
 		return $output;
 	}
 }
-?>

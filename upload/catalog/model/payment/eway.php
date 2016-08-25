@@ -196,4 +196,3 @@ class ModelPaymentEway extends Model {
 		return $response;
 	}
 }
-?>

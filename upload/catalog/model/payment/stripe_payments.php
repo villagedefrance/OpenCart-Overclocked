@@ -30,4 +30,3 @@ class ModelPaymentStripePayments extends Model {
 		return $method_data;
 	}
 }
-?>

@@ -159,4 +159,3 @@ class ControllerAmazonProduct extends Controller {
 		}
 	}
 }
-?>

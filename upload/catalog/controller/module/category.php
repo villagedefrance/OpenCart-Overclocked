@@ -108,4 +108,3 @@ class ControllerModuleCategory extends Controller {
 		$this->render();
   	}
 }
-?>

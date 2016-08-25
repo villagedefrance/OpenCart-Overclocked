@@ -8,4 +8,3 @@ $_['text_default']      = 'Home Store';
 
 // Buttons
 $_['button_adminlogin'] = 'Admin Login';
-?>
