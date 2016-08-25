@@ -23,4 +23,3 @@ class DOMPDF_Image_Exception extends DOMPDF_Exception {
     parent::__construct($message, $code);
   }
 }
-?>

@@ -156,4 +156,3 @@ class Text_Renderer extends Abstract_Renderer {
     }
   }
 }
-?>

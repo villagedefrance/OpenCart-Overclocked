@@ -594,7 +594,7 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
 	public function allConditionalStyles(PHPExcel $pPHPExcel = null)
 	{
 		// Get an array of all styles
-		$aStyles		= array();
+		$aStyles = array();
 
 		$sheetCount = $pPHPExcel->getSheetCount();
 		for ($i = 0; $i < $sheetCount; ++$i) {
@@ -629,7 +629,7 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
 		$fill1->setFillType(PHPExcel_Style_Fill::FILL_PATTERN_GRAY125);
 		$aFills[] = $fill1;
 		// The remaining fills
-		$aStyles 	= $this->allStyles($pPHPExcel);
+		$aStyles = $this->allStyles($pPHPExcel);
 		foreach ($aStyles as $style) {
 			if (!array_key_exists($style->getFill()->getHashCode(), $aFills)) {
 				$aFills[ $style->getFill()->getHashCode() ] = $style->getFill();
@@ -649,8 +649,8 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
 	public function allFonts(PHPExcel $pPHPExcel = null)
 	{
 		// Get an array of unique fonts
-		$aFonts 	= array();
-		$aStyles 	= $this->allStyles($pPHPExcel);
+		$aFonts = array();
+		$aStyles = $this->allStyles($pPHPExcel);
 
 		foreach ($aStyles as $style) {
 			if (!array_key_exists($style->getFont()->getHashCode(), $aFonts)) {
@@ -671,8 +671,8 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
 	public function allBorders(PHPExcel $pPHPExcel = null)
 	{
 		// Get an array of unique borders
-		$aBorders 	= array();
-		$aStyles 	= $this->allStyles($pPHPExcel);
+		$aBorders = array();
+		$aStyles = $this->allStyles($pPHPExcel);
 
 		foreach ($aStyles as $style) {
 			if (!array_key_exists($style->getBorders()->getHashCode(), $aBorders)) {
@@ -705,4 +705,3 @@ class PHPExcel_Writer_Excel2007_Style extends PHPExcel_Writer_Excel2007_WriterPa
 		return $aNumFmts;
 	}
 }
-?>

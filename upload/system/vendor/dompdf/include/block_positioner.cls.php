@@ -50,4 +50,3 @@ class Block_Positioner extends Positioner {
     $frame->set_position($x, $y);
   }
 }
-?>

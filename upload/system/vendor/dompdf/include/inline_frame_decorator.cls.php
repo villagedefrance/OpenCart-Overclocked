@@ -46,9 +46,7 @@ class Inline_Frame_Decorator extends Frame_Decorator {
     //On continuation of inline element on next line,
     //don't repeat non-vertically repeatble background images
     //See e.g. in testcase image_variants, long desriptions
-    if ( ($url = $style->background_image) && $url !== "none"
-         && ($repeat = $style->background_repeat) && $repeat !== "repeat" &&  $repeat !== "repeat-y"
-       ) {
+    if ( ($url = $style->background_image) && $url !== "none" && ($repeat = $style->background_repeat) && $repeat !== "repeat" &&  $repeat !== "repeat-y") {
       $style->background_image = "none";
     }           
 

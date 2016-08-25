@@ -46,4 +46,3 @@ class PHPExcel_Writer_OpenDocument_Thumbnails extends PHPExcel_Writer_OpenDocume
         return '';
     }
 }
-?>

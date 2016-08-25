@@ -589,4 +589,3 @@ class Attribute_Translator {
     return ltrim($style, "; ");
   }
 }
-?>

@@ -87,14 +87,14 @@ class PHPExcel_Calculation_Functions {
 	 * @var array
 	 */
 	protected static $_errorCodes = array(
-		'null'					=> '#NULL!',
-		'divisionbyzero'	=> '#DIV/0!',
-		'value'				=> '#VALUE!',
-		'reference'			=> '#REF!',
-		'name'				=> '#NAME?',
-		'num'					=> '#NUM!',
-		'na'					=> '#N/A',
-		'gettingdata'		=> '#GETTING_DATA'
+		'null'           => '#NULL!',
+		'divisionbyzero' => '#DIV/0!',
+		'value'          => '#VALUE!',
+		'reference'      => '#REF!',
+		'name'           => '#NAME?',
+		'num'            => '#NUM!',
+		'na'             => '#N/A',
+		'gettingdata'    => '#GETTING_DATA'
 	);
 
 	/**
@@ -435,7 +435,7 @@ class PHPExcel_Calculation_Functions {
 		$value = self::flattenSingleValue($value);
 
 		if (is_string($value)) {
-			return False;
+			return false;
 		}
 
 		return is_numeric($value);
@@ -711,4 +711,3 @@ if ((!function_exists('mb_str_replace')) && (function_exists('mb_substr')) && (f
 		return $subject;
 	}
 }
-?>

@@ -31,4 +31,3 @@ class Table_Row_Positioner extends Positioner {
     $this->_frame->set_position($cb["x"], $y);
   }
 }
-?>

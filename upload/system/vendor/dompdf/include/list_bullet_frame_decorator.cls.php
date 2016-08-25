@@ -60,4 +60,3 @@ class List_Bullet_Frame_Decorator extends Frame_Decorator {
     return $this->get_margin_height();
   }
 }
-?>

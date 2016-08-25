@@ -46,4 +46,3 @@ class PHP_Evaluator {
     $this->evaluate($frame->get_node()->nodeValue);
   }
 }
-?>

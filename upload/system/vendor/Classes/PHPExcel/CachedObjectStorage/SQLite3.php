@@ -362,4 +362,3 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		return true;
 	}
 }
-?>

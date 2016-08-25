@@ -119,4 +119,3 @@ class Page_Cache {
 }
 
 Page_Cache::init();
-?>

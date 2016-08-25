@@ -757,4 +757,3 @@ abstract class Abstract_Renderer {
     $this->_canvas->rectangle($box[0], $box[1], $box[2], $box[3], CSS_Color::parse($color), 0.1, $style);
   }
 }
-?>

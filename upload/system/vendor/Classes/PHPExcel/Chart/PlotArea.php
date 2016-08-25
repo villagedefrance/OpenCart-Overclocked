@@ -124,5 +124,4 @@ class PHPExcel_Chart_PlotArea
 			$plotSeries->refresh($worksheet);
 		}
 	}
-
 }

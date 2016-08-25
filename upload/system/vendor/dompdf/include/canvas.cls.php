@@ -382,5 +382,5 @@ interface Canvas {
    * @return string
    */
   function output($options = null);
+
 }
-?>

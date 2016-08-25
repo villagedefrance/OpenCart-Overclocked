@@ -303,7 +303,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 	public function __destruct() {
 		$cacheList = $this->getCellList();
 
-		foreach($cacheList as $cellID) {
+		foreach ($cacheList as $cellID) {
 			$this->_memcache->delete($this->_cachePrefix . $cellID . '.cache');
 		}
 	}
@@ -322,4 +322,3 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 		return true;
 	}
 }
-?>

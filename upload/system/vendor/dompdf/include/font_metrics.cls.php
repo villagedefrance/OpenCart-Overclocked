@@ -362,4 +362,3 @@ class Font_Metrics {
 }
 
 Font_Metrics::load_font_families();
-?>

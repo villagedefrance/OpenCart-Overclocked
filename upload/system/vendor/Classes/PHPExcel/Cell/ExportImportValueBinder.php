@@ -70,4 +70,3 @@ class PHPExcel_Cell_ExportImportValueBinder extends PHPExcel_Cell_DefaultValueBi
 		return parent::bindValue($cell, $value); 
 	} 
 }
-?>

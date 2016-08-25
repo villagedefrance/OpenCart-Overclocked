@@ -266,4 +266,3 @@ class PHPExcel_Writer_Excel2007_Comments extends PHPExcel_Writer_Excel2007_Write
 		$objWriter->endElement();
 	}
 }
-?>

@@ -46,15 +46,15 @@ class PHPExcel_Chart_Renderer_jpgraph {
 	);
 
 	private static $_markSet = array(
-		'diamond'	=> MARK_DIAMOND,
-		'square'		=> MARK_SQUARE,
-		'triangle'		=> MARK_UTRIANGLE,
-		'x'				=> MARK_X,
-		'star'			=> MARK_STAR,
-		'dot'			=> MARK_FILLEDCIRCLE,
-		'dash'			=> MARK_DTRIANGLE,
-		'circle'		=> MARK_CIRCLE,
-		'plus'			=> MARK_CROSS
+		'diamond'  => MARK_DIAMOND,
+		'square'   => MARK_SQUARE,
+		'triangle' => MARK_UTRIANGLE,
+		'x'        => MARK_X,
+		'star'     => MARK_STAR,
+		'dot'      => MARK_FILLEDCIRCLE,
+		'dash'     => MARK_DTRIANGLE,
+		'circle'   => MARK_CIRCLE,
+		'plus'     => MARK_CROSS
 	);
 
 	private $_chart = null;
@@ -850,4 +850,3 @@ class PHPExcel_Chart_Renderer_jpgraph {
 	}	//	function __construct()
 
 }	//	PHPExcel_Chart_Renderer_jpgraph
-?>

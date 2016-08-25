@@ -621,4 +621,3 @@ class TCPDF_Adapter implements Canvas {
     
 // Workaround for idiotic limitation on statics...
 TCPDF_Adapter::$PAPER_SIZES = CPDF_Adapter::$PAPER_SIZES;
-?>

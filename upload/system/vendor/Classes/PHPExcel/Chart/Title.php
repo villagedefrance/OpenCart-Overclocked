@@ -88,5 +88,4 @@ class PHPExcel_Chart_Title
 	public function getLayout() {
 		return $this->_layout;
 	}
-
 }

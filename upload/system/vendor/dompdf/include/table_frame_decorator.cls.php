@@ -325,4 +325,3 @@ class Table_Frame_Decorator extends Frame_Decorator {
     $this->get_parent()->insert_child_after($frame, $this);
   }
 }
-?>

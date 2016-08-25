@@ -179,4 +179,3 @@ class Image_Cache {
 }
 
 Image_Cache::$broken_image = DOMPDF_LIB_DIR . "/res/broken_image.png";
-?>

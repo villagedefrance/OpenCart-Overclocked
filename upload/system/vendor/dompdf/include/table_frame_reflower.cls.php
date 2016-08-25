@@ -553,12 +553,7 @@ class Table_Frame_Reflower extends Frame_Reflower {
     }
 
     // Account for margins & padding
-    $dims = array($style->border_left_width,
-                  $style->border_right_width,
-                  $style->padding_left,
-                  $style->padding_right,
-                  $style->margin_left,
-                  $style->margin_right);
+    $dims = array($style->border_left_width, $style->border_right_width, $style->padding_left, $style->padding_right, $style->margin_left, $style->margin_right);
 
     if ( $style->border_collapse !== "collapse" ) 
       list($dims[]) = $style->border_spacing;

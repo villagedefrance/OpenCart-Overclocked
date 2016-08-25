@@ -202,4 +202,3 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
 		$this->_fileHandle = null;
 	}
 }
-?>

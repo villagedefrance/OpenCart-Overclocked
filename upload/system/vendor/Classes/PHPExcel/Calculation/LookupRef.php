@@ -926,4 +926,3 @@ class PHPExcel_Calculation_LookupRef {
 		return self::VLOOKUP($lookup_value, $lookup_vector, 2);
  	}
 }
-?>

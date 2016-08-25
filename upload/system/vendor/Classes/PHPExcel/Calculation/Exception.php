@@ -50,4 +50,3 @@ class PHPExcel_Calculation_Exception extends PHPExcel_Exception {
 		throw $e;
 	}
 }
-?>

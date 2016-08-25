@@ -212,8 +212,8 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		}
 
 		return array(
-			'row'		=> $highestRow,
-			'column'	=> $highestColumn
+			'row'    => $highestRow,
+			'column' => $highestColumn
 		);
 	}
 
@@ -380,4 +380,3 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		return true;
 	}
 }
-?>

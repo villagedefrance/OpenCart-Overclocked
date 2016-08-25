@@ -283,4 +283,3 @@ class CSS_Color {
     return $c;
   }
 }
-?>

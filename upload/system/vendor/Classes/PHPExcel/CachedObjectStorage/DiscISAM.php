@@ -69,8 +69,8 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 			fseek($this->_fileHandle, 0, SEEK_END);
 
 			$this->_cellCache[$this->_currentObjectID] = array(
-                'ptr'	=> ftell($this->_fileHandle),
-				'sz'	=> fwrite($this->_fileHandle, serialize($this->_currentObject))
+                'ptr' => ftell($this->_fileHandle),
+				'sz'  => fwrite($this->_fileHandle, serialize($this->_currentObject))
 			);
 
 			$this->_currentCellIsDirty = false;
@@ -219,4 +219,3 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 		$this->_fileHandle = null;
 	}
 }
-?>

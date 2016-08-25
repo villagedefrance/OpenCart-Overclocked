@@ -421,8 +421,8 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
 		if ($pType != '' && $pTarget != '') {
 			// Write relationship
 			$objWriter->startElement('Relationship');
-			$objWriter->writeAttribute('Id', 		'rId' . $pId);
-			$objWriter->writeAttribute('Type', 		$pType);
+			$objWriter->writeAttribute('Id', 'rId' . $pId);
+			$objWriter->writeAttribute('Type', $pType);
 			$objWriter->writeAttribute('Target',	$pTarget);
 
 			if ($pTargetMode != '') {
@@ -435,4 +435,3 @@ class PHPExcel_Writer_Excel2007_Rels extends PHPExcel_Writer_Excel2007_WriterPar
 		}
 	}
 }
-?>

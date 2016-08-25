@@ -148,4 +148,3 @@ class PHPExcel_CachedObjectStorage_Igbinary extends PHPExcel_CachedObjectStorage
 		return true;
 	}
 }
-?>

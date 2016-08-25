@@ -36,14 +36,14 @@
 class PHPExcel_Worksheet_Drawing_Shadow implements PHPExcel_IComparable
 {
 	/* Shadow alignment */
-	const SHADOW_BOTTOM							= 'b';
-	const SHADOW_BOTTOM_LEFT					= 'bl';
-	const SHADOW_BOTTOM_RIGHT					= 'br';
-	const SHADOW_CENTER							= 'ctr';
-	const SHADOW_LEFT							= 'l';
-	const SHADOW_TOP							= 't';
-	const SHADOW_TOP_LEFT						= 'tl';
-	const SHADOW_TOP_RIGHT						= 'tr';
+	const SHADOW_BOTTOM = 'b';
+	const SHADOW_BOTTOM_LEFT = 'bl';
+	const SHADOW_BOTTOM_RIGHT = 'br';
+	const SHADOW_CENTER = 'ctr';
+	const SHADOW_LEFT = 'l';
+	const SHADOW_TOP = 't';
+	const SHADOW_TOP_LEFT = 'tl';
+	const SHADOW_TOP_RIGHT = 'tr';
 
 	/**
 	 * Visible
@@ -104,13 +104,13 @@ class PHPExcel_Worksheet_Drawing_Shadow implements PHPExcel_IComparable
     public function __construct()
     {
     	// Initialise values
-    	$this->_visible				= false;
-    	$this->_blurRadius			= 6;
-    	$this->_distance			= 2;
-    	$this->_direction			= 0;
-    	$this->_alignment			= PHPExcel_Worksheet_Drawing_Shadow::SHADOW_BOTTOM_RIGHT;
-    	$this->_color				= new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK);
-    	$this->_alpha				= 50;
+    	$this->_visible = false;
+    	$this->_blurRadius = 6;
+    	$this->_distance = 2;
+    	$this->_direction = 0;
+    	$this->_alignment = PHPExcel_Worksheet_Drawing_Shadow::SHADOW_BOTTOM_RIGHT;
+    	$this->_color = new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK);
+    	$this->_alpha = 50;
     }
 
     /**
@@ -277,6 +277,7 @@ class PHPExcel_Worksheet_Drawing_Shadow implements PHPExcel_IComparable
 	 */
 	public function __clone() {
 		$vars = get_object_vars($this);
+
 		foreach ($vars as $key => $value) {
 			if (is_object($value)) {
 				$this->$key = clone $value;
@@ -286,4 +287,3 @@ class PHPExcel_Worksheet_Drawing_Shadow implements PHPExcel_IComparable
 		}
 	}
 }
-?>

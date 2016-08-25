@@ -1029,4 +1029,3 @@ if ( PHP_VERSION_ID < 50300 ) {
     // void
   } 
 }
-?>

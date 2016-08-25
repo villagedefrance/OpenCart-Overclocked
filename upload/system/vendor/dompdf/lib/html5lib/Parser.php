@@ -32,4 +32,3 @@ class HTML5_Parser {
         return $tokenizer->save();
     }
 }
-?>

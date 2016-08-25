@@ -18,4 +18,3 @@ class Null_Frame_Reflower extends Frame_Reflower {
 
   function reflow(Block_Frame_Decorator $block = null) { return; }
 }
-?>

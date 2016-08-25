@@ -244,4 +244,3 @@ class Frame_Factory {
     return $deco;
   }
 }
-?>

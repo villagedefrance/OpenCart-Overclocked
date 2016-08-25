@@ -127,4 +127,3 @@ class PHPExcel_Writer_PDF_mPDF extends PHPExcel_Writer_PDF_Core implements PHPEx
 		parent::restoreStateAfterSave($fileHandle);
     }
 }
-?>

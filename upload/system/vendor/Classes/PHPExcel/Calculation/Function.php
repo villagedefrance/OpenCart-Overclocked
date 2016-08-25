@@ -146,4 +146,3 @@ class PHPExcel_Calculation_Function {
     	$this->_phpExcelName = $value;
     }
 }
-?>

@@ -122,11 +122,11 @@ class PHPExcel_Writer_Excel5_Parser
 	 */
 	public function __construct()
 	{
-		$this->_current_char  = 0;
+		$this->_current_char = 0;
 		$this->_current_token = '';       // The token we are working on.
-		$this->_formula       = '';       // The formula to parse.
-		$this->_lookahead     = '';       // The character ahead of the current char.
-		$this->_parse_tree    = '';       // The parse tree to be generated.
+		$this->_formula = '';       // The formula to parse.
+		$this->_lookahead = '';       // The character ahead of the current char.
+		$this->_parse_tree = '';       // The parse tree to be generated.
 		$this->_initializeHashes();      // Initialize the hashes: ptg's and function's ptg's
 		$this->_ext_sheets = array();
 		$this->_references = array();
@@ -783,13 +783,13 @@ class PHPExcel_Writer_Excel5_Parser
     function _convertError($errorCode)
     {
 		switch ($errorCode) {
-			case '#NULL!':	return pack("C", 0x00);
-			case '#DIV/0!':	return pack("C", 0x07);
-			case '#VALUE!':	return pack("C", 0x0F);
-			case '#REF!':	return pack("C", 0x17);
-			case '#NAME?':	return pack("C", 0x1D);
-			case '#NUM!':	return pack("C", 0x24);
-			case '#N/A':	return pack("C", 0x2A);
+			case '#NULL!': return pack("C", 0x00);
+			case '#DIV/0!': return pack("C", 0x07);
+			case '#VALUE!': return pack("C", 0x0F);
+			case '#REF!': return pack("C", 0x17);
+			case '#NAME?': return pack("C", 0x1D);
+			case '#NUM!': return pack("C", 0x24);
+			case '#N/A': return pack("C", 0x2A);
 		}
 		return pack("C", 0xFF);
     }
@@ -1015,11 +1015,11 @@ class PHPExcel_Writer_Excel5_Parser
 		$col_rel = empty($match[1]) ? 1 : 0;
 		$col_ref = $match[2];
 		$row_rel = empty($match[3]) ? 1 : 0;
-		$row     = $match[4];
+		$row = $match[4];
 
 		// Convert base26 column string to a number.
-		$expn   = strlen($col_ref) - 1;
-		$col    = 0;
+		$expn = strlen($col_ref) - 1;
+		$col = 0;
 		$col_ref_length = strlen($col_ref);
 		for ($i = 0; $i < $col_ref_length; ++$i) {
 			$col += (ord($col_ref{$i}) - 64) * pow(26, $expn);
@@ -1205,10 +1205,10 @@ class PHPExcel_Writer_Excel5_Parser
 	function parse($formula)
 	{
 		$this->_current_char = 0;
-		$this->_formula      = $formula;
-		$this->_lookahead    = isset($formula{1}) ? $formula{1} : '';
+		$this->_formula = $formula;
+		$this->_lookahead = isset($formula{1}) ? $formula{1} : '';
 		$this->_advance();
-		$this->_parse_tree   = $this->_condition();
+		$this->_parse_tree = $this->_condition();
 		return true;
 	}
 
@@ -1552,6 +1552,7 @@ class PHPExcel_Writer_Excel5_Parser
 			$converted_tree = $this->_convert($tree['left']);
 			$polish .= $converted_tree;
 		}
+
 		if (is_array($tree['right'])) {
 			$converted_tree = $this->toReversePolish($tree['right']);
 			$polish .= $converted_tree;
@@ -1577,8 +1578,9 @@ class PHPExcel_Writer_Excel5_Parser
 		} else {
 			$converted_tree = $this->_convert($tree['value']);
 		}
+
 		$polish .= $converted_tree;
+
 		return $polish;
 	}
 }
-?>

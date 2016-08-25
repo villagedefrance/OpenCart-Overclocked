@@ -1452,4 +1452,3 @@ class PHPExcel_Calculation_MathTrig {
 		return (intval($value * $adjust)) / $adjust;
 	}
 }
-?>

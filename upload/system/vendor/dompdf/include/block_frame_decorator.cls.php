@@ -226,4 +226,3 @@ class Block_Frame_Decorator extends Frame_Decorator {
     $this->_line_boxes[ ++$this->_cl ] = $new_line;
   }
 }
-?>

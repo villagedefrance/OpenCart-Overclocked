@@ -50,7 +50,6 @@ class PHPExcel_Reader_Excel2007_Chart
 		return null;
 	}	//	function _getAttribute()
 
-
 	private static function _readColor($color,$background=false) {
 		if (isset($color["rgb"])) {
 			return (string)$color["rgb"];
@@ -58,7 +57,6 @@ class PHPExcel_Reader_Excel2007_Chart
 			return PHPExcel_Style_Color::indexedColor($color["indexed"]-7,$background)->getARGB();
 		}
 	}
-
 
 	public static function readChart($chartElements,$chartName) {
 		$namespacesChartMeta = $chartElements->getNamespaces(true);
@@ -348,13 +346,14 @@ class PHPExcel_Reader_Excel2007_Chart
 		}
 
 		if (empty($seriesVal)) {
-			$seriesVal = NULL;
+			$seriesVal = null;
 		}
 
-		return array( 'formatCode'	=> $formatCode,
-					  'pointCount'	=> $pointCount,
-					  'dataValues'	=> $seriesVal
-					);
+		return array(
+			'formatCode' => $formatCode,
+			'pointCount' => $pointCount,
+			'dataValues' => $seriesVal
+		);
 	}	//	function _chartDataSeriesValues()
 
 
@@ -384,10 +383,11 @@ class PHPExcel_Reader_Excel2007_Chart
 			}
 		}
 
-		return array( 'formatCode'	=> $formatCode,
-					  'pointCount'	=> $pointCount,
-					  'dataValues'	=> $seriesVal
-					);
+		return array(
+			'formatCode' => $formatCode,
+			'pointCount' => $pointCount,
+			'dataValues' => $seriesVal
+		);
 	}	//	function _chartDataSeriesValuesMultiLevel()
 
 	private static function _parseRichText($titleDetailPart = null) {
@@ -513,5 +513,4 @@ class PHPExcel_Reader_Excel2007_Chart
 			}
 		}
 	}
-
 }

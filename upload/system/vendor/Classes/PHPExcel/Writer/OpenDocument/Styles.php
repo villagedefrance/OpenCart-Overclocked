@@ -97,4 +97,3 @@ class PHPExcel_Writer_OpenDocument_Styles extends PHPExcel_Writer_OpenDocument_W
         return $objWriter->getData();
     }
 }
-?>

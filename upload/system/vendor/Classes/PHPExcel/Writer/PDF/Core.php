@@ -54,14 +54,14 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML
      *
      * @var string
      */
-    protected $_orientation    = NULL;
+    protected $_orientation = NULL;
 
     /**
      * Paper size (Over-ride)
      *
      * @var int
      */
-    protected $_paperSize    = NULL;
+    protected $_paperSize = NULL;
 
 
     /**
@@ -361,4 +361,3 @@ abstract class PHPExcel_Writer_PDF_Core extends PHPExcel_Writer_HTML
         PHPExcel_Calculation::setArrayReturnType($this->_saveArrayReturnType);
     }
 }
-?>

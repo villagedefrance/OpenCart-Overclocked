@@ -172,4 +172,3 @@ class PHPExcel_Calculation_FormulaToken {
     	$this->_tokenSubType = $value;
     }
 }
-?>

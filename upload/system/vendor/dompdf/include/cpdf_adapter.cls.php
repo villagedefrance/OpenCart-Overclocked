@@ -871,4 +871,3 @@ class CPDF_Adapter implements Canvas {
     return $this->_pdf->messages;
   }
 }
-?>

@@ -2408,4 +2408,3 @@ class PHPExcel_Calculation_Financial {
 		return PHPExcel_Calculation_Functions::VALUE();
 	}
 }
-?>

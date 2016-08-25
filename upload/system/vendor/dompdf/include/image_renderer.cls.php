@@ -87,9 +87,7 @@ class Image_Renderer extends Block_Renderer {
       $font = $style->font_family;
       $size = $style->font_size;
       $spacing = $style->word_spacing;
-      $this->_canvas->text($x, $y, $alt,
-                           $font, $size,
-                           $style->color, $spacing);
+      $this->_canvas->text($x, $y, $alt, $font, $size, $style->color, $spacing);
     }
     else {
       $this->_canvas->image( $src, $x, $y, $w, $h, $style->image_resolution);

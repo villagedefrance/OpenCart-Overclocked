@@ -343,6 +343,7 @@ abstract class PHPExcel_Properties {
 
   protected function getArrayElementsValue($properties, $elements) {
     $reference = & $properties;
+
     if (!is_array($elements)) {
       return $reference[$elements];
     } else {
@@ -355,5 +356,4 @@ abstract class PHPExcel_Properties {
 
     return $this;
   }
-
-} 
+}

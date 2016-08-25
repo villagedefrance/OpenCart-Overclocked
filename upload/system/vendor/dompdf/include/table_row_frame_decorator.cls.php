@@ -43,6 +43,4 @@ class Table_Row_Frame_Decorator extends Frame_Decorator {
     foreach ($erroneous_frames as $frame) 
       $p->move_after($frame);
   }
-  
-  
 }

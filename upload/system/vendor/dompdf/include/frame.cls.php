@@ -1181,4 +1181,3 @@ class FrameTreeIterator implements Iterator {
     return $b;
   }
 }
-?>

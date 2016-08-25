@@ -72,9 +72,8 @@ if ( function_exists("spl_autoload_register") ) {
       spl_autoload_register("__autoload");
     }
   }
-}
 
-elseif ( !function_exists("__autoload") ) {
+} elseif ( !function_exists("__autoload") ) {
   /**
    * Default __autoload() function
    *

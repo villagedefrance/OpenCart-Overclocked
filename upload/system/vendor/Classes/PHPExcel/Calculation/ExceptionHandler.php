@@ -48,4 +48,3 @@ class PHPExcel_Calculation_ExceptionHandler {
 		restore_error_handler();
 	}
 }
-?>

@@ -3820,4 +3820,3 @@ class PHPExcel_Calculation_Statistical {
 		return 1 - self::NORMSDIST((self::AVERAGE($dataSet) - $m0)/($sigma/SQRT($n)));
 	}
 }
-?>

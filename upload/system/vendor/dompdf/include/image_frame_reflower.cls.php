@@ -125,10 +125,7 @@ class Image_Frame_Reflower extends Frame_Reflower {
     }
     
     // Handle min/max width/height
-    if ( $style->min_width  !== "none" || 
-         $style->max_width  !== "none" || 
-         $style->min_height !== "none" || 
-         $style->max_height !== "none" ) {
+    if ( $style->min_width  !== "none" || $style->max_width  !== "none" || $style->min_height !== "none" || $style->max_height !== "none" ) {
            
       list(/*$x*/, /*$y*/, $w, $h) = $this->_frame->get_containing_block();
       

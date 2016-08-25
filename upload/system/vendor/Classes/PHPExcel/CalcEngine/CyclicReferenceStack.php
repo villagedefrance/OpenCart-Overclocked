@@ -93,4 +93,3 @@ class PHPExcel_CalcEngine_CyclicReferenceStack {
 		return $this->_stack;
 	}
 }
-?>

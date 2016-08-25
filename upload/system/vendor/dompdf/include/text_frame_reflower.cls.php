@@ -369,8 +369,7 @@ class Text_Frame_Reflower extends Frame_Reflower {
       /*foreach($words as &$word) {
         $word = Font_Metrics::get_text_width($word, $font, $size, $word_spacing, $char_spacing);
       }*/
-      array_walk($words, create_function('&$val,$str',
-                                         '$val = Font_Metrics::get_text_width($str, "'.addslashes($font).'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
+      array_walk($words, create_function('&$val,$str', '$val = Font_Metrics::get_text_width($str, "'.addslashes($font).'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
       arsort($words);
       $min = reset($words);
       break;
@@ -380,8 +379,7 @@ class Text_Frame_Reflower extends Frame_Reflower {
       /*foreach($words as &$word) {
         $word = Font_Metrics::get_text_width($word, $font, $size, $word_spacing, $char_spacing);
       }*/
-      array_walk($lines, create_function('&$val,$str',
-                                         '$val = Font_Metrics::get_text_width($str, "'.addslashes($font).'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
+      array_walk($lines, create_function('&$val,$str', '$val = Font_Metrics::get_text_width($str, "'.addslashes($font).'", '.$size.', '.$word_spacing.', '.$char_spacing.');'));
 
       arsort($lines);
       $min = reset($lines);
@@ -390,7 +388,6 @@ class Text_Frame_Reflower extends Frame_Reflower {
     case "nowrap":
       $min = Font_Metrics::get_text_width($this->_collapse_white_space($str), $font, $size, $word_spacing, $char_spacing);
       break;
-
     }
 
     switch ($style->white_space) {
@@ -421,12 +418,7 @@ class Text_Frame_Reflower extends Frame_Reflower {
 
     $max = Font_Metrics::get_text_width($str, $font, $size, $word_spacing, $char_spacing);
     
-    $delta = $style->length_in_pt(array($style->margin_left,
-                                        $style->border_left_width,
-                                        $style->padding_left,
-                                        $style->padding_right,
-                                        $style->border_right_width,
-                                        $style->margin_right), $line_width);
+    $delta = $style->length_in_pt(array($style->margin_left, $style->border_left_width, $style->padding_left, $style->padding_right, $style->border_right_width, $style->margin_right), $line_width);
     $min += $delta;
     $max += $delta;
 
@@ -434,4 +426,3 @@ class Text_Frame_Reflower extends Frame_Reflower {
 
   }
 }
-?>

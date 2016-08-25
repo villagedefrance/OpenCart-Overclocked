@@ -76,9 +76,8 @@ class PHPExcel_Writer_PDF_DomPDF extends PHPExcel_Writer_PDF_Core implements PHP
             $printMargins = $this->_phpExcel->getSheet(0)->getPageMargins();
         } else {
             $orientation = ($this->_phpExcel->getSheet($this->getSheetIndex())->getPageSetup()->getOrientation()
-                == PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE)
-                    ? 'L'
-                    : 'P';
+                == PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE) ? 'L' : 'P';
+
             $printPaperSize = $this->_phpExcel->getSheet($this->getSheetIndex())->getPageSetup()->getPaperSize();
             $printMargins = $this->_phpExcel->getSheet($this->getSheetIndex())->getPageMargins();
         }
@@ -118,4 +117,3 @@ class PHPExcel_Writer_PDF_DomPDF extends PHPExcel_Writer_PDF_Core implements PHP
 		parent::restoreStateAfterSave($fileHandle);
     }
 }
-?>

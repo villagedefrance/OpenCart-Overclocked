@@ -3829,4 +3829,3 @@ class HTML5_TreeBuilder {
         }
     }
 }
-?>

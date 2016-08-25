@@ -285,4 +285,3 @@ class PHPExcel_Writer_Excel2007_ContentTypes extends PHPExcel_Writer_Excel2007_W
 		}
 	}
 }
-?>

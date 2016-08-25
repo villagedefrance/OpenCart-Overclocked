@@ -93,4 +93,3 @@
     'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed',
   ),
 );
-?>

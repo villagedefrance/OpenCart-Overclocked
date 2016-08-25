@@ -140,4 +140,3 @@ class List_Bullet_Image_Frame_Decorator extends Frame_Decorator {
     return $this->_img->get_image_url();
   }
 }
-?>

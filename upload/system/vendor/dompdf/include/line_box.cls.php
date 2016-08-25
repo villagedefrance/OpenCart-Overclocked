@@ -251,4 +251,3 @@ class LineBoxList implements Iterator {
   
 }
 */
-?>

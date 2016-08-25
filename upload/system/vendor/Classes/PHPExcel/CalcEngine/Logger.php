@@ -146,4 +146,3 @@ class PHPExcel_CalcEngine_Logger {
 		return $this->_debugLog;
 	}
 }
-?>

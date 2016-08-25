@@ -96,4 +96,3 @@ class PHPExcel_Writer_OpenDocument_Meta extends PHPExcel_Writer_OpenDocument_Wri
         return $objWriter->getData();
     }
 }
-?>

@@ -46,4 +46,3 @@ class PHPExcel_Writer_OpenDocument_Mimetype extends PHPExcel_Writer_OpenDocument
         return 'application/vnd.oasis.opendocument.spreadsheet';
     }
 }
-?>

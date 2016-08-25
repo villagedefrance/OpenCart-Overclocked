@@ -715,4 +715,3 @@ abstract class Frame_Decorator extends Frame {
     return $this->_reflower->get_min_max_width();
   }
 }
-?>

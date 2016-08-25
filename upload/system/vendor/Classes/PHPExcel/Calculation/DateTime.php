@@ -1558,4 +1558,3 @@ class PHPExcel_Calculation_DateTime {
 		}
 	}
 }
-?>

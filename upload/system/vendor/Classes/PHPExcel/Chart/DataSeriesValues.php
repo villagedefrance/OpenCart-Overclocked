@@ -36,8 +36,8 @@
 class PHPExcel_Chart_DataSeriesValues
 {
 
-	const DATASERIES_TYPE_STRING	= 'String';
-	const DATASERIES_TYPE_NUMBER	= 'Number';
+	const DATASERIES_TYPE_STRING = 'String';
+	const DATASERIES_TYPE_NUMBER = 'Number';
 
 	private static $_dataTypeValues = array(
 		self::DATASERIES_TYPE_STRING,
@@ -147,7 +147,6 @@ class PHPExcel_Chart_DataSeriesValues
 		$this->_dataSource = $dataSource;
 
 		if ($refreshDataValues) {
-			//	TO DO
 		}
 
 		return $this;
@@ -281,15 +280,11 @@ class PHPExcel_Chart_DataSeriesValues
         if ($this->_dataSource !== NULL) {
         	$calcEngine = PHPExcel_Calculation::getInstance($worksheet->getParent());
 			$newDataValues = PHPExcel_Calculation::_unwrapResult(
-			    $calcEngine->_calculateFormulaValue(
-			        '='.$this->_dataSource,
-			        NULL,
-			        $worksheet->getCell('A1')
-			    )
+			    $calcEngine->_calculateFormulaValue('='.$this->_dataSource, NULL, $worksheet->getCell('A1'))
 			);
 			if ($flatten) {
 				$this->_dataValues = PHPExcel_Calculation_Functions::flattenArray($newDataValues);
-				foreach($this->_dataValues as &$dataValue) {
+				foreach ($this->_dataValues as &$dataValue) {
 					if ((!empty($dataValue)) && ($dataValue[0] == '#')) {
 						$dataValue = 0.0;
 					}
@@ -306,13 +301,13 @@ class PHPExcel_Chart_DataSeriesValues
 					$this->_dataValues = PHPExcel_Calculation_Functions::flattenArray($newDataValues);
 				} else {
 					$newArray = array_values(array_shift($newDataValues));
-					foreach($newArray as $i => $newDataSet) {
+					foreach ($newArray as $i => $newDataSet) {
 						$newArray[$i] = array($newDataSet);
 					}
 
-					foreach($newDataValues as $newDataSet) {
+					foreach ($newDataValues as $newDataSet) {
 						$i = 0;
-						foreach($newDataSet as $newDataVal) {
+						foreach ($newDataSet as $newDataVal) {
 							array_unshift($newArray[$i++],$newDataVal);
 						}
 					}
@@ -321,7 +316,5 @@ class PHPExcel_Chart_DataSeriesValues
 			}
 			$this->_pointCount = count($this->_dataValues);
 		}
-
 	}
-
 }

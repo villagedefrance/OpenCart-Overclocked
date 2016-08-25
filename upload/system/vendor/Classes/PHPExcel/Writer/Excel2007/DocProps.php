@@ -269,4 +269,3 @@ class PHPExcel_Writer_Excel2007_DocProps extends PHPExcel_Writer_Excel2007_Write
 		return $objWriter->getData();
 	}
 }
-?>

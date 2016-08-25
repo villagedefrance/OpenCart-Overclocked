@@ -108,4 +108,3 @@ class PHPExcel_Cell_DefaultValueBinder implements PHPExcel_Cell_IValueBinder {
         return PHPExcel_Cell_DataType::TYPE_STRING;
     }
 }
-?>

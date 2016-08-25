@@ -40,77 +40,77 @@ class PHPExcel_Best_Fit
 	 *
 	 * @var	boolean
 	 **/
-	protected $_error				= False;
+	protected $_error = False;
 
 	/**
 	 * Algorithm type to use for best-fit
 	 *
 	 * @var	string
 	 **/
-	protected $_bestFitType			= 'undetermined';
+	protected $_bestFitType = 'undetermined';
 
 	/**
 	 * Number of entries in the sets of x- and y-value arrays
 	 *
 	 * @var	int
 	 **/
-	protected $_valueCount			= 0;
+	protected $_valueCount = 0;
 
 	/**
 	 * X-value dataseries of values
 	 *
 	 * @var	float[]
 	 **/
-	protected $_xValues				= array();
+	protected $_xValues = array();
 
 	/**
 	 * Y-value dataseries of values
 	 *
 	 * @var	float[]
 	 **/
-	protected $_yValues				= array();
+	protected $_yValues = array();
 
 	/**
 	 * Flag indicating whether values should be adjusted to Y=0
 	 *
 	 * @var	boolean
 	 **/
-	protected $_adjustToZero		= False;
+	protected $_adjustToZero = False;
 
 	/**
 	 * Y-value series of best-fit values
 	 *
 	 * @var	float[]
 	 **/
-	protected $_yBestFitValues		= array();
+	protected $_yBestFitValues = array();
 
-	protected $_goodnessOfFit 		= 1;
+	protected $_goodnessOfFit = 1;
 
-	protected $_stdevOfResiduals	= 0;
+	protected $_stdevOfResiduals = 0;
 
-	protected $_covariance			= 0;
+	protected $_covariance = 0;
 
-	protected $_correlation			= 0;
+	protected $_correlation = 0;
 
-	protected $_SSRegression		= 0;
+	protected $_SSRegression = 0;
 
-	protected $_SSResiduals			= 0;
+	protected $_SSResiduals = 0;
 
-	protected $_DFResiduals			= 0;
+	protected $_DFResiduals = 0;
 
-	protected $_F					= 0;
+	protected $_F = 0;
 
-	protected $_slope				= 0;
+	protected $_slope = 0;
 
-	protected $_slopeSE				= 0;
+	protected $_slopeSE = 0;
 
-	protected $_intersect			= 0;
+	protected $_intersect = 0;
 
-	protected $_intersectSE			= 0;
+	protected $_intersectSE = 0;
 
-	protected $_Xoffset				= 0;
+	protected $_Xoffset = 0;
 
-	protected $_Yoffset				= 0;
+	protected $_Yoffset = 0;
 
 
 	public function getError() {
@@ -364,7 +364,6 @@ class PHPExcel_Best_Fit
 		}
 	}	//	function _calculateGoodnessOfFit()
 
-
 	protected function _leastSquareFit($yValues, $xValues, $const) {
 		// calculate sums
 		$x_sum = array_sum($xValues);
@@ -409,7 +408,7 @@ class PHPExcel_Best_Fit
 	 * @param	float[]		$xValues	The set of X-values for this regression
 	 * @param	boolean		$const
 	 */
-	function __construct($yValues, $xValues=array(), $const=True) {
+	function __construct($yValues, $xValues = array(), $const = true) {
 		//	Calculate number of points
 		$nY = count($yValues);
 		$nX = count($xValues);
@@ -420,7 +419,7 @@ class PHPExcel_Best_Fit
 			$nX = $nY;
 		} elseif ($nY != $nX) {
 			//	Ensure both arrays of points are the same size
-			$this->_error = True;
+			$this->_error = true;
 			return False;
 		}
 

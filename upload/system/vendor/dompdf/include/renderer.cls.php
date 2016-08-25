@@ -280,4 +280,3 @@ class Renderer extends Abstract_Renderer {
     $this->_renderers[$type]->render($frame);
   }
 }
-?>

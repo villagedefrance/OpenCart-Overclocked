@@ -34,14 +34,14 @@
  * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Worksheet_AutoFilter_Column {
-	const AUTOFILTER_FILTERTYPE_FILTER			= 'filters';
-	const AUTOFILTER_FILTERTYPE_CUSTOMFILTER	= 'customFilters';
+	const AUTOFILTER_FILTERTYPE_FILTER = 'filters';
+	const AUTOFILTER_FILTERTYPE_CUSTOMFILTER = 'customFilters';
 	//	Supports no more than 2 rules, with an And/Or join criteria
 	//		if more than 1 rule is defined
-	const AUTOFILTER_FILTERTYPE_DYNAMICFILTER	= 'dynamicFilter';
+	const AUTOFILTER_FILTERTYPE_DYNAMICFILTER = 'dynamicFilter';
 	//	Even though the filter rule is constant, the filtered data can vary
 	//		e.g. filtered by date = TODAY
-	const AUTOFILTER_FILTERTYPE_TOPTENFILTER	= 'top10';
+	const AUTOFILTER_FILTERTYPE_TOPTENFILTER = 'top10';
 
 	/**
 	 * Types of autofilter rules
@@ -60,8 +60,8 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	);
 
 	/* Multiple Rule Connections */
-	const AUTOFILTER_COLUMN_JOIN_AND	= 'and';
-	const AUTOFILTER_COLUMN_JOIN_OR		= 'or';
+	const AUTOFILTER_COLUMN_JOIN_AND = 'and';
+	const AUTOFILTER_COLUMN_JOIN_OR = 'or';
 
 	/**
 	 * Join options for autofilter rules
@@ -78,7 +78,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	 *
 	 * @var PHPExcel_Worksheet_AutoFilter
 	 */
-	private $_parent = NULL;
+	private $_parent = null;
 
 
 	/**
@@ -127,7 +127,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	 *	@param	string		                   $pColumn		Column (e.g. A)
 	 *	@param	PHPExcel_Worksheet_AutoFilter  $pParent		Autofilter for this column
 	 */
-	public function __construct($pColumn, PHPExcel_Worksheet_AutoFilter $pParent = NULL)
+	public function __construct($pColumn, PHPExcel_Worksheet_AutoFilter $pParent = null)
 	{
 		$this->_columnIndex = $pColumn;
 		$this->_parent = $pParent;
@@ -152,7 +152,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	public function setColumnIndex($pColumn) {
 		// Uppercase coordinate
 		$pColumn = strtoupper($pColumn);
-		if ($this->_parent !== NULL) {
+		if ($this->_parent !== null) {
 			$this->_parent->testColumnInRange($pColumn);
 		}
 
@@ -176,7 +176,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	 * @param PHPExcel_Worksheet_AutoFilter
 	 * @return PHPExcel_Worksheet_AutoFilter_Column
 	 */
-	public function setParent(PHPExcel_Worksheet_AutoFilter $pParent = NULL) {
+	public function setParent(PHPExcel_Worksheet_AutoFilter $pParent = null) {
 		$this->_parent = $pParent;
 
 		return $this;
@@ -281,7 +281,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	public function getAttribute($pName) {
 		if (isset($this->_attributes[$pName]))
 			return $this->_attributes[$pName];
-		return NULL;
+		return null;
 	}
 
 	/**
@@ -325,7 +325,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 	 * @param	boolean	$returnRule 	Flag indicating whether the rule object or the column object should be returned
 	 * @return	PHPExcel_Worksheet_AutoFilter_Column|PHPExcel_Worksheet_AutoFilter_Column_Rule
 	 */
-	public function addRule(PHPExcel_Worksheet_AutoFilter_Column_Rule $pRule, $returnRule=TRUE) {
+	public function addRule(PHPExcel_Worksheet_AutoFilter_Column_Rule $pRule, $returnRule = true) {
 		$pRule->setParent($this);
 		$this->_ruleset[] = $pRule;
 
@@ -372,7 +372,7 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 			if (is_object($value)) {
 				if ($key == '_parent') {
 					//	Detach from autofilter parent
-					$this->$key = NULL;
+					$this->$key = null;
 				} else {
 					$this->$key = clone $value;
 				}
@@ -390,4 +390,3 @@ class PHPExcel_Worksheet_AutoFilter_Column {
 		}
 	}
 }
-?>

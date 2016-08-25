@@ -286,4 +286,3 @@ class PHPExcel_Calculation_Logical {
 		return self::STATEMENT_IF(PHPExcel_Calculation_Functions::IS_ERROR($testValue), $errorpart, $testValue);
 	}
 }
-?>

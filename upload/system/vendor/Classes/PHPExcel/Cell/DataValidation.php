@@ -482,4 +482,3 @@ class PHPExcel_Cell_DataValidation {
         }
     }
 }
-?>

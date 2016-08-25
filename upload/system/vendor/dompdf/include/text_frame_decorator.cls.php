@@ -171,4 +171,3 @@ class Text_Frame_Decorator extends Frame_Decorator {
 }
 
 Text_Frame_Decorator::$_buggy_splittext = PHP_VERSION_ID < 50207;
-?>

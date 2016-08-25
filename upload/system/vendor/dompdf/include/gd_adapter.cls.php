@@ -825,4 +825,3 @@ class GD_Adapter implements Canvas {
     return $image;
   }
 }
-?>

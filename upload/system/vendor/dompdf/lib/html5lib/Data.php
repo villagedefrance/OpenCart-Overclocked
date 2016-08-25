@@ -108,4 +108,3 @@ class HTML5_Data {
         return $ret;
     }
 }
-?>

@@ -173,18 +173,18 @@ class PHPExcel_Writer_Excel5_BIFFwriter
 	function _storeBof($type)
 	{
 		$record  = 0x0809;			// Record identifier	(BIFF5-BIFF8)
-		$length  = 0x0010;
+		$length = 0x0010;
 
 		// by inspection of real files, MS Office Excel 2007 writes the following
 		$unknown = pack("VV", 0x000100D1, 0x00000406);
 
-		$build   = 0x0DBB;			//	Excel 97
-		$year    = 0x07CC;			//	Excel 97
+		$build = 0x0DBB;			//	Excel 97
+		$year = 0x07CC;			//	Excel 97
 
 		$version = 0x0600;			//	BIFF8
 
-		$header  = pack("vv",   $record, $length);
-		$data    = pack("vvvv", $version, $type, $build, $year);
+		$header = pack("vv",   $record, $length);
+		$data = pack("vvvv", $version, $type, $build, $year);
 		$this->_append($header . $data . $unknown);
 	}
 
@@ -195,10 +195,10 @@ class PHPExcel_Writer_Excel5_BIFFwriter
 	 */
 	function _storeEof()
 	{
-		$record    = 0x000A;   // Record identifier
-		$length    = 0x0000;   // Number of bytes to follow
+		$record = 0x000A;   // Record identifier
+		$length = 0x0000;   // Number of bytes to follow
 
-		$header    = pack("vv", $record, $length);
+		$header = pack("vv", $record, $length);
 		$this->_append($header);
 	}
 
@@ -209,9 +209,9 @@ class PHPExcel_Writer_Excel5_BIFFwriter
 	 */
 	public function writeEof()
 	{
-		$record    = 0x000A;   // Record identifier
-		$length    = 0x0000;   // Number of bytes to follow
-		$header    = pack("vv", $record, $length);
+		$record = 0x000A;   // Record identifier
+		$length = 0x0000;   // Number of bytes to follow
+		$header = pack("vv", $record, $length);
 		return $this->writeData($header);
 	}
 
@@ -229,7 +229,7 @@ class PHPExcel_Writer_Excel5_BIFFwriter
 	 */
 	function _addContinue($data)
 	{
-		$limit  = $this->_limit;
+		$limit = $this->_limit;
 		$record = 0x003C;         // Record identifier
 
 		// The first 2080/8224 bytes remain intact. However, we have to change
@@ -253,4 +253,3 @@ class PHPExcel_Writer_Excel5_BIFFwriter
 		return $tmp;
 	}
 }
-?>

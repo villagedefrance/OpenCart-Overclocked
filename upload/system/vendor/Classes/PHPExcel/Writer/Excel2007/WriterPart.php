@@ -78,4 +78,3 @@ abstract class PHPExcel_Writer_Excel2007_WriterPart
 		}
 	}
 }
-?>

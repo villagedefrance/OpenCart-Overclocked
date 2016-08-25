@@ -24,9 +24,7 @@ class Frame_Tree {
    *
    * @var array
    */
-  static protected $_HIDDEN_TAGS = array("area", "base", "basefont", "head", "style",
-                                         "meta", "title", "colgroup",
-                                         "noembed", "noscript", "param", "#comment");  
+  static protected $_HIDDEN_TAGS = array("area", "base", "basefont", "head", "style", "meta", "title", "colgroup", "noembed", "noscript", "param", "#comment");  
   /**
    * The main DomDocument
    *
@@ -237,4 +235,3 @@ class Frame_Tree {
     return $frame_id;
   }
 }
-?>

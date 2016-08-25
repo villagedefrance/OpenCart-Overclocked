@@ -279,4 +279,3 @@ class HTML5_InputStream {
         }
     }
 }
-?>

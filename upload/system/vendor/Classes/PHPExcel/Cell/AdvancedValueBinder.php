@@ -198,4 +198,3 @@ class PHPExcel_Cell_AdvancedValueBinder extends PHPExcel_Cell_DefaultValueBinder
         return parent::bindValue($cell, $value);
     }
 }
-?>

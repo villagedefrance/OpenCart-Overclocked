@@ -121,4 +121,3 @@ class Absolute_Positioner extends Positioner {
     $frame->set_position($x, $y);
   }
 }
-?>

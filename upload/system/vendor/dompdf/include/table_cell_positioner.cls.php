@@ -25,4 +25,3 @@ class Table_Cell_Positioner extends Positioner {
     $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
   }
 }
-?>

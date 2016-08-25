@@ -2654,4 +2654,3 @@ class PHPExcel_Calculation_Engineering {
 		return ($value * self::$_unitConversions[$unitGroup1][$fromUOM][$toUOM]) / $toMultiplier;
 	}
 }
-?>

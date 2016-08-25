@@ -300,4 +300,3 @@ class PHPExcel_CachedObjectStorage_Wincache extends PHPExcel_CachedObjectStorage
 		return true;
 	}
 }
-?>

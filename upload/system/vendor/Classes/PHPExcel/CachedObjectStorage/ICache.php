@@ -109,4 +109,3 @@ interface PHPExcel_CachedObjectStorage_ICache {
 	public static function cacheMethodIsAvailable();
 
 }
-?>

@@ -548,21 +548,21 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
 
 		// v:shape
 		$objWriter->startElement('v:shape');
-		$objWriter->writeAttribute('id', 			$pReference);
-		$objWriter->writeAttribute('o:spid', 		'_x0000_s' . $id);
-		$objWriter->writeAttribute('type', 			'#_x0000_t75');
-		$objWriter->writeAttribute('style', 		"position:absolute;margin-left:{$marginLeft}px;margin-top:{$marginTop}px;width:{$width}px;height:{$height}px;z-index:1");
+		$objWriter->writeAttribute('id', $pReference);
+		$objWriter->writeAttribute('o:spid', '_x0000_s' . $id);
+		$objWriter->writeAttribute('type', '#_x0000_t75');
+		$objWriter->writeAttribute('style', "position:absolute;margin-left:{$marginLeft}px;margin-top:{$marginTop}px;width:{$width}px;height:{$height}px;z-index:1");
 
 			// v:imagedata
 			$objWriter->startElement('v:imagedata');
-			$objWriter->writeAttribute('o:relid', 		'rId' . $pReference);
-			$objWriter->writeAttribute('o:title', 		$pImage->getName());
+			$objWriter->writeAttribute('o:relid', 'rId' . $pReference);
+			$objWriter->writeAttribute('o:title', $pImage->getName());
 			$objWriter->endElement();
 
 			// o:lock
 			$objWriter->startElement('o:lock');
-			$objWriter->writeAttribute('v:ext', 		'edit');
-			$objWriter->writeAttribute('rotation', 		't');
+			$objWriter->writeAttribute('v:ext', 'edit');
+			$objWriter->writeAttribute('rotation', 't');
 			$objWriter->endElement();
 
 		$objWriter->endElement();
@@ -596,4 +596,3 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
 		return $aDrawings;
 	}
 }
-?>

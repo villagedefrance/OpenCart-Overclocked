@@ -35,4 +35,3 @@ class Javascript_Embedder {
     $this->insert($frame->get_node()->nodeValue);
   }
 }
-?>

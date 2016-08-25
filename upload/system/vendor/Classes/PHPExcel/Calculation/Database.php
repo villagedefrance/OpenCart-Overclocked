@@ -715,4 +715,3 @@ class PHPExcel_Calculation_Database {
 		return PHPExcel_Calculation_Statistical::VARP($colData);
 	}
 }
-?>

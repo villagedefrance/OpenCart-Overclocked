@@ -1071,4 +1071,3 @@ class DOMPDF {
     return $this->_xml->saveHTML();
   }
 }
-?>

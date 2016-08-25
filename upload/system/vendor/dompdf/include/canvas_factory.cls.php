@@ -47,4 +47,3 @@ class Canvas_Factory {
     return new $class($paper, $orientation, $dompdf);
   }
 }
-?>

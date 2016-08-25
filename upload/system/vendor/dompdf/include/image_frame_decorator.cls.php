@@ -78,4 +78,3 @@ class Image_Frame_Decorator extends Frame_Decorator {
     return $this->_image_msg;
   }
 }
-?>

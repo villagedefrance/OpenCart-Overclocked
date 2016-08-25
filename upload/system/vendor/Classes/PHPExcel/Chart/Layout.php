@@ -47,42 +47,42 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var string
 	 */
-	private $_xMode		= NULL;
+	private $_xMode = NULL;
 
 	/**
 	 * Y Mode
 	 *
 	 * @var string
 	 */
-	private $_yMode		= NULL;
+	private $_yMode = NULL;
 
 	/**
 	 * X-Position
 	 *
 	 * @var float
 	 */
-	private $_xPos		= NULL;
+	private $_xPos = NULL;
 
 	/**
 	 * Y-Position
 	 *
 	 * @var float
 	 */
-	private $_yPos		= NULL;
+	private $_yPos = NULL;
 
 	/**
 	 * width
 	 *
 	 * @var float
 	 */
-	private $_width		= NULL;
+	private $_width = NULL;
 
 	/**
 	 * height
 	 *
 	 * @var float
 	 */
-	private $_height	= NULL;
+	private $_height = NULL;
 
 	/**
 	 * show legend key
@@ -90,7 +90,7 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var boolean
 	 */
-	private $_showLegendKey	= NULL;
+	private $_showLegendKey = NULL;
 
 	/**
 	 * show value
@@ -98,7 +98,7 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var boolean
 	 */
-	private $_showVal	= NULL;
+	private $_showVal = NULL;
 
 	/**
 	 * show category name
@@ -106,7 +106,7 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var boolean
 	 */
-	private $_showCatName	= NULL;
+	private $_showCatName = NULL;
 
 	/**
 	 * show data series name
@@ -114,7 +114,7 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var boolean
 	 */
-	private $_showSerName	= NULL;
+	private $_showSerName = NULL;
 
 	/**
 	 * show percentage
@@ -122,7 +122,7 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var boolean
 	 */
-	private $_showPercent	= NULL;
+	private $_showPercent = NULL;
 
 	/**
 	 * show bubble size
@@ -137,21 +137,21 @@ class PHPExcel_Chart_Layout
 	 *
 	 * @var boolean
 	 */
-	private $_showLeaderLines	= NULL;
+	private $_showLeaderLines = NULL;
 
 
 	/**
 	 * Create a new PHPExcel_Chart_Layout
 	 */
-	public function __construct($layout=array())
+	public function __construct($layout = array())
 	{
-		if (isset($layout['layoutTarget']))	{ $this->_layoutTarget	= $layout['layoutTarget'];	}
-		if (isset($layout['xMode']))		{ $this->_xMode			= $layout['xMode'];			}
-		if (isset($layout['yMode']))		{ $this->_yMode			= $layout['yMode'];			}
-		if (isset($layout['x']))			{ $this->_xPos			= (float) $layout['x'];		}
-		if (isset($layout['y']))			{ $this->_yPos			= (float) $layout['y'];		}
-		if (isset($layout['w']))			{ $this->_width			= (float) $layout['w'];		}
-		if (isset($layout['h']))			{ $this->_height		= (float) $layout['h'];		}
+		if (isset($layout['layoutTarget'])) { $this->_layoutTarget = $layout['layoutTarget']; }
+		if (isset($layout['xMode'])) { $this->_xMode = $layout['xMode']; }
+		if (isset($layout['yMode'])) { $this->_yMode = $layout['yMode']; }
+		if (isset($layout['x'])) { $this->_xPos = (float) $layout['x']; }
+		if (isset($layout['y'])) { $this->_yPos = (float) $layout['y']; }
+		if (isset($layout['w'])) { $this->_width = (float) $layout['w']; }
+		if (isset($layout['h'])) { $this->_height = (float) $layout['h']; }
 	}
 
 	/**
@@ -441,5 +441,4 @@ class PHPExcel_Chart_Layout
 		$this->_showLeaderLines = $value;
         return $this;
 	}
-
 }

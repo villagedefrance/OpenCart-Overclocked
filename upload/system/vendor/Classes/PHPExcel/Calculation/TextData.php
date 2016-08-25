@@ -145,7 +145,7 @@ class PHPExcel_Calculation_TextData {
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
 
-		$characters	= PHPExcel_Calculation_Functions::flattenSingleValue($characters);
+		$characters = PHPExcel_Calculation_Functions::flattenSingleValue($characters);
 
 		if (is_bool($characters)) {
 			if (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE) {
@@ -649,4 +649,3 @@ class PHPExcel_Calculation_TextData {
 		return (float)$value;
 	}
 }
-?>

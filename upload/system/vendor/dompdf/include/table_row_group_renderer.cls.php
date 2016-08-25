@@ -38,4 +38,3 @@ class Table_Row_Group_Renderer extends Block_Renderer {
     }
   }
 }
-?>

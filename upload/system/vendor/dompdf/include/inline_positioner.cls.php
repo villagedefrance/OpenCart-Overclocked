@@ -66,4 +66,3 @@ class Inline_Positioner extends Positioner {
     $f->set_position($cb["x"] + $line->w, $line->y);
   }
 }
-?>
