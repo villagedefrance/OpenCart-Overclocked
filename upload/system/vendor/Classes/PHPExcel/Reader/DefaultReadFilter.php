@@ -55,4 +55,3 @@ class PHPExcel_Reader_DefaultReadFilter implements PHPExcel_Reader_IReadFilter {
 		return true;
 	}
 }
-?>

@@ -546,4 +546,3 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
     	return $this;
     }
 }
-?>

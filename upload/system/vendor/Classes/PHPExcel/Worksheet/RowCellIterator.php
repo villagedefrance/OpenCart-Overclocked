@@ -220,4 +220,3 @@ class PHPExcel_Worksheet_RowCellIterator extends PHPExcel_Worksheet_CellIterator
         }
     }
 }
-?>

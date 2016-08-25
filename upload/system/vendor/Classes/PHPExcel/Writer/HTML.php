@@ -1552,7 +1552,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 				}
 			}
 
-			// TODO: Same for columns
+			// Same for columns
 		}
 
 		// We have calculated the spans
@@ -1582,4 +1582,3 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 		return "<style>\n" . $htmlPage . $htmlBody . "</style>\n";
 	}
 }
-?>

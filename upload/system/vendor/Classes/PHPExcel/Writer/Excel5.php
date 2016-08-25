@@ -897,4 +897,3 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 		return $data;
 	}
 }
-?>

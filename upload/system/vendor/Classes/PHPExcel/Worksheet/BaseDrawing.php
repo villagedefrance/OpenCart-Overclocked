@@ -486,4 +486,3 @@ class PHPExcel_Worksheet_BaseDrawing implements PHPExcel_IComparable {
 		}
 	}
 }
-?>

@@ -36,41 +36,41 @@
 class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
 	/* Fill types */
-	const FILL_NONE							= 'none';
-	const FILL_SOLID						= 'solid';
-	const FILL_GRADIENT_LINEAR				= 'linear';
-	const FILL_GRADIENT_PATH				= 'path';
-	const FILL_PATTERN_DARKDOWN				= 'darkDown';
-	const FILL_PATTERN_DARKGRAY				= 'darkGray';
-	const FILL_PATTERN_DARKGRID				= 'darkGrid';
-	const FILL_PATTERN_DARKHORIZONTAL		= 'darkHorizontal';
-	const FILL_PATTERN_DARKTRELLIS			= 'darkTrellis';
-	const FILL_PATTERN_DARKUP				= 'darkUp';
-	const FILL_PATTERN_DARKVERTICAL			= 'darkVertical';
-	const FILL_PATTERN_GRAY0625				= 'gray0625';
-	const FILL_PATTERN_GRAY125				= 'gray125';
-	const FILL_PATTERN_LIGHTDOWN			= 'lightDown';
-	const FILL_PATTERN_LIGHTGRAY			= 'lightGray';
-	const FILL_PATTERN_LIGHTGRID			= 'lightGrid';
-	const FILL_PATTERN_LIGHTHORIZONTAL		= 'lightHorizontal';
-	const FILL_PATTERN_LIGHTTRELLIS			= 'lightTrellis';
-	const FILL_PATTERN_LIGHTUP				= 'lightUp';
-	const FILL_PATTERN_LIGHTVERTICAL		= 'lightVertical';
-	const FILL_PATTERN_MEDIUMGRAY			= 'mediumGray';
+	const FILL_NONE                    = 'none';
+	const FILL_SOLID                   = 'solid';
+	const FILL_GRADIENT_LINEAR         = 'linear';
+	const FILL_GRADIENT_PATH           = 'path';
+	const FILL_PATTERN_DARKDOWN        = 'darkDown';
+	const FILL_PATTERN_DARKGRAY        = 'darkGray';
+	const FILL_PATTERN_DARKGRID        = 'darkGrid';
+	const FILL_PATTERN_DARKHORIZONTAL  = 'darkHorizontal';
+	const FILL_PATTERN_DARKTRELLIS     = 'darkTrellis';
+	const FILL_PATTERN_DARKUP          = 'darkUp';
+	const FILL_PATTERN_DARKVERTICAL    = 'darkVertical';
+	const FILL_PATTERN_GRAY0625        = 'gray0625';
+	const FILL_PATTERN_GRAY125         = 'gray125';
+	const FILL_PATTERN_LIGHTDOWN       = 'lightDown';
+	const FILL_PATTERN_LIGHTGRAY       = 'lightGray';
+	const FILL_PATTERN_LIGHTGRID       = 'lightGrid';
+	const FILL_PATTERN_LIGHTHORIZONTAL = 'lightHorizontal';
+	const FILL_PATTERN_LIGHTTRELLIS    = 'lightTrellis';
+	const FILL_PATTERN_LIGHTUP         = 'lightUp';
+	const FILL_PATTERN_LIGHTVERTICAL   = 'lightVertical';
+	const FILL_PATTERN_MEDIUMGRAY      = 'mediumGray';
 
 	/**
 	 * Fill type
 	 *
 	 * @var string
 	 */
-	protected $_fillType	= PHPExcel_Style_Fill::FILL_NONE;
+	protected $_fillType = PHPExcel_Style_Fill::FILL_NONE;
 
 	/**
 	 * Rotation
 	 *
 	 * @var double
 	 */
-	protected $_rotation	= 0;
+	protected $_rotation = 0;
 
 	/**
 	 * Start color
@@ -105,8 +105,8 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
 		if ($isConditional) {
 			$this->_fillType = NULL;
 		}
-		$this->_startColor			= new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_WHITE, $isSupervisor, $isConditional);
-		$this->_endColor			= new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor, $isConditional);
+		$this->_startColor = new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_WHITE, $isSupervisor, $isConditional);
+		$this->_endColor = new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor, $isConditional);
 
 		// bind parent if we are a supervisor
 		if ($isSupervisor) {
@@ -318,4 +318,3 @@ class PHPExcel_Style_Fill extends PHPExcel_Style_Supervisor implements PHPExcel_
 		);
 	}
 }
-?>

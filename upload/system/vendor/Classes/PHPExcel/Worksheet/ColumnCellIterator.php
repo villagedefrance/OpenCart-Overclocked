@@ -212,4 +212,3 @@ class PHPExcel_Worksheet_ColumnCellIterator extends PHPExcel_Worksheet_CellItera
         }
     }
 }
-?>

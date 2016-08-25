@@ -37,7 +37,7 @@ class PHPExcel_Shared_String {
 	/**	Constants				*/
 	/**	Regular Expressions		*/
 	//	Fraction
-	const STRING_REGEXP_FRACTION	= '(-?)(\d+)\s+(\d+\/\d+)';
+	const STRING_REGEXP_FRACTION = '(-?)(\d+)\s+(\d+\/\d+)';
 
 	/**
 	 * Control characters array
@@ -813,4 +813,3 @@ class PHPExcel_Shared_String {
 		return (is_numeric(substr($value, 0, strlen($v)))) ? $v : $value;
 	}
 }
-?>

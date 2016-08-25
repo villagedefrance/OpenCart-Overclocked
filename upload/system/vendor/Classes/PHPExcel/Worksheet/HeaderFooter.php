@@ -96,82 +96,82 @@
 class PHPExcel_Worksheet_HeaderFooter
 {
 	/* Header/footer image location */
-	const IMAGE_HEADER_LEFT							= 'LH';
-	const IMAGE_HEADER_CENTER						= 'CH';
-	const IMAGE_HEADER_RIGHT						= 'RH';
-	const IMAGE_FOOTER_LEFT							= 'LF';
-	const IMAGE_FOOTER_CENTER						= 'CF';
-	const IMAGE_FOOTER_RIGHT						= 'RF';
+	const IMAGE_HEADER_LEFT = 'LH';
+	const IMAGE_HEADER_CENTER = 'CH';
+	const IMAGE_HEADER_RIGHT = 'RH';
+	const IMAGE_FOOTER_LEFT = 'LF';
+	const IMAGE_FOOTER_CENTER = 'CF';
+	const IMAGE_FOOTER_RIGHT = 'RF';
 
 	/**
 	 * OddHeader
 	 *
 	 * @var string
 	 */
-	private $_oddHeader			= '';
+	private $_oddHeader = '';
 
 	/**
 	 * OddFooter
 	 *
 	 * @var string
 	 */
-	private $_oddFooter			= '';
+	private $_oddFooter = '';
 
 	/**
 	 * EvenHeader
 	 *
 	 * @var string
 	 */
-	private $_evenHeader		= '';
+	private $_evenHeader = '';
 
 	/**
 	 * EvenFooter
 	 *
 	 * @var string
 	 */
-	private $_evenFooter		= '';
+	private $_evenFooter = '';
 
 	/**
 	 * FirstHeader
 	 *
 	 * @var string
 	 */
-	private $_firstHeader		= '';
+	private $_firstHeader = '';
 
 	/**
 	 * FirstFooter
 	 *
 	 * @var string
 	 */
-	private $_firstFooter		= '';
+	private $_firstFooter = '';
 
 	/**
 	 * Different header for Odd/Even, defaults to false
 	 *
 	 * @var boolean
 	 */
-	private $_differentOddEven	= false;
+	private $_differentOddEven = false;
 
 	/**
 	 * Different header for first page, defaults to false
 	 *
 	 * @var boolean
 	 */
-	private $_differentFirst	= false;
+	private $_differentFirst = false;
 
 	/**
 	 * Scale with document, defaults to true
 	 *
 	 * @var boolean
 	 */
-	private $_scaleWithDocument	= true;
+	private $_scaleWithDocument = true;
 
 	/**
 	 * Align with margins, defaults to true
 	 *
 	 * @var boolean
 	 */
-	private $_alignWithMargins	= true;
+	private $_alignWithMargins = true;
 
 	/**
 	 * Header/footer images
@@ -438,6 +438,7 @@ class PHPExcel_Worksheet_HeaderFooter
     public function getImages() {
     	// Sort array
     	$images = array();
+
     	if (isset($this->_headerFooterImages[self::IMAGE_HEADER_LEFT])) $images[self::IMAGE_HEADER_LEFT] = $this->_headerFooterImages[self::IMAGE_HEADER_LEFT];
     	if (isset($this->_headerFooterImages[self::IMAGE_HEADER_CENTER])) $images[self::IMAGE_HEADER_CENTER] = $this->_headerFooterImages[self::IMAGE_HEADER_CENTER];
     	if (isset($this->_headerFooterImages[self::IMAGE_HEADER_RIGHT])) $images[self::IMAGE_HEADER_RIGHT] = $this->_headerFooterImages[self::IMAGE_HEADER_RIGHT];
@@ -454,6 +455,7 @@ class PHPExcel_Worksheet_HeaderFooter
 	 */
 	public function __clone() {
 		$vars = get_object_vars($this);
+
 		foreach ($vars as $key => $value) {
 			if (is_object($value)) {
 				$this->$key = clone $value;
@@ -463,4 +465,3 @@ class PHPExcel_Worksheet_HeaderFooter
 		}
 	}
 }
-?>

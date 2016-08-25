@@ -859,4 +859,3 @@ class PHPExcel_Worksheet_AutoFilter
 		return (string) $this->_range;
 	}
 }
-?>

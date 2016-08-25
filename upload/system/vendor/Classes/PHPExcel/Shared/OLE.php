@@ -37,12 +37,12 @@ $GLOBALS['_OLE_INSTANCES'] = array();
 */
 class PHPExcel_Shared_OLE
 {
-	const OLE_PPS_TYPE_ROOT   =      5;
-	const OLE_PPS_TYPE_DIR    =      1;
-	const OLE_PPS_TYPE_FILE   =      2;
+	const OLE_PPS_TYPE_ROOT = 5;
+	const OLE_PPS_TYPE_DIR = 1;
+	const OLE_PPS_TYPE_FILE = 2;
 	const OLE_DATA_SIZE_SMALL = 0x1000;
-	const OLE_LONG_INT_SIZE   =      4;
-	const OLE_PPS_SIZE        =   0x80;
+	const OLE_LONG_INT_SIZE = 4;
+	const OLE_PPS_SIZE = 0x80;
 
 	/**
 	 * The file handle for reading an OLE container
@@ -280,8 +280,7 @@ class PHPExcel_Shared_OLE
 				$this->root = $pps;
 				break;
 			case self::OLE_PPS_TYPE_DIR:
-				$pps = new PHPExcel_Shared_OLE_PPS(null, null, null, null, null,
-								   null, null, null, null, array());
+				$pps = new PHPExcel_Shared_OLE_PPS(null, null, null, null, null, null, null, null, null, array());
 				break;
 			case self::OLE_PPS_TYPE_FILE:
 				$pps = new PHPExcel_Shared_OLE_PPS_File($name);
@@ -290,11 +289,11 @@ class PHPExcel_Shared_OLE
 				continue;
 			}
 			fseek($fh, 1, SEEK_CUR);
-			$pps->Type    = $type;
-			$pps->Name    = $name;
+			$pps->Type = $type;
+			$pps->Name = $name;
 			$pps->PrevPps = self::_readInt4($fh);
 			$pps->NextPps = self::_readInt4($fh);
-			$pps->DirPps  = self::_readInt4($fh);
+			$pps->DirPps = self::_readInt4($fh);
 			fseek($fh, 20, SEEK_CUR);
 			$pps->Time1st = self::OLE2LocalDate(fread($fh, 8));
 			$pps->Time2nd = self::OLE2LocalDate(fread($fh, 8));
@@ -473,8 +472,7 @@ class PHPExcel_Shared_OLE
 		// days from 1-1-1601 until the beggining of UNIX era
 		$days = 134774;
 		// calculate seconds
-		$big_date = $days*24*3600 + gmmktime(date("H",$date),date("i",$date),date("s",$date),
-											 date("m",$date),date("d",$date),date("Y",$date));
+		$big_date = $days*24*3600 + gmmktime(date("H",$date), date("i",$date), date("s",$date), date("m",$date), date("d",$date), date("Y",$date));
 		// multiply just to make MS happy
 		$big_date *= 10000000;
 

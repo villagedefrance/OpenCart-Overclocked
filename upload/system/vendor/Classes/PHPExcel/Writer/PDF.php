@@ -94,4 +94,3 @@ class PHPExcel_Writer_PDF implements PHPExcel_Writer_IWriter {
         $this->_renderer->save($pFilename);
     }
 }
-?>

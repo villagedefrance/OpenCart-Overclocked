@@ -36,20 +36,20 @@
 class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
 	/* Border style */
-	const BORDER_NONE				= 'none';
-	const BORDER_DASHDOT			= 'dashDot';
-	const BORDER_DASHDOTDOT			= 'dashDotDot';
-	const BORDER_DASHED				= 'dashed';
-	const BORDER_DOTTED				= 'dotted';
-	const BORDER_DOUBLE				= 'double';
-	const BORDER_HAIR				= 'hair';
-	const BORDER_MEDIUM				= 'medium';
-	const BORDER_MEDIUMDASHDOT		= 'mediumDashDot';
-	const BORDER_MEDIUMDASHDOTDOT	= 'mediumDashDotDot';
-	const BORDER_MEDIUMDASHED		= 'mediumDashed';
-	const BORDER_SLANTDASHDOT		= 'slantDashDot';
-	const BORDER_THICK				= 'thick';
-	const BORDER_THIN				= 'thin';
+	const BORDER_NONE = 'none';
+	const BORDER_DASHDOT = 'dashDot';
+	const BORDER_DASHDOTDOT = 'dashDotDot';
+	const BORDER_DASHED = 'dashed';
+	const BORDER_DOTTED = 'dotted';
+	const BORDER_DOUBLE = 'double';
+	const BORDER_HAIR = 'hair';
+	const BORDER_MEDIUM = 'medium';
+	const BORDER_MEDIUMDASHDOT = 'mediumDashDot';
+	const BORDER_MEDIUMDASHDOTDOT = 'mediumDashDotDot';
+	const BORDER_MEDIUMDASHED = 'mediumDashed';
+	const BORDER_SLANTDASHDOT = 'slantDashDot';
+	const BORDER_THICK = 'thick';
+	const BORDER_THIN = 'thin';
 
 	/**
 	 * Border style
@@ -82,13 +82,13 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
 	 *									Leave this value at default unless you understand exactly what
 	 *										its ramifications are
 	 */
-	public function __construct($isSupervisor = FALSE, $isConditional = FALSE)
+	public function __construct($isSupervisor = false, $isConditional = false)
 	{
 		// Supervisor?
 		parent::__construct($isSupervisor);
 
 		// Initialise values
-		$this->_color	= new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor);
+		$this->_color = new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor);
 
 		// bind parent if we are a supervisor
 		if ($isSupervisor) {
@@ -103,7 +103,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
 	 * @param string $parentPropertyName
 	 * @return PHPExcel_Style_Border
 	 */
-	public function bindParent($parent, $parentPropertyName=NULL)
+	public function bindParent($parent, $parentPropertyName = null)
 	{
 		$this->_parent = $parent;
 		$this->_parentPropertyName = $parentPropertyName;
@@ -128,15 +128,15 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
 				throw new PHPExcel_Exception('Cannot get shared component for a pseudo-border.');
 				break;
 			case '_bottom':
-				return $this->_parent->getSharedComponent()->getBottom();		break;
+				return $this->_parent->getSharedComponent()->getBottom(); break;
 			case '_diagonal':
-				return $this->_parent->getSharedComponent()->getDiagonal();		break;
+				return $this->_parent->getSharedComponent()->getDiagonal(); break;
 			case '_left':
-				return $this->_parent->getSharedComponent()->getLeft();			break;
+				return $this->_parent->getSharedComponent()->getLeft(); break;
 			case '_right':
-				return $this->_parent->getSharedComponent()->getRight();		break;
+				return $this->_parent->getSharedComponent()->getRight(); break;
 			case '_top':
-				return $this->_parent->getSharedComponent()->getTop();			break;
+				return $this->_parent->getSharedComponent()->getTop(); break;
 
 		}
 	}
@@ -151,25 +151,25 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
 	{
 		switch ($this->_parentPropertyName) {
 		case '_allBorders':
-				$key = 'allborders';	break;
+				$key = 'allborders'; break;
 		case '_bottom':
-				$key = 'bottom';		break;
+				$key = 'bottom'; break;
 		case '_diagonal':
-				$key = 'diagonal';		break;
+				$key = 'diagonal'; break;
 		case '_horizontal':
-				$key = 'horizontal';	break;
+				$key = 'horizontal'; break;
 		case '_inside':
-				$key = 'inside';		break;
+				$key = 'inside'; break;
 		case '_left':
-				$key = 'left';			break;
+				$key = 'left'; break;
 		case '_outline':
-				$key = 'outline';		break;
+				$key = 'outline'; break;
 		case '_right':
-				$key = 'right';			break;
+				$key = 'right'; break;
 		case '_top':
-				$key = 'top';			break;
+				$key = 'top'; break;
 		case '_vertical':
-				$key = 'vertical';		break;
+				$key = 'vertical'; break;
 		}
 		return $this->_parent->getStyleArray(array($key => $array));
 	}
@@ -234,7 +234,7 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
 
 		if (empty($pValue)) {
 			$pValue = PHPExcel_Style_Border::BORDER_NONE;
-		} elseif(is_bool($pValue) && $pValue) {
+		} elseif (is_bool($pValue) && $pValue) {
 			$pValue = PHPExcel_Style_Border::BORDER_MEDIUM;
 		}
 		if ($this->_isSupervisor) {
@@ -291,4 +291,3 @@ class PHPExcel_Style_Border extends PHPExcel_Style_Supervisor implements PHPExce
 		);
 	}
 }
-?>

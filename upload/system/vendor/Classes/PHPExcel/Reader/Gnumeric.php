@@ -428,20 +428,18 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 				if ($ExprID > '') {
 					if (((string) $cell) > '') {
 
-						$this->_expressions[$ExprID] = array( 'column'	=> $cellAttributes->Col,
-															  'row'		=> $cellAttributes->Row,
-															  'formula'	=> (string) $cell
-															);
+						$this->_expressions[$ExprID] = array('column'	=> $cellAttributes->Col, 'row' => $cellAttributes->Row, 'formula' => (string) $cell);
 //						echo 'NEW EXPRESSION ',$ExprID,'<br />';
 					} else {
 						$expression = $this->_expressions[$ExprID];
 
-						$cell = $this->_referenceHelper->updateFormulaReferences( $expression['formula'],
-																				  'A1',
-																				  $cellAttributes->Col - $expression['column'],
-																				  $cellAttributes->Row - $expression['row'],
-																				  $worksheetName
-																				);
+						$cell = $this->_referenceHelper->updateFormulaReferences(
+							$expression['formula'],
+							'A1',
+							$cellAttributes->Col - $expression['column'],
+							$cellAttributes->Row - $expression['row'],
+							$worksheetName
+						);
 //						echo 'SHARED EXPRESSION ',$ExprID,'<br />';
 //						echo 'New Value is ',$cell,'<br />';
 					}
@@ -479,8 +477,8 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 					//	Only comment objects are handled at the moment
 					if ($commentAttributes->Text) {
 						$objPHPExcel->getActiveSheet()->getComment( (string)$commentAttributes->ObjectBound )
-															->setAuthor( (string)$commentAttributes->Author )
-															->setText($this->_parseRichText((string)$commentAttributes->Text) );
+							->setAuthor( (string)$commentAttributes->Author )
+							->setText($this->_parseRichText((string)$commentAttributes->Text) );
 					}
 				}
 			}
@@ -757,7 +755,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 			//	Handle Merged Cells in this worksheet
 			if (isset($sheet->MergedRegions)) {
 				foreach($sheet->MergedRegions->Merge as $mergeCells) {
-					if (strpos($mergeCells,':') !== FALSE) {
+					if (strpos($mergeCells,':') !== false) {
 						$objPHPExcel->getActiveSheet()->mergeCells($mergeCells);
 					}
 				}
@@ -846,7 +844,6 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 		return $styleArray;
 	}
 
-
 	private function _parseRichText($is = '') {
 		$value = new PHPExcel_RichText();
 
@@ -854,7 +851,6 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 
 		return $value;
 	}
-
 
 	private static function _parseGnumericColour($gnmColour) {
 		list($gnmR,$gnmG,$gnmB) = explode(':',$gnmColour);
@@ -866,4 +862,3 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 		return $RGB;
 	}
 }
-?>

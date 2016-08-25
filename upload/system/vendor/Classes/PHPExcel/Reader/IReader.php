@@ -51,4 +51,3 @@ interface PHPExcel_Reader_IReader {
 	 */
 	public function load($pFilename);
 }
-?>

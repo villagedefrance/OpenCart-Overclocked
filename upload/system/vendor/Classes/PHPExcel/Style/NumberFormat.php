@@ -36,44 +36,44 @@
 class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
 	/* Pre-defined formats */
-	const FORMAT_GENERAL					= 'General';
+	const FORMAT_GENERAL = 'General';
 
-	const FORMAT_TEXT						= '@';
+	const FORMAT_TEXT = '@';
 
-	const FORMAT_NUMBER						= '0';
-	const FORMAT_NUMBER_00					= '0.00';
-	const FORMAT_NUMBER_COMMA_SEPARATED1	= '#,##0.00';
-	const FORMAT_NUMBER_COMMA_SEPARATED2	= '#,##0.00_-';
+	const FORMAT_NUMBER = '0';
+	const FORMAT_NUMBER_00 = '0.00';
+	const FORMAT_NUMBER_COMMA_SEPARATED1 = '#,##0.00';
+	const FORMAT_NUMBER_COMMA_SEPARATED2 = '#,##0.00_-';
 
-	const FORMAT_PERCENTAGE					= '0%';
-	const FORMAT_PERCENTAGE_00				= '0.00%';
+	const FORMAT_PERCENTAGE = '0%';
+	const FORMAT_PERCENTAGE_00 = '0.00%';
 
-	const FORMAT_DATE_YYYYMMDD2				= 'yyyy-mm-dd';
-	const FORMAT_DATE_YYYYMMDD				= 'yy-mm-dd';
-	const FORMAT_DATE_DDMMYYYY				= 'dd/mm/yy';
-	const FORMAT_DATE_DMYSLASH				= 'd/m/y';
-	const FORMAT_DATE_DMYMINUS				= 'd-m-y';
-	const FORMAT_DATE_DMMINUS				= 'd-m';
-	const FORMAT_DATE_MYMINUS				= 'm-y';
-	const FORMAT_DATE_XLSX14				= 'mm-dd-yy';
-	const FORMAT_DATE_XLSX15				= 'd-mmm-yy';
-	const FORMAT_DATE_XLSX16				= 'd-mmm';
-	const FORMAT_DATE_XLSX17				= 'mmm-yy';
-	const FORMAT_DATE_XLSX22				= 'm/d/yy h:mm';
-	const FORMAT_DATE_DATETIME				= 'd/m/y h:mm';
-	const FORMAT_DATE_TIME1					= 'h:mm AM/PM';
-	const FORMAT_DATE_TIME2					= 'h:mm:ss AM/PM';
-	const FORMAT_DATE_TIME3					= 'h:mm';
-	const FORMAT_DATE_TIME4					= 'h:mm:ss';
-	const FORMAT_DATE_TIME5					= 'mm:ss';
-	const FORMAT_DATE_TIME6					= 'h:mm:ss';
-	const FORMAT_DATE_TIME7					= 'i:s.S';
-	const FORMAT_DATE_TIME8					= 'h:mm:ss;@';
-	const FORMAT_DATE_YYYYMMDDSLASH			= 'yy/mm/dd;@';
+	const FORMAT_DATE_YYYYMMDD2 = 'yyyy-mm-dd';
+	const FORMAT_DATE_YYYYMMDD = 'yy-mm-dd';
+	const FORMAT_DATE_DDMMYYYY = 'dd/mm/yy';
+	const FORMAT_DATE_DMYSLASH = 'd/m/y';
+	const FORMAT_DATE_DMYMINUS = 'd-m-y';
+	const FORMAT_DATE_DMMINUS = 'd-m';
+	const FORMAT_DATE_MYMINUS = 'm-y';
+	const FORMAT_DATE_XLSX14 = 'mm-dd-yy';
+	const FORMAT_DATE_XLSX15 = 'd-mmm-yy';
+	const FORMAT_DATE_XLSX16 = 'd-mmm';
+	const FORMAT_DATE_XLSX17 = 'mmm-yy';
+	const FORMAT_DATE_XLSX22 = 'm/d/yy h:mm';
+	const FORMAT_DATE_DATETIME = 'd/m/y h:mm';
+	const FORMAT_DATE_TIME1 = 'h:mm AM/PM';
+	const FORMAT_DATE_TIME2 = 'h:mm:ss AM/PM';
+	const FORMAT_DATE_TIME3 = 'h:mm';
+	const FORMAT_DATE_TIME4 = 'h:mm:ss';
+	const FORMAT_DATE_TIME5 = 'mm:ss';
+	const FORMAT_DATE_TIME6 = 'h:mm:ss';
+	const FORMAT_DATE_TIME7 = 'i:s.S';
+	const FORMAT_DATE_TIME8 = 'h:mm:ss;@';
+	const FORMAT_DATE_YYYYMMDDSLASH = 'yy/mm/dd;@';
 
-	const FORMAT_CURRENCY_USD_SIMPLE		= '"$"#,##0.00_-';
-	const FORMAT_CURRENCY_USD				= '$#,##0_-';
-	const FORMAT_CURRENCY_EUR_SIMPLE		= '[$EUR ]#,##0.00_-';
+	const FORMAT_CURRENCY_USD_SIMPLE = '"$"#,##0.00_-';
+	const FORMAT_CURRENCY_USD = '$#,##0_-';
+	const FORMAT_CURRENCY_EUR_SIMPLE = '[$EUR ]#,##0.00_-';
 
 	/**
 	 * Excel built-in number formats
@@ -94,14 +94,14 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 	 *
 	 * @var string
 	 */
-	protected $_formatCode	=	PHPExcel_Style_NumberFormat::FORMAT_GENERAL;
+	protected $_formatCode =	PHPExcel_Style_NumberFormat::FORMAT_GENERAL;
 
 	/**
 	 * Built-in format Code
 	 *
 	 * @var string
 	 */
-	protected $_builtInFormatCode	= 0;
+	protected $_builtInFormatCode = 0;
 
 	/**
 	 * Create a new PHPExcel_Style_NumberFormat
@@ -113,14 +113,14 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 	 *									Leave this value at default unless you understand exactly what
 	 *										its ramifications are
 	 */
-	public function __construct($isSupervisor = FALSE, $isConditional = FALSE)
+	public function __construct($isSupervisor = false, $isConditional = false)
 	{
 		// Supervisor?
 		parent::__construct($isSupervisor);
 
 		if ($isConditional) {
-			$this->_formatCode = NULL;
-			$this->_builtInFormatCode = FALSE;
+			$this->_formatCode = null;
+			$this->_builtInFormatCode = false;
 		}
 	}
 
@@ -714,4 +714,3 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 		return $value;
 	}
 }
-?>

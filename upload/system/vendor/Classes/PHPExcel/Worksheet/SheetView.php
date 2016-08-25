@@ -52,7 +52,7 @@ class PHPExcel_Worksheet_SheetView {
 	 *
 	 * @var int
 	 */
-	private $_zoomScale			= 100;
+	private $_zoomScale = 100;
 
 	/**
 	 * ZoomScaleNormal
@@ -61,7 +61,7 @@ class PHPExcel_Worksheet_SheetView {
 	 *
 	 * @var int
 	 */
-	private $_zoomScaleNormal	= 100;
+	private $_zoomScaleNormal = 100;
 
 	/**
 	 * View
@@ -70,7 +70,7 @@ class PHPExcel_Worksheet_SheetView {
 	 *
 	 * @var string
 	 */
-	private $_sheetviewType		= self::SHEETVIEW_NORMAL;
+	private $_sheetviewType = self::SHEETVIEW_NORMAL;
 
     /**
      * Create a new PHPExcel_Worksheet_SheetView
@@ -175,6 +175,7 @@ class PHPExcel_Worksheet_SheetView {
 	 */
 	public function __clone() {
 		$vars = get_object_vars($this);
+
 		foreach ($vars as $key => $value) {
 			if (is_object($value)) {
 				$this->$key = clone $value;
@@ -184,4 +185,3 @@ class PHPExcel_Worksheet_SheetView {
 		}
 	}
 }
-?>

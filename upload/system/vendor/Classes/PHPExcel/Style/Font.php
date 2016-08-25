@@ -36,67 +36,67 @@
 class PHPExcel_Style_Font extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
 	/* Underline types */
-	const UNDERLINE_NONE					= 'none';
-	const UNDERLINE_DOUBLE					= 'double';
-	const UNDERLINE_DOUBLEACCOUNTING		= 'doubleAccounting';
-	const UNDERLINE_SINGLE					= 'single';
-	const UNDERLINE_SINGLEACCOUNTING		= 'singleAccounting';
+	const UNDERLINE_NONE = 'none';
+	const UNDERLINE_DOUBLE = 'double';
+	const UNDERLINE_DOUBLEACCOUNTING = 'doubleAccounting';
+	const UNDERLINE_SINGLE = 'single';
+	const UNDERLINE_SINGLEACCOUNTING = 'singleAccounting';
 
 	/**
 	 * Font Name
 	 *
 	 * @var string
 	 */
-	protected $_name			= 'Calibri';
+	protected $_name = 'Calibri';
 
 	/**
 	 * Font Size
 	 *
 	 * @var float
 	 */
-	protected $_size			= 11;
+	protected $_size = 11;
 
 	/**
 	 * Bold
 	 *
 	 * @var boolean
 	 */
-	protected $_bold			= FALSE;
+	protected $_bold = false;
 
 	/**
 	 * Italic
 	 *
 	 * @var boolean
 	 */
-	protected $_italic		= FALSE;
+	protected $_italic = false;
 
 	/**
 	 * Superscript
 	 *
 	 * @var boolean
 	 */
-	protected $_superScript	= FALSE;
+	protected $_superScript = false;
 
 	/**
 	 * Subscript
 	 *
 	 * @var boolean
 	 */
-	protected $_subScript		= FALSE;
+	protected $_subScript = false;
 
 	/**
 	 * Underline
 	 *
 	 * @var string
 	 */
-	protected $_underline		= self::UNDERLINE_NONE;
+	protected $_underline = self::UNDERLINE_NONE;
 
 	/**
 	 * Strikethrough
 	 *
 	 * @var boolean
 	 */
-	protected $_strikethrough	= FALSE;
+	protected $_strikethrough = false;
 
 	/**
 	 * Foreground color
@@ -115,24 +115,24 @@ class PHPExcel_Style_Font extends PHPExcel_Style_Supervisor implements PHPExcel_
 	 *									Leave this value at default unless you understand exactly what
 	 *										its ramifications are
 	 */
-	public function __construct($isSupervisor = FALSE, $isConditional = FALSE)
+	public function __construct($isSupervisor = false, $isConditional = false)
 	{
 		// Supervisor?
 		parent::__construct($isSupervisor);
 
 		// Initialise values
 		if ($isConditional) {
-			$this->_name			= NULL;
-			$this->_size			= NULL;
-			$this->_bold			= NULL;
-			$this->_italic			= NULL;
-			$this->_superScript		= NULL;
-			$this->_subScript		= NULL;
-			$this->_underline		= NULL;
-			$this->_strikethrough	= NULL;
-			$this->_color			= new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor, $isConditional);
+			$this->_name = null;
+			$this->_size = null;
+			$this->_bold = null;
+			$this->_italic = null;
+			$this->_superScript = null;
+			$this->_subScript = null;
+			$this->_underline = null;
+			$this->_strikethrough = null;
+			$this->_color = new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor, $isConditional);
 		} else {
-			$this->_color	= new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor);
+			$this->_color = new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor);
 		}
 		// bind parent if we are a supervisor
 		if ($isSupervisor) {
@@ -529,4 +529,3 @@ class PHPExcel_Style_Font extends PHPExcel_Style_Supervisor implements PHPExcel_
 		);
 	}
 }
-?>

@@ -61,4 +61,3 @@ interface PHPExcel_RichText_ITextElement {
 	 */
 	public function getHashCode();
 }
-?>

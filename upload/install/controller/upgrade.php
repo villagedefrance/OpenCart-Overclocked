@@ -201,7 +201,7 @@ class ControllerUpgrade extends Controller {
 		}
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (DB_DRIVER == 'mysql') {
 			if (!$connection = @mysql_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD)) {
 				$this->error['warning'] = $this->language->get('error_db_connect');

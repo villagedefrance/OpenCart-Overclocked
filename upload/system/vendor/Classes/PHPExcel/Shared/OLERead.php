@@ -35,35 +35,35 @@ class PHPExcel_Shared_OLERead {
 	const IDENTIFIER_OLE = IDENTIFIER_OLE;
 
 	// Size of a sector = 512 bytes
-	const BIG_BLOCK_SIZE					= 0x200;
+	const BIG_BLOCK_SIZE = 0x200;
 
 	// Size of a short sector = 64 bytes
-	const SMALL_BLOCK_SIZE					= 0x40;
+	const SMALL_BLOCK_SIZE = 0x40;
 
 	// Size of a directory entry always = 128 bytes
-	const PROPERTY_STORAGE_BLOCK_SIZE		= 0x80;
+	const PROPERTY_STORAGE_BLOCK_SIZE = 0x80;
 
 	// Minimum size of a standard stream = 4096 bytes, streams smaller than this are stored as short streams
-	const SMALL_BLOCK_THRESHOLD				= 0x1000;
+	const SMALL_BLOCK_THRESHOLD = 0x1000;
 
 	// header offsets
-	const NUM_BIG_BLOCK_DEPOT_BLOCKS_POS	= 0x2c;
-	const ROOT_START_BLOCK_POS				= 0x30;
-	const SMALL_BLOCK_DEPOT_BLOCK_POS		= 0x3c;
-	const EXTENSION_BLOCK_POS				= 0x44;
-	const NUM_EXTENSION_BLOCK_POS			= 0x48;
-	const BIG_BLOCK_DEPOT_BLOCKS_POS		= 0x4c;
+	const NUM_BIG_BLOCK_DEPOT_BLOCKS_POS = 0x2c;
+	const ROOT_START_BLOCK_POS = 0x30;
+	const SMALL_BLOCK_DEPOT_BLOCK_POS = 0x3c;
+	const EXTENSION_BLOCK_POS = 0x44;
+	const NUM_EXTENSION_BLOCK_POS = 0x48;
+	const BIG_BLOCK_DEPOT_BLOCKS_POS = 0x4c;
 
 	// property storage offsets (directory offsets)
-	const SIZE_OF_NAME_POS					= 0x40;
-	const TYPE_POS							= 0x42;
-	const START_BLOCK_POS					= 0x74;
-	const SIZE_POS							= 0x78;
+	const SIZE_OF_NAME_POS = 0x40;
+	const TYPE_POS = 0x42;
+	const START_BLOCK_POS = 0x74;
+	const SIZE_POS = 0x78;
 
 
 
-	public $wrkbook						= null;
-	public $summaryInformation			= null;
+	public $wrkbook = null;
+	public $summaryInformation = null;
 	public $documentSummaryInformation	= null;
 
 
@@ -76,13 +76,13 @@ class PHPExcel_Shared_OLERead {
 	public function read($sFileName)
 	{
 		// Check if file exists and is readable
-		if(!is_readable($sFileName)) {
+		if (!is_readable($sFileName)) {
 			throw new PHPExcel_Reader_Exception("Could not open " . $sFileName . " for reading! File does not exist, or it is not readable.");
 		}
 
 		// Get the file identifier
 		// Don't bother reading the whole file until we know it's a valid OLE file
-		$this->data = file_get_contents($sFileName, FALSE, NULL, 0, 8);
+		$this->data = file_get_contents($sFileName, false, null, 0, 8);
 
 		// Check OLE identifier
 		if ($this->data != self::IDENTIFIER_OLE) {
@@ -172,7 +172,7 @@ class PHPExcel_Shared_OLERead {
 	 */
 	public function getStream($stream)
 	{
-		if ($stream === NULL) {
+		if ($stream === null) {
 			return null;
 		}
 
@@ -270,7 +270,7 @@ class PHPExcel_Shared_OLERead {
 			if (($upName === 'WORKBOOK') || ($upName === 'BOOK')) {
 				$this->wrkbook = count($this->props) - 1;
 			}
-			else if ( $upName === 'ROOT ENTRY' || $upName === 'R') {
+			elseif ( $upName === 'ROOT ENTRY' || $upName === 'R') {
 				// Root entry
 				$this->rootentry = count($this->props) - 1;
 			}
@@ -313,5 +313,4 @@ class PHPExcel_Shared_OLERead {
 		}
 		return ord($data[$pos]) | (ord($data[$pos + 1]) << 8) | (ord($data[$pos + 2]) << 16) | $_ord_24;
 	}
-
 }

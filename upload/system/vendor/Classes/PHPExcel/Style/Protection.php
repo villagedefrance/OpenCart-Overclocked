@@ -36,9 +36,9 @@
 class PHPExcel_Style_Protection extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
 	/** Protection styles */
-	const PROTECTION_INHERIT		= 'inherit';
-	const PROTECTION_PROTECTED		= 'protected';
-	const PROTECTION_UNPROTECTED	= 'unprotected';
+	const PROTECTION_INHERIT = 'inherit';
+	const PROTECTION_PROTECTED = 'protected';
+	const PROTECTION_UNPROTECTED = 'unprotected';
 
 	/**
 	 * Locked
@@ -64,15 +64,15 @@ class PHPExcel_Style_Protection extends PHPExcel_Style_Supervisor implements PHP
 	 *									Leave this value at default unless you understand exactly what
 	 *										its ramifications are
      */
-    public function __construct($isSupervisor = FALSE, $isConditional = FALSE)
+    public function __construct($isSupervisor = false, $isConditional = false)
     {
     	// Supervisor?
 		parent::__construct($isSupervisor);
 
     	// Initialise values
 		if (!$isConditional) {
-	    	$this->_locked			= self::PROTECTION_INHERIT;
-	    	$this->_hidden			= self::PROTECTION_INHERIT;
+	    	$this->_locked = self::PROTECTION_INHERIT;
+	    	$this->_hidden = self::PROTECTION_INHERIT;
 		}
     }
 
@@ -114,7 +114,7 @@ class PHPExcel_Style_Protection extends PHPExcel_Style_Supervisor implements PHP
      * @throws	PHPExcel_Exception
      * @return PHPExcel_Style_Protection
      */
-	public function applyFromArray($pStyles = NULL) {
+	public function applyFromArray($pStyles = null) {
 		if (is_array($pStyles)) {
 			if ($this->_isSupervisor) {
 				$this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($this->getStyleArray($pStyles));
@@ -204,4 +204,3 @@ class PHPExcel_Style_Protection extends PHPExcel_Style_Supervisor implements PHP
     	);
     }
 }
-?>

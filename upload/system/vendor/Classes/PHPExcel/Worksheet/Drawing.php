@@ -146,4 +146,3 @@ class PHPExcel_Worksheet_Drawing extends PHPExcel_Worksheet_BaseDrawing implemen
 		}
 	}
 }
-?>

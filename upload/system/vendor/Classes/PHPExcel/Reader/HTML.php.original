@@ -88,13 +88,11 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 															 ),
 											),	//	Bold, 7.5pt
 							   'a'  => array( 'font' => array( 'underline' => true,
-															   'color' => array( 'argb' => PHPExcel_Style_Color::COLOR_BLUE,
-															                   ),
+															   'color' => array( 'argb' => PHPExcel_Style_Color::COLOR_BLUE,),
 															 ),
 											),	//	Blue underlined
 							   'hr' => array( 'borders' => array( 'bottom' => array( 'style' => PHPExcel_Style_Border::BORDER_THIN,
-																					 'color' => array( PHPExcel_Style_Color::COLOR_BLACK,
-																					                 ),
+																					 'color' => array( PHPExcel_Style_Color::COLOR_BLACK,),
 																				   ),
 																),
 											),	//	Bottom border
@@ -105,7 +103,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 	 * Create a new PHPExcel_Reader_HTML
 	 */
 	public function __construct() {
-		$this->_readFilter 	= new PHPExcel_Reader_DefaultReadFilter();
+		$this->_readFilter = new PHPExcel_Reader_DefaultReadFilter();
 	}
 
 	/**
@@ -117,12 +115,12 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 	{
 		//	Reading 2048 bytes should be enough to validate that the format is HTML
 		$data = fread($this->_fileHandle, 2048);
-		if ((strpos($data, '<') !== FALSE) &&
+		if ((strpos($data, '<') !== false) &&
 			(strlen($data) !== strlen(strip_tags($data)))) {
-			return TRUE;
+			return true;
 		}
 
-		return FALSE;
+		return false;
 	}
 
 	/**
@@ -194,7 +192,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 //				echo 'FLUSH CELL: ' , $column , $row , ' => ' , $cellContent , '<br />';
 				//	Write to worksheet to be done here...
 				//	... we return the cell so we can mess about with styles more easily
-				$cell = $sheet->setCellValue($column.$row,$cellContent,true);
+				$cell = $sheet->setCellValue($column.$row, $cellContent, true);
 				$this->_dataArray[$row][$column] = $cellContent;
 			}
 		} else {
@@ -303,7 +301,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 					case 'h6' :
 					case 'ol' :
 					case 'ul' :
-					case 'p'  :
+					case 'p' :
 						if ($this->_tableLevel > 0) {
 							//	If we're inside a table, replace with a \n
 							$cellContent .= "\n";
@@ -425,7 +423,7 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 		$dom = new domDocument;
 		//	Reload the HTML file into the DOM object
 		$loaded = $dom->loadHTMLFile($pFilename, PHPExcel_Settings::getLibXmlLoaderOptions());
-		if ($loaded === FALSE) {
+		if ($loaded === false) {
 			throw new PHPExcel_Reader_Exception('Failed to load ',$pFilename,' as a DOM Document');
 		}
 
@@ -464,5 +462,4 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
 		$this->_sheetIndex = $pValue;
 		return $this;
 	}
-
 }

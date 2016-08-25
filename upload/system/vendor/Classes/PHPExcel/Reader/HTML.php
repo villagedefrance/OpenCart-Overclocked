@@ -522,4 +522,3 @@ class PHPExcel_Reader_HTML extends PHPExcel_Reader_Abstract implements PHPExcel_
         return $xml;
     }
 }
-?>

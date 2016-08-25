@@ -58,7 +58,7 @@ class PHPExcel_Shared_Excel5
 			$width = $columnDimension->getWidth();
 			$pixelWidth = PHPExcel_Shared_Drawing::cellDimensionToPixels($width, $font);
 
-		} else if ($sheet->getDefaultColumnDimension()->getWidth() != -1) {
+		} elseif ($sheet->getDefaultColumnDimension()->getWidth() != -1) {
 
 			// then we have default column dimension with explicit width
 			$defaultColumnDimension = $sheet->getDefaultColumnDimension();
@@ -105,7 +105,7 @@ class PHPExcel_Shared_Excel5
 			$rowHeight = $rowDimension->getRowHeight();
 			$pixelRowHeight = (int) ceil(4 * $rowHeight / 3); // here we assume Arial 10
 
-		} else if ($sheet->getDefaultRowDimension()->getRowHeight() != -1) {
+		} elseif ($sheet->getDefaultRowDimension()->getRowHeight() != -1) {
 
 			// then we have a default row dimension with explicit height
 			$defaultRowDimension = $sheet->getDefaultRowDimension();
@@ -313,5 +313,4 @@ class PHPExcel_Shared_Excel5
 
 		return  $twoAnchor;
 	}
-
 }

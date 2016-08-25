@@ -101,4 +101,3 @@ class PHPExcel_RichText_Run extends PHPExcel_RichText_TextElement implements PHP
 		}
 	}
 }
-?>

@@ -89,4 +89,3 @@ class PHPExcel_Worksheet_Column {
 		return new PHPExcel_Worksheet_ColumnCellIterator($this->_parent, $this->_columnIndex, $startRow, $endRow);
 	}
 }
-?>

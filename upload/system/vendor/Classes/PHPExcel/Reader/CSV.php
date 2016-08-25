@@ -95,7 +95,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 * Create a new PHPExcel_Reader_CSV
 	 */
 	public function __construct() {
-		$this->_readFilter		= new PHPExcel_Reader_DefaultReadFilter();
+		$this->_readFilter = new PHPExcel_Reader_DefaultReadFilter();
 	}
 
 	/**
@@ -187,7 +187,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 		$worksheetInfo[0]['totalColumns'] = 0;
 
 		// Loop through each line of the file in turn
-		while (($rowData = fgetcsv($fileHandle, 0, $this->_delimiter, $this->_enclosure)) !== FALSE) {
+		while (($rowData = fgetcsv($fileHandle, 0, $this->_delimiter, $this->_enclosure)) !== false) {
 			$worksheetInfo[0]['totalRows']++;
 			$worksheetInfo[0]['lastColumnIndex'] = max($worksheetInfo[0]['lastColumnIndex'], count($rowData) - 1);
 		}
@@ -245,9 +245,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 		}
 		$sheet = $objPHPExcel->setActiveSheetIndex($this->_sheetIndex);
 
-		$escapeEnclosures = array( "\\" . $this->_enclosure,
-								   $this->_enclosure . $this->_enclosure
-								 );
+		$escapeEnclosures = array( "\\" . $this->_enclosure, $this->_enclosure . $this->_enclosure);
 
 		// Set our starting row based on whether we're in contiguous mode or not
 		$currentRow = 1;
@@ -256,8 +254,9 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 		}
 
 		// Loop through each line of the file in turn
-		while (($rowData = fgetcsv($fileHandle, 0, $this->_delimiter, $this->_enclosure)) !== FALSE) {
+		while (($rowData = fgetcsv($fileHandle, 0, $this->_delimiter, $this->_enclosure)) !== false) {
 			$columnLetter = 'A';
+
 			foreach ($rowData as $rowDatum) {
 				if ($rowDatum != '' && $this->_readFilter->readCell($columnLetter, $currentRow)) {
 					// Unescape enclosures
@@ -357,7 +356,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 *
 	 * @param boolean $contiguous
 	 */
-	public function setContiguous($contiguous = FALSE) {
+	public function setContiguous($contiguous = false) {
 		$this->_contiguous = (bool) $contiguous;
 		if (!$contiguous) {
 			$this->_contiguousRow = -1;
@@ -375,4 +374,3 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 		return $this->_contiguous;
 	}
 }
-?>

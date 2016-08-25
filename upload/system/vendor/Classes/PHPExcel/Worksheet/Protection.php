@@ -166,22 +166,22 @@ class PHPExcel_Worksheet_Protection {
      * @return boolean
      */
     function isProtectionEnabled() {
-    	return 	$this->_sheet ||
-				$this->_objects ||
-				$this->_scenarios ||
-				$this->_formatCells ||
-				$this->_formatColumns ||
-				$this->_formatRows ||
-				$this->_insertColumns ||
-				$this->_insertRows ||
-				$this->_insertHyperlinks ||
-				$this->_deleteColumns ||
-				$this->_deleteRows ||
-				$this->_selectLockedCells ||
-				$this->_sort ||
-				$this->_autoFilter ||
-				$this->_pivotTables ||
-				$this->_selectUnlockedCells;
+    	return $this->_sheet ||
+			$this->_objects ||
+			$this->_scenarios ||
+			$this->_formatCells ||
+			$this->_formatColumns ||
+			$this->_formatRows ||
+			$this->_insertColumns ||
+			$this->_insertRows ||
+			$this->_insertHyperlinks ||
+			$this->_deleteColumns ||
+			$this->_deleteRows ||
+			$this->_selectLockedCells ||
+			$this->_sort ||
+			$this->_autoFilter ||
+			$this->_pivotTables ||
+			$this->_selectUnlockedCells;
     }
 
     /**
@@ -533,6 +533,7 @@ class PHPExcel_Worksheet_Protection {
 	 */
 	public function __clone() {
 		$vars = get_object_vars($this);
+
 		foreach ($vars as $key => $value) {
 			if (is_object($value)) {
 				$this->$key = clone $value;
@@ -542,4 +543,3 @@ class PHPExcel_Worksheet_Protection {
 		}
 	}
 }
-?>

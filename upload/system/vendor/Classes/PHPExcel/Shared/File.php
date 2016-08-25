@@ -174,4 +174,3 @@ class PHPExcel_Shared_File {
 		return realpath(sys_get_temp_dir());
 	}
 }
-?>

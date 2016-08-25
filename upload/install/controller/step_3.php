@@ -39,7 +39,6 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_database']) . '\');' . "\n";
 			$output .= 'define(\'DB_PORT\', \'' . addslashes($this->request->post['db_port']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n\n";
-			$output .= '?>';
 
 			$file = fopen(DIR_OPENCART . 'config.php', 'w');
 
@@ -81,7 +80,6 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_database']) . '\');' . "\n";
 			$output .= 'define(\'DB_PORT\', \'' . addslashes($this->request->post['db_port']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n\n";
-			$output .= '?>';
 
 			$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
 
@@ -292,7 +290,7 @@ class ControllerStep3 extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function validate() {
+	protected function validate() {
 		if (!$this->request->post['db_hostname']) {
 			$this->error['db_hostname'] = $this->language->get('error_db_hostname');
 		}

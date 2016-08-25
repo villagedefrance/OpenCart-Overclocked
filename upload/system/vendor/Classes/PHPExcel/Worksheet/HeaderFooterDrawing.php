@@ -90,12 +90,12 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
     public function __construct()
     {
     	// Initialise values
-    	$this->_path				= '';
-    	$this->_name				= '';
-    	$this->_offsetX				= 0;
-    	$this->_offsetY				= 0;
-    	$this->_width				= 0;
-    	$this->_height				= 0;
+    	$this->_path = '';
+    	$this->_name = '';
+    	$this->_offsetX = 0;
+    	$this->_offsetY = 0;
+    	$this->_width = 0;
+    	$this->_height = 0;
     	$this->_resizeProportional	= true;
     }
 
@@ -234,9 +234,9 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
 		if ($this->_resizeProportional && !($width == 0 || $height == 0)) {
 			if (($xratio * $this->_height) < $height) {
 				$this->_height = ceil($xratio * $this->_height);
-				$this->_width  = $width;
+				$this->_width = $width;
 			} else {
-				$this->_width	= ceil($yratio * $this->_width);
+				$this->_width = ceil($yratio * $this->_width);
 				$this->_height	= $height;
 			}
 		}
@@ -314,6 +314,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
     	} else {
     		$this->_path = $pValue;
     	}
+
     	return $this;
     }
 
@@ -339,6 +340,7 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
 	 */
 	public function __clone() {
 		$vars = get_object_vars($this);
+
 		foreach ($vars as $key => $value) {
 			if (is_object($value)) {
 				$this->$key = clone $value;
@@ -348,4 +350,3 @@ class PHPExcel_Worksheet_HeaderFooterDrawing extends PHPExcel_Worksheet_Drawing 
 		}
 	}
 }
-?>

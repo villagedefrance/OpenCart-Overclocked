@@ -158,4 +158,3 @@ abstract class PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter {
 		return $this->_diskCachingDirectory;
 	}
 }
-?>

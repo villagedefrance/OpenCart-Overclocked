@@ -197,11 +197,11 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 
 					foreach ($xmlWorkbook->sheets->sheet as $eleSheet) {
 						$tmpInfo = array(
-							'worksheetName' => (string) $eleSheet["name"],
+							'worksheetName'    => (string) $eleSheet["name"],
 							'lastColumnLetter' => 'A',
-							'lastColumnIndex' => 0,
-							'totalRows' => 0,
-							'totalColumns' => 0
+							'lastColumnIndex'  => 0,
+							'totalRows'        => 0,
+							'totalColumns'     => 0
 						);
 
 						$fileWorksheet = $worksheets[(string) self::array_item($eleSheet->attributes("http://schemas.openxmlformats.org/officeDocument/2006/relationships"), "id")];
@@ -538,13 +538,13 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 							}
 
 							$style = (object) array(
-								"numFmt"		=> $numFmt,
-								"font"				=> $xmlStyles->fonts->font[intval($xf["fontId"])],
-								"fill"				=> $xmlStyles->fills->fill[intval($xf["fillId"])],
-								"border"			=> $xmlStyles->borders->border[intval($xf["borderId"])],
-								"alignment"		=> $xf->alignment,
-								"protection"	=> $xf->protection,
-								"quotePrefix"	=> $quotePrefix
+								"numFmt"      => $numFmt,
+								"font"        => $xmlStyles->fonts->font[intval($xf["fontId"])],
+								"fill"        => $xmlStyles->fills->fill[intval($xf["fillId"])],
+								"border"      => $xmlStyles->borders->border[intval($xf["borderId"])],
+								"alignment"   => $xf->alignment,
+								"protection"  => $xf->protection,
+								"quotePrefix" => $quotePrefix
 							);
 
 							$styles[] = $style;
@@ -569,13 +569,13 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 							}
 
 							$cellStyle = (object) array(
-								"numFmt"		=> $numFmt,
-								"font"				=> $xmlStyles->fonts->font[intval($xf["fontId"])],
-								"fill"				=> $xmlStyles->fills->fill[intval($xf["fillId"])],
-								"border"			=> $xmlStyles->borders->border[intval($xf["borderId"])],
-								"alignment"		=> $xf->alignment,
-								"protection"	=> $xf->protection,
-								"quotePrefix"	=> $quotePrefix
+								"numFmt"      => $numFmt,
+								"font"        => $xmlStyles->fonts->font[intval($xf["fontId"])],
+								"fill"        => $xmlStyles->fills->fill[intval($xf["fillId"])],
+								"border"      => $xmlStyles->borders->border[intval($xf["borderId"])],
+								"alignment"   => $xf->alignment,
+								"protection"  => $xf->protection,
+								"quotePrefix" => $quotePrefix
 							);
 
 							$cellStyles[] = $cellStyle;
@@ -1558,13 +1558,13 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 													$thisChart = (string) $chartRef->attributes("http://schemas.openxmlformats.org/officeDocument/2006/relationships");
 
 													$chartDetails[$docSheet->getTitle() . '!' . $thisChart] = array(
-														'fromCoordinate'	=> $fromCoordinate,
-														'fromOffsetX'		=> $fromOffsetX,
-														'fromOffsetY'		=> $fromOffsetY,
-														'toCoordinate'		=> $toCoordinate,
-														'toOffsetX'			=> $toOffsetX,
-														'toOffsetY'			=> $toOffsetY,
-														'worksheetTitle'	=> $docSheet->getTitle()
+														'fromCoordinate' => $fromCoordinate,
+														'fromOffsetX'    => $fromOffsetX,
+														'fromOffsetY'    => $fromOffsetY,
+														'toCoordinate'   => $toCoordinate,
+														'toOffsetX'      => $toOffsetX,
+														'toOffsetY'      => $toOffsetY,
+														'worksheetTitle' => $docSheet->getTitle()
 													 );
 												}
 											}
@@ -2113,4 +2113,3 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 		return ($value === 'true' || $value === 'TRUE');
 	}
 }
-?>

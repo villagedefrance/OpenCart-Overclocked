@@ -171,4 +171,3 @@ class PHPExcel_Shared_ZipArchive {
         return $contents;
     }
 }
-?>

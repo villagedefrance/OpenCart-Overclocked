@@ -36,16 +36,16 @@
 class PHPExcel_Worksheet_MemoryDrawing extends PHPExcel_Worksheet_BaseDrawing implements PHPExcel_IComparable
 {
 	/* Rendering functions */
-	const RENDERING_DEFAULT					= 'imagepng';
-	const RENDERING_PNG						= 'imagepng';
-	const RENDERING_GIF						= 'imagegif';
-	const RENDERING_JPEG					= 'imagejpeg';
+	const RENDERING_DEFAULT = 'imagepng';
+	const RENDERING_PNG = 'imagepng';
+	const RENDERING_GIF = 'imagegif';
+	const RENDERING_JPEG = 'imagejpeg';
 
 	/* MIME types */
-	const MIMETYPE_DEFAULT					= 'image/png';
-	const MIMETYPE_PNG						= 'image/png';
-	const MIMETYPE_GIF						= 'image/gif';
-	const MIMETYPE_JPEG						= 'image/jpeg';
+	const MIMETYPE_DEFAULT = 'image/png';
+	const MIMETYPE_PNG = 'image/png';
+	const MIMETYPE_GIF = 'image/gif';
+	const MIMETYPE_JPEG = 'image/jpeg';
 
 	/**
 	 * Image resource
@@ -81,10 +81,10 @@ class PHPExcel_Worksheet_MemoryDrawing extends PHPExcel_Worksheet_BaseDrawing im
     public function __construct()
     {
     	// Initialise values
-    	$this->_imageResource		= null;
-    	$this->_renderingFunction 	= self::RENDERING_DEFAULT;
-    	$this->_mimeType			= self::MIMETYPE_DEFAULT;
-    	$this->_uniqueName			= md5(rand(0, 9999). time() . rand(0, 9999));
+    	$this->_imageResource = null;
+    	$this->_renderingFunction = self::RENDERING_DEFAULT;
+    	$this->_mimeType = self::MIMETYPE_DEFAULT;
+    	$this->_uniqueName = md5(rand(0, 9999). time() . rand(0, 9999));
 
     	// Initialize parent
     	parent::__construct();
@@ -110,7 +110,7 @@ class PHPExcel_Worksheet_MemoryDrawing extends PHPExcel_Worksheet_BaseDrawing im
 
     	if (!is_null($this->_imageResource)) {
 	    	// Get width/height
-	    	$this->_width	= imagesx($this->_imageResource);
+	    	$this->_width = imagesx($this->_imageResource);
 	    	$this->_height	= imagesy($this->_imageResource);
     	}
     	return $this;
@@ -162,9 +162,9 @@ class PHPExcel_Worksheet_MemoryDrawing extends PHPExcel_Worksheet_BaseDrawing im
      * @return string
      */
     public function getIndexedFilename() {
-		$extension 	= strtolower($this->getMimeType());
-		$extension 	= explode('/', $extension);
-		$extension 	= $extension[1];
+		$extension = strtolower($this->getMimeType());
+		$extension = explode('/', $extension);
+		$extension = $extension[1];
 
     	return $this->_uniqueName . $this->getImageIndex() . '.' . $extension;
     }
@@ -189,6 +189,7 @@ class PHPExcel_Worksheet_MemoryDrawing extends PHPExcel_Worksheet_BaseDrawing im
 	 */
 	public function __clone() {
 		$vars = get_object_vars($this);
+
 		foreach ($vars as $key => $value) {
 			if (is_object($value)) {
 				$this->$key = clone $value;
@@ -198,4 +199,3 @@ class PHPExcel_Worksheet_MemoryDrawing extends PHPExcel_Worksheet_BaseDrawing im
 		}
 	}
 }
-?>

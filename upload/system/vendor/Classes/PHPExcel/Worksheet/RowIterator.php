@@ -178,4 +178,3 @@ class PHPExcel_Worksheet_RowIterator implements Iterator {
 		return $this->_position <= $this->_endRow;
 	}
 }
-?>

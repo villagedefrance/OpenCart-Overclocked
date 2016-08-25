@@ -50,4 +50,3 @@ class PHPExcel_Writer_Exception extends PHPExcel_Exception {
 		throw $e;
 	}
 }
-?>

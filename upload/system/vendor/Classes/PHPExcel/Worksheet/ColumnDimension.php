@@ -49,21 +49,21 @@ class PHPExcel_Worksheet_ColumnDimension
 	 *
 	 * @var double
 	 */
-	private $_width			= -1;
+	private $_width = -1;
 
 	/**
 	 * Auto size?
 	 *
 	 * @var bool
 	 */
-	private $_autoSize		= false;
+	private $_autoSize = false;
 
 	/**
 	 * Visible?
 	 *
 	 * @var bool
 	 */
-	private $_visible		= true;
+	private $_visible = true;
 
 	/**
 	 * Outline level
@@ -77,7 +77,7 @@ class PHPExcel_Worksheet_ColumnDimension
 	 *
 	 * @var bool
 	 */
-	private $_collapsed		= false;
+	private $_collapsed = false;
 
 	/**
 	 * Index to cellXf
@@ -94,7 +94,7 @@ class PHPExcel_Worksheet_ColumnDimension
     public function __construct($pIndex = 'A')
     {
     	// Initialise values
-    	$this->_columnIndex		= $pIndex;
+    	$this->_columnIndex = $pIndex;
 
 		// set default index to cellXf
 		$this->_xfIndex = 0;
@@ -263,4 +263,3 @@ class PHPExcel_Worksheet_ColumnDimension
 		}
 	}
 }
-?>

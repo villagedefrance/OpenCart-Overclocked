@@ -190,4 +190,3 @@ class PHPExcel_Worksheet_ColumnIterator implements Iterator
 		return $this->_position <= $this->_endColumn;
 	}
 }
-?>

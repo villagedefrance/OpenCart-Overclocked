@@ -37,7 +37,7 @@ class PHPExcel_Shared_Font
 {
 	/* Methods for resolving autosize value */
 	const AUTOSIZE_METHOD_APPROX	= 'approx';
-	const AUTOSIZE_METHOD_EXACT		= 'exact';
+	const AUTOSIZE_METHOD_EXACT = 'exact';
 
 	private static $_autoSizeMethods = array(
 		self::AUTOSIZE_METHOD_APPROX,
@@ -45,87 +45,87 @@ class PHPExcel_Shared_Font
 	);
 
 	/** Character set codes used by BIFF5-8 in Font records */
-	const CHARSET_ANSI_LATIN				= 0x00;
-	const CHARSET_SYSTEM_DEFAULT			= 0x01;
-	const CHARSET_SYMBOL					= 0x02;
-	const CHARSET_APPLE_ROMAN				= 0x4D;
-	const CHARSET_ANSI_JAPANESE_SHIFTJIS	= 0x80;
-	const CHARSET_ANSI_KOREAN_HANGUL		= 0x81;
-	const CHARSET_ANSI_KOREAN_JOHAB			= 0x82;
-	const CHARSET_ANSI_CHINESE_SIMIPLIFIED	= 0x86;		//	gb2312
-	const CHARSET_ANSI_CHINESE_TRADITIONAL	= 0x88;		//	big5
-	const CHARSET_ANSI_GREEK				= 0xA1;
-	const CHARSET_ANSI_TURKISH				= 0xA2;
-	const CHARSET_ANSI_VIETNAMESE			= 0xA3;
-	const CHARSET_ANSI_HEBREW				= 0xB1;
-	const CHARSET_ANSI_ARABIC				= 0xB2;
-	const CHARSET_ANSI_BALTIC				= 0xBA;
-	const CHARSET_ANSI_CYRILLIC				= 0xCC;
-	const CHARSET_ANSI_THAI					= 0xDD;
-	const CHARSET_ANSI_LATIN_II				= 0xEE;
-	const CHARSET_OEM_LATIN_I				= 0xFF;
+	const CHARSET_ANSI_LATIN = 0x00;
+	const CHARSET_SYSTEM_DEFAULT = 0x01;
+	const CHARSET_SYMBOL = 0x02;
+	const CHARSET_APPLE_ROMAN = 0x4D;
+	const CHARSET_ANSI_JAPANESE_SHIFTJIS = 0x80;
+	const CHARSET_ANSI_KOREAN_HANGUL = 0x81;
+	const CHARSET_ANSI_KOREAN_JOHAB = 0x82;
+	const CHARSET_ANSI_CHINESE_SIMIPLIFIED = 0x86;		//	gb2312
+	const CHARSET_ANSI_CHINESE_TRADITIONAL = 0x88;		//	big5
+	const CHARSET_ANSI_GREEK = 0xA1;
+	const CHARSET_ANSI_TURKISH = 0xA2;
+	const CHARSET_ANSI_VIETNAMESE = 0xA3;
+	const CHARSET_ANSI_HEBREW = 0xB1;
+	const CHARSET_ANSI_ARABIC = 0xB2;
+	const CHARSET_ANSI_BALTIC = 0xBA;
+	const CHARSET_ANSI_CYRILLIC = 0xCC;
+	const CHARSET_ANSI_THAI = 0xDD;
+	const CHARSET_ANSI_LATIN_II = 0xEE;
+	const CHARSET_OEM_LATIN_I = 0xFF;
 
 	//  XXX: Constants created!
 	/** Font filenames */
-	const ARIAL								= 'arial.ttf';
-	const ARIAL_BOLD						= 'arialbd.ttf';
-	const ARIAL_ITALIC						= 'ariali.ttf';
-	const ARIAL_BOLD_ITALIC					= 'arialbi.ttf';
+	const ARIAL = 'arial.ttf';
+	const ARIAL_BOLD = 'arialbd.ttf';
+	const ARIAL_ITALIC = 'ariali.ttf';
+	const ARIAL_BOLD_ITALIC = 'arialbi.ttf';
 
-	const CALIBRI							= 'CALIBRI.TTF';
-	const CALIBRI_BOLD						= 'CALIBRIB.TTF';
-	const CALIBRI_ITALIC					= 'CALIBRII.TTF';
-	const CALIBRI_BOLD_ITALIC				= 'CALIBRIZ.TTF';
+	const CALIBRI = 'CALIBRI.TTF';
+	const CALIBRI_BOLD = 'CALIBRIB.TTF';
+	const CALIBRI_ITALIC = 'CALIBRII.TTF';
+	const CALIBRI_BOLD_ITALIC = 'CALIBRIZ.TTF';
 
-	const COMIC_SANS_MS						= 'comic.ttf';
-	const COMIC_SANS_MS_BOLD				= 'comicbd.ttf';
+	const COMIC_SANS_MS = 'comic.ttf';
+	const COMIC_SANS_MS_BOLD = 'comicbd.ttf';
 
-	const COURIER_NEW						= 'cour.ttf';
-	const COURIER_NEW_BOLD					= 'courbd.ttf';
-	const COURIER_NEW_ITALIC				= 'couri.ttf';
-	const COURIER_NEW_BOLD_ITALIC			= 'courbi.ttf';
+	const COURIER_NEW = 'cour.ttf';
+	const COURIER_NEW_BOLD = 'courbd.ttf';
+	const COURIER_NEW_ITALIC = 'couri.ttf';
+	const COURIER_NEW_BOLD_ITALIC = 'courbi.ttf';
 
-	const GEORGIA							= 'georgia.ttf';
-	const GEORGIA_BOLD						= 'georgiab.ttf';
-	const GEORGIA_ITALIC					= 'georgiai.ttf';
-	const GEORGIA_BOLD_ITALIC				= 'georgiaz.ttf';
+	const GEORGIA = 'georgia.ttf';
+	const GEORGIA_BOLD = 'georgiab.ttf';
+	const GEORGIA_ITALIC = 'georgiai.ttf';
+	const GEORGIA_BOLD_ITALIC = 'georgiaz.ttf';
 
-	const IMPACT							= 'impact.ttf';
+	const IMPACT = 'impact.ttf';
 
-	const LIBERATION_SANS					= 'LiberationSans-Regular.ttf';
-	const LIBERATION_SANS_BOLD				= 'LiberationSans-Bold.ttf';
-	const LIBERATION_SANS_ITALIC			= 'LiberationSans-Italic.ttf';
-	const LIBERATION_SANS_BOLD_ITALIC		= 'LiberationSans-BoldItalic.ttf';
+	const LIBERATION_SANS = 'LiberationSans-Regular.ttf';
+	const LIBERATION_SANS_BOLD = 'LiberationSans-Bold.ttf';
+	const LIBERATION_SANS_ITALIC = 'LiberationSans-Italic.ttf';
+	const LIBERATION_SANS_BOLD_ITALIC = 'LiberationSans-BoldItalic.ttf';
 
-	const LUCIDA_CONSOLE					= 'lucon.ttf';
-	const LUCIDA_SANS_UNICODE				= 'l_10646.ttf';
+	const LUCIDA_CONSOLE = 'lucon.ttf';
+	const LUCIDA_SANS_UNICODE = 'l_10646.ttf';
 
-	const MICROSOFT_SANS_SERIF				= 'micross.ttf';
+	const MICROSOFT_SANS_SERIF = 'micross.ttf';
 
-	const PALATINO_LINOTYPE					= 'pala.ttf';
-	const PALATINO_LINOTYPE_BOLD			= 'palab.ttf';
-	const PALATINO_LINOTYPE_ITALIC			= 'palai.ttf';
-	const PALATINO_LINOTYPE_BOLD_ITALIC		= 'palabi.ttf';
+	const PALATINO_LINOTYPE = 'pala.ttf';
+	const PALATINO_LINOTYPE_BOLD = 'palab.ttf';
+	const PALATINO_LINOTYPE_ITALIC = 'palai.ttf';
+	const PALATINO_LINOTYPE_BOLD_ITALIC = 'palabi.ttf';
 
-	const SYMBOL							= 'symbol.ttf';
+	const SYMBOL = 'symbol.ttf';
 
-	const TAHOMA							= 'tahoma.ttf';
-	const TAHOMA_BOLD						= 'tahomabd.ttf';
+	const TAHOMA = 'tahoma.ttf';
+	const TAHOMA_BOLD = 'tahomabd.ttf';
 
-	const TIMES_NEW_ROMAN					= 'times.ttf';
-	const TIMES_NEW_ROMAN_BOLD				= 'timesbd.ttf';
-	const TIMES_NEW_ROMAN_ITALIC			= 'timesi.ttf';
-	const TIMES_NEW_ROMAN_BOLD_ITALIC		= 'timesbi.ttf';
+	const TIMES_NEW_ROMAN = 'times.ttf';
+	const TIMES_NEW_ROMAN_BOLD = 'timesbd.ttf';
+	const TIMES_NEW_ROMAN_ITALIC = 'timesi.ttf';
+	const TIMES_NEW_ROMAN_BOLD_ITALIC = 'timesbi.ttf';
 
-	const TREBUCHET_MS						= 'trebuc.ttf';
-	const TREBUCHET_MS_BOLD					= 'trebucbd.ttf';
-	const TREBUCHET_MS_ITALIC				= 'trebucit.ttf';
-	const TREBUCHET_MS_BOLD_ITALIC			= 'trebucbi.ttf';
+	const TREBUCHET_MS = 'trebuc.ttf';
+	const TREBUCHET_MS_BOLD = 'trebucbd.ttf';
+	const TREBUCHET_MS_ITALIC = 'trebucit.ttf';
+	const TREBUCHET_MS_BOLD_ITALIC = 'trebucbi.ttf';
 
-	const VERDANA							= 'verdana.ttf';
-	const VERDANA_BOLD						= 'verdanab.ttf';
-	const VERDANA_ITALIC					= 'verdanai.ttf';
-	const VERDANA_BOLD_ITALIC				= 'verdanaz.ttf';
+	const VERDANA = 'verdana.ttf';
+	const VERDANA_BOLD = 'verdanab.ttf';
+	const VERDANA_ITALIC = 'verdanai.ttf';
+	const VERDANA_BOLD_ITALIC = 'verdanaz.ttf';
 
 	/**
 	 * AutoSize method
@@ -197,11 +197,11 @@ class PHPExcel_Shared_Font
 	public static function setAutoSizeMethod($pValue = self::AUTOSIZE_METHOD_APPROX)
 	{
 		if (!in_array($pValue,self::$_autoSizeMethods)) {
-			return FALSE;
+			return false;
 		}
 		self::$autoSizeMethod = $pValue;
 
-		return TRUE;
+		return true;
 	}
 
 	/**
@@ -376,8 +376,7 @@ class PHPExcel_Shared_Font
 				$columnWidth = 4; // approximation
 			} else {
 				// rotated text
-				$columnWidth = $columnWidth * cos(deg2rad($rotation))
-								+ $fontSize * abs(sin(deg2rad($rotation))) / 5; // approximation
+				$columnWidth = $columnWidth * cos(deg2rad($rotation)) + $fontSize * abs(sin(deg2rad($rotation))) / 5; // approximation
 			}
 		}
 
@@ -426,30 +425,27 @@ class PHPExcel_Shared_Font
 			throw new PHPExcel_Exception('Valid directory to TrueType Font files not specified');
 		}
 
-		$name		= $font->getName();
-		$bold		= $font->getBold();
-		$italic		= $font->getItalic();
+		$name = $font->getName();
+		$bold = $font->getBold();
+		$italic = $font->getItalic();
 
 		// Check if we can map font to true type font file
 		switch ($name) {
 			case 'Arial':
 				$fontFile = (
-					$bold ? ($italic ? self::ARIAL_BOLD_ITALIC : self::ARIAL_BOLD)
-						  : ($italic ? self::ARIAL_ITALIC : self::ARIAL)
+					$bold ? ($italic ? self::ARIAL_BOLD_ITALIC : self::ARIAL_BOLD) : ($italic ? self::ARIAL_ITALIC : self::ARIAL)
 				);
 				break;
 
 			case 'Calibri':
 				$fontFile = (
-					$bold ? ($italic ? self::CALIBRI_BOLD_ITALIC : self::CALIBRI_BOLD)
-						  : ($italic ? self::CALIBRI_ITALIC : self::CALIBRI)
+					$bold ? ($italic ? self::CALIBRI_BOLD_ITALIC : self::CALIBRI_BOLD) : ($italic ? self::CALIBRI_ITALIC : self::CALIBRI)
 				);
 				break;
 
 			case 'Courier New':
 				$fontFile = (
-					$bold ? ($italic ? self::COURIER_NEW_BOLD_ITALIC : self::COURIER_NEW_BOLD)
-						  : ($italic ? self::COURIER_NEW_ITALIC : self::COURIER_NEW)
+					$bold ? ($italic ? self::COURIER_NEW_BOLD_ITALIC : self::COURIER_NEW_BOLD) : ($italic ? self::COURIER_NEW_ITALIC : self::COURIER_NEW)
 				);
 				break;
 
@@ -461,8 +457,7 @@ class PHPExcel_Shared_Font
 
 			case 'Georgia':
 				$fontFile = (
-					$bold ? ($italic ? self::GEORGIA_BOLD_ITALIC : self::GEORGIA_BOLD)
-						  : ($italic ? self::GEORGIA_ITALIC : self::GEORGIA)
+					$bold ? ($italic ? self::GEORGIA_BOLD_ITALIC : self::GEORGIA_BOLD) : ($italic ? self::GEORGIA_ITALIC : self::GEORGIA)
 				);
 				break;
 
@@ -472,8 +467,7 @@ class PHPExcel_Shared_Font
 
 			case 'Liberation Sans':
 				$fontFile = (
-					$bold ? ($italic ? self::LIBERATION_SANS_BOLD_ITALIC : self::LIBERATION_SANS_BOLD)
-						  : ($italic ? self::LIBERATION_SANS_ITALIC : self::LIBERATION_SANS)
+					$bold ? ($italic ? self::LIBERATION_SANS_BOLD_ITALIC : self::LIBERATION_SANS_BOLD) : ($italic ? self::LIBERATION_SANS_ITALIC : self::LIBERATION_SANS)
 				);
 				break;
 
@@ -491,8 +485,7 @@ class PHPExcel_Shared_Font
 
 			case 'Palatino Linotype':
 				$fontFile = (
-					$bold ? ($italic ? self::PALATINO_LINOTYPE_BOLD_ITALIC : self::PALATINO_LINOTYPE_BOLD)
-						  : ($italic ? self::PALATINO_LINOTYPE_ITALIC : self::PALATINO_LINOTYPE)
+					$bold ? ($italic ? self::PALATINO_LINOTYPE_BOLD_ITALIC : self::PALATINO_LINOTYPE_BOLD) : ($italic ? self::PALATINO_LINOTYPE_ITALIC : self::PALATINO_LINOTYPE)
 				);
 				break;
 
@@ -508,8 +501,7 @@ class PHPExcel_Shared_Font
 
 			case 'Times New Roman':
 				$fontFile = (
-					$bold ? ($italic ? self::TIMES_NEW_ROMAN_BOLD_ITALIC : self::TIMES_NEW_ROMAN_BOLD)
-						  : ($italic ? self::TIMES_NEW_ROMAN_ITALIC : self::TIMES_NEW_ROMAN)
+					$bold ? ($italic ? self::TIMES_NEW_ROMAN_BOLD_ITALIC : self::TIMES_NEW_ROMAN_BOLD) : ($italic ? self::TIMES_NEW_ROMAN_ITALIC : self::TIMES_NEW_ROMAN)
 				);
 				break;
 
@@ -522,8 +514,7 @@ class PHPExcel_Shared_Font
 
 			case 'Verdana':
 				$fontFile = (
-					$bold ? ($italic ? self::VERDANA_BOLD_ITALIC : self::VERDANA_BOLD)
-						  : ($italic ? self::VERDANA_ITALIC : self::VERDANA)
+					$bold ? ($italic ? self::VERDANA_BOLD_ITALIC : self::VERDANA_BOLD) : ($italic ? self::VERDANA_ITALIC : self::VERDANA)
 				);
 				break;
 
@@ -552,11 +543,11 @@ class PHPExcel_Shared_Font
 	{
 		switch ($name) {
 			// Add more cases. Check FONT records in real Excel files.
-			case 'EucrosiaUPC':		return self::CHARSET_ANSI_THAI;
-			case 'Wingdings':		return self::CHARSET_SYMBOL;
-			case 'Wingdings 2':		return self::CHARSET_SYMBOL;
-			case 'Wingdings 3':		return self::CHARSET_SYMBOL;
-			default:				return self::CHARSET_ANSI_LATIN;
+			case 'EucrosiaUPC': return self::CHARSET_ANSI_THAI;
+			case 'Wingdings': return self::CHARSET_SYMBOL;
+			case 'Wingdings 2': return self::CHARSET_SYMBOL;
+			case 'Wingdings 3': return self::CHARSET_SYMBOL;
+			default: return self::CHARSET_ANSI_LATIN;
 		}
 	}
 
@@ -769,5 +760,4 @@ class PHPExcel_Shared_Font
 
 		return $rowHeight;
 	}
-
 }

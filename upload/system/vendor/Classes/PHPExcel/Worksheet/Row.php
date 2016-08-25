@@ -58,8 +58,8 @@ class PHPExcel_Worksheet_Row {
 	 */
 	public function __construct(PHPExcel_Worksheet $parent = null, $rowIndex = 1) {
 		// Set parent and row index
-		$this->_parent 		= $parent;
-		$this->_rowIndex 	= $rowIndex;
+		$this->_parent = $parent;
+		$this->_rowIndex = $rowIndex;
 	}
 
 	/**
@@ -89,4 +89,3 @@ class PHPExcel_Worksheet_Row {
 		return new PHPExcel_Worksheet_RowCellIterator($this->_parent, $this->_rowIndex, $startColumn, $endColumn);
 	}
 }
-?>

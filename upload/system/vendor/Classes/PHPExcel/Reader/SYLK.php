@@ -48,14 +48,14 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 	 *
 	 * @var string
 	 */
-	private $_inputEncoding	= 'ANSI';
+	private $_inputEncoding = 'ANSI';
 
 	/**
 	 * Sheet index to read
 	 *
 	 * @var int
 	 */
-	private $_sheetIndex 	= 0;
+	private $_sheetIndex = 0;
 
 	/**
 	 * Formats
@@ -75,7 +75,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 	 * Create a new PHPExcel_Reader_SYLK
 	 */
 	public function __construct() {
-		$this->_readFilter 	= new PHPExcel_Reader_DefaultReadFilter();
+		$this->_readFilter = new PHPExcel_Reader_DefaultReadFilter();
 	}
 
 	/**
@@ -91,16 +91,16 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 		// Count delimiters in file
 		$delimiterCount = substr_count($data, ';');
 		if ($delimiterCount < 1) {
-			return FALSE;
+			return false;
 		}
 
 		// Analyze first line looking for ID; signature
 		$lines = explode("\n", $data);
 		if (substr($lines[0],0,4) != 'ID;P') {
-			return FALSE;
+			return false;
 		}
 
-		return TRUE;
+		return true;
 	}
 
 	/**
@@ -153,7 +153,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 
 		// loop through one row (line) at a time in the file
 		$rowIndex = 0;
-		while (($rowData = fgets($fileHandle)) !== FALSE) {
+		while (($rowData = fgets($fileHandle)) !== false) {
 			$columnIndex = 0;
 
 			// convert SYLK encoded $rowData to UTF-8
@@ -234,15 +234,15 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 		}
 		$objPHPExcel->setActiveSheetIndex( $this->_sheetIndex );
 
-		$fromFormats	= array('\-',	'\ ');
-		$toFormats		= array('-',	' ');
+		$fromFormats = array('\-',	'\ ');
+		$toFormats = array('-',	' ');
 
 		// Loop through file
 		$rowData = array();
 		$column = $row = '';
 
 		// loop through one row (line) at a time in the file
-		while (($rowData = fgets($fileHandle)) !== FALSE) {
+		while (($rowData = fgets($fileHandle)) !== false) {
 
 			// convert SYLK encoded $rowData to UTF-8
 			$rowData = PHPExcel_Shared_String::SYLKtoUTF8($rowData);
@@ -289,7 +289,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 			} elseif ($dataType == 'C') {
 				$hasCalculatedValue = false;
 				$cellData = $cellDataFormula = '';
-				foreach($rowData as $rowDatum) {
+				foreach ($rowData as $rowDatum) {
 					switch($rowDatum{0}) {
 						case 'C' :
 						case 'X' :	$column = substr($rowDatum,1);
@@ -303,7 +303,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 									//	Convert R1C1 style references to A1 style references (but only when not quoted)
 									$temp = explode('"',$cellDataFormula);
 									$key = false;
-									foreach($temp as &$value) {
+									foreach ($temp as &$value) {
 										//	Only count/replace in alternate array entries
 										if ($key = !$key) {
 											preg_match_all('/(R(\[?-?\d*\]?))(C(\[?-?\d*\]?))/',$value, $cellReferences,PREG_SET_ORDER+PREG_OFFSET_CAPTURE);
@@ -313,7 +313,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 											$cellReferences = array_reverse($cellReferences);
 											//	Loop through each R1C1 style reference in turn, converting it to its A1 style equivalent,
 											//		then modify the formula to use that new reference
-											foreach($cellReferences as $cellReference) {
+											foreach ($cellReferences as $cellReference) {
 												$rowReference = $cellReference[2][0];
 												//	Empty R reference is the current row
 												if ($rowReference == '') $rowReference = $row;
@@ -350,7 +350,7 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 			} elseif ($dataType == 'F') {
 				$formatStyle = $columnWidth = $styleSettings = '';
 				$styleData = array();
-				foreach($rowData as $rowDatum) {
+				foreach ($rowData as $rowDatum) {
 					switch($rowDatum{0}) {
 						case 'C' :
 						case 'X' :	$column = substr($rowDatum,1);
@@ -406,8 +406,8 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 					}
 				}
 			} else {
-				foreach($rowData as $rowDatum) {
-					switch($rowDatum{0}) {
+				foreach ($rowData as $rowDatum) {
+					switch ($rowDatum{0}) {
 						case 'C' :
 						case 'X' :	$column = substr($rowDatum,1);
 									break;
@@ -446,4 +446,3 @@ class PHPExcel_Reader_SYLK extends PHPExcel_Reader_Abstract implements PHPExcel_
 		return $this;
 	}
 }
-?>
