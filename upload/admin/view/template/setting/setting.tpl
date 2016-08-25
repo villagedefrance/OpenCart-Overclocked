@@ -1266,6 +1266,18 @@
             </td>
           </tr>
           <tr>
+            <td><?php echo $entry_barcode_type; ?></td>
+            <td><select name="config_barcode_type">
+              <?php foreach ($barcode_types as $barcode_type) { ?>
+                <?php if ($config_barcode_type == $barcode_type['format']) { ?>
+                  <option value="<?php echo $barcode_type['format']; ?>" selected="selected"><?php echo $barcode_type['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $barcode_type['format']; ?>"><?php echo $barcode_type['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_buy_now; ?></td>
             <td><?php if ($config_buy_now) { ?>
               <input type="radio" name="config_buy_now" value="1" id="buy-now-on" class="radio" checked />

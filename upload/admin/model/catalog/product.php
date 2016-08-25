@@ -1058,4 +1058,31 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row['total'];
 	}
+
+	// Model types
+	public function getModels() {
+		$alphanumeric = '';
+
+		$query = $this->db->query("SELECT model FROM " . DB_PREFIX . "product WHERE status = '1'");
+
+		foreach ($query->rows as $result) {
+			if (ctype_digit($result['model']) || is_numeric($result['model'])) {
+				$alphanumeric = 'numeric';
+				break;
+			} elseif (ctype_alpha($result['model'])) {
+				$alphanumeric = 'alphabetic';
+				break;
+			} elseif (ctype_xdigit($result['model'])) {
+				$alphanumeric = 'hexadecimal';
+				break;
+			} elseif (ctype_alnum($result['model'])) {
+				$alphanumeric = 'alphanumeric';
+				break;
+			} else {
+				$alphanumeric = '';
+			}
+		}
+
+		return $alphanumeric;
+	}
 }

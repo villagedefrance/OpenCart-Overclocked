@@ -379,10 +379,11 @@ class ControllerProductProduct extends Controller {
 			$this->load->model('tool/barcode');
 
 			$catalog_barcode = $this->config->get('config_catalog_barcode');
+			$barcode_type = $this->config->get('config_barcode_type');
 
 			$this->data['manufacturer'] = $product_info['manufacturer'];
 			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
-			$this->data['barcode'] = ($catalog_barcode) ? $this->model_tool_barcode->getBarcode($product_info['model'], 'TYPE_CODE_128', 1, 20) : '';
+			$this->data['barcode'] = ($catalog_barcode) ? $this->model_tool_barcode->getBarcode($product_info['model'], strtoupper($barcode_type), 1, 20) : '';
 			$this->data['model'] = $product_info['model'];
 
 			// Fields

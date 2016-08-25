@@ -151,6 +151,7 @@ $_['entry_autocomplete_product']   = 'Disable Product Auto-complete:<span class=
 $_['entry_autocomplete_offer']     = 'Disable Offer Auto-complete:<span class="help">Use standard html selectors in Offer form.</span>';
 $_['entry_catalog_barcode']        = 'Product Model Barcode (<b>Catalog</b>):<span class="help">If Yes, a product model barcode will be displayed on every product page.</span>';
 $_['entry_admin_barcode']          = 'Product Model Barcode (<b>Admin</b>):<span class="help">If Yes, the product model barcode will be presented on every relevant page, including printable documents.</span>';
+$_['entry_barcode_type']          = 'Product Model Barcode Type:';
 $_['entry_buy_now']                = 'Display a "Buy it Now!" Button:<span class="help">Show the "Buy it Now!" button on all product pages with a selling price.</span>';
 $_['entry_lightbox']               = 'Product Image Viewer:<span class="help">If "Zoom Lens" is selected, the Product Image size will be set at 230 x 230px.</span>';
 $_['entry_offer_label']            = 'Hide Offer Labels:<span class="help">Valid offers will still be processed at checkout.</span>';

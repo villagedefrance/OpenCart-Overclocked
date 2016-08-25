@@ -200,6 +200,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_autocomplete_offer'] = $this->language->get('entry_autocomplete_offer');
 		$this->data['entry_catalog_barcode'] = $this->language->get('entry_catalog_barcode');
 		$this->data['entry_admin_barcode'] = $this->language->get('entry_admin_barcode');
+		$this->data['entry_barcode_type'] = $this->language->get('entry_barcode_type');
 		$this->data['entry_buy_now'] = $this->language->get('entry_buy_now');
 		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
@@ -1192,6 +1193,20 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_admin_barcode'] = $this->request->post['config_admin_barcode'];
 		} else {
 			$this->data['config_admin_barcode'] = $this->config->get('config_admin_barcode');
+		}
+
+		$this->data['barcode_types'] = array();
+
+		$this->data['barcode_types'][] = array('format' => 'TYPE_CODE_39', 'title' => 'Barcode Code 39');
+		$this->data['barcode_types'][] = array('format' => 'TYPE_CODE_93', 'title' => 'Barcode Code 93');
+		$this->data['barcode_types'][] = array('format' => 'TYPE_CODE_128', 'title' => 'Barcode Code 128');
+
+		if (isset($this->request->post['config_barcode_type'])) {
+			$this->data['config_barcode_type'] = $this->request->post['config_barcode_type'];
+		} elseif ($this->config->get('config_barcode_type')) {
+			$this->data['config_barcode_type'] = $this->config->get('config_barcode_type');
+		} else {
+			$this->data['config_barcode_type'] = 'TYPE_CODE_128';
 		}
 
 		if (isset($this->request->post['config_buy_now'])) {

@@ -1661,6 +1661,7 @@ class ControllerSaleOrder extends Controller {
 			$this->load->model('tool/barcode');
 
 			$admin_barcode = $this->config->get('config_admin_barcode');
+			$barcode_type = $this->config->get('config_barcode_type');
 
 			$this->data['products'] = array();
 
@@ -1693,7 +1694,7 @@ class ControllerSaleOrder extends Controller {
 					'order_product_id' => $product['order_product_id'],
 					'product_id'       => $product['product_id'],
 					'name'             => $product['name'],
-					'barcode'          => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
+					'barcode'          => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
 					'model'            => $product['model'],
 					'option'           => $option_data,
 					'quantity'         => $product['quantity'],
@@ -2458,6 +2459,7 @@ class ControllerSaleOrder extends Controller {
 		$this->load->model('tool/barcode');
 
 		$admin_barcode = $this->config->get('config_admin_barcode');
+		$barcode_type = $this->config->get('config_barcode_type');
 
 		$pdf = false;
 
@@ -2602,7 +2604,7 @@ class ControllerSaleOrder extends Controller {
 
 					$product_data[] = array(
 						'name'     => $product['name'],
-						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
+						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
 						'model'    => $product['model'],
 						'option'   => $option_data,
 						'quantity' => $product['quantity']
@@ -2703,6 +2705,7 @@ class ControllerSaleOrder extends Controller {
 		$this->load->model('tool/barcode');
 
 		$admin_barcode = $this->config->get('config_admin_barcode');
+		$barcode_type = $this->config->get('config_barcode_type');
 
 		$pdf = false;
 
@@ -2850,7 +2853,7 @@ class ControllerSaleOrder extends Controller {
 
 					$product_data[] = array(
 						'name'     => $product['name'],
-						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], 'TYPE_CODE_128', 1, 20) : '',
+						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
 						'model'    => $product['model'],
 						'option'   => $option_data,
 						'quantity' => $product['quantity']
