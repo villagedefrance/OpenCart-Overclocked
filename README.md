@@ -37,9 +37,9 @@ Powered by the Latest Scripts:
 - CKEditor 4.5.10 Full.
 - ...
 
-Coming soon in 1.8.1.0 (upcoming release)!
+New in 1.8.1.0 (current release)!
 - Product custom fields.
-- Major PHP code validation update.
+- Major PHP code validation.
 - Bug fixes.
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
