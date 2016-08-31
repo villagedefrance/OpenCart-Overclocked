@@ -44,4 +44,28 @@ class Url {
 			return '404';
 		}
 	}
+
+	public function isLocal() {
+		$local_address = false;
+		$local_name = false;
+		$local_host = false;
+
+		if (isset($_SERVER['SERVER_ADDR'])) {
+			$local_address = ($_SERVER['SERVER_ADDR'] == '::1' || $_SERVER['SERVER_ADDR'] == '127.0.0.1') ? true : false;
+		}
+
+		if (isset($_SERVER['SERVER_NAME'])) {
+			$local_name = ($_SERVER['SERVER_NAME'] == 'localhost') ? true : false;
+		}
+
+		if (isset($_SERVER['HTTP_HOST'])) {
+			$local_host = ($_SERVER['HTTP_HOST'] == 'localhost') ? true : false;
+		}
+
+		if ($local_address || $local_name || $local_host) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
