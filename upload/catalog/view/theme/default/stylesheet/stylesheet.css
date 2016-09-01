@@ -840,15 +840,17 @@ a.button-add {
 	overflow-x: hidden;
 }
 .box-product > div {
-	width: 175px;
+	width: 19%;
+	min-width: 175px;
 	display: inline-block;
 	vertical-align: top;
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 	text-align: center;
 	position: relative;
 }
 #column-left + #column-right + #content .box-product > div {
-	width: 145px;
+	width: 19%;
+	min-width: 145px;
 }
 .box-product .image {
 	display: block;
