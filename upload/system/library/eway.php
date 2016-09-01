@@ -468,6 +468,13 @@ class ResponseCode {
 		'F9037' => 'Suspicious Customer Email Address'
 	);
 
+	// Prevents code validation warning
+	if (!empty($_codes)) {
+		$_codes = $_codes;
+	} else {
+		$_codes = null;
+	}
+
 	/**
 	* Fetches the message associated with a Response Code
 	*

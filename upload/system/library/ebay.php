@@ -202,7 +202,7 @@ final class Ebay {
 	}
 
 	public function getEbayItemId($product_id) {
-		$this->log('getEbayItemId() - Product ID: '.$product_id);
+		$this->log('getEbayItemId() - Product ID: ' . $product_id);
 
 		$qry = $this->db->query("SELECT ebay_item_id FROM " . DB_PREFIX . "ebay_listing WHERE product_id = '" . (int)$product_id . "' AND status = '1' LIMIT 0,1");
 
@@ -238,7 +238,7 @@ final class Ebay {
 	}
 
 	public function removeItemByProductId($product_id) {
-		$this->log('removeItemByProductId() - ID: '.$product_id.'');
+		$this->log('removeItemByProductId() - ID: ' . $product_id.'');
 
 		$this->db->query("UPDATE " . DB_PREFIX . "ebay_listing SET status = '0' WHERE product_id = '" . (int)$product_id . "'");
 
@@ -246,7 +246,7 @@ final class Ebay {
 	}
 
 	public function deleteProduct($product_id) {
-		$this->log('deleteProduct() - ID: '.$product_id);
+		$this->log('deleteProduct() - ID: ' . $product_id);
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "ebay_listing WHERE product_id = '" . (int)$product_id . "'");
 
@@ -1056,6 +1056,13 @@ final class Ebay {
 					foreach ($item_txn_array as $item) {
 						$tmp = simplexml_load_string($this->eBayShippingStatus($item['item'], $item['txn'], false));
 					}
+				}
+
+				// Prevents code validation warning
+				if (!empty($tmp)) {
+					$tmp = $tmp;
+				} else {
+					$tmp = null;
 				}
 
 			} else {
