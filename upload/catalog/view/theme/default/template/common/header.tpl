@@ -22,7 +22,9 @@
 <?php } ?>
 <?php } ?>
 <?php if ($icon) { ?>
-<link href="<?php echo $icon; ?>" rel="icon" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="<?php echo $icon; ?>" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="<?php echo $icon; ?>" sizes="16x16" />
+<link rel="icon" type="image/png" href="<?php echo $icon; ?>" sizes="16x16" />
 <?php } ?>
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
@@ -46,7 +48,7 @@
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="catalog/view/javascript/html5.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/html5shiv.js"></script>
 <![endif]-->
 <?php if ($stores) { ?>
 <script type="text/javascript"><!--
