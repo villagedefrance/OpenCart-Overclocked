@@ -9,7 +9,7 @@
   <?php } ?>
   <div id="currency-option" style="display:none;">
   <?php foreach ($currencies as $currency) { ?>
-    <a id="currency-selection" onclick="$('input[name=\'currency_code\']').attr('value', '<?php echo $currency['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $currency['title']; ?></a>
+    <a class="currency-selection" onclick="$('input[name=\'currency_code\']').attr('value', '<?php echo $currency['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $currency['title']; ?></a>
   <?php } ?>
   </div>
   </div>
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	function hideOptions() { options.slideUp(200); }
 	$('#currency-selector').on('mouseenter touchstart touchend', function() {
 		timer = setTimeout(function() { hideOptions(); }, 4000);
-		$('#currency-selection').click(function(event) {
+		$('.currency-selection').click(function(event) {
 			event.preventDefault();
 			hideOptions();
 			window.clearTimeout(timer);

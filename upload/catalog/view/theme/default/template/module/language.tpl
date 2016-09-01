@@ -9,7 +9,7 @@
   <?php } ?>
   <div id="language-option" style="display:none;">
   <?php foreach ($languages as $language) { ?>
-    <a id="language-selection" onclick="$('input[name=\'language_code\']').attr('value', '<?php echo $language['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $language['name']; ?></a>
+    <a class="language-selection" onclick="$('input[name=\'language_code\']').attr('value', '<?php echo $language['code']; ?>').submit(); $(this).parent().parent().parent().parent().submit();"><?php echo $language['name']; ?></a>
   <?php } ?>
   </div>
   </div>
@@ -27,7 +27,7 @@ $(document).ready(function() {
 	function hideOptions() { options.slideUp(200); }
 	$('#language-selector').on('mouseenter touchstart touchend', function() {
 		timer = setTimeout(function() { hideOptions(); }, 4000);
-		$('#language-selection').click(function(event) {
+		$('.language-selection').click(function(event) {
 			event.preventDefault();
 			hideOptions();
 			window.clearTimeout(timer);
