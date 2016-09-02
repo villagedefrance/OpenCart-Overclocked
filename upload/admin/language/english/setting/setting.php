@@ -166,7 +166,7 @@ $_['entry_cookie_age']             = 'Enter Cookie Duration:<span class="help">N
 $_['entry_news_addthis']           = 'Show AddThis on News Pages:<br /><span class="help">AddThis Share buttons will be displayed in News Pages.</span>';
 $_['entry_news_chars']             = 'Headlines News Character Limit:<br /><span class="help">Adjust News Story\'s length on Headlines page.</span>';
 $_['entry_logo']                   = 'Store Logo:';
-$_['entry_icon']                   = 'Store Icon:<span class="help">The icon should be a PNG that is 48 x 48px.</span>';
+$_['entry_icon']                   = 'Store Icon:<span class="help">The icon should be a PNG that is 16 x 16px.</span>';
 $_['entry_image_category']         = 'Category Image Size:';
 $_['entry_image_thumb']            = 'Product Image Thumb Size:';
 $_['entry_image_popup']            = 'Product Image Popup Size:';

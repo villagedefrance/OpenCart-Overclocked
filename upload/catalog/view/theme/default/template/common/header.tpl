@@ -22,9 +22,7 @@
 <?php } ?>
 <?php } ?>
 <?php if ($icon) { ?>
-<link rel="icon" type="image/vnd.microsoft.icon" href="<?php echo $icon; ?>" sizes="16x16 32x32 48x48" />
-<link rel="icon" type="image/x-icon" href="<?php echo $icon; ?>" sizes="16x16" />
-<link rel="icon" type="image/png" href="<?php echo $icon; ?>" sizes="16x16" />
+<link rel="icon" type="image/png" href="<?php echo $icon; ?>" />
 <?php } ?>
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
