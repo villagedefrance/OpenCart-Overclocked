@@ -5,11 +5,10 @@ class ModelCatalogTagCloud extends Model {
 		$names = array();
 		$totals = array();
 		$tags = array();
-		$start = 0;
 
 		$tagcloud = false;
 
-		$query = $this->db->query("SELECT DISTINCT ptg.tag AS tag FROM " . DB_PREFIX . "product_tag ptg LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (ptg.product_id = p2s.product_id) WHERE ptg.language_id=" . (int)$this->config->get('config_language_id') . " AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT " . $start . "," . (int)$limit);
+		$query = $this->db->query("SELECT DISTINCT ptg.tag AS tag FROM " . DB_PREFIX . "product_tag ptg LEFT JOIN " . DB_PREFIX . "product p ON (ptg.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (ptg.product_id = p2s.product_id) WHERE ptg.language_id=" . (int)$this->config->get('config_language_id') . " AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND p.status = '1' LIMIT 0," . (int)$limit);
 
 		if (count($query->rows) > 0) {
 			foreach ($query->rows as $row) {
@@ -51,7 +50,7 @@ class ModelCatalogTagCloud extends Model {
 					$size = round((int)$min_font_size + (($value - $min_qty) * $step));
 				}
 
-				$tag_href = 'product/search&search=' . $key . '&filter_tag=' . $key;
+				$tag_href = 'product/search&search=' . $key . '&filter_tag=' . $key . '&description=true&sub_category=true';
 
 				$cloud[] = '<a href="' . $this->url->link(str_replace('&', '&amp;', $tag_href)) . '" style="text-decoration:none; font-size:' . $size . 'px; font-weight:' . $font_weight . ';" title="">' . $key . '</a> ';
 			}

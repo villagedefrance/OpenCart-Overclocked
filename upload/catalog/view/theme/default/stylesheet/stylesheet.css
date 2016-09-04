@@ -2349,6 +2349,20 @@ ul.box-filter > li ul {
 	min-width: 270px;
 	margin-left: 25px;
 }
+/* Search */
+.search-bar {
+	background: #F8F8F8;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 15px;
+}
+.search-bar > div {
+	padding: 12px;
+	overflow: hidden;
+}
 /* Sitemap */
 .sitemap-info {
 	overflow: auto;

@@ -110,7 +110,7 @@ class ControllerProductCategory extends Controller {
 			} else {
 				$this->document->setTitle($category_info['name']);
 			}
-			
+
 			$this->document->setDescription($category_info['meta_description']);
 			$this->document->setKeywords($category_info['meta_keyword']);
 

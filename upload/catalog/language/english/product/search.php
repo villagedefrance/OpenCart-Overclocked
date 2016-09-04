@@ -3,11 +3,9 @@
 $_['heading_title']     = 'Search';
 
 // Text
-$_['text_critea']       = 'Search Criteria';
 $_['text_search']       = 'Search Results';
 $_['text_keyword']      = 'Keywords';
 $_['text_category']     = 'All Categories';
-$_['text_sub_category'] = 'Search in subcategories';
 $_['text_empty']        = 'There is no product that matches the search criteria.';
 $_['text_quantity']     = 'Qty:';
 $_['text_manufacturer'] = 'Brand:';
@@ -34,5 +32,5 @@ $_['text_model_desc']   = 'Model (Z - A)';
 $_['text_limit']        = 'Show';
 
 // Entry
-$_['entry_search']      = 'Search:';
-$_['entry_description'] = 'Search in product descriptions';
+$_['entry_search']      = 'Search for';
+$_['entry_search_in']   = 'in';

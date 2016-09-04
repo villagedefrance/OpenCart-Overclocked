@@ -138,11 +138,9 @@ class ControllerProductSearch extends Controller {
 		}
 
 		$this->data['text_empty'] = $this->language->get('text_empty');
-		$this->data['text_critea'] = $this->language->get('text_critea');
 		$this->data['text_search'] = $this->language->get('text_search');
 		$this->data['text_keyword'] = $this->language->get('text_keyword');
 		$this->data['text_category'] = $this->language->get('text_category');
-		$this->data['text_sub_category'] = $this->language->get('text_sub_category');
 		$this->data['text_quantity'] = $this->language->get('text_quantity');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_model'] = $this->language->get('text_model');
@@ -159,7 +157,7 @@ class ControllerProductSearch extends Controller {
 		$this->data['text_offer'] = $this->language->get('text_offer');
 
 		$this->data['entry_search'] = $this->language->get('entry_search');
-		$this->data['entry_description'] = $this->language->get('entry_description');
+		$this->data['entry_search_in'] = $this->language->get('entry_search_in');
 
 		$this->data['lang'] = $this->language->get('code');
 
