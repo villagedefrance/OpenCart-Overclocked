@@ -620,6 +620,20 @@
       <div id="tab-option">
         <table class="form">
           <tr>
+            <td><?php echo $entry_empty_category; ?></td>
+            <td><?php if ($config_empty_category) { ?>
+              <input type="radio" name="config_empty_category" value="1" id="empty-category-on" class="radio" checked />
+              <label for="empty-category-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_empty_category" value="0" id="empty-category-off" class="radio" />
+              <label for="empty-category-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_empty_category" value="1" id="empty-category-on" class="radio" />
+              <label for="empty-category-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_empty_category" value="0" id="empty-category-off" class="radio" checked />
+              <label for="empty-category-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_product_count; ?></td>
             <td><?php if ($config_product_count) { ?>
               <input type="radio" name="config_product_count" value="1" id="product-count-on" class="radio" checked />

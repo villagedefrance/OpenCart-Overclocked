@@ -4,9 +4,6 @@ class ControllerProductSearch extends Controller {
 	public function index() {
 		$this->language->load('product/search');
 
-		$this->load->model('catalog/category');
-		$this->load->model('catalog/product');
-
 		if (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] < 1)) {
 			$this->request->get['limit'] = $this->config->get('config_catalog_limit');
 		} elseif (isset($this->request->get['limit']) && ((int)$this->request->get['limit'] > 100)) {
@@ -76,8 +73,6 @@ class ControllerProductSearch extends Controller {
 		}
 
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
-
-		$this->load->model('tool/image');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -174,15 +169,19 @@ class ControllerProductSearch extends Controller {
 		$this->data['label'] = $this->config->get('config_offer_label');
 		$this->data['dob'] = $this->config->get('config_customer_dob');
 
+		$this->load->model('catalog/category');
+		$this->load->model('catalog/product');
 		$this->load->model('catalog/offer');
+		$this->load->model('tool/image');
 		$this->load->model('account/customer');
 
 		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
-		$this->load->model('catalog/category');
+		$empty_category = $this->config->get('config_empty_category');
 
-		// 3 Level Category Search
 		$this->data['categories'] = array();
+
+		$empty_category = $this->config->get('config_empty_category');
 
 		$categories_1 = $this->model_catalog_category->getCategories(0);
 
@@ -197,10 +196,23 @@ class ControllerProductSearch extends Controller {
 				$categories_3 = $this->model_catalog_category->getCategories($category_2['category_id']);
 
 				foreach ($categories_3 as $category_3) {
-					$level_3_data[] = array(
-						'category_id' => $category_3['category_id'],
-						'name'        => $category_3['name']
+					$data = array(
+						'filter_category_id'  => $category_3['category_id'],
+						'filter_sub_category' => true
 					);
+
+					if (!$empty_category) {
+						$product_total = $this->model_catalog_product->getTotalProducts($data);
+					} else {
+						$product_total = 0;
+					}
+
+					if ($empty_category || $product_total > 0) {
+						$level_3_data[] = array(
+							'category_id' => $category_3['category_id'],
+							'name'        => $category_3['name']
+						);
+					}
 				}
 
 				$level_2_data[] = array(

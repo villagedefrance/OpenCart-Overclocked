@@ -6,7 +6,6 @@ class ControllerProductCategoryList extends Controller {
 		$this->language->load('product/' . $this->_name);
 
 		$this->load->model('catalog/category');
-		$this->load->model('catalog/product');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -33,6 +32,10 @@ class ControllerProductCategoryList extends Controller {
 				'separator' => $this->language->get('text_separator')
 			);
 
+			$this->load->model('catalog/product');
+
+			$empty_category = $this->config->get('config_empty_category');
+
 			$this->data['categories'] = array();
 
 			$this->data['ccount'] = 0;
@@ -48,10 +51,23 @@ class ControllerProductCategoryList extends Controller {
 					$categories_3 = $this->model_catalog_category->getCategories($category_2['category_id']);
 
 					foreach ($categories_3 as $category_3) {
-						$level_3_data[] = array(
-							'name' => $category_3['name'],
-							'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
+						$data = array(
+							'filter_category_id'  => $category_3['category_id'],
+							'filter_sub_category' => true
 						);
+
+						if (!$empty_category) {
+							$product_total = $this->model_catalog_product->getTotalProducts($data);
+						} else {
+							$product_total = 0;
+						}
+
+						if ($empty_category || $product_total > 0) {
+							$level_3_data[] = array(
+								'name' => $category_3['name'],
+								'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
+							);
+						}
 					}
 
 					$level_2_data[] = array(

@@ -212,22 +212,31 @@ class ControllerProductCategory extends Controller {
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
+			$empty_category = $this->config->get('config_empty_category');
+			$product_count = $this->config->get('config_product_count');
+
 			$this->data['categories'] = array();
 
 			$results = $this->model_catalog_category->getCategories($category_id);
 
 			foreach ($results as $result) {
-				$data = array(
+				$refine_data = array(
 					'filter_category_id'  => $result['category_id'],
 					'filter_sub_category' => true
 				);
 
-				$product_total = $this->config->get('config_product_count') ? $this->model_catalog_product->getTotalProducts($data) : 0;
+				if (!$empty_category || $product_count) {
+					$product_total = $this->model_catalog_product->getTotalProducts($refine_data);
+				} else {
+					$product_total = 0;
+				}
 
-				$this->data['categories'][] = array(
-					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : ''),
-					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
-				);
+				if ($empty_category || $product_total > 0) {
+					$this->data['categories'][] = array(
+						'name' => $result['name'] . ($product_count ? ' (' . $product_total . ')' : ''),
+						'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
+					);
+				}
 			}
 
 			if (isset($this->request->get['page'])) {
