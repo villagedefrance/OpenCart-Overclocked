@@ -50,7 +50,7 @@ class ModelCatalogTagCloud extends Model {
 					$size = round((int)$min_font_size + (($value - $min_qty) * $step));
 				}
 
-				$tag_href = 'product/search&search=' . $key . '&filter_tag=' . $key . '&description=true&sub_category=true';
+				$tag_href = 'product/search&search=' . $key . '&filter_tag=' . $key . '&description=true';
 
 				$cloud[] = '<a href="' . $this->url->link(str_replace('&', '&amp;', $tag_href)) . '" style="text-decoration:none; font-size:' . $size . 'px; font-weight:' . $font_weight . ';" title="">' . $key . '</a> ';
 			}

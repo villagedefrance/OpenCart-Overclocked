@@ -155,17 +155,15 @@ $('#button-search').bind('click', function() {
 
 	if (search) {
 		url += '&search=' + encodeURIComponent(search);
+		url += '&description=true';
 	}
-
-	url += '&description=true';
 
 	var category_id = $('#content select[name=\'category_id\']').attr('value');
 
 	if (category_id > 0) {
 		url += '&category_id=' + encodeURIComponent(category_id);
+		url += '&sub_category=true';
 	}
-
-	url += '&sub_category=true';
 
 	location = url;
 });
