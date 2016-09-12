@@ -77,7 +77,7 @@ $registry->set('url', $url);
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
-function error_handler($errno, $errstr, $errfile, $errline) {
+function errorHandler($errno, $errstr, $errfile, $errline) {
 	global $log, $config;
 
 	switch ($errno) {
@@ -104,7 +104,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	return true;
 }
 
-set_error_handler('error_handler');
+set_error_handler('errorHandler');
 
 // Request
 $request = new Request();

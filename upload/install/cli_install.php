@@ -43,7 +43,7 @@ $registry = new Registry();
 $loader = new Loader($registry);
 $registry->set('load', $loader);
 
-function error_handler($errno, $errstr, $errfile, $errline) {
+function errorHandler($errno, $errstr, $errfile, $errline) {
 	if (0 === error_reporting()) {
 		return false;
 	}
@@ -51,7 +51,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 }
 
-set_error_handler('error_handler');
+set_error_handler('errorHandler');
 
 function usage() {
 	echo "Usage:\n";
@@ -73,7 +73,7 @@ function usage() {
 	echo 'php cli_install.php install ' . $options . "\n\n";
 }
 
-function get_options($argv) {
+function getOptions($argv) {
 	$defaults = array(
 		'db_hostname' => 'localhost',
 		'db_database' => 'opencart',
@@ -134,19 +134,19 @@ function valid($options) {
 }
 
 function install($options) {
-	$check = check_requirements();
+	$check = checkRequirements();
 
 	if ($check[0]) {
-		setup_db($options);
-		write_config_files($options);
-		dir_permissions();
+		setupDb($options);
+		writeConfigFiles($options);
+		dirPermissions();
 	} else {
 		echo 'FAILED! Pre-installation check failed: ' . $check[1] . "\n\n";
 		exit(1);
 	}
 }
 
-function check_requirements() {
+function checkRequirements() {
 	$error = null;
 
 	if (phpversion() < '5.3') {
@@ -230,7 +230,7 @@ function check_requirements() {
 	return array($error === null, $error);
 }
 
-function setup_db($data) {
+function setupDb($data) {
 	$db = new DB($data['db_driver'], htmlspecialchars_decode($data['db_hostname']), htmlspecialchars_decode($data['db_username']), htmlspecialchars_decode($data['db_password']), htmlspecialchars_decode($data['db_database']), $data['db_port']);
 
 	$file = DIR_APPLICATION . 'opencart.sql';
@@ -281,7 +281,7 @@ function setup_db($data) {
 	}
 }
 
-function write_config_files($options) {
+function writeConfigFiles($options) {
 	$output = '<?php' . "\n";
 	$output .= '// HTTP' . "\n";
 	$output .= 'define(\'HTTP_SERVER\', \'' . $options['http_server'] . '\');' . "\n";
@@ -363,7 +363,7 @@ function write_config_files($options) {
 	fclose($file);
 }
 
-function dir_permissions() {
+function dirPermissions() {
 	$dirs = array(
 		DIR_OPENCART . 'image/',
 		DIR_OPENCART . 'download/',
@@ -384,7 +384,7 @@ $subcommand = array_shift($argv);
 switch ($subcommand) {
 	case "install":
 		try {
-			$options = get_options($argv);
+			$options = getOptions($argv);
 
 			define('HTTP_OPENCART', $options['http_server']);
 
