@@ -181,8 +181,6 @@ class ControllerProductSearch extends Controller {
 
 		$this->data['categories'] = array();
 
-		$empty_category = $this->config->get('config_empty_category');
-
 		$categories_1 = $this->model_catalog_category->getCategories(0);
 
 		foreach ($categories_1 as $category_1) {
