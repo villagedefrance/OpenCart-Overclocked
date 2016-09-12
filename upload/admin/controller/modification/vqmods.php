@@ -32,7 +32,7 @@ class ControllerModificationVQmods extends Controller {
 		$this->load->model('setting/setting');
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST' && isset($this->request->post['upload'])) {
-			$this->vqmod_upload();
+			$this->vqmodUpload();
 		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
@@ -148,7 +148,7 @@ class ControllerModificationVQmods extends Controller {
 		$this->data['warning_required_uninstall'] = $this->language->get('warning_required_uninstall');
 		$this->data['warning_vqmod_delete'] = $this->language->get('warning_vqmod_delete');
 
-		if ($this->vqmod_installation_check()) {
+		if ($this->vqmodInstallationCheck()) {
 			$this->data['vqmod_is_installed'] = true;
 		} else {
 			$this->data['vqmod_is_installed'] = false;
@@ -217,9 +217,9 @@ class ControllerModificationVQmods extends Controller {
 		// Get Scripts
 		$this->data['vqmods'] = array();
 
-		$vqmod_total_scripts = $this->count_vqmod_scripts();
+		$vqmod_total_scripts = $this->countVqmodScripts();
 
-		$vqmod_scripts = $this->list_vqmod_scripts();
+		$vqmod_scripts = $this->listVqmodScripts();
 
 		if (!empty($vqmod_scripts)) {
 			foreach ($vqmod_scripts as $vqmod_script) {
@@ -262,7 +262,7 @@ class ControllerModificationVQmods extends Controller {
 					'version'     => isset($xml->version) ? $xml->version : $this->language->get('text_unavailable'),
 					'vqmver'      => isset($xml->vqmver) ? $xml->vqmver : $this->language->get('text_unavailable'),
 					'author'      => isset($xml->author) ? $xml->author : $this->language->get('text_unavailable'),
-					'status'      => $extension == 'xml_' ? sprintf($this->language->get('highlight'), $this->language->get('text_disabled')) : $this->language->get('text_enabled'),
+					'status'      => ($extension == 'xml_') ? sprintf($this->language->get('highlight'), $this->language->get('text_disabled')) : $this->language->get('text_enabled'),
 					'delete'      => $this->url->link('modification/vqmods/vqmod_delete', 'token=' . $this->session->data['token'] . '&vqmod=' . basename($vqmod_script), 'SSL'),
 					'action'      => $action,
 					'extension'   => $extension,
@@ -455,7 +455,7 @@ class ControllerModificationVQmods extends Controller {
 		$this->redirect($this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
-	public function vqmod_upload() {
+	public function vqmodUpload() {
 		$this->language->load('modification/vqmods');
 
 		if ($this->userPermission()) {
@@ -570,7 +570,7 @@ class ControllerModificationVQmods extends Controller {
 		$this->redirect($this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'));
 	}
 
-	protected function list_vqmod_scripts() {
+	protected function listVqmodScripts() {
 		$vqmod_scripts = array();
 
 		if ($this->userPermission('access')) {
@@ -589,7 +589,7 @@ class ControllerModificationVQmods extends Controller {
 		return $vqmod_scripts;
 	}
 
-	protected function count_vqmod_scripts() {
+	protected function countVqmodScripts() {
 		$total_scripts = 0;
 
 		if ($this->userPermission('access')) {
@@ -616,9 +616,9 @@ class ControllerModificationVQmods extends Controller {
 
 	public function download_vqmod_scripts() {
 		if ($this->userPermission()) {
-			$targets = $this->list_vqmod_scripts();
+			$targets = $this->listVqmodScripts();
 
-			$this->zip_send($targets, 'vqmod_scripts_backup');
+			$this->zipSend($targets, 'vqmod_scripts_backup');
 		} else {
 			$this->redirect($this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'));
 		}
@@ -632,7 +632,7 @@ class ControllerModificationVQmods extends Controller {
 				$targets[] = $this->vqmod_modcache;
 			}
 
-			$this->zip_send($targets, 'vqcache_dump');
+			$this->zipSend($targets, 'vqcache_dump');
 		} else {
 			$this->redirect($this->url->link('modification/vqmods', 'token=' . $this->session->data['token'], 'SSL'));
 		}
@@ -644,12 +644,12 @@ class ControllerModificationVQmods extends Controller {
 				// VQMod 2.2.0 and later
 				$targets = glob($this->vqmod_logs);
 
-				$this->zip_send($targets, 'vqmod_logs');
+				$this->zipSend($targets, 'vqmod_logs');
 			} elseif (is_file($this->vqmod_log)) {
 				// VQMod 2.1.7 and earlier
 				$targets = array($this->vqmod_log);
 
-				$this->zip_send($targets, 'vqmod_log');
+				$this->zipSend($targets, 'vqmod_log');
 			} else {
 				// No log available for download error
 				$this->language->load('modification/vqmods');
@@ -664,7 +664,7 @@ class ControllerModificationVQmods extends Controller {
 		}
 	}
 
-	protected function zip_send($targets, $filename = 'download') {
+	protected function zipSend($targets, $filename = 'download') {
 		$temp = tempnam('tmp', 'zip');
 
 		$zip = new ZipArchive();
@@ -690,7 +690,7 @@ class ControllerModificationVQmods extends Controller {
 		unlink($temp);
 	}
 
-	protected function vqmod_installation_check() {
+	protected function vqmodInstallationCheck() {
 		// Check SimpleXML for VQManager use
 		if (!function_exists('simplexml_load_file')) {
 			$this->session->data['vqmod_installation_error'] = $this->language->get('error_simplexml');
@@ -801,7 +801,6 @@ class ControllerModificationVQmods extends Controller {
 				return false;
 			}
 		}
-
 		clearstatcache();
 		return true;
 	}
@@ -811,7 +810,6 @@ class ControllerModificationVQmods extends Controller {
 
 		if (!$this->user->hasPermission($permission, 'modification/vqmods')) {
 			$this->session->data['error'] = $this->language->get('error_permission');
-
 			return false;
 		} else {
 			return true;
