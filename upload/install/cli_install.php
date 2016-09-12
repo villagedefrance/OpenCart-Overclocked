@@ -41,7 +41,6 @@ $registry = new Registry();
 
 // Loader
 $loader = new Loader($registry);
-
 $registry->set('load', $loader);
 
 function handleError($errno, $errstr, $errfile, $errline) {
@@ -74,7 +73,7 @@ function usage() {
 	echo 'php cli_install.php install ' . $options . "\n\n";
 }
 
-function get_options($argv) {
+function getOptions($argv) {
 	$defaults = array(
 		'db_hostname' => 'localhost',
 		'db_database' => 'opencart',
@@ -135,19 +134,19 @@ function valid($options) {
 }
 
 function install($options) {
-	$check = check_requirements();
+	$check = checkRequirements();
 
 	if ($check[0]) {
-		setup_db($options);
-		write_config_files($options);
-		dir_permissions();
+		setupDb($options);
+		writeConfigFiles($options);
+		setPermissions();
 	} else {
 		echo 'FAILED! Pre-installation check failed: ' . $check[1] . "\n\n";
 		exit(1);
 	}
 }
 
-function check_requirements() {
+function checkRequirements() {
 	$error = null;
 
 	if (phpversion() < '5.3') {
@@ -231,7 +230,7 @@ function check_requirements() {
 	return array($error === null, $error);
 }
 
-function setup_db($data) {
+function setupDb($data) {
 	$db = new DB($data['db_driver'], htmlspecialchars_decode($data['db_hostname']), htmlspecialchars_decode($data['db_username']), htmlspecialchars_decode($data['db_password']), htmlspecialchars_decode($data['db_database']), $data['db_port']);
 
 	$file = DIR_APPLICATION . 'opencart.sql';
@@ -282,7 +281,7 @@ function setup_db($data) {
 	}
 }
 
-function write_config_files($options) {
+function writeConfigFiles($options) {
 	$output = '<?php' . "\n";
 	$output .= '// HTTP' . "\n";
 	$output .= 'define(\'HTTP_SERVER\', \'' . $options['http_server'] . '\');' . "\n";
@@ -314,8 +313,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($options['db_password']) . '\');' . "\n";
 	$output .= 'define(\'DB_DATABASE\', \'' . addslashes($options['db_database']) . '\');' . "\n";
 	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
-	$output .= 'define(\'DB_PREFIX\', \'' . addslashes($options['db_prefix']) . '\');' . "\n";
-	$output .= '?>';
+	$output .= 'define(\'DB_PREFIX\', \'' . addslashes($options['db_prefix']) . '\');' . "\n\n";
 
 	$file = fopen(DIR_OPENCART . 'config.php', 'w');
 
@@ -356,8 +354,7 @@ function write_config_files($options) {
 	$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($options['db_password']) . '\');' . "\n";
 	$output .= 'define(\'DB_DATABASE\', \'' . addslashes($options['db_database']) . '\');' . "\n";
 	$output .= 'define(\'DB_PORT\', \'' . addslashes($options['db_port']) . '\');' . "\n";
-	$output .= 'define(\'DB_PREFIX\', \'' . addslashes($options['db_prefix']) . '\');' . "\n";
-	$output .= '?>';
+	$output .= 'define(\'DB_PREFIX\', \'' . addslashes($options['db_prefix']) . '\');' . "\n\n";
 
 	$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
 
@@ -366,7 +363,7 @@ function write_config_files($options) {
 	fclose($file);
 }
 
-function dir_permissions() {
+function setPermissions() {
 	$dirs = array(
 		DIR_OPENCART . 'image/',
 		DIR_OPENCART . 'download/',
@@ -387,7 +384,7 @@ $subcommand = array_shift($argv);
 switch ($subcommand) {
 	case "install":
 		try {
-			$options = get_options($argv);
+			$options = getOptions($argv);
 
 			define('HTTP_OPENCART', $options['http_server']);
 

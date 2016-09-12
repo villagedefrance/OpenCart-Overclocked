@@ -725,7 +725,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 	}
 
 	// Check SQL reserved keywords
-	public function checkReserved($columns = array()) {
+	protected function checkReserved($columns = array()) {
 		$checked_columns = array();
 
 		$reserved = array (

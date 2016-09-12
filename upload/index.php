@@ -77,25 +77,20 @@ $registry->set('url', $url);
 $log = new Log($config->get('config_error_filename'));
 $registry->set('log', $log);
 
-function error_handler($errno, $errstr, $errfile, $errline) {
+function errorHandler($errno, $errstr, $errfile, $errline) {
 	global $log, $config;
 
 	switch ($errno) {
 		case E_NOTICE:
-		case E_USER_NOTICE:
-			$error = 'Notice';
-		break;
+		case E_USER_NOTICE: $error = 'Notice'; break;
+		case E_DEPRECATED:
+		case E_USER_DEPRECATED: $error = 'Deprecated'; break;
 		case E_WARNING:
-		case E_USER_WARNING:
-			$error = 'Warning';
-		break;
+		case E_USER_WARNING: $error = 'Warning'; break;
 		case E_ERROR:
-		case E_USER_ERROR:
-			$error = 'Fatal Error';
-		break;
-		default:
-			$error = 'Unknown';
-		break;
+		case E_USER_ERROR: $error = 'Fatal Error'; break;
+		case E_PARSE: $error = 'Parse Error'; break;
+		default: $error = 'Unknown'; break;
 	}
 
 	if ($config->get('config_error_display')) {
@@ -109,7 +104,7 @@ function error_handler($errno, $errstr, $errfile, $errline) {
 	return true;
 }
 
-set_error_handler('error_handler');
+set_error_handler('errorHandler');
 
 // Request
 $request = new Request();
