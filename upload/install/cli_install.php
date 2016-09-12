@@ -43,7 +43,7 @@ $registry = new Registry();
 $loader = new Loader($registry);
 $registry->set('load', $loader);
 
-function handleError($errno, $errstr, $errfile, $errline) {
+function error_handler($errno, $errstr, $errfile, $errline) {
 	if (0 === error_reporting()) {
 		return false;
 	}
@@ -51,7 +51,7 @@ function handleError($errno, $errstr, $errfile, $errline) {
 	throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 }
 
-set_error_handler('handleError');
+set_error_handler('error_handler');
 
 function usage() {
 	echo "Usage:\n";
@@ -73,7 +73,7 @@ function usage() {
 	echo 'php cli_install.php install ' . $options . "\n\n";
 }
 
-function getOptions($argv) {
+function get_options($argv) {
 	$defaults = array(
 		'db_hostname' => 'localhost',
 		'db_database' => 'opencart',
@@ -134,19 +134,19 @@ function valid($options) {
 }
 
 function install($options) {
-	$check = checkRequirements();
+	$check = check_requirements();
 
 	if ($check[0]) {
-		setupDb($options);
-		writeConfigFiles($options);
-		setPermissions();
+		setup_db($options);
+		write_config_files($options);
+		dir_permissions();
 	} else {
 		echo 'FAILED! Pre-installation check failed: ' . $check[1] . "\n\n";
 		exit(1);
 	}
 }
 
-function checkRequirements() {
+function check_requirements() {
 	$error = null;
 
 	if (phpversion() < '5.3') {
@@ -158,7 +158,7 @@ function checkRequirements() {
 	}
 
 	if (ini_get('session.auto_start')) {
-		$error = 'Warning: OpenCart will not work with session.auto_start enabled!';
+		$error = 'Warning: OpenCart OCE will not work with session.auto_start enabled!';
 	}
 
 	if (!extension_loaded('mysql')) {
@@ -230,7 +230,7 @@ function checkRequirements() {
 	return array($error === null, $error);
 }
 
-function setupDb($data) {
+function setup_db($data) {
 	$db = new DB($data['db_driver'], htmlspecialchars_decode($data['db_hostname']), htmlspecialchars_decode($data['db_username']), htmlspecialchars_decode($data['db_password']), htmlspecialchars_decode($data['db_database']), $data['db_port']);
 
 	$file = DIR_APPLICATION . 'opencart.sql';
@@ -281,7 +281,7 @@ function setupDb($data) {
 	}
 }
 
-function writeConfigFiles($options) {
+function write_config_files($options) {
 	$output = '<?php' . "\n";
 	$output .= '// HTTP' . "\n";
 	$output .= 'define(\'HTTP_SERVER\', \'' . $options['http_server'] . '\');' . "\n";
@@ -363,7 +363,7 @@ function writeConfigFiles($options) {
 	fclose($file);
 }
 
-function setPermissions() {
+function dir_permissions() {
 	$dirs = array(
 		DIR_OPENCART . 'image/',
 		DIR_OPENCART . 'download/',
@@ -384,7 +384,7 @@ $subcommand = array_shift($argv);
 switch ($subcommand) {
 	case "install":
 		try {
-			$options = getOptions($argv);
+			$options = get_options($argv);
 
 			define('HTTP_OPENCART', $options['http_server']);
 
