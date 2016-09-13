@@ -83,8 +83,6 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
 	switch ($errno) {
 		case E_NOTICE:
 		case E_USER_NOTICE: $error = 'Notice'; break;
-		case E_DEPRECATED:
-		case E_USER_DEPRECATED: $error = 'Deprecated'; break;
 		case E_WARNING:
 		case E_USER_WARNING: $error = 'Warning'; break;
 		case E_ERROR:
