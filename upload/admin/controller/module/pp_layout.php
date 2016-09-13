@@ -26,12 +26,16 @@ class ControllerModulePPLayout extends Controller {
 
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_content_header'] = $this->language->get('text_content_header');
 		$this->data['text_content_top'] = $this->language->get('text_content_top');
 		$this->data['text_content_bottom'] = $this->language->get('text_content_bottom');
 		$this->data['text_content_footer'] = $this->language->get('text_content_footer');
 		$this->data['text_column_left'] = $this->language->get('text_column_left');
 		$this->data['text_column_right'] = $this->language->get('text_column_right');
+
+		$this->data['entry_force_display'] = $this->language->get('entry_force_display');
 
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_position'] = $this->language->get('entry_position');
@@ -78,7 +82,30 @@ class ControllerModulePPLayout extends Controller {
 
 		$this->data['stylesheet_mode'] = $this->config->get('config_stylesheet');
 
+		// Check if Payment Paypal Express is enabled
+		$this->load->model('setting/extension');
+
+		$pp_express_status = $this->config->get('pp_express_status');
+
+		if (!$pp_express_status) {
+			$this->data['error_pp_express'] = $this->language->get('error_pp_express');
+		} else {
+			$this->data['error_pp_express'] = '';
+		}
+
+		if ($pp_express_status) {
+			$this->data['success_pp_express'] = sprintf($this->language->get('success_pp_express'), $this->config->get('pp_express_sort_order'));
+		} else {
+			$this->data['success_pp_express'] = '';
+		}
+
 		// Module
+		if (isset($this->request->post[$this->_name . '_force_display'])) {
+			$this->data[$this->_name . '_force_display'] = $this->request->post[$this->_name . '_force_display'];
+		} else {
+			$this->data[$this->_name . '_force_display'] = $this->config->get($this->_name . '_force_display');
+		}
+
 		$this->data['modules'] = array();
 
 		if (isset($this->request->post['pp_layout_module'])) {

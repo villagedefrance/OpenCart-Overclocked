@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="amazonlayout">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="amazon_checkout_layout">
         <table id="module" class="list">
           <thead>
             <tr>

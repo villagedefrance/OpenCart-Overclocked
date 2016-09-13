@@ -65,21 +65,29 @@
           <tr>
             <td><?php echo $entry_test; ?></td>
             <td><?php if ($pp_express_test) { ?>
-              <input type="radio" name="pp_express_test" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_test" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="pp_express_test" value="1" id="pp-test-on" class="radio" checked />
+              <label for="pp-test-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_express_test" value="0" id="pp-test-off" class="radio" />
+              <label for="pp-test-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="pp_express_test" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_test" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="pp_express_test" value="1" id="pp-test-on" class="radio" />
+              <label for="pp-test-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_express_test" value="0" id="pp-test-off" class="radio" checked />
+              <label for="pp-test-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_debug; ?></td>
             <td><?php if ($pp_express_debug) { ?>
-              <input type="radio" name="pp_express_debug" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_debug" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="pp_express_debug" value="1" id="pp-debug-on" class="radio" checked />
+              <label for="pp-debug-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_express_debug" value="0" id="pp-debug-off" class="radio" />
+              <label for="pp-debug-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="pp_express_debug" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_debug" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="pp_express_debug" value="1" id="pp-debug-on" class="radio" />
+              <label for="pp-debug-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_express_debug" value="0" id="pp-debug-off" class="radio" checked />
+              <label for="pp-debug-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -91,7 +99,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_total; ?></td>
-            <td><input type="text" name="pp_express_total" value="<?php echo $pp_express_total; ?>"/></td>
+            <td><input type="text" name="pp_express_total" value="<?php echo $pp_express_total; ?>" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_geo_zone; ?></td>
@@ -114,7 +122,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr>
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_status; ?></td>
             <td><select name="pp_express_status">
               <?php if ($pp_express_status) { ?>
@@ -273,11 +281,15 @@
           <tr>
             <td><?php echo $entry_allow_notes; ?></td>
             <td><?php if ($pp_express_allow_note) { ?>
-              <input type="radio" name="pp_express_allow_note" value="1" checked="checked" /><?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_allow_note" value="0" /><?php echo $text_no; ?>
+              <input type="radio" name="pp_express_allow_note" value="1" id="pp-note-on" class="radio" checked />
+              <label for="pp-note-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_express_allow_note" value="0" id="pp-note-off" class="radio" />
+              <label for="pp-note-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="pp_express_allow_note" value="1" /><?php echo $text_yes; ?>
-              <input type="radio" name="pp_express_allow_note" value="0" checked="checked" /><?php echo $text_no; ?>
+              <input type="radio" name="pp_express_allow_note" value="1" id="pp-note-on" class="radio" />
+              <label for="pp-note-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_express_allow_note" value="0" id="pp-note-off" class="radio" checked />
+              <label for="pp-note-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -291,15 +303,15 @@
           </tr>
           <tr>
             <td><?php echo $entry_border_colour; ?></td>
-            <td><input type="text" name="pp_express_border_colour" value="<?php echo $pp_express_border_colour; ?>" size="10" /></td>
+            <td>#<input type="text" name="pp_express_border_colour" value="<?php echo $pp_express_border_colour; ?>" size="8" maxlength="6" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_header_colour; ?></td>
-            <td><input type="text" name="pp_express_header_colour" value="<?php echo $pp_express_header_colour; ?>" size="10" /></td>
+            <td>#<input type="text" name="pp_express_header_colour" value="<?php echo $pp_express_header_colour; ?>" size="8" maxlength="6" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_page_colour; ?></td>
-            <td><input type="text" name="pp_express_page_colour" value="<?php echo $pp_express_page_colour; ?>" size="10" /></td>
+            <td>#<input type="text" name="pp_express_page_colour" value="<?php echo $pp_express_page_colour; ?>" size="8" maxlength="6" /></td>
           </tr>
         </table>
       </div>

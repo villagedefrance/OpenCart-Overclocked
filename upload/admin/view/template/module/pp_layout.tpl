@@ -18,7 +18,31 @@
       </div>
     </div>
     <div class="content">
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="paypalbutton">
+      <?php if ($error_pp_express) { ?>
+        <div class="attention" style="margin:5px 0px 0px 0px;"><?php echo $error_pp_express; ?></div>
+      <?php } ?>
+      <?php if ($success_pp_express) { ?>
+        <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $success_pp_express; ?></div>
+      <?php } ?>
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="pp_layout">
+        <table class="form">
+        <tbody>
+          <tr>
+            <td><?php echo $entry_force_display; ?></td>
+            <td><?php if ($pp_layout_force_display) { ?>
+              <input type="radio" name="pp_layout_force_display" value="1" id="force-display-on" class="radio" checked />
+              <label for="force-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_layout_force_display" value="0" id="force-display-off" class="radio" />
+              <label for="force-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="pp_layout_force_display" value="1" id="force-display-on" class="radio" />
+              <label for="force-display-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="pp_layout_force_display" value="0" id="force-display-off" class="radio" checked />
+              <label for="force-display-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+        </tbody>
+		</table>
         <table id="module" class="list">
           <thead>
             <tr>

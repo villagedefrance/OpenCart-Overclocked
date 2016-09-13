@@ -34,7 +34,7 @@ $_['text_ready_order_status']       = 'Ready to be Shipped status:';
 $_['text_canceled_order_status']    = 'Canceled order status:';
 $_['text_shipped_order_status']     = 'Shipped order status:';
 $_['text_last_cron_job_run']        = 'Last cron job run time:';
-$_['text_allowed_ips']              = 'IPs allowed';
+$_['text_allowed_ips']              = 'IPs allowed:';
 $_['text_add']                      = 'Add';
 $_['text_upload_success']           = 'File was uploaded successfully';
 
