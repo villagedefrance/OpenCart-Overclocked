@@ -81,6 +81,9 @@ class ControllerExtensionPayment extends Controller {
 			}
 		}
 
+		// Payments accepting recurring transactions
+		$is_recurring = array('pp_express', 'sagepay_direct', 'sagepay_server', 'worldpay_online');
+
 		$this->data['extensions'] = array();
 
 		$files = glob(DIR_APPLICATION . 'controller/payment/*.php');
@@ -126,8 +129,14 @@ class ControllerExtensionPayment extends Controller {
 					$link = '';
 				}
 
+				if (in_array($extension, $is_recurring)) {
+					$name = $this->language->get('heading_title') . ' <img src="view/image/extra.png" alt="recurring" title="' . $this->language->get('text_is_recurring') . '" style="float:right; vertical-align:middle;" />';
+				} else {
+					$name = $this->language->get('heading_title');
+				}
+
 				$this->data['extensions'][] = array(
-					'name'       => $this->language->get('heading_title'),
+					'name'       => $name,
 					'link'       => $link,
 					'sort_order' => $this->config->get($extension . '_sort_order'),
 					'status'     => $this->config->get($extension . '_status'),

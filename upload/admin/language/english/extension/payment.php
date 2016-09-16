@@ -5,6 +5,7 @@ $_['heading_title']     = 'Payments';
 // Text
 $_['text_install']      = 'Install';
 $_['text_uninstall']    = 'Uninstall';
+$_['text_is_recurring'] = 'Accepts recurring transactions';
 
 // Column
 $_['column_name']       = 'Payment Method';

@@ -11,7 +11,7 @@ class ModelPaymentPPPayflowIFrame extends Model {
 			`complete` tinyint(4) NOT NULL DEFAULT '0',
 			PRIMARY KEY(`order_id`),
 			KEY `secure_token_id` (`secure_token_id`)
-			) ENGINE=MyISAM DEFAULT COLLATE=utf8_general_ci;
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 
 		$this->db->query("
@@ -23,7 +23,7 @@ class ModelPaymentPPPayflowIFrame extends Model {
 			`amount` decimal(10,4) DEFAULT NULL,
 			PRIMARY KEY (`transaction_reference`),
 			KEY `order_id` (`order_id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 		");
 	}
 
@@ -52,11 +52,11 @@ class ModelPaymentPPPayflowIFrame extends Model {
 	}
 
 	public function updateOrderStatus($order_id, $status) {
-		$this->db->query("UPDATE " . DB_PREFIX .  "paypal_payflow_iframe_order SET `complete` = " . (int)$status . " WHERE order_id = '" . (int)$order_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX .  "paypal_payflow_iframe_order SET complete = " . (int)$status . " WHERE order_id = '" . (int)$order_id . "'");
 	}
 
 	public function addTransaction($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order_transaction SET order_id = " . (int)$data['order_id'] . ", transaction_reference = '" . $this->db->escape($data['transaction_reference']) . "', transaction_type = '" . $this->db->escape($data['type']) . "', `time` = NOW(), `amount` = '" . $this->db->escape($data['amount']) .  "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order_transaction SET order_id = " . (int)$data['order_id'] . ", transaction_reference = '" . $this->db->escape($data['transaction_reference']) . "', transaction_type = '" . $this->db->escape($data['type']) . "', `time` = NOW(), amount = '" . $this->db->escape($data['amount']) .  "'");
 	}
 
 	public function getTransactions($order_id) {

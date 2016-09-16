@@ -1077,8 +1077,8 @@ a.button-print:hover {
 .list tbody tr td span.color {
 	display: block;
 	float: right;
-	height: 20px;
-	width: 20px;
+	height: 22px;
+	width: 22px;
 	border: 0px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -1090,7 +1090,7 @@ a.button-print:hover {
 	color: #777;
 	font-size: 14px;
 	font-weight: bold;
-	line-height: 20px;
+	line-height: 22px;
 	text-align: center;
 	margin-right: 10px;
 }

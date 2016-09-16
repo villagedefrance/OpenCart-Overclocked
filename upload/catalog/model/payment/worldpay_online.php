@@ -299,6 +299,7 @@ class ModelPaymentWorldpayOnline extends Model {
 
 	private function getRecurringOrder($order_recurring_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "worldpay_online_order_recurring WHERE order_recurring_id = '" . (int)$order_recurring_id . "'");
+
 		return $query->row;
 	}
 
@@ -322,11 +323,13 @@ class ModelPaymentWorldpayOnline extends Model {
 
 	private function getProfile($order_recurring_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_recurring WHERE order_recurring_id = " . (int)$order_recurring_id);
+
 		return $query->row;
 	}
 
 	public function getWorldpayOrder($worldpay_online_order_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "worldpay_online_order WHERE order_code = " . (int)$worldpay_online_order_id);
+
 		return $query->row;
 	}
 
@@ -353,11 +356,7 @@ class ModelPaymentWorldpayOnline extends Model {
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
 		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 		curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-			"Authorization: " . $this->config->get('worldpay_online_service_key'),
-			"Content-Type: application/json",
-			"Content-Length: " . $content_length)
-		);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: " . $this->config->get('worldpay_online_service_key'), "Content-Type: application/json", "Content-Length: " . $content_length));
 
 		$result = json_decode(curl_exec($curl));
 

@@ -357,9 +357,9 @@ class ControllerPaymentPPExpress extends Controller {
 					$parent_transaction = $this->model_payment_pp_express->getLocalTransaction($transaction['parent_transaction_id']);
 
 					if ($parent_transaction['amount'] == abs($transaction['amount'])) {
-						$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = 'Refunded' WHERE `transaction_id` = '" . $this->db->escape($transaction['parent_transaction_id']) . "' LIMIT 1");
+						$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = 'Refunded' WHERE transaction_id = '" . $this->db->escape($transaction['parent_transaction_id']) . "' LIMIT 0,1");
 					} else { 
-						$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = 'Partially-Refunded' WHERE `transaction_id` = '" . $this->db->escape($transaction['parent_transaction_id']) . "' LIMIT 1");
+						$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = 'Partially-Refunded' WHERE transaction_id = '" . $this->db->escape($transaction['parent_transaction_id']) . "' LIMIT 0,1");
 					}
 
 					if (isset($result['REFUNDTRANSACTIONID'])) {
@@ -728,18 +728,19 @@ class ControllerPaymentPPExpress extends Controller {
 
 						$this->model_payment_pp_express->addTransaction($transaction);
 
-						//update transaction to refunded status
+						// update transaction to refunded status
 						if ($result['TOTALREFUNDEDAMOUNT'] == $this->request->post['amount_original']) {
-							$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = 'Refunded' WHERE `transaction_id` = '" . $this->db->escape($this->request->post['transaction_id']) . "' LIMIT 1");
+							$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = 'Refunded' WHERE transaction_id = '" . $this->db->escape($this->request->post['transaction_id']) . "' LIMIT 0,1");
 						} else {
-							$this->db->query("UPDATE `" . DB_PREFIX . "paypal_order_transaction` SET `payment_status` = 'Partially-Refunded' WHERE `transaction_id` = '" . $this->db->escape($this->request->post['transaction_id']) . "' LIMIT 1");
+							$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = 'Partially-Refunded' WHERE transaction_id = '" . $this->db->escape($this->request->post['transaction_id']) . "' LIMIT 0,1");
 						}
 
-						//redirect back to the order
+						// redirect back to the order
 						$this->redirect($this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $paypal_order['order_id'], 'SSL'));
 
 					} else {
 						$this->model_payment_pp_express->log(json_encode($result));
+
 						$this->session->data['error'] = (isset($result['L_SHORTMESSAGE0']) ? $result['L_SHORTMESSAGE0'] : 'There was an error') . (isset($result['L_LONGMESSAGE0']) ? '<br />' . $result['L_LONGMESSAGE0'] : '');
 						$this->redirect($this->url->link('payment/pp_express/refund', 'token=' . $this->session->data['token'] . '&transaction_id=' . $this->request->post['transaction_id'], 'SSL'));
 					}
@@ -1213,11 +1214,11 @@ class ControllerPaymentPPExpress extends Controller {
 			$result = $this->model_payment_pp_express->recurringCancel($profile['profile_reference']);
 
 			if (isset($result['PROFILEID'])) {
-				$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `type` = '5'");
-				$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 4 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 1");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "order_recurring_transaction SET order_recurring_id = '" . (int)$profile['order_recurring_id'] . "', created = NOW(), `type` = '5'");
+
+				$this->db->query("UPDATE " . DB_PREFIX . "order_recurring SET status = 4 WHERE order_recurring_id = '" . (int)$profile['order_recurring_id'] . "' LIMIT 0,1");
 
 				$this->session->data['success'] = $this->language->get('success_cancelled');
-
 			} else {
 				$this->session->data['error'] = sprintf($this->language->get('error_not_cancelled'), $result['L_LONGMESSAGE0']);
 			}
