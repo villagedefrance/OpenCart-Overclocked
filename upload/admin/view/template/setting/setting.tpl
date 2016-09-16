@@ -1322,20 +1322,6 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_offer_label; ?></td>
-            <td><?php if ($config_offer_label) { ?>
-              <input type="radio" name="config_offer_label" value="1" id="offer-label-on" class="radio" checked />
-              <label for="offer-label-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_offer_label" value="0" id="offer-label-off" class="radio" />
-              <label for="offer-label-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="config_offer_label" value="1" id="offer-label-on" class="radio" />
-              <label for="offer-label-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_offer_label" value="0" id="offer-label-off" class="radio" checked />
-              <label for="offer-label-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_share_addthis; ?></td>
             <td><?php if ($config_share_addthis) { ?>
               <input type="radio" name="config_share_addthis" value="1" id="share-addthis-on" class="radio" checked />
@@ -1608,6 +1594,23 @@
               <input type="text" name="config_image_cart_width" value="<?php echo $config_image_cart_width; ?>" size="3" /> x
               <input type="text" name="config_image_cart_height" value="<?php echo $config_image_cart_height; ?>" size="3" /> px
             <?php } ?></td>
+          </tr>
+        </table>
+        <h2><?php echo $text_image_labels; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_label_stock; ?></td>
+            <td><div class="image"><img src="<?php echo $label_stock; ?>" alt="" id="thumb-label-stock" /><br />
+              <input type="hidden" name="config_label_stock" value="<?php echo $config_label_stock; ?>" id="label-stock" />
+              <a onclick="image_upload('label-stock', 'thumb-label-stock');" class="button-browse"></a><a onclick="$('#thumb-label-stock').attr('src', '<?php echo $no_image; ?>'); $('#label-stock').attr('value', '');" class="button-recycle"></a>
+            </div></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_label_offer; ?></td>
+            <td><div class="image"><img src="<?php echo $label_offer; ?>" alt="" id="thumb-label-offer" /><br />
+              <input type="hidden" name="config_label_offer" value="<?php echo $config_label_offer; ?>" id="label-offer" />
+              <a onclick="image_upload('label-offer', 'thumb-label-offer');" class="button-browse"></a><a onclick="$('#thumb-label-offer').attr('src', '<?php echo $no_image; ?>'); $('#label-offer').attr('value', '');" class="button-recycle"></a>
+            </div></td>
           </tr>
         </table>
       </div>

@@ -408,12 +408,15 @@ class ControllerProductProduct extends Controller {
 			if ($product_info['quantity'] <= 0) {
 				$this->data['stock'] = $product_info['stock_status'];
 				$this->data['stock_quantity'] = 0;
+				$this->data['stock_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_stock'), 90, 90);
 			} elseif ($this->config->get('config_stock_display')) {
 				$this->data['stock'] = $product_info['quantity'];
 				$this->data['stock_quantity'] = $product_info['quantity'];
+				$this->data['stock_label_large'] = '';
 			} else {
 				$this->data['stock'] = $this->language->get('text_instock');
 				$this->data['stock_quantity'] = $product_info['quantity'];
+				$this->data['stock_label_large'] = '';
 			}
 
 			// Remaining
@@ -592,7 +595,6 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->data['share_addthis'] = $this->config->get('config_share_addthis');
-			$this->data['label'] = $this->config->get('config_offer_label');
 
 			$this->load->model('catalog/offer');
 
@@ -601,6 +603,9 @@ class ControllerProductProduct extends Controller {
 			$product_offers = $this->model_catalog_offer->getOfferProducts($this->request->get['product_id']);
 
 			if ($product_offers) {
+				$this->data['offer_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 90, 90);
+				$this->data['offer_label_medium'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
+
 				foreach ($product_offers as $product_offer) {
 					if ($product_offer['one'] == $this->request->get['product_id']) {
 						$product_offer_image = $this->model_catalog_offer->getOfferProductImage($product_offer['two']);
@@ -656,6 +661,10 @@ class ControllerProductProduct extends Controller {
 						'group' => $offer_label
 					);
 				}
+
+			} else {
+				$this->data['offer_label_large'] = '';
+				$this->data['offer_label_medium'] = '';
 			}
 
 			$this->data['review_status'] = $this->config->get('config_review_status');
@@ -701,9 +710,17 @@ class ControllerProductProduct extends Controller {
 					$rating = false;
 				}
 
+				if ($result['quantity'] <= 0) {
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 50, 50);
+				} else {
+					$stock_label = false;
+				}
+
 				if (in_array($result['product_id'], $related_offers, true)) {
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
 					$offer = true;
 				} else {
+					$offer_label = false;
 					$offer = false;
 				}
 
@@ -716,6 +733,8 @@ class ControllerProductProduct extends Controller {
 				$this->data['products'][] = array(
 					'product_id'      => $result['product_id'],
 					'thumb'           => $image,
+					'stock_label'     => $stock_label,
+					'offer_label'     => $offer_label,
 					'offer'           => $offer,
 					'name'            => $result['name'],
 					'stock_status'    => $result['stock_status'],

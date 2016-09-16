@@ -40,8 +40,11 @@
     <div class="review-list">	
       <?php foreach ($reviews as $review) { ?>
         <div>
-          <?php if (!$label && $review['offer']) { ?>
-            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($product['stock_label']) { ?>
+            <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && $product['offer']) { ?>
+            <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($review['thumb']) { ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
@@ -115,10 +118,16 @@ function display(view) {
 
 			html += '<div class="left">';
 
-			var offer = $(element).find('.promo-medium').html();
+			var stock = $(element).find('.stock-medium').html();
+
+			if (stock != null) {
+				html += '<div class="stock-medium">' + $(element).find('.stock-medium').html() + '</div>';
+			}
+
+			var offer = $(element).find('.offer-medium').html();
 
 			if (offer != null) {
-				html += '<div class="promo-medium">' + $(element).find('.promo-medium').html() + '</div>';
+				html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
 			}
 
 			var image = $(element).find('.image').html();
@@ -166,10 +175,16 @@ function display(view) {
 		$('.review-grid > div').each(function(index, element) {
 			html = '';
 
-			var offer = $(element).find('.promo-medium').html();
+			var stock = $(element).find('.stock-medium').html();
+
+			if (stock != null) {
+				html += '<div class="stock-medium">' + $(element).find('.stock-medium').html() + '</div>';
+			}
+
+			var offer = $(element).find('.offer-medium').html();
 
 			if (offer != null) {
-				html += '<div class="promo-medium">' + $(element).find('.promo-medium').html() + '</div>';
+				html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
 			}
 
 			var image = $(element).find('.image').html();

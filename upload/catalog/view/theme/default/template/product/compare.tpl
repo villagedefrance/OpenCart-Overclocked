@@ -31,11 +31,14 @@
           <td><?php echo $text_image; ?></td>
           <?php foreach ($products as $product) { ?>
             <td>
-              <?php if (!$label && $product['offer']) { ?>
-                <div class="promo-small"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-30x30-<?php echo $lang; ?>.png" alt="" /></div>
+              <?php if ($products[$product['product_id']]['stock_label']) { ?>
+                <div class="stock-medium"><img src="<?php echo $products[$product['product_id']]['stock_label']; ?>" alt="" /></div>
+              <?php } ?>
+              <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
+                <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
               <?php } ?>
               <?php if ($products[$product['product_id']]['thumb']) { ?>
-                <img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" />
+                <a href="<?php echo $products[$product['product_id']]['href']; ?>"><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></a>
               <?php } ?>
             </td>
           <?php } ?>
@@ -77,8 +80,8 @@
         <tr>
           <td><?php echo $text_offer; ?></td>
           <?php foreach ($products as $product) { ?>
-            <?php if ($product['offer']) { ?>
-              <td><a href="<?php echo $product['offer_href']; ?>" style="text-decoration:none;"><?php echo $product['offer_label']; ?></a></td>
+            <?php if ($products[$product['product_id']]['offer']) { ?>
+              <td><a href="<?php echo $products[$product['product_id']]['offer_href']; ?>" style="text-decoration:none;"><?php echo $products[$product['product_id']]['offer_description']; ?></a></td>
             <?php } else { ?>
               <td><?php echo $text_no_offer; ?></td>
             <?php } ?>
@@ -136,19 +139,19 @@
       <tr>
         <td></td>
         <?php foreach ($products as $product) { ?>
-          <?php if ($product['quote']) { ?>
-            <td><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></td>
-          <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
-            <td><span class="stock-status"><?php echo $product['stock_status']; ?></span></td>
+          <?php if ($products[$product['product_id']]['quote']) { ?>
+            <td><a href="<?php echo $products[$product['product_id']]['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></td>
+          <?php } elseif (!$products[$product['product_id']]['quote'] && $products[$product['product_id']]['stock_quantity'] <= 0) { ?>
+            <td><span class="stock-status"><?php echo $products[$product['product_id']]['stock_status']; ?></span></td>
           <?php } else { ?>
-            <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button" /></td>
+            <td><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $products[$product['product_id']]['product_id']; ?>');" class="button" /></td>
           <?php } ?>
         <?php } ?>
       </tr>
       <tr>
         <td></td>
         <?php foreach ($products as $product) { ?>
-          <td class="remove"><a href="<?php echo $product['remove']; ?>" class="button"><?php echo $button_remove; ?></a></td>
+          <td class="remove"><a href="<?php echo $products[$product['product_id']]['remove']; ?>" class="button"><?php echo $button_remove; ?></a></td>
         <?php } ?>
       </tr>
     </table>

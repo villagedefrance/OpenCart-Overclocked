@@ -61,7 +61,10 @@ class ControllerModuleFeatured extends Controller {
 
 		$this->load->model('catalog/manufacturer');
 		$this->load->model('catalog/product');
+		$this->load->model('catalog/offer');
 		$this->load->model('tool/image');
+
+		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['manufacturers'] = array();
 
@@ -75,12 +78,6 @@ class ControllerModuleFeatured extends Controller {
 				'href'            => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'], 'SSL')
 			);
 		}
-
-		$this->data['label'] = $this->config->get('config_offer_label');
-
-		$this->load->model('catalog/offer');
-
-		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
 		$this->data['products'] = array();
 
@@ -142,9 +139,17 @@ class ControllerModuleFeatured extends Controller {
 					$points = false;
 				}
 
+				if ($product_info['quantity'] <= 0) {
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 50, 50);
+				} else {
+					$stock_label = false;
+				}
+
 				if (in_array($product_info['product_id'], $offers, true)) {
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
 					$offer = true;
 				} else {
+					$offer_label = false;
 					$offer = false;
 				}
 
@@ -157,6 +162,8 @@ class ControllerModuleFeatured extends Controller {
 				$this->data['products'][] = array(
 					'product_id'      => $product_info['product_id'],
 					'thumb'           => $image,
+					'stock_label'     => $stock_label,
+					'offer_label'     => $offer_label,
 					'offer'           => $offer,
 					'name'            => $product_info['name'],
 					'manufacturer'    => $manufacturer,

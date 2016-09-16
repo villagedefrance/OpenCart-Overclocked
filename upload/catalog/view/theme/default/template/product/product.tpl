@@ -23,8 +23,11 @@
       <div class="left">
       <?php if ($lightbox == 'colorbox') { ?>
         <?php if ($thumb) { ?>
-          <?php if (!$label && $offers) { ?>
-            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($stock_label_large) { ?>
+            <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -40,8 +43,11 @@
       <?php } ?>
       <?php if ($lightbox == 'swipebox') { ?>
         <?php if ($thumb) { ?>
-          <?php if (!$label && $offers) { ?>
-            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($stock_label_large) { ?>
+            <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -57,8 +63,11 @@
       <?php } ?>
       <?php if ($lightbox == 'magnific') { ?>
         <?php if ($thumb) { ?>
-          <?php if (!$label && $offers) { ?>
-            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($stock_label_large) { ?>
+            <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -74,8 +83,11 @@
       <?php } ?>
       <?php if ($lightbox == 'zoomlens') { ?>
         <?php if ($thumb) { ?>
-          <?php if (!$label && $offers) { ?>
-            <div class="promo-large"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-75x75-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($stock_label_large) { ?>
+            <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
             <div class="simpleLens-container">
@@ -433,8 +445,8 @@
       <div class="box-product">
       <?php foreach ($offers as $offer) { ?>
         <div>
-          <?php if (!$label) { ?>
-            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($offer_label_medium) { ?>
+            <div class="offer-medium"><img src="<?php echo $offer_label_medium; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($offer['thumb']) { ?>
             <div class="image"><a href="<?php echo $offer['href']; ?>"><img src="<?php echo $offer['thumb']; ?>" alt="<?php echo $offer['name']; ?>" /></a></div>
@@ -490,8 +502,11 @@
       <div class="box-product">
       <?php foreach ($products as $product) { ?>
         <div>
-          <?php if (!$label && $product['offer']) { ?>
-            <div class="promo-medium"><img src="catalog/view/theme/<?php echo $template; ?>/image/labels/offer-45x45-<?php echo $lang; ?>.png" alt="" /></div>
+          <?php if ($product['stock_label']) { ?>
+            <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && $product['offer']) { ?>
+            <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>

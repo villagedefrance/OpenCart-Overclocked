@@ -116,7 +116,6 @@ class ControllerProductProductWall extends Controller {
 			$this->data['compare'] = $this->url->link('product/compare', '', 'SSL');
 			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
-			$this->data['label'] = $this->config->get('config_offer_label');
 			$this->data['dob'] = $this->config->get('config_customer_dob');
 
 			$this->load->model('catalog/offer');
@@ -167,9 +166,17 @@ class ControllerProductProductWall extends Controller {
 					$rating = false;
 				}
 
+				if ($result['quantity'] <= 0) {
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 50, 50);
+				} else {
+					$stock_label = false;
+				}
+
 				if (in_array($result['product_id'], $offers, true)) {
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
 					$offer = true;
 				} else {
+					$offer_label = false;
 					$offer = false;
 				}
 
@@ -201,6 +208,8 @@ class ControllerProductProductWall extends Controller {
 				$this->data['products'][] = array(
 					'product_id'      => $result['product_id'],
 					'thumb'           => $image,
+					'stock_label'     => $stock_label,
+					'offer_label'     => $offer_label,
 					'offer'           => $offer,
 					'manufacturer'    => $manufacturer,
 					'name'            => $result['name'],

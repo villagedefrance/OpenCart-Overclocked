@@ -60,13 +60,10 @@ class ControllerModuleCart extends Controller {
 
 		$this->data['lang'] = $this->language->get('code');
 
-		$this->data['label'] = $this->config->get('config_offer_label');
-
 		$this->load->model('catalog/offer');
+		$this->load->model('tool/image');
 
 		$offers = $this->model_catalog_offer->getListProductOffers(0);
-
-		$this->load->model('tool/image');
 
 		$this->data['products'] = array();
 
@@ -77,9 +74,17 @@ class ControllerModuleCart extends Controller {
 				$image = '';
 			}
 
+			if ($product['quantity'] <= 0) {
+				$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 30, 30);
+			} else {
+				$stock_label = false;
+			}
+
 			if (in_array($product['product_id'], $offers, true)) {
+				$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 30, 30);
 				$offer = true;
 			} else {
+				$offer_label = false;
 				$offer = false;
 			}
 
@@ -116,18 +121,20 @@ class ControllerModuleCart extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'key'       => $product['key'],
-				'thumb'     => $image,
-				'offer'     => $offer,
-				'name'      => $product['name'],
-				'model'     => $product['model'],
-				'option'    => $option_data,
-				'quantity'  => $product['quantity'],
-				'price'     => $price,
-				'total'     => $total,
-				'href'      => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),
-				'recurring' => $product['recurring'],
-				'profile'   => $product['profile_name']
+				'key'         => $product['key'],
+				'thumb'       => $image,
+				'stock_label' => $stock_label,
+				'offer_label' => $offer_label,
+				'offer'       => $offer,
+				'name'        => $product['name'],
+				'model'       => $product['model'],
+				'option'      => $option_data,
+				'quantity'    => $product['quantity'],
+				'price'       => $price,
+				'total'       => $total,
+				'recurring'   => $product['recurring'],
+				'profile'     => $product['profile_name'],
+				'href'        => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL')
 			);
 		}
 
@@ -145,7 +152,6 @@ class ControllerModuleCart extends Controller {
 		}
 
 		$this->data['cart'] = $this->url->link('checkout/cart', '', 'SSL');
-
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
 		// Template

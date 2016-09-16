@@ -72,6 +72,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_bottom'] = $this->language->get('text_bottom');
 		$this->data['text_news'] = $this->language->get('text_news');
 		$this->data['text_image_resize'] = $this->language->get('text_image_resize');
+		$this->data['text_image_labels'] = $this->language->get('text_image_labels');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
 		$this->data['text_clear'] = $this->language->get('text_clear');
@@ -204,7 +205,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_barcode_type'] = $this->language->get('entry_barcode_type');
 		$this->data['entry_buy_now'] = $this->language->get('entry_buy_now');
 		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
-		$this->data['entry_offer_label'] = $this->language->get('entry_offer_label');
 		$this->data['entry_share_addthis'] = $this->language->get('entry_share_addthis');
 		$this->data['entry_price_free'] = $this->language->get('entry_price_free');
 		$this->data['entry_captcha_font'] = $this->language->get('entry_captcha_font');
@@ -229,6 +229,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_image_newsthumb'] = $this->language->get('entry_image_newsthumb');
 		$this->data['entry_image_newspopup'] = $this->language->get('entry_image_newspopup');
 		$this->data['entry_image_cart'] = $this->language->get('entry_image_cart');
+		$this->data['entry_label_stock'] = $this->language->get('entry_label_stock');
+		$this->data['entry_label_offer'] = $this->language->get('entry_label_offer');
 		$this->data['entry_ftp_status'] = $this->language->get('entry_ftp_status');
 		$this->data['entry_ftp_host'] = $this->language->get('entry_ftp_host');
 		$this->data['entry_ftp_port'] = $this->language->get('entry_ftp_port');
@@ -1228,12 +1230,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_lightbox'] = $this->config->get('config_lightbox');
 		}
 
-		if (isset($this->request->post['config_offer_label'])) {
-			$this->data['config_offer_label'] = $this->request->post['config_offer_label'];
-		} else {
-			$this->data['config_offer_label'] = $this->config->get('config_offer_label');
-		}
-
 		if (isset($this->request->post['config_share_addthis'])) {
 			$this->data['config_share_addthis'] = $this->request->post['config_share_addthis'];
 		} else {
@@ -1477,6 +1473,31 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_image_cart_height'] = $this->request->post['config_image_cart_height'];
 		} else {
 			$this->data['config_image_cart_height'] = $this->config->get('config_image_cart_height');
+		}
+
+		// Image > Labels
+		if (isset($this->request->post['config_label_stock'])) {
+			$this->data['config_label_stock'] = $this->request->post['config_label_stock'];
+		} else {
+			$this->data['config_label_stock'] = $this->config->get('config_label_stock');
+		}
+
+		if ($this->config->get('config_label_stock') && file_exists(DIR_IMAGE . $this->config->get('config_label_stock')) && is_file(DIR_IMAGE . $this->config->get('config_label_stock'))) {
+			$this->data['label_stock'] = $this->model_tool_image->resize($this->config->get('config_label_stock'), 100, 100);
+		} else {
+			$this->data['label_stock'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
+		if (isset($this->request->post['config_label_offer'])) {
+			$this->data['config_label_offer'] = $this->request->post['config_label_offer'];
+		} else {
+			$this->data['config_label_offer'] = $this->config->get('config_label_offer');
+		}
+
+		if ($this->config->get('config_label_offer') && file_exists(DIR_IMAGE . $this->config->get('config_label_offer')) && is_file(DIR_IMAGE . $this->config->get('config_label_offer'))) {
+			$this->data['label_offer'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 100, 100);
+		} else {
+			$this->data['label_offer'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
 
 		// Transfer

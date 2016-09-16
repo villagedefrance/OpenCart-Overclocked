@@ -50,13 +50,9 @@ class ControllerModuleLatest extends Controller {
 		$this->data['viewproduct'] = $this->config->get($this->_name . '_viewproduct');
 		$this->data['addproduct'] = $this->config->get($this->_name . '_addproduct');
 
-		// Latest
 		$this->load->model('catalog/product');
-		$this->load->model('tool/image');
-
-		$this->data['label'] = $this->config->get('config_offer_label');
-
 		$this->load->model('catalog/offer');
+		$this->load->model('tool/image');
 
 		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
@@ -93,9 +89,17 @@ class ControllerModuleLatest extends Controller {
 				$rating = false;
 			}
 
+			if ($result['quantity'] <= 0) {
+				$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 50, 50);
+			} else {
+				$stock_label = false;
+			}
+
 			if (in_array($result['product_id'], $offers, true)) {
+				$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
 				$offer = true;
 			} else {
+				$offer_label = false;
 				$offer = false;
 			}
 
@@ -108,6 +112,8 @@ class ControllerModuleLatest extends Controller {
 			$this->data['products'][] = array(
 				'product_id'      => $result['product_id'],
 				'thumb'           => $image,
+				'stock_label'     => $stock_label,
+				'offer_label'     => $offer_label,
 				'offer'           => $offer,
 				'name'            => $result['name'],
 				'stock_status'    => $result['stock_status'],

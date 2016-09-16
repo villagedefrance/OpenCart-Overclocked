@@ -234,8 +234,6 @@ class ControllerCheckoutCart extends Controller {
 			}
 
 			// Get offers
-			$this->data['label'] = $this->config->get('config_offer_label');
-
 			$this->load->model('catalog/offer');
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
@@ -266,9 +264,17 @@ class ControllerCheckoutCart extends Controller {
 					$image = '';
 				}
 
+				if ($product['quantity'] <= 0) {
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 30, 30);
+				} else {
+					$stock_label = false;
+				}
+
 				if (in_array($product['product_id'], $offers, true)) {
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 30, 30);
 					$offer = true;
 				} else {
+					$offer_label = false;
 					$offer = false;
 				}
 
@@ -362,6 +368,8 @@ class ControllerCheckoutCart extends Controller {
 					'product_id'          => $product['product_id'],
 					'key'                 => $product['key'],
 					'thumb'               => $image,
+					'stock_label'         => $stock_label,
+					'offer_label'         => $offer_label,
 					'offer'               => $offer,
 					'name'                => $product['name'],
 					'model'               => $product['model'],

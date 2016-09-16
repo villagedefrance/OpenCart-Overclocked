@@ -2408,30 +2408,30 @@ ul.box-filter > li ul {
 .sitemap-info .left > ul > li ul > li ul > li, .sitemap-info .right > ul > li ul > li ul > li {
 	margin: 2px 0px;
 }
-/* Promo */
-.promo-large {
+/* Labels */
+.offer-large, .stock-large {
 	position: relative;
 	top: 0;
 	left: 0;
-	height: 75px;
-	width: 75px;
+	height: 90px;
+	width: 90px;
 	display: block;
-	margin: 0px 0px -75px 0px;
+	margin: 0px 0px -90px 0px;
 	padding: 0px;
 	z-index: 9;
 }
-.promo-medium {
+.offer-medium, .stock-medium {
 	position: relative;
 	top: 0;
 	left: 0;
-	height: 40px;
-	width: 40px;
+	height: 50px;
+	width: 50px;
 	display: block;
-	margin: 0px 0px -40px 0px;
+	margin: 0px 0px -50px 0px;
 	padding: 0px;
 	z-index: 9;
 }
-.promo-small {
+.offer-small, .stock-small {
 	position: relative;
 	top: 0;
 	left: 0;
@@ -2441,16 +2441,6 @@ ul.box-filter > li ul {
 	margin: 0px 0px -30px 0px;
 	padding: 0px;
 	z-index: 9;
-}
-.promo-mini {
-	position: relative;
-	top: 0;
-	left: 0;
-	height: 10px;
-	width: 10px;
-	display: block;
-	margin: 0px 0px -10px 0px;
-	padding: 0px;
 }
 /* Banner */
 .banner div {
