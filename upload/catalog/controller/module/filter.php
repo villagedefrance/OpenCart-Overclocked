@@ -66,7 +66,7 @@ class ControllerModuleFilter extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$this->data['action'] = str_replace('&amp;', '&', $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url));
+			$this->data['action'] = str_replace('&amp;', '&', $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url, 'SSL'));
 
 			if (isset($this->request->get['filter'])) {
 				$this->data['filter_category'] = explode(',', $this->request->get['filter']);

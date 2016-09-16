@@ -28,7 +28,7 @@ class ControllerPaymentSagepay extends Controller {
 		$data['Amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
 		$data['Currency'] = $order_info['currency_code'];
 		$data['Description'] = sprintf($this->language->get('text_description'), date($this->language->get('date_format_short')), $this->session->data['order_id']);
-		$data['SuccessURL'] = str_replace('&amp;', '&', $this->url->link('payment/sagepay/success', 'order_id=' . $this->session->data['order_id']));
+		$data['SuccessURL'] = str_replace('&amp;', '&', $this->url->link('payment/sagepay/success', 'order_id=' . $this->session->data['order_id'], 'SSL'));
 		$data['FailureURL'] = str_replace('&amp;', '&', $this->url->link('checkout/checkout', '', 'SSL'));
 
 		$data['CustomerName'] = html_entity_decode($order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'], ENT_QUOTES, 'UTF-8');
@@ -187,7 +187,7 @@ class ControllerPaymentSagepay extends Controller {
 					$this->model_checkout_order->update($this->request->get['order_id'], $this->config->get('config_order_status_id'), $message, false);
 				}
 
-				$this->redirect($this->url->link('checkout/success'));
+				$this->redirect($this->url->link('checkout/success', '', 'SSL'));
 			}
 		}
 	}

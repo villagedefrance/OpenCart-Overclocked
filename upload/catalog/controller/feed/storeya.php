@@ -47,7 +47,7 @@ class ControllerFeedStoreya extends Controller {
 			if ($product['description']) {
 				$output .= '<item>'. "\n";
 				$output .= '<title>' . $this->stripHtmlTags($this->replaceProblemCharacters($this->encodeIfNeeded($product['name']))) . '</title>' . "\n";
-				$output .= '<link>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</link>' . "\n";
+				$output .= '<link>' . $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL') . '</link>' . "\n";
 				$output .= '<description>' . $this->stripHtmlTags($this->replaceProblemCharacters($this->encodeIfNeeded(html_entity_decode($product['description'])))) . '</description>' . "\n";
 				$output .= '<g:brand>' . html_entity_decode($product['manufacturer'], ENT_QUOTES, 'UTF-8') . '</g:brand>' . "\n";
 				$output .= '<g:condition>new</g:condition>' . "\n";

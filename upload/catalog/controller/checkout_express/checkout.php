@@ -25,7 +25,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$this->redirect($this->url->link('checkout/cart'));
+				$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 				break;
 			}
 
@@ -44,10 +44,9 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		// Coupon session
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
 			$this->session->data['coupon'] = $this->request->post['coupon'];
-
 			$this->session->data['success'] = $this->language->get('text_coupon');
 
-			$this->redirect($this->url->link('checkout_express/checkout'));
+			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
 		}
 
 		// Voucher session
@@ -57,19 +56,17 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		if (isset($this->request->post['voucher']) && $this->validateVoucher()) {
 			$this->session->data['voucher'] = $this->request->post['voucher'];
-
 			$this->session->data['success'] = $this->language->get('text_voucher');
 
-			$this->redirect($this->url->link('checkout_express/checkout'));
+			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
 		}
 
 		// Reward session
 		if (isset($this->request->post['reward']) && $this->validateReward()) {
 			$this->session->data['reward'] = abs($this->request->post['reward']);
-
 			$this->session->data['success'] = $this->language->get('text_reward');
 
-			$this->redirect($this->url->link('checkout_express/checkout'));
+			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
 		}
 
 		if (isset($this->error['warning'])) {
@@ -88,7 +85,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			$this->data['success'] = '';
 		}
 
-		$this->data['action'] = $this->url->link('checkout_express/checkout');
+		$this->data['action'] = $this->url->link('checkout_express/checkout', '', 'SSL');
 
 		// Coupon
 		$this->data['coupon_status'] = $this->config->get('coupon_status');
@@ -110,7 +107,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 					'key'         => $key,
 					'description' => $voucher['description'],
 					'amount'      => $this->currency->format($voucher['amount']),
-					'remove'      => $this->url->link('checkout_express/checkout', 'remove=' . $key)
+					'remove'      => $this->url->link('checkout_express/checkout', 'remove=' . $key, 'SSL')
 				);
 			}
 		}
@@ -175,13 +172,13 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		); 
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_cart'),
-			'href'      => $this->url->link('checkout/cart'),
+			'href'      => $this->url->link('checkout/cart', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -222,7 +219,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->data['express_billing'] = $this->config->get('config_express_billing');
 
 		$this->data['express_address'] = $this->url->link('checkout_express/checkout', '', 'SSL');
-		$this->data['express_cart'] = $this->url->link('checkout/cart');
+		$this->data['express_cart'] = $this->url->link('checkout/cart', '', 'SSL');
 
 		if (isset($this->request->get['quickconfirm'])) {
 			$this->data['quickconfirm'] = $this->request->get['quickconfirm'];

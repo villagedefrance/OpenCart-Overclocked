@@ -122,7 +122,7 @@ class ModelAffiliateAffiliate extends Model {
 		$affiliate_id = $this->affiliate->getId();
 
 		if (!empty($data['product_id'])) {
-			$code = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $data['product_id'] . '&tracking=' . $this->affiliate->getCode()));
+			$code = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $data['product_id'] . '&tracking=' . $this->affiliate->getCode(), 'SSL'));
 		} else {
 			$code = $this->affiliate->getCode();
 		}
@@ -134,7 +134,7 @@ class ModelAffiliateAffiliate extends Model {
 		$affiliate_id = $this->affiliate->getId();
 
 		if (!empty($data['product_id'])) {
-			$code = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $data['product_id'] . '&tracking=' . $this->affiliate->getCode()));
+			$code = str_replace('&amp;', '&', $this->url->link('product/product', 'product_id=' . $data['product_id'] . '&tracking=' . $this->affiliate->getCode(), 'SSL'));
 		} else {
 			$code = $this->affiliate->getCode();
 		}
@@ -169,7 +169,7 @@ class ModelAffiliateAffiliate extends Model {
 		$affiliate_info = $this->getAffiliate($affiliate_id);
 
 		if ($affiliate_info) {
-			$this->load->language('mail/affiliate');
+			$this->language->load('mail/affiliate');
 
 			$this->db->query("INSERT INTO " . DB_PREFIX . "affiliate_transaction SET affiliate_id = '" . (int)$affiliate_id . "', order_id = '" . (float)$order_id . "', description = '" . $this->db->escape($this->language->get('text_order_id') . ' #' . $order_id) . "', amount = '" . (float)$amount . "', date_added = NOW()");
 

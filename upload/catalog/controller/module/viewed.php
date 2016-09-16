@@ -59,23 +59,23 @@ class ControllerModuleViewed extends Controller {
 
 		$offers = $this->model_catalog_offer->getListProductOffers(0);
 
-        $products = array();
+		$products = array();
 
-        if (isset($this->request->cookie['viewed'])) {
-            $products = explode(',', $this->request->cookie['viewed']);
-        } elseif (isset($this->session->data['viewed'])) {
-            $products = $this->session->data['viewed'];
-        }
+		if (isset($this->request->cookie['viewed'])) {
+			$products = explode(',', $this->request->cookie['viewed']);
+		} elseif (isset($this->session->data['viewed'])) {
+			$products = $this->session->data['viewed'];
+		}
 
-        if (isset($this->request->get['route']) && $this->request->get['route'] == 'product/product') {
-            $product_id = $this->request->get['product_id'];
+		if (isset($this->request->get['route']) && $this->request->get['route'] == 'product/product') {
+			$product_id = $this->request->get['product_id'];
 
-            $products = array_diff($products, array($product_id));
+			$products = array_diff($products, array($product_id));
 
-            array_unshift($products, $product_id);
+			array_unshift($products, $product_id);
 
-            setcookie('viewed', implode(',', $products), time() + 60 * 60 * 24 * 30, '/', $this->request->server['HTTP_HOST']);
-        }
+			setcookie('viewed', implode(',', $products), time() + 60 * 60 * 24 * 30, '/', $this->request->server['HTTP_HOST']);
+		}
 
 		if (empty($setting['limit'])) {
 			$setting['limit'] = 4;
@@ -145,7 +145,7 @@ class ControllerModuleViewed extends Controller {
 					'age_minimum'     => ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
 					'rating'          => (int)$rating,
 					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-					'href'            => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
+					'href'            => $this->url->link('product/product', 'product_id=' . $product_info['product_id'], 'SSL')
 				);
 			}
 		}

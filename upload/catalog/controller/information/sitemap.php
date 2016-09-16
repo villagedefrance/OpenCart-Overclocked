@@ -10,13 +10,13 @@ class ControllerInformationSitemap extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('information/sitemap'),
+			'href'      => $this->url->link('information/sitemap', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -96,7 +96,7 @@ class ControllerInformationSitemap extends Controller {
 					if ($empty_category || $product_total > 0) {
 						$level_3_data[] = array(
 							'name' => $category_3['name'],
-							'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
+							'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'], 'SSL')
 						);
 					}
 				}
@@ -104,27 +104,27 @@ class ControllerInformationSitemap extends Controller {
 				$level_2_data[] = array(
 					'name'     => $category_2['name'],
 					'children' => $level_3_data,
-					'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
+					'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'], 'SSL')
 				);
 			}
 
 			$this->data['categories'][] = array(
 				'name'     => $category_1['name'],
 				'children' => $level_2_data,
-				'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'])
+				'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'], 'SSL')
 			);
 		}
 
-		$this->data['cart'] = $this->url->link('checkout/cart');
+		$this->data['cart'] = $this->url->link('checkout/cart', '', 'SSL');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
-		$this->data['product_list'] = $this->url->link('product/product_list');
-		$this->data['product_wall'] = $this->url->link('product/product_wall');
-		$this->data['category_list'] = $this->url->link('product/category_list');
-		$this->data['manufacturer'] = $this->url->link('product/manufacturer');
-		$this->data['special'] = $this->url->link('product/special');
-		$this->data['review_list'] = $this->url->link('product/review_list');
-		$this->data['search'] = $this->url->link('product/search');
+		$this->data['product_list'] = $this->url->link('product/product_list', '', 'SSL');
+		$this->data['product_wall'] = $this->url->link('product/product_wall', '', 'SSL');
+		$this->data['category_list'] = $this->url->link('product/category_list', '', 'SSL');
+		$this->data['manufacturer'] = $this->url->link('product/manufacturer', '', 'SSL');
+		$this->data['special'] = $this->url->link('product/special', '', 'SSL');
+		$this->data['review_list'] = $this->url->link('product/review_list', '', 'SSL');
+		$this->data['search'] = $this->url->link('product/search', '', 'SSL');
 
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
 		$this->data['login'] = $this->url->link('account/login', '', 'SSL');
@@ -150,8 +150,8 @@ class ControllerInformationSitemap extends Controller {
 		$this->data['affiliate_tracking'] = $this->url->link('affiliate/tracking', '', 'SSL');
 		$this->data['affiliate_transaction'] = $this->url->link('affiliate/transaction', '', 'SSL');
 
-		$this->data['sitemap'] = $this->url->link('information/sitemap');
-		$this->data['news'] = $this->url->link('information/news_list');
+		$this->data['sitemap'] = $this->url->link('information/sitemap', '', 'SSL');
+		$this->data['news'] = $this->url->link('information/news_list', '', 'SSL');
 		$this->data['quote'] = $this->url->link('information/quote', '', 'SSL');
 		$this->data['contact'] = $this->url->link('information/contact', '', 'SSL');
 
@@ -162,7 +162,7 @@ class ControllerInformationSitemap extends Controller {
 		foreach ($this->model_catalog_information->getInformations() as $result) {
 			$this->data['informations'][] = array(
 				'title' => $result['title'],
-				'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+				'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'], 'SSL')
 			);
 		}
 

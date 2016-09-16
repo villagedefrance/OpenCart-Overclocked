@@ -16,7 +16,7 @@ class ControllerAccountRecurring extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -74,7 +74,7 @@ class ControllerAccountRecurring extends Controller {
 					'name'    => $result['product_name'],
 					'status'  => $result['status'],
 					'created' => date($this->language->get('date_format_short'), strtotime($result['created'])),
-					'href'    => $this->url->link('account/recurring/info','recurring_id='.$result['order_recurring_id'],'SSL')
+					'href'    => $this->url->link('account/recurring/info','recurring_id=' . $result['order_recurring_id'],'SSL')
 				);
 			}
 		}
@@ -151,7 +151,7 @@ class ControllerAccountRecurring extends Controller {
 			$this->data['success'] = '';
 		}
 
-		$this->load->language('account/recurring');
+		$this->language->load('account/recurring');
 
 		$this->load->model('account/recurring');
 
@@ -204,7 +204,7 @@ class ControllerAccountRecurring extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_home'),
-				'href'      => $this->url->link('common/home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 

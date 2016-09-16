@@ -40,7 +40,7 @@ class ControllerProductSpecial extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -88,7 +88,7 @@ class ControllerProductSpecial extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
-				'href'      => $this->url->link('product/special', $url),
+				'href'      => $this->url->link('product/special', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -119,7 +119,7 @@ class ControllerProductSpecial extends Controller {
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['compare'] = $this->url->link('product/compare');
+			$this->data['compare'] = $this->url->link('product/compare', '', 'SSL');
 			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
 			$this->data['label'] = $this->config->get('config_offer_label');
@@ -222,7 +222,7 @@ class ControllerProductSpecial extends Controller {
 					'tax'             => $tax,
 					'rating'          => $rating,
 					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url, 'SSL')
 				);
 			}
 
@@ -233,57 +233,57 @@ class ControllerProductSpecial extends Controller {
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_default'),
 				'value' => 'p.sort_order-ASC',
-				'href' => $this->url->link('product/special', 'sort=p.sort_order&order=ASC' . $url)
+				'href' => $this->url->link('product/special', 'sort=p.sort_order&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_name_asc'),
 				'value' => 'pd.name-ASC',
-				'href' => $this->url->link('product/special', 'sort=pd.name&order=ASC' . $url)
+				'href' => $this->url->link('product/special', 'sort=pd.name&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_name_desc'),
 				'value' => 'pd.name-DESC',
-				'href' => $this->url->link('product/special', 'sort=pd.name&order=DESC' . $url)
+				'href' => $this->url->link('product/special', 'sort=pd.name&order=DESC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_price_asc'),
 				'value' => 'ps.price-ASC',
-				'href' => $this->url->link('product/special', 'sort=ps.price&order=ASC' . $url)
+				'href' => $this->url->link('product/special', 'sort=ps.price&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_price_desc'),
 				'value' => 'ps.price-DESC',
-				'href' => $this->url->link('product/special', 'sort=ps.price&order=DESC' . $url)
+				'href' => $this->url->link('product/special', 'sort=ps.price&order=DESC' . $url, 'SSL')
 			);
 
 			if ($this->config->get('config_review_status')) {
 				$this->data['sorts'][] = array(
 					'text' => $this->language->get('text_rating_desc'),
 					'value' => 'rating-DESC',
-					'href' => $this->url->link('product/special', 'sort=rating&order=DESC' . $url)
+					'href' => $this->url->link('product/special', 'sort=rating&order=DESC' . $url, 'SSL')
 				);
 
 				$this->data['sorts'][] = array(
 					'text' => $this->language->get('text_rating_asc'),
 					'value' => 'rating-ASC',
-					'href' => $this->url->link('product/special', 'sort=rating&order=ASC' . $url)
+					'href' => $this->url->link('product/special', 'sort=rating&order=ASC' . $url, 'SSL')
 				);
 			}
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_model_asc'),
 				'value' => 'p.model-ASC',
-				'href' => $this->url->link('product/special', 'sort=p.model&order=ASC' . $url)
+				'href' => $this->url->link('product/special', 'sort=p.model&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_model_desc'),
 				'value' => 'p.model-DESC',
-				'href' => $this->url->link('product/special', 'sort=p.model&order=DESC' . $url)
+				'href' => $this->url->link('product/special', 'sort=p.model&order=DESC' . $url, 'SSL')
 			);
 
 			if (isset($this->request->get['limit'])) {
@@ -310,7 +310,7 @@ class ControllerProductSpecial extends Controller {
 				$this->data['limits'][] = array(
 					'text'  => $value,
 					'value' => $value,
-					'href'  => $this->url->link('product/special', $url . '&limit=' . $value)
+					'href'  => $this->url->link('product/special', $url . '&limit=' . $value, 'SSL')
 				);
 			}
 
@@ -333,7 +333,7 @@ class ControllerProductSpecial extends Controller {
 			$pagination->page = $page;
 			$pagination->limit = $limit;
 			$pagination->text = $this->language->get('text_pagination');
-			$pagination->url = $this->url->link('product/special', $url . '&page={page}');
+			$pagination->url = $this->url->link('product/special', $url . '&page={page}', 'SSL');
 
 			$this->data['pagination'] = $pagination->render();
 
@@ -348,17 +348,17 @@ class ControllerProductSpecial extends Controller {
 				$this->document->addLink($this->url->link('product/special'), 'canonical');
 			} elseif (($page == 1) && ($page_trigger > 0)) {
 				$this->document->addLink($this->url->link('product/special'), 'canonical');
-				$this->document->addLink($this->url->link('product/special', 'page=' . ($page + 1) . $url), 'next');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page + 1) . $url, 'SSL'), 'next');
 			} elseif ($page == $page_last) {
 				$this->document->addLink($this->url->link('product/special', 'page=' . $page), 'canonical');
-				$this->document->addLink($this->url->link('product/special', 'page=' . ($page - 1) . $url), 'prev');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page - 1) . $url, 'SSL'), 'prev');
 			} elseif ($this->request->get['page'] > $page_last) {
 				$this->document->addLink($this->url->link('product/special', 'page=' . $page), 'canonical');
-				$this->document->addLink($this->url->link('product/special', 'page=' . $page_last . $url), 'prev');
+				$this->document->addLink($this->url->link('product/special', 'page=' . $page_last . $url, 'SSL'), 'prev');
 			} elseif (($page > 1) && ($page < $page_last)) {
 				$this->document->addLink($this->url->link('product/special', 'page=' . $page), 'canonical');
-				$this->document->addLink($this->url->link('product/special', 'page=' . ($page - 1) . $url), 'prev');
-				$this->document->addLink($this->url->link('product/special', 'page=' . ($page + 1) . $url), 'next');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page - 1) . $url, 'SSL'), 'prev');
+				$this->document->addLink($this->url->link('product/special', 'page=' . ($page + 1) . $url, 'SSL'), 'next');
 			}
 
 			$this->data['continue'] = $this->url->link('common/home');
@@ -406,7 +406,7 @@ class ControllerProductSpecial extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
-				'href'      => $this->url->link('product/special', $url),
+				'href'      => $this->url->link('product/special', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -416,7 +416,7 @@ class ControllerProductSpecial extends Controller {
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');

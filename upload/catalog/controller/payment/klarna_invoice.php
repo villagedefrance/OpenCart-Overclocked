@@ -179,7 +179,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 		// Order must have identical shipping and billing address or have no shipping address at all
 		if ($order_info) {
 			if ($order_info['payment_iso_code_3'] == 'DEU' && empty($this->request->post['deu_terms'])) {
-				$json['error'] =  $this->language->get('error_deu_terms');
+				$json['error'] = $this->language->get('error_deu_terms');
 			}
 
 			if ($this->cart->hasShipping() && !($order_info['payment_firstname'] == $order_info['shipping_firstname'] && $order_info['payment_lastname'] == $order_info['shipping_lastname'] && $order_info['payment_address_1'] == $order_info['shipping_address_1'] && $order_info['payment_address_2'] == $order_info['shipping_address_2'] && $order_info['payment_postcode'] == $order_info['shipping_postcode'] && $order_info['payment_city'] == $order_info['shipping_city'] && $order_info['payment_zone_id'] == $order_info['shipping_zone_id'] && $order_info['payment_zone_code'] == $order_info['shipping_zone_code'] && $order_info['payment_country_id'] == $order_info['shipping_country_id'] && $order_info['payment_country'] == $order_info['shipping_country'] && $order_info['payment_iso_code_3'] == $order_info['shipping_iso_code_3'])) {
@@ -437,7 +437,7 @@ class ControllerPaymentKlarnaInvoice extends Controller {
 
 						$this->model_checkout_order->confirm($this->session->data['order_id'], $order_status, $comment, 1);
 
-						$json['redirect'] = $this->url->link('checkout/success');
+						$json['redirect'] = $this->url->link('checkout/success', '', 'SSL');
 					}
 				}
 

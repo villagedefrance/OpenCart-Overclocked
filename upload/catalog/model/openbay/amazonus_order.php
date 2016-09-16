@@ -123,7 +123,7 @@ class ModelOpenbayAmazonusOrder extends Model {
 	/* $data = array(PRODUCT_SKU => ORDER_ITEM_ID) */
 	public function addAmazonusOrderProducts($orderId, $data) {
 		foreach ($data as $sku => $orderItemId) {
-			$row = $this->db->query("SELECT `order_product_id` FROM `" . DB_PREFIX . "order_product` WHERE `model` = '" . $this->db->escape($sku) . "' AND `order_id` = " . (int)$orderId . " LIMIT 1")->row;
+			$row = $this->db->query("SELECT `order_product_id` FROM `" . DB_PREFIX . "order_product` WHERE `model` = '" . $this->db->escape($sku) . "' AND `order_id` = " . (int)$orderId . " LIMIT 0,1")->row;
 
 			if (!isset($row['order_product_id']) || empty($row['order_product_id'])) {
 				continue;
@@ -136,7 +136,7 @@ class ModelOpenbayAmazonusOrder extends Model {
 	}
 
 	public function getOrderId($amazonusOrderId) {
-		$row = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "amazonus_order` WHERE `amazonus_order_id` = '" . $this->db->escape($amazonusOrderId) . "' LIMIT 1")->row;
+		$row = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "amazonus_order` WHERE `amazonus_order_id` = '" . $this->db->escape($amazonusOrderId) . "' LIMIT 0,1")->row;
 
 		if (isset($row['order_id']) && !empty($row['order_id'])) {
 			return $row['order_id'];
@@ -156,7 +156,7 @@ class ModelOpenbayAmazonusOrder extends Model {
 	}
 
 	public function getAmazonusOrderId($orderId) {
-		$row = $this->db->query("SELECT `amazonus_order_id` FROM `" . DB_PREFIX . "amazonus_order` WHERE `order_id` = " . (int)$orderId . " LIMIT 1")->row;
+		$row = $this->db->query("SELECT `amazonus_order_id` FROM `" . DB_PREFIX . "amazonus_order` WHERE `order_id` = " . (int)$orderId . " LIMIT 0,1")->row;
 
 		if (isset($row['amazonus_order_id']) && !empty($row['amazonus_order_id'])) {
 			return $row['amazonus_order_id'];

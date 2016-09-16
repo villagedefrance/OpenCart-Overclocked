@@ -100,8 +100,8 @@ class ControllerPaymentG2APay extends Controller {
 			'amount'      => $order_total,
 			'currency'    => $order_info['currency_code'],
 			'email'       => $order_info['email'],
-			'url_failure' => $this->url->link('checkout/failure'),
-			'url_ok'      => $this->url->link('payment/g2apay/success'),
+			'url_failure' => $this->url->link('checkout/failure', '', 'SSL'),
+			'url_ok'      => $this->url->link('payment/g2apay/success', '', 'SSL'),
 			'items'       => json_encode($items)
 		);
 
@@ -145,6 +145,7 @@ class ControllerPaymentG2APay extends Controller {
 
 		if ($order_info) {
 			$this->load->model('payment/g2apay');
+
 			$g2apay_order_info = $this->model_payment_g2apay->getG2aOrder($order_id);
 
 			$this->model_payment_g2apay->updateOrder($g2apay_order_info['g2apay_order_id'], $g2apay_transaction_id, 'payment', $order_info);
@@ -152,7 +153,7 @@ class ControllerPaymentG2APay extends Controller {
 			$this->model_checkout_order->update($order_id, $this->config->get('g2apay_order_status_id'));
 		}
 
-		$this->redirect($this->url->link('checkout/success'));
+		$this->redirect($this->url->link('checkout/success', '', 'SSL'));
 	}
 
 	public function ipn() {

@@ -31,13 +31,13 @@ class ControllerCheckoutSuccess extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_basket'),
-			'href'      => $this->url->link('checkout/cart'),
+			'href'      => $this->url->link('checkout/cart', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -49,7 +49,7 @@ class ControllerCheckoutSuccess extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_success'),
-			'href'      => $this->url->link('checkout/success'),
+			'href'      => $this->url->link('checkout/success', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 

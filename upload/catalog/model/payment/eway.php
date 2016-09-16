@@ -89,7 +89,7 @@ class ModelPaymentEway extends Model {
 	}
 
 	public function addCard($order_id, $card_data) {
-		$this->db->query("INSERT into " . DB_PREFIX . "eway_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', order_id = '" . $this->db->escape($order_id) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', type = '" . $this->db->escape($card_data['CardType']) . "'");
+		$this->db->query("INSERT into " . DB_PREFIX . "eway_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', order_id = '" . $this->db->escape($order_id) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', `type` = '" . $this->db->escape($card_data['CardType']) . "'");
 	}
 
 	public function updateCard($order_id, $token) {
@@ -97,7 +97,7 @@ class ModelPaymentEway extends Model {
 	}
 
 	public function updateFullCard($card_id, $token, $card_data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "eway_card SET token = '" . $this->db->escape($token) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', type = '" . $this->db->escape($card_data['CardType']) . "' WHERE card_id = '" . (int)$card_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "eway_card SET token = '" . $this->db->escape($token) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', `type` = '" . $this->db->escape($card_data['CardType']) . "' WHERE card_id = '" . (int)$card_id . "'");
 	}
 
 	public function deleteCard($order_id) {

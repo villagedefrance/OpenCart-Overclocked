@@ -121,6 +121,7 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 		if ($this->customer->isLogged() && $this->data['sagepay_direct_card']) {
 			$this->load->model('payment/sagepay_direct');
+
 			$this->data['existing_cards'] = $this->model_payment_sagepay_direct->getCards($this->customer->getId());
 		}
 
@@ -496,7 +497,9 @@ class ControllerPaymentSagepayDirect extends Controller {
 
 			if ($response_data['Status'] == 'OK') {
 				$this->model_payment_sagepay_direct->deleteCard($card['card_id']);
+
 				$this->session->data['success'] = $this->language->get('text_success_card');
+
 				$json['success'] = true;
 			} else {
 				$json['error'] = $this->language->get('text_fail_card');

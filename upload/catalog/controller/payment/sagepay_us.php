@@ -18,8 +18,8 @@ class ControllerPaymentSagepayUS extends Controller {
 
 		for ($i = 1; $i <= 12; $i++) {
 			$this->data['months'][] = array(
-				'text'		=> strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
-				'value'	=> sprintf('%02d', $i)
+				'text' => strftime('%B', mktime(0, 0, 0, $i, 1, 2000)),
+				'value' => sprintf('%02d', $i)
 			);
 		}
 
@@ -29,8 +29,8 @@ class ControllerPaymentSagepayUS extends Controller {
 
 		for ($i = $today['year']; $i < $today['year'] + 11; $i++) {
 			$this->data['year_expire'][] = array(
-				'text'		=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
-				'value'	=> strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
+				'text' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i)),
+				'value' => strftime('%Y', mktime(0, 0, 0, 1, 1, $i))
 			);
 		}
 
@@ -96,7 +96,7 @@ class ControllerPaymentSagepayUS extends Controller {
 
 			$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('sagepay_us_order_status_id'), $message, false);
 
-			$json['success'] = $this->url->link('checkout/success');
+			$json['success'] = $this->url->link('checkout/success', '', 'SSL');
 
 		} else {
 			$json['error'] = substr($response, 8, 32);

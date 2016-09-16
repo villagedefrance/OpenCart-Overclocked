@@ -125,7 +125,7 @@ class ControllerModuleCart extends Controller {
 				'quantity'  => $product['quantity'],
 				'price'     => $price,
 				'total'     => $total,
-				'href'      => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+				'href'      => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),
 				'recurring' => $product['recurring'],
 				'profile'   => $product['profile_name']
 			);
@@ -144,7 +144,7 @@ class ControllerModuleCart extends Controller {
 			}
 		}
 
-		$this->data['cart'] = $this->url->link('checkout/cart');
+		$this->data['cart'] = $this->url->link('checkout/cart', '', 'SSL');
 
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 

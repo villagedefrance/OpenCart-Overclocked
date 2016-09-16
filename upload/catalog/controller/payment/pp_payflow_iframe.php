@@ -92,7 +92,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 	}
 
 	public function pp_return() {
-		$this->data['checkout_success'] = $this->url->link('checkout/success');
+		$this->data['checkout_success'] = $this->url->link('checkout/success', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');
@@ -107,7 +107,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 	}
 
 	public function pp_cancel() {
-		$this->data['url'] = $this->url->link('checkout/checkout');
+		$this->data['url'] = $this->url->link('checkout/checkout', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');
@@ -122,7 +122,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 	}
 
 	public function pp_error() {
-		$this->data['url'] = $this->url->link('checkout/checkout');
+		$this->data['url'] = $this->url->link('checkout/checkout', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');

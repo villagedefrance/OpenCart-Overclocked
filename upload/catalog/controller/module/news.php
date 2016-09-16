@@ -45,7 +45,7 @@ class ControllerModuleNews extends Controller {
 
 		$this->data['button_list'] = $this->language->get('button_list');
 
-		$this->data['news_list'] = $this->url->link('information/news_list');
+		$this->data['news_list'] = $this->url->link('information/news_list', '', 'SSL');
 
 		$this->load->model('catalog/news');
 		$this->load->model('tool/image');
@@ -82,7 +82,7 @@ class ControllerModuleNews extends Controller {
 				'image'       => $image,
 				'description' => $description,
 				'posted'      => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'href'        => $this->url->link('information/news', 'news_id=' . $result['news_id'])
+				'href'        => $this->url->link('information/news', 'news_id=' . $result['news_id'], 'SSL')
 			);
 		}
 

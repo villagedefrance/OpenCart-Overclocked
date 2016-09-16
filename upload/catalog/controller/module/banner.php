@@ -66,7 +66,7 @@ class ControllerModuleBanner extends Controller {
 					if ($result['external_link']) {
 						$image_link = html_entity_decode($result['link'], ENT_QUOTES, 'UTF-8');
 					} else {
-						$image_link = $this->url->link($result['link']);
+						$image_link = $this->url->link($result['link'], '', 'SSL');
 					}
 				} else {
 					$image_link = '';

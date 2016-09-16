@@ -129,7 +129,7 @@ class ControllerModuleAlsoBought extends Controller {
 				'age_minimum'     => ($result['age_minimum'] > 0) ? $result['age_minimum'] : '',
 				'rating'          => (int)$rating,
 				'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-				'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+				'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'], 'SSL')
 			);
 		}
 

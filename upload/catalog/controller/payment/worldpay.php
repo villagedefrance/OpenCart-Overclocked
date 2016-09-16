@@ -115,7 +115,7 @@ class ControllerPaymentWorldPay extends Controller {
 
 			$this->model_checkout_order->update($this->request->post['cartId'], $this->config->get('worldpay_order_status_id'), $message, false);
 
-			$this->data['continue'] = $this->url->link('checkout/success');
+			$this->data['continue'] = $this->url->link('checkout/success', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');
@@ -129,7 +129,7 @@ class ControllerPaymentWorldPay extends Controller {
 			$this->response->setOutput($this->render());
 
 		} else {
-			$this->data['continue'] = $this->url->link('checkout/cart');
+			$this->data['continue'] = $this->url->link('checkout/cart', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');

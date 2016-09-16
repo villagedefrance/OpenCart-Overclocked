@@ -34,7 +34,7 @@ class ControllerProductProductWall extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -82,7 +82,7 @@ class ControllerProductProductWall extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
-				'href'      => $this->url->link('product/product_wall', $url),
+				'href'      => $this->url->link('product/product_wall', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -113,7 +113,7 @@ class ControllerProductProductWall extends Controller {
 			$this->data['button_compare'] = $this->language->get('button_compare');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['compare'] = $this->url->link('product/compare');
+			$this->data['compare'] = $this->url->link('product/compare', '', 'SSL');
 			$this->data['login_register'] = $this->url->link('account/login', '', 'SSL');
 
 			$this->data['label'] = $this->config->get('config_offer_label');
@@ -124,7 +124,7 @@ class ControllerProductProductWall extends Controller {
 
 			$offers = $this->model_catalog_offer->getListProductOffers(0);
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			foreach ($product_results as $result) {
 				if ($result['image']) {
@@ -218,7 +218,7 @@ class ControllerProductProductWall extends Controller {
 					'tax'             => $tax,
 					'rating'          => $rating,
 					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url, 'SSL')
 				);
 			}
 
@@ -229,57 +229,57 @@ class ControllerProductProductWall extends Controller {
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_default'),
 				'value' => 'p.sort_order-ASC',
-				'href' => $this->url->link('product/product_wall', 'sort=p.sort_order&order=ASC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=p.sort_order&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_name_asc'),
 				'value' => 'pd.name-ASC',
-				'href' => $this->url->link('product/product_wall', 'sort=pd.name&order=ASC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=pd.name&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_name_desc'),
 				'value' => 'pd.name-DESC',
-				'href' => $this->url->link('product/product_wall', 'sort=pd.name&order=DESC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=pd.name&order=DESC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_price_asc'),
 				'value' => 'p.price-ASC',
-				'href' => $this->url->link('product/product_wall', 'sort=p.price&order=ASC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=p.price&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_price_desc'),
 				'value' => 'p.price-DESC',
-				'href' => $this->url->link('product/product_wall', 'sort=p.price&order=DESC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=p.price&order=DESC' . $url, 'SSL')
 			);
 
 			if ($this->config->get('config_review_status')) {
 				$this->data['sorts'][] = array(
 					'text' => $this->language->get('text_rating_desc'),
 					'value' => 'rating-DESC',
-					'href' => $this->url->link('product/product_wall', 'sort=rating&order=DESC' . $url)
+					'href' => $this->url->link('product/product_wall', 'sort=rating&order=DESC' . $url, 'SSL')
 				);
 
 				$this->data['sorts'][] = array(
 					'text' => $this->language->get('text_rating_asc'),
 					'value' => 'rating-ASC',
-					'href' => $this->url->link('product/product_wall', 'sort=rating&order=ASC' . $url)
+					'href' => $this->url->link('product/product_wall', 'sort=rating&order=ASC' . $url, 'SSL')
 				);
 			}
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_model_asc'),
 				'value' => 'p.model-ASC',
-				'href' => $this->url->link('product/product_wall', 'sort=p.model&order=ASC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=p.model&order=ASC' . $url, 'SSL')
 			);
 
 			$this->data['sorts'][] = array(
 				'text' => $this->language->get('text_model_desc'),
 				'value' => 'p.model-DESC',
-				'href' => $this->url->link('product/product_wall', 'sort=p.model&order=DESC' . $url)
+				'href' => $this->url->link('product/product_wall', 'sort=p.model&order=DESC' . $url, 'SSL')
 			);
 
 			if (isset($this->request->get['limit'])) {
@@ -306,7 +306,7 @@ class ControllerProductProductWall extends Controller {
 				$this->data['limits'][] = array(
 					'text'  => $value,
 					'value' => $value,
-					'href'  => $this->url->link('product/product_wall', $url . '&limit=' . $value)
+					'href'  => $this->url->link('product/product_wall', $url . '&limit=' . $value, 'SSL')
 				);
 			}
 
@@ -329,7 +329,7 @@ class ControllerProductProductWall extends Controller {
 			$pagination->page = $page;
 			$pagination->limit = $limit;
 			$pagination->text = $this->language->get('text_pagination');
-			$pagination->url = $this->url->link('product/product_wall', $url . '&page={page}');
+			$pagination->url = $this->url->link('product/product_wall', $url . '&page={page}', 'SSL');
 
 			$this->data['pagination'] = $pagination->render();
 
@@ -344,17 +344,17 @@ class ControllerProductProductWall extends Controller {
 				$this->document->addLink($this->url->link('product/product_wall'), 'canonical');
 			} elseif (($page == 1) && ($page_trigger > 0)) {
 				$this->document->addLink($this->url->link('product/product_wall'), 'canonical');
-				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page + 1) . $url), 'next');
+				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page + 1) . $url, 'SSL'), 'next');
 			} elseif ($page == $page_last) {
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page), 'canonical');
-				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page - 1) . $url), 'prev');
+				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page - 1) . $url, 'SSL'), 'prev');
 			} elseif ($this->request->get['page'] > $page_last) {
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page), 'canonical');
-				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page_last . $url), 'prev');
+				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page_last . $url, 'SSL'), 'prev');
 			} elseif (($page > 1) && ($page < $page_last)) {
 				$this->document->addLink($this->url->link('product/product_wall', 'page=' . $page), 'canonical');
-				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page - 1) . $url), 'prev');
-				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page + 1) . $url), 'next');
+				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page - 1) . $url, 'SSL'), 'prev');
+				$this->document->addLink($this->url->link('product/product_wall', 'page=' . ($page + 1) . $url, 'SSL'), 'next');
 			}
 
 			// Theme
@@ -400,7 +400,7 @@ class ControllerProductProductWall extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_error'),
-				'href'      => $this->url->link('product/manufacturer/info', $url),
+				'href'      => $this->url->link('product/manufacturer/info', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -410,7 +410,7 @@ class ControllerProductProductWall extends Controller {
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');

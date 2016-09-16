@@ -80,7 +80,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function getMethod($address, $total) {
-		$this->load->language('payment/pp_express');
+		$this->language->load('payment/pp_express');
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('pp_express_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
@@ -109,18 +109,14 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function addOrder($order_data) {
-		/**
-		 * 1 to 1 relationship with order table (extends order info)
-		 */
+		// 1 to 1 relationship with order table (extends order info)
 		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_order SET order_id = '" . (int)$order_data['order_id'] . "', created = NOW(), modified = NOW(), capture_status = '" . $this->db->escape($order_data['capture_status']) . "', currency_code = '" . $this->db->escape($order_data['currency_code']) . "', total = '" . (double)$order_data['total'] . "', authorization_id = '" . $this->db->escape($order_data['authorization_id']) . "'");
 
 		return $this->db->getLastId();
 	}
 
 	public function addTransaction($transaction_data) {
-		/**
-		 * 1 to many relationship with paypal order table, many transactions per 1 order
-		 */
+		// 1 to many relationship with paypal order table, many transactions per 1 order
 		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_order_transaction SET paypal_order_id = '" . (int)$transaction_data['paypal_order_id'] . "', transaction_id = '" . $this->db->escape($transaction_data['transaction_id']) . "', parent_transaction_id = '" . $this->db->escape($transaction_data['parent_transaction_id']) . "', created = NOW(), note = '" . $this->db->escape($transaction_data['note']) . "', msgsubid = '" . $this->db->escape($transaction_data['msgsubid']) . "', receipt_id = '" . $this->db->escape($transaction_data['receipt_id']) . "', payment_type = '" . $this->db->escape($transaction_data['payment_type']) . "', payment_status = '" . $this->db->escape($transaction_data['payment_status']) . "', pending_reason = '" . $this->db->escape($transaction_data['pending_reason']) . "', transaction_entity = '" . $this->db->escape($transaction_data['transaction_entity']) . "', amount = '" . (double)$transaction_data['amount'] . "', debug_data = '" . $this->db->escape($transaction_data['debug_data']) . "'");
 	}
 
@@ -288,9 +284,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function isMobile() {
-		/*
-		 * This will check the user agent and "try" to match if it is a mobile device
-		 */
+		// This will check the user agent and "try" to match if it is a mobile device
 		if (preg_match("/Mobile|Android|BlackBerry|iPhone|Windows Phone/", $this->request->server['HTTP_USER_AGENT'])) {
 			return true;
 		} else {
@@ -299,7 +293,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function getTransactionRow($transaction_id) {
-		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id)  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id)  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 0,1");
 
 		if ($qry->num_rows > 0) {
 			return $qry->row;
@@ -335,10 +329,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function recurringPayments() {
-		/*
-		 * Used by the checkout to state the module
-		 * supports recurring profiles.
-		 */
+		// Used by the checkout to state the module supports recurring profiles.
 		return true;
 	}
 }

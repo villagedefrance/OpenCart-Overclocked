@@ -11,7 +11,7 @@ class ControllerProductCategoryList extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
       	);
 
@@ -28,7 +28,7 @@ class ControllerProductCategoryList extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
-				'href'      => $this->url->link('product/category_list'),
+				'href'      => $this->url->link('product/category_list', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -65,7 +65,7 @@ class ControllerProductCategoryList extends Controller {
 						if ($empty_category || $product_total > 0) {
 							$level_3_data[] = array(
 								'name' => $category_3['name'],
-								'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'])
+								'href' => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'] . '_' . $category_3['category_id'], 'SSL')
 							);
 						}
 					}
@@ -73,14 +73,14 @@ class ControllerProductCategoryList extends Controller {
 					$level_2_data[] = array(
 						'name'     => $category_2['name'],
 						'children' => $level_3_data,
-						'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'])
+						'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'] . '_' . $category_2['category_id'], 'SSL')
 					);
 				}
 
 				$this->data['categories'][] = array(
 					'name'     => $category_1['name'],
 					'children' => $level_2_data,
-					'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id']),
+					'href'     => $this->url->link('product/category', 'path=' . $category_1['category_id'], 'SSL'),
 					'count'    => $this->data['ccount']
 				);
 
@@ -92,7 +92,7 @@ class ControllerProductCategoryList extends Controller {
 			$this->data['cattotal1'] = round($this->data['cattotal'] / 3);
 			$this->data['cattotal2'] = $this->data['cattotal1'] * 2;
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');
@@ -125,11 +125,11 @@ class ControllerProductCategoryList extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
-				'href'      => $this->url->link('product/category_list'),
+				'href'      => $this->url->link('product/category_list', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');

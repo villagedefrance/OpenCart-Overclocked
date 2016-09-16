@@ -40,14 +40,14 @@ class ControllerAccountRegister extends Controller {
 				$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
 			}
 
-			$this->redirect($this->url->link('account/success'));
+			$this->redirect($this->url->link('account/success', '', 'SSL'));
 		}
 
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 

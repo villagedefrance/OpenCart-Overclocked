@@ -45,7 +45,7 @@ class ModelPaymentFirstdata extends Model {
 	}
 
 	public function getOrder($order_id) {
-		$order = $this->db->query("SELECT * FROM " . DB_PREFIX . "firstdata_order WHERE order_id = '" . (int)$order_id . "' LIMIT 1");
+		$order = $this->db->query("SELECT * FROM " . DB_PREFIX . "firstdata_order WHERE order_id = '" . (int)$order_id . "' LIMIT 0,1");
 
 		return $order->row;
 	}

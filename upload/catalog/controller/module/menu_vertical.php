@@ -51,7 +51,7 @@ class ControllerModuleMenuVertical extends Controller {
 				if ($menu_item['external_link']) {
 					$href = html_entity_decode($menu_item['menu_item_link'], ENT_QUOTES, 'UTF-8');
 				} else {
-					$href = $this->url->link($menu_item['menu_item_link']);
+					$href = $this->url->link($menu_item['menu_item_link'], '', 'SSL');
 				}
 			} else {
 				$href = '';
@@ -66,7 +66,7 @@ class ControllerModuleMenuVertical extends Controller {
 					if ($child['external_link']) {
 						$child_href = html_entity_decode($child['menu_item_link'], ENT_QUOTES, 'UTF-8');
 					} else {
-						$child_href = $this->url->link($child['menu_item_link']);
+						$child_href = $this->url->link($child['menu_item_link'], '', 'SSL');
 					}
 				} else {
 					$child_href = '';

@@ -58,7 +58,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 
 		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-			$redirect = $this->url->link('checkout/cart');
+			$redirect = $this->url->link('checkout/cart', '', 'SSL');
 		}
 
 		// Validate minimum quantity requirements
@@ -74,7 +74,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$redirect = $this->url->link('checkout/cart');
+				$redirect = $this->url->link('checkout/cart', '', 'SSL');
 				break;
 			}
 
@@ -485,7 +485,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 					'tax_percent'         => number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
 					'age_minimum'         => ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
 					'total'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
-					'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id']),
+					'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),
 					'recurring'           => $product['recurring'],
 					'profile_name'        => $product['profile_name'],
 					'profile_description' => $profile_description

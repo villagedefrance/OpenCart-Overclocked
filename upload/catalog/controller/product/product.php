@@ -8,7 +8,7 @@ class ControllerProductProduct extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -47,7 +47,7 @@ class ControllerProductProduct extends Controller {
 				if ($category_info) {
 					$this->data['breadcrumbs'][] = array(
 						'text'      => $category_info['name'],
-						'href'      => $this->url->link('product/category', 'path=' . $path . $url),
+						'href'      => $this->url->link('product/category', 'path=' . $path . $url, 'SSL'),
 						'separator' => $this->language->get('text_separator')
 					);
 				}
@@ -77,7 +77,7 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['breadcrumbs'][] = array(
 					'text'      => $category_info['name'],
-					'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url),
+					'href'      => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url, 'SSL'),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
@@ -88,7 +88,7 @@ class ControllerProductProduct extends Controller {
 		if (isset($this->request->get['manufacturer_id'])) {
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_brand'),
-				'href'      => $this->url->link('product/manufacturer'),
+				'href'      => $this->url->link('product/manufacturer', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -115,7 +115,7 @@ class ControllerProductProduct extends Controller {
 			if ($manufacturer_info) {
 				$this->data['breadcrumbs'][] = array(
 					'text'      => $manufacturer_info['name'],
-					'href'      => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url),
+					'href'      => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . $url, 'SSL'),
 					'separator' => $this->language->get('text_separator')
 				);
 			}
@@ -162,7 +162,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_search'),
-				'href'      => $this->url->link('product/search', $url),
+				'href'      => $this->url->link('product/search', $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 		}
@@ -230,14 +230,14 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $product_info['name'],
-				'href'      => $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']),
+				'href'      => $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id'], 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->document->setTitle($product_info['name']);
 			$this->document->setDescription($product_info['meta_description']);
 			$this->document->setKeywords($product_info['meta_keyword']);
-			$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id']), 'canonical');
+			$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id'], 'SSL'), 'canonical');
 
 			$this->document->addScript('catalog/view/javascript/jquery/tabs.js');
 
@@ -382,7 +382,7 @@ class ControllerProductProduct extends Controller {
 			$barcode_type = $this->config->get('config_barcode_type');
 
 			$this->data['manufacturer'] = $product_info['manufacturer'];
-			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
+			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id'], 'SSL');
 			$this->data['barcode'] = ($catalog_barcode) ? $this->model_tool_barcode->getBarcode($product_info['model'], strtoupper($barcode_type), 1, 20) : '';
 			$this->data['model'] = $product_info['model'];
 
@@ -652,7 +652,7 @@ class ControllerProductProduct extends Controller {
 					$this->data['offers'][] = array(
 						'thumb' => $offer_image,
 						'name'  => $offer_name,
-						'href'  => $this->url->link('product/product', 'product_id=' . $offer_product),
+						'href'  => $this->url->link('product/product', 'product_id=' . $offer_product, 'SSL'),
 						'group' => $offer_label
 					);
 				}
@@ -727,7 +727,7 @@ class ControllerProductProduct extends Controller {
 					'special'         => $special,
 					'rating'          => $rating,
 					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					'href'            => $this->url->link('product/product', 'product_id=' . $result['product_id'], 'SSL')
 				);
 			}
 
@@ -737,9 +737,11 @@ class ControllerProductProduct extends Controller {
 				$tags = explode(',', $product_info['tag']);
 
 				foreach ($tags as $tag) {
+					$tag = trim(str_replace('&', '&amp;', (string)$tag));
+
 					$this->data['tags'][] = array(
-						'tag'	=> trim($tag),
-						'href' 	=> $this->url->link('product/search', 'tag=' . trim($tag))
+						'tag' => $tag,
+						'href' => $this->url->link('product/search', 'search=' . $tag . '&tag=' . $tag, 'SSL')
 					);
 				}
 			}
@@ -829,7 +831,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_error'),
-				'href'      => $this->url->link('product/product', $url . '&product_id=' . $product_id),
+				'href'      => $this->url->link('product/product', $url . '&product_id=' . $product_id, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -839,7 +841,7 @@ class ControllerProductProduct extends Controller {
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');
@@ -902,7 +904,7 @@ class ControllerProductProduct extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = 3;
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}');
+		$pagination->url = $this->url->link('product/product/review', 'product_id=' . $this->request->get['product_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 

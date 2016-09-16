@@ -26,7 +26,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 			if ($this->cart->hasProducts() && $this->config->get('config_express_checkout')) {
 				$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
 			} else {
-				$this->redirect($this->url->link('account/account'));
+				$this->redirect($this->url->link('account/account', '', 'SSL'));
 			}
 		}
 
@@ -34,7 +34,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		); 
 

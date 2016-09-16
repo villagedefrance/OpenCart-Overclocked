@@ -54,7 +54,6 @@ class ModelShippingFedex extends Model {
 				$url = 'https://gatewaybeta.fedex.com/web-services/';
 			}
 
-			// Whoever introduced xml to shipping companies should be flogged
 			$xml  = '<?xml version="1.0"?>';
 			$xml .= '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fedex.com/ws/rate/v10">';
 			$xml .= '	<SOAP-ENV:Body>';
@@ -193,7 +192,6 @@ class ModelShippingFedex extends Model {
 
 							if (count($shipment_rate_detail_type) == 3 && $shipment_rate_detail_type[1] == $this->config->get('fedex_rate_type')) {
 								$total_net_charge = $shipment_rate_detail->getElementsByTagName('TotalNetCharge')->item(0);
-
 								break;
 							}
 						}

@@ -45,13 +45,12 @@ class ControllerAmazonusOrder extends Controller {
 
 		// If the order already exists on opencart, ignore it.
 		if ($orderId) {
-			$logger->write("Duplicate order $amazonusOrderId. Terminating.");
+			$logger->write('Duplicate order ' . $amazonusOrderId . '. Terminating.');
 			$this->response->setOutput('Ok');
 			return;
 		}
 
 		/* Check if order comes from subscribed marketplace */
-
 		$currencyTo = $this->config->get('config_currency');
 		$orderCurrency = (string)$orderXml->Payment->CurrencyCode;
 

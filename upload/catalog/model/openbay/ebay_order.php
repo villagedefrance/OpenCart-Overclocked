@@ -47,7 +47,7 @@ class ModelOpenbayEbayOrder extends Model {
 
 			if ($order_id != $orderLine['order_id']) {
 				$this->openbay->ebay->log('addOrderLine() - Order ID has changed from "' . $orderLine['order_id'] . '" to "' . $order_id . '"');
-				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_transaction` SET `order_id` = '" . (int)$order_id . "', `modified` = NOW() WHERE `txn_id` = '" . $this->db->escape((string)$data['txn_id']) . "' AND `item_id` = '" . $this->db->escape((string)$data['item_id']) . "' LIMIT 1");
+				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_transaction` SET `order_id` = '" . (int)$order_id . "', `modified` = NOW() WHERE `txn_id` = '" . $this->db->escape((string)$data['txn_id']) . "' AND `item_id` = '" . $this->db->escape((string)$data['item_id']) . "' LIMIT 0,1");
 
 				// if the order id has changed then remove the old order details
 				$this->delete($orderLine['order_id']);
@@ -55,12 +55,12 @@ class ModelOpenbayEbayOrder extends Model {
 
 			if ($orderLine['smp_id'] != $data['smp_id']) {
 				$this->openbay->ebay->log('addOrderLine() - SMP ID for orderLine has changed from "' . $orderLine['smp_id'] . '" to "' . $data['smp_id'] . '"');
-				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_transaction` SET `smp_id` = '" . $this->db->escape($data['smp_id']) . "', `modified` = NOW() WHERE `txn_id` = '" . $this->db->escape((string)$data['txn_id']) . "' AND `item_id` = '" . $this->db->escape((string)$data['item_id']) . "' LIMIT 1");
+				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_transaction` SET `smp_id` = '" . $this->db->escape($data['smp_id']) . "', `modified` = NOW() WHERE `txn_id` = '" . $this->db->escape((string)$data['txn_id']) . "' AND `item_id` = '" . $this->db->escape((string)$data['item_id']) . "' LIMIT 0,1");
 			}
 
 			if ($orderLine['containing_order_id'] != $data['containing_order_id']) {
 				$this->openbay->ebay->log('addOrderLine() - Containing order ID for orderLine has changed from "' . $orderLine['containing_order_id'] . '" to "' . $data['containing_order_id'] . '"');
-				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_transaction` SET `containing_order_id` = '" . $this->db->escape($data['containing_order_id']) . "', `modified` = NOW() WHERE `txn_id` = '" . $this->db->escape((string)$data['txn_id']) . "' AND `item_id` = '" . $this->db->escape((string)$data['item_id']) . "' LIMIT 1");
+				$this->db->query("UPDATE `" . DB_PREFIX . "ebay_transaction` SET `containing_order_id` = '" . $this->db->escape($data['containing_order_id']) . "', `modified` = NOW() WHERE `txn_id` = '" . $this->db->escape((string)$data['txn_id']) . "' AND `item_id` = '" . $this->db->escape((string)$data['item_id']) . "' LIMIT 0,1");
 			}
 		}
 
@@ -86,7 +86,7 @@ class ModelOpenbayEbayOrder extends Model {
 	public function getOrderLine($txn_id, $item_id) {
 		$this->openbay->ebay->log('getOrderLine() - Testing for order line txn: ' . $txn_id . ', item: ' . $item_id);
 
-		$res = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_transaction` WHERE `txn_id` = '" . $this->db->escape($txn_id) . "' AND `item_id` = '" . $this->db->escape($item_id) . "' LIMIT 1");
+		$res = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_transaction` WHERE `txn_id` = '" . $this->db->escape($txn_id) . "' AND `item_id` = '" . $this->db->escape($item_id) . "' LIMIT 0,1");
 
 		if ($res->num_rows == 0) {
 			return false;
@@ -125,7 +125,7 @@ class ModelOpenbayEbayOrder extends Model {
 	private function removeOrderLine($txn_id, $item_id, $line) {
 		$this->openbay->ebay->log('Removing order line, txn: '.$txn_id.',item id: '.$item_id);
 
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_transaction` WHERE `txn_id` = '" . $this->db->escape($txn_id) . "' AND `item_id` = '" . $this->db->escape($item_id) . "' LIMIT 1");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "ebay_transaction` WHERE `txn_id` = '" . $this->db->escape($txn_id) . "' AND `item_id` = '" . $this->db->escape($item_id) . "' LIMIT 0,1");
 
 		if ($this->db->countAffected() > 0) {
 			$this->modifyStock($line['product_id'], $line['qty'], '+', $line['sku']);
@@ -153,7 +153,7 @@ class ModelOpenbayEbayOrder extends Model {
 		 * This is a depreciated method of getting order Id's and will be removed in the future.
 		 */
 		if ($order_id == 0) {
-			$query = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "order_history` WHERE `comment` = '[eBay Import:" . $this->db->escape($smp_id) . "]' LIMIT 1");
+			$query = $this->db->query("SELECT `order_id` FROM `" . DB_PREFIX . "order_history` WHERE `comment` = '[eBay Import:" . $this->db->escape($smp_id) . "]' LIMIT 0,1");
 
 			if ($query->num_rows > 0) {
 				$this->openbay->ebay->log('find() (depreciated) - Found: '.$query->row['order_id']);
@@ -172,7 +172,7 @@ class ModelOpenbayEbayOrder extends Model {
 	public function getHistory($order_id) {
 		$this->openbay->ebay->log('Getting order history for ID: '.$order_id);
 
-		$query = $this->db->query("SELECT `order_status_id` FROM `" . DB_PREFIX . "order_history` WHERE `order_id` = '".(int)$order_id."'");
+		$query = $this->db->query("SELECT `order_status_id` FROM `" . DB_PREFIX . "order_history` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		$status = array();
 
@@ -186,7 +186,7 @@ class ModelOpenbayEbayOrder extends Model {
 	}
 
 	public function hasUser($order_id) {
-		$query = $this->db->query("SELECT `customer_id` FROM `" . DB_PREFIX . "order` WHERE `order_id` = '".(int)$order_id."'");
+		$query = $this->db->query("SELECT `customer_id` FROM `" . DB_PREFIX . "order` WHERE `order_id` = '" . (int)$order_id . "'");
 
 		if ($query->num_rows == 0 || (isset($query->row['customer_id']) && $query->row['customer_id'] == 0)) {
 			return false;
@@ -202,7 +202,7 @@ class ModelOpenbayEbayOrder extends Model {
 
 		if ($order_info) {
 			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
-			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '" . (int)$notify . "', comment = '" . $this->db->escape($comment) . "', date_added = NOW()");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '" . (int)$notify . "', `comment` = '" . $this->db->escape($comment) . "', date_added = NOW()");
 
 			if ($notify) {
 				$language = new Language($order_info['language_directory']);
@@ -262,7 +262,7 @@ class ModelOpenbayEbayOrder extends Model {
 
 		if ($order_info && !$order_info['order_status_id']) {
 			$this->db->query("UPDATE `" . DB_PREFIX . "order` SET order_status_id = '" . (int)$order_status_id . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
-			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '".(int)$notify."', comment = '" . $this->db->escape($comment) . "', date_added = NOW()");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_history SET order_id = '" . (int)$order_id . "', order_status_id = '" . (int)$order_status_id . "', notify = '".(int)$notify."', `comment` = '" . $this->db->escape($comment) . "', date_added = NOW()");
 
 			if (isset($order_info['email']) && !empty($order_info['email'])) {
 				$order_product_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "order_product` WHERE `order_id` = '" . (int)$order_id . "'");
@@ -538,7 +538,7 @@ class ModelOpenbayEbayOrder extends Model {
 	}
 
 	private function modifyStock($product_id, $qty, $symbol = '-', $sku = '') {
-		$this->openbay->ebay->log('modifyStock() - Updating stock. Product id: '.$product_id.' qty: '.$qty.', symbol: '.$symbol.' sku: '.$sku);
+		$this->openbay->ebay->log('modifyStock() - Updating stock. Product id: ' . $product_id . ' qty: ' . $qty . ', symbol: ' . $symbol . ' sku: ' . $sku);
 
 		$item_id = $this->openbay->ebay->getEbayItemId($product_id);
 
@@ -565,7 +565,7 @@ class ModelOpenbayEbayOrder extends Model {
 	public function getCountryAddressFormat($iso2) {
 		$this->openbay->ebay->log('getCountryAddressFormat() - Getting country from ISO2: ' . $iso2);
 
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($iso2) . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($iso2) . "' LIMIT 0,1");
 
 		if (!isset($query->row['address_format']) || $query->row['address_format'] == '') {
 			$this->openbay->ebay->log('getCountryAddressFormat() - No country found, default');
@@ -577,7 +577,7 @@ class ModelOpenbayEbayOrder extends Model {
 	}
 
 	public function orderLinkCreate($order_id, $smp_id) {
-		$this->openbay->ebay->log('orderLinkCreate() - order_id: '.$order_id.', smp_id: '.$smp_id);
+		$this->openbay->ebay->log('orderLinkCreate() - order_id: ' . $order_id . ', smp_id: ' . $smp_id);
 
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "ebay_order` SET `order_id` = '" . (int)$order_id . "', `smp_id` = '" . (int)$smp_id . "', `parent_ebay_order_id` = 0");
 
@@ -614,7 +614,7 @@ class ModelOpenbayEbayOrder extends Model {
 
 	public function lockExists($smp_id) {
 		$this->openbay->ebay->log('lockExists() - Check lock, smp_id: '.(int)$smp_id);
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_order_lock` WHERE `smp_id` = '" . (int)$smp_id . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "ebay_order_lock` WHERE `smp_id` = '" . (int)$smp_id . "' LIMIT 0,1");
 
 		if ($query->num_rows > 0) {
 			$this->openbay->ebay->log('lockExists() - Lock found, stopping order.');

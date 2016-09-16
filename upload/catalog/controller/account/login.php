@@ -105,9 +105,9 @@ class ControllerAccountLogin extends Controller {
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
 				$this->redirect(str_replace('&amp;', '&', $this->request->post['redirect']));
 			} elseif ($this->cart->hasProducts() && $this->config->get('config_express_checkout') && !$this->config->get('config_customer_redirect')) {
-				$this->redirect($this->url->link('checkout/cart'));
+				$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 			} elseif ($this->config->get('config_customer_redirect')) {
-				$this->redirect($this->url->link('common/home'));
+				$this->redirect($this->url->link('common/home', '', 'SSL'));
 			} else {
 				$this->redirect($this->url->link('account/account', '', 'SSL'));
 			}
@@ -117,7 +117,7 @@ class ControllerAccountLogin extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 

@@ -72,11 +72,11 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_checkout'] = $this->language->get('text_checkout');
 
-		$this->data['home'] = $this->url->link('common/home');
+		$this->data['home'] = $this->url->link('common/home', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$this->data['logged'] = $this->customer->isLogged();
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
-		$this->data['shopping_cart'] = $this->url->link('checkout/cart');
+		$this->data['shopping_cart'] = $this->url->link('checkout/cart', '', 'SSL');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 
 		$this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');

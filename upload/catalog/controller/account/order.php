@@ -48,7 +48,7 @@ class ControllerAccountOrder extends Controller {
 					$this->cart->add($order_product['product_id'], $order_product['quantity'], $option_data);
 				}
 
-				$this->redirect($this->url->link('checkout/cart'));
+				$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 			}
 		}
 
@@ -58,7 +58,7 @@ class ControllerAccountOrder extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -194,7 +194,7 @@ class ControllerAccountOrder extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_home'),
-				'href'      => $this->url->link('common/home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 
@@ -297,7 +297,7 @@ class ControllerAccountOrder extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_home'),
-				'href'      => $this->url->link('common/home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 
@@ -380,7 +380,7 @@ class ControllerAccountOrder extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_home'),
-				'href'      => $this->url->link('common/home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 
@@ -614,7 +614,7 @@ class ControllerAccountOrder extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_home'),
-				'href'      => $this->url->link('common/home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 

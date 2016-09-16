@@ -2,7 +2,7 @@
 class ModelCatalogOffer extends Model {
 
 	public function getOfferProducts($product_id) {
-		$this->load->language('total/offers');
+		$this->language->load('total/offers');
 
 		$this->load->model('checkout/offers');
 

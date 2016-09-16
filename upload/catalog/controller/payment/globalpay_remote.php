@@ -237,7 +237,7 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 		if ($capture_result->result != '00') {
 			$json['error'] = (string)$capture_result->message . ' (' . (int)$capture_result->result . ')';
 		} else {
-			$json['success'] = $this->url->link('checkout/success');
+			$json['success'] = $this->url->link('checkout/success', '', 'SSL');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -267,6 +267,7 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 				$eci = (string)$signature_result->threedsecure->eci;
 				$cavv = (string)$signature_result->threedsecure->cavv;
 				$xid = (string)$signature_result->threedsecure->xid;
+
 			} else {
 				if ($md['cc_type'] == 'mc') {
 					$eci = 0;
@@ -352,7 +353,7 @@ class ControllerPaymentGlobalpayRemote extends Controller {
 
 				$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 			} else {
-				$this->redirect($this->url->link('checkout/success'));
+				$this->redirect($this->url->link('checkout/success', '', 'SSL'));
 			}
 
 		} else {

@@ -43,7 +43,7 @@ class ControllerAccountWishList extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -151,7 +151,7 @@ class ControllerAccountWishList extends Controller {
 					'stock_quantity' => $product_info['quantity'],
 					'price'          => $price,
 					'special'        => $special,
-					'href'           => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+					'href'           => $this->url->link('product/product', 'product_id=' . $product_info['product_id'], 'SSL'),
 					'remove'         => $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'], 'SSL')
 				);
 
@@ -210,9 +210,9 @@ class ControllerAccountWishList extends Controller {
 			}
 
 			if ($this->customer->isLogged()) {
-				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));
+				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id'], 'SSL'), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));
 			} else {
-				$json['success'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));
+				$json['success'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', 'SSL'), $this->url->link('account/register', '', 'SSL'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id'], 'SSL'), $product_info['name'], $this->url->link('account/wishlist', '', 'SSL'));
 			}
 
 			$json['total'] = sprintf($this->language->get('text_wishlist'), isset($this->session->data['wishlist']) ? count($this->session->data['wishlist']) : 0);

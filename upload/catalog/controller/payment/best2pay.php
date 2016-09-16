@@ -119,7 +119,7 @@ class ControllerPaymentBest2pay extends Controller {
 
 		$this->data['title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
 
-		if (!isset($this->request->server['HTTPS']) || ($this->request->server['HTTPS'] != 'on')) {
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$this->data['base'] = $this->config->get('config_url');
 		} else {
 			$this->data['base'] = $this->config->get('config_ssl');
@@ -231,7 +231,7 @@ class ControllerPaymentBest2pay extends Controller {
 
 					$this->model_checkout_order->update($this->request->get['reference'], $this->config->get('best2pay_order_status_id'), $message, false);
 
-					$this->data['continue'] = $this->url->link('checkout/success');
+					$this->data['continue'] = $this->url->link('checkout/success', '', 'SSL');
 
 					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/best2pay_success.tpl')) {
 						$this->template = $this->config->get('config_template') . '/template/payment/best2pay_success.tpl';
@@ -263,7 +263,7 @@ class ControllerPaymentBest2pay extends Controller {
 		}
 
 		if ($error) {
-			$this->data['continue'] = $this->url->link('checkout/cart');
+			$this->data['continue'] = $this->url->link('checkout/cart', '', 'SSL');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/best2pay_failure.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/payment/best2pay_failure.tpl';

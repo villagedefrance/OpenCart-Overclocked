@@ -89,7 +89,7 @@ class ControllerPaymentCardPay extends Controller {
 
 	public function callback() {
 		if (!isset($_REQUEST["orderXML"]) || !isset($_REQUEST["sha512"])) {
-			$this->redirect('index.php?route=common/home');
+			$this->url->link('common/home', '', 'SSL');
 		}
 
 		$request_orderXML = $_REQUEST["orderXML"];

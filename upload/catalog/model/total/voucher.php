@@ -3,7 +3,6 @@ class ModelTotalVoucher extends Model {
 
 	public function getTotal(&$total_data, &$total, &$taxes) {
 		if (isset($this->session->data['voucher'])) {
-
 			$this->language->load('total/voucher');
 
 			$this->load->model('checkout/voucher');

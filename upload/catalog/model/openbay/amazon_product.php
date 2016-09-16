@@ -92,12 +92,14 @@ class ModelOpenbayAmazonProduct extends Model {
 
 		} else {
 			$this->load->model('catalog/product');
+
 			$product_info = $this->model_catalog_product->getProduct($product_id);
 
 			if (isset($product_info['quantity'])) {
 				$result = $product_info['quantity'];
 			}
 		}
+
 		return $result;
 	}
 

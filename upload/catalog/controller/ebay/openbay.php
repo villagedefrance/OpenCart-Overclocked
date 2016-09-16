@@ -3,6 +3,7 @@ class ControllerEbayOpenbay extends Controller {
 
 	public function inbound() {
 		$encrypted = $this->request->post;
+
 		$secret = $this->config->get('openbaypro_secret');
 		$active = $this->config->get('openbay_status');
 		$s1 = $this->config->get('openbaypro_string1');

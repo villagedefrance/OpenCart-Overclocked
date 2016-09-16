@@ -36,7 +36,7 @@ class ControllerInformationNewsList extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -60,7 +60,7 @@ class ControllerInformationNewsList extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('information/news_list', $url),
+			'href'      => $this->url->link('information/news_list', $url, 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -105,7 +105,7 @@ class ControllerInformationNewsList extends Controller {
 				'description' => $description,
 				'viewed'      => $result['viewed'],
 				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'href'        => $this->url->link('information/news', 'news_id=' . $result['news_id'] . $url)
+				'href'        => $this->url->link('information/news', 'news_id=' . $result['news_id'] . $url, 'SSL')
 			);
 		}
 
@@ -123,7 +123,7 @@ class ControllerInformationNewsList extends Controller {
 		$this->data['button_read'] = $this->language->get('button_read');
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
-		$this->data['continue'] = $this->url->link('common/home');
+		$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 		$this->data['total_news'] = $total_news;
 
@@ -134,37 +134,37 @@ class ControllerInformationNewsList extends Controller {
 		$this->data['sorts'][] = array(
 			'text' => $this->language->get('text_name_asc'),
 			'value' => 'nd.title-ASC',
-			'href' => $this->url->link('information/news_list', 'sort=nd.title&order=ASC' . $url)
+			'href' => $this->url->link('information/news_list', 'sort=nd.title&order=ASC' . $url, 'SSL')
 		);
 
 		$this->data['sorts'][] = array(
 			'text' => $this->language->get('text_name_desc'),
 			'value' => 'nd.title-DESC',
-			'href' => $this->url->link('information/news_list', 'sort=nd.title&order=DESC' . $url)
+			'href' => $this->url->link('information/news_list', 'sort=nd.title&order=DESC' . $url, 'SSL')
 		);
 
 		$this->data['sorts'][] = array(
 			'text' => $this->language->get('text_date_asc'),
 			'value' => 'n.date_added-ASC',
-			'href' => $this->url->link('information/news_list', 'sort=n.date_added&order=ASC' . $url)
+			'href' => $this->url->link('information/news_list', 'sort=n.date_added&order=ASC' . $url, 'SSL')
 		);
 
 		$this->data['sorts'][] = array(
 			'text' => $this->language->get('text_date_desc'),
 			'value' => 'n.date_added-DESC',
-			'href' => $this->url->link('information/news_list', 'sort=n.date_added&order=DESC' . $url)
+			'href' => $this->url->link('information/news_list', 'sort=n.date_added&order=DESC' . $url, 'SSL')
 		);
 
 		$this->data['sorts'][] = array(
 			'text' => $this->language->get('text_view_asc'),
 			'value' => 'n.viewed-ASC',
-			'href' => $this->url->link('information/news_list', 'sort=n.viewed&order=ASC' . $url)
+			'href' => $this->url->link('information/news_list', 'sort=n.viewed&order=ASC' . $url, 'SSL')
 		);
 
 		$this->data['sorts'][] = array(
 			'text' => $this->language->get('text_view_desc'),
 			'value' => 'n.viewed-DESC',
-			'href' => $this->url->link('information/news_list', 'sort=n.viewed&order=DESC' . $url)
+			'href' => $this->url->link('information/news_list', 'sort=n.viewed&order=DESC' . $url, 'SSL')
 		);
 
 		if (isset($this->request->get['limit'])) {
@@ -195,7 +195,7 @@ class ControllerInformationNewsList extends Controller {
 			$this->data['limits'][] = array(
 				'text'  => $value,
 				'value' => $value,
-				'href'  => $this->url->link('information/news_list', $url . '&limit=' . $value)
+				'href'  => $this->url->link('information/news_list', $url . '&limit=' . $value, 'SSL')
 			);
 		}
 
@@ -218,7 +218,7 @@ class ControllerInformationNewsList extends Controller {
 		$pagination->page = $page;
 		$pagination->limit = $limit;
 		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('information/news_list', $url . '&page={page}');
+		$pagination->url = $this->url->link('information/news_list', $url . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
 

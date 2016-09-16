@@ -16,7 +16,7 @@ class ControllerAffiliateLogout extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -38,7 +38,7 @@ class ControllerAffiliateLogout extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
-		$this->data['continue'] = $this->url->link('common/home');
+		$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');

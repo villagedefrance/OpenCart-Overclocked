@@ -72,7 +72,7 @@ class ControllerModuleFeatured extends Controller {
 				'store_id'        => $result['store_id'],
 				'manufacturer_id' => $result['manufacturer_id'],
 				'name'            => $result['name'],
-				'href'            => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
+				'href'            => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'], 'SSL')
 			);
 		}
 
@@ -174,7 +174,7 @@ class ControllerModuleFeatured extends Controller {
 					'age_minimum'     => ($product_info['age_minimum'] > 0) ? $product_info['age_minimum'] : '',
 					'rating'          => (int)$rating,
 					'reviews'         => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-					'href'            => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
+					'href'            => $this->url->link('product/product', 'product_id=' . $product_info['product_id'], 'SSL')
 				);
 			}
 		}

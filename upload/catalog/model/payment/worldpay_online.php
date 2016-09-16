@@ -2,7 +2,7 @@
 class ModelPaymentWorldpayOnline extends Model {
 
 	public function getMethod($address, $total) {
-		$this->load->language('payment/worldpay_online');
+		$this->language->load('payment/worldpay_online');
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('worldpay_online_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
@@ -54,7 +54,7 @@ class ModelPaymentWorldpayOnline extends Model {
 	}
 
 	public function addCard($order_id, $card_data) {
-		$this->db->query("INSERT into " . DB_PREFIX . "worldpay_online_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', order_id = '" . $this->db->escape($order_id) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', type = '" . $this->db->escape($card_data['CardType']) . "', token = '" . $this->db->escape($card_data['Token']) . "'");
+		$this->db->query("INSERT into " . DB_PREFIX . "worldpay_online_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', order_id = '" . $this->db->escape($order_id) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', `type` = '" . $this->db->escape($card_data['CardType']) . "', token = '" . $this->db->escape($card_data['Token']) . "'");
 	}
 
 	public function deleteCard($token) {
@@ -68,13 +68,13 @@ class ModelPaymentWorldpayOnline extends Model {
 	}
 
 	public function addOrder($order_info, $order_code) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "worldpay_online_order` SET `order_id` = '" . (int)$order_info['order_id'] . "', `order_code` = '" . $this->db->escape($order_code) . "', `date_added` = NOW(), `date_modified` = NOW(), `currency_code` = '" . $this->db->escape($order_info['currency_code']) . "', `total` = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "worldpay_online_order SET order_id = '" . (int)$order_info['order_id'] . "', order_code = '" . $this->db->escape($order_code) . "', date_added = NOW(), date_modified = NOW(), currency_code = '" . $this->db->escape($order_info['currency_code']) . "', total = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
 
 		return $this->db->getLastId();
 	}
 
 	public function getOrder($order_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "worldpay_online_order` WHERE `order_id` = '" . (int)$order_id . "' LIMIT 0,1");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "worldpay_online_order WHERE order_id = '" . (int)$order_id . "' LIMIT 0,1");
 
 		if ($query->num_rows) {
 			$order = $query->row;
@@ -88,11 +88,11 @@ class ModelPaymentWorldpayOnline extends Model {
 	}
 
 	public function addTransaction($worldpay_online_order_id, $type, $order_info) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "worldpay_online_order_transaction` SET `worldpay_online_order_id` = '" . (int)$worldpay_online_order_id . "', `date_added` = NOW(), `type` = '" . $this->db->escape($type) . "', `amount` = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "worldpay_online_order_transaction SET worldpay_online_order_id = '" . (int)$worldpay_online_order_id . "', date_added = NOW(), `type` = '" . $this->db->escape($type) . "', amount = '" . $this->currency->format($order_info['total'], $order_info['currency_code'], false, false) . "'");
 	}
 
 	public function getTransactions($worldpay_online_order_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "worldpay_online_order_transaction` WHERE `worldpay_online_order_id` = '" . (int)$worldpay_online_order_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "worldpay_online_order_transaction WHERE worldpay_online_order_id = '" . (int)$worldpay_online_order_id . "'");
 
 		if ($query->num_rows) {
 			return $query->rows;
@@ -290,11 +290,11 @@ class ModelPaymentWorldpayOnline extends Model {
 	}
 
 	private function addRecurringOrder($order_info, $order_code, $token, $price, $order_recurring_id, $trial_end, $subscription_end) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "worldpay_online_order_recurring` SET `order_id` = '" . (int)$order_info['order_id'] . "', `order_recurring_id` = '" . (int)$order_recurring_id . "', `order_code` = '" . $this->db->escape($order_code) . "', `token` = '" . $this->db->escape($token) . "', `date_added` = NOW(), `date_modified` = NOW(), `next_payment` = NOW(), `trial_end` = '" . $trial_end . "', `subscription_end` = '" . $subscription_end . "', `currency_code` = '" . $this->db->escape($order_info['currency_code']) . "', `total` = '" . $this->currency->format($price, $order_info['currency_code'], false, false) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "worldpay_online_order_recurring SET order_id = '" . (int)$order_info['order_id'] . "', order_recurring_id = '" . (int)$order_recurring_id . "', order_code = '" . $this->db->escape($order_code) . "', token = '" . $this->db->escape($token) . "', date_added = NOW(), date_modified = NOW(), next_payment = NOW(), trial_end = '" . $trial_end . "', subscription_end = '" . $subscription_end . "', currency_code = '" . $this->db->escape($order_info['currency_code']) . "', total = '" . $this->currency->format($price, $order_info['currency_code'], false, false) . "'");
 	}
 
 	private function updateRecurringOrder($order_recurring_id, $next_payment) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "worldpay_online_order_recurring` SET `next_payment` = '" . $next_payment . "', `date_modified` = NOW() WHERE `order_recurring_id` = '" . (int)$order_recurring_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "worldpay_online_order_recurring SET next_payment = '" . $next_payment . "', date_modified = NOW() WHERE order_recurring_id = '" . (int)$order_recurring_id . "'");
 	}
 
 	private function getRecurringOrder($order_recurring_id) {
@@ -303,11 +303,11 @@ class ModelPaymentWorldpayOnline extends Model {
 	}
 
 	private function addProfileTransaction($order_recurring_id, $order_code, $price, $type) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$order_recurring_id . "', `date_added` = NOW(), `amount` = '" . (float)$price . "', `type` = '" . (int)$type . "', `reference` = '" . $this->db->escape($order_code) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "order_recurring_transaction SET order_recurring_id = '" . (int)$order_recurring_id . "', date_added = NOW(), amount = '" . (float)$price . "', `type` = '" . (int)$type . "', reference = '" . $this->db->escape($order_code) . "'");
 	}
 
 	private function getProfiles() {
-		$sql = "SELECT `or`.order_recurring_id FROM `" . DB_PREFIX . "order_recurring` `or` JOIN `" . DB_PREFIX . "order` `o` USING(`order_id`) WHERE o.payment_code = 'worldpay_online'";
+		$sql = "SELECT orr.order_recurring_id FROM " . DB_PREFIX . "order_recurring orr JOIN `" . DB_PREFIX . "order` o USING(`order_id`) WHERE o.payment_code = 'worldpay_online'";
 
 		$query = $this->db->query($sql);
 
@@ -353,12 +353,10 @@ class ModelPaymentWorldpayOnline extends Model {
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
 		curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
 		curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-		curl_setopt(
-			$curl, CURLOPT_HTTPHEADER, array(
-				"Authorization: " . $this->config->get('worldpay_online_service_key'),
-				"Content-Type: application/json",
-				"Content-Length: " . $content_length
-			)
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+			"Authorization: " . $this->config->get('worldpay_online_service_key'),
+			"Content-Type: application/json",
+			"Content-Length: " . $content_length)
 		);
 
 		$result = json_decode(curl_exec($curl));
@@ -377,10 +375,7 @@ class ModelPaymentWorldpayOnline extends Model {
 	}
 
 	public function recurringPayments() {
-		/*
-		* Used by the checkout to state the module
-		* supports recurring profiles.
-		*/
+		// Used by the checkout to state the module supports recurring profiles.
 		return true;
 	}
 }

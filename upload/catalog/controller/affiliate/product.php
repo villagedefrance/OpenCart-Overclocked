@@ -137,7 +137,7 @@ class ControllerAffiliateProduct extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -188,7 +188,7 @@ class ControllerAffiliateProduct extends Controller {
 				'name'                 => $result['name'],
 				'code'                 => $result['code'],
 				'date_added'           => $result['date_added'],
-				'update'               => $this->url->link('affiliate/product/update', 'affiliate_product_id=' . $result['affiliate_product_id'], 'SSL'),
+				'update'               => $this->url->link('affiliate/product/update', 'affiliate_product_id=' . $result['affiliate_product_id'] . '&affiliate_token=' . $this->session->data['affiliate_token'], 'SSL'),
 				'delete'               => $this->url->link('affiliate/product/delete', 'affiliate_product_id=' . $result['affiliate_product_id'] . '&affiliate_token=' . $this->session->data['affiliate_token'], 'SSL')
 			);
 		}
@@ -224,7 +224,7 @@ class ControllerAffiliateProduct extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 

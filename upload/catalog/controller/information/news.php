@@ -10,7 +10,7 @@ class ControllerInformationNews extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -32,13 +32,13 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('heading_title'),
-				'href'      => $this->url->link('information/news_list'),
+				'href'      => $this->url->link('information/news_list', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $news_info['title'],
-				'href'      => $this->url->link('information/news', 'news_id=' . $news_id),
+				'href'      => $this->url->link('information/news', 'news_id=' . $news_id, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -78,8 +78,8 @@ class ControllerInformationNews extends Controller {
 			$this->data['button_news'] = $this->language->get('button_news');
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['news'] = $this->url->link('information/news_list');
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['news'] = $this->url->link('information/news_list', '', 'SSL');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			$this->model_catalog_news->updateViewed($news_id);
 
@@ -110,7 +110,7 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_error'),
-				'href'      => $this->url->link('information/news', 'news_id=' . $news_id),
+				'href'      => $this->url->link('information/news', 'news_id=' . $news_id, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -120,7 +120,7 @@ class ControllerInformationNews extends Controller {
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['continue'] = $this->url->link('common/home');
+			$this->data['continue'] = $this->url->link('common/home', '', 'SSL');
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');

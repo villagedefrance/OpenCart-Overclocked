@@ -24,7 +24,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 	public function express() {
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-			$this->redirect($this->url->link('checkout/cart'));
+			$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 		}
 
 		if ($this->customer->isLogged()) {
@@ -68,7 +68,7 @@ class ControllerPaymentPPExpress extends Controller {
 			'METHOD'             => 'SetExpressCheckout',
 			'MAXAMT'             => $max_amount,
 			'RETURNURL'          => $this->url->link('payment/pp_express/expressReturn', '', 'SSL'),
-			'CANCELURL'          => $this->url->link('checkout/cart'),
+			'CANCELURL'          => $this->url->link('checkout/cart', '', 'SSL'),
 			'REQCONFIRMSHIPPING' => 0,
 			'NOSHIPPING'         => $shipping,
 			'ALLOWNOTE'          => $this->config->get('pp_express_allow_note'),
@@ -290,7 +290,6 @@ class ControllerPaymentPPExpress extends Controller {
 						$this->session->data['shipping_country_id'] = $address['country_id'];
 						$this->session->data['shipping_zone_id'] = $address['zone_id'];
 						$this->session->data['shipping_postcode'] = $address['postcode'];
-
 						break;
 					}
 				}
@@ -549,8 +548,8 @@ class ControllerPaymentPPExpress extends Controller {
 				'reward'              => ($product['reward']) ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 				'price'               => $price,
 				'total'               => $total,
-				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id']),
-				'remove'              => $this->url->link('checkout/cart', 'remove=' . $product['key']),
+				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),
+				'remove'              => $this->url->link('checkout/cart', 'remove=' . $product['key'], 'SSL'),
 				'recurring'           => $product['recurring'],
 				'profile_name'        => $product['profile_name'],
 				'profile_description' => $profile_description
@@ -806,7 +805,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-			$redirect = $this->url->link('checkout/cart');
+			$redirect = $this->url->link('checkout/cart', '', 'SSL');
 		}
 
 		// Validate minimum quantity requirments.
@@ -822,7 +821,7 @@ class ControllerPaymentPPExpress extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$redirect = $this->url->link('checkout/cart');
+				$redirect = $this->url->link('checkout/cart', '', 'SSL');
 
 				break;
 			}
@@ -1249,7 +1248,7 @@ class ControllerPaymentPPExpress extends Controller {
 				$this->redirect($this->url->link('checkout/success'));
 
 				if (isset($result['REDIRECTREQUIRED']) && $result['REDIRECTREQUIRED'] == true) { //- handle german redirect here
-					$this->redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token='.$this->session->data['paypal']['token']);
+					$this->redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token=' . $this->session->data['paypal']['token']);
 				}
 
 			} else {
@@ -1510,7 +1509,7 @@ class ControllerPaymentPPExpress extends Controller {
 			if (isset($result['REDIRECTREQUIRED']) && $result['REDIRECTREQUIRED'] == true) { //- handle german redirect here
 				$this->redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token='.$this->session->data['paypal']['token']);
 			} else {
-				$this->redirect($this->url->link('checkout/success'));
+				$this->redirect($this->url->link('checkout/success', '', 'SSL'));
 			}
 
 		} else {
@@ -1543,14 +1542,14 @@ class ControllerPaymentPPExpress extends Controller {
 			$this->data['breadcrumbs'] = array();
 
 			$this->data['breadcrumbs'][] = array(
-				'href'      => $this->url->link('common/home'),
 				'text'      => $this->language->get('text_home'),
+				'href'      => $this->url->link('common/home', '', 'SSL'),
 				'separator' => false
 			);
 
 			$this->data['breadcrumbs'][] = array(
-				'href'      => $this->url->link('checkout/cart'),
 				'text'      => $this->language->get('text_cart'),
+				'href'      => $this->url->link('checkout/cart', '', 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
 
@@ -1560,7 +1559,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			$this->data['button_continue'] = $this->language->get('button_continue');
 
-			$this->data['continue'] = $this->url->link('checkout/cart');
+			$this->data['continue'] = $this->url->link('checkout/cart', '', 'SSL');
 
 			unset($this->session->data['success']);
 
@@ -1766,7 +1765,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 					if ($profile != false) {
 						$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `type` = '7'");
-						$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 3 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 1");
+						$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 3 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 0,1");
 					}
 				}
 
@@ -1821,7 +1820,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 					if ($profile != false && $profile['status'] != 3) {
 						$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `type` = '5'");
-						$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 4 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 1");
+						$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 4 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 0,1");
 					}
 				}
 
@@ -1840,7 +1839,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 					if ($profile != false) {
 						$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `type` = '9'");
-						$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 5 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 1"); 
+						$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 5 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 0,1"); 
 					}
 				}
 			}
@@ -1860,7 +1859,7 @@ class ControllerPaymentPPExpress extends Controller {
 	public function shipping() {
 		$this->shippingValidate($this->request->post['shipping_method']);
 
-		$this->redirect($this->url->link('payment/pp_express/expressConfirm'));
+		$this->redirect($this->url->link('payment/pp_express/expressConfirm', '', 'SSL'));
 	}
 
 	protected function shippingValidate($code) {
@@ -1901,7 +1900,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			if (isset($result['PROFILEID'])) {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "', `created` = NOW(), `type` = '5'");
-				$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 4 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 1");
+				$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = 4 WHERE `order_recurring_id` = '" . (int)$profile['order_recurring_id'] . "' LIMIT 0,1");
 
 				$this->session->data['success'] = $this->language->get('success_cancelled');
 			} else {
@@ -1930,7 +1929,6 @@ class ControllerPaymentPPExpress extends Controller {
 			return true;
 		} else {
 			$this->session->data['error_warning'] = $error;
-
 			return false;
 		}
 	}
@@ -1950,7 +1948,6 @@ class ControllerPaymentPPExpress extends Controller {
 			return true;
 		} else {
 			$this->session->data['error_warning'] = $this->language->get('error_voucher');
-
 			return false;
 		}
 	}
@@ -1984,7 +1981,6 @@ class ControllerPaymentPPExpress extends Controller {
 			return true;
 		} else {
 			$this->session->data['error_warning'] = $error;
-
 			return false;
 		}
 	}

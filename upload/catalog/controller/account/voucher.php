@@ -34,7 +34,7 @@ class ControllerAccountVoucher extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
@@ -197,13 +197,13 @@ class ControllerAccountVoucher extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
 			'separator' => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('account/voucher'),
+			'href'      => $this->url->link('account/voucher', '', 'SSL'),
 			'separator' => $this->language->get('text_separator')
 		);
 
@@ -213,7 +213,7 @@ class ControllerAccountVoucher extends Controller {
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
-		$this->data['continue'] = $this->url->link('checkout/cart');
+		$this->data['continue'] = $this->url->link('checkout/cart', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');

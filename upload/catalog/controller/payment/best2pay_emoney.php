@@ -108,7 +108,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 
 		$this->data['title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
 
-		if (!isset($this->request->server['HTTPS']) || ($this->request->server['HTTPS'] != 'on')) {
+		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
 			$this->data['base'] = $this->config->get('config_url');
 		} else {
 			$this->data['base'] = $this->config->get('config_ssl');
@@ -120,7 +120,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 		$this->data['heading_title'] = sprintf($this->language->get('heading_title'), $this->config->get('config_name'));
 
 		$this->data['text_success'] = $this->language->get('text_success');
-		$this->data['text_success_wait'] = sprintf($this->language->get('text_success_wait'), $this->url->link('checkout/success'));
+		$this->data['text_success_wait'] = sprintf($this->language->get('text_success_wait'), $this->url->link('checkout/success', '', 'SSL'));
 
 		$this->data['text_failure'] = $this->language->get('text_failure');
 		$this->data['text_failure_wait'] = sprintf($this->language->get('text_failure_wait'), $this->url->link('checkout/cart', '', 'SSL'));
@@ -144,11 +144,11 @@ class ControllerPaymentBest2payEmoney extends Controller {
 				'http' => array(
 					 'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 					 'method'  => 'POST',
-					 'content' => http_build_query($operation_data),
+					 'content' => http_build_query($operation_data)
 				)
 			);
 
-			$context  = stream_context_create($options);
+			$context = stream_context_create($options);
 
 			$operation = file_get_contents($action . 'Operation', false, $context);
 
@@ -220,7 +220,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 
 					$this->model_checkout_order->update($this->request->get['reference'], $this->config->get('best2pay_order_status_id'), $message, false);
 
-					$this->data['continue'] = $this->url->link('checkout/success');
+					$this->data['continue'] = $this->url->link('checkout/success', '', 'SSL');
 
 					if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/best2pay_success.tpl')) {
 						$this->template = $this->config->get('config_template') . '/template/payment/best2pay_success.tpl';
@@ -252,7 +252,7 @@ class ControllerPaymentBest2payEmoney extends Controller {
 		}
 
 		if ($error) {
-			$this->data['continue'] = $this->url->link('checkout/cart');
+			$this->data['continue'] = $this->url->link('checkout/cart', '', 'SSL');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/best2pay_failure.tpl')) {
 				$this->template = $this->config->get('config_template') . '/template/payment/best2pay_failure.tpl';

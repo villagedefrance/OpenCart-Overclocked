@@ -4,7 +4,7 @@ class ControllerPaymentInStore extends Controller {
 	protected function index() {
     	$this->data['button_confirm'] = $this->language->get('button_confirm');
 
-		$this->data['continue'] = $this->url->link('checkout/success');
+		$this->data['continue'] = $this->url->link('checkout/success', '', 'SSL');
 
 		// Theme
 		$this->data['template'] = $this->config->get('config_template');

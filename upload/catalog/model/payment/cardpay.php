@@ -23,7 +23,7 @@ class ModelPaymentCardPay extends Model {
 
 		if ($status) {
 			$method_data = array(
-				'code'         => 'cardpay',
+				'code'       => 'cardpay',
 				'title'      => $this->language->get('text_title'),
 				'terms'      => '',
 				'sort_order' => $this->config->get('cardpay_sort_order')

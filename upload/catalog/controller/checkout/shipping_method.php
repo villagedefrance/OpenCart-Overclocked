@@ -54,7 +54,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 		$this->data['button_continue'] = $this->language->get('button_continue');
 
 		if (empty($this->session->data['shipping_methods'])) {
-			$this->data['error_warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));
+			$this->data['error_warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact', '', 'SSL'));
 		} else {
 			$this->data['error_warning'] = '';
 		}
@@ -114,7 +114,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 
 		// Validate cart has products and has stock
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-			$json['redirect'] = $this->url->link('checkout/cart');
+			$json['redirect'] = $this->url->link('checkout/cart', '', 'SSL');
 		}
 
 		// Validate minimum quantity requirements
@@ -130,7 +130,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$json['redirect'] = $this->url->link('checkout/cart');
+				$json['redirect'] = $this->url->link('checkout/cart', '', 'SSL');
 				break;
 			}
 		}

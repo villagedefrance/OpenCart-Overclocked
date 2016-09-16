@@ -40,7 +40,7 @@ class ControllerFeedRSSFeed extends Controller {
 					$title = $product['name'];
 
 					// Redirects to All products (SEO Url is ON)
-					$link = $this->url->link('product/product_list');
+					$link = $this->url->link('product/product_list', '', 'SSL');
 
 					$description = "";
 
