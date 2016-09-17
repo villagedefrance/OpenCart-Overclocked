@@ -187,7 +187,7 @@ class Cart {
 
 					$price = $product_query->row['price'];
 
-					// Discounts
+					// Product Discounts
 					$discount_quantity = 0;
 
 					foreach ($this->session->data['cart'] as $key_2 => $quantity_2) {
@@ -204,14 +204,14 @@ class Cart {
 						$price = $product_discount_query->row['price'];
 					}
 
-					// Specials
+					// Product Specials
 					$product_special_query = $this->db->query("SELECT price FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$customer_group_id . "' AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 0,1");
 
 					if ($product_special_query->num_rows) {
 						$price = $product_special_query->row['price'];
 					}
 
-					// Rewards
+					// Reward Points
 					$product_reward_query = $this->db->query("SELECT points FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$customer_group_id . "'");
 
 					if ($product_reward_query->num_rows) {
@@ -483,41 +483,32 @@ class Cart {
 	}
 
 	public function hasStock() {
-		$stock = true;
-
 		foreach ($this->getProducts() as $product) {
 			if (!$product['stock']) {
-				$stock = false;
-				break;
+				return false;
 			}
 		}
 
-		return $stock;
+		return true;
 	}
 
 	public function hasShipping() {
-		$shipping = false;
-
 		foreach ($this->getProducts() as $product) {
 			if ($product['shipping']) {
-				$shipping = true;
-				break;
+				return true;
 			}
 		}
 
-		return $shipping;
+		return false;
 	}
 
 	public function hasDownload() {
-		$download = false;
-
 		foreach ($this->getProducts() as $product) {
 			if ($product['download']) {
-				$download = true;
-				break;
+				return true;
 			}
 		}
 
-		return $download;
+		return false;
 	}
 }

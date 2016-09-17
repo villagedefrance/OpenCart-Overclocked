@@ -12,18 +12,22 @@ class Language {
 		return (isset($this->data[$key]) ? $this->data[$key] : $key);
 	}
 
+	public function set($key, $value) {
+		$this->data[$key] = $value;
+	}
+
 	public function load($filename) {
 		$_ = array();
 
 		$file = DIR_LANGUAGE . $this->default . '/' . $filename . '.php';
 
-		if (file_exists($file)) {
+		if (is_file($file)) {
 			require($file);
 		}
 
 		$file = DIR_LANGUAGE . $this->directory . '/' . $filename . '.php';
 
-		if (file_exists($file)) {
+		if (is_file($file)) {
 			require($file);
 		}
 
