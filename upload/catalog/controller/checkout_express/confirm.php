@@ -81,7 +81,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 			// Validate minimum age
 			if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
 				if (!$this->customer->isLogged() || !$this->customer->isSecure()) {
-					$redirect($this->url->link('checkout/login', '', 'SSL'));
+					$redirect = $this->url->link('checkout/login', '', 'SSL');
 					break;
 				}
 			}
@@ -459,6 +459,7 @@ class ControllerCheckoutExpressConfirm extends Controller {
 
 					if ($product['recurring_trial']) {
 						$recurring_price = $this->currency->format($this->tax->calculate($product['recurring_trial_price'] * $product['quantity'], $product['tax_class_id'], $this->config->get('config_tax')));
+
 						$profile_description = sprintf($this->language->get('text_trial_description'), $recurring_price, $product['recurring_trial_cycle'], $frequencies[$product['recurring_trial_frequency']], $product['recurring_trial_duration']) . ' ';
 					}
 

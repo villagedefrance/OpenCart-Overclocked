@@ -144,7 +144,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
 		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
-		$this->data['entry_express_name'] = $this->language->get('entry_express_name');
 		$this->data['entry_express_password'] = $this->language->get('entry_express_password');
 		$this->data['entry_express_phone'] = $this->language->get('entry_express_phone');
 		$this->data['entry_express_autofill'] = $this->language->get('entry_express_autofill');
@@ -825,16 +824,16 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_express_checkout'] = $this->config->get('config_express_checkout');
 		}
 
-		if (isset($this->request->post['config_express_name'])) {
-			$this->data['config_express_name'] = $this->request->post['config_express_name'];
-		} else {
-			$this->data['config_express_name'] = $this->config->get('config_express_name');
-		}
-
 		if (isset($this->request->post['config_express_autofill'])) {
 			$this->data['config_express_autofill'] = $this->request->post['config_express_autofill'];
 		} else {
 			$this->data['config_express_autofill'] = $this->config->get('config_express_autofill');
+		}
+
+		if (isset($this->request->post['config_express_password'])) {
+			$this->data['config_express_password'] = $this->request->post['config_express_password'];
+		} else {
+			$this->data['config_express_password'] = $this->config->get('config_express_password');
 		}
 
 		if (isset($this->request->post['config_express_phone'])) {
@@ -859,12 +858,6 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_express_comment'] = $this->request->post['config_express_comment'];
 		} else {
 			$this->data['config_express_comment'] = $this->config->get('config_express_comment');
-		}
-
-		if (isset($this->request->post['config_express_password'])) {
-			$this->data['config_express_password'] = $this->request->post['config_express_password'];
-		} else {
-			$this->data['config_express_password'] = $this->config->get('config_express_password');
 		}
 
 		if (isset($this->request->post['config_express_newsletter'])) {

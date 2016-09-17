@@ -29,24 +29,37 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 
 		$this->data['button_express_go'] = $this->language->get('button_express_go');
 
+		if (isset($this->session->data['payment_firstname'])) {
+			$this->data['firstname'] = $this->session->data['payment_firstname'];
+		} else {
+			$this->data['firstname'] = $this->customer->getFirstName();
+		}
+
+		if (isset($this->session->data['payment_lastname'])) {
+			$this->data['lastname'] = $this->session->data['payment_lastname'];
+		} else {
+			$this->data['lastname'] = $this->customer->getLastName();
+		}
+
+		$this->data['addresses'] = array();
+
+		$this->load->model('account/address');
+
+		$this->data['addresses'] = $this->model_account_address->getAddresses();
+
 		if (isset($this->session->data['payment_address_id'])) {
 			$this->data['address_id'] = $this->session->data['payment_address_id'];
 		} else {
 			$this->data['address_id'] = $this->customer->getAddressId();
 		}
 
-		$this->data['addresses'] = array();
-
-		$this->load->model('account/address');
-		$this->load->model('checkout/checkout_tools');
-
-		if ($this->config->get('config_express_autofill')) {
-			$this->data['firstname'] = $this->model_checkout_checkout_tools->getJoinNames($this->customer->getFirstName(), $this->customer->getLastName());
+		if (isset($this->session->data['payment_postcode'])) {
+			$this->data['postcode'] = $this->session->data['payment_postcode'];
+		} elseif (isset($this->session->data['shipping_postcode'])) {
+			$this->data['postcode'] = $this->session->data['shipping_postcode'];
 		} else {
-			$this->data['firstname'] = '';
+			$this->data['postcode'] = '';
 		}
-
-		$this->data['addresses'] = $this->model_account_address->getAddresses();
 
 		$this->load->model('account/customer_group');
 
@@ -192,10 +205,31 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 				}
 			} 
 
-			$this->request->post['firstname'] = $this->model_checkout_checkout_tools->getFirstName($this->request->post['firstname']);
-			$this->request->post['lastname'] = $this->model_checkout_checkout_tools->getLastName($this->request->post['firstname']);
+			if (isset($this->request->post['firstname'])) {
+				$this->data['firstname'] = $this->request->post['firstname'];
+			} elseif (isset($this->session->data['shipping_firstname'])) {
+				$this->data['firstname'] = $this->session->data['shipping_firstname'];
+			} else {
+				$this->data['firstname'] = '';
+			}
+
+			if (isset($this->request->post['lastname'])) {
+				$this->data['lastname'] = $this->request->post['lastname'];
+			} elseif (isset($this->session->data['shipping_lastname'])) {
+				$this->data['lastname'] = $this->session->data['shipping_lastname'];
+			} else {
+				$this->data['lastname'] = '';
+			}
 
 			$this->request->post['address_2'] = '';
+
+			if (isset($this->request->post['postcode'])) {
+				$this->data['postcode'] = $this->request->post['postcode'];
+			} elseif (isset($this->session->data['shipping_postcode'])) {
+				$this->data['postcode'] = $this->session->data['shipping_postcode'];
+			} else {
+				$this->data['postcode'] = '';
+			}
 
 			if (!isset($this->request->post['company_id'])) {
 				$this->request->post['company_id'] = '';
@@ -208,6 +242,10 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 			if ($this->request->post['payment_address'] == 'new') {
 				if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
 					$json['error']['firstname'] = $this->language->get('error_firstname');
+				}
+
+				if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+					$json['error']['lastname'] = $this->language->get('error_lastname');
 				}
 
 				// Customer Group
@@ -264,9 +302,12 @@ class ControllerCheckoutExpressPaymentAddress extends Controller {
 					// Default Payment Address
 					$this->load->model('account/address');
 
+					$this->session->data['payment_firstname'] = $this->request->post['firstname'];
+					$this->session->data['payment_lastname'] = $this->request->post['lastname'];
 					$this->session->data['payment_address_id'] = $this->model_account_address->addAddress($this->request->post);
 					$this->session->data['payment_country_id'] = $this->request->post['country_id'];
 					$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
+					$this->session->data['payment_postcode'] = $this->request->post['postcode'];
 
 					unset($this->session->data['payment_method']);
 					unset($this->session->data['payment_methods']);

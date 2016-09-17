@@ -93,12 +93,13 @@ class ModelCheckoutCheckoutExpress extends Model {
 			$message = $this->language->get('text_signup') . "\n\n";
 			$message .= $this->language->get('text_website') . " " . $this->config->get('config_name') . "\n";
 			$message .= $this->language->get('text_firstname') . " " . $data['firstname'] . "\n";
+			$message .= $this->language->get('text_lastname') . " " . $data['lastname'] . "\n";
 
 			if ($data['company']) {
 				$message .= $this->language->get('text_company') . " " . $data['company'] . "\n";
 			}
 
-			$message .= $this->language->get('text_email') . " " . $data['email'] . "\n";
+			$message .= $this->language->get('text_email') . " " . $data['email'] . "\n\n";
 
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');

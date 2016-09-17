@@ -103,6 +103,7 @@ class ControllerCheckoutExpressLogin extends Controller {
 				unset($this->session->data['shipping_country_id']);
 				unset($this->session->data['shipping_zone_id']);
 				unset($this->session->data['shipping_postcode']);
+
 				unset($this->session->data['payment_country_id']);
 				unset($this->session->data['payment_zone_id']);
 			}

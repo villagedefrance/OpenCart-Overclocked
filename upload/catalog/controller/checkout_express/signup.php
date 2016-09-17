@@ -53,6 +53,7 @@ class ControllerCheckoutExpressSignup extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_signup');
 
 		$this->data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('checkout_express/checkout', '', 'SSL'));
+
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
 		$this->data['text_your_address'] = $this->language->get('text_your_address');
 		$this->data['text_your_password'] = $this->language->get('text_your_password');
@@ -360,41 +361,35 @@ class ControllerCheckoutExpressSignup extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function validate() {
-		$this->load->model('checkout/checkout_express');
-		$this->load->model('checkout/checkout_tools');
+	protected function validate() {
+		if (isset($this->request->post['email'])) {
+			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
 
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
-			$this->error['email'] = $this->language->get('error_email');
+			// Email exists check
+			$this->load->model('checkout/checkout_express');
+
+			if ($this->model_checkout_checkout_express->getTotalCustomersByEmail($this->request->post['email'])) {
+				$this->error['warning'] = $this->language->get('error_exists');
+			}
+
+			// Email MX Record check
+			$this->load->model('tool/email');
+
+			$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
+
+			if (!$email_valid) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
 		}
 
-		// Email exists check
-		if ($this->model_checkout_checkout_express->getTotalCustomersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_exists');
+		if (!isset($this->request->post['firstname']) || (utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+ 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		// Email MX Record check
-		$this->load->model('tool/email');
-
-		$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
-
-		if (!$email_valid) {
-			$this->error['email'] = $this->language->get('error_email');
-		}
-
-		if (strlen($this->request->post['firstname']) < 3) {
-			$this->request->post['firstname'] = $this->model_checkout_checkout_tools->extractName($this->request->post['email']);
-		}
-
-		$this->request->post['lastname'] = $this->model_checkout_checkout_tools->getLastName($this->request->post['firstname']);
-		$this->request->post['firstname'] = $this->model_checkout_checkout_tools->getFirstName($this->request->post['firstname']);
-
-		if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-			$this->error['firstname'] = $this->language->get('error_fullname');
-		}
-
-		if (!$this->request->post['password']) {
-			$this->request->post['password'] = $this->model_checkout_checkout_tools->generatePassword();
+		if (!isset($this->request->post['lastname']) || (utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
 		if ($this->config->get('config_express_phone') == 2) {
@@ -404,6 +399,12 @@ class ControllerCheckoutExpressSignup extends Controller {
 		}
 
 		$this->request->post['fax'] = '';
+
+		$this->load->model('checkout/checkout_tools');
+
+		if (!$this->request->post['password']) {
+			$this->request->post['password'] = $this->model_checkout_checkout_tools->generatePassword();
+		}
 
 		// Customer Group
 		$this->load->model('account/customer_group');

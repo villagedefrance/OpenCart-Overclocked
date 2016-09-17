@@ -16,26 +16,22 @@
     <div class="content">
       <table class="form" style="margin-bottom:0px;">
         <tr>
+          <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
+          <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
+          <?php if ($error_firstname) { ?>
+            <span class="error"><?php echo $error_firstname; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
+          <?php if ($error_lastname) { ?>
+            <span class="error"><?php echo $error_lastname; ?></span>
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><span class="required">* </span><strong><?php echo $entry_email; ?></strong></td>
-          <td><input type="text" id="email" name="email" value="<?php echo $email; ?>"
-            <?php if ($this->config->get('config_express_autofill')) { ?>
-              oninput="name1=this.value.toLowerCase();
-              if (name1.indexOf('@') !== -1) { name1 = name1.substr(0, name1.indexOf('@')) };
-              name1 = name1.replace(/[0-9]/g, '').replace(/[-_]/g, '.');
-              name2 = '';
-              if (name1.indexOf('.') !== -1) {
-                name2 = name1.substr(name1.indexOf('.')+1);
-                name1 = name1.substr(0, name1.indexOf('.'));
-              }
-              name1 = name1.replace(/[^a-z]/g, '');
-              name1 = name1.charAt(0).toUpperCase() + name1.slice(1);
-              if (name2) {
-                name2 = name2.replace(/[^a-z]/g, '');
-                name2 = name2.charAt(0).toUpperCase() + name2.slice(1);
-                name1 = name1 + ' ' + name2;
-              }
-              $('#name').val(name1);"
-            <?php } ?> size="30" />
+          <td><input type="text" id="email" name="email" value="<?php echo $email; ?>" size="30" />
             <?php if ($error_email) { ?>
               <span class="error"><?php echo $error_email; ?></span>
             <?php } ?>
@@ -47,14 +43,6 @@
             <span id="auto-password" style="color:#AAA; <?php echo ($this->config->get('config_express_password') == 2) ? 'display:none;' : ''; ?>"><?php echo $text_express_generated; ?></span>
             <?php if ($error_password) { ?>
               <span class="error"><?php echo $error_password; ?></span>
-            <?php } ?>
-          </td>
-        </tr>
-        <tr <?php echo ($this->config->get('config_express_name') == 0) ? 'style="display:none;"' : ''; ?>>
-          <td><?php echo $text_express_full_name; ?></td>
-          <td><input type="text" name="firstname" id="name" value="<?php echo $firstname; ?>" size="30" />
-            <?php if ($error_firstname) { ?>
-              <span class="error"><?php echo $error_firstname; ?></span>
             <?php } ?>
           </td>
         </tr>

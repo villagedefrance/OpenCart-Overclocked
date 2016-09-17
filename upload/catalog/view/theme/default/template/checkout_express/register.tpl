@@ -1,14 +1,21 @@
-<?php $nodata = (!$this->config->get('config_express_name') && !$this->config->get('config_express_phone') && ($this->config->get('config_express_password') == 2)); ?>
+<?php $nodata = (!$this->config->get('config_express_phone') && ($this->config->get('config_express_password') == 2)); ?>
 <div class="left" <?php echo ($nodata) ? 'style="display:none;"' : ''; ?>>
   <h2><?php echo $text_your_details; ?></h2>
-  <span class="required">* </span><?php echo $entry_email; ?><br />
-    <input type="text" name="email" value="<?php echo $email; ?>" class="large-field" />
+  <span>
+    <span class="required">* </span><?php echo $entry_firstname; ?><br />
+    <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" />
     <br />
     <br />
   </span>
-  <span <?php echo ($this->config->get('config_express_name') == 0) ? 'style="display:none;"' : ''; ?>>
-    <span class="required">* </span><?php echo $text_express_full_name; ?><br />
-    <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" />
+  <span>
+    <span class="required">* </span><?php echo $entry_lastname; ?><br />
+    <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="large-field" />
+    <br />
+    <br />
+  </span>
+  <span>
+    <span class="required">* </span><?php echo $entry_email; ?><br />
+    <input type="text" name="email" value="<?php echo $email; ?>" class="large-field" />
     <br />
     <br />
   </span>

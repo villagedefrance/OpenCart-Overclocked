@@ -22,8 +22,12 @@
 <div id="payment-new" style="display:<?php echo ($addresses) ? 'none' : 'block'; ?>;">
   <table class="form">
     <tr>
-      <td><span class="required">*</span> <?php echo $text_express_full_name; ?></td>
+      <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
       <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+      <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" class="large-field" /></td>
     </tr>
     <?php if (!$company_id_required) { ?>
     <tr>
@@ -66,11 +70,8 @@
     </tr>
     <tr>
       <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-      <td><select name="zone_id" id="zone" onchange="city=$('#zone option:selected').text();
-        if (!$('#zone option:selected').val()) { city='';
-        <?php if ($this->config->get('config_express_autofill')) { ?>
-          document.getElementsByName('city')[0].value=city;
-        <?php } ?> }
+      <td><select name="zone_id" id="zone" onchange="var city=$('#zone option:selected').text();
+        if (!$('#zone option:selected').val()) { city=''; <?php if ($this->config->get('config_express_autofill')) { ?> document.getElementsByName('city')[0].value=city; <?php } ?> }
         if (city) { $('#cities').show(500); } else { $('#cities').hide(100); }
         if (city && postcode_required) { $('#codes').show(500); } else { $('#codes').hide(100); }" class="large-field">
       </select></td>

@@ -22,8 +22,12 @@
 <div id="shipping-new" style="display:<?php echo ($addresses) ? 'none' : 'block'; ?>;">
   <table class="form">
     <tr>
-      <td><span class="required">* </span><?php echo $text_express_full_name; ?></td>
+      <td><span class="required">*</span> <?php echo $entry_firstname; ?></td>
       <td><input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" /></td>
+    </tr>
+    <tr>
+      <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+      <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" class="large-field" /></td>
     </tr>
     <tr>
       <td></td>
@@ -52,13 +56,8 @@
     </tr>
     <tr>
       <td><span class="required">* </span><?php echo $entry_zone; ?></td>
-      <td><select name="zone_id" id="express-zone" onchange="
-        var city = $('#express-zone option:selected').text();
-        if (!$('#express-zone option:selected').val()) { city='';
-          <?php if ($this->config->get('config_express_autofill')) { ?>
-            document.getElementById('express-city').value=city;
-          <?php } ?>
-        }
+      <td><select name="zone_id" id="express-zone" onchange="var city=$('#express-zone option:selected').text();
+        if (!$('#express-zone option:selected').val()) { city=''; <?php if ($this->config->get('config_express_autofill')) { ?> document.getElementById('express-city').value=city; <?php } ?> }
         if (city) { $('#express-cities').show(500); } else { $('#express-cities').hide(100); }
         if (city && postcode_required) { $('#express-codes').show(500); } else { $('#express-codes').hide(100); }" class="large-field">
       </select></td>

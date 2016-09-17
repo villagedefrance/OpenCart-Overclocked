@@ -462,17 +462,17 @@
         </table>
         <table class="form">
           <tr>
-            <td><?php echo $entry_express_name; ?></td>
-            <td><?php if ($config_express_name) { ?>
-              <input type="radio" name="config_express_name" value="1" id="express-name-on" class="radio" checked />
-              <label for="express-name-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_express_name" value="0" id="express-name-off" class="radio" />
-              <label for="express-name-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <td><?php echo $entry_express_autofill; ?></td>
+            <td><?php if ($config_express_autofill) { ?>
+              <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" checked />
+              <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_express_autofill" value="0" id="express-autofill-off" class="radio" />
+              <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="radio" name="config_express_name" value="1" id="express-name-on" class="radio" />
-              <label for="express-name-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_express_name" value="0" id="express-name-off" class="radio" checked />
-              <label for="express-name-off"><span><span></span></span><?php echo $text_no; ?></label>
+              <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" />
+              <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_express_autofill" value="0" id="express-autofill-off" class="radio" checked />
+              <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -488,20 +488,6 @@
                 <option value="2"><?php echo $text_hide; ?></option>
               <?php } ?>
             </select></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_express_autofill; ?></td>
-            <td><?php if ($config_express_autofill) { ?>
-              <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" checked />
-              <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_express_autofill" value="0" id="express-autofill-off" class="radio" />
-              <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="config_express_autofill" value="1" id="express-autofill-on" class="radio" />
-              <label for="express-autofill-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="config_express_autofill" value="0" id="express-autofill-off" class="radio" checked />
-              <label for="express-autofill-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
           </tr>
           <tr>
             <td><?php echo $entry_express_phone; ?></td>
