@@ -34,7 +34,15 @@ Powered by the Latest Scripts:
 - jQuery 1.12.4.
 - jQuery UI 1.12.0.
 - jQuery Migrate 1.4.1.
-- CKEditor 4.5.10 Full.
+- CKEditor 4.5.11 Full.
+- ...
+
+Coming soon in 1.8.2.0!
+- Full SSL support in Catalog.
+- New product labels system.
+- Better PayPal Express button.
+- CKEditor 4.5.11 Full.
+- Improved Search.
 - ...
 
 New in 1.8.1.0 (current release)!
