@@ -29,6 +29,9 @@
           <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
             <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
           <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
+            <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
+          <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
           </div>
@@ -48,6 +51,9 @@
           <?php } ?>
           <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
             <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
+            <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
@@ -69,6 +75,9 @@
           <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
             <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
           <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
+            <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
+          <?php } ?>
           <div class="image">
             <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
           </div>
@@ -88,6 +97,9 @@
           <?php } ?>
           <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
             <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
+            <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="simpleLens-gallery-container" id="zoom">
             <div class="simpleLens-container">
@@ -507,6 +519,9 @@
           <?php } ?>
           <?php if (!$product['stock_label'] && $product['offer']) { ?>
             <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+            <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($product['thumb']) { ?>
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>

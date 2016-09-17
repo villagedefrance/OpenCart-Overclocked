@@ -40,11 +40,14 @@
     <div class="review-list">	
       <?php foreach ($reviews as $review) { ?>
         <div>
-          <?php if ($product['stock_label']) { ?>
-            <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
+          <?php if ($review['stock_label']) { ?>
+            <div class="stock-medium"><img src="<?php echo $review['stock_label']; ?>" alt="" /></div>
           <?php } ?>
-          <?php if (!$product['stock_label'] && $product['offer']) { ?>
-            <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+          <?php if (!$review['stock_label'] && $review['offer']) { ?>
+            <div class="offer-medium"><img src="<?php echo $review['offer_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$review['stock_label'] && !$review['offer'] && $review['special']) { ?>
+            <div class="special-medium"><img src="<?php echo $review['special_label']; ?>" alt="" /></div>
           <?php } ?>
           <?php if ($review['thumb']) { ?>
             <div class="image"><a href="<?php echo $review['href']; ?>"><img src="<?php echo $review['thumb']; ?>" alt="<?php echo $review['name']; ?>" /></a></div>
@@ -130,6 +133,12 @@ function display(view) {
 				html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
 			}
 
+			var special = $(element).find('.special-medium').html();
+
+			if (special != null) {
+				html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
+			}
+
 			var image = $(element).find('.image').html();
 
 			if (image != null) {
@@ -185,6 +194,12 @@ function display(view) {
 
 			if (offer != null) {
 				html += '<div class="offer-medium">' + $(element).find('.offer-medium').html() + '</div>';
+			}
+
+			var special = $(element).find('.special-medium').html();
+
+			if (special != null) {
+				html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
 			}
 
 			var image = $(element).find('.image').html();

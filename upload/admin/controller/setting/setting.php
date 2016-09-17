@@ -231,6 +231,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_image_cart'] = $this->language->get('entry_image_cart');
 		$this->data['entry_label_stock'] = $this->language->get('entry_label_stock');
 		$this->data['entry_label_offer'] = $this->language->get('entry_label_offer');
+		$this->data['entry_label_special'] = $this->language->get('entry_label_special');
 		$this->data['entry_ftp_status'] = $this->language->get('entry_ftp_status');
 		$this->data['entry_ftp_host'] = $this->language->get('entry_ftp_host');
 		$this->data['entry_ftp_port'] = $this->language->get('entry_ftp_port');
@@ -1498,6 +1499,18 @@ class ControllerSettingSetting extends Controller {
 			$this->data['label_offer'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 100, 100);
 		} else {
 			$this->data['label_offer'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
+		if (isset($this->request->post['config_label_special'])) {
+			$this->data['config_label_special'] = $this->request->post['config_label_special'];
+		} else {
+			$this->data['config_label_special'] = $this->config->get('config_label_special');
+		}
+
+		if ($this->config->get('config_label_special') && file_exists(DIR_IMAGE . $this->config->get('config_label_special')) && is_file(DIR_IMAGE . $this->config->get('config_label_special'))) {
+			$this->data['label_special'] = $this->model_tool_image->resize($this->config->get('config_label_special'), 100, 100);
+		} else {
+			$this->data['label_special'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
 
 		// Transfer

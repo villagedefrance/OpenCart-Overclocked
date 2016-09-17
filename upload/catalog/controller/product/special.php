@@ -153,8 +153,10 @@ class ControllerProductSpecial extends Controller {
 				}
 
 				if ((float)$result['special']) {
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 50, 50);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
+					$special_label = false;
 					$special = false;
 				}
 
@@ -214,6 +216,7 @@ class ControllerProductSpecial extends Controller {
 					'thumb'           => $image,
 					'stock_label'     => $stock_label,
 					'offer_label'     => $offer_label,
+					'special_label'   => $special_label,
 					'offer'           => $offer,
 					'manufacturer'    => $manufacturer,
 					'name'            => $result['name'],

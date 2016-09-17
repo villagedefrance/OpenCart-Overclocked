@@ -37,6 +37,9 @@
               <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
                 <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
               <?php } ?>
+              <?php if (!$products[$product['product_id']]['stock_label'] && !$products[$product['product_id']]['offer'] && $products[$product['product_id']]['special']) { ?>
+                <div class="special-medium"><img src="<?php echo $products[$product['product_id']]['special_label']; ?>" alt="" /></div>
+              <?php } ?>
               <?php if ($products[$product['product_id']]['thumb']) { ?>
                 <a href="<?php echo $products[$product['product_id']]['href']; ?>"><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></a>
               <?php } ?>

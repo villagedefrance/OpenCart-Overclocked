@@ -264,6 +264,14 @@ class ControllerCheckoutCart extends Controller {
 					$image = '';
 				}
 
+				if ((float)$product['special']) {
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 30, 30);
+					$special = true;
+				} else {
+					$special_label = false;
+					$special = false;
+				}
+
 				if ($product['quantity'] <= 0) {
 					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 30, 30);
 				} else {
@@ -370,6 +378,7 @@ class ControllerCheckoutCart extends Controller {
 					'thumb'               => $image,
 					'stock_label'         => $stock_label,
 					'offer_label'         => $offer_label,
+					'special_label'       => $special_label,
 					'offer'               => $offer,
 					'name'                => $product['name'],
 					'model'               => $product['model'],
@@ -378,6 +387,7 @@ class ControllerCheckoutCart extends Controller {
 					'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
 					'reward'              => $product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : '',
 					'price'               => $price,
+					'special'             => $special,
 					'cost'                => $product['cost'],
 					'tax_value'           => $this->currency->format($product_tax_value),
 					'tax_percent'         => number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),

@@ -74,6 +74,14 @@ class ControllerModuleCart extends Controller {
 				$image = '';
 			}
 
+			if ((float)$product['special']) {
+				$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 30, 30);
+				$special = true;
+			} else {
+				$special_label = false;
+				$special = false;
+			}
+
 			if ($product['quantity'] <= 0) {
 				$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 30, 30);
 			} else {
@@ -121,20 +129,22 @@ class ControllerModuleCart extends Controller {
 			}
 
 			$this->data['products'][] = array(
-				'key'         => $product['key'],
-				'thumb'       => $image,
-				'stock_label' => $stock_label,
-				'offer_label' => $offer_label,
-				'offer'       => $offer,
-				'name'        => $product['name'],
-				'model'       => $product['model'],
-				'option'      => $option_data,
-				'quantity'    => $product['quantity'],
-				'price'       => $price,
-				'total'       => $total,
-				'recurring'   => $product['recurring'],
-				'profile'     => $product['profile_name'],
-				'href'        => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL')
+				'key'           => $product['key'],
+				'thumb'         => $image,
+				'stock_label'   => $stock_label,
+				'offer_label'   => $offer_label,
+				'special_label' => $special_label,
+				'offer'         => $offer,
+				'name'          => $product['name'],
+				'model'         => $product['model'],
+				'option'        => $option_data,
+				'quantity'      => $product['quantity'],
+				'price'         => $price,
+				'special'       => $special,
+				'total'         => $total,
+				'recurring'     => $product['recurring'],
+				'profile'       => $product['profile_name'],
+				'href'          => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL')
 			);
 		}
 

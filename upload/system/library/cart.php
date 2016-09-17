@@ -209,6 +209,9 @@ class Cart {
 
 					if ($product_special_query->num_rows) {
 						$price = $product_special_query->row['price'];
+						$special = true;
+					} else {
+						$special = false;
 					}
 
 					// Rewards
@@ -286,6 +289,7 @@ class Cart {
 						'subtract'                  => $product_query->row['subtract'],
 						'stock'                     => $stock,
 						'price'                     => ($price + $option_price),
+						'special'                   => $special,
 						'cost'                      => $product_query->row['cost'],
 						'quote'                     => $product_query->row['quote'],
 						'age_minimum'               => $product_query->row['age_minimum'],

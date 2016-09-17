@@ -154,6 +154,14 @@ class ControllerProductReviewList extends Controller {
 					$image = $this->model_tool_image->resize('no_image.jpg', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				}
 
+				if ((float)$result['special']) {
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 50, 50);
+					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
+				} else {
+					$special_label = false;
+					$special = false;
+				}
+
 				if ($this->config->get('config_review_status')) {
 					$rating = (int)$result['rating'];
 				} else {
@@ -206,6 +214,7 @@ class ControllerProductReviewList extends Controller {
 					'thumb'           => $image,
 					'stock_label'     => $stock_label,
 					'offer_label'     => $offer_label,
+					'special_label'   => $special_label,
 					'offer'           => $offer,
 					'name'            => $result['name'],
 					'text'            => substr(strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')), 0, 200) . '..',
@@ -215,6 +224,7 @@ class ControllerProductReviewList extends Controller {
 					'stock_status'    => $result['stock_status'],
 					'stock_quantity'  => $result['quantity'],
 					'stock_remaining' => ($result['subtract']) ? sprintf($this->language->get('text_remaining'), $result['quantity']) : '',
+					'special'         => $special,
 					'quote'           => $quote,
 					'rating'          => $rating,
 					'author'          => $result['author'],

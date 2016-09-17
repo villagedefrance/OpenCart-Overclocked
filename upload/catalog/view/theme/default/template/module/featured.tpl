@@ -11,6 +11,9 @@
         <?php if (!$product['stock_label'] && $product['offer']) { ?>
           <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
         <?php } ?>
+        <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+          <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
+        <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
@@ -75,6 +78,9 @@
         <?php } ?>
         <?php if (!$product['stock_label'] && $product['offer']) { ?>
           <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+        <?php } ?>
+        <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+          <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
         <?php } ?>
         <?php if ($product['thumb']) { ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
