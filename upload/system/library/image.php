@@ -166,8 +166,8 @@ class Image {
 				break;
 		}
 
-		imagealphablending( $this->image, true );
-		imagesavealpha( $this->image, true );
+		imagealphablending($this->image, true);
+		imagesavealpha($this->image, true);
 		imagecopy($this->image, $watermark->getImage(), $watermark_pos_x, $watermark_pos_y, 0, 0, $watermark->getWidth(), $watermark->getHeight());
 
 		imagedestroy($watermark->getImage());
@@ -205,7 +205,7 @@ class Image {
 		imagestring($this->image, $size, $x, $y, $text, imagecolorallocate($this->image, $rgb[0], $rgb[1], $rgb[2]));
 	}
 
-	public function merge($merge, $x = 0, $y = 0, $opacity = 100) {
+	public function merge(Image $merge, $x = 0, $y = 0, $opacity = 100) {
 		imagecopymerge($this->image, $merge->getImage(), $x, $y, 0, 0, $merge->getWidth(), $merge->getHeight(), $opacity);
 	}
 
