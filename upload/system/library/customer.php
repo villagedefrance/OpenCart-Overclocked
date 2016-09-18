@@ -3,13 +3,13 @@ class Customer {
 	private $customer_id;
 	private $firstname;
 	private $lastname;
+	private $customer_group_id;
 	private $email;
 	private $telephone;
 	private $fax;
 	private $gender;
 	private $date_of_birth;
 	private $newsletter;
-	private $customer_group_id;
 	private $address_id;
 
 	protected $registry;
@@ -27,13 +27,13 @@ class Customer {
 				$this->customer_id = $customer_query->row['customer_id'];
 				$this->firstname = $customer_query->row['firstname'];
 				$this->lastname = $customer_query->row['lastname'];
+				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
 				$this->fax = $customer_query->row['fax'];
 				$this->gender = $customer_query->row['gender'];
 				$this->date_of_birth = $customer_query->row['date_of_birth'];
 				$this->newsletter = $customer_query->row['newsletter'];
-				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->address_id = $customer_query->row['address_id'];
 
 				$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
@@ -105,13 +105,13 @@ class Customer {
 			$this->customer_id = $customer_query->row['customer_id'];
 			$this->firstname = $customer_query->row['firstname'];
 			$this->lastname = $customer_query->row['lastname'];
+			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
 			$this->fax = $customer_query->row['fax'];
 			$this->gender = $customer_query->row['gender'];
 			$this->date_of_birth = $customer_query->row['date_of_birth'];
 			$this->newsletter = $customer_query->row['newsletter'];
-			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->address_id = $customer_query->row['address_id'];
 
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
@@ -136,13 +136,13 @@ class Customer {
 		$this->customer_id = '';
 		$this->firstname = '';
 		$this->lastname = '';
+		$this->customer_group_id = '';
 		$this->email = '';
 		$this->telephone = '';
 		$this->fax = '';
 		$this->gender = '';
 		$this->date_of_birth = '';
 		$this->newsletter = '';
-		$this->customer_group_id = '';
 		$this->address_id = '';
 	}
 
@@ -160,6 +160,10 @@ class Customer {
 
 	public function getLastName() {
 		return $this->lastname;
+	}
+
+	public function getCustomerGroupId() {
+		return $this->customer_group_id;
 	}
 
 	public function getEmail() {
@@ -184,10 +188,6 @@ class Customer {
 
 	public function getNewsletter() {
 		return $this->newsletter;
-	}
-
-	public function getCustomerGroupId() {
-		return $this->customer_group_id;
 	}
 
 	public function getAddressId() {

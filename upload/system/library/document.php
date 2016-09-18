@@ -42,6 +42,17 @@ class Document {
 		return $this->metas;
 	}
 
+	public function addLink($href, $rel) {
+		$this->links[md5($href)] = array(
+			'href' => $href,
+			'rel'  => $rel
+		);
+	}
+
+	public function getLinks() {
+		return $this->links;
+	}
+
 	public function addStyle($href, $rel = 'stylesheet', $media = 'screen') {
 		$this->styles[md5($href)] = array(
 			'href'  => $href,
@@ -60,16 +71,5 @@ class Document {
 
 	public function getScripts() {
 		return $this->scripts;
-	}
-
-	public function addLink($href, $rel) {
-		$this->links[md5($href)] = array(
-			'href' => $href,
-			'rel'  => $rel
-		);
-	}
-
-	public function getLinks() {
-		return $this->links;
 	}
 }
