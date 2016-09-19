@@ -64,14 +64,14 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$redirect = $this->url->link('checkout/cart');
+				$redirect = $this->url->link('checkout/cart', '', 'SSL');
 				break;
 			}
 
 			// Validate minimum age
 			if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
 				if (!$this->customer->isLogged() || !$this->customer->isSecure()) {
-					$redirect($this->url->link('checkout/login', '', 'SSL'));
+					$redirect = $this->url->link('checkout/login', '', 'SSL');
 					break;
 				}
 			}
@@ -315,14 +315,16 @@ class ControllerCheckoutConfirm extends Controller {
 			}
 
 			$data['language_id'] = $this->config->get('config_language_id');
+
 			$data['currency_id'] = $this->currency->getId();
 			$data['currency_code'] = $this->currency->getCode();
 			$data['currency_value'] = $this->currency->getValue($this->currency->getCode());
+
 			$data['ip'] = $this->request->server['REMOTE_ADDR'];
 
 			if (!empty($this->request->server['HTTP_X_FORWARDED_FOR'])) {
 				$data['forwarded_ip'] = $this->request->server['HTTP_X_FORWARDED_FOR'];
-			} elseif(!empty($this->request->server['HTTP_CLIENT_IP'])) {
+			} elseif (!empty($this->request->server['HTTP_CLIENT_IP'])) {
 				$data['forwarded_ip'] = $this->request->server['HTTP_CLIENT_IP'];
 			} else {
 				$data['forwarded_ip'] = '';
@@ -388,6 +390,7 @@ class ControllerCheckoutConfirm extends Controller {
 
 					if ($product['recurring_trial']) {
 						$recurring_price = $this->currency->format($this->tax->calculate($product['recurring_trial_price'] * $product['quantity'], $product['tax_class_id'], $this->config->get('config_tax')));
+
 						$profile_description = sprintf($this->language->get('text_trial_description'), $recurring_price, $product['recurring_trial_cycle'], $frequencies[$product['recurring_trial_frequency']], $product['recurring_trial_duration']) . ' ';
 					}
 

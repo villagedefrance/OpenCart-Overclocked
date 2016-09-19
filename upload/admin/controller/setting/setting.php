@@ -53,6 +53,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_preview'] = $this->language->get('text_preview');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_account'] = $this->language->get('text_account');
+		$this->data['text_one_page'] = $this->language->get('text_one_page');
 		$this->data['text_express'] = $this->language->get('text_express');
 		$this->data['text_stock'] = $this->language->get('text_stock');
 		$this->data['text_supplier'] = $this->language->get('text_supplier');
@@ -143,6 +144,8 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_order_edit'] = $this->language->get('entry_order_edit');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
+		$this->data['entry_one_page_checkout'] = $this->language->get('entry_one_page_checkout');
+		$this->data['entry_one_page_phone'] = $this->language->get('entry_one_page_phone');
 		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
 		$this->data['entry_express_password'] = $this->language->get('entry_express_password');
 		$this->data['entry_express_phone'] = $this->language->get('entry_express_phone');
@@ -816,6 +819,19 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/order_status');
 
 		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+
+		// One Page Checkout
+		if (isset($this->request->post['config_one_page_checkout'])) {
+			$this->data['config_one_page_checkout'] = $this->request->post['config_one_page_checkout'];
+		} else {
+			$this->data['config_one_page_checkout'] = $this->config->get('config_one_page_checkout');
+		}
+
+		if (isset($this->request->post['config_one_page_phone'])) {
+			$this->data['config_one_page_phone'] = $this->request->post['config_one_page_phone'];
+		} else {
+			$this->data['config_one_page_phone'] = $this->config->get('config_one_page_phone');
+		}
 
 		// Express Checkout
 		if (isset($this->request->post['config_express_checkout'])) {

@@ -3,6 +3,10 @@ class ControllerCheckoutExpressCheckout extends Controller {
 	private $error = array();
 
 	public function index() {
+		if ($this->config->get('config_one_page_checkout')) {
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
 		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
 			$this->redirect($this->url->link('checkout/checkout_express', '', 'SSL'));
 		}

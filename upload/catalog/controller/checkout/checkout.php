@@ -7,6 +7,10 @@ class ControllerCheckoutCheckout extends Controller {
 			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
 		}
 
+		if ($this->config->get('config_one_page_checkout')) {
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
 		if ($this->config->get('config_secure') && !$this->request->isSecure()) {
 			$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 		}

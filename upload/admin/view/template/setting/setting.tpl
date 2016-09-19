@@ -442,6 +442,35 @@
             </select></td>
           </tr>
         </table>
+        <h2><?php echo $text_one_page; ?></h2>
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_one_page_checkout; ?></td>
+            <td><?php if ($config_one_page_checkout) { ?>
+              <input type="radio" name="config_one_page_checkout" value="1" id="one-page-checkout-on" class="radio" checked />
+              <label for="one-page-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_one_page_checkout" value="0" id="one-page-checkout-off" class="radio" />
+              <label for="one-page-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_one_page_checkout" value="1" id="one-page-checkout-on" class="radio" />
+              <label for="one-page-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_one_page_checkout" value="0" id="one-page-checkout-off" class="radio" checked />
+              <label for="one-page-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_one_page_phone; ?></td>
+            <td><select name="config_one_page_phone">
+              <?php if (isset($config_one_page_phone)) { $selected = "selected"; ?>
+                <option value="0" <?php if ($config_one_page_phone == '0') { echo $selected; } ?>><?php echo $text_no; ?></option>
+                <option value="1" <?php if ($config_one_page_phone == '1') { echo $selected; } ?>><?php echo $text_yes; ?></option>
+              <?php } else { ?>
+                <option value="0"><?php echo $text_no; ?></option>
+                <option value="1"><?php echo $text_yes; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+        </table>
         <h2><?php echo $text_express; ?></h2>
         <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>
         <table class="form">

@@ -13,6 +13,7 @@ $_['text_hide']                    = 'Hide';
 $_['text_datetime']                = 'Date &amp; Time';
 $_['text_location']                = 'Map &amp; Location';
 $_['text_preview']                 = 'Map Preview:';
+$_['text_one_page']                = 'One Page Checkout';
 $_['text_express']                 = 'Express Checkout';
 $_['text_product']                 = 'Products';
 $_['text_tax']                     = 'Taxes';
@@ -94,6 +95,8 @@ $_['entry_auto_invoice']           = 'Auto Invoice Number:<span class="help">Aut
 $_['entry_order_edit']             = 'Order Editing:<span class="help">Number of days allowed to edit an order. This is required because prices and discounts may change over time, corrupting the order if it is edited.</span>';
 $_['entry_order_status']           = 'Order Status:<span class="help">Set the default order status when an order is processed but not validated (such as orders from a banned IP). Orders with this status should be checked manually.</span>';
 $_['entry_complete_status']        = 'Complete Order Status:<span class="help">Set the order status the customers order must reach before they are allowed to access their downloadable products and gift vouchers.</span>';
+$_['entry_one_page_checkout']      = 'One Page Checkout (<b>Master</b>):<span class="help">Enable One Page Checkout. Overrides the default Checkout System.</span>';
+$_['entry_one_page_phone']         = 'Request Customer\'s Telephone:';
 $_['entry_express_checkout']       = 'Express Checkout (<b>Master</b>):<span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
 $_['entry_express_autofill']       = 'Populate Fields Automatically:<span class="help">If Yes, this option will attempt to fill most account fields automatically.</span>';
 $_['entry_express_password']       = 'Auto-Generate Password:<span class="help">If Yes, the customer\'s will still have the possibility to choose another password.</span>';

@@ -61,7 +61,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 						} else {
 							$method_data[$result['code']] = $method;
-						}	
+						}
 					}
 				}
 			}
@@ -124,7 +124,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			}
 		}
 
-		$this->data['paypal_fee_fee'] = $this->currency->format($paypal_fee);
+		$this->data['paypal_fee'] = ($paypal_fee > 0) ? $this->currency->format($paypal_fee) : false;
 
 		// Language
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');

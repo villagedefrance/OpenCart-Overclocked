@@ -2278,6 +2278,41 @@ ul.box-filter > li ul {
 	text-align: right;
 	border-bottom: 1px solid #DDD;
 }
+/* Checkout One Page */
+table.checkout-one-page {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+table.checkout-one-page tr td {
+	vertical-align: top;
+}
+table.address-options, table.order-options {
+	width: 100%;
+	background: #FEFEFE;
+	border: 1px solid #EEE;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px;
+}
+table.address-options tr td h2, table.order-options tr td h2 {
+	color: #444;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-bottom: 12px;
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px #EEE;
+}
+table.address-options tr td > div.error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #CC2626;
+	display: block;
+}
 /* News */
 .box-news {
 	background: #FFF;
