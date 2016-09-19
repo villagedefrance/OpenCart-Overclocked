@@ -17,16 +17,8 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 			}
 
 			if ($product['minimum'] > $product_total) {
-				$redirect = $this->url->link('checkout/cart', '', 'SSL');
+				$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 				break;
-			}
-
-			// Validate minimum age
-			if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
-				if (!$this->customer->isLogged() || !$this->customer->isSecure()) {
-					$redirect = $this->url->link('account/login', '', 'SSL');
-					break;
-				}
 			}
 		}
 
