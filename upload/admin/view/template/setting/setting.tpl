@@ -443,6 +443,7 @@
           </tr>
         </table>
         <h2><?php echo $text_one_page; ?></h2>
+        <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_one_page; ?></div>
         <table class="form">
           <tr>
             <td><?php echo $entry_one_page_checkout; ?></td>
@@ -456,6 +457,9 @@
               <label for="one-page-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_one_page_checkout" value="0" id="one-page-checkout-off" class="radio" checked />
               <label for="one-page-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            <?php if ($error_multiple_checkout) { ?>
+              <span class="error"><?php echo $error_multiple_checkout; ?></span>
             <?php } ?></td>
           </tr>
           <tr>
@@ -464,6 +468,18 @@
               <?php if (isset($config_one_page_phone)) { $selected = "selected"; ?>
                 <option value="0" <?php if ($config_one_page_phone == '0') { echo $selected; } ?>><?php echo $text_no; ?></option>
                 <option value="1" <?php if ($config_one_page_phone == '1') { echo $selected; } ?>><?php echo $text_yes; ?></option>
+              <?php } else { ?>
+                <option value="0"><?php echo $text_no; ?></option>
+                <option value="1"><?php echo $text_yes; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_one_page_newsletter; ?></td>
+            <td><select name="config_one_page_newsletter">
+              <?php if (isset($config_one_page_newsletter)) { $selected = "selected"; ?>
+                <option value="0" <?php if ($config_one_page_newsletter == '0') { echo $selected; } ?>><?php echo $text_no; ?></option>
+                <option value="1" <?php if ($config_one_page_newsletter == '1') { echo $selected; } ?>><?php echo $text_yes; ?></option>
               <?php } else { ?>
                 <option value="0"><?php echo $text_no; ?></option>
                 <option value="1"><?php echo $text_yes; ?></option>
@@ -486,6 +502,9 @@
               <label for="express-checkout-on"><span><span></span></span><?php echo $text_yes; ?></label>
               <input type="radio" name="config_express_checkout" value="0" id="express-checkout-off" class="radio" checked />
               <label for="express-checkout-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?>
+            <?php if ($error_multiple_checkout) { ?>
+              <span class="error"><?php echo $error_multiple_checkout; ?></span>
             <?php } ?></td>
           </tr>
         </table>
@@ -1023,7 +1042,7 @@
             <td><input type="text" name="config_affiliate_commission" value="<?php echo $config_affiliate_commission; ?>" size="3" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_login_attempts; ?></td>
+            <td><span class="required">*</span> <?php echo $entry_login_attempts; ?></td>
             <td><input type="text" name="config_login_attempts" value="<?php echo $config_login_attempts; ?>" size="3" /></td>
           </tr>
           <tr>

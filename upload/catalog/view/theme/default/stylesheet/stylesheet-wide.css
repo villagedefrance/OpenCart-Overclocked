@@ -2313,6 +2313,11 @@ table.address-options tr td > div.error {
 	color: #CC2626;
 	display: block;
 }
+table.order-options tr td > div.division {
+	margin: 15px auto;
+	border-top: 1px solid #DDD;
+	display: block;
+}
 /* News */
 .box-news {
 	background: #FFF;

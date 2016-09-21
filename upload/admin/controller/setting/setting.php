@@ -88,6 +88,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_block_page'] = $this->language->get('text_block_page');
 		$this->data['text_upload'] = $this->language->get('text_upload');
 
+		$this->data['info_one_page'] = $this->language->get('info_one_page');
 		$this->data['info_express'] = $this->language->get('info_express');
 		$this->data['info_meta_name'] = $this->language->get('info_meta_name');
 
@@ -146,6 +147,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_complete_status'] = $this->language->get('entry_complete_status');
 		$this->data['entry_one_page_checkout'] = $this->language->get('entry_one_page_checkout');
 		$this->data['entry_one_page_phone'] = $this->language->get('entry_one_page_phone');
+		$this->data['entry_one_page_newsletter'] = $this->language->get('entry_one_page_newsletter');
 		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
 		$this->data['entry_express_password'] = $this->language->get('entry_express_password');
 		$this->data['entry_express_phone'] = $this->language->get('entry_express_phone');
@@ -333,6 +335,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['error_title'] = $this->error['title'];
 		} else {
 			$this->data['error_title'] = '';
+		}
+
+		if (isset($this->error['multiple_checkout'])) {
+			$this->data['error_multiple_checkout'] = $this->error['multiple_checkout'];
+		} else {
+			$this->data['error_multiple_checkout'] = '';
 		}
 
 		if (isset($this->error['customer_group_display'])) {
@@ -831,6 +839,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_one_page_phone'] = $this->request->post['config_one_page_phone'];
 		} else {
 			$this->data['config_one_page_phone'] = $this->config->get('config_one_page_phone');
+		}
+
+		if (isset($this->request->post['config_one_page_newsletter'])) {
+			$this->data['config_one_page_newsletter'] = $this->request->post['config_one_page_newsletter'];
+		} else {
+			$this->data['config_one_page_newsletter'] = $this->config->get('config_one_page_newsletter');
 		}
 
 		// Express Checkout
@@ -1871,6 +1885,10 @@ class ControllerSettingSetting extends Controller {
 
 		if (!$this->request->post['config_title'] || (utf8_strlen($this->request->post['config_title']) < 3) || (utf8_strlen($this->request->post['config_title']) > 32)) {
 			$this->error['title'] = $this->language->get('error_title');
+		}
+
+		if (($this->request->post['config_one_page_checkout'] == 1) && ($this->request->post['config_express_checkout'] == 1)) {
+			$this->error['multiple_checkout'] = $this->language->get('error_multiple_checkout');
 		}
 
 		if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {

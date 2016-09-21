@@ -58,6 +58,7 @@ $_['error_warning']                           = 'There was a problem while tryin
 $_['error_firstname']                         = 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']                          = 'Last Name must be between 1 and 32 characters!';
 $_['error_email']                             = 'Email Address does not appear to be valid!';
+$_['error_exists']                            = 'Email Address is already registered!';
 $_['error_telephone']                         = 'Telephone must be between 3 and 32 characters!';
 $_['error_date_of_birth']                     = 'Date of Birth is required and must be valid!';
 $_['error_company_id']                        = 'Company ID required!';

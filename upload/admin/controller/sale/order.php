@@ -2570,7 +2570,7 @@ class ControllerSaleOrder extends Controller {
 				if (!empty($payment_address)) {
 					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if ($similar_address && number_format($similarity, 0) > 90) {
+					if ($similar_address && number_format($similarity, 0) > 95) {
 						$same_address = true;
 					} else {
 						$same_address = false;
@@ -2819,7 +2819,7 @@ class ControllerSaleOrder extends Controller {
 				if (!empty($payment_address)) {
 					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if ($similar_address && number_format($similarity, 0) > 90) {
+					if ($similar_address && number_format($similarity, 0) > 95) {
 						$same_address = true;
 					} else {
 						$same_address = false;
@@ -3058,7 +3058,7 @@ class ControllerSaleOrder extends Controller {
 				if (!empty($payment_address)) {
 					$similar_address = similar_text(strtoupper($payment_address), strtoupper($shipping_address), $similarity);
 
-					if ($similar_address && number_format($similarity, 0) > 90) {
+					if ($similar_address && number_format($similarity, 0) > 95) {
 						$same_address = true;
 					} else {
 						$same_address = false;

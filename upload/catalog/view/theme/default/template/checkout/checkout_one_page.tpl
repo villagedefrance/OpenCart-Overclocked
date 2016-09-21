@@ -150,7 +150,7 @@
             <?php } ?>
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if (isset($company)) { ?>
+            <?php if ($company) { ?>
               <tr>
                 <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $company; ?></b>
                   <input type="hidden" name="company" value="<?php echo $company; ?>" />
@@ -224,7 +224,7 @@
             <?php }?>
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if (isset($address_2)) { ?>
+            <?php if ($address_2) { ?>
               <tr>
                 <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $address_2; ?></b>
                   <input type="hidden" name="address_2" value="<?php echo $address_2; ?>" />
@@ -262,7 +262,7 @@
             <?php } ?>
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
-            <?php if (isset($postcode)) { ?>
+            <?php if ($postcode) { ?>
               <tr>
                 <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $postcode; ?></b>
                   <input type="hidden" name="postcode" value="<?php echo $postcode; ?>" />
@@ -336,7 +336,7 @@
           </div>
         <?php } ?>
         <table class="address-options" id="shipping-address-display">
-          <?php if (!isset($this->session->data['order_id']) && $check_shipping_address == 1) { ?>
+          <?php if ((!isset($this->session->data['order_id']) && $check_shipping_address == 1) || $check_shipping_address == 0) { ?>
             <tr>
               <td colspan="2"><h2><?php echo $text_checkout_shipping_address; ?></h2></td>
             </tr>
@@ -383,11 +383,13 @@
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <?php if ($check_shipping_address == 0) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $shipping_company; ?></b>
-                  <input type="hidden" name="shipping_company" value="<?php echo $shipping_company; ?>" />
-                </td>
-              </tr>
+              <?php if ($shipping_company) { ?>
+                <tr>
+                  <td colspan="2"><?php echo $entry_company; ?>: <b><?php echo $shipping_company; ?></b>
+                    <input type="hidden" name="shipping_company" value="<?php echo $shipping_company; ?>" />
+                  </td>
+                </tr>
+              <?php } ?>
             <?php } ?>
           <?php } else { ?>
             <tr>
@@ -418,11 +420,13 @@
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <?php if ($check_shipping_address == 0) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $shipping_address_2; ?></b>
-                  <input type="hidden" name="shipping_address_2" value="<?php echo $shipping_address_2; ?>" />
-                </td>
-              </tr>
+              <?php if ($shipping_address_2) { ?>
+                <tr>
+                  <td colspan="2"><?php echo $entry_address_2; ?>: <b><?php echo $shipping_address_2; ?></b>
+                    <input type="hidden" name="shipping_address_2" value="<?php echo $shipping_address_2; ?>" />
+                  </td>
+                </tr>
+              <?php } ?>
             <?php } ?>
           <?php } else { ?>
             <tr>
@@ -453,11 +457,13 @@
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <?php if ($check_shipping_address == 0) { ?>
-              <tr>
-                <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $shipping_postcode; ?></b>
-                  <input type="hidden" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" /> <span id="payment-postcode-required" class="required">*</span>
-                </td>
-              </tr>
+              <?php if ($shipping_postcode) { ?>
+                <tr>
+                  <td colspan="2"><?php echo $entry_postcode; ?>: <b><?php echo $shipping_postcode; ?></b>
+                    <input type="hidden" name="shipping_postcode" value="<?php echo $shipping_postcode; ?>" />
+                  </td>
+                </tr>
+              <?php } ?>
             <?php } ?>
           <?php } else { ?>
             <tr>
@@ -517,7 +523,7 @@
       <td style="width:72%;">
         <table class="order-options">
           <tr>
-            <td id="shipping-method" style="width:34%; vertical-align:top; margin-bottom:25px;">
+            <td id="shipping-method" style="width:34%; vertical-align:top;">
               <?php if (isset($this->session->data['order_id'])) { ?>
                 <h2><?php echo $text_shipping_method; ?></h2>
                 <?php echo $this->session->data['shipping_method']['title']; ?>  [ <?php echo $this->session->data['shipping_method']['text']; ?> ]<br /><br />
@@ -528,7 +534,7 @@
                   <?php if ($error_shipping_method) { ?>
                     <div class="attention" style="margin:5px 0px;"><?php echo $error_shipping_method; ?></div>
                   <?php } ?>
-                  <table class="radio" style="margin-bottom:20px;">
+                  <table class="radio" style="margin-bottom:2px;">
                   <?php foreach ($shipping_methods as $shipping_method) { ?>
                     <tr>
                       <td colspan="3"><b><?php echo $shipping_method['title']; ?></b></td>
@@ -557,7 +563,7 @@
               <?php } ?>
             </td>
             <td style="width:4%;"></td>
-            <td id="payment-method" style="width:34%; vertical-align:top; margin-bottom:25px;">
+            <td id="payment-method" style="width:34%; vertical-align:top;">
               <?php if (isset($this->session->data['order_id'])) { ?>
                 <h2><?php echo $text_payment_method; ?></h2>
                 <?php echo $this->session->data['payment_method']['title']; ?><br /><br />
@@ -568,7 +574,7 @@
                     <?php if ($error_payment_method) { ?>
                       <div class="attention" style="margin:5px 0px;"><?php echo $error_payment_method; ?></div>
                     <?php } ?>
-                    <table class="radio" style="margin-bottom:20px;">
+                    <table class="radio" style="margin-bottom:2px;">
                     <?php foreach ($payment_methods as $payment_method) { ?>
                       <tr class="highlight">
                         <td><?php if ($payment_method['code'] == $payment_method_code) { ?>
@@ -610,18 +616,21 @@
               </td>
             </tr>
             <tr>
+              <td colspan="3" style="width:70%;"><div class="division"></div></td>
+            </tr>
+            <tr>
               <td colspan="3" style="width:72%;"><div id="checkout-one-cart"></div></td>
             </tr>
             <tr>
               <td colspan="3">
-                <?php if (isset($this->session->data['order_id'])) { ?>
-                  <?php if ($comment) { ?>
-                    <h2><?php echo $text_comments; ?></h2>
-                    <?php echo $comment; ?>
-                  <?php } ?>
-                <?php } else { ?>
+                <?php if (!isset($this->session->data['order_id'])) { ?>
                   <h2><?php echo $text_comments; ?></h2>
                   <textarea name="comment" rows="4" style="width:99%;"><?php echo $comment; ?></textarea>
+                <?php } else { ?>
+                  <?php if ($comment) { ?>
+                    <h2><?php echo $text_comments; ?></h2>
+                    <?php echo $comment; ?><br /><br />
+                  <?php } ?>
                 <?php } ?>
               </td>
             </tr>
@@ -644,7 +653,7 @@
                   <?php } ?>
                 <?php } ?>
                 <?php if (!isset($this->session->data['order_id'])) { ?>
-                  <input type="submit" value="<?php echo $button_continue; ?>" id="button-guest" class="button" style="float:right;" />
+                  <input type="submit" value="<?php echo $button_continue; ?>" id="button-order" class="button" style="float:right; margin-bottom:10px;" />
                 <?php } ?>
               </td>
             </tr>
@@ -876,71 +885,6 @@ $.ajax({
 });
 //--></script> 
 <?php } ?>
-
-<script type="text/javascript"><!--
-$('[name=\'firstname\']').bind('change', function() {
-	$.ajax({
-		url: 'index.php?route=checkout/checkout_one_page/paymentAddress',
-		type: 'post',
-		data: 'firstname=' + $('input[name=\'firstname\']').attr('value'),
-		dataType: 'json',
-		success: function(json) {
-			$('#firstname-icon').remove();
-
-			if (json['firstname_error']) {
-				$('input[name=\'firstname\']').after('<div id="firstname-icon" class="error"><img src="catalog/view/theme/<?php echo $template; ?>/image/warning.png" alt="" />&nbsp;' + json['firstname_error'] + '</div>');
-			} else if (json['firstname_success']) {
-				$('input[name=\'firstname\']').before('<div id="firstname-icon"></div>');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-
-$('[name=\'lastname\']').bind('change', function() {
-	$.ajax({
-		url: 'index.php?route=checkout/checkout_one_page/paymentAddress',
-		type: 'post',
-		data: 'lastname=' + $('input[name=\'lastname\']').attr('value'),
-		dataType: 'json',
-		success: function(json) {
-			$('#lastname-icon').remove();
-
-			if (json['lastname_error']) {
-				$('input[name=\'lastname\']').after('<div id="lastname-icon" class="error"><img src="catalog/view/theme/<?php echo $template; ?>/image/warning.png" alt="" />&nbsp;' + json['lastname_error'] + '</div>');
-			} else if (json['firstname_success']) {
-				$('input[name=\'lastname\']').before('<div id="lastname-icon"></div>');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-
-$('[name=\'email\']').bind('change', function() {
-	$.ajax({
-		url: 'index.php?route=checkout/checkout_one_page/paymentAddress',
-		type: 'post',
-		data: 'email=' + $('input[name=\'email\']').attr('value'),
-		dataType: 'json',
-		success: function(json) {
-			$('#email-icon').remove();
-
-			if (json['email_error']) {
-				$('input[name=\'email\']').after('<div id="email-icon" class="error"><img src="catalog/view/theme/<?php echo $template; ?>/image/warning.png" alt="" />&nbsp;' + json['email_error'] + '</div>');
-			} else if (json['firstname_success']) {
-				$('input[name=\'email\']').before('<div id="email-icon"></div>');
-			}
-		},
-		error: function(xhr, ajaxOptions, thrownError) {
-			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-		}
-	});
-});
-//--></script> 
 
 <script type="text/javascript"><!--
 $(document).ready(function() {

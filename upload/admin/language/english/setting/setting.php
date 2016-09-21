@@ -52,7 +52,8 @@ $_['text_block_page']              = 'Block Page';
 $_['text_upload']                  = 'Upload';
 
 // Info
-$_['info_express']                 = 'Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
+$_['info_one_page']                = 'New customer accounts will always be created, but not automatically approved. Guest Checkout is not possible.';
+$_['info_express']                 = 'New customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
 $_['info_meta_name']               = 'Meta name keys and Analytics scripts are unique for each Search Engine and for each Website. WebMaster accounts may be required to get a key or a script.';
 
 // Entry
@@ -97,6 +98,7 @@ $_['entry_order_status']           = 'Order Status:<span class="help">Set the de
 $_['entry_complete_status']        = 'Complete Order Status:<span class="help">Set the order status the customers order must reach before they are allowed to access their downloadable products and gift vouchers.</span>';
 $_['entry_one_page_checkout']      = 'One Page Checkout (<b>Master</b>):<span class="help">Enable One Page Checkout. Overrides the default Checkout System.</span>';
 $_['entry_one_page_phone']         = 'Request Customer\'s Telephone:';
+$_['entry_one_page_newsletter']    = 'Newsletter Subscription:';
 $_['entry_express_checkout']       = 'Express Checkout (<b>Master</b>):<span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
 $_['entry_express_autofill']       = 'Populate Fields Automatically:<span class="help">If Yes, this option will attempt to fill most account fields automatically.</span>';
 $_['entry_express_password']       = 'Auto-Generate Password:<span class="help">If Yes, the customer\'s will still have the possibility to choose another password.</span>';
@@ -245,8 +247,9 @@ $_['error_email_noreply']          = 'E-Mail Address does not appear to be valid
 $_['error_telephone']              = 'Telephone must be between 3 and 32 characters!';
 $_['error_title']                  = 'Title must be between 3 and 32 characters!';
 $_['error_limit']                  = 'A Limit is required!';
-$_['error_login_attempts']         = 'Login Attempts must be greater than 0!';
+$_['error_multiple_checkout']      = 'You can only use one type of Checkout!';
 $_['error_customer_group_display'] = 'You must include the default customer group if you are going to use this feature!';
+$_['error_login_attempts']         = 'Login Attempts must be greater than 0!';
 $_['error_voucher_min']            = 'Minimum voucher amount required!';
 $_['error_voucher_max']            = 'Maximum voucher amount required!';
 $_['error_preference_pagination']  = 'Please select at least one type of pagination!';
