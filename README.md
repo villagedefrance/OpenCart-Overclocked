@@ -39,6 +39,7 @@ Powered by the Latest Scripts:
 
 Coming soon in 1.8.2.0!
 - Full SSL support in Catalog.
+- New One Page Checkout!
 - New product labels system.
 - Better PayPal Express button.
 - CKEditor 4.5.11 Full.
