@@ -492,6 +492,18 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->data['error_date_of_birth'] = '';
 		}
 
+		if (isset($this->error['company_id'])) {
+			$this->data['error_company_id'] = $this->error['company_id'];
+		} else {
+			$this->data['error_company_id'] = '';
+		}
+
+		if (isset($this->error['tax_id'])) {
+			$this->data['error_tax_id'] = $this->error['tax_id'];
+		} else {
+			$this->data['error_tax_id'] = '';
+		}
+
 		if (isset($this->error['address_1'])) {
 			$this->data['error_address_1'] = $this->error['address_1'];
 		} else {
@@ -1251,7 +1263,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$this->load->helper('vat');
 
 				if ($this->config->get('config_vat') && $this->request->post['tax_id'] != '' && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
-					$json['error']['tax_id'] = $this->language->get('error_vat');
+					$this->error['tax_id'] = $this->language->get('error_vat');
 				}
 			}
 		}

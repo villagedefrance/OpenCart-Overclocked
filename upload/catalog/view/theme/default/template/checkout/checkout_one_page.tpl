@@ -191,6 +191,11 @@
                 <input type="text" name="company_id" id="company-id" placeholder="<?php echo $entry_company_id; ?>" value="<?php echo $company_id; ?>" size="30" />
               </td>
             </tr>
+            <?php if ($error_company_id) { ?>
+              <tr>
+                <td colspan="2"><div class="error"><?php echo $error_company_id; ?></div></td>
+              </tr>
+            <?php } ?>
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <tr id="tax-id-display">
@@ -204,6 +209,11 @@
                 <input type="text" name="tax_id" id="tax-id" placeholder="<?php echo $entry_tax_id; ?>" value="<?php echo $tax_id; ?>" size="30" />
               </td>
             </tr>
+            <?php if ($error_tax_id) { ?>
+              <tr>
+                <td colspan="2"><div class="error"><?php echo $error_tax_id; ?></div></td>
+              </tr>
+            <?php } ?>
           <?php } ?>
           <?php if (isset($this->session->data['order_id'])) { ?>
             <tr>
