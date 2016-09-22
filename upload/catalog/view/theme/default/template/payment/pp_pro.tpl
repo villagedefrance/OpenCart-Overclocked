@@ -2,7 +2,7 @@
 <div class="content" id="payment">
   <table class="form">
     <tr>
-      <td><span class="required">*</span>&nbsp;<label for="input-cc-type"><?php echo $entry_cc_type; ?></label></td>
+      <td><span class="required">*</span> <label for="input-cc-type"><?php echo $entry_cc_type; ?></label></td>
       <td><select name="cc_type" id="input-cc-type>
         <?php foreach ($cards as $card) { ?>
           <option value="<?php echo $card['value']; ?>"><?php echo $card['text']; ?></option>
@@ -10,7 +10,7 @@
       </select></td>
     </tr>
     <tr>
-      <td><span class="required">*</span>&nbsp;<label for="input-cc-number"><?php echo $entry_cc_number; ?></label></td>
+      <td><span class="required">*</span> <label for="input-cc-number"><?php echo $entry_cc_number; ?></label></td>
       <td><input type="text" name="cc_number" id="input-cc-number" value="" size="30" /></td>
     </tr>
     <tr>
@@ -30,7 +30,7 @@
       </td>
     </tr>
     <tr>
-      <td><span class="required">*</span>&nbsp;<label for="input-cc-expire-date"><?php echo $entry_cc_expire_date; ?></label></td>
+      <td><span class="required">*</span> <label for="input-cc-expire-date"><?php echo $entry_cc_expire_date; ?></label></td>
       <td>
         <select name="cc_expire_date_month" id="input-cc-expire-date">
           <?php foreach ($months as $month) { ?>
@@ -46,7 +46,7 @@
       </td>
     </tr>
     <tr>
-      <td><span class="required">*</span>&nbsp;<label for="input-cc-cvv2"><?php echo $entry_cc_cvv2; ?></label></td>
+      <td><span class="required">*</span> <label for="input-cc-cvv2"><?php echo $entry_cc_cvv2; ?></label></td>
       <td><input type="text" name="cc_cvv2" id="input-cc-cvv2" value="" size="3" /></td>
     </tr>
     <tr>
@@ -68,7 +68,7 @@ $('#button-confirm').bind('click', function() {
 		type: 'post',
 		data: $('#payment :input'),
 		dataType: 'json',
-    cache: false,
+		cache: false,
 		beforeSend: function() {
 			$('#button-confirm').prop('disabled', true);
 			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');

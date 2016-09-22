@@ -173,11 +173,11 @@ class ControllerPaymentPPStandard extends Controller {
 						if ($receiver_match && $total_paid_match) {
 							$order_status_id = $this->config->get('pp_standard_completed_status_id');
 						}
-						
+
 						if (!$receiver_match) {
 							$this->log->write('PP_STANDARD :: RECEIVER EMAIL MISMATCH! ' . strtolower($this->request->post['receiver_email']));
 						}
-						
+
 						if (!$total_paid_match) {
 							$this->log->write('PP_STANDARD :: TOTAL PAID MISMATCH! ' . $this->request->post['mc_gross']);
 						}

@@ -58,12 +58,12 @@ class ControllerPaymentPPStandard extends Controller {
 		$this->data['help_total_max'] = $this->language->get('help_total_max');
 		$this->data['help_transaction'] = $this->language->get('help_transaction');
 
+		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_order_status'] = $this->language->get('tab_order_status');
+
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
-
-		$this->data['tab_general'] = $this->language->get('tab_general');
-		$this->data['tab_order_status'] = $this->language->get('tab_order_status');
 
 		$this->data['token'] = $this->session->data['token'];
 

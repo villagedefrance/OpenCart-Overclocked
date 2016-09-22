@@ -7,7 +7,7 @@ $_['text_pp_standard']               = '<a onclick="window.open(\'https://www.pa
 
 // Text
 $_['text_payment']                   = 'Payment';
-$_['text_success']                   = 'Success: You have modified <b>PayPal Standard</b> account details !';
+$_['text_success']                   = 'Success: You have modified <b>PayPal Standard</b> account details!';
 $_['text_authorization']             = 'Authorization';
 $_['text_sale']                      = 'Sale';
 
@@ -33,16 +33,15 @@ $_['entry_status']                   = 'Status';
 $_['entry_sort_order']               = 'Sort Order';
 
 // Tab
-$_['tab_general']                    = 'General';
 $_['tab_order_status']               = 'Order Status';
 
 // Help
 $_['help_test']                      = 'Use the live or testing (sandbox) gateway server to process transactions?';
-$_['help_debug']                     = 'Logs additional information to the system log';
-$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes active';
+$_['help_debug']                     = 'Logs additional information to the system log.';
+$_['help_total']                     = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']                 = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 $_['help_transaction']               = 'Sale will charge customer immediately. Authorization will put funds on hold for future capture.';
 
 // Error
-$_['error_permission']               = 'Warning: You do not have permission to modify <b>PayPal Standard</b> !';
+$_['error_permission']               = 'Warning: You do not have permission to modify <b>PayPal Standard</b>!';
 $_['error_email']                    = 'E-Mail required!';
