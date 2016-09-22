@@ -113,7 +113,7 @@ class ControllerPaymentOkpay extends Controller {
 					fclose($fp);
 				}
 			}
-		// No $order_info
+
 		} else {
 			echo 'ERROR: Order not found!';
 

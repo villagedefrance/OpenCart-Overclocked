@@ -21,7 +21,7 @@
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="form">
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-receiver"><?php echo $entry_receiver; ?></label></td>
+            <td><span class="required">*</span> <label for="input-receiver"><?php echo $entry_receiver; ?></label></td>
             <td><?php if ($error_receiver) { ?>
               <input type="text" name="okpay_receiver" id="input-receiver" value="<?php echo $okpay_receiver; ?>" size="30" class="input-error" />
               <span class="error"><?php echo $error_receiver; ?></span>

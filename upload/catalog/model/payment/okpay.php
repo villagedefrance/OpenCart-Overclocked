@@ -1,7 +1,7 @@
 <?php
 class ModelPaymentOkpay extends Model {
 
- public function getMethod($address) {
+	public function getMethod($address) {
 		$this->language->load('payment/okpay');
 
 		if ($this->config->get('okpay_status')) {
