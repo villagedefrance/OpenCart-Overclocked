@@ -36,6 +36,7 @@ class ControllerPaymentPPStandard extends Controller {
 		$this->data['entry_transaction'] = $this->language->get('entry_transaction');
 		$this->data['entry_debug'] = $this->language->get('entry_debug');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_canceled_reversal_status'] = $this->language->get('entry_canceled_reversal_status');
 		$this->data['entry_completed_status'] = $this->language->get('entry_completed_status');
 		$this->data['entry_denied_status'] = $this->language->get('entry_denied_status');
@@ -50,9 +51,19 @@ class ControllerPaymentPPStandard extends Controller {
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 
+		$this->data['help_email'] = $this->language->get('help_email');
+		$this->data['help_test'] = $this->language->get('help_test');
+		$this->data['help_debug'] = $this->language->get('help_debug');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
+		$this->data['help_transaction'] = $this->language->get('help_transaction');
+
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
+		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_order_status'] = $this->language->get('tab_order_status');
 
 		$this->data['token'] = $this->session->data['token'];
 
@@ -120,6 +131,12 @@ class ControllerPaymentPPStandard extends Controller {
 			$this->data['pp_standard_total'] = $this->request->post['pp_standard_total'];
 		} else {
 			$this->data['pp_standard_total'] = $this->config->get('pp_standard_total');
+		}
+
+		if (isset($this->request->post['pp_standard_total_max'])) {
+			$this->data['pp_standard_total_max'] = $this->request->post['pp_standard_total_max'];
+		} else {
+			$this->data['pp_standard_total_max'] = $this->config->get('pp_standard_total_max');
 		}
 
 		if (isset($this->request->post['pp_standard_canceled_reversal_status_id'])) {

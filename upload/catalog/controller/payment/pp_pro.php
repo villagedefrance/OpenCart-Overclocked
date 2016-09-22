@@ -16,6 +16,9 @@ class ControllerPaymentPPPro extends Controller {
 		$this->data['entry_cc_cvv2'] = $this->language->get('entry_cc_cvv2');
 		$this->data['entry_cc_issue'] = $this->language->get('entry_cc_issue');
 
+		$this->data['help_start_date'] = $this->language->get('help_start_date');
+		$this->data['help_issue'] = $this->language->get('help_issue');
+
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
 		$this->data['cards'] = array();
@@ -196,7 +199,7 @@ class ControllerPaymentPPPro extends Controller {
 
 			$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('pp_pro_order_status_id'), $message, false);
 
-			$json['success'] = $this->url->link('checkout/success', '', 'SSL');
+			$json['redirect'] = $this->url->link('checkout/success', '', 'SSL');
 		} else {
 			$json['error'] = $response_info['L_LONGMESSAGE0'];
 		}
