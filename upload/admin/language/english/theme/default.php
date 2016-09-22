@@ -27,6 +27,7 @@ $_['entry_powered_by']          = 'Display Powered by:<span class="help">Show "P
 $_['entry_footer_theme']        = 'Footer Theme:<span class="help">Choose between a Light, Dark or Custom theme.</span>';
 $_['entry_footer_color']        = 'Select Footer Color:';
 $_['entry_footer_shape']        = 'Select Footer Shape:';
+$_['entry_footer_big_column']   = 'Display Address Block (<b>Master</b>):<span class="help">Select Yes if you want to display any of the options below.</span>';
 $_['entry_footer_location']     = 'Display Address:';
 $_['entry_footer_phone']        = 'Display Telephone:';
 $_['entry_footer_email']        = 'Display Email:';

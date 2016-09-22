@@ -6,7 +6,7 @@
 <div id="footer-holder" class="<?php echo $footer_class; ?>">
   <div id="footer" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>">
   <?php if ($footer_blocks) { ?>
-  <div class="column-one" style="width:<?php echo $column_width; ?>;">
+  <div class="column-one" style="width:<?php echo ($this->config->get($template . '_footer_big_column')) ? (72 / $max_position) : (100 / $max_position); ?>%; display:<?php echo ($max_position > 0) ? 'block' : 'none'; ?>">
   <?php foreach ($footer_blocks as $footer_block) { ?>
   <?php if (($footer_block['position'] == 1) && $footer_block['status']) { ?>
   <h3><?php echo $footer_block['name']; ?></h3>
@@ -20,7 +20,7 @@
   <?php } ?>
   <?php } ?>
   </div>
-  <div class="column-two" style="width:<?php echo $column_width; ?>;">
+  <div class="column-two" style="width:<?php echo ($this->config->get($template . '_footer_big_column')) ? (72 / $max_position) : (100 / $max_position); ?>%; display:<?php echo ($max_position > 1) ? 'block' : 'none'; ?>">
   <?php foreach ($footer_blocks as $footer_block) { ?>
   <?php if (($footer_block['position'] == 2) && $footer_block['status']) { ?>
   <h3><?php echo $footer_block['name']; ?></h3>
@@ -34,7 +34,7 @@
   <?php } ?>
   <?php } ?>
   </div>
-  <div class="column-three" style="width:<?php echo $column_width; ?>;">
+  <div class="column-three" style="width:<?php echo ($this->config->get($template . '_footer_big_column')) ? (72 / $max_position) : (100 / $max_position); ?>%; display:<?php echo ($max_position > 2) ? 'block' : 'none'; ?>">
   <?php foreach ($footer_blocks as $footer_block) { ?>
   <?php if (($footer_block['position'] == 3) && $footer_block['status']) { ?>
   <h3><?php echo $footer_block['name']; ?></h3>
@@ -48,7 +48,7 @@
   <?php } ?>
   <?php } ?>
   </div>
-  <div class="column-four" style="width:<?php echo $column_width; ?>;">
+  <div class="column-four" style="width:<?php echo ($this->config->get($template . '_footer_big_column')) ? (72 / $max_position) : (100 / $max_position); ?>%; display:<?php echo ($max_position > 3) ? 'block' : 'none'; ?>">
   <?php foreach ($footer_blocks as $footer_block) { ?>
   <?php if (($footer_block['position'] == 4) && $footer_block['status']) { ?>
   <h3><?php echo $footer_block['name']; ?></h3>
@@ -62,6 +62,7 @@
   <?php } ?>
   <?php } ?>
   </div>
+  <?php if ($this->config->get($template . '_footer_big_column')) { ?>
   <div class="big-column">
   <?php if ($this->config->get($template . '_footer_location')) { ?>
   <p class="icon-location-<?php echo $footer_class; ?>" title="Location"><?php echo $company; ?><br /><?php echo $address; ?></p>
@@ -92,6 +93,7 @@
   <?php } ?>
   </span>
   </div>
+  <?php } ?>
   <?php } ?>
   </div>
 </div>

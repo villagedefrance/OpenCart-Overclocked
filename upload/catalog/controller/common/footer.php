@@ -12,17 +12,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['footer_routes'] = array();
 		$this->data['footer_blocks'] = array();
 
-		$max_position = $this->model_design_footer->getFooterMaxPosition();
-
-		if ($max_position == 4) {
-			$this->data['column_width'] = '18%';
-		} elseif ($max_position == 3) {
-			$this->data['column_width'] = '24%';
-		} elseif ($max_position == 2) {
-			$this->data['column_width'] = '36%';
-		} else {
-			$this->data['column_width'] = '72%';
-		}
+		$this->data['max_position'] = $this->model_design_footer->getFooterMaxPosition();
 
 		$routes = $this->model_design_footer->getFooterRoutes(0);
 

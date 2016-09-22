@@ -172,6 +172,20 @@
         </tbody>
         <tbody>
           <tr>
+            <td><?php echo $entry_footer_big_column; ?></td>
+            <td><?php if ($default_footer_big_column) { ?>
+              <input type="radio" name="default_footer_big_column" value="1" id="footer-big-column-on" class="radio" checked />
+              <label for="footer-big-column-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_footer_big_column" value="0" id="footer-big-column-off" class="radio" />
+              <label for="footer-big-column-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_footer_big_column" value="1" id="footer-big-column-on" class="radio" />
+              <label for="footer-big-column-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_footer_big_column" value="0" id="footer-big-column-off" class="radio" checked />
+              <label for="footer-big-column-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_footer_location; ?></td>
             <td><?php if ($default_footer_location) { ?>
               <input type="radio" name="default_footer_location" value="1" id="footer-location-on" class="radio" checked />
