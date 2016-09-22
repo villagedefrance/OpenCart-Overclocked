@@ -35,9 +35,15 @@ class ControllerPaymentPPStandard extends Controller {
 					if ($option['type'] != 'file') {
 						$value = $option['option_value'];
 					} else {
-						$filename = $this->encryption->decrypt($option['option_value']);
+						$this->load->model('tool/upload');
 
-						$value = utf8_substr($filename, 0, utf8_strrpos($filename, '.'));
+						$upload_info = $this->model_tool_upload->getUploadByCode($option['option_value']);
+
+						if ($upload_info) {
+							$value = $upload_info['name'];
+						} else {
+							$value = '';
+						}
 					}
 
 					$option_data[] = array(
