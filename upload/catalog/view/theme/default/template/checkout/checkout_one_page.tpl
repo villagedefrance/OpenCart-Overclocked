@@ -30,7 +30,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="firstname" class="hidden">firstname</label>
-                <input type="text" name="firstname" id="firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $firstname; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="firstname" id="firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $firstname; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_firstname) { ?>
@@ -48,7 +48,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="lastname" class="hidden">lastname</label>
-                <input type="text" name="lastname" id="lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $lastname; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="lastname" id="lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $lastname; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_lastname) { ?>
@@ -66,7 +66,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="email" class="hidden">email</label>
-                <input type="text" name="email" id="email" placeholder="<?php echo $entry_email; ?>" value="<?php echo $email; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="email" id="email" placeholder="<?php echo $entry_email; ?>" value="<?php echo $email; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_email) { ?>
@@ -85,7 +85,7 @@
             <?php } else { ?>
               <tr>
                 <td colspan="2"><label for="telephone" class="hidden">telephone</label>
-                  <input type="text" name="telephone" id="telephone" placeholder="<?php echo $entry_telephone; ?>" value="<?php echo $telephone; ?>" size="30" /> <span class="required">*</span>
+                  <input type="text" name="telephone" id="telephone" placeholder="<?php echo $entry_telephone; ?>" value="<?php echo $telephone; ?>" size="26" /> <span class="required">*</span>
                 </td>
               </tr>
               <?php if ($error_telephone) { ?>
@@ -105,7 +105,7 @@
             <?php } else { ?>
               <tr>
                 <td colspan="2"><label for="fax" class="hidden">fax</label>
-                  <input type="text" name="fax" id="fax" placeholder="<?php echo $entry_fax; ?>" value="<?php echo $fax; ?>" size="30" />
+                  <input type="text" name="fax" id="fax" placeholder="<?php echo $entry_fax; ?>" value="<?php echo $fax; ?>" size="26" />
                 </td>
               </tr>
             <?php } ?>
@@ -139,7 +139,7 @@
             <?php } else { ?>
               <tr>
                 <td colspan="2"><label for="date-of-birth" class="hidden">date of birth</label>
-                  <input type="text" name="date_of_birth" id="date-of-birth" placeholder="<?php echo $entry_date_of_birth; ?>" value="<?php echo $date_of_birth; ?>" size="30" /> <span class="required">*</span>
+                  <input type="text" name="date_of_birth" id="date-of-birth" placeholder="<?php echo $entry_date_of_birth; ?>" value="<?php echo $date_of_birth; ?>" size="26" /> <span class="required">*</span>
                 </td>
               </tr>
               <?php if ($error_date_of_birth) { ?>
@@ -160,7 +160,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="company" class="hidden">company</label>
-                <input type="text" name="company" id="company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $company; ?>" size="30" />
+                <input type="text" name="company" id="company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $company; ?>" size="26" />
               </td>
             </tr>
           <?php } ?>
@@ -180,15 +180,17 @@
               </div></td>
             </tr>
           <?php if (isset($this->session->data['order_id'])) { ?>
-            <tr id="company-id-display">
-              <td colspan="2"><?php echo $entry_company_id; ?>: <b><?php echo $company_id; ?></b>
-                <input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
-              </td>
-            </tr>
+            <?php if ($company_id) { ?>
+              <tr id="company-id-display">
+                <td colspan="2"><?php echo $entry_company_id; ?>: <b><?php echo $company_id; ?></b>
+                  <input type="hidden" name="company_id" value="<?php echo $company_id; ?>" />
+                </td>
+              </tr>
+            <?php } ?>
           <?php } else { ?>
             <tr id="company-id-display">
               <td colspan="2"><label for="company-id" class="hidden">company id</label>
-                <input type="text" name="company_id" id="company-id" placeholder="<?php echo $entry_company_id; ?>" value="<?php echo $company_id; ?>" size="30" />
+                <input type="text" name="company_id" id="company-id" placeholder="<?php echo $entry_company_id; ?>" value="<?php echo $company_id; ?>" size="26" />
               </td>
             </tr>
             <?php if ($error_company_id) { ?>
@@ -206,7 +208,7 @@
           <?php } else { ?>
             <tr id="tax-id-display">
               <td colspan="2"><label for="tax-id" class="hidden">tax id</label>
-                <input type="text" name="tax_id" id="tax-id" placeholder="<?php echo $entry_tax_id; ?>" value="<?php echo $tax_id; ?>" size="30" />
+                <input type="text" name="tax_id" id="tax-id" placeholder="<?php echo $entry_tax_id; ?>" value="<?php echo $tax_id; ?>" size="26" />
               </td>
             </tr>
             <?php if ($error_tax_id) { ?>
@@ -224,7 +226,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="address-1" class="hidden">address 1</label>
-                <input type="text" name="address_1" id="address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $address_1; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="address_1" id="address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $address_1; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_address_1) { ?>
@@ -244,7 +246,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="address-2" class="hidden">address 2</label>
-                <input type="text" name="address_2" id="address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $address_2; ?>" size="30" />
+                <input type="text" name="address_2" id="address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $address_2; ?>" size="26" />
               </td>
             </tr>
             <?php if ($error_address_1) { ?>
@@ -262,7 +264,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="city" class="hidden">city</label>
-                <input type="text" name="city" id="city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $city; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="city" id="city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $city; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_city) { ?>
@@ -282,7 +284,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="postcode" class="hidden">postcode</label>
-                <input type="text" name="postcode" id="postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $postcode; ?>" size="30" /> <span id="payment-postcode-required" class="required">*</span>
+                <input type="text" name="postcode" id="postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $postcode; ?>" size="26" /> <span id="payment-postcode-required" class="required">*</span>
               </td>
             </tr>
             <?php if ($error_postcode) { ?>
@@ -308,9 +310,9 @@
                 <option value=""><?php echo $text_select; ?></option>
                 <?php foreach ($countries as $country) { ?>
                   <?php if ($country['country_id'] == $country_id) { ?>
-                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 28) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 26) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
                   <?php } else { ?>
-                    <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 28) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 26) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
                   <?php } ?>
                 <?php } ?>
               </select> <span class="required">*</span></td>
@@ -362,7 +364,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-firstname" class="hidden">shipping firstname</label>
-                <input type="text" name="shipping_firstname" id="shipping-firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $shipping_firstname; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="shipping_firstname" id="shipping-firstname" placeholder="<?php echo $entry_firstname; ?>" value="<?php echo $shipping_firstname; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_shipping_firstname) { ?>
@@ -382,7 +384,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-lastname" class="hidden">shipping lastname</label>
-                <input type="text" name="shipping_lastname" id="shipping-lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $shipping_lastname; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="shipping_lastname" id="shipping-lastname" placeholder="<?php echo $entry_lastname; ?>" value="<?php echo $shipping_lastname; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_shipping_lastname) { ?>
@@ -404,7 +406,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-company" class="hidden">shipping company</label>
-                <input type="text" name="shipping_company" id="shipping-company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $shipping_company; ?>" size="30" />
+                <input type="text" name="shipping_company" id="shipping-company" placeholder="<?php echo $entry_company; ?>" value="<?php echo $shipping_company; ?>" size="26" />
               </td>
             </tr>
           <?php } ?>
@@ -419,7 +421,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-address-1" class="hidden">shipping address 1</label>
-                <input type="text" name="shipping_address_1" id="shipping-address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $shipping_address_1; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="shipping_address_1" id="shipping-address-1" placeholder="<?php echo $entry_address_1; ?>" value="<?php echo $shipping_address_1; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_shipping_address_1) { ?>
@@ -441,7 +443,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-address-2" class="hidden">shipping address 2</label>
-                <input type="text" name="shipping_address_2" id="shipping-address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $shipping_address_2; ?>" size="30" />
+                <input type="text" name="shipping_address_2" id="shipping-address-2" placeholder="<?php echo $entry_address_2; ?>" value="<?php echo $shipping_address_2; ?>" size="26" />
               </td>
             </tr>
           <?php } ?>
@@ -456,7 +458,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-city" class="hidden">shipping city</label>
-                <input type="text" name="shipping_city" id="shipping-city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $shipping_city; ?>" size="30" /> <span class="required">*</span>
+                <input type="text" name="shipping_city" id="shipping-city" placeholder="<?php echo $entry_city; ?>" value="<?php echo $shipping_city; ?>" size="26" /> <span class="required">*</span>
               </td>
             </tr>
             <?php if ($error_shipping_city) { ?>
@@ -478,7 +480,7 @@
           <?php } else { ?>
             <tr>
               <td colspan="2"><label for="shipping-postcode" class="hidden">shipping postcode</label>
-                <input type="text" name="shipping_postcode" id="shipping-postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $shipping_postcode; ?>" size="30" /> <span id="payment-postcode-required" class="required">*</span>
+                <input type="text" name="shipping_postcode" id="shipping-postcode" placeholder="<?php echo $entry_postcode; ?>" value="<?php echo $shipping_postcode; ?>" size="26" /> <span id="payment-postcode-required" class="required">*</span>
               </td>
             </tr>
             <?php if ($error_shipping_postcode) { ?>
@@ -506,9 +508,9 @@
                 <option value=""><?php echo $text_select; ?></option>
                 <?php foreach ($countries as $country) { ?>
                   <?php if ($country['country_id'] == $shipping_country_id) { ?>
-                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 28) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 26) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
                   <?php } else { ?>
-                    <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 28) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 26) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
+                    <option value="<?php echo $country['country_id']; ?>"><?php echo (strlen($country['name']) > 24) ? substr(strip_tags(html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8')), 0, 22) . '..' : html_entity_decode($country['name'], ENT_QUOTES, 'UTF-8'); ?></option>
                   <?php } ?>
                 <?php } ?>
               </select> <span class="required">*</span></td>
