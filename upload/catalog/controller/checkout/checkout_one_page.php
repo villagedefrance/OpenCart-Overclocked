@@ -106,8 +106,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$customer_data['firstname'] = $customer_info['firstname'];
 				$customer_data['lastname'] = $customer_info['lastname'];
 				$customer_data['email'] = $customer_info['email'];
-				$customer_data['telephone'] = ($customer_info['telephone']) ? $customer_info['telephone'] : '000';
-				$customer_data['fax'] = ($customer_info['fax']) ? $customer_info['fax'] : '000';
+				$customer_data['telephone'] = isset($customer_info['telephone']) ? $customer_info['telephone'] : '000';
+				$customer_data['fax'] = isset($customer_info['fax']) ? $customer_info['fax'] : '000';
 				$customer_data['gender'] = $customer_info['gender'];
 				$customer_data['date_of_birth'] = $customer_info['date_of_birth'];
 				$customer_data['password'] = $this->model_checkout_checkout_tools->generatePassword();
