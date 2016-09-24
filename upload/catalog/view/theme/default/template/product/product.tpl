@@ -393,8 +393,8 @@
         <div class="review">
           <div class="rating">
             <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;&nbsp;
-            <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><?php echo $reviews; ?></a>&nbsp;&nbsp;&nbsp;
-            <a onclick="$('a[href=\'#tab-review\']').trigger('click');"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_comment.png" alt="<?php echo $text_write; ?>" title="<?php echo $text_write; ?>" /></a>
+            <a onclick="goToReviews('<?php echo $product_id; ?>');"><?php echo $reviews; ?></a>&nbsp;&nbsp;&nbsp;
+            <a onclick="goToReviews('<?php echo $product_id; ?>');"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_comment.png" alt="<?php echo $text_write; ?>" title="<?php echo $text_write; ?>" /></a>
           </div>
           <?php if (!$share_addthis) { ?>
           <div class="share">

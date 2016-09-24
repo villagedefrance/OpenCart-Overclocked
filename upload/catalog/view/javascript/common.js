@@ -112,6 +112,15 @@ function subProductCount() {
 	return false;
 }
 
+// Go to Reviews
+function goToReviews(product_id) {
+	$('a[href=\'#tab-review\']').trigger('click');
+	$('html, body').animate({
+		scrollTop: $('#tabs').position().top -= 30
+	}, 'slow');
+	return false;
+}
+
 // Add to Cart / Wishlist / Compare
 function addToCart(product_id, quantity) {
 	quantity = typeof(quantity) != 'undefined' ? quantity : 1;
