@@ -8,14 +8,20 @@ class ModelToolSeoUrlManager extends Model {
 
 		// Save and Continue
 		$this->session->data['new_url_alias_id'] = $url_alias_id;
+
+		$this->cache->delete('seo_url_map');
 	}
 
 	public function editUrl($url_alias_id, $data) {
 		$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET query = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "' WHERE url_alias_id = '" . (int)$url_alias_id . "'");
+
+		$this->cache->delete('seo_url_map');
 	}
 
 	public function deleteUrl($url_alias_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE url_alias_id = " . (int)$url_alias_id);
+
+		$this->cache->delete('seo_url_map');
 	}
 
 	public function getUrl($url_alias_id) {
