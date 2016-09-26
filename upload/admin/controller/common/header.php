@@ -159,6 +159,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_sale_return'] = $this->language->get('text_report_sale_return');
 		$this->data['text_report_product_viewed'] = $this->language->get('text_report_product_viewed');
 		$this->data['text_report_customer_order'] = $this->language->get('text_report_customer_order');
+		$this->data['text_report_robot_online'] = $this->language->get('text_report_robot_online');
 		$this->data['text_review'] = $this->language->get('text_review');
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_return_action'] = $this->language->get('text_return_action');
@@ -291,6 +292,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['report_customer_online'] = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_affiliate_activity'] = $this->url->link('report/affiliate_activity', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_affiliate_commission'] = $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['report_robot_online'] = $this->url->link('report/robot_online', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['review'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return'] = $this->url->link('sale/return', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return_action'] = $this->url->link('localisation/return_action', 'token=' . $this->session->data['token'], 'SSL');
@@ -411,6 +413,9 @@ class ControllerCommonHeader extends Controller {
 					'href' => $result['url']
 				);
 			}
+
+			// Robots
+			$this->data['track_robots'] = $this->config->get('config_robots_online');
 		}
 
 		$this->template = 'common/header.tpl';

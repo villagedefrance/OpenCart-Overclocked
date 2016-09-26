@@ -2234,6 +2234,21 @@ CREATE TABLE `oc_review` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_robot_online`
+--
+
+DROP TABLE IF EXISTS `oc_robot_online`;
+CREATE TABLE `oc_robot_online` (
+  `date_added` datetime NOT NULL,
+  `user_agent` text NOT NULL,
+  `robot` varchar(64) NOT NULL,
+  `ip` varchar(32) NOT NULL,
+  PRIMARY KEY (`ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_setting`
 --
 

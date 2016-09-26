@@ -230,6 +230,7 @@ $_['entry_quote_filename']         = 'Quote Log Filename:';
 $_['entry_secure']                 = 'Use SSL:<span class="help">To use SSL, check with your host if a SSL certificate is installed, and the HTTPS URLs are correct in the Catalog and Admin config files.</span>';
 $_['entry_shared']                 = 'Use Shared Sessions:<span class="help">Try to share the session cookie between stores so the cart can be passed between different domains.</span>';
 $_['entry_robots']                 = 'Robots:<span class="help">A list of web crawler user agents that shared sessions will not be used with. Use separate lines for each user agent.</span>';
+$_['entry_robots_online']        = 'Robots Online:<span class="help">Track robots online via the reports section.</span>';
 $_['entry_password']               = 'Allow Forgotten Password:<span class="help">Allow forgotten password to be used for the admin. This will be disabled automatically if the system detects a hack attempt.</span>';
 $_['entry_ban_page']               = 'Blocked Ips Exit Page:<span class="help">Select the type of page to use for blocked ip addresses re-direction.</span>';
 $_['entry_file_max_size']          = 'Maximum File Size:<span class="help">Set the upload file size limit.</span>';

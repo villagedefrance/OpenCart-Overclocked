@@ -82,6 +82,36 @@ class ControllerCommonHeader extends Controller {
 		$this->data['google_analytics'] = html_entity_decode($this->config->get('config_google_analytics'), ENT_QUOTES, 'UTF-8');
 		$this->data['alexa_analytics'] = html_entity_decode($this->config->get('config_alexa_analytics'), ENT_QUOTES, 'UTF-8');
 
+		// Robot log
+		if (isset($this->request->server['HTTP_USER_AGENT']) && $this->config->get('config_robots_online')) {
+			$this->load->model('tool/online');
+
+			if (isset($this->request->server['REMOTE_ADDR'])) {
+				$ip = $this->request->server['REMOTE_ADDR'];
+			} else {
+				$ip = '';
+			}
+
+			if (isset($this->request->server['HTTP_USER_AGENT'])) {
+				$user_agent = strtolower($this->request->server['HTTP_USER_AGENT']);
+
+				$signatures = $this->model_tool_online->getRobotSignatures();
+
+				foreach ($signatures as $signature) {
+					$robot_signature = strtolower($signature['signature']);
+
+					if (strpos($user_agent, $robot_signature)) { 
+						$robot_name = $signature['name'];
+						break;
+					}
+				}
+			}
+
+			if (isset($robot_name)) {
+				$this->model_tool_online->robotsOnline($ip, $robot_name, $user_agent);
+			}
+		}
+
 		// Robot detector
 		$status = true;
 

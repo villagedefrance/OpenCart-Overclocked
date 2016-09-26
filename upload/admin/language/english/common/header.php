@@ -99,6 +99,7 @@ $_['text_report_customer_online']      = 'Online';
 $_['text_report_affiliate']            = 'Affiliates';
 $_['text_report_affiliate_activity']   = 'Activity';
 $_['text_report_affiliate_commission'] = 'Commissions';
+$_['text_report_robot_online']         = 'Robots';
 $_['text_review']                      = 'Reviews';
 $_['text_return']                      = 'Returns';
 $_['text_return_action']               = 'Return Actions';

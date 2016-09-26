@@ -2023,6 +2023,20 @@
             <td><textarea name="config_robots" cols="40" rows="5"><?php echo $config_robots; ?></textarea></td>
           </tr>
           <tr>
+            <td><?php echo $entry_robots_online; ?></td>
+            <td><?php if ($config_robots_online) { ?>
+              <input type="radio" name="config_robots_online" value="1" id="robots-online-on" class="radio" checked />
+              <label for="robots-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_robots_online" value="0" id="robots-online-off" class="radio" />
+              <label for="robots-online-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_robots_online" value="1" id="robots-online-on" class="radio" />
+              <label for="robots-online-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_robots_online" value="0" id="robots-online-off" class="radio" checked />
+              <label for="robots-online-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_password; ?></td>
             <td><?php if ($config_password) { ?>
               <input type="radio" name="config_password" value="1" id="password-on" class="radio" checked />

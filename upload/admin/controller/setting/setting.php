@@ -279,6 +279,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_secure'] = $this->language->get('entry_secure');
 		$this->data['entry_shared'] = $this->language->get('entry_shared');
 		$this->data['entry_robots'] = $this->language->get('entry_robots');
+		$this->data['entry_robots_online'] = $this->language->get('entry_robots_online');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		$this->data['entry_ban_page'] = $this->language->get('entry_ban_page');
 		$this->data['entry_file_max_size'] = $this->language->get('entry_file_max_size');
@@ -1751,6 +1752,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_robots'] = $this->request->post['config_robots'];
 		} else {
 			$this->data['config_robots'] = $this->config->get('config_robots');
+		}
+
+		if (isset($this->request->post['config_robots_online'])) {
+			$this->data['config_robots_online'] = $this->request->post['config_robots_online'];
+		} else {
+			$this->data['config_robots_online'] = $this->config->get('config_robots_online');
 		}
 
 		if (isset($this->request->post['config_password'])) {

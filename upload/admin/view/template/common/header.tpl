@@ -345,6 +345,9 @@ $(document).ready(function() {
               <li><a href="<?php echo $report_affiliate_commission; ?>"><?php echo $text_report_affiliate_commission; ?></a></li>
             </ul>
           </li>
+        <?php if ($track_robots) { ?>
+          <li><a href="<?php echo $report_robot_online; ?>"><?php echo $text_report_robot_online; ?></a></li>
+        <?php } ?>
         </ul>
       </li>
       <?php if ($connection_exist) { ?>
