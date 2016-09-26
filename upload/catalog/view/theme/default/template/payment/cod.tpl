@@ -1,3 +1,4 @@
+<h2><?php echo $text_instruction; ?></h2>
 <div class="buttons" id="div-buttons">
   <div class="right">
     <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" class="button" />

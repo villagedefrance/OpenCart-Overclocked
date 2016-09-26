@@ -12,21 +12,21 @@
 
 <script type="text/javascript"><!--
 $('#button-confirm').on('click', function() {
-  $.ajax({
-    type: 'get',
-    url: 'index.php?route=payment/bank_transfer/confirm',
-    cache: false,
-    beforeSend: function() {
-      $('#button-confirm').prop('disabled', true);
-      $('#div-buttons').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
-    },
-    complete: function() {
-      $('#button-confirm').prop('disabled', false);
-      $('.attention').remove();
-    },
-    success: function() {
-      location = '<?php echo $continue; ?>';
-    }
-  });
+	$.ajax({
+		type: 'get',
+		url: 'index.php?route=payment/bank_transfer/confirm',
+		cache: false,
+		beforeSend: function() {
+			$('#button-confirm').prop('disabled', true);
+			$('#div-buttons').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo htmlspecialchars($text_wait, ENT_QUOTES, 'UTF-8'); ?></div>');
+		},
+		complete: function() {
+			$('#button-confirm').prop('disabled', false);
+			$('.attention').remove();
+		},
+		success: function() {
+			location = '<?php echo $continue; ?>';
+		}
+	});
 });
 //--></script>

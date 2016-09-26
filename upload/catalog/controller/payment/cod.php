@@ -2,7 +2,10 @@
 class ControllerPaymentCod extends Controller {
 
 	public function index() {
+		$this->language->load('payment/cod');
+
 		$this->data['text_wait'] = $this->language->get('text_wait');
+		$this->data['text_instruction'] = $this->language->get('text_instruction');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
@@ -22,9 +25,13 @@ class ControllerPaymentCod extends Controller {
 
 	public function confirm() {
 		if ($this->session->data['payment_method']['code'] == 'cod') {
+			$this->language->load('payment/cod');
+
 			$this->load->model('checkout/order');
 
-			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('cod_order_status_id'));
+			$comment = $this->language->get('text_instruction') . "\n\n";
+
+			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('cod_order_status_id'), $comment, true);
 		}
 	}
 }

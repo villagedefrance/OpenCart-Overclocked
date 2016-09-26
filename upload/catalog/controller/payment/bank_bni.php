@@ -4,6 +4,7 @@ class ControllerPaymentBankBni extends Controller {
 	protected function index() {
 		$this->language->load('payment/bank_bni');
 
+		$this->data['text_wait'] = $this->language->get('text_wait');
 		$this->data['text_instruction'] = $this->language->get('text_instruction');
 		$this->data['text_description'] = $this->language->get('text_description');
 		$this->data['text_payment'] = $this->language->get('text_payment');
