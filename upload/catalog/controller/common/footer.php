@@ -103,7 +103,9 @@ class ControllerCommonFooter extends Controller {
 		$this->data['piwik'] = html_entity_decode($this->config->get('config_piwik_analytics'), ENT_QUOTES, 'UTF-8');
 
 		// Whos Online
-		if ($this->config->get('config_customer_online')) {
+		if (isset($this->request->server['HTTP_USER_AGENT'])) {
+			$user_agent = $this->request->server['HTTP_USER_AGENT'];
+
 			$this->load->model('tool/online');
 
 			if (isset($this->request->server['REMOTE_ADDR'])) {
@@ -112,25 +114,41 @@ class ControllerCommonFooter extends Controller {
 				$ip = '';
 			}
 
-			if (isset($this->request->server['HTTP_HOST']) && isset($this->request->server['REQUEST_URI'])) {
-				$url = 'http://' . $this->request->server['HTTP_HOST'] . $this->request->server['REQUEST_URI'];
-			} else {
-				$url = '';
+			if ($this->config->get('config_customer_online')) {
+				if (isset($this->request->server['HTTP_HOST']) && isset($this->request->server['REQUEST_URI'])) {
+					$url = 'http://' . $this->request->server['HTTP_HOST'] . $this->request->server['REQUEST_URI'];
+				} else {
+					$url = '';
+				}
+
+				if (isset($this->request->server['HTTP_REFERER'])) {
+					$referer = $this->request->server['HTTP_REFERER'];
+				} else {
+					$referer = '';
+				}
+
+				$this->model_tool_online->whosOnline($ip, $this->customer->getId(), $url, $referer, $user_agent);
 			}
 
-			if (isset($this->request->server['HTTP_REFERER'])) {
-				$referer = $this->request->server['HTTP_REFERER'];
-			} else {
-				$referer = '';
-			}
+			// Robot log
+			if ($this->config->get('config_robots_online')) {
+				$lower_agent = strtolower($this->request->server['HTTP_USER_AGENT']);
 
-			if (isset($this->request->server['HTTP_USER_AGENT'])) {
-				$user_agent = $this->request->server['HTTP_USER_AGENT'];
-			} else {
-				$user_agent = '';
-			}
+				$signatures = $this->model_tool_online->getRobotSignatures();
 
-			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer, $user_agent);
+				foreach ($signatures as $signature) {
+					$robot_signature = strtolower($signature['signature']);
+
+					if (strpos($lower_agent, $robot_signature)) { 
+						$robot_name = $signature['name'];
+						break;
+					}
+				}
+
+				if (isset($robot_name)) {
+					$this->model_tool_online->robotsOnline($ip, $robot_name, $user_agent);
+				}
+			}
 		}
 
 		// Theme

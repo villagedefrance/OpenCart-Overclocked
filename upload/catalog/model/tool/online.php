@@ -1,7 +1,7 @@
 <?php
 class ModelToolOnline extends Model {
 
-	public function whosonline($ip, $customer_id, $url, $referer, $user_agent) {
+	public function whosOnline($ip, $customer_id, $url, $referer, $user_agent) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "customer_online WHERE date_added < '" . date('Y-m-d H:i:s', strtotime('-1 hour')) . "'");
 
 		$this->db->query("REPLACE INTO " . DB_PREFIX . "customer_online SET ip = '" . $ip . "', customer_id = '" . (int)$customer_id . "', url = '" . $this->db->escape($url) . "', referer = '" . $this->db->escape($referer) . "', user_agent = '" . $this->db->escape($user_agent) . "', date_added = NOW()");
@@ -33,7 +33,6 @@ class ModelToolOnline extends Model {
 		$robots[] = array('signature' => 'Yandex', 'name' => 'Yandex');
 		$robots[] = array('signature' => 'Googlebot', 'name' => 'Google');
 		$robots[] = array('signature' => 'Mediapartners-Google', 'name' => 'Mediapartners-Google (Adsense)');
-		$robots[] = array('signature' => 'Slurp', 'name' => 'Hot Bot search');
 		$robots[] = array('signature' => 'askjeeves', 'name' => 'AskJeeves');
 		$robots[] = array('signature' => 'fastcrawler', 'name' => 'FastCrawler');
 		$robots[] = array('signature' => 'infoseek', 'name' => 'InfoSeek Robot 1.0');
@@ -49,6 +48,7 @@ class ModelToolOnline extends Model {
 		$robots[] = array('signature' => 'msnbot', 'name' => 'msnbot 1.0');
 		$robots[] = array('signature' => 'ia_archiver', 'name' => 'Alexa search engine');
 		$robots[] = array('signature' => 'FAST', 'name' => 'AllTheWeb');
+		$robots[] = array('signature' => 'Slurp', 'name' => 'Hot Bot search');
 		$robots[] = array('signature' => 'Teoma', 'name' => 'Ask');
 		$robots[] = array('signature' => 'Baiduspider', 'name' => 'Baidu');
 		$robots[] = array('signature' => 'Gigabot', 'name' => 'Gigabot');
