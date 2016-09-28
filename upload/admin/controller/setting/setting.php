@@ -117,6 +117,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_company_tax_id'] = $this->language->get('entry_company_tax_id');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
+		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$this->data['entry_stylesheet'] = $this->language->get('entry_stylesheet');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_template'] = $this->language->get('entry_template');
@@ -608,6 +609,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_meta_description'] = $this->request->post['config_meta_description'];
 		} else {
 			$this->data['config_meta_description'] = $this->config->get('config_meta_description');
+		}
+
+		if (isset($this->request->post['config_meta_keyword'])) {
+			$this->data['config_meta_keyword'] = $this->request->post['config_meta_keyword'];
+		} else {
+			$this->data['config_meta_keyword'] = $this->config->get('config_meta_keyword');
 		}
 
 		if (isset($this->request->post['config_template'])) {

@@ -122,6 +122,10 @@
             <span id="remaining"></span></td>
           </tr>
           <tr>
+            <td><?php echo $entry_meta_keyword; ?></td>
+            <td><textarea name="config_meta_keyword" cols="40" rows="5"><?php echo isset($config_meta_keyword) ? $config_meta_keyword : ''; ?></textarea></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_template; ?></td>
             <td><select name="config_template" onchange="$('#template').load('index.php?route=setting/setting/template&token=<?php echo $token; ?>&template=' + encodeURIComponent(this.value));">
             <?php foreach ($templates as $template) { ?>
