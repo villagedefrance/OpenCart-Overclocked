@@ -26,7 +26,7 @@ $(document).ready(function() {
 	function showOptions() { options.slideDown(200); }
 	function hideOptions() { options.slideUp(200); }
 	$('#language-selector').on('mouseenter touchstart touchend', function() {
-		timer = setTimeout(function() { hideOptions(); }, 4000);
+		timer = setTimeout(function() { hideOptions(); }, 3000);
 		$('.language-selection').click(function(event) {
 			event.preventDefault();
 			hideOptions();
