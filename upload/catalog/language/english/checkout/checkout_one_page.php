@@ -12,7 +12,9 @@ $_['text_agree']                              = 'I have read and agree to the <a
 $_['text_shipping_method']                    = 'Shipping method';
 $_['text_payment_method']                     = 'Payment method';
 $_['text_comments']                           = 'Delivery Instructions';
-
+$_['text_one_page_coupon']                    = 'Coupon Code';
+$_['text_one_page_voucher']                   = 'Gift Voucher';
+$_['text_one_page_reward']                    = 'Reward Points (%s)';
 $_['text_recurring_item']                     = 'Recurring item';
 $_['text_payment_profile']                    = 'Payment Profile';
 $_['text_trial_description']                  = '%s every %d %s(s) for %d payment(s) then';
@@ -52,6 +54,14 @@ $_['entry_city']                              = 'City';
 $_['entry_country']                           = 'Country';
 $_['entry_zone']                              = 'Region / State';
 $_['entry_shipping']                          = 'Deliver to this address';
+$_['entry_coupon']                            = 'Enter your coupon here:';
+$_['entry_voucher']                           = 'Enter your gift voucher code here:';
+$_['entry_reward']                            = 'Enter the number of points to use here (Maximum %s):';
+
+// Success
+$_['text_coupon']                             = 'Success: Your coupon discount has been applied!';
+$_['text_voucher']                            = 'Success: Your gift voucher discount has been applied!';
+$_['text_reward']                             = 'Success: Your reward points discount has been applied!';
 
 // Error
 $_['error_warning']                           = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
@@ -74,6 +84,13 @@ $_['error_shipping']                          = 'Shipping method is required!';
 $_['error_no_shipping']                       = 'No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_payment']                           = 'Payment method is required!';
 $_['error_no_payment']                        = 'No Payment options are available. Please <a href="%s">contact us</a> for assistance!';
+$_['error_coupon']                            = 'Warning: Coupon is either invalid, expired or reached it\'s usage limit!';
+$_['error_voucher']                           = 'Warning: Gift Voucher is either invalid or the balance has been used up!';
+$_['error_reward']                            = 'Warning: Please enter the amount of reward points to use!';
+$_['error_points']                            = 'Warning: You don\'t have %s reward points!';
+$_['error_maximum']                           = 'Warning: The maximum number of points that can be applied is %s!';
+$_['error_minimum']                           = 'Minimum order amount for %s is %s!';
+$_['error_required']                          = '%s required!';
 
 $_['text_trial']                              = '%s every %s %s for %s payments then ';
 $_['text_recurring']                          = '%s every %s %s';

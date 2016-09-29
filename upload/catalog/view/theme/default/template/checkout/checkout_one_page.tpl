@@ -13,6 +13,60 @@
     <a href="<?php echo $one_page_cart; ?>" title="<?php echo $text_cart; ?>" style="margin-left:25px;"><img src="catalog/view/theme/<?php echo $template; ?>/image/cart.png" alt="<?php echo $text_cart; ?>" /></a>
   </div>
   <h1><?php echo $heading_title; ?></h1>
+  <?php if (!isset($this->session->data['order_id'])) { ?>
+  <?php if ($this->config->get('config_one_page_coupon') || $this->config->get('config_one_page_voucher') || $reward_point) { ?>
+    <div style="margin-bottom:15px;">
+      <?php if ($this->config->get('config_one_page_coupon')) { ?>
+        <a onclick="$('#coupon').show(500);$('#voucher').hide();$('#reward').hide();" class="button"><?php echo $text_one_page_coupon; ?></a>
+      <?php } ?>
+      <?php if ($this->config->get('config_one_page_voucher')) { ?>
+        <a onclick="$('#voucher').show(500);$('#coupon').hide();$('#reward').hide();" class="button"><?php echo $text_one_page_voucher; ?></a>
+      <?php } ?>
+      <?php if ($reward_point) { ?>
+        <a onclick="$('#reward').show(500);$('#voucher').hide();$('#coupon').hide();" class="button"><?php echo $text_one_page_reward; ?></a>
+      <?php } ?>
+      <div id="coupon" class="content" style="margin-top:10px; margin-bottom:20px; display:none;">
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" onclick="dismiss1('coupon');" class="close" />
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+          <?php echo $entry_coupon; ?>&nbsp;
+          <input type="text" name="coupon" value="<?php echo $coupon; ?>" />
+          <input type="hidden" name="next" value="coupon" />
+          &nbsp;
+          <input type="submit" value="<?php echo $button_coupon; ?>" class="button" />
+        </form>
+      </div>
+      <div id="voucher" class="content" style="margin-top:10px; margin-bottom:20px; display:none;">
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" onclick="dismiss2('voucher');" class="close" />
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+          <?php echo $entry_voucher; ?>&nbsp;
+          <input type="text" name="voucher" value="<?php echo $voucher; ?>" />
+          <input type="hidden" name="next" value="voucher" />
+          &nbsp;
+          <input type="submit" value="<?php echo $button_voucher; ?>" class="button" />
+        </form>
+      </div>
+      <div id="reward" class="content" style="margin-top:10px; margin-bottom:20px; display:none;">
+        <img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" onclick="dismiss3('reward');" class="close" />
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+          <?php echo $entry_reward; ?>&nbsp;
+          <input type="text" name="reward" value="<?php echo $reward; ?>" />
+          <input type="hidden" name="next" value="reward" />
+          &nbsp;
+          <input type="submit" value="<?php echo $button_reward; ?>" class="button" />
+        </form>
+      </div>
+    </div>
+  <?php } ?>
+  <?php if (!empty($attention)) { ?>
+    <div class="attention"><?php echo $attention; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
+  <?php } ?>
+  <?php if (!empty($success)) { ?>
+    <div class="success"><?php echo $success; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
+  <?php } ?>
+  <?php if (!empty($error_warning)) { ?>
+    <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
+  <?php } ?>
+  <?php } ?>
   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="checkout_one_page">
     <table class="checkout-one-page">
       <tr>
@@ -895,7 +949,7 @@ $.ajax({
 		alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 	}
 });
-//--></script> 
+//--></script>
 <?php } ?>
 
 <script type="text/javascript"><!--
@@ -911,6 +965,18 @@ $(document).ready(function() {
 		height: 480
 	});
 });
-//--></script> 
+//--></script>
+
+<script type="text/javascript"><!--
+function dismiss1(coupon) {
+	document.getElementById('coupon').style.display="none";
+}
+function dismiss2(voucher) {
+	document.getElementById('voucher').style.display="none";
+}
+function dismiss3(reward) {
+	document.getElementById('reward').style.display="none";
+}
+//--></script>
 
 <?php echo $footer; ?>

@@ -53,6 +53,34 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
+		// Coupon session
+		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
+			$this->session->data['coupon'] = $this->request->post['coupon'];
+			$this->session->data['success'] = $this->language->get('text_coupon');
+
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
+		// Voucher session
+		if (!isset($this->session->data['vouchers'])) {
+			$this->session->data['vouchers'] = array();
+		}
+
+		if (isset($this->request->post['voucher']) && $this->validateVoucher()) {
+			$this->session->data['voucher'] = $this->request->post['voucher'];
+			$this->session->data['success'] = $this->language->get('text_voucher');
+
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
+		// Reward session
+		if (isset($this->request->post['reward']) && $this->validateReward()) {
+			$this->session->data['reward'] = abs($this->request->post['reward']);
+			$this->session->data['success'] = $this->language->get('text_reward');
+
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -73,17 +101,122 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			'separator' => $this->language->get('text_separator')
 		);
 
+		if (isset($this->error['warning'])) {
+			$this->data['error_warning'] = $this->error['warning'];
+		} elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
+			$this->data['error_warning'] = $this->language->get('error_stock');
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
+
+		$this->data['action'] = $this->url->link('checkout/checkout_one_page', '', 'SSL');
+
+		// Coupon
+		$this->data['coupon_status'] = $this->config->get('coupon_status');
+
+		if (isset($this->request->post['coupon'])) {
+			$this->data['coupon'] = $this->request->post['coupon'];
+		} elseif (isset($this->session->data['coupon'])) {
+			$this->data['coupon'] = $this->session->data['coupon'];
+		} else {
+			$this->data['coupon'] = '';
+		}
+
+		// Gift Voucher
+		$this->data['vouchers'] = array();
+
+		if (!empty($this->session->data['vouchers'])) {
+			foreach ($this->session->data['vouchers'] as $key => $voucher) {
+				$this->data['vouchers'][] = array(
+					'key'         => $key,
+					'description' => $voucher['description'],
+					'amount'      => $this->currency->format($voucher['amount']),
+					'remove'      => $this->url->link('checkout/checkout_one_page', 'remove=' . $key, 'SSL')
+				);
+			}
+		}
+
+		$this->data['voucher_status'] = $this->config->get('voucher_status');
+
+		if (isset($this->request->post['voucher'])) {
+			$this->data['voucher'] = $this->request->post['voucher'];
+		} elseif (isset($this->session->data['voucher'])) {
+			$this->data['voucher'] = $this->session->data['voucher'];
+		} else {
+			$this->data['voucher'] = '';
+		}
+
+		// Reward
+		$points = $this->customer->getRewardPoints();
+
+		$points_total = 0;
+
+		foreach ($this->cart->getProducts() as $product) {
+			if ($product['points']) {
+				$points_total += $product['points'];
+			}
+		}
+
+		$max_points = min($points, $points_total);
+
+		$sub_total = $this->cart->getSubTotal();
+
+		if ($points && $max_points > $sub_total) {
+			$reward_points = $sub_total;
+		} else {
+			$reward_points = $max_points;
+		}
+
+		$this->data['reward_point'] = ($points && $points_total && $this->config->get('reward_status'));
+
+		if ($this->config->get('config_one_page_point') == 2) {
+			$this->data['reward_point'] = false;
+
+			if ($points && $this->config->get('reward_status')) {
+				$this->session->data['reward'] = $reward_points;
+			}
+		}
+
+		if (!$this->config->get('config_one_page_point')) {
+			$this->data['reward_point'] = false;
+		}
+
+		if (isset($this->request->post['reward'])) {
+			$this->data['reward'] = $this->request->post['reward'];
+		} elseif (isset($this->session->data['reward'])) {
+			$this->data['reward'] = $this->session->data['reward'];
+		} else {
+			$this->data['reward'] = '';
+		}
+
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_cart'] = $this->language->get('text_cart');
 		$this->data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
 		$this->data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
+		$this->data['text_one_page_coupon'] = $this->language->get('text_one_page_coupon');
+		$this->data['text_one_page_voucher'] = $this->language->get('text_one_page_voucher');
+		$this->data['text_one_page_reward'] = sprintf($this->language->get('text_one_page_reward'), $points);
+
+		$this->data['entry_coupon'] = $this->language->get('entry_coupon');
+		$this->data['entry_voucher'] = $this->language->get('entry_voucher');
+		$this->data['entry_reward'] = sprintf($this->language->get('entry_reward'), $reward_points);
+
+		$this->data['button_coupon'] = $this->language->get('button_coupon');
+		$this->data['button_voucher'] = $this->language->get('button_voucher');
+		$this->data['button_reward'] = $this->language->get('button_reward');
 
 		$this->data['logged'] = $this->customer->isLogged();
 
 		$this->data['shipping_required'] = $this->cart->hasShipping();
-
-		$this->data['action'] = $this->url->link('checkout/checkout_one_page', '', 'SSL');
 
 		$this->data['one_page_cart'] = $this->url->link('checkout/cart', '', 'SSL');
 
@@ -1425,5 +1558,55 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	protected function validateCoupon() {
+		$this->load->model('checkout/coupon');
+
+		$coupon_info = $this->model_checkout_coupon->getCoupon($this->request->post['coupon']);
+
+		if (!$coupon_info) {
+			$this->error['warning'] = $this->language->get('error_coupon');
+		}
+
+		return empty($this->error);
+	}
+
+	protected function validateVoucher() {
+		$this->load->model('checkout/voucher');
+
+		$voucher_info = $this->model_checkout_voucher->getVoucher($this->request->post['voucher']);
+
+		if (!$voucher_info) {
+			$this->error['warning'] = $this->language->get('error_voucher');
+		}
+
+		return empty($this->error);
+	}
+
+	protected function validateReward() {
+		$points = $this->customer->getRewardPoints();
+
+		$points_total = 0;
+
+		foreach ($this->cart->getProducts() as $product) {
+			if ($product['points']) {
+				$points_total += $product['points'];
+			}
+		}
+
+		if (empty($this->request->post['reward'])) {
+			$this->error['warning'] = $this->language->get('error_reward');
+		}
+
+		if ($this->request->post['reward'] > $points) {
+			$this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
+		}
+
+		if ($this->request->post['reward'] > $points_total) {
+			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
+		}
+
+		return empty($this->error);
 	}
 }

@@ -100,6 +100,9 @@ $_['entry_complete_status']        = 'Complete Order Status:<span class="help">S
 $_['entry_one_page_checkout']      = 'One Page Checkout (<b>Master</b>):<span class="help">Enable One Page Checkout. Overrides the default Checkout System.</span>';
 $_['entry_one_page_phone']         = 'Request Customer\'s Telephone:';
 $_['entry_one_page_newsletter']    = 'Newsletter Subscription:';
+$_['entry_one_page_coupon']        = 'Display Coupons:';
+$_['entry_one_page_voucher']       = 'Display Vouchers';
+$_['entry_one_page_point']         = 'Display Reward Points:';
 $_['entry_express_checkout']       = 'Express Checkout (<b>Master</b>):<span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
 $_['entry_express_autofill']       = 'Populate Fields Automatically:<span class="help">If Yes, this option will attempt to fill most account fields automatically.</span>';
 $_['entry_express_password']       = 'Auto-Generate Password:<span class="help">If Yes, the customer\'s will still have the possibility to choose another password.</span>';

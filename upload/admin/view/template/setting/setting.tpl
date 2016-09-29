@@ -490,6 +490,48 @@
               <?php } ?>
             </select></td>
           </tr>
+          <tr>
+            <td><?php echo $entry_one_page_coupon; ?></td>
+            <td><?php if ($config_one_page_coupon) { ?>
+              <input type="radio" name="config_one_page_coupon" value="1" id="one-page-coupon-on" class="radio" checked />
+              <label for="one-page-coupon-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_one_page_coupon" value="0" id="one-page-coupon-off" class="radio" />
+              <label for="one-page-coupon-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_one_page_coupon" value="1" id="one-page-coupon-on" class="radio" />
+              <label for="one-page-coupon-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_one_page_coupon" value="0" id="one-page-coupon-off" class="radio" checked />
+              <label for="one-page-coupon-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_one_page_voucher; ?></td>
+            <td><?php if ($config_one_page_voucher) { ?>
+              <input type="radio" name="config_one_page_voucher" value="1" id="one-page-voucher-on" class="radio" checked />
+              <label for="one-page-voucher-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_one_page_voucher" value="0" id="one-page-voucher-off" class="radio" />
+              <label for="one-page-voucher-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_one_page_voucher" value="1" id="one-page-voucher-on" class="radio" />
+              <label for="one-page-voucher-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_one_page_voucher" value="0" id="one-page-voucher-off" class="radio" checked />
+              <label for="one-page-voucher-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_one_page_point; ?></td>
+            <td><select name="config_one_page_point">
+              <?php if (isset($config_one_page_point)) { $selected = "selected"; ?>
+                <option value="0" <?php if ($config_one_page_point == '0') { echo $selected; } ?>><?php echo $text_no; ?></option>
+                <option value="1" <?php if ($config_one_page_point == '1') { echo $selected; } ?>><?php echo $text_yes; ?></option>
+                <option value="2" <?php if ($config_one_page_point == '2') { echo $selected; } ?>><?php echo $text_automatic; ?></option>
+              <?php } else { ?>
+                <option value="0"><?php echo $text_no; ?></option>
+                <option value="1"><?php echo $text_yes; ?></option>
+                <option value="2"><?php echo $text_automatic; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
         </table>
         <h2><?php echo $text_express; ?></h2>
         <div class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_express; ?></div>

@@ -45,6 +45,9 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_express'));
 
+		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
+		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
+
 		// Coupon session
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
 			$this->session->data['coupon'] = $this->request->post['coupon'];
@@ -72,6 +75,26 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
 		}
+
+		$this->data['breadcrumbs'] = array();
+
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_home'),
+			'href'      => $this->url->link('common/home', '', 'SSL'),
+			'separator' => false
+		); 
+
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('text_cart'),
+			'href'      => $this->url->link('checkout/cart', '', 'SSL'),
+			'separator' => $this->language->get('text_separator')
+		);
+
+		$this->data['breadcrumbs'][] = array(
+			'text'      => $this->language->get('heading_express'),
+			'href'      => $this->url->link('checkout_express/checkout', '', 'SSL'),
+			'separator' => $this->language->get('text_separator')
+		);
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -168,29 +191,6 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		} else {
 			$this->data['reward'] = '';
 		}
-
-		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
-		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
-
-		$this->data['breadcrumbs'] = array();
-
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', '', 'SSL'),
-			'separator' => false
-		); 
-
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('text_cart'),
-			'href'      => $this->url->link('checkout/cart', '', 'SSL'),
-			'separator' => $this->language->get('text_separator')
-		);
-
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_express'),
-			'href'      => $this->url->link('checkout_express/checkout', '', 'SSL'),
-			'separator' => $this->language->get('text_separator')
-		);
 
 		$this->data['heading_title'] = $this->language->get('heading_express');
 

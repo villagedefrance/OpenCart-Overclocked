@@ -149,6 +149,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_one_page_checkout'] = $this->language->get('entry_one_page_checkout');
 		$this->data['entry_one_page_phone'] = $this->language->get('entry_one_page_phone');
 		$this->data['entry_one_page_newsletter'] = $this->language->get('entry_one_page_newsletter');
+		$this->data['entry_one_page_coupon'] = $this->language->get('entry_one_page_coupon');
+		$this->data['entry_one_page_voucher'] = $this->language->get('entry_one_page_voucher');
+		$this->data['entry_one_page_point'] = $this->language->get('entry_one_page_point');
 		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
 		$this->data['entry_express_password'] = $this->language->get('entry_express_password');
 		$this->data['entry_express_phone'] = $this->language->get('entry_express_phone');
@@ -853,6 +856,24 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_one_page_newsletter'] = $this->request->post['config_one_page_newsletter'];
 		} else {
 			$this->data['config_one_page_newsletter'] = $this->config->get('config_one_page_newsletter');
+		}
+
+		if (isset($this->request->post['config_one_page_coupon'])) {
+			$this->data['config_one_page_coupon'] = $this->request->post['config_one_page_coupon'];
+		} else {
+			$this->data['config_one_page_coupon'] = $this->config->get('config_one_page_coupon');
+		}
+
+		if (isset($this->request->post['config_one_page_voucher'])) {
+			$this->data['config_one_page_voucher'] = $this->request->post['config_one_page_voucher'];
+		} else {
+			$this->data['config_one_page_voucher'] = $this->config->get('config_one_page_voucher');
+		}
+
+		if (isset($this->request->post['config_one_page_point'])) {
+			$this->data['config_one_page_point'] = $this->request->post['config_one_page_point'];
+		} else {
+			$this->data['config_one_page_point'] = $this->config->get('config_one_page_point');
 		}
 
 		// Express Checkout
