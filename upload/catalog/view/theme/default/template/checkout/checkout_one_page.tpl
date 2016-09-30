@@ -581,8 +581,8 @@
               <tr>
                 <td colspan="2"><div class="error"><?php echo $error_shipping_zone; ?></div><br /></td>
               </tr>
-            <?php }?>
-          <?php }?>
+            <?php } ?>
+          <?php } ?>
         </table>
       </td>
       <td style="width:3%;"></td>

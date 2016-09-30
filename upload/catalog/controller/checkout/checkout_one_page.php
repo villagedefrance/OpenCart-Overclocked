@@ -17,11 +17,6 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->redirect($this->url->link('checkout/cart', '', 'SSL'));
 		}
 
-		if (!isset($this->request->get['payment'])) {
-			unset($this->session->data['order_id']);
-			unset($this->session->data['check_shipping_address']);
-		}
-
 		// Validate minimum quantity requirements
 		$products = $this->cart->getProducts();
 
@@ -46,6 +41,17 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			}
 		}
 
+		if (!isset($this->request->get['payment'])) {
+			unset($this->session->data['order_id']);
+			unset($this->session->data['check_shipping_address']);
+		}
+
+		if (isset($this->session->data['check_shipping_address'])) {
+			$this->data['check_shipping_address'] = $this->session->data['check_shipping_address'];
+		} else {
+			$this->data['check_shipping_address'] = 1;
+		}
+
 		$this->language->load('checkout/checkout_one_page');
 
 		$this->document->setTitle($this->language->get('heading_title'));
@@ -57,6 +63,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
 			$this->session->data['coupon'] = $this->request->post['coupon'];
 			$this->session->data['success'] = $this->language->get('text_coupon');
+
+			unset($this->session->data['order_id']);
 
 			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
@@ -70,6 +78,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->session->data['voucher'] = $this->request->post['voucher'];
 			$this->session->data['success'] = $this->language->get('text_voucher');
 
+			unset($this->session->data['order_id']);
+
 			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
 
@@ -77,6 +87,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		if (isset($this->request->post['reward']) && $this->validateReward()) {
 			$this->session->data['reward'] = abs($this->request->post['reward']);
 			$this->session->data['success'] = $this->language->get('text_reward');
+
+			unset($this->session->data['order_id']);
 
 			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
@@ -103,8 +115,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
-		} elseif (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
-			$this->data['error_warning'] = $this->language->get('error_stock');
+
+			unset($this->session->data['order_id']);
 		} else {
 			$this->data['error_warning'] = '';
 		}
@@ -712,11 +724,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		// Shipping options
 		if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-			if (isset($this->request->post['check_shipping_address'])) {
-				$this->data['check_shipping_address'] = 1;
-			} else {
-				$this->data['check_shipping_address'] = 0;
-			}
+			$this->data['check_shipping_address'] = isset($this->request->post['check_shipping_address']) ? 1 : 0;
 		} elseif (isset($this->session->data['check_shipping_address'])) {
 			$this->data['check_shipping_address'] = $this->session->data['check_shipping_address'];
 		} else {
@@ -1301,6 +1309,10 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 	}
 
 	public function validate() {
+		if (isset($this->request->post['coupon']) || isset($this->request->post['voucher']) || isset($this->request->post['reward'])) {
+			return;
+		}
+
 		$this->language->load('checkout/checkout_one_page');
 
 		if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
