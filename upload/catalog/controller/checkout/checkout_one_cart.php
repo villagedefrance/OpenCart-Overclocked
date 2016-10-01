@@ -224,6 +224,18 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 		$this->data['products'] = array();
 
 		foreach ($this->cart->getProducts() as $product) {
+			$product_total = 0;
+
+			foreach ($products as $product_2) {
+				if ($product_2['product_id'] == $product['product_id']) {
+					$product_total += $product_2['quantity'];
+				}
+			}
+
+			if ($product['minimum'] > $product_total) {
+				$this->data['error_warning'] = sprintf($this->language->get('error_minimum'), $product['name'], $product['minimum']);
+			}
+
 			$option_data = array();
 
 			foreach ($product['option'] as $option) {
@@ -239,6 +251,15 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 					'name'  => $option['name'],
 					'value' => (utf8_strlen($value) > 20 ? utf8_substr($value, 0, 20) . '..' : $value)
 				);
+			}
+
+			// Display prices & totals
+			if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+				$price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')));
+				$total = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']);
+			} else {
+				$price = false;
+				$total = false;
 			}
 
 			$profile_description = '';
@@ -267,25 +288,50 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 				}
 			}
 
+			// Check minimum age
+			$age_minimum = $product['age_minimum'];
+			$age_logged = false;
+			$age_checked = false;
+
+			if ($this->config->get('config_customer_dob') && ($product['age_minimum'] > 0)) {
+				if ($this->customer->isLogged() && $this->customer->isSecure()) {
+					$age_logged = true;
+
+					$this->load->model('account/customer');
+
+					$date_of_birth = $this->model_account_customer->getCustomerDateOfBirth($this->customer->getId());
+
+					if ($date_of_birth && ($date_of_birth != '0000-00-00')) {
+						$customer_age = date_diff(date_create($date_of_birth), date_create('today'))->y;
+
+						if ($customer_age >= $product['age_minimum']) {
+							$age_checked = true;
+						}
+					}
+				}
+			}
+
 			$product_tax_value = ($this->tax->calculate(($product['price'] * $product['quantity']), $product['tax_class_id'], $this->config->get('config_tax')) - ($product['price'] * $product['quantity']));
 
 			$this->data['products'][] = array(
-				'key'                 => $product['key'],
 				'product_id'          => $product['product_id'],
+				'key'                 => $product['key'],
 				'name'                => $product['name'],
 				'model'               => $product['model'],
 				'option'              => $option_data,
 				'quantity'            => $product['quantity'],
+				'stock'               => $product['stock'] ? true : !(!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning')),
 				'subtract'            => $product['subtract'],
-				'price'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax'))),
+				'price'               => $price,
+				'cost'                => $product['cost'],
 				'tax_value'           => $this->currency->format($product_tax_value),
 				'tax_percent'         => number_format((($product_tax_value * 100) / ($product['price'] * $product['quantity'])), 2, '.', ''),
-				'age_minimum'         => ($product['age_minimum'] > 0) ? ' (' . $product['age_minimum'] . '+)' : '',
-				'total'               => $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')) * $product['quantity']),
-				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL'),
+				'age_minimum'         => $age_checked ? '<span style="color:#007200;"> (' . $product['age_minimum'] . '+)</span>' : '',
 				'recurring'           => $product['recurring'],
 				'profile_name'        => $product['profile_name'],
-				'profile_description' => $profile_description
+				'profile_description' => $profile_description,
+				'total'               => $total,
+				'href'                => $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL')
 			);
 		}
 
@@ -299,7 +345,7 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 					'amount'      => $this->currency->format($voucher['amount'])
 				);
 			}
-		}  
+		}
 
 		$this->data['totals'] = $total_data;
 

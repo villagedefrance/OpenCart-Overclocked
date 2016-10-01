@@ -103,7 +103,9 @@ $_['entry_coupon']                            = 'Enter your coupon here:';
 $_['entry_voucher']                           = 'Enter your gift voucher code here:';
 $_['entry_reward']                            = 'Enter the number of points to use here (Maximum %s):';
 
-// Button 
+// Button
+$_['button_wrapping_add']                     = 'Add Gift Wrapping';
+$_['button_wrapping_remove']                  = 'Remove Gift Wrapping';
 $_['button_express_go']                       = '&nbsp;&nbsp;&nbsp;&nbsp; OK &nbsp;&nbsp;&nbsp;&nbsp;';
 
 // Email

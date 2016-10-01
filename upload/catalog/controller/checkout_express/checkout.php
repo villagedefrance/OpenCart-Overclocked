@@ -42,6 +42,7 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		}
 
 		$this->language->load('checkout/checkout_express');
+		$this->language->load('total/gift_wrapping');
 
 		$this->document->setTitle($this->language->get('heading_express'));
 
@@ -50,6 +51,8 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		// Coupon session
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
+			unset($this->session->data['coupon']);
+
 			$this->session->data['coupon'] = $this->request->post['coupon'];
 			$this->session->data['success'] = $this->language->get('text_coupon');
 
@@ -62,6 +65,8 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		}
 
 		if (isset($this->request->post['voucher']) && $this->validateVoucher()) {
+			unset($this->session->data['voucher']);
+
 			$this->session->data['voucher'] = $this->request->post['voucher'];
 			$this->session->data['success'] = $this->language->get('text_voucher');
 
@@ -70,10 +75,32 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		// Reward session
 		if (isset($this->request->post['reward']) && $this->validateReward()) {
+			unset($this->session->data['reward']);
+
 			$this->session->data['reward'] = abs($this->request->post['reward']);
 			$this->session->data['success'] = $this->language->get('text_reward');
 
 			$this->redirect($this->url->link('checkout_express/checkout', '', 'SSL'));
+		}
+
+		// Add Wrapping
+		if (isset($this->request->post['add_wrapping'])) {
+			unset($this->session->data['order_id']);
+
+			$this->session->data['wrapping'] = $this->request->post['add_wrapping'];
+			$this->session->data['success'] = $this->language->get('text_add_wrapping');
+
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
+		// Remove Wrapping
+		if (isset($this->request->post['remove_wrapping'])) {
+			unset($this->session->data['order_id']);
+			unset($this->session->data['wrapping']);
+
+			$this->session->data['success'] = $this->language->get('text_remove_wrapping');
+
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
 
 		$this->data['breadcrumbs'] = array();
@@ -173,15 +200,21 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->data['reward_point'] = ($points && $points_total && $this->config->get('reward_status'));
 
 		if ($this->config->get('config_express_point') == 2) {
-			$this->data['reward_point'] = false;
+			$this->data['show_point'] = false;
 
 			if ($points && $this->config->get('reward_status')) {
 				$this->session->data['reward'] = $reward_points;
 			}
+		} elseif ($this->config->get('config_express_point') == 1) {
+			$this->data['show_point'] = true;
+		} else {
+			$this->data['show_point'] = false;
 		}
 
-		if (!$this->config->get('config_express_point')) {
-			$this->data['reward_point'] = false;
+		if ($points && isset($this->session->data['reward'])) {
+			$available_points = $reward_points - $this->session->data['reward'];
+		} else {
+			$available_points = $reward_points;
 		}
 
 		if (isset($this->request->post['reward'])) {
@@ -205,13 +238,15 @@ class ControllerCheckoutExpressCheckout extends Controller {
 		$this->data['text_checkout_confirm'] = $this->language->get('text_checkout_confirm');
 		$this->data['text_express_coupon'] = $this->language->get('text_express_coupon');
 		$this->data['text_express_voucher'] = $this->language->get('text_express_voucher');
-		$this->data['text_express_reward'] = sprintf($this->language->get('text_express_reward'), $points);
+		$this->data['text_express_reward'] = sprintf($this->language->get('text_express_reward'), $available_points);
 		$this->data['text_wait'] = $this->language->get('text_wait');
 
 		$this->data['entry_coupon'] = $this->language->get('entry_coupon');
 		$this->data['entry_voucher'] = $this->language->get('entry_voucher');
 		$this->data['entry_reward'] = sprintf($this->language->get('entry_reward'), $reward_points);
 
+		$this->data['button_wrapping_add'] = $this->language->get('button_wrapping_add');
+		$this->data['button_wrapping_remove'] = $this->language->get('button_wrapping_remove');
 		$this->data['button_coupon'] = $this->language->get('button_coupon');
 		$this->data['button_voucher'] = $this->language->get('button_voucher');
 		$this->data['button_reward'] = $this->language->get('button_reward');
@@ -224,6 +259,21 @@ class ControllerCheckoutExpressCheckout extends Controller {
 
 		$this->data['express_address'] = $this->url->link('checkout_express/checkout', '', 'SSL');
 		$this->data['express_cart'] = $this->url->link('checkout/cart', '', 'SSL');
+
+		// Gift Wrapping
+		if ($this->config->get('gift_wrapping_status')) {
+			$this->data['wrapping_status'] = $this->config->get('gift_wrapping_status');
+		} else {
+			$this->data['wrapping_status'] = 0;
+		}
+
+		if (isset($this->request->post['wrapping'])) {
+			$this->data['wrapping'] = $this->request->post['wrapping'];
+		} elseif (isset($this->session->data['wrapping'])) {
+			$this->data['wrapping'] = $this->session->data['wrapping'];
+		} else {
+			$this->data['wrapping'] = '';
+		}
 
 		if (isset($this->request->get['quickconfirm'])) {
 			$this->data['quickconfirm'] = $this->request->get['quickconfirm'];
@@ -313,6 +363,16 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			}
 		}
 
+		$max_points = min($points, $points_total);
+
+		$sub_total = $this->cart->getSubTotal();
+
+		if ($points && $max_points > $sub_total) {
+			$reward_points = $sub_total;
+		} else {
+			$reward_points = $max_points;
+		}
+
 		if (empty($this->request->post['reward'])) {
 			$this->error['warning'] = $this->language->get('error_reward');
 		}
@@ -321,8 +381,8 @@ class ControllerCheckoutExpressCheckout extends Controller {
 			$this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
 		}
 
-		if ($this->request->post['reward'] > $points_total) {
-			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
+		if ($this->request->post['reward'] > $reward_points) {
+			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $reward_points);
 		}
 
 		return empty($this->error);

@@ -14,15 +14,24 @@
   </div>
   <h1><?php echo $heading_title; ?></h1>
   <?php if (!isset($this->session->data['order_id'])) { ?>
-  <?php if ($this->config->get('config_one_page_coupon') || $this->config->get('config_one_page_voucher') || $reward_point) { ?>
+  <?php if ($wrapping_status || $this->config->get('config_one_page_coupon') || $this->config->get('config_one_page_voucher') || $reward_point) { ?>
     <div style="margin-bottom:15px;">
+      <?php if ($wrapping_status) { ?>
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+          <?php if (isset($this->session->data['wrapping'])) { ?>
+            <input type="submit" name="remove_wrapping" value="<?php echo $button_wrapping_remove; ?>" class="button" />
+          <?php } else { ?>
+            <input type="submit" name="add_wrapping" value="<?php echo $button_wrapping_add; ?>" class="button" />
+          <?php } ?>
+        </form>
+      <?php } ?>
       <?php if ($this->config->get('config_one_page_coupon')) { ?>
         <a onclick="$('#coupon').show(500);$('#voucher').hide();$('#reward').hide();" class="button"><?php echo $text_one_page_coupon; ?></a>
       <?php } ?>
       <?php if ($this->config->get('config_one_page_voucher')) { ?>
         <a onclick="$('#voucher').show(500);$('#coupon').hide();$('#reward').hide();" class="button"><?php echo $text_one_page_voucher; ?></a>
       <?php } ?>
-      <?php if ($reward_point) { ?>
+      <?php if ($show_point && $reward_point) { ?>
         <a onclick="$('#reward').show(500);$('#voucher').hide();$('#coupon').hide();" class="button"><?php echo $text_one_page_reward; ?></a>
       <?php } ?>
       <div id="coupon" class="content" style="margin-top:10px; margin-bottom:20px; display:none;">
@@ -592,7 +601,7 @@
             <td id="shipping-method" style="width:34%; vertical-align:top;">
               <?php if (isset($this->session->data['order_id'])) { ?>
                 <h2><?php echo $text_shipping_method; ?></h2>
-                <?php echo $this->session->data['shipping_method']['title']; ?>  [ <?php echo $this->session->data['shipping_method']['text']; ?> ]<br /><br />
+                <?php echo $this->session->data['shipping_method']['title']; ?> [ <b><?php echo $this->session->data['shipping_method']['text']; ?></b> ]<br /><br />
                 <input type="hidden" name="shipping_method" value="<?php echo $shipping_method_code; ?>" />
               <?php } else { ?>
                 <?php if ($shipping_methods) { ?>

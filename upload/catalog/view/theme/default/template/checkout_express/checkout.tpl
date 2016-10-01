@@ -16,15 +16,24 @@
     <a href="<?php echo $express_cart; ?>" title="<?php echo $text_cart; ?>" style="margin-left:25px;"><img src="catalog/view/theme/<?php echo $template; ?>/image/cart.png" alt="<?php echo $text_cart; ?>" /></a>
   </div>
   <h1><?php echo $heading_title; ?></h1>
-  <?php if ($this->config->get('config_express_coupon') || $this->config->get('config_express_voucher') || $reward_point) { ?>
+  <?php if ($wrapping_status || $this->config->get('config_express_coupon') || $this->config->get('config_express_voucher') || $reward_point) { ?>
     <div style="margin-bottom:10px;">
+      <?php if ($wrapping_status) { ?>
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+          <?php if (isset($this->session->data['wrapping'])) { ?>
+            <input type="submit" name="remove_wrapping" value="<?php echo $button_wrapping_remove; ?>" class="button" />
+          <?php } else { ?>
+            <input type="submit" name="add_wrapping" value="<?php echo $button_wrapping_add; ?>" class="button" />
+          <?php } ?>
+        </form>
+      <?php } ?>
       <?php if ($this->config->get('config_express_coupon')) { ?>
         <a onclick="$('#coupon').show(500);$('#voucher').hide();$('#reward').hide();" class="button"><?php echo $text_express_coupon; ?></a>
       <?php } ?>
       <?php if ($this->config->get('config_express_voucher')) { ?>
         <a onclick="$('#voucher').show(500);$('#coupon').hide();$('#reward').hide();" class="button"><?php echo $text_express_voucher; ?></a>
       <?php } ?>
-      <?php if ($reward_point) { ?>
+      <?php if ($show_point && $reward_point) { ?>
         <a onclick="$('#reward').show(500);$('#voucher').hide();$('#coupon').hide();" class="button"><?php echo $text_express_reward; ?></a>
       <?php } ?>
       <div id="coupon" class="content" style="margin-top:10px; margin-bottom:20px; display:none;">

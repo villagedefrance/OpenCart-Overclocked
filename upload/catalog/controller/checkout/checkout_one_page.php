@@ -53,6 +53,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		}
 
 		$this->language->load('checkout/checkout_one_page');
+		$this->language->load('total/gift_wrapping');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -61,10 +62,11 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		// Coupon session
 		if (isset($this->request->post['coupon']) && $this->validateCoupon()) {
+			unset($this->session->data['order_id']);
+			unset($this->session->data['coupon']);
+
 			$this->session->data['coupon'] = $this->request->post['coupon'];
 			$this->session->data['success'] = $this->language->get('text_coupon');
-
-			unset($this->session->data['order_id']);
 
 			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
@@ -75,20 +77,42 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		}
 
 		if (isset($this->request->post['voucher']) && $this->validateVoucher()) {
+			unset($this->session->data['order_id']);
+			unset($this->session->data['voucher']);
+
 			$this->session->data['voucher'] = $this->request->post['voucher'];
 			$this->session->data['success'] = $this->language->get('text_voucher');
-
-			unset($this->session->data['order_id']);
 
 			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
 
 		// Reward session
 		if (isset($this->request->post['reward']) && $this->validateReward()) {
+			unset($this->session->data['order_id']);
+			unset($this->session->data['reward']);
+
 			$this->session->data['reward'] = abs($this->request->post['reward']);
 			$this->session->data['success'] = $this->language->get('text_reward');
 
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
+		// Add Wrapping
+		if (isset($this->request->post['add_wrapping'])) {
 			unset($this->session->data['order_id']);
+
+			$this->session->data['wrapping'] = $this->request->post['add_wrapping'];
+			$this->session->data['success'] = $this->language->get('text_add_wrapping');
+
+			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
+		}
+
+		// Remove Wrapping
+		if (isset($this->request->post['remove_wrapping'])) {
+			unset($this->session->data['order_id']);
+			unset($this->session->data['wrapping']);
+
+			$this->session->data['success'] = $this->language->get('text_remove_wrapping');
 
 			$this->redirect($this->url->link('checkout/checkout_one_page', '', 'SSL'));
 		}
@@ -190,15 +214,21 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		$this->data['reward_point'] = ($points && $points_total && $this->config->get('reward_status'));
 
 		if ($this->config->get('config_one_page_point') == 2) {
-			$this->data['reward_point'] = false;
+			$this->data['show_point'] = false;
 
 			if ($points && $this->config->get('reward_status')) {
 				$this->session->data['reward'] = $reward_points;
 			}
+		} elseif ($this->config->get('config_one_page_point') == 1) {
+			$this->data['show_point'] = true;
+		} else {
+			$this->data['show_point'] = false;
 		}
 
-		if (!$this->config->get('config_one_page_point')) {
-			$this->data['reward_point'] = false;
+		if ($points && isset($this->session->data['reward'])) {
+			$available_points = $reward_points - $this->session->data['reward'];
+		} else {
+			$available_points = $reward_points;
 		}
 
 		if (isset($this->request->post['reward'])) {
@@ -216,12 +246,14 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		$this->data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
 		$this->data['text_one_page_coupon'] = $this->language->get('text_one_page_coupon');
 		$this->data['text_one_page_voucher'] = $this->language->get('text_one_page_voucher');
-		$this->data['text_one_page_reward'] = sprintf($this->language->get('text_one_page_reward'), $points);
+		$this->data['text_one_page_reward'] = sprintf($this->language->get('text_one_page_reward'), $available_points);
 
 		$this->data['entry_coupon'] = $this->language->get('entry_coupon');
 		$this->data['entry_voucher'] = $this->language->get('entry_voucher');
 		$this->data['entry_reward'] = sprintf($this->language->get('entry_reward'), $reward_points);
 
+		$this->data['button_wrapping_add'] = $this->language->get('button_wrapping_add');
+		$this->data['button_wrapping_remove'] = $this->language->get('button_wrapping_remove');
 		$this->data['button_coupon'] = $this->language->get('button_coupon');
 		$this->data['button_voucher'] = $this->language->get('button_voucher');
 		$this->data['button_reward'] = $this->language->get('button_reward');
@@ -1275,10 +1307,25 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		$this->data['paypal_fee'] = ($paypal_fee > 0) ? $this->currency->format($paypal_fee) : false;
 
-		if (isset($this->session->data['payment_method']) && $this->session->data['payment_method']) {
+		if (isset($this->session->data['payment_method'])) {
 			$this->data['payment_method_code'] = $this->session->data['payment_method']['code'];
 		} else {
 			$this->data['payment_method_code'] = '';
+		}
+
+		// Gift Wrapping
+		if ($this->config->get('gift_wrapping_status')) {
+			$this->data['wrapping_status'] = $this->config->get('gift_wrapping_status');
+		} else {
+			$this->data['wrapping_status'] = 0;
+		}
+
+		if (isset($this->request->post['wrapping'])) {
+			$this->data['wrapping'] = $this->request->post['wrapping'];
+		} elseif (isset($this->session->data['wrapping'])) {
+			$this->data['wrapping'] = $this->session->data['wrapping'];
+		} else {
+			$this->data['wrapping'] = '';
 		}
 
 		if (isset($this->request->get['quickconfirm'])) {
@@ -1309,7 +1356,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 	}
 
 	public function validate() {
-		if (isset($this->request->post['coupon']) || isset($this->request->post['voucher']) || isset($this->request->post['reward'])) {
+		if (isset($this->request->post['coupon']) || isset($this->request->post['voucher']) || isset($this->request->post['reward']) || isset($this->request->post['wrapping'])) {
 			return;
 		}
 
@@ -1501,30 +1548,6 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function zone() {
-		$this->load->model('localisation/zone');
-
-		$results = $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']);
-
-		$output = '<option value="">' . $this->language->get('text_select') . '</option>';
-
-		foreach ($results as $result) {
-			$output .= '<option value="' . $result['zone_id'] . '"';
-
-			if (isset($this->request->get['zone_id']) && ($this->request->get['zone_id'] == $result['zone_id'])) {
-				$output .= ' selected="selected"';
-			}
-
-			$output .= '>' . $result['name'] . '</option>';
-		}
-
-		if (!$results) {
-			$output .= '<option value="0">' . $this->language->get('text_none') . '</option>';
-		}
-
-		$this->response->setOutput($output);
-	}
-
 	public function shippingMethod() {
 		$json = array();
 
@@ -1607,6 +1630,16 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			}
 		}
 
+		$max_points = min($points, $points_total);
+
+		$sub_total = $this->cart->getSubTotal();
+
+		if ($points && $max_points > $sub_total) {
+			$reward_points = $sub_total;
+		} else {
+			$reward_points = $max_points;
+		}
+
 		if (empty($this->request->post['reward'])) {
 			$this->error['warning'] = $this->language->get('error_reward');
 		}
@@ -1615,8 +1648,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->error['warning'] = sprintf($this->language->get('error_points'), $this->request->post['reward']);
 		}
 
-		if ($this->request->post['reward'] > $points_total) {
-			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $points_total);
+		if ($this->request->post['reward'] > $reward_points) {
+			$this->error['warning'] = sprintf($this->language->get('error_maximum'), $reward_points);
 		}
 
 		return empty($this->error);

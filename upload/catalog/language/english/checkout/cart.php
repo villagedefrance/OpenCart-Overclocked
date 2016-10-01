@@ -16,7 +16,7 @@ $_['text_next']                               = 'What would you like to do next?
 $_['text_next_choice']                        = 'Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.';
 $_['text_use_coupon']                         = 'Use Coupon Code';
 $_['text_use_voucher']                        = 'Use Gift Voucher';
-$_['text_use_reward']                         = 'Use Reward Points (Available %s)';
+$_['text_use_reward']                         = 'Use Reward Points (available %s)';
 $_['text_shipping_estimate']                  = 'Estimate Shipping &amp; Taxes';
 $_['text_shipping_detail']                    = 'Enter your destination to get a shipping estimate.';
 $_['text_shipping_method']                    = 'Please select the preferred shipping method to use on this order.';
@@ -55,7 +55,7 @@ $_['column_total']                            = 'Total';
 // Entry
 $_['entry_coupon']                            = 'Enter your coupon here:';
 $_['entry_voucher']                           = 'Enter your gift voucher code here:';
-$_['entry_reward']                            = 'Points to use (Max %s):';
+$_['entry_reward']                            = 'Points to use (Maximum %s):';
 $_['entry_country']                           = 'Country:';
 $_['entry_zone']                              = 'Region / State:';
 $_['entry_postcode']                          = 'Post Code:';
