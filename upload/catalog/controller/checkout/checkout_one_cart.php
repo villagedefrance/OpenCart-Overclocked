@@ -335,6 +335,12 @@ class ControllerCheckoutCheckoutOneCart extends Controller {
 			);
 		}
 
+		$this->data['products_recurring'] = array();
+
+		$this->data['age_minimum'] = $age_minimum ? (int)$age_minimum : 0;
+		$this->data['age_logged'] = $age_logged;
+		$this->data['age_checked'] = $age_checked;
+
 		// Gift Voucher
 		$this->data['vouchers'] = array();
 
