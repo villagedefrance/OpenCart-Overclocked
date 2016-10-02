@@ -21,9 +21,9 @@
       <?php if ($wrapping_status) { ?>
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
           <?php if (isset($this->session->data['wrapping'])) { ?>
-            <input type="submit" name="remove_wrapping" value="<?php echo $button_wrapping_remove; ?>" class="button" />
+            <input type="submit" name="remove_wrapping" value="<?php echo $button_wrapping_remove; ?>" class="button-wrap-remove" />
           <?php } else { ?>
-            <input type="submit" name="add_wrapping" value="<?php echo $button_wrapping_add; ?>" class="button" />
+            <input type="submit" name="add_wrapping" value="<?php echo $button_wrapping_add; ?>" class="button-wrap-add" />
           <?php } ?>
         </form>
       <?php } ?>

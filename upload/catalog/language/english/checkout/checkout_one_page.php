@@ -59,8 +59,8 @@ $_['entry_voucher']                           = 'Enter your gift voucher code he
 $_['entry_reward']                            = 'Enter the number of points to use here (Maximum %s):';
 
 // Button
-$_['button_wrapping_add']                     = 'Add Gift Wrapping';
-$_['button_wrapping_remove']                  = 'Remove Gift Wrapping';
+$_['button_wrapping_add']                     = 'Add';
+$_['button_wrapping_remove']                  = 'Remove';
 
 // Success
 $_['text_coupon']                             = 'Success: Your coupon discount has been applied!';
