@@ -1,6 +1,6 @@
 <?php
 // Version
-define('VERSION', '1.8.2');
+define('VERSION', '1.8.3 Beta');
 define('REVISION', 20161002);
 define('RELEASED', '2016-10-02');
 
