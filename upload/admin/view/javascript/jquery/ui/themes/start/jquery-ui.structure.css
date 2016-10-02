@@ -9,6 +9,11 @@
  * http://api.jqueryui.com/category/theming/
  */
 
+.ui-draggable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
 /* Layout helpers
 ----------------------------------*/
 .ui-helper-hidden {
@@ -92,6 +97,89 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+.ui-resizable {
+	position: relative;
+}
+.ui-resizable-handle {
+	position: absolute;
+	font-size: 0.1px;
+	display: block;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
+	display: none;
+}
+.ui-resizable-n {
+	cursor: n-resize;
+	height: 7px;
+	width: 100%;
+	top: -5px;
+	left: 0;
+}
+.ui-resizable-s {
+	cursor: s-resize;
+	height: 7px;
+	width: 100%;
+	bottom: -5px;
+	left: 0;
+}
+.ui-resizable-e {
+	cursor: e-resize;
+	width: 7px;
+	right: -5px;
+	top: 0;
+	height: 100%;
+}
+.ui-resizable-w {
+	cursor: w-resize;
+	width: 7px;
+	left: -5px;
+	top: 0;
+	height: 100%;
+}
+.ui-resizable-se {
+	cursor: se-resize;
+	width: 12px;
+	height: 12px;
+	right: 1px;
+	bottom: 1px;
+}
+.ui-resizable-sw {
+	cursor: sw-resize;
+	width: 9px;
+	height: 9px;
+	left: -5px;
+	bottom: -5px;
+}
+.ui-resizable-nw {
+	cursor: nw-resize;
+	width: 9px;
+	height: 9px;
+	left: -5px;
+	top: -5px;
+}
+.ui-resizable-ne {
+	cursor: ne-resize;
+	width: 9px;
+	height: 9px;
+	right: -5px;
+	top: -5px;
+}
+.ui-selectable {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.ui-selectable-helper {
+	position: absolute;
+	z-index: 100;
+	border: 1px dotted black;
+}
+.ui-sortable-handle {
+	-ms-touch-action: none;
+	touch-action: none;
 }
 .ui-accordion .ui-accordion-header {
 	display: block;
@@ -220,6 +308,7 @@ input.ui-button.ui-button-icon-only {
 	height: 2.1em;
 	text-indent: -9999px;
 	white-space: nowrap;
+
 }
 
 input.ui-button.ui-icon-notext .ui-icon {
@@ -282,7 +371,6 @@ button.ui-button::-moz-focus-inner {
 
 /* Spinner specific style fixes */
 .ui-controlgroup-vertical .ui-spinner-input {
-
 	/* Support: IE8 only, Android < 4.4 only */
 	width: 75%;
 	width: calc( 100% - 2.4em );
@@ -580,80 +668,6 @@ button.ui-button::-moz-focus-inner {
 .ui-draggable .ui-dialog-titlebar {
 	cursor: move;
 }
-.ui-draggable-handle {
-	-ms-touch-action: none;
-	touch-action: none;
-}
-.ui-resizable {
-	position: relative;
-}
-.ui-resizable-handle {
-	position: absolute;
-	font-size: 0.1px;
-	display: block;
-	-ms-touch-action: none;
-	touch-action: none;
-}
-.ui-resizable-disabled .ui-resizable-handle,
-.ui-resizable-autohide .ui-resizable-handle {
-	display: none;
-}
-.ui-resizable-n {
-	cursor: n-resize;
-	height: 7px;
-	width: 100%;
-	top: -5px;
-	left: 0;
-}
-.ui-resizable-s {
-	cursor: s-resize;
-	height: 7px;
-	width: 100%;
-	bottom: -5px;
-	left: 0;
-}
-.ui-resizable-e {
-	cursor: e-resize;
-	width: 7px;
-	right: -5px;
-	top: 0;
-	height: 100%;
-}
-.ui-resizable-w {
-	cursor: w-resize;
-	width: 7px;
-	left: -5px;
-	top: 0;
-	height: 100%;
-}
-.ui-resizable-se {
-	cursor: se-resize;
-	width: 12px;
-	height: 12px;
-	right: 1px;
-	bottom: 1px;
-}
-.ui-resizable-sw {
-	cursor: sw-resize;
-	width: 9px;
-	height: 9px;
-	left: -5px;
-	bottom: -5px;
-}
-.ui-resizable-nw {
-	cursor: nw-resize;
-	width: 9px;
-	height: 9px;
-	left: -5px;
-	top: -5px;
-}
-.ui-resizable-ne {
-	cursor: ne-resize;
-	width: 9px;
-	height: 9px;
-	right: -5px;
-	top: -5px;
-}
 .ui-progressbar {
 	height: 2em;
 	text-align: left;
@@ -664,22 +678,13 @@ button.ui-button::-moz-focus-inner {
 	height: 100%;
 }
 .ui-progressbar .ui-progressbar-overlay {
-	background: #999;
+	background: #2191c0 url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50% repeat-x;
 	height: 100%;
 	filter: alpha(opacity=25); /* support: IE8 */
 	opacity: 0.25;
 }
 .ui-progressbar-indeterminate .ui-progressbar-value {
 	background-image: none;
-}
-.ui-selectable {
-	-ms-touch-action: none;
-	touch-action: none;
-}
-.ui-selectable-helper {
-	position: absolute;
-	z-index: 100;
-	border: 1px dotted black;
 }
 .ui-selectmenu-menu {
 	padding: 0;
@@ -785,10 +790,6 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-slider-vertical .ui-slider-range-max {
 	top: 0;
-}
-.ui-sortable-handle {
-	-ms-touch-action: none;
-	touch-action: none;
 }
 .ui-spinner {
 	position: relative;

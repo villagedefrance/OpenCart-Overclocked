@@ -17,13 +17,13 @@
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
 <link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet.css" />
-<link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.custom.min.css" />
+<link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
 <script type="text/javascript" src="view/javascript/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.12.1.custom.min.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.12.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
 <script type="text/javascript" src="view/javascript/common.js"></script>
