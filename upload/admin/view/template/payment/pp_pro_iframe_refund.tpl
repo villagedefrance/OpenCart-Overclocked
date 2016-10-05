@@ -26,22 +26,22 @@
           <input type="hidden" name="amount_original" value="<?php echo $amount_original; ?>" />
           <input type="hidden" name="currency_code" value="<?php echo $currency_code; ?>" />
           <tr>
-            <td><?php echo $entry_transaction_id; ?>:</td>
-            <td><input type="text" name="transaction_id" value="<?php echo $transaction_id; ?>" /></td>
+            <td><label for="input-transaction-id"><?php echo $entry_transaction_id; ?></label></td>
+            <td><input type="text" name="transaction_id" value="<?php echo $transaction_id; ?>" id="input-transaction-id" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_full_refund; ?>:</td>
+            <td><label for="id="refund_full""><?php echo $entry_full_refund; ?></label></td>
             <td>
               <input type="hidden" name="refund_full" value="0" />
               <input type="checkbox" name="refund_full" id="refund_full" value="1" <?php echo ($refund_available == '') ? 'checked="checked"' : ''; ?> onchange="refundAmount();" />
             </td>
           </tr>
-          <tr><?php echo ($refund_available == '') ? 'style="display:none;"' : ''; ?> id="partial_amount_row">
-            <td><?php echo $entry_amount; ?>:</td>
-            <td><input type="text" name="amount" value="<?php echo ($refund_available != '') ? $refund_available : ''; ?>" /></td>
+          <tr <?php echo ($refund_available == '') ? 'style="display:none;"' : ''; ?> id="partial_amount_row">
+            <td><label for="paypal_refund_amount"><?php echo $entry_amount; ?></label></td>
+            <td><input type="text" name="amount" id="paypal_refund_amount" value="<?php echo ($refund_available != '') ? $refund_available : ''; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_message; ?>:</td>
+            <td><label for="paypal_refund_message"><?php echo $entry_message; ?></label></td>
             <td><textarea name="refund_message" id="paypal_refund_message" cols="40" rows="5"></textarea></td>
           </tr>
         </table>

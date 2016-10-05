@@ -67,9 +67,9 @@ class ControllerPaymentPPProIframe extends Controller {
 		}
 
 		if (file_exists(DIR_APPLICATION . 'view/theme/' . $this->config->get('config_template') . '/stylesheet/stylesheet.css')) {
-			$this->data['stylesheet'] = '/catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/stylesheet.css';
+			$this->data['stylesheet'] = 'catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/stylesheet.css';
 		} else {
-			$this->data['stylesheet'] = '/catalog/view/theme/default/stylesheet/stylesheet.css';
+			$this->data['stylesheet'] = 'catalog/view/theme/default/stylesheet/stylesheet.css';
 		}
 
 		// Theme
@@ -120,10 +120,9 @@ class ControllerPaymentPPProIframe extends Controller {
 			$response = curl_exec($curl);
 
 			if (curl_errno($curl)) {
-				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe_test :: CURL failed ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
+        $this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: CURL failed ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
 			} else {
-				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe_test :: IPN REQUEST: ' . $request);
-				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe_test :: IPN RESPONSE: ' . $response);
+        $this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: IPN REQUEST: ' . $request . PHP_EOL . 'pp_pro_iframe :: IPN RESPONSE: ' . $response);
 
 				if ((strcmp($response, 'VERIFIED') == 0 || strcmp($response, 'UNVERIFIED') == 0) && isset($this->request->post['payment_status'])) {
 					$order_status_id = $this->config->get('pp_pro_iframe_canceled_reversal_status_id');
@@ -302,7 +301,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		parse_str($response, $response_data);
 
-		$this->model_payment_pp_pro_iframe->log(print_r(serialize($response_data), 1));
+    $this->model_payment_pp_pro_iframe->log(print_r(json_encode($response_data), true));
 
 		curl_close($curl);
 
