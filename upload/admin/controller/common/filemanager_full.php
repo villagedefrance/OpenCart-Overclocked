@@ -7,6 +7,14 @@ class ControllerCommonFileManagerFull extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
+			$this->data['directory'] = HTTPS_IMAGE . 'data/';
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$this->data['directory'] = HTTPS_IMAGE . 'data/';
+		} else {
+			$this->data['directory'] = HTTP_IMAGE . 'data/';
+		}
+
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
@@ -67,8 +75,6 @@ class ControllerCommonFileManagerFull extends Controller {
 		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['token'] = $this->session->data['token'];
-
-		$this->data['directory'] = HTTP_CATALOG . 'image/data/';
 
 		$this->load->model('tool/image');
 

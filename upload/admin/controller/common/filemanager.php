@@ -6,12 +6,15 @@ class ControllerCommonFileManager extends Controller {
 
 		$this->data['title'] = $this->language->get('heading_title');
 
-		if (isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) {
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
 			$this->data['base'] = HTTPS_SERVER;
+			$this->data['directory'] = HTTPS_IMAGE . 'data/';
 		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
 			$this->data['base'] = HTTPS_SERVER;
+			$this->data['directory'] = HTTPS_IMAGE . 'data/';
 		} else {
 			$this->data['base'] = HTTP_SERVER;
+			$this->data['directory'] = HTTP_IMAGE . 'data/';
 		}
 
 		$this->data['entry_folder'] = $this->language->get('entry_folder');
@@ -55,8 +58,6 @@ class ControllerCommonFileManager extends Controller {
 		$this->data['error_directory'] = $this->language->get('error_directory');
 
 		$this->data['token'] = $this->session->data['token'];
-
-		$this->data['directory'] = HTTP_CATALOG . 'image/data/';
 
 		$this->load->model('tool/image');
 
