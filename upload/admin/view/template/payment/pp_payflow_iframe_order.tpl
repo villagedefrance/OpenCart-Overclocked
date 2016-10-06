@@ -72,7 +72,7 @@ function markAsComplete() {
 	$('#capture-status').html('<?php echo $text_complete; ?>');
 }
 
-function doVoid(){
+function doVoid() {
 	if (confirm('<?php echo $text_confirm_void; ?>')) {
 		$.ajax({
 			type: 'POST',
@@ -96,6 +96,7 @@ function doVoid(){
 					html += ' <td class="left">' + data.success.time + '</td>';
 					html += ' <td class="left"></td>';
 					html += '</tr>';
+
 					$('#transaction-table tbody').append(html);
 
 					markAsComplete();

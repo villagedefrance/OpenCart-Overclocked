@@ -56,19 +56,19 @@ class ModelPaymentPPProIframe extends Model {
 	public function getTotalCaptured($paypal_iframe_order_id) {
 		$query = $this->db->query("SELECT SUM(amount) AS amount FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE paypal_iframe_order_id = '" . (int)$paypal_iframe_order_id . "' AND pending_reason != 'authorization' AND (payment_status = 'Partially-Refunded' OR payment_status = 'Completed' OR payment_status = 'Pending') AND transaction_entity = 'payment'");
 
-    return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row['amount'] : 0;
+		return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row['amount'] : 0;
 	}
 
 	public function getTotalRefunded($paypal_iframe_order_id) {
 		$query = $this->db->query("SELECT SUM(amount) AS amount FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE paypal_iframe_order_id = '" . (int)$paypal_iframe_order_id . "' AND payment_status = 'Refunded'");
 
-    return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row['amount'] : 0;
+		return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row['amount'] : 0;
 	}
 
 	public function getTotalRefundedTransaction($transaction_id) {
 		$query = $this->db->query("SELECT SUM(amount) AS amount FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE parent_transaction_id = '" . $this->db->escape($transaction_id) . "' AND payment_type = 'refund'");
 
-    return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row['amount'] : 0;
+		return (($query instanceof stdClass) && isset($query->row) && is_array($query->row)) ? $query->row['amount'] : 0;
 	}
 
 	public function getOrder($order_id) {
@@ -81,7 +81,6 @@ class ModelPaymentPPProIframe extends Model {
 			$order['captured'] = $this->getTotalCaptured($order['paypal_iframe_order_id']);
 
 			return $order;
-
 		} else {
 			return false;
 		}

@@ -326,7 +326,6 @@ class ControllerPaymentPPProIframe extends Controller {
 			$this->data['text_transactions'] = $this->language->get('text_transactions');
 			$this->data['text_complete'] = $this->language->get('text_complete');
 			$this->data['text_confirm_void'] = $this->language->get('text_confirm_void');
-			$this->data['error_capture'] = $this->language->get('error_capture');
 			$this->data['text_view'] = $this->language->get('text_view');
 			$this->data['text_refund'] = $this->language->get('text_refund');
 			$this->data['text_resend'] = $this->language->get('text_resend');
@@ -488,6 +487,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 			if ($this->request->post['refund_full'] == 0 && $this->request->post['amount'] == 0) {
 				$this->session->data['error'] = $this->language->get('error_capture');
+
 				$this->redirect($this->url->link('payment/pp_pro_iframe/refund', 'token=' . $this->session->data['token'] . '&transaction_id=' . $this->request->post['transaction_id'], 'SSL'));
 			} else {
 				$order_id = $this->model_payment_pp_pro_iframe->getOrderId($this->request->post['transaction_id']);
@@ -554,7 +554,7 @@ class ControllerPaymentPPProIframe extends Controller {
 						$this->redirect($this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $paypal_order['order_id'], 'SSL'));
 
 					} else {
-            $this->model_payment_pp_pro_iframe->log($result);
+						$this->model_payment_pp_pro_iframe->log($result);
 
 						$this->session->data['error'] = (isset($result['L_SHORTMESSAGE0']) ? $result['L_SHORTMESSAGE0'] : 'There was an error') . (isset($result['L_LONGMESSAGE0']) ? '<br />' . $result['L_LONGMESSAGE0'] : '');
 

@@ -2,10 +2,10 @@
 class ControllerPaymentPPProIframe extends Controller {
 
 	protected function index() {
+		$this->language->load('payment/pp_pro_iframe');
+
 		$this->load->model('checkout/order');
 		$this->load->model('payment/pp_pro_iframe');
-
-		$this->language->load('payment/pp_pro_iframe');
 
 		if ($this->config->get('pp_pro_iframe_checkout_method') == 'redirect') {
 			$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
@@ -120,9 +120,9 @@ class ControllerPaymentPPProIframe extends Controller {
 			$response = curl_exec($curl);
 
 			if (curl_errno($curl)) {
-        $this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: CURL failed ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
+				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: CURL failed ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
 			} else {
-        $this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: IPN REQUEST: ' . $request . PHP_EOL . 'pp_pro_iframe :: IPN RESPONSE: ' . $response);
+				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: IPN REQUEST: ' . $request . PHP_EOL . 'pp_pro_iframe :: IPN RESPONSE: ' . $response);
 
 				if ((strcmp($response, 'VERIFIED') == 0 || strcmp($response, 'UNVERIFIED') == 0) && isset($this->request->post['payment_status'])) {
 					$order_status_id = $this->config->get('pp_pro_iframe_canceled_reversal_status_id');
@@ -301,7 +301,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		parse_str($response, $response_data);
 
-    $this->model_payment_pp_pro_iframe->log(print_r(json_encode($response_data), true));
+		$this->model_payment_pp_pro_iframe->log(print_r(json_encode($response_data), true));
 
 		curl_close($curl);
 

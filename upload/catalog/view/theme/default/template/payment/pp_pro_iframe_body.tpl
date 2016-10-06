@@ -5,8 +5,8 @@
 <body>
   <?php if (!$error_connection) { ?>
     <form action="<?php echo $url; ?>" method="post" name="ppform" id="ppform">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="<?php echo $code; ?>">
+      <input type="hidden" name="cmd" value="_s-xclick" />
+      <input type="hidden" name="hosted_button_id" value="<?php echo $code; ?>" />
       <p style="text-align:center;">
         <input type="image" src="<?php echo ($this->config->get('config_secure') ? HTTPS_SERVER : HTTP_SERVER) . 'catalog/view/theme/<?php echo $template; ?>/image/loading.gif'; ?>" border="0" name="submit" alt="Loading..." style="margin-left:auto; margin-right:auto;" />
         <span style="font-family:arial; font-size:12px; font-weight:bold;"><?php echo $text_secure_connection; ?></span>
