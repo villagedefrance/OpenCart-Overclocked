@@ -38,10 +38,20 @@ class ControllerPaymentPPProPF extends Controller {
 		$this->data['entry_test'] = $this->language->get('entry_test');
 		$this->data['entry_transaction'] = $this->language->get('entry_transaction');
 		$this->data['entry_total'] = $this->language->get('entry_total');
+		$this->data['entry_total_max'] = $this->language->get('entry_total_max');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
+
+		$this->data['help_vendor'] = $this->language->get('help_vendor');
+		$this->data['help_user'] = $this->language->get('help_user');
+		$this->data['help_password'] = $this->language->get('help_password');
+		$this->data['help_partner'] = $this->language->get('help_partner');
+		$this->data['help_test'] = $this->language->get('help_test');
+		$this->data['help_transaction'] = $this->language->get('help_transaction');
+		$this->data['help_total'] = $this->language->get('help_total');
+		$this->data['help_total_max'] = $this->language->get('help_total_max');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
@@ -145,6 +155,12 @@ class ControllerPaymentPPProPF extends Controller {
 			$this->data['pp_pro_pf_total'] = $this->request->post['pp_pro_pf_total'];
 		} else {
 			$this->data['pp_pro_pf_total'] = $this->config->get('pp_pro_pf_total');
+		}
+
+		if (isset($this->request->post['pp_pro_pf_total_max'])) {
+			$this->data['pp_pro_pf_total_max'] = $this->request->post['pp_pro_pf_total_max'];
+		} else {
+			$this->data['pp_pro_pf_total_max'] = $this->config->get('pp_pro_pf_total_max');
 		}
 
 		if (isset($this->request->post['pp_pro_pf_order_status_id'])) {
