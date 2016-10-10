@@ -2,58 +2,60 @@
 <div class="content" id="payment">
   <table class="form">
     <tr>
-      <td><?php echo $entry_cc_owner; ?></td>
-      <td><input type="text" name="cc_owner" value="" /></td>
+      <td><span class="required">*</span> <label for="input-cc-owner"><?php echo $entry_cc_owner; ?></label></td>
+      <td><input type="text" name="cc_owner" id="input-cc-owner" value="" size="30" /></td>
     </tr>
     <tr>
-      <td><?php echo $entry_cc_type; ?></td>
-      <td><select name="cc_type">
+      <td><span class="required">*</span> <label for="input-cc-type"><?php echo $entry_cc_type; ?></label></td>
+      <td><select name="cc_type" id="input-cc-type>
         <?php foreach ($cards as $card) { ?>
           <option value="<?php echo $card['value']; ?>"><?php echo $card['text']; ?></option>
         <?php } ?>
       </select></td>
     </tr>
     <tr>
-      <td><?php echo $entry_cc_number; ?></td>
-      <td><input type="text" name="cc_number" value="" /></td>
+      <td><span class="required">*</span> <label for="input-cc-number"><?php echo $entry_cc_number; ?></label></td>
+      <td><input type="text" name="cc_number" id="input-cc-number" value="" size="30" /></td>
     </tr>
     <tr>
-      <td><?php echo $entry_cc_start_date; ?></td>
-      <td><select name="cc_start_date_month">
+      <td><label for="input-cc-start-date"><?php echo $entry_cc_start_date; ?><br /><span class="help"><?php echo $help_start_date; ?></span></label></td>
+      <td>
+        <select name="cc_start_date_month" id="input-cc-start-date">
         <?php foreach ($months as $month) { ?>
           <option value="<?php echo $month['value']; ?>"><?php echo $month['text']; ?></option>
         <?php } ?>
-      </select>
+        </select>
         /
-      <select name="cc_start_date_year">
+        <select name="cc_start_date_year">
         <?php foreach ($year_valid as $year) { ?>
           <option value="<?php echo $year['value']; ?>"><?php echo $year['text']; ?></option>
         <?php } ?>
-      </select>
-      <?php echo $text_start_date; ?></td>
+        </select>
+      </td>
     </tr>
     <tr>
-      <td><?php echo $entry_cc_expire_date; ?></td>
-      <td><select name="cc_expire_date_month">
+      <td><span class="required">*</span> <label for="input-cc-expire-date"><?php echo $entry_cc_expire_date; ?></label></td>
+      <td>
+        <select name="cc_expire_date_month" id="input-cc-expire-date">
         <?php foreach ($months as $month) { ?>
           <option value="<?php echo $month['value']; ?>"><?php echo $month['text']; ?></option>
         <?php } ?>
-      </select>
+        </select>
         /
-      <select name="cc_expire_date_year">
+        <select name="cc_expire_date_year">
         <?php foreach ($year_expire as $year) { ?>
           <option value="<?php echo $year['value']; ?>"><?php echo $year['text']; ?></option>
         <?php } ?>
-      </select></td>
+        </select>
+      </td>
     </tr>
     <tr>
-      <td><?php echo $entry_cc_cvv2; ?></td>
-      <td><input type="text" name="cc_cvv2" value="" size="3" /></td>
+      <td><span class="required">*</span> <label for="input-cc-cvv2"><?php echo $entry_cc_cvv2; ?></label></td>
+      <td><input type="text" name="cc_cvv2" id="input-cc-cvv2" value="" size="3" /></td>
     </tr>
     <tr>
-      <td><?php echo $entry_cc_issue; ?></td>
-      <td><input type="text" name="cc_issue" value="" size="1" />
-      <?php echo $text_issue; ?></td>
+      <td><label for="input-cc-issue"><?php echo $entry_cc_issue; ?><br /><span class="help"><?php echo $help_issue; ?></span></label></td>
+      <td><input type="text" name="cc_issue" id="input-cc-issue" value="" size="3" /></td>
     </tr>
   </table>
 </div>
@@ -65,28 +67,30 @@
 
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=payment/pp_pro_pf/send',
-		type: 'post',
-		data: $('#payment :input'),
-		dataType: 'json',
-		beforeSend: function() {
-			$('#button-confirm').attr('disabled', true);
-			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-confirm').attr('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(json) {
-			if (json['error']) {
-				alert(json['error']);
-			}
+  $.ajax({
+    url: 'index.php?route=payment/pp_pro_pf/send',
+    type: 'POST',
+    dataType: 'json',
+    data: $('#payment :input'),
+    cache: false,
+    beforeSend: function() {
+      $('#button-confirm').prop('disabled', true);
+      $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+    },
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+  .done(function(json) {
+    if (json['error']) {
+      alert(json['error']);
+    }
 
-			if (json['success']) {
-				location = json['success'];
-			}
-		}
-	});
+    if (json['redirect']) {
+      location = json['redirect'];
+    }
+  })
+  .always(function() {
+    $('#button-confirm').prop('disabled', false);
+    $('.attention').remove();
+  });
 });
 //--></script>
