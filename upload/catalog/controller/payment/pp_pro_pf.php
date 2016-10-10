@@ -154,53 +154,53 @@ class ControllerPaymentPPProPF extends Controller {
 			$json['error'] = 'CURL ERROR (' . curl_errno($curl) . ') :: ' . curl_error($curl);
 
 		} elseif ($response) {
-  		$response_info = array();
+			$response_info = array();
 
-  		parse_str($response, $response_info);
+			parse_str($response, $response_info);
 
-  		if ($response_info['RESULT'] == '0') {
-  			$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('config_order_status_id'));
+			if ($response_info['RESULT'] == '0') {
+				$this->model_checkout_order->confirm($this->session->data['order_id'], $this->config->get('config_order_status_id'));
 
-  			$message = '';
+				$message = '';
 
-  			if (isset($response_info['AVSCODE'])) {
-  				$message .= 'AVSCODE: ' . $response_info['AVSCODE'] . "\n";
-  			}
+				if (isset($response_info['AVSCODE'])) {
+					$message .= 'AVSCODE: ' . $response_info['AVSCODE'] . "\n";
+				}
 
-  			if (isset($response_info['CVV2MATCH'])) {
-  				$message .= 'CVV2MATCH: ' . $response_info['CVV2MATCH'] . "\n";
-  			}
+				if (isset($response_info['CVV2MATCH'])) {
+					$message .= 'CVV2MATCH: ' . $response_info['CVV2MATCH'] . "\n";
+				}
 
-  			if (isset($response_info['TRANSACTIONID'])) {
-  				$message .= 'TRANSACTIONID: ' . $response_info['TRANSACTIONID'] . "\n";
-  			}
+				if (isset($response_info['TRANSACTIONID'])) {
+					$message .= 'TRANSACTIONID: ' . $response_info['TRANSACTIONID'] . "\n";
+				}
 
-  			$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('pp_pro_pf_order_status_id'), $message, false);
+				$this->model_checkout_order->update($this->session->data['order_id'], $this->config->get('pp_pro_pf_order_status_id'), $message, false);
 
-  			$json['redirect'] = $this->url->link('checkout/success', '', 'SSL');
+				$json['redirect'] = $this->url->link('checkout/success', '', 'SSL');
 
-  		} else {
-  			switch ($response_info['RESULT']) {
-  				case '1':
-  				case '26':
-  					$json['error'] = $this->language->get('error_config');
-  					break;
-  				case '7':
-  					$json['error'] = $this->language->get('error_address');
-  					break;
-  				case '12':
-  					$json['error'] = $this->language->get('error_declined');
-  					break;
-  				case '23':
-  				case '24':
-  					$json['error'] = $this->language->get('error_invalid');
-  					break;
-  				default:
-  					$json['error'] = $this->language->get('error_general');
-  					break;
-  			}
-  		}
-  	}
+			} else {
+				switch ($response_info['RESULT']) {
+					case '1':
+					case '26':
+						$json['error'] = $this->language->get('error_config');
+						break;
+					case '7':
+						$json['error'] = $this->language->get('error_address');
+						break;
+					case '12':
+						$json['error'] = $this->language->get('error_declined');
+						break;
+					case '23':
+					case '24':
+						$json['error'] = $this->language->get('error_invalid');
+						break;
+					default:
+						$json['error'] = $this->language->get('error_general');
+						break;
+				}
+			}
+		}
 
 		curl_close($curl);
 

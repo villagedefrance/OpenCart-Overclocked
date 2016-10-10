@@ -67,6 +67,7 @@
 .footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 	float: left;
 	min-width: 150px;
+	display: block;
 }
 .footer-dark #footer > .column-one > ul, .footer-dark #footer > .column-two > ul, .footer-dark #footer > .column-three > ul, .footer-dark #footer > .column-four > ul {
 	list-style: url('../image/bullet-2.png');
