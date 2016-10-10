@@ -27,6 +27,7 @@
         <a href="#tab-general"><?php echo $tab_general; ?></a>
         <a href="#tab-footer"><?php echo $tab_footer; ?></a>
         <a href="#tab-options"><?php echo $tab_options; ?></a>
+        <a href="#tab-setup"><?php echo $tab_setup; ?></a>
         <a href="#tab-credits"><?php echo $tab_credits; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form" name="default">
@@ -357,6 +358,13 @@
             <?php } ?></td>
           </tr>
         </table>
+      </div>
+      <div id="tab-setup">
+        <div>
+          <?php echo $setup_system; ?><br />
+          <?php echo $setup_theme; ?><br />
+          <?php echo $setup_module; ?><br />
+        </div>
       </div>
       <div id="tab-credits">
         <table class="form">

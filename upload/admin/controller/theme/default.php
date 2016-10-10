@@ -40,6 +40,7 @@ class ControllerThemeDefault extends Controller {
 		$this->data['tab_general'] = $this->language->get('tab_general');
 		$this->data['tab_footer'] = $this->language->get('tab_footer');
 		$this->data['tab_options'] = $this->language->get('tab_options');
+		$this->data['tab_setup'] = $this->language->get('tab_setup');
 		$this->data['tab_credits'] = $this->language->get('tab_credits');
 
 		$this->data['entry_widescreen'] = $this->language->get('entry_widescreen');
@@ -65,6 +66,10 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_product_stock_limit'] = $this->language->get('entry_product_stock_limit');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
 		$this->data['entry_manufacturer_image'] = $this->language->get('entry_manufacturer_image');
+
+		$this->data['setup_system'] = $this->language->get('setup_system');
+		$this->data['setup_theme'] = $this->language->get('setup_theme');
+		$this->data['setup_module'] = $this->language->get('setup_module');
 
 		$this->data['info_theme'] = $this->language->get('info_theme');
 		$this->data['info_author'] = $this->language->get('info_author');
