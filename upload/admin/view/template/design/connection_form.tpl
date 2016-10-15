@@ -62,6 +62,7 @@
       <table id="route" class="list">
       <thead>
         <tr>
+          <td class="left"><?php echo $entry_icon; ?></td>
           <td class="left"><?php echo $entry_title; ?></td>
           <td class="left"><?php echo $entry_route; ?></td>
           <td></td>
@@ -71,6 +72,15 @@
       <?php foreach ($connection_routes as $connection_route) { ?>
       <tbody id="route-row<?php echo $route_row; ?>">
         <tr>
+          <td class="left"><select name="connection_route[<?php echo $route_row; ?>][icon]">
+          <?php foreach ($fonts as $font) { ?>
+            <?php if ($font['class'] == $connection_route['icon']) { ?>
+              <option value="<?php echo $font['class']; ?>" selected="selected"><?php echo $font['title']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $font['class']; ?>"><?php echo $font['title']; ?></option>
+            <?php } ?>
+          <?php } ?>
+          </select></td>
           <td class="left"><input type="text" name="connection_route[<?php echo $route_row; ?>][title]" value="<?php echo $connection_route['title']; ?>" size="30" /></td>
           <td class="left"><input type="text" name="connection_route[<?php echo $route_row; ?>][route]" value="<?php echo $connection_route['route']; ?>" size="50" /></td>
           <td class="center"><a onclick="$('#route-row<?php echo $route_row; ?>').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>
@@ -80,7 +90,7 @@
       <?php } ?>
       <tfoot>
         <tr>
-          <td colspan="2"></td>
+          <td colspan="3"></td>
           <td class="center"><a onclick="addRoute();" class="button"><?php echo $button_add_route; ?></a></td>
         </tr>
       </tfoot>
@@ -96,6 +106,11 @@ var route_row = <?php echo $route_row; ?>;
 function addRoute() {
 	html  = '<tbody id="route-row' + route_row + '">';
 	html += '  <tr>';
+	html += '    <td class="left"><select name="connection_route[' + route_row + '][icon]">';
+	<?php foreach ($fonts as $font) { ?>
+	html += '      <option value="<?php echo $font['class']; ?>"><?php echo addslashes($font['title']); ?></option>';
+	<?php } ?>
+	html += '    </select></td>';
 	html += '    <td class="left"><input type="text" name="connection_route[' + route_row + '][title]" value="" size="30" /></td>';
 	html += '    <td class="left"><input type="text" name="connection_route[' + route_row + '][route]" value="" size="50" /></td>';
 	html += '    <td class="center"><a onclick="$(\'#route-row' + route_row + '\').remove();" class="button-delete"><?php echo $button_remove; ?></a></td>';

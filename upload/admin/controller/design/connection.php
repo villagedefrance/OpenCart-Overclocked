@@ -300,6 +300,7 @@ class ControllerDesignConnection extends Controller {
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_backend'] = $this->language->get('entry_backend');
 		$this->data['entry_frontend'] = $this->language->get('entry_frontend');
+		$this->data['entry_icon'] = $this->language->get('entry_icon');
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_route'] = $this->language->get('entry_route');
 
@@ -385,6 +386,10 @@ class ControllerDesignConnection extends Controller {
 			$this->data['frontend'] = '';
 		}
 
+		$this->load->model('tool/font_awesome');
+
+		$this->data['fonts'] = $this->model_tool_font_awesome->getFonts();
+
 		if (isset($this->request->post['connection_route'])) {
 			$connection_routes = $this->request->post['connection_route'];
 		} elseif (isset($this->request->get['connection_id'])) {
@@ -398,6 +403,7 @@ class ControllerDesignConnection extends Controller {
 		foreach ($connection_routes as $connection_route) {
 			$this->data['connection_routes'][] = array(
 				'route_id' => $connection_route['connection_route_id'],
+				'icon'     => $connection_route['icon'],
 				'title'    => $connection_route['title'],
 				'route'    => $connection_route['route']
 			);

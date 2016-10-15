@@ -390,6 +390,7 @@ DROP TABLE IF EXISTS `oc_connection_route`;
 CREATE TABLE `oc_connection_route` (
   `route` varchar(255) NOT NULL,
   `title` varchar(64) NOT NULL,
+  `icon` varchar(64) NOT NULL,
   `connection_id` int(11) NOT NULL,
   `connection_route_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`connection_route_id`)

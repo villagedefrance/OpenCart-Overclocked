@@ -421,7 +421,7 @@ ul.menu a {
 }
 /* Menu - Sub level */
 ul.menu ul {
-	width: 180px;
+	width: 200px;
 	position: absolute;
 	left: -9999px;
 	background: url('../image/theme/transparent.png');
@@ -468,7 +468,7 @@ ul.menu ul {
 }
 .menu li li:hover ul, .menu li li li:hover ul, .menu li li li li:hover ul,
 .menu li li.onhover ul, .menu li li li.onhover ul, .menu li li li li.onhover ul {
-	left: 179px;
+	left: 199px;
 	top: -2px;
 }
 /* Content */
@@ -1169,10 +1169,15 @@ table.form {
 	border-collapse: collapse;
 	margin-bottom: 20px;
 }
-table.form > tbody > tr > td:first-child {
+table.form-slim {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 1px;
+}
+table.form > tbody > tr > td:first-child, table.form-slim > tbody > tr > td:first-child {
 	width: 240px;
 }
-table.form > tbody > tr > td {
+table.form > tbody > tr > td, table.form-slim > tbody > tr > td {
 	color: #111;
 	padding: 10px;
 	border-bottom: 1px dotted #CCC;
@@ -1238,6 +1243,11 @@ table.tool > tr > td {
 .htabs a.selected {
 	background: #FFF;
 	border-bottom: 1px solid #FFF;
+	outline: 0;
+}
+.list tbody tr:hover td > .htabs a.selected {
+	background-color: #FFFFCB;
+	border-bottom: 1px solid #FFFFCB;
 	outline: 0;
 }
 /* Vtabs */

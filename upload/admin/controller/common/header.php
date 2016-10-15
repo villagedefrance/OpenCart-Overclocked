@@ -320,6 +320,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['weight_class'] = $this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
 
+			// Openbay
 			$this->data['openbay_show_menu'] = $this->config->get('openbaymanager_show_menu');
 
 			$this->data['openbay_link_extension'] = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');
@@ -342,6 +343,7 @@ class ControllerCommonHeader extends Controller {
 				'amazonus' => $this->config->get('amazonus_status')
 			);
 
+			// Paypal Express
 			$this->data['pp_express_status'] = $this->config->get('pp_express_status');
 
 			$this->data['paypal_express'] = $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL');
@@ -357,6 +359,9 @@ class ControllerCommonHeader extends Controller {
 			} else {
 				$this->data['profile_exist'] = false;
 			}
+
+			// Menu Icons
+			$this->data['icons'] = $this->config->get('config_admin_menu_icons');
 
 			// Connections
 			$this->load->model('design/connection');
@@ -381,6 +386,7 @@ class ControllerCommonHeader extends Controller {
 						foreach ($connection_routes as $connection_route) {
 							$this->data['connections_li'][] = array(
 								'parent_id' => $connection_route['connection_id'],
+								'icon'      => $connection_route['icon'],
 								'title'     => $connection_route['title'],
 								'route'     => html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
 							);

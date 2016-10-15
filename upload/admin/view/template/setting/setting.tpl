@@ -1228,12 +1228,17 @@
       <div id="tab-preference">
         <table class="form">
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
-            <td><?php if ($error_catalog_limit) { ?>
-              <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" class="input-error" />
-              <span class="error"><?php echo $error_catalog_limit; ?></span>
+            <td><?php echo $entry_admin_menu_icons; ?></td>
+            <td><?php if ($config_admin_menu_icons) { ?>
+              <input type="radio" name="config_admin_menu_icons" value="1" id="menu-icons-on" class="radio" checked />
+              <label for="menu-icons-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_admin_menu_icons" value="0" id="menu-icons-off" class="radio" />
+              <label for="menu-icons-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } else { ?>
-              <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" />
+              <input type="radio" name="config_admin_menu_icons" value="1" id="menu-icons-on" class="radio" />
+              <label for="menu-icons-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_admin_menu_icons" value="0" id="menu-icons-off" class="radio" checked />
+              <label for="menu-icons-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
           <tr>
@@ -1243,6 +1248,15 @@
               <span class="error"><?php echo $error_admin_limit; ?></span>
             <?php } else { ?>
               <input type="text" name="config_admin_limit" value="<?php echo $config_admin_limit; ?>" size="3" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><span class="required">*</span> <?php echo $entry_catalog_limit; ?></td>
+            <td><?php if ($error_catalog_limit) { ?>
+              <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" class="input-error" />
+              <span class="error"><?php echo $error_catalog_limit; ?></span>
+            <?php } else { ?>
+              <input type="text" name="config_catalog_limit" value="<?php echo $config_catalog_limit; ?>" size="3" />
             <?php } ?></td>
           </tr>
         </table>

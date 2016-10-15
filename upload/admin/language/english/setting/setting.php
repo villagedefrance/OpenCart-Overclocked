@@ -152,8 +152,9 @@ $_['entry_return_status']          = 'Return Status:<span class="help">Set the d
 $_['entry_return_disable']         = 'Disable Returns:<span class="help">Caution! Returns are a legal requirement in many countries. Disable only if you sell non-returnable goods, such as digital downloads.</span>';
 $_['entry_voucher_min']            = 'Voucher Min:<span class="help">Minimum amount a customer can purchase a voucher for.</span>';
 $_['entry_voucher_max']            = 'Voucher Max:<span class="help">Maximum amount a customer can purchase a voucher for.</span>';
-$_['entry_catalog_limit']          = 'Default Items Per Page (<b>Catalog</b>):<span class="help">Determines how many catalog items will be displayed per page (products, categories, etc..)</span>';
+$_['entry_admin_menu_icons']       = 'Show Menu Icons (<b>Admin</b>):';
 $_['entry_admin_limit']            = 'Default Items Per Page (<b>Admin</b>):<span class="help">Determines how many admin items will be displayed per page (orders, customers, etc..)</span>';
+$_['entry_catalog_limit']          = 'Default Items Per Page (<b>Catalog</b>):<span class="help">Determines how many catalog items will be displayed per page (products, categories, etc..)</span>';
 $_['entry_pagination_hi']          = 'Enable Top Pagination:<span class="help">Show pagination links at the top of all lists.</span>';
 $_['entry_pagination_lo']          = 'Enable Bottom Pagination:<span class="help">Show pagination links at the bottom of all lists.</span>';
 $_['entry_autocomplete_category']  = 'Disable Category Auto-complete:<span class="help">Use standard html selectors in Category form.</span>';

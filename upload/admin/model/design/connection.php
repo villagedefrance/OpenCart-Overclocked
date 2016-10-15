@@ -11,9 +11,11 @@ class ModelDesignConnection extends Model {
 
 		if (isset($data['connection_route'])) {
 			foreach ($data['connection_route'] as $connection_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "connection_route SET connection_id = '" . (int)$connection_id . "', title = '" . $this->db->escape($connection_route['title']) . "', route = '" . $this->db->escape($connection_route['route']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "connection_route SET connection_id = '" . (int)$connection_id . "', icon = '" . $this->db->escape($connection_route['icon']) . "', title = '" . $this->db->escape($connection_route['title']) . "', route = '" . $this->db->escape($connection_route['route']) . "'");
 			}
 		}
+
+		$this->cache->delete('connection');
 	}
 
 	public function editConnection($connection_id, $data) {
@@ -23,14 +25,18 @@ class ModelDesignConnection extends Model {
 
 		if (isset($data['connection_route'])) {
 			foreach ($data['connection_route'] as $connection_route) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "connection_route SET connection_id = '" . (int)$connection_id . "', title = '" . $this->db->escape($connection_route['title']) . "', route = '" . $this->db->escape($connection_route['route']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "connection_route SET connection_id = '" . (int)$connection_id . "', icon = '" . $this->db->escape($connection_route['icon']) . "', title = '" . $this->db->escape($connection_route['title']) . "', route = '" . $this->db->escape($connection_route['route']) . "'");
 			}
 		}
+
+		$this->cache->delete('connection');
 	}
 
 	public function deleteConnection($connection_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "connection_route WHERE connection_id = '" . (int)$connection_id . "'");
+
+		$this->cache->delete('connection');
 	}
 
 	public function getConnection($connection_id) {

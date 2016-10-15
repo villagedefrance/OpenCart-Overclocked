@@ -706,6 +706,7 @@ DROP TABLE IF EXISTS `oc_connection_route`;
 CREATE TABLE `oc_connection_route` (
   `connection_route_id` int(11) NOT NULL AUTO_INCREMENT,
   `connection_id` int(11) NOT NULL,
+  `icon` varchar(64) NOT NULL,
   `title` varchar(64) NOT NULL,
   `route` varchar(255) NOT NULL,
   PRIMARY KEY (`connection_route_id`)

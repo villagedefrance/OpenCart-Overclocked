@@ -1,6 +1,6 @@
 <modification>
 	<id>VQMods Shortcut</id>
-	<version>2.0.0</version>
+	<version>2.0.1</version>
 	<vqmver>2.5.1</vqmver>
 	<author>Villagedefrance</author>
 	<file name="admin/controller/common/header.php">
@@ -21,8 +21,8 @@
 	</file>
 	<file name="admin/view/template/common/header.tpl">
 		<operation error="abort">
-			<search position="after"><![CDATA[<a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a>]]></search>
-			<add><![CDATA[          <li><a href="<?php echo $vqmods; ?>"><?php echo $text_vqmods; ?></a></li>]]></add>
+			<search position="after"><![CDATA[<a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_feed; ?></a>]]></search>
+			<add><![CDATA[          <li><a href="<?php echo $vqmods; ?>"><?php echo ($icons) ? '<i class="fa fa-signal"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_vqmods; ?></a></li>]]></add>
 		</operation>
 	</file>
 </modification>

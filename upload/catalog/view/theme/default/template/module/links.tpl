@@ -6,7 +6,7 @@
     <div class="box-information">
       <ul>
       <?php foreach ($connections_li as $connection_li) { ?>
-        <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><?php echo $connection_li['title']; ?></a></li>
+        <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><i class="fa <?php echo $connection_li['icon']; ?>"></i> &nbsp; <?php echo $connection_li['title']; ?></a></li>
       <?php } ?>
       </ul>
     </div>
@@ -17,7 +17,7 @@
     <div class="box-information">
       <ul>
       <?php foreach ($connections_li as $connection_li) { ?>
-        <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><?php echo $connection_li['title']; ?></a></li>
+        <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><i class="fa <?php echo $connection_li['icon']; ?>"></i> &nbsp; <?php echo $connection_li['title']; ?></a></li>
       <?php } ?>
       </ul>
     </div>

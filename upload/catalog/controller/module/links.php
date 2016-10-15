@@ -9,6 +9,8 @@ class ControllerModuleLinks extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		$this->document->addStyle('catalog/view/javascript/awesome/css/font-awesome.min.css');
+
 		// Module
 		$this->data['theme'] = $this->config->get($this->_name . '_theme');
 		$this->data['title'] = $this->config->get($this->_name . '_title' . $this->config->get('config_language_id'));
@@ -54,6 +56,7 @@ class ControllerModuleLinks extends Controller {
 
 					foreach ($connection_routes as $connection_route) {
 						$this->data['connections_li'][] = array(
+							'icon' => $connection_route['icon'],
 							'title' => $connection_route['title'],
 							'route' => html_entity_decode($connection_route['route'], ENT_QUOTES, 'UTF-8')
 						);
