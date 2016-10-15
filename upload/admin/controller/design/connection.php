@@ -177,6 +177,8 @@ class ControllerDesignConnection extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->data['module_links'] = $this->url->link('module/links', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['insert'] = $this->url->link('design/connection/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/connection/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -228,6 +230,7 @@ class ControllerDesignConnection extends Controller {
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_module'] = $this->language->get('button_module');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

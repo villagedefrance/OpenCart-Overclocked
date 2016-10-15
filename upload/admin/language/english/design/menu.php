@@ -25,7 +25,7 @@ $_['entry_title']         = 'Menu Title:';
 $_['entry_store']         = 'Stores:';
 $_['entry_status']        = 'Status:';
 
-// Buttons
+// Button
 $_['button_vertical']     = 'Menu Vertical';
 $_['button_horizontal']   = 'Menu Horizontal';
 

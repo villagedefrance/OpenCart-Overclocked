@@ -129,7 +129,7 @@ $(document).ready(function() {
           <li><a href="<?php echo $payment; ?>"><?php echo ($icons) ? '<i class="fa fa-credit-card"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_payment; ?></a></li>
           <li><a href="<?php echo $shipping; ?>"><?php echo ($icons) ? '<i class="fa fa-truck"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_shipping; ?></a></li>
           <li><a href="<?php echo $theme; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_theme; ?></a></li>
-          <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-briefcase"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_total; ?></a></li>
+          <li><a href="<?php echo $total; ?>"><?php echo ($icons) ? '<i class="fa fa-calculator"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_total; ?></a></li>
           <li><a href="<?php echo $fraud; ?>"><?php echo ($icons) ? '<i class="fa fa-shield"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_fraud; ?></a></li>
           <li><a href="<?php echo $feed; ?>"><?php echo ($icons) ? '<i class="fa fa-feed"></i>&nbsp;&nbsp;' : ''; ?><?php echo $text_feed; ?></a></li>
           <?php if ($openbay_show_menu == 1) { ?>
