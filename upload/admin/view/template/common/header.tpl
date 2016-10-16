@@ -107,9 +107,9 @@ $(document).ready(function() {
               <li><a href="<?php echo $review; ?>"><?php echo ($icons) ? '<i class="fa fa-comments"></i>' : ''; ?><?php echo $text_review; ?></a></li>
             </ul>
           </li>
-          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-plug"></i>' : ''; ?><?php echo $text_attribute; ?></a>
+          <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-columns"></i>' : ''; ?><?php echo $text_attribute; ?></a>
             <ul>
-              <li><a href="<?php echo $attribute; ?>"><?php echo ($icons) ? '<i class="fa fa-plug"></i>' : ''; ?><?php echo $text_attribute; ?></a></li>
+              <li><a href="<?php echo $attribute; ?>"><?php echo ($icons) ? '<i class="fa fa-columns"></i>' : ''; ?><?php echo $text_attribute; ?></a></li>
               <li><a href="<?php echo $attribute_group; ?>"><?php echo ($icons) ? '<i class="fa fa-wrench"></i>' : ''; ?><?php echo $text_attribute_group; ?></a></li>
             </ul>
           </li>
