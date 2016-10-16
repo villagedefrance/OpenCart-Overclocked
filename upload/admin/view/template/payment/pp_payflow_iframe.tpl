@@ -39,12 +39,12 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span> <?php echo $entry_password; ?><br /><span class="help"><?php echo $help_password; ?></span></td>
+            <td><span class="required">*</span>&nbsp;<label for="input-password"><?php echo $entry_password; ?></label></td>
             <td><?php if ($error_password) { ?>
-              <input type="text" name="pp_payflow_iframe_password" value="<?php echo $pp_payflow_iframe_password; ?>" size="40" class="input-error" />
+              <input type="text" name="pp_payflow_iframe_password" id="input-password" value="<?php echo $pp_payflow_iframe_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $error_password; ?></span>
             <?php } else { ?>
-              <input type="text" name="pp_payflow_iframe_password" value="<?php echo $pp_payflow_iframe_password; ?>" size="40" />
+              <input type="text" name="pp_payflow_iframe_password" id="input-password" value="<?php echo $pp_payflow_iframe_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -57,38 +57,38 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_transaction_method; ?></td>
-            <td><select name="pp_payflow_iframe_transaction_method">
+            <td><label for="input-live-demo"><?php echo $entry_test; ?><br /><span class="help"><?php echo $help_test; ?></span></label></td>
+            <td><select name="pp_payflow_iframe_test" id="input-live-demo">
+              <?php if ($pp_payflow_iframe_test) { ?>
+                <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+                <option value="0"><?php echo $text_no; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_yes; ?></option>
+                <option value="0" selected="selected"><?php echo $text_no; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="input-debug"><?php echo $entry_debug; ?><br /><span class="help"><?php echo $help_debug; ?></span></label></td>
+            <td><select name="pp_payflow_iframe_debug" id="input-debug">
+              <?php if ($pp_payflow_iframe_debug) { ?>
+                <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                <option value="0"><?php echo $text_disabled; ?></option>
+              <?php } else { ?>
+                <option value="1"><?php echo $text_enabled; ?></option>
+                <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
+            <td><label for="input-transaction"><?php echo $entry_transaction_method; ?><br /><span class="help"><?php echo $help_transaction_method; ?></span></label></td>
+            <td><select name="pp_payflow_iframe_transaction_method" id="input-transaction">
               <?php if ($pp_payflow_iframe_transaction_method == 'authorization') { ?>
                 <option value="sale"><?php echo $text_sale; ?></option>
                 <option value="authorization" selected="selected"><?php echo $text_authorization; ?></option>
               <?php } else { ?>
                 <option value="sale" selected="selected"><?php echo $text_sale; ?></option>
                 <option value="authorization"><?php echo $text_authorization; ?></option>
-              <?php } ?>
-            </select></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_test; ?></td>
-            <td>
-              <?php if ($pp_payflow_iframe_test) { ?>
-                <input type="radio" name="pp_payflow_iframe_test" value="1" checked="checked" /><?php echo $text_yes; ?>
-                <input type="radio" name="pp_payflow_iframe_test" value="0" /><?php echo $text_no; ?>
-              <?php } else { ?>
-                <input type="radio" name="pp_payflow_iframe_test" value="1" /><?php echo $text_yes; ?>
-                <input type="radio" name="pp_payflow_iframe_test" value="0" checked="checked" /><?php echo $text_no; ?>
-              <?php } ?>
-            </td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_debug; ?><br /><span class="help"><?php echo $help_debug; ?></span></td>
-            <td><select name="pp_payflow_iframe_debug">
-              <?php if ($pp_payflow_iframe_debug) { ?>
-                <option value="1" selected="selected"><?php echo $text_yes; ?></option>
-                <option value="0"><?php echo $text_no; ?></option>
-              <?php } else { ?>
-                <option value="1"><?php echo $text_yes; ?></option>
-                <option value="0" selected="selected"><?php echo $text_no; ?></option>
               <?php } ?>
             </select></td>
           </tr>
@@ -117,12 +117,16 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_total; ?></td>
-            <td><input type="text" name="pp_payflow_iframe_total" value="<?php echo $pp_payflow_iframe_total; ?>" /></td>
+            <td><label for="input-total"><?php echo $entry_total; ?><br /><span class="help"><?php echo $help_total; ?></span></label></td>
+            <td><input type="text" name="pp_payflow_iframe_total" id="input-total" value="<?php echo $pp_payflow_iframe_total; ?>" /></td>
           </tr>
           <tr>
-            <td><?php echo $entry_geo_zone; ?></td>
-            <td><select name="pp_payflow_iframe_geo_zone_id">
+            <td><label for="input-total-max"><?php echo $entry_total_max; ?><br /><span class="help"><?php echo $help_total_max; ?></span></label></td>
+            <td><input type="text" name="pp_payflow_iframe_total_max" id="input-total-max" value="<?php echo $pp_payflow_iframe_total_max; ?>" /></td>
+          </tr>
+          <tr>
+            <td><label for="input-geo-zone"><?php echo $entry_geo_zone; ?></label></td>
+            <td><select name="pp_payflow_iframe_geo_zone_id" id="input-geo-zone">
               <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $pp_payflow_iframe_geo_zone_id) { ?>
@@ -134,8 +138,8 @@
             </select></td>
           </tr>
           <tr>
-            <td><?php echo $entry_status; ?></td>
-            <td><select name="pp_payflow_iframe_status">
+            <td><label for="input-status"><?php echo $entry_status; ?></label></td>
+            <td><select name="pp_payflow_iframe_status" id="input-status">
               <?php if ($pp_payflow_iframe_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
