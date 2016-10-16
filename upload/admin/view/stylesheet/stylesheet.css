@@ -471,6 +471,9 @@ ul.menu ul {
 	left: 199px;
 	top: -2px;
 }
+.menu li a > .fa {
+	margin-right: 9px;
+}
 /* Content */
 #content {
 	background: #FFF url('../image/theme/background.png') 0px 1px repeat-x;
