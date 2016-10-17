@@ -125,9 +125,14 @@
             </tr>
             <tr>
               <td><?php echo $text_mysql; ?></td>
-              <td><?php echo $text_on; ?></td>
-              <td><?php echo extension_loaded('mysql') ? 'On' : 'Off'; ?></td>
-              <td><?php echo extension_loaded('mysql') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+              <td><?php echo (phpversion() < '7.0') ? $text_on : $text_off; ?></td>
+              <?php if (phpversion() < '7.0') { ?>
+                <td><?php echo extension_loaded('mysql') ? 'On' : 'Off'; ?></td>
+                <td><?php echo extension_loaded('mysql') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+              <?php } else { ?>
+                <td><?php echo 'Off'; ?></td>
+                <td><?php echo '<img src="view/image/success.png" alt="" />'; ?></td>
+              <?php } ?>
             </tr>
             <tr>
               <td><?php echo $text_gd; ?></td>

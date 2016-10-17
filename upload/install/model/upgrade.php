@@ -595,7 +595,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		}
 
 		// Create Special layout
-		$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout WHERE name LIKE 'Special' LIMIT 1";
+		$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout WHERE name LIKE 'Special' LIMIT 0,1";
 
 		$query_name = $this->db->query($sql);
 

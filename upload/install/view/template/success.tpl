@@ -12,10 +12,10 @@
   <div class="finalize">
     <div><a href="../"><img src="view/image/screenshot_1.png" alt="" /></a><br />
       <a href="../"><?php echo $text_shop; ?></a>
-	</div>
+    </div>
     <div><a href="../admin/"><img src="view/image/screenshot_2.png" alt="" /></a><br />
       <a href="../admin/"><?php echo $text_login; ?></a>
-	</div>
+    </div>
   </div>
 </div>
 <?php echo $footer; ?>

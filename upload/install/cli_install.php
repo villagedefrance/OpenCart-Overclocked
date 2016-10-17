@@ -66,7 +66,7 @@ function usage() {
 		'--db_port', '3306',
 		'--username', 'admin',
 		'--password', 'admin',
-		'--email', 'youremail@example.com',
+		'--email', 'email@example.com',
 		'--agree_tnc', 'yes',
 		'--http_server', 'http://localhost/opencart')
 	);
@@ -161,7 +161,7 @@ function checkRequirements() {
 		$error = 'Warning: OpenCart OCE will not work with session.auto_start enabled!';
 	}
 
-	if (!extension_loaded('mysql')) {
+	if (phpversion() < '7.0' && !extension_loaded('mysql')) {
 		$error = 'Warning: MySQL extension needs to be loaded for OpenCart OCE to work!';
 	}
 

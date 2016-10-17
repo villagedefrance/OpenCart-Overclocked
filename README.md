@@ -37,6 +37,12 @@ Powered by the Latest Scripts:
 - CKEditor 4.5.11 Full.
 - ...
 
+Coming soon in 1.8.3.0!
+- Added Font Awesome.
+- Added Admin menu icons.
+- improved PHP 7.0+ support.
+- ...
+
 New in 1.8.2.0 (current release)!
 - Full SSL support in Catalog.
 - New One Page Checkout!

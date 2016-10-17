@@ -26,7 +26,7 @@
             <option value="mysqli"><?php echo $text_mysqli; ?></option>
           <?php } ?>
         <?php } ?>
-        <?php if ($mysql) { ?>
+        <?php if (phpversion() < '7.0' && $mysql) { ?>
           <?php if ($db_driver == 'mysql') { ?>
             <option value="mysql" selected="selected"><?php echo $text_mysql; ?></option>
           <?php } else { ?>
@@ -145,7 +145,7 @@
     </fieldset>
     <div id="start" class="buttons">
       <div class="left"><a href="<?php echo $back; ?>" class="button"><?php echo $button_back; ?></a></div>
-      <div class="right"><input type="submit" value="<?php echo $button_install; ?>" class="button" onclick="return progress()" /></div>
+      <div class="right"><input type="submit" value="<?php echo $button_install; ?>" class="button" onclick="return progress();" /></div>
     </div>
   </form>
 </div>
