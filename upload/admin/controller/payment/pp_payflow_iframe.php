@@ -386,11 +386,11 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 				}
 
 				$call_data = array(
-					'TENDER'          => 'C',  // Credit Card
-					'TRXTYPE'         => 'D',  // Delayed Capture
-					'ORIGID'          => $paypal_order['transaction_reference'],
-					'AMT'             => $this->request->post['amount'],
-					'CAPTURECOMPLETE'	=> $complete
+					'TENDER'            => 'C',
+					'TRXTYPE'           => 'D',
+					'ORIGID'            => $paypal_order['transaction_reference'],
+					'AMT'               => $this->request->post['amount'],
+					'CAPTURECOMPLETE'   => $complete
 				);
 
 				$result = $this->model_payment_pp_payflow_iframe->call($call_data);

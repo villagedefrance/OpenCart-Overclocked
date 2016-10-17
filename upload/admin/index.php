@@ -1,8 +1,8 @@
 <?php
 // Version
 define('VERSION', '1.8.3 RC1');
-define('REVISION', 20161016);
-define('RELEASED', '2016-10-16');
+define('REVISION', 20161017);
+define('RELEASED', '2016-10-17');
 
 // Configuration
 if (file_exists('config.php')) {
