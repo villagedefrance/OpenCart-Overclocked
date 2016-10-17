@@ -48,12 +48,7 @@ class ModelPaymentPPPayflowIFrame extends Model {
 	}
 
 	public function addTransaction($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order_transaction SET "
-		. "order_id = " . (int)$data['order_id'] . ", "
-		. "transaction_reference = '" . $this->db->escape($data['transaction_reference']) . "', "
-		. "transaction_type = '" . $this->db->escape($data['type']) . "', "
-		. "time = NOW(), "
-		. "amount = '" . $this->db->escape($data['amount']) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_payflow_iframe_order_transaction SET order_id = " . (int)$data['order_id'] . ", transaction_reference = '" . $this->db->escape($data['transaction_reference']) . "', transaction_type = '" . $this->db->escape($data['type']) . "', `time` = NOW(), amount = '" . $this->db->escape($data['amount']) . "'");
 	}
 
 	public function getTransactions($order_id) {
@@ -118,7 +113,9 @@ class ModelPaymentPPPayflowIFrame extends Model {
 				'curl_error' => curl_error($ch),
 				'curl_errno' => curl_errno($ch)
 			);
+
 			$this->log($log_data, 'CURL failed');
+
 			return false;
 		}
 
@@ -140,4 +137,3 @@ class ModelPaymentPPPayflowIFrame extends Model {
 		}
 	}
 }
-

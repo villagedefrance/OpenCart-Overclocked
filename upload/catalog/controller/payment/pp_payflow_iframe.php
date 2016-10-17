@@ -3,7 +3,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 	protected function index() {
 		$this->language->load('payment/pp_payflow_iframe');
-		
+
 		$this->load->model('checkout/order');
 		$this->load->model('payment/pp_payflow_iframe');
 		$this->load->model('localisation/country');
@@ -77,7 +77,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 				'SECURETOKEN'   => $secure_token
 			);
 
-      // Use parameters to embed the PayPal hosted page in an iframe tag.
+			// Use parameters to embed the PayPal hosted page in an iframe tag.
 			$this->data['iframe_url'] = $payflow_url . '?' . http_build_query($iframe_params, '', '&');
 			$this->data['checkout_method'] = $this->config->get('pp_payflow_iframe_checkout_method');
 

@@ -38,34 +38,34 @@
 
 <script type="text/javascript"><!--
 function refund() {
-  var amount = $('#input-refund-amount').val();
+	var amount = $('#input-refund-amount').val();
 
-  $.ajax({
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      'transaction_reference': '<?php echo $transaction_reference; ?>',
-      'amount': amount
-    },
-    url: 'index.php?route=payment/pp_payflow_iframe/do_refund&token=<?php echo $token; ?>',
-    beforeSend: function() {
-      $('#button-refund').hide();
-      $('#button-refund').after('<img src="view/image/loading.gif" alt="" class="loading" />');
-    },
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-  .done(function(data) {
-    if ('error' in data) {
-      alert(data.error);
-    } else {
-      alert(data.success);
-      $('#input-refund-amount').val('0.00');
-    }
-  })
-  .always(function() {
-    $('.loading').remove();
-    $('#button-refund').show();
-  });
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			'transaction_reference': '<?php echo $transaction_reference; ?>',
+			'amount': amount
+		},
+		url: 'index.php?route=payment/pp_payflow_iframe/do_refund&token=<?php echo $token; ?>',
+		beforeSend: function() {
+			$('#button-refund').hide();
+			$('#button-refund').after('<img src="view/image/loading.gif" alt="" class="loading" />');
+		},
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+	.done(function(data) {
+		if ('error' in data) {
+			alert(data.error);
+		} else {
+			alert(data.success);
+			$('#input-refund-amount').val('0.00');
+		}
+	})
+	.always(function() {
+		$('.loading').remove();
+		$('#button-refund').show();
+	});
 }
 //--></script>
 

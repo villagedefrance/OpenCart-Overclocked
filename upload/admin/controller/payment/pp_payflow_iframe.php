@@ -375,7 +375,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 			$order_id = $this->request->post['order_id'];
 
 			$paypal_order = $this->model_payment_pp_payflow_iframe->getOrder($order_id);
-// Unused ?			$paypal_transactions = $this->model_extension_payment_pp_payflow_iframe->getTransactions($order_id);
+
 			$order_info = $this->model_sale_order->getOrder($order_id);
 
 			if ($paypal_order && $order_info) {
@@ -413,7 +413,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 					$actions[] = array(
 						'title' => $this->language->get('text_refund'),
-						'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $result['PNREF'] . '&token=' . $this->session->data['token'])
+						'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $result['PNREF'] . '&token=' . $this->session->data['token'], 'SSL')
 					);
 
 					$json['success'] = array(
@@ -557,14 +557,14 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 							$transaction_type = $this->language->get('text_sale');
 							$actions[] = array(
 								'title' => $this->language->get('text_refund'),
-								'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $transaction['transaction_reference'] . '&token=' . $this->session->data['token'])
+								'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $transaction['transaction_reference'] . '&token=' . $this->session->data['token'], 'SSL')
 							);
 							break;
 						case 'D':
 							$transaction_type = $this->language->get('text_capture');
 							$actions[] = array(
 								'title' => $this->language->get('text_refund'),
-								'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $transaction['transaction_reference'] . '&token=' . $this->session->data['token'])
+								'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $transaction['transaction_reference'] . '&token=' . $this->session->data['token'], 'SSL')
 							);
 							break;
 						case 'A':

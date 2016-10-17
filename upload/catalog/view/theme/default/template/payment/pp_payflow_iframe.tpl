@@ -4,7 +4,7 @@
   <div class="attention"><?php echo $attention; ?></div>
 <?php } else { ?>
   <?php if ($checkout_method == 'iframe') { ?>
-    <iframe src="<?php echo $iframe_url; ?>" scrolling="no" width="570px" height="540px" frameBorder="0"></iframe>
+    <iframe src="<?php echo $iframe_url; ?>" scrolling="no" width="570px" height="540px"></iframe>
   <?php } else { ?>
     <div class="buttons">
       <div class="right">

@@ -69,110 +69,110 @@
 
 <script type="text/javascript"><!--
 function markAsComplete() {
-  $('#capture-status').html('<?php echo addslashes($text_complete); ?>');
-  $('#complete-entry, #reauthorise-entry').html('-');
+	$('#capture-status').html('<?php echo addslashes($text_complete); ?>');
+	$('#complete-entry, #reauthorise-entry').html('-');
 }
 
 function doVoid() {
-  if (confirm('<?php echo addslashes($text_confirm_void); ?>')) {
-    $.ajax({
-      type: 'POST',
-      dataType: 'json',
-      data: {'order_id':<?php echo $order_id; ?> },
-      url: 'index.php?route=payment/pp_payflow_iframe/do_void&token=<?php echo $token; ?>',
-      beforeSend: function() {
-        $('#button-void').hide();
-        $('#button-void').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-void" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(data) {
-      if ('error' in data) {
-        alert(data.error);
-      } else {
-        var html = '';
+	if (confirm('<?php echo addslashes($text_confirm_void); ?>')) {
+		$.ajax({
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id':<?php echo $order_id; ?> },
+			url: 'index.php?route=payment/pp_payflow_iframe/do_void&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('#button-void').hide();
+				$('#button-void').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-void" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(data) {
+			if ('error' in data) {
+				alert(data.error);
+			} else {
+				var html = '';
 
-        html += '<tr>';
-        html += ' <td class="left">' + data.success.transaction_reference + '</td>';
-        html += ' <td class="left">' + data.success.transaction_type + '</td>';
-        html += ' <td class="left">' + data.success.amount + '</td>';
-        html += ' <td class="left">' + data.success.time + '</td>';
-        html += ' <td class="left"></td>';
-        html += '</tr>';
+				html += '<tr>';
+				html += ' <td class="left">' + data.success.transaction_reference + '</td>';
+				html += ' <td class="left">' + data.success.transaction_type + '</td>';
+				html += ' <td class="left">' + data.success.amount + '</td>';
+				html += ' <td class="left">' + data.success.time + '</td>';
+				html += ' <td class="left"></td>';
+				html += '</tr>';
 
-        $('#transaction-table tbody').append(html);
+				$('#transaction-table tbody').append(html);
 
-        markAsComplete();
-      }
-    })
-    .always(function() {
-      $('.loading').remove();
-      $('#button-void').show();
-    });
-  }
+				markAsComplete();
+			}
+		})
+		.always(function() {
+			$('.loading').remove();
+			$('#button-void').show();
+		});
+	}
 }
 
 function doCapture() {
-  var amt = $('#input-capture-amount').val();
+	var amt = $('#input-capture-amount').val();
 
-  if (amt == '' || amt == 0) {
-    alert('<?php echo addslashes($error_capture); ?>');
-    return false;
-  } else {
-    var captureComplete;
+	if (amt == '' || amt == 0) {
+		alert('<?php echo addslashes($error_capture); ?>');
+		return false;
+	} else {
+		var captureComplete;
 
-    if ($('#input-capture-complete').is(':checked')) {
-      captureComplete = 1;
-    } else {
-      captureComplete = 0;
-    }
+		if ($('#input-capture-complete').is(':checked')) {
+			captureComplete = 1;
+		} else {
+			captureComplete = 0;
+		}
 
-    $.ajax({
-      url: 'index.php?route=payment/pp_payflow_iframe/do_capture&token=<?php echo $token; ?>',
-      type: 'POST',
-      data: {
-        'order_id': <?php echo $order_id; ?>,
-        'amount': amt,
-        'complete': captureComplete
-      },
-      dataType: 'json',
-      beforeSend: function() {
-        $('#button-capture').hide();
-        $('#button-capture').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-capture" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(data) {
-      if ('error' in data) {
-        alert(data.error);
-      } else {
-        var html = '';
+		$.ajax({
+			url: 'index.php?route=payment/pp_payflow_iframe/do_capture&token=<?php echo $token; ?>',
+			type: 'POST',
+			data: {
+				'order_id': <?php echo $order_id; ?>,
+				'amount': amt,
+				'complete': captureComplete
+			},
+			dataType: 'json',
+			beforeSend: function() {
+				$('#button-capture').hide();
+				$('#button-capture').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-capture" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(data) {
+			if ('error' in data) {
+				alert(data.error);
+			} else {
+				var html = '';
 
-        html += '<tr>';
-        html += ' <td class="left">' + data.success.transaction_reference + '</td>';
-        html += ' <td class="left">' + data.success.transaction_type + '</td>';
-        html += ' <td class="left">' + data.success.amount + '</td>';
-        html += ' <td class="left">' + data.success.time + '</td>';
-        html += ' <td class="left">';
+				html += '<tr>';
+				html += ' <td class="left">' + data.success.transaction_reference + '</td>';
+				html += ' <td class="left">' + data.success.transaction_type + '</td>';
+				html += ' <td class="left">' + data.success.amount + '</td>';
+				html += ' <td class="left">' + data.success.time + '</td>';
+				html += ' <td class="left">';
 
-        $.each(data.success.actions, function(index, value) {
-          html += ' [<a href="' + value.href + '">' + value.title + '</a>] ';
-        });
+				$.each(data.success.actions, function(index, value) {
+					html += ' [<a href="' + value.href + '">' + value.title + '</a>] ';
+				});
 
-        html += '</td>';
-        html += '</tr>';
+				html += '</td>';
+				html += '</tr>';
 
-        $('#transaction-table tbody').append(html);
+				$('#transaction-table tbody').append(html);
 
-        if (captureComplete == 1) {
-          markAsComplete();
-        }
-      }
-    })
-    .always(function() {
-      $('.loading').remove();
-      $('#button-capture').show();
-    });
-  }
+				if (captureComplete == 1) {
+					markAsComplete();
+				}
+			}
+		})
+		.always(function() {
+			$('.loading').remove();
+			$('#button-capture').show();
+		});
+	}
 }
 //--></script>
