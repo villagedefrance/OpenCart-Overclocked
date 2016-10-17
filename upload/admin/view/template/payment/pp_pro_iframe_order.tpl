@@ -2,7 +2,7 @@
 <table class="form">
   <tr>
     <td><?php echo $text_capture_status; ?></td>
-    <td id="capture_status"><?php echo $paypal_order['capture_status']; ?></td>
+    <td id="capture-status"><?php echo $paypal_order['capture_status']; ?></td>
   </tr>
   <tr>
     <td><?php echo $text_amount_auth; ?></td>
@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td><?php echo $text_amount_refunded; ?></td>
-    <td id="paypal_refunded"><?php echo $paypal_order['refunded']; ?></td>
+    <td id="paypal-refunded"><?php echo $paypal_order['refunded']; ?></td>
   </tr>
   <?php if ($paypal_order['capture_status'] != 'Complete') { ?>
   <tr class="paypal_capture">
@@ -43,7 +43,7 @@
   <tr>
     <td><?php echo $text_transactions; ?>: </td>
     <td>
-      <table class="list" id="paypal_transactions">
+      <table class="list" id="paypal-transactions">
         <thead>
           <tr>
             <td class="left"><strong><?php echo $column_trans_id; ?></strong></td>
@@ -133,7 +133,7 @@ function capture() {
 
           $('#paypal_captured').text(data.data.captured);
           $('#paypal_capture_amount').val(data.data.remaining);
-          $('#paypal_transactions').append(html);
+          $('#paypal-transactions').append(html);
 
           if (data.data.void != '') {
             html += '<tr>';
@@ -148,7 +148,7 @@ function capture() {
           }
 
           if (data.data.status == 1) {
-            $('#capture_status').text('<?php echo addslashes($text_complete); ?>');
+            $('#capture-status').text('<?php echo addslashes($text_complete); ?>');
             $('.paypal_capture').hide();
           }
         }
@@ -168,7 +168,7 @@ function capture() {
             html += '<td class="left"><a onclick="resendTransaction(this); return false;" href="<?php echo $resend_link; ?>&paypal_iframe_order_transaction_id=' + data.failed_transaction.paypal_iframe_order_transaction_id + '"><?php echo addslashes($text_resend); ?></a></td>';
             html += '</tr>';
 
-            $('#paypal_transactions').append(html);
+            $('#paypal-transactions').append(html);
           }
         }
     })
@@ -205,8 +205,8 @@ function doVoid() {
         html += '<td class="left"></td>';
         html += '</tr>';
 
-        $('#paypal_transactions').append(html);
-        $('#capture_status').text('<?php echo addslashes($text_complete); ?>');
+        $('#paypal-transactions').append(html);
+        $('#capture-status').text('<?php echo addslashes($text_complete); ?>');
         $('.paypal_capture_live').hide();
       }
 
@@ -246,7 +246,7 @@ function reauthorise() {
       html += '<td class="left"></td>';
       html += '</tr>';
 
-      $('#paypal_transactions').append(html);
+      $('#paypal-transactions').append(html);
       alert('<?php echo addslashes($text_reauthorised); ?>');
     }
 

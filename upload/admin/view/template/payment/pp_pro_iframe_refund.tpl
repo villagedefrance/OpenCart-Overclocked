@@ -16,7 +16,7 @@
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $text_refund; ?></h1>
       <div class="buttons">
         <?php if ($cancel) { ?>
-          <a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a>
+          <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
         <?php } ?>
       </div>
     </div>
