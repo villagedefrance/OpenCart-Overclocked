@@ -12,6 +12,7 @@
     <div class="heading">
       <h1><img src="view/image/theme.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a onclick="location = '<?php echo $settings; ?>';" class="button"><?php echo $button_settings; ?></a>
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
@@ -383,6 +384,10 @@
           <tr>
             <td><?php echo $info_support; ?></td>
             <td><?php echo $text_info_support; ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $info_preview; ?></td>
+            <td><?php echo $image_preview; ?></td>
           </tr>
         </table>
       </div>

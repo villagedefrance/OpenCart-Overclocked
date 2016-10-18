@@ -161,8 +161,11 @@ class ControllerSettingStore extends Controller {
 		$this->data['column_url'] = $this->language->get('column_url');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_themes'] = $this->language->get('button_themes');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+
+		$this->data['themes'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

@@ -52,6 +52,10 @@ $_['info_theme']                = 'Theme';
 $_['info_author']               = 'Author';
 $_['info_license']              = 'License';
 $_['info_support']              = 'Support';
+$_['info_preview']              = 'Preview';
+
+// Button
+$_['button_settings']           = 'Settings';
 
 // Text Info
 $_['text_info_theme']           = 'Default - OverClocked Edition';

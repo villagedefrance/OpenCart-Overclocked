@@ -242,6 +242,9 @@ $_['entry_file_max_size']          = 'Maximum File Size:<span class="help">Set t
 $_['entry_file_extension_allowed'] = 'Allowed File Extensions:<span class="help">Add which file extensions are allowed to be uploaded. Use a new line for each value.</span>';
 $_['entry_file_mime_allowed']      = 'Allowed File Mime Types:<span class="help">Add which file mime types are allowed to be uploaded. Use a new line for each value.</span>';
 
+// Button
+$_['button_themes']                = 'Themes';
+
 // Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']             = 'Warning: You do not have permission to modify <b>Settings</b> !';

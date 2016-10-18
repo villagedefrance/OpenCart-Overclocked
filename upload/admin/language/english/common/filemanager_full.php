@@ -55,7 +55,7 @@ $_['error_uploaded']      = 'Warning: File could not be uploaded for an unknown 
 $_['error_permission']    = 'Warning: Permission Denied!';
 
 // Button
-$_['button_exit']         = 'Exit';
+$_['button_exit']         = 'Close';
 $_['button_folder']       = 'New Folder';
 $_['button_delete']       = 'Delete';
 $_['button_move']         = 'Move';

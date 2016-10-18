@@ -74,6 +74,9 @@ $_['entry_image_newspopup']        = 'News Image Popup Size:';
 $_['entry_image_cart']             = 'Cart Image Size:';
 $_['entry_secure']                 = 'Use SSL:<span class="help">To use SSL check with your host if a SSL certificate is installed.</span>';
 
+// Button
+$_['button_themes']                = 'Themes';
+
 // Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']             = 'Warning: You do not have permission to modify <b>Stores</b> !';

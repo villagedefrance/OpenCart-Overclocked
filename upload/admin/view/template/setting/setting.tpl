@@ -15,6 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/setting.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a onclick="location = '<?php echo $themes; ?>';" class="button"><?php echo $button_themes; ?></a>
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>

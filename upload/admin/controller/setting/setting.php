@@ -291,9 +291,12 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_file_extension_allowed'] = $this->language->get('entry_file_extension_allowed');
 		$this->data['entry_file_mime_allowed'] = $this->language->get('entry_file_mime_allowed');
 
+		$this->data['button_themes'] = $this->language->get('button_themes');
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
+
+		$this->data['themes'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

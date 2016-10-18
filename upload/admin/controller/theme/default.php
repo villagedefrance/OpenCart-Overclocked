@@ -75,12 +75,14 @@ class ControllerThemeDefault extends Controller {
 		$this->data['info_author'] = $this->language->get('info_author');
 		$this->data['info_license'] = $this->language->get('info_license');
 		$this->data['info_support'] = $this->language->get('info_support');
+		$this->data['info_preview'] = $this->language->get('info_preview');
 
 		$this->data['text_info_theme'] = $this->language->get('text_info_theme');
 		$this->data['text_info_author'] = $this->language->get('text_info_author');
 		$this->data['text_info_license'] = $this->language->get('text_info_license');
 		$this->data['text_info_support'] = $this->language->get('text_info_support');
 
+		$this->data['button_settings'] = $this->language->get('button_settings');
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -113,6 +115,8 @@ class ControllerThemeDefault extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->data['settings'] = $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['action'] = $this->url->link('theme/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
@@ -127,6 +131,23 @@ class ControllerThemeDefault extends Controller {
 		} else {
 			$this->data['active'] = false;
 		}
+
+		// Get template preview
+		if ((isset($this->request->server['HTTPS']) && (($this->request->server['HTTPS'] == 'on') || ($this->request->server['HTTPS'] == '1'))) || ($this->request->server['HTTPS'] == '443')) {
+			$server = HTTPS_CATALOG;
+		} elseif (isset($this->request->server['HTTP_X_FORWARDED_PROTO']) && $this->request->server['HTTP_X_FORWARDED_PROTO'] == 'https') {
+			$server = HTTPS_CATALOG;
+		} else {
+			$server = HTTP_CATALOG;
+		}
+
+		if (file_exists(DIR_IMAGE . 'templates/' . $this->_name . '.png')) {
+			$image = $server . 'image/templates/' . $this->_name . '.png';
+		} else {
+			$image = $server . 'image/no_image.jpg';
+		}
+
+		$this->data['image_preview'] = '<img src="' . $image . '" alt="" style="border:1px solid #EEE;" />';
 
 		// General
 		if (isset($this->request->post[$this->_name . '_widescreen'])) {
