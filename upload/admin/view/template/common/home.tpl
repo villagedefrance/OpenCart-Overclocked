@@ -48,7 +48,7 @@
       <div class="overview">
         <div class="dashboard-heading"><?php echo $text_overview; ?></div>
         <div class="dashboard-content">
-          <table class="list" style="margin-bottom:10px;">
+          <table class="list" style="margin-bottom:9px;">
             <tr>
               <td class="left"><?php echo $text_total_sale; ?></td>
               <td class="right"><?php echo $total_sale; ?></td>

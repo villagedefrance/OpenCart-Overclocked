@@ -13,34 +13,38 @@
       <div class="overview">
         <div class="dashboard-heading"><?php echo $text_overview; ?></div>
         <div class="dashboard-content">
-          <table class="list" style="margin-bottom:10px;">
+          <table class="list" style="margin-bottom:9px;">
             <tr>
               <td class="left"><b><?php echo $text_total_offers; ?></b></td>
-              <td class="right"><b><?php echo $total_offers; ?></b></td>
+              <td class="right" style="width:36px;"><b><?php echo $total_offers; ?></b></td>
             </tr>
+          </table>
+          <table class="list" style="margin-bottom:9px;">
             <tr>
               <td class="left"><?php echo $text_total_p2p; ?></td>
-              <td class="right"><?php echo $total_p2p; ?></td>
+              <td class="right" style="width:36px;"><?php echo $total_p2p; ?></td>
             </tr>
             <tr>
               <td class="left"><?php echo $text_total_p2c; ?></td>
-              <td class="right"><?php echo $total_p2c; ?></td>
+              <td class="right" style="width:36px;"><?php echo $total_p2c; ?></td>
             </tr>
             <tr>
               <td class="left"><?php echo $text_total_c2p; ?></td>
-              <td class="right"><?php echo $total_c2p; ?></td>
+              <td class="right" style="width:36px;"><?php echo $total_c2p; ?></td>
             </tr>
             <tr>
               <td class="left"><?php echo $text_total_c2c; ?></td>
-              <td class="right"><?php echo $total_c2c; ?></td>
+              <td class="right" style="width:36px;"><?php echo $total_c2c; ?></td>
             </tr>
+          </table>
+          <table class="list" style="margin-bottom:9px;">
             <tr>
               <td class="left"><b><?php echo $text_total_discount; ?></b></td>
-              <td class="right"><b><?php echo $total_discount; ?></b></td>
+              <td class="right" style="width:36px;"><b><?php echo $total_discount; ?></b></td>
             </tr>
             <tr>
               <td class="left"><b><?php echo $text_total_special; ?></b></td>
-              <td class="right"><b><?php echo $total_special; ?></b></td>
+              <td class="right" style="width:36px;"><b><?php echo $total_special; ?></b></td>
             </tr>
           </table>
         </div>
