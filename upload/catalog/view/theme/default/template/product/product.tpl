@@ -619,8 +619,7 @@ $(document).ready(function() {
 		overlayColor: '#666',
 		overlayOpacity: 0.3,
 		overlayShow: true,
-		hideOnOverlayClick: true,
-		autoScale: true
+		hideOnOverlayClick: true
 	});
 });
 //--></script>

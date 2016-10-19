@@ -4,29 +4,22 @@
  *
  * Examples and documentation at: http://igorlino.github.io/fancybox-plus/
  *
- * Version: 1.3.9 (29.09.2016)
- * Requires: jQuery v1.3+
+ * Base version: 1.3.9 (29.09.2016)
+ * Custom version: 1.4.0, for OC Overclocked Edition
  *
- * Licensed under the MIT license:
- *   http://www.opensource.org/licenses/mit-license.php
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
+
 ;
 (function ($) {
     var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
-
         selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
-
         ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i,
-
         loadingTimer, loadingFrame = 1,
-
         titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], {prop: 0}),
-
         isIE6 = navigator.userAgent.match(/msie [6]/i) && !window.XMLHttpRequest,
 
-    /*
-     * Private methods
-     */
+    /* Private methods */
         _abort = function() {
             loading.hide();
 
@@ -349,12 +342,12 @@
 
                 pos = wrap.position(),
 
-                    start_pos = {
-                        top: pos.top,
-                        left: pos.left,
-                        width: wrap.width(),
-                        height: wrap.height()
-                    };
+                start_pos = {
+                    top: pos.top,
+                    left: pos.left,
+                    width: wrap.width(),
+                    height: wrap.height()
+                };
 
                 equal = (start_pos.width == final_pos.width && start_pos.height == final_pos.height);
 
@@ -423,19 +416,17 @@
                 title.show();
             }
 
-            content
-                .css({
-                    'width': final_pos.width - currentOpts.padding * 2,
-                    'height': selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
-                })
-                .html(tmp.contents());
+            content.css({
+                'width': final_pos.width - currentOpts.padding * 2,
+                'height': selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+            }).html(tmp.contents());
 
             wrap.css(final_pos).fadeIn(currentOpts.transitionIn == 'none' ? 0 : currentOpts.speedIn, _finish);
         },
         _format_title = function(title) {
             if (title && title.length) {
                 if (currentOpts.titlePosition == 'float') {
-                    return '<table id="fbplus-title-float-wrap" cellpadding="0" cellspacing="0"><tr><td id="fbplus-title-float-left"></td><td id="fbplus-title-float-main">' + title + '</td><td id="fbplus-title-float-right"></td></tr></table>';
+                    return '<table id="fbplus-title-float-wrap"><tr><td id="fbplus-title-float-left"></td><td id="fbplus-title-float-main">' + title + '</td><td id="fbplus-title-float-right"></td></tr></table>';
                 }
 
                 return '<div id="fbplus-title-' + currentOpts.titlePosition + '">' + title + '</div>';
@@ -464,20 +455,15 @@
                 return;
             }
 
-            title
-                .addClass('fbplus-title-' + currentOpts.titlePosition)
-                .html(titleStr)
-                .appendTo('body')
-                .show();
+            title.addClass('fbplus-title-' + currentOpts.titlePosition).html(titleStr).appendTo('body').show();
 
             switch (currentOpts.titlePosition) {
                 case 'inside':
-                    title
-                        .css({
-                            'width': final_pos.width - (currentOpts.padding * 2),
-                            'marginLeft': currentOpts.padding,
-                            'marginRight': currentOpts.padding
-                        });
+                    title.css({
+                        'width': final_pos.width - (currentOpts.padding * 2),
+                        'marginLeft': currentOpts.padding,
+                        'marginRight': currentOpts.padding
+                    });
 
                     titleHeight = title.outerHeight(true);
 
@@ -487,29 +473,23 @@
                     break;
 
                 case 'over':
-                    title
-                        .css({
-                            'marginLeft': currentOpts.padding,
-                            'width': final_pos.width - (currentOpts.padding * 2),
-                            'bottom': currentOpts.padding
-                        })
-                        .appendTo(outer);
+                    title.css({
+                        'marginLeft': currentOpts.padding,
+                        'width': final_pos.width - (currentOpts.padding * 2),
+                        'bottom': currentOpts.padding
+                    }).appendTo(outer);
                     break;
 
                 case 'float':
-                    title
-                        .css('left', parseInt((title.width() - final_pos.width - 40) / 2, 10) * -1)
-                        .appendTo(wrap);
+                    title.css('left', parseInt((title.width() - final_pos.width - 40) / 2, 10) * -1).appendTo(wrap);
                     break;
 
                 default:
-                    title
-                        .css({
-                            'width': final_pos.width - (currentOpts.padding * 2),
-                            'paddingLeft': currentOpts.padding,
-                            'paddingRight': currentOpts.padding
-                        })
-                        .appendTo(wrap);
+                    title.css({
+                        'width': final_pos.width - (currentOpts.padding * 2),
+                        'paddingLeft': currentOpts.padding,
+                        'paddingRight': currentOpts.padding
+                    }).appendTo(wrap);
                     break;
             }
 
@@ -521,7 +501,6 @@
                     if (e.keyCode == 27 && currentOpts.enableEscapeButton) {
                         e.preventDefault();
                         $.fancyboxPlus.close();
-
                     } else if ((e.keyCode == 37 || e.keyCode == 39) && currentOpts.enableKeyboardNav && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'SELECT') {
                         e.preventDefault();
                         $.fancyboxPlus[e.keyCode == 37 ? 'prev' : 'next']();
@@ -1008,8 +987,8 @@
             close = $('<a id="fbplus-close"></a>'),
             title = $('<div id="fbplus-title"></div>'),
 
-            nav_left = $('<a href="javascript:;" id="fbplus-left"><span class="fancy-ico" id="fbplus-left-ico"></span></a>'),
-            nav_right = $('<a href="javascript:;" id="fbplus-right"><span class="fancy-ico" id="fbplus-right-ico"></span></a>')
+            nav_left = $('<a id="fbplus-left"><span class="fancy-ico" id="fbplus-left-ico"></span></a>'),
+            nav_right = $('<a id="fbplus-right"><span class="fancy-ico" id="fbplus-right-ico"></span></a>')
         );
 
         close.click($.fancyboxPlus.close);
@@ -1044,7 +1023,7 @@
             loading.addClass('fbplus-ie6');
             wrap.addClass('fbplus-ie6');
 
-            $('<iframe id="fbplus-hide-sel-frame" src="' + (/^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank' ) + '" scrolling="no" border="0" frameborder="0" tabindex="-1"></iframe>').prependTo(outer);
+            $('<iframe id="fbplus-hide-sel-frame" src="' + (/^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank' ) + '" scrolling="no" tabindex="-1"></iframe>').prependTo(outer);
         }
     };
 
@@ -1106,4 +1085,5 @@
     $(document).ready(function () {
         $.fancyboxPlus.init();
     });
+
 })(jQuery);
