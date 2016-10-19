@@ -321,18 +321,6 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'zoomlens';
 
-			} elseif ($this->config->get('config_lightbox') == 'magnific') {
-				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
-				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
-
-				if ($product_info['image']) {
-					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
-				} else {
-					$this->data['thumb'] = '';
-				}
-
-				$this->data['lightbox'] = 'magnific';
-
 			} elseif ($this->config->get('config_lightbox') == 'swipebox') {
 				$this->document->addStyle('catalog/view/javascript/jquery/swipebox/css/swipebox.min.css');
 				$this->document->addScript('catalog/view/javascript/jquery/swipebox/js/jquery.swipebox.min.js');
@@ -344,6 +332,30 @@ class ControllerProductProduct extends Controller {
 				}
 
 				$this->data['lightbox'] = 'swipebox';
+
+				} elseif ($this->config->get('config_lightbox') == 'magnific') {
+				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
+				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
+
+				if ($product_info['image']) {
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+				} else {
+					$this->data['thumb'] = '';
+				}
+
+				$this->data['lightbox'] = 'magnific';
+
+			} elseif ($this->config->get('config_lightbox') == 'fancybox') {
+				$this->document->addStyle('catalog/view/javascript/jquery/fancybox-plus/css/jquery.fancybox-plus.css');
+				$this->document->addScript('catalog/view/javascript/jquery/fancybox-plus/js/jquery.fancybox-plus.min.js');
+
+				if ($product_info['image']) {
+					$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
+				} else {
+					$this->data['thumb'] = '';
+				}
+
+				$this->data['lightbox'] = 'fancybox';
 
 			} else {
 				$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');

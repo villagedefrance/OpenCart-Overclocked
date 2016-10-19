@@ -44,7 +44,7 @@
           </div>
         <?php } ?>
       <?php } ?>
-      <?php if ($lightbox == 'swipebox') { ?>
+      <?php if ($lightbox == 'fancybox') { ?>
         <?php if ($thumb) { ?>
           <?php if ($stock_label_large) { ?>
             <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
@@ -56,13 +56,13 @@
             <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
           <?php } ?>
           <div class="image">
-            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="fancybox" rel="gallery"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
           </div>
         <?php } ?>
         <?php if ($images) { ?>
           <div class="image-additional">
             <?php foreach ($images as $image) { ?>
-              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="fancybox" rel="gallery"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
             <?php } ?>
           </div>
         <?php } ?>
@@ -86,6 +86,29 @@
           <div class="image-additional">
             <?php foreach ($images as $image) { ?>
               <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="magnific"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
+            <?php } ?>
+          </div>
+        <?php } ?>
+      <?php } ?>
+      <?php if ($lightbox == 'swipebox') { ?>
+        <?php if ($thumb) { ?>
+          <?php if ($stock_label_large) { ?>
+            <div class="stock-large"><img src="<?php echo $stock_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && $offers && $offer_label_large) { ?>
+            <div class="offer-large"><img src="<?php echo $offer_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$stock_label_large && !$offers && $special_label_large) { ?>
+            <div class="special-large"><img src="<?php echo $special_label_large; ?>" alt="" /></div>
+          <?php } ?>
+          <div class="image">
+            <a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a>
+          </div>
+        <?php } ?>
+        <?php if ($images) { ?>
+          <div class="image-additional">
+            <?php foreach ($images as $image) { ?>
+              <a href="<?php echo $image['popup']; ?>" title="<?php echo $heading_title; ?>" class="swipebox"><img src="<?php echo $image['thumb']; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" /></a>
             <?php } ?>
           </div>
         <?php } ?>
@@ -584,17 +607,20 @@ $(document).ready(function() {
 //--></script>
 <?php } ?>
 
-<?php if ($lightbox == 'swipebox') { ?>
+<?php if ($lightbox == 'fancybox') { ?>
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('.swipebox').swipebox({
-		useCSS: true,
-		useSVG: true,
-		initialIndexOnArray: 0,
-		hideCloseButtonOnMobile: false,
-		hideBarsDelay: 0,
-		videoMaxWidth: 800,
-		loopAtEnd: true
+	$('a.fancybox').attr('rel', 'gallery').fancyboxPlus({
+		transitionIn: 'elastic',
+		transitionOut: 'elastic',
+		cyclic: true,
+		speedIn: 500,
+		speedOut: 150,
+		overlayColor: '#666',
+		overlayOpacity: 0.3,
+		overlayShow: true,
+		hideOnOverlayClick: true,
+		autoScale: true
 	});
 });
 //--></script>
@@ -606,6 +632,22 @@ $(document).ready(function() {
 	$('.magnific').magnificPopup({
 		type: 'image',
 		gallery: { enabled:true }
+	});
+});
+//--></script>
+<?php } ?>
+
+<?php if ($lightbox == 'swipebox') { ?>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.swipebox').swipebox({
+		useCSS: true,
+		useSVG: true,
+		initialIndexOnArray: 0,
+		hideCloseButtonOnMobile: false,
+		hideBarsDelay: 0,
+		videoMaxWidth: 800,
+		loopAtEnd: true
 	});
 });
 //--></script>

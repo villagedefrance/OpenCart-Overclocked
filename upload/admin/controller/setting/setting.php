@@ -62,8 +62,9 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_forms'] = $this->language->get('text_forms');
 		$this->data['text_colorbox'] = $this->language->get('text_colorbox');
-		$this->data['text_swipebox'] = $this->language->get('text_swipebox');
+		$this->data['text_fancybox'] = $this->language->get('text_fancybox');
 		$this->data['text_magnific'] = $this->language->get('text_magnific');
+		$this->data['text_swipebox'] = $this->language->get('text_swipebox');
 		$this->data['text_zoomlens'] = $this->language->get('text_zoomlens');
 		$this->data['text_captcha'] = $this->language->get('text_captcha');
 		$this->data['text_cookies'] = $this->language->get('text_cookies');
