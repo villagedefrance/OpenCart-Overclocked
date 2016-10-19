@@ -130,6 +130,7 @@ class ControllerSettingStore extends Controller {
 			'store_id' => 0,
 			'name'     => $this->config->get('config_name') . $this->language->get('text_default'),
 			'url'      => HTTP_CATALOG,
+			'template' => $this->model_setting_store->getTemplate(0),
 			'selected' => isset($this->request->post['selected']) && in_array(0, $this->request->post['selected']),
 			'action'   => $action
 		);
@@ -148,6 +149,7 @@ class ControllerSettingStore extends Controller {
 				'store_id' => $result['store_id'],
 				'name'     => $result['name'],
 				'url'      => $result['url'],
+				'template' => $this->model_setting_store->getTemplate($result['store_id']),
 				'selected' => isset($this->request->post['selected']) && in_array($result['store_id'], $this->request->post['selected']),
 				'action'   => $action
 			);
@@ -159,6 +161,7 @@ class ControllerSettingStore extends Controller {
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_url'] = $this->language->get('column_url');
+		$this->data['column_template'] = $this->language->get('column_template');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_themes'] = $this->language->get('button_themes');
@@ -211,6 +214,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['text_shipping'] = $this->language->get('text_shipping');
 		$this->data['text_payment'] = $this->language->get('text_payment');
 
+		$this->data['info_one_page'] = $this->language->get('info_one_page');
 		$this->data['info_express'] = $this->language->get('info_express');
 
 		$this->data['entry_url'] = $this->language->get('entry_url');
@@ -239,6 +243,7 @@ class ControllerSettingStore extends Controller {
 		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_cart_weight'] = $this->language->get('entry_cart_weight');
 		$this->data['entry_guest_checkout'] = $this->language->get('entry_guest_checkout');
+		$this->data['entry_one_page_checkout'] = $this->language->get('entry_one_page_checkout');
 		$this->data['entry_express_checkout'] = $this->language->get('entry_express_checkout');
 		$this->data['entry_checkout'] = $this->language->get('entry_checkout');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
@@ -319,6 +324,12 @@ class ControllerSettingStore extends Controller {
 		} else {
 			$this->data['error_title'] = '';
 		} 
+
+		if (isset($this->error['multiple_checkout'])) {
+			$this->data['error_multiple_checkout'] = $this->error['multiple_checkout'];
+		} else {
+			$this->data['error_multiple_checkout'] = '';
+		}
 
 		if (isset($this->error['catalog_limit'])) {
 			$this->data['error_catalog_limit'] = $this->error['catalog_limit'];
@@ -682,6 +693,14 @@ class ControllerSettingStore extends Controller {
 			$this->data['config_guest_checkout'] = '';
 		}
 
+		if (isset($this->request->post['config_one_page_checkout'])) {
+			$this->data['config_one_page_checkout'] = $this->request->post['config_one_page_checkout'];
+		} elseif (isset($store_info['config_one_page_checkout'])) {
+			$this->data['config_one_page_checkout'] = $store_info['config_one_page_checkout'];
+		} else {
+			$this->data['config_one_page_checkout'] = '';
+		}
+
 		if (isset($this->request->post['config_express_checkout'])) {
 			$this->data['config_express_checkout'] = $this->request->post['config_express_checkout'];
 		} elseif (isset($store_info['config_express_checkout'])) {
@@ -1006,12 +1025,16 @@ class ControllerSettingStore extends Controller {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if (!$this->request->post['config_title']) {
+		if (!$this->request->post['config_title'] || (utf8_strlen($this->request->post['config_title']) < 3) || (utf8_strlen($this->request->post['config_title']) > 32)) {
 			$this->error['title'] = $this->language->get('error_title');
 		}
 
 		if (!$this->request->post['config_catalog_limit']) {
 			$this->error['catalog_limit'] = $this->language->get('error_limit');
+		}
+
+		if (($this->request->post['config_one_page_checkout'] == 1) && ($this->request->post['config_express_checkout'] == 1)) {
+			$this->error['multiple_checkout'] = $this->language->get('error_multiple_checkout');
 		}
 
 		if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {

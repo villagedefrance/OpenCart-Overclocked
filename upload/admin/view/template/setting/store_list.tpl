@@ -29,6 +29,7 @@
             <label for="check-all"><span></span></label></td>
             <td class="left"><?php echo $column_name; ?></td>
             <td class="left"><?php echo $column_url; ?></td>
+            <td class="left"><?php echo $column_template; ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
         </thead>
@@ -45,6 +46,7 @@
             <?php } ?></td>
             <td class="left"><?php echo $store['name']; ?></td>
             <td class="left"><?php echo $store['url']; ?></td>
+            <td class="left"><?php echo ucfirst ($store['template']); ?></td>
             <td class="right"><?php foreach ($store['action'] as $action) { ?>
               <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
             <?php } ?></td>
@@ -52,7 +54,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="4"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

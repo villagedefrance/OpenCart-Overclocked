@@ -335,12 +335,12 @@
             <td><?php echo $entry_map_code; ?></td>
             <td><textarea name="config_map_code" cols="50" rows="7"><?php echo $config_map_code; ?></textarea></td>
           </tr>
+          <?php if (!empty($config_map_code)) { ?>
           <tr>
             <td><?php echo $text_preview; ?></td>
-            <td><?php if (!empty($config_map_code)) { ?>
-              <?php echo html_entity_decode($config_map_code, ENT_QUOTES, 'UTF-8'); ?>
-            <?php } ?></td>
+            <td><?php echo html_entity_decode($config_map_code, ENT_QUOTES, 'UTF-8'); ?></td>
           </tr>
+          <?php } ?>
           <tr>
             <td><?php echo $entry_map_display; ?></td>
             <td><?php if ($config_map_display) { ?>

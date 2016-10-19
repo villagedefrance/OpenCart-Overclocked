@@ -19,10 +19,12 @@ $_['text_payment']                 = 'Payment Address';
 
 // Column
 $_['column_name']                  = 'Store Name';
-$_['column_url']                   = 'Store URL';
+$_['column_url']                   = 'URL';
+$_['column_template']              = 'Template';
 $_['column_action']                = 'Action';
 
 // Info
+$_['info_one_page']                = 'New customer accounts will always be created, but not automatically approved. Guest Checkout is not possible.';
 $_['info_express']                 = 'Express Checkout: Please note that customer accounts will always be created and systematically approved, therefore Guest Checkout will no longer be possible.';
 
 // Entry
@@ -52,7 +54,8 @@ $_['entry_customer_price']         = 'Login Display Prices:<span class="help">On
 $_['entry_account']                = 'Account Terms:<span class="help">Forces people to agree to terms before an account can be created.</span>';
 $_['entry_cart_weight']            = 'Display Weight on Cart Page:';
 $_['entry_guest_checkout']         = 'Guest Checkout:<span class="help">Allow customers to checkout without creating an account. This will not be available when a downloadable product is in the shopping cart.</span>';
-$_['entry_express_checkout']       = 'Express Checkout:<span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
+$_['entry_one_page_checkout']      = 'One Page Checkout (<b>Master</b>):<span class="help">Enable One Page Checkout. Overrides the default Checkout System.</span>';
+$_['entry_express_checkout']       = 'Express Checkout (<b>Master</b>):<span class="help">Enable Express Checkout. Overrides the default Checkout System.</span>';
 $_['entry_checkout']               = 'Checkout Terms:<span class="help">Forces people to agree to terms before an a customer can checkout.</span>';
 $_['entry_order_status']           = 'Order Status:<span class="help">Set the default order status when an order is processed.</span>';
 $_['entry_stock_display']          = 'Display Stock:<span class="help">Display stock quantity on the product page.</span>';
@@ -88,6 +91,7 @@ $_['error_telephone']              = 'Telephone must be between 3 and 32 charact
 $_['error_url']                    = 'Store URL required!';
 $_['error_title']                  = 'Title must be between 3 and 32 characters!';
 $_['error_limit']                  = 'Limit required!';
+$_['error_multiple_checkout']      = 'You can only use one type of Checkout!';
 $_['error_customer_group_display'] = 'You must include the default customer group if you are going to use this feature!';
 $_['error_image_category']         = 'Category List Size dimensions required!';
 $_['error_image_thumb']            = 'Product Image Thumb Size dimensions required!';

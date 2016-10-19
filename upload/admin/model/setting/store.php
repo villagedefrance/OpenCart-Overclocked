@@ -90,6 +90,12 @@ class ModelSettingStore extends Model {
 		}
 	}
 
+	public function getTemplate($store_id) {
+		$query = $this->db->query("SELECT DISTINCT `value` AS template FROM " . DB_PREFIX . "setting WHERE store_id = '" . (int)$store_id . "' AND `group` = 'config' AND `key` = 'config_template'");
+
+		return $query->row['template'];
+	}
+
 	public function getTotalStores() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "store");
 
