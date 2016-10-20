@@ -161,23 +161,17 @@
         <?php if ($age_minimum > 0) { ?>
           <span><?php echo $text_age_band; ?></span> <?php echo $age_minimum; ?>+<br />
         <?php } ?>
-        <span><?php echo $text_stock; ?></span>&nbsp;
+        <span><?php echo $text_stock; ?></span>
         <?php if ($stock_remaining && $this->config->get($template . '_product_stock_low') && ($stock_quantity <= $this->config->get($template . '_product_stock_limit'))) { ?>
           <span style="color:#CC2626; font-weight:bold;"><?php echo $stock_remaining; ?></span><br />
         <?php } else { ?>
           <?php echo $stock; ?><br />
         <?php } ?>
         <?php if ($locations) { ?>
-          <span><?php echo $text_location; ?></span>&nbsp;
+          <span><?php echo $text_location; ?></span>
           <?php for ($i = 0; $i < count($locations); $i++) { ?>
-            <?php if ($i < (count($locations) - 1)) { ?>
-              <?php if (isset($locations[$i]['name'])) { ?>
-                <?php echo $locations[$i]['name']; ?>,&nbsp;
-              <?php } ?>
-            <?php } else { ?>
-              <?php if (isset($locations[$i]['name'])) { ?>
-                <?php echo $locations[$i]['name']; ?>
-              <?php } ?>
+            <?php if (isset($locations[$i]['name'])) { ?>
+              <?php echo ($i < (count($locations) - 1)) ? $locations[$i]['name'] . ', ' : $locations[$i]['name'] . '.'; ?>
             <?php } ?>
           <?php } ?>
         <?php } ?>

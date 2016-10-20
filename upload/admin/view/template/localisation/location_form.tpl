@@ -32,10 +32,10 @@
         <tr>
           <td><span class="required">*</span> <?php echo $entry_address; ?></td>
           <td><?php if ($error_address) { ?>
-            <input id="search_address" type="text" name="address" value="<?php echo isset($address) ? $address : ''; ?>" autocomplete="on" runat="server" size="80" class="input-error" />
+            <textarea name="address" cols="40" rows="5" class="input-error"><?php echo $address; ?></textarea>
             <span class="error"><?php echo $error_address; ?></span>
           <?php } else { ?>
-            <input id="search_address" type="text" name="address" value="<?php echo isset($address) ? $address : ''; ?>" autocomplete="on" runat="server" size="80" />
+            <textarea name="address" cols="40" rows="5"><?php echo $address; ?></textarea>
           <?php } ?></td>
         </tr>
         <tr>
@@ -56,11 +56,11 @@
         </tr>
         <tr>
           <td><?php echo $entry_latitude; ?></td>
-          <td><input id="location_latitude" name="latitude" value="<?php echo isset($latitude) ? $latitude : ''; ?>" size="30" readonly="readonly" /> &deg; N</td>
+          <td><input id="location_latitude" name="latitude" value="<?php echo isset($latitude) ? $latitude : ''; ?>" size="30" /> &deg; N</td>
         </tr>
         <tr>
           <td><?php echo $entry_longitude; ?></td>
-          <td><input id="location_longitude" name="longitude" value="<?php echo isset($longitude) ? $longitude : ''; ?>" size="30" readonly="readonly" /> &deg; E</td>
+          <td><input id="location_longitude" name="longitude" value="<?php echo isset($longitude) ? $longitude : ''; ?>" size="30" /> &deg; E</td>
         </tr>
         <tr>
           <td><?php echo $entry_open; ?></td>
@@ -75,25 +75,6 @@
     </div>
   </div>
 </div>
-
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-
-<script type="text/javascript"><!--
-function initialize() {
-	var input = document.getElementById('search_address');
-	var autocomplete = new google.maps.places.Autocomplete(input);
-	google.maps.event.addListener(autocomplete, 'place_changed', function() {
-		var place = autocomplete.getPlace();
-
-		var lat = place.geometry.location.lat();
-		var lon = place.geometry.location.lng();
-
-		document.getElementById('location_latitude').value = lat;
-		document.getElementById('location_longitude').value = lon;
-	});
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-//--></script>
 
 <script type="text/javascript"><!--
 function image_upload(field, thumb) {

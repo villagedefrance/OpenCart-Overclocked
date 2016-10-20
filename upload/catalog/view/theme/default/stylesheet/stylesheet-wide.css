@@ -1558,10 +1558,10 @@ ul.box-filter > li ul {
 	float: left;
 	width: 32px;
 	background: rgba(255,255,255,1);
-	border-top: 1px solid #EDEDED;
+	border-top: 1px solid #EBEBEB;
+	border-bottom: 2px solid #EBEBEB;
 	border-left: 1px solid #EDEDED;
-	border-bottom: 2px solid #F2F5F7;
-	border-right: 1px solid #F2F5F7;
+	border-right: 1px solid #EDEDED;
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
@@ -1600,9 +1600,9 @@ ul.box-filter > li ul {
 /* Product add/sub */
 .add-prod-count {
 	float: left;
-	height: 31px;
+	height: 32px;
 	width: 24px;
-	background: #F2F5F7 url('../image/plus.png') center center no-repeat;
+	background: #EBEBEB url('../image/plus.png') center center no-repeat;
 	-moz-border-radius: 0 3px 3px 0;
 	-webkit-border-radius: 0 3px 3px 0;
 	-khtml-border-radius: 0 3px 3px 0;
@@ -1610,13 +1610,13 @@ ul.box-filter > li ul {
 	cursor: pointer;
 }
 .add-prod-count:hover {
-	background: #EDEDED url('../image/plus.png') center center no-repeat;
+	background: #DDD url('../image/plus.png') center center no-repeat;
 }
 .sub-prod-count {
 	float: left;
-	height: 31px;
+	height: 32px;
 	width: 24px;
-	background: #F2F5F7 url('../image/minus.png') center center no-repeat;
+	background: #EBEBEB url('../image/minus.png') center center no-repeat;
 	-moz-border-radius: 3px 0 0 3px;
 	-webkit-border-radius:  3px 0 0 3px;
 	-khtml-border-radius: 3px 0 0 3px;
@@ -1624,7 +1624,7 @@ ul.box-filter > li ul {
 	cursor: pointer;
 }
 .sub-prod-count:hover {
-	background: #EDEDED url('../image/minus.png') center center no-repeat;
+	background: #DDD url('../image/minus.png') center center no-repeat;
 }
 /* Tags */
 .tags {
