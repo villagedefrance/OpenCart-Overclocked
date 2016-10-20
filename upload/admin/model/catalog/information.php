@@ -28,7 +28,7 @@ class ModelCatalogInformation extends Model {
 		}
 
 		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "url_alias` SET `query` = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
 		$this->cache->delete('seo_url_map');
@@ -63,10 +63,10 @@ class ModelCatalogInformation extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` = 'information_id=" . (int)$information_id . "'");
 
 		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "url_alias` SET `query` = 'information_id=" . (int)$information_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
 		$this->cache->delete('seo_url_map');
@@ -87,7 +87,8 @@ class ModelCatalogInformation extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_description WHERE information_id = '" . (int)$information_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_store WHERE information_id = '" . (int)$information_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "information_to_layout WHERE information_id = '" . (int)$information_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "'");
+
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` = 'information_id=" . (int)$information_id . "'");
 
 		$this->cache->delete('seo_url_map');
 		$this->cache->delete('information');
@@ -95,7 +96,7 @@ class ModelCatalogInformation extends Model {
 	}
 
 	public function getInformation($information_id) {
-		$query = $this->db->query("SELECT DISTINCT *, id.title AS title, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'information_id=" . (int)$information_id . "') AS keyword FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.information_id = '" . (int)$information_id . "' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, id.title AS title, (SELECT keyword FROM `" . DB_PREFIX . "url_alias` WHERE `query` = 'information_id=" . (int)$information_id . "') AS keyword FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.information_id = '" . (int)$information_id . "' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}

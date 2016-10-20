@@ -840,7 +840,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getTotalCategories() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id) LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'  AND c.status = '1' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id) LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND c.status = '1' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
 		$cache_id = 'product.categories.total';
 

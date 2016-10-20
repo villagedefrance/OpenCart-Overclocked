@@ -740,7 +740,7 @@ class ModelToolExportImport extends Model {
 		$url_alias_ids = array();
 
 		$sql = "SELECT url_alias_id, SUBSTRING(query, CHAR_LENGTH('category_id=')+1) AS category_id";
-		$sql .= " FROM " . DB_PREFIX . "url_alias WHERE query LIKE 'category_id=%'";
+		$sql .= " FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'category_id=%'";
 
 		$query = $this->db->query($sql);
 
@@ -855,7 +855,7 @@ class ModelToolExportImport extends Model {
 		$sql .= "DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "';\n";
 		$sql .= "DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "';\n";
 
-		$sql .= "DELETE FROM " . DB_PREFIX . "url_alias WHERE query LIKE 'category_id=" . (int)$category_id . "';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'category_id=" . (int)$category_id . "';\n";
 
 		$this->multiquery($sql);
 
@@ -882,7 +882,7 @@ class ModelToolExportImport extends Model {
 			$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "category_path`");
 		}
 
-		$alias_query = $this->db->query("SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM " . DB_PREFIX . "url_alias");
+		$alias_query = $this->db->query("SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM `" . DB_PREFIX . "url_alias`");
 
 		$next_url_alias_id = $alias_query->row['next_url_alias_id'];
 
@@ -1204,8 +1204,8 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function getProductUrlAliasIds() {
-		$sql = "SELECT url_alias_id, SUBSTRING(query, CHAR_LENGTH('product_id=')+1 ) AS product_id FROM " . DB_PREFIX . "url_alias";
-		$sql .= " WHERE query LIKE 'product_id=%'";
+		$sql = "SELECT url_alias_id, SUBSTRING(query, CHAR_LENGTH('product_id=')+1 ) AS product_id";
+		$sql .= " FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'product_id=%'";
 
 		$query = $this->db->query($sql);
 
@@ -1429,11 +1429,11 @@ class ModelToolExportImport extends Model {
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_to_location`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "product_tag`;\n";
 
-		$sql .= "DELETE FROM " . DB_PREFIX . "url_alias WHERE query LIKE 'product_id=%';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'product_id=%';\n";
 
 		$this->multiquery($sql);
 
-		$alias_query = $this->db->query("SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM " . DB_PREFIX . "url_alias");
+		$alias_query = $this->db->query("SELECT (MAX(url_alias_id)+1) AS next_url_alias_id FROM `" . DB_PREFIX . "url_alias`");
 
 		$next_url_alias_id = $alias_query->row['next_url_alias_id'];
 
@@ -1463,7 +1463,7 @@ class ModelToolExportImport extends Model {
 		$sql .= "DELETE FROM " . DB_PREFIX . "product_to_location WHERE product_id = '" . (int)$product_id . "';\n";
 		$sql .= "DELETE FROM " . DB_PREFIX . "product_tag WHERE product_id = '" . (int)$product_id . "';\n";
 
-		$sql .= "DELETE FROM " . DB_PREFIX . "url_alias WHERE query LIKE 'product_id=" . (int)$product_id . "';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'product_id=" . (int)$product_id . "';\n";
 
 		$this->multiquery($sql);
 	}
@@ -2504,7 +2504,7 @@ class ModelToolExportImport extends Model {
 	}
 
 	protected function deleteProductOptionValues() {
-		$this->db->query("TRUNCATE TABLE " . DB_PREFIX . "product_option_value");
+		$this->db->query("TRUNCATE TABLE `" . DB_PREFIX . "product_option_value`");
 	}
 
 	protected function deleteProductOptionValue(&$product_id) {
@@ -5835,7 +5835,7 @@ class ModelToolExportImport extends Model {
 
 	public function getCategories($languages, $offset = null, $rows = null, $min_id = null, $max_id = null) {
 		$sql = "SELECT c.*, ua.keyword AS seo_keyword FROM " . DB_PREFIX . "category c";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON (ua.query = CONCAT('category_id=',c.category_id))";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query = CONCAT('category_id=',c.category_id))";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "category_to_store cs ON (cs.category_id = c.category_id)";
 		if (isset($min_id) && isset($max_id)) {
 			$sql .= " WHERE c.category_id BETWEEN '" . $min_id . "' AND '" . $max_id . "'";
@@ -6328,7 +6328,7 @@ class ModelToolExportImport extends Model {
 		$sql .= " FROM " . DB_PREFIX . "product p";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category pc ON (pc.product_id = p.product_id)";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_store ps ON (ps.product_id = p.product_id)";
-		$sql .= " LEFT JOIN " . DB_PREFIX . "url_alias ua ON (ua.query=CONCAT('product_id=',p.product_id))";
+		$sql .= " LEFT JOIN `" . DB_PREFIX . "url_alias` ua ON (ua.query=CONCAT('product_id=',p.product_id))";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (md.manufacturer_id = p.manufacturer_id) AND md.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "weight_class_description wc ON (wc.weight_class_id = p.weight_class_id) AND wc.language_id = '" . $default_language_id . "'";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "length_class_description mc ON (mc.length_class_id = p.length_class_id) AND mc.language_id = '" . $default_language_id . "'";

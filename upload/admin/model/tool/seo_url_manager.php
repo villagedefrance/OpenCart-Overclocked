@@ -2,7 +2,7 @@
 class ModelToolSeoUrlManager extends Model {
 
 	public function addUrl($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "url_alias` SET `query` = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 
 		$url_alias_id = $this->db->getLastId();
 
@@ -13,25 +13,25 @@ class ModelToolSeoUrlManager extends Model {
 	}
 
 	public function editUrl($url_alias_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET query = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "' WHERE url_alias_id = '" . (int)$url_alias_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "url_alias` SET `query` = '" . $this->db->escape($data['query']) . "', keyword = '" . $this->db->escape($data['keyword']) . "' WHERE url_alias_id = '" . (int)$url_alias_id . "'");
 
 		$this->cache->delete('seo_url_map');
 	}
 
 	public function deleteUrl($url_alias_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE url_alias_id = " . (int)$url_alias_id);
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "url_alias` WHERE url_alias_id = " . (int)$url_alias_id);
 
 		$this->cache->delete('seo_url_map');
 	}
 
 	public function getUrl($url_alias_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "url_alias WHERE url_alias_id = '" . (int)$url_alias_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM `" . DB_PREFIX . "url_alias` WHERE url_alias_id = '" . (int)$url_alias_id . "'");
 
 		return $query->row;
 	}
 
 	public function getUrls($data = array()) {
-		$sql = "SELECT url_alias_id, query, keyword FROM " . DB_PREFIX . "url_alias";
+		$sql = "SELECT url_alias_id, query, keyword FROM `" . DB_PREFIX . "url_alias`";
 
 		$sort_data = array(
 			'url_alias_id',
@@ -69,13 +69,13 @@ class ModelToolSeoUrlManager extends Model {
 	}
 
 	public function getTotalUrls() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "url_alias");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "url_alias`");
 
 		return $query->row['total'];
 	}
 
 	public function getTotalUniqueKeywords() {
-		$query = $this->db->query("SELECT COUNT(DISTINCT keyword) AS keyword_total FROM " . DB_PREFIX . "url_alias");
+		$query = $this->db->query("SELECT COUNT(DISTINCT keyword) AS keyword_total FROM `" . DB_PREFIX . "url_alias`");
 
 		return $query->row['keyword_total'];
 	}

@@ -35,7 +35,7 @@ class ControllerCommonSeoUrl extends Controller {
 			}
 
 			foreach ($parts as $part) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE keyword = '" . $this->db->escape($part) . "'");
+				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "url_alias` WHERE keyword = '" . $this->db->escape($part) . "'");
 
 				if ($query->num_rows) {
 					$url = explode('=', $query->row['query']);
@@ -92,7 +92,7 @@ class ControllerCommonSeoUrl extends Controller {
 		}
 
 		if ((isset($this->request->get['route'])) && ($this->config->get('config_seo_url'))) {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = '" . $this->request->get['route'] . "'");
+			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "url_alias` WHERE `query` = '" . $this->request->get['route'] . "'");
 
 			if ($query->num_rows) {
 				header('Location:/' . $query->row['keyword'], true, 301);
@@ -116,7 +116,7 @@ class ControllerCommonSeoUrl extends Controller {
 		foreach ($data as $key => $value) {
 			if (isset($data['route'])) {
 				if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id') || ($data['route'] == 'information/news' && $key == 'news_id')) {
-					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = '" . $this->db->escape($key . '=' . (int)$value) . "'");
+					$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "url_alias` WHERE `query` = '" . $this->db->escape($key . '=' . (int)$value) . "'");
 
 					if ($query->num_rows && $query->row['keyword']) {
 						$url .= '/' . $query->row['keyword'];
@@ -128,7 +128,7 @@ class ControllerCommonSeoUrl extends Controller {
 					$categories = explode('_', $value);
 
 					foreach ($categories as $category) {
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category . "'");
+						$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "url_alias` WHERE `query` = 'category_id=" . (int)$category . "'");
 
 						if ($query->num_rows && $query->row['keyword']) {
 							$url .= '/' . $query->row['keyword'];
@@ -143,7 +143,7 @@ class ControllerCommonSeoUrl extends Controller {
 
 				} else {
 					if ($this->config->get('config_seo_url')) {
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = '" . $data['route'] . "'");
+						$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "url_alias` WHERE `query` = '" . $data['route'] . "'");
 
 						if ($query->num_rows && $query->row['keyword']) {
 							$url .= '/' . $query->row['keyword'];
