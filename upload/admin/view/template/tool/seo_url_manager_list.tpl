@@ -33,7 +33,7 @@
     </div>
     <div class="content">
     <?php if ($error_url_status) { ?>
-      <div class="warning" style="margin:0px 0px 10px 0px;"><?php echo $error_url_status; ?></div>
+      <div class="attention" style="margin:0px 0px 10px 0px;"><?php echo $error_url_status; ?></div>
     <?php } ?>
     <?php if ($success_url_status) { ?>
       <div class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $success_url_status; ?></div>

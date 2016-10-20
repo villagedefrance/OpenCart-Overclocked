@@ -31,7 +31,7 @@ class ControllerExtensionTheme extends Controller {
 		$this->data['button_settings'] = $this->language->get('button_settings');
 		$this->data['button_close'] = $this->language->get('button_close');
 
-		$this->data['settings'] = $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['settings'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['close'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->session->data['success'])) {

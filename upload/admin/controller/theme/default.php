@@ -115,7 +115,7 @@ class ControllerThemeDefault extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['settings'] = $this->url->link('setting/setting', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['settings'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['action'] = $this->url->link('theme/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 

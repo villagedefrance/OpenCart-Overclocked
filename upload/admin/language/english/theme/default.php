@@ -43,7 +43,7 @@ $_['entry_manufacturer_name']   = 'Display Manufacturer\'s Name:<span class="hel
 $_['entry_manufacturer_image']  = 'Display Manufacturer\'s Image:<span class="help">Show the Manufacturer\'s Image in Manufacturer List.</span>';
 
 // Setup
-$_['setup_system']              = '<h3>System Configuration</h3> - Select "default" theme in the <b>Template</b> selector.<br /><br /> - Select "Multiple Stylesheets" in the <b>Template Stylesheet Mode</b> selector.<br />';
+$_['setup_system']              = '<h3>System Configuration</h3> - Select "default" theme in the <b>Template</b> selector.<br />';
 $_['setup_theme']               = '<h3>Theme Configuration</h3>Choose your preferences here under the "General", "Footer" and "Options" tabs.<br />';
 $_['setup_module']              = '<h3>Module Configuration</h3>There are no specific recommendation, but for better results, it is recommended to match the "Footer" theme with the "Menu Horizontal" theme, in the <b>Menu Horizontal</b> module.<br />';
 

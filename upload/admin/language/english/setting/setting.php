@@ -4,8 +4,6 @@ $_['heading_title']                = 'Settings';
 
 // Text
 $_['text_success']                 = 'Success: You have modified <b>Settings</b> !';
-$_['text_multiple']                = 'Multiple Stylesheets';
-$_['text_single']                  = 'Single Stylesheet';
 $_['text_required']                = 'Required';
 $_['text_choice']                  = 'Customer\'s choice';
 $_['text_automatic']               = 'Automatic';
@@ -71,7 +69,6 @@ $_['entry_title']                  = 'Title:';
 $_['entry_meta_description']       = 'Meta Tag Description:';
 $_['entry_meta_keyword']           = 'Meta Tag Keywords:<span class="help">Default SEO Keywords for the store. Not language dependent, they will be used globally unless page specific keywords are available.</span>';
 $_['entry_template']               = 'Template:';
-$_['entry_stylesheet']             = 'Template Stylesheet Mode:<span class="help">Select "Single Stylesheet" if your custom theme uses a single stylesheet. This will limit the available options in all modules.</span>';
 $_['entry_layout']                 = 'Default Layout:';
 $_['entry_country']                = 'Country:';
 $_['entry_zone']                   = 'Region / State:';

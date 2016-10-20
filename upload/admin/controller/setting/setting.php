@@ -40,8 +40,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
-		$this->data['text_multiple'] = $this->language->get('text_multiple');
-		$this->data['text_single'] = $this->language->get('text_single');
 		$this->data['text_required'] = $this->language->get('text_required');
 		$this->data['text_choice'] = $this->language->get('text_choice');
 		$this->data['text_automatic'] = $this->language->get('text_automatic');
@@ -119,7 +117,6 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
-		$this->data['entry_stylesheet'] = $this->language->get('entry_stylesheet');
 		$this->data['entry_layout'] = $this->language->get('entry_layout');
 		$this->data['entry_template'] = $this->language->get('entry_template');
 		$this->data['entry_country'] = $this->language->get('entry_country');
@@ -637,12 +634,6 @@ class ControllerSettingSetting extends Controller {
 
 		foreach ($directories as $directory) {
 			$this->data['templates'][] = basename($directory);
-		}
-
-		if (isset($this->request->post['config_stylesheet'])) {
-			$this->data['config_stylesheet'] = $this->request->post['config_stylesheet'];
-		} else {
-			$this->data['config_stylesheet'] = $this->config->get('config_stylesheet');
 		}
 
 		if (isset($this->request->post['config_layout_id'])) {
@@ -1844,9 +1835,17 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		if (isset($this->request->post['config_seo_url_cache'])) {
-			$this->data['config_seo_url_cache'] = $this->request->post['config_seo_url_cache'];
+			if (isset($this->request->post['config_seo_url']) && ($this->request->post['config_seo_url'] == 1)) {
+				$this->data['config_seo_url_cache'] = $this->request->post['config_seo_url_cache'];
+			} else {
+				$this->data['config_seo_url_cache'] = 0;
+			}
 		} else {
-			$this->data['config_seo_url_cache'] = $this->config->get('config_seo_url_cache');
+			if ($this->config->get('config_seo_url') == 1) {
+				$this->data['config_seo_url_cache'] = $this->config->get('config_seo_url_cache');
+			} else {
+				$this->data['config_seo_url_cache'] = 0;
+			}
 		}
 
 		if (isset($this->request->post['config_encryption'])) {

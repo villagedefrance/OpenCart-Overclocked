@@ -27,7 +27,7 @@ $_['link_seo_news']         = 'News';
 $_['success_url_status']    = 'SEO URL\'s are activated in the Store Settings.';
 
 // Error
-$_['error_url_status']      = 'Warning: SEO URL\'s are Not activated in the Store Settings!';
+$_['error_url_status']      = 'Attention: SEO URL\'s are Not activated in the Store Settings!';
 $_['error_permission']      = 'Warning: You do not have permission to modify <b>Seo Url Manager</b> !';
 $_['error_query']           = 'Query must be between 3 and 255 characters!';
 $_['error_keyword']         = 'Keyword must be between 3 and 255 characters!';
