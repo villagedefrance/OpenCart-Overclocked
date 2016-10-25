@@ -31,16 +31,16 @@
           <td><?php echo $text_image; ?></td>
           <?php foreach ($products as $product) { ?>
             <td>
-              <?php if ($products[$product['product_id']]['stock_label']) { ?>
-                <div class="stock-medium"><img src="<?php echo $products[$product['product_id']]['stock_label']; ?>" alt="" /></div>
-              <?php } ?>
-              <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
-                <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
-              <?php } ?>
-              <?php if (!$products[$product['product_id']]['stock_label'] && !$products[$product['product_id']]['offer'] && $products[$product['product_id']]['special']) { ?>
-                <div class="special-medium"><img src="<?php echo $products[$product['product_id']]['special_label']; ?>" alt="" /></div>
-              <?php } ?>
               <?php if ($products[$product['product_id']]['thumb']) { ?>
+                <?php if ($products[$product['product_id']]['stock_label']) { ?>
+                  <div class="stock-medium"><img src="<?php echo $products[$product['product_id']]['stock_label']; ?>" alt="" /></div>
+                <?php } ?>
+                <?php if (!$products[$product['product_id']]['stock_label'] && $products[$product['product_id']]['offer']) { ?>
+                  <div class="offer-medium"><img src="<?php echo $products[$product['product_id']]['offer_label']; ?>" alt="" /></div>
+                <?php } ?>
+                <?php if (!$products[$product['product_id']]['stock_label'] && !$products[$product['product_id']]['offer'] && $products[$product['product_id']]['special']) { ?>
+                  <div class="special-medium"><img src="<?php echo $products[$product['product_id']]['special_label']; ?>" alt="" /></div>
+                <?php } ?>
                 <a href="<?php echo $products[$product['product_id']]['href']; ?>"><img src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></a>
               <?php } ?>
             </td>

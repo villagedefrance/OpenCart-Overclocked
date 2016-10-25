@@ -6,16 +6,16 @@
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>
-        <?php if ($product['stock_label']) { ?>
-          <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
-        <?php } ?>
-        <?php if (!$product['stock_label'] && $product['offer']) { ?>
-          <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
-        <?php } ?>
-        <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
-          <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
-        <?php } ?>
         <?php if ($product['thumb']) { ?>
+          <?php if ($product['stock_label']) { ?>
+            <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && $product['offer']) { ?>
+            <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+            <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
+          <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
@@ -62,16 +62,16 @@
     <div class="box-product" style="text-align:center;">
     <?php foreach ($products as $product) { ?>
       <div>
-        <?php if ($product['stock_label']) { ?>
-          <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
-        <?php } ?>
-        <?php if (!$product['stock_label'] && $product['offer']) { ?>
-          <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
-        <?php } ?>
-        <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
-          <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
-        <?php } ?>
         <?php if ($product['thumb']) { ?>
+          <?php if ($product['stock_label']) { ?>
+            <div class="stock-medium"><img src="<?php echo $product['stock_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && $product['offer']) { ?>
+            <div class="offer-medium"><img src="<?php echo $product['offer_label']; ?>" alt="" /></div>
+          <?php } ?>
+          <?php if (!$product['stock_label'] && !$product['offer'] && $product['special']) { ?>
+            <div class="special-medium"><img src="<?php echo $product['special_label']; ?>" alt="" /></div>
+          <?php } ?>
           <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
         <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
