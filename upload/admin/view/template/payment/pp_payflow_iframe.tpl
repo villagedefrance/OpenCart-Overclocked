@@ -18,7 +18,14 @@
       </div>
     </div>
     <div class="content"> 
+      <div id="htabs" class="htabs">
+        <a href="#tab-settings"><?php echo $tab_settings; ?></a>
+      <?php if ($pp_payflow_iframe_debug) { ?>
+        <a href="#tab-debug-log"><?php echo $tab_debug_log; ?></a>
+      <?php } ?>
+      </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+        <div id="tab-settings">
         <table class="form">
           <tr>
             <td><span class="required">*</span> <?php echo $entry_vendor; ?><br /><span class="help"><?php echo $help_vendor; ?></span></td>
@@ -170,8 +177,26 @@
             <td><?php echo $post_url; ?></td>
           </tr>
         </table>
+      </div>
+      <?php if ($pp_payflow_iframe_debug) { ?>
+      <div id="tab-debug-log">
+        <div class="report">
+          <div class="left"><img src="view/image/log.png" alt="" /></div>
+        <?php if ($debug_log) { ?>
+          <div class="right"><a href="<?php echo $debug_clear; ?>" class="button-filter"><?php echo $button_debug_clear; ?></a></div>
+          <div class="right"><a href="<?php echo $debug_download; ?>" class="button-filter"><?php echo $button_debug_download; ?></a></div>
+        <?php } ?>
+        </div>
+        <textarea wrap="off" class="log"><?php echo $debug_log; ?></textarea>
+      </div>
+      <?php } ?>
       </form>
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$('#htabs a').tabs();
+//--></script>
+
 <?php echo $footer; ?>

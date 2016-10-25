@@ -110,8 +110,8 @@ class ModelPaymentPPPayflowIFrame extends Model {
 
 		if (curl_errno($ch) != CURLE_OK) {
 			$log_data = array(
-				'curl_error' => curl_error($ch),
-				'curl_errno' => curl_errno($ch)
+				'curl_errno' => curl_errno($ch),
+				'curl_error' => curl_error($ch)
 			);
 
 			$this->log($log_data, 'CURL failed');
@@ -119,7 +119,7 @@ class ModelPaymentPPPayflowIFrame extends Model {
 			return false;
 		}
 
-		$this->log($response, 'Response data');
+		$this->log($response, 'Response');
 
 		curl_close($ch);
 
