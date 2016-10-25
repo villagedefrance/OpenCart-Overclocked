@@ -97,7 +97,14 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['stylesheet_mode'] = $this->config->get('config_stylesheet');
+		// Stylesheets
+		$template = $this->config->get('config_template');
+
+		if ($this->config->get($template . '_stylesheet') == 1) {
+			$this->data['stylesheet_mode'] = true;
+		} else {
+			$this->data['stylesheet_mode'] = false;
+		}
 
 		// Plugin
 		$this->data[$this->_name . '_plugin'] = $this->_plugin;

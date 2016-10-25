@@ -37,7 +37,7 @@
       </div>
     </div>
     <br />
-    <div class="product-list">
+    <div class="news-list">
       <?php foreach ($news_data as $news) { ?>
         <div>
           <div class="right">
@@ -46,7 +46,7 @@
           <?php if ($news['image']) { ?>
             <div class="image"><a href="<?php echo $news['href']; ?>"><img src="<?php echo $news['image']; ?>" alt="<?php echo $news['title']; ?>" /></a></div>
           <?php } ?>
-          <div class="title"><a href="<?php echo $news['href']; ?>" style="text-decoration:none;"><?php echo $news['title']; ?></a></div>
+          <div class="title"><a href="<?php echo $news['href']; ?>"><?php echo $news['title']; ?></a></div>
           <div class="description"><?php echo $news['description']; ?></div>
           <div class="date"><?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?></div>
         </div>
@@ -66,9 +66,9 @@
 <script type="text/javascript"><!--
 function display(view) {
 	if (view == 'list') {
-		$('.product-grid').attr('class', 'product-list');
+		$('.news-grid').attr('class', 'news-list');
 
-		$('.product-list > div').each(function(index, element) {
+		$('.news-list > div').each(function(index, element) {
 			html  = '<div class="right">';
 
 			var read = $(element).find('.read').html();
@@ -95,7 +95,7 @@ function display(view) {
 			var date = $(element).find('.date').html();
 
 			if (date != null) {
-				html += '<div class="date" style="font-size:10px;">' + date + '</div>';
+				html += '<div class="date">' + date + '</div>';
 			}
 
 			html += '</div>';
@@ -108,9 +108,9 @@ function display(view) {
 		$.totalStorage('display', 'list');
 
 	} else {
-		$('.product-list').attr('class', 'product-grid');
+		$('.news-list').attr('class', 'news-grid');
 
-		$('.product-grid > div').each(function(index, element) {
+		$('.news-grid > div').each(function(index, element) {
 			html = '';
 
 			var image = $(element).find('.image').html();
@@ -128,13 +128,13 @@ function display(view) {
 			var date = $(element).find('.date').html();
 
 			if (date != null) {
-				html += '<div class="date" style="font-size:10px;">' + date + '</div>';
+				html += '<div class="date">' + date + '</div>';
 			}
 
 			var read = $(element).find('.read').html();
 
 			if (read != null) {
-				html += '<div class="read" style="text-align:center;">' + read + '</div>';
+				html += '<div class="read">' + read + '</div>';
 			}
 
 			$(element).html(html);

@@ -77,17 +77,17 @@ class ControllerInformationNewsList extends Controller {
 			'limit' => $limit
 		);
 
+		$chars = $this->config->get('config_news_chars');
+
 		$total_news = $this->model_catalog_news->getTotalNews();
 
 		$news_data = $this->model_catalog_news->getNews($data);
 
 		foreach ($news_data as $result) {
-			$chars = $this->config->get('config_news_chars');
-
 			$news_length = strlen(utf8_decode($result['description']));
 
-			if ($news_length > $chars) {
-				$description = substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $chars) . '..</p>';
+			if ($news_length > (int)$chars) {
+				$description = substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, (int)$chars) . '..</p>';
 			} else {
 				$description = html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8');
 			}

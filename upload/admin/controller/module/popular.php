@@ -95,7 +95,14 @@ class ControllerModulePopular extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['stylesheet_mode'] = $this->config->get('config_stylesheet');
+		// Stylesheets
+		$template = $this->config->get('config_template');
+
+		if ($this->config->get($template . '_stylesheet') == 1) {
+			$this->data['stylesheet_mode'] = true;
+		} else {
+			$this->data['stylesheet_mode'] = false;
+		}
 
 		// Module
 		if (isset($this->request->post[$this->_name . '_theme'])) {
