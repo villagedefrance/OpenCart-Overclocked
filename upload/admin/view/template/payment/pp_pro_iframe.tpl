@@ -21,17 +21,20 @@
       <div id="htabs" class="htabs">
         <a href="#tab-settings"><?php echo $tab_settings; ?></a>
         <a href="#tab-order-status"><?php echo $tab_order_status; ?></a>
+      <?php if ($pp_pro_iframe_debug) { ?>
+        <a href="#tab-debug-log"><?php echo $tab_debug_log; ?></a>
+      <?php } ?>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <div id="tab-settings">
         <table class="form">
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-username"><?php echo $entry_username; ?></label></td>
-            <td><?php if ($error_username) { ?>
-              <input type="text" name="pp_pro_iframe_user" id="input-username" value="<?php echo $pp_pro_iframe_user; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_username; ?></span>
+            <td><span class="required">*</span>&nbsp;<label for="input-user"><?php echo $entry_user; ?></label></td>
+            <td><?php if ($error_user) { ?>
+              <input type="text" name="pp_pro_iframe_user" id="input-user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $error_user; ?></span>
             <?php } else { ?>
-              <input type="text" name="pp_pro_iframe_user" id="input-username" value="<?php echo $pp_pro_iframe_user; ?>" size="40" />
+              <input type="text" name="pp_pro_iframe_user" id="input-user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
@@ -267,6 +270,18 @@
           </tr>
         </table>
       </div>
+      <?php if ($pp_pro_iframe_debug) { ?>
+      <div id="tab-debug-log">
+        <div class="report">
+          <div class="left"><img src="view/image/log.png" alt="" /></div>
+        <?php if ($debug_log) { ?>
+          <div class="right"><a href="<?php echo $debug_clear; ?>" class="button-filter"><?php echo $button_debug_clear; ?></a></div>
+          <div class="right"><a href="<?php echo $debug_download; ?>" class="button-filter"><?php echo $button_debug_download; ?></a></div>
+        <?php } ?>
+        </div>
+        <textarea wrap="off" class="log"><?php echo $debug_log; ?></textarea>
+      </div>
+      <?php } ?>
       </form>
     </div>
   </div>

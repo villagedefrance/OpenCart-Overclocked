@@ -93,7 +93,7 @@ class ModelPaymentPPProIframe extends Model {
 			$api_endpoint = 'https://api-3t.paypal.com/nvp';
 		}
 
-		$settings = array(
+		$default_parameters = array(
 			'USER'         => $this->config->get('pp_pro_iframe_user'),
 			'PWD'          => $this->config->get('pp_pro_iframe_password'),
 			'SIGNATURE'    => $this->config->get('pp_pro_iframe_sig'),
@@ -101,32 +101,34 @@ class ModelPaymentPPProIframe extends Model {
 			'BUTTONSOURCE' => 'WM_PRO_OPENCART_UK_' . VERSION
 		);
 
-		$this->log($data, 'Call data');
+		$call_parameters = array_merge($data, $default_parameters);
 
-		$defaults = array(
-			CURLOPT_POST => 1,
-			CURLOPT_HEADER => 0,
-			CURLOPT_URL => $api_endpoint,
-			CURLOPT_USERAGENT => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
-			CURLOPT_FRESH_CONNECT => 1,
-			CURLOPT_RETURNTRANSFER => 1,
-			CURLOPT_FORBID_REUSE => 1,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_SSL_VERIFYPEER => 0,
-			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POSTFIELDS => http_build_query(array_merge($data, $settings), '', "&")
+		$this->log($call_parameters, 'Call data');
+
+		$options = array(
+			CURLOPT_POST            => true,
+			CURLOPT_HEADER          => false,
+			CURLOPT_URL             => $api_endpoint,
+			CURLOPT_USERAGENT       => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
+			CURLOPT_FRESH_CONNECT   => true,
+			CURLOPT_RETURNTRANSFER  => true,
+			CURLOPT_FORBID_REUSE    => true,
+			CURLOPT_TIMEOUT         => 0,
+			CURLOPT_SSL_VERIFYPEER  => false,
+			CURLOPT_SSL_VERIFYHOST  => false,
+			CURLOPT_POSTFIELDS      => http_build_query($call_parameters, '', '&')
 		);
 
 		$ch = curl_init();
 
-		curl_setopt_array($ch, $defaults);
+		curl_setopt_array($ch, $options);
 
 		$response = curl_exec($ch);
 
 		if (curl_errno($ch) != CURLE_OK) {
 			$log_data = array(
-				'curl_error' => curl_error($ch),
-				'curl_errno' => curl_errno($ch)
+				'curl_errno' => curl_errno($ch),
+				'curl_error' => curl_error($ch)
 			);
 
 			$this->log($log_data, 'CURL failed');
@@ -191,13 +193,6 @@ class ModelPaymentPPProIframe extends Model {
 		return $paypal_iframe_order_transaction_id;
 	}
 
-	public function log($data, $title = null) {
-		if ($this->config->get('pp_pro_iframe_debug')) {
-			$log = new Log('pp_pro_iframe.log');
-			$log->write('PayPal Pro iFrame debug (' . $title . '): ' . json_encode($data));
-		}
-	}
-
 	public function getTransaction($transaction_id) {
 		$call_data = array(
 			'METHOD'        => 'GetTransactionDetails',
@@ -226,22 +221,29 @@ class ModelPaymentPPProIframe extends Model {
 	}
 
 	public function getFailedTransaction($paypl_iframe_order_transaction_id) {
-		$result = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE paypal_iframe_order_transaction_id = " . (int)$paypl_iframe_order_transaction_id . "")->row;
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE paypal_iframe_order_transaction_id = " . (int)$paypl_iframe_order_transaction_id . "");
 
-		if ($result) {
-			return $result;
+		if ($query->num_rows) {
+			return $query->row;
 		} else {
 			return false;
 		}
 	}
 
 	public function getLocalTransaction($transaction_id) {
-		$result = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE transaction_id = '" . $this->db->escape($transaction_id) . "'")->row;
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_iframe_order_transaction WHERE transaction_id = '" . $this->db->escape($transaction_id) . "'");
 
-		if ($result) {
-			return $result;
+		if ($query->num_rows) {
+			return $query->row;
 		} else {
 			return false;
+		}
+	}
+
+	public function log($data, $title = null) {
+		if ($this->config->get('pp_pro_iframe_debug')) {
+			$log = new Log('pp_pro_iframe.log');
+			$log->write('PayPal Pro iFrame debug (' . $title . '): ' . json_encode($data));
 		}
 	}
 

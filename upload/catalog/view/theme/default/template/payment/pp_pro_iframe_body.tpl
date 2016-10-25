@@ -3,7 +3,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $stylesheet; ?>" />
 </head>
 <body>
-  <?php if (!$error_connection) { ?>
+  <?php if (isset($error) && $error) { ?>
+    <div class="warning"><?php echo $error; ?></div>
+  <?php } elseif (isset($attention) && $attention) { ?>
+    <div class="attention"><?php echo $attention; ?></div>
+  <?php } else { ?>
     <form action="<?php echo $url; ?>" method="post" name="ppform" id="ppform">
       <input type="hidden" name="cmd" value="_s-xclick" />
       <input type="hidden" name="hosted_button_id" value="<?php echo $code; ?>" />
@@ -16,8 +20,6 @@
     <script type="text/javascript"><!--
       document.forms["ppform"].submit();
     //--></script> 
-  <?php } else { ?>
-    <div class="warning"><?php echo $error_connection; ?></div>
   <?php } ?>
 </body>
 </html>

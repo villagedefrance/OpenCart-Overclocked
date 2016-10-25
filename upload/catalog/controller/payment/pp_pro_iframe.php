@@ -10,19 +10,24 @@ class ControllerPaymentPPProIframe extends Controller {
 		if ($this->config->get('pp_pro_iframe_checkout_method') == 'redirect') {
 			$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-			$hosted_button_id = $this->constructButtonData($order_info);
+			if ($order_info) {
+				$hosted_button_id = $this->constructButtonData($order_info);
 
-			if ($this->config->get('pp_pro_iframe_test')) {
-				$this->data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
-			} else {
-				$this->data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
-			}
+				if ($hosted_button_id) {
+					$this->data['code'] = $hosted_button_id;
 
-			if ($hosted_button_id) {
-				$this->data['code'] = $hosted_button_id;
-				$this->data['error_connection'] = '';
+					if ($this->config->get('pp_pro_iframe_test')) {
+						$this->data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
+					} else {
+						$this->data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
+					}
+
+				} else {
+					$this->data['error'] = $this->language->get('error_connection');
+				}
+
 			} else {
-				$this->data['error_connection'] = $this->language->get('error_connection');
+				$this->data['error'] = $this->language->get('error_missing_order');
 			}
 		}
 
@@ -50,20 +55,24 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		$hosted_button_id = $this->constructButtonData($order_info);
+		if ($order_info) {
+			$hosted_button_id = $this->constructButtonData($order_info);
 
-		if ($hosted_button_id) {
-			$this->data['code'] = $hosted_button_id;
+			if ($hosted_button_id) {
+				$this->data['code'] = $hosted_button_id;
 
-			if ($this->config->get('pp_pro_iframe_test')) {
-				$this->data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
+				if ($this->config->get('pp_pro_iframe_test')) {
+					$this->data['url'] = 'https://securepayments.sandbox.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
+				} else {
+					$this->data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
+				}
+
 			} else {
-				$this->data['url'] = 'https://securepayments.paypal.com/webapps/HostedSoleSolutionApp/webflow/sparta/hostedSoleSolutionProcess';
+				$this->data['error'] = $this->language->get('error_connection');
 			}
 
-			$this->data['error_connection'] = '';
 		} else {
-			$this->data['error_connection'] = $this->language->get('error_connection');
+			$this->data['error'] = $this->language->get('error_missing_order');
 		}
 
 		if (file_exists(DIR_APPLICATION . 'view/theme/' . $this->config->get('config_template') . '/stylesheet/stylesheet.css')) {
@@ -98,31 +107,46 @@ class ControllerPaymentPPProIframe extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
 		if ($order_info) {
+			if ($this->config->get('pp_pro_iframe_test')) {
+				$url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+			} else {
+				$url = 'https://www.paypal.com/cgi-bin/webscr';
+			}
+
 			$request = 'cmd=_notify-validate';
+			if (!empty($this->request->post)) $request .= '&' . http_build_query($this->request->post, '', '&');
 
-			foreach ($this->request->post as $key => $value) {
-				$request .= '&' . $key . '=' . urlencode(html_entity_decode($value, ENT_QUOTES, 'UTF-8'));
-			}
+			$options = array(
+				CURLOPT_POST            => true,
+				CURLOPT_HEADER          => false,
+				CURLOPT_URL             => $url,
+				CURLOPT_RETURNTRANSFER  => true,
+				CURLOPT_TIMEOUT         => 30,
+				CURLOPT_SSL_VERIFYPEER  => false,
+				CURLOPT_POSTFIELDS      => $request
+			);
 
-			if (!$this->config->get('pp_pro_iframe_test')) {
-				$curl = curl_init('https://www.paypal.com/cgi-bin/webscr');
+			$ch = curl_init();
+
+			curl_setopt_array($ch, $options);
+
+			$response = curl_exec($ch);
+
+			if (curl_errno($ch) != CURLE_OK) {
+				$log_data = array(
+					'curl_errno' => curl_errno($ch),
+					'curl_error' => curl_error($ch)
+				);
+
+				$this->model_payment_pp_pro_iframe->log($log_data, 'CURL failed');
+
 			} else {
-				$curl = curl_init('https://www.sandbox.paypal.com/cgi-bin/webscr');
-			}
+				$log_data = array(
+					'IPN REQUEST' => $request,
+					'IPN RESPONSE' => $response
+				);
 
-			curl_setopt($curl, CURLOPT_POST, true);
-			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_HEADER, false);
-			curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-			$response = curl_exec($curl);
-
-			if (curl_errno($curl)) {
-				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: CURL failed ' . curl_error($curl) . '(' . curl_errno($curl) . ')');
-			} else {
-				$this->model_payment_pp_pro_iframe->log('pp_pro_iframe :: IPN REQUEST: ' . $request . PHP_EOL . 'pp_pro_iframe :: IPN RESPONSE: ' . $response);
+				$this->model_payment_pp_pro_iframe->log($log_data, 'Notify');
 
 				if ((strcmp($response, 'VERIFIED') == 0 || strcmp($response, 'UNVERIFIED') == 0) && isset($this->request->post['payment_status'])) {
 					$order_status_id = $this->config->get('pp_pro_iframe_canceled_reversal_status_id');
@@ -160,7 +184,7 @@ class ControllerPaymentPPProIframe extends Controller {
 							break;
 					}
 
-					if (!$order_info['order_status_id']) {
+					if (!empty($order_info['order_status_id'])) {
 						$paypal_order_data = array(
 							'order_id'         => $order_id,
 							'capture_status'   => ($this->config->get('pp_pro_iframe_transaction_method') == 'sale' ? 'Complete' : 'NotComplete'),
@@ -199,11 +223,13 @@ class ControllerPaymentPPProIframe extends Controller {
 				}
 			}
 
-			curl_close($curl);
+			curl_close($ch);
 		}
 	}
 
 	private function constructButtonData($order_info) {
+		$this->load->model('payment/pp_pro_iframe');
+
 		$s_data = array();
 
 		$s_data['METHOD'] = 'BMCreateButton';
@@ -283,32 +309,44 @@ class ControllerPaymentPPProIframe extends Controller {
 			$url = 'https://api-3t.paypal.com/nvp';
 		}
 
-		$curl = curl_init($url);
+		$options = array(
+			CURLOPT_POST           => true,
+			CURLOPT_HEADER         => false,
+			CURLOPT_HTTPHEADER     => array('X-VPS-REQUEST-ID: ' . md5($order_info['order_id'] . mt_rand())),
+			CURLOPT_URL            => $url,
+			CURLOPT_PORT           => 443,
+			CURLOPT_FRESH_CONNECT  => true,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_FORBID_REUSE   => true,
+			CURLOPT_POSTFIELDS     => http_build_query($s_data, '', '&')
+		);
 
-		curl_setopt($curl, CURLOPT_PORT, 443);
-		curl_setopt($curl, CURLOPT_HEADER, 0);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_FORBID_REUSE, 1);
-		curl_setopt($curl, CURLOPT_FRESH_CONNECT, 1);
-		curl_setopt($curl, CURLOPT_POST, 1);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($s_data, '', "&"));
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-VPS-REQUEST-ID: ' . md5($order_info['order_id'] . mt_rand())));
+		$ch = curl_init();
 
-		$response = curl_exec($curl);
+		curl_setopt_array($ch, $options);
+
+		$response = curl_exec($ch);
+
+		if (curl_errno($ch) != CURLE_OK) {
+			$log_data = array(
+				'curl_errno' => curl_errno($ch),
+				'curl_error' => curl_error($ch)
+			);
+
+			$this->model_payment_pp_pro_iframe->log($log_data, 'CURL failed');
+
+			return false;
+		}
+
+		curl_close($curl);
 
 		$response_data = array();
 
 		parse_str($response, $response_data);
 
-		$this->model_payment_pp_pro_iframe->log(print_r(json_encode($response_data), true));
+		$this->model_payment_pp_pro_iframe->log($response_data, 'Hosted Button');
 
-		curl_close($curl);
-
-		if (!$response || !isset($response_data['HOSTEDBUTTONID'])) {
-			return false;
-		} else {
-			return $response_data['HOSTEDBUTTONID'];
-		}
+		return (isset($response_data['HOSTEDBUTTONID']) ? $response_data['HOSTEDBUTTONID'] : false);
 	}
 }
