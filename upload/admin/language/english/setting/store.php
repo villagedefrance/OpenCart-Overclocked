@@ -19,8 +19,8 @@ $_['text_payment']                 = 'Payment Address';
 
 // Column
 $_['column_name']                  = 'Store Name';
-$_['column_url']                   = 'URL';
 $_['column_template']              = 'Template';
+$_['column_url']                   = 'URL';
 $_['column_action']                = 'Action';
 
 // Info

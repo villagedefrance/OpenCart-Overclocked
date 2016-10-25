@@ -129,8 +129,8 @@ class ControllerSettingStore extends Controller {
 		$this->data['stores'][] = array(
 			'store_id' => 0,
 			'name'     => $this->config->get('config_name') . $this->language->get('text_default'),
-			'url'      => HTTP_CATALOG,
 			'template' => $this->model_setting_store->getTemplate(0),
+			'url'      => HTTP_CATALOG,
 			'selected' => isset($this->request->post['selected']) && in_array(0, $this->request->post['selected']),
 			'action'   => $action
 		);
@@ -148,8 +148,8 @@ class ControllerSettingStore extends Controller {
 			$this->data['stores'][] = array(
 				'store_id' => $result['store_id'],
 				'name'     => $result['name'],
-				'url'      => $result['url'],
 				'template' => $this->model_setting_store->getTemplate($result['store_id']),
+				'url'      => $result['url'],
 				'selected' => isset($this->request->post['selected']) && in_array($result['store_id'], $this->request->post['selected']),
 				'action'   => $action
 			);
@@ -160,8 +160,8 @@ class ControllerSettingStore extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
-		$this->data['column_url'] = $this->language->get('column_url');
 		$this->data['column_template'] = $this->language->get('column_template');
+		$this->data['column_url'] = $this->language->get('column_url');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_themes'] = $this->language->get('button_themes');

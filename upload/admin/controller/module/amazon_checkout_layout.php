@@ -79,7 +79,7 @@ class ControllerModuleAmazonCheckoutLayout extends Controller {
 		// Stylesheets
 		$template = $this->config->get('config_template');
 
-		if ($this->config->get($template . '_stylesheet') == 1) {
+		if ($this->config->get($template . '_stylesheet')) {
 			$this->data['stylesheet_mode'] = true;
 		} else {
 			$this->data['stylesheet_mode'] = false;

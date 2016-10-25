@@ -365,6 +365,7 @@
           <?php echo $setup_system; ?><br />
           <?php echo $setup_theme; ?><br />
           <?php echo $setup_module; ?><br />
+          <input type="hidden" name="default_stylesheet" value="0" />
         </div>
       </div>
       <div id="tab-credits">
