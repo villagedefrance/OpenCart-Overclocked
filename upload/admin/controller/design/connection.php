@@ -209,6 +209,7 @@ class ControllerDesignConnection extends Controller {
 
 			$this->data['connections'][] = array(
 				'connection_id' => $result['connection_id'],
+				'icon'          => $this->model_design_connection->getConnectionIcon($result['connection_id']),
 				'name'          => $result['name'],
 				'backend'       => $result['backend'],
 				'frontend'      => $result['frontend'],

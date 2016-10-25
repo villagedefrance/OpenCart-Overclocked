@@ -17,7 +17,7 @@ class ControllerFeedGoogleBase extends Controller {
 			$products = $this->model_catalog_product->getProducts();
 
 			foreach ($products as $product) {
-				if ($product['description']) {
+				if ($product['product_id'] && $product['description']) {
 					$output .= '<item>';
 					$output .= '<title>' . $product['name'] . '</title>';
 					$output .= '<link>' . $this->url->link('product/product', 'product_id=' . $product['product_id'], 'SSL') . '</link>';

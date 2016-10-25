@@ -59,7 +59,7 @@
               <input type="checkbox" name="selected[]" value="<?php echo $connection['connection_id']; ?>" id="<?php echo $connection['connection_id']; ?>" class="checkbox" />
               <label for="<?php echo $connection['connection_id']; ?>"><span></span></label>
             <?php } ?></td>
-            <td class="left"><?php echo $connection['name']; ?></td>
+            <td class="left"><i class="fa <?php echo $connection['icon']; ?>"></i> &nbsp; <?php echo $connection['name']; ?></td>
             <?php if ($connection['backend'] == 1) { ?>
               <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
             <?php } else { ?>

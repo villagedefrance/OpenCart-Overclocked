@@ -95,16 +95,22 @@ class ModelDesignConnection extends Model {
 		return $connection_data;
 	}
 
+	public function getConnectionName($connection_id) {
+		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
+
+		return $query->row['name'];
+	}
+
 	public function getConnectionRoutes($connection_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "connection_route WHERE connection_id = '" . (int)$connection_id . "'");
 
 		return $query->rows;
 	}
 
-	public function getConnectionName($connection_id) {
-		$query = $this->db->query("SELECT name FROM " . DB_PREFIX . "connection WHERE connection_id = '" . (int)$connection_id . "'");
+	public function getConnectionIcon($connection_id) {
+		$query = $this->db->query("SELECT icon FROM " . DB_PREFIX . "connection_route WHERE connection_id = '" . (int)$connection_id . "'");
 
-		return $query->row['name'];
+		return $query->row['icon'];
 	}
 
 	public function getTotalConnections() {
