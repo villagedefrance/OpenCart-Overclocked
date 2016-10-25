@@ -127,8 +127,6 @@ function display(view) {
 			var image = $(element).find('.image').html();
 
 			if (image != null) {
-				html += '<div class="image">' + image + '</div>';
-
 				var stock = $(element).find('.stock-medium').html();
 
 				if (stock != null) {
@@ -146,6 +144,8 @@ function display(view) {
 				if (special != null) {
 					html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
 				}
+
+				html += '<div class="image">' + image + '</div>';
 			}
 
 			var price = $(element).find('.price').html();
@@ -188,8 +188,6 @@ function display(view) {
 			var image = $(element).find('.image').html();
 
 			if (image != null) {
-				html += '<div class="image">' + image + '</div>';
-
 				var stock = $(element).find('.stock-medium').html();
 
 				if (stock != null) {
@@ -207,6 +205,8 @@ function display(view) {
 				if (special != null) {
 					html += '<div class="special-medium">' + $(element).find('.special-medium').html() + '</div>';
 				}
+
+				html += '<div class="image">' + image + '</div>';
 			}
 
 			html += '<div class="manufacturer">' + $(element).find('.manufacturer').html() + '</div>';

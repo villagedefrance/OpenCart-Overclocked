@@ -2344,9 +2344,13 @@ table.order-options tr td > div.division {
 /* News */
 .box-news {
 	background: #FFF;
-	padding-bottom: 5px;
+	padding: 5px;
 	margin-bottom: 10px;
-	border-bottom: 1px dotted #DDD;
+	border: 1px dotted #DDD;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 }
 .box-news h4 {
 	margin-top: 0px;
