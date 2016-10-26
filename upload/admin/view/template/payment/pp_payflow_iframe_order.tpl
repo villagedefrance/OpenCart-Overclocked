@@ -1,5 +1,5 @@
 <h2><?php echo $text_payment_info; ?></h2>
-<table class="form">
+<table class="form" id="table-payment-info">
   <tr>
     <td><?php echo $entry_capture_status; ?></td>
     <td id="capture-status">

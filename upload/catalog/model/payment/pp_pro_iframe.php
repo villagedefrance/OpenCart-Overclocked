@@ -38,14 +38,14 @@ class ModelPaymentPPProIframe extends Model {
 		return $this->db->getLastId();
 	}
 
-	public function addTransaction($transaction_data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_iframe_order_transaction SET paypal_iframe_order_id = '" . (int)$transaction_data['paypal_iframe_order_id'] . "', transaction_id = '" . $this->db->escape($transaction_data['transaction_id']) . "', parent_transaction_id = '" . $this->db->escape($transaction_data['parent_transaction_id']) . "', created = NOW(), note = '" . $this->db->escape($transaction_data['note']) . "', msgsubid = '" . $this->db->escape($transaction_data['msgsubid']) . "', receipt_id = '" . $this->db->escape($transaction_data['receipt_id']) . "', payment_type = '" . $this->db->escape($transaction_data['payment_type']) . "', payment_status = '" . $this->db->escape($transaction_data['payment_status']) . "', pending_reason = '" . $this->db->escape($transaction_data['pending_reason']) . "', transaction_entity = '" . $this->db->escape($transaction_data['transaction_entity']) . "', amount = '" . (double)$transaction_data['amount'] . "', debug_data = '" . $this->db->escape($transaction_data['debug_data']) . "'");
+	public function addTransaction($data) {
+		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_iframe_order_transaction SET paypal_iframe_order_id = '" . (int)$data['paypal_iframe_order_id'] . "', transaction_id = '" . $this->db->escape($data['transaction_id']) . "', parent_transaction_id = '" . $this->db->escape($data['parent_transaction_id']) . "', created = NOW(), note = '" . $this->db->escape($data['note']) . "', msgsubid = '" . $this->db->escape($data['msgsubid']) . "', receipt_id = '" . $this->db->escape($data['receipt_id']) . "', payment_type = '" . $this->db->escape($data['payment_type']) . "', payment_status = '" . $this->db->escape($data['payment_status']) . "', pending_reason = '" . $this->db->escape($data['pending_reason']) . "', transaction_entity = '" . $this->db->escape($data['transaction_entity']) . "', amount = '" . (double)$data['amount'] . "', debug_data = '" . $this->db->escape($data['debug_data']) . "'");
 	}
 
-	public function log($message) {
+	public function log($data, $title = null) {
 		if ($this->config->get('pp_pro_iframe_debug')) {
 			$log = new Log('pp_pro_iframe.log');
-			$log->write($message);
+			$log->write('PayPal Pro iFrame debug (' . $title . '): ' . json_encode($data));
 		}
 	}
 }

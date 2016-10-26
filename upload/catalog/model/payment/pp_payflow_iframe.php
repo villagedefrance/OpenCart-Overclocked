@@ -6,7 +6,7 @@ class ModelPaymentPPPayflowIframe extends Model {
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('pp_payflow_iframe_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		if ($this->config->get('pp_payflow_iframe_total') > $total) {
+		if ($this->config->get('pp_payflow_iframe_total') > 0 && $this->config->get('pp_payflow_iframe_total') > $total) {
 			$status = false;
 		} elseif ($this->config->has('pp_payflow_iframe_total_max') && $this->config->get('pp_payflow_iframe_total_max') > 0 && $total > $this->config->get('pp_payflow_iframe_total_max')) {
 			$status = false;
@@ -88,8 +88,8 @@ class ModelPaymentPPPayflowIframe extends Model {
 
 		if (curl_errno($ch) != CURLE_OK) {
 			$log_data = array(
-				'curl_error' => curl_error($ch),
-				'curl_errno' => curl_errno($ch)
+				'curl_errno' => curl_errno($ch),
+				'curl_error' => curl_error($ch)
 			);
 
 			$this->log($log_data, 'CURL failed');
@@ -97,7 +97,7 @@ class ModelPaymentPPPayflowIframe extends Model {
 			return false;
 		}
 
-		$this->log($response, 'Response data');
+		$this->log($response, 'Response');
 
 		curl_close($ch);
 

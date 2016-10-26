@@ -35,6 +35,7 @@ $_['column_actions']                 = 'Actions';
 $_['tab_settings']                   = 'Settings';
 $_['tab_order_status']               = 'Order Status';
 $_['tab_checkout_customisation']     = 'Checkout Customisation';
+$_['tab_debug_log']                  = 'Debug Log';
 
 // Entry
 $_['entry_vendor']                   = 'Vendor:';
@@ -104,8 +105,8 @@ $_['error_password']                 = 'Password Required!';
 $_['error_partner']                  = 'Partner Required!';
 $_['error_connection']               = 'Could not connect to PayPal!';
 $_['error_timeout']                  = 'Request timed out!';
-$_['error_missing_data']             = 'Missing data';
-$_['error_missing_order']            = 'Could not find the order';
-$_['error_general']                  = 'There was an error';
+$_['error_missing_data']             = 'Missing data!';
+$_['error_missing_order']            = 'Could not find the order!';
+$_['error_general']                  = 'There was an error!';
 $_['error_capture']                  = 'Enter an amount to capture';
 $_['error_transaction']              = 'Transaction failed (%d): %s.';
