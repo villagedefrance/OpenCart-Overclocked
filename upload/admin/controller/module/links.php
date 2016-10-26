@@ -88,7 +88,7 @@ class ControllerModuleLinks extends Controller {
 		// Manager
 		$this->data['manager'] = $this->url->link('design/connection', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheets
+		// Stylesheet mode
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {

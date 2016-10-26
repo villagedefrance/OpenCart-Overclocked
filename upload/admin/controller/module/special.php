@@ -95,7 +95,7 @@ class ControllerModuleSpecial extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheets
+		// Stylesheet mode
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {

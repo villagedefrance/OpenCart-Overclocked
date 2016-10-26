@@ -149,13 +149,6 @@ class ControllerThemeDefault extends Controller {
 
 		$this->data['image_preview'] = '<img src="' . $image . '" alt="" style="border:1px solid #EEE;" />';
 
-		// Stylesheet
-		if (isset($this->request->post[$this->_name . '_stylesheet'])) {
-			$this->data[$this->_name . '_stylesheet'] = $this->request->post[$this->_name . '_stylesheet'];
-		} else {
-			$this->data[$this->_name . '_stylesheet'] = 0;
-		}
-
 		// General
 		if (isset($this->request->post[$this->_name . '_widescreen'])) {
 			$this->data[$this->_name . '_widescreen'] = $this->request->post[$this->_name . '_widescreen'];
@@ -301,6 +294,13 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->request->post[$this->_name . '_manufacturer_image'];
 		} else {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->config->get($this->_name . '_manufacturer_image');
+		}
+
+		// Stylesheet mode
+		if (isset($this->request->post[$this->_name . '_stylesheet'])) {
+			$this->data[$this->_name . '_stylesheet'] = $this->request->post[$this->_name . '_stylesheet'];
+		} else {
+			$this->data[$this->_name . '_stylesheet'] = 0;
 		}
 
 		$this->template = 'theme/' . $this->_name . '.tpl';

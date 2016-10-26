@@ -20,7 +20,10 @@ class ControllerModuleWelcome extends Controller {
 
 		$this->data['message'] = html_entity_decode($setting['description'][$this->config->get('config_language_id')], ENT_QUOTES, 'UTF-8');
 
-		$stylesheet_mode = $this->config->get('config_stylesheet');
+		// Stylesheet mode
+		$template = $this->config->get('config_template');
+
+		$stylesheet_mode = $this->config->get($template . '_stylesheet');
 
 		if (!$stylesheet_mode) {
 			$header_color = $setting['header_color'];

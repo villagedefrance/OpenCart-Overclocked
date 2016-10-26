@@ -19,7 +19,10 @@ class ControllerModuleHtml extends Controller {
 				$this->data['title' . $i] = $this->data['heading_title'];
 			}
 
-			$stylesheet_mode = $this->config->get('config_stylesheet');
+			// Stylesheet mode
+			$template = $this->config->get('config_template');
+
+			$stylesheet_mode = $this->config->get($template . '_stylesheet');
 
 			if (!$stylesheet_mode) {
 				$header_color = $this->config->get($this->_name . '_header_color' . $i);

@@ -68,15 +68,15 @@ class ControllerModuleAmazonCheckoutLayout extends Controller {
 
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('module/amazon_checkout_layout', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL'),
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = $this->url->link('module/amazon_checkout_layout', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheets
+		// Stylesheet mode
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {
