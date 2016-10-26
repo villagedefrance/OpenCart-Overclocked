@@ -282,6 +282,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 			// Create file if it does not exist
 			$debug_file = DIR_LOGS . (self::DEBUG_LOG_FILE);
+
 			if (file_exists($debug_file)) {
 				$this->data['debug_log'] = file_get_contents($debug_file, FILE_USE_INCLUDE_PATH, null);
 			} else {
@@ -429,6 +430,18 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_refund'));
 
+		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->data['heading_refund'] = $this->language->get('heading_refund');
+
+		$this->data['entry_transaction_id'] = $this->language->get('entry_transaction_id');
+		$this->data['entry_full_refund'] = $this->language->get('entry_full_refund');
+		$this->data['entry_amount'] = $this->language->get('entry_amount');
+		$this->data['entry_message'] = $this->language->get('entry_message');
+
+		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_refund'] = $this->language->get('button_refund');
+
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->session->data['error'])) {
 			$this->data['error'] = $this->session->data['error'];
@@ -483,25 +496,11 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		if ($refunded != 0.00) {
 			$this->data['refund_available'] = number_format($this->data['amount_original'] + $refunded, 2);
-			$this->data['attention'] = $this->language->get('text_current_refunds').': '.$this->data['refund_available'];
+			$this->data['attention'] = $this->language->get('text_current_refunds') . ': ' . $this->data['refund_available'];
 		} else {
 			$this->data['refund_available'] = '';
 			$this->data['attention'] = '';
 		}
-
-		$this->data['heading_title'] = $this->language->get('heading_title');
-
-		$this->data['token'] = $this->session->data['token'];
-
-		$this->data['heading_refund'] = $this->language->get('heading_refund');
-
-		$this->data['entry_transaction_id'] = $this->language->get('entry_transaction_id');
-		$this->data['entry_full_refund'] = $this->language->get('entry_full_refund');
-		$this->data['entry_amount'] = $this->language->get('entry_amount');
-		$this->data['entry_message'] = $this->language->get('entry_message');
-
-		$this->data['button_cancel'] = $this->language->get('button_cancel');
-		$this->data['button_refund'] = $this->language->get('button_refund');
 
 		$this->template = 'payment/pp_pro_iframe_refund.tpl';
 		$this->children = array(
@@ -1073,8 +1072,11 @@ class ControllerPaymentPPProIframe extends Controller {
 		$this->language->load('payment/pp_pro_iframe');
 
 		$file = DIR_LOGS . (self::DEBUG_LOG_FILE);
+
 		$handle = fopen($file, 'w+');
+
 		fclose($handle);
+
 		clearstatcache();
 
 		$this->session->data['success'] = $this->language->get('text_debug_clear_success');

@@ -242,6 +242,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 			// Create file if it does not exist
 			$debug_file = DIR_LOGS . (self::DEBUG_LOG_FILE);
+
 			if (file_exists($debug_file)) {
 				$this->data['debug_log'] = file_get_contents($debug_file, FILE_USE_INCLUDE_PATH, null);
 			} else {
@@ -556,7 +557,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 					$actions[] = array(
 						'title' => $this->language->get('text_refund'),
-						'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $result['PNREF'] . '&token=' . $this->session->data['token'])
+						'href' => $this->url->link('payment/pp_payflow_iframe/refund', 'transaction_reference=' . $result['PNREF'] . '&token=' . $this->session->data['token'], 'SSL')
 					);
 
 					$json['success'] = array(
@@ -650,8 +651,11 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		$this->language->load('payment/pp_payflow_iframe');
 
 		$file = DIR_LOGS . (self::DEBUG_LOG_FILE);
+
 		$handle = fopen($file, 'w+');
+
 		fclose($handle);
+
 		clearstatcache();
 
 		$this->session->data['success'] = $this->language->get('text_debug_clear_success');

@@ -30,7 +30,7 @@
             <td><input type="text" name="transaction_id" value="<?php echo $transaction_id; ?>" id="input-transaction-id" /></td>
           </tr>
           <tr>
-            <td><label for="refund-full""><?php echo $entry_full_refund; ?></label></td>
+            <td><label for="refund-full"><?php echo $entry_full_refund; ?></label></td>
             <td>
               <input type="hidden" name="refund_full" value="0" />
               <input type="checkbox" name="refund_full" id="refund-full" value="1" <?php echo ($refund_available == '') ? 'checked="checked"' : ''; ?> onchange="refundAmount();" />

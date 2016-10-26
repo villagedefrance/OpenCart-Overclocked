@@ -3,7 +3,7 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 
 	protected function index() {
 		$this->language->load('payment/pp_payflow_iframe');
-		
+
 		$this->load->model('checkout/order');
 		$this->load->model('payment/pp_payflow_iframe');
 		$this->load->model('localisation/country');
@@ -12,82 +12,81 @@ class ControllerPaymentPPPayflowIframe extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		if ($order_info) {
+			if ($this->config->get('pp_payflow_iframe_test')) {
+				$mode = 'TEST';
+			} else {
+				$mode = 'LIVE';
+			}
 
-  		if ($this->config->get('pp_payflow_iframe_test')) {
-  			$mode = 'TEST';
-  		} else {
-  			$mode = 'LIVE';
-  		}
-  
-  		$payflow_url = 'https://payflowlink.paypal.com';
-  
-  		if ($this->config->get('pp_payflow_iframe_transaction_method') == 'sale') {
-  			$transaction_type = 'S';
-  		} else {
-  			$transaction_type = 'A';
-  		}
-  
-  		$secure_token_id = md5($this->session->data['order_id'] . mt_rand() . microtime());
-  
-  		$this->model_payment_pp_payflow_iframe->addOrder($order_info['order_id'], $secure_token_id);
-  
-  		$shipping_country = $this->model_localisation_country->getCountry($order_info['shipping_country_id']);
-  		$shipping_zone = $this->model_localisation_zone->getZone($order_info['shipping_zone_id']);
-  
-  		$payment_country = $this->model_localisation_country->getCountry($order_info['payment_country_id']);
-  		$payment_zone = $this->model_localisation_zone->getZone($order_info['payment_zone_id']);
-  
-  		$url_params = array(
-  			'TENDER' => 'C',
-  			'TRXTYPE' => $transaction_type,
-  			'AMT' => $this->currency->format($order_info['total'], $order_info['currency_code'], false, false),
-  			'CURRENCY' => $order_info['currency_code'],
-  			'CREATESECURETOKEN' => 'Y',
-  			'SECURETOKENID' => $secure_token_id,
-  			'BILLTOFIRSTNAME' => $order_info['payment_firstname'],
-  			'BILLTOLASTNAME' => $order_info['payment_lastname'],
-  			'BILLTOSTREET' => trim($order_info['payment_address_1'] . ' ' . $order_info['payment_address_2']),
-  			'BILLTOCITY' => $order_info['payment_city'],
-  			'BILLTOSTATE' => $payment_zone['code'],
-  			'BILLTOZIP' => $order_info['payment_postcode'],
-  			'BILLTOCOUNTRY' => $payment_country['iso_code_2']
-  		);
-  
-  		// Does the order have shipping ?
-  		if ($shipping_country) {
-  			$url_params['SHIPTOFIRSTNAME'] = $order_info['shipping_firstname'];
-  			$url_params['SHIPTOLASTNAME'] = $order_info['shipping_lastname'];
-  			$url_params['SHIPTOSTREET'] = trim($order_info['shipping_address_1'] . ' ' . $order_info['shipping_address_2']);
-  			$url_params['SHIPTOCITY'] = $order_info['shipping_city'];
-  			$url_params['SHIPTOSTATE'] = $shipping_zone['code'];
-  			$url_params['SHIPTOZIP'] = $order_info['shipping_postcode'];
-  			$url_params['SHIPTOCOUNTRY'] = $shipping_country['iso_code_2'];
-  		}
-  
-  		// Get a secure token
-  		$response_params = $this->model_payment_pp_payflow_iframe->call($url_params);
-  
-  		if ($response_params === false) {
-  			$this->data['error'] = $this->language->get('error_connection');
-  
-  		} elseif (is_array($response_params) && isset($response_params['RESULT']) && $response_params['RESULT'] == 0) {
-  			$secure_token = (isset($response_params['SECURETOKEN']) ? $response_params['SECURETOKEN'] : '');
-  
-  			$iframe_params = array(
-  				'MODE'          => $mode,
-  				'SECURETOKENID' => $secure_token_id,
-  				'SECURETOKEN'   => $secure_token
-  			);
-  
-  			// Use parameters to embed the PayPal hosted page in an iframe tag.
-  			$this->data['iframe_url'] = $payflow_url . '?' . http_build_query($iframe_params, '', '&');
-  			$this->data['checkout_method'] = $this->config->get('pp_payflow_iframe_checkout_method');
-  
-  			$this->data['button_confirm'] = $this->language->get('button_confirm');
+			$payflow_url = 'https://payflowlink.paypal.com';
 
-  		} elseif (is_array($response_params)) {
-  			$this->data['error'] = sprintf($this->language->get('error_transaction'), $response_params['RESULT'], $response_params['RESPMSG']);
-  		}
+			if ($this->config->get('pp_payflow_iframe_transaction_method') == 'sale') {
+				$transaction_type = 'S';
+			} else {
+				$transaction_type = 'A';
+			}
+
+			$secure_token_id = md5($this->session->data['order_id'] . mt_rand() . microtime());
+
+			$this->model_payment_pp_payflow_iframe->addOrder($order_info['order_id'], $secure_token_id);
+
+			$shipping_country = $this->model_localisation_country->getCountry($order_info['shipping_country_id']);
+			$shipping_zone = $this->model_localisation_zone->getZone($order_info['shipping_zone_id']);
+
+			$payment_country = $this->model_localisation_country->getCountry($order_info['payment_country_id']);
+			$payment_zone = $this->model_localisation_zone->getZone($order_info['payment_zone_id']);
+
+			$url_params = array(
+				'TENDER' => 'C',
+				'TRXTYPE' => $transaction_type,
+				'AMT' => $this->currency->format($order_info['total'], $order_info['currency_code'], false, false),
+				'CURRENCY' => $order_info['currency_code'],
+				'CREATESECURETOKEN' => 'Y',
+				'SECURETOKENID' => $secure_token_id,
+				'BILLTOFIRSTNAME' => $order_info['payment_firstname'],
+				'BILLTOLASTNAME' => $order_info['payment_lastname'],
+				'BILLTOSTREET' => trim($order_info['payment_address_1'] . ' ' . $order_info['payment_address_2']),
+				'BILLTOCITY' => $order_info['payment_city'],
+				'BILLTOSTATE' => $payment_zone['code'],
+				'BILLTOZIP' => $order_info['payment_postcode'],
+				'BILLTOCOUNTRY' => $payment_country['iso_code_2']
+			);
+
+			// Does the order have shipping ?
+			if ($shipping_country) {
+				$url_params['SHIPTOFIRSTNAME'] = $order_info['shipping_firstname'];
+				$url_params['SHIPTOLASTNAME'] = $order_info['shipping_lastname'];
+				$url_params['SHIPTOSTREET'] = trim($order_info['shipping_address_1'] . ' ' . $order_info['shipping_address_2']);
+				$url_params['SHIPTOCITY'] = $order_info['shipping_city'];
+				$url_params['SHIPTOSTATE'] = $shipping_zone['code'];
+				$url_params['SHIPTOZIP'] = $order_info['shipping_postcode'];
+				$url_params['SHIPTOCOUNTRY'] = $shipping_country['iso_code_2'];
+			}
+
+			// Get a secure token
+			$response_params = $this->model_payment_pp_payflow_iframe->call($url_params);
+
+			if ($response_params === false) {
+				$this->data['error'] = $this->language->get('error_connection');
+
+			} elseif (is_array($response_params) && isset($response_params['RESULT']) && $response_params['RESULT'] == 0) {
+				$secure_token = (isset($response_params['SECURETOKEN']) ? $response_params['SECURETOKEN'] : '');
+
+				$iframe_params = array(
+					'MODE'          => $mode,
+					'SECURETOKENID' => $secure_token_id,
+					'SECURETOKEN'   => $secure_token
+				);
+
+				// Use parameters to embed the PayPal hosted page in an iframe tag.
+				$this->data['iframe_url'] = $payflow_url . '?' . http_build_query($iframe_params, '', '&');
+				$this->data['checkout_method'] = $this->config->get('pp_payflow_iframe_checkout_method');
+
+				$this->data['button_confirm'] = $this->language->get('button_confirm');
+
+			} elseif (is_array($response_params)) {
+				$this->data['error'] = sprintf($this->language->get('error_transaction'), $response_params['RESULT'], $response_params['RESPMSG']);
+			}
 
 		} else {
 			$this->data['error'] = $this->language->get('error_missing_order');
