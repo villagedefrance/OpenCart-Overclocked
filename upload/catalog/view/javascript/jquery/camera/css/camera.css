@@ -1156,3 +1156,25 @@
 .camera_mist_skin .camera_commands > .camera_stop {
 	background-position: -120px -1200px;
 }
+/*CLEAR SKIN*/
+.camera_clear_skin .camera_pag .camera_pag_ul li.cameracurrent > span {
+	background: transparent;
+}
+.camera_clear_skin .camera_prevThumbs div {
+	background-position: -160px -1240px;
+}
+.camera_clear_skin .camera_nextThumbs div {
+	background-position: -190px -1240px;
+}
+.camera_clear_skin .camera_prev > span {
+	background-position: 0 -1240px;
+}
+.camera_clear_skin .camera_next > span {
+	background-position: -40px -1240px;
+}
+.camera_clear_skin .camera_commands > .camera_play {
+	background-position: -80px -1240px;
+}
+.camera_clear_skin .camera_commands > .camera_stop {
+	background-position: -120px -1240px;
+}

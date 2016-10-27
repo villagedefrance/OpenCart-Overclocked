@@ -444,3 +444,10 @@
 .slick_mist_skin .slick-next > span {
 	background-position: -40px -1200px;
 }
+/*CLEAR SKIN*/
+.slick_clear_skin .slick-prev > span {
+	background-position: 0 -1240px;
+}
+.slick_clear_skin .slick-next > span {
+	background-position: -40px -1240px;
+}

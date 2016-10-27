@@ -75,6 +75,7 @@ class ModelSettingSetting extends Model {
 		$skins[] = array('skin' => 'mauve','color' => '#76608A','title' => 'Mauve');
 		$skins[] = array('skin' => 'sienna','color' => '#B77733','title' => 'Sienna');
 		$skins[] = array('skin' => 'mist','color' => '#F2F2F2','title' => 'Mist');
+		$skins[] = array('skin' => 'clear','color' => 'transparent','title' => 'Clear');
 
 		return $skins;
 	}
