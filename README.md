@@ -40,6 +40,8 @@ Powered by the Latest Scripts:
 Coming soon in 1.8.3.0!
 - Added Font Awesome.
 - Added Admin menu icons.
+- Added Fancybox Plus.
+- Updated Slick to v1.6.0.
 - improved PHP 7.0+ support.
 - ...
 

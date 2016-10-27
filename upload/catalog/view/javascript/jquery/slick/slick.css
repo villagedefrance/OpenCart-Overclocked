@@ -7,6 +7,7 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
+	
 	-webkit-touch-callout: none;
 	-khtml-user-select: none;
 	-ms-touch-action: pan-y;
@@ -68,7 +69,9 @@
 .slick-slide .slick-loading img {
 	display: none;
 }
-.slick-slide .dragging img { }
+.slick-slide .dragging img {
+	pointer-events: none;
+}
 .slick-initialized .slick-slide {
 	display: block;
 	outline: 0;
@@ -88,7 +91,7 @@
 }
 /*----------- OverClocked Edition -----------*/
 .slick-loading .slick-list {
-	background: #FFF url(images/ajax-loader.gif) center center no-repeat;
+	background: #FFF url('images/ajax-loader.gif') center center no-repeat;
 }
 /* Arrows */
 .slick-prev, .slick-next {
@@ -121,7 +124,7 @@
 	width: 40px;
 }
 .slick-prev > span {
-	background: url(images/slick_skins.png) no-repeat 0 0;
+	background: url('images/slick_skins.png') no-repeat 0 0;
 	display: block;
 	height: 40px;
 	width: 40px;
@@ -132,7 +135,7 @@
 	width: 40px;
 }
 [dir='rtl'] .slick-prev > span {
-	background: url(images/slick_skins.png) no-repeat -40px 0;
+	background: url('images/slick_skins.png') no-repeat -40px 0;
 	display: block;
 	height: 40px;
 	width: 40px;
@@ -143,7 +146,7 @@
 	width: 40px;
 }
 .slick-next > span {
-	background: url(images/slick_skins.png) no-repeat -40px 0;
+	background: url('images/slick_skins.png') no-repeat -40px 0;
 	display: block;
 	height: 40px;
 	width: 40px;
@@ -154,7 +157,7 @@
 	width: 40px;
 }
 [dir='rtl'] .slick-next > span {
-	background: url(images/slick_skins.png) no-repeat 0 0;
+	background: url('images/slick_skins.png') no-repeat 0 0;
 	display: block;
 	height: 40px;
 	width: 40px;
