@@ -54,6 +54,7 @@ $platforms = array (
 $browsers = array(
 	'Flock'        => 'Flock',
 	'Edge'         => 'Microsoft Edge',
+	'OPR'          => 'Opera',
 	'Opera'        => 'Opera',
 	'Trident/7.0'  => 'Internet Explorer 11',
 	'Trident/6.0'  => 'Internet Explorer 10',

@@ -296,7 +296,7 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_manufacturer_image'] = $this->config->get($this->_name . '_manufacturer_image');
 		}
 
-		// Stylesheet mode
+		// Stylesheet mode (required for modules): Single CSS = 1, Multiple CSS = 0 (default)
 		if (isset($this->request->post[$this->_name . '_stylesheet'])) {
 			$this->data[$this->_name . '_stylesheet'] = $this->request->post[$this->_name . '_stylesheet'];
 		} else {
