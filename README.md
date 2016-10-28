@@ -37,21 +37,12 @@ Powered by the Latest Scripts:
 - CKEditor 4.5.11 Full.
 - ...
 
-Coming soon in 1.8.3.0!
+New in 1.8.3.0 (current release)!
 - Added Font Awesome.
 - Added Admin menu icons.
 - Added Fancybox Plus.
 - Updated Slick to v1.6.0.
-- improved PHP 7.0+ support.
-- ...
-
-New in 1.8.2.0 (current release)!
-- Full SSL support in Catalog.
-- New One Page Checkout!
-- New product labels system.
-- Better PayPal Express button.
-- CKEditor 4.5.11 Full.
-- Improved Search.
+- PHP 7.0+ support.
 - Bug fixes.
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
@@ -59,17 +50,18 @@ Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
 Custom Menu System, Custom Footer System, Responsive Default Theme, Template Control System,
 Touch/Swipe enabled, Full Page Image Manager with multi-uploads, Cache Managers for Files and Images,
 SEO Keywords Manager, Integrated News (Blog), DomPDF library for PDF order downloads, StoreYa Feed,
-Direct printing of invoices, Custom Colour & Style for all modules and footer, Improved Affiliates features,
-Api Keys management forms, Supplier management forms, Admin User Agent detector, Product RSS Feed,
-Cookie Consent code, New Modules & Shipping methods, New and updated Payment methods, Tag cloud,
-Alexa & Piwik connectors, Customer Group image, Store Google Map, Country & Zone update on upgrade,
-Improved invoicing (with tax breakdown), Ip Range blocker (firewall), Stronger Session & Captcha Classes,
-Autocomplete for offers, "Save & Continue" for Admin forms, EU taxes for E-medias Law, Seo-Urls caching,
-Import/Export Tool, Customer Order Picklist & Order History, Customer Gender & Date of Birth (optional),
-Product Minimum Age limit, Product Wall page, Product Quote system, Profit Margins & Stock Levels reports,
-Colours for Product, VQmod and VQmanager, Better Install & Upgrade scripts, Express Checkout (optional),
-Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration, "Free" for zero prices,
-All fixes from Community Edition RC1/2 applied, Custom Payment labels, Email log, Improved Dashboard ...
+Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style for all modules and footer,
+Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed,
+Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector,
+New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image,
+Store Google Map, Country & Zone update on upgrade, Improved invoicing (with tax breakdown), Email log,
+Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching,
+"Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History,
+Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum Age limit, Product Wall page,
+Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager,
+Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
+Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
+"Free" for zero prices, Custom Payment labels, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
 WANT TO CONTRIBUTE?
