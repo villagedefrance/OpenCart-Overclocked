@@ -82,6 +82,7 @@
   </table>
   <table class="product">
     <tr class="heading">
+      <td class="left"><b><?php echo $column_location; ?></b></td>
       <td class="left"><b><?php echo $column_product; ?></b></td>
       <td class="left"><b><?php echo $column_model; ?></b></td>
       <td class="center"><b><?php echo $column_quantity; ?></b></td>
@@ -90,6 +91,9 @@
     </tr>
     <?php foreach ($order['product'] as $product) { ?>
     <tr>
+      <td class="left"><?php foreach ($product['location'] as $location) { ?>
+        <?php echo ($location) ? $location : '--'; ?>
+      <?php } ?></td>
       <td class="left"><?php echo $product['name']; ?>
         <?php foreach ($product['option'] as $option) { ?>
           <br />

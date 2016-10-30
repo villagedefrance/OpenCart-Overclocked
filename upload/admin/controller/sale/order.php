@@ -2447,6 +2447,7 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_reception_date'] = $this->language->get('text_reception_date');
 		$this->data['text_reception_condition'] = $this->language->get('text_reception_condition');
 
+		$this->data['column_location'] = $this->language->get('column_location');
 		$this->data['column_product'] = $this->language->get('column_product');
 		$this->data['column_model'] = $this->language->get('column_model');
 		$this->data['column_quantity'] = $this->language->get('column_quantity');
@@ -2605,6 +2606,7 @@ class ControllerSaleOrder extends Controller {
 					$product_data[] = array(
 						'name'     => $product['name'],
 						'barcode'  => ($admin_barcode) ? $this->model_tool_barcode->getBarcode($product['model'], strtoupper($barcode_type), 1, 20) : '',
+						'location' => $this->model_sale_order->getOrderProductLocation($product['product_id']),
 						'model'    => $product['model'],
 						'option'   => $option_data,
 						'quantity' => $product['quantity']

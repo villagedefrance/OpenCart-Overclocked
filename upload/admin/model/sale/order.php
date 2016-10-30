@@ -781,6 +781,16 @@ class ModelSaleOrder extends Model {
 		return $query->row['total'];
 	}
 
+	public function getOrderProductLocation($product_id) {
+		$query = $this->db->query("SELECT DISTINCT location FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+
+		if (!empty($query->row)) {
+			return $query->row;
+		} else {
+			return 0;
+		}
+	}
+
 	public function setPicked($order_product_id, $pick_status) {
 		if ($pick_status) {
 			$this->db->query("UPDATE " . DB_PREFIX . "order_product SET picked = '1' WHERE order_product_id = '" . (int)$order_product_id . "'");

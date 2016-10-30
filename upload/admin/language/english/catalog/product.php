@@ -66,7 +66,6 @@ $_['entry_quote']             = 'Request a Quote:<span class="help">Select if th
 $_['entry_age_minimum']       = 'Minimum Age:<span class="help">Minimum age a customer must be to purchase this product. Enter 0 for no minimum.</span>';
 $_['entry_tax_class']         = 'Tax Class:';
 $_['entry_date_available']    = 'Date Available:';
-$_['entry_palette']           = 'Color Palette:<span class="help">Select a specific palette for this product.<br />Click "Apply" to activate.</span>';
 $_['entry_sort_order']        = 'Sort Order:';
 $_['entry_status']            = 'Status:';
 $_['entry_quantity']          = 'Total Quantity in Stock:';
@@ -81,7 +80,7 @@ $_['entry_ean']               = 'EAN:<span class="help">European Article Number<
 $_['entry_jan']               = 'JAN:<span class="help">Japanese Article Number</span>';
 $_['entry_isbn']              = 'ISBN:<span class="help">International Standard Book Number</span>';
 $_['entry_mpn']               = 'MPN:<span class="help">Manufacturer Part Number</span>';
-$_['entry_location']          = 'Location:<span class="help">(Optional)</span>';
+$_['entry_location']          = 'Location (Bin):<span class="help">(Optional)</span>';
 $_['entry_dimension']         = 'Dimensions (L x W x H):';
 $_['entry_length']            = 'Length Class:';
 $_['entry_weight']            = 'Weight:';
@@ -95,21 +94,9 @@ $_['entry_download']          = 'Downloads:';
 $_['entry_related']           = 'Related Products:';
 $_['entry_points']            = 'Points<span class="help">Number of points needed to buy this item. If you don\'t want this product to be purchased with points, leave as 0.</span>';
 $_['entry_option']            = 'Option';
-$_['entry_required']          = 'Required';
-
-// Compatibility 1.5.X
-$_['entry_attribute']         = 'Attribute';
-$_['entry_text']              = 'Text';
 $_['entry_option_value']      = 'Option Value';
-$_['entry_profile']           = 'Profile';
-$_['entry_customer_group']    = 'Customer Group';
-$_['entry_priority']          = 'Priority';
-$_['entry_date_start']        = 'Date Start';
-$_['entry_date_end']          = 'Date End';
-$_['entry_option_points']     = 'Points';
-$_['entry_reward']            = 'Reward Points';
-$_['entry_palette_color_id']  = 'Palette Color:';
-$_['entry_layout']            = 'Layout Override';
+$_['entry_required']          = 'Required';
+$_['entry_palette']           = 'Color Palette:<span class="help">Select a specific palette for this product.<br />Click "Apply" to activate.</span>';
 
 // Mass Update
 $_['text_selected_yes']       = 'Selected only';

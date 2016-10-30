@@ -675,22 +675,9 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_related'] = $this->language->get('entry_related');
 		$this->data['entry_points'] = $this->language->get('entry_points');
 		$this->data['entry_option'] = $this->language->get('entry_option');
+		$this->data['entry_option_value'] = $this->language->get('entry_option_value');
 		$this->data['entry_required'] = $this->language->get('entry_required');
 		$this->data['entry_palette'] = $this->language->get('entry_palette');
-
-		// Compatibility 1.5.X & 1.6.X
-		$this->data['entry_attribute'] = $this->language->get('entry_attribute');
-		$this->data['entry_text'] = $this->language->get('entry_text');
-		$this->data['entry_option_value'] = $this->language->get('entry_option_value');
-		$this->data['entry_profile'] = $this->language->get('entry_profile');
-		$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
-		$this->data['entry_priority'] = $this->language->get('entry_priority');
-		$this->data['entry_date_start'] = $this->language->get('entry_date_start');
-		$this->data['entry_date_end'] = $this->language->get('entry_date_end');
-		$this->data['entry_option_points'] = $this->language->get('entry_option_points');
-		$this->data['entry_reward'] = $this->language->get('entry_reward');
-		$this->data['entry_palette_color_id'] = $this->language->get('entry_palette_color_id');
-		$this->data['entry_layout'] = $this->language->get('entry_layout');
 
 		// Recurring
 		$this->data['text_recurring_help'] = $this->language->get('text_recurring_help');
