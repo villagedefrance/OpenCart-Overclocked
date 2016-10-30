@@ -882,11 +882,12 @@ class ControllerCatalogProduct extends Controller {
 
 		// Barcode
 		$admin_barcode = $this->config->get('config_admin_barcode');
+		$barcode_type = $this->config->get('config_barcode_type');
 
 		if ($admin_barcode && !empty($product_info) && $product_info['model']) {
 			$this->load->model('tool/barcode');
 
-			$this->data['barcode'] = $this->model_tool_barcode->getBarcode($product_info['model'], 'TYPE_CODE_128', 1.2, 24);
+			$this->data['barcode'] = $this->model_tool_barcode->getBarcode($product_info['model'], strtoupper($barcode_type), 1, 20);
 		} else {
 			$this->data['barcode'] = '';
 		}
