@@ -26,7 +26,7 @@
           <td><?php echo $text_version; ?></td>
           <td><?php echo $php_version; ?></td>
           <td>5.3+</td>
-          <td style="text-align:center;"><?php if ($php_version >= '5.3') { ?>
+          <td style="text-align:center;"><?php if ($php_version >= '5.4') { ?>
             <img src="view/image/good.png" alt="Good" />
           <?php } else { ?>
             <img src="view/image/bad.png" alt="Bad" />

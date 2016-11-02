@@ -149,8 +149,8 @@ function install($options) {
 function checkRequirements() {
 	$error = null;
 
-	if (phpversion() < '5.3') {
-		$error = 'Warning: You need to use PHP 5.3 or above for OpenCart OCE to work!';
+	if (phpversion() < '5.4') {
+		$error = 'Warning: You need to use PHP 5.4 or above for OpenCart OCE to work!';
 	}
 
 	if (!ini_get('file_uploads')) {
