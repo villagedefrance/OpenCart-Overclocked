@@ -103,22 +103,39 @@
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
           </tr>
           <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_local_tax_rate; ?></td>
+            <td><select name="tax_local_rate_id">
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($tax_local_rates as $tax_local_rate) { ?>
+                <?php if ($tax_local_rate['tax_local_rate_id'] == $tax_local_rate_id) { ?>
+                  <option value="<?php echo $tax_local_rate['tax_local_rate_id']; ?>" selected="selected"><?php echo $tax_local_rate['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $tax_local_rate['tax_local_rate_id']; ?>"><?php echo $tax_local_rate['name']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select> &nbsp; <a href="<?php echo $configure_tax_local_rate; ?>" class="button"><i class="fa fa-gear"></i></a></td>
+          </tr>
+        <tbody id="price-single" class="tax-local-rate">
+          <tr style="background:#FCFCFC;">
+            <td><?php echo $entry_price; ?></td>
+            <td><input type="text" name="price" value="<?php echo $price; ?>" /></td>
+          </tr>
+        </tbody>
+        <tbody id="price-double" class="tax-local-rate">
+          <tr style="background:#FCFCFC;">
             <td><?php echo $entry_price; ?></td>
             <td>
-              <?php if ($vat_rate && $vat_rate != 0) { ?>
-                <input type="text" name="price" class="excvat" value="<?php echo $price; ?>" /> &nbsp; <?php echo $text_exc_vat; ?>
+              <input type="text" name="price" class="excvat" value="<?php echo $price; ?>" /> &nbsp; <?php echo $text_exc_vat; ?> &nbsp; <a onclick="apply();" id="price-apply" class="button-save"><i class="fa fa-refresh"></i></a>
               <br /><br />
-                <input type="text" name="incvat" class="incvat" value="<?php echo number_format(($price * $vat_rate), 4, '.', ''); ?>" /> &nbsp; <?php echo $text_inc_vat; ?> (<?php echo $base_rate; ?>%)
-              <?php } else { ?>
-                <input type="text" name="price" value="<?php echo $price; ?>" />
-              <?php } ?>
+              <input type="text" name="incvat" class="incvat" value="<?php echo number_format(($price * $vat_rate), 4, '.', ''); ?>" /> &nbsp; <?php echo $text_inc_vat; ?> (<?php echo round($base_rate, 2); ?>%)
             </td>
           </tr>
+        </tbody>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_cost; ?></td>
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr>
             <td><?php echo $entry_quote; ?></td>
             <td><select name="quote">
               <?php if ($quote) { ?>
@@ -130,7 +147,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr>
             <td><?php echo $entry_age_minimum; ?></td>
             <td><input type="text" name="age_minimum" value="<?php echo $age_minimum; ?>" size="2" maxlength="2" /></td>
           </tr>
@@ -145,7 +162,7 @@
                   <option value="<?php echo $tax_class['tax_class_id']; ?>"><?php echo $tax_class['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_tax_class; ?>" class="button"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_date_available; ?></td>
@@ -295,7 +312,7 @@
                   <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_length_class; ?>" class="button"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_weight; ?></td>
@@ -311,7 +328,7 @@
                   <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_weight_class; ?>" class="button"><i class="fa fa-gear"></i></a></td>
           </tr>
         </table>
       </div>
@@ -556,7 +573,7 @@
                   <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <a onclick="apply();" id="color-apply" class="button-save"><i class="fa fa-refresh"></i></td>
           </tr>
         </table>
         <table id="colors" class="list">
@@ -1424,13 +1441,43 @@ getRelated();
 <?php } ?>
 
 <script type="text/javascript"><!--
+$('select[name=\'tax_local_rate_id\']').bind('change', function() {
+	$('.tax-local-rate').hide();
+	if ($(this).val() > 0) {
+		$('#price-double').show();
+		if ($(this).val() != <?php echo $tax_local_rate_id; ?>) {
+			$('#price-apply').fadeIn(500);
+		} else {
+			$('#price-apply').hide();
+		}
+	} else {
+		$('#price-single').show();
+	}
+});
+
+$('select[name=\'tax_local_rate_id\']').trigger('change');
+//--></script>
+
+<script type="text/javascript"><!--
 $('.incvat').bind('change keydown keyup', function() {
-   $('input.excvat').val(($(this).val()/<?php echo $vat_rate; ?>).toFixed(4));
+	$('input.excvat').val(($(this).val()/<?php echo $vat_rate; ?>).toFixed(4));
 });
 
 $('.excvat').bind('change keydown keyup', function() {
-   $('input.incvat').val(($(this).val()*<?php echo $vat_rate; ?>).toFixed(4));
+	$('input.incvat').val(($(this).val()*<?php echo $vat_rate; ?>).toFixed(4));
 });
+//--></script>
+
+<script type="text/javascript"><!--
+$('select[name=\'palette_id\']').bind('change', function() {
+	if ($(this).val() != <?php echo $palette_id; ?>) {
+		$('#color-apply').fadeIn(500);
+	} else {
+		$('#color-apply').hide();
+	}
+});
+
+$('select[name=\'palette_id\']').trigger('change');
 //--></script>
 
 <?php if ($palettes) { ?>

@@ -3750,6 +3750,21 @@ INSERT INTO `oc_product_tag` (`product_tag_id`, `product_id`, `language_id`, `ta
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_product_tax_local_rate`
+--
+
+DROP TABLE IF EXISTS `oc_product_tax_local_rate`;
+CREATE TABLE `oc_product_tax_local_rate` (
+  `product_tax_local_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `tax_local_rate_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_tax_local_rate_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_product_to_category`
 --
 
@@ -4664,6 +4679,21 @@ INSERT INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`
 (1, 'Taxable Goods', 'Taxed Products', '2014-01-06 23:21:53', '2014-09-23 14:07:50'),
 (2, 'Downloadable Products', 'Downloadable', '2014-09-21 22:19:39', '2014-09-22 10:27:36'),
 (3, 'EU E-medias', 'EU Tax Law', '2015-01-01 00:00:01', '2015-11-17 10:15:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_tax_local_rate`
+--
+
+DROP TABLE IF EXISTS `oc_tax_local_rate`;
+CREATE TABLE `oc_tax_local_rate` (
+  `tax_local_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `rate` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`tax_local_rate_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 

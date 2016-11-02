@@ -76,7 +76,6 @@ $_['entry_language']               = 'Language:';
 $_['entry_admin_language']         = 'Administration Language:';
 $_['entry_currency']               = 'Currency:<span class="help">Change the default currency. Clear your browser cache to see the change and reset your existing cookie.</span>';
 $_['entry_currency_auto']          = 'Auto Update Currency:<span class="help">Set your store to automatically update currencies daily.</span>';
-$_['entry_base_rate']              = 'VAT Base Rate:<span class="help">Set your VAT base rate here in order to display VAT prices in your Product Form. (optional)</span>';
 $_['entry_length_class']           = 'Length Class:';
 $_['entry_weight_class']           = 'Weight Class:';
 $_['entry_date_format']            = 'Date format:<span class="help">Select a date format from the active language definitions.</span>';

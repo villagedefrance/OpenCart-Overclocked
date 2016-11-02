@@ -179,6 +179,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_system'] = $this->language->get('text_system');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_tax_class'] = $this->language->get('text_tax_class');
+		$this->data['text_tax_local_rate'] = $this->language->get('text_tax_local_rate');
 		$this->data['text_tax_rate'] = $this->language->get('text_tax_rate');
 		$this->data['text_theme'] = $this->language->get('text_theme');
 		$this->data['text_tool'] = $this->language->get('text_tool');
@@ -309,6 +310,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['supplier_group'] = $this->url->link('sale/supplier_group', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['supplier_product'] = $this->url->link('sale/supplier_product', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['tax_local_rate'] = $this->url->link('localisation/tax_local_rate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['theme'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['total'] = $this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL');

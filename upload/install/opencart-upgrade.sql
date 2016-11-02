@@ -2021,6 +2021,21 @@ CREATE TABLE `oc_product_tag` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_product_tax_local_rate`
+--
+
+DROP TABLE IF EXISTS `oc_product_tax_local_rate`;
+CREATE TABLE `oc_product_tax_local_rate` (
+  `tax_local_rate_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_tax_local_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`product_tax_local_rate_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_product_to_category`
 --
 
@@ -2430,6 +2445,21 @@ CREATE TABLE `oc_tax_class` (
   `title` varchar(32) NOT NULL,
   `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tax_class_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_tax_local_rate`
+--
+
+DROP TABLE IF EXISTS `oc_tax_local_rate`;
+CREATE TABLE `oc_tax_local_rate` (
+  `status` tinyint(1) NOT NULL,
+  `rate` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `name` varchar(32) NOT NULL,
+  `tax_local_rate_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`tax_local_rate_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------

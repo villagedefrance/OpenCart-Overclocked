@@ -639,6 +639,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_model'] = $this->language->get('entry_model');
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
+		$this->data['entry_local_tax_rate'] = $this->language->get('entry_local_tax_rate');
 		$this->data['entry_price'] = $this->language->get('entry_price');
 		$this->data['entry_cost'] = $this->language->get('entry_cost');
 		$this->data['entry_quote'] = $this->language->get('entry_quote');
@@ -922,13 +923,28 @@ class ControllerCatalogProduct extends Controller {
 		}
 
 		// Price
-		$base_rate = $this->config->get('config_base_rate');
+		$this->load->model('localisation/tax_local_rate');
 
-		if (is_numeric($base_rate) && $base_rate > 0) {
-			$vat_rate = number_format(($base_rate * 100), 0, '.', '');
+		$this->data['tax_local_rates'] = $this->model_localisation_tax_local_rate->getTaxLocalRates(0);
 
-			$this->data['vat_rate'] = '1.' . $vat_rate;
-			$this->data['base_rate'] = $base_rate;
+		if (isset($this->request->post['tax_local_rate_id'])) {
+			$tax_local_rate_id = $this->request->post['tax_local_rate_id'];
+			$this->data['tax_local_rate_id'] = $tax_local_rate_id;
+		} elseif (isset($this->request->get['product_id'])) {
+			$tax_local_rate_id = $this->model_catalog_product->getProductTaxLocalRates($this->request->get['product_id']);
+			$this->data['tax_local_rate_id'] = $tax_local_rate_id;
+		} else {
+			$tax_local_rate_id = 0;
+			$this->data['tax_local_rate_id'] = $tax_local_rate_id;
+		}
+
+		$this->data['configure_tax_local_rate'] = $this->url->link('localisation/tax_local_rate', 'token=' . $this->session->data['token'], 'SSL');
+
+		$base_rate = $this->model_localisation_tax_local_rate->getTaxLocalRate($tax_local_rate_id);
+
+		if (!empty($base_rate) && $base_rate['tax_local_rate_id'] > 0 && is_numeric($base_rate['rate'])) {
+			$this->data['vat_rate'] = 1 + ($base_rate['rate'] / 100);
+			$this->data['base_rate'] = $base_rate['rate'];
 		} else {
 			$this->data['vat_rate'] = false;
 			$this->data['base_rate'] = '';
@@ -977,6 +993,8 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$this->data['tax_class_id'] = 0;
 		}
+
+		$this->data['configure_tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['date_available'])) {
 			$this->data['date_available'] = $this->request->post['date_available'];
@@ -1151,6 +1169,8 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['length_class_id'] = $this->config->get('config_length_class_id');
 		}
 
+		$this->data['configure_length_class'] = $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'], 'SSL');
+
 		if (isset($this->request->post['weight'])) {
 			$this->data['weight'] = $this->request->post['weight'];
 		} elseif (!empty($product_info)) {
@@ -1170,6 +1190,8 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$this->data['weight_class_id'] = $this->config->get('config_weight_class_id');
 		}
+
+		$this->data['configure_weight_class'] = $this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Manufacturer
 		$this->load->model('catalog/manufacturer');

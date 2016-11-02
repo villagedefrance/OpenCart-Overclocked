@@ -226,10 +226,6 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><?php echo $entry_base_rate; ?></td>
-            <td><input type="text" name="config_base_rate" value="<?php echo $config_base_rate; ?>" size="20" /></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_length_class; ?></td>
             <td><select name="config_length_class_id">
             <?php foreach ($length_classes as $length_class) { ?>
@@ -885,13 +881,14 @@
           <tr>
             <td><?php echo $entry_supplier_group; ?></td>
             <td><select name="config_supplier_group_id">
-            <?php foreach ($supplier_groups as $supplier_group) { ?>
-              <?php if ($supplier_group['supplier_group_id'] == $config_supplier_group_id) { ?>
-                <option value="<?php echo $supplier_group['supplier_group_id']; ?>" selected="selected"><?php echo $supplier_group['name']; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $supplier_group['supplier_group_id']; ?>"><?php echo $supplier_group['name']; ?></option>
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($supplier_groups as $supplier_group) { ?>
+                <?php if ($supplier_group['supplier_group_id'] == $config_supplier_group_id) { ?>
+                  <option value="<?php echo $supplier_group['supplier_group_id']; ?>" selected="selected"><?php echo $supplier_group['name']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $supplier_group['supplier_group_id']; ?>"><?php echo $supplier_group['name']; ?></option>
+                <?php } ?>
               <?php } ?>
-            <?php } ?>
             </select></td>
           </tr>
         </table>
