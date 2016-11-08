@@ -20,7 +20,7 @@ class ModelCatalogCategory extends Model {
 		// MySQL Hierarchical Data Closure Table Pattern
 		$level = 0;
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY `level` ASC");
 
 		foreach ($query->rows as $result) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "category_path SET category_id = '" . (int)$category_id . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
@@ -74,7 +74,7 @@ class ModelCatalogCategory extends Model {
 		}
 
 		// MySQL Hierarchical Data Closure Table Pattern
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE path_id = '" . (int)$category_id . "' ORDER BY level ASC");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE path_id = '" . (int)$category_id . "' ORDER BY `level` ASC");
 
 		if ($query->rows) {
 			foreach ($query->rows as $category_path) {
@@ -84,14 +84,14 @@ class ModelCatalogCategory extends Model {
 				$path = array();
 
 				// Get the nodes new parents
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY `level` ASC");
 
 				foreach ($query->rows as $result) {
 					$path[] = $result['path_id'];
 				}
 
 				// Get whats left of the nodes current path
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$category_path['category_id'] . "' ORDER BY level ASC");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$category_path['category_id'] . "' ORDER BY `level` ASC");
 
 				foreach ($query->rows as $result) {
 					$path[] = $result['path_id'];
@@ -114,7 +114,7 @@ class ModelCatalogCategory extends Model {
 			// Fix for records with no paths
 			$level = 0;
 
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY level ASC");
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_path WHERE category_id = '" . (int)$data['parent_id'] . "' ORDER BY `level` ASC");
 
 			foreach ($query->rows as $result) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_path SET category_id = '" . (int)$category_id . "', path_id = '" . (int)$result['path_id'] . "', `level` = '" . (int)$level . "'");
