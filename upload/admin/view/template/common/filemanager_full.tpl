@@ -25,14 +25,14 @@
     </div>
     <div class="content">
       <div id="files-menu">
-        <a id="create" class="filemanager-button" style="background-image:url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
-        <a id="delete" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
-        <a id="move" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
-        <a id="copy" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
-        <a id="rename" class="filemanager-button" style="background-image:url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
-        <a id="upload" class="filemanager-button" style="background-image:url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
-        <a id="uploadmulti" class="filemanager-button" style="background-image:url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
-        <a id="refresh" class="filemanager-button" style="background-image:url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+        <a id="create" class="filemanager-button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
+        <a id="delete" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>
+        <a id="move" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-cut.png');"><?php echo $button_move; ?></a>
+        <a id="copy" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-copy.png');"><?php echo $button_copy; ?></a>
+        <a id="rename" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-rename.png');"><?php echo $button_rename; ?></a>
+        <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
+        <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
+        <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
       </div>
       <div id="column-right"></div>
       <div id="column-left"></div>
@@ -762,4 +762,5 @@ $(document).ready(function() {
 	});
 });
 //--></script>
+
 <?php echo $footer; ?>
