@@ -60,8 +60,8 @@ $_['entry_tag']               = 'Product Tags:<span class="help">Comma separated
 $_['entry_model']             = 'Model:';
 $_['entry_image']             = 'Main Image:';
 $_['entry_keyword']           = 'SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
-$_['entry_local_tax_rate']    = 'Local Tax Rate:<span class="help">Select a local tax rate for this product to be able to work with price including tax.</span>';
-$_['entry_price']             = 'Price:';
+$_['entry_local_tax_rate']    = 'Local Tax Rate:<span class="help">Select a local tax rate for this product.</span>';
+$_['entry_price']             = 'Price (%s):';
 $_['entry_cost']              = 'Average Cost:';
 $_['entry_quote']             = 'Request a Quote:<span class="help">Select if the product is made to order or only available on request. The customer will be redirected to the quotation form.</span>';
 $_['entry_age_minimum']       = 'Minimum Age:<span class="help">Minimum age a customer must be to purchase this product. Enter 0 for no minimum.</span>';

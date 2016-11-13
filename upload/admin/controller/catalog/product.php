@@ -640,7 +640,7 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_local_tax_rate'] = $this->language->get('entry_local_tax_rate');
-		$this->data['entry_price'] = $this->language->get('entry_price');
+		$this->data['entry_price'] = sprintf($this->language->get('entry_price'), $this->config->get('config_currency'));
 		$this->data['entry_cost'] = $this->language->get('entry_cost');
 		$this->data['entry_quote'] = $this->language->get('entry_quote');
 		$this->data['entry_age_minimum'] = $this->language->get('entry_age_minimum');
@@ -946,7 +946,7 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['vat_rate'] = 1 + ($base_rate['rate'] / 100);
 			$this->data['base_rate'] = $base_rate['rate'];
 		} else {
-			$this->data['vat_rate'] = false;
+			$this->data['vat_rate'] = 1;
 			$this->data['base_rate'] = '';
 		}
 

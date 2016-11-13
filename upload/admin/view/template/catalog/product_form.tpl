@@ -115,13 +115,6 @@
               <?php } ?>
             </select> &nbsp; <a href="<?php echo $configure_tax_local_rate; ?>" class="button"><i class="fa fa-gear"></i></a></td>
           </tr>
-        <tbody id="price-single" class="tax-local-rate">
-          <tr style="background:#FCFCFC;">
-            <td><?php echo $entry_price; ?></td>
-            <td><input type="text" name="price" value="<?php echo $price; ?>" /></td>
-          </tr>
-        </tbody>
-        <tbody id="price-double" class="tax-local-rate">
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_price; ?></td>
             <td>
@@ -130,7 +123,6 @@
               <input type="text" name="incvat" class="incvat" value="<?php echo number_format(($price * $vat_rate), 4, '.', ''); ?>" /> &nbsp; <?php echo $text_inc_vat; ?> (<?php echo round($base_rate, 2); ?>%)
             </td>
           </tr>
-        </tbody>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_cost; ?></td>
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
@@ -1442,16 +1434,10 @@ getRelated();
 
 <script type="text/javascript"><!--
 $('select[name=\'tax_local_rate_id\']').bind('change', function() {
-	$('.tax-local-rate').hide();
-	if ($(this).val() > 0) {
-		$('#price-double').show();
-		if ($(this).val() != <?php echo $tax_local_rate_id; ?>) {
-			$('#price-apply').fadeIn(500);
-		} else {
-			$('#price-apply').hide();
-		}
+	if ($(this).val() != <?php echo $tax_local_rate_id; ?>) {
+		$('#price-apply').fadeIn(500);
 	} else {
-		$('#price-single').show();
+		$('#price-apply').hide();
 	}
 });
 
