@@ -101,25 +101,21 @@ class ControllerCommonFileManager extends Controller {
 
 		$ext = utf8_substr(strrchr($filename, '.'), 1);
 
-		if (strtolower($ext) == 'pdf') {
-			$filename = 'pdf.png';
-		}
-
-		if (strtolower($ext) == 'flv') {
-			$filename = 'flv.png';
-		}
-
-		if (strtolower($ext) == 'swf') {
-			$filename = 'swf.png';
-		}
-
-		if (strtolower($ext) == 'zip') {
-			$filename = 'zip.png';
-		}
-
-		if (strtolower($ext) == 'rar') {
-			$filename = 'rar.png';
-		}
+		if (strtolower($ext) == 'mp3') { $filename = 'mp3.png'; }
+		if (strtolower($ext) == 'mp4') { $filename = 'mp4.png'; }
+		if (strtolower($ext) == 'oga') { $filename = 'oga.png'; }
+		if (strtolower($ext) == 'ogv') { $filename = 'ogv.png'; }
+		if (strtolower($ext) == 'ogg') { $filename = 'ogg.png'; }
+		if (strtolower($ext) == 'webm') { $filename = 'webm.png'; }
+		if (strtolower($ext) == 'm4a') { $filename = 'm4a.png'; }
+		if (strtolower($ext) == 'm4v') { $filename = 'm4v.png'; }
+		if (strtolower($ext) == 'wmv') { $filename = 'wmv.png'; }
+		if (strtolower($ext) == 'wma') { $filename = 'wma.png'; }
+		if (strtolower($ext) == 'pdf') { $filename = 'pdf.png'; }
+		if (strtolower($ext) == 'flv') { $filename = 'flv.png'; }
+		if (strtolower($ext) == 'swf') { $filename = 'swf.png'; }
+		if (strtolower($ext) == 'zip') { $filename = 'zip.png'; }
+		if (strtolower($ext) == 'rar') { $filename = 'rar.png'; }
 
 		if ($return) {
 			return htmlspecialchars($this->model_tool_image->resize(html_entity_decode($filename, ENT_QUOTES, 'UTF-8'), 100, 100), ENT_QUOTES, 'UTF-8');
@@ -167,7 +163,7 @@ class ControllerCommonFileManager extends Controller {
 			$directory = DIR_IMAGE . 'data/';
 		}
 
-		$allowed = array('jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'pdf', 'swf', 'flv');
+		$allowed = array('jpg','jpeg','png','gif','mp3','mp4','oga','ogv','ogg','webm','m4a','m4v','wma','wmv','zip','rar','pdf','swf','flv');
 
 		$files = glob(rtrim($directory, '/') . '/*');
 
@@ -184,10 +180,10 @@ class ControllerCommonFileManager extends Controller {
 
 					$i = 0;
 
-					$suffix = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+					$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
 
-					while (($size / 1024) > 1) {
-						$size = $size / 1024;
+					while (($size / 2048) > 1) {
+						$size = $size / 2048;
 						$i++;
 					}
 
@@ -502,7 +498,7 @@ class ControllerCommonFileManager extends Controller {
 					$json['error'] = $this->language->get('error_directory');
 				}
 
-				$file_max_size = 1024000; // 1mb
+				$file_max_size = 2048000; // 2mb
 
 				if ($this->request->files['image']['size'] > (int)$file_max_size) {
 					$json['error'] = $this->language->get('error_file_size');
@@ -514,6 +510,26 @@ class ControllerCommonFileManager extends Controller {
 					'image/png',
 					'image/x-png',
 					'image/gif',
+					'audio/mp3',
+					'audio/mpeg',
+					'audio/x-mpeg',
+					'audio/mpeg3',
+					'audio/x-mpeg-3',
+					'audio/oga',
+					'audio/m4a',
+					'audio/webm',
+					'audio/x-ms-wma',
+					'video/x-ms-asf',
+					'video/mp4',
+					'video/mpeg',
+					'video/x-mpeg',
+					'video/x-mpeq2a',
+					'video/ogv',
+					'video/webm',
+					'video/x-m4v',
+					'video/msvideo',
+					'video/x-ms-wmv',
+					'application/ogg',
 					'multipart/x-zip',
 					'application/zip',
 					'application/x-compressed',
@@ -534,6 +550,16 @@ class ControllerCommonFileManager extends Controller {
 					'.jpeg',
 					'.png',
 					'.gif',
+					'.mp3',
+					'.mp4',
+					'.oga',
+					'.ogv',
+					'.ogg',
+					'.webm',
+					'.m4a',
+					'.m4v',
+					'.wma',
+					'.wmv',
 					'.zip',
 					'.rar',
 					'.pdf',
@@ -623,7 +649,7 @@ class ControllerCommonFileManager extends Controller {
 			$contentType = $_SERVER["CONTENT_TYPE"];
 		}
 
-		$file_max_size = 25600; // 25Mb
+		$file_max_size = 30720; // 30Mb
 
 		if (strpos($contentType, "multipart") !== false) {
 			if (isset($_FILES['file']['tmp_name']) && is_uploaded_file($_FILES['file']['tmp_name'])) {

@@ -687,8 +687,6 @@ $(document).ready(function() {
 			if (json.error) {
 				alert(json.error);
 			}
-
-			$('.loading').remove();
 		}
 	});
 
@@ -711,11 +709,11 @@ $(document).ready(function() {
 					runtimes: 'html5,flash,silverlight',
 					url: 'index.php?route=common/filemanager/multi&token=<?php echo $token; ?>&directory=' + window.dr,
 					max_file_count: 50,
-					max_file_size: '25mb',
+					max_file_size: '30mb',
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { quality: 100, crop: false },
-					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,gif,png,zip,rar,pdf,flv,swf" } ],
+					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,png,gif,mp3,mp4,oga,ogv,ogg,webm,m4a,m4v,wma,wmv,zip,rar,pdf,flv,swf" } ],
 					flash_swf_url: 'view/javascript/plupload/js/Moxie.swf',
 					silverlight_xap_url: 'view/javascript/plupload/js/Moxie.xap'
 				});

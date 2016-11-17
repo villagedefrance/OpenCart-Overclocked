@@ -25,6 +25,11 @@ AddDefaultCharset utf-8
   AddCharset utf-8 .atom .css .js .json .jsonld .rss .vtt .webapp .xml
 </IfModule>
 
+## Add Video Codecs
+AddType application/ogg .ogg
+AddType video/mp4 .mp4
+AddType video/webm .webm
+
 ## Prevent Direct Access to files.
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|in[ci]|ini|tpl|log|psd|sh|sql|sw[op])|~)$">
 # Apache < 2.3

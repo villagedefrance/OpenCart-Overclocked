@@ -38,7 +38,7 @@ $_['text_allowed']        = 'Allowed files';
 
 // Error
 $_['error_select']        = 'Warning: Please select a directory or file!';
-$_['error_file']          = 'Warning: Please select a file!';
+$_['error_file']          = 'Warning: File error! Try using Upload+ instead.';
 $_['error_directory']     = 'Warning: Please select a directory!';
 $_['error_default']       = 'Warning: You can not alter your default directory!';
 $_['error_delete']        = 'Warning: You can not delete this directory!';
@@ -50,7 +50,7 @@ $_['error_move']          = 'Warning: Move to directory does not exists!';
 $_['error_copy']          = 'Warning: You can not copy this file or directory!';
 $_['error_rename']        = 'Warning: You can not rename this directory!';
 $_['error_file_type']     = 'Warning: Incorrect file type!';
-$_['error_file_size']     = 'Warning: File too big! please keep below 1000kb and no more than 1000px height or width!';
+$_['error_file_size']     = 'Warning: File too big! please keep below 2000kb and no more than 1000px height or width!';
 $_['error_uploaded']      = 'Warning: File could not be uploaded for an unknown reason!';
 $_['error_permission']    = 'Warning: Permission Denied!';
 
