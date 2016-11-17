@@ -49,8 +49,6 @@ class ModelShippingFree extends Model {
 
 		$this->model_total_total->getTotal($total_data, $total, $taxes);
 
-		print_r($total);
-
 		if ($total < $this->config->get('free_total')) {
 			$status = false;
 		}
