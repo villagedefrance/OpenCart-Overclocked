@@ -431,6 +431,8 @@ class ControllerCatalogProduct extends Controller {
 				'discount'   => $discounts,
 				'discounts'  => (int)$total_discounts,
 				'quantity'   => $result['quantity'],
+				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
 				'status'     => $result['status'],
 				'selected'   => isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
 				'action'     => $action
@@ -453,6 +455,8 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['column_model'] = $this->language->get('column_model');
 		$this->data['column_price'] = $this->language->get('column_price');
 		$this->data['column_quantity'] = $this->language->get('column_quantity');
+		$this->data['column_date_added'] = $this->language->get('column_date_added');
+		$this->data['column_date_modified'] = $this->language->get('column_date_modified');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
@@ -520,6 +524,8 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['sort_model'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.model' . $url, 'SSL');
 		$this->data['sort_price'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.price' . $url, 'SSL');
 		$this->data['sort_quantity'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.quantity' . $url, 'SSL');
+		$this->data['sort_date_added'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.date_added' . $url, 'SSL');
+		$this->data['sort_date_modified'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.date_modified' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . '&sort=p.status' . $url, 'SSL');
 
 		$url = '';

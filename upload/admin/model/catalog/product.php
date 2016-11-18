@@ -496,6 +496,8 @@ class ModelCatalogProduct extends Model {
 			'p.price',
 			'p.cost',
 			'p.quantity',
+			'p.date_added',
+			'p.date_modified',
 			'p.status',
 			'p.sort_order'
 		);

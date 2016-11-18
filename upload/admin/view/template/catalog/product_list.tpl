@@ -62,6 +62,16 @@
           <?php } else { ?>
             <a href="<?php echo $sort_quantity; ?>"><?php echo $column_quantity; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
           <?php } ?></td>
+          <td class="left"><?php if ($sort == 'p.date_added') { ?>
+            <a href="<?php echo $sort_date_added; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_added; ?></a>
+          <?php } else { ?>
+            <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+          <?php } ?></td>
+          <td class="left"><?php if ($sort == 'p.date_modified') { ?>
+            <a href="<?php echo $sort_date_modified; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_date_modified; ?></a>
+          <?php } else { ?>
+            <a href="<?php echo $sort_date_modified; ?>"><?php echo $column_date_modified; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+          <?php } ?></td>
           <td class="left"><?php if ($sort == 'p.status') { ?>
             <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
           <?php } else { ?>
@@ -79,6 +89,8 @@
             <td><input type="text" name="filter_model" value="<?php echo $filter_model; ?>" /></td>
             <td class="right"><input type="text" name="filter_price" value="<?php echo $filter_price; ?>" size="10" /></td>
             <td class="right"><input type="text" name="filter_quantity" value="<?php echo $filter_quantity; ?>" size="10" /></td>
+            <td></td>
+            <td></td>
             <td class="center"><select name="filter_status">
               <option value="*"></option>
               <?php if ($filter_status) { ?>
@@ -131,6 +143,8 @@
               <?php } else { ?>
                 <span style="color:#008000;"><?php echo $product['quantity']; ?></span>
               <?php } ?></td>
+              <td class="center"><?php echo $product['date_added']; ?></td>
+              <td class="center"><?php echo $product['date_modified']; ?></td>
               <?php if ($product['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>
@@ -143,7 +157,7 @@
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="center" colspan="9"><?php echo $text_no_results; ?></td>
+              <td class="center" colspan="11"><?php echo $text_no_results; ?></td>
             </tr>
           <?php } ?>
         </tbody>
