@@ -8701,7 +8701,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3550, 222, 'FLINT', 'Flintshire', 1),
 (3551, 222, 'GLAS', 'Glasgow', 1),
 (3552, 222, 'GLOS', 'Gloucestershire', 1),
-(3553, 222, 'LDN', 'Greater London', 1),
+(3553, 222, 'LDN', 'London', 1),
 (3554, 222, 'MCH', 'Greater Manchester', 1),
 (3555, 222, 'GDD', 'Gwynedd', 1),
 (3556, 222, 'HANTS', 'Hampshire', 1),
