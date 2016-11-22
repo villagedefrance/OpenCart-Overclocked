@@ -304,9 +304,10 @@ class ControllerDesignBanner extends Controller {
 
 		$this->data['entry_name'] = $this->language->get('entry_name');
 		$this->data['entry_title'] = $this->language->get('entry_title');
+		$this->data['entry_image'] = $this->language->get('entry_image');
 		$this->data['entry_link'] = $this->language->get('entry_link');
 		$this->data['entry_external_link'] = $this->language->get('entry_external_link');
-		$this->data['entry_image'] = $this->language->get('entry_image');
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
 		$this->data['button_save'] = $this->language->get('button_save');
@@ -334,6 +335,13 @@ class ControllerDesignBanner extends Controller {
 		} else {
 			$this->data['error_banner_image'] = array();
 		}
+
+		if (isset($this->error['image'])) {
+			$this->data['error_image'] = $this->error['image'];
+		} else {
+			$this->data['error_image'] = array();
+		}
+
 
 		$this->document->addScript('view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('view/javascript/jquery/colorbox/colorbox.css');
@@ -421,10 +429,11 @@ class ControllerDesignBanner extends Controller {
 
 			$this->data['banner_images'][] = array(
 				'banner_image_description' => $banner_image['banner_image_description'],
+				'image'                    => $image,
+				'thumb'                    => $this->model_tool_image->resize($image, 100, 100),
 				'link'                     => $banner_image['link'],
 				'external_link'            => $banner_image['external_link'],
-				'image'                    => $image,
-				'thumb'                    => $this->model_tool_image->resize($image, 100, 100)
+				'sort_order'            => $banner_image['sort_order']
 			);
 		}
 
@@ -455,7 +464,24 @@ class ControllerDesignBanner extends Controller {
 						$this->error['banner_image'][$banner_image_id][$language_id] = $this->language->get('error_title');
 					}
 				}
+
+				$allowed = array('jpg','jpeg','png','gif');
+
+				if ($banner_image['image']) {
+					$ext = utf8_substr(strrchr($banner_image['image'], '.'), 1);
+
+					if (!in_array(strtolower($ext), $allowed)) {
+						$this->error['image'][$banner_image_id] = $this->language->get('error_image_format');
+					}
+
+				} else {
+					$this->error['image'][$banner_image_id] = $this->language->get('error_image');
+				}
 			}
+		}
+
+		if ($this->error && !isset($this->error['warning'])) {
+			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
 		return empty($this->error);

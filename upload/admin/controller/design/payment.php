@@ -483,8 +483,21 @@ class ControllerDesignPayment extends Controller {
 			$this->error['payment'] = $this->language->get('error_payment');
 		}
 
-		if (!$this->request->post['image']) {
+		$allowed = array('jpg','jpeg','png','gif');
+
+		if ($this->request->post['image']) {
+			$ext = utf8_substr(strrchr($this->request->post['image'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['image'] = $this->language->get('error_image_format');
+			}
+
+		} else {
 			$this->error['image'] = $this->language->get('error_image');
+		}
+
+		if ($this->error && !isset($this->error['warning'])) {
+			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
 		return empty($this->error);

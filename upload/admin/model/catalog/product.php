@@ -689,7 +689,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductImages($product_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "' ORDER BY product_image_id, sort_order ASC");
 
 		return $query->rows;
 	}

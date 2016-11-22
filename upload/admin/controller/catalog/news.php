@@ -411,6 +411,12 @@ class ControllerCatalogNews extends Controller {
 			$this->data['error_description'] = '';
 		}
 
+		if (isset($this->error['image'])) {
+			$this->data['error_image'] = $this->error['image'];
+		} else {
+			$this->data['error_image'] = array();
+		}
+
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {
@@ -550,6 +556,20 @@ class ControllerCatalogNews extends Controller {
 			if (strlen($value['description']) < 3) {
 				$this->error['description'][$language_id] = $this->language->get('error_description');
 			}
+		}
+
+		$allowed = array('jpg','jpeg','png','gif');
+
+		if ($this->request->post['image']) {
+			$ext = utf8_substr(strrchr($this->request->post['image'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['image'] = $this->language->get('error_image');
+			}
+		}
+
+		if ($this->error && !isset($this->error['warning'])) {
+			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
 		return empty($this->error);

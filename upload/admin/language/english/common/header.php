@@ -58,6 +58,7 @@ $_['text_logged']                      = 'You are logged in as <span><b>%s</b></
 $_['text_logout']                      = 'Logout';
 $_['text_logs']                        = 'Logs';
 $_['text_manufacturer']                = 'Manufacturers';
+$_['text_media']                       = 'Medias';
 $_['text_menu_manager']                = 'Menus';
 $_['text_modification']                = 'Modifications';
 $_['text_module']                      = 'Modules';

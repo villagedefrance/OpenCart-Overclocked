@@ -235,9 +235,10 @@ CREATE TABLE `oc_banner` (
 
 DROP TABLE IF EXISTS `oc_banner_image`;
 CREATE TABLE `oc_banner_image` (
-  `image` varchar(255) NOT NULL,
+  `sort_order` int(3) NOT NULL,
   `external_link` tinyint(1) NOT NULL,
   `link` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `banner_id` int(11) NOT NULL,
   `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`banner_image_id`)
@@ -1149,6 +1150,22 @@ CREATE TABLE `oc_manufacturer_to_store` (
   `store_id` int(11) NOT NULL,
   `manufacturer_id` int(11) NOT NULL,
   PRIMARY KEY (`manufacturer_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_media`
+--
+
+DROP TABLE IF EXISTS `oc_media`;
+CREATE TABLE `oc_media` (
+  `status` tinyint(1) NOT NULL,
+  `credit` varchar(128) NOT NULL,
+  `media` varchar(255) DEFAULT NULL,
+  `name` varchar(128) NOT NULL,
+  `media_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`media_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------

@@ -300,9 +300,10 @@ DROP TABLE IF EXISTS `oc_banner_image`;
 CREATE TABLE `oc_banner_image` (
   `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `external_link` tinyint(1) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`banner_image_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -310,23 +311,23 @@ CREATE TABLE `oc_banner_image` (
 -- Dumping data for table `oc_banner_image`
 --
 
-INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `link`, `external_link`, `image`) VALUES
-(78, 7, '', 0, 'data/demo/banners/iPhone6.jpg'),
-(79, 7, '', 0, 'data/demo/banners/MacBookAir.jpg'),
-(83, 6, '', 0, 'data/demo/banners/SpecialOffer.png'),
-(91, 8, '', 0, 'data/demo/manufacturer/nintendo.png'),
-(89, 8, '', 0, 'data/demo/manufacturer/harley.png'),
-(90, 8, '', 0, 'data/demo/manufacturer/nfl.png'),
-(88, 8, '', 0, 'data/demo/manufacturer/disney.png'),
-(86, 8, '', 0, 'data/demo/manufacturer/cocacola.png'),
-(87, 8, '', 0, 'data/demo/manufacturer/dell.png'),
-(84, 8, '', 0, 'data/demo/manufacturer/burgerking.png'),
-(85, 8, 'product/manufacturer/info&amp;manufacturer_id=9', 0, 'data/demo/manufacturer/canon.png'),
-(82, 6, '', 0, 'data/demo/banners/FreeShipping.png'),
-(92, 8, '', 0, 'data/demo/manufacturer/redbull.png'),
-(93, 8, '', 0, 'data/demo/manufacturer/shell.png'),
-(94, 8, 'product/manufacturer/info&amp;manufacturer_id=10', 0, 'data/demo/manufacturer/sony.png'),
-(95, 8, '', 0, 'data/demo/manufacturer/starbucks.png');
+INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `image`, `link`, `external_link`, `sort_order`) VALUES
+(78, 7, 'data/demo/banners/iPhone6.jpg', '', 0, 0),
+(79, 7, 'data/demo/banners/MacBookAir.jpg', '', 0, 0),
+(83, 6, 'data/demo/banners/SpecialOffer.png', '', 0, 0),
+(91, 8, 'data/demo/manufacturer/nintendo.png', '', 0, 0),
+(89, 8, 'data/demo/manufacturer/harley.png', '', 0, 0),
+(90, 8, 'data/demo/manufacturer/nfl.png', '', 0, 0),
+(88, 8, 'data/demo/manufacturer/disney.png', '', 0, 0),
+(86, 8, 'data/demo/manufacturer/cocacola.png', '', 0, 0),
+(87, 8, 'data/demo/manufacturer/dell.png', '', 0, 0),
+(84, 8, 'data/demo/manufacturer/burgerking.png', '', 0, 0),
+(85, 8, 'data/demo/manufacturer/canon.png', 'product/manufacturer/info&amp;manufacturer_id=9', 0, 0),
+(82, 6, 'data/demo/banners/FreeShipping.png', '', 0, 0),
+(92, 8, 'data/demo/manufacturer/redbull.png', '', 0, 0),
+(93, 8, 'data/demo/manufacturer/shell.png', '', 0, 0),
+(94, 8, 'data/demo/manufacturer/sony.png', 'product/manufacturer/info&amp;manufacturer_id=10', 0, 0),
+(95, 8, 'data/demo/manufacturer/starbucks.png', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2374,6 +2375,22 @@ INSERT INTO `oc_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
 (8, 0),
 (9, 0),
 (10, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_media`
+--
+
+DROP TABLE IF EXISTS `oc_media`;
+CREATE TABLE `oc_media` (
+  `media_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `media` varchar(255) DEFAULT NULL,
+  `credit` varchar(128) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`media_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 

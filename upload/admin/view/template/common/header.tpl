@@ -244,6 +244,7 @@ $(document).ready(function() {
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-paint-brush"></i>' : ''; ?><?php echo $text_design; ?></a>
             <ul>
               <li><a href="<?php echo $banner; ?>"><?php echo ($icons) ? '<i class="fa fa-photo"></i>' : ''; ?><?php echo $text_banner; ?></a></li>
+              <li><a href="<?php echo $media; ?>"><?php echo ($icons) ? '<i class="fa fa-video-camera"></i>' : ''; ?><?php echo $text_media; ?></a></li>
               <li><a href="<?php echo $footer; ?>"><?php echo ($icons) ? '<i class="fa fa-hashtag"></i>' : ''; ?><?php echo $text_footer; ?></a></li>
               <li><a href="<?php echo $layout; ?>"><?php echo ($icons) ? '<i class="fa fa-tasks"></i>' : ''; ?><?php echo $text_layout; ?></a></li>
               <li><a href="<?php echo $connection; ?>"><?php echo ($icons) ? '<i class="fa fa-chain"></i>' : ''; ?><?php echo $text_connection; ?></a></li>

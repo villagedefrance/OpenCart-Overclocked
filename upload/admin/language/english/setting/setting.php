@@ -130,7 +130,7 @@ $_['entry_customer_group']         = 'Customer Group:<span class="help">Default 
 $_['entry_customer_group_display'] = 'Customer Groups:<span class="help">Display customer groups that new customers can select to use such as wholesale and business when signing up.</span>';
 $_['entry_customer_price']         = 'Login Display Prices:<span class="help">Only show prices when a customer is logged in.</span>';
 $_['entry_customer_redirect']      = 'Login Home Redirect:<span class="help">If set, customers will be redirected to the Home page after Login.</span>';
-$_['entry_customer_fax']           = 'Request Customer\'s Fax:';
+$_['entry_customer_fax']           = 'Request Fax:';
 $_['entry_customer_gender']        = 'Request Gender:';
 $_['entry_customer_dob']           = 'Request Date of Birth:<span class="help">Required if some products have age restrictions.</span>';
 $_['entry_picklist_status']        = 'Enable Pick List:<span class="help">Facilitates back-order tracking and provides order updates for your customers.</span>';

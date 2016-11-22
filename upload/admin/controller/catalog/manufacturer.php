@@ -381,6 +381,12 @@ class ControllerCatalogManufacturer extends Controller {
 			$this->data['error_name'] = '';
 		}
 
+		if (isset($this->error['image'])) {
+			$this->data['error_image'] = $this->error['image'];
+		} else {
+			$this->data['error_image'] = array();
+		}
+
 		$url = '';
 
 		if (isset($this->request->get['filter_name'])) {
@@ -527,6 +533,16 @@ class ControllerCatalogManufacturer extends Controller {
 		foreach ($this->request->post['manufacturer_description'] as $language_id => $value) {
 			if ((utf8_strlen($value['name']) < 2) || (utf8_strlen($value['name']) > 128)) {
 				$this->error['name'][$language_id] = $this->language->get('error_name');
+			}
+		}
+
+		$allowed = array('jpg','jpeg','png','gif');
+
+		if ($this->request->post['image']) {
+			$ext = utf8_substr(strrchr($this->request->post['image'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['image'] = $this->language->get('error_image');
 			}
 		}
 

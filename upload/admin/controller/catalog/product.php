@@ -783,10 +783,22 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['error_model'] = '';
 		}
 
+		if (isset($this->error['image'])) {
+			$this->data['error_image'] = $this->error['image'];
+		} else {
+			$this->data['error_image'] = array();
+		}
+
 		if (isset($this->error['date_available'])) {
 			$this->data['error_date_available'] = $this->error['date_available'];
 		} else {
 			$this->data['error_date_available'] = '';
+		}
+
+		if (isset($this->error['product_image'])) {
+			$this->data['error_product_image'] = $this->error['product_image'];
+		} else {
+			$this->data['error_product_image'] = '';
 		}
 
 		$url = '';
@@ -1578,7 +1590,7 @@ class ControllerCatalogProduct extends Controller {
 				$image = 'no_image.jpg';
 			}
 
-			if (isset($product_image['palette_color_id']) && $product_info['palette_id'] && !empty($palette_colors)) {
+			if (isset($product_image['palette_color_id']) && isset($product_info['palette_id']) && !empty($palette_colors)) {
 				$palette_color_id = $product_image['palette_color_id'];
 			} else {
 				$palette_color_id = 0;
@@ -1995,6 +2007,31 @@ class ControllerCatalogProduct extends Controller {
 
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
+		}
+
+		$allowed = array('jpg','jpeg','png','gif');
+
+		if ($this->request->post['image']) {
+			$ext = utf8_substr(strrchr($this->request->post['image'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['image'] = $this->language->get('error_image_format');
+			}
+		}
+
+		if (isset($this->request->post['product_image'])) {
+			foreach ($this->request->post['product_image'] as $product_image_id => $product_image) {
+				if ($product_image['image']) {
+					$extension = utf8_substr(strrchr($product_image['image'], '.'), 1);
+
+					if (!in_array(strtolower($extension), $allowed)) {
+						$this->error['product_image'][$product_image_id] = $this->language->get('error_image_format');
+					}
+
+				} else {
+					$this->error['product_image'][$product_image_id] = $this->language->get('error_image');
+				}
+			}
 		}
 
 		if ($this->error && !isset($this->error['warning'])) {

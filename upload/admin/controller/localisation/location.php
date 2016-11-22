@@ -349,6 +349,12 @@ class ControllerLocalisationLocation extends Controller {
 			$this->data['error_telephone'] = '';
 		}
 
+		if (isset($this->error['image'])) {
+			$this->data['error_image'] = $this->error['image'];
+		} else {
+			$this->data['error_image'] = array();
+		}
+
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {
@@ -493,6 +499,20 @@ class ControllerLocalisationLocation extends Controller {
 
 		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
+		}
+
+		$allowed = array('jpg','jpeg','png','gif');
+
+		if ($this->request->post['image']) {
+			$ext = utf8_substr(strrchr($this->request->post['image'], '.'), 1);
+
+			if (!in_array(strtolower($ext), $allowed)) {
+				$this->error['image'] = $this->language->get('error_image');
+			}
+		}
+
+		if ($this->error && !isset($this->error['warning'])) {
+			$this->error['warning'] = $this->language->get('error_warning');
 		}
 
 		return empty($this->error);

@@ -36,5 +36,7 @@ $_['button_reset']           = 'Reset Views';
 
 // Error
 $_['error_permission']       = 'Warning: You do not have permission to modify <b>News</b> !';
+$_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_title']            = 'News Headline must be greater than 3 and less than 250 characters !';
 $_['error_description']      = 'News Main Content must be greater than 3 characters !';
+$_['error_image']            = 'Image must be a valid image format!';

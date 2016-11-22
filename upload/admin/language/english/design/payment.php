@@ -26,7 +26,9 @@ $_['button_extension']    = 'Payment Gateways';
 
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to modify <b>Payments</b> !';
+$_['error_warning']       = 'Warning: Please check the form carefully for errors!';
 $_['error_name']          = 'Reference Name must be between 3 and 128 characters!';
 $_['error_payment_exist'] = 'Warning: Payment Method already exists!';
 $_['error_payment']       = 'Payment Method is required!';
+$_['error_image_format']  = 'Image must be a valid image format!';
 $_['error_image']         = 'Image is required!';

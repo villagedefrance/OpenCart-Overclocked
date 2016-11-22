@@ -96,7 +96,11 @@
             <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
               <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
               <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
-            </div></td>
+            </div>
+            <?php if ($error_image) { ?>
+              <span class="error"><?php echo $error_image; ?></span>
+            <?php } ?>
+            </td>
           </tr>
           <tr>
             <td><?php echo $entry_keyword; ?></td>
@@ -1027,7 +1031,7 @@
         <table id="images" class="list">
           <thead>
             <tr>
-              <td class="left"><?php echo $column_image; ?></td>
+              <td class="left"><span class="required">*</span> <?php echo $column_image; ?></td>
               <?php if ($palette_id) { ?>
                 <td class="left"><?php echo $column_palette_color_id; ?></td>
               <?php } ?>
@@ -1042,7 +1046,11 @@
               <td class="center"><div class="image"><img src="<?php echo $product_image['thumb']; ?>" alt="" id="thumb<?php echo $image_row; ?>" /><br />
                 <input type="hidden" name="product_image[<?php echo $image_row; ?>][image]" value="<?php echo $product_image['image']; ?>" id="image<?php echo $image_row; ?>" />
                 <a onclick="image_upload('image<?php echo $image_row; ?>', 'thumb<?php echo $image_row; ?>');" class="button-browse"></a><a onclick="$('#thumb<?php echo $image_row; ?>').attr('src', '<?php echo $no_image; ?>'); $('#image<?php echo $image_row; ?>').attr('value', '');" class="button-recycle"></a>
-              </div></td>
+              </div>
+              <?php if (isset($error_product_image[$image_row])) { ?>
+                <span class="error"><?php echo $error_product_image[$image_row]; ?></span>
+              <?php } ?>
+              </td>
               <?php if ($palette_id) { ?>
               <td class="center"><select name="product_image[<?php echo $image_row; ?>][palette_color_id]">
                 <option value=""><?php echo $text_none; ?></option>

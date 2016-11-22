@@ -31,6 +31,8 @@ $_['entry_comment']      = 'Comment:<span class="help">This field is for any spe
 
 // Error
 $_['error_permission']   = 'Warning: You do not have permission to modify <b>Store Locations</b> !';
+$_['error_warning']      = 'Warning: Please check the form carefully for errors!';
 $_['error_name']         = 'Branch name must be at least 1 character!';
 $_['error_address']      = 'Branch Address must be between 3 and 128 characters!';
 $_['error_telephone']    = 'Branch Telephone must be between 3 and 32 characters!';
+$_['error_image']        = 'Image must be a valid image format!';
