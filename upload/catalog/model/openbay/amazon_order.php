@@ -16,7 +16,7 @@ class ModelOpenbayAmazonOrder extends Model {
 		$row = $this->db->query("SELECT `product_id` FROM `" . DB_PREFIX . "amazon_product_link` WHERE `amazon_sku` = '" . $this->db->escape($sku) . "'")->row;
 
 		if (isset($row['product_id']) && !empty($row['product_id'])) {
-			return $row['product_id'];
+			return (int)$row['product_id'];
 		}
 
 		return 0;
@@ -138,7 +138,7 @@ class ModelOpenbayAmazonOrder extends Model {
 		$row = $this->db->query("SELECT `order_id` FROM " . DB_PREFIX . "amazon_order WHERE amazon_order_id = '" . $this->db->escape($amazonOrderId) . "' LIMIT 0,1")->row;
 
 		if (isset($row['order_id']) && !empty($row['order_id'])) {
-			return $row['order_id'];
+			return (int)$row['order_id'];
 		}
 
 		return '';
@@ -148,7 +148,7 @@ class ModelOpenbayAmazonOrder extends Model {
 		$row = $this->db->query("SELECT `order_status_id` FROM `" . DB_PREFIX . "order` WHERE order_id = " . (int)$orderId)->row;
 
 		if (isset($row['order_status_id']) && !empty($row['order_status_id'])) {
-			return $row['order_status_id'];
+			return (int)$row['order_status_id'];
 		}
 
 		return 0;
@@ -158,7 +158,7 @@ class ModelOpenbayAmazonOrder extends Model {
 		$row = $this->db->query("SELECT `amazon_order_id` FROM " . DB_PREFIX . "amazon_order WHERE order_id = " . (int)$orderId . " LIMIT 0,1")->row;
 
 		if (isset($row['amazon_order_id']) && !empty($row['amazon_order_id'])) {
-			return $row['amazon_order_id'];
+			return (int)$row['amazon_order_id'];
 		}
 
 		return null;

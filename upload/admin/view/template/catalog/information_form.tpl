@@ -137,7 +137,7 @@
           <tr>
             <td class="left"><?php echo $text_default; ?></td>
             <td class="left"><select name="information_layout[0][layout_id]">
-              <option value=""></option>
+              <option value=""><?php echo $text_none; ?></option>
               <?php foreach ($layouts as $layout) { ?>
                 <?php if (isset($information_layout[0]) && $information_layout[0] == $layout['layout_id']) { ?>
                   <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>
@@ -153,7 +153,7 @@
           <tr>
             <td class="left"><?php echo $store['name']; ?></td>
             <td class="left"><select name="information_layout[<?php echo $store['store_id']; ?>][layout_id]">
-              <option value=""></option>
+              <option value=""><?php echo $text_none; ?></option>
               <?php foreach ($layouts as $layout) { ?>
                 <?php if (isset($information_layout[$store['store_id']]) && $information_layout[$store['store_id']] == $layout['layout_id']) { ?>
                   <option value="<?php echo $layout['layout_id']; ?>" selected="selected"><?php echo $layout['name']; ?></option>

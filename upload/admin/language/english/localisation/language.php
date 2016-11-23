@@ -15,12 +15,12 @@ $_['column_action']     = 'Action';
 
 // Entry
 $_['entry_name']        = 'Language Name:';
-$_['entry_code']        = 'Code:<span class="help">eg: en. Do not change if this is your default language.</span>';
-$_['entry_locale']      = 'Locale:<span class="help">eg: en_US.UTF-8,en_US,en-gb,en_gb,english</span>';
-$_['entry_image']       = 'Image:<span class="help">eg: gb.png</span>';
-$_['entry_directory']   = 'Directory:<span class="help">name of the language directory (case-sensitive)</span>';
-$_['entry_filename']    = 'Filename:<span class="help">main language filename without extension</span>';
-$_['entry_status']      = 'Status:<span class="help">Hide/Show it in language dropdown</span>';
+$_['entry_code']        = 'Code:<span class="help">Example: en. Do not change if this is your default language.</span>';
+$_['entry_locale']      = 'Locale:<span class="help">Example: en-US,en_US.UTF-8,en_US,en-gb,english</span>';
+$_['entry_image']       = 'Image:<span class="help">Example: gb.png</span>';
+$_['entry_directory']   = 'Directory:<span class="help">Name of the language directory (case-sensitive).</span>';
+$_['entry_filename']    = 'Filename:<span class="help">Main language filename without extension.</span>';
+$_['entry_status']      = 'Status:<span class="help">Hide/Show it in language dropdown.</span>';
 $_['entry_sort_order']  = 'Sort Order:';
 
 // Error
