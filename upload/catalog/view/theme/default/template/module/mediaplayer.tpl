@@ -1,3 +1,4 @@
+<?php if ($media_id) { ?>
 <?php if ($theme) { ?>
 <div class="box">
   <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
@@ -44,3 +45,4 @@ $(document).ready(function() {
 	});
 });
 //--></script>
+<?php } ?>

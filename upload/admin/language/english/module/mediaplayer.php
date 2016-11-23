@@ -35,6 +35,9 @@ $_['entry_position']       = 'Position';
 $_['entry_status']         = 'Status';
 $_['entry_sort_order']     = 'Sort Order';
 
+// Button
+$_['button_library']       = 'Medias';
+
 // Error
 $_['error_permission']     = 'Warning: You do not have permission to modify module <b>Media Player</b> !';
 $_['error_image']          = 'Image must be a valid image format!';

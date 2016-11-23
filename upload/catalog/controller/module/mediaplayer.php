@@ -51,15 +51,19 @@ class ControllerModuleMediaPlayer  extends Controller {
 
 		$media_id = $setting['media_id'];
 
-		$media = $this->model_design_media->getMedia($media_id);
+		if ($media_id > 0) {
+			$media = $this->model_design_media->getMedia($media_id);
 
-		$this->data['media'] = html_entity_decode(HTTPS_SERVER . 'image/' . $media, ENT_QUOTES, 'UTF-8');
+			$this->data['media'] = html_entity_decode(HTTPS_SERVER . 'image/' . $media, ENT_QUOTES, 'UTF-8');
 
-		$this->data['type'] = $this->model_design_media->getMediaType($media_id);
-		$this->data['mime_type'] = $this->model_design_media->getMediaMimeType($media_id);
-		$this->data['credit'] = $this->model_design_media->getCredit($media_id);
+			$this->data['type'] = $this->model_design_media->getMediaType($media_id);
+			$this->data['mime_type'] = $this->model_design_media->getMediaMimeType($media_id);
+			$this->data['credit'] = $this->model_design_media->getCredit($media_id);
 
-		$this->data['icons'] = HTTPS_SERVER . 'catalog/view/javascript/jquery/plyr/dist/plyr.svg';
+			$this->data['media_id'] = true;
+		} else {
+			$this->data['media_id'] = false;
+		}
 
 		if ($setting['image_width']) {
 			$this->data['width'] = $setting['image_width'];
@@ -72,6 +76,8 @@ class ControllerModuleMediaPlayer  extends Controller {
 		} else {
 			$this->data['height'] = 320;
 		}
+
+		$this->data['icons'] = HTTPS_SERVER . 'catalog/view/javascript/jquery/plyr/dist/plyr.svg';
 
 		$poster = html_entity_decode($this->config->get($this->_name . '_image'), ENT_QUOTES, 'UTF-8');
 

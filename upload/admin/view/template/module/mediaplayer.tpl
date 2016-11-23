@@ -12,6 +12,7 @@
     <div class="heading">
       <h1><img src="view/image/module.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a onclick="location = '<?php echo $library; ?>';" class="button"><?php echo $button_library; ?></a>
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
@@ -128,6 +129,7 @@
             <tbody id="module-row<?php echo $module_row; ?>">
               <tr>
                 <td class="left"><select name="mediaplayer_module[<?php echo $module_row; ?>][media_id]">
+                  <option value="0"><?php echo $text_none; ?></option>
                   <?php foreach ($medias as $media) { ?>
                     <?php if ($media['media_id'] == $module['media_id']) { ?>
                       <option value="<?php echo $media['media_id']; ?>" selected="selected"><?php echo $media['name']; ?></option>
@@ -228,6 +230,7 @@ function addModule() {
 	html  = '<tbody id="module-row' + module_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left"><select name="mediaplayer_module[' + module_row + '][media_id]">';
+	html += '      <option value="0"><?php echo $text_none; ?></option>';
 	<?php foreach ($medias as $media) { ?>
 	html += '      <option value="<?php echo $media['media_id']; ?>"><?php echo $media['name']; ?></option>';
 	<?php } ?>
