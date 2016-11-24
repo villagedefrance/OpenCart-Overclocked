@@ -4,7 +4,7 @@
   <div class="box-heading <?php echo $header_shape; ?> <?php echo $header_color; ?>"><?php echo $title; ?></div>
   <div class="box-content <?php echo $content_shape; ?> <?php echo $content_color; ?>" style="padding-top:3px; text-align:center;">
   <?php if ($type == 'video') { ?>
-    <video id="player-<?php echo $module; ?>" poster="<?php echo $poster; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" controls>
+    <video id="player-<?php echo $module; ?>" poster="<?php echo $poster; ?>" width="<?php echo $width; ?>" controls>
       <source src="<?php echo $media; ?>" type="<?php echo $mime_type; ?>" />
       <a href="<?php echo $media; ?>" download><?php echo $text_download; ?></a>
     </video>
@@ -21,7 +21,7 @@
 <?php } else { ?>
   <div class="<?php echo $content_shape; ?> <?php echo $content_color; ?>" style="margin-bottom:20px; padding-top:5px; text-align:center;">
   <?php if ($type == 'video') { ?>
-    <video id="player-<?php echo $module; ?>" poster="<?php echo $poster; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" controls>
+    <video id="player-<?php echo $module; ?>" poster="<?php echo $poster; ?>" width="<?php echo $width; ?>" controls>
       <source src="<?php echo $media; ?>" type="<?php echo $mime_type; ?>" />
       <a href="<?php echo $media; ?>" download><?php echo $text_download; ?></a>
     </video>

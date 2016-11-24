@@ -25,9 +25,15 @@ AddDefaultCharset utf-8
   AddCharset utf-8 .atom .css .js .json .jsonld .rss .vtt .webapp .xml
 </IfModule>
 
+## Add Audio Codecs
+AddType audio/mp4 .m4a
+AddType audio/mpeg .mp1 .mp2 .mp3 .mpg .mpeg
+AddType audio/ogg .oga
+AddType audio/wav .wav
+
 ## Add Video Codecs
-AddType application/ogg .ogg
-AddType video/mp4 .mp4
+AddType video/mp4 .mp4 .m4v
+AddType video/ogg .ogv .ogm .ogg
 AddType video/webm .webm
 
 ## Prevent Direct Access to files.
