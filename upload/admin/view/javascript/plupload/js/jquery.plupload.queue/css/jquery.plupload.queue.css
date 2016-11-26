@@ -1,5 +1,5 @@
 /* 
-   Plupload 2.1.8 - OpenCart Overclocked Edition
+   Plupload
 ------------------------------------------------------------------- */
 
 .plupload_wrapper * {
@@ -10,12 +10,14 @@
 	display: inline-block;
 	font: normal 12px sans-serif;
 	text-decoration: none;
-    color: #42454A;
-    border: 1px solid #BABABA;
+    color: #42454a;
+    border: 1px solid #bababa;
     padding: 2px 8px 3px 20px;
 	margin-right: 4px;
-    background: #F3F3F3 url('../img/buttons.png') no-repeat 0 center;
+    background: #f3f3f3 url('../img/buttons.png') no-repeat 0 center;
 	outline: 0;
+
+    /* Optional rounded corners for browsers that support it */
     -moz-border-radius: 3px;
     -khtml-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -27,8 +29,8 @@
 }
 .plupload_disabled, a.plupload_disabled:hover {
     color: #737373;
-    border-color: #C5C5C5;
-    background: #EDEDED url('../img/buttons-disabled.png') no-repeat 0 center;
+    border-color: #c5c5c5;
+    background: #ededed url('../img/buttons-disabled.png') no-repeat 0 center;
 	cursor: default;
 }
 .plupload_add {
@@ -141,6 +143,7 @@ li.plupload_done a {
 .plupload_scroll .plupload_filelist_header .plupload_file_action, .plupload_scroll .plupload_filelist_footer .plupload_file_action {
 	margin-right: 17px;
 }
+
 /* Floats */
 .plupload_clear,.plupload_clearer {clear: both;}
 .plupload_clearer, .plupload_progress_bar {
