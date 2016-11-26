@@ -718,7 +718,7 @@ $(document).ready(function() {
 					chunk_size: '1mb',
 					unique_names: false,
 					resize: { quality: 100, crop: false },
-					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,png,gif,mp3,mp4,oga,ogv,ogg,webm,m4a,m4v,wma,wmv,zip,rar,pdf,flv,swf" } ],
+					filters: [ { title: "<?php echo $text_allowed; ?>", extensions: "jpg,jpeg,png,gif,mp3,mp4,oga,ogv,ogg,webm,m4a,m4v,wav,wma,wmv,zip,rar,pdf,flv,swf" } ],
 					flash_swf_url: 'view/javascript/plupload/js/Moxie.swf',
 					silverlight_xap_url: 'view/javascript/plupload/js/Moxie.xap'
 				});

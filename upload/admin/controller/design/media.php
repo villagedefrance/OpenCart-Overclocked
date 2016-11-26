@@ -492,7 +492,7 @@ class ControllerDesignMedia extends Controller {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
-		$allowed = array('mp3','mp4','oga','ogv','ogg','webm','m4a','m4v','wma','wmv','flv');
+		$allowed = array('mp3','mp4','oga','ogv','ogg','webm','m4a','m4v','wav','wma','wmv','flv');
 
 		if ($this->request->post['media']) {
 			$ext = utf8_substr(strrchr($this->request->post['media'], '.'), 1);

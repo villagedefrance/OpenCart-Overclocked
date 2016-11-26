@@ -90,6 +90,7 @@ class ModelDesignMedia extends Model {
 		if (strtolower($ext) == 'webm') { $image = 'webm.png'; }
 		if (strtolower($ext) == 'm4a') { $image = 'm4a.png'; }
 		if (strtolower($ext) == 'm4v') { $image = 'm4v.png'; }
+		if (strtolower($ext) == 'wav') { $image = 'wav.png'; }
 		if (strtolower($ext) == 'wmv') { $image = 'wmv.png'; }
 		if (strtolower($ext) == 'wma') { $image = 'wma.png'; }
 		if (strtolower($ext) == 'flv') { $image = 'flv.png'; }

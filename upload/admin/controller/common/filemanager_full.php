@@ -130,6 +130,7 @@ class ControllerCommonFileManagerFull extends Controller {
 		if (strtolower($ext) == 'webm') { $filename = 'webm.png'; }
 		if (strtolower($ext) == 'm4a') { $filename = 'm4a.png'; }
 		if (strtolower($ext) == 'm4v') { $filename = 'm4v.png'; }
+		if (strtolower($ext) == 'wav') { $filename = 'wav.png'; }
 		if (strtolower($ext) == 'wmv') { $filename = 'wmv.png'; }
 		if (strtolower($ext) == 'wma') { $filename = 'wma.png'; }
 		if (strtolower($ext) == 'pdf') { $filename = 'pdf.png'; }
@@ -538,6 +539,10 @@ class ControllerCommonFileManagerFull extends Controller {
 					'audio/x-mpeg-3',
 					'audio/oga',
 					'audio/m4a',
+					'audio/wav',
+					'audio/x-wav',
+					'audio/wave',
+					'audio/x-pn-wav',
 					'audio/webm',
 					'audio/x-ms-wma',
 					'video/x-ms-asf',
@@ -579,6 +584,7 @@ class ControllerCommonFileManagerFull extends Controller {
 					'.webm',
 					'.m4a',
 					'.m4v',
+					'.wav',
 					'.wma',
 					'.wmv',
 					'.zip',
