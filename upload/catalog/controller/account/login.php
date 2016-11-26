@@ -154,9 +154,13 @@ class ControllerAccountLogin extends Controller {
 			$this->data['error_warning'] = '';
 		}
 
-		$this->data['action'] = $this->url->link('account/login', '', 'SSL');
-		$this->data['register'] = $this->url->link('account/register', '', 'SSL');
-		$this->data['forgotten'] = $this->url->link('account/forgotten', '', 'SSL');
+		if (isset($this->session->data['success'])) {
+			$this->data['success'] = $this->session->data['success'];
+
+			unset($this->session->data['success']);
+		} else {
+			$this->data['success'] = '';
+		}
 
 		// Added strpos check to pass McAfee PCI compliance test (http://forum.opencart.com/viewtopic.php?f=10&t=12043&p=151494#p151295)
 		if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], $this->config->get('config_url')) === 0 || strpos($this->request->post['redirect'], $this->config->get('config_ssl')) === 0)) {
@@ -169,13 +173,9 @@ class ControllerAccountLogin extends Controller {
 			$this->data['redirect'] = '';
 		}
 
-		if (isset($this->session->data['success'])) {
-			$this->data['success'] = $this->session->data['success'];
-
-			unset($this->session->data['success']);
-		} else {
-			$this->data['success'] = '';
-		}
+		$this->data['action'] = $this->url->link('account/login', '', 'SSL');
+		$this->data['register'] = $this->url->link('account/register', '', 'SSL');
+		$this->data['forgotten'] = $this->url->link('account/forgotten', '', 'SSL');
 
 		if (isset($this->request->post['email'])) {
 			$this->data['email'] = $this->request->post['email'];
