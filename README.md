@@ -37,6 +37,16 @@ Powered by the Latest Scripts:
 - CKEditor 4.5.11 Full.
 - ...
 
+Coming soon in 1.8.4.0!
+- New Media Player!
+- File Manager update.
+- Plupload v2.2.1.
+- CKEditor v4.6.0.
+- PDO DB engine update.
+- PgSql DB engine update.
+- PHP 5.4+ as new minimum.
+- bug fixes.
+
 New in 1.8.3.0 (current release)!
 - Added Font Awesome.
 - Added Admin menu icons.
