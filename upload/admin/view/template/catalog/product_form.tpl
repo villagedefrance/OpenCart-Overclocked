@@ -117,7 +117,7 @@
                   <option value="<?php echo $tax_local_rate['tax_local_rate_id']; ?>"><?php echo $tax_local_rate['name']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_tax_local_rate; ?>" class="button"><i class="fa fa-gear"></i></a></td>
+            </select> &nbsp; <a href="<?php echo $configure_tax_local_rate; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr style="background:#FCFCFC;">
             <td><?php echo $entry_price; ?></td>
@@ -158,7 +158,7 @@
                   <option value="<?php echo $tax_class['tax_class_id']; ?>"><?php echo $tax_class['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_tax_class; ?>" class="button"><i class="fa fa-gear"></i></a></td>
+            </select> &nbsp; <a href="<?php echo $configure_tax_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_date_available; ?></td>
@@ -308,7 +308,7 @@
                   <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_length_class; ?>" class="button"><i class="fa fa-gear"></i></a></td>
+            </select> &nbsp; <a href="<?php echo $configure_length_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_weight; ?></td>
@@ -324,7 +324,7 @@
                   <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_weight_class; ?>" class="button"><i class="fa fa-gear"></i></a></td>
+            </select> &nbsp; <a href="<?php echo $configure_weight_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
         </table>
       </div>
@@ -342,12 +342,14 @@
                   <option value="<?php echo $manufacturer['manufacturer_id']; ?>"><?php echo $manufacturer['name']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_manufacturer; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
         <?php } else { ?>
           <tr>
             <td><?php echo $entry_manufacturer; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer; ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
+            <td><input type="text" name="manufacturer" value="<?php echo $manufacturer; ?>" /> &nbsp; <a href="<?php echo $configure_manufacturer; ?>" class="button-form"><i class="fa fa-gear"></i></a>
+              <input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" />
+            </td>
           </tr>
         <?php } ?>
           <tr>
@@ -382,7 +384,8 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_category; ?></td>
-            <td><div class="scrollbox" style="width:500px; height:293px; margin-bottom:5px;">
+            <td><a href="<?php echo $configure_category; ?>" class="button-form"><i class="fa fa-gear"></i></a>
+            <div class="scrollbox" style="width:500px; height:293px; margin:5px 0px;">
               <?php $class='odd'; ?>
               <?php foreach ($categories as $category) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -405,7 +408,7 @@
         <?php } else { ?>
           <tr>
             <td><?php echo $entry_category; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="category" value="" /></td>
+            <td><input type="text" name="category" value="" /> &nbsp; <a href="<?php echo $configure_category; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -423,7 +426,8 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_filter; ?></td>
-            <td><div class="scrollbox" style="width:350px; height:155px; margin-bottom:5px;">
+            <td><a href="<?php echo $configure_filter; ?>" class="button-form"><i class="fa fa-gear"></i></a>
+            <div class="scrollbox" style="width:350px; height:155px; margin:5px 0px;">
               <?php $class='odd'; ?>
               <?php foreach ($filters as $filter) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -446,7 +450,7 @@
         <?php } else { ?>
           <tr>
             <td><?php echo $entry_filter; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="filter" value="" /></td>
+            <td><input type="text" name="filter" value="" /> &nbsp; <a href="<?php echo $configure_filter; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -464,7 +468,8 @@
         <?php if ($autocomplete_off) { ?>
           <tr>
             <td><?php echo $entry_download; ?></td>
-            <td><div class="scrollbox" style="width:350px; height:155px; margin-bottom:5px;">
+            <td><a href="<?php echo $configure_download; ?>" class="button-form"><i class="fa fa-gear"></i></a>
+            <div class="scrollbox" style="width:350px; height:155px; margin:5px 0px;">
               <?php $class='odd'; ?>
               <?php foreach ($downloads as $download) { ?>
                 <?php $class=($class == 'even' ? 'odd' : 'even'); ?>
@@ -487,7 +492,7 @@
         <?php } else { ?>
           <tr>
             <td><?php echo $entry_download; ?><?php echo $text_autocomplete; ?></td>
-            <td><input type="text" name="download" value="" /></td>
+            <td><input type="text" name="download" value="" /> &nbsp; <a href="<?php echo $configure_download; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -569,7 +574,7 @@
                   <option value="<?php echo $palette['palette_id']; ?>"><?php echo $palette['name']; ?></option>
                 <?php } ?>
               <?php } ?>
-            </select> &nbsp; <a onclick="apply();" id="color-apply" class="button-save"><i class="fa fa-refresh"></i></td>
+            </select> &nbsp; <a onclick="apply();" id="color-apply" class="button-save"><i class="fa fa-refresh"></i></a> &nbsp; <a href="<?php echo $configure_palette; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
         </table>
         <table id="colors" class="list">
@@ -623,6 +628,7 @@
             <td class="left">
               <input type="text" name="product_field[<?php echo $field_row; ?>][title]" value="<?php echo $product_field['title']; ?>" />
               <input type="hidden" name="product_field[<?php echo $field_row; ?>][field_id]" value="<?php echo $product_field['field_id']; ?>" />
+              <span class="help"><?php echo $text_autocomplete; ?></span>
             </td>
             <td class="left">
               <?php foreach ($languages as $language) { ?>
@@ -660,6 +666,7 @@
             <td class="left">
               <input type="text" name="product_attribute[<?php echo $attribute_row; ?>][name]" value="<?php echo $product_attribute['name']; ?>" />
               <input type="hidden" name="product_attribute[<?php echo $attribute_row; ?>][attribute_id]" value="<?php echo $product_attribute['attribute_id']; ?>" />
+              <span class="help"><?php echo $text_autocomplete; ?></span>
             </td>
             <td class="left">
               <?php foreach ($languages as $language) { ?>
@@ -1508,6 +1515,7 @@ function addField() {
 	html += '    <td class="left">';
 	html += '      <input type="text" name="product_field[' + field_row + '][title]" value="" />';
 	html += '      <input type="hidden" name="product_field[' + field_row + '][field_id]" value="" />';
+	html += '      <span class="help"><?php echo $text_autocomplete; ?></span>';
 	html += '    </td>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>
@@ -1581,6 +1589,7 @@ function addAttribute() {
 	html += '    <td class="left">';
 	html += '      <input type="text" name="product_attribute[' + attribute_row + '][name]" value="" />';
 	html += '      <input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" />';
+	html += '      <span class="help"><?php echo $text_autocomplete; ?></span>';
 	html += '    </td>';
 	html += '    <td class="left">';
 	<?php foreach ($languages as $language) { ?>

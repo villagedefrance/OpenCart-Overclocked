@@ -1239,6 +1239,8 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['manufacturer'] = '';
 		}
 
+		$this->data['configure_manufacturer'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Stores
 		$this->load->model('setting/store');
 
@@ -1278,6 +1280,8 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
+		$this->data['configure_category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Filters
 		$this->load->model('catalog/filter');
 
@@ -1304,6 +1308,8 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
+		$this->data['configure_filter'] = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Downloads
 		$this->load->model('catalog/download');
 
@@ -1329,6 +1335,8 @@ class ControllerCatalogProduct extends Controller {
 				);
 			}
 		}
+
+		$this->data['configure_download'] = $this->url->link('catalog/download', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Related
 		if (isset($this->request->post['product_related'])) {
@@ -1370,6 +1378,8 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$this->data['colors'] = $this->model_catalog_palette->getPaletteColors();
 		}
+
+		$this->data['configure_palette'] = $this->url->link('catalog/palette', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['product_color'])) {
 			$product_colors = $this->request->post['product_color'];

@@ -136,7 +136,7 @@
                 <option value="<?php echo $template; ?>"><?php echo $template; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_theme; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td></td>
@@ -152,7 +152,7 @@
                 <option value="<?php echo $layout['layout_id']; ?>"><?php echo $layout['name']; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_layout; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
         </table>
       </div>
@@ -185,7 +185,7 @@
                 <option value="<?php echo $language['code']; ?>"><?php echo $language['name']; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_language; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_admin_language; ?></td>
@@ -209,7 +209,7 @@
                 <option value="<?php echo $currency['code']; ?>"><?php echo $currency['title']; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_currency; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_currency_auto; ?></td>
@@ -235,7 +235,7 @@
                 <option value="<?php echo $length_class['length_class_id']; ?>"><?php echo $length_class['title']; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_length_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_weight_class; ?></td>
@@ -247,7 +247,7 @@
                 <option value="<?php echo $weight_class['weight_class_id']; ?>"><?php echo $weight_class['title']; ?></option>
               <?php } ?>
             <?php } ?>
-            </select></td>
+            </select> &nbsp; <a href="<?php echo $configure_weight_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
         </table>
         <h2><?php echo $text_datetime; ?></h2>
@@ -922,7 +922,7 @@
           </tr>
           <tr>
             <td><span class="required">*</span> <?php echo $entry_customer_group_display; ?></td>
-            <td><div class="scrollbox">
+            <td><div class="scrollbox-store">
               <?php $class = 'odd'; ?>
               <?php foreach ($customer_groups as $customer_group) { ?>
                 <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>

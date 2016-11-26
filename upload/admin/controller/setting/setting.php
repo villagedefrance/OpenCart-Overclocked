@@ -635,6 +635,8 @@ class ControllerSettingSetting extends Controller {
 			$this->data['templates'][] = basename($directory);
 		}
 
+		$this->data['configure_theme'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
+
 		if (isset($this->request->post['config_layout_id'])) {
 			$this->data['config_layout_id'] = $this->request->post['config_layout_id'];
 		} else {
@@ -644,6 +646,8 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('design/layout');
 
 		$this->data['layouts'] = $this->model_design_layout->getLayouts();
+
+		$this->data['configure_layout'] = $this->url->link('design/layout', 'token=' . $this->session->data['token'], 'SSL');
 
 		// Local
 		$this->load->model('localisation/country');
@@ -672,6 +676,8 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_language'] = $this->config->get('config_language');
 		}
 
+		$this->data['configure_language'] = $this->url->link('localisation/language', 'token=' . $this->session->data['token'], 'SSL');
+
 		if (isset($this->request->post['config_admin_language'])) {
 			$this->data['config_admin_language'] = $this->request->post['config_admin_language'];
 		} else {
@@ -683,6 +689,8 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_currency'] = $this->config->get('config_currency');
 		}
+
+		$this->data['configure_currency'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['config_currency_auto'])) {
 			$this->data['config_currency_auto'] = $this->request->post['config_currency_auto'];
@@ -704,6 +712,8 @@ class ControllerSettingSetting extends Controller {
 
 		$this->data['length_classes'] = $this->model_localisation_length_class->getLengthClasses();
 
+		$this->data['configure_length_class'] = $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'], 'SSL');
+
 		if (isset($this->request->post['config_weight_class_id'])) {
 			$this->data['config_weight_class_id'] = $this->request->post['config_weight_class_id'];
 		} else {
@@ -713,6 +723,8 @@ class ControllerSettingSetting extends Controller {
 		$this->load->model('localisation/weight_class');
 
 		$this->data['weight_classes'] = $this->model_localisation_weight_class->getWeightClasses();
+
+		$this->data['configure_weight_class'] = $this->url->link('localisation/weight_class', 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['date_formats'] = array();
 
