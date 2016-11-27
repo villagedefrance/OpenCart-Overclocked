@@ -562,12 +562,6 @@ class ControllerProductSearch extends Controller {
 		$data = array();
 
 		if (isset($this->request->get['keyword'])) {
-			if ($this->customer->isLogged()) {
-				$customer_group_id = $this->customer->getCustomerGroupId();
-			} else {
-				$customer_group_id = $this->config->get('config_customer_group_id');
-			}
-
 			$keywords = strtolower($this->request->get['keyword']);
 
 			if (strlen($keywords) >= 3) {
@@ -602,7 +596,7 @@ class ControllerProductSearch extends Controller {
 
 					$this->load->model('tool/image');
 
-					$basehref = 'product/product&keyword=' . $this->request->get['keyword'] . '&product_id=';
+					$product_href = 'product/product&product_id=';
 
 					foreach ($data as $key => $values) {
 						if ($values['image']) {
@@ -611,10 +605,12 @@ class ControllerProductSearch extends Controller {
 							$image = $this->model_tool_image->resize('no_image.jpg', $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
 						}
 
+						$product_id = (int)$values['product_id'];
+
 						$data[$key] = array(
 							'name' => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ')', ENT_QUOTES),
 							'image' => $image,
-							'href' => $this->url->link($basehref . $values['product_id'])
+							'href' => $this->url->link($product_href . $product_id, '', 'SSL')
 						);
 					}
 				}

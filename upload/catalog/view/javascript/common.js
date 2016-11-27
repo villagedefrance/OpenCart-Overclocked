@@ -140,7 +140,7 @@ function doLiveSearch(ev, keywords) {
 					if (typeof(result[i].href) != 'undefined') {
 						eLink.href = result[i].href;
 					} else {
-						eLink.href = $('#hidden').attr('href') + 'index.php?route=product/product&product_id=' + result[i].product_id + '&keyword=' + keywords;
+						eLink.href = $('#hidden').attr('href') + 'index.php?route=product/product&product_id=' + result[i].product_id;
 					}
 
 					eListElem.appendChild(eLink);
@@ -170,7 +170,6 @@ function upDownEvent(ev) {
 			$(elem.childNodes[updown]).removeClass('highlighted');
 		}
 
-		// Up
 		if (ev.keyCode == 38) {
 			updown = (updown > 0) ? --updown : updown;
 		} else if (ev.keyCode == 40) {
