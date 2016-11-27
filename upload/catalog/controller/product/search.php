@@ -557,4 +557,71 @@ class ControllerProductSearch extends Controller {
 
 		$this->response->setOutput($this->render());
 	}
+
+	public function ajax() {
+		$data = array();
+
+		if (isset($this->request->get['keyword'])) {
+			if ($this->customer->isLogged()) {
+				$customer_group_id = $this->customer->getCustomerGroupId();
+			} else {
+				$customer_group_id = $this->config->get('config_customer_group_id');
+			}
+
+			$keywords = strtolower($this->request->get['keyword']);
+
+			if (strlen($keywords) >= 3) {
+				$parts = explode(' ', $keywords);
+
+				$add = '';
+
+				foreach ($parts as $part) {
+					$add .= ' AND (LOWER(pd.name) LIKE "%' . $this->db->escape($part) . '%"';
+					$add .= ' OR LOWER(md.name) LIKE "%' . $this->db->escape($part) . '%"';
+					$add .= ' OR LOWER(pd.tag) LIKE "%' . $this->db->escape($part) . '%"';
+					$add .= ' OR LOWER(p.model) LIKE "%' . $this->db->escape($part) . '%")';
+				}
+
+				$add = substr($add, 4);
+
+				$sql = 'SELECT p.product_id, p.image, p.model AS model, pd.name AS name FROM ' . DB_PREFIX . 'product p';
+				$sql .= ' LEFT OUTER JOIN ' . DB_PREFIX . 'manufacturer_description md ON (p.manufacturer_id = md.manufacturer_id)';
+				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_description pd ON (p.product_id = pd.product_id)';
+				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_to_store p2s ON (p.product_id = p2s.product_id)';
+				$sql .= ' WHERE ' . $add . ' AND p.status = 1 ';
+				$sql .= ' AND pd.language_id = ' . (int)$this->config->get('config_language_id');
+				$sql .= ' AND p2s.store_id = ' . (int)$this->config->get('config_store_id'); 
+				$sql .= ' GROUP BY p.product_id';
+				$sql .= ' ORDER BY LOWER(pd.name) ASC, LOWER(md.name) ASC, LOWER(pd.tag) ASC, LOWER(p.model) ASC';
+				$sql .= ' LIMIT 0,15';
+
+				$result = $this->db->query($sql);
+
+				if ($result) {
+					$data = (isset($result->rows)) ? $result->rows : $result->row;
+
+					$this->load->model('tool/image');
+
+					$basehref = 'product/product&keyword=' . $this->request->get['keyword'] . '&product_id=';
+
+					foreach ($data as $key => $values) {
+						if ($values['image']) {
+							$image = $this->model_tool_image->resize($values['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+						} else {
+							$image = $this->model_tool_image->resize('no_image.jpg', $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+						}
+
+						$data[$key] = array(
+							'name' => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ')', ENT_QUOTES),
+							'image' => $image,
+							'href' => $this->url->link($basehref . $values['product_id'])
+						);
+					}
+				}
+			}
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($data));
+	}
 }
