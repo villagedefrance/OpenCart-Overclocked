@@ -202,7 +202,7 @@ $(document).ready(function() {
 	}).keydown(function(ev) {
 		upDownEvent(ev);
 	}).blur(function() {
-		window.setTimeout("$('#livesearch').slideUp(400); updown=0;", 600);
+		window.setTimeout("$('#livesearch').slideUp(400); updown=0;", 400);
 	});
 
 	$(document).bind('keydown', function(ev) {
