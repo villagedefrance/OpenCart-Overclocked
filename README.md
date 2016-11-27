@@ -38,12 +38,11 @@ Powered by the Latest Scripts:
 - ...
 
 Coming soon in 1.8.4.0!
+- New Ajax Search!
 - New Media Player!
 - File Manager update.
 - Plupload v2.2.1.
 - CKEditor v4.6.0.
-- PDO DB engine update.
-- PgSql DB engine update.
 - PHP 5.4+ as new minimum.
 - bug fixes.
 
