@@ -119,20 +119,20 @@ function doLiveSearch(ev, keywords) {
 				var eList = document.createElement('ul');
 				eList.id = 'livesearch';
 				var eListElem;
-				var eListElems;
+				var eListImage;
 				var eLink;
 				for (var i in result) {
 					eListElem = document.createElement('li');
 					eLink = document.createElement('a');
 					$(function() {
-						eListElems = document.createElement('img');
-						eListElems.className = 'loading';
-						$(eListElems).load(function() {
+						eListImage = document.createElement('img');
+						eListImage.className = 'loading';
+						$(eListImage).load(function() {
 							$(this).show();
 						})
 
-						eListElems.src=result[i].image;
-						eLink.appendChild(eListElems);
+						eListImage.src=result[i].image;
+						eLink.appendChild(eListImage);
 					});
 
 					eLink.appendChild(document.createTextNode(result[i].name));
@@ -161,7 +161,6 @@ function doLiveSearch(ev, keywords) {
 
 function upDownEvent(ev) {
 	var elem = document.getElementById('livesearch');
-	var fkey = $('#search').find('[name=\'search\']').first();
 
 	if (elem) {
 		var length = elem.childNodes.length - 1;
