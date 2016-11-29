@@ -425,8 +425,8 @@ span.from {
 #livesearch {
 	position: relative;
 	top: 31px;
-	left: -51px;
-	background-color: #FFF;
+	right: 1px;
+	background-color: #FCFCFC;
 	border: 1px solid #DFDFDF;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -434,7 +434,7 @@ span.from {
 	border-radius: 3px;
 	list-style-type: none;
 	z-index: 12;
-	width: 256px;
+	width: 206px;
 	margin: 0px;
 	padding: 5px;
 }

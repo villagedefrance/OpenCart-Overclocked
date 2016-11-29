@@ -582,7 +582,7 @@ class ControllerProductSearch extends Controller {
 				$sql .= ' LEFT OUTER JOIN ' . DB_PREFIX . 'manufacturer_description md ON (p.manufacturer_id = md.manufacturer_id)';
 				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_description pd ON (p.product_id = pd.product_id)';
 				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_to_store p2s ON (p.product_id = p2s.product_id)';
-				$sql .= ' WHERE ' . $add . ' AND p.status = 1 ';
+				$sql .= ' WHERE ' . $add . ' AND p.status = 1';
 				$sql .= ' AND pd.language_id = ' . (int)$this->config->get('config_language_id');
 				$sql .= ' AND p2s.store_id = ' . (int)$this->config->get('config_store_id'); 
 				$sql .= ' GROUP BY p.product_id';
@@ -600,9 +600,9 @@ class ControllerProductSearch extends Controller {
 
 					foreach ($data as $key => $values) {
 						if ($values['image']) {
-							$image = $this->model_tool_image->resize($values['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+							$image = $this->model_tool_image->resize($values['image'], 26, 26);
 						} else {
-							$image = $this->model_tool_image->resize('no_image.jpg', $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+							$image = $this->model_tool_image->resize('no_image.jpg', 26, 26);
 						}
 
 						$product_id = (int)$values['product_id'];
