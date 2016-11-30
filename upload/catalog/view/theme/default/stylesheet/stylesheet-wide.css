@@ -426,7 +426,7 @@ span.from {
 	position: relative;
 	top: 31px;
 	right: 1px;
-	background-color: #FCFCFC;
+	background-color: rgba(255, 255, 255, 1);
 	border: 1px solid #DFDFDF;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -464,7 +464,13 @@ span.from {
 	color: #FFF;
 }
 #livesearch li:hover, #livesearch .highlighted {
-	background-color: #888;
+	background-color: rgba(25, 166, 228, 0.7);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(40, 176, 236, 0.7)), to(rgba(7, 155, 220, 0.7)));
+	background-image: -webkit-linear-gradient(top, rgba(40, 176, 236, 0.7), rgba(7, 155, 220, 0.7));
+	background-image: -moz-linear-gradient(top, rgba(40, 176, 236, 0.7), rgba(7, 155, 220, 0.7));
+	background-image: -ms-linear-gradient(top, rgba(40, 176, 236, 0.7), rgba(7, 155, 220, 0.7));
+	background-image: -o-linear-gradient(top, rgba(40, 176, 236, 0.7), rgba(7, 155, 220, 0.7));
+	background-image: linear-gradient(to bottom, rgba(40, 176, 236, 0.7), rgba(7, 155, 220, 0.7));
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
