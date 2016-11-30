@@ -10,7 +10,7 @@ class Image {
 	protected $watermark;
 
 	public function __construct($file) {
-		if (file_exists($file)) {
+		if (file_exists($file) && filesize($file) > 0) {
 			$this->file = $file;
 
 			$info = getimagesize($file);
