@@ -16,7 +16,7 @@
       <div class="rightside">
         <div style="margin:5px 0px;"><?php echo $entry_username; ?></div>
         <div>
-          <input type="text" name="username" value="<?php echo $username; ?>" />
+          <input type="text" name="username" value="<?php echo $username; ?>" autofocus />
         </div>
         <div style="margin:5px 0px;"><?php echo $entry_password; ?></div>
         <div>
