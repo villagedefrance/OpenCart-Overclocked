@@ -37,6 +37,8 @@ $_['entry_footer_twitter']      = 'Display Twitter:<span class="help">Link must 
 $_['entry_footer_google']       = 'Display Google+:<span class="help">Link must be defined in store Settings.</span>';
 $_['entry_footer_pinterest']    = 'Display Pinterest:<span class="help">Link must be defined in store Settings.</span>';
 $_['entry_footer_skype']        = 'Display Skype:<span class="help">Link must be defined in store Settings.</span>';
+$_['entry_livesearch']          = 'Use Live Search:<span class="help">Display product results based on 3 or more search keywords. Header Search only.</span>';
+$_['entry_livesearch_limit']    = 'Live Search results:<span class="help">Maximum number of results to be returned by the search.</span>';
 $_['entry_product_stock_low']   = 'Low Stock Message:<span class="help">Show "Only x left in stock!" message for products.</span>';
 $_['entry_product_stock_limit'] = 'Low Stock Limit:<span class="help">Select the limit below which the Low Stock quantity Message will be triggered.</span>';
 $_['entry_manufacturer_name']   = 'Display Manufacturer\'s Name:<span class="help">Show the Manufacturer\'s Name in most Product Lists.</span>';

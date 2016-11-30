@@ -440,38 +440,36 @@ span.from {
 }
 #livesearch li {
 	padding: 0px;
+	cursor: pointer;
 	overflow: hidden;
-}
-#livesearch a, #livesearch a:visited, #livesearch a:hover {
-	color: #333;
-	font-size: 12px;
-	text-decoration: none;
-	outline: none;
-}
-#livesearch a {
-	display: block;
-	padding: 5px;
-	float: left;
-    color: #333;
-}
-#livesearch a:hover, #livesearch .highlighted a {
-	color: #FFF;
-}
-#livesearch li:hover, #livesearch .highlighted {
-	background-color: #888;
-	border: none;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 }
 #livesearch li img {
 	float: left;
 	margin-right: 12px;
 	overflow: hidden;
 }
-#livesearch li img.loading {
-	background: #F5F5F5;
+#livesearch a, #livesearch a:visited, #livesearch a:hover {
+	font-size: 12px;
+	text-decoration: none;
+	white-space: pre-line;
+	padding: 5px;
+	float: left;
+	outline: none;
+	display: block;
+}
+#livesearch a, #livesearch a:visited {
+	color: #333;
+}
+#livesearch a:hover, #livesearch .highlighted a {
+	color: #FFF;
+}
+#livesearch li:hover, #livesearch .highlighted {
+	background-color: #888;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	border: none;
 }
 /* Header Welcome */
 #header #welcome {

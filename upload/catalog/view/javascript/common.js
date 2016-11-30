@@ -111,22 +111,23 @@ function doLiveSearch(ev, keywords) {
 	keywords = encodeURI(keywords);
 
 	$.ajax({
-		url: $('#hidden').attr('href') + 'index.php?route=product/search/ajax&keyword=' + keywords,
+		url: $('#hidden').attr('href') + 'index.php?route=product/search/livesearch&keyword=' + keywords,
 		dataType: 'json',
 		content: this,
 		success: function(result) {
 			if (result.length > 0) {
 				var eList = document.createElement('ul');
-				eList.id = 'livesearch';
 				var eListElem;
 				var eListImage;
 				var eLink;
+
+				eList.id = 'livesearch';
+
 				for (var i in result) {
 					eListElem = document.createElement('li');
 					eLink = document.createElement('a');
 					$(function() {
 						eListImage = document.createElement('img');
-						eListImage.className = 'loading';
 						$(eListImage).load(function() {
 							$(this).show();
 						})

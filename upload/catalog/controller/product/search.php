@@ -558,13 +558,29 @@ class ControllerProductSearch extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	public function ajax() {
+	public function livesearch() {
 		$data = array();
 
-		if (isset($this->request->get['keyword'])) {
+		$template = $this->config->get('config_template');
+
+		if (isset($this->request->get['keyword']) && $this->config->get($template . '_livesearch')) {
 			$keywords = strtolower($this->request->get['keyword']);
 
 			if (strlen($keywords) >= 3) {
+				if ($this->customer->isLogged()) {
+					$customer_group_id = $this->customer->getCustomerGroupId();
+				} else {
+					$customer_group_id = $this->config->get('config_customer_group_id');
+				}
+
+				$search_limit = $this->config->get($template . '_livesearch_limit');
+
+				if ($search_limit && is_numeric($search_limit) && $search_limit > 0) {
+					$limit = (int)$search_limit;
+				} else {
+					$limit = 10;
+				}
+
 				$parts = explode(' ', $keywords);
 
 				$add = '';
@@ -578,7 +594,9 @@ class ControllerProductSearch extends Controller {
 
 				$add = substr($add, 4);
 
-				$sql = 'SELECT p.product_id, p.image, p.model AS model, pd.name AS name FROM ' . DB_PREFIX . 'product p';
+				$sql = 'SELECT p.product_id, p.image, p.price, p.tax_class_id,';
+				$sql .= ' (SELECT price FROM ' . DB_PREFIX . 'product_special ps WHERE ps.product_id = p.product_id AND ps.customer_group_id = "' . (int)$customer_group_id . '" AND ((ps.date_start = "0000-00-00" OR ps.date_start < NOW()) AND (ps.date_end = "0000-00-00" OR ps.date_end > NOW())) ORDER BY ps.priority ASC, ps.price ASC LIMIT 0,1) AS special,';
+				$sql .= ' p.model AS model, pd.name AS name FROM ' . DB_PREFIX . 'product p';
 				$sql .= ' LEFT OUTER JOIN ' . DB_PREFIX . 'manufacturer_description md ON (p.manufacturer_id = md.manufacturer_id)';
 				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_description pd ON (p.product_id = pd.product_id)';
 				$sql .= ' LEFT JOIN ' . DB_PREFIX . 'product_to_store p2s ON (p.product_id = p2s.product_id)';
@@ -587,7 +605,7 @@ class ControllerProductSearch extends Controller {
 				$sql .= ' AND p2s.store_id = ' . (int)$this->config->get('config_store_id'); 
 				$sql .= ' GROUP BY p.product_id';
 				$sql .= ' ORDER BY LOWER(pd.name) ASC, LOWER(md.name) ASC, LOWER(pd.tag) ASC, LOWER(p.model) ASC';
-				$sql .= ' LIMIT 0,10';
+				$sql .= ' LIMIT 0,' . (int)$limit;
 
 				$result = $this->db->query($sql);
 
@@ -600,21 +618,40 @@ class ControllerProductSearch extends Controller {
 
 					foreach ($data as $key => $values) {
 						if ($values['image']) {
-							$image = $this->model_tool_image->resize($values['image'], 26, 26);
+							$image = $this->model_tool_image->resize($values['image'], 32, 32);
 						} else {
-							$image = $this->model_tool_image->resize('no_image.jpg', 26, 26);
+							$image = $this->model_tool_image->resize('no_image.jpg', 32, 32);
 						}
 
+						if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+							if (($values['price'] == '0.0000') && $this->config->get('config_price_free')) {
+								$price = $this->language->get('text_free');
+							} else {
+								$price = $this->currency->format($this->tax->calculate($values['price'], $values['tax_class_id'], $this->config->get('config_tax')));
+							}
+						} else {
+							$price = false;
+						}
+
+						if ((float)$values['special']) {
+							$special = $this->currency->format($this->tax->calculate($values['special'], $values['tax_class_id'], $this->config->get('config_tax')));
+						} else {
+							$special = false;
+						}
+
+						$product_price = ($special) ? $special : $price;
 						$product_id = (int)$values['product_id'];
 
 						$data[$key] = array(
-							'name' => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ')', ENT_QUOTES),
+							'name'  => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ') ' . $product_price, ENT_QUOTES),
 							'image' => $image,
-							'href' => $this->url->link($product_href . $product_id, '', 'SSL')
+							'href'  => $this->url->link($product_href . $product_id, '', 'SSL')
 						);
 					}
 				}
 			}
+		} else {
+			return;
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

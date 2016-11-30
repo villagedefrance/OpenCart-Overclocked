@@ -305,6 +305,24 @@
       <div id="tab-options">
         <table class="form">
           <tr>
+            <td><?php echo $entry_livesearch; ?></td>
+            <td><?php if ($default_livesearch) { ?>
+              <input type="radio" name="default_livesearch" value="1" id="livesearch-on" class="radio" checked />
+              <label for="livesearch-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_livesearch" value="0" id="livesearch-off" class="radio" />
+              <label for="livesearch-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_livesearch" value="1" id="livesearch-on" class="radio" />
+              <label for="livesearch-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_livesearch" value="0" id="livesearch-off" class="radio" checked />
+              <label for="livesearch-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_livesearch_limit; ?></td>
+            <td><input type="text" name="default_livesearch_limit" value="<?php echo ($default_livesearch_limit) ? $default_livesearch_limit : 10; ?>" size="3" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_product_stock_low; ?></td>
             <td><?php if ($default_product_stock_low) { ?>
               <input type="radio" name="default_product_stock_low" value="1" id="stock-low-on" class="radio" checked />

@@ -62,6 +62,8 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_footer_google'] = $this->language->get('entry_footer_google');
 		$this->data['entry_footer_pinterest'] = $this->language->get('entry_footer_pinterest');
 		$this->data['entry_footer_skype'] = $this->language->get('entry_footer_skype');
+		$this->data['entry_livesearch'] = $this->language->get('entry_livesearch');
+		$this->data['entry_livesearch_limit'] = $this->language->get('entry_livesearch_limit');
 		$this->data['entry_product_stock_low'] = $this->language->get('entry_product_stock_low');
 		$this->data['entry_product_stock_limit'] = $this->language->get('entry_product_stock_limit');
 		$this->data['entry_manufacturer_name'] = $this->language->get('entry_manufacturer_name');
@@ -270,6 +272,18 @@ class ControllerThemeDefault extends Controller {
 		}
 
 		// Options
+		if (isset($this->request->post[$this->_name . '_livesearch'])) {
+			$this->data[$this->_name . '_livesearch'] = $this->request->post[$this->_name . '_livesearch']; 
+		} else {
+			$this->data[$this->_name . '_livesearch'] = $this->config->get($this->_name . '_livesearch');
+		}
+
+		if (isset($this->request->post[$this->_name . '_livesearch_limit'])) {
+			$this->data[$this->_name . '_livesearch_limit'] = $this->request->post[$this->_name . '_livesearch_limit']; 
+		} else {
+			$this->data[$this->_name . '_livesearch_limit'] = $this->config->get($this->_name . '_livesearch_limit');
+		}
+
 		if (isset($this->request->post[$this->_name . '_product_stock_low'])) {
 			$this->data[$this->_name . '_product_stock_low'] = $this->request->post[$this->_name . '_product_stock_low'];
 		} else {
