@@ -1534,6 +1534,7 @@ CREATE TABLE `oc_order_history` (
   `date_added` datetime NOT NULL,
   `comment` text CHARACTER SET utf8 NOT NULL,
   `notify` tinyint(1) NOT NULL DEFAULT '0',
+  `tracking` varchar(64) NOT NULL,
   `order_status_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,

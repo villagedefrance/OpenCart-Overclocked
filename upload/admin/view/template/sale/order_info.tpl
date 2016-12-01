@@ -472,6 +472,10 @@
           </td>
         </tr>
         <tr>
+          <td><?php echo $entry_tracking; ?></td>
+          <td><input type="text" name="tracking" value="<?php echo ($tracking) ? $tracking : ''; ?>" id="tracking" /></td>
+        </tr>
+        <tr>
           <td><?php echo $entry_notify; ?></td>
           <td>
             <input type="checkbox" name="notify" value="1" id="notify" class="checkbox" />
@@ -785,7 +789,7 @@ $('#button-history').live('click', function() {
 		url: 'index.php?route=sale/order/history&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>',
 		type: 'post',
 		dataType: 'html',
-		data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&notify=' + encodeURIComponent($('input[name=\'notify\']').attr('checked') ? 1 : 0) + '&append=' + encodeURIComponent($('input[name=\'append\']').attr('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
+		data: 'order_status_id=' + encodeURIComponent($('select[name=\'order_status_id\']').val()) + '&tracking=' + encodeURIComponent($('input[name=\'tracking\']').val()) + '&notify=' + encodeURIComponent($('input[name=\'notify\']').attr('checked') ? 1 : 0) + '&append=' + encodeURIComponent($('input[name=\'append\']').attr('checked') ? 1 : 0) + '&comment=' + encodeURIComponent($('textarea[name=\'comment\']').val()),
 		beforeSend: function() {
 			$('.success, .warning').remove();
 			$('#button-history').attr('disabled', true);

@@ -133,6 +133,7 @@
       <tr>
         <td class="left"><?php echo $column_date_added; ?></td>
         <td class="left"><?php echo $column_status; ?></td>
+        <td class="left"><?php echo $column_tracking; ?></td>
         <td class="left"><?php echo $column_comment; ?></td>
       </tr>
     </thead>
@@ -141,6 +142,7 @@
         <tr>
           <td class="left"><?php echo $history['date_added']; ?></td>
           <td class="left"><?php echo $history['status']; ?></td>
+          <td class="left"><?php echo $history['tracking']; ?></td>
           <td class="left"><?php echo $history['comment']; ?></td>
         </tr>
       <?php } ?>
