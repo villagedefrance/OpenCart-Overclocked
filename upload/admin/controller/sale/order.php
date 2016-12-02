@@ -2086,7 +2086,7 @@ class ControllerSaleOrder extends Controller {
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'status'     => $result['status'],
 				'comment'    => nl2br($result['comment']),
-				'tracking'   => $result['tracking'],
+				'tracking'   => html_entity_decode($result['tracking'], ENT_QUOTES, 'UTF-8'),
 				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no')
 			);
 		}

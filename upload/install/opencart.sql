@@ -2960,7 +2960,7 @@ CREATE TABLE `oc_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `order_status_id` int(11) NOT NULL,
-  `tracking` varchar(64) NOT NULL,
+  `tracking` varchar(255) NOT NULL,
   `notify` tinyint(1) NOT NULL DEFAULT '0',
   `comment` text CHARACTER SET utf8 NOT NULL,
   `date_added` datetime NOT NULL,

@@ -146,7 +146,7 @@ $_['entry_message']              = 'Message:';
 $_['entry_amount']               = 'Amount:';
 $_['entry_affiliate']            = 'Affiliate:';
 $_['entry_order_status']         = 'Order Status:';
-$_['entry_tracking']             = 'Tracking Code:';
+$_['entry_tracking']             = 'Tracking Code Url:<span class="help">(Optional)</span>';
 $_['entry_notify']               = 'Notify Customer:';
 $_['entry_comment']              = 'Comment:';
 $_['entry_shipping']             = 'Shipping Method:';

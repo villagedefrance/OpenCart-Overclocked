@@ -473,7 +473,7 @@
         </tr>
         <tr>
           <td><?php echo $entry_tracking; ?></td>
-          <td><input type="text" name="tracking" value="<?php echo ($tracking) ? $tracking : ''; ?>" id="tracking" /></td>
+          <td><input type="text" name="tracking" value="<?php echo ($tracking) ? $tracking : ''; ?>" id="tracking" size="50" /></td>
         </tr>
         <tr>
           <td><?php echo $entry_notify; ?></td>
