@@ -231,9 +231,15 @@ class ControllerUpgrade extends Controller {
 
 		if (DB_DRIVER == 'mpdo') {
 			try {
-				new \PDO("mysql:host=" . DB_HOSTNAME . ";port=" . DB_PORT . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD, array(\PDO::ATTR_PERSISTENT => true));
-			} catch(Exception $e) {
-				$this->error['warning'] = $e->getMessage();
+				$options = array(
+					\PDO::ATTR_PERSISTENT => true,
+					\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+				);
+
+				new \PDO('mysql:host=' . DB_HOSTNAME . ';port=' . DB_PORT . ';dbname=' . DB_DATABASE . ';charset=UTF8', DB_USERNAME, DB_PASSWORD, $options);
+
+			} catch (\PDOException $e) {
+				$this->error['warning'] = 'Failed to connect to database. Reason: \'' . $e->getMessage() . '\'';
 			}
 		}
 
