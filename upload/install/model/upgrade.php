@@ -349,6 +349,16 @@ class ModelUpgrade extends Model {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "setting SET `value` = '1000', `key` = 'config_voucher_max', `group` = 'config', store_id = '0'");
 		}
 
+		// Update allowed file extensions
+		$file_extension_allowed = 'txt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nmp4\r\navi\r\noga\r\nogv\r\nogg\r\nm4a\r\nm4v\r\nwav\r\nwebm\r\nwma\r\nwmv\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc\r\nrtf\r\nxls\r\nppt\r\nodt\r\nods';
+
+		$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '" . $file_extension_allowed . "' WHERE `key` = 'config_file_extension_allowed' AND store_id = '0'");
+
+		// Update allowed file mime types
+		$file_mime_allowed = 'text/plain\r\nimage/png\r\nimage/x-png\r\nimage/jpeg\r\nimage/pjpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\nmultipart/x-zip\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mp3\r\naudio/mpeg\r\naudio/x-mpeg\r\naudio/mpeg3\r\naudio/x-mpeg-3\r\naudio/oga\r\naudio/m4a\r\naudio/wav\r\naudio/x-wav\r\naudio/wave\r\naudio/x-pn-wav\r\naudio/webm\r\naudio/x-ms-wma\r\nvideo/x-ms-asf\r\nvideo/mp4\r\nvideo/mpeg\r\nvideo/x-mpeg\r\nvideo/x-mpeq2a\r\nvideo/ogv\r\nvideo/ogm\r\nvideo/webm\r\nvideo/x-m4v\r\nvideo/msvideo\r\nvideo/x-ms-wmv\r\nvideo/quicktime\r\napplication/ogg\r\napplication/pdf\r\napplication/x-pdf\r\napplication/x-shockwave-flash\r\napplication/msword\r\napplication/rtf\r\napplication/vnd.ms-excel\r\napplication/vnd.ms-powerpoint\r\napplication/vnd.oasis.opendocument.text\r\napplication/vnd.oasis.opendocument.spreadsheet';
+
+		$this->db->query("UPDATE " . DB_PREFIX . "setting SET `value` = '" . $file_mime_allowed . "' WHERE `key` = 'config_file_mime_allowed' AND store_id = '0'");
+
 		// Update the country table
 		if (isset($table_old_data[DB_PREFIX . 'country']) && in_array('name', $table_old_data[DB_PREFIX . 'country'])) {
 			// Country 'name' field moved to new country_description table. Need to loop through and move over

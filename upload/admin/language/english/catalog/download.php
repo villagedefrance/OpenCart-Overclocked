@@ -27,5 +27,6 @@ $_['error_upload']     = 'Upload required!';
 $_['error_filename']   = 'File Name must be between 3 and 128 characters!';
 $_['error_exists']     = 'File does not exist!';
 $_['error_mask']       = 'Mask must be between 3 and 128 characters!';
+$_['error_mask_type']  = 'Mask must end with a file type!';
 $_['error_filetype']   = 'Warning: Invalid file type!';
 $_['error_product']    = 'Warning: This download cannot be deleted as it is currently assigned to %s products!';
