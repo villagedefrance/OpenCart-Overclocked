@@ -34,6 +34,7 @@
             <?php } else { ?>
               <a href="<?php echo $sort_name; ?>"><?php echo $column_name; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
+            <td class="left"><?php echo $column_filetype; ?></td>
             <td class="left"><?php echo $column_filesize; ?></td>
             <td class="left"><?php if ($sort == 'd.remaining') { ?>
               <a href="<?php echo $sort_remaining; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_remaining; ?></a>
@@ -49,6 +50,7 @@
             <td><input type="text" name="filter_name" value="<?php echo $filter_name; ?>" /></td>
             <td></td>
             <td></td>
+            <td></td>
             <td class="right"><a onclick="filter();" class="button-filter"><?php echo $button_filter; ?></a></td>
           </tr>
         <?php if ($downloads) { ?>
@@ -62,6 +64,7 @@
               <label for="<?php echo $download['download_id']; ?>"><span></span></label>
             <?php } ?></td>
             <td class="left"><?php echo $download['name']; ?></td>
+            <td class="center"><?php echo $download['filetype']; ?></td>
             <td class="center"><?php echo $download['filesize']; ?></td>
             <td class="center"><?php echo $download['remaining']; ?></td>
             <td class="right"><?php foreach ($download['action'] as $action) { ?>
@@ -71,7 +74,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="5"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

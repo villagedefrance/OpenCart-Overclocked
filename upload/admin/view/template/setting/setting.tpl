@@ -2124,11 +2124,11 @@
           </tr>
           <tr>
             <td><?php echo $entry_file_extension_allowed; ?></td>
-            <td><textarea name="config_file_extension_allowed" cols="40" rows="5"><?php echo $config_file_extension_allowed; ?></textarea></td>
+            <td><textarea name="config_file_extension_allowed" cols="40" rows="8"><?php echo $config_file_extension_allowed; ?></textarea></td>
           </tr>
           <tr>
             <td><?php echo $entry_file_mime_allowed; ?></td>
-            <td><textarea name="config_file_mime_allowed" cols="60" rows="5"><?php echo $config_file_mime_allowed; ?></textarea></td>
+            <td><textarea name="config_file_mime_allowed" cols="60" rows="8"><?php echo $config_file_mime_allowed; ?></textarea></td>
           </tr>
         </table>
       </div>

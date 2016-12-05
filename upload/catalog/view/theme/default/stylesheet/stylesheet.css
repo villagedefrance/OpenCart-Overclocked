@@ -843,10 +843,10 @@ a.button-add {
 }
 .buttons .left h4, .buttons .right h4 {
 	color: #444;
-	font-size: 14px;
-	margin: 0px;
+	font-size: 15px;
+	margin: 2px 0px 0px 3px;
 	font-weight: normal;
-	text-shadow: 0px 1px 0px #FCFCFC;
+	text-shadow: 0px 1px 0px #FFF;
 }
 .buttons .center {
 	text-align: center;

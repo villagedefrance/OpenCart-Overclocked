@@ -232,6 +232,10 @@ class ControllerCatalogDownload extends Controller {
 
 			$size = filesize($file);
 
+			$mask = $result['mask'];
+
+			$type = utf8_substr(strrchr($mask, '.'), 1);
+
 			$i = 0;
 
 			$suffix = array('B','KB','MB','GB','TB','PB','EB','ZB','YB');
@@ -241,6 +245,7 @@ class ControllerCatalogDownload extends Controller {
 			$this->data['downloads'][] = array(
 				'download_id' => $result['download_id'],
 				'name'        => $result['name'],
+				'filetype'    => $type,
 				'filesize'    => round(substr($size, 0, strpos($size, '.') + 4), 2) . $suffix[$i],
 				'remaining'   => $result['remaining'],
 				'selected'    => isset($this->request->post['selected']) && in_array($result['download_id'], $this->request->post['selected']),
@@ -253,6 +258,7 @@ class ControllerCatalogDownload extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
 		$this->data['column_name'] = $this->language->get('column_name');
+		$this->data['column_filetype'] = $this->language->get('column_filetype');
 		$this->data['column_filesize'] = $this->language->get('column_filesize');
 		$this->data['column_remaining'] = $this->language->get('column_remaining');
 		$this->data['column_action'] = $this->language->get('column_action');
@@ -493,7 +499,13 @@ class ControllerCatalogDownload extends Controller {
 			$this->error['filename'] = $this->language->get('error_exists');
 		}
 
-		if ((utf8_strlen($this->request->post['mask']) < 3) || (utf8_strlen($this->request->post['mask']) > 128)) {
+		if ((utf8_strlen($this->request->post['mask']) > 3) || (utf8_strlen($this->request->post['mask']) < 128)) {
+			$type = utf8_substr(strrchr($this->request->post['mask'], '.'), 1);
+
+			if (!$type || utf8_strlen($type) < 3) {
+				$this->error['mask'] = $this->language->get('error_mask_type');
+			}
+		} else {
 			$this->error['mask'] = $this->language->get('error_mask');
 		}
 
