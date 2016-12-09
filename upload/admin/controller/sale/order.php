@@ -1552,6 +1552,8 @@ class ControllerSaleOrder extends Controller {
 			$this->data['delivery_note'] = $this->url->link('sale/order/deliveryNote', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
 			$this->data['invoice'] = $this->url->link('sale/order/invoice', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
 
+			$this->data['amazon_order_id'] = $order_info['amazon_order_id'];
+
 			$this->data['order_id'] = (int)$this->request->get['order_id'];
 
 			if ($order_info['invoice_no']) {
@@ -1560,9 +1562,15 @@ class ControllerSaleOrder extends Controller {
 				$this->data['invoice_no'] = '';
 			}
 
-			$this->data['amazon_order_id'] = $order_info['amazon_order_id'];
+			$this->data['store_id'] = $order_info['store_id'];
 			$this->data['store_name'] = $order_info['store_name'];
-			$this->data['store_url'] = $order_info['store_url'];
+
+			if ($order_info['store_id'] == 0) {
+				$this->data['store_url'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG : HTTP_CATALOG;
+			} else {
+				$this->data['store_url'] = $order_info['store_url'];
+			}
+
 			$this->data['firstname'] = $order_info['firstname'];
 			$this->data['lastname'] = $order_info['lastname'];
 
@@ -2163,6 +2171,7 @@ class ControllerSaleOrder extends Controller {
 				'common/footer'
 			);
 
+			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
 			$this->response->setOutput($this->render());
 		}
 	}
@@ -2304,7 +2313,7 @@ class ControllerSaleOrder extends Controller {
 		}
 
 		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
 		} else {
 			$this->data['logo'] = '';
 		}
@@ -2412,7 +2421,7 @@ class ControllerSaleOrder extends Controller {
 		}
 
 		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
 		} else {
 			$this->data['logo'] = '';
 		}
@@ -2662,7 +2671,7 @@ class ControllerSaleOrder extends Controller {
 		}
 
 		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
 		} else {
 			$this->data['logo'] = '';
 		}
@@ -2913,7 +2922,7 @@ class ControllerSaleOrder extends Controller {
 		}
 
 		if ($this->config->get('config_logo') && file_exists(DIR_IMAGE . $this->config->get('config_logo'))) {
-			$this->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$this->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
 		} else {
 			$this->data['logo'] = '';
 		}

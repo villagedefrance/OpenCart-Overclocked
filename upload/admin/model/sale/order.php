@@ -878,9 +878,9 @@ class ModelSaleOrder extends Model {
 			$template = new Template();
 
 			$template->data['title'] = html_entity_decode($subject, ENT_QUOTES, 'UTF-8');
-			$template->data['logo'] = HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
+			$template->data['logo'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG . 'image/' . $this->config->get('config_logo') : HTTP_CATALOG . 'image/' . $this->config->get('config_logo');
 			$template->data['store_name'] = $this->config->get('config_name');
-			$template->data['store_url'] = HTTP_CATALOG;
+			$template->data['store_url'] = $this->request->server['HTTPS'] ? HTTPS_CATALOG : HTTP_CATALOG;
 			$template->data['message'] = nl2br($message);
 
 			$html = $template->fetch('mail/default.tpl');
