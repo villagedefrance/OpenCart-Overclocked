@@ -431,7 +431,6 @@ class ControllerAccountOrder extends Controller {
 			$this->data['column_action'] = $this->language->get('column_action');
 			$this->data['column_date_added'] = $this->language->get('column_date_added');
 			$this->data['column_status'] = $this->language->get('column_status');
-			$this->data['column_tracking'] = $this->language->get('column_tracking');
 			$this->data['column_comment'] = $this->language->get('column_comment');
 
 			$this->data['button_return'] = $this->language->get('button_return');
@@ -580,7 +579,6 @@ class ControllerAccountOrder extends Controller {
 				$this->data['histories'][] = array(
 					'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 					'status'     => $result['status'],
-					'tracking'   => html_entity_decode($result['tracking'], ENT_QUOTES, 'UTF-8'),
 					'comment'    => nl2br($result['comment'])
 				);
 			}

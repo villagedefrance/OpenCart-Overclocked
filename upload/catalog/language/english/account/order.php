@@ -14,7 +14,6 @@ $_['column_total']            = 'Total';
 $_['column_action']           = 'Action';
 $_['column_date_added']       = 'Date Added';
 $_['column_status']           = 'Status';
-$_['column_tracking']         = 'Tracking Code';
 $_['column_comment']          = 'Comment';
 $_['column_order_picked']     = 'Picked';
 $_['column_order_none']       = 'Pending';

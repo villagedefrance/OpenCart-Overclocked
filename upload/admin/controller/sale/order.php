@@ -1456,7 +1456,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['column_status_backordered'] = $this->language->get('column_status_backordered');
 
 			$this->data['entry_order_status'] = $this->language->get('entry_order_status');
-			$this->data['entry_tracking'] = $this->language->get('entry_tracking');
 			$this->data['entry_notify'] = $this->language->get('entry_notify');
 			$this->data['entry_comment'] = $this->language->get('entry_comment');
 
@@ -1742,14 +1741,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
 			$this->data['order_status_id'] = $order_info['order_status_id'];
-
-			$tracking = $this->model_sale_order->getOrderHistoryTracking($this->request->get['order_id']);
-
-			if ($tracking) {
-				$this->data['tracking'] = $tracking;
-			} else {
-				$this->data['tracking'] = '';
-			}
 
 			// Anti-Fraud Tabs
 			$this->data['tabs'] = array();
@@ -2068,7 +2059,6 @@ class ControllerSaleOrder extends Controller {
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_comment'] = $this->language->get('column_comment');
-		$this->data['column_tracking'] = $this->language->get('column_tracking');
 		$this->data['column_notify'] = $this->language->get('column_notify');
 
 		if (isset($this->request->get['page'])) {
@@ -2086,7 +2076,6 @@ class ControllerSaleOrder extends Controller {
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'status'     => $result['status'],
 				'comment'    => nl2br($result['comment']),
-				'tracking'   => html_entity_decode($result['tracking'], ENT_QUOTES, 'UTF-8'),
 				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no')
 			);
 		}
