@@ -566,7 +566,7 @@ class ControllerProductSearch extends Controller {
 		if (isset($this->request->get['keyword']) && $this->config->get($template . '_livesearch')) {
 			$keywords = strtolower($this->request->get['keyword']);
 
-			if (strlen($keywords) >= 3) {
+			if (strlen($keywords) >= 2) {
 				if ($this->customer->isLogged()) {
 					$customer_group_id = $this->customer->getCustomerGroupId();
 				} else {
@@ -643,7 +643,7 @@ class ControllerProductSearch extends Controller {
 						$product_id = (int)$values['product_id'];
 
 						$data[$key] = array(
-							'name'  => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ') ' . $product_price, ENT_QUOTES),
+							'name'  => html_entity_decode($values['name'] . ' (' . $values['model'] . ') ' . $product_price, ENT_QUOTES, 'UTF-8'),
 							'image' => $image,
 							'href'  => $this->url->link($product_href . $product_id, '', 'SSL')
 						);
