@@ -932,6 +932,8 @@ class ControllerSaleReturn extends Controller {
 			$this->data['tab_product'] = $this->language->get('tab_product');
 			$this->data['tab_history'] = $this->language->get('tab_history');
 
+			$this->data['token'] = $this->session->data['token'];
+
 			$url = '';
 
 			if (isset($this->request->get['filter_return_id'])) {
@@ -997,8 +999,6 @@ class ControllerSaleReturn extends Controller {
 			$this->load->model('sale/order');
 
 			$order_info = $this->model_sale_order->getOrder($return_info['order_id']);
-
-			$this->data['token'] = $this->session->data['token'];
 
 			$this->data['return_id'] = $return_info['return_id'];
 			$this->data['order_id'] = $return_info['order_id'];
@@ -1100,6 +1100,7 @@ class ControllerSaleReturn extends Controller {
 				'common/footer'
 			);
 
+			$this->response->addheader($this->request->server['SERVER_PROTOCOL'] . ' 404 not found');
 			$this->response->setOutput($this->render());
 		}
 	}
@@ -1203,8 +1204,8 @@ class ControllerSaleReturn extends Controller {
 
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
 		$this->data['column_status'] = $this->language->get('column_status');
-		$this->data['column_notify'] = $this->language->get('column_notify');
 		$this->data['column_comment'] = $this->language->get('column_comment');
+		$this->data['column_notify'] = $this->language->get('column_notify');
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -1218,18 +1219,18 @@ class ControllerSaleReturn extends Controller {
 
 		$this->data['histories'] = array();
 
+		$history_total = $this->model_sale_return->getTotalReturnHistories($this->request->get['return_id']);
+
 		$results = $this->model_sale_return->getReturnHistories($this->request->get['return_id'], ($page - 1) * 10, 10);
 
 		foreach ($results as $result) {
 			$this->data['histories'][] = array(
-				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no'),
+				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
 				'status'     => $result['status'],
 				'comment'    => nl2br($result['comment']),
-				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added']))
+				'notify'     => $result['notify'] ? $this->language->get('text_yes') : $this->language->get('text_no')
 			);
 		}
-
-		$history_total = $this->model_sale_return->getTotalReturnHistories($this->request->get['return_id']);
 
 		$pagination = new Pagination();
 		$pagination->total = $history_total;

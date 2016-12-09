@@ -599,6 +599,8 @@ class ControllerSaleVoucher extends Controller {
 
 		$this->data['histories'] = array();
 
+		$history_total = $this->model_sale_voucher->getTotalVoucherHistories($this->request->get['voucher_id']);
+
 		$results = $this->model_sale_voucher->getVoucherHistories($this->request->get['voucher_id'], ($page - 1) * 10, 10);
 
 		foreach ($results as $result) {
@@ -610,12 +612,11 @@ class ControllerSaleVoucher extends Controller {
 			);
 		}
 
-		$history_total = $this->model_sale_voucher->getTotalVoucherHistories($this->request->get['voucher_id']);
-
 		$pagination = new Pagination();
 		$pagination->total = $history_total;
 		$pagination->page = $page;
 		$pagination->limit = 10;
+		$pagination->text = $this->language->get('text_pagination');
 		$pagination->url = $this->url->link('sale/voucher/history', 'token=' . $this->session->data['token'] . '&voucher_id=' . $this->request->get['voucher_id'] . '&page={page}', 'SSL');
 
 		$this->data['pagination'] = $pagination->render();
