@@ -33,6 +33,7 @@
         <a id="upload" class="filemanager-button" style="background-image: url('view/image/filemanager/upload.png');"><?php echo $button_upload; ?></a>
         <a id="uploadmulti" class="filemanager-button" style="background-image: url('view/image/filemanager/upload-plus.png');"><?php echo $button_uploads; ?>+</a>
         <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
+        <a id="information" class="filemanager-button" style="background-image: url('view/image/filemanager/information.png');"><?php echo $button_info; ?></a>
       </div>
       <div id="column-right"></div>
       <div id="column-left"></div>
@@ -49,6 +50,7 @@
       <span style="float:right; font-size:12px; padding:10px 10px 0px 0px; color:#269BC6;">
         <a onclick="window.open('http://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
       </span>
+      <div id="information-dialog" style="display:none;"></div>
     </div>
   </div>
 </div>
@@ -754,6 +756,37 @@ $(document).ready(function() {
 	});
 
 	$('#refresh').bind('click', function() {
+		var tree = $.tree.focused();
+
+		tree.select_branch(tree.selected);
+	});
+
+	$('#information').bind('click', function() {
+		$.ajax({
+			url: 'index.php?route=common/filemanager_full/information&token=<?php echo $token; ?>',
+			dataType: 'json',
+			type: 'get',
+			success: function(json) {
+				$('.success, .warning, .attention, .error').remove();
+
+				if (json['html']) {
+					$('#information-dialog').html(json['html']);
+					$('#information-dialog').dialog({
+						title: '<?php echo $heading_info; ?>',
+						width: 760,
+						height: 255,
+						resizable: false,
+						modal: true
+					});
+				} else {
+					alert('Invalid response!');
+				}
+			},
+			failure: function() {
+				alert('Ajax error!');
+			}
+		});
+
 		var tree = $.tree.focused();
 
 		tree.select_branch(tree.selected);

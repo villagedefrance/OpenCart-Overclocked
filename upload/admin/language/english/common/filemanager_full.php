@@ -1,6 +1,7 @@
 <?php
 // Heading
-$_['heading_title']       = 'Image Manager';
+$_['heading_title']       = 'File Manager';
+$_['heading_info']        = 'About File Manager';
  
 // Text
 $_['text_uploaded']       = 'Success: Your file has been uploaded!';
@@ -64,8 +65,27 @@ $_['button_rename']       = 'Rename';
 $_['button_upload']       = 'Upload';
 $_['button_uploads']      = 'Uploads';
 $_['button_refresh']      = 'Refresh';
+$_['button_info']         = 'Info';
 $_['button_expand']       = 'Expand Tree';
 $_['button_collapse']     = 'Collapse Tree';
 $_['button_view_text']    = 'Text View';
 $_['button_view_list']    = 'List View';
 $_['button_view_thumb']   = 'Thumb View';
+
+// Info
+$_['info_title']          = 'File Manager - Overclocked Edition';
+$_['info_copyright']      = 'Copyright &copy; 2016 - All rights reserved';
+
+$_['text_info_version']   = 'Version:';
+$_['text_info_author']    = 'Author:';
+$_['text_info_credit']    = 'Credits:';
+$_['text_info_scripts']   = 'Scripts:';
+$_['text_info_license']   = 'License:';
+$_['text_info_files']     = 'Formats:';
+
+$_['info_version']        = 'v1.8.4.0';
+$_['info_author']         = 'Villagedefrance (contact@villagedefrance.net)';
+$_['info_credit']         = 'Kay Lohn (Original script), Dhaupin (Performance).';
+$_['info_scripts']        = 'jsTree v0.9.9a, AjaxUpload v1.0 and Plupload v2.2.1.';
+$_['info_license']        = 'GPLv3 (GNU General Public License)';
+$_['info_files']          = 'jpg, jpeg, png, gif, mp3, mp4, oga, ogv, ogg, webm, m4a, m4v, wav, wma, wmv, zip, rar, pdf, swf, flv.';

@@ -17,6 +17,8 @@ class ControllerCommonFileManager extends Controller {
 			$this->data['directory'] = HTTP_IMAGE . 'data/';
 		}
 
+		$this->data['heading_info'] = $this->language->get('heading_info');
+
 		$this->data['entry_folder'] = $this->language->get('entry_folder');
 		$this->data['entry_move'] = $this->language->get('entry_move');
 		$this->data['entry_copy'] = $this->language->get('entry_copy');
@@ -30,6 +32,7 @@ class ControllerCommonFileManager extends Controller {
 		$this->data['button_upload'] = $this->language->get('button_upload');
 		$this->data['button_uploads'] = $this->language->get('button_uploads');
 		$this->data['button_refresh'] = $this->language->get('button_refresh');
+		$this->data['button_info'] = $this->language->get('button_info');
 		$this->data['button_submit'] = $this->language->get('button_submit');
 		$this->data['button_expand'] = $this->language->get('button_expand');
 		$this->data['button_collapse'] = $this->language->get('button_collapse');
@@ -601,8 +604,6 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	// ---------------- Multiple Upload -------------------
-
 	public function multi() {
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
@@ -697,5 +698,37 @@ class ControllerCommonFileManager extends Controller {
 		}
 
 		die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
+	}
+
+	public function information() {
+		$json = array();
+
+		$this->language->load('common/filemanager');
+
+		$this->data['info_title'] = $this->language->get('info_title');
+		$this->data['info_copyright'] = $this->language->get('info_copyright');
+
+		$this->data['text_info_version'] = $this->language->get('text_info_version');
+		$this->data['text_info_author'] = $this->language->get('text_info_author');
+		$this->data['text_info_credit'] = $this->language->get('text_info_credit');
+		$this->data['text_info_scripts'] = $this->language->get('text_info_scripts');
+		$this->data['text_info_license'] = $this->language->get('text_info_license');
+		$this->data['text_info_files'] = $this->language->get('text_info_files');
+
+		$this->data['info_version'] = $this->language->get('info_version');
+		$this->data['info_author'] = $this->language->get('info_author');
+		$this->data['info_credit'] = $this->language->get('info_credit');
+		$this->data['info_scripts'] = $this->language->get('info_scripts');
+		$this->data['info_license'] = $this->language->get('info_license');
+		$this->data['info_files'] = $this->language->get('info_files');
+
+		$this->data['token'] = $this->session->data['token'];
+
+		$this->template = 'common/filemanager_info.tpl';
+
+		$json['html'] = $this->render();
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
