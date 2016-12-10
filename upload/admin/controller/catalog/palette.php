@@ -240,6 +240,7 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
+		$this->data['text_info'] = $this->language->get('text_info');
 
 		$this->data['column_name'] = $this->language->get('column_name');
 		$this->data['column_colors'] = $this->language->get('column_colors');
@@ -248,6 +249,7 @@ class ControllerCatalogPalette extends Controller {
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_filter'] = $this->language->get('button_filter');
+		$this->data['button_info'] = $this->language->get('button_info');
 
 		$this->data['token'] = $this->session->data['token'];
 
