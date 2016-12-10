@@ -38,6 +38,9 @@ $_['entry_trial_duration']  = 'Trial duration:';
 $_['entry_trial_cycle']     = 'Trial cycle:';
 $_['entry_trial_frequency'] = 'Trial frequency:';
 
+// Button
+$_['button_info']           = 'Information';
+
 // Error
 $_['error_warning']         = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']      = 'Warning: You do not have permission to modify <b>Profiles</b> !';

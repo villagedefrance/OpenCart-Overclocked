@@ -38,9 +38,11 @@
           <td><?php echo $entry_sort_order; ?></td>
           <td><input name="sort_order" value="<?php echo $sort_order; ?>" /></td>
         </tr>
-        <tr style="background:#FCFCFC;">
-          <td colspan="2"><?php echo $text_recurring_help; ?></td>
-        </tr>
+      </table>
+      <div class="toggler" style="padding-bottom:10px; border-bottom:1px dotted #CCC;">
+        <fieldset><p><?php echo $text_recurring_help; ?></p></fieldset>
+      </div>
+      <table class="form">
         <tr>
           <td><?php echo $entry_status; ?></td>
           <td><select name="status">
@@ -118,4 +120,15 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:15px auto;"><i class="fa fa-info-circle"></i> &nbsp; <?php echo $button_info; ?></a>');
+	$('#<?php echo 'toggler'; ?>').click(function() {
+		$('.toggler').slideToggle(600);
+		return false;
+	});
+});
+//--></script>
+
 <?php echo $footer; ?>
