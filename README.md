@@ -27,17 +27,17 @@ So feel free to post your comments or get in touch!
 Requirements:
 - Server: Linux/Windows Server (Apache Linux is preferred).
 - Database: MySQL, MySQLi, PDO (MySQLi is preferred).
-- PHP: PHP 5.3+ (with MySQLi extension).
+- PHP: PHP 5.4+ (with MySQLi extension).
 - Curl: Curl extensions.
 
 Powered by the Latest Scripts:
 - jQuery 1.12.4.
 - jQuery UI 1.12.1.
 - jQuery Migrate 1.4.1.
-- CKEditor 4.5.11 Full.
+- CKEditor 4.6.0 Full.
 - ...
 
-Coming soon in 1.8.4.0!
+New in 1.8.4.0 (current release)!
 - New Ajax Search!
 - New Media Player!
 - File Manager update.
@@ -45,14 +45,6 @@ Coming soon in 1.8.4.0!
 - CKEditor v4.6.0.
 - PHP 5.4+ as new minimum.
 - bug fixes.
-
-New in 1.8.3.0 (current release)!
-- Added Font Awesome.
-- Added Admin menu icons.
-- Added Fancybox Plus.
-- Updated Slick to v1.6.0.
-- PHP 7.0+ support.
-- Bug fixes.
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
 
@@ -70,6 +62,7 @@ Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum 
 Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager,
 Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
 Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
+Font Awesome library, Admin menu icons, Fancybox Plus product image viewer, PHP 7.0+ support, Media Player,
 "Free" for zero prices, Custom Payment labels, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
