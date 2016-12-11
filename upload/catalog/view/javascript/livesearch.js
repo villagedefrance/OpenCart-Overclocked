@@ -1,5 +1,5 @@
 /*
- Ajax Search v1.0.0 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
+ Ajax Search v1.0.1 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
 */
 function doLiveSearch(ev, keywords) {
 	if (ev.keyCode == 38 || ev.keyCode == 40) {
@@ -13,10 +13,10 @@ function doLiveSearch(ev, keywords) {
 		return false;
 	}
 
-	keywords = encodeURI(keywords);
+	keywords = encodeURIComponent(keywords);
 
 	$.ajax({
-		url: $('#hidden').attr('href') + 'index.php?route=product/search/livesearch&keyword=' + keywords,
+		url: $('base').attr('href') + 'index.php?route=product/search/livesearch&keyword=' + keywords,
 		dataType: 'json',
 		content: this,
 		success: function(result) {
