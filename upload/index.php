@@ -1,6 +1,6 @@
 <?php
 // Version
-define('VERSION', '1.8.4');
+define('VERSION', '1.9.0 Beta');
 
 // Configuration
 if (file_exists('config.php')) {

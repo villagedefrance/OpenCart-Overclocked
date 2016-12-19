@@ -67,7 +67,7 @@ $_['text_project']           = 'Project Homepage';
 $_['text_opencart']          = 'Opencart Home';
 $_['text_documentation']     = 'Documentation';
 $_['text_support']           = 'Support Forums';
-$_['text_footer']            = 'Copyright © 2016 OpenCart Overclocked Edition - All rights reserved';
+$_['text_footer']            = 'Copyright © 2017 OpenCart Overclocked Edition - All rights reserved';
 
 // Entry
 $_['entry_db_driver']        = 'DB Driver';

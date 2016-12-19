@@ -4439,7 +4439,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (522, 0, 'carousel', 'carousel_module', 'a:1:{i:0;a:9:{s:9:"banner_id";s:1:"8";s:5:"width";s:3:"100";s:6:"height";s:3:"100";s:4:"show";s:1:"7";s:4:"auto";s:1:"1";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"-1";}}', 1),
 (986, 0, 'config', 'config_order_edit', '100', 0),
 (985, 0, 'config', 'config_auto_invoice', '1', 0),
-(984, 0, 'config', 'config_invoice_prefix', 'INV-2016-00', 0),
+(984, 0, 'config', 'config_invoice_prefix', 'INV-2017-00', 0),
 (983, 0, 'config', 'config_checkout_id', '5', 0),
 (982, 0, 'config', 'config_guest_checkout', '0', 0),
 (981, 0, 'config', 'config_cart_weight', '1', 0),
