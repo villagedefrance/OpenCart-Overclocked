@@ -101,7 +101,7 @@ $(document).ready(function() {
     <?php } ?>
   </div>
   <?php echo $cart; ?>
-  <div id='header-bottom'>
+  <div id="header-bottom">
     <div id="search">
       <div class="search-inside">
         <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="" />
