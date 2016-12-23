@@ -1,90 +1,13 @@
 <?php
 class ModelPaymentPPExpress extends Model {
-
-	public function cleanReturn($data) {
-		$data = explode('&', $data);
-
-		$arr = array();
-
-		foreach ($data as $k=>$v) {
-			$tmp = explode('=', $v);
-			$arr[$tmp[0]] = urldecode($tmp[1]);
-		}
-
-		return $arr;
-	}
-
-	public function call($data) {
-		if ($this->config->get('pp_express_test') == 1) {
-			$api_endpoint = 'https://api-3t.sandbox.paypal.com/nvp';
-		} else {
-			$api_endpoint = 'https://api-3t.paypal.com/nvp';
-		}
-
-		$settings = array(
-			'USER'         => $this->config->get('pp_express_username'),
-			'PWD'          => $this->config->get('pp_express_password'),
-			'SIGNATURE'    => $this->config->get('pp_express_signature'),
-			'VERSION'      => '65.2',
-			'BUTTONSOURCE' => 'OpenCart_Cart_EC'
-		);
-
-		$this->log($data, 'Call data');
-
-		$defaults = array(
-			CURLOPT_POST => 1,
-			CURLOPT_HEADER => 0,
-			CURLOPT_URL => $api_endpoint,
-			CURLOPT_USERAGENT => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
-			CURLOPT_FRESH_CONNECT => 1,
-			CURLOPT_RETURNTRANSFER => 1,
-			CURLOPT_FORBID_REUSE => 1,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_SSL_VERIFYPEER => 0,
-			CURLOPT_SSL_VERIFYHOST => 0,
-			CURLOPT_POSTFIELDS => http_build_query(array_merge($data, $settings), '', "&")
-		);
-
-		$ch = curl_init();
-
-		curl_setopt_array($ch, $defaults);
-
-		if (!$result = curl_exec($ch)) {
-			$this->log(array('error' => curl_error($ch), 'errno' => curl_errno($ch)), 'cURL failed');
-		}
-
-		$this->log($result, 'Result');
-
-		curl_close($ch);
-
-		return $this->cleanReturn($result);
-	}
-
-	public function createToken($len = 32) {
-		$base = 'ABCDEFGHKLMNOPQRSTWXYZabcdefghjkmnpqrstwxyz123456789';
-		$max = strlen($base)-1;
-		$activatecode = '';
-
-		mt_srand((double)microtime() * 1000000);
-
-		while (strlen($activatecode) < $len + 1) 
-			$activatecode.= $base{ mt_rand(0, $max) };
-
-		return $activatecode;
-	}
-
-	public function log($data, $title = null) {
-		if ($this->config->get('pp_express_debug')) {
-			$this->log->write('PayPal Express debug (' . $title . '): ' . json_encode($data));
-		}
-	}
-
 	public function getMethod($address, $total) {
 		$this->language->load('payment/pp_express');
 
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('pp_express_geo_zone_id') . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 
-		if ($this->config->get('pp_express_total') > $total) {
+		if ($this->config->get('pp_express_total') > 0 && $this->config->get('pp_express_total') > $total) {
+			$status = false;
+		} elseif ($this->config->has('pp_express_total_max') && $this->config->get('pp_express_total_max') > 0 && $total > $this->config->get('pp_express_total_max')) {
 			$status = false;
 		} elseif (!$this->config->get('pp_express_geo_zone_id')) {
 			$status = true;
@@ -110,20 +33,39 @@ class ModelPaymentPPExpress extends Model {
 
 	public function addOrder($order_data) {
 		// 1 to 1 relationship with order table (extends order info)
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_order SET order_id = '" . (int)$order_data['order_id'] . "', created = NOW(), modified = NOW(), capture_status = '" . $this->db->escape($order_data['capture_status']) . "', currency_code = '" . $this->db->escape($order_data['currency_code']) . "', total = '" . (double)$order_data['total'] . "', authorization_id = '" . $this->db->escape($order_data['authorization_id']) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_order SET "
+		. "order_id = " . (isset($order_data['order_id']) ? (int)$order_data['order_id'] : 0) . ", "
+		. "created = NOW(), "
+		. "modified = NOW(), "
+		. "capture_status = '" . (isset($order_data['capture_status']) ? $this->db->escape($order_data['capture_status']) : null) . "', "
+		. "currency_code = '" . (isset($order_data['currency_code']) ? $this->db->escape($order_data['currency_code']) : null) . "', "
+		. "total = " . (isset($order_data['total']) ? (double)$order_data['total'] : 0.0) . ", "
+		. "authorization_id = '" . (isset($order_data['authorization_id']) ? $this->db->escape($order_data['authorization_id']) : null) . "'");
 
 		return $this->db->getLastId();
 	}
 
 	public function addTransaction($transaction_data) {
-		// 1 to many relationship with paypal order table, many transactions per 1 order
-		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_order_transaction SET paypal_order_id = '" . (int)$transaction_data['paypal_order_id'] . "', transaction_id = '" . $this->db->escape($transaction_data['transaction_id']) . "', parent_transaction_id = '" . $this->db->escape($transaction_data['parent_transaction_id']) . "', created = NOW(), note = '" . $this->db->escape($transaction_data['note']) . "', msgsubid = '" . $this->db->escape($transaction_data['msgsubid']) . "', receipt_id = '" . $this->db->escape($transaction_data['receipt_id']) . "', payment_type = '" . $this->db->escape($transaction_data['payment_type']) . "', payment_status = '" . $this->db->escape($transaction_data['payment_status']) . "', pending_reason = '" . $this->db->escape($transaction_data['pending_reason']) . "', transaction_entity = '" . $this->db->escape($transaction_data['transaction_entity']) . "', amount = '" . (double)$transaction_data['amount'] . "', debug_data = '" . $this->db->escape($transaction_data['debug_data']) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "paypal_order_transaction SET "
+		. "paypal_order_id = " . (isset($transaction_data['paypal_order_id']) ? (int)$transaction_data['paypal_order_id'] : 0) . ", "
+		. "transaction_id = '" . (isset($transaction_data['transaction_id']) ? $this->db->escape($transaction_data['transaction_id']) : null) . "', "
+		. "parent_transaction_id = '" . (isset($transaction_data['parent_transaction_id']) ? $this->db->escape($transaction_data['parent_transaction_id']) : null) . "', "
+		. "created = NOW(), "
+		. "note = '" . (isset($transaction_data['note']) ? $this->db->escape($transaction_data['note']) : null) . "', "
+		. "msgsubid = '" . (isset($transaction_data['msgsubid']) ? $this->db->escape($transaction_data['msgsubid']) : null) . "', "
+		. "receipt_id = '" . (isset($transaction_data['receipt_id']) ? $this->db->escape($transaction_data['receipt_id']) : null) . "', "
+		. "payment_type = '" . (isset($transaction_data['payment_type']) ? $this->db->escape($transaction_data['payment_type']) : null) . "', "
+		. "payment_status = '" . (isset($transaction_data['payment_status']) ? $this->db->escape($transaction_data['payment_status']) : null) . "', "
+		. "pending_reason = '" . (isset($transaction_data['pending_reason']) ? $this->db->escape($transaction_data['pending_reason']) : null) . "', "
+		. "transaction_entity = '" . (isset($transaction_data['transaction_entity']) ? $this->db->escape($transaction_data['transaction_entity']) : null) . "', "
+		. "amount = " . (isset($transaction_data['amount']) ? (double)$transaction_data['amount'] : 0.0) . ", "
+		. "debug_data = '" . (isset($transaction_data['debug_data']) ? $this->db->escape($transaction_data['debug_data']) : null) . "'");
 	}
 
 	public function paymentRequestInfo() {
 		$data['PAYMENTREQUEST_0_SHIPPINGAMT'] = '';
 		$data['PAYMENTREQUEST_0_CURRENCYCODE'] = $this->currency->getCode();
-		$data['PAYMENTREQUEST_0_PAYMENTACTION'] = $this->config->get('pp_express_method');
+		$data['PAYMENTREQUEST_0_PAYMENTACTION'] = $this->config->get('pp_express_transaction_method');
 
 		$i = 0;
 		$item_total = 0;
@@ -196,8 +138,8 @@ class ModelPaymentPPExpress extends Model {
 		$this->load->model('setting/extension');
 
 		$total_data = array();
-		$total = 0;
 		$taxes = $this->cart->getTaxes();
+		$total = 0;
 
 		// Display prices
 		if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -238,8 +180,7 @@ class ModelPaymentPPExpress extends Model {
 					$data['L_PAYMENTREQUEST_0_AMT' . $i] = $this->currency->format($total_row['value'], false, false, false);
 					$data['L_PAYMENTREQUEST_0_QTY' . $i] = 1;
 
-					$item_total = number_format($item_total + $item_price, 2, '.', '');
-
+					$item_total = $item_total + $item_price;
 					$i++;
 				}
 			}
@@ -283,6 +224,157 @@ class ModelPaymentPPExpress extends Model {
 		return $data;
 	}
 
+	public function getTotalCaptured($paypal_order_id) {
+		$query = $this->db->query("SELECT SUM(amount) AS total FROM " . DB_PREFIX . "paypal_order_transaction WHERE paypal_order_id = '" . (int)$paypal_order_id . "' AND pending_reason != 'authorization' AND pending_reason != 'paymentreview' AND (payment_status = 'Partially-Refunded' OR payment_status = 'Completed' OR payment_status = 'Pending') AND transaction_entity = 'payment'");
+
+		return $query->row['total'];
+	}
+
+	public function getTotalRefunded($paypal_order_id) {
+		$query = $this->db->query("SELECT SUM(amount) AS total FROM " . DB_PREFIX . "paypal_order_transaction WHERE paypal_order_id = '" . (int)$paypal_order_id . "' AND payment_status = 'Refunded'");
+
+		return $query->row['total'];
+	}
+
+	public function getTransactionRow($transaction_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id)  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+
+		if ($query->num_rows > 0) {
+			return $query->row;
+		} else {
+			return false;
+		}
+	}
+
+	public function updateTransactionStatus($transaction_id, $transaction_status) {
+		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = '" . $this->db->escape($transaction_status) . "' WHERE transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+	}
+
+	public function updateTransactionPendingReason($transaction_id, $pending_reason) {
+		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET pending_reason = '" . $this->db->escape($pending_reason) . "' WHERE transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+	}
+
+	public function updateOrder($capture_status, $order_id) {
+		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order SET modified = NOW(), capture_status = '" . $this->db->escape($capture_status) . "' WHERE order_id = '" . (int)$order_id . "'");
+	}
+
+	public function call($data) {
+		if ($this->config->get('pp_express_test')) {
+			$api_url = 'https://api-3t.sandbox.paypal.com/nvp';
+			$api_user = $this->config->get('pp_express_sandbox_username');
+			$api_password = $this->config->get('pp_express_sandbox_password');
+			$api_signature = $this->config->get('pp_express_sandbox_signature');
+		} else {
+			$api_url = 'https://api-3t.paypal.com/nvp';
+			$api_user = $this->config->get('pp_express_username');
+			$api_password = $this->config->get('pp_express_password');
+			$api_signature = $this->config->get('pp_express_signature');
+		}
+
+		$default_parameters = array(
+			'USER'         => $api_user,
+			'PWD'          => $api_password,
+			'SIGNATURE'    => $api_signature,
+			'VERSION'      => '109.0',
+			'BUTTONSOURCE' => 'OpenCart_Cart_EC'
+		);
+
+		$call_parameters = array_merge($data, $default_parameters);
+
+		$this->log($call_parameters, 'Call data');
+
+		$options = array(
+			CURLOPT_POST           => true,
+			CURLOPT_HEADER         => false,
+			CURLOPT_URL            => $api_url,
+			CURLOPT_USERAGENT      => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
+			CURLOPT_FRESH_CONNECT  => true,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FORBID_REUSE   => true,
+			CURLOPT_TIMEOUT        => 0,
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+// TLS 1.2 is the new security protocol used by Paypal from June 2016 onwards, you need PHP 5.5.19+ and curl 7.29+
+// Normally, you dont have to explicitely declare the following option:
+// CURLOPT_SSLVERSION     => CURL_SSLVERSION_TLSv1_2,
+			CURLOPT_POSTFIELDS     => http_build_query($call_parameters, '', '&')
+		);
+
+		$ch = curl_init();
+
+		curl_setopt_array($ch, $options);
+
+		$response = curl_exec($ch);
+
+		if (curl_errno($ch) != CURLE_OK) {
+			$log_data = array(
+				'curl_errno' => curl_errno($ch),
+				'curl_error' => curl_error($ch)
+			);
+
+			$this->log($log_data, 'CURL failed');
+			return false;
+		}
+
+		curl_close($ch);
+
+		$response = $this->cleanReturn($response);
+
+		$this->log($response, 'Response');
+
+		return $response;
+	}
+
+	public function recurringPayments() {
+		/*
+		 * Used by the checkout to state the module
+		 * supports recurring recurrings.
+		 */
+		return true;
+	}
+
+	public function createToken($len = 32) {
+		$base = 'ABCDEFGHKLMNOPQRSTWXYZabcdefghjkmnpqrstwxyz123456789';
+		$max = strlen($base)-1;
+		$activate_code = '';
+		mt_srand((double)microtime() * 1000000);
+
+		while (strlen($activate_code) < $len + 1) {
+			$activate_code.= $base{ mt_rand(0, $max) };
+		}
+
+		return $activate_code;
+	}
+
+	public function log($data, $title = null, $force = false) {
+		if ($this->config->get('pp_express_debug') || $force) {
+			$this->log->write('PayPal Express debug (' . $title . '): ' . json_encode($data));
+		}
+	}
+
+	public function cleanReturn($data) {
+		$data = explode('&', $data);
+
+		$arr = array();
+
+		foreach ($data as $k=>$v) {
+			$tmp = explode('=', $v);
+			$arr[$tmp[0]] = isset($tmp[1]) ? urldecode($tmp[1]) : '';
+		}
+
+		return $arr;
+	}
+
+	public function recurringCancel($reference) {
+		$data = array(
+			'METHOD'    => 'ManageRecurringPaymentsProfileStatus',
+			'PROFILEID' => $reference,
+			'ACTION'    => 'Cancel'
+		);
+
+		return $this->call($data);
+	}
+
 	public function isMobile() {
 		// This will check the user agent and "try" to match if it is a mobile device
 		if (preg_match("/Mobile|Android|BlackBerry|iPhone|Windows Phone/", $this->request->server['HTTP_USER_AGENT'])) {
@@ -290,46 +382,5 @@ class ModelPaymentPPExpress extends Model {
 		} else {
 			return false;
 		}
-	}
-
-	public function getTransactionRow($transaction_id) {
-		$qry = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id)  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 0,1");
-
-		if ($qry->num_rows > 0) {
-			return $qry->row;
-		} else {
-			return false;
-		}
-	}
-
-	public function totalCaptured($paypal_order_id) {
-		$qry = $this->db->query("SELECT SUM(amount) AS amount FROM " . DB_PREFIX . "paypal_order_transaction WHERE paypal_order_id = '" . (int)$paypal_order_id . "' AND pending_reason != 'authorization' AND pending_reason != 'paymentreview' AND (payment_status = 'Partially-Refunded' OR payment_status = 'Completed' OR payment_status = 'Pending') AND transaction_entity = 'payment'");
-
-		return $qry->row['amount'];
-	}
-
-	public function totalRefundedOrder($paypal_order_id) {
-		$qry = $this->db->query("SELECT SUM(amount) AS amount FROM " . DB_PREFIX . "paypal_order_transaction WHERE paypal_order_id = '" . (int)$paypal_order_id . "' AND payment_status = 'Refunded'");
-
-		return $qry->row['amount'];
-	}
-
-	public function updateOrder($capture_status, $order_id) {
-		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order SET modified = NOW(), capture_status = '" . $this->db->escape($capture_status) . "' WHERE order_id = '" . (int)$order_id . "'");
-	}
-
-	public function recurringCancel($ref) {
-		$data = array(
-			'METHOD'    => 'ManageRecurringPaymentsProfileStatus',
-			'PROFILEID' => $ref,
-			'ACTION'    => 'Cancel'
-		);
-
-		return $this->call($data);
-	}
-
-	public function recurringPayments() {
-		// Used by the checkout to state the module supports recurring profiles.
-		return true;
 	}
 }

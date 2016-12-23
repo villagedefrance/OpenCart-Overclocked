@@ -5,9 +5,24 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
   <?php } ?>
   </div>
+<?php if (!empty($errors)) { ?>
+  <div class="warning">
+  <?php foreach ($errors as $error) { ?>
+    <?php echo $error; ?><br />
+  <?php } ?>
+  </div>
+<?php } ?>
+<?php if (!empty($success)) { ?>
+  <div class="success"><?php echo $success; ?></div>
+<?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <div class="buttons">
+        <?php if ($back) { ?>
+          <a class="button" href="<?php echo $back; ?>"><?php echo $button_back; ?></a>
+        <?php } ?>
+      </div>
     </div>
     <div class="content">
       <table class="form">

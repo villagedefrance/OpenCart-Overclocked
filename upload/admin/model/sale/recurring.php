@@ -1,38 +1,5 @@
 <?php
 class ModelSaleRecurring extends Model {
-
-	public function getTotalProfiles($data) {
-		$sql = "SELECT COUNT(*) AS profile_count FROM " . DB_PREFIX . "order_recurring LEFT JOIN `" . DB_PREFIX . "order` USING(`order_id`) WHERE order_recurring_id IS NOT NULL";
-
-		if (!empty($data['filter_order_recurring_id'])) {
-			$sql .= " AND order_recurring_id = " . (int)$data['filter_order_recurring_id'];
-		}
-
-		if (!empty($data['filter_order_id'])) {
-			$sql .= " AND order_id = " . (int)$data['filter_order_id'];
-		}
-
-		if (!empty($data['filter_payment_reference'])) {
-			$sql .= " AND profile_reference LIKE '" . $this->db->escape($data['filter_payment_reference']) . "%'";
-		}
-
-		if (!empty($data['filter_customer'])) {
-			$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '" . $this->db->escape($data['filter_customer']) . "%'";
-		}
-
-		if (!empty($data['filter_created'])) {
-			$sql .= " AND DATE(created) = DATE('" . $this->db->escape($data['filter_created']) . "')";
-		}
-
-		if (!empty($data['filter_status'])) {
-			$sql .= " AND status = " . (int)$data['filter_status'];
-		}
-
-		$result = $this->db->query($sql);
-
-		return $result->row['profile_count'];
-	}
-
 	public function getProfiles($data) {
 		$sql = "SELECT order_recurring_id, order_id, status, created, profile_reference, CONCAT(firstname, ' ', lastname) AS customer FROM " . DB_PREFIX . "order_recurring LEFT JOIN `" . DB_PREFIX . "order` USING(`order_id`) WHERE order_recurring_id IS NOT NULL";
 
@@ -212,5 +179,45 @@ class ModelSaleRecurring extends Model {
 		}
 
 		return $result;
+	}
+
+	public function getTotalProfiles($data) {
+		$sql = "SELECT COUNT(*) AS profile_count FROM " . DB_PREFIX . "order_recurring LEFT JOIN `" . DB_PREFIX . "order` USING(`order_id`) WHERE order_recurring_id IS NOT NULL";
+
+		if (!empty($data['filter_order_recurring_id'])) {
+			$sql .= " AND order_recurring_id = " . (int)$data['filter_order_recurring_id'];
+		}
+
+		if (!empty($data['filter_order_id'])) {
+			$sql .= " AND order_id = " . (int)$data['filter_order_id'];
+		}
+
+		if (!empty($data['filter_payment_reference'])) {
+			$sql .= " AND profile_reference LIKE '" . $this->db->escape($data['filter_payment_reference']) . "%'";
+		}
+
+		if (!empty($data['filter_customer'])) {
+			$sql .= " AND CONCAT(firstname, ' ', lastname) LIKE '" . $this->db->escape($data['filter_customer']) . "%'";
+		}
+
+		if (!empty($data['filter_created'])) {
+			$sql .= " AND DATE(created) = DATE('" . $this->db->escape($data['filter_created']) . "')";
+		}
+
+		if (!empty($data['filter_status'])) {
+			$sql .= " AND status = " . (int)$data['filter_status'];
+		}
+
+		$result = $this->db->query($sql);
+
+		return $result->row['profile_count'];
+	}
+
+	public function addOrderRecurringTransaction($order_recurring_id, $type, $amount = 0) {
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$order_recurring_id . "', `type` = '" . (int)$type . "', `amount` = " . (double)$amount) . ", `created` = NOW()";
+	}
+
+	public function updateOrderRecurringStatus($order_recurring_id, $status) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = '" . (int)$status . "' WHERE `order_recurring_id` = '" . (int)$order_recurring_id . "' LIMIT 1");
 	}
 }

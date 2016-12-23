@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <?php if ($profiles) { ?>
+        <?php if (!empty($profiles)) { ?>
           <?php foreach ($profiles as $profile) { ?>
             <tr>
               <td class="left">#<?php echo $profile['id']; ?></td>

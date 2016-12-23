@@ -74,7 +74,7 @@ class ControllerAccountRecurring extends Controller {
 					'name'    => $result['product_name'],
 					'status'  => $result['status'],
 					'created' => date($this->language->get('date_format_short'), strtotime($result['created'])),
-					'href'    => $this->url->link('account/recurring/info','recurring_id=' . $result['order_recurring_id'],'SSL')
+					'href'    => $this->url->link('account/recurring/info', 'token=' . $this->session->data['token'] . '&order_recurring_id=' . $result['order_recurring_id'], 'SSL')
 				);
 			}
 		}
@@ -123,14 +123,14 @@ class ControllerAccountRecurring extends Controller {
 	}
 
 	public function info() {
-		if (isset($this->request->get['recurring_id'])) {
-			$recurring_id = $this->request->get['recurring_id'];
+		if (isset($this->request->get['order_recurring_id'])) {
+			$order_recurring_id = $this->request->get['order_recurring_id'];
 		} else {
-			$recurring_id = 0;
+			$order_recurring_id = 0;
 		}
 
 		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('account/recurring/info', 'recurring_id=' . $recurring_id, 'SSL');
+			$this->session->data['redirect'] = $this->url->link('account/recurring/info', 'order_recurring_id=' . $order_recurring_id, 'SSL');
 
 			$this->redirect($this->url->link('account/login', '', 'SSL'));
 		}
@@ -155,9 +155,9 @@ class ControllerAccountRecurring extends Controller {
 
 		$this->load->model('account/recurring');
 
-		$profile = $this->model_account_recurring->getProfile($this->request->get['recurring_id']);
+		$profile = $this->model_account_recurring->getProfile($this->request->get['order_recurring_id']);
 
-		$profile['transactions'] = $this->model_account_recurring->getProfileTransactions($this->request->get['recurring_id']);
+		$profile['transactions'] = $this->model_account_recurring->getProfileTransactions($this->request->get['order_recurring_id']);
 
 		$profile['created'] = date($this->language->get('date_format_short'), strtotime($profile['created']));
 		$profile['product_link'] = $this->url->link('product/product', 'product_id=' . $profile['product_id'], 'SSL');
@@ -165,14 +165,9 @@ class ControllerAccountRecurring extends Controller {
 
 		if ($profile['status'] == 1 || $profile['status'] == 2) {
 			// If the payment profiles payment type has a cancel action then link to that. If not then hide the button.
-			if (!empty($profile['payment_code']) && $this->hasAction('payment/' . $profile['payment_code'] . '/recurringCancel') == true && $this->config->get($profile['payment_code'] . '_profile_cancel_status')) {
-				$this->data['cancel_link'] = $this->url->link('payment/' . $profile['payment_code'] . '/recurringCancel', 'recurring_id=' . $this->request->get['recurring_id'], 'SSL');
-			} else {
-				$this->data['cancel_link'] = '';
+			if (!empty($profile['payment_code']) && $this->hasAction('payment/' . $profile['payment_code'] . '/recurringCancel') == true && $this->config->get($profile['payment_code'] . '_recurring_cancel')) {
+				$this->data['payment_code'] = $profile['payment_code'];
 			}
-
-		} else {
-			$this->data['cancel_link'] = '';
 		}
 
 		$this->data['status_types'] = array(
@@ -228,9 +223,11 @@ class ControllerAccountRecurring extends Controller {
 
 			$this->data['breadcrumbs'][] = array(
 				'text'      => $this->language->get('text_recurring'),
-				'href'      => $this->url->link('account/recurring/info', 'recurring_id=' . $this->request->get['recurring_id'] . $url, 'SSL'),
+				'href'      => $this->url->link('account/recurring/info', 'order_recurring_id=' . $this->request->get['order_recurring_id'] . $url, 'SSL'),
 				'separator' => $this->language->get('text_separator')
 			);
+
+			$this->data['token'] = $this->request->get['token'];
 
 			$this->data['heading_title'] = $this->language->get('text_recurring');
 
@@ -238,7 +235,7 @@ class ControllerAccountRecurring extends Controller {
 			$this->data['column_type'] = $this->language->get('column_type');
 			$this->data['column_amount'] = $this->language->get('column_amount');
 
-			$this->data['text_recurring_id'] = $this->language->get('text_recurring_id');
+			$this->data['text_order_recurring_id'] = $this->language->get('text_order_recurring_id');
 			$this->data['text_date_added'] = $this->language->get('text_date_added');
 			$this->data['text_empty_transactions'] = $this->language->get('text_empty_transactions');
 			$this->data['text_payment_method'] = $this->language->get('text_payment_method');
@@ -259,6 +256,7 @@ class ControllerAccountRecurring extends Controller {
 			$this->data['continue'] = $this->url->link('account/recurring', '', 'SSL');
 
 			$this->data['profile'] = $profile;
+			$this->data['order_recurring_id'] = $profile['order_recurring_id'];
 
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');

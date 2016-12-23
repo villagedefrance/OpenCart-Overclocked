@@ -1,34 +1,33 @@
 <?php
-// Headings
+// Heading
 $_['heading_title']            = 'Search Transactions';
 
-// Link
+// Text
 $_['text_pp_express']          = 'PayPal Express Checkout';
+$_['text_date_search']         = 'Search by date';
+$_['text_searching']           = 'Searching';
+$_['text_name']                = 'Name';
+$_['text_buyer_info']          = 'Buyer information';
+$_['text_view']                = 'View';
+$_['text_format']              = 'Format';
+$_['text_no_results']          = 'No results!';
 
-// Table columns
-$_['tbl_column_date']          = 'Date';
-$_['tbl_column_type']          = 'Type';
-$_['tbl_column_email']         = 'Email';
-$_['tbl_column_name']          = 'Name';
-$_['tbl_column_transid']       = 'Transaction ID';
-$_['tbl_column_status']        = 'Status';
-$_['tbl_column_currency']      = 'Currency';
-$_['tbl_column_amount']        = 'Amount';
-$_['tbl_column_fee']           = 'Fee';
-$_['tbl_column_netamt']        = 'Net Amount';
-$_['tbl_column_action']        = 'Action';
+// Column
+$_['column_date']              = 'Date';
+$_['column_type']              = 'Type';
+$_['column_email']             = 'Email';
+$_['column_name']              = 'Name';
+$_['column_transid']           = 'Transaction ID';
+$_['column_status']            = 'Status';
+$_['column_currency']          = 'Currency';
+$_['column_amount']            = 'Amount';
+$_['column_fee']               = 'Fee';
+$_['column_netamt']            = 'Net Amount';
+$_['column_action']            = 'Action';
 
 // Button
-$_['btn_search']               = 'Search';
-$_['btn_edit_search']          = 'Edit search';
-
-// Entry Status
-$_['entry_status_all']         = 'All';
-$_['entry_status_pending']     = 'Pending';
-$_['entry_status_processing']  = 'Processing';
-$_['entry_status_success']     = 'Success';
-$_['entry_status_denied']      = 'Denied';
-$_['entry_status_reversed']    = 'Reversed';
+$_['button_search']            = 'Search';
+$_['button_edit_search']       = 'Edit search';
 
 // Entry
 $_['entry_trans_all']          = 'All';
@@ -65,15 +64,17 @@ $_['entry_transaction_id']     = 'Transaction ID';
 $_['entry_invoice_no']         = 'Invoice number';
 $_['entry_auction']            = 'Auction item number';
 $_['entry_amount']             = 'Amount';
-$_['entry_profile_id']         = 'Profile ID';
+$_['entry_recurring_id']       = 'Recurring Profile ID';
 $_['entry_salutation']         = 'Salutation';
 $_['entry_firstname']          = 'First';
 $_['entry_middlename']         = 'Middle';
 $_['entry_lastname']           = 'Last';
 $_['entry_suffix']             = 'Suffix';
 
-// Text
-$_['text_searching']           = 'Searching';
-$_['text_name']                = 'Name';
-$_['text_buyer_info']          = 'Buyer information';
-$_['text_view']                = 'View';
+// Status
+$_['entry_status_all']         = 'All';
+$_['entry_status_pending']     = 'Pending';
+$_['entry_status_processing']  = 'Processing';
+$_['entry_status_success']     = 'Success';
+$_['entry_status_denied']      = 'Denied';
+$_['entry_status_reversed']    = 'Reversed';
