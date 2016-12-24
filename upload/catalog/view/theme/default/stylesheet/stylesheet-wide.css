@@ -306,14 +306,6 @@ span.from {
 	border-radius: 3px;
 	padding: 8px;
 }
-.cart-arrow {
-	position: absolute;
-	top: -7px;
-	right: 23px;
-	width: 11px;
-	height: 7px;
-	background: url('../image/cart_arrow.png') left top no-repeat;
-}
 #header #cart.active .heading {
 	margin-top: 5px;
 	padding-top: 10px;

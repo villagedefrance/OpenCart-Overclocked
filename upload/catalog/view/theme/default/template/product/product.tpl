@@ -408,7 +408,9 @@
       <div id="cart-warnings"></div>
       <?php if ($review_status) { ?>
         <div class="review">
-          <div class="rating">
+          <div class="rating" itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
+            <meta itemprop="value" content="<?php echo $rating; ?>" />
+            <meta itemprop="best" content="5" />
             <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;&nbsp;
             <a onclick="goToReviews('<?php echo $product_id; ?>');"><?php echo $reviews; ?></a>&nbsp;&nbsp;&nbsp;
             <a onclick="goToReviews('<?php echo $product_id; ?>');"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_comment.png" alt="<?php echo $text_write; ?>" title="<?php echo $text_write; ?>" /></a>
