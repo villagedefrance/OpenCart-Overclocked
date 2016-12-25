@@ -1493,7 +1493,7 @@ ul.box-filter > li ul {
 	vertical-align: top;
 	margin-right: 18px;
 	margin-bottom: 15px;
-	padding: 5px 0px;
+	padding: 0px 0px 5px 0px;
 	text-align: center;
 	border: 1px solid #DDD;
 	-webkit-border-radius: 3px;
@@ -1956,7 +1956,7 @@ ul.box-filter > li ul {
 	vertical-align: top;
 	margin-right: 18px;
 	margin-bottom: 15px;
-	padding: 5px 0px;
+	padding: 0px 0px 5px 0px;
 	text-align: center;
 	border: 1px solid #DDD;
 	-webkit-border-radius: 3px;
