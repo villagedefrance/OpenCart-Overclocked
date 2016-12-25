@@ -9,6 +9,7 @@ $(document).ready(function() {
 		location = url;
 	});
 
+	// Live Search
 	$('#header input[name=\'search\']').bind('keydown', function(e) {
 		if (e.keyCode == 13) {
 			url = $('base').attr('href') + 'index.php?route=product/search';
