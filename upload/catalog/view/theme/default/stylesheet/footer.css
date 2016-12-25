@@ -62,7 +62,7 @@
 	display: block;
 }
 .footer-light #footer > .big-column p {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-shadow: 0px 1px 0px #FFF;
 	color: #444;
 	display: block;
@@ -126,7 +126,7 @@
 	display: block;
 }
 .footer-dark #footer > .big-column p {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-shadow: 0px -1px 0px #111;
 	color: #EEE;
 	display: block;

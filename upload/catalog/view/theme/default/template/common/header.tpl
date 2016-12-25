@@ -34,6 +34,7 @@
 <?php } ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet-modifiers.css" />
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
+<link rel="stylesheet" type="text/css" href="catalog/view/javascript/awesome/css/font-awesome.min.css" />
 <?php foreach ($styles as $style) { ?>
 <link rel="<?php echo $style['rel']; ?>" type="text/css" href="<?php echo $style['href']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
@@ -88,18 +89,24 @@ $(document).ready(function() {
 <?php } ?>
 </head>
 <body style="background-color:<?php echo $body_color; ?>;">
+<div id="container-top">
+  <div class="container-top-inner">
+    <?php echo $currency; ?>
+    <?php echo $language; ?>
+    <?php if ($logged) { ?>
+      <a class="top-link" onclick="location = '<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_account; ?></span></a>
+    <?php } else { ?>
+      <a class="top-link" onclick="location = '<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_signin; ?></span></a>
+    <?php } ?>
+    <a class="top-link" onclick="location = '<?php echo $shopping_cart; ?>';" title=""><i class="fa fa-shopping-cart"></i><span class="hide-phone"> &nbsp;<?php echo $text_shopping_cart; ?></span></a>
+    <a class="top-link" onclick="location = '<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
+  </div>
+</div>
 <div id="container" style="background-color:<?php echo $container_color; ?>;">
 <div id="header">
   <?php if ($logo) { ?>
     <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
   <?php } ?>
-  <div id="welcome">
-    <?php if (!$logged) { ?>
-      <?php echo $text_welcome; ?>
-    <?php } else { ?>
-      <?php echo $text_logged; ?>
-    <?php } ?>
-  </div>
   <?php echo $cart; ?>
   <div id="header-bottom">
     <div id="search">
@@ -108,7 +115,5 @@ $(document).ready(function() {
         <div class="button-search"></div>
       </div>
     </div>
-  <?php echo $language; ?>
-  <?php echo $currency; ?>
   </div>
 </div>

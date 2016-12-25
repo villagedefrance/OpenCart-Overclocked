@@ -1,6 +1,6 @@
 /* -----------------------------------
 * Overclocked Edition - Menu RTL
-* Copyright © 2016 - Villagedefrance
+* Copyright © 2017 - Villagedefrance
 * ------------------------------------
 */
 #menu-holder, #menu-holder .menu-rtl { }
@@ -10,7 +10,7 @@
 	margin: 0;
 }
 .menu-rtl #menu a {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 500;
 	font-size: 15px;
 }
@@ -67,7 +67,7 @@
 }
 .menu-rtl #menu > ul > li > div > ul {
 	display: table-cell;
-	padding: 7px 0px 0px 4px;
+	padding: 7px 0px 0px 2px;
 	border-top: 1px solid #45494B;
 }
 .menu-rtl #menu > ul > li ul + ul {

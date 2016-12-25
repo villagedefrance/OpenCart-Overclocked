@@ -386,14 +386,14 @@
             <?php if ($is_quote) { ?>
               <a href="<?php echo $is_quote; ?>" class="button" style="margin-left:15px;"><?php echo $button_quote; ?></a>
             <?php } elseif (!$is_quote && $stock_quantity <= 0) { ?>
-              <span class="stock-status"><?php echo $stock; ?></span>
+              <span class="stock-status"> &nbsp; <?php echo $stock; ?></span>
             <?php } else { ?>
               <input type="button" value="<?php echo $button_cart; ?>" id="button-cart" class="button-cart" />
             <?php } ?>
           <?php } ?>
           <span>
-            <a onclick="addToWishList('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_wishlist.png" alt="<?php echo $button_wishlist; ?>" title="<?php echo $button_wishlist; ?>" /></a>
-            <a onclick="addToCompare('<?php echo $product_id; ?>');" class="button-add"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_compare.png" alt="<?php echo $button_compare; ?>" title="<?php echo $button_compare; ?>" /></a>
+            <a onclick="addToWishList('<?php echo $product_id; ?>');" title="<?php echo $button_wishlist; ?>" class="button-add"><i class="fa fa-heart"></i></a>
+            <a onclick="addToCompare('<?php echo $product_id; ?>');" title="<?php echo $button_compare; ?>" class="button-add"><i class="fa fa-random"></i></a>
           </span>
         </div>
         <?php if ($minimum > 1) { ?>
@@ -403,7 +403,7 @@
       <?php if (($dob && $age_minimum > 0 && !$age_checked) || $is_quote || !$buy_now_button || ($stock_quantity <= 0)) { ?>
         <p class="hidden"></p>
       <?php } else { ?>
-        <div id="buy-now" style="margin-bottom:15px;"><input type="button" value="<?php echo $button_buy_it_now; ?>" id="button-buy-it-now" class="button-buy-now" /></div>
+        <div id="buy-now" style="margin-bottom:20px;"><input type="button" value="<?php echo $button_buy_it_now; ?>" id="button-buy-it-now" class="button-buy-now" /></div>
       <?php } ?>
       <div id="cart-warnings"></div>
       <?php if ($review_status) { ?>
@@ -411,19 +411,19 @@
           <div class="rating" itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
             <meta itemprop="value" content="<?php echo $rating; ?>" />
             <meta itemprop="best" content="5" />
-            <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />&nbsp;&nbsp;&nbsp;
-            <a onclick="goToReviews('<?php echo $product_id; ?>');"><?php echo $reviews; ?></a>&nbsp;&nbsp;&nbsp;
-            <a onclick="goToReviews('<?php echo $product_id; ?>');"><img src="catalog/view/theme/<?php echo $template; ?>/image/icon_comment.png" alt="<?php echo $text_write; ?>" title="<?php echo $text_write; ?>" /></a>
+            <img src="catalog/view/theme/<?php echo $template; ?>/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />
+            <a onclick="goToReviews('<?php echo $product_id; ?>');" style="margin:0px 15px;"><?php echo $reviews; ?></a>
+            <a onclick="goToReviews('<?php echo $product_id; ?>');" title="<?php echo $text_write; ?>" class="button-add"><i class="fa fa-comments"></i></a>
           </div>
           <?php if (!$share_addthis) { ?>
           <div class="share">
-            <div class="addthis_toolbox addthis_default_style">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
               <a class="addthis_button_print"></a>
               <a class="addthis_button_email"></a>
               <a class="addthis_button_preferred_1"></a>
               <a class="addthis_button_preferred_2"></a>
               <a class="addthis_button_preferred_3"></a>
-              <a class="addthis_button_compact">&nbsp;&nbsp;<?php echo $text_share; ?></a> 
+              <a class="addthis_counter addthis_bubble_style"></a>
             </div>
             <?php if ($addthis) { ?>
               <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $addthis; ?>"></script>
@@ -564,13 +564,17 @@
           <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
             <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
           <?php } ?>
-          <?php if ($product['quote']) { ?>
-            <a href="<?php echo $product['quote']; ?>" class="button"><?php echo $button_quote; ?></a>
-          <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
-            <div class="stock-status"><?php echo $product['stock_status']; ?></div>
-          <?php } else { ?>
-            <a onclick="addToCart('<?php echo $product['product_id']; ?>');" class="button"><?php echo $button_cart; ?></a>
-          <?php } ?>
+          <div class="box-product-bottom">
+            <?php if ($product['quote']) { ?>
+              <div><a href="<?php echo $product['quote']; ?>" title=""><i class="fa fa-quote"></i></a></div>
+            <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
+              <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
+            <?php } else { ?>
+              <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');" /><i class="fa fa-shopping-cart"></i></a></div>
+            <?php } ?>
+            <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
+            <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
+          </div>
         </div>
       <?php } ?>
       </div>

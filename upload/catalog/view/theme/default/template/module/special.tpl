@@ -39,18 +39,21 @@
         <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
           <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
         <?php } ?>
-        <?php if ($viewproduct) { ?>
-          <div style="padding:2px 0px;"><a href="<?php echo $product['href']; ?>" class="button"><?php echo $button_view; ?></a></div>
-        <?php } ?>
+        <div class="box-product-bottom">
         <?php if ($addproduct) { ?>
           <?php if ($product['quote']) { ?>
-            <div class="cart"><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></div>
+            <div class="cart"><a href="<?php echo $product['quote']; ?>" title=""><i class="fa fa-quote"></i></a></div>
           <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
-            <div class="stock-status"><?php echo $product['stock_status']; ?></div>
+            <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
           <?php } else { ?>
-            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
+            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="hidden" /><a><i class="fa fa-shopping-cart"></i></a></div>
           <?php } ?>
         <?php } ?>
+          <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
+        <?php if ($viewproduct) { ?>
+          <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
+        <?php } ?>
+        </div>
       </div>
     <?php } ?>
     </div>
@@ -95,18 +98,21 @@
         <?php if ($product['stock_remaining'] && $this->config->get($template . '_product_stock_low') && ($product['stock_quantity'] > 0) && ($product['stock_quantity'] <= $this->config->get($template . '_product_stock_limit'))) { ?>
           <div class="remaining"><?php echo $product['stock_remaining']; ?></div>
         <?php } ?>
-        <?php if ($viewproduct) { ?>
-          <div style="padding:2px 0px;"><a href="<?php echo $product['href']; ?>" class="button"><?php echo $button_view; ?></a></div>
-        <?php } ?>
+        <div class="box-product-bottom">
         <?php if ($addproduct) { ?>
           <?php if ($product['quote']) { ?>
-            <div class="cart"><a href="<?php echo $product['quote']; ?>" title="" class="button"><?php echo $button_quote; ?></a></div>
+            <div class="cart"><a href="<?php echo $product['quote']; ?>" title=""><i class="fa fa-quote"></i></a></div>
           <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
-            <div class="stock-status"><?php echo $product['stock_status']; ?></div>
+            <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
           <?php } else { ?>
-            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="button" /></div>
+            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="hidden" /><a><i class="fa fa-shopping-cart"></i></a></div>
           <?php } ?>
         <?php } ?>
+          <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
+        <?php if ($viewproduct) { ?>
+          <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
+        <?php } ?>
+        </div>
       </div>
     <?php } ?>
     </div>

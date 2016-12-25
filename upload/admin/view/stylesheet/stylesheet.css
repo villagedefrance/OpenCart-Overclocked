@@ -10,7 +10,7 @@ body {
 	padding: 0;
 }
 body, td, th, input, select, textarea, fieldset, option, optgroup {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	color: #111;
 	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
@@ -237,7 +237,7 @@ body > #container {
 	float: right;
 }
 #header .user-status a {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	text-align: right;
 	color: #FFF;
@@ -383,7 +383,7 @@ body > #container {
 	width: 100%;
 	height: 34px;
 	background: url('../image/theme/menu.png') repeat-x;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -502,56 +502,38 @@ ul.menu ul {
 	color: #0D6D98;
 }
 /* Notifications */
-.success {
+.success, .warning, .attention, .tooltip {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
+	color: #444;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+}
+.success {
 	background: #EAF7D9 url('../image/success.png') 10px center no-repeat;
 	border: 1px solid #BBDF8D;
-	color: #444;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 .warning {
-	padding: 10px 10px 10px 33px;
-	margin-bottom: 15px;
 	background: #FFD1D1 url('../image/warning.png') 10px center no-repeat;
 	border: 1px solid #F8ACAC;
-	color: #444;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 .attention {
-	padding: 10px 10px 10px 33px;
-	margin-bottom: 15px;
 	background: #FFF5CC url('../image/attention.png') 10px center no-repeat;
 	border: 1px solid #F2DD8C;
-	color: #444;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
 .tooltip {
-	padding: 10px 10px 10px 33px;
-	margin-bottom: 15px;
 	background: #FAFAFA url('../image/tooltip.png') 10px center no-repeat;
 	border: 1px solid #D7E6F4;
-	color: #444;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
 }
-/* Common */
-.close {
+.close, .success .close, .warning .close, .attention .close, .tooltip .close {
 	float: right;
-	margin-top: 4px;
+	padding-top: 4px;
+	padding-right: 4px;
 	cursor: pointer;
 }
+/* Common */
 .required {
 	color: #CC2626;
 	font-weight: bold;
@@ -572,7 +554,7 @@ ul.menu ul {
 	color: #555;
 	font-size: 11px;
 	font-weight: normal;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-shadow: 0 0 1px rgba(85, 85, 85, 0.05);
 	display: block;
 }
@@ -1241,7 +1223,7 @@ table.tool > tr > td {
 }
 .htabs a {
 	float: left;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #111;
 	font-size: 13px;
 	font-weight: bold;
@@ -1291,7 +1273,7 @@ table.tool > tr > td {
 	float: left;
 	display: block;
 	width: 160px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #111;
 	font-size: 13px;
 	font-weight: bold;

@@ -2459,6 +2459,13 @@ CREATE TABLE `oc_palette` (
   PRIMARY KEY (`palette_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_palette`
+--
+
+INSERT INTO `oc_palette` (`palette_id`, `name`) VALUES
+(1, 'Black &amp; White');
+
 -- --------------------------------------------------------
 
 --
@@ -2472,6 +2479,14 @@ CREATE TABLE `oc_palette_color` (
   `color` varchar(6) NOT NULL,
   PRIMARY KEY (`palette_color_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_palette_color`
+--
+
+INSERT INTO `oc_palette_color` (`palette_color_id`, `palette_id`, `color`) VALUES
+(1, 1, 'FCFCFC'),
+(2, 1, '111111');
 
 -- --------------------------------------------------------
 
@@ -2487,6 +2502,14 @@ CREATE TABLE `oc_palette_color_description` (
   `title` varchar(64) NOT NULL,
   PRIMARY KEY (`palette_color_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_palette_color_description`
+--
+
+INSERT INTO `oc_palette_color_description` (`palette_color_id`, `language_id`, `palette_id`, `title`) VALUES
+(1, 1, 1, 'White'),
+(2, 1, 1, 'Black');
 
 -- --------------------------------------------------------
 

@@ -1,5 +1,5 @@
 /* ------------------------------
-* VQmods v2.0.0
+* VQmods v2.0.1
 * Overclocked Edition Stylesheet
 * -------------------------------
 */
@@ -70,11 +70,11 @@ input[type='submit']:hover {
 	color: #555;
 	font-size: 11px;
 	font-weight: normal;
-	font-family: Verdana, Geneva, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: block;
 }
 .error-install {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 }
 .highlight {

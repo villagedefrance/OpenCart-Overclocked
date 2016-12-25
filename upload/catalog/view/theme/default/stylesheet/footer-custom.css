@@ -1,6 +1,6 @@
 /* -----------------------------------
 * Overclocked Edition - Footer Custom
-* Copyright © 2016 - Villagedefrance
+* Copyright © 2017 - Villagedefrance
 * ------------------------------------
 */
 #footer-holder .footer-light, #footer-holder .footer-dark {
@@ -46,7 +46,7 @@
 	display: block;
 }
 .footer-light #footer > .big-column p {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: block;
 }
 .footer-light #footer > .big-column span {
@@ -91,7 +91,7 @@
 	display: block;
 }
 .footer-dark #footer > .big-column p {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: block;
 }
 .footer-dark #footer > .big-column span {
