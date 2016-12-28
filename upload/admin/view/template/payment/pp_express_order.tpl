@@ -40,104 +40,104 @@
 $('#paypal-transaction').load('index.php?route=payment/pp_express/transaction&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>');
 
 $('#button-capture').on('click', function() {
-  var amt = $('#paypal-capture-amount').val();
+	var amt = $('#paypal-capture-amount').val();
 
-  if (amt == '' || amt <= 0) {
-    alert('<?php echo addslashes($error_capture_amt); ?>');
-  } else {
-    var captureComplete;
-    var voidTransaction = false;
+	if (amt == '' || amt <= 0) {
+		alert('<?php echo addslashes($error_capture_amt); ?>');
+	} else {
+		var captureComplete;
+		var voidTransaction = false;
 
-    if ($('#paypal-capture-complete').prop('checked') == true) {
-      captureComplete = 1;
-    } else {
-      captureComplete = 0;
-    }
+		if ($('#paypal-capture-complete').prop('checked') == true) {
+			captureComplete = 1;
+		} else {
+			captureComplete = 0;
+		}
 
-    $.ajax({
-      url: 'index.php?route=payment/pp_express/do_capture&token=<?php echo $token; ?>',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        'order_id': <?php echo $order_id; ?>,
-        'complete': ($('#paypal-capture-complete').prop('checked') == true ? 1 : 0),
-        'amount': amt
-      },
-      beforeSend: function() {
-        $('.success, .warning, .attention').remove();
-        $('#button-capture').hide();
-        $('#button-capture').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-capture" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(json) {
-      if ('error' in json) {
-        $('#paypal-transaction').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-        $('.warning').fadeIn('slow');
-      }
+		$.ajax({
+			url: 'index.php?route=payment/pp_express/do_capture&token=<?php echo $token; ?>',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				'order_id': <?php echo $order_id; ?>,
+				'complete': ($('#paypal-capture-complete').prop('checked') == true ? 1 : 0),
+				'amount': amt
+			},
+			beforeSend: function() {
+				$('.success, .warning, .attention').remove();
+				$('#button-capture').hide();
+				$('#button-capture').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-capture" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(json) {
+			if ('error' in json) {
+				$('#paypal-transaction').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
+				$('.warning').fadeIn('slow');
+			}
 
-      if ('success' in json) {
-        $('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-        $('.success').fadeIn('slow');
+			if ('success' in json) {
+				$('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+				$('.success').fadeIn('slow');
 
-        $('#paypal-captured').text(json['captured']);
-        $('#paypal-capture-amount').val(json['remaining']);
+				$('#paypal-captured').text(json['captured']);
+				$('#paypal-capture-amount').val(json['remaining']);
 
-        if ('capture_status' in json) {
-          $('#capture-status').text(json['capture_status']);
+				if ('capture_status' in json) {
+					$('#capture-status').text(json['capture_status']);
 
-          $('#button-void').remove();
+					$('#button-void').remove();
 
-          $('.paypal-capture').remove();
-        }
-      }
+					$('.paypal-capture').remove();
+				}
+			}
 
-      $('#paypal-transaction').load('index.php?route=payment/pp_express/transaction&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>');
-    })
-    .always(function() {
-      $('.loading').remove();
-      $('#button-capture').show();
-    });
-  }
+			$('#paypal-transaction').load('index.php?route=payment/pp_express/transaction&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>');
+		})
+		.always(function() {
+			$('.loading').remove();
+			$('#button-capture').show();
+		});
+	}
 });
 
 $('#button-void').on('click', function() {
-  if (confirm('<?php echo addslashes($text_confirm_void); ?>')) {
-    $.ajax({
-      url: 'index.php?route=payment/pp_express/do_void&token=<?php echo $token; ?>',
-      type: 'POST',
-      dataType: 'json',
-      data: {'order_id':<?php echo $order_id; ?> },
-      beforeSend: function() {
-        $('.success, .warning, .attention').remove();
-        $('#button-void').hide();
-        $('#button-void').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-void" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(json) {
-      if ('error' in json) {
-        $('#paypal-transaction').before('<div class="warning" style="display:none;">' + json['error'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
-        $('.warning').fadeIn('slow');
-      }
+	if (confirm('<?php echo addslashes($text_confirm_void); ?>')) {
+		$.ajax({
+			url: 'index.php?route=payment/pp_express/do_void&token=<?php echo $token; ?>',
+			type: 'POST',
+			dataType: 'json',
+			data: {'order_id':<?php echo $order_id; ?> },
+			beforeSend: function() {
+				$('.success, .warning, .attention').remove();
+				$('#button-void').hide();
+				$('#button-void').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-void" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(json) {
+			if ('error' in json) {
+				$('#paypal-transaction').before('<div class="warning" style="display:none;">' + json['error'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
+				$('.warning').fadeIn('slow');
+			}
 
-      if ('success' in json) {
-        $('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
-        $('.success').fadeIn('slow');
+			if ('success' in json) {
+				$('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
+				$('.success').fadeIn('slow');
 
-        $('#capture-status').text(json['capture_status']);
+				$('#capture-status').text(json['capture_status']);
 
-        $('#button-void').remove();
+				$('#button-void').remove();
 
-        $('.paypal-capture').remove();
-      }
+				$('.paypal-capture').remove();
+			}
 
-      $('#paypal-transaction').load('index.php?route=payment/pp_express/transaction&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>');
-    })
-    .always(function() {
-      $('.loading').remove();
-      $('#button-void').show();
-    });
-  }
+			$('#paypal-transaction').load('index.php?route=payment/pp_express/transaction&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>');
+		})
+		.always(function() {
+			$('.loading').remove();
+			$('#button-void').show();
+		});
+	}
 });
 //--></script>

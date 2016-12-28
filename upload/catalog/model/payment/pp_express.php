@@ -1,5 +1,6 @@
 <?php
 class ModelPaymentPPExpress extends Model {
+
 	public function getMethod($address, $total) {
 		$this->language->load('payment/pp_express');
 
@@ -95,7 +96,9 @@ class ModelPaymentPPExpress extends Model {
 			$data['L_PAYMENTREQUEST_0_NAME' . $i] = $item['name'];
 			$data['L_PAYMENTREQUEST_0_NUMBER' . $i] = $item['model'];
 			$data['L_PAYMENTREQUEST_0_AMT' . $i] = $item_price;
+
 			$item_total += number_format($item_price * $item['quantity'], 2, '.', '');
+
 			$data['L_PAYMENTREQUEST_0_QTY' . $i] = $item['quantity'];
 			$data['L_PAYMENTREQUEST_0_ITEMURL' . $i] = $this->url->link('product/product', 'product_id=' . $item['product_id']);
 
@@ -237,7 +240,7 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function getTransactionRow($transaction_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id)  WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "paypal_order_transaction pt LEFT JOIN " . DB_PREFIX . "paypal_order po ON (pt.paypal_order_id = po.paypal_order_id) WHERE pt.transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 0,1");
 
 		if ($query->num_rows > 0) {
 			return $query->row;
@@ -247,11 +250,11 @@ class ModelPaymentPPExpress extends Model {
 	}
 
 	public function updateTransactionStatus($transaction_id, $transaction_status) {
-		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = '" . $this->db->escape($transaction_status) . "' WHERE transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET payment_status = '" . $this->db->escape($transaction_status) . "' WHERE transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 0,1");
 	}
 
 	public function updateTransactionPendingReason($transaction_id, $pending_reason) {
-		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET pending_reason = '" . $this->db->escape($pending_reason) . "' WHERE transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 1");
+		$this->db->query("UPDATE " . DB_PREFIX . "paypal_order_transaction SET pending_reason = '" . $this->db->escape($pending_reason) . "' WHERE transaction_id = '" . $this->db->escape($transaction_id) . "' LIMIT 0,1");
 	}
 
 	public function updateOrder($capture_status, $order_id) {
@@ -357,7 +360,7 @@ class ModelPaymentPPExpress extends Model {
 
 		$arr = array();
 
-		foreach ($data as $k=>$v) {
+		foreach ($data as $k => $v) {
 			$tmp = explode('=', $v);
 			$arr[$tmp[0]] = isset($tmp[1]) ? urldecode($tmp[1]) : '';
 		}

@@ -10,8 +10,8 @@ $_['text_payment']                     = 'Payment';
 $_['text_success']                     = 'Success: You have modified payment <b>PayPal Express Checkout</b> account details !';
 $_['text_authorization']               = 'Authorization';
 $_['text_sale']                        = 'Sale';
-$_['text_signup']                      = 'Sign up for PayPal - save your settings first as this page will be refreshed';
-$_['text_sandbox']                     = 'Sign up for PayPal Sandbox - save your settings first as this page will be refreshed';
+$_['text_signup']                      = 'Sign up for PayPal - save your settings first as this page will be refreshed.';
+$_['text_sandbox']                     = 'Sign up for PayPal Sandbox - save your settings first as this page will be refreshed.';
 $_['text_debug_clear_success']         = 'Success: You have successfully cleared your <b>Debug Log</b> !';
 
 $_['text_clear']                       = 'Clear';

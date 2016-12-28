@@ -9,8 +9,6 @@ $_['text_transactions']          = 'Transactions';
 $_['text_complete']              = 'Complete';
 $_['text_confirm_void']          = 'If you void you cannot capture any further funds';
 $_['text_success']               = 'Transaction was successfully sent';
-//$_['text_full_refund']           = 'Full refund';
-//$_['text_partial_refund']        = 'Partial refund';
 
 // Column
 $_['column_transaction']         = 'Transaction ID';
@@ -24,12 +22,6 @@ $_['column_actions']             = 'Actions';
 // Entry
 $_['entry_capture_amount']       = 'Capture amount';
 $_['entry_capture_complete']     = 'Complete capture';
-//$_['entry_full_refund']          = 'Full refund';
-//$_['entry_amount']               = 'Amount';
-//$_['entry_note']                 = 'Note';
-
-// Help
-//$_['help_capture_complete']      = 'If this is a the last capture.';
 
 // Button
 $_['button_void']                = 'Void';
@@ -38,11 +30,11 @@ $_['button_view']                = 'View';
 $_['button_refund']              = 'Refund';
 $_['button_resend']              = 'Resend';
 
-// Messages
+// Message
 $_['success_transaction_resent'] = 'Transaction was successfully resent';
 
 // Error
 $_['error_capture_amt']          = 'Enter a positive amount to capture!';
 $_['error_timeout']              = 'Request timed out!';
 $_['error_transaction_missing']  = 'Transaction could not be found!';
-$_['error_partial_amt']          = 'You must enter a partial refund amount';
+$_['error_partial_amt']          = 'You must enter a partial refund amount!';

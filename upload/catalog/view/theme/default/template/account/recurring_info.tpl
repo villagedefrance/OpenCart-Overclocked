@@ -88,39 +88,41 @@
   <?php echo $content_bottom; ?>
 </div>
 <?php echo $content_footer; ?>
-<?php echo $footer; ?>
+
 <?php if (!empty($payment_code)) { ?>
 <script type="text/javascript"><!--
 $('#cancel-profile').on('click', function() {
-  if (confirm('<?php echo addslashes($text_confirm_cancel); ?>')) {
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      data: { 'order_recurring_id':<?php echo $order_recurring_id; ?> },
-      url: 'index.php?route=payment/<?php echo $payment_code; ?>/recurringCancel&token=<?php echo $token; ?>',
-      beforeSend: function() {
-        $('.success, .warning, .attention').remove();
-        $('#cancel-profile').hide();
-        $('#cancel-profile').after('<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="Loading..." class="loading" id="img-loading-cancel" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(json) {
-      if ('error' in json) {
-        $('#notification').html('<div class="warning" style="display:none;">' + json['error'] + '<img src="catalog/view/theme/default/image/close.png" alt="Close" class="close" /></div>');
-        $('.warning').fadeIn('slow');
-      }
+	if (confirm('<?php echo addslashes($text_confirm_cancel); ?>')) {
+		$.ajax({
+			type: 'GET',
+			dataType: 'json',
+			data: { 'order_recurring_id':<?php echo $order_recurring_id; ?> },
+			url: 'index.php?route=payment/<?php echo $payment_code; ?>/recurringCancel&token=<?php echo $token; ?>',
+			beforeSend: function() {
+				$('.success, .warning, .attention').remove();
+				$('#cancel-profile').hide();
+				$('#cancel-profile').after('<img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="Loading..." class="loading" id="img-loading-cancel" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(json) {
+			if ('error' in json) {
+				$('#notification').html('<div class="warning" style="display:none;">' + json['error'] + '<img src="catalog/view/theme/default/image/close.png" alt="Close" class="close" /></div>');
+				$('.warning').fadeIn('slow');
+			}
 
-      if ('success' in json) {
-        $('#notification').html('<div class="success" style="display:none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="Close" class="close" /></div>');
-        $('.success').fadeIn('slow');
-      }
-    })
-    .always(function() {
-      $('.loading').remove();
-      $('#cancel-profile').show();
-    });
-  }
+			if ('success' in json) {
+				$('#notification').html('<div class="success" style="display:none;">' + json['success'] + '<img src="catalog/view/theme/default/image/close.png" alt="Close" class="close" /></div>');
+				$('.success').fadeIn('slow');
+			}
+		})
+		.always(function() {
+			$('.loading').remove();
+			$('#cancel-profile').show();
+		});
+	}
 });
 //--></script>
 <?php } ?>
+
+<?php echo $footer; ?>
