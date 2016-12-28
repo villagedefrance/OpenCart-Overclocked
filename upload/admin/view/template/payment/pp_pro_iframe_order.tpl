@@ -56,7 +56,8 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($transactions as $transaction) { ?>
+        <?php if (!empty($transactions)) { ?>
+          <?php foreach ($transactions as $transaction) { ?>
           <tr>
             <td class="left"><?php echo $transaction['transaction_id']; ?></td>
             <td class="left"><?php echo $transaction['amount']; ?></td>
@@ -66,14 +67,19 @@
             <td class="left"><?php echo $transaction['created']; ?></td>
             <td class="left">
               <?php if ($transaction['transaction_id']) { ?>
-                <a href="<?php echo $transaction['view']; ?>" class="button"><?php echo $text_view; ?></a>
+                <a href="<?php echo $transaction['view']; ?>" class="button"><?php echo $button_view; ?></a>
                 <?php if ($transaction['payment_type'] == 'instant' && ($transaction['payment_status'] == 'Completed' || $transaction['payment_status'] == 'Partially-Refunded')) { ?>
-                  &nbsp;<a href="<?php echo $transaction['refund']; ?>" class="button"><?php echo $text_refund; ?></a>
+                  &nbsp;<a href="<?php echo $transaction['refund']; ?>" class="button"><?php echo $button_refund; ?></a>
                 <?php } ?>
               <?php } else { ?>
-                <a onclick="resendTransaction(this); return false;" href="<?php echo $transaction['resend']; ?>" class="button"><?php echo $text_resend; ?></a>
+                <a onclick="resendTransaction(this); return false;" href="<?php echo $transaction['resend']; ?>" class="button"><?php echo $button_resend; ?></a>
               <?php } ?>
              </td>
+          </tr>
+          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>
@@ -87,7 +93,7 @@ function doCapture() {
 	var amt = $('#paypal-capture-amount').val();
 
 	if (amt == '' || amt == 0) {
-		alert('<?php echo addslashes($error_capture); ?>');
+    alert('<?php echo addslashes($error_capture_amt); ?>');
 	} else {
 		var captureComplete;
 		var voidTransaction = false;
@@ -109,7 +115,7 @@ function doCapture() {
 			},
 			beforeSend: function() {
 				$('#button-capture').hide();
-				$('#button-capture').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img_loading_capture" />');
+				$('#button-capture').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-capture" />');
 			},
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
@@ -150,7 +156,6 @@ function doCapture() {
 
 				$('#paypal-captured').text(data.data.captured);
 				$('#paypal-capture-amount').val(data.data.remaining);
-				$('#paypal-transactions').append(html);
 
 				if (data.data.void != '') {
 					html += '<tr>';
@@ -163,6 +168,8 @@ function doCapture() {
 					html += '  <td class="left"></td>';
 					html += '</tr>';
 				}
+
+				$('#paypal-transactions').append(html);
 
 				if (data.data.status == 1) {
 					$('#capture-status').text('<?php echo addslashes($text_complete); ?>');
@@ -186,7 +193,7 @@ function doVoid() {
 			url: 'index.php?route=payment/pp_pro_iframe/do_void&token=<?php echo $token; ?>',
 			beforeSend: function() {
 				$('#button-void').hide();
-				$('#button-void').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img_loading_void" />');
+				$('#button-void').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-void" />');
 			},
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
@@ -226,7 +233,7 @@ function doReauthorise() {
 		url: 'index.php?route=payment/pp_pro_iframe/do_reauthorise&token=<?php echo $token; ?>',
 		beforeSend: function() {
 			$('#button-reauthorise').hide();
-			$('#button-reauthorise').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img_loading_reauthorise" />');
+			$('#button-reauthorise').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-reauthorise" />');
 		},
 	})
 	.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })

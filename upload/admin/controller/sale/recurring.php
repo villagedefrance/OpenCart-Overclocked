@@ -384,6 +384,7 @@ class ControllerSaleRecurring extends Controller {
 			$this->data['text_cancel'] = $this->language->get('text_cancel');
 			$this->data['text_return'] = $this->language->get('text_return');
 			$this->data['text_cancel_confirm'] = $this->language->get('text_cancel_confirm');
+			$this->data['text_empty_transactions'] = $this->language->get('text_empty_transactions');
 
 			$this->data['entry_order_id'] = $this->language->get('entry_order_id');
 			$this->data['entry_order_recurring'] = $this->language->get('entry_order_recurring');
@@ -449,13 +450,8 @@ class ControllerSaleRecurring extends Controller {
 
 			if ($order_recurring['status_id'] == 1 || $order_recurring['status_id'] == 2) {
 				if (!empty($order['payment_code']) && $this->hasAction('payment/' . $order['payment_code'] . '/recurringCancel') == true) {
-					$this->data['cancel_link'] = $this->url->link('payment/' . $order['payment_code'] . '/recurringCancel', 'order_recurring_id=' . $this->request->get['order_recurring_id'] . '&token=' . $this->request->get['token'], 'SSL');
-				} else {
-					$this->data['cancel_link'] = '';
+					$this->data['payment_code'] = $order['payment_code'];
 				}
-
-			} else {
-				$this->data['cancel_link'] = '';
 			}
 
 			if ($order_recurring['profile_id'] != '0') {

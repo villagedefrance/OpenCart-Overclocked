@@ -30,7 +30,7 @@ $_['text_confirm_cancel']                  = 'Are you sure you want to cancel th
 $_['text_empty_transactions']              = 'No transactions for this profile';
 
 $_['text_recurring_detail']                = 'Recurring payment details';
-$_['text_recurring_id']                    = 'Profile ID: ';
+$_['text_order_recurring_id']              = 'Profile ID: ';
 $_['text_payment_method']                  = 'Payment method: ';
 $_['text_date_added']                      = 'Created: ';
 $_['text_recurring_description']           = 'Description: ';
@@ -58,6 +58,8 @@ $_['text_transaction_expired']             = 'Expired';
 // Error
 $_['error_not_cancelled']                  = 'Error: %s';
 $_['error_not_found']                      = 'Could not cancel profile';
+$_['error_connection']                     = 'Could not connect to PayPal!';
+$_['error_missing_profile']                = 'Could not find the payment profile!';
 
 // Success
 $_['success_cancelled']                    = 'Recurring payment has been cancelled';

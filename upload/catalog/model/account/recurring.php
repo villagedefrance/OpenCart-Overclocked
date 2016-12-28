@@ -76,4 +76,12 @@ class ModelAccountRecurring extends Model {
 			return 0;
 		}
 	}
+
+	public function addOrderRecurringTransaction($order_recurring_id, $type, $amount = 0) {
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "order_recurring_transaction` SET `order_recurring_id` = '" . (int)$order_recurring_id . "', `type` = '" . (int)$type . "', `amount` = " . (double)$amount) . ", `created` = NOW()";
+	}
+
+	public function updateOrderRecurringStatus($order_recurring_id, $status) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "order_recurring` SET `status` = '" . (int)$status . "' WHERE `order_recurring_id` = '" . (int)$order_recurring_id . "' LIMIT 1");
+	}
 }

@@ -74,7 +74,7 @@
               </select></td>
             <td class="right"><a onclick="filter();" class="button-filter"><?php echo $text_filter; ?></a></td>
           </tr>
-          <?php if ($profiles) { ?>
+          <?php if (!empty($profiles)) { ?>
             <?php foreach ($profiles as $profile) { ?>
             <tr>
               <td class="left"><?php echo $profile['order_recurring_id']; ?></td>

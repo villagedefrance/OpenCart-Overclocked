@@ -5,6 +5,7 @@ $_['heading_title']                        = 'Payment Profiles';
 // Text
 $_['text_success']                         = 'Success: You have modified <b>Payment Profiles</b> !';
 $_['text_payment_profiles']                = 'Payment Profiles';
+$_['text_empty_transactions']              = 'No transactions for this profile';
 $_['text_status_active']                   = 'Active';
 $_['text_status_inactive']                 = 'Inactive';
 $_['text_status_cancelled']                = 'Cancelled';
@@ -48,7 +49,3 @@ $_['entry_amount']                         = 'Amount:';
 $_['entry_profile']                        = 'Profile:';
 $_['entry_payment_type']                   = 'Payment method:';
 
-// Error
-$_['error_not_cancelled']                  = 'Error: %s!';
-$_['error_not_found']                      = 'Could not cancel profile!';
-$_['success_cancelled']                    = 'Recurring payment has been cancelled!';

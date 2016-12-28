@@ -22,9 +22,6 @@ $_['text_transactions']                = 'Transactions';
 $_['text_complete']                    = 'Complete';
 $_['text_incomplete']                  = 'Incomplete';
 $_['text_confirm_void']                = 'If you void you cannot capture any further funds';
-$_['text_view']                        = 'View';
-$_['text_refund']                      = 'Refund';
-$_['text_resend']                      = 'Resend';
 $_['text_reauthorise']                 = 'Reauthorise';
 $_['text_reauthorised']                = 'Transaction was reauthorised';
 $_['text_transaction']                 = 'Transaction';
@@ -123,7 +120,7 @@ $_['column_actions']                   = 'Actions';
 // Tab
 $_['tab_settings']                     = 'Settings';
 $_['tab_order_status']                 = 'Order Status';
-$_['tab_checkout_customisation']       = 'Checkout Customisation';
+$_['tab_checkout_customisation']       = 'Checkout Customization';
 $_['tab_debug_log']                    = 'Debug Log';
 
 // Entry
@@ -167,10 +164,12 @@ $_['help_total']                       = 'The checkout total the order must reac
 $_['help_total_max']                   = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
 
 // Button
-$_['button_refund']                    = 'Refund';
 $_['button_void']                      = 'Void';
 $_['button_capture']                   = 'Capture';
 $_['button_reauthorise']               = 'Reauthorise';
+$_['button_view']                      = 'View';
+$_['button_refund']                    = 'Refund';
+$_['button_resend']                    = 'Resend';
 
 // Error
 $_['error_permission']                 = 'Warning: You do not have permission to modify <b>Payment PayPal Website Payment Pro iFrame (UK)</b> !';
@@ -184,4 +183,4 @@ $_['error_parent_transaction_missing'] = 'Could not find the parent transaction!
 $_['error_missing_data']               = 'Missing data!';
 $_['error_missing_order']              = 'Could not find the order!';
 $_['error_general']                    = 'There was an error!';
-$_['error_capture']                    = 'Enter an amount to capture!';
+$_['error_capture_amt']                = 'Enter an amount to capture!';

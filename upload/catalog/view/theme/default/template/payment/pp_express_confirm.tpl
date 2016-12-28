@@ -81,7 +81,7 @@
   <?php } ?>
   <?php if ($has_shipping) { ?>
     <?php if (!isset($shipping_methods)) { ?>
-      <div class="warning"><?php echo $error_no_shipping ?></div>
+      <div class="warning"><?php echo $error_no_shipping; ?></div>
     <?php } else { ?>
       <div class="cart-module">
         <div id="shipping" class="content" style="display:block;">
