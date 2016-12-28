@@ -1,13 +1,13 @@
 <?php
 // Heading
-$_['heading_title']                    = 'PayPal Express Checkout for Payflow';
+$_['heading_title']                    = 'PayPal Express';
 
 // Link
 $_['text_pp_express']                  = '<a onclick="window.open(\'https://www.paypal.com/\');"><img src="view/image/payment/paypal.png" alt="PayPal" title="PayPal" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text
 $_['text_payment']                     = 'Payment';
-$_['text_success']                     = 'Success: You have modified payment <b>PayPal Express Checkout</b> account details !';
+$_['text_success']                     = 'Success: You have modified payment <b>PayPal Express</b> account details !';
 $_['text_authorization']               = 'Authorization';
 $_['text_sale']                        = 'Sale';
 $_['text_signup']                      = 'Sign up for PayPal - save your settings first as this page will be refreshed.';
@@ -62,11 +62,11 @@ $_['tab_checkout_customisation']       = 'Checkout Customization';
 $_['tab_debug_log']                    = 'Debug Log';
 
 // Help
-$_['help_ipn_url']                     = 'Required for subscriptions';
+$_['help_ipn_url']                     = 'Required for subscriptions.';
 $_['help_test']                        = 'Use the live or testing (sandbox) gateway server to process transactions?';
 $_['help_debug']                       = 'Logs additional information.';
-$_['help_currency']                    = 'Used for transaction searches';
-$_['help_recurring_cancel']            = 'Allow customers to cancel recurring payments';
+$_['help_currency']                    = 'Used for transaction searches.';
+$_['help_recurring_cancel']            = 'Allow customers to cancel recurring payments.';
 $_['help_transaction_method']          = 'Sale will charge customer immediately. Authorization will put funds on hold for future capture.';
 $_['help_total']                       = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']                   = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
@@ -77,7 +77,7 @@ $_['help_page_colour']                 = '6 characters HTML hexadecimal color co
 $_['help_logo']                        = 'Maximum size: 750 x 90 px (W x H)<br />You should only use a logo if you have SSL set up.';
 
 // Error
-$_['error_permission']                 = 'Warning: You do not have permission to modify payment <b>PayPal Express Checkout</b> !';
+$_['error_permission']                 = 'Warning: You do not have permission to modify payment <b>PayPal Express</b> !';
 $_['error_username']                   = 'API Username Required!';
 $_['error_password']                   = 'API Password Required!';
 $_['error_signature']                  = 'API Signature Required!';

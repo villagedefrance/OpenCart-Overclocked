@@ -40,7 +40,7 @@
       <div id="tab-api">
         <table class="form">
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-username"><?php echo $entry_username; ?></label></td>
+            <td><span class="required">*</span> <label for="input-username"><?php echo $entry_username; ?></label></td>
             <td><?php if (isset($errors['username'])) { ?>
               <input type="text" name="pp_express_username" id="input-username" value="<?php echo $pp_express_username; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $errors['username']; ?></span>
@@ -49,7 +49,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-password"><?php echo $entry_password; ?></label></td>
+            <td><span class="required">*</span> <label for="input-password"><?php echo $entry_password; ?></label></td>
             <td><?php if (isset($errors['password'])) { ?>
               <input type="text" name="pp_express_password" id="input-password" value="<?php echo $pp_express_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $errors['password']; ?></span>
@@ -58,7 +58,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-signature"><?php echo $entry_signature; ?></label></td>
+            <td><span class="required">*</span> <label for="input-signature"><?php echo $entry_signature; ?></label></td>
             <td><?php if (isset($errors['signature'])) { ?>
               <input type="text" name="pp_express_signature" id="input-signature" value="<?php echo $pp_express_signature; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $errors['signature']; ?></span>
@@ -67,7 +67,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><label for="input-sandbox-username"><?php echo $entry_sandbox_username; ?></label></td>
+            <td><span style="color:#111;">*</span> <label for="input-sandbox-username"><?php echo $entry_sandbox_username; ?></label></td>
             <td><?php if (isset($errors['sandbox_username'])) { ?>
               <input type="text" name="pp_express_sandbox_username" id="input-sandbox-username" value="<?php echo $pp_express_sandbox_username; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $errors['sandbox_username']; ?></span>
@@ -76,7 +76,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><label for="input-sandbox-password"><?php echo $entry_sandbox_password; ?></label></td>
+            <td><span style="color:#111;">*</span> <label for="input-sandbox-password"><?php echo $entry_sandbox_password; ?></label></td>
             <td><?php if (isset($errors['sandbox_password'])) { ?>
               <input type="text" name="pp_express_sandbox_password" id="input-sandbox-password" value="<?php echo $pp_express_sandbox_password; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $errors['sandbox_password']; ?></span>
@@ -85,7 +85,7 @@
             <?php } ?></td>
           </tr>
           <tr>
-            <td><label for="input-sandbox-signature"><?php echo $entry_sandbox_signature; ?></label></td>
+            <td><span style="color:#111;">*</span> <label for="input-sandbox-signature"><?php echo $entry_sandbox_signature; ?></label></td>
             <td><?php if (isset($errors['sandbox_signature'])) { ?>
               <input type="text" name="pp_express_sandbox_signature" id="input-sandbox-signature" value="<?php echo $pp_express_sandbox_signature; ?>" size="40" class="input-error" />
               <span class="error"><?php echo $errors['sandbox_signature']; ?></span>
