@@ -13,7 +13,7 @@ $_['text_sale']                        = 'Sale';
 $_['text_signup']                      = 'Sign up for PayPal - save your settings first as this page will be refreshed.';
 $_['text_sandbox']                     = 'Sign up for PayPal Sandbox - save your settings first as this page will be refreshed.';
 $_['text_debug_clear_success']         = 'Success: You have successfully cleared your <b>Debug Log</b> !';
-
+$_['text_info']                        = '<b>PayPal Express security protocol now uses TLS1.2.</b><br /><br />In order to use PayPal Express, your server should meet the following requirements:<br /> - PHP version: 5.5.19+<br /> - Curl version: 7.29+<br /> - SSL Certificate is recommended';
 $_['text_clear']                       = 'Clear';
 $_['text_browse']                      = 'Browse';
 $_['text_image_manager']               = 'Image manager';
@@ -62,7 +62,7 @@ $_['tab_checkout_customisation']       = 'Checkout Customization';
 $_['tab_debug_log']                    = 'Debug Log';
 
 // Help
-$_['help_ipn_url']                     = 'Required for subscriptions.';
+$_['help_ipn_url']                     = 'Required for all subscriptions.';
 $_['help_test']                        = 'Use the live or testing (sandbox) gateway server to process transactions?';
 $_['help_debug']                       = 'Logs additional information.';
 $_['help_currency']                    = 'Used for transaction searches.';
@@ -75,6 +75,9 @@ $_['help_border_colour']               = '6 characters HTML hexadecimal color co
 $_['help_header_colour']               = '6 characters HTML hexadecimal color code.';
 $_['help_page_colour']                 = '6 characters HTML hexadecimal color code.';
 $_['help_logo']                        = 'Maximum size: 750 x 90 px (W x H)<br />You should only use a logo if you have SSL set up.';
+
+// Button
+$_['button_info']                      = 'Information';
 
 // Error
 $_['error_permission']                 = 'Warning: You do not have permission to modify payment <b>PayPal Express</b> !';

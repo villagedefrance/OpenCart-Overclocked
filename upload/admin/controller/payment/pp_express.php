@@ -39,7 +39,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_authorization'] = $this->language->get('text_authorization');
 		$this->data['text_sale'] = $this->language->get('text_sale');
-
+		$this->data['text_info'] = $this->language->get('text_info');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_clear'] = $this->language->get('text_clear');
 		$this->data['text_browse'] = $this->language->get('text_browse');
@@ -51,6 +51,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['entry_sandbox_password'] = $this->language->get('entry_sandbox_password');
 		$this->data['entry_sandbox_signature'] = $this->language->get('entry_sandbox_signature');
 		$this->data['entry_ipn_url'] = $this->language->get('entry_ipn_url');
+
 		$this->data['entry_test'] = $this->language->get('entry_test');
 		$this->data['entry_debug'] = $this->language->get('entry_debug');
 		$this->data['entry_currency'] = $this->language->get('entry_currency');
@@ -97,6 +98,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_search'] = $this->language->get('button_search');
+		$this->data['button_info'] = $this->language->get('button_info');
 
 		$this->data['tab_api'] = $this->language->get('tab_api');
 		$this->data['tab_general'] = $this->language->get('tab_general');
@@ -147,6 +149,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['signup'] = 'https://www.paypal.com/webapps/merchantboarding/webflow/externalpartnerflow?countryCode=' . $country_info['iso_code_2'] . '&integrationType=F&merchantId=David111&displayMode=minibrowser&partnerId=9PDNYE4RZBVFJ&productIntentID=addipmt&receiveCredentials=TRUE&returnToPartnerUrl=' . base64_encode(html_entity_decode($this->url->link('payment/pp_express/live', 'token=' . $this->session->data['token'], 'SSL'))) . '&subIntegrationType=S';
 		$this->data['sandbox'] = 'https://www.sandbox.paypal.com/webapps/merchantboarding/webflow/externalpartnerflow?countryCode=' . $country_info['iso_code_2'] . '&integrationType=F&merchantId=David111&displayMode=minibrowser&partnerId=T4E8WSXT43QPJ&productIntentID=addipmt&receiveCredentials=TRUE&returnToPartnerUrl=' . base64_encode(html_entity_decode($this->url->link('payment/pp_express/sandbox', 'token=' . $this->session->data['token'], 'SSL'))) . '&subIntegrationType=S';
 
+		// API Details
 		if (isset($this->request->post['pp_express_username'])) {
 			$this->data['pp_express_username'] = $this->request->post['pp_express_username'];
 		} else {
@@ -185,6 +188,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->data['ipn_url'] = HTTPS_CATALOG . 'index.php?route=payment/pp_express/ipn';
 
+		// General
 		if (isset($this->request->post['pp_express_test'])) {
 			$this->data['pp_express_test'] = $this->request->post['pp_express_test'];
 		} else {
@@ -251,6 +255,7 @@ class ControllerPaymentPPExpress extends Controller {
 			$this->data['pp_express_sort_order'] = $this->config->get('pp_express_sort_order');
 		}
 
+		// Order Statuses
 		if (isset($this->request->post['pp_express_canceled_reversal_status_id'])) {
 			$this->data['pp_express_canceled_reversal_status_id'] = $this->request->post['pp_express_canceled_reversal_status_id'];
 		} else {
@@ -315,6 +320,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
+		// Customization
 		if (isset($this->request->post['pp_express_allow_note'])) {
 			$this->data['pp_express_allow_note'] = $this->request->post['pp_express_allow_note'];
 		} else {

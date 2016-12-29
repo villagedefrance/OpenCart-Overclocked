@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="content">
-      <div class="tooltip"><a data-paypal-button="true" target="PPFrame" href="<?php echo $signup; ?>" ><?php echo $text_signup; ?></a></div>
-      <div class="tooltip"><a data-paypal-button="true" target="PPFrame" href="<?php echo $sandbox; ?>" ><?php echo $text_sandbox; ?></a></div>
+      <div class="tooltip"><a data-paypal-button="true" target="PPFrame" href="<?php echo $signup; ?>"><?php echo $text_signup; ?></a></div>
+      <div class="tooltip"><a data-paypal-button="true" target="PPFrame" href="<?php echo $sandbox; ?>"><?php echo $text_sandbox; ?></a></div>
       <div id="htabs" class="htabs">
         <a href="#tab-api"><?php echo $tab_api; ?></a>
         <a href="#tab-general"><?php echo $tab_general; ?></a>
@@ -37,6 +37,9 @@
       <?php } ?>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
+      <div class="toggler" style="padding-bottom:10px;">
+        <fieldset><p><?php echo $text_info; ?></p></fieldset>
+      </div>
       <div id="tab-api">
         <table class="form">
           <tr>
@@ -340,18 +343,15 @@
           </tr>
           <tr>
             <td><?php echo $entry_border_colour; ?><br /><span class="help"><?php echo $help_border_colour; ?></span></td>
-            <td>#<input type="text" class="fieldColorPicker" name="pp_express_border_colour" value="<?php echo $pp_express_border_colour; ?>" size="7" maxlength="6" />
-            <span class="colorPickerPreview" style="background-color:#<?php echo $pp_express_border_colour; ?>;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>#<input type="text" name="pp_express_border_colour" value="<?php echo $pp_express_border_colour; ?>" size="7" maxlength="6" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_header_colour; ?><br /><span class="help"><?php echo $help_header_colour; ?></span></td>
-            <td>#<input type="text" class="fieldColorPicker" name="pp_express_header_colour" value="<?php echo $pp_express_header_colour; ?>" size="7" maxlength="6" />
-            <span class="colorPickerPreview" style="background-color:#<?php echo $pp_express_header_colour; ?>;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>#<input type="text" name="pp_express_header_colour" value="<?php echo $pp_express_header_colour; ?>" size="7" maxlength="6" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_page_colour; ?><br /><span class="help"><?php echo $help_page_colour; ?></span></td>
-            <td>#<input type="text" class="fieldColorPicker" name="pp_express_page_colour" value="<?php echo $pp_express_page_colour; ?>" size="7" maxlength="6" />
-            <span class="colorPickerPreview" style="background-color:#<?php echo $pp_express_page_colour; ?>;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+            <td>#<input type="text" name="pp_express_page_colour" value="<?php echo $pp_express_page_colour; ?>" size="7" maxlength="6" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_logo; ?><span class="help"><?php echo $help_logo; ?></span></td>
@@ -380,80 +380,62 @@
     </div>
   </div>
 </div>
-<link type="text/css" href="view/stylesheet/colorpicker.css" rel="stylesheet" />
-<script type="text/javascript" src="view/javascript/jquery/colorpicker.js"></script>
+
+<script type="text/javascript"><!--
+(function(d, s, id) {
+	var js, ref = d.getElementsByTagName(s)[0];
+
+	if (!d.getElementById(id)) {
+		js = d.createElement(s);
+		js.id = id;
+		js.async = true;
+		js.src = "https://www.paypal.com/webapps/merchantboarding/js/lib/lightbox/partner.js";
+
+		ref.parentNode.insertBefore(js, ref);
+	}
+}(document, "script", "paypal-js"));
+//--></script>
+
+<script type="text/javascript"><!--
+function image_upload(field, thumb) {
+	$('#dialog').remove();
+
+	$('#content').prepend('<div id="dialog" style="padding:3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin:0; display:block; width:100%; height:100%;" frameborder="no" scrolling="auto"></iframe></div>');
+
+	$('#dialog').dialog({
+		title: '<?php echo $text_image_manager; ?>',
+		close: function(event, ui) {
+			if ($('#' + field).attr('value')) {
+				$.ajax({
+					url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),
+					dataType: 'text',
+					success: function(data) {
+						$('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
+					}
+				});
+			}
+		},
+		bgiframe: false,
+		width: 760,
+		height: 400,
+		resizable: false,
+		modal: false
+	});
+};
+//--></script>
+
 <script type="text/javascript"><!--
 $('#htabs a').tabs();
 //--></script>
 
 <script type="text/javascript"><!--
-function image_upload(field, thumb) {
-  $('#dialog').remove();
-
-  $('#content').prepend('<div id="dialog" style="padding:3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&token=<?php echo $token; ?>&field=' + encodeURIComponent(field) + '" style="padding:0; margin:0; display:block; width:100%; height:100%;" frameborder="no" scrolling="auto"></iframe></div>');
-
-  $('#dialog').dialog({
-    title: '<?php echo $text_image_manager; ?>',
-    close: function(event, ui) {
-      if ($('#' + field).attr('value')) {
-        $.ajax({
-          url: 'index.php?route=common/filemanager/image&token=<?php echo $token; ?>&image=' + encodeURIComponent($('#' + field).attr('value')),
-          dataType: 'text',
-          success: function(data) {
-            $('#' + thumb).replaceWith('<img src="' + data + '" alt="" id="' + thumb + '" />');
-          }
-        });
-      }
-    },
-    bgiframe: false,
-    width: 760,
-    height: 400,
-    resizable: false,
-    modal: false
-  });
-};
-//--></script>
-
-<script type="text/javascript"><!--
-(function (d, s, id) {
-  var js, ref = d.getElementsByTagName(s)[0];
-
-  if (!d.getElementById(id)) {
-    js = d.createElement(s);
-    js.id = id;
-    js.async = true;
-    js.src = "https://www.paypal.com/webapps/merchantboarding/js/lib/lightbox/partner.js";
-
-    ref.parentNode.insertBefore(js, ref);
-  }
-}(document, "script", "paypal-js"));
-//--></script>
-
-<script type="text/javascript"><!--
 $(document).ready(function() {
-  //Color Pickers
-  if ($.fn.ColorPicker) {
-    $("input.fieldColorPicker").each(function() {
-      $(this).ColorPicker({
-        onSubmit: function(hsb, hex, rgb, el) {
-          $(el).val(hex).next().css('backgroundColor', '#' + hex);
-          $(el).ColorPickerHide();
-        },
-        onChange: function(hsb, hex, rgb) {
-          $(this).val(hex).next().css('backgroundColor', '#' + hex);
-        },
-        onBeforeShow: function() {
-          $(this).ColorPickerSetColor(this.value);
-        }
-      }).bind('keyup', function(){
-        $(this).ColorPickerSetColor(this.value);
-      });
-
-      $(this).next('.colorPickerPreview').click(function(){
-        $(this).ColorPickerShow();
-      });
-    });
-  }
+	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:15px auto;"><i class="fa fa-info-circle"></i> &nbsp; <?php echo $button_info; ?></a>');
+	$('#<?php echo 'toggler'; ?>').click(function() {
+		$('.toggler').slideToggle(600);
+		return false;
+	});
 });
 //--></script>
+
 <?php echo $footer; ?>
