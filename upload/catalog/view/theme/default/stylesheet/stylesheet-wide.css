@@ -275,18 +275,17 @@ a.top-link:hover {
 	z-index: 1;
 }
 #header #cart .heading a {
-	color: #70A706;
+	color: #FFF;
+	font-size: 15px;
 	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 	white-space: nowrap;
 }
 #header #cart .heading a span {
 	display: block;
 	height: 27px;
-	color: #FFF;
-	font-size: 15px;
 	line-height: 27px;
 	background: url('../image/cart_icon.png') 100% 50% no-repeat;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 	padding-left: 0px;
 	padding-right: 35px;
 }
@@ -302,6 +301,9 @@ a.top-link:hover {
 	-webkit-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 	padding: 8px;
 }
 #header #cart.active .heading {
