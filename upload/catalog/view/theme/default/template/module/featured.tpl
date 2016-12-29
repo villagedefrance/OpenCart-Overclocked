@@ -58,10 +58,10 @@
           <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
             <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
           <?php } else { ?>
-            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="hidden" /><a><i class="fa fa-shopping-cart"></i></a></div>
+            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title=""><i class="fa fa-shopping-cart"></i></a></div>
           <?php } ?>
         <?php } ?>
-          <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
+          <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title=""><i class="fa fa-heart"></i></a></div>
         <?php if ($viewproduct) { ?>
           <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
         <?php } ?>
@@ -129,10 +129,10 @@
           <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
             <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
           <?php } else { ?>
-            <div class="cart"><input type="button" value="<?php echo $button_cart; ?>" onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" class="hidden" /><a><i class="fa fa-shopping-cart"></i></a></div>
+            <div class="cart"><a onclick="addToCart('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" title=""><i class="fa fa-shopping-cart"></i></a></div>
           <?php } ?>
         <?php } ?>
-          <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
+          <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');" title=""><i class="fa fa-heart"></i></a></div>
         <?php if ($viewproduct) { ?>
           <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
         <?php } ?>
