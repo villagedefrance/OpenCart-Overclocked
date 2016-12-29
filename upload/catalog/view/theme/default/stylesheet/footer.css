@@ -1,6 +1,6 @@
 /* -----------------------------------
 * Overclocked Edition - Footer
-* Copyright © 2016 - Villagedefrance
+* Copyright © 2017 - Villagedefrance
 * ------------------------------------
 */
 #footer-holder .footer-light, #footer-holder .footer-dark {
@@ -52,7 +52,7 @@
 	text-shadow: 0px 1px 0px #FFF;
 }
 .footer-light #footer > .column-one a:hover, .footer-light #footer > .column-two a:hover, .footer-light #footer > .column-three a:hover, .footer-light #footer > .column-four a:hover {
-	color: #38B0E3;
+	color: #36AAD8;
 	text-shadow: none;
 }
 .footer-light #footer > .big-column {
@@ -116,7 +116,7 @@
 	text-shadow: 0px -1px 0px #111;
 }
 .footer-dark #footer > .column-one a:hover, .footer-dark #footer > .column-two a:hover, .footer-dark #footer > .column-three a:hover, .footer-dark #footer > .column-four a:hover {
-	color: #38B0E3;
+	color: #36AAD8;
 	text-shadow: none;
 }
 .footer-dark #footer > .big-column {

@@ -40,7 +40,7 @@ p {
 	margin-bottom: 20px;
 }
 a, a:visited, a b {
-	color: #38B0E3;
+	color: #36AAD8;
 	text-decoration: underline;
 	outline: none;
 	cursor: pointer;
@@ -157,7 +157,7 @@ span.from {
 	cursor: pointer;
 }
 #currency a:hover {
-	background-color: #3782BF;
+	background-color: #36AAD8;
 }
 /* Language */
 #language {
@@ -171,7 +171,7 @@ span.from {
 	transition: all .2s ease-in-out;
 }
 #language img:hover {
-	transform: scale(1.1);
+	transform: scale(1.2);
 }
 #language img:first-child {
 	margin-left: 2px;
@@ -193,7 +193,7 @@ a.top-link, a.top-link:visited {
 	color: #555;
 }
 a.top-link:hover {
-	color: #3782BF;
+	color: #36AAD8;
 }
 /* Container */
 #container {
@@ -484,7 +484,7 @@ a.top-link:hover {
 	margin-bottom: 10px;
 }
 .breadcrumb a {
-	color: #38B0E3;
+	color: #36AAD8;
 	font-size: 11px;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -651,11 +651,11 @@ table.radio tr.highlight:hover td {
 }
 .pagination .links b {
 	display: inline-block;
-	color: #3782BF;
+	color: #36AAD8;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #FFF;
 	background-color: #EDEDED;
-	border: 1px solid #3782BF;
+	border: 1px solid #36AAD8;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -918,7 +918,7 @@ a.button-add:hover {
 }
 .box-product .name a {
 	display: block;
-	color: #38B0E3;
+	color: #36AAD8;
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 4px;
@@ -1000,7 +1000,7 @@ a.button-add:hover {
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 .box-product > div .box-product-bottom > div a:hover {
-	color: #3782BF;
+	color: #36AAD8;
 }
 /* Box category */
 .box-category > ul {
@@ -1024,7 +1024,7 @@ a.button-add:hover {
 	color: #333;
 }
 .box-category > ul > li a:hover {
-	color: #22C0F0;
+	color: #36AAD8;
 }
 .box-category > ul > li > ul {
 	list-style: url('../image/arrow-right-box.png');
@@ -1046,7 +1046,7 @@ a.button-add:hover {
 	display: block;
 }
 .box-category > ul > li > ul > li a:hover {
-	color: #22C0F0;
+	color: #36AAD8;
 }
 .box-category > ul > li > ul > li a.active {
 	font-weight: bold;
@@ -1074,7 +1074,7 @@ a.button-add:hover {
 	color: #333;
 }
 .box-information > ul > li > a:hover {
-	color: #22C0F0;
+	color: #36AAD8;
 }
 /* Box account */
 .box-account ul {
@@ -1095,7 +1095,7 @@ a.button-add:hover {
 	color: #333;
 }
 .box-account > ul > li > a:hover {
-	color: #22C0F0;
+	color: #36AAD8;
 }
 .box-account > ul > li > a img {
 	margin-right: 20px;
@@ -1177,7 +1177,7 @@ ul.box-filter > li ul {
 	margin-bottom: 8px;
 }
 .news-list .title a, .news-grid .title a {
-	color: #38B0E3;
+	color: #36AAD8;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -1259,7 +1259,7 @@ ul.box-filter > li ul {
 	color: #333;
 }
 .tier-page ul li a:hover {
-	color: #22C0F0;
+	color: #36AAD8;
 }
 .tier-page ul li.head, .tier-page div.head {
 	list-style: none;
@@ -1386,7 +1386,7 @@ ul.box-filter > li ul {
 	display: block;
 }
 .product-compare a:hover {
-	color: #3782BF;
+	color: #36AAD8;
 }
 /* Product list */
 .product-list > div {
@@ -1418,7 +1418,7 @@ ul.box-filter > li ul {
 	margin-bottom: 3px;
 }
 .product-list .name a {
-	color: #38B0E3;
+	color: #36AAD8;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -1505,7 +1505,7 @@ ul.box-filter > li ul {
 }
 .product-grid .name a {
 	display: block;
-	color: #38B0E3;
+	color: #36AAD8;
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 4px;
@@ -1615,7 +1615,7 @@ ul.box-filter > li ul {
 	color: #222;
 }
 .product-info .description a {
-	color: #38B0E3;
+	color: #36AAD8;
 	text-decoration: none;
 }
 .product-info .color-range {
@@ -1907,7 +1907,7 @@ ul.box-filter > li ul {
 	margin-bottom: 3px;
 }
 .review-list .name a {
-	color: #38B0E3;
+	color: #36AAD8;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -1968,7 +1968,7 @@ ul.box-filter > li ul {
 }
 .review-grid .name a {
 	display: block;
-	color: #38B0E3;
+	color: #36AAD8;
 	font-weight: bold;
 	text-decoration: none;
 	margin-bottom: 4px;
@@ -2386,7 +2386,7 @@ ul.box-filter > li ul {
 	text-align: right;
 }
 .cart-info tbody span.stock {
-	color: #F00;
+	color: #CC2626;
 	font-weight: bold;
 }
 .cart-module > div {
@@ -2595,7 +2595,7 @@ table.order-options tr td > div.division {
 	text-decoration: none;
 }
 .sitemap-info .left a:hover, .sitemap-info .right a:hover {
-	color: #38B0E3;
+	color: #36AAD8;
 }
 .sitemap-info .left > ul, .sitemap-info .right > ul {
 	list-style: url('../image/bullet-3.png');
