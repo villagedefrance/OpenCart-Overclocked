@@ -286,6 +286,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_footer_instagram; ?></td>
+            <td><?php if ($default_footer_instagram) { ?>
+              <input type="radio" name="default_footer_instagram" value="1" id="footer-instagram-on" class="radio" checked />
+              <label for="footer-instagram-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_footer_instagram" value="0" id="footer-instagram-off" class="radio" />
+              <label for="footer-instagram-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="default_footer_instagram" value="1" id="footer-instagram-on" class="radio" />
+              <label for="footer-instagram-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="default_footer_instagram" value="0" id="footer-instagram-off" class="radio" checked />
+              <label for="footer-instagram-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_footer_skype; ?></td>
             <td><?php if ($default_footer_skype) { ?>
               <input type="radio" name="default_footer_skype" value="1" id="footer-skype-on" class="radio" checked />

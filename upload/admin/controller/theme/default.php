@@ -61,6 +61,7 @@ class ControllerThemeDefault extends Controller {
 		$this->data['entry_footer_twitter'] = $this->language->get('entry_footer_twitter');
 		$this->data['entry_footer_google'] = $this->language->get('entry_footer_google');
 		$this->data['entry_footer_pinterest'] = $this->language->get('entry_footer_pinterest');
+		$this->data['entry_footer_instagram'] = $this->language->get('entry_footer_instagram');
 		$this->data['entry_footer_skype'] = $this->language->get('entry_footer_skype');
 		$this->data['entry_livesearch'] = $this->language->get('entry_livesearch');
 		$this->data['entry_livesearch_limit'] = $this->language->get('entry_livesearch_limit');
@@ -263,6 +264,12 @@ class ControllerThemeDefault extends Controller {
 			$this->data[$this->_name . '_footer_pinterest'] = $this->request->post[$this->_name . '_footer_pinterest'];
 		} else {
 			$this->data[$this->_name . '_footer_pinterest'] = $this->config->get($this->_name . '_footer_pinterest');
+		}
+
+		if (isset($this->request->post[$this->_name . '_footer_instagram'])) {
+			$this->data[$this->_name . '_footer_instagram'] = $this->request->post[$this->_name . '_footer_instagram'];
+		} else {
+			$this->data[$this->_name . '_footer_instagram'] = $this->config->get($this->_name . '_footer_instagram');
 		}
 
 		if (isset($this->request->post[$this->_name . '_footer_skype'])) {

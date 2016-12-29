@@ -1861,6 +1861,10 @@
             <td><input name="config_pinterest" type="text" size="60" value="<?php echo $config_pinterest; ?>" /></td>
           <tr>
           <tr>
+            <td><?php echo $entry_instagram; ?></td>
+            <td><input name="config_instagram" type="text" size="60" value="<?php echo $config_instagram; ?>" /></td>
+          <tr>
+          <tr>
             <td><?php echo $entry_skype; ?></td>
             <td><input name="config_skype" type="text" size="50" value="<?php echo $config_skype; ?>" /></td>
           <tr>

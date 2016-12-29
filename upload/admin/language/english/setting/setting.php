@@ -209,6 +209,7 @@ $_['entry_facebook']               = 'Url Facebook page:';
 $_['entry_twitter']                = 'Url Twitter page:';
 $_['entry_google']                 = 'Url Google+ page:';
 $_['entry_pinterest']              = 'Url Pinterest page:';
+$_['entry_instagram']              = 'Url Instagram page:';
 $_['entry_skype']                  = 'Skype Name:';
 $_['entry_addthis']                = 'AddThis Publisher ID:<span class="help">Login to your <a onclick="window.open(\'http://www.addthis.com/\');" title=""><u>AddThis</u></a> account and enter your Publisher ID into this field.</span>';
 $_['entry_meta_google']            = 'Google Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Google</b>.</span>';

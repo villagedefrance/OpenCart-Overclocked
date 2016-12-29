@@ -58,6 +58,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['twitter'] = html_entity_decode($this->config->get('config_twitter'), ENT_QUOTES, 'UTF-8');
 		$this->data['google'] = html_entity_decode($this->config->get('config_google'), ENT_QUOTES, 'UTF-8');
 		$this->data['pinterest'] = html_entity_decode($this->config->get('config_pinterest'), ENT_QUOTES, 'UTF-8');
+		$this->data['instagram'] = html_entity_decode($this->config->get('config_instagram'), ENT_QUOTES, 'UTF-8');
 		$this->data['skype'] = $this->config->get('config_skype');
 
 		$template = $this->config->get('config_template');
