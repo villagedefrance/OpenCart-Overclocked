@@ -111,6 +111,7 @@ $(document).ready(function() {
   <div id="header-bottom">
     <div id="search">
       <div class="search-inside">
+        <label for="search" class="hidden"><?php echo $text_search; ?></label>
         <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="" />
         <div class="button-search"></div>
       </div>
