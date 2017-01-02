@@ -13,6 +13,7 @@
   <?php if ($news_data) { ?>
     <div class="product-filter">
       <div class="display"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display('grid');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a></div>
+      <div class="product-compare"></div>
       <div class="limit"><?php echo $text_limit; ?>
         <select onchange="location=this.value;">
         <?php foreach ($limits as $limits) { ?>
