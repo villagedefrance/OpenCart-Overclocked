@@ -1773,9 +1773,6 @@ ul.box-filter > li ul {
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 	border-radius: 0;
-	-webkit-box-shadow: inset 0 2px 0 -1px #CCC;
-	-moz-box-shadow: inset 0 2px 0 -1px #CCC;
-	box-shadow: inset 0 2px 0 -1px #CCC;
 	color: #555;
 	text-align: center;
 	padding: 6px;
@@ -1807,7 +1804,7 @@ ul.box-filter > li ul {
 /* Product add/sub */
 .add-prod-count {
 	float: left;
-	height: 31px;
+	height: 32px;
 	width: 24px;
 	background: #E5E5E5 url('../image/plus.png') center center no-repeat;
 	-moz-border-radius: 0 3px 3px 0;
@@ -1821,7 +1818,7 @@ ul.box-filter > li ul {
 }
 .sub-prod-count {
 	float: left;
-	height: 31px;
+	height: 32px;
 	width: 24px;
 	background: #E5E5E5 url('../image/minus.png') center center no-repeat;
 	-moz-border-radius: 3px 0 0 3px;
@@ -2769,8 +2766,6 @@ table.order-options tr td > div.division {
 		margin-right: 210px;
 	}
 	/* Product Filter */
-	#column-left + #content .product-filter .product-compare,
-	#column-right + #content .product-filter .product-compare,
 	#column-left + #column-right + #content .product-filter .product-compare {
 		clear: left;
 		padding: 4px 0px 0px 2px;
@@ -3031,7 +3026,7 @@ table.order-options tr td > div.division {
 		padding: 4px 0px 0px 2px;
 	}
 	/* Search Button */
-	.search-bar > div #button-search {
+	#button-search {
 		clear: left;
 		margin-top: 5px;
 	}
@@ -3057,6 +3052,15 @@ table.order-options tr td > div.division {
 	.contact-info .info-left, .contact-info .info-right {
 		width: 100%;
 		margin: 0px;
+	}
+	/* checkout */
+	.checkout-content .left {
+		width: 100%;
+	}
+	.checkout-content .right {
+		clear: left;
+		float: left;
+		width: 100%;
 	}
 	/* Buttons */
 	.buttons {
@@ -3180,7 +3184,7 @@ table.order-options tr td > div.division {
 		padding: 4px 0px 0px 2px;
 	}
 	/* Search Button */
-	.search-bar > div #button-search {
+	#button-search {
 		clear: left;
 		margin-top: 5px;
 	}
@@ -3206,6 +3210,15 @@ table.order-options tr td > div.division {
 	.contact-info .info-left, .contact-info .info-right {
 		width: 100%;
 		margin: 0px;
+	}
+	/* checkout */
+	.checkout-content .left {
+		width: 100%;
+	}
+	.checkout-content .right {
+		clear: left;
+		float: left;
+		width: 100%;
 	}
 	/* Buttons */
 	.buttons {
