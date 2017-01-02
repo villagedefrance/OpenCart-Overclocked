@@ -929,11 +929,11 @@ a.button-add:hover {
 }
 #column-left .box-product > div, #column-right .box-product > div {
 	width: 100%;
-	min-width: 172px;
+	min-width: 160px;
 }
 #content .box-product > div {
-	width: 19.2%;
-	min-width: 152px;
+	width: 19%;
+	min-width: 145px;
 }
 .box-product .image {
 	display: block;
