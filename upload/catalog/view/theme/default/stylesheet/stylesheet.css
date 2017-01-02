@@ -62,8 +62,10 @@ a img {
 	outline: none;
 }
 a:hover, a img:hover {
+	user-select: none;
+	-moz-user-select: none;
 	-webkit-user-select: none;
-	-webkit-touch-callout: none;
+	-ms-user-select: none;
 }
 form {
 	padding: 0;
@@ -253,14 +255,13 @@ a.top-link:hover {
 #header #cart {
 	position: absolute;
 	top: 0px;
-	right: 10px;
+	right: 0px;
 	z-index: 550;
 	min-width: 300px;
 }
 #header #cart .heading {
 	float: right;
-	margin-left: 0px;
-	margin-top: 10px;
+	margin: 10px 10px 0px 0px;
 	padding: 9px 27px 9px 36px;
 	background-color: #239DD1;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#31B0D5), to(#239DD1));
@@ -302,7 +303,7 @@ a.top-link:hover {
 	display: none;
 	position: relative;
 	top: 0px;
-	right: 0px;
+	right: 10px;
 	background: #FFF;
 	border: 1px solid #DDD;
 	-moz-border-radius: 3px;
@@ -444,7 +445,7 @@ a.top-link:hover {
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
 	list-style-type: none;
-	z-index: 12;
+	z-index: 530;
 	width: 206px;
 	margin: 0px;
 	padding: 5px;
@@ -650,8 +651,14 @@ table.radio tr.highlight:hover td {
 	display: inline-block;
 	color: #AAA;
 	text-decoration: none;
-	text-shadow: 0px 1px 0px #FFF;
-	background-color: #EDEDED;
+	text-shadow: 0px 1px 0px #FCFCFC;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
+	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -moz-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
+	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
 	border: 1px solid #CCC;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -660,16 +667,22 @@ table.radio tr.highlight:hover td {
 	padding: 4px 10px;
 }
 .pagination .links a:hover {
-	color: #777;
-	border: 1px solid #999;
+	color: #888;
+	border: 1px solid #888;
 }
 .pagination .links b {
 	display: inline-block;
-	color: #36AAD8;
+	color: #4691D2;
 	text-decoration: none;
-	text-shadow: 0px 1px 0px #FFF;
-	background-color: #EDEDED;
-	border: 1px solid #36AAD8;
+	text-shadow: 0px 1px 0px #FCFCFC;
+	background-color: #F8F8F8;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#D6D6D6));
+	background-image: -webkit-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: -moz-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: -ms-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: -o-linear-gradient(top, #F8F8F8, #D6D6D6);
+	background-image: linear-gradient(to bottom, #F8F8F8, #D6D6D6);
+	border: 1px solid #4691D2;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -813,7 +826,7 @@ a.button-add:hover {
 .buttons {
 	background: #FCFCFC;
 	border: 1px solid #E7E7E7;
-	margin-bottom: 20px;
+	margin: 0px 0px 20px 0px;
 	padding: 6px;
 	overflow: auto;
 }
@@ -830,9 +843,9 @@ a.button-add:hover {
 .buttons .left h4, .buttons .right h4 {
 	color: #444;
 	font-size: 15px;
-	margin: 2px 0px 0px 3px;
 	font-weight: normal;
 	text-shadow: 0px 1px 0px #FFF;
+	margin: 2px 0px 0px 3px;
 }
 .buttons .center {
 	text-align: center;
@@ -1354,11 +1367,16 @@ ul.box-filter > li ul {
 }
 .manufacturer-list ul {
 	float: left;
-	width: 25%;
-	margin: 0;
-	padding: 0;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
 	list-style: none;
-	margin-bottom: 10px;
+}
+.manufacturer-list ul li {
+	display: inline;
+	width: 25%;
+	margin: 0px 0px 10px 0px;
+	padding: 0px 25px 0px 5px;
+	list-style: none;
 }
 /* Product filter */
 .product-filter {
@@ -1388,14 +1406,13 @@ ul.box-filter > li ul {
 /* Product Compare */
 .product-compare {
 	float: left;
-	padding-top: 4px;
+	padding: 4px 0px 0px 8px;
 }
 .product-compare a {
 	color: #777;
 	font-size: 14px;
 	line-height: 24px;
 	text-decoration: none;
-	padding: 0px 0px 0px 8px;
 	display: block;
 }
 .product-compare a:hover {
@@ -1786,7 +1803,7 @@ ul.box-filter > li ul {
 /* Product add/sub */
 .add-prod-count {
 	float: left;
-	height: 32px;
+	height: 31px;
 	width: 24px;
 	background: #E5E5E5 url('../image/plus.png') center center no-repeat;
 	-moz-border-radius: 0 3px 3px 0;
@@ -1800,7 +1817,7 @@ ul.box-filter > li ul {
 }
 .sub-prod-count {
 	float: left;
-	height: 32px;
+	height: 31px;
 	width: 24px;
 	background: #E5E5E5 url('../image/minus.png') center center no-repeat;
 	-moz-border-radius: 3px 0 0 3px;
@@ -2149,16 +2166,16 @@ ul.box-filter > li ul {
 }
 .login-content .left {
 	float: left;
-	width: 48%;
-	min-width: 270px;
+	width: 49%;
+	min-width: 195px;
 }
 .login-content .right {
 	float: right;
-	width: 48%;
-	min-width: 270px;
+	width: 49%;
+	min-width: 195px;
 }
 .login-content .left .content, .login-content .right .content {
-	min-height: 190px;
+	min-height: 210px;
 }
 /* Orders */
 .order-list {
@@ -2564,16 +2581,16 @@ table.order-options tr td > div.division {
 }
 .contact-info .info-left {
 	float: left;
-	width: 56%;
-	min-width: 270px;
+	width: 60%;
+	min-width: 240px;
 	margin-left: 5px;
-	margin-right: 15px;
+	margin-right: 25px;
 }
 .contact-info .info-right {
 	float: left;
-	width: 36%;
-	min-width: 270px;
-	margin-left: 25px;
+	width: 34%;
+	min-width: 170px;
+	margin-left: 20px;
 }
 /* Search */
 .search-bar {
@@ -2722,7 +2739,8 @@ table.order-options tr td > div.division {
 }
 /* Tablets - Large */
 @media only screen and (min-width: 641px) and (max-width: 961px) {
-	#container-top {
+	#container-top .container-top-inner {
+		width: auto;
 		padding: 0px 10px;
 	}
 	#container {
@@ -2753,6 +2771,10 @@ table.order-options tr td > div.division {
 	#add-review {
 		clear: left;
 	}
+	/* Contact */
+	.contact-info .info-left, .contact-info .info-right {
+		margin-left: 0px;
+	}
 	/* General */
 	.hide-tablet {
 		display: none;
@@ -2762,32 +2784,31 @@ table.order-options tr td > div.division {
 @media only screen and (min-width: 481px) and (max-width: 641px) {
 	html {-webkit-text-size-adjust: none;}
 	body {padding: 0px;}
-	#container-top {
+	#container-top .container-top-inner {
+		width: auto;
 		padding: 0px 5px;
 	}
 	#container {
 		width: auto;
-		min-width: 320px;
 		margin: 0px 5px;
-		padding: 0;
+		padding: 0px;
 	}
 	#content {
+		position: relative;
+		clear: left;
+		width: auto;
 		min-height: 200px;
 		margin-bottom: 15px;
-		padding: 0;
+		padding: 0px;
 	}
-	#column-left, #column-right, #content {
-		position: relative;
-		float: left;
-		clear: left;
-		width: 100%;
-		margin-left: 0;
+	#column-left, #column-right {
+		display: none;
 	}
 	#column-left + #column-right + #content, #column-left + #content {
-		margin-left: 0;
+		margin-left: 5px;
 	}
 	#column-right + #content {
-		margin-right: 0;
+		margin-right: 5px;
 	}
 	/* Header */
 	#header {
@@ -2867,14 +2888,9 @@ table.order-options tr td > div.division {
 	#add-review {
 		clear: left;
 	}
-	/* Login */
-	.login-content .right {
-		clear: left;
-		float: left;
-	}
 	/* Contact */
-	.contact-info .info-right {
-		clear: left;
+	.contact-info .info-left, .contact-info .info-right {
+		margin-left: 0px;
 	}
 	/* General */
 	.hide-tablet {
@@ -2886,34 +2902,33 @@ table.order-options tr td > div.division {
 }
 /* Phones - Large */
 @media only screen and (min-width: 320px) and (max-width: 481px) {
-		html {-webkit-text-size-adjust: none;}
+	html {-webkit-text-size-adjust: none;}
 	body {padding: 0px;}
-	#container-top {
+	#container-top .container-top-inner {
+		width: auto;
 		padding: 0px 5px;
 	}
 	#container {
 		width: auto;
-		min-width: 320px;
 		margin: 0px 5px;
-		padding: 0;
+		padding: 0px;
 	}
 	#content {
+		position: relative;
+		clear: left;
+		width: auto;
 		min-height: 200px;
 		margin-bottom: 15px;
-		padding: 0;
+		padding: 0px;
 	}
-	#column-left, #column-right, #content {
-		position: relative;
-		float: left;
-		clear: left;
-		width: 100%;
-		margin-left: 0;
+	#column-left, #column-right {
+		display: none;
 	}
 	#column-left + #column-right + #content, #column-left + #content {
-		margin-left: 0;
+		margin-left: 5px;
 	}
 	#column-right + #content {
-		margin-right: 0;
+		margin-right: 5px;
 	}
 	/* Header */
 	#header {
@@ -2986,6 +3001,16 @@ table.order-options tr td > div.division {
 		clear: left;
 		float: left;
 	}
+	/* Product Filter */
+	.product-compare {
+		clear: left;
+		padding: 4px 0px 0px 2px;
+	}
+	/* Search Button */
+	.search-bar > div #button-search {
+		clear: left;
+		margin-top: 5px;
+	}
 	/* Reviews */
 	#review {
 		float: left;
@@ -2998,9 +3023,16 @@ table.order-options tr td > div.division {
 		clear: left;
 		float: left;
 	}
+	.login-content .left, .login-content .right {
+		width: 100%;
+	}
 	/* Contact */
 	.contact-info .info-right {
 		clear: left;
+	}
+	.contact-info .info-left, .contact-info .info-right {
+		width: 100%;
+		margin: 0px;
 	}
 	/* General */
 	.hide-tablet {
@@ -3012,34 +3044,35 @@ table.order-options tr td > div.division {
 }
 /* Phones - Small */
 @media only screen and (max-width: 320px) {
-		html {-webkit-text-size-adjust: none;}
+	html {-webkit-text-size-adjust: none;}
 	body {padding: 0px;}
-	#container-top {
+	#container-top .container-top-inner {
+		width: auto;
 		padding: 0px 5px;
 	}
 	#container {
 		width: auto;
-		min-width: 320px;
-		margin: 0px 5px;
-		padding: 0;
+		margin: 0px 3px;
+		padding: 0px;
 	}
 	#content {
-		min-height: 200px;
-		margin-bottom: 15px;
-		padding: 0;
-	}
-	#column-left, #column-right, #content {
 		position: relative;
 		float: left;
 		clear: left;
-		width: 100%;
-		margin-left: 0;
+		min-height: 200px;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-bottom: 15px;
+		padding: 0px;
+	}
+	#column-left, #column-right {
+		display: none;
 	}
 	#column-left + #column-right + #content, #column-left + #content {
-		margin-left: 0;
+		margin-left: 5px;
 	}
 	#column-right + #content {
-		margin-right: 0;
+		margin-right: 5px;
 	}
 	/* Header */
 	#header {
@@ -3112,6 +3145,16 @@ table.order-options tr td > div.division {
 		clear: left;
 		float: left;
 	}
+	/* Product Filter */
+	.product-compare {
+		clear: left;
+		padding: 4px 0px 0px 2px;
+	}
+	/* Search Button */
+	.search-bar > div #button-search {
+		clear: left;
+		margin-top: 5px;
+	}
 	/* Reviews */
 	#review {
 		float: left;
@@ -3124,9 +3167,16 @@ table.order-options tr td > div.division {
 		clear: left;
 		float: left;
 	}
+	.login-content .left, .login-content .right {
+		width: 100%;
+	}
 	/* Contact */
 	.contact-info .info-right {
 		clear: left;
+	}
+	.contact-info .info-left, .contact-info .info-right {
+		width: 100%;
+		margin: 0px;
 	}
 	/* General */
 	.hide-tablet {

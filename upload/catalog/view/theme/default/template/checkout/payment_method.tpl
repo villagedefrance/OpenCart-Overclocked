@@ -48,7 +48,7 @@
   <br />
 <?php } ?>
 <b><?php echo $text_comments; ?></b>
-<textarea name="comment" rows="8" style="width:98%;"><?php echo $comment; ?></textarea>
+<textarea name="comment" rows="5" style="width:98%;"><?php echo $comment; ?></textarea>
 <br />
 <br />
 <?php if ($text_agree) { ?>

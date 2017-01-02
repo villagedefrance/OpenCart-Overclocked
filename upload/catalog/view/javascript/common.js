@@ -23,7 +23,7 @@ $(document).ready(function() {
 	// Ajax Cart
 	$('#cart > .heading').live('click', function() {
 		$('#cart').addClass('active');
-		$('#cart').load('index.php?route=module/cart #cart > *');
+		$('#cart').load('index.php?route=module/cart');
 		$('#cart').live('mouseleave', function() {
 			$(this).removeClass('active');
 		});
