@@ -2928,7 +2928,7 @@ table.order-options tr td > div.division {
 	}
 	#container {
 		width: auto;
-		margin: 0px 5px;
+		margin: 0px;
 		padding: 0px;
 	}
 	#content {
@@ -3084,7 +3084,7 @@ table.order-options tr td > div.division {
 	}
 	#container {
 		width: auto;
-		margin: 0px 3px;
+		margin: 0px;
 		padding: 0px;
 	}
 	#content {
