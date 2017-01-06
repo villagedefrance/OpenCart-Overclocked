@@ -2901,7 +2901,7 @@ table.order-options tr td > div.division {
 	#header #search input {
 		width: 196px;
 	}
-	/* Content */
+	/* Content left/right*/
 	#content .content .left, #content .content .right {
 		width: 100%;
 	}
@@ -3033,7 +3033,7 @@ table.order-options tr td > div.division {
 	#header #search input {
 		width: 196px;
 	}
-	/* Content */
+	/* Content left/right*/
 	#content .content .left, #content .content .right {
 		width: 100%;
 	}
@@ -3117,11 +3117,9 @@ table.order-options tr td > div.division {
 	}
 	#content {
 		position: relative;
-		float: left;
 		clear: left;
+		width: auto;
 		min-height: 200px;
-		margin-left: 0px;
-		margin-right: 0px;
 		margin-bottom: 15px;
 		padding: 0px;
 	}
@@ -3191,7 +3189,7 @@ table.order-options tr td > div.division {
 	#header #search input {
 		width: 196px;
 	}
-	/* Content */
+	/* Content left/right*/
 	#content .content .left, #content .content .right {
 		width: 100%;
 	}
