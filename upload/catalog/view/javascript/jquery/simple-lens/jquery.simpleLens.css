@@ -9,30 +9,30 @@
 
 /* Simple Lens & Gallery */
 .simpleLens-container {
-    display: table;
-    position: relative;
+	display: table;
+	position: relative;
 }
 .simpleLens-big-image-container {
 	float: left;
 	border: 1px solid #E7E7E7;
 	text-align: center;
 	margin-bottom: 20px;
-	padding: 10px;
-	height: 230px;
-    width: 230px;
+	padding: 9px;
+	height: 250px;
+	width: 250px;
 }
 .simpleLens-big-image {
     max-width: 100%;
 }
 .simpleLens-lens-image {
 	float: none;
-    position: relative;
+	position: relative;
 	display: inline-block;
 	height: auto;
 	width: 230px;
 	vertical-align: middle;
-    text-align: center;
-    margin: 0;
+	text-align: center;
+	margin: 0;
 }
 .simpleLens-mouse-cursor {
 	position: absolute;
@@ -47,26 +47,26 @@
 }
 .simpleLens-lens-element {
 	position: absolute;
-    top: 0;
-    left: 103%;
+	top: 0;
+	left: 103%;
 	width: 450px;
 	height: 350px;
-    background-color: #FFF;
+	background-color: #FFF;
 	border: 1px solid #E7E7E7;
 	text-align: center;
 	overflow: hidden;
-    z-index: 10;
+	z-index: 10;
 }
 .simpleLens-lens-element img {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: auto;
-    max-width: none;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: auto;
+	max-width: none;
 }
 /* Simple Lens - Thumbnails */
 .product-info .simpleLens-thumbnails-container {
-    width: 260px;
+	width: 260px;
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
