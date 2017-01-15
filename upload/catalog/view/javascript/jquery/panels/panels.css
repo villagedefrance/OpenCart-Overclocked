@@ -23,6 +23,7 @@
 	margin: 0px;
 	padding: 4px 5px 4px 10px;
 	border-bottom: 1px solid #DBDEE1;
+	outline: none;
 }
 .panel h2 {
 	background: #EEE url('arrow-up.gif') center right no-repeat;

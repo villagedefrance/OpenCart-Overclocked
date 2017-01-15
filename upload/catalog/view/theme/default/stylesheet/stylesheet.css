@@ -262,7 +262,7 @@ a.top-link:hover {
 #header #cart .heading {
 	float: right;
 	margin: 10px 10px 0px 0px;
-	padding: 9px 27px 9px 35px;
+	padding: 9px 27px 9px 37px;
 	background-color: #239DD1;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#31B0D5), to(#239DD1));
 	background-image: -webkit-linear-gradient(top, #31B0D5, #239DD1);
@@ -285,7 +285,7 @@ a.top-link:hover {
 }
 #header #cart .heading a {
 	color: #FFF;
-	font-size: 15px;
+	font-size: 14px;
 	text-decoration: none;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 	white-space: nowrap;
@@ -2285,19 +2285,19 @@ ul.box-filter > li ul {
 	height: 97px;
 	background: #870500;
 	border: 1px solid #870500;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	border-radius: 7px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
 	text-align: left;
 }
 #captcha-wrap .captcha-box {
 	background: #FAFAFA;
 	border: 1px solid #FAFAFA;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	text-align: center;
 	padding: 0px;
 	margin: 0px;
@@ -2317,10 +2317,10 @@ ul.box-filter > li ul {
 	float: left;
 	background: #FFDC73;
 	border: 1px solid #FFDC73;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	text-align: center;
 	margin: 4px;
 }
