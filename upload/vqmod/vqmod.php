@@ -570,7 +570,7 @@ class VQModLog {
 	 * @return null
 	 * @description Adds error to log object ready to be output
 	 */
-	public function write($data, VQModObject $obj = NULL) {
+	public function write($data, VQModObject $obj = null) {
 		if ($obj) {
 			$hash = sha1($obj->id);
 		} else {
@@ -579,8 +579,8 @@ class VQModLog {
 
 		if (empty($this->_logs[$hash])) {
 			$this->_logs[$hash] = array(
-				'obj'	=> $obj,
-				'log'	=> array()
+				'obj' => $obj,
+				'log' => array()
 			);
 		}
 
@@ -684,7 +684,7 @@ class VQModObject {
 				case 'bottom':
 					$offset = $lineMax - $mod['search']->offset;
 
-					if ($offset < 0){
+					if ($offset < 0) {
 						$tmp[-1] = $mod['add']->getContent();
 					} else {
 						$tmp[$offset] .= $mod['add']->getContent();

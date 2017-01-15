@@ -1521,6 +1521,20 @@
             <?php } ?></td>
           </tr>
           <tr>
+            <td><?php echo $entry_news_style; ?></td>
+            <td><?php if ($config_news_style) { ?>
+              <input type="radio" name="config_news_style" value="1" id="news-style-on" class="radio" checked />
+              <label for="news-style-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_news_style" value="0" id="news-style-off" class="radio" />
+              <label for="news-style-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_news_style" value="1" id="news-style-on" class="radio" />
+              <label for="news-style-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_news_style" value="0" id="news-style-off" class="radio" checked />
+              <label for="news-style-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_news_chars; ?></td>
             <td><input type="text" name="config_news_chars" value="<?php echo $config_news_chars; ?>" size="5" /> <?php echo $text_characters; ?></td>
           </tr>
