@@ -17,7 +17,7 @@
           <h2><?php echo $news['title']; ?></h2>
           <div class="panel-content">
             <?php echo $news['description']; ?><br /><br />
-            <i class="fa fa-calendar-o"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?><br /><br />
+            <i class="fa fa-calendar-check-o"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?><br /><br />
             <a href="<?php echo $news['href']; ?>" class="button"><i class="fa fa-mail-forward"></i> &nbsp; <?php echo $button_read; ?></a>
           </div>
         </div>
