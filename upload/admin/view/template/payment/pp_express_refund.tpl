@@ -59,13 +59,6 @@ function refundAmount() {
   }
 }
 
-function IsNumeric(val) {
-  return Number(parseFloat(val)) == val;
-}
-function IsNumeric2(input) {
-    return (input - 0) == input && (''+input).trim().length > 0;
-}
-
 $('#form').on('submit', function(e) {
   var full = ($('#input-refund-full').prop('checked') == true ? 1 : 0);
   var amt = $('#input-refund-amount').val();

@@ -2,10 +2,10 @@
 class ControllerPaymentPPProIframe extends Controller {
 
 	protected function index() {
-		$this->language->load('payment/pp_pro_iframe');
-
 		$this->load->model('checkout/order');
 		$this->load->model('payment/pp_pro_iframe');
+
+		$this->language->load('payment/pp_pro_iframe');
 
 		if ($this->config->get('pp_pro_iframe_checkout_method') == 'redirect') {
 			$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
@@ -334,12 +334,12 @@ class ControllerPaymentPPProIframe extends Controller {
 				'curl_error' => curl_error($ch)
 			);
 
-			$this->model_payment_pp_pro_iframe->log($log_data, 'CURL failed');
+			$this->model_payment_pp_pro_iframe->log($log_data, 'cURL failed');
 
 			return false;
 		}
 
-		curl_close($curl);
+		curl_close($ch);
 
 		$response_data = array();
 

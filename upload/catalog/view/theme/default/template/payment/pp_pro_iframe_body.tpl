@@ -19,7 +19,7 @@
     </form>
     <script type="text/javascript"><!--
       document.forms["ppform"].submit();
-    //--></script> 
+    //--></script>
   <?php } ?>
 </body>
 </html>

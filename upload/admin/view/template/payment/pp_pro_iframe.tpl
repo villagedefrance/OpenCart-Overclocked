@@ -5,8 +5,15 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
   <?php } ?>
   </div>
-  <?php if ($error_warning) { ?>
-    <div class="warning"><?php echo $error_warning; ?></div>
+<?php if (!empty($errors)) { ?>
+  <div class="warning">
+  <?php foreach ($errors as $error) { ?>
+    <?php echo $error; ?><br />
+  <?php } ?>
+  </div>
+<?php } ?>
+<?php if (!empty($success)) { ?>
+  <div class="success"><?php echo $success; ?></div>
   <?php } ?>
   <div class="box">
     <div class="heading">
@@ -14,47 +21,83 @@
       <div class="buttons">
         <a onclick="$('#form').submit();" class="button-save"><?php echo $button_save; ?></a>
         <a onclick="apply();" class="button-save"><?php echo $button_apply; ?></a>
-        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_cancel; ?></a>
+        <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
     <div class="content">
       <div id="htabs" class="htabs">
-        <a href="#tab-settings"><?php echo $tab_settings; ?></a>
+        <a href="#tab-api"><?php echo $tab_api; ?></a>
+        <a href="#tab-general"><?php echo $tab_general; ?></a>
         <a href="#tab-order-status"><?php echo $tab_order_status; ?></a>
       <?php if ($pp_pro_iframe_debug) { ?>
         <a href="#tab-debug-log"><?php echo $tab_debug_log; ?></a>
       <?php } ?>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-        <div id="tab-settings">
+        <div id="tab-api">
         <table class="form">
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-user"><?php echo $entry_user; ?></label></td>
-            <td><?php if ($error_user) { ?>
-              <input type="text" name="pp_pro_iframe_user" id="input-user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_user; ?></span>
+            <td><span class="required">*</span>&nbsp;<label for="input-username"><?php echo $entry_username; ?><br /><span class="help"><?php echo $help_username; ?></span></label></td>
+            <td><?php if (isset($errors['username'])) { ?>
+              <input type="text" name="pp_pro_iframe_username" id="input-username" value="<?php echo $pp_pro_iframe_username; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['username']; ?></span>
             <?php } else { ?>
-              <input type="text" name="pp_pro_iframe_user" id="input-user" value="<?php echo $pp_pro_iframe_user; ?>" size="40" />
+              <input type="text" name="pp_pro_iframe_username" id="input-username" value="<?php echo $pp_pro_iframe_username; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-password"><?php echo $entry_password; ?></label></td>
-            <td><?php if ($error_password) { ?>
+            <td><span class="required">*</span>&nbsp;<label for="input-password"><?php echo $entry_password; ?><br /><span class="help"><?php echo $help_password; ?></span></label></td>
+            <td><?php if (isset($errors['password'])) { ?>
               <input type="text" name="pp_pro_iframe_password" id="input-password" value="<?php echo $pp_pro_iframe_password; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_password; ?></span>
+              <span class="error"><?php echo $errors['password']; ?></span>
             <?php } else { ?>
               <input type="text" name="pp_pro_iframe_password" id="input-password" value="<?php echo $pp_pro_iframe_password; ?>" size="40" />
             <?php } ?></td>
           </tr>
           <tr>
-            <td><span class="required">*</span>&nbsp;<label for="input-signature"><?php echo $entry_signature; ?></label></td>
-            <td><?php if ($error_signature) { ?>
-              <input type="text" name="pp_pro_iframe_sig" id="input-signature" value="<?php echo $pp_pro_iframe_sig; ?>" size="40" class="input-error" />
-              <span class="error"><?php echo $error_signature; ?></span>
+            <td><span class="required">*</span>&nbsp;<label for="input-signature"><?php echo $entry_signature; ?><br /><span class="help"><?php echo $help_signature; ?></span></label></td>
+            <td><?php if (isset($errors['signature'])) { ?>
+              <input type="text" name="pp_pro_iframe_signature" id="input-signature" value="<?php echo $pp_pro_iframe_signature; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['signature']; ?></span>
             <?php } else { ?>
-              <input type="text" name="pp_pro_iframe_sig" id="input-signature" value="<?php echo $pp_pro_iframe_sig; ?>" size="40" />
+              <input type="text" name="pp_pro_iframe_signature" id="input-signature" value="<?php echo $pp_pro_iframe_signature; ?>" size="40" />
             <?php } ?></td>
           </tr>
+          <tr>
+            <td><label for="input-sandbox-username"><?php echo $entry_sandbox_username; ?></label></td>
+            <td><?php if (isset($errors['sandbox_username'])) { ?>
+              <input type="text" name="pp_pro_iframe_sandbox_username" id="input-sandbox-username" value="<?php echo $pp_pro_iframe_sandbox_username; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['sandbox_username']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_iframe_sandbox_username" id="input-sandbox-username" value="<?php echo $pp_pro_iframe_sandbox_username; ?>" size="40" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><label for="input-sandbox-password"><?php echo $entry_sandbox_password; ?></label></td>
+            <td><?php if (isset($errors['sandbox_password'])) { ?>
+              <input type="text" name="pp_pro_iframe_sandbox_password" id="input-sandbox-password" value="<?php echo $pp_pro_iframe_sandbox_password; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['sandbox_password']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_iframe_sandbox_password" id="input-sandbox-password" value="<?php echo $pp_pro_iframe_sandbox_password; ?>" size="40" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><label for="input-sandbox-signature"><?php echo $entry_sandbox_signature; ?></label></td>
+            <td><?php if (isset($errors['sandbox_signature'])) { ?>
+              <input type="text" name="pp_pro_iframe_sandbox_signature" id="input-sandbox-signature" value="<?php echo $pp_pro_iframe_sandbox_signature; ?>" size="40" class="input-error" />
+              <span class="error"><?php echo $errors['sandbox_signature']; ?></span>
+            <?php } else { ?>
+              <input type="text" name="pp_pro_iframe_sandbox_signature" id="input-sandbox-signature" value="<?php echo $pp_pro_iframe_sandbox_signature; ?>" size="40" />
+            <?php } ?></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_ipn_url; ?><br /><span class="help"><?php echo $help_ipn_url; ?></span></td>
+            <td><?php echo $ipn_url; ?></td>
+          </tr>
+        </table>
+      </div>
+      <div id="tab-general">
+        <table class="form">
           <tr>
             <td><label for="input-live-demo"><?php echo $entry_test; ?><br /><span class="help"><?php echo $help_test; ?></span></label></td>
             <td><select name="pp_pro_iframe_test" id="input-live-demo">
@@ -96,7 +139,7 @@
             <td><select name="pp_pro_iframe_checkout_method">
               <?php if ($pp_pro_iframe_checkout_method == 'iframe') { ?>
                 <option value="iframe" selected="selected"><?php echo $text_iframe; ?></option>
-                <option value="redirect"><?php echo $text_redirect; ?></option> 
+                <option value="redirect"><?php echo $text_redirect; ?></option>
               <?php } else { ?>
                 <option value="iframe"><?php echo $text_iframe; ?></option>
                 <option value="redirect" selected="selected"><?php echo $text_redirect; ?></option>
@@ -139,10 +182,6 @@
           <tr>
             <td><label for="input-sort-order"><?php echo $entry_sort_order; ?></label></td>
             <td><input type="text" name="pp_pro_iframe_sort_order" id="input-sort-order" value="<?php echo $pp_pro_iframe_sort_order; ?>" size="1" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_ipn_url; ?></td>
-            <td><?php echo $ipn_url; ?></td>
           </tr>
         </table>
       </div>

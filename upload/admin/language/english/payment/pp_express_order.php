@@ -13,7 +13,7 @@ $_['text_success']               = 'Transaction was successfully sent';
 //$_['text_partial_refund']        = 'Partial refund';
 
 // Column
-$_['column_transaction']         = 'Transaction ID';
+$_['column_transaction_id']      = 'Transaction ID';
 $_['column_amount']              = 'Amount';
 $_['column_type']                = 'Payment Type';
 $_['column_status']              = 'Status';
@@ -27,6 +27,9 @@ $_['entry_capture_complete']     = 'Complete capture';
 //$_['entry_full_refund']          = 'Full refund';
 //$_['entry_amount']               = 'Amount';
 //$_['entry_note']                 = 'Note';
+
+// Help
+//$_['help_capture_complete']      = 'If this is a the last capture.';
 
 // Help
 //$_['help_capture_complete']      = 'If this is a the last capture.';

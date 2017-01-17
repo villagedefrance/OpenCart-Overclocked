@@ -88,3 +88,4 @@ $_['text_sub_period']         = 'Subscription period';
 
 // Error
 $_['error_connection']        = 'Could not connect to PayPal!';
+?>

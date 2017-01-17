@@ -1,7 +1,7 @@
 <table class="list" id="table-paypal-transactions">
   <thead>
     <tr>
-      <td class="left"><strong><?php echo $column_transaction; ?></strong></td>
+      <td class="left"><strong><?php echo $column_transaction_id; ?></strong></td>
       <td class="left"><strong><?php echo $column_amount; ?></strong></td>
       <td class="left"><strong><?php echo $column_type; ?></strong></td>
       <td class="left"><strong><?php echo $column_status; ?></strong></td>
