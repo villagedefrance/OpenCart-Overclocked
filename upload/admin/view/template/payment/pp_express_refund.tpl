@@ -50,59 +50,61 @@
     </div>
   </div>
 </div>
+
 <script type="text/javascript"><!--
 function refundAmount() {
-  if ($('#input-refund-full').prop('checked') == true) {
-    $('#partial-amount-row').hide();
-  } else {
-    $('#partial-amount-row').show();
-  }
+	if ($('#input-refund-full').prop('checked') == true) {
+		$('#partial-amount-row').hide();
+	} else {
+		$('#partial-amount-row').show();
+	}
 }
 
 $('#form').on('submit', function(e) {
-  var full = ($('#input-refund-full').prop('checked') == true ? 1 : 0);
-  var amt = $('#input-refund-amount').val();
+	var full = ($('#input-refund-full').prop('checked') == true ? 1 : 0);
+	var amt = $('#input-refund-amount').val();
+	e.preventDefault();
 
-  e.preventDefault();
-  if ($('#input-transaction-id').val() == '') {
-    alert('<?php echo addslashes($error_transaction_id); ?>');
-  } else {
-    $.ajax({
-      url: $(this).attr('action'),
-      type: $(this).attr('method'),
-      dataType: 'json',
-      data: {
-        'transaction_id': $('#input-transaction-id').val(),
-        'refund_full': full,
-        'amount': amt,
-        'amount_original': '<?php echo $amount_original; ?>',
-        'currency_code': '<?php echo addslashes($currency_code); ?>',
-        'refund_message': $('#input-refund-message').val(),
-      },
-      beforeSend: function() {
-        $('.success, .warning, .attention').remove();
-        $('#button-refund').hide();
-        $('#button-refund').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-refund" style="float:right;" />');
-      },
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-    .done(function(json) {
-      if ('error' in json) {
-        $('.box').before('<div class="warning" style="display:none;">' + json['error'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
-        $('.warning').fadeIn('slow');
-      }
+	if ($('#input-transaction-id').val() == '') {
+		alert('<?php echo addslashes($error_transaction_id); ?>');
+	} else {
+		$.ajax({
+			url: $(this).attr('action'),
+			type: $(this).attr('method'),
+			dataType: 'json',
+			data: {
+				'transaction_id': $('#input-transaction-id').val(),
+				'refund_full': full,
+				'amount': amt,
+				'amount_original': '<?php echo $amount_original; ?>',
+				'currency_code': '<?php echo addslashes($currency_code); ?>',
+				'refund_message': $('#input-refund-message').val(),
+			},
+			beforeSend: function() {
+				$('.success, .warning, .attention').remove();
+				$('#button-refund').hide();
+				$('#button-refund').after('<img src="view/image/loading.gif" alt="Loading..." class="loading" id="img-loading-refund" style="float:right;" />');
+			},
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+		.done(function(json) {
+			if ('error' in json) {
+				$('.box').before('<div class="warning" style="display:none;">' + json['error'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
+				$('.warning').fadeIn('slow');
+			}
 
-      if ('success' in json) {
-        $('.box').before('<div class="warning" style="display:none;">' + json['success'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
-        $('.success').fadeIn('slow').sleep(250);
-        window.location = '<?php echo addslashes($cancel); ?>';
-      }
-    })
-    .always(function() {
-      $('.loading').remove();
-      $('#button-refund').show();
-    });
-  }
+			if ('success' in json) {
+				$('.box').before('<div class="warning" style="display:none;">' + json['success'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
+				$('.success').fadeIn('slow').sleep(250);
+
+				window.location = '<?php echo addslashes($cancel); ?>';
+			}
+		})
+		.always(function() {
+			$('.loading').remove();
+			$('#button-refund').show();
+		});
+	}
 });
 //--></script>
 <?php echo $footer; ?>

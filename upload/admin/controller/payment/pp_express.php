@@ -711,7 +711,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 		$this->load->model('payment/pp_express');
 
-		$response = $this->model_payment_pp_express->getTransaction($transaction_id);
+		$response = $this->model_payment_pp_express->requestTransactionDetails($transaction_id);
 
 		if (is_array($response) && isset($response['ACK']) && ($response['ACK'] == 'Success')) {
 			$this->data['amount_original'] = $response['AMT'];
@@ -737,7 +737,7 @@ class ControllerPaymentPPExpress extends Controller {
 			$refund_available = $this->data['amount_original'] + $refunded;
 
 			$this->data['refund_available'] = number_format($refund_available, 2);
-			$this->data['attention'] = $this->language->get('text_current_refunds').': '.$this->data['refund_available'];
+			$this->data['attention'] = $this->language->get('text_current_refunds') . ': ' . $this->data['refund_available'];
 		} else {
 			$this->data['refund_available'] = '';
 			$this->data['attention'] = '';
@@ -1283,7 +1283,7 @@ class ControllerPaymentPPExpress extends Controller {
 			'separator' => ' :: '
 		);
 
-		$response = $this->model_payment_pp_express->getTransaction($transaction_id);
+		$response = $this->model_payment_pp_express->requestTransactionDetails($transaction_id);
 
 		if ($response === false) {
 			$this->errors['warning'] = $this->language->get('error_connection');

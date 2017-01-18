@@ -208,7 +208,7 @@ class ModelPaymentPPProIframe extends Model {
 
 	public function getTransactions($paypal_iframe_order_id) {
 		$transactions = array();
-// children unused
+		// children unused
 		$query = $this->db->query("SELECT ot.*, (SELECT COUNT(ot2.paypal_iframe_order_id) FROM " . DB_PREFIX . "paypal_iframe_order_transaction ot2 WHERE ot2.parent_transaction_id = ot.transaction_id) AS children FROM " . DB_PREFIX . "paypal_iframe_order_transaction ot WHERE paypal_iframe_order_id = " . (int)$paypal_iframe_order_id . " ORDER BY paypal_iframe_order_transaction_id ASC");
 
 		if ($query->num_rows) {
@@ -284,4 +284,3 @@ class ModelPaymentPPProIframe extends Model {
 		return $response;
 	}
 }
-
