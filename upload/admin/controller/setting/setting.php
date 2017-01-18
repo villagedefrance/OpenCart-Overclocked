@@ -220,6 +220,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_cookie_privacy'] = $this->language->get('entry_cookie_privacy');
 		$this->data['entry_cookie_age'] = $this->language->get('entry_cookie_age');
 		$this->data['entry_news_addthis'] = $this->language->get('entry_news_addthis');
+		$this->data['entry_news_style'] = $this->language->get('entry_news_style');
 		$this->data['entry_news_chars'] = $this->language->get('entry_news_chars');
 		$this->data['entry_logo'] = $this->language->get('entry_logo');
 		$this->data['entry_icon'] = $this->language->get('entry_icon');
@@ -258,6 +259,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_twitter'] = $this->language->get('entry_twitter');
 		$this->data['entry_google'] = $this->language->get('entry_google');
 		$this->data['entry_pinterest'] = $this->language->get('entry_pinterest');
+		$this->data['entry_instagram'] = $this->language->get('entry_instagram');
 		$this->data['entry_skype'] = $this->language->get('entry_skype');
 		$this->data['entry_addthis'] = $this->language->get('entry_addthis');
 		$this->data['entry_meta_google'] = $this->language->get('entry_meta_google');
@@ -1356,6 +1358,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_news_addthis'] = $this->config->get('config_news_addthis');
 		}
 
+		if (isset($this->request->post['config_news_style'])) {
+			$this->data['config_news_style'] = $this->request->post['config_news_style'];
+		} else {
+			$this->data['config_news_style'] = $this->config->get('config_news_style');
+		}
+
 		if (isset($this->request->post['config_news_chars'])) {
 			$this->data['config_news_chars'] = $this->request->post['config_news_chars'];
 		} else {
@@ -1701,6 +1709,12 @@ class ControllerSettingSetting extends Controller {
 			$this->data['config_pinterest'] = $this->request->post['config_pinterest'];
 		} else {
 			$this->data['config_pinterest'] = $this->config->get('config_pinterest');
+		}
+
+		if (isset($this->request->post['config_instagram'])) {
+			$this->data['config_instagram'] = $this->request->post['config_instagram'];
+		} else {
+			$this->data['config_instagram'] = $this->config->get('config_instagram');
 		}
 
 		if (isset($this->request->post['config_skype'])) {

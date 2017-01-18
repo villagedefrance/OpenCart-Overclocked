@@ -54,13 +54,13 @@
 <?php } ?>
 <div id="express-comment" <?php $this->config->get('config_express_comment') ? 'style="display:none;"' : ''; ?>>
   <b><?php echo $text_comments; ?></b><br />
-  <textarea name="comment" rows="4" style="width:400px;"><?php echo $comment; ?></textarea>
+  <textarea name="comment" rows="5" style="width:310px;"><?php echo $comment; ?></textarea>
   <br />
   <br />
 </div>
 <?php if ($text_agree) { ?>
   <div class="buttons">
-    <div class="left"><?php echo $text_agree; ?>
+    <div class="right"><?php echo $text_agree; ?>
       <?php if ($agree || (!$this->config->get('config_express_comment') && (count($payment_methods) == 1))) { ?>
         <input type="checkbox" name="agree" value="1" checked="checked" />
       <?php } else { ?>
@@ -71,7 +71,7 @@
   </div>
 <?php } else { ?>
   <div class="buttons">
-    <div class="left">
+    <div class="right">
       <input type="button" value="<?php echo $button_express_go; ?>" id="button-payment-method" class="button" />
     </div>
   </div>

@@ -11,33 +11,46 @@
 <div id="content"><?php echo $content_top; ?>
   <h1><?php echo $heading_title; ?></h1>
   <?php if ($news_data) { ?>
-    <div class="product-filter">
-      <div class="display"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display('grid');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a></div>
-      <div class="limit"><?php echo $text_limit; ?>
-        <select onchange="location=this.value;">
-        <?php foreach ($limits as $limits) { ?>
-          <?php if ($limits['value'] == $limit) { ?>
-            <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
-          <?php } else { ?>
-            <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
+    <?php if ($news_collapsible) { ?>
+      <?php foreach ($news_data as $news) { ?>
+        <div class="panel-collapsed">
+          <h2><?php echo $news['title']; ?></h2>
+          <div class="panel-content">
+            <?php echo $news['description']; ?><br /><br />
+            <i class="fa fa-calendar-check-o"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?><br /><br />
+            <a href="<?php echo $news['href']; ?>" class="button"><i class="fa fa-mail-forward"></i> &nbsp; <?php echo $button_read; ?></a>
+          </div>
+        </div>
+      <?php } ?>
+    <?php } else { ?>
+      <div class="product-filter">
+        <div class="display"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-list-active.png" alt="" /> <a onclick="display('grid');"><img src="catalog/view/theme/<?php echo $template; ?>/image/page-grid-off.png" alt="" /></a></div>
+        <div class="product-compare"></div>
+        <div class="limit"><?php echo $text_limit; ?>
+          <select onchange="location=this.value;">
+          <?php foreach ($limits as $limits) { ?>
+            <?php if ($limits['value'] == $limit) { ?>
+              <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
+            <?php } ?>
           <?php } ?>
-        <?php } ?>
-        </select>
-      </div>
-      <div class="sort"><?php echo $text_sort; ?>
-        <select onchange="location=this.value;">
-        <?php foreach ($sorts as $sorts) { ?>
-          <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-            <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-          <?php } else { ?>
-            <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+          </select>
+        </div>
+        <div class="sort"><?php echo $text_sort; ?>
+          <select onchange="location=this.value;">
+          <?php foreach ($sorts as $sorts) { ?>
+            <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
+              <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
+            <?php } else { ?>
+              <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+            <?php } ?>
           <?php } ?>
-        <?php } ?>
-        </select>
+          </select>
+        </div>
       </div>
-    </div>
-    <br />
-    <div class="news-list">
+      <br />
+      <div class="news-list">
       <?php foreach ($news_data as $news) { ?>
         <div>
           <div class="right">
@@ -51,8 +64,9 @@
           <div class="date"><?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?></div>
         </div>
       <?php } ?>
-    </div>
-    <div class="pagination"><?php echo $pagination; ?></div>
+      </div>
+      <div class="pagination"><?php echo $pagination; ?></div>
+    <?php } ?>
   <?php } else { ?>
     <div class="content"><?php echo $text_no_results; ?></div>
   <?php } ?>
@@ -63,6 +77,7 @@
 </div>
 <?php echo $content_footer; ?>
 
+<?php if (!$news_collapsible) { ?>
 <script type="text/javascript"><!--
 function display(view) {
 	if (view == 'list') {
@@ -154,5 +169,6 @@ if (view) {
 	display('list');
 }
 //--></script>
+<?php } ?>
 
 <?php echo $footer; ?>

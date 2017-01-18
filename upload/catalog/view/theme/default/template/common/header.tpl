@@ -32,7 +32,7 @@
 <?php } else { ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet.css" />
 <?php } ?>
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet-modifiers.css" />
+<link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet-modifiers.min.css" />
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/awesome/css/font-awesome.min.css" />
 <?php foreach ($styles as $style) { ?>
@@ -42,8 +42,8 @@
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.12.1.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/livesearch.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/common.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/livesearch.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/common.min.js"></script>
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
@@ -94,12 +94,12 @@ $(document).ready(function() {
     <?php echo $currency; ?>
     <?php echo $language; ?>
     <?php if ($logged) { ?>
-      <a class="top-link" onclick="location = '<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_account; ?></span></a>
+      <a class="top-link" onclick="location='<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_account; ?></span></a>
     <?php } else { ?>
-      <a class="top-link" onclick="location = '<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_signin; ?></span></a>
+      <a class="top-link" onclick="location='<?php echo $account; ?>';" title=""><i class="fa fa-user"></i><span class="hide-phone"> &nbsp;<?php echo $text_signin; ?></span></a>
     <?php } ?>
-    <a class="top-link" onclick="location = '<?php echo $shopping_cart; ?>';" title=""><i class="fa fa-shopping-cart"></i><span class="hide-phone"> &nbsp;<?php echo $text_shopping_cart; ?></span></a>
-    <a class="top-link" onclick="location = '<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
+    <a class="top-link" onclick="location='<?php echo $shopping_cart; ?>';" title=""><i class="fa fa-shopping-cart"></i><span class="hide-phone"> &nbsp;<?php echo $text_shopping_cart; ?></span></a>
+    <a class="top-link" onclick="location='<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
   </div>
 </div>
 <div id="container" style="background-color:<?php echo $container_color; ?>;">
@@ -111,6 +111,7 @@ $(document).ready(function() {
   <div id="header-bottom">
     <div id="search">
       <div class="search-inside">
+        <label for="search" class="hidden"><?php echo $text_search; ?></label>
         <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="" />
         <div class="button-search"></div>
       </div>

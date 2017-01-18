@@ -1,3 +1,9 @@
+/*
+ Common v1.0.2 | @villagedefrance | Overclocked Edition | GNU GPL3 Licensed
+ ---------------------------------------------------------------------------
+ Common.js file for development. Use minified version for production.
+ ---------------------------------------------------------------------------
+*/
 function getURLVar(key) {
 	var value = [];
 	var query = String(document.location).split('?');

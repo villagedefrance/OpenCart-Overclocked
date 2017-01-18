@@ -231,7 +231,7 @@
 		var div = $('> div:eq('+loop+')',elem);
 		target.find('.cameraSlide_'+loop).clone(div);
 	}
-	
+
 	function thumbnailVisible() {
 		var wTh = $(thumbs).width();
 		$('li', thumbs).removeClass('camera_visThumb');
@@ -255,7 +255,7 @@
 				}
 
 				var left = pos.left, right = pos.left+($(this).width());
-				if (right-ulLeft<=wTh && left-ulLeft>=0) {
+				if (right-ulLeft <= wTh && left-ulLeft >= 0) {
 					$(this).addClass('camera_visThumb');
 				}
 		});
@@ -280,7 +280,7 @@
 		if (started == true) {
 			resizeImage();
 		}
-		$('ul', thumbs).animate({'margin-top':0},0,thumbnailPos);
+		$('ul', thumbs).animate({'margin-top':0}, 0, thumbnailPos);
 		if (!elem.hasClass('paused')) {
 			elem.addClass('paused');
 			if ($('.camera_stop',camera_thumbs_wrap).length) {
@@ -308,7 +308,7 @@
 						$('#'+pieID).fadeIn();
 					}
 				}
-			},1500);
+			}, 1500);
 		}
 	});
 
@@ -316,7 +316,7 @@
 		var res;
 		function resizeImageWork() {
 			w = wrap.width();
-			if (opts.height.indexOf('%')!=-1) {
+			if (opts.height.indexOf('%') != -1) {
 				var startH = Math.round(w / (100/parseFloat(opts.height)));
 				if (opts.minHeight != '' && startH < parseFloat(opts.minHeight)) {
 					h = parseFloat(opts.minHeight);
@@ -339,7 +339,7 @@
 					mTop,
 					mLeft,
 					alignment = t.attr('data-alignment'),
-					portrait =  t.attr('data-portrait');
+					portrait = t.attr('data-portrait');
 
 					if (typeof alignment === 'undefined' || alignment === false || alignment === '') {
 						alignment = opts.alignment;
@@ -383,13 +383,13 @@
 									break;
 							}
 							t.css({
-								'height' : hT*r,
-								'margin-left' : 0,
-								'margin-right' : 0,
-								'margin-top' : mTop,
-								'position' : 'absolute',
-								'visibility' : 'visible',
-								'width' : w
+								'height': hT*r,
+								'margin-left': 0,
+								'margin-right': 0,
+								'margin-top': mTop,
+								'position': 'absolute',
+								'visibility': 'visible',
+								'width': w
 							});
 						} else {
 							var r = h / hT;
@@ -424,13 +424,13 @@
 									break;
 							}
 							t.css({
-								'height' : h,
-								'margin-left' : mLeft,
-								'margin-right' : mLeft,
-								'margin-top' : 0,
-								'position' : 'absolute',
-								'visibility' : 'visible',
-								'width' : wT*r
+								'height': h,
+								'margin-left': mLeft,
+								'margin-right': mLeft,
+								'margin-top': 0,
+								'position': 'absolute',
+								'visibility': 'visible',
+								'width': wT*r
 							});
 						}
 					} else {
@@ -467,13 +467,13 @@
 									break;
 							}
 							t.css({
-								'height' : h,
-								'margin-left' : mLeft,
-								'margin-right' : mLeft,
-								'margin-top' : 0,
-								'position' : 'absolute',
-								'visibility' : 'visible',
-								'width' : wT*r
+								'height': h,
+								'margin-left': mLeft,
+								'margin-right': mLeft,
+								'margin-top': 0,
+								'position': 'absolute',
+								'visibility': 'visible',
+								'width': wT*r
 							});
 						} else {
 							var r = w / wT;
@@ -508,13 +508,13 @@
 									break;
 							}
 							t.css({
-								'height' : hT*r,
-								'margin-left' : 0,
-								'margin-right' : 0,
-								'margin-top' : mTop,
-								'position' : 'absolute',
-								'visibility' : 'visible',
-								'width' : w
+								'height': hT*r,
+								'margin-left': 0,
+								'margin-right': 0,
+								'margin-top': mTop,
+								'position': 'absolute',
+								'visibility': 'visible',
+								'width': w
 							});
 						}
 					}
@@ -564,6 +564,7 @@
 			var divInd = t.parent().index('.camera_src > div');
 			$('.camera_target_content .cameraContent:eq('+divInd+')',wrap).append(t);
 		});
+
 		function imgFake() {
 				$('iframe',fakeHover).each(function() {
 					$('.camera_caption',fakeHover).show();
@@ -588,7 +589,7 @@
 					t.after($(imgFake).attr({'class':'imgFake','width':w,'height':h}));
 					var clone = t.clone();
 					t.remove();
-					$(imgFake).bind('click',function() {
+					$(imgFake).bind('click', function() {
 						if ($(this).css('position')=='absolute') {
 							$(this).remove();
 							if (cloneSrc.indexOf('vimeo') != -1 || cloneSrc.indexOf('youtube') != -1) {
@@ -631,12 +632,12 @@
 			$(nextNav,wrap).animate({opacity:0},0);
 			$(commands,wrap).animate({opacity:0},0);
 			if (isMobile()) {
-				$(document).on('vmouseover',fakeHoverSelector,function() {
+				$(document).on('vmouseover',fakeHoverSelector, function() {
 					$(prevNav,wrap).animate({opacity:1},200);
 					$(nextNav,wrap).animate({opacity:1},200);
 					$(commands,wrap).animate({opacity:1},200);
 				});
-				$(document).on('vmouseout',fakeHoverSelector,function() {
+				$(document).on('vmouseout',fakeHoverSelector, function() {
 					$(prevNav,wrap).delay(500).animate({opacity:0},200);
 					$(nextNav,wrap).delay(500).animate({opacity:0},200);
 					$(commands,wrap).delay(500).animate({opacity:0},200);
@@ -646,7 +647,7 @@
 					$(prevNav,wrap).animate({opacity:1},200);
 					$(nextNav,wrap).animate({opacity:1},200);
 					$(commands,wrap).animate({opacity:1},200);
-				},function() {
+				}, function() {
 					$(prevNav,wrap).animate({opacity:0},200);
 					$(nextNav,wrap).animate({opacity:0},200);
 					$(commands,wrap).animate({opacity:0},200);
@@ -654,7 +655,7 @@
 			}
 		}
 
-		camera_thumbs_wrap.on('click','.camera_stop',function() {
+		camera_thumbs_wrap.on('click','.camera_stop', function() {
 			autoAdv = false;
 			elem.addClass('paused');
 			if ($('.camera_stop',camera_thumbs_wrap).length) {
@@ -670,7 +671,7 @@
 			}
 		});
 
-		camera_thumbs_wrap.on('click','.camera_play',function() {
+		camera_thumbs_wrap.on('click','.camera_play', function() {
 			autoAdv = true;
 			elem.removeClass('paused');
 			if ($('.camera_play',camera_thumbs_wrap).length) {
@@ -697,11 +698,11 @@
 		}
 		$('.cameraContent, .imgFake',fakeHover).hover(function() {
 			videoHover = true;
-		},function() {
+		}, function() {
 			videoHover = false;
 		});
 
-		$('.cameraContent, .imgFake',fakeHover).bind('click',function() {
+		$('.cameraContent, .imgFake',fakeHover).bind('click', function() {
 			if (videoPresent == true && videoHover == true) {
 				autoAdv = false;
 				$('.camera_caption',fakeHover).hide();
@@ -803,9 +804,11 @@
 	if ($(pagination).length) {
 		$(pagination).append('<ul class="camera_pag_ul">');
 		var li;
+
 		for (li = 0; li < amountSlide; li++) {
 			$('.camera_pag_ul',wrap).append('<li class="pag_nav_'+li+'" style="position:relative; z-index:1002"><span><span>'+li+'</span></span></li>');
 		}
+
 		$('.camera_pag_ul li',wrap).hover(function() {
 			$(this).addClass('camera_hover');
 			if ($('.camera_thumb',this).length) {
@@ -815,7 +818,7 @@
 				$('.camera_thumb',this).show().css({'top':'-'+hTh+'px','left':'-'+(wTh-wTt)/2+'px'}).animate({'opacity':1,'margin-top':'-3px'},200);
 				$('.thumb_arrow',this).show().animate({'opacity':1,'margin-top':'-3px'},200);
 			}
-		},function() {
+		}, function() {
 			$(this).removeClass('camera_hover');
 			$('.camera_thumb',this).animate({'margin-top':'-20px','opacity':0},200,function(){
 				$(this).css({marginTop:'5px'}).hide();
@@ -954,7 +957,7 @@
 		opts.onStartLoading.call(this);
 
 		nextSlide();
-	
+
 	/*************************** FUNCTION nextSlide() ***************************/
 	function nextSlide(navSlide) { 
 		elem.addClass('camerasliding');
@@ -1025,7 +1028,7 @@
 				$('.camera_loader',wrap).fadeOut(400);
 			} else {
 				$('.camera_loader',wrap).css({'visibility':'hidden'});
-				$('.camera_loader',wrap).fadeOut(400,function() {
+				$('.camera_loader',wrap).fadeOut(400, function() {
 					$('.camera_loader',wrap).css({'visibility':'visible'});
 				});
 			}
@@ -1043,7 +1046,7 @@
 				marginLeft = 0,
 				marginTop = 0,
 				opacityOnGrid = 0;
-				
+
 			if (opts.opacityOnGrid == true) {
 				opacityOnGrid = 0;
 			} else {
@@ -1827,7 +1830,7 @@
 										if (!elem.hasClass('stopped') && !elem.hasClass('paused') && !elem.hasClass('hovered')) {
 											clearInterval(u);
 											imgFake();
-											$('#'+pieID).animate({opacity:0},200,function() {
+											$('#'+pieID).animate({opacity:0},200, function() {
 												clearTimeout(setT);
 												setT = setTimeout(canvasLoader,easedTime);
 												nextSlide();
@@ -1876,7 +1879,7 @@
 										if (!elem.hasClass('stopped') && !elem.hasClass('paused') && !elem.hasClass('hovered')) {
 											clearInterval(u);
 											imgFake();
-											$('#'+pieID+', .camera_canvas_wrap',camera_thumbs_wrap).animate({opacity:0},200,function() {
+											$('#'+pieID+', .camera_canvas_wrap',camera_thumbs_wrap).animate({opacity:0},200, function() {
 												clearTimeout(setT);
 												setT = setTimeout(canvasLoader,easedTime);
 												nextSlide();
@@ -1909,7 +1912,7 @@
 					selector.eq(vis).delay((((transPeriod+difference)/blocks)*delay[index]*couples)*0.5).animate({
 						'margin-left': marginLeft*(-1),
 						'margin-top': marginTop*(-1)
-					},(transPeriod-difference),easing,function() {
+					},(transPeriod-difference),easing, function() {
 						$(this).css({'margin-top' : 0,'margin-left' : 0});
 					});
 				} else {
@@ -1992,7 +1995,7 @@
 	}
 
 	if (isMobile()) {
-		fakeHover.bind('swipeleft',function(event) {
+		fakeHover.bind('swipeleft', function(event) {
 			if (!elem.hasClass('camerasliding')) {
 				var idNum = parseFloat($('.cameraSlide.cameracurrent',target).index()); 
 				clearInterval(u);
@@ -2007,7 +2010,7 @@
 				opts.onStartLoading.call(this);
 			}
 		});
-		fakeHover.bind('swiperight',function(event) {
+		fakeHover.bind('swiperight', function(event) {
 			if (!elem.hasClass('camerasliding')) {
 				var idNum = parseFloat($('.cameraSlide.cameracurrent',target).index());
 				clearInterval(u);
@@ -2062,7 +2065,7 @@
 
 		$('.camera_thumbs_cont .camera_prevThumbs',camera_thumbs_wrap).hover(function() {
 			$(this).stop(true,false).animate({opacity:1},250);
-		},function() {
+		}, function() {
 			$(this).stop(true,false).animate({opacity:.7},250);
 		});
 		$('.camera_prevThumbs',camera_thumbs_wrap).click(function() {
@@ -2084,7 +2087,7 @@
 
 			$('.camera_thumbs_cont .camera_nextThumbs',camera_thumbs_wrap).hover(function() {
 				$(this).stop(true,false).animate({opacity:1},250);
-			},function() {
+			}, function() {
 				$(this).stop(true,false).animate({opacity:.7},250);
 			});
 			$('.camera_nextThumbs',camera_thumbs_wrap).click(function() {
@@ -2106,7 +2109,6 @@
 			});
 		}
 	}
-
 })(jQuery);
 
 ;(function($){$.fn.cameraStop = function() {

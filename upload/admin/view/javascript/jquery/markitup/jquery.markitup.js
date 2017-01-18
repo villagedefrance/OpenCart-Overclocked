@@ -1,8 +1,6 @@
 // ----------------------------------------------------------------------------
-// markItUp! Universal MarkUp Engine, JQuery plugin
-// v 1.1.x
+// markItUp! Universal MarkUp Engine, JQuery plugin v1.1.x
 // Dual licensed under the MIT and GPL licenses.
-// ----------------------------------------------------------------------------
 // Copyright (C) 2007-2012 Jay Salvat
 // http://markitup.jaysalvat.com/
 // ----------------------------------------------------------------------------
@@ -637,7 +635,7 @@
 							ctrlKey = false;
 							setTimeout(function() {
 								li.triggerHandler('mouseup');
-							},1);
+							}, 1);
 							return false;
 						}
 					}

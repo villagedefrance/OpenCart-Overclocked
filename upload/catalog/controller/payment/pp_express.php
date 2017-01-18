@@ -125,7 +125,7 @@ class ControllerPaymentPPExpress extends Controller {
 		$response = $this->model_payment_pp_express->call($request);
 
 		$this->session->data['paypal']['payerid'] = $response['PAYERID'];
-		$this->session->data['paypal']['result']  = $response;
+		$this->session->data['paypal']['result'] = $response;
 
 		$this->session->data['comment'] = '';
 
@@ -163,10 +163,13 @@ class ControllerPaymentPPExpress extends Controller {
 			if ($this->cart->hasShipping()) {
 				$shipping_name = explode(' ', trim($response['PAYMENTREQUEST_0_SHIPTONAME']));
 				$shipping_first_name = $shipping_name[0];
+
 				unset($shipping_name[0]);
+
 				$shipping_last_name = implode(' ', $shipping_name);
 
 				$this->session->data['guest']['payment']['address_1'] = $response['PAYMENTREQUEST_0_SHIPTOSTREET'];
+
 				if (isset($response['PAYMENTREQUEST_0_SHIPTOSTREET2'])) {
 					$this->session->data['guest']['payment']['address_2'] = $response['PAYMENTREQUEST_0_SHIPTOSTREET2'];
 				} else {
@@ -282,6 +285,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 				// Compare all of the user addresses and see if there is a match
 				$match = false;
+
 				foreach ($addresses as $address) {
 					if (trim(strtolower($address['address_1'])) == trim(strtolower($response['PAYMENTREQUEST_0_SHIPTOSTREET'])) && trim(strtolower($address['postcode'])) == trim(strtolower($response['PAYMENTREQUEST_0_SHIPTOZIP']))) {
 						$match = true;
@@ -301,10 +305,11 @@ class ControllerPaymentPPExpress extends Controller {
 
 				// If there is no address match add the address and set the info
 				if ($match == false) {
-
 					$shipping_name = explode(' ', trim($response['PAYMENTREQUEST_0_SHIPTONAME']));
 					$shipping_first_name = $shipping_name[0];
+
 					unset($shipping_name[0]);
+
 					$shipping_last_name = implode(' ', $shipping_name);
 
 					$country_info = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE `iso_code_2` = '" . $this->db->escape($response['PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE']) . "' AND `status` = '1' LIMIT 1")->row;
@@ -566,11 +571,12 @@ class ControllerPaymentPPExpress extends Controller {
 		$this->data['vouchers'] = array();
 
 		if ($this->cart->hasShipping()) {
-
 			$this->data['has_shipping'] = true;
+
 			// Shipping services
 			if ($this->customer->isLogged()) {
 				$this->load->model('account/address');
+
 				$shipping_address = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);
 			} elseif (isset($this->session->data['guest'])) {
 				$shipping_address = $this->session->data['guest']['shipping'];
@@ -615,9 +621,10 @@ class ControllerPaymentPPExpress extends Controller {
 						$this->data['shipping_methods'] = $quote_data;
 
 						if (!isset($this->session->data['shipping_method'])) {
-							//default the shipping to the very first option.
+							// Default the shipping to the very first option.
 							$key1 = key($quote_data);
 							$key2 = key($quote_data[$key1]['quote']);
+
 							$this->session->data['shipping_method'] = $quote_data[$key1]['quote'][$key2];
 						}
 
@@ -682,8 +689,8 @@ class ControllerPaymentPPExpress extends Controller {
 		// Payment methods
 		if ($this->customer->isLogged() && isset($this->session->data['payment_address_id'])) {
 			$this->load->model('account/address');
-			$payment_address = $this->model_account_address->getAddress($this->session->data['payment_address_id']);
 
+			$payment_address = $this->model_account_address->getAddress($this->session->data['payment_address_id']);
 		} elseif (isset($this->session->data['guest'])) {
 			$payment_address = $this->session->data['guest']['payment'];
 		}
@@ -1096,6 +1103,7 @@ class ControllerPaymentPPExpress extends Controller {
 			$this->load->model('checkout/order');
 
 			$order_id = $this->model_checkout_order->addOrder($data);
+
 			$this->session->data['order_id'] = $order_id;
 
 			$this->load->model('payment/pp_express');
@@ -1114,6 +1122,7 @@ class ControllerPaymentPPExpress extends Controller {
 
 			if ($response === false) {
 				$this->session->data['error'] = $this->language->get('error_connection');
+
 				$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 
 			} elseif (is_array($response) && isset($response['ACK']) && ($response['ACK'] == 'Success')) {
@@ -1247,14 +1256,14 @@ class ControllerPaymentPPExpress extends Controller {
 							$this->model_checkout_recurring->addReference($recurring_id, $response['PROFILEID']);
 						} else {
 							// There was an error creating the profile, need to log and also alert admin / user
-// ???
+							// ???
 						}
 					}
 				}
 
 				$this->redirect($this->url->link('checkout/success'));
 
-// ??? Never pass here after a redirect. What is it for ?
+				// ??? Never pass here after a redirect. What is it for ?
 				if (isset($response['REDIRECTREQUIRED']) && $response['REDIRECTREQUIRED'] == true) {
 					//- handle german redirect here
 					$this->redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token=' . $this->session->data['paypal']['token']);
@@ -1263,12 +1272,11 @@ class ControllerPaymentPPExpress extends Controller {
 			} else {
 				if ($response['L_ERRORCODE0'] == '10486') {
 					if (isset($this->session->data['paypal_redirect_count'])) {
-
 						if ($this->session->data['paypal_redirect_count'] == 2) {
 							$this->session->data['paypal_redirect_count'] = 0;
 							$this->session->data['error'] = $this->language->get('error_too_many_failures');
-							$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 
+							$this->redirect($this->url->link('checkout/checkout', '', 'SSL'));
 						} else {
 							$this->session->data['paypal_redirect_count']++;
 						}
@@ -1337,6 +1345,7 @@ class ControllerPaymentPPExpress extends Controller {
 				'PAYMENTREQUEST_0_SHIPTOZIP'         => html_entity_decode($order_info['shipping_postcode'], ENT_QUOTES, 'UTF-8'),
 				'PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE' => $order_info['shipping_iso_code_2']
 			);
+
 		} else {
 			$shipping = 1;
 			$data_shipping = array();
@@ -1536,7 +1545,7 @@ class ControllerPaymentPPExpress extends Controller {
 						}
 
 						$recurring_amt = $this->currency->format($this->tax->calculate($item['recurring_price'], $item['tax_class_id'], $this->config->get('config_tax')), false, false, false) * $item['quantity'] . ' ' . $this->currency->getCode();
-						$recurring_description = $trial_text.sprintf($this->language->get('text_recurring'), $recurring_amt, $item['recurring_cycle'], $item['recurring_frequency']);
+						$recurring_description = $trial_text . sprintf($this->language->get('text_recurring'), $recurring_amt, $item['recurring_cycle'], $item['recurring_frequency']);
 
 						if ($item['recurring_duration'] > 0) {
 							$recurring_description .= sprintf($this->language->get('text_length'), $item['recurring_duration']);
@@ -1554,7 +1563,7 @@ class ControllerPaymentPPExpress extends Controller {
 							$this->model_checkout_recurring->addReference($recurring_id, $recurring_response['PROFILEID']);
 						} else {
 							// There was an error creating the profile, need to log and also alert admin / user
-// ???
+							// ???
 						}
 					}
 				}
@@ -1562,9 +1571,9 @@ class ControllerPaymentPPExpress extends Controller {
 				if (isset($response['REDIRECTREQUIRED']) && $response['REDIRECTREQUIRED'] == true) {
 					//- handle german redirect here
 					if ($this->config->get('pp_express_test') == 1) {
-						$this->redirect('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token='.$this->session->data['paypal']['token']);
+						$this->redirect('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token=' . $this->session->data['paypal']['token']);
 					} else {
-						$this->redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token='.$this->session->data['paypal']['token']);
+						$this->redirect('https://www.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token=' . $this->session->data['paypal']['token']);
 					}
 				} else {
 					$this->redirect($this->url->link('checkout/success', '', 'SSL'));
@@ -1573,7 +1582,6 @@ class ControllerPaymentPPExpress extends Controller {
 			} else {
 				if ($response['L_ERRORCODE0'] == '10486') {
 					if (isset($this->session->data['paypal_redirect_count'])) {
-
 						if ($this->session->data['paypal_redirect_count'] == 2) {
 							$this->session->data['paypal_redirect_count'] = 0;
 							$this->session->data['error'] = $this->language->get('error_too_many_failures');

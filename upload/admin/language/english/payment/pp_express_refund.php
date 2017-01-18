@@ -2,24 +2,24 @@
 // Heading
 $_['heading_title']            = 'Refund';
 $_['heading_order']            = 'Order';
-                               
-// Text                        
+
+// Text
 $_['text_payment']             = 'Payment';
 $_['text_pp_express']          = 'PayPal Express Checkout';
 $_['text_current_refunds']     = 'Refunds have already been done for this transaction. The maximum refund is ';
 $_['text_refund']              = 'Refund';
-                               
-// Entry                       
+
+// Entry
 $_['entry_transaction_id']     = 'Transaction ID';
 $_['entry_full_refund']        = 'Full refund';
 $_['entry_amount']             = 'Refund amount';
 $_['entry_message']            = 'Message';
-                               
-// Button                      
+
+// Button
 $_['button_cancel']            = 'Cancel';
 $_['button_refund']            = 'Issue refund';
-                               
-// Error                       
+
+// Error
 $_['error_connection']         = 'Could not connect to PayPal!';
 $_['error_loose_transaction']  = 'Transaction is not bound to an order!';
 $_['error_transaction_amount'] = 'Could not get transaction amount!';

@@ -26,8 +26,8 @@
 <script type="text/javascript" src="view/javascript/jquery/jquery-migrate-1.4.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-1.12.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ui/minified/jquery.ui.touch-punch.min.js"></script>
-<script type="text/javascript" src="view/javascript/jquery/tabs.js"></script>
-<script type="text/javascript" src="view/javascript/common.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/tabs.min.js"></script>
+<script type="text/javascript" src="view/javascript/common.min.js"></script>
 <?php foreach ($scripts as $script) { ?>
 <script type="text/javascript" src="<?php echo $script; ?>"></script>
 <?php } ?>
@@ -361,10 +361,18 @@ $(document).ready(function() {
             <ul>
             <?php foreach ($connections_li as $connection_li) { ?>
               <?php if ($connection_li['parent_id'] == $connection_ul['connection_id']) { ?>
-                <?php if ($icons && isset($connection_li['icon'])) { ?>
-                  <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><i class="fa <?php echo $connection_li['icon']; ?>"></i><?php echo $connection_li['title']; ?></a></li>
+                <?php if ($connection_li['route']) { ?>
+                  <?php if ($icons && isset($connection_li['icon'])) { ?>
+                    <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><i class="fa <?php echo $connection_li['icon']; ?>"></i><?php echo $connection_li['title']; ?></a></li>
+                  <?php } else { ?>
+                    <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><?php echo $connection_li['title']; ?></a></li>
+                  <?php } ?>
                 <?php } else { ?>
-                  <li><a onclick="window.open('<?php echo $connection_li['route']; ?>');" title=""><?php echo $connection_li['title']; ?></a></li>
+                  <?php if ($icons && isset($connection_li['icon'])) { ?>
+                    <li><a title=""><i class="fa <?php echo $connection_li['icon']; ?>"></i><?php echo $connection_li['title']; ?></a></li>
+                  <?php } else { ?>
+                    <li><a title=""><?php echo $connection_li['title']; ?></a></li>
+                  <?php } ?>
                 <?php } ?>
               <?php } ?>
             <?php } ?>

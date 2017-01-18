@@ -52,37 +52,29 @@
   </ul>
   </div>
   <!-- Menu Phone -->
-  <div id="menu-phone">
+  <div id="menu-phone" class="box-phone">
   <ul>
-  <li><a href="<?php echo $home; ?>" title=""><span class="home-icon"></span></a></li>
   <?php foreach ($menu_horizontal as $category) { ?>
+  <li id="menu-horizontal-<?php echo $category['item_id']; ?>">
   <?php if ($category['href']) { ?>
-  <li><a href="<?php echo $category['href']; ?>" title=""><?php echo $category['name']; ?></a></li>
-  <?php if ($category['children']) { ?>
-  <li>
-  <ul>
-  <?php foreach ($category['children'] as $children) { ?>
-  <?php if ($children['href']) { ?>
-  <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
-  <?php } ?>
-  <?php } ?>
-  </ul>
-  </li>
-  <?php } ?>
+  <a href="<?php echo $category['href']; ?>" title="" class="inactive"><?php echo $category['name']; ?></a>
   <?php } else { ?>
-  <li><a title=""><?php echo $category['name']; ?></a></li>
+  <a title="" class="inactive"><?php echo $category['name']; ?></a>
+  <?php } ?>
   <?php if ($category['children']) { ?>
+  <ul class="children">
+  <?php foreach ($category['children'] as $child) { ?>
   <li>
-  <ul>
-  <?php foreach ($category['children'] as $children) { ?>
-  <?php if ($children['href']) { ?>
-  <li><a href="<?php echo $children['href']; ?>" title=""><?php echo $children['name']; ?></a></li>
+  <?php if ($child['href']) { ?>
+  <a href="<?php echo $child['href']; ?>" title=""><span class="inactive"><?php echo $child['name']; ?></span></a>
+  <?php } else { ?>
+  <a title=""><span class="inactive"><?php echo $child['name']; ?></span></a>
   <?php } ?>
-  <?php } ?>
-  </ul>
   </li>
   <?php } ?>
+  </ul>
   <?php } ?>
+  </li>
   <?php } ?>
   </ul>
   </div>
@@ -93,7 +85,17 @@
 <script type="text/javascript"><!--
 $('#menu-holder').prepend('<div id="menu-trigger" class="<?php echo $mod_shape; ?> <?php echo $mod_color; ?>"><img src="catalog/view/theme/<?php echo $template; ?>/image/menu/menu-button-<?php echo ($menu_theme == 'light') ? 'dark' : 'light'; ?>.png" alt="" style="padding:3px 15px;" /></div>');
 $('#menu-trigger').live('click', function(e) {
-  e.preventDefault();
-  $('#menu-phone').slideToggle();
+	e.preventDefault();
+	$('#menu-phone').slideToggle();
 });
 //--></script>
+
+<?php foreach ($menu_horizontal as $category) { ?>
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	$('#menu-horizontal-<?php echo $category['item_id']; ?>').on('click', function() {
+		$('#menu-horizontal-<?php echo $category['item_id']; ?> a').toggleClass('active');
+	});
+});
+//--></script>
+<?php } ?>

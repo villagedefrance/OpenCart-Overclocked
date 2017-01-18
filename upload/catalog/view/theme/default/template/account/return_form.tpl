@@ -19,28 +19,28 @@
   <div class="content">
     <div class="left">
       <span class="required">*</span> <?php echo $entry_firstname; ?><br />
-      <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="30" />
+      <input type="text" name="firstname" value="<?php echo $firstname; ?>" size="25" />
       <br />
       <?php if ($error_firstname) { ?>
         <span class="error"><?php echo $error_firstname; ?></span>
       <?php } ?>
       <br />
       <span class="required">*</span> <?php echo $entry_lastname; ?><br />
-      <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="30" />
+      <input type="text" name="lastname" value="<?php echo $lastname; ?>" size="25" />
       <br />
       <?php if ($error_lastname) { ?>
         <span class="error"><?php echo $error_lastname; ?></span>
       <?php } ?>
       <br />
       <span class="required">*</span> <?php echo $entry_email; ?><br />
-      <input type="text" name="email" value="<?php echo $email; ?>" size="30" />
+      <input type="text" name="email" value="<?php echo $email; ?>" size="25" />
       <br />
       <?php if ($error_email) { ?>
         <span class="error"><?php echo $error_email; ?></span>
       <?php } ?>
       <br />
       <span class="required">*</span> <?php echo $entry_telephone; ?><br />
-      <input type="text" name="telephone" value="<?php echo $telephone; ?>" size="30" />
+      <input type="text" name="telephone" value="<?php echo $telephone; ?>" size="25" />
       <br />
       <?php if ($error_telephone) { ?>
         <span class="error"><?php echo $error_telephone; ?></span>
@@ -49,14 +49,14 @@
     </div>
     <div class="right">
       <span class="required">*</span> <?php echo $entry_order_id; ?><br />
-      <input type="text" name="order_id" value="<?php echo $order_id; ?>" size="30" />
+      <input type="text" name="order_id" value="<?php echo $order_id; ?>" size="25" />
       <br />
       <?php if ($error_order_id) { ?>
         <span class="error"><?php echo $error_order_id; ?></span>
       <?php } ?>
       <br />
       <?php echo $entry_date_ordered; ?><br />
-      <input type="text" name="date_ordered" value="<?php echo $date_ordered; ?>" class="date" size="30" />
+      <input type="text" name="date_ordered" value="<?php echo $date_ordered; ?>" class="date" size="25" />
       <br />
     </div>
   </div>

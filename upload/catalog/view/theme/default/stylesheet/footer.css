@@ -1,6 +1,6 @@
 /* -----------------------------------
 * Overclocked Edition - Footer
-* Copyright © 2016 - Villagedefrance
+* Copyright © 2017 - Villagedefrance
 * ------------------------------------
 */
 #footer-holder .footer-light, #footer-holder .footer-dark {
@@ -39,10 +39,14 @@
 	display: block;
 }
 .footer-light #footer > .column-one > ul, .footer-light #footer > .column-two > ul, .footer-light #footer > .column-three > ul, .footer-light #footer > .column-four > ul {
-	list-style: url('../image/bullet-2.png');
 	margin-bottom: 10px;
 }
 .footer-light #footer > .column-one > ul > li, .footer-light #footer > .column-two > ul > li, .footer-light #footer > .column-three > ul > li, .footer-light #footer > .column-four > ul > li {
+	list-style: url('../image/bullet-2.png');
+	margin-bottom: 4px;
+}
+.footer-light #footer > .column-one > ul > li:hover, .footer-light #footer > .column-two > ul > li:hover, .footer-light #footer > .column-three > ul > li:hover, .footer-light #footer > .column-four > ul > li:hover {
+	list-style: url('../image/bullet-3.png');
 	margin-bottom: 4px;
 }
 .footer-light #footer > .column-one a, .footer-light #footer > .column-two a, .footer-light #footer > .column-three a, .footer-light #footer > .column-four a {
@@ -52,7 +56,7 @@
 	text-shadow: 0px 1px 0px #FFF;
 }
 .footer-light #footer > .column-one a:hover, .footer-light #footer > .column-two a:hover, .footer-light #footer > .column-three a:hover, .footer-light #footer > .column-four a:hover {
-	color: #38B0E3;
+	color: #36AAD8;
 	text-shadow: none;
 }
 .footer-light #footer > .big-column {
@@ -103,10 +107,14 @@
 	display: block;
 }
 .footer-dark #footer > .column-one > ul, .footer-dark #footer > .column-two > ul, .footer-dark #footer > .column-three > ul, .footer-dark #footer > .column-four > ul {
-	list-style: url('../image/bullet-1.png');
 	margin-bottom: 10px;
 }
 .footer-dark #footer > .column-one > ul > li, .footer-dark #footer > .column-two > ul > li, .footer-dark #footer > .column-three > ul > li, .footer-dark #footer > .column-four > ul > li {
+	list-style: url('../image/bullet-1.png');
+	margin-bottom: 4px;
+}
+.footer-dark #footer > .column-one > ul > li:hover, .footer-dark #footer > .column-two > ul > li:hover, .footer-dark #footer > .column-three > ul > li:hover, .footer-dark #footer > .column-four > ul > li:hover {
+	list-style: url('../image/bullet-3.png');
 	margin-bottom: 4px;
 }
 .footer-dark #footer > .column-one a, .footer-dark #footer > .column-two a, .footer-dark #footer > .column-three a, .footer-dark #footer > .column-four a {
@@ -116,7 +124,7 @@
 	text-shadow: 0px -1px 0px #111;
 }
 .footer-dark #footer > .column-one a:hover, .footer-dark #footer > .column-two a:hover, .footer-dark #footer > .column-three a:hover, .footer-dark #footer > .column-four a:hover {
-	color: #38B0E3;
+	color: #36AAD8;
 	text-shadow: none;
 }
 .footer-dark #footer > .big-column {
@@ -234,6 +242,21 @@ a.icon-google:hover {
 a.icon-pinterest:hover {
 	background: url('../image/icon_pinterest.png') center top no-repeat;
 }
+.icon-instagram {
+	float: right;
+	width: 23px;
+	height: 23px;
+	background: url('../image/icon_instagram.png') center -23px no-repeat;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+	text-indent: -9999px;
+	margin-top: 8px;
+	margin-right: 12px;
+}
+a.icon-instagram:hover {
+	background: url('../image/icon_instagram.png') center top no-repeat;
+}
 .icon-skype {
 	float: right;
 	width: 23px;
@@ -249,9 +272,28 @@ a.icon-pinterest:hover {
 a.icon-skype:hover {
 	background: url('../image/icon_skype.png') top center no-repeat;
 }
-/* Tablets & Phones */
-@media only screen and (max-width: 800px) {
+/* Tablets */
+@media only screen and (min-width: 481px) and (max-width: 801px) {
 	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
+		clear: left;
+		float: left;
+		margin: 10px 0px 0px 15px;
+	}
+}
+/* Phones - Large */
+@media only screen and (min-width: 320px) and (max-width: 481px) {
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column,
+	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
+		clear: left;
+		float: left;
+		margin: 10px 0px 0px 15px;
+	}
+}
+/* Phones - Small */
+@media only screen and (max-width: 320px) {
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column,
+	.footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four,
+	.footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 		clear: left;
 		float: left;
 		margin: 10px 0px 0px 15px;

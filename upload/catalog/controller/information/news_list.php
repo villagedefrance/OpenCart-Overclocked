@@ -64,7 +64,18 @@ class ControllerInformationNewsList extends Controller {
 			'separator' => $this->language->get('text_separator')
 		);
 
-		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
+		$news_style = $this->config->get('config_news_style');
+
+		if ($news_style) {
+			$this->document->addStyle('catalog/view/javascript/jquery/panels/panels.css');
+			$this->document->addScript('catalog/view/javascript/jquery/panels/panels.min.js');
+
+			$this->data['news_collapsible'] = true;
+		} else {
+			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
+
+			$this->data['news_collapsible'] = false;
+		}
 
 		$this->load->model('tool/image');
 
@@ -87,7 +98,7 @@ class ControllerInformationNewsList extends Controller {
 			$news_length = strlen(utf8_decode($result['description']));
 
 			if ($news_length > (int)$chars) {
-				$description = substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, (int)$chars) . '..</p>';
+				$description = substr(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'), 0, (int)$chars) . '..</p>';
 			} else {
 				$description = html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8');
 			}

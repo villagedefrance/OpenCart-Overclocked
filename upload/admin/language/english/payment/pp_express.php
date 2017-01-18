@@ -1,19 +1,19 @@
 <?php
 // Heading
-$_['heading_title']                    = 'PayPal Express Checkout for Payflow';
+$_['heading_title']                    = 'PayPal Express';
 
 // Link
 $_['text_pp_express']                  = '<a onclick="window.open(\'https://www.paypal.com/\');"><img src="view/image/payment/paypal.png" alt="PayPal" title="PayPal" style="border:1px solid #EEEEEE;" /></a>';
 
 // Text
 $_['text_payment']                     = 'Payment';
-$_['text_success']                     = 'Success: You have modified payment <b>PayPal Express Checkout</b> account details !';
+$_['text_success']                     = 'Success: You have modified payment <b>PayPal Express</b> account details !';
 $_['text_authorization']               = 'Authorization';
 $_['text_sale']                        = 'Sale';
-$_['text_signup']                      = 'Sign up for PayPal - save your settings first as this page will be refreshed';
-$_['text_sandbox']                     = 'Sign up for PayPal Sandbox - save your settings first as this page will be refreshed';
+$_['text_signup']                      = 'Sign up for PayPal - save your settings first as this page will be refreshed.';
+$_['text_sandbox']                     = 'Sign up for PayPal Sandbox - save your settings first as this page will be refreshed.';
 $_['text_debug_clear_success']         = 'Success: You have successfully cleared your <b>Debug Log</b> !';
-
+$_['text_info']                        = '<b>PayPal Express security protocol now uses TLS1.2.</b><br /><br />In order to use PayPal Express, your server should meet the following requirements:<br /> - PHP version: 5.5.19+<br /> - Curl version: 7.29+<br /> - SSL Certificate is recommended';
 $_['text_clear']                       = 'Clear';
 $_['text_browse']                      = 'Browse';
 $_['text_image_manager']               = 'Image manager';
@@ -62,11 +62,11 @@ $_['entry_page_colour']                = 'Page background colour';
 $_['entry_logo']                       = 'Logo';
 
 // Help
-$_['help_ipn_url']                     = 'Required for subscriptions';
+$_['help_ipn_url']                     = 'Required for all subscriptions.';
 $_['help_test']                        = 'Use the live or testing (sandbox) gateway server to process transactions?';
 $_['help_debug']                       = 'Logs additional information to the system log.';
-$_['help_currency']                    = 'Used for transaction searches';
-$_['help_recurring_cancel']            = 'Allow customers to cancel recurring payments';
+$_['help_currency']                    = 'Used for transaction searches.';
+$_['help_recurring_cancel']            = 'Allow customers to cancel recurring payments.';
 $_['help_transaction_method']          = 'Sale will charge customer immediately. Authorization will put funds on hold for future capture.';
 $_['help_total']                       = 'The checkout total the order must reach before this payment method becomes <b>active</b>.';
 $_['help_total_max']                   = 'The maximum checkout total the order must reach before this payment method becomes <b>inactive</b>.<br />Leave empty for no maximum.';
@@ -78,9 +78,10 @@ $_['help_logo']                        = 'Maximum size: 750 x 90 px (W x H)<br /
 
 // Button
 $_['button_search']                    = 'Search';
+$_['button_info']                      = 'Information';
 
 // Error
-$_['error_permission']                 = 'Warning: You do not have permission to modify payment <b>PayPal Express Checkout</b> !';
+$_['error_permission']                 = 'Warning: You do not have permission to modify payment <b>PayPal Express</b> !';
 $_['error_username']                   = 'API Username Required!';
 $_['error_password']                   = 'API Password Required!';
 $_['error_signature']                  = 'API Signature Required!';

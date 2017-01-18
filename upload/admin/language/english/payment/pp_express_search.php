@@ -2,8 +2,10 @@
 // Heading
 $_['heading_title']            = 'Search Transactions';
 
-// Text
+// Link
 $_['text_pp_express']          = 'PayPal Express Checkout';
+
+// Text
 $_['text_date_search']         = 'Search by date';
 $_['text_searching']           = 'Searching';
 $_['text_name']                = 'Name';

@@ -79,6 +79,9 @@
   <a onclick="window.open('skype:<?php echo $skype; ?>?chat');" class="icon-skype" title="Skype"></a>
   <style>#skypedetectionswf{ display: none; }</style>
   <?php } ?>
+  <?php if ($this->config->get($template . '_footer_instagram') && $instagram) { ?>
+  <a onclick="window.open('<?php echo $instagram; ?>');" class="icon-instagram" title="Instagram"></a>
+  <?php } ?>
   <?php if ($this->config->get($template . '_footer_pinterest') && $pinterest) { ?>
   <a onclick="window.open('<?php echo $pinterest; ?>');" class="icon-pinterest" title="Pinterest"></a>
   <?php } ?>
