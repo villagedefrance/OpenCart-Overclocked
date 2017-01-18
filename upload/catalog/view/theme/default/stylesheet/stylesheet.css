@@ -285,6 +285,7 @@ a.top-link:hover {
 	z-index: 1;
 }
 #header #cart .heading a {
+	position: relative;
 	float: right;
 	line-height: 27px;
 	height: 27px;
@@ -293,7 +294,6 @@ a.top-link:hover {
 	text-decoration: none;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 	white-space: nowrap;
-	display: inline;
 }
 #header #cart .content {
 	clear: both;

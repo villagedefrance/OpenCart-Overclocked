@@ -854,7 +854,7 @@ $('select[name="order_status_id"]').change(function() {
 });
 //--></script>
 
-<script type="text/javascript" src="view/javascript/jquery/jquery-printpage.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/jquery-printpage.min.js"></script>
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
