@@ -70,7 +70,7 @@
   </div>
 </div>
 
-<script type="text/javascript" src="view/javascript/jquery/ajaxupload.js"></script> 
+<script type="text/javascript" src="view/javascript/jquery/ajaxupload.min.js"></script> 
 
 <script type="text/javascript"><!--
 new AjaxUpload('#button-upload', {

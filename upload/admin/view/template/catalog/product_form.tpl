@@ -1570,7 +1570,7 @@ $('#fields tbody').each(function(index, element) {
 //--></script>
 <?php } ?>
 
-<script type="text/javascript" src="view/javascript/jquery/markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="view/javascript/jquery/markitup/jquery.markitup.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/markitup/sets/default/set.js"></script>
 
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/markitup/skins/overclocked/style.css" />
