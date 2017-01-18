@@ -23,9 +23,6 @@ $_['column_actions']             = 'Actions';
 $_['entry_capture_amount']       = 'Capture amount';
 $_['entry_capture_complete']     = 'Complete capture';
 
-// Help
-//$_['help_capture_complete']      = 'If this is a the last capture.';
-
 // Button
 $_['button_void']                = 'Void';
 $_['button_capture']             = 'Capture';

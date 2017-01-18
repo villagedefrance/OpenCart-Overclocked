@@ -423,7 +423,7 @@ class ControllerPaymentPPProIframe extends Controller {
 	}
 
 	public function transaction() {
-		$this->load->language('payment/pp_pro_iframe_order');
+		$this->language->load('payment/pp_pro_iframe_order');
 
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 
@@ -527,12 +527,11 @@ class ControllerPaymentPPProIframe extends Controller {
 					$transaction['payment_status'] = 'Failed';
 					$transaction['amount'] = number_format($this->request->post['amount'], 2);
 
-					$paypal_iframe_order_transaction_id = $this->model_payment_pp_pro_iframe->addTransaction($transaction, $request);
+					$this->model_payment_pp_pro_iframe->addTransaction($transaction, $request);
 
 					$json['error'] = $this->language->get('error_connection');
 
 				} elseif (is_array($response) && isset($response['ACK']) && ($response['ACK'] != 'Failure') && ($response['ACK'] != 'FailureWithWarning')) {
-
 					$transaction['transaction_id'] = $response['TRANSACTIONID'];
 					$transaction['payment_type'] = $response['PAYMENTTYPE'];
 					$transaction['payment_status'] = $response['PAYMENTSTATUS'];
@@ -559,6 +558,7 @@ class ControllerPaymentPPProIframe extends Controller {
 
 					if ($this->request->post['complete'] == 1 || $transaction['remaining'] == '0.00') {
 						$transaction['complete_status'] = 1;
+
 						$json['capture_status'] = $this->language->get('text_complete');
 
 						$this->model_payment_pp_pro_iframe->updatePaypalOrderStatus($this->request->post['order_id'], 'Complete');
@@ -683,6 +683,7 @@ class ControllerPaymentPPProIframe extends Controller {
 		$this->data['transaction_id'] = $transaction_id;
 
 		$this->load->model('payment/pp_pro_iframe');
+
 		$response = $this->model_payment_pp_pro_iframe->requestTransactionDetails($transaction_id);
 
 		if (is_array($response) && isset($response['ACK']) && ($response['ACK'] == 'Success')) {
@@ -691,6 +692,7 @@ class ControllerPaymentPPProIframe extends Controller {
 		} else {
 			// Call failed, try local infos
 			$local_transaction = $this->model_payment_pp_pro_iframe->getLocalTransaction($transaction_id);
+
 			if ($local_transaction === false) {
 				$this->data['amount_original'] = 0;
 				$this->data['currency_code'] = 'Error';
@@ -740,7 +742,6 @@ class ControllerPaymentPPProIframe extends Controller {
 				$order_id = $this->model_payment_pp_pro_iframe->getOrderId($this->request->post['transaction_id']);
 
 				if ($order_id) {
-
 					$paypal_order = $this->model_payment_pp_pro_iframe->getPaypalOrderByOrderId($order_id);
 
 					if ($paypal_order) {
@@ -781,12 +782,12 @@ class ControllerPaymentPPProIframe extends Controller {
 						if ($response === false) {
 							// Save for resend
 							$transaction['payment_status'] = 'Failed';
+
 							$this->model_payment_pp_pro_iframe->addTransaction($transaction, $request);
 
 							$json['error'] = $this->language->get('error_connection');
 
 						} elseif (is_array($response) && isset($response['ACK']) && ($response['ACK'] != 'Failure') && ($response['ACK'] != 'FailureWithWarning')) {
-
 							$transaction['transaction_id'] = $response['REFUNDTRANSACTIONID'];
 							$transaction['payment_type'] = $response['REFUNDSTATUS'];
 							$transaction['pending_reason'] = $response['PENDINGREASON'];
@@ -1048,7 +1049,6 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		$this->load->model('payment/pp_pro_iframe');
 
-
 		if (isset($this->request->get['paypal_iframe_order_transaction_id'])) {
 			$transaction = $this->model_payment_pp_pro_iframe->getFailedTransaction($this->request->get['paypal_iframe_order_transaction_id']);
 
@@ -1094,7 +1094,6 @@ class ControllerPaymentPPProIframe extends Controller {
 						if (isset($response['AMT'])) {
 							$transaction['amount'] = $response['AMT'];
 						} else {
-// ???
 							$transaction['amount'] = $transaction['amount'];
 						}
 
@@ -1191,11 +1190,13 @@ class ControllerPaymentPPProIframe extends Controller {
 
 		foreach ($data as $k => $v) {
 			$elements = preg_split("/(\d+)/", $k, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+
 			if (isset($elements[1]) && isset($elements[0])) {
 				if ($elements[0] == 'L_TIMESTAMP') {
 					$v = str_replace('T', ' ', $v);
 					$v = str_replace('Z', '', $v);
 				}
+
 				$return[$elements[1]][$elements[0]] = $v;
 			}
 		}
@@ -1249,4 +1250,3 @@ class ControllerPaymentPPProIframe extends Controller {
 		}
 	}
 }
-

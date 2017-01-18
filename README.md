@@ -39,6 +39,8 @@ Powered by the Latest Scripts:
 
 Coming soon in 1.9.0.0!
 - New default theme.
+- Font-awesome v4.7.0.
+- Paypal Express update.
 - CKEditor v4.6.1.
 - ...
 
@@ -67,7 +69,7 @@ Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum 
 Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager,
 Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
 Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
-Font Awesome library, Admin menu icons, Fancybox Plus product image viewer, PHP 7.0+ support, Media Player,
+Font-awesome library, Admin menu icons, Fancybox Plus product image viewer, PHP 7.0+ support, Media Player,
 "Free" for zero prices, Custom Payment labels, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 
