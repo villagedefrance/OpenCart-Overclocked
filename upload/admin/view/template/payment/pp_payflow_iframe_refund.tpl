@@ -68,5 +68,4 @@ function refund() {
 	});
 }
 //--></script>
-
 <?php echo $footer; ?>

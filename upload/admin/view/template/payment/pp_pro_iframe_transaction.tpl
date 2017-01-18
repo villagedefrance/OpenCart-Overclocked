@@ -39,35 +39,36 @@
   <?php } ?>
   </tbody>
 </table>
+
 <script type="text/javascript"><!--
 function resendTransaction(element) {
-  $.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: $(element).attr('href'),
-    beforeSend: function() {
-      $('.success, .warning, .attention').remove();
-      $(element).hide();
-      $(element).after('<img src="view/image/loading.gif" alt="Loading..." class="loading" />');
-    },
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-  .done(function(json) {
-    if ('error' in json) {
-      $('#paypal-transaction').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
-      $('.warning').fadeIn('normal');
-    }
+	$.ajax({
+		type: 'GET',
+		dataType: 'json',
+		url: $(element).attr('href'),
+		beforeSend: function() {
+			$('.success, .warning, .attention').remove();
+			$(element).hide();
+			$(element).after('<img src="view/image/loading.gif" alt="Loading..." class="loading" />');
+		},
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+	.done(function(json) {
+		if ('error' in json) {
+			$('#paypal-transaction').before('<div class="warning" style="display:none;">' + json['error'] + '</div>');
+			$('.warning').fadeIn('normal');
+		}
 
-    if ('success' in json) {
-      $('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
-      $('.success').fadeIn('normal').sleep(250);
+		if ('success' in json) {
+			$('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '</div>');
+			$('.success').fadeIn('normal').sleep(250);
 
-      location.reload();
-    }
-  })
-  .always(function() {
-    $('.loading').remove();
-    $(element).show();
-  });
+			location.reload();
+		}
+	})
+	.always(function() {
+		$('.loading').remove();
+		$(element).show();
+	});
 }
 //--></script>
