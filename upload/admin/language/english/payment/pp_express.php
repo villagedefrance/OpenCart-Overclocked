@@ -18,6 +18,12 @@ $_['text_clear']                       = 'Clear';
 $_['text_browse']                      = 'Browse';
 $_['text_image_manager']               = 'Image manager';
 
+// Tab
+$_['tab_api']                          = 'API Details';
+$_['tab_order_status']                 = 'Order Status';
+$_['tab_checkout_customisation']       = 'Checkout Customization';
+$_['tab_debug_log']                    = 'Debug Log';
+
 // Entry
 $_['entry_username']                   = 'API Username';
 $_['entry_password']                   = 'API Password';
@@ -55,16 +61,10 @@ $_['entry_header_colour']              = 'Header background colour';
 $_['entry_page_colour']                = 'Page background colour';
 $_['entry_logo']                       = 'Logo';
 
-// Tab
-$_['tab_api']                          = 'API Details';
-$_['tab_order_status']                 = 'Order Status';
-$_['tab_checkout_customisation']       = 'Checkout Customization';
-$_['tab_debug_log']                    = 'Debug Log';
-
 // Help
 $_['help_ipn_url']                     = 'Required for all subscriptions.';
 $_['help_test']                        = 'Use the live or testing (sandbox) gateway server to process transactions?';
-$_['help_debug']                       = 'Logs additional information.';
+$_['help_debug']                       = 'Logs additional information to the system log.';
 $_['help_currency']                    = 'Used for transaction searches.';
 $_['help_recurring_cancel']            = 'Allow customers to cancel recurring payments.';
 $_['help_transaction_method']          = 'Sale will charge customer immediately. Authorization will put funds on hold for future capture.';
@@ -77,6 +77,7 @@ $_['help_page_colour']                 = '6 characters HTML hexadecimal color co
 $_['help_logo']                        = 'Maximum size: 750 x 90 px (W x H)<br />You should only use a logo if you have SSL set up.';
 
 // Button
+$_['button_search']                    = 'Search';
 $_['button_info']                      = 'Information';
 
 // Error

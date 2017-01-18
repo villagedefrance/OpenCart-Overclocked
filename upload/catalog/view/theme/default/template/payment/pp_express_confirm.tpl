@@ -131,8 +131,8 @@
       <?php foreach ($products as $product) { ?>
         <?php if ($product['recurring']) { ?>
           <tr>
-            <td colspan="5" style="border:none; line-height:18px; margin-left:10px;"> 
-              <image src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" /> 
+            <td colspan="5" style="border:none; line-height:18px; margin-left:10px;">
+              <image src="catalog/view/theme/<?php echo $template; ?>/image/reorder.png" alt="" title="" style="float:left; margin-right:8px;" />
               <strong><?php echo $text_recurring_item; ?></strong>
               <?php echo $product['profile_description']; ?>
             </td>
@@ -184,12 +184,12 @@
 
 <script type="text/javascript"><!--
 $("input[name='shipping_method']").change(function() {
-	$('#shipping_form').submit();
+  $('#shipping_form').submit();
 });
 
 $('input[name=\'next\']').bind('change', function() {
-	$('.cart-discounts > div').hide();
-	$('#' + this.value).show();
+  $('.cart-discounts > div').hide();
+  $('#' + this.value).show();
 });
 //--></script>
 

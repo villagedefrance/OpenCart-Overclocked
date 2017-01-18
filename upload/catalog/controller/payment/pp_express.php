@@ -1694,7 +1694,8 @@ class ControllerPaymentPPExpress extends Controller {
 				'curl_error' => curl_error($ch)
 			);
 
-			$this->model_payment_pp_express->log($log_data, 'CURL failed');
+			$this->model_payment_pp_express->log($log_data, 'cURL failed');
+
 			return false;
 		}
 

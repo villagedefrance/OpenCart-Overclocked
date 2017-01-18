@@ -1,34 +1,34 @@
-<h2><?php echo $text_transactions; ?></h2>
+<h2><?php echo $text_payment_info; ?></h2>
 <div id="paypal-transaction"></div>
 <table class="form" id="table-payment-info">
   <tr>
     <td><?php echo $text_capture_status; ?></td>
-    <td id="capture-status"><?php echo $paypal_info['capture_status']; ?></td>
+    <td id="capture-status"><?php echo $paypal_order['capture_status']; ?></td>
   </tr>
   <tr>
     <td><?php echo $text_amount_authorised; ?></td>
     <td>
-      <?php echo $paypal_info['total']; ?>
-      <?php if ($paypal_info['capture_status'] != 'Complete') { ?>
+      <?php echo $paypal_order['total']; ?>
+      <?php if ($paypal_order['capture_status'] != 'Complete') { ?>
         &nbsp;&nbsp;&nbsp;<a class="button-delete" id="button-void"><?php echo $button_void; ?></a>
       <?php } ?>
     </td>
   </tr>
   <tr>
     <td><?php echo $text_amount_captured; ?></td>
-    <td id="paypal-captured"><?php echo $paypal_info['captured']; ?></td>
+    <td id="paypal-captured"><?php echo $paypal_order['captured']; ?></td>
   </tr>
   <tr>
     <td><?php echo $text_amount_refunded; ?></td>
-    <td id="paypal-refunded"><?php echo $paypal_info['refunded']; ?></td>
+    <td id="paypal-refunded"><?php echo $paypal_order['refunded']; ?></td>
   </tr>
-  <?php if ($paypal_info['capture_status'] != 'Complete') { ?>
+  <?php if ($paypal_order['capture_status'] != 'Complete') { ?>
   <tr class="paypal-capture">
     <td><?php echo $entry_capture_amount; ?></td>
     <td>
       <p><input type="checkbox" name="paypal_capture_complete" id="paypal-capture-complete" value="1" />&nbsp;<label for="paypal-capture-complete"><?php echo $entry_capture_complete; ?></label></p>
       <p>
-        <input type="text" size="10" name="paypal_capture_amount" id="paypal-capture-amount" value="<?php echo $paypal_info['remaining']; ?>" />
+        <input type="text" size="10" name="paypal_capture_amount" id="paypal-capture-amount" value="<?php echo $paypal_order['remaining']; ?>" />
         <a class="button-save" id="button-capture"><?php echo $button_capture; ?></a>
       </p>
     </td>

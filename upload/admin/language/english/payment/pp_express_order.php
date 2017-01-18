@@ -11,7 +11,7 @@ $_['text_confirm_void']          = 'If you void you cannot capture any further f
 $_['text_success']               = 'Transaction was successfully sent';
 
 // Column
-$_['column_transaction']         = 'Transaction ID';
+$_['column_transaction_id']      = 'Transaction ID';
 $_['column_amount']              = 'Amount';
 $_['column_type']                = 'Payment Type';
 $_['column_status']              = 'Status';
@@ -22,6 +22,9 @@ $_['column_actions']             = 'Actions';
 // Entry
 $_['entry_capture_amount']       = 'Capture amount';
 $_['entry_capture_complete']     = 'Complete capture';
+
+// Help
+//$_['help_capture_complete']      = 'If this is a the last capture.';
 
 // Button
 $_['button_void']                = 'Void';
