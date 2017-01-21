@@ -1,6 +1,6 @@
-<?php if (isset($error) && $error) { ?>
+<?php if (!empty($error)) { ?>
   <div class="warning"><?php echo $error; ?></div>
-<?php } elseif (isset($attention) && $attention) { ?>
+<?php } elseif (!empty($attention)) { ?>
   <div class="attention"><?php echo $attention; ?></div>
 <?php } else { ?>
   <?php if ($checkout_method == 'iframe') { ?>

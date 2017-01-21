@@ -14,7 +14,7 @@
 <?php } ?>
 <?php if (!empty($success)) { ?>
   <div class="success"><?php echo $success; ?></div>
-  <?php } ?>
+<?php } ?>
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?></h1>

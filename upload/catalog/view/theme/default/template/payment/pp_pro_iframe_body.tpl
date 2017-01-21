@@ -3,9 +3,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $stylesheet; ?>" />
 </head>
 <body>
-  <?php if (isset($error) && $error) { ?>
+  <?php if (!empty($error)) { ?>
     <div class="warning"><?php echo $error; ?></div>
-  <?php } elseif (isset($attention) && $attention) { ?>
+  <?php } elseif (!empty($attention)) { ?>
     <div class="attention"><?php echo $attention; ?></div>
   <?php } else { ?>
     <form action="<?php echo $url; ?>" method="post" name="ppform" id="ppform">
