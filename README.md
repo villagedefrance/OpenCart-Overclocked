@@ -34,14 +34,15 @@ Powered by the Latest Scripts:
 - jQuery 1.12.4.
 - jQuery UI 1.12.1.
 - jQuery Migrate 1.4.1.
-- CKEditor 4.6.1 Full.
+- CKEditor 4.6.2 Full.
 - ...
 
 Coming soon in 1.9.0.0!
 - New default theme.
 - Font-awesome v4.7.0.
 - Paypal Express update.
-- CKEditor v4.6.1.
+- Improved News list page.
+- CKEditor v4.6.2.
 - ...
 
 New in 1.8.4.0 (current release)!

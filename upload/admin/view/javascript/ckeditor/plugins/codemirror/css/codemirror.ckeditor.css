@@ -1,10 +1,11 @@
 /* Extra for the CKEditor CodeMirror Plugin */
+
 .CodeMirror {
 	font: 13px/1.4em monospace;
 	text-align: left;
 }
 .CodeMirror .activeline {
-	background: #e8f2ff;
+	background: #E8F2FF;
 }
 .CodeMirror .CodeMirror-foldmarker {
 	color: blue;
@@ -16,11 +17,14 @@
 	cursor: pointer;
 }
 .CodeMirror-matchingtag {
-	background: #ff9600;
+	background: #FF9600;
 	background: rgba(255, 150, 0, 0.3);
 }
 /* Source Dialog Buttons */
-.searchCodeButton span, .autoFormat span, .CommentSelectedRange span, .UncommentSelectedRange span {
+.searchCodeButton span,
+.autoFormat span,
+.CommentSelectedRange span,
+.UncommentSelectedRange span {
 	width: 16px;
 	height: 16px;
 	margin-left: 6px;
@@ -37,6 +41,7 @@
 .UncommentSelectedRange span {
 	background: url("../icons/uncommentselectedrange.png") no-repeat;
 }
+
 /* Fixes for the sourceDialog */
 .cke_reset_all .CodeMirror-scroll * {
 	white-space: pre;
@@ -59,10 +64,10 @@
 }
 /* Fixes for themes */
 .cm-s-cobalt .CodeMirror-selected {
-	background: #b36539 !important;
+	background: #B36539 !important;
 }
 .cm-s-erlang-dark .CodeMirror-selected {
-	background: #b36539 !important;
+	background: #B36539 !important;
 }
 .cm-s-lesser-dark .CodeMirror-selected {
 	background: #45443B !important;
@@ -80,14 +85,16 @@
 	background: #323232 !important;
 }
 .cm-s-xq-dark .CodeMirror-selected {
-	background: #a8f !important;
+	background: #A8F !important;
 }
 .cm-s-the-matrix .CodeMirror-selected {
 	background: #494949 !important;
 }
+
 .cm-s-mbo .CodeMirror-selected {
 	background: #716C62 !important;
 }
+
 .cm-s-blackboard .activeline,
 .cm-s-cobalt .activeline,
 .cm-s-erlang-dark .activeline,
@@ -104,6 +111,7 @@
 .cm-s-pastel-on-dark .activeline {
 	background: #757575;
 }
+
 .cm-s-pastel-on-dark .activeline {
 	background: #404040;
 }
@@ -116,6 +124,7 @@
 .cm-s-the-matrix .activeline {
 	background: #060;
 }
+
 .CodeMirror-focused .cm-matchhighlight {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVQI12NgYGBgkKzc8x9CMDAwAAAmhwSbidEoSQAAAABJRU5ErkJggg==);
 	background-position: bottom;
