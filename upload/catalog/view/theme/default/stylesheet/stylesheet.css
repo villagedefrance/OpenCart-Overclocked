@@ -138,11 +138,15 @@ span.from {
 	border: none;
 	background-color: #EDEDED;
 }
-#container-top .container-top-inner {
+#container-top .container-top-inner-normal {
 	width: 967px;
 	margin: 0px auto;
 }
-#container-top .container-top-inner form {
+#container-top .container-top-inner-wide {
+	width: 1267px;
+	margin: 0px auto;
+}
+#container-top .container-top-inner-normal form, #container-top .container-top-inner-wide form {
 	float: left;
 	display: inline;
 }
@@ -206,8 +210,14 @@ a.top-link:hover {
 	color: #36AAD8;
 }
 /* Container */
-#container {
+#container-normal {
 	width: 967px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+#container-wide {
+	width: 1267px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;

@@ -27,11 +27,7 @@
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
-<?php if ($this->config->get($template . '_widescreen')) { ?>
-<link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet-wide.css" />
-<?php } else { ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet.css" />
-<?php } ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/<?php echo $template; ?>/stylesheet/stylesheet-modifiers.min.css" />
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/awesome/css/font-awesome.min.css" />
@@ -90,7 +86,7 @@ $(document).ready(function() {
 </head>
 <body style="background-color:<?php echo $body_color; ?>;">
 <div id="container-top">
-  <div class="container-top-inner">
+  <div class="container-top-inner-<?php echo $display_size; ?>">
     <?php echo $currency; ?>
     <?php echo $language; ?>
     <?php if ($logged) { ?>
@@ -102,7 +98,7 @@ $(document).ready(function() {
     <a class="top-link" onclick="location='<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
   </div>
 </div>
-<div id="container" style="background-color:<?php echo $container_color; ?>;">
+<div id="container-<?php echo $display_size; ?>" style="background-color:<?php echo $container_color; ?>;">
 <div id="header">
   <?php if ($logo) { ?>
     <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
