@@ -5,7 +5,7 @@ html {
 }
 body {
 	height: 100%;
-	background: #FFF;
+	background: #F2F2F2 url('../image/theme/pattern.png') repeat;
 	margin: 0;
 	padding: 0;
 }
@@ -206,12 +206,18 @@ samp, small {
 	font-size: 10px;
 }
 /* Container */
-#container {
+#container-normal {
 	height: 100%;
 }
-body > #container {
+#container-limited {
+	width: 1440px;
+	margin: 0px auto;
+	height: 100%;
+}
+body > #container-normal, body > #container-limited {
 	height: auto;
 	min-height: 100%;
+	background-color: #FFF;
 }
 /* Header */
 #header {
@@ -1652,7 +1658,7 @@ table.tool > tr > td {
 	padding: 3px 10px 3px 4px;
 }
 /* Footer */
-#footer {
+#footer-normal {
 	position: relative;
 	min-width: 740px;
 	height: 90px;
@@ -1665,7 +1671,23 @@ table.tool > tr > td {
 	margin-top: -128px;
 	clear: both;
 }
-#footer a {
+#footer-limited {
+	position: relative;
+	width: 1440px;
+	min-width: 740px;
+	height: 90px;
+	color: #333;
+	font-size: 12px;
+	text-align: center;
+	text-shadow: 0 0 1px rgba(51, 51, 51, 0.05);
+	background: #FFF url('../image/theme/footer.png') repeat-x;
+	padding-top: 38px;
+	margin-top: -128px;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+#footer-normal a, #footer-limited a {
 	color: #333;
 	text-decoration: underline;
 }

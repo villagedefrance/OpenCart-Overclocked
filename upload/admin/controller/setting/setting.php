@@ -198,6 +198,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
 		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
 		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
+		$this->data['entry_admin_width_limit'] = $this->language->get('entry_admin_width_limit');
 		$this->data['entry_admin_menu_icons'] = $this->language->get('entry_admin_menu_icons');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
 		$this->data['entry_catalog_limit'] = $this->language->get('entry_catalog_limit');
@@ -1206,6 +1207,12 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Preference
+		if (isset($this->request->post['config_admin_width_limit'])) {
+			$this->data['config_admin_width_limit'] = $this->request->post['config_admin_width_limit'];
+		} else {
+			$this->data['config_admin_width_limit'] = $this->config->get('config_admin_width_limit');
+		}
+
 		if (isset($this->request->post['config_admin_menu_icons'])) {
 			$this->data['config_admin_menu_icons'] = $this->request->post['config_admin_menu_icons'];
 		} else {

@@ -56,7 +56,7 @@ $(document).ready(function() {
 //--></script>
 </head>
 <body>
-<div id="container">
+<div id="container-<?php echo $resolution; ?>">
   <div id="header">
     <div class="static">
       <div class="image"><img src="view/image/theme/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>

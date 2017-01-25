@@ -1214,6 +1214,20 @@
       <div id="tab-preference">
         <table class="form">
           <tr>
+            <td><?php echo $entry_admin_width_limit; ?></td>
+            <td><?php if ($config_admin_width_limit) { ?>
+              <input type="radio" name="config_admin_width_limit" value="1" id="width-limit-on" class="radio" checked />
+              <label for="width-limit-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_admin_width_limit" value="0" id="width-limit-off" class="radio" />
+              <label for="width-limit-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } else { ?>
+              <input type="radio" name="config_admin_width_limit" value="1" id="width-limit-on" class="radio" />
+              <label for="width-limit-on"><span><span></span></span><?php echo $text_yes; ?></label>
+              <input type="radio" name="config_admin_width_limit" value="0" id="width-limit-off" class="radio" checked />
+              <label for="width-limit-off"><span><span></span></span><?php echo $text_no; ?></label>
+            <?php } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_admin_menu_icons; ?></td>
             <td><?php if ($config_admin_menu_icons) { ?>
               <input type="radio" name="config_admin_menu_icons" value="1" id="menu-icons-on" class="radio" checked />

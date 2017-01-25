@@ -24,6 +24,11 @@ class ControllerCommonHeader extends Controller {
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
+		// Display Limit
+		$display_limit = $this->config->get('config_admin_width_limit');
+
+		$this->data['resolution'] = ($display_limit) ? 'limited' : 'normal';
+
 		// User Agent
 		$agent_platform = $this->browser->getPlatform();
 		$agent_browser = $this->browser->getBrowser();
@@ -56,11 +61,7 @@ class ControllerCommonHeader extends Controller {
 
 		$time = $this->config->get('config_time_offset');
 
-		if ($time) {
-			$this->data['time_offset'] = $this->config->get('config_time_offset');
-		} else {
-			$this->data['time_offset'] = '0';
-		}
+		$this->data['time_offset'] = ($time) ? $time : '0';
 
 		// Text
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
