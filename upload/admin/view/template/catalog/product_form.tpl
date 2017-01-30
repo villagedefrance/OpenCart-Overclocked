@@ -106,7 +106,7 @@
             <td><?php echo $entry_keyword; ?></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_local_tax_rate; ?></td>
             <td><select name="tax_local_rate_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -119,7 +119,7 @@
               <?php } ?>
             </select> &nbsp; <a href="<?php echo $configure_tax_local_rate; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_price; ?></td>
             <td>
               <input type="text" name="price" class="excvat" value="<?php echo $price; ?>" /> &nbsp; <?php echo $text_exc_vat; ?> &nbsp; <a onclick="apply();" id="price-apply" class="button-save"><i class="fa fa-refresh"></i></a>
@@ -127,7 +127,7 @@
               <input type="text" name="incvat" class="incvat" value="<?php echo number_format(($price * $vat_rate), 4, '.', ''); ?>" /> &nbsp; <?php echo $text_inc_vat; ?> (<?php echo round($base_rate, 2); ?>%)
             </td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_cost; ?></td>
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
           </tr>
@@ -147,7 +147,7 @@
             <td><?php echo $entry_age_minimum; ?></td>
             <td><input type="text" name="age_minimum" value="<?php echo $age_minimum; ?>" size="2" maxlength="2" /></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_tax_class; ?></td>
             <td><select name="tax_class_id">
               <option value="0"><?php echo $text_none; ?></option>
@@ -169,7 +169,7 @@
             <td><?php echo $entry_sort_order; ?></td>
             <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="2" /></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="status">
               <?php if ($status) { ?>

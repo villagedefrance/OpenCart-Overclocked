@@ -17,7 +17,7 @@
     <div class="heading">
       <a href="http://www.openbaypro.com" target="_BLANK"><img src="https://uk.openbaypro.com/asset/OpenBayPro_30px_h.png" alt="OpenBay Pro" style="margin-top:5px; margin-left:5px; border: 0px;;" border="0"/></a>
     </div>
-    <div class="content" style="padding-right:0px;">
+    <div class="content-body" style="padding-right:0px;">
       <div style="float:left; width:60%;">
         <div style="clear:both;"></div>
         <table class="list">

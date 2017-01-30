@@ -198,6 +198,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_return_disable'] = $this->language->get('entry_return_disable');
 		$this->data['entry_voucher_min'] = $this->language->get('entry_voucher_min');
 		$this->data['entry_voucher_max'] = $this->language->get('entry_voucher_max');
+		$this->data['entry_admin_stylesheet'] = $this->language->get('entry_admin_stylesheet');
 		$this->data['entry_admin_width_limit'] = $this->language->get('entry_admin_width_limit');
 		$this->data['entry_admin_menu_icons'] = $this->language->get('entry_admin_menu_icons');
 		$this->data['entry_admin_limit'] = $this->language->get('entry_admin_limit');
@@ -1207,6 +1208,19 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Preference
+		$this->data['admin_stylesheets'] = array();
+
+		$this->data['admin_stylesheets'][] = array('format' => 'classic', 'title' => 'Classic');
+		$this->data['admin_stylesheets'][] = array('format' => 'overclock', 'title' => 'Overclock');
+
+		if (isset($this->request->post['config_admin_stylesheet'])) {
+			$this->data['config_admin_stylesheet'] = $this->request->post['config_admin_stylesheet'];
+		} elseif ($this->config->get('config_admin_stylesheet')) {
+			$this->data['config_admin_stylesheet'] = $this->config->get('config_admin_stylesheet');
+		} else {
+			$this->data['config_admin_stylesheet'] = 'classic';
+		}
+
 		if (isset($this->request->post['config_admin_width_limit'])) {
 			$this->data['config_admin_width_limit'] = $this->request->post['config_admin_width_limit'];
 		} else {

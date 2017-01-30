@@ -9,8 +9,8 @@
   <div class="heading">
     <h1><img src="view/image/error.png" alt="" /> <?php echo $heading_title; ?></h1>
   </div>
-  <div class="content">
-    <div style="border:1px solid #DDD; background:#F7F7F7; text-align:center; padding:15px;"><?php echo $text_not_found; ?></div>
+  <div class="content-body">
+    <div class="toolbox"><?php echo $text_not_found; ?></div>
   </div>
   </div>
 </div>

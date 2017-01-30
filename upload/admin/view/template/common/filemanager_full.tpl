@@ -23,7 +23,7 @@
         <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_exit; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <div id="files-menu">
         <a id="create" class="filemanager-button" style="background-image: url('view/image/filemanager/folder.png');"><?php echo $button_folder; ?></a>
         <a id="delete" class="filemanager-button" style="background-image: url('view/image/filemanager/edit-delete.png');"><?php echo $button_delete; ?></a>

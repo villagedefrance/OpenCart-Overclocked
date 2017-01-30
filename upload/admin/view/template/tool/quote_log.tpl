@@ -19,7 +19,7 @@
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <textarea wrap="off" class="log"><?php echo $quote_log; ?></textarea>
     </div>
   </div>

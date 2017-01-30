@@ -20,7 +20,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <form action="<?php echo $restore; ?>" method="post" enctype="multipart/form-data" id="restore">
         <h2><?php echo $heading_restore; ?></h2>
         <table class="tool">

@@ -79,7 +79,7 @@
             <?php } ?>
           </select></td>
         </tr>
-        <tr style="background:#FCFCFC;">
+        <tr class="highlighted">
           <td><?php echo $entry_trial_status; ?></td>
           <td><select name="trial_status">
             <?php if ($trial_status) { ?>
@@ -91,19 +91,19 @@
             <?php } ?>
           </select></td>
         </tr>
-        <tr style="background:#FCFCFC;">
+        <tr class="highlighted">
           <td><?php echo $entry_trial_price; ?></td>
           <td><input name="trial_price" value="<?php echo $trial_price; ?>" /></td>
         </tr>
-        <tr style="background:#FCFCFC;">
+        <tr class="highlighted">
           <td><?php echo $entry_trial_duration; ?></td>
           <td><input name="trial_duration" value="<?php echo $trial_duration; ?>" /></td>
         </tr>
-        <tr style="background:#FCFCFC;">
+        <tr class="highlighted">
           <td><?php echo $entry_trial_cycle; ?></td>
           <td><input name="trial_cycle" value="<?php echo $trial_cycle; ?>" /></td>
         </tr>
-        <tr style="background:#FCFCFC;">
+        <tr class="highlighted">
           <td><?php echo $entry_trial_frequency; ?></td>
           <td><select name="trial_frequency">
             <?php foreach ($frequencies as $key => $title) { ?>

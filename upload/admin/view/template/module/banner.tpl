@@ -37,14 +37,14 @@
           </tr>
         </tbody>
         <tbody id="header-1" class="module-header">
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_title; ?></td>
             <td><?php foreach ($languages as $language) { ?>
               <input type="text" name="banner_title<?php echo $language['language_id']; ?>" id="banner_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'banner_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
           </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr style="background:#FCFCFC;">'; ?>
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr class="highlighted">'; ?>
             <td><?php echo $entry_header_color; ?></td>
             <td><select name="banner_header_color">
               <?php foreach ($skins as $skin) { ?>
@@ -56,7 +56,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr style="background:#FCFCFC;">'; ?>
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr class="highlighted">'; ?>
             <td><?php echo $entry_header_shape; ?></td>
             <td><select name="banner_header_shape">
               <?php foreach ($shapes as $shape) { ?>
@@ -246,7 +246,7 @@
         <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="7" style="text-align:center; color:#444; font-size:10px;">Powered by <?php echo $banner_plugin; ?> <?php echo $banner_version; ?></td>
+              <td colspan="7" class="script">Powered by <?php echo $banner_plugin; ?> <?php echo $banner_version; ?></td>
               <td class="center"><a onclick="addModule();" class="button"><?php echo $button_add_module; ?></a></td>
             </tr>
           </tfoot>

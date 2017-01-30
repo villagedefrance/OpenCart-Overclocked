@@ -29,8 +29,6 @@ var mySettings = {
 		{name:'Picture', key:'P', replaceWith:'<img src="[![Source:!:http://]!]" alt="[![Alternative text]!]" />'},
 		{name:'Link', key:'L', openWith:'<a href="[![Link:!:http://]!]"(!( title="[![Title]!]")!)>', closeWith:'</a>', placeHolder:'Your text to link...'},
 		{separator:'---------------' },
-		{name:'Code', openWith:'(!(<?[![Language:!:php]!] |!|<pre>)!)', closeWith:'(!(; ?>|!|</pre>)!)'},
-		{separator:'---------------' },
-		{name:'Preview', className:'preview', call:'preview'}
+		{name:'Code', openWith:'(!(<?[![Language:!:php]!] |!|<pre>)!)', closeWith:'(!(; ?>|!|</pre>)!)'}
 	]
 }

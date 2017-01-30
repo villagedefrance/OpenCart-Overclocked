@@ -48,7 +48,7 @@
               <label for="widescreen-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_body_color; ?></td>
             <td><select name="default_body_color">
               <?php foreach ($skins as $skin) { ?>
@@ -60,7 +60,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_container_color; ?></td>
             <td><select name="default_container_color">
               <?php foreach ($skins as $skin) { ?>
@@ -147,7 +147,7 @@
           </tr>
         </tbody>
         <tbody id="theme-custom" class="footer-theme">
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_footer_color; ?></td>
             <td><select name="default_footer_color">
               <?php foreach ($skins as $skin) { ?>
@@ -159,7 +159,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_footer_shape; ?></td>
             <td><select name="default_footer_shape">
               <?php foreach ($shapes as $shape) { ?>
@@ -393,7 +393,7 @@
         </table>
       </div>
       <div id="tab-setup">
-        <div>
+        <div class="toolbox">
           <input type="hidden" name="default_stylesheet" value="0" />
           <?php echo $setup_system; ?><br />
           <?php echo $setup_theme; ?><br />

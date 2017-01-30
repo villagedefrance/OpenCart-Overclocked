@@ -144,7 +144,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="status">
               <?php if ($status) { ?>

@@ -16,7 +16,7 @@
 <?php foreach ($links as $link) { ?>
 <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
 <?php } ?>
-<link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="view/stylesheet/stylesheet_<?php echo $admin_css; ?>.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/jquery/ui/themes/start/jquery-ui-1.12.1.min.css" />
 <link rel="stylesheet" type="text/css" href="view/javascript/awesome/css/font-awesome.min.css" />
 <?php foreach ($styles as $style) { ?>
@@ -59,7 +59,7 @@ $(document).ready(function() {
 <div id="container-<?php echo $resolution; ?>">
   <div id="header">
     <div class="static">
-      <div class="image"><img src="view/image/theme/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
+      <div class="image"><img src="view/image/theme-<?php echo $admin_css; ?>/logo.png" alt="" title="<?php echo $heading_title; ?>" onclick="location = '<?php echo $home; ?>'" /></div>
       <div id="user-device"><img src="view/image/dashboard/<?php echo $device; ?>.png" alt="" />
         <div id="show-device" style="display:none;">
           <div class="device">
@@ -89,7 +89,7 @@ $(document).ready(function() {
           <?php } ?>
         </div>
         <div class="user-logout"><a href="<?php echo $logout; ?>" title="<?php echo $text_logout; ?>"><img src="view/image/dashboard/logout.png" alt="<?php echo $text_logout; ?>" /></a></div>
-        <div class="user-status"><img src="view/image/theme/lock.png" alt="" />&nbsp;<?php echo $logged; ?></div>
+        <div class="user-status"><img src="view/image/theme-<?php echo $admin_css; ?>/lock.png" alt="" />&nbsp;<?php echo $logged; ?></div>
       <?php } ?>
     </div>
     <?php if ($logged) { ?>

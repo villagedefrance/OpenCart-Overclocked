@@ -69,18 +69,6 @@ class Response {
 				}
 			}
 
-			// Page Timer
-			$time = microtime();
-			$time = explode(' ', $time);
-			$time = $time[1] + $time[0];
-			$finish = $time;
-
-			$start = explode(' ', $GLOBALS['start']);
-			$start = $start[1] + $start[0];
-			$total_time = round(($finish - $start), 4);
-
-			$output = str_replace('</body>', '<div id="response-time" style="margin:0px 0px 10px 30px;">' . $total_time . ' s</div></body>', $output);
-
 			echo $output;
 		}
 	}

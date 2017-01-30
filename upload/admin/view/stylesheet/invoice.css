@@ -1,3 +1,9 @@
+/* -----------------------------------
+* Overclocked Edition - Invoice
+* Copyright © 2017 - Villagedefrance
+* ------------------------------------
+*/
+
 html {
 	margin: 0;
 	padding: 0;
@@ -114,8 +120,4 @@ table.address, table.product, table.comment, table.delivery {
 }
 .delivery td {
 	width: 50%;
-}
-/* Page timer */
-#response-time {
-	display: none;
 }

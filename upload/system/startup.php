@@ -2,10 +2,6 @@
 // Error Reporting
 error_reporting(E_ALL);
 
-// Page Timer
-$time = microtime();
-$GLOBALS['start'] = $time;
-
 // Check Version
 if (version_compare(phpversion(), '5.4.0', '<') == true) {
 	exit('PHP 5.4+ Required'); 

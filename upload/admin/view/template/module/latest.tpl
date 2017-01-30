@@ -37,14 +37,14 @@
           </tr>
         </tbody>
         <tbody id="header-1" class="module-header">
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_title; ?></td>
             <td><?php foreach ($languages as $language) { ?>
               <input type="text" name="latest_title<?php echo $language['language_id']; ?>" id="latest_title<?php echo $language['language_id']; ?>" size="30" value="<?php echo ${'latest_title' . $language['language_id']}; ?>" />
               <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" alt="" style="vertical-align:top;" /><br />
             <?php } ?></td>
           </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr style="background:#FCFCFC;">'; ?>
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr class="highlighted">'; ?>
             <td><?php echo $entry_header_color; ?></td>
             <td><select name="latest_header_color">
               <?php foreach ($skins as $skin) { ?>
@@ -56,7 +56,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr style="background:#FCFCFC;">'; ?>
+          <?php echo $stylesheet_mode ? '<tr style="display:none;">' : '<tr class="highlighted">'; ?>
             <td><?php echo $entry_header_shape; ?></td>
             <td><select name="latest_header_shape">
               <?php foreach ($shapes as $shape) { ?>
@@ -94,7 +94,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_viewproduct; ?></td>
             <td><?php if ($latest_viewproduct) { ?>
               <input type="radio" name="latest_viewproduct" value="1" id="viewproduct-on" class="radio" checked />
@@ -108,7 +108,7 @@
               <label for="viewproduct-off"><span><span></span></span><?php echo $text_no; ?></label>
             <?php } ?></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_addproduct; ?></td>
             <td><?php if ($latest_addproduct) { ?>
               <input type="radio" name="latest_addproduct" value="1" id="addproduct-on" class="radio" checked />

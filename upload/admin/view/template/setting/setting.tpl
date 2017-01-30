@@ -1214,6 +1214,18 @@
       <div id="tab-preference">
         <table class="form">
           <tr>
+            <td><?php echo $entry_admin_stylesheet; ?></td>
+            <td><select name="config_admin_stylesheet">
+              <?php foreach ($admin_stylesheets as $admin_stylesheet) { ?>
+                <?php if ($config_admin_stylesheet == $admin_stylesheet['format']) { ?>
+                  <option value="<?php echo $admin_stylesheet['format']; ?>" selected="selected"><?php echo $admin_stylesheet['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $admin_stylesheet['format']; ?>"><?php echo $admin_stylesheet['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_admin_width_limit; ?></td>
             <td><?php if ($config_admin_width_limit) { ?>
               <input type="radio" name="config_admin_width_limit" value="1" id="width-limit-on" class="radio" checked />

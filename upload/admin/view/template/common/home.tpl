@@ -44,7 +44,7 @@
         <?php } ?>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <div class="overview">
         <div class="dashboard-heading"><?php echo $text_overview; ?></div>
         <div class="dashboard-content">
@@ -102,7 +102,7 @@
       </div>
       <div class="statistic">
         <div class="range"><?php echo $entry_range; ?>
-          <select id="range" onchange="getSalesChart(this.value)">
+          <select id="range" onchange="getSalesChart(this.value);">
             <option value="day"><?php echo $text_day; ?></option>
             <option value="week"><?php echo $text_week; ?></option>
             <option value="month"><?php echo $text_month; ?></option>
@@ -306,7 +306,7 @@
               <tr>
                 <td class="left"><?php echo $review['name']; ?></td>
                 <td class="left"><?php echo $review['author']; ?></td>
-                <td class="center"><img src="view/image/theme/stars-<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['rating']; ?>" style="margin-top:2px;" /></td>
+                <td class="center"><img src="view/image/theme-<?php echo $admin_css; ?>/stars-<?php echo $review['rating'] . '.png'; ?>" alt="<?php echo $review['rating']; ?>" style="margin-top:2px;" /></td>
                 <?php if ($review['status'] == 1) { ?>
                   <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
                 <?php } else { ?>
@@ -582,7 +582,7 @@ function getSalesChart(range) {
 					show: true,
 					fill: true,
 					lineWidth: 1,
-					barColor: '#222222'
+					barColor: '#333333'
 				},
 				grid: {
 					backgroundColor: '#FFFFFF',

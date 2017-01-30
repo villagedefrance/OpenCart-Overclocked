@@ -56,8 +56,3 @@
 .cboxSlideshow_on #cboxSlideshow:hover {background-position: -150px 0px;}
 .cboxSlideshow_off #cboxSlideshow {background-position: -150px -25px; right: 27px;}
 .cboxSlideshow_off #cboxSlideshow:hover {background-position: -125px 0px;}
-
-/* Page timer */
-#response-time {
-	display: none;
-}

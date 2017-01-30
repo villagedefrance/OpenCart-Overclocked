@@ -19,7 +19,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <table class="list">
         <thead>
           <tr>

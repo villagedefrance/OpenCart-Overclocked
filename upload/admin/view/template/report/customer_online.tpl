@@ -12,7 +12,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
     <?php if (!$tracking) { ?>
       <div class="tooltip" style="margin:0px 0px 10px 0px;"><?php echo $text_tracking; ?></div>
     <?php } ?>

@@ -20,7 +20,7 @@
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="list">
         <thead>

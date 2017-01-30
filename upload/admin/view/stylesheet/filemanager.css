@@ -1,8 +1,15 @@
-/* Box Styles */
+/* -----------------------------------
+* Overclocked Edition - File Manager
+* Copyright © 2017 - Villagedefrance
+* ------------------------------------
+* Box Styles 
+* ------------------------------------
+*/
+
 body {
 	padding: 0;
 	margin: 0;
-	background: #F7F7F7;
+	background: #EFEFEF;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	overflow-y: hidden;
@@ -21,7 +28,7 @@ img {
 	margin-bottom: 3px;
 }
 #column-left {
-	background: #FFF;
+	background: #F7F7F7;
 	border: 1px solid #CCC;
 	float: left;
 	width: 26%;
@@ -29,7 +36,7 @@ img {
 	overflow: auto;
 }
 #column-right {
-	background: #FFF;
+	background: #F7F7F7;
 	border: 1px solid #CCC;
 	float: right;
 	width: 72%;
@@ -44,7 +51,7 @@ img {
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;
-	border: 1px solid #EEE;
+	border: 1px solid #CCC;
 	cursor: pointer;
 	margin: 5px;
 	padding: 5px;
@@ -99,7 +106,7 @@ img {
 }
 #updateImage a:hover {
 	background-position: 0px 0px;
-	background-color: #EEE;
+	background-color: #EFEFEF;
 }
 /* Filter */
 .filter {
@@ -107,14 +114,14 @@ img {
 	clear: left;
 	float: left;
     width: 26%;
-	background: #FFF;
+	background: #F7F7F7;
     border: 1px solid #CCC;
 	margin: 3px 0px 0px 0px;
 }
 .filter > input {
 	margin: 0;
 	padding-left: 2px;
-	background: #FFF;
+	background: #F7F7F7;
 	border: none;
 	height: 20px;
 	width: 80%;
@@ -126,7 +133,7 @@ img {
 .filter > img {
 	position: relative;
 	float: right;
-	background: #FFF;
+	background: #F7F7F7;
 	line-height: 20px;
 	margin-right: 2px;
 }
@@ -152,8 +159,4 @@ img {
 	font-size: 14px;
 	font-weight: bold;
 	margin: 30px 0px 0px 50px;
-}
-/* Page timer */
-#response-time {
-	display: none;
 }

@@ -22,7 +22,7 @@
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <div class="report">
         <div class="left"><img src="view/image/product-add.png" alt="" /></div>
         <div class="left"><a id="price-button" class="button-filter"><?php echo $button_update_price; ?></a></div>

@@ -17,10 +17,12 @@
 	margin: 5px 0 5px 0;
 }
 .markItUpContainer {
-	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .markItUpEditor {
-	font: 12px 'Courier New', Courier, monospace;
+	font-size: 12px;
+	font-family: "Courier New", Courier, monospace;
 	background: #F8F8F8;
 	padding: 5px;
 	width: 390px;
@@ -46,21 +48,21 @@
 	height: 5px;
 	margin-left: auto;
 	margin-right: auto;
-	background-image: url(images/handle.png);
+	background-image: url('images/handle.png') no-repeat;
 	cursor: n-resize;
 }
 /* --------------------------------------- */
 /* First row of buttons */
-.markItUpHeader ul li	{
-	list-style: none;
+.markItUpHeader ul li {
 	float: left;
 	position: relative;
+	list-style: none;
 }
 .markItUpHeader ul li:hover > ul {
 	display: block;
 }
 .markItUpHeader ul .markItUpDropMenu {
-	background: transparent url(images/menu.png) no-repeat 115% 50%;
+	background: #FCFCFC url('images/menu.png') no-repeat 115% 50%;
 	margin-right: 5px;
 }
 .markItUpHeader ul .markItUpDropMenu li {
@@ -72,7 +74,7 @@
 	position: absolute;
 	top: 18px;
 	left: 0px;
-	background: #FFF;
+	background: #FCFCFC;
 	border: 1px solid #111;
 }
 .markItUpHeader ul ul li {
@@ -80,7 +82,7 @@
 	border-bottom: 1px solid #111;
 }
 .markItUpHeader ul ul .markItUpDropMenu {
-	background: #FFF url(images/submenu.png) no-repeat 100% 50%;
+	background: #FCFCFC url('images/submenu.png') no-repeat 100% 50%;
 }
 .markItUpHeader ul .markItUpSeparator {
 	margin: 0 10px;
@@ -121,6 +123,6 @@
 	background-position: 2px 50%;
 }
 .markItUpHeader ul ul a:hover {
-	color: #FFF;
+	color: #FCFCFC;
 	background-color: #111;
 }

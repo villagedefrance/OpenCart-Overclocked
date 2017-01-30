@@ -75,8 +75,8 @@
       </div>
       <div id="tab-setting">
         <h2><?php echo $text_setting_info; ?></h2>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="35%" style="text-align:left;"><?php echo $column_php; ?></th>
               <th width="25%" style="text-align:left;"><?php echo $column_required; ?></th>
@@ -115,8 +115,8 @@
             </tr>
           </table>
         </div>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="35%" style="text-align:left;"><?php echo $column_extension; ?></th>
               <th width="25%" style="text-align:left;"><?php echo $column_required; ?></th>
@@ -176,8 +176,8 @@
             </tr>
           </table>
         </div>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="85%" style="text-align:left;"><?php echo $column_directories; ?></th>
               <th width="15%" style="text-align:left;"><?php echo $column_status; ?></th>
@@ -239,8 +239,8 @@
       </div>
       <div id="tab-integrity">
         <h2><?php echo $text_integrity_info; ?></h2>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="80%" style="text-align:left;"><?php echo $column_database_files; ?></th>
               <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
@@ -259,8 +259,8 @@
           <?php } ?>
           </table>
         </div>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="80%" style="text-align:left;"><?php echo $column_engine_files; ?></th>
               <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
@@ -279,8 +279,8 @@
           <?php } ?>
           </table>
         </div>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="80%" style="text-align:left;"><?php echo $column_helper_files; ?></th>
               <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>
@@ -299,8 +299,8 @@
           <?php } ?>
           </table>
         </div>
-        <div style="background:#F7F7F7; border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <th width="80%" style="text-align:left;"><?php echo $column_library_files; ?></th>
               <th width="20%" style="text-align:left;"><?php echo $column_status; ?></th>

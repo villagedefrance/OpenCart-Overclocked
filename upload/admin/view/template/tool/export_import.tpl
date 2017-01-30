@@ -254,7 +254,7 @@
                 </label>
               </td>
             </tr>
-            <tr style="background:#FCFCFC;">
+            <tr class="highlighted">
               <td>
                 <label>
                 <?php if ($settings_use_export_cache) { ?>
@@ -267,7 +267,7 @@
                 </label>
               </td>
             </tr>
-            <tr style="background:#FCFCFC;">
+            <tr class="highlighted">
               <td>
                 <label>
                 <?php if ($settings_use_import_cache) { ?>

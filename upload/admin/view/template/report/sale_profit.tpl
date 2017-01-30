@@ -12,7 +12,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>
@@ -62,7 +62,7 @@
           <?php } ?>
         </tbody>
         <tfoot>
-          <tr style="background:#FAFAFA;">
+          <tr class="highlighted">
             <td class="left" colspan="2"></td>
             <td class="right"><b><?php echo $text_total; ?> <?php echo $column_price; ?> :</b> <?php echo $total_price; ?></td>
             <td class="right"><b><?php echo $text_total; ?> <?php echo $column_cost; ?> :</b> <?php echo $total_cost; ?></td>

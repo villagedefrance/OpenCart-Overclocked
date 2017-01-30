@@ -22,7 +22,7 @@
         <a href="<?php echo $cancel; ?>" class="button-cancel"><?php echo $button_cancel; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
     <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form" name="images">
       <table class="list">
         <thead>

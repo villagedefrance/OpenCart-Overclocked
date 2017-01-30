@@ -16,7 +16,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <?php if ($success_text) { ?>
         <div class="success"><?php echo $success_text; ?></div>
       <?php } ?>
@@ -31,8 +31,8 @@
         <div class="tooltip" style="margin:5px 0px 0px 0px;"><?php echo $text_create; ?></div>
       <?php } ?>
       <h2><?php echo $text_sitemaps; ?></h2>
-      <div style="border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-        <table width="100%" cellpadding="5px">
+      <div class="toolbox">
+        <table class="tool">
           <tr>
             <th align="left"><?php echo $text_head_type; ?></th>
             <th align="left"><?php echo $text_head_name; ?></th>
@@ -107,8 +107,8 @@
       </div>
       <?php if ($sitemapxml) { ?>
         <h2><?php echo $text_submit; ?></h2>
-        <div style="border:1px solid #DDD; padding:10px; margin-bottom:15px;">
-          <table width="100%">
+        <div class="toolbox">
+          <table class="tool">
             <tr>
               <td>
                 <a onclick="window.open('<?php echo $googleweb; ?>');" title="Google Webmaster Tools"><img src="view/image/engines/google-web.gif" alt="Google" /></a> &nbsp;

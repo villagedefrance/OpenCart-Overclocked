@@ -19,7 +19,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <div class="tooltip" style="margin:5px 0px 15px 0px;"><?php echo $help_function; ?></div>
       <form action="<?php echo $csv_import; ?>" method="post" enctype="multipart/form-data" id="import-raw">
         <h2><?php echo $heading_import; ?></h2>

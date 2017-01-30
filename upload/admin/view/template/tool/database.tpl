@@ -16,7 +16,7 @@
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
-    <div class="content">
+    <div class="content-body">
       <?php if ($success_optimize) { ?>
         <div class="success" style="margin-top:10px;"><?php echo $success_optimize; ?></div>
       <?php } ?>

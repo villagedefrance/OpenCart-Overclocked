@@ -22,7 +22,7 @@
       <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
     </div>
   </div>
-  <div class="content">
+  <div class="content-body">
     <?php if ($navigation_hi) { ?>
       <div class="pagination" style="margin-bottom:10px;"><?php echo $pagination; ?></div>
     <?php } ?>

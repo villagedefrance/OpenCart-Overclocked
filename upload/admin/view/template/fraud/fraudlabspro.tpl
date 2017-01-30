@@ -46,7 +46,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_status; ?></td>
             <td><select name="fraudlabspro_status">
               <?php if ($fraudlabspro_status) { ?>

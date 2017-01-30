@@ -39,6 +39,15 @@ class ControllerCommonLogin extends Controller {
 
 		$this->data['button_login'] = $this->language->get('button_login');
 
+		// Stylesheet
+		$admin_css = $this->config->get('config_admin_stylesheet');
+
+		if (!empty($admin_css)) {
+			$this->data['admin_css'] = $admin_css;
+		} else {
+			$this->data['admin_css'] = 'classic';
+		}
+
 		if ((isset($this->session->data['token']) && !isset($this->request->get['token'])) || ((isset($this->request->get['token']) && (isset($this->session->data['token']) && ($this->request->get['token'] != $this->session->data['token']))))) {
 			$this->error['warning'] = $this->language->get('error_token');
 		}

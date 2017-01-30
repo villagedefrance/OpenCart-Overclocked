@@ -31,7 +31,7 @@
         <span style="background:#DE5954; color:#FFF; padding:3px 6px; float:right;"><?php echo $seo_url_total; ?> / <?php echo $keyword_total; ?></span>
       <?php } ?>
     </div>
-    <div class="content">
+    <div class="content-body">
     <?php if ($error_url_status) { ?>
       <div class="attention" style="margin:0px 0px 10px 0px;"><?php echo $error_url_status; ?></div>
     <?php } ?>

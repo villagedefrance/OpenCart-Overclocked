@@ -1,6 +1,7 @@
 /* ------------------------------
 * VQmods v2.0.1
 * Overclocked Edition Stylesheet
+* Copyright © 2017 - Villagedefrance
 * -------------------------------
 */
 #error-log {
@@ -22,11 +23,11 @@
 	margin-bottom: 15px;
 	background: #FFF url('../image/lockscreen.png') 10px center no-repeat;
 	border: 1px solid #D7E6F4;
-	color: #444;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	border-radius: 5px;
+	color: #444;
 }
 /* About */
 a.about {
@@ -41,11 +42,6 @@ input[type='submit'] {
 	line-height: 12px;
 	padding: 5px 15px;
 	margin: 0px 4px;
-	border: 1px solid #CCC;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#FCFCFC), to(#DEDEDE));
 	background-image: -webkit-linear-gradient(top, #FCFCFC, #DEDEDE);
@@ -53,6 +49,11 @@ input[type='submit'] {
 	background-image: -ms-linear-gradient(top, #FCFCFC, #DEDEDE);
 	background-image: -o-linear-gradient(top, #FCFCFC, #DEDEDE);
 	background-image: linear-gradient(to bottom, #FCFCFC, #DEDEDE);
+	border: 1px solid #CCC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	text-decoration: none;
 	font-weight: bold;
 	color: #333;

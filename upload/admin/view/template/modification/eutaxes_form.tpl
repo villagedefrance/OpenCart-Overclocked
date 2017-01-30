@@ -92,7 +92,7 @@
               <td><?php echo $entry_rate; ?></td>
               <td><input type="text" name="rate" value="<?php echo $rate; ?>" size="10" maxlength="7" /></td>
             </tr>
-            <tr style="background:#F8F8F8;">
+            <tr class="highlighted">
               <td><?php echo $entry_status; ?></td>
               <td><select name="status">
                 <?php if ($status) { ?>

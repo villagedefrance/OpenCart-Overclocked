@@ -1,4 +1,11 @@
-/* Page Styles */
+/* -----------------------------------
+* Overclocked Edition - File Manager
+* Copyright © 2017 - Villagedefrance
+* ------------------------------------
+* Page Styles 
+* ------------------------------------
+*/
+
 #files-menu {
 	clear: both;
 	position: relative;
@@ -24,7 +31,7 @@
 	margin-right: 12px;
 }
 #column-left {
-	background: #FFF;
+	background: #F7F7F7;
 	border: 1px solid #CCC;
 	border-top: none;
 	-webkit-border-radius: 0px 0px 0px 3px;
@@ -39,7 +46,7 @@
 	overflow: auto;
 }
 #column-right {
-	background: #FFF;
+	background: #F7F7F7;
 	border: 1px solid #CCC;
 	border-top: none;
 	-webkit-border-radius: 0px 0px 3px 0px;
@@ -62,7 +69,7 @@
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;
-	border: 1px solid #EEE;
+	border: 1px solid #CCC;
 	cursor: pointer;
 	margin: 5px;
 	padding: 5px;
@@ -125,7 +132,7 @@
 }
 #updateImage a:hover {
 	background-position: 0px 0px;
-	background-color: #EEE;
+	background-color: #EFEFEF;
 }
 /* Filter */
 .filter {
@@ -133,7 +140,7 @@
 	clear: left;
 	float: left;
     width: 25%;
-	background: #FFF;
+	background: #F7F7F7;
     border: 1px solid #CCC;
 	margin: 0px 0px 15px 0px;
 }
@@ -143,7 +150,7 @@
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-	background: #FFF;
+	background: #F7F7F7;
 	border: none;
 	height: 20px;
 	width: 80%;
@@ -155,7 +162,7 @@
 .filter > img {
 	position: relative;
 	float: right;
-	background: #FFF;
+	background: #F7F7F7;
 	line-height: 20px;
 	margin-right: 2px;
 }
@@ -181,8 +188,4 @@
 	font-size: 14px;
 	font-weight: bold;
 	margin: 30px 0px 0px 50px;
-}
-/* Page timer */
-#response-time {
-	display: none;
 }

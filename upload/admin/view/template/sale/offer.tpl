@@ -9,7 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/offer.png" alt="" /> <?php echo $heading_title; ?></h1>
     </div>
-    <div class="content">
+    <div class="content-body">
       <div class="overview">
         <div class="dashboard-heading"><?php echo $text_overview; ?></div>
         <div class="dashboard-content">

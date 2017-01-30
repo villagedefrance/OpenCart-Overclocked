@@ -21,8 +21,8 @@
         <a href="#tab-configuration"><?php echo $tab_configuration; ?></a>
         <a href="#tab-status"><?php echo $tab_status; ?></a>
       </div>
-      <div id="tab-configuration">
-        <table class="form">
+      <div id="tab-configuration" class="toolbox">
+        <table class="tool">
           <?php echo $help_manager; ?><br /><br />
           <?php echo $help_geo_zone; ?><br /><br />
           <?php echo $help_tax_class; ?><br /><br />

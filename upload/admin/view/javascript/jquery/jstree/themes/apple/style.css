@@ -1,5 +1,5 @@
 /* BACKGROUND */
-.tree-apple .ltr, .tree-apple .rtl { background:#FFF; min-width:100%; _width:100%; margin-left:0; margin-right:0; display:table; }
+.tree-apple .ltr, .tree-apple .rtl { background:#F7F7F7; min-width:100%; _width:100%; margin-left:0; margin-right:0; display:table; }
 .tree-apple .ltr > li.leaf, .tree-apple .rtl > li.leaf { background-image:none; }
 
 /* LOCKED */

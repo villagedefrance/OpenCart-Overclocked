@@ -6,7 +6,7 @@
  * @license https://github.com/manifestinteractive/jqvmap/blob/master/LICENSE
  * @builddate 2016/05/18
  *
- * Overclocked Edition © 2016 | Villagedefrance
+ * Overclocked Edition © 2017 | Villagedefrance
  */
  
 .jqvmap-label,.jqvmap-pin{pointer-events:none}.jqvmap-label{position:absolute;display:none;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#292929;color:#FCFCFC;font-family:sans-serif,Verdana;font-size:smaller;padding:3px}.jqvmap-zoomin,.jqvmap-zoomout{position:absolute;left:10px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background:#5A5A5A;padding:3px;color:#FCFCFC;width:10px;height:10px;cursor:pointer;line-height:10px;text-align:center}.jqvmap-zoomin{top:10px}.jqvmap-zoomout{top:30px}.jqvmap-region{cursor:pointer}.jqvmap-ajax_response{width:100%;height:500px}

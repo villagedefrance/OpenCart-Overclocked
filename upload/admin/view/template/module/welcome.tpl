@@ -109,7 +109,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr style="background:#FCFCFC;">
+            <tr class="highlighted">
               <td><?php echo $entry_layout; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][layout_id]">
                 <?php foreach ($layouts as $layout) { ?>
@@ -121,7 +121,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr style="background:#FCFCFC;">
+            <tr class="highlighted">
               <td><?php echo $entry_position; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][position]">
                 <?php if ($module['position'] == 'content_header') { ?>
@@ -156,7 +156,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr style="background:#FCFCFC;">
+            <tr class="highlighted">
               <td><?php echo $entry_status; ?></td>
               <td><select name="welcome_module[<?php echo $module_row; ?>][status]">
                 <?php if ($module['status']) { ?>
@@ -168,7 +168,7 @@
                 <?php } ?>
               </select></td>
             </tr>
-            <tr style="background:#FCFCFC;">
+            <tr class="highlighted">
               <td><?php echo $entry_sort_order; ?></td>
               <td><input type="text" name="welcome_module[<?php echo $module_row; ?>][sort_order]" value="<?php echo $module['sort_order']; ?>" size="3" /></td>
             </tr>

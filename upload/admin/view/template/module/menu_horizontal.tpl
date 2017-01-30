@@ -49,7 +49,7 @@
           </tr>
         </tbody>
         <tbody id="theme-custom" class="menu-theme">
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_header_color; ?></td>
             <td><select name="menu_horizontal_header_color">
               <?php foreach ($skins as $skin) { ?>
@@ -61,7 +61,7 @@
               <?php } ?>
             </select></td>
           </tr>
-          <tr style="background:#FCFCFC;">
+          <tr class="highlighted">
             <td><?php echo $entry_header_shape; ?></td>
             <td><select name="menu_horizontal_header_shape">
               <?php foreach ($shapes as $shape) { ?>

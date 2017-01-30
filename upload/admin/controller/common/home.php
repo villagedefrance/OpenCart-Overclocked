@@ -230,6 +230,9 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		// Stylesheet
+		$this->data['admin_css'] = $this->config->get('config_admin_stylesheet');
+
 		// Overview
 		$this->load->model('sale/order');
 
