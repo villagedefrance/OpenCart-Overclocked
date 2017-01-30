@@ -599,8 +599,8 @@ ul.menu ul {
 .box > .heading h1 {
 	margin: 0px;
 	padding: 9px 0px 0px 0px;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	font-size: 16px;
 	float: left;
 }
@@ -660,8 +660,8 @@ ul.menu ul {
 /* Box Report */
 .box > .content .report, .box > .content-body .report {
 	height: 40px;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	line-height: 40px;
 	background-color: #3C4044;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#3C4044), to(#171C19));
@@ -708,8 +708,8 @@ ul.menu ul {
 	padding: 0px;
 }
 .box-login > .content-login {
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	background-color: #30353A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#30353A), to(#191919));
 	background-image: -webkit-linear-gradient(top, #30353A, #191919);
@@ -728,7 +728,7 @@ ul.menu ul {
 	margin: 0px 0px 10px 0px;
 	padding: 10px 8px;
 	color: #E5E5E5;
-	text-shadow: 0 0 1px rgba(64, 80, 96, 0.05);
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	font-size: 16px;
 	float: left;
 }
@@ -1041,8 +1041,8 @@ a.button-print:hover {
 	margin-bottom: 20px;
 }
 .list td {
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border-right: 1px solid #252A2F;
 	border-bottom: 1px solid #252A2F;
 }
@@ -1058,8 +1058,8 @@ a.button-print:hover {
 }
 .list thead td a, .list thead td {
 	font-weight: bold;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	text-decoration: none;
 }
 .list tbody td a {
@@ -1106,8 +1106,8 @@ a.button-print:hover {
 .list tbody tr td span.enabled, .list tbody tr td span.passed {
 	background: #5DC15E;
 	padding: 2px 12px;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border: 0px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -1117,8 +1117,8 @@ a.button-print:hover {
 .list tbody tr td span.disabled {
 	background: #A0A0A0;
 	padding: 2px 12px;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border: 0px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -1128,8 +1128,8 @@ a.button-print:hover {
 .list tbody tr td span.missed {
 	background: #DE5954;
 	padding: 2px 12px;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border: 0px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -1138,6 +1138,7 @@ a.button-print:hover {
 }
 .list tfoot tr td.script {
 	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	font-size: 10px;
 	text-align: center;
 }
@@ -1205,8 +1206,8 @@ table.form > tbody > tr.highlighted, table.form-slim > tbody > tr.highlighted {
 	background: #202427;
 }
 table.form > tbody > tr > td, table.form-slim > tbody > tr > td {
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	border-bottom: 1px dotted #555;
 	padding: 10px;
 }
@@ -1243,8 +1244,8 @@ table.tool tr th {
 table.tool tr td {
 	line-height: 20px;
 	font-size: 13px;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 }
 /* Toolbox */
 .toolbox {
@@ -1465,7 +1466,7 @@ table.tool tr td {
 	font-size: 12px;
 	font-weight: normal;
 	text-decoration: none;
-	text-shadow: 0 0 1px rgba(153, 153, 153, 0.05);
+	text-shadow: 0 0 1px rgba(152, 152, 152, 0.05);
 	border: 1px solid #313841;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -1509,8 +1510,8 @@ table.tool tr td {
 .dashboard-heading, .dashboard-heading-left, .dashboard-heading-middle, .dashboard-heading-right {
 	font-size: 14px;
 	font-weight: bold;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	background-color: #30353A;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#30353A), to(#191919));
 	background-image: -webkit-linear-gradient(top, #30353A, #191919);
@@ -1692,8 +1693,8 @@ table.tool tr td {
 /* Range */
 .range {
 	float: right;
-	color: #E1E1E1;
-	text-shadow: 0 0 1px rgba(225, 225, 225, 0.05);
+	color: #E5E5E5;
+	text-shadow: 0 0 1px rgba(229, 229, 229, 0.05);
 	vertical-align: middle;
 	padding-top: 4px;
 	padding-right: 4px;
