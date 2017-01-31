@@ -25,10 +25,10 @@ Each new release will bring newer and better features, upgraded scripts, bug fix
 So feel free to post your comments or get in touch!
 
 Requirements:
-- Server: Linux/Windows Server (Apache Linux is preferred).
-- Database: MySQL, MySQLi, PDO (MySQLi is preferred).
-- PHP: PHP 5.4+ (with MySQLi extension).
-- Curl: Curl extensions.
+- Server: Linux/Windows Server (Apache Linux is preferred)
+- Database: MySQL, MySQLi, PDO (MySQLi is preferred)
+- Curl: Curl extensions
+- PHP: PHP 5.4+
 
 Powered by the Latest Scripts:
 - jQuery 1.12.4.
@@ -37,22 +37,14 @@ Powered by the Latest Scripts:
 - CKEditor 4.6.2 Full.
 - ...
 
-Coming soon in 1.9.0.0!
-- New default theme.
+New in 1.9.0.0 (current release)!
+- New Catalog default theme.
+- New Admin black theme.
 - Font-awesome v4.7.0.
 - Paypal Express update.
 - Improved News list page.
 - CKEditor v4.6.2.
 - ...
-
-New in 1.8.4.0 (current release)!
-- New Ajax Search!
-- New Media Player!
-- File Manager update.
-- Plupload v2.2.1.
-- CKEditor v4.6.0.
-- PHP 5.4+ as new minimum.
-- bug fixes.
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
 
@@ -62,7 +54,7 @@ SEO Keywords Manager, Integrated News (Blog), DomPDF library for PDF order downl
 Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style for all modules and footer,
 Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed,
 Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector,
-New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image,
+New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search
 Store Google Map, Country & Zone update on upgrade, Improved invoicing (with tax breakdown), Email log,
 Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching,
 "Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History,
