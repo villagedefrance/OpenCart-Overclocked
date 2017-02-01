@@ -98,7 +98,8 @@ $(document).ready(function() {
     <a class="top-link" onclick="location='<?php echo $checkout; ?>';" title=""><i class="fa fa-mail-forward"></i><span class="hide-phone"> &nbsp;<?php echo $text_checkout; ?></span></a>
   </div>
 </div>
-<div id="container-<?php echo $display_size; ?>" style="background-color:<?php echo $container_color; ?>;">
+<div id="container" style="background-color:<?php echo $container_color; ?>;">
+<div class="container-<?php echo $display_size; ?>">
 <div id="header">
   <?php if ($logo) { ?>
     <div id="logo"><a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" /></a></div>
