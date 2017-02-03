@@ -37,13 +37,14 @@ Powered by the Latest Scripts:
 - CKEditor 4.6.2 Full.
 - ...
 
-New in 1.9.0.0 (current release)!
+New in 1.9.1.0 (current release)!
 - New Catalog default theme.
 - New Admin black theme.
 - Font-awesome v4.7.0.
 - Paypal Express update.
 - Improved News list page.
 - CKEditor v4.6.2.
+- Bug fixes.
 - ...
 
 Overclocked Edition main features, compared with official OpenCart v1.5.6.x:
