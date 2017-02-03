@@ -2871,7 +2871,14 @@ table.order-options tr td > div.division {
 		width: auto;
 		min-height: 200px;
 		margin-bottom: 15px;
-		padding: 0px;
+		padding: 0px 5px;
+	}
+	#content .content .left, #content .content .right {
+		width: 100%;
+	}
+	#content .content .right {
+		clear: left;
+		float: left;
 	}
 	#column-left, #column-right {
 		display: none;
@@ -2943,14 +2950,6 @@ table.order-options tr td > div.division {
 	#header #search input {
 		width: 196px;
 	}
-	/* Content left/right*/
-	#content .content .left, #content .content .right {
-		width: 100%;
-	}
-	#content .content .right {
-		clear: left;
-		float: left;
-	}
 	/* Return */
 	#return-product .content .return-product, #return-product .content .return-detail {
 		width: auto;
@@ -3008,7 +3007,14 @@ table.order-options tr td > div.division {
 		width: auto;
 		min-height: 200px;
 		margin-bottom: 15px;
-		padding: 0px;
+		padding: 0px 5px;
+	}
+	#content .content .left, #content .content .right {
+		width: 100%;
+	}
+	#content .content .right {
+		clear: left;
+		float: left;
 	}
 	#column-left, #column-right {
 		display: none;
@@ -3076,14 +3082,6 @@ table.order-options tr td > div.division {
 	}
 	#header #search input {
 		width: 196px;
-	}
-	/* Content left/right*/
-	#content .content .left, #content .content .right {
-		width: 100%;
-	}
-	#content .content .right {
-		clear: left;
-		float: left;
 	}
 	/* Return */
 	#return-product .content .return-product, #return-product .content .return-detail {
@@ -3169,7 +3167,14 @@ table.order-options tr td > div.division {
 		width: auto;
 		min-height: 200px;
 		margin-bottom: 15px;
-		padding: 0px;
+		padding: 0px 5px;
+	}
+	#content .content .left, #content .content .right {
+		width: 100%;
+	}
+	#content .content .right {
+		clear: left;
+		float: left;
 	}
 	#column-left, #column-right {
 		display: none;
@@ -3237,14 +3242,6 @@ table.order-options tr td > div.division {
 	}
 	#header #search input {
 		width: 196px;
-	}
-	/* Content left/right*/
-	#content .content .left, #content .content .right {
-		width: 100%;
-	}
-	#content .content .right {
-		clear: left;
-		float: left;
 	}
 	/* Return */
 	#return-product .content .return-product, #return-product .content .return-detail {
