@@ -71,9 +71,9 @@ class ControllerPaymentCardPay extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['action'] = HTTPS_SERVER . 'index.php?route=payment/cardpay&token=' . $this->session->data['token'];
+		$this->data['action'] = $this->url->link('payment/cardpay', 'token=' . $this->session->data['token'], 'SSL');
 
-		$this->data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token'];
+		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['cardpay_url_production_server'])) {
 			$this->data['cardpay_url_production_server'] = $this->request->post['cardpay_url_production_server'];

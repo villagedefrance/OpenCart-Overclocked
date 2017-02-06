@@ -195,6 +195,7 @@ samp, small {
 }
 /* Container */
 #container-normal {
+	margin: 0px;
 	height: 100%;
 }
 #container-limited {

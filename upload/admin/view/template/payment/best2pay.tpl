@@ -87,7 +87,7 @@
           <tr>
             <td><?php echo $entry_total; ?></td>
             <td><input type="text" name="best2pay_total" value="<?php echo $best2pay_total; ?>" /></td>
-          </tr>          
+          </tr>
           <tr>
             <td><?php echo $entry_order_status; ?></td>
             <td><select name="best2pay_order_status_id">
