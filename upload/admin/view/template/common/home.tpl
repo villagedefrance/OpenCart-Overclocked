@@ -582,10 +582,12 @@ function getSalesChart(range) {
 					show: true,
 					fill: true,
 					lineWidth: 1,
-					barColor: '#333333'
+					barColor: '<?php echo $chart_colour; ?>'
 				},
 				grid: {
-					backgroundColor: '#FFFFFF',
+					color: '<?php echo $chart_colour; ?>',
+					borderColor: '<?php echo $chart_border; ?>',
+					backgroundColor: '<?php echo $chart_background; ?>',
 					hoverable: true
 				},
 				points: {
@@ -593,7 +595,15 @@ function getSalesChart(range) {
 				},
 				xaxis: {
 					show: true,
+					color: '<?php echo $chart_colour; ?>',
+					font: '<?php echo $chart_colour; ?>',
+					tickColor: '<?php echo $chart_border; ?>',
 					ticks: json['xaxis']
+				},
+				yaxis: {
+					color: '<?php echo $chart_colour; ?>',
+					font: '<?php echo $chart_colour; ?>',
+					tickColor: '<?php echo $chart_border; ?>'
 				}
 			}
 			$.plot($('#report'), [json['cart'], json['order'], json['customer']], option);
@@ -624,8 +634,10 @@ $(document).ready(function() {
 
 			$('#vmap').vectorMap({
 				map: 'world_en',
-				backgroundColor: '#FFFFFF',
-				borderColor: '#FFFFFF',
+				backgroundColor: '<?php echo $chart_background; ?>',
+				borderColor: '<?php echo $chart_border; ?>',
+				borderOpacity: 0.25,
+				borderWidth: 1,
 				color: '#9FD5F1',
 				hoverOpacity: 0.7,
 				selectedColor: '#666666',

@@ -231,7 +231,23 @@ class ControllerCommonHome extends Controller {
 		$this->data['token'] = $this->session->data['token'];
 
 		// Stylesheet
-		$this->data['admin_css'] = $this->config->get('config_admin_stylesheet');
+		$admin_css = $this->config->get('config_admin_stylesheet');
+
+		if ($admin_css == 'overclock') {
+			$this->data['chart_background'] = '#4B515A';
+			$this->data['chart_border'] = '#999999';
+			$this->data['chart_colour'] = '#E5E5E5';
+		} elseif ($admin_css == 'classic') {
+			$this->data['chart_background'] = '#FFFFFF';
+			$this->data['chart_border'] = '#AAAAAA';
+			$this->data['chart_colour'] = '#333333';
+		} else {
+			$this->data['chart_background'] = '#FFFFFF';
+			$this->data['chart_border'] = '#AAAAAA';
+			$this->data['chart_colour'] = '#333333';
+		}
+
+		$this->data['admin_css'] = $admin_css;
 
 		// Overview
 		$this->load->model('sale/order');

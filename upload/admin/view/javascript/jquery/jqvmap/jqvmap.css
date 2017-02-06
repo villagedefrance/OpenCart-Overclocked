@@ -17,7 +17,7 @@
 	border-radius: 3px;
 	background: #292929;
 	color: #FCFCFC;
-	font-family: sans-serif, Verdana;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: smaller;
 	padding: 3px;
 	pointer-events: none;
@@ -31,7 +31,7 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	background: #5A5A5A;
+	background: #4A4A4A;
 	padding: 3px;
 	color: #FCFCFC;
 	width: 10px;

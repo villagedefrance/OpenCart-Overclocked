@@ -1308,6 +1308,7 @@ table.tool tr td {
 	border-radius: 5px 5px 0px 0px;
 	outline: 0;
 }
+.htabs-content {}
 .list tbody tr:hover td > .htabs a.selected {
 	background-color: #5A6468;
 	border-bottom: 1px solid #5A6468;

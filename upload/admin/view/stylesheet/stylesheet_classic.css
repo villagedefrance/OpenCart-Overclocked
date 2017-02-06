@@ -1296,6 +1296,7 @@ table.tool tr td {
 	border-bottom: 1px solid #FFF;
 	outline: 0;
 }
+.htabs-content {}
 .list tbody tr:hover td > .htabs a.selected {
 	background-color: #FFFFCB;
 	border-bottom: 1px solid #FFFFCB;

@@ -9,12 +9,12 @@
  * Overclocked Edition © 2016 | Villagedefrance
  */
 
-var VectorCanvas = function (width, height, params) {
+var VectorCanvas = function(width, height, params) {
   this.mode = window.SVGAngle ? 'svg' : 'vml';
   this.params = params;
 
   if (this.mode === 'svg') {
-    this.createSvgNode = function (nodeName) {
+    this.createSvgNode = function(nodeName) {
       return document.createElementNS(this.svgns, nodeName);
     };
   } else {
@@ -22,11 +22,11 @@ var VectorCanvas = function (width, height, params) {
       if (!document.namespaces.rvml) {
         document.namespaces.add('rvml', 'urn:schemas-microsoft-com:vml');
       }
-      this.createVmlNode = function (tagName) {
+      this.createVmlNode = function(tagName) {
         return document.createElement('<rvml:' + tagName + ' class="rvml">');
       };
     } catch (e) {
-      this.createVmlNode = function (tagName) {
+      this.createVmlNode = function(tagName) {
         return document.createElement('<' + tagName + ' xmlns="urn:schemas-microsoft.com:vml" class="rvml">');
       };
     }
@@ -71,13 +71,13 @@ ColorScale.prototype = {
   colors: []
 };
 
-var JQVMap = function (params) {
+var JQVMap = function(params) {
   params = params || {};
   var map = this;
   var mapData = JQVMap.maps[params.map];
   var mapPins;
 
-  if( !mapData){
+  if (!mapData) {
     throw new Error('Invalid "' + params.map + '" map parameter. Please make sure you have loaded this map file in your HTML.');
   }
 
@@ -101,11 +101,11 @@ var JQVMap = function (params) {
 
   this.resize();
 
-  jQuery(window).resize(function () {
+  jQuery(window).resize(function() {
     var newWidth = params.container.width();
     var newHeight = params.container.height();
 
-    if(newWidth && newHeight){
+    if (newWidth && newHeight) {
       map.width = newWidth;
       map.height = newHeight;
       map.resize();
@@ -115,7 +115,7 @@ var JQVMap = function (params) {
       var resizeEvent = jQuery.Event('resize.jqvmap');
       jQuery(params.container).trigger(resizeEvent, [newWidth, newHeight]);
 
-      if(mapPins){
+      if (mapPins) {
         jQuery('.jqvmap-pin').remove();
         map.pinHandlers = false;
         map.placePins(mapPins.pins, mapPins.mode);
@@ -158,7 +158,7 @@ var JQVMap = function (params) {
     jQuery(this.rootGroup).append(path);
   }
 
-  jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'mouseover mouseout', function (e) {
+  jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'mouseover mouseout', function(e) {
     var containerPath = e.target,
       code = e.target.id.split('_').pop(),
       labelShowEvent = jQuery.Event('labelShow.jqvmap'),
@@ -189,8 +189,7 @@ var JQVMap = function (params) {
     }
   });
 
-  jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'click', function (regionClickEvent) {
-
+  jQuery(params.container).delegate(this.canvas.mode === 'svg' ? 'path' : 'shape', 'click', function(regionClickEvent) {
     var targetPath = regionClickEvent.target;
     var code = regionClickEvent.target.id.split('_').pop();
     var mapClickEvent = jQuery.Event('regionClick.jqvmap');
@@ -199,14 +198,14 @@ var JQVMap = function (params) {
 
     jQuery(params.container).trigger(mapClickEvent, [code, mapData.paths[code].name]);
 
-    if ( !params.multiSelectRegion && !mapClickEvent.isDefaultPrevented()) {
+    if (!params.multiSelectRegion && !mapClickEvent.isDefaultPrevented()) {
       for (var keyPath in mapData.paths) {
         map.countries[keyPath].currentFillColor = map.countries[keyPath].getOriginalFill();
         map.countries[keyPath].setFill(map.countries[keyPath].getOriginalFill());
       }
     }
 
-    if ( !mapClickEvent.isDefaultPrevented()) {
+    if (!mapClickEvent.isDefaultPrevented()) {
       if (map.isSelected(code)) {
         map.deselect(code, targetPath);
       } else {
@@ -216,7 +215,7 @@ var JQVMap = function (params) {
   });
 
   if (params.showTooltip) {
-    params.container.mousemove(function (e) {
+    params.container.mousemove(function(e) {
       if (map.label.is(':visible')) {
         var left = e.pageX - 15 - map.labelWidth;
         var top = e.pageY - 15 - map.labelHeight;
@@ -261,7 +260,7 @@ var JQVMap = function (params) {
 
   this.bindZoomButtons();
 
-  if(params.pins) {
+  if (params.pins) {
     mapPins = {
       pins: params.pins,
       mode: params.pinMode
@@ -271,13 +270,13 @@ var JQVMap = function (params) {
     this.placePins(params.pins, params.pinMode);
   }
 
-  if(params.showLabels){
+  if (params.showLabels) {
     this.pinHandlers = false;
 
     var pins = {};
-    for (key in map.countries){
+    for (key in map.countries) {
       if (typeof map.countries[key] !== 'function') {
-        if( !params.pins || !params.pins[key] ){
+        if (!params.pins || !params.pins[key]) {
           pins[key] = key.toUpperCase();
         }
       }
@@ -651,7 +650,6 @@ JQVMap.prototype.makeDraggable = function() {
   var touchY;
 
   this.container.mousemove(function(e) {
-
     if (mouseDown) {
       self.transX -= (oldPageX - e.pageX) / self.scale;
       self.transY -= (oldPageY - e.pageY) / self.scale;
@@ -672,15 +670,14 @@ JQVMap.prototype.makeDraggable = function() {
     return false;
 
   }).mousedown(function(e) {
-
     mouseDown = true;
+
     oldPageX = e.pageX;
     oldPageY = e.pageY;
 
     return false;
 
   }).mouseup(function() {
-
     mouseDown = false;
 
     clearTimeout(self.isMovingTimeout);
@@ -691,10 +688,9 @@ JQVMap.prototype.makeDraggable = function() {
     return false;
 
   }).mouseout(function () {
-
-    if(mouseDown && self.isMoving){
-
+    if (mouseDown && self.isMoving) {
       clearTimeout(self.isMovingTimeout);
+
       self.isMovingTimeout = setTimeout(function() {
         mouseDown = false;
         self.isMoving = false;
@@ -705,7 +701,6 @@ JQVMap.prototype.makeDraggable = function() {
   });
 
   jQuery(this.container).bind('touchmove', function(e) {
-
     var offset;
     var scale;
     var touches = e.originalEvent.touches;
@@ -741,7 +736,6 @@ JQVMap.prototype.makeDraggable = function() {
       touchY = touches[0].pageY;
 
     } else if (touches.length === 2) {
-
       if (lastTouchCount === 2) {
         scale = Math.sqrt(
             Math.pow(touches[0].pageX - touches[1].pageX, 2) +
@@ -757,8 +751,8 @@ JQVMap.prototype.makeDraggable = function() {
         e.preventDefault();
 
       } else {
-
         offset = jQuery(self.container).offset();
+
         if (touches[0].pageX > touches[1].pageX) {
           touchCenterX = touches[1].pageX + (touches[0].pageX - touches[1].pageX) / 2;
         } else {
@@ -775,10 +769,7 @@ JQVMap.prototype.makeDraggable = function() {
         touchCenterY -= offset.top;
         touchStartScale = self.scale;
 
-        touchStartDistance = Math.sqrt(
-          Math.pow(touches[0].pageX - touches[1].pageX, 2) +
-          Math.pow(touches[0].pageY - touches[1].pageY, 2)
-        );
+        touchStartDistance = Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
       }
     }
 
@@ -797,7 +788,7 @@ JQVMap.prototype.makeDraggable = function() {
 JQVMap.prototype.placePins = function(pins, pinMode) {
   var map = this;
 
-  if(!pinMode || (pinMode !== 'content' && pinMode !== 'id')) {
+  if (!pinMode || (pinMode !== 'content' && pinMode !== 'id')) {
     pinMode = 'content';
   }
 
@@ -844,6 +835,7 @@ JQVMap.prototype.placePins = function(pins, pinMode) {
 JQVMap.prototype.positionPins = function() {
   var map = this;
   var pins = this.container.find('.jqvmap-pin');
+
   jQuery.each(pins, function(index, pinObj) {
     pinObj = jQuery(pinObj);
     var countryId = map.getCountryId(pinObj.attr('for').toLowerCase());
@@ -882,6 +874,7 @@ JQVMap.prototype.reset = function() {
 
 JQVMap.prototype.resize = function() {
   var curBaseScale = this.baseScale;
+
   if (this.width / this.height > this.defaultWidth / this.defaultHeight) {
     this.baseScale = this.height / this.defaultHeight;
     this.baseTransX = Math.abs(this.width - this.defaultWidth * this.baseScale) / (2 * this.baseScale);
@@ -889,6 +882,7 @@ JQVMap.prototype.resize = function() {
     this.baseScale = this.width / this.defaultWidth;
     this.baseTransY = Math.abs(this.height - this.defaultHeight * this.baseScale) / (2 * this.baseScale);
   }
+
   this.scale *= this.baseScale / curBaseScale;
   this.transX *= this.baseScale / curBaseScale;
   this.transY *= this.baseScale / curBaseScale;
@@ -915,6 +909,7 @@ JQVMap.prototype.select = function(cc, path) {
 
 JQVMap.prototype.selectIndex = function(cc) {
   cc = cc.toLowerCase();
+
   for (var i = 0; i < this.selectedRegions.length; i++) {
     if (cc === this.selectedRegions[i]) {
       return i;
@@ -927,7 +922,7 @@ JQVMap.prototype.setBackgroundColor = function(backgroundColor) {
   this.container.css('background-color', backgroundColor);
 };
 
-JQVMap.prototype.setColors = function (key, color) {
+JQVMap.prototype.setColors = function(key, color) {
   if (typeof key === 'string') {
     this.countries[key].setFill(color);
     this.countries[key].setAttribute('original', color);
@@ -1151,7 +1146,7 @@ VectorCanvas.prototype.createPath = function(config) {
   return node;
 };
 
-VectorCanvas.prototype.pathSvgToVml = function (path) {
+VectorCanvas.prototype.pathSvgToVml = function(path) {
   var result = '';
   var cx = 0, cy = 0, ctrlx, ctrly;
 
