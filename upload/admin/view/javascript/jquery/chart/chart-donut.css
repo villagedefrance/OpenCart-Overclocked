@@ -44,7 +44,7 @@
 	position: absolute;
 	width: 86%;
 	height: 86%;
-	background: #FFF;
+	background: #FCFCFC;
 	left: 50%;
 	top: 50%;
 	z-index: 400;
@@ -127,5 +127,5 @@
 	display: none;
 }
 .chart.donut .pie-chart h2, .chart.donut .pie-chart h2 span {
-	color: #FFF;
+	color: #FCFCFC;
 }

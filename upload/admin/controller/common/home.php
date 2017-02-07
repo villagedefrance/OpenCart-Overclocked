@@ -234,7 +234,7 @@ class ControllerCommonHome extends Controller {
 		$admin_css = $this->config->get('config_admin_stylesheet');
 
 		if ($admin_css == 'overclock') {
-			$this->data['chart_background'] = '#4B515A';
+			$this->data['chart_background'] = '#6D7582';
 			$this->data['chart_border'] = '#999999';
 			$this->data['chart_colour'] = '#E5E5E5';
 		} elseif ($admin_css == 'classic') {
