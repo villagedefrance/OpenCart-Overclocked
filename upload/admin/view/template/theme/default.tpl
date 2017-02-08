@@ -36,17 +36,15 @@
         <table class="form">
           <tr>
             <td><?php echo $entry_widescreen; ?></td>
-            <td><?php if ($default_widescreen) { ?>
-              <input type="radio" name="default_widescreen" value="1" id="widescreen-on" class="radio" checked />
-              <label for="widescreen-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="default_widescreen" value="0" id="widescreen-off" class="radio" />
-              <label for="widescreen-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } else { ?>
-              <input type="radio" name="default_widescreen" value="1" id="widescreen-on" class="radio" />
-              <label for="widescreen-on"><span><span></span></span><?php echo $text_yes; ?></label>
-              <input type="radio" name="default_widescreen" value="0" id="widescreen-off" class="radio" checked />
-              <label for="widescreen-off"><span><span></span></span><?php echo $text_no; ?></label>
-            <?php } ?></td>
+            <td><select name="default_widescreen">
+              <?php foreach ($display_sizes as $display_size) { ?>
+                <?php if ($default_widescreen == $display_size['format']) { ?>
+                  <option value="<?php echo $display_size['format']; ?>" selected="selected"><?php echo $display_size['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $display_size['format']; ?>"><?php echo $display_size['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
           </tr>
           <tr class="highlighted">
             <td><?php echo $entry_body_color; ?></td>

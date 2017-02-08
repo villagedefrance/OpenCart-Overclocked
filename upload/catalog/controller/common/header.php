@@ -163,10 +163,20 @@ class ControllerCommonHeader extends Controller {
 		$template = $this->config->get('config_template');
 
 		$display_size = $this->config->get($template . '_widescreen');
+
+		if ($display_size == 'full') {
+			$this->data['display_size'] = 'full';
+		} elseif ($display_size == 'wide') {
+			$this->data['display_size'] = 'wide';
+		} elseif ($display_size == 'normal') {
+			$this->data['display_size'] = 'normal';
+		} else {
+			$this->data['display_size'] = 'normal';
+		}
+
 		$body_color = $this->config->get($template . '_body_color');
 		$container_color = $this->config->get($template . '_container_color');
 
-		$this->data['display_size'] = ($display_size) ? 'wide' : 'normal';
 		$this->data['body_color'] = ($body_color) ? $body_color : '#FFF';
 		$this->data['container_color'] = ($container_color) ? $container_color : '#FFF';
 

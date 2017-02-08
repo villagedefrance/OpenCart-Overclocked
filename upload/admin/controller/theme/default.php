@@ -153,10 +153,18 @@ class ControllerThemeDefault extends Controller {
 		$this->data['image_preview'] = '<img src="' . $image . '" alt="" style="border:1px solid #EEE;" />';
 
 		// General
+		$this->data['display_sizes'] = array();
+
+		$this->data['display_sizes'][] = array('format' => 'normal', 'title' => 'Normal');
+		$this->data['display_sizes'][] = array('format' => 'wide', 'title' => 'Widescreen');
+		$this->data['display_sizes'][] = array('format' => 'full', 'title' => 'Fullscreen');
+
 		if (isset($this->request->post[$this->_name . '_widescreen'])) {
 			$this->data[$this->_name . '_widescreen'] = $this->request->post[$this->_name . '_widescreen'];
-		} else {
+		} elseif ($this->config->get($this->_name . '_widescreen')) {
 			$this->data[$this->_name . '_widescreen'] = $this->config->get($this->_name . '_widescreen');
+		} else {
+			$this->data[$this->_name . '_widescreen'] = 'normal';
 		}
 
 		$this->data['skins'] = $this->model_setting_setting->getColors();
