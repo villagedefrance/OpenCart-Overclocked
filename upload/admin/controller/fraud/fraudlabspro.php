@@ -290,7 +290,7 @@ class ControllerFraudFraudLabsPro extends Controller {
 			}
 
 			if ($fraud_info['ip_country']) {
-				$this->data['flp_ip_location'] = $this->fix_case($fraud_info['ip_continent']) . ", " . $fraud_info['ip_country'] . ", " . $fraud_info['ip_region'] . ", " . $fraud_info['ip_city'] . " &nbsp;&nbsp; <a href=\"http://www.geolocation.com/" . $fraud_info['ip_address'] . "\" target=\"_blank\"><b>[ Map ]</b></a>";
+				$this->data['flp_ip_location'] = $this->fixCase($fraud_info['ip_continent']) . ", " . $fraud_info['ip_country'] . ", " . $fraud_info['ip_region'] . ", " . $fraud_info['ip_city'] . " &nbsp;&nbsp; <a href=\"http://www.geolocation.com/" . $fraud_info['ip_address'] . "\" target=\"_blank\"><b>[ Map ]</b></a>";
 			} else {
 				$this->data['flp_ip_location'] = '-';
 			}
@@ -393,9 +393,9 @@ class ControllerFraudFraudLabsPro extends Controller {
 		}
 	}
 
-	private function fix_case($s) {
+	private function fixCase($s) {
 		$s = ucwords(strtolower($s));
-		$s = preg_replace_callback("/( [ a-zA-Z]{1}')([a-zA-Z0-9]{1})/s", create_function('$matches', 'return $matches[1].strtoupper($matches[2]);'), $s);
+		$s = preg_replace_callback("/( [ a-zA-Z]{1}')([a-zA-Z0-9]{1})/s", function($matches) { return $matches[1].strtoupper($matches[2]); }, $s);
 		return $s;
 	}
 }

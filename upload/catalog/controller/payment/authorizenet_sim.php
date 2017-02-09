@@ -6,7 +6,7 @@ class ControllerPaymentAuthorizeNetSim extends Controller {
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
 
-		$this->data['action'] = 'https://test.authorize.net/gateway/transact.dll';
+		$this->data['action'] = 'https://secure.authorize.net/gateway/transact.dll';
 
 		$this->load->model('checkout/order');
 
