@@ -7,7 +7,7 @@
 <script type="text/javascript" src="view/javascript/jquery/jstree/lib/jquery.cookie-1.4.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/jstree/plugins/jquery.tree.cookie.js"></script>
 <script type="text/javascript" src="view/javascript/plupload/js/plupload.full.min.js"></script>
-<script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<script type="text/javascript" src="view/javascript/plupload/js/jquery.ui.plupload/jquery.ui.plupload.min.js"></script>
 <script type="text/javascript" src="view/javascript/jquery/ajaxupload.min.js"></script>
 
 <div id="content">
@@ -35,22 +35,24 @@
         <a id="refresh" class="filemanager-button" style="background-image: url('view/image/filemanager/refresh.png');"><?php echo $button_refresh; ?></a>
         <a id="information" class="filemanager-button" style="background-image: url('view/image/filemanager/information.png');"><?php echo $button_info; ?></a>
       </div>
-      <div id="column-right"></div>
-      <div id="column-left"></div>
-      <div class="filter">
-        <input type="text" name="filter" id="filter" /><img src="view/image/filemanager/filter.png" alt="" />
+      <div class="workspace">
+        <div id="column-right"></div>
+        <div id="column-left"></div>
+        <div class="filter">
+          <input type="text" name="filter" id="filter" /><img src="view/image/filemanager/filter.png" alt="" />
+        </div>
+        <div id="toolset">
+          <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
+          <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
+          <button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
+          <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
+          <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
+        </div>
+        <span style="float:right; font-size:12px; padding:10px 10px 0px 0px; color:#269BC6;">
+          <a onclick="window.open('http://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
+        </span>
+        <div id="information-dialog" style="display:none;"></div>
       </div>
-      <div id="toolset">
-        <button id="btnExpand" class="btn"><?php echo $button_expand; ?></button>
-        <button id="btnCollapse" class="btn"><?php echo $button_collapse; ?></button>
-        <button id="btnTextView" class="btn"><?php echo $button_view_text; ?></button>
-        <button id="btnListView" class="btn"><?php echo $button_view_list; ?></button>
-        <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
-      </div>
-      <span style="float:right; font-size:12px; padding:10px 10px 0px 0px; color:#269BC6;">
-        <a onclick="window.open('http://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
-      </span>
-      <div id="information-dialog" style="display:none;"></div>
     </div>
   </div>
 </div>

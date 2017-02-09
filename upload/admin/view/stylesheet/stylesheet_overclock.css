@@ -234,10 +234,10 @@ body > #container-normal, body > #container-limited {
 }
 #header .user-status a {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #FCFCFC;
-	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
 	font-size: 15px;
 	text-align: right;
+	color: #FCFCFC;
+	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
 }
 #header .user-status img {
 	position: relative;
@@ -269,7 +269,7 @@ body > #container-normal, body > #container-limited {
 }
 #show-device {
 	position: absolute;
-	top: 34;
+	top: 34px;
 	right: 20px;
 	text-align: center;
 	background: #FCFCFC;
@@ -310,7 +310,7 @@ body > #container-normal, body > #container-limited {
 }
 #show-time {
 	position: absolute;
-	top: 34;
+	top: 34px;
 	right: 0px;
 	text-align: center;
 	background: #FCFCFC;
@@ -352,7 +352,7 @@ body > #container-normal, body > #container-limited {
 }
 #show-store {
 	position: absolute;
-	top: 34;
+	top: 34px;
 	right: 0px;
 	background: #FCFCFC;
 	border: 1px solid #BBB;

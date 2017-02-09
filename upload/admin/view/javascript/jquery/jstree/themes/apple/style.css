@@ -1,5 +1,5 @@
 /* BACKGROUND */
-.tree-apple .ltr, .tree-apple .rtl { background:#F7F7F7; min-width:100%; _width:100%; margin-left:0; margin-right:0; display:table; }
+.tree-apple .ltr, .tree-apple .rtl { background:#FAFAFA; min-width:100%; _width:100%; margin-left:0; margin-right:0; display:table; }
 .tree-apple .ltr > li.leaf, .tree-apple .rtl > li.leaf { background-image:none; }
 
 /* LOCKED */
@@ -16,8 +16,8 @@
 #jstree-marker { background-image:url('icons.png'); }
 /* DEFAULT, HOVER, CLICKED, LOADING STATES */
 .tree-apple li a, .tree-apple li span { font-size:14px; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
-.tree-apple li a:hover, .tree-apple li a.hover, .tree-apple li span { background: #EBF1FD; border:1px solid #EEE; padding:0px 3px 0px 3px; }
-.tree-apple li a.clicked, .tree-apple li a.clicked:hover, .tree-apple li span.clicked { background: #EBF1FD; border:1px solid #EEE; padding:0px 3px 0px 3px; }
+.tree-apple li a:hover, .tree-apple li a.hover, .tree-apple li span { background: #D0DEF4; border:1px solid #EEE; padding:0px 3px 0px 3px; }
+.tree-apple li a.clicked, .tree-apple li a.clicked:hover, .tree-apple li span.clicked { background: #D0DEF4; border:1px solid #EEE; padding:0px 3px 0px 3px; }
 /* ICONS */
 .tree-apple ins { background-image:url('icons.png'); background-position:0 0px; background-repeat:no-repeat; }
 .tree-apple ul li a.loading ins { background-image:url('throbber.gif'); background-position:0 0px; }

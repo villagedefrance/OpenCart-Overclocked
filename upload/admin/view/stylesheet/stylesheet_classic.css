@@ -228,6 +228,7 @@ body > #container-normal, body > #container-limited {
 	height: 56px;
 	background: url('../image/theme-classic/header.png') repeat-x;
 	color: #FFF;
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 }
 #header .image {
 	position: relative;
@@ -248,6 +249,7 @@ body > #container-normal, body > #container-limited {
 	font-size: 15px;
 	text-align: right;
 	color: #FFF;
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 }
 #header .user-status img {
 	position: relative;
@@ -268,6 +270,7 @@ body > #container-normal, body > #container-limited {
 	top: 12px;
 	float: right;
 	color: #FFF;
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
@@ -278,7 +281,7 @@ body > #container-normal, body > #container-limited {
 }
 #show-device {
 	position: absolute;
-	top: 34;
+	top: 34px;
 	right: 20px;
 	background: #FFF;
 	text-align: center;
@@ -307,6 +310,7 @@ body > #container-normal, body > #container-limited {
 	top: 12px;
 	float: right;
 	color: #FFF;
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	font-size: 12px;
 	line-height: 20px;
 	text-decoration: none;
@@ -317,7 +321,7 @@ body > #container-normal, body > #container-limited {
 }
 #show-time {
 	position: absolute;
-	top: 34;
+	top: 34px;
 	right: 0px;
 	background: #FFF;
 	text-align: center;
@@ -332,6 +336,7 @@ body > #container-normal, body > #container-limited {
 #show-time .sysdate, .systime {
 	display: inline-block;
 	color: #777;
+	text-shadow: 0 0 1px rgba(119, 119, 119, 0.05);
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
@@ -357,7 +362,7 @@ body > #container-normal, body > #container-limited {
 }
 #show-store {
 	position: absolute;
-	top: 34;
+	top: 34px;
 	right: 0px;
 	background: #FFF;
 	border: 1px solid #CCC;
@@ -373,6 +378,7 @@ body > #container-normal, body > #container-limited {
 #show-store a {
 	display: block;
 	color: #777;
+	text-shadow: 0 0 1px rgba(119, 119, 119, 0.05);
 	font-size: 12px;
 	text-decoration: none;
 	white-space: nowrap;
@@ -513,6 +519,7 @@ ul.menu ul {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
 	color: #444;
+	text-shadow: 0 0 1px rgba(68, 68, 68, 0.05);
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;

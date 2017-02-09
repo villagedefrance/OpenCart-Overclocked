@@ -30,8 +30,20 @@
 	padding-left: 27px;
 	margin-right: 12px;
 }
+/* Workspace */
+.workspace {
+	background: rgba(119, 119, 119, 0.2);
+	padding: 0px 0px 55px 0px;
+	margin: 0px;
+	border: none;
+	-webkit-border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0px 0px 3px 3px;
+	-khtml-border-radius: 0px 0px 3px 3px;
+	border-radius: 0px 0px 3px 3px;
+}
+/* Columns */
 #column-left {
-	background: #F7F7F7;
+	background: #FAFAFA;
 	border: 1px solid #CCC;
 	border-top: none;
 	-webkit-border-radius: 0px 0px 0px 3px;
@@ -39,14 +51,15 @@
 	-khtml-border-radius: 0px 0px 0px 3px;
 	border-radius: 0px 0px 0px 3px;
 	float: left;
-	width: 25%;
+	width: 24%;
 	height: 367px;
+	margin-left: 5px;
 	margin-bottom: 9px;
 	padding-top: 5px;
 	overflow: auto;
 }
 #column-right {
-	background: #F7F7F7;
+	background: #FAFAFA;
 	border: 1px solid #CCC;
 	border-top: none;
 	-webkit-border-radius: 0px 0px 3px 0px;
@@ -54,8 +67,9 @@
 	-khtml-border-radius: 0px 0px 3px 0px;
 	border-radius: 0px 0px 3px 0px;
 	float: right;
-	width: 73%;
+	width: 74%;
 	height: 400px;
+	margin-right: 5px;
 	margin-bottom: 15px;
 	padding-bottom: 5px;
 	overflow: auto;
@@ -109,8 +123,8 @@
 	padding: 5px;
 	width: 105px;
 	height: 105px;
-	background: #F7F7F7;
-	border: 1px solid #CCC;
+	background: #FAFAFA;
+	border: 1px solid #BBB;
 	cursor: pointer;
 	cursor: move;
 	position: relative;
@@ -126,7 +140,7 @@
 	margin: auto;
 	margin-top: 3px;
 	padding: 5px;
-	border: 1px solid #DDD;
+	border: 1px solid #CCC;
 	background: #5C9CCC;
 	background-position: 0px -50px;
 }
@@ -139,10 +153,10 @@
 	position: relative;
 	clear: left;
 	float: left;
-    width: 25%;
-	background: #F7F7F7;
+    width: 24%;
+	background: #FAFAFA;
     border: 1px solid #CCC;
-	margin: 0px 0px 15px 0px;
+	margin: 0px 0px 15px 5px;
 }
 .filter > input {
 	margin: 0;
@@ -150,7 +164,7 @@
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-	background: #F7F7F7;
+	background: #FAFAFA;
 	border: none;
 	height: 20px;
 	width: 80%;
@@ -162,7 +176,7 @@
 .filter > img {
 	position: relative;
 	float: right;
-	background: #F7F7F7;
+	background: #FAFAFA;
 	line-height: 20px;
 	margin-right: 2px;
 }
@@ -173,6 +187,7 @@
 #toolset .btn {
 	float: left;
 	font-size: 10px;
+	margin-left: 5px;
 	margin-top: 6px;
 	margin-bottom: 6px;
 }

@@ -10,7 +10,7 @@ body {
 	padding: 0;
 	margin: 0;
 	background: #EFEFEF;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	overflow-y: hidden;
 }
@@ -28,7 +28,7 @@ img {
 	margin-bottom: 3px;
 }
 #column-left {
-	background: #F7F7F7;
+	background: #FAFAFA;
 	border: 1px solid #CCC;
 	float: left;
 	width: 26%;
@@ -36,7 +36,7 @@ img {
 	overflow: auto;
 }
 #column-right {
-	background: #F7F7F7;
+	background: #FAFAFA;
 	border: 1px solid #CCC;
 	float: right;
 	width: 72%;
@@ -83,8 +83,8 @@ img {
 	padding: 5px;
 	width: 90px;
 	height: 90px;
-	background: #F7F7F7;
-	border: 1px solid #CCC;
+	background: #FAFAFA;
+	border: 1px solid #BBB;
 	cursor: pointer;
 	cursor: move;
 	position: relative;
@@ -100,7 +100,7 @@ img {
 	margin: auto;
 	margin-top: 3px;
 	padding: 5px;
-	border: 1px solid #DDD;
+	border: 1px solid #CCC;
 	background: #5C9CCC;
 	background-position: 0px -50px;
 }
@@ -114,14 +114,14 @@ img {
 	clear: left;
 	float: left;
     width: 26%;
-	background: #F7F7F7;
+	background: #FAFAFA;
     border: 1px solid #CCC;
 	margin: 3px 0px 0px 0px;
 }
 .filter > input {
 	margin: 0;
 	padding-left: 2px;
-	background: #F7F7F7;
+	background: #FAFAFA;
 	border: none;
 	height: 20px;
 	width: 80%;
@@ -133,7 +133,7 @@ img {
 .filter > img {
 	position: relative;
 	float: right;
-	background: #F7F7F7;
+	background: #FAFAFA;
 	line-height: 20px;
 	margin-right: 2px;
 }

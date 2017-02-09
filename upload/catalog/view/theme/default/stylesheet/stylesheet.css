@@ -218,7 +218,7 @@ a.top-link:hover {
 /* Container */
 #container {
 	width: 100%;
-	padding: 0;
+	padding: 0px;
 	border: none;
 }
 #container .container-normal {
@@ -2802,17 +2802,6 @@ table.order-options tr td > div.division {
 	#column-left + #column-right + #content .product-filter .product-compare {
 		clear: left;
 		padding: 4px 0px 0px 2px;
-	}
-	/* Reviews */
-	#review {
-		float: left;
-	}
-	#add-review {
-		clear: left;
-	}
-	/* Contact */
-	.contact-info .info-left, .contact-info .info-right {
-		margin-left: 0px;
 	}
 	/* General */
 	.hide-tablet {
