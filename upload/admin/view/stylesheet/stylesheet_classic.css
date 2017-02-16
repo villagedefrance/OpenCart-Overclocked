@@ -680,10 +680,10 @@ ul.menu ul {
 	background-image: -ms-linear-gradient(top, #EEE, #FAFAFA);
 	background-image: -o-linear-gradient(top, #EEE, #FAFAFA);
 	background-image: linear-gradient(to bottom, #EEE, #FAFAFA);
-	border-bottom: 1px solid #E6E6E6;
-	border-right: 1px solid #DFDFDF;
-	border-left: 1px solid #DFDFDF;
-	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #D6D6D6;
+	border-right: 1px solid #CFCFCF;
+	border-left: 1px solid #CFCFCF;
+	border-top: 1px solid #CCC;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	-khtml-border-radius: 2px;
@@ -1056,15 +1056,15 @@ a.button-print:hover {
 .list {
 	width: 100%;
 	border-collapse: collapse;
-	border-top: 1px solid #DDD;
-	border-left: 1px solid #DDD;
+	border-top: 1px solid #CFCFCF;
+	border-left: 1px solid #CFCFCF;
 	margin-bottom: 20px;
 }
 .list td {
 	color: #111;
 	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
-	border-right: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
+	border-right: 1px solid #CFCFCF;
+	border-bottom: 1px solid #CFCFCF;
 }
 .list thead td {
 	background-color: #FCFCFC;
@@ -1262,7 +1262,7 @@ table.tool tr td {
 /* Toolbox */
 .toolbox {
 	background: #FCFCFC;
-	border: 1px solid #DDD;
+	border: 1px solid #CFCFCF;
 	margin-bottom:15px;
 	padding: 10px;
 }
@@ -1270,7 +1270,7 @@ table.tool tr td {
 .htabs {
 	height: 28px;
 	line-height: 14px;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #CFCFCF;
 	margin-bottom: 30px;
 }
 .htabs a {
@@ -1282,17 +1282,17 @@ table.tool tr td {
 	text-align: center;
 	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
 	text-decoration: none;
-	border-top: 1px solid #DDD;
-	border-left: 1px solid #DDD;
-	border-right: 1px solid #DDD;
+	border-top: 1px solid #CFCFCF;
+	border-left: 1px solid #CFCFCF;
+	border-right: 1px solid #CFCFCF;
 	border-bottom: 1px solid transparent;
 	background-color: #FCFCFC;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#FFF));
-	background-image: -webkit-linear-gradient(top, #EEE, #FFF);
-	background-image: -moz-linear-gradient(top, #EEE, #FFF);
-	background-image: -ms-linear-gradient(top, #EEE, #FFF);
-	background-image: -o-linear-gradient(top, #EEE, #FFF);
-	background-image: linear-gradient(to bottom, #EEE, #FFF);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: -moz-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: -ms-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: -o-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: linear-gradient(to bottom, #E7E7E7, #FFF);
 	padding: 7px 15px 6px 15px;
 	margin-right: 2px;
 	margin-bottom: 0;
@@ -1316,7 +1316,7 @@ table.tool tr td {
 	width: 190px;
 	padding: 10px 0px;
 	min-height: 300px;
-	border-right: 1px solid #DDD;
+	border-right: 1px solid #CFCFCF;
 	clear: left;
 }
 .vtabs a {
@@ -1333,16 +1333,16 @@ table.tool tr td {
 	text-align: right;
 	text-shadow: 0 0 1px rgba(17, 17, 17, 0.05);
 	text-decoration: none;
-	border-top: 1px solid #DDD;
-	border-left: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
+	border-top: 1px solid #CFCFCF;
+	border-left: 1px solid #CFCFCF;
+	border-bottom: 1px solid #CFCFCF;
 	background-color: #FCFCFC;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#FFF));
-	background-image: -webkit-linear-gradient(top, #EEE, #FFF);
-	background-image: -moz-linear-gradient(top, #EEE, #FFF);
-	background-image: -ms-linear-gradient(top, #EEE, #FFF);
-	background-image: -o-linear-gradient(top, #EEE, #FFF);
-	background-image: linear-gradient(to bottom, #EEE, #FFF);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#E7E7E7), to(#FFF));
+	background-image: -webkit-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: -moz-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: -ms-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: -o-linear-gradient(top, #E7E7E7, #FFF);
+	background-image: linear-gradient(to bottom, #E7E7E7, #FFF);
 	padding: 6px 14px 7px 15px;
 	margin-bottom: 5px;
 	clear: both;
@@ -1440,7 +1440,7 @@ table.tool tr td {
 	text-transform: uppercase;
 	padding-top: 6px;
 	margin-bottom: 3px;
-	border-top: 1px solid #DDD;
+	border-top: 1px solid #CFCFCF;
 }
 .pagination .links {
 	float: left;
@@ -1453,7 +1453,7 @@ table.tool tr td {
 	font-weight: normal;
 	text-decoration: none;
 	text-shadow: 0 0 1px rgba(153, 153, 153, 0.05);
-	border: 1px solid #DDD;
+	border: 1px solid #CFCFCF;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
