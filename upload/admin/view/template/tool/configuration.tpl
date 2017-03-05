@@ -147,6 +147,18 @@
               <td><?php echo extension_loaded('curl') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
             </tr>
             <tr>
+              <td><?php echo $text_dom; ?></td>
+              <td><?php echo $text_on; ?></td>
+              <td><?php echo extension_loaded('dom') ? 'On' : 'Off'; ?></td>
+              <td><?php echo extension_loaded('dom') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
+              <td><?php echo $text_xml; ?></td>
+              <td><?php echo $text_on; ?></td>
+              <td><?php echo extension_loaded('xml') ? 'On' : 'Off'; ?></td>
+              <td><?php echo extension_loaded('xml') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
               <td><?php echo $text_mcrypt; ?></td>
               <td><?php echo $text_on; ?></td>
               <td><?php echo function_exists('mcrypt_encrypt') ? 'On' : 'Off'; ?></td>

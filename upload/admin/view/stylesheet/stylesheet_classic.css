@@ -45,34 +45,6 @@ input[type='text'].input-error, input[type='password'].input-error, textarea.inp
 	border-bottom: 1px solid #E3726E;
 	border-right: 1px solid #E3726E;
 }
-fieldset {
-	width: 90%;
-	border-top: 1px solid #B6B6B6;
-	border-left: 1px solid #B6B6B6;
-	border-bottom: 1px solid #E1E1E1;
-	border-right: 1px solid #E1E1E1;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-	background-color: #FFF;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
-	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
-	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
-	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
-	box-shadow: inset 0 2px 0 -1px #EDEDED;
-	margin: 10px 0px;
-}
-fieldset p.field {
-	display: inline-block;
-	margin: 0px;
-	padding: 3px 5px;
-	width: 23%;
-}
 input.checkbox:not(old), input.radio:not(old) {
 	display: none;
 	margin: 0;
@@ -150,19 +122,50 @@ input.radio:not(old):checked + label > span > span {
 	background-image: -o-linear-gradient(top, #62A1D7, #4691D2);
 	background-image: linear-gradient(to bottom, #62A1D7, #4691D2);
 }
-label {
-  cursor: pointer;
-}
 textarea.log {
 	width: 99%;
-	height: 360px;
+	min-height: 360px;
 	padding: 5px 0px 5px 5px;
-	border: 1px solid #CCC;
-	background: #FFF;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	background: #FCFCFC;
 	font-size: 14px;
 	overflow: auto;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
+}
+fieldset {
+	width: 90%;
+	border-top: 1px solid #B6B6B6;
+	border-left: 1px solid #B6B6B6;
+	border-bottom: 1px solid #E1E1E1;
+	border-right: 1px solid #E1E1E1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FCFCFC));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FCFCFC);
+	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
+	box-shadow: inset 0 2px 0 -1px #EDEDED;
+	margin: 10px 0px;
+}
+fieldset p.field {
+	display: inline-block;
+	margin: 0px;
+	padding: 3px 5px;
+	width: 23%;
+}
+label {
+  cursor: pointer;
 }
 select {
 	padding: 2px;
@@ -174,13 +177,13 @@ select {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
-	background-color: #FFF;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FFF));
-	background-image: -webkit-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: -moz-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: -ms-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: -o-linear-gradient(top, #F2F5F7, #FFF);
-	background-image: linear-gradient(to bottom, #F2F5F7, #FFF);
+	background-color: #FCFCFC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F2F5F7), to(#FCFCFC));
+	background-image: -webkit-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: -moz-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: -ms-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: -o-linear-gradient(top, #F2F5F7, #FCFCFC);
+	background-image: linear-gradient(to bottom, #F2F5F7, #FCFCFC);
 	-webkit-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	-moz-box-shadow: inset 0 2px 0 -1px #EDEDED;
 	box-shadow: inset 0 2px 0 -1px #EDEDED;

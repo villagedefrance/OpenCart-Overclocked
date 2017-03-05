@@ -51,9 +51,11 @@ $_['text_autostart']        = 'Session Auto Start:';
 $_['text_mysql']            = 'MySQL:';
 $_['text_gd']               = 'GD:';
 $_['text_curl']             = 'cURL:';
+$_['text_dom']              = 'DOM:';
+$_['text_xml']              = 'XML:';
 $_['text_mcrypt']           = 'mCrypt:';
 $_['text_zlib']             = 'ZLIB:';
-$_['text_zip']              = 'ZIP';
+$_['text_zip']              = 'ZIP:';
 $_['text_mbstring']         = 'mbstring:';
 $_['text_mbstring_note']    = '<span class="help">mbstring is required only when iconv is not available.</span>';
 

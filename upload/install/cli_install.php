@@ -173,6 +173,14 @@ function checkRequirements() {
 		$error = 'Warning: Curl extension needs to be loaded for OpenCart OCE to work!';
 	}
 
+	if (!extension_loaded('dom')) {
+		$error = 'Warning: DOM extension needs to be loaded for OpenCart OCE to work!';
+	}
+
+	if (!extension_loaded('xml')) {
+		$error = 'Warning: XML extension needs to be loaded for OpenCart OCE to work!';
+	}
+
 	if (!function_exists('mcrypt_encrypt')) {
 		$error = 'Warning: mCrypt extension needs to be loaded for OpenCart OCE to work!';
 	}

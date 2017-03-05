@@ -142,6 +142,34 @@
           <?php } ?></td>
         </tr>
         <tr>
+          <td><?php echo $text_dom; ?></td>
+          <td><?php if ($dom) { ?>
+            <?php echo $text_on; ?>
+          <?php } else { ?>
+            <?php echo $text_off; ?>
+          <?php } ?></td>
+          <td><?php echo $text_on; ?></td>
+          <td style="text-align:center;"><?php if ($dom) { ?>
+            <img src="view/image/good.png" alt="Good" />
+          <?php } else { ?>
+            <img src="view/image/bad.png" alt="Bad" />
+          <?php } ?></td>
+        </tr>
+        <tr>
+          <td><?php echo $text_xml; ?></td>
+          <td><?php if ($xml) { ?>
+            <?php echo $text_on; ?>
+          <?php } else { ?>
+            <?php echo $text_off; ?>
+          <?php } ?></td>
+          <td><?php echo $text_on; ?></td>
+          <td style="text-align:center;"><?php if ($xml) { ?>
+            <img src="view/image/good.png" alt="Good" />
+          <?php } else { ?>
+            <img src="view/image/bad.png" alt="Bad" />
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><?php echo $text_mcrypt; ?></td>
           <td><?php if ($mcrypt_encrypt) { ?>
             <?php echo $text_on; ?>

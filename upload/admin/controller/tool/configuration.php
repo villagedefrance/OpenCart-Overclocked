@@ -77,6 +77,8 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_mysql'] = $this->language->get('text_mysql');
 		$this->data['text_gd'] = $this->language->get('text_gd');
 		$this->data['text_curl'] = $this->language->get('text_curl');
+		$this->data['text_dom'] = $this->language->get('text_dom');
+		$this->data['text_xml'] = $this->language->get('text_xml');
 		$this->data['text_mcrypt'] = $this->language->get('text_mcrypt');
 		$this->data['text_zlib'] = $this->language->get('text_zlib');
 		$this->data['text_zip'] = $this->language->get('text_zip');
