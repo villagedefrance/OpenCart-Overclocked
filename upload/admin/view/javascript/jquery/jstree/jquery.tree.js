@@ -474,8 +474,8 @@
 							}
 						} else {
 							if (_this.check("draggable", obj)) {
-								tree_component.drag_drop.drag_node	= obj;
-								tree_component.drag_drop.drag_help	= $("<div id='jstree-dragged' class='tree " + ( _this.settings.ui.theme_name != "" ? " tree-" + _this.settings.ui.theme_name : "" ) + "' />").append("<ul class='" + _this.container.children("ul:eq(0)").get(0).className + "' />");
+								tree_component.drag_drop.drag_node = obj;
+								tree_component.drag_drop.drag_help = $("<div id='jstree-dragged' class='tree " + ( _this.settings.ui.theme_name != "" ? " tree-" + _this.settings.ui.theme_name : "" ) + "' />").append("<ul class='" + _this.container.children("ul:eq(0)").get(0).className + "' />");
 								var tmp = obj.clone();
 								if (_this.settings.languages.length > 0) tmp.find("a").not("." + _this.current_lang).hide();
 								tree_component.drag_drop.drag_help.children("ul:eq(0)").append(tmp);
