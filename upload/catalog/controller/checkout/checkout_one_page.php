@@ -357,6 +357,12 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$data['payment_country_id'] = $customer_info['country_id'];
 			$data['payment_address_format'] = '';
 
+			if (isset($this->session->data['payment_methods'])) {
+				$this->data['payment_methods'] = $this->session->data['payment_methods'];
+			} else {
+				$this->data['payment_methods'] = array();
+			}
+		
 			if (isset($this->session->data['payment_method']['title'])) {
 				$data['payment_method'] = $this->session->data['payment_method']['title'];
 			} elseif (isset($customer_info['payment_method'])) {
@@ -423,6 +429,12 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 				$data['shipping_address_format'] = '';
 
 				$this->session->data['check_shipping_address'] = 0;
+			}
+
+			if (isset($this->session->data['shipping_methods'])) {
+				$this->data['shipping_methods'] = $this->session->data['shipping_methods'];
+			} else {
+				$this->data['shipping_methods'] = array();
 			}
 
 			if (isset($this->session->data['shipping_method']['title'])) {
@@ -763,10 +775,22 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->data['check_shipping_address'] = 1;
 		}
 
+		if (empty($this->session->data['shipping_methods'])) {
+			$this->data['error_warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact', '', 'SSL'));
+		} else {
+			$this->data['error_warning'] = '';
+		}
+
 		if (isset($this->error['shipping_method'])) {
 			$this->data['error_shipping_method'] = $this->error['shipping_method'];
 		} else {
 			$this->data['error_shipping_method'] = '';
+		}
+
+		if (empty($this->session->data['payment_methods'])) {
+			$this->data['error_warning'] = sprintf($this->language->get('error_no_payment'), $this->url->link('information/contact', '', 'SSL'));
+		} else {
+			$this->data['error_warning'] = '';
 		}
 
 		if (isset($this->error['payment_method'])) {
