@@ -276,11 +276,11 @@ class ControllerCatalogField extends Controller {
 			);
 
 			$this->data['fields'][] = array(
-				'field_id' => $result['field_id'],
+				'field_id'       => $result['field_id'],
 				'title'          => $result['title'],
 				'sort_order'     => $result['sort_order'],
 				'status'         => $result['status'],
-				'selected'       => isset($this->request->post['selected']) && in_array($result['information_id'], $this->request->post['selected']),
+				'selected'       => isset($this->request->post['selected']) && in_array($result['field_id'], $this->request->post['selected']),
 				'action'         => $action
 			);
 		}
@@ -448,7 +448,7 @@ class ControllerCatalogField extends Controller {
 			$this->data['field_title'] = $this->language->get('heading_title');
 		}
 
-		if (!isset($this->request->get['information_id'])) {
+		if (!isset($this->request->get['field_id'])) {
 			$this->data['action'] = $this->url->link('catalog/field/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		} else {
 			$this->data['action'] = $this->url->link('catalog/field/update', 'token=' . $this->session->data['token'] . '&field_id=' . $this->request->get['field_id'] . $url, 'SSL');
