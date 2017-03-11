@@ -76,7 +76,7 @@
     <div class="warning"><?php echo $error_warning; ?><img src="catalog/view/theme/<?php echo $template; ?>/image/close.png" alt="" class="close" /></div>
   <?php } ?>
   <?php } ?>
-  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="checkout_one_page">
+  <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" name="checkout_one_page" id="form">
     <table class="checkout-one-page">
       <tr>
         <td style="width:25%;">
@@ -604,8 +604,9 @@
                 <?php echo $this->session->data['shipping_method']['title']; ?> [ <b><?php echo $this->session->data['shipping_method']['text']; ?></b> ]<br /><br />
                 <input type="hidden" name="shipping_method" value="<?php echo $shipping_method_code; ?>" />
               <?php } else { ?>
+                <h2><?php echo $text_shipping_method; ?></h2>
+                <a onclick="refresh();" id="shipping-refresh" class="button" style="margin:0px 5px 5px 5px;"><i class="fa fa-refresh"></i></a>
                 <?php if ($shipping_methods) { ?>
-                  <h2><?php echo $text_shipping_method; ?></h2>
                   <?php if ($error_shipping_method) { ?>
                     <div class="attention" style="margin:5px 0px;"><?php echo $error_shipping_method; ?></div>
                   <?php } ?>
@@ -644,8 +645,8 @@
                 <?php echo $this->session->data['payment_method']['title']; ?><br /><br />
                   <input type="hidden" name="payment_method" value="<?php echo $payment_method_code; ?>" />
                 <?php } else { ?>
+                  <h2><?php echo $text_payment_method; ?></h2>
                   <?php if ($payment_methods) { ?>
-                    <h2><?php echo $text_payment_method; ?></h2>
                     <?php if ($error_payment_method) { ?>
                       <div class="attention" style="margin:5px 0px;"><?php echo $error_payment_method; ?></div>
                     <?php } ?>
@@ -851,7 +852,17 @@ $('select[name=\'country_id\']').bind('change', function() {
 });
 
 $('select[name=\'country_id\']').trigger('change');
-//--></script> 
+
+$('select[name=\'country_id\']').bind('change', function() {
+	if ($(this).val() != <?php echo $country_id; ?>) {
+		$('#shipping-refresh').fadeIn(500);
+	} else {
+		$('#shipping-refresh').hide();
+	}
+});
+
+$('select[name=\'country_id\']').trigger('change');
+//--></script>
 
 <script type="text/javascript"><!--
 $('select[name=\'shipping_country_id\']').bind('change', function() {
@@ -900,7 +911,24 @@ $('select[name=\'shipping_country_id\']').bind('change', function() {
 });
 
 $('select[name=\'shipping_country_id\']').trigger('change');
-//--></script> 
+
+$('select[name=\'shipping_country_id\']').bind('change', function() {
+	if ($(this).val() != <?php echo $shipping_country_id; ?>) {
+		$('#shipping-refresh').fadeIn(500);
+	} else {
+		$('#shipping-refresh').hide();
+	}
+});
+
+$('select[name=\'shipping_country_id\']').trigger('change');
+//--></script>
+
+<script type="text/javascript"><!--
+function refresh() {
+	$('#form').append('<input type="hidden" id="refresh" name="refresh" value="1" />');
+	$('#form').submit();
+}
+//--></script>
 
 <script type="text/javascript"><!--
 $('#checkout-one-cart').load('index.php?route=checkout/checkout_one_cart');

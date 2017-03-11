@@ -65,6 +65,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			unset($this->session->data['order_id']);
 			unset($this->session->data['coupon']);
 
+			$this->session->data['check_shipping_address'] = (isset($this->session->data['check_shipping_address'])) ? 1 : 0;
+
 			$this->session->data['coupon'] = $this->request->post['coupon'];
 			$this->session->data['success'] = $this->language->get('text_coupon');
 
@@ -80,6 +82,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			unset($this->session->data['order_id']);
 			unset($this->session->data['voucher']);
 
+			$this->session->data['check_shipping_address'] = (isset($this->session->data['check_shipping_address'])) ? 1 : 0;
+
 			$this->session->data['voucher'] = $this->request->post['voucher'];
 			$this->session->data['success'] = $this->language->get('text_voucher');
 
@@ -91,6 +95,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			unset($this->session->data['order_id']);
 			unset($this->session->data['reward']);
 
+			$this->session->data['check_shipping_address'] = (isset($this->session->data['check_shipping_address'])) ? 1 : 0;
+
 			$this->session->data['reward'] = abs($this->request->post['reward']);
 			$this->session->data['success'] = $this->language->get('text_reward');
 
@@ -100,6 +106,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		// Add Wrapping
 		if (isset($this->request->post['add_wrapping'])) {
 			unset($this->session->data['order_id']);
+
+			$this->session->data['check_shipping_address'] = (isset($this->session->data['check_shipping_address'])) ? 1 : 0;
 
 			$this->session->data['wrapping'] = $this->request->post['add_wrapping'];
 			$this->session->data['success'] = $this->language->get('text_add_wrapping');
@@ -111,6 +119,8 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 		if (isset($this->request->post['remove_wrapping'])) {
 			unset($this->session->data['order_id']);
 			unset($this->session->data['wrapping']);
+
+			$this->session->data['check_shipping_address'] = (isset($this->session->data['check_shipping_address'])) ? 1 : 0;
 
 			$this->session->data['success'] = $this->language->get('text_remove_wrapping');
 
@@ -357,12 +367,6 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$data['payment_country_id'] = $customer_info['country_id'];
 			$data['payment_address_format'] = '';
 
-			if (isset($this->session->data['payment_methods'])) {
-				$this->data['payment_methods'] = $this->session->data['payment_methods'];
-			} else {
-				$this->data['payment_methods'] = array();
-			}
-		
 			if (isset($this->session->data['payment_method']['title'])) {
 				$data['payment_method'] = $this->session->data['payment_method']['title'];
 			} elseif (isset($customer_info['payment_method'])) {
@@ -432,9 +436,9 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			}
 
 			if (isset($this->session->data['shipping_methods'])) {
-				$this->data['shipping_methods'] = $this->session->data['shipping_methods'];
+				$data['shipping_methods'] = $this->session->data['shipping_methods'];
 			} else {
-				$this->data['shipping_methods'] = array();
+				$data['shipping_methods'] = array();
 			}
 
 			if (isset($this->session->data['shipping_method']['title'])) {
@@ -489,7 +493,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 				foreach ($product['option'] as $option) {
 					if ($option['type'] != 'file') {
-						$value = $option['option_value'];	
+						$value = $option['option_value'];
 					} else {
 						$value = $this->encryption->decrypt($option['option_value']);
 					}
@@ -610,7 +614,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 			$this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);
 
-		    $this->redirect($this->url->link('checkout/checkout_one_page', 'payment=1', 'SSL'));
+			$this->redirect($this->url->link('checkout/checkout_one_page', 'payment=1', 'SSL'));
 		}
 
 		// Guest
@@ -1380,7 +1384,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 	}
 
 	public function validate() {
-		if (isset($this->request->post['coupon']) || isset($this->request->post['voucher']) || isset($this->request->post['reward']) || isset($this->request->post['wrapping'])) {
+		if (isset($this->request->post['coupon']) || isset($this->request->post['voucher']) || isset($this->request->post['reward']) || isset($this->request->post['wrapping']) || isset($this->request->post['refresh'])) {
 			return;
 		}
 
