@@ -610,7 +610,7 @@
                   <?php if ($error_shipping_method) { ?>
                     <div class="attention" style="margin:5px 0px;"><?php echo $error_shipping_method; ?></div>
                   <?php } ?>
-                  <table class="radio" style="margin-bottom:2px;">
+                  <table id="shipping-lock" class="radio" style="margin-bottom:2px;">
                   <?php foreach ($shipping_methods as $shipping_method) { ?>
                     <tr>
                       <td colspan="3"><b><?php echo $shipping_method['title']; ?></b></td>
@@ -650,7 +650,7 @@
                     <?php if ($error_payment_method) { ?>
                       <div class="attention" style="margin:5px 0px;"><?php echo $error_payment_method; ?></div>
                     <?php } ?>
-                    <table class="radio" style="margin-bottom:2px;">
+                    <table id="payment-lock" class="radio" style="margin-bottom:2px;">
                     <?php foreach ($payment_methods as $payment_method) { ?>
                       <tr class="highlight">
                         <td><?php if ($payment_method['code'] == $payment_method_code) { ?>
@@ -856,8 +856,14 @@ $('select[name=\'country_id\']').trigger('change');
 $('select[name=\'country_id\']').bind('change', function() {
 	if ($(this).val() != <?php echo $country_id; ?>) {
 		$('#shipping-refresh').fadeIn(500);
+
+		$('#shipping-lock').hide();
+		$('#payment-lock').hide();
 	} else {
 		$('#shipping-refresh').hide();
+
+		$('#shipping-lock').show();
+		$('#payment-lock').show();
 	}
 });
 
@@ -915,8 +921,14 @@ $('select[name=\'shipping_country_id\']').trigger('change');
 $('select[name=\'shipping_country_id\']').bind('change', function() {
 	if ($(this).val() != <?php echo $shipping_country_id; ?>) {
 		$('#shipping-refresh').fadeIn(500);
+
+		$('#shipping-lock').hide();
+		$('#payment-lock').hide();
 	} else {
 		$('#shipping-refresh').hide();
+
+		$('#shipping-lock').show();
+		$('#payment-lock').show();
 	}
 });
 
