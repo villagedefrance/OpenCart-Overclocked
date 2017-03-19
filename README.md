@@ -36,6 +36,10 @@ Powered by the Latest Scripts:
 - jQuery Migrate 1.4.1.
 - CKEditor 4.6.2 Full.
 - ...
+Coming soon in 1.9.2.0 !
+- Admin themes improvements.
+- Bug fixes.
+- ...
 
 New in 1.9.1.0 (current release)!
 - New Catalog default theme.
