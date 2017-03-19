@@ -299,7 +299,7 @@ class ControllerToolUpload extends Controller {
 			$mask = basename($upload_info['name']);
 
 			if (!headers_sent()) {
-				if (is_file($file)) {
+				if (file_exists($file) && is_file($file)) {
 					header('Content-Type: application/octet-stream');
 					header('Content-Description: File Transfer');
 					header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
@@ -309,12 +309,14 @@ class ControllerToolUpload extends Controller {
 					header('Pragma: public');
 					header('Content-Length: ' . filesize($file));
 
-					readfile($file, 'rb');
+					readfile($file);
 					exit();
 
 				} else {
 					exit('Error: Could not find file ' . $file . '!');
 				}
+
+				clearstatcache();
 
 			} else {
 				exit('Error: Headers already sent out!');

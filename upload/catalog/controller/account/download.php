@@ -191,9 +191,11 @@ class ControllerAccountDownload extends Controller {
 			$mask = basename($download_info['mask']);
 
 			if (!headers_sent()) {
-				if (file_exists($file)) {
+				if (file_exists($file) && is_file($file)) {
 					header('Content-Type: application/octet-stream');
+					header('Content-Description: File Transfer');
 					header('Content-Disposition: attachment; filename="' . ($mask ? $mask : basename($file)) . '"');
+					header('Content-Transfer-Encoding: binary');
 					header('Expires: 0');
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 					header('Pragma: public');
@@ -206,7 +208,7 @@ class ControllerAccountDownload extends Controller {
 					}
 
 					readfile($file);
-					exit;
+					exit();
 
 				} else {
 					exit('Error: Could not find file ' . $file . '!');

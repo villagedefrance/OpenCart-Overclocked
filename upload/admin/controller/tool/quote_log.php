@@ -71,7 +71,7 @@ class ControllerToolQuoteLog extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-		public function download() {
+	public function download() {
 		$file = DIR_LOGS . $this->config->get('config_quote_filename');
 
 		clearstatcache();
@@ -88,7 +88,7 @@ class ControllerToolQuoteLog extends Controller {
 					header('Pragma: public');
 					header('Content-Length: ' . filesize($file));
 
-					readfile($file, 'rb');
+					readfile($file);
 					exit();
 				}
 

@@ -88,7 +88,7 @@ class ControllerToolMailLog extends Controller {
 					header('Pragma: public');
 					header('Content-Length: ' . filesize($file));
 
-					readfile($file, 'rb');
+					readfile($file);
 					exit();
 				}
 
