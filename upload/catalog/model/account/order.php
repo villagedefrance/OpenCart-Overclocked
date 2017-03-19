@@ -153,6 +153,20 @@ class ModelAccountOrder extends Model {
 		return $query->rows;
 	}
 
+	public function getAllOrders($start = 0, $limit = 20) {
+		if ($start < 0) {
+			$start = 0;
+		}
+
+		if ($limit < 1) {
+			$limit = 1;
+		}
+
+		$query = $this->db->query("SELECT o.order_id, o.firstname, o.lastname, os.name AS status, o.date_added, o.total, o.currency_code, o.currency_value FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_status os ON (o.order_status_id = os.order_status_id) WHERE o.order_status_id > '0' AND os.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY o.order_id DESC LIMIT " . (int)$start . "," . (int)$limit);	
+
+		return $query->rows;
+	}
+
 	// Totals
 	public function getTotalOrders() {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` WHERE customer_id = '" . (int)$this->customer->getId() . "' AND order_status_id > '0'");

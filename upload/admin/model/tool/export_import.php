@@ -872,7 +872,7 @@ class ModelToolExportImport extends Model {
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_to_store`;\n";
 		$sql .= "TRUNCATE TABLE `" . DB_PREFIX . "category_to_layout`;\n";
 
-		$sql .= "DELETE FROM " . DB_PREFIX . "url_alias WHERE query LIKE 'category_id=%';\n";
+		$sql .= "DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `query` LIKE 'category_id=%';\n";
 
 		$this->multiquery($sql);
 

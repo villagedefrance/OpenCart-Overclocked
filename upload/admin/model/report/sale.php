@@ -128,7 +128,7 @@ class ModelReportSale extends Model {
 			$sql .= " AND DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
 		}
 
-      	$query = $this->db->query($sql);
+		$query = $this->db->query($sql);
 
 		return $query->row['total'];
 	}

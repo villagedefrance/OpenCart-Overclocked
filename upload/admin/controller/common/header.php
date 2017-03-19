@@ -94,7 +94,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_currency'] = $this->language->get('text_currency');
 		$this->data['text_customer'] = $this->language->get('text_customer');
 		$this->data['text_customer_group'] = $this->language->get('text_customer_group');
-		$this->data['text_customer_field'] = $this->language->get('text_customer_field');
 		$this->data['text_customer_ban_ip'] = $this->language->get('text_customer_ban_ip');
 		$this->data['text_dashboard'] = $this->language->get('text_dashboard');
 		$this->data['text_database'] = $this->language->get('text_database');

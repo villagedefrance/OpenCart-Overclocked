@@ -4,6 +4,7 @@ $_['heading_title']             = 'Customer Group';
 
 // Text
 $_['text_success']              = 'Success: You have modified <b>Customer Groups</b> !';
+$_['text_no_results']           = 'No results at this time !';
 $_['text_image_manager']        = 'File Manager';
 $_['text_browse']               = 'Browse';
 $_['text_clear']                = 'Clear';

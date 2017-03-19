@@ -745,7 +745,7 @@ INSERT INTO `oc_country_description` (`country_id`, `language_id`, `name`) VALUE
 (49, 1, 'Congo, Republic of the'),
 (50, 1, 'Cook Islands'),
 (51, 1, 'Costa Rica'),
-(52, 1, 'Ivory Coast'),
+(52, 1, 'Cote D&#39;Ivoire'),
 (53, 1, 'Croatia'),
 (54, 1, 'Cuba'),
 (55, 1, 'Cyprus'),

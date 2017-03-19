@@ -14,6 +14,7 @@ $_['column_date_start'] = 'Date Start';
 $_['column_date_end']   = 'Date End';
 $_['column_orders']     = 'N&deg; Orders';
 $_['column_products']   = 'N&deg; Products';
+$_['column_prices']     = 'Value';
 $_['column_tax']        = 'Tax';
 $_['column_total']      = 'Total';
 

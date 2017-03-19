@@ -1152,6 +1152,24 @@ a.button-add:hover {
 .box-account > ul > li > a img {
 	margin-right: 20px;
 }
+/* Box icons */
+.box-icons {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+.box-icons > div {
+	display: inline-block;
+	background-color: inherit;
+	vertical-align: top;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	position: relative;
+	border: none;
+}
 /* Box filter */
 ul.box-filter, ul.box-filter ul {
 	list-style: none;
@@ -1201,6 +1219,7 @@ ul.box-filter > li ul {
 	font-size: 10px;
 	margin-bottom: 3px;
 }
+/* News List */
 .news-list > div {
 	overflow: auto;
 	padding: 10px;
@@ -1242,6 +1261,7 @@ ul.box-filter > li ul {
 	margin-bottom: 2px;
 	font-size: 10px;
 }
+/* News Grid */
 .news-grid {
 	width: 100%;
 	overflow: auto;

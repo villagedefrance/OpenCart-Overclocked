@@ -48,6 +48,7 @@
             <td class="left"><?php echo $column_date_end; ?></td>
             <td class="right"><?php echo $column_orders; ?></td>
             <td class="right"><?php echo $column_products; ?></td>
+            <td class="right"><?php echo $column_prices; ?></td>
             <td class="right"><?php echo $column_tax; ?></td>
             <td class="right"><?php echo $column_total; ?></td>
           </tr>
@@ -60,13 +61,14 @@
               <td class="left"><?php echo $order['date_end']; ?></td>
               <td class="right"><?php echo $order['orders']; ?></td>
               <td class="right"><?php echo $order['products']; ?></td>
+              <td class="right"><?php echo $order['prices']; ?></td>
               <td class="right"><?php echo $order['tax']; ?></td>
               <td class="right"><?php echo $order['total']; ?></td>
             </tr>
           <?php } ?>
         <?php } else { ?>
           <tr>
-            <td class="center" colspan="6"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>
