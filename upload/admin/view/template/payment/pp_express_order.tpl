@@ -85,9 +85,7 @@ $('#button-capture').on('click', function() {
 
 				if ('capture_status' in json) {
 					$('#capture-status').text(json['capture_status']);
-
 					$('#button-void').remove();
-
 					$('.paypal-capture').remove();
 				}
 			}
@@ -124,11 +122,8 @@ $('#button-void').on('click', function() {
 			if ('success' in json) {
 				$('#paypal-transaction').before('<div class="success" style="display:none;">' + json['success'] + '<img src="view/image/close.png" alt="Close" class="close" /></div>');
 				$('.success').fadeIn('slow');
-
 				$('#capture-status').text(json['capture_status']);
-
 				$('#button-void').remove();
-
 				$('.paypal-capture').remove();
 			}
 

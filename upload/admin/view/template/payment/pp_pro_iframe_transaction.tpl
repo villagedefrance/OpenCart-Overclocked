@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   <?php if (!empty($transactions)) { ?>
-    <?php foreach($transactions as $transaction) { ?>
+    <?php foreach ($transactions as $transaction) { ?>
     <tr>
       <td class="left"><?php echo $transaction['transaction_id']; ?></td>
       <td class="left"><?php echo $transaction['amount']; ?></td>

@@ -83,7 +83,7 @@ $('#button-void').bind('click', function() {
         if (data['error'] == false) {
           html = '';
           html += '<tr>';
-          html += '<td class="left">'+data.data.date_added+'</td>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
           html += '<td class="left">void</td>';
           html += '<td class="left">0.00</td>';
           html += '</tr>';
@@ -126,9 +126,9 @@ $('#button-capture').bind('click', function() {
         if (data.error == false) {
           html = '';
           html += '<tr>';
-          html += '<td class="left">'+data.data.date_added+'</td>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
           html += '<td class="left">payment</td>';
-          html += '<td class="left">'+data.data.amount+'</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
           html += '</tr>';
 
           $('#firstdata-transactions').append(html);
@@ -174,31 +174,31 @@ $('#button-refund').bind('click', function() {
         if (data.error == false) {
           html = '';
           html += '<tr>';
-          html += '<td class="left">'+data.data.date_added+'</td>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
           html += '<td class="left">refund</td>';
-          html += '<td class="left">'+data.data.amount+'</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
           html += '</tr>';
 
           $('#firstdata-transactions').append(html);
           $('#firstdata-total-captured').text(data.data.total_captured);
 
           if (data.data.refund_status == 1) {
-          $('.refund_text').text('<?php echo $text_yes; ?>');
-        } else {
+            $('.refund_text').text('<?php echo $text_yes; ?>');
+          } else {
+            $('#button-refund').show();
+          }
+
+          if (data.msg != '') {
+            $('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
+
+        if (data.error == true) {
+          alert(data.msg);
           $('#button-refund').show();
         }
 
-        if (data.msg != '') {
-          $('#firstdata-transaction-msg').empty().html(data.msg).fadeIn();
-        }
-      }
-
-      if (data.error == true) {
-        alert(data.msg);
-        $('#button-refund').show();
-      }
-
-      $('#img-loading-refund').hide();
+        $('#img-loading-refund').hide();
       }
     });
   }

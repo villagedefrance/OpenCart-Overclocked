@@ -40,7 +40,7 @@
         </thead>
         <tbody>
         <?php if (!empty($worldpay_online_order['transactions'])) { ?>
-          <?php foreach($worldpay_online_order['transactions'] as $transaction) { ?>
+          <?php foreach ($worldpay_online_order['transactions'] as $transaction) { ?>
             <tr>
               <td class="left"><?php echo $transaction['date_added']; ?></td>
               <td class="left"><?php echo $transaction['type']; ?></td>
@@ -59,7 +59,7 @@
 </table>
 
 <script type="text/javascript"><!--
-$('#btn-refund').click(function () {
+$('#btn-refund').click(function() {
   if ($('#worldpay-online-refund-amount').val() != '' && confirm('<?php echo $text_confirm_refund; ?>')) {
     $.ajax({
       type:'POST',
@@ -98,6 +98,7 @@ $('#btn-refund').click(function () {
             $('#worldpay-online-transaction-msg').empty().html(data.msg).fadeIn();
           }
         }
+
         if (data.error == true) {
           alert(data.msg);
           $('#btn-refund').show();

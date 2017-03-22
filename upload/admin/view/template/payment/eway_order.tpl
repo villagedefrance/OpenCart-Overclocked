@@ -92,6 +92,7 @@ $('#btn-refund').click(function () {
             $('#eway-transaction-msg').empty().html(data.message).fadeIn();
           }
         }
+
         if (data.error == true) {
           alert(data.message);
           $('#btn-refund').show();
@@ -143,6 +144,7 @@ $('#btn-capture').click(function () {
             $('#eway-transaction-msg').empty().html(data.message).fadeIn();
           }
         }
+
         if (data.error == true) {
           alert(data.message);
           $('#btn-capture').show();

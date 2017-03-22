@@ -306,7 +306,9 @@
     </div>
   </div>
 </div>
-<?php echo $footer; ?>
+
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 //--></script>
+
+<?php echo $footer; ?>

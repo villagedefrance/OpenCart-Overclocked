@@ -54,54 +54,54 @@
 
 <script type="text/javascript"><!--
 $('#btn-refund').click(function() {
-	if ($('#g2apay-refund-amount').val() != '' && confirm('<?php echo $text_confirm_refund ?>')) {
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			data: {
-				'order_id': <?php echo $order_id; ?>,
-				'amount': $('#g2apay-refund-amount').val()
-			},
-			url: 'index.php?route=payment/g2apay/refund&token=<?php echo $token; ?>',
-			beforeSend: function() {
-				$('#btn-refund').hide();
-				$('#g2apay-refund-amount').hide();
-				$('#img-loading-refund').show();
-				$('#g2apay-transaction-msg').hide();
-			},
-			success: function(data) {
-				if (data.error == false) {
-					html = '';
-					html += '<tr>';
-					html += '<td class="left">' + data.data.date_added + '</td>';
-					html += '<td class="left">refund</td>';
-					html += '<td class="left">' + data.data.amount + '</td>';
-					html += '</tr>';
+  if ($('#g2apay-refund-amount').val() != '' && confirm('<?php echo $text_confirm_refund; ?>')) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        'order_id': <?php echo $order_id; ?>,
+        'amount': $('#g2apay-refund-amount').val()
+      },
+      url: 'index.php?route=payment/g2apay/refund&token=<?php echo $token; ?>',
+      beforeSend: function() {
+        $('#btn-refund').hide();
+        $('#g2apay-refund-amount').hide();
+        $('#img-loading-refund').show();
+        $('#g2apay-transaction-msg').hide();
+      },
+      success: function(data) {
+        if (data.error == false) {
+          html = '';
+          html += '<tr>';
+          html += '<td class="left">' + data.data.date_added + '</td>';
+          html += '<td class="left">refund</td>';
+          html += '<td class="left">' + data.data.amount + '</td>';
+          html += '</tr>';
 
-					$('#g2apay-transactions').append(html);
-					$('#g2apay-total-released').text(data.data.total_released);
+          $('#g2apay-transactions').append(html);
+          $('#g2apay-total-released').text(data.data.total_released);
 
-					if (data.data.refund_status == 1) {
-						$('.refund_text').text('<?php echo $text_yes; ?>');
-					} else {
-						$('#btn-refund').show();
-						$('#g2apay-refund-amount').val(0.00).show();
-					}
+          if (data.data.refund_status == 1) {
+            $('.refund_text').text('<?php echo $text_yes; ?>');
+          } else {
+            $('#btn-refund').show();
+            $('#g2apay-refund-amount').val(0.00).show();
+          }
 
-					if (data.msg != '') {
-						$('#g2apay-transaction-msg').empty().html(data.msg).fadeIn();
-					}
-				}
+          if (data.msg != '') {
+            $('#g2apay-transaction-msg').empty().html(data.msg).fadeIn();
+          }
+        }
 
-				if (data.error == true) {
-					alert(data.msg);
-					$('#btn-refund').show();
-					$('#g2apay-refund-amount').show();
-				}
+        if (data.error == true) {
+          alert(data.msg);
+          $('#btn-refund').show();
+          $('#g2apay-refund-amount').show();
+        }
 
-				$('#img-loading-refund').hide();
-			}
-		});
-	}
+        $('#img-loading-refund').hide();
+      }
+    });
+  }
 });
 //--></script>

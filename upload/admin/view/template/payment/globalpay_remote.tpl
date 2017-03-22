@@ -26,7 +26,7 @@
         <a href="#tab-payment"><?php echo $tab_payment; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
-    <div id="tab-api">
+      <div id="tab-api">
         <table class="form">
           <tr>
             <td><span class="required">*</span>&nbsp;<label for="input-merchant-id"><?php echo $entry_merchant_id; ?></label></td>
@@ -292,7 +292,9 @@
     </div>
   </div>
 </div>
-<?php echo $footer; ?>
+
 <script type="text/javascript"><!--
 $('#tabs a').tabs();
 //--></script>
+
+<?php echo $footer; ?>

@@ -59,18 +59,17 @@
           <tr>
             <td><?php echo $entry_mode; ?></td>
             <td><select name="payhub_mode">
-                <?php if ($payhub_mode == 'live') { ?>
+              <?php if ($payhub_mode == 'live') { ?>
                 <option value="live" selected="selected"><?php echo $text_live; ?></option>
-                <?php } else { ?>
+              <?php } else { ?>
                 <option value="live"><?php echo $text_live; ?></option>
-                <?php } ?>
-                <?php if ($payhub_mode == 'test') { ?>
+              <?php } ?>
+              <?php if ($payhub_mode == 'test') { ?>
                 <option value="test" selected="selected"><?php echo $text_test; ?></option>
-                <?php } else { ?>
+              <?php } else { ?>
                 <option value="test"><?php echo $text_test; ?></option>
-                <?php } ?>
-              </select>
-            </td>
+              <?php } ?>
+            </select></td>
           </tr>
           <tr>
             <td><?php echo $entry_cards_accepted; ?></td>

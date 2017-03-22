@@ -59,7 +59,7 @@
           </tr>
           <tr>
             <td><select name="firstdata_geo_zone_id" id="input-geo-zone">
-                <option value="0"><?php echo $text_all_zones; ?></option>
+              <option value="0"><?php echo $text_all_zones; ?></option>
               <?php foreach ($geo_zones as $geo_zone) { ?>
                 <?php if ($geo_zone['geo_zone_id'] == $firstdata_geo_zone_id) { ?>
                 <option value="<?php echo $geo_zone['geo_zone_id']; ?>" selected="selected"><?php echo $geo_zone['name']; ?></option>
@@ -164,10 +164,8 @@
           <tr>
             <td><label for="input-auto-settle"><?php echo $entry_auto_settle; ?><br /><span class="help"><?php echo $help_settle; ?></span></label>
             <td><select name="firstdata_auto_settle" id="input-auto-settle">
-              <option value="0"
-          <?php echo ($firstdata_auto_settle == 0 ? ' selected' : ''); ?>><?php echo $text_settle_delayed; ?></option>
-              <option value="1"
-          <?php echo ($firstdata_auto_settle == 1 ? ' selected' : ''); ?>><?php echo $text_settle_auto; ?></option>
+              <option value="0" <?php echo ($firstdata_auto_settle == 0 ? ' selected' : ''); ?>><?php echo $text_settle_delayed; ?></option>
+              <option value="1" <?php echo ($firstdata_auto_settle == 1 ? ' selected' : ''); ?>><?php echo $text_settle_auto; ?></option>
             </select></td>
           </tr>
           <tr>

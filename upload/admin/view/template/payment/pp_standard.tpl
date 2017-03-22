@@ -242,7 +242,7 @@
 </div>
 
 <script type="text/javascript"><!--
-	$('#htabs a').tabs();
+$('#htabs a').tabs();
 //--></script>
 
 <?php echo $footer; ?>
