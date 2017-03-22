@@ -91,11 +91,10 @@ $('#button-confirm').on('click', function() {
       $('#firstdata-message-wait').remove();
     },
     success: function (json) {
-      // if error
       if (json['error']) {
         $('#payment').before('<div id="firstdata-message-error" class="warning"> ' + json['error'] + '</div>');
       }
-      // if success
+
       if (json['success']) {
         location = json['success'];
       }
@@ -122,4 +121,3 @@ $(document).ready(function() {
   <?php } ?>
 });
 //--></script>
-

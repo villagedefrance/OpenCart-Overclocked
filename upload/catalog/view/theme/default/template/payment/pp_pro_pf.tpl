@@ -67,30 +67,30 @@
 
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=payment/pp_pro_pf/send',
-		type: 'POST',
-		dataType: 'json',
-		data: $('#payment :input'),
-		cache: false,
-		beforeSend: function() {
-			$('#button-confirm').prop('disabled', true);
-			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-	})
-	.fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
-	.done(function(json) {
-		if (json['error']) {
-			alert(json['error']);
-		}
+  $.ajax({
+    url: 'index.php?route=payment/pp_pro_pf/send',
+    type: 'POST',
+    dataType: 'json',
+    data: $('#payment :input'),
+    cache: false,
+    beforeSend: function() {
+      $('#button-confirm').prop('disabled', true);
+      $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+    },
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) { alert('Status: ' + textStatus + '\r\nError: ' + errorThrown); })
+  .done(function(json) {
+    if (json['error']) {
+      alert(json['error']);
+    }
 
-		if (json['redirect']) {
-			location = json['redirect'];
-		}
-	})
-	.always(function() {
-		$('#button-confirm').prop('disabled', false);
-		$('.attention').remove();
-	});
+    if (json['redirect']) {
+      location = json['redirect'];
+    }
+  })
+  .always(function() {
+    $('#button-confirm').prop('disabled', false);
+    $('.attention').remove();
+  });
 });
 //--></script>

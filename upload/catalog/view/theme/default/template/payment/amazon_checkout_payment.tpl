@@ -32,7 +32,6 @@ $(document).ready(function() {
 		onPaymentSelect: function(widget) {
 			$("input[name='payment_method']").val('1');
 		}
-
 	}).render('amazon-wallet-widget');
 });
 //--></script>

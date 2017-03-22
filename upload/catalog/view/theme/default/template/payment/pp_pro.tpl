@@ -63,29 +63,29 @@
 
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function() {
-	$.ajax({
-		url: 'index.php?route=payment/pp_pro/send',
-		type: 'post',
-		data: $('#payment :input'),
-		dataType: 'json',
-		cache: false,
-		beforeSend: function() {
-			$('#button-confirm').prop('disabled', true);
-			$('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		},
-		complete: function() {
-			$('#button-confirm').prop('disabled', false);
-			$('.attention').remove();
-		},
-		success: function(json) {
-			if (json['error']) {
-				alert(json['error']);
-			}
+  $.ajax({
+    url: 'index.php?route=payment/pp_pro/send',
+    type: 'post',
+    data: $('#payment :input'),
+    dataType: 'json',
+    cache: false,
+    beforeSend: function() {
+      $('#button-confirm').prop('disabled', true);
+      $('#payment').before('<div class="attention"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+    },
+    complete: function() {
+      $('#button-confirm').prop('disabled', false);
+      $('.attention').remove();
+    },
+    success: function(json) {
+      if (json['error']) {
+        alert(json['error']);
+      }
 
-			if (json['redirect']) {
-				location = json['redirect'];
-			}
-		}
-	});
+      if (json['redirect']) {
+        location = json['redirect'];
+      }
+    }
+  });
 });
 //--></script>

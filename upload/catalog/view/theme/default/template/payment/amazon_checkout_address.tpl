@@ -48,7 +48,7 @@ $(document).ready(function() {
 			$('div.warning').remove();
 			$('div.shipping-methods').html('');
 
-			$.get('<?php echo $shipping_quotes ?>', {}, function(data) {
+			$.get('<?php echo $shipping_quotes; ?>', {}, function(data) {
 				$('.shipping-methods').html('');
 
 				if (data.error) {

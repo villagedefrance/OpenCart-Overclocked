@@ -16,7 +16,7 @@
   </table>
 </div>
 <?php } elseif ($_REQUEST['x_response_code'] == '2') { ?>
-<p>Your payment failed.  Here is your receipt.</p>
+<p>Your payment failed. Here is your receipt.</p>
 <pre>
 <?php echo $exact_ctr; ?></pre>
 <div class="buttons">

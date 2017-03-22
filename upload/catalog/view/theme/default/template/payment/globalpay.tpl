@@ -12,8 +12,8 @@
   <input type=hidden name="SHIPPING_CODE" value="<?php echo $shipping_code; ?>" />
   <input type=hidden name="SHIPPING_CO" value="<?php echo $shipping_country; ?>" />
   <input type=hidden name="MERCHANT_RESPONSE_URL" value="<?php echo $response_url; ?>" />
-  <input type=hidden name="COMMENT1" value="OpenCart" />
-  <?php if ($card_select == true) { ?>
+  <input type=hidden name="COMMENT1" value="OpenCart Overclocked" />
+<?php if ($card_select == true) { ?>
   <fieldset id="payment">
     <div>
       <label for="input-cc-type"><?php echo $text_select_card; ?>&nbsp;<?php echo $entry_cc_type; ?></label>
@@ -24,7 +24,7 @@
       </select></div>
     </div>
   </fieldset>
-  <?php } ?>
+<?php } ?>
   <div class="buttons">
     <div class="right">
       <input type="submit" id="button-confirm" value="<?php echo $button_confirm; ?>" class="button" />

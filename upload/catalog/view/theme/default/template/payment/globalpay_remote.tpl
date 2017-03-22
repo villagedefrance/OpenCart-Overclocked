@@ -50,6 +50,7 @@
     <input type="button" value="<?php echo $button_confirm; ?>" id="button-confirm" data-loading-text="<?php echo $text_loading; ?>" class="button" />
   </div>
 </div>
+
 <script type="text/javascript"><!--
 $('#button-confirm').bind('click', function() {
   $.ajax({
@@ -82,14 +83,12 @@ $('#button-confirm').bind('click', function() {
         $('#3dauth').submit();
       }
 
-      // if error
       if (json['error']) {
-        $('#payment').before('<div id="globalpay-message-error" class="warning"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> '+json['error']+'</div>');
+        $('#payment').before('<div id="globalpay-message-error" class="warning"><img src="catalog/view/theme/<?php echo $template; ?>/image/loading.gif" alt="" /> ' + json['error'] + '</div>');
         $('#button-confirm').prop('disabled', false);
         $('#globalpay-message-wait').remove();
       }
 
-      // if success
       if (json['success']) {
         location = json['success'];
       }

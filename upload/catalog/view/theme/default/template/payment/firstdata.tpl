@@ -1,4 +1,4 @@
-<form action="<?php echo $action; ?>" method="POST"  id="firstdata_form_redirect">
+<form action="<?php echo $action; ?>" method="POST" id="firstdata_form_redirect">
   <fieldset id="payment">
     <input type="hidden" name="txntype" value="<?php echo $txntype; ?>" />
     <input type="hidden" name="timezone" value="GMT" />

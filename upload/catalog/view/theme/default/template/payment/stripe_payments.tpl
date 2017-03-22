@@ -47,57 +47,59 @@
 
 <script type="text/javascript"><!--
 function wait_for_stripe_to_load() {
-	if (window.Stripe) {
-		Stripe.setPublishableKey('<?php echo $stripe_payments_publish_key; ?>');
-	} else {
-		setTimeout(function() {wait_for_stripe_to_load() }, 50);
-	}
+  if (window.Stripe) {
+    Stripe.setPublishableKey('<?php echo $stripe_payments_publish_key; ?>');
+  } else {
+    setTimeout(function() { wait_for_stripe_to_load() }, 50);
+  }
 }
 wait_for_stripe_to_load();
 
 var stripeResponseHandler = function(status, response) {
-	var $form = $('#payment-form');
+  var $form = $('#payment-form');
 
-	if (response.error) {
-		$form.find('.payment-errors').text(response.error.message);
-		$form.find('button').prop('disabled', false);
-		$('.attention').remove();
-	} else {
-		var token = response.id;
-		$.ajax({
-			url: 'index.php?route=payment/stripe_payments/send',
-			type: 'post',
-			data: 'stripeToken=' + token,
-			dataType: 'json',
-			complete: function() {
-				$('.attention').remove();
-			},
-			success: function(json) {
-				if (json['error']) {
-					$form.find('.payment-errors').text(json['error']);
-					$form.find('button').prop('disabled', false);
-				}
-				if (json['success']) {
-					location = json['success'];
-				}
-			}
-		});
-	}
+  if (response.error) {
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('button').prop('disabled', false);
+    $('.attention').remove();
+  } else {
+    var token = response.id;
+    $.ajax({
+      url: 'index.php?route=payment/stripe_payments/send',
+      type: 'post',
+      data: 'stripeToken=' + token,
+      dataType: 'json',
+      complete: function() {
+        $('.attention').remove();
+      },
+      success: function(json) {
+        if (json['error']) {
+          $form.find('.payment-errors').text(json['error']);
+          $form.find('button').prop('disabled', false);
+        }
+
+        if (json['success']) {
+          location = json['success'];
+        }
+      }
+    });
+  }
 };
 
 jQuery(function($) {
-	$('#payment-form').submit(function(e) {
-		var $form = $(this);
-		$form.find('button').prop('disabled', true);
-		$form.find('.payment-errors').text('');
-		$('#payment').before('<div class="attention"><img src="<?php echo $this->config->get('config_ssl'); ?>catalog/view/theme/" . $template . "/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
-		Stripe.card.createToken($form, stripeResponseHandler);
-		return false;
-	});
-	$('#cc_number').on('input propertychange', function() {
-		var cctype = Stripe.card.cardType($(this).val());
-		cctype = cctype.replace(/\s/g, '').toLowerCase();
-		$('#payment-form .credit-cards').removeClass().addClass('credit-cards ' + cctype);
-	});
+  $('#payment-form').submit(function(e) {
+    var $form = $(this);
+    $form.find('button').prop('disabled', true);
+    $form.find('.payment-errors').text('');
+    $('#payment').before('<div class="attention"><img src="<?php echo $this->config->get('config_ssl'); ?>catalog/view/theme/" . $template . "/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+    Stripe.card.createToken($form, stripeResponseHandler);
+    return false;
+  });
+
+  $('#cc_number').on('input propertychange', function() {
+    var cctype = Stripe.card.cardType($(this).val());
+    cctype = cctype.replace(/\s/g, '').toLowerCase();
+    $('#payment-form .credit-cards').removeClass().addClass('credit-cards ' + cctype);
+  });
 });
 //--></script>

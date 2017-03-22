@@ -10,10 +10,10 @@
 <?php echo $content_footer; ?>
 
 <script type="text/javascript"><!--
-new CBA.Widgets.OrderDetailsWidget ({
+new CBA.Widgets.OrderDetailsWidget({
 	merchantId: "<?php echo $merchant_id; ?>",
 	orderID: "<?php echo $amazon_order_id; ?>"
-}).render ("AmazonOrderDetail");
+}).render('AmazonOrderDetail');
 //--></script>
 
 <?php echo $footer; ?>
