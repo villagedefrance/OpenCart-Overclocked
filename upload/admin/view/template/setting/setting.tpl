@@ -1516,6 +1516,7 @@
           <tr>
             <td><?php echo $entry_cookie_privacy; ?></td>
             <td><select name="config_cookie_privacy">
+              <option value="0"><?php echo $text_none; ?></option>
               <?php foreach ($information_pages as $information) { ?>
                 <?php if ($information['information_id'] == $config_cookie_privacy) { ?>
                   <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
