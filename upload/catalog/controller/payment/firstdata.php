@@ -243,7 +243,7 @@ class ControllerPaymentFirstdata extends Controller {
 			}
 
 		} else {
-			$this->model_payment_firstdata->logger('Data is missing from request . ');
+			$this->model_payment_firstdata->logger('Data is missing from request.');
 		}
 	}
 

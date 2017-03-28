@@ -501,10 +501,10 @@ class ControllerProductCategory extends Controller {
 			} elseif (($page == 1) && ($page_trigger > 0)) {
 				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id), 'canonical');
 				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . ($page + 1) . $url, 'SSL'), 'next');
-			} elseif ($page == $page_last) {
+			} elseif (($page > 0) && ($page == $page_last)) {
 				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . ($page - 1) . $url, 'SSL'), 'prev');
-			} elseif ($this->request->get['page'] > $page_last) {
+			} elseif ($page && ($this->request->get['page'] > $page_last)) {
 				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page), 'canonical');
 				$this->document->addLink($this->url->link('product/category', 'path=' . $category_id . '&page=' . $page_last . $url, 'SSL'), 'prev');
 			} elseif (($page > 1) && ($page < $page_last)) {

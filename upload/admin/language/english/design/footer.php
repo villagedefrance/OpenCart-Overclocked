@@ -17,7 +17,7 @@ $_['column_action']       = 'Action';
 
 // Entry
 $_['entry_name']          = 'Block Name:';
-$_['entry_position']      = 'Position:<span class="help">Blocks 1 to 4, from left to right.</span>';
+$_['entry_position']      = 'Block Position:<span class="help">Specify the footer column where this block is to appear. Blocks 1 to 4, from left to right.</span>';
 $_['entry_store']         = 'Stores:';
 $_['entry_status']        = 'Status:';
 

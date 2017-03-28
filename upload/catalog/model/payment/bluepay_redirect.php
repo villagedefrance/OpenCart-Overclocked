@@ -54,7 +54,7 @@ class ModelPaymentBluepayRedirect extends Model {
 	}
 
 	public function addCard($card_data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "bluepay_redirect_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', token = '" . $this->db->escape($card_data['Token']) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', type = '" . $this->db->escape($card_data['CardType']) . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "bluepay_redirect_card SET customer_id = '" . $this->db->escape($card_data['customer_id']) . "', token = '" . $this->db->escape($card_data['Token']) . "', digits = '" . $this->db->escape($card_data['Last4Digits']) . "', expiry = '" . $this->db->escape($card_data['ExpiryDate']) . "', `type` = '" . $this->db->escape($card_data['CardType']) . "'");
 	}
 
 	public function addOrder($order_info, $response_data) {

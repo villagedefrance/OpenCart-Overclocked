@@ -71,13 +71,13 @@ class ModelPaymentPPPayflowIframe extends Model {
 		$this->log($call_parameters, 'Call data');
 
 		$options = array(
-			CURLOPT_POST           => true,
-			CURLOPT_HEADER         => false,
-			CURLOPT_URL            => $url,
+			CURLOPT_POST => true,
+			CURLOPT_HEADER => false,
+			CURLOPT_URL => $url,
 			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_TIMEOUT        => 30,
+			CURLOPT_TIMEOUT => 30,
 			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_POSTFIELDS     => http_build_query($call_parameters, '', "&")
+			CURLOPT_POSTFIELDS => http_build_query($call_parameters, '', "&")
 		);
 
 		$ch = curl_init();

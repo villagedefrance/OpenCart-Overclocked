@@ -49,8 +49,8 @@ class ControllerCommonFooter extends Controller {
 			$this->data['footer_blocks'] = 0;
 		}
 
-		$this->data['company'] = $this->config->get('config_title');
-		$this->data['address'] = $this->config->get('config_address');
+		$this->data['company'] = $this->config->get('config_name');
+		$this->data['address'] = nl2br($this->config->get('config_address'));
 		$this->data['telephone'] = $this->config->get('config_telephone');
 		$this->data['email'] = $this->config->get('config_email');
 

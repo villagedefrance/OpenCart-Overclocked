@@ -34,7 +34,6 @@ class ModelShippingDhl extends Model {
 						if (isset($data[1])) {
 							$cost = $data[1];
 						}
-
 						break;
 					}
 				}
