@@ -496,11 +496,11 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		if (file_exists('../config.php') && filesize('../config.php') > 0) {
 			$catalog = '../config.php';
 
+			$fh1 = fopen($catalog, 'r+');
+
 			$catalog_data = file_get_contents($catalog);
 
 			$catalog_string = implode('', file($catalog));
-
-			$fh1 = fopen($catalog, 'w+');
 
 			if (strpos($catalog_data, $check_upload) == false) {
 				$catalog_string .= str_replace($upload, $output_upload, $catalog_string);
@@ -523,11 +523,11 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 		if (file_exists('../admin/config.php') && filesize('../admin/config.php') > 0) {
 			$admin = '../admin/config.php';
 
+			$fh2 = fopen($admin, 'r+');
+
 			$admin_data = file_get_contents($admin);
 
 			$admin_string = implode('', file($admin));
-
-			$fh2 = fopen($admin, 'w+');
 
 			if (strpos($admin_data, $check_upload) == false) {
 				$admin_string .= str_replace($upload, $output_upload, $admin_string);
@@ -584,12 +584,12 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 		foreach ($stores as $store_id) {
 			foreach ($news_routes as $news_route) {
-				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $news_route . "' LIMIT 0,1";
+				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND `route` LIKE '" . $news_route . "' LIMIT 0,1";
 
 				$query = $this->db->query($sql);
 
 				if ($query->num_rows == 0) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route SET layout_id = (SELECT DISTINCT layout_id FROM " . DB_PREFIX . "layout WHERE name = 'News'), store_id = '" . (int)$store_id . "', route = '" . $news_route . "'");
+					$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route SET layout_id = (SELECT DISTINCT layout_id FROM " . DB_PREFIX . "layout WHERE name = 'News'), store_id = '" . (int)$store_id . "', `route` = '" . $news_route . "'");
 				}
 			}
 		}
@@ -608,12 +608,12 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 
 		foreach ($stores as $store_id) {
 			foreach ($special_routes as $special_route) {
-				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND route LIKE '" . $special_route . "' LIMIT 0,1";
+				$sql = "SELECT layout_id FROM " . DB_PREFIX . "layout_route WHERE store_id = '" . (int)$store_id . "' AND `route` LIKE '" . $special_route . "' LIMIT 0,1";
 
 				$query = $this->db->query($sql);
 
 				if ($query->num_rows == 0) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route SET layout_id = (SELECT DISTINCT layout_id FROM " . DB_PREFIX . "layout WHERE name = 'Special'), store_id = '" . (int)$store_id . "', route = '" . $special_route . "'");
+					$this->db->query("INSERT INTO " . DB_PREFIX . "layout_route SET layout_id = (SELECT DISTINCT layout_id FROM " . DB_PREFIX . "layout WHERE name = 'Special'), store_id = '" . (int)$store_id . "', `route` = '" . $special_route . "'");
 				}
 			}
 		}
