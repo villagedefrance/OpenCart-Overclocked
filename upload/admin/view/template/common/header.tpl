@@ -105,6 +105,7 @@ $(document).ready(function() {
               <li><a href="<?php echo $manufacturer; ?>"><?php echo ($icons) ? '<i class="fa fa-gear"></i>' : ''; ?><?php echo $text_manufacturer; ?></a></li>
               <li><a href="<?php echo $download; ?>"><?php echo ($icons) ? '<i class="fa fa-download"></i>' : ''; ?><?php echo $text_download; ?></a></li>
               <li><a href="<?php echo $review; ?>"><?php echo ($icons) ? '<i class="fa fa-comments"></i>' : ''; ?><?php echo $text_review; ?></a></li>
+              <li><a href="<?php echo $field; ?>"><?php echo ($icons) ? '<i class="fa fa-list-ul"></i>' : ''; ?><?php echo $text_field; ?></a></li>
             </ul>
           </li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-columns"></i>' : ''; ?><?php echo $text_attribute; ?></a>
@@ -113,7 +114,6 @@ $(document).ready(function() {
               <li><a href="<?php echo $attribute_group; ?>"><?php echo ($icons) ? '<i class="fa fa-wrench"></i>' : ''; ?><?php echo $text_attribute_group; ?></a></li>
             </ul>
           </li>
-          <li><a href="<?php echo $field; ?>"><?php echo ($icons) ? '<i class="fa fa-list-ul"></i>' : ''; ?><?php echo $text_field; ?></a></li>
           <li><a href="<?php echo $filter; ?>"><?php echo ($icons) ? '<i class="fa fa-filter"></i>' : ''; ?><?php echo $text_filter; ?></a></li>
           <li><a href="<?php echo $profile; ?>"><?php echo ($icons) ? '<i class="fa fa-exchange"></i>' : ''; ?><?php echo $text_profile; ?></a></li>
           <li><a href="<?php echo $palette; ?>"><?php echo ($icons) ? '<i class="fa fa-paint-brush"></i>' : ''; ?><?php echo $text_palette; ?></a></li>

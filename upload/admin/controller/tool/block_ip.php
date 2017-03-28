@@ -219,6 +219,7 @@ class ControllerToolBlockIp extends Controller {
 		$this->data['text_no_results'] = $this->language->get('text_no_results');
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
+		$this->data['text_info'] = $this->language->get('text_info');
 
 		$this->data['column_from_ip'] = $this->language->get('column_from_ip');
 		$this->data['column_to_ip'] = $this->language->get('column_to_ip');
@@ -226,6 +227,7 @@ class ControllerToolBlockIp extends Controller {
 
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
+		$this->data['button_info'] = $this->language->get('button_info');
 
 		$this->data['token'] = $this->session->data['token'];
 
@@ -294,7 +296,7 @@ class ControllerToolBlockIp extends Controller {
 		$this->data['heading_range'] = $this->language->get('heading_range');
 
 		$this->data['text_default'] = $this->language->get('text_default');
-		$this->data['text_info'] = $this->language->get('text_info');
+		$this->data['text_range'] = $this->language->get('text_range');
 
 		$this->data['entry_from_ip'] = $this->language->get('entry_from_ip');
 		$this->data['entry_to_ip'] = $this->language->get('entry_to_ip');
