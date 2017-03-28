@@ -53,8 +53,6 @@ class ModelShippingAusPost extends Model {
 				curl_close($curl);
 
 				if ($response) {
-					$response_info = array();
-
 					$response_parts = json_decode($response, true);
 
 					if (isset($response_parts['error'])) {
@@ -88,8 +86,6 @@ class ModelShippingAusPost extends Model {
 				curl_close($curl);
 
 				if ($response) {
-					$response_info = array();
-
 					$response_parts = json_decode($response, true);
 
 					if (isset($response_parts['error'])) {
