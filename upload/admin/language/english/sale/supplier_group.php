@@ -6,6 +6,7 @@ $_['heading_title']             = 'Supplier Group';
 $_['text_success']              = 'Success: You have modified <b>Supplier Groups</b> !';
 
 // Text Order
+$_['text_order_website']        = 'Website';
 $_['text_order_email']          = 'Email';
 $_['text_order_phone']          = 'Telephone';
 $_['text_order_fax']            = 'Fax';
@@ -19,6 +20,7 @@ $_['text_payment_cash']         = 'Cash';
 $_['text_payment_cheque']       = 'Cheque';
 $_['text_payment_creditcard']   = 'Credit Card';
 $_['text_payment_banktransfer'] = 'Bank Transfer';
+$_['text_payment_paypal']       = 'Paypal';
 $_['text_payment_other']        = 'Other';
 
 // Column

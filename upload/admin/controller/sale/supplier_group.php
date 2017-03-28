@@ -372,6 +372,7 @@ class ControllerSaleSupplierGroup extends Controller {
 
 		$this->data['order_options'] = array();
 
+		$this->data['order_options'][] = array('method' => 'website', 'title' => $this->language->get('text_order_website'));
 		$this->data['order_options'][] = array('method' => 'email', 'title' => $this->language->get('text_order_email'));
 		$this->data['order_options'][] = array('method' => 'phone', 'title' => $this->language->get('text_order_phone'));
 		$this->data['order_options'][] = array('method' => 'fax', 'title' => $this->language->get('text_order_fax'));
@@ -394,6 +395,7 @@ class ControllerSaleSupplierGroup extends Controller {
 		$this->data['payment_options'][] = array('method' => 'cheque', 'title' => $this->language->get('text_payment_cheque'));
 		$this->data['payment_options'][] = array('method' => 'creditcard', 'title' => $this->language->get('text_payment_creditcard'));
 		$this->data['payment_options'][] = array('method' => 'banktransfer', 'title' => $this->language->get('text_payment_banktransfer'));
+		$this->data['payment_options'][] = array('method' => 'paypal', 'title' => $this->language->get('text_payment_paypal'));
 		$this->data['payment_options'][] = array('method' => 'other', 'title' => $this->language->get('text_payment_other'));
 
 		if (isset($this->request->post['payment_method'])) {
