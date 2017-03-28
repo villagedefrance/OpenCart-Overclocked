@@ -87,7 +87,7 @@
               <td><?php echo $text_phpversion; ?></td>
               <td>5.4+</td>
               <td><?php echo phpversion(); ?></td>
-              <td><?php echo (phpversion() >= '5.4') ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
+              <td><?php echo (version_compare(phpversion(), '5.4.0', '>=')) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/warning.png" alt="" />'; ?></td>
             </tr>
             <tr>
               <td><?php echo $text_registerglobals; ?></td>

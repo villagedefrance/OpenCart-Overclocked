@@ -109,7 +109,7 @@ class ControllerStep2 extends Controller {
 	}
 
 	private function validate() {
-		if (phpversion() < '5.4') {
+		if (version_compare(phpversion(), '5.4.0', '<')) {
 			$this->error['warning'] = $this->language->get('error_php_version');
 		}
 
