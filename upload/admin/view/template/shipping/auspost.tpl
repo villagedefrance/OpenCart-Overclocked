@@ -21,6 +21,15 @@
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
         <tr>
+          <td><span class="required">*</span> <?php echo $entry_api; ?></td>
+          <td><?php if ($error_api) { ?>
+            <input type="text" name="auspost_api" size="35" value="<?php echo $auspost_api; ?>" class="input-error" />
+            <span class="error"><?php echo $error_api; ?></span>
+          <?php } else { ?>
+            <input type="text" name="auspost_api" size="35" value="<?php echo $auspost_api; ?>" />
+          <?php } ?></td>
+        </tr>
+        <tr>
           <td><span class="required">*</span> <?php echo $entry_postcode; ?></td>
           <td><?php if ($error_postcode) { ?>
             <input type="text" name="auspost_postcode" size="4" maxlength="4" value="<?php echo $auspost_postcode; ?>" class="input-error" />
@@ -28,42 +37,6 @@
           <?php } else { ?>
             <input type="text" name="auspost_postcode" size="4" maxlength="4" value="<?php echo $auspost_postcode; ?>" />
           <?php } ?></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_standard ?></td>
-          <td><select name="auspost_standard">
-            <?php if ($auspost_standard) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-            <?php } ?>
-          </select></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_express ?></td>
-          <td><select name="auspost_express">
-            <?php if ($auspost_express) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-            <?php } ?>
-          </select></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_display_time ?></td>
-          <td><select name="auspost_display_time">
-            <?php if ($auspost_display_time) { ?>
-              <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-              <option value="0"><?php echo $text_disabled; ?></option>
-            <?php } else { ?>
-              <option value="1"><?php echo $text_enabled; ?></option>
-              <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-            <?php } ?>
-          </select></td>
         </tr>
         <tr>
           <td><?php echo $entry_weight_class; ?></td>
