@@ -57,6 +57,7 @@ $registry->set('document', $document);
 
 // Session
 $session = new Session();
+$session->start();
 $registry->set('session', $session);
 
 // Upgrade
