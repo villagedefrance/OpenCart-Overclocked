@@ -7,25 +7,6 @@ if (version_compare(phpversion(), '5.4.0', '<') == true) {
 	exit('PHP 5.4+ Required'); 
 }
 
-// Register Globals
-if (ini_get('register_globals')) {
-	ini_set('session.use_only_cookies', 'On');
-	ini_set('session.use_cookies', 'On');
-	ini_set('session.use_trans_sid', 'Off');
-	ini_set('session.cookie_httponly', 'On');
-
-	session_set_cookie_params(0, '/');
-	session_start();
-
-	$globals = array($_REQUEST, $_SESSION, $_SERVER, $_FILES);
-
-	foreach ($globals as $global) {
-		foreach (array_keys($global) as $key) {
-			unset(${$key});
-		}
-	}
-}
-
 if (!ini_get('date.timezone')) {
 	date_default_timezone_set('UTC');
 }

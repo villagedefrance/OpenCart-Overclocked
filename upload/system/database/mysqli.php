@@ -6,7 +6,7 @@ final class DBMySQLi {
 		$this->connection = new \mysqli($hostname, $username, $password, $database, $port);
 
 		if ($this->connection->connect_error) {
-			throw new \Exception('Error: ' . mysqli_error($this->connection) . '<br />Error No: ' . mysqli_errno($this->connection) . '<br /> Error in: <b>' . $trace[1]['file'] . '</b> line <b>' . $trace[1]['line'] . '</b><br />' . $sql);
+			throw new \Exception('Error: ' . $this->connection->error . '<br />Error No: ' . $this->connection->errno . '<br /> Error in: <b>' . $trace[1]['file'] . '</b> line <b>' . $trace[1]['line'] . '</b><br />' . $sql);
 		}
 
 		$this->connection->set_charset("utf8");
