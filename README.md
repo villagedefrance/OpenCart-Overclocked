@@ -37,18 +37,9 @@ Powered by the Latest Scripts:
 - CKEditor 4.6.2 Full.
 - ...
 
-Coming soon in 1.9.2.0 !
+New in 1.9.2.0 (current release)!
 - Admin themes improvements.
-- Bug fixes.
-- ...
-
-New in 1.9.1.0 (current release)!
-- New Catalog default theme.
-- New Admin black theme.
-- Font-awesome v4.7.0.
-- Paypal Express update.
-- Improved News list page.
-- CKEditor v4.6.2.
+- Stronger Session Class.
 - Bug fixes.
 - ...
 
@@ -61,7 +52,7 @@ Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style 
 Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed,
 Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector,
 New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search
-Store Google Map, Country & Zone update on upgrade, Improved invoicing (with tax breakdown), Email log,
+Store Google Map, Country & Zone update on upgrade, Invoicing with tax breakdown, Contact E-mail logging,
 Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching,
 "Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History,
 Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum Age limit, Product Wall page,
