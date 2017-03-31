@@ -39,6 +39,15 @@ Disallow: /not_found.php
 Disallow: /permission.php
 Disallow: /maintenance.php
 
+# Routes
+Disallow: /*?sort
+Disallow: /*?route=checkout/
+Disallow: /*?route=account/
+Disallow: /*?route=affiliate/
+Disallow: /*?route=product/search
+Disallow: /*?page=1
+Disallow: /*&create=1
+
 # Sitemap
 
 # This file is to prevent the crawling and indexing of certain parts
