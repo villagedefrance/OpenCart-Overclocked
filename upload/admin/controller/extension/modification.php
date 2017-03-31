@@ -69,6 +69,10 @@ class ControllerExtensionModification extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'modification/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('modification/' . $extension);
 
 				$action = array();

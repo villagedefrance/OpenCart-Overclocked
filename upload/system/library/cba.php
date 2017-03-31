@@ -105,7 +105,7 @@ class CBA {
 
 					$submission_id = (string)$list_item->ReportRequestId;
 
-					$db->query("UPDATE " . DB_PREFIX . "order_amazon_report SET status = '" . $db->escape($status) . "', text = '" . $db->escape($error_message) . "' WHERE submission_id = '" . $db->escape($submission_id) . "'");
+					$db->query("UPDATE " . DB_PREFIX . "order_amazon_report SET status = '" . $db->escape($status) . "', `text` = '" . $db->escape($error_message) . "' WHERE submission_id = '" . $db->escape($submission_id) . "'");
 
 					$report_ids[] = (string)$list_item->ReportId;
 				}
@@ -189,7 +189,7 @@ class CBA {
 
 					$order_id = $result['order_id'];
 
-					$db->query("UPDATE " . DB_PREFIX . "order o, " . DB_PREFIX . "order_amazon oa SET o.payment_firstname = '" . $db->escape($billing_name) . "', o.firstname = '" . $db->escape($billing_name) . "', o.email = '" . $db->escape($billing_email) . "', o.telephone = '" . $db->escape($billing_phone_number) . "', o.shipping_firstname = '" . $db->escape($shipping_name) . "', o.shipping_address_1 = '" . $db->escape($shipping_address1) . "', o.shipping_address_2 = '" . $db->escape($shipping_address2) . "', o.shipping_city = '" . $db->escape($shipping_city) . "', o.shipping_zone = '" . $db->escape($shipping_zone) . "', o.shipping_country = '" . $db->escape($shipping_country_code) . "', o.shipping_postcode = '" . $db->escape($shipping_post_code) . "', o.order_status_id = " . (int)$settings->get('amazon_checkout_order_ready_status') . " WHERE o.order_id = " . (int)$order_id);
+					$db->query("UPDATE `" . DB_PREFIX . "order` o, " . DB_PREFIX . "order_amazon oa SET o.payment_firstname = '" . $db->escape($billing_name) . "', o.firstname = '" . $db->escape($billing_name) . "', o.email = '" . $db->escape($billing_email) . "', o.telephone = '" . $db->escape($billing_phone_number) . "', o.shipping_firstname = '" . $db->escape($shipping_name) . "', o.shipping_address_1 = '" . $db->escape($shipping_address1) . "', o.shipping_address_2 = '" . $db->escape($shipping_address2) . "', o.shipping_city = '" . $db->escape($shipping_city) . "', o.shipping_zone = '" . $db->escape($shipping_zone) . "', o.shipping_country = '" . $db->escape($shipping_country_code) . "', o.shipping_postcode = '" . $db->escape($shipping_post_code) . "', o.order_status_id = " . (int)$settings->get('amazon_checkout_order_ready_status') . " WHERE o.order_id = " . (int)$order_id);
 
 					$db->query("INSERT INTO `" . DB_PREFIX . "order_history` (`order_id`, `order_status_id`, `comment`, `date_added`) VALUES (" . (int)$order_id . ", " . (int)$settings->get('amazon_checkout_order_ready_status') . ", '', NOW())");
 

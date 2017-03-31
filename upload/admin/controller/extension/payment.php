@@ -92,6 +92,10 @@ class ControllerExtensionPayment extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'payment/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('payment/' . $extension);
 
 				$action = array();

@@ -72,6 +72,10 @@ class ControllerExtensionTheme extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'theme/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('theme/' . $extension);
 
 				// Check active template

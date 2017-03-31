@@ -71,6 +71,10 @@ class ControllerExtensionModule extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'module/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('module/' . $extension);
 
 				$action = array();

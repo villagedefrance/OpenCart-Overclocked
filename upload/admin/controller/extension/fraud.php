@@ -68,6 +68,10 @@ class ControllerExtensionFraud extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'fraud/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('fraud/' . $extension);
 
 				$action = array();

@@ -71,6 +71,10 @@ class ControllerExtensionFeed extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'feed/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('feed/' . $extension);
 
 				$action = array();

@@ -75,6 +75,10 @@ class ControllerExtensionTotal extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'total/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('total/' . $extension);
 
 				$action = array();

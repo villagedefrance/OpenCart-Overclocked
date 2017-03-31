@@ -75,6 +75,10 @@ class ControllerExtensionShipping extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
+				if (!$this->user->hasPermission('access', 'shipping/' . $extension)) {
+					continue;
+				}
+
 				$this->language->load('shipping/' . $extension);
 
 				$action = array();
