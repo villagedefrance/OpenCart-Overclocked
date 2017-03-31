@@ -130,7 +130,7 @@ class ControllerToolBlockIp extends Controller {
 		$this->getList();
 	}
 
-	private function getList() {
+	protected function getList() {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -291,7 +291,7 @@ class ControllerToolBlockIp extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function getForm() {
+	protected function getForm() {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 		$this->data['heading_range'] = $this->language->get('heading_range');
 
