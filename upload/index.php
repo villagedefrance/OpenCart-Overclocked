@@ -87,7 +87,6 @@ function errorHandler($errno, $errstr, $errfile, $errline) {
 		case E_USER_WARNING: $error = 'Warning'; break;
 		case E_ERROR:
 		case E_USER_ERROR: $error = 'Fatal Error'; break;
-		case E_PARSE: $error = 'Parse Error'; break;
 		default: $error = 'Unknown'; break;
 	}
 
