@@ -155,6 +155,12 @@ class ModelDesignFooter extends Model {
 		return $footer_description_data;
 	}
 
+	public function getFooterName($footer_id) {
+		$query = $this->db->query("SELECT DISTINCT fd.name AS name FROM " . DB_PREFIX . "footer_description fd LEFT JOIN " . DB_PREFIX . "footer f ON (fd.footer_id = f.footer_id) WHERE f.footer_id = '" . (int)$footer_id . "' AND fd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY f.footer_id");
+
+		return $query->row['name'];
+	}
+
 	public function getFooterRoutes($footer_id) {
 		$footer_route_data = array();
 

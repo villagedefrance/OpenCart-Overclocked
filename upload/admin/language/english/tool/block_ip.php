@@ -7,7 +7,7 @@ $_['heading_range']    = 'Ip Range';
 $_['text_success']     = 'Success: You have modified <b>Block Ips</b> !';
 $_['text_default']     = 'Default';
 $_['text_info']        = '<b>List of banned Ip addresses.</b><br /><br />Blocked Ips will be re-directed to an external page, and will not be able to navigate back in the store.';
-$_['text_range']       = 'To block a specific Ip, enter it\'s value in both fields.<br />To block a range of Ips, enter the lower value in "From" and the higher value in "To". All the Ip addresses inside a range will be blocked.';
+$_['text_range']       = 'To block a specific Ip, enter it\'s value in both fields.<br /><br />To block a range of Ips, enter the lower value in "From" and the higher value in "To". All the Ip addresses inside a range will be blocked.';
 
 // Column
 $_['column_from_ip']   = 'From Ip';

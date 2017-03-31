@@ -367,11 +367,26 @@ class ControllerDesignFooter extends Controller {
 			'separator' => false
 		);
 
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
-			'separator' => ' :: '
-		);
+		if (isset($this->request->get['footer_id'])) {
+			$footer_name = $this->model_design_footer->getFooterName($this->request->get['footer_id']);
+
+			$this->data['breadcrumbs'][] = array(
+				'text'      => $this->language->get('heading_title') . ' :: ' . $footer_name,
+				'href'      => $this->url->link('design/footer/update', 'token=' . $this->session->data['token'] . '&footer_id=' . $this->request->get['footer_id'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['footer_title'] = $this->language->get('text_block') . ': ' . $footer_name;
+
+		} else {
+			$this->data['breadcrumbs'][] = array(
+				'text'      => $this->language->get('heading_title'),
+				'href'      => $this->url->link('design/footer', 'token=' . $this->session->data['token'] . $url, 'SSL'),
+				'separator' => ' :: '
+			);
+
+			$this->data['footer_title'] = $this->language->get('heading_title');
+		}
 
 		if (!isset($this->request->get['footer_id'])) {
 			$this->data['action'] = $this->url->link('design/footer/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');

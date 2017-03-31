@@ -6,12 +6,13 @@ $_['heading_title']       = 'Footers';
 $_['text_success']        = 'Success: You have modified <b>Footers</b> !';
 $_['text_default']        = 'Default';
 $_['text_position']       = 'Position';
+$_['text_block']          = 'Block';
 $_['text_link']           = 'Internal Links:<span class="help">External links require a complete Url,<br />including the "http://".</span>';
 $_['text_info']           = 'Click <a class="colorbox" href="%s" title="List of internal links"><b>Here</b></a> to see a list of internal links.';
 
 // Column
 $_['column_name']         = 'Block Name';
-$_['column_position']     = 'Position';
+$_['column_position']     = 'Block Position';
 $_['column_status']       = 'Status';
 $_['column_action']       = 'Action';
 

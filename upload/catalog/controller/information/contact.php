@@ -116,14 +116,18 @@ class ControllerInformationContact extends Controller {
 
 		if (isset($this->request->post['name'])) {
 			$this->data['name'] = $this->request->post['name'];
+		} elseif ($this->customer->isLogged() && $this->customer->isSecure()) {
+			$this->data['name'] = $this->customer->getFirstName() . ' ' . $this->customer->getLastName();
 		} else {
-			$this->data['name'] = $this->customer->getFirstName();
+			$this->data['name'] = '';
 		}
 
 		if (isset($this->request->post['email'])) {
 			$this->data['email'] = $this->request->post['email'];
-		} else {
+		} elseif ($this->customer->isLogged() && $this->customer->isSecure()) {
 			$this->data['email'] = $this->customer->getEmail();
+		} else {
+			$this->data['email'] = '';
 		}
 
 		if (isset($this->request->post['enquiry'])) {
@@ -238,6 +242,17 @@ class ControllerInformationContact extends Controller {
 
 		if (!isset($this->request->post['email']) || !preg_match('/^[^\@]+@.*.[a-z]{2,15}$/i', $this->request->post['email'])) {
 			$this->error['email'] = $this->language->get('error_email');
+		}
+
+		if (isset($this->request->post['email'])) {
+			// Email MX Record check
+			$this->load->model('tool/email');
+
+			$email_valid = $this->model_tool_email->verifyMail($this->request->post['email']);
+
+			if (!$email_valid) {
+				$this->error['email'] = $this->language->get('error_email');
+			}
 		}
 
 		if (!isset($this->request->post['enquiry']) || (utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
