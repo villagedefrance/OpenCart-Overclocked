@@ -169,7 +169,7 @@ class ControllerCatalogNews extends Controller {
 		$this->getList();
 	}
 
-	private function getList() {
+	protected function getList() {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
@@ -362,7 +362,7 @@ class ControllerCatalogNews extends Controller {
 		$this->response->setOutput($this->render());
 	}
 
-	private function getForm() {
+	protected function getForm() {
 		$this->language->load('catalog/' . $this->_name);
 
 		$this->load->model('catalog/news');

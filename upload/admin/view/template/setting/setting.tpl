@@ -1422,7 +1422,7 @@
                 <option value="zoomlens" <?php if ($config_lightbox == 'zoomlens') { echo $selected; } ?>><?php echo $text_zoomlens; ?></option>
               <?php } else { ?>
                 <option value="colorbox"><?php echo $text_colorbox; ?> <?php echo $text_default; ?></option>
-                <option value="swipebox"><?php echo $text_fancybox; ?></option>
+                <option value="fancybox"><?php echo $text_fancybox; ?></option>
                 <option value="magnific"><?php echo $text_magnific; ?></option>
                 <option value="swipebox"><?php echo $text_swipebox; ?></option>
                 <option value="zoomlens"><?php echo $text_zoomlens; ?></option>

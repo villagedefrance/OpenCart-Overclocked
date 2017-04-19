@@ -237,6 +237,7 @@ class ControllerProductProduct extends Controller {
 			$this->document->setTitle($product_info['name']);
 			$this->document->setDescription($product_info['meta_description']);
 			$this->document->setKeywords($product_info['meta_keyword']);
+
 			$this->document->addLink($this->url->link('product/product', 'product_id=' . $this->request->get['product_id'], 'SSL'), 'canonical');
 
 			$this->document->addScript('catalog/view/javascript/jquery/tabs.min.js');
@@ -333,7 +334,7 @@ class ControllerProductProduct extends Controller {
 
 				$this->data['lightbox'] = 'swipebox';
 
-				} elseif ($this->config->get('config_lightbox') == 'magnific') {
+			} elseif ($this->config->get('config_lightbox') == 'magnific') {
 				$this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific.css');
 				$this->document->addScript('catalog/view/javascript/jquery/magnific/magnific.min.js');
 
