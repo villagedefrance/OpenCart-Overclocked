@@ -570,7 +570,7 @@
             <?php } elseif (!$product['quote'] && $product['stock_quantity'] <= 0) { ?>
               <div class="stock-status"><a title="<?php echo $product['stock_status']; ?>"><i class="fa fa-warning"></i></a></div>
             <?php } else { ?>
-              <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');" /><i class="fa fa-shopping-cart"></i></a></div>
+              <div><a onclick="addToCart('<?php echo $product['product_id']; ?>');"><i class="fa fa-shopping-cart"></i></a></div>
             <?php } ?>
             <div><a onclick="addToWishList('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></a></div>
             <div><a href="<?php echo $product['href']; ?>"><i class="fa fa-search"></i></a></div>
