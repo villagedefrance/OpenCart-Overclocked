@@ -10,6 +10,10 @@ class Image {
 	protected $watermark;
 
 	public function __construct($file) {
+		if (!extension_loaded('gd')) {
+			exit('Error: PHP GD is not installed!');
+		}
+
 		if (file_exists($file) && filesize($file) > 0) {
 			$this->file = $file;
 
@@ -27,7 +31,12 @@ class Image {
 				$this->image = imagecreatefrompng($file);
 			} elseif ($this->mime == 'image/jpeg') {
 				$this->image = imagecreatefromjpeg($file);
+
+				if (!$this->image) {
+					$this->image = imagecreatefromstring(file_get_contents($file));
+				}
 			}
+
 		} else {
 			exit('Error: Could not load image ' . $file . '!');
 		}
