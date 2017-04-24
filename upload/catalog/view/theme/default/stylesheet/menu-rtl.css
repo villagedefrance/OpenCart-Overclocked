@@ -5,7 +5,9 @@
 */
 #menu-holder, #menu-holder .menu-rtl { }
 .menu-rtl #menu {
-	height: 40px;
+	overflow: auto;
+	height: auto;
+	min-height: 40px;
 	padding: 0px 5px 0px 0px;
 	margin: 0;
 }

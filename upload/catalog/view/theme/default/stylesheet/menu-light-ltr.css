@@ -7,7 +7,9 @@
 	background-color: transparent;
 }
 .menu-light #menu {
-	height: 40px;
+	overflow: auto;
+	height: auto;
+	min-height: 40px;
 	background-color: #F6F6F6;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#F6F6F6), to(#E7E7E7));
 	background-image: -webkit-linear-gradient(top, #F6F6F6, #E7E7E7);
