@@ -230,6 +230,32 @@ class ControllerCommonHome extends Controller {
 
 		$this->data['token'] = $this->session->data['token'];
 
+		// Seo urls
+		$seo_url_status = $this->config->get('config_seo_url');
+		$seo_url_ratio = 0;
+
+		if ($seo_url_status) {
+			$this->load->model('tool/seo_url_manager');
+
+			$seo_url_total = $this->model_tool_seo_url_manager->getTotalUrls();
+			$keyword_total = $this->model_tool_seo_url_manager->getTotalUniqueKeywords();
+
+			$seo_url_variance = $seo_url_total - $keyword_total;
+
+			if ($seo_url_total == $keyword_total) {
+				$seo_url_ratio = 1;
+			} elseif ($seo_url_variance <= 5) {
+				$seo_url_ratio = 2;
+			} else {
+				$seo_url_ratio = 3;
+			}
+		}
+
+		$this->data['seo_url_status'] = $seo_url_status;
+		$this->data['seo_url_ratio'] = $seo_url_ratio;
+
+		$this->data['open_seo_url'] = $this->url->link('tool/seo_url_manager', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Stylesheet
 		$admin_css = $this->config->get('config_admin_stylesheet');
 
