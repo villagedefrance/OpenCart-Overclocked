@@ -219,7 +219,7 @@
 "219";"UG";"UGA";;"0";"1";
 "220";"UA";"UKR";;"0";"1";
 "221";"AE";"ARE";;"0";"1";
-"222";"GB";"GBR";"{firstname} {lastname}{company}{address_1}{address_2}{city}{zone}{postcode}{country}";"1";"1";
+"222";"GB";"UKM";"{firstname} {lastname}{company}{address_1}{address_2}{city}{zone}{postcode}{country}";"1";"1";
 "223";"US";"USA";"{firstname} {lastname}{company}{address_1}{address_2}{city}, {zone} {postcode}{country}";"0";"1";
 "224";"UM";"UMI";;"0";"1";
 "225";"UY";"URY";;"0";"1";
@@ -254,3 +254,7 @@
 "257";"GG";"GGY";;"1";"1";
 "260";"SX";"SXM";;"0";"1";
 "261";"EA";"EAF";;"0";"1";
+"262";"GB";"ENG";"{firstname} {lastname}{company}{address_1}{address_2}{city}{zone}{postcode}{country}";"1";"1";
+"263";"GB";"WLS";"{firstname} {lastname}{company}{address_1}{address_2}{city}{zone}{postcode}{country}";"1";"1";
+"264";"GB";"NIR";"{firstname} {lastname}{company}{address_1}{address_2}{city}{zone}{postcode}{country}";"1";"1";
+"265";"GB";"SCT";"{firstname} {lastname}{company}{address_1}{address_2}{city}{zone}{postcode}{country}";"1";"1";
