@@ -1,7 +1,7 @@
 <?php
 class ModelShippingDhl extends Model {
 
-	public function getQuote($address) {
+	function getQuote($address) {
 		$this->language->load('shipping/dhl');
 
 		$quote_data = array();

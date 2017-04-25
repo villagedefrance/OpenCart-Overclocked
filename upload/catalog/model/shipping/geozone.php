@@ -1,7 +1,7 @@
 <?php
 class ModelShippingGeoZone extends Model {
 
-	public function getQuote($address) {
+	function getQuote($address) {
 		$this->language->load('shipping/geozone');
 
 		$quote_data = array();

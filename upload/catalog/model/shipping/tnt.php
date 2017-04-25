@@ -1,7 +1,7 @@
 <?php
 class ModelShippingTnt extends Model {
 
-	public function getQuote($address) {
+	function getQuote($address) {
 		$this->language->load('shipping/tnt');
 
 		$quote_data = array();

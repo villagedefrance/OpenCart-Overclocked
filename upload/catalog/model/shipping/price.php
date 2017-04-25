@@ -1,7 +1,7 @@
 <?php
 class ModelShippingPrice extends Model {
 
-	public function getQuote($address) {
+	function getQuote($address) {
 		$this->language->load('shipping/price');
 
 		$quote_data = array();

@@ -1107,7 +1107,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->data['text_agree'] = '';
 		}
 
-		if (isset($this->request->post['agree'])) { 
+		if (isset($this->request->post['agree']) && $this->config->get('config_checkout_id')) { 
 			$this->data['agree'] = $this->request->post['agree'];
 		} else {
 			$this->data['agree'] = '';
@@ -1207,7 +1207,7 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 
 		$this->data['shipping_methods'] = $quote_data;
 
-		$this->session->data['shipping_methods'] = $quote_data;
+		$this->session->data['shipping_methods'] = $this->data['shipping_methods'];
 
 		if (isset($this->session->data['shipping_method']) && $this->session->data['shipping_method']) {
 			$this->data['shipping_method_code'] = $this->session->data['shipping_method']['code'];
@@ -1524,18 +1524,13 @@ class ControllerCheckoutCheckoutOnePage extends Controller {
 			$this->error['payment_method'] = $this->language->get('error_payment');
 		}
 
-		if (!isset($this->request->post['agree'])) {
-			if ($this->config->get('config_checkout_id')) {
-				$this->load->model('catalog/information');
+		if (!isset($this->request->post['agree']) && $this->config->get('config_checkout_id')) {
+			$this->load->model('catalog/information');
 
-				$information_info = $this->model_catalog_information->getInformation($this->config->get('config_checkout_id'));
+			$information_info = $this->model_catalog_information->getInformation($this->config->get('config_checkout_id'));
 
-				if ($information_info) {
-					$this->error['agree'] = sprintf($this->language->get('error_agree'), $information_info['title']);
-				} else {
-					$this->error['agree'] = sprintf($this->language->get('error_agree'), '');
-				}
-
+			if ($information_info) {
+				$this->error['agree'] = sprintf($this->language->get('error_agree'), $information_info['title']);
 			} else {
 				$this->error['agree'] = sprintf($this->language->get('error_agree'), '');
 			}

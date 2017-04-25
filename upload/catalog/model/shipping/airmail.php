@@ -1,7 +1,7 @@
 <?php
 class ModelShippingAirmail extends Model {
 
-	public function getQuote($address) {
+	function getQuote($address) {
 		$this->language->load('shipping/airmail');
 
 		$quote_data = array();

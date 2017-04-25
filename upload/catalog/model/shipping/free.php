@@ -15,12 +15,9 @@ class ModelShippingFree extends Model {
 		}
 
 		$total_data = array();
-
 		$total = 0;
-
 		$taxes = $this->cart->getTaxes();
 
-		$this->load->model('total/total');
 		$this->load->model('setting/extension');
 
 		$results = $this->model_setting_extension->getExtensions('total');
@@ -46,8 +43,6 @@ class ModelShippingFree extends Model {
 
 			array_multisort($sort_order, SORT_ASC, $total_data);
 		}
-
-		$this->model_total_total->getTotal($total_data, $total, $taxes);
 
 		if ($total < $this->config->get('free_total')) {
 			$status = false;
