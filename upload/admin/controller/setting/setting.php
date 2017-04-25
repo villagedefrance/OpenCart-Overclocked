@@ -1803,7 +1803,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['yandex_web'] = 'http://webmaster.yandex.com/sites/';
 		$this->data['baidu_web'] = 'http://zhanzhang.baidu.com/sitemap/index';
 		$this->data['alexa_web'] = 'http://www.alexa.com/';
-		$this->data['piwik_web'] = 'http://piwik.org/';
+		$this->data['piwik_web'] = 'https://piwik.org/';
 
 		// Server
 		if (isset($this->request->post['config_secure'])) {

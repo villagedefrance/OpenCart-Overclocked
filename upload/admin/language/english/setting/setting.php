@@ -197,7 +197,7 @@ $_['entry_ftp_host']               = 'FTP Host:';
 $_['entry_ftp_port']               = 'FTP Port:';
 $_['entry_ftp_username']           = 'FTP Username:';
 $_['entry_ftp_password']           = 'FTP Password:';
-$_['entry_ftp_root']               = 'FTP Root:<span class="help">The directory your OpenCart installation is stored in normally \'public_html/\'.</span>';
+$_['entry_ftp_root']               = 'FTP Root:<span class="help">The directory where your OpenCart installation is stored in. It is normally \'public_html/\'.</span>';
 $_['entry_mail_protocol']          = 'Mail Protocol:<span class="help">Only choose \'Mail\' unless your host has disabled the php mail function.</span>';
 $_['entry_mail_parameter']         = 'Mail Parameters:<span class="help">When using \'Mail\', additional mail parameters can be added here, like for example "-reply@storeaddress.com".</span>';
 $_['entry_smtp_host']              = 'SMTP Host:';
@@ -222,7 +222,7 @@ $_['entry_meta_baidu']             = 'Baidu Identification:<span class="help">En
 $_['entry_meta_alexa']             = 'Alexa Identification:<span class="help">Enter the website unique "meta name" <b>Key</b> here.<br />It will be added to the Catalog Header to identify the site with <b>Alexa</b>.</span>';
 $_['entry_google_analytics']       = 'Google Analytics Code:<span class="help">Login to your <a onclick="window.open(\'http://www.google.com/analytics/\');"><u>Google Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
 $_['entry_alexa_analytics']        = 'Alexa Analytics Code:<span class="help">Login to your <a onclick="window.open(\'http://www.alexa.com/\');"><u>Alexa Analytics</u></a> account and after creating your web site profile copy and paste the analytics code into this field.</span>';
-$_['entry_piwik_analytics']        = 'Piwik Analytics Code:<span class="help">Login to your <u>Piwik Analytics</u> server and copy and paste the analytics code into this field.</span>';
+$_['entry_piwik_analytics']        = 'Piwik Analytics Code:<span class="help">Login to your <a onclick="window.open(\'https://piwik.org/\');"><u>Piwik Analytics</u></a> server and copy and paste the analytics code into this field.</span>';
 $_['entry_maintenance']            = 'Maintenance Mode:<span class="help">Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.</span>';
 $_['entry_seo_url']                = 'Use SEO URLs:<span class="help">To use SEO URLs apache module mod-rewrite must be installed. If enabled, the "htaccess.txt" file will be automatically converted to ".htaccess".</span>';
 $_['entry_seo_url_cache']          = 'Use SEO URLs Caching:<span class="help">Generates a cached map file of all SEO URL keyword definitions for faster access.</span>';
