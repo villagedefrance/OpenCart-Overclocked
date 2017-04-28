@@ -230,6 +230,8 @@ class ControllerCatalogNews extends Controller {
 			}
 		}
 
+		$this->data['downloads'] = $this->url->link('catalog/news_download', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['reset'] = $this->url->link('catalog/news/reset', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['insert'] = $this->url->link('catalog/news/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('catalog/news/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
@@ -295,6 +297,7 @@ class ControllerCatalogNews extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_downloads'] = $this->language->get('button_downloads');
 		$this->data['button_module'] = $this->language->get('button_module');
 		$this->data['button_reset'] = $this->language->get('button_reset');
 		$this->data['button_insert'] = $this->language->get('button_insert');
@@ -372,26 +375,42 @@ class ControllerCatalogNews extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 		$this->data['text_default'] = $this->language->get('text_default');
+		$this->data['text_none'] = $this->language->get('text_none');
 		$this->data['text_image_manager'] = $this->language->get('text_image_manager');
 		$this->data['text_browse'] = $this->language->get('text_browse');
 		$this->data['text_clear'] = $this->language->get('text_clear');
 		$this->data['text_select_all'] = $this->language->get('text_select_all');
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 
+		$this->data['tab_general'] = $this->language->get('tab_general');
+		$this->data['tab_data'] = $this->language->get('tab_data');
+		$this->data['tab_related'] = $this->language->get('tab_related');
+
 		$this->data['entry_title'] = $this->language->get('entry_title');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_description'] = $this->language->get('entry_description');
-		$this->data['entry_store'] = $this->language->get('entry_store');
-		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_image'] = $this->language->get('entry_image');
+		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
+		$this->data['entry_download'] = $this->language->get('entry_download');
+		$this->data['entry_store'] = $this->language->get('entry_store');
+		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
+
+		$this->data['entry_product'] = $this->language->get('entry_product');
+		$this->data['entry_product_search'] = $this->language->get('entry_product_search');
+		$this->data['entry_category'] = $this->language->get('entry_category');
+		$this->data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
+		$this->data['entry_related_method'] = $this->language->get('entry_related_method');
+		$this->data['entry_product_wise'] = $this->language->get('entry_product_wise');
+		$this->data['entry_category_wise'] = $this->language->get('entry_category_wise');
+		$this->data['entry_manufacturer_wise'] = $this->language->get('entry_manufacturer_wise');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_apply'] = $this->language->get('button_apply');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
+		$this->data['button_new_download'] = $this->language->get('button_new_download');
 
-		$this->data['tab_general'] = $this->language->get('tab_general');
-		$this->data['tab_data'] = $this->language->get('tab_data');
+		$this->data['token'] = $this->session->data['token'];
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -449,6 +468,7 @@ class ControllerCatalogNews extends Controller {
 			);
 
 			$this->data['news_title'] = $news_name['title'];
+			$this->data['new_entry'] = false;
 
 		} else {
 			$this->data['breadcrumbs'][] = array(
@@ -458,6 +478,7 @@ class ControllerCatalogNews extends Controller {
 			);
 
 			$this->data['news_title'] = $this->language->get('heading_title');
+			$this->data['new_entry'] = true;
 		}
 
 		if (!isset($this->request->get['news_id'])) {
@@ -468,11 +489,11 @@ class ControllerCatalogNews extends Controller {
 
 		$this->data['cancel'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
+		$this->data['new_download'] = $this->url->link('catalog/news_download/insert', 'token=' . $this->session->data['token'], 'SSL');
+
 		if ((isset($this->request->get['news_id'])) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
 			$news_info = $this->model_catalog_news->getNewsStory($this->request->get['news_id']);
 		}
-
-		$this->data['token'] = $this->session->data['token'];
 
 		$this->load->model('localisation/language');
 
@@ -484,34 +505,6 @@ class ControllerCatalogNews extends Controller {
 			$this->data['news_description'] = $this->model_catalog_news->getNewsDescriptions($this->request->get['news_id']);
 		} else {
 			$this->data['news_description'] = array();
-		}
-
-		$this->load->model('setting/store');
-
-		$this->data['stores'] = $this->model_setting_store->getStores();
-
-		if (isset($this->request->post['news_store'])) {
-			$this->data['news_store'] = $this->request->post['news_store'];
-		} elseif (isset($news_info)) {
-			$this->data['news_store'] = $this->model_catalog_news->getNewsStores($this->request->get['news_id']);
-		} else {
-			$this->data['news_store'] = array(0);
-		}
-
-		if (isset($this->request->post['keyword'])) {
-			$this->data['keyword'] = $this->request->post['keyword'];
-		} elseif (isset($news_info)) {
-			$this->data['keyword'] = $news_info['keyword'];
-		} else {
-			$this->data['keyword'] = '';
-		}
-
-		if (isset($this->request->post['status'])) {
-			$this->data['status'] = $this->request->post['status'];
-		} elseif (isset($news_info)) {
-			$this->data['status'] = $news_info['status'];
-		} else {
-			$this->data['status'] = '';
 		}
 
 		if (isset($this->request->post['image'])) {
@@ -533,6 +526,121 @@ class ControllerCatalogNews extends Controller {
 		} else {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
 		}
+
+		if (isset($this->request->post['keyword'])) {
+			$this->data['keyword'] = $this->request->post['keyword'];
+		} elseif (!empty($news_info)) {
+			$this->data['keyword'] = $news_info['keyword'];
+		} else {
+			$this->data['keyword'] = '';
+		}
+
+		$this->load->model('catalog/news_download');
+
+		$this->data['downloads'] = $this->model_catalog_news_download->getDownloads();
+
+		if (isset($this->request->post['news_download'])) {
+			$this->data['news_download'] = $this->request->post['news_download'];
+		} elseif (isset($this->request->get['news_id'])) {
+			$this->data['news_download'] = $this->model_catalog_news->getNewsDownloads($this->request->get['news_id']);
+		} else {
+			$this->data['news_download'] = array();
+		}
+
+		$this->load->model('setting/store');
+
+		$this->data['stores'] = $this->model_setting_store->getStores();
+
+		if (isset($this->request->post['news_store'])) {
+			$this->data['news_store'] = $this->request->post['news_store'];
+		} elseif (isset($this->request->get['news_id'])) {
+			$this->data['news_store'] = $this->model_catalog_news->getNewsStores($this->request->get['news_id']);
+		} else {
+			$this->data['news_store'] = array(0);
+		}
+
+		if (isset($this->request->post['sort_order'])) {
+			$this->data['sort_order'] = $this->request->post['sort_order'];
+		} elseif (!empty($news_info)) {
+			$this->data['sort_order'] = $news_info['sort_order'];
+		} else {
+			$this->data['sort_order'] = 0;
+		}
+
+		if (isset($this->request->post['status'])) {
+			$this->data['status'] = $this->request->post['status'];
+		} elseif (!empty($news_info)) {
+			$this->data['status'] = $news_info['status'];
+		} else {
+			$this->data['status'] = 1;
+		}
+
+		$this->load->model('catalog/product');
+
+		if (isset($this->request->post['related'])) {
+			$this->data['related'] = $this->request->post['related'];
+
+			if (isset($this->request->post['category_wise'])) {
+				$this->data['category_ids'] = $this->request->post['category_wise'];
+			} elseif (isset($this->request->post['manufacturer_wise'])) {
+				$this->data['manufacturer_ids'] = $this->request->post['manufacturer_wise'];
+			} else {
+				if (isset($this->request->post['product_wise'])) {
+					$this->data['products'] = array();
+
+					foreach ($this->request->post['product_wise'] as $product_id) {
+						$product_info = $this->model_catalog_product->getProduct($product_id);
+
+						$this->data['products'][] = array(
+							'product_id' => $product_info['product_id'],
+							'name'       => $product_info['name']
+						);
+					}
+				}
+			}
+
+		} elseif (!empty($news_info)) {
+			if ($news_info['related_method']) {
+				$this->data['related'] = $news_info['related_method'];
+
+				$options = unserialize($news_info['related_option']);
+
+				if ($this->data['related'] == 'category_wise' && $options) {
+					foreach ($options['category_wise'] as $option) {
+						$this->data['category_ids'][] = $option;
+					}
+				} elseif ($this->data['related'] == 'manufacturer_wise' && $options) {
+					foreach ($options['manufacturer_wise'] as $option) {
+						$this->data['manufacturer_ids'][] = $option;
+					}
+				} else {
+					$products = $this->model_catalog_news->getNewsProduct($this->request->get['news_id']);
+
+					foreach ($products as $product) {
+						$product_info = $this->model_catalog_product->getProduct($product['product_id']);
+
+						$this->data['products'][] = array(
+							'product_id' => $product_info['product_id'],
+							'name'       => $product_info['name']
+						);
+					}
+				}
+
+			} else {
+				$this->data['related'] = 'product_wise';
+			}
+
+		} else {
+			$this->data['related'] = 'product_wise';
+		}
+
+		$this->load->model('catalog/category');
+
+		$this->data['default_categories'] = $this->model_catalog_category->getCategories(0);
+
+		$this->load->model('catalog/manufacturer');
+
+		$this->data['default_manufacturers'] = $this->model_catalog_manufacturer->getManufacturers(0);
 
 		$this->template = 'catalog/news_form.tpl';
 		$this->children = array(

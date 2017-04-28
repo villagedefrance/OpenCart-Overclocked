@@ -21,6 +21,7 @@
       <div id="tabs" class="htabs">
         <a href="#tab-general"><?php echo $tab_general; ?></a>
         <a href="#tab-data"><?php echo $tab_data; ?></a>
+        <a href="#tab-related"><?php echo $tab_related; ?></a>
       </div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <div id="tab-general">
@@ -61,6 +62,45 @@
       <div id="tab-data">
         <table class="form">
           <tr>
+            <td><?php echo $entry_image; ?></td>
+            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
+              <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
+              <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
+            </div>
+            <?php if ($error_image) { ?>
+              <span class="error"><?php echo $error_image; ?></span>
+            <?php } ?>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_keyword; ?></td>
+            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
+          </tr>
+          <tr>
+            <td><?php echo $entry_download; ?></td>
+            <td>
+              <div id="download-ids" class="scrollbox">
+                <?php $class = 'odd'; ?>
+                <?php foreach ($downloads as $download) { ?>
+                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                  <div class="<?php echo $class; ?>">
+                    <?php if (in_array($download['news_download_id'], $news_download)) { ?>
+                      <input type="checkbox" name="news_download[]" value="<?php echo $download['news_download_id']; ?>" checked="checked" />
+                      <?php echo $download['name']; ?>
+                    <?php } else { ?>
+                      <input type="checkbox" name="news_download[]" value="<?php echo $download['news_download_id']; ?>" />
+                      <?php echo $download['name']; ?>
+                    <?php } ?>
+                  </div>
+                <?php } ?>
+              </div><br />
+              <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
+            <?php if ($new_entry) { ?>
+              &nbsp;<a onclick="location = '<?php echo $new_download; ?>';" class="button-filter" style="margin-top:0px;"><?php echo $button_new_download; ?></a>
+            <?php } ?>
+            </td>
+          </tr>
+          <tr>
             <td><?php echo $entry_store; ?></td>
             <td>
               <div id="store_ids" class="scrollbox-store">
@@ -91,19 +131,8 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_keyword; ?></td>
-            <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
-          </tr>
-          <tr>
-            <td><?php echo $entry_image; ?></td>
-            <td><div class="image"><img src="<?php echo $thumb; ?>" alt="" id="thumb" /><br />
-              <input type="hidden" name="image" value="<?php echo $image; ?>" id="image" />
-              <a onclick="image_upload('image', 'thumb');" class="button-browse"></a><a onclick="$('#thumb').attr('src', '<?php echo $no_image; ?>'); $('#image').attr('value', '');" class="button-recycle"></a>
-            </div>
-            <?php if ($error_image) { ?>
-              <span class="error"><?php echo $error_image; ?></span>
-            <?php } ?>
-            </td>
+            <td><?php echo $entry_sort_order; ?></td>
+            <td><input type="text" name="sort_order" value="<?php echo $sort_order; ?>" size="3" /></td>
           </tr>
           <tr>
             <td><?php echo $entry_status; ?></td>
@@ -119,6 +148,74 @@
           </tr>
         </table>
       </div>
+      <div id="tab-related">
+        <table class="form">
+          <tr>
+            <td><?php echo $entry_related_method; ?></td>
+            <td><select name="related" onchange="getRelatedMethod(this.value);">
+              <option value="product_wise" <?php if ($related == 'product_wise') { echo "selected='selected'"; } ?>><?php echo $entry_product_wise; ?></option>
+              <option value="category_wise" <?php if ($related == 'category_wise') { echo "selected='selected'"; } ?>><?php echo $entry_category_wise; ?></option>
+              <option value="manufacturer_wise" <?php if ($related == 'manufacturer_wise') { echo "selected='selected'"; } ?>><?php echo $entry_manufacturer_wise; ?></option>
+            </select></td>
+          </tr>
+          <tr id="product-wise" style="display:none;">
+            <td><?php echo $entry_product; ?></td>
+            <td>
+              <table>
+                <tr>
+                  <td><?php echo $entry_product_search; ?><br /><input type="text" name="product" value="" /></td>
+                  <td>&nbsp;&nbsp;</td>
+                  <td> 
+                    <div id="product-wise-list" class="scrollbox">
+                      <?php $class = 'odd'; ?>
+                      <?php if (isset($products)) { ?>
+                        <?php foreach ($products as $product) { ?>
+                          <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                          <div id="product-wise-list<?php echo $product['product_id']; ?>" class="<?php echo $class; ?>"> <?php echo $product['name']; ?><img src="view/image/delete.png" alt="" />
+                            <input type="hidden" name="product_wise[]" value="<?php echo $product['product_id']; ?>" />
+                          </div>
+                        <?php } ?>
+                      <?php } ?>	
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr id="category-wise" style="display:none;">
+            <td><?php echo $entry_category; ?></td>
+            <td>
+              <div id="category-ids" class="scrollbox">
+                <?php $class = 'odd'; ?>
+                <?php foreach ($default_categories as $category) { ?>
+                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                  <div class="<?php echo $class; ?>">
+                    <input type="checkbox" name="category_wise[]" value="<?php echo $category['category_id']; ?>" <?php if (isset($category_ids)) { for ($i = 0; $i < count($category_ids); $i++) { if ($category_ids[$i] == $category['category_id']) { echo "checked='checked'"; } } } ?> />                    
+                    <?php echo $category['name']; ?> 
+                  </div>
+                <?php } ?>
+              </div><br />
+              <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
+            </td>
+          </tr>
+          <tr id="manufacturer-wise" style="display:none;">
+            <td><?php echo $entry_manufacturer; ?></td>
+            <td>
+              <div id="manufacturer-ids" class="scrollbox">
+                <?php $class = 'odd'; ?>
+                <?php foreach ($default_manufacturers as $manufacturer) { ?>
+                  <?php $class = ($class == 'even' ? 'odd' : 'even'); ?>
+                  <div class="<?php echo $class; ?>">
+                    <input type="checkbox" name="manufacturer_wise[]" value="<?php echo $manufacturer['manufacturer_id']; ?>" <?php if (isset($manufacturer_ids)) { for ($i = 0; $i < count($manufacturer_ids); $i++) { if ($manufacturer_ids[$i] == $manufacturer['manufacturer_id']) { echo "checked='checked'"; } } } ?> />                    
+                    <?php echo $manufacturer['name']; ?>
+                  </div>
+                <?php } ?>
+              </div><br />
+              <a onclick="$(this).parent().find(':checkbox').prop('checked', true);" class="button-select"></a><a onclick="$(this).parent().find(':checkbox').prop('checked', false);" class="button-unselect"></a>
+            </td>
+          </tr>
+        </table>
+      </div> 
       </form>
     </div>
   </div>
@@ -175,6 +272,78 @@ function image_upload(field, thumb) {
 		modal: false
 	});
 };
+//--></script>
+
+<script type="text/javascript"><!--
+$('input[name=\'product\']').autocomplete({
+	delay: 10,
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item.name,
+						value: item.product_id
+					}
+				}));
+			}
+		});
+	}, 
+	select: function(event, ui) {
+		$('#product-wise-list' + ui.item.value).remove();
+		$('#product-wise-list').append('<div id="product-wise-list' + ui.item.value + '">' + ui.item.label + '<img src="view/image/delete.png" alt="" /><input type="hidden" name="product_wise[]" value="' + ui.item.value + '" /></div>');
+		$('#product-wise-list div:odd').attr('class', 'odd');
+		$('#product-wise-list div:even').attr('class', 'even');
+
+		$('input[name=\'product\']').val('');
+		return false;
+	}
+});
+
+$('#product-wise-list div img').live('click', function() {
+	$(this).parent().remove();
+
+	$('#product-wise-list div:odd').attr('class', 'odd');
+	$('#product-wise-list div:even').attr('class', 'even');
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	<?php if ($related == 'product_wise') { ?>
+		$("#product-wise").css({display: "table-row"});
+		$("#category-wise").css({display: "none"});
+		$("#manufacturer-wise").css({display: "none"});
+	<?php } elseif ($related == 'category_wise') { ?>
+		$("#product-wise").css({display: "none"});
+		$("#category-wise").css({display: "table-row"});
+		$("#manufacturer-wise").css({display: "none"});
+	<?php } elseif ($related == 'manufacturer_wise') { ?>
+		$("#product-wise").css({display: "none"});
+		$("#category-wise").css({display: "none"});
+		$("#manufacturer-wise").css({display: "table-row"});
+	<?php } ?>
+});
+//--></script>
+
+<script type="text/javascript"><!--
+function getRelatedMethod(value) {
+	if (value == 'product_wise') {
+		$("#product-wise").css({display: "table-row"});
+		$("#category-wise").css({display: "none"});
+		$("#manufacturer-wise").css({display: "none"});
+	} else if (value == 'category_wise') {
+		$("#product-wise").css({display: "none"});
+		$("#category-wise").css({display: "table-row"});
+		$("#manufacturer-wise").css({display: "none"});
+	} else if (value == 'manufacturer_wise') {
+		$("#product-wise").css({display: "none"});
+		$("#category-wise").css({display: "none"});
+		$("#manufacturer-wise").css({display: "table-row"});
+	}
+}
 //--></script>
 
 <script type="text/javascript"><!--

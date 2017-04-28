@@ -2003,9 +2003,12 @@ DROP TABLE IF EXISTS `oc_news`;
 CREATE TABLE `oc_news` (
   `news_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL,
+  `related_method` varchar(64) NOT NULL,
+  `related_option` text NOT NULL,
+  `sort_order` int(3) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `viewed` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`news_id`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -2022,9 +2025,63 @@ CREATE TABLE `oc_news_description` (
   `title` varchar(255) NOT NULL,
   `meta_description` VARCHAR(255) NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
-  `keyword` varchar(255) NOT NULL,
   PRIMARY KEY (`news_id`,`language_id`)
 ) ENGINE=MYISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_news_download`
+--
+
+DROP TABLE IF EXISTS `oc_news_download`;
+CREATE TABLE `oc_news_download` (
+  `news_download_id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(128) NOT NULL,
+  `mask` varchar(128) NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`news_download_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_news_download_description`
+--
+
+DROP TABLE IF EXISTS `oc_news_download_description`;
+CREATE TABLE `oc_news_download_description` (
+  `news_download_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`news_download_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_news_product_related`
+--
+
+DROP TABLE IF EXISTS `oc_news_product_related`;
+CREATE TABLE `oc_news_product_related` (
+  `news_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`news_id`,`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_news_to_download`
+--
+
+DROP TABLE IF EXISTS `oc_news_to_download`;
+CREATE TABLE `oc_news_to_download` (
+  `news_id` int(11) NOT NULL,
+  `news_download_id` int(11) NOT NULL,
+  PRIMARY KEY (`news_id`,`news_download_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 

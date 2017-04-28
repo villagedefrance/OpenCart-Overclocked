@@ -397,6 +397,11 @@ class ModelUpgrade extends Model {
 			$this->db->query("ALTER TABLE " . DB_PREFIX . "manufacturer DROP name");
 		}
 
+		// Update the news description table. News 'keyword' field is redundant.
+		if (isset($table_old_data[DB_PREFIX . 'news_description']) && in_array('keyword', $table_old_data[DB_PREFIX . 'news_description'])) {
+			$this->db->query("ALTER TABLE " . DB_PREFIX . "news_description DROP keyword");
+		}
+
 		// Move blacklisted ip to ban ip table
 		$ip_query = $this->db->query("SHOW TABLES LIKE '" . DB_PREFIX . "customer_ip_blacklist'");
 

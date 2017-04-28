@@ -114,10 +114,10 @@ $(document).ready(function() {
               <li><a href="<?php echo $attribute_group; ?>"><?php echo ($icons) ? '<i class="fa fa-wrench"></i>' : ''; ?><?php echo $text_attribute_group; ?></a></li>
             </ul>
           </li>
+          <li><a href="<?php echo $option; ?>"><?php echo ($icons) ? '<i class="fa fa-clone"></i>' : ''; ?><?php echo $text_option; ?></a></li>
           <li><a href="<?php echo $filter; ?>"><?php echo ($icons) ? '<i class="fa fa-filter"></i>' : ''; ?><?php echo $text_filter; ?></a></li>
           <li><a href="<?php echo $profile; ?>"><?php echo ($icons) ? '<i class="fa fa-exchange"></i>' : ''; ?><?php echo $text_profile; ?></a></li>
           <li><a href="<?php echo $palette; ?>"><?php echo ($icons) ? '<i class="fa fa-paint-brush"></i>' : ''; ?><?php echo $text_palette; ?></a></li>
-          <li><a href="<?php echo $option; ?>"><?php echo ($icons) ? '<i class="fa fa-clone"></i>' : ''; ?><?php echo $text_option; ?></a></li>
           <li><a href="<?php echo $news; ?>"><?php echo ($icons) ? '<i class="fa fa-pencil"></i>' : ''; ?><?php echo $text_news; ?></a></li>
           <li><a href="<?php echo $information; ?>"><?php echo ($icons) ? '<i class="fa fa-info-circle"></i>' : ''; ?><?php echo $text_information; ?></a></li>
         </ul>
