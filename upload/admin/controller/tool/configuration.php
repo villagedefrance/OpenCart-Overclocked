@@ -49,11 +49,13 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['text_unknown'] = $this->language->get('text_unknown');
 		$this->data['text_store_info'] = $this->language->get('text_store_info');
 		$this->data['text_setting_info'] = $this->language->get('text_setting_info');
+		$this->data['text_image_info'] = $this->language->get('text_image_info');
 		$this->data['text_integrity_info'] = $this->language->get('text_integrity_info');
 		$this->data['text_server_info'] = $this->language->get('text_server_info');
 
 		$this->data['tab_store'] = $this->language->get('tab_store');
 		$this->data['tab_setting'] = $this->language->get('tab_setting');
+		$this->data['tab_image'] = $this->language->get('tab_image');
 		$this->data['tab_integrity'] = $this->language->get('tab_integrity');
 		$this->data['tab_server'] = $this->language->get('tab_server');
 
@@ -63,6 +65,8 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['column_required'] = $this->language->get('column_required');
 		$this->data['column_current'] = $this->language->get('column_current');
 		$this->data['column_status'] = $this->language->get('column_status');
+		$this->data['column_gd_library'] = $this->language->get('column_gd_library');
+		$this->data['column_php_library'] = $this->language->get('column_php_library');
 		$this->data['column_database_files'] = $this->language->get('column_database_files');
 		$this->data['column_engine_files'] = $this->language->get('column_engine_files');
 		$this->data['column_helper_files'] = $this->language->get('column_helper_files');
@@ -189,6 +193,56 @@ class ControllerToolConfiguration extends Controller {
 		$this->data['vqlogs'] = DIR_VQMOD . 'logs';
 		$this->data['vqcache'] = DIR_VQMOD . 'vqcache';
 		$this->data['vqmod_xml'] = DIR_VQMOD . 'xml';
+
+		// Images
+		if (extension_loaded('gd')) {
+			$gd_infos = gd_info();
+
+			$php_gif = (imagetypes() & IMG_GIF) ? true : false;
+			$php_jpg = (imagetypes() & IMG_JPG) ? true : false;
+			$php_png = (imagetypes() & IMG_PNG) ? true : false;
+			$php_wbmp = (imagetypes() & IMG_WBMP) ? true : false;
+			$php_xpm = (imagetypes() & IMG_XPM) ? true : false;
+
+			if (phpversion() >= '7.1.0') {
+				$php_webp = (imagetypes() & IMG_WEBP) ? true : false;
+			} else {
+				$php_webp = false;
+			}
+
+			if (phpversion() >= '7.2.0') {
+				$php_bmp = (imagetypes() & IMG_BMP) ? true : false;
+			} else {
+				$php_bmp = false;
+			}
+
+			$gd_loaded = true;
+
+		} else {
+			$gd_infos = '';
+
+			$php_gif = false;
+			$php_jpg = false;
+			$php_png = false;
+			$php_wbmp = false;
+			$php_xpm = false;
+			$php_webp = false;
+			$php_bmp = false;
+
+			$gd_loaded = false;
+		}
+
+		$this->data['gd_infos'] = $gd_infos;
+
+		$this->data['php_bmp'] = $php_bmp;
+		$this->data['php_gif'] = $php_gif;
+		$this->data['php_jpg'] = $php_jpg;
+		$this->data['php_png'] = $php_png;
+		$this->data['php_wbmp'] = $php_wbmp;
+		$this->data['php_xpm'] = $php_xpm;
+		$this->data['php_webp'] = $php_webp;
+
+		$this->data['gd_loaded'] = $gd_loaded;
 
 		// Database Files
 		$this->data['databases'] = array();

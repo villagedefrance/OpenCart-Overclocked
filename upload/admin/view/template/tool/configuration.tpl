@@ -22,6 +22,9 @@
       <div id="tabs" class="htabs">
         <a href="#tab-store"><?php echo $tab_store; ?></a>
         <a href="#tab-setting"><?php echo $tab_setting; ?></a>
+      <?php if ($gd_loaded) { ?>
+        <a href="#tab-image"><?php echo $tab_image; ?></a>
+      <?php } ?>
         <a href="#tab-integrity"><?php echo $tab_integrity; ?></a>
         <a href="#tab-server"><?php echo $tab_server; ?></a>
       </div>
@@ -249,6 +252,61 @@
           </table>
         </div>
       </div>
+      <?php if ($gd_loaded) { ?>
+      <div id="tab-image">
+        <h2><?php echo $text_image_info; ?></h2>
+        <div class="toolbox">
+          <table class="tool">
+            <tr>
+              <th width="50%" style="text-align:left;"><?php echo $column_gd_library; ?></th>
+              <th width="50%" style="text-align:left;"><?php echo $column_status; ?></th>
+            </tr>
+          <?php foreach ($gd_infos as $key => $value) { ?>
+            <tr>
+              <td><?php echo $key; ?>:</td>
+              <td><?php echo ($value) ? $value : '-'; ?></td>
+            </tr>
+          <?php } ?>
+          </table>
+        </div>
+        <div class="toolbox">
+          <table class="tool">
+            <tr>
+              <th width="50%" style="text-align:left;"><?php echo $column_php_library; ?></th>
+              <th width="50%" style="text-align:left;"><?php echo $column_status; ?></th>
+            </tr>
+            <tr>
+              <td>GIF Support:</td>
+              <td><?php echo ($php_gif) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
+              <td>JPG Support:</td>
+              <td><?php echo ($php_jpg) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
+              <td>PNG Support:</td>
+              <td><?php echo ($php_png) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
+              <td>WBMP Support:</td>
+              <td><?php echo ($php_wbmp) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
+              <td>XPM Support:</td>
+              <td><?php echo ($php_xpm) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" />'; ?></td>
+            </tr>
+            <tr>
+              <td>WEBP Support:</td>
+              <td><?php echo ($php_webp) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" /> PHP 7.0.10 +'; ?></td>
+            </tr>
+            <tr>
+              <td>BMP Support:</td>
+              <td><?php echo ($php_bmp) ? '<img src="view/image/success.png" alt="" />' : '<img src="view/image/attention.png" alt="" /> PHP 7.2.0 +'; ?></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    <?php } ?>
       <div id="tab-integrity">
         <h2><?php echo $text_integrity_info; ?></h2>
         <div class="toolbox">

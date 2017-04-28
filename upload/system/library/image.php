@@ -25,17 +25,20 @@ class Image {
 			$this->bits = isset($info['bits']) ? $info['bits'] : '';
 			$this->mime = isset($info['mime']) ? $info['mime'] : '';
 
-			if ($this->mime == 'image/gif') {
-				$this->image = imagecreatefromgif($file);
-			} elseif ($this->mime == 'image/png') {
-				$this->image = imagecreatefrompng($file);
-			} elseif ($this->mime == 'image/jpeg') {
-				$this->image = imagecreatefromjpeg($file);
-
-				if (!$this->image) {
-					$this->image = imagecreatefromstring(file_get_contents($file));
-				}
+			switch($this->mime) {
+				case 'image/jpeg':
+				case 'image/pjpeg':
+					$this->image = imagecreatefromjpeg($file);
+					break;
+				case 'image/png':
+					$this->image = imagecreatefrompng($file);
+					break;
+				case 'image/gif':
+					$this->image = imagecreatefromgif($file);
+					break;
 			}
+
+			clearstatcache();
 
 		} else {
 			exit('Error: Could not load image ' . $file . '!');
@@ -66,25 +69,30 @@ class Image {
 		return $this->mime;
 	}
 
-	public function save($file, $quality = 90) {
+	public function save($file, $quality = 100) {
 		$info = pathinfo($file);
 
 		$extension = strtolower($info['extension']);
 
 		if (is_resource($this->image)) {
-			if ($extension == 'jpeg' || $extension == 'jpg') {
-				imagejpeg($this->image, $file, $quality);
-			} elseif ($extension == 'png') {
-				imagepng($this->image, $file);
-			} elseif ($extension == 'gif') {
-				imagegif($this->image, $file);
+			switch($extension) {
+				case 'jpg':
+				case 'jpeg':
+					imagejpeg($this->image, $file, $quality);
+					break;
+				case 'png':
+					imagepng($this->image, $file);
+					break;
+				case 'gif':
+					imagegif($this->image, $file);
+					break;
 			}
 
 			imagedestroy($this->image);
 		}
 	}
 
-	public function resize($width = 0, $height = 0, $default = '') {
+	public function resize($width, $height, $default = '') {
 		if (!$this->width || !$this->height) {
 			return;
 		}
@@ -115,6 +123,7 @@ class Image {
 		$ypos = (int)(($height - $new_height) / 2);
 
 		$image_old = $this->image;
+
 		$this->image = imagecreatetruecolor($width, $height);
 
 		if ($this->mime == 'image/png') {
@@ -129,6 +138,7 @@ class Image {
 		imagefilledrectangle($this->image, 0, 0, $width, $height, $background);
 
 		imagecopyresampled($this->image, $image_old, $xpos, $ypos, 0, 0, $new_width, $new_height, $this->width, $this->height);
+
 		imagedestroy($image_old);
 
 		$this->width = $width;

@@ -21,12 +21,14 @@ $_['text_missing']          = '<span style="color:#F2B155;">File is missing</spa
 $_['text_unknown']          = '<span style="color:#DE5954;">File is unknown</span>';
 $_['text_store_info']       = 'Store Information';
 $_['text_setting_info']     = 'Settings Information';
+$_['text_image_info']       = 'Images Information';
 $_['text_integrity_info']   = 'System Files Integrity';
 $_['text_server_info']      = 'Server Information';
 
 // Tab
 $_['tab_store']             = 'Store';
 $_['tab_setting']           = 'Settings';
+$_['tab_image']             = 'Images';
 $_['tab_integrity']         = 'Integrity';
 $_['tab_server']            = 'Server';
 
@@ -37,6 +39,8 @@ $_['column_directories']    = 'Directories';
 $_['column_required']       = 'Required Settings';
 $_['column_current']        = 'Current Settings';
 $_['column_status']         = 'Status';
+$_['column_gd_library']     = 'GD Library';
+$_['column_php_library']    = 'PHP Library';
 $_['column_database_files'] = 'Database Files';
 $_['column_engine_files']   = 'Engine Files';
 $_['column_helper_files']   = 'Helper Files';
