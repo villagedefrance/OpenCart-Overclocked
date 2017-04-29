@@ -97,7 +97,7 @@
             <td><?php echo $entry_keyword; ?></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="40" /></td>
           </tr>
-          <tr>
+          <tr style="display:none;">
             <td><?php echo $entry_bottom; ?></td>
             <td><?php if ($bottom == 1) { ?>
               <input type="checkbox" name="bottom" value="1" id="bottom-on" class="checkbox" checked />

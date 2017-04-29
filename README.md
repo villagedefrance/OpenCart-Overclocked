@@ -38,11 +38,8 @@ Powered by the Latest Scripts:
 - ...
 
 Coming soon in 1.9.3.0!
-- News with added features:
-- + Related products!
-- + Attached Downloads!
-- + 4 Image Viewers!
-- + Sortable!
+- News with added features.
+- Split UK nations as Countries.
 - Better Image Class library.
 - Bug fixes.
 - ...
