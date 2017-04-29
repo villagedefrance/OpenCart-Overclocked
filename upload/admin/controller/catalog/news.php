@@ -277,8 +277,9 @@ class ControllerCatalogNews extends Controller {
 				'title'      => $result['title'],
 				'image'      => $image,
 				'date_added' => date($this->language->get('date_format_time'), strtotime($result['date_added'])),
-				'viewed'     => $result['viewed'],
+				'sort_order' => $result['sort_order'],
 				'status'     => $result['status'],
+				'viewed'     => $result['viewed'],
 				'selected'   => isset($this->request->post['selected']) && in_array($result['news_id'], $this->request->post['selected']),
 				'action'     => $action
 			);
@@ -293,8 +294,9 @@ class ControllerCatalogNews extends Controller {
 		$this->data['column_image'] = $this->language->get('column_image');
 		$this->data['column_title'] = $this->language->get('column_title');
 		$this->data['column_date_added'] = $this->language->get('column_date_added');
-		$this->data['column_viewed'] = $this->language->get('column_viewed');
+		$this->data['column_sort_order'] = $this->language->get('column_sort_order');
 		$this->data['column_status'] = $this->language->get('column_status');
+		$this->data['column_viewed'] = $this->language->get('column_viewed');
 		$this->data['column_action'] = $this->language->get('column_action');
 
 		$this->data['button_downloads'] = $this->language->get('button_downloads');
@@ -331,8 +333,9 @@ class ControllerCatalogNews extends Controller {
 
 		$this->data['sort_title'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . '&sort=nd.title' . $url, 'SSL');
 		$this->data['sort_date_added'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . '&sort=n.date_added' . $url, 'SSL');
-		$this->data['sort_viewed'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . '&sort=n.viewed' . $url, 'SSL');
+		$this->data['sort_sort_order'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . '&sort=n.sort_order' . $url, 'SSL');
 		$this->data['sort_status'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . '&sort=n.status' . $url, 'SSL');
+		$this->data['sort_viewed'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'] . '&sort=n.viewed' . $url, 'SSL');
 
 		$url = '';
 
@@ -393,6 +396,7 @@ class ControllerCatalogNews extends Controller {
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_download'] = $this->language->get('entry_download');
 		$this->data['entry_store'] = $this->language->get('entry_store');
+		$this->data['entry_lightbox'] = $this->language->get('entry_lightbox');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 
@@ -557,6 +561,14 @@ class ControllerCatalogNews extends Controller {
 			$this->data['news_store'] = $this->model_catalog_news->getNewsStores($this->request->get['news_id']);
 		} else {
 			$this->data['news_store'] = array(0);
+		}
+
+		if (isset($this->request->post['lightbox'])) {
+			$this->data['lightbox'] = $this->request->post['lightbox'];
+		} elseif (!empty($news_info)) {
+			$this->data['lightbox'] = $news_info['lightbox'];
+		} else {
+			$this->data['lightbox'] = 'colorbox';
 		}
 
 		if (isset($this->request->post['sort_order'])) {

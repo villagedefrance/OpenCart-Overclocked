@@ -75,9 +75,9 @@ class ControllerModuleNews extends Controller {
 			$news_length = strlen(utf8_decode($result['description']));
 
 			if ($news_length > $chars) {
-				$description = substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $chars) . '..</p>';
+				$description = '<p>' . substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $chars) . ' ...</p>';
 			} else {
-				$description = html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8');
+				$description = '<p>' . html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8') . '</p>';
 			}
 
 			$this->data['news'][] = array(

@@ -15,8 +15,8 @@
     <div class="heading">
       <h1><img src="view/image/review.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location='<?php echo $module; ?>';" class="button-cancel"><?php echo $button_module; ?></a>
-        <a onclick="location='<?php echo $downloads; ?>';" class="button"><?php echo $button_downloads; ?></a>
+        <a onclick="location='<?php echo $module; ?>';" class="button-cancel"><i class="fa fa-puzzle-piece"></i> &nbsp; <?php echo $button_module; ?></a>
+        <a onclick="location='<?php echo $downloads; ?>';" class="button"><i class="fa fa-paperclip"></i> &nbsp; <?php echo $button_downloads; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').attr('action', '<?php echo $reset; ?>'); $('form').submit();" class="button-repair"><?php echo $button_reset; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
@@ -43,15 +43,20 @@
             <?php } else { ?>
               <a href="<?php echo $sort_date_added; ?>"><?php echo $column_date_added; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
-            <td class="left"><?php if ($sort == 'n.viewed') { ?>
-              <a href="<?php echo $sort_viewed; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_viewed; ?>
+            <td class="left"><?php if ($sort == 'n.sort_order') { ?>
+              <a href="<?php echo $sort_sort_order; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_sort_order; ?>
             <?php } else { ?>
-              <a href="<?php echo $sort_viewed; ?>"><?php echo $column_viewed; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+              <a href="<?php echo $sort_sort_order; ?>"><?php echo $column_sort_order; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="left"><?php if ($sort == 'n.status') { ?>
               <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?>
             <?php } else { ?>
               <a href="<?php echo $sort_status; ?>"><?php echo $column_status; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
+            <?php } ?></td>
+            <td class="left"><?php if ($sort == 'n.viewed') { ?>
+              <a href="<?php echo $sort_viewed; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_viewed; ?>
+            <?php } else { ?>
+              <a href="<?php echo $sort_viewed; ?>"><?php echo $column_viewed; ?>&nbsp;&nbsp;<img src="view/image/sort.png" alt="" /></a>
             <?php } ?></td>
             <td class="right"><?php echo $column_action; ?></td>
           </tr>
@@ -72,12 +77,13 @@
               <td class="center"><img src="<?php echo $news_story['image']; ?>" alt="<?php echo $news_story['title']; ?>" style="padding:1px; border:1px solid #DDD;" /></td>
               <td class="left"><?php echo $news_story['title']; ?></td>
               <td class="left"><?php echo $news_story['date_added']; ?></td>
-              <td class="center"><?php echo $news_story['viewed']; ?></td>
+              <td class="center"><?php echo $news_story['sort_order']; ?></td>
               <?php if ($news_story['status'] == 1) { ?>
                 <td class="center"><span class="enabled"><?php echo $text_enabled; ?></span></td>
               <?php } else { ?>
                 <td class="center"><span class="disabled"><?php echo $text_disabled; ?></span></td>
               <?php } ?>
+              <td class="center"><?php echo $news_story['viewed']; ?></td>
               <td class="right">
                 <?php foreach ($news_story['action'] as $action) { ?>
                   <a href="<?php echo $action['href']; ?>" class="button-form"><?php echo $action['text']; ?></a>
@@ -87,7 +93,7 @@
           <?php } ?>
         <?php } else { ?>
           <tr class="even">
-            <td class="center" colspan="7"><?php echo $text_no_results; ?></td>
+            <td class="center" colspan="8"><?php echo $text_no_results; ?></td>
           </tr>
         <?php } ?>
         </tbody>

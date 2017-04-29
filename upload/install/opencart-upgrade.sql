@@ -1256,6 +1256,7 @@ CREATE TABLE `oc_news` (
   `date_added` datetime NOT NULL,
   `status` tinyint(1) NOT NULL,
   `sort_order` int(3) NOT NULL,
+  `lightbox` varchar(32) NOT NULL,
   `related_option` text NOT NULL,
   `related_method` varchar(64) NOT NULL,
   `image` varchar(255) DEFAULT NULL,

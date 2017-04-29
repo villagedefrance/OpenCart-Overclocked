@@ -2,7 +2,7 @@
 class ModelCatalogNews extends Model {
 
 	public function addNews($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "news SET sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "news` SET lightbox = '" . $this->db->escape($data['lightbox']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "', date_added = NOW()");
 
 		$news_id = $this->db->getLastId();
 
@@ -10,16 +10,16 @@ class ModelCatalogNews extends Model {
 		$this->session->data['new_news_id'] = $news_id;
 
 		if (isset($data['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "news SET image = '" . $this->db->escape($data['image']) . "' WHERE news_id = '" . (int)$news_id . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "news` SET image = '" . $this->db->escape($data['image']) . "' WHERE news_id = '" . (int)$news_id . "'");
 		}
 
 		foreach ($data['news_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "news_description SET news_id = '" . (int)$news_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "news_description` SET news_id = '" . (int)$news_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
 
 		if (isset($data['news_download'])) {
 			foreach ($data['news_download'] as $download_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "news_to_download SET news_id = '" . (int)$news_id . "', news_download_id = '" . (int)$download_id . "'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "news_to_download` SET news_id = '" . (int)$news_id . "', news_download_id = '" . (int)$download_id . "'");
 			}
 		}
 
@@ -75,7 +75,7 @@ class ModelCatalogNews extends Model {
 
 		if (isset($data['news_store'])) {
 			foreach ($data['news_store'] as $store_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "news_to_store SET news_id = '" . (int)$news_id . "', store_id = '" . (int)$store_id . "'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "news_to_store` SET news_id = '" . (int)$news_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
 
@@ -89,21 +89,23 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function editNews($news_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "news SET sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "' WHERE news_id = '" . (int)$news_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "news` SET lightbox = '" . $this->db->escape($data['lightbox']) . "', sort_order = '" . (int)$data['sort_order'] . "', status = '" . (int)$data['status'] . "' WHERE news_id = '" . (int)$news_id . "'");
 
 		if (isset($data['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "news SET image = '" . $this->db->escape($data['image']) . "' WHERE news_id = '" . (int)$news_id . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "news` SET image = '" . $this->db->escape($data['image']) . "' WHERE news_id = '" . (int)$news_id . "'");
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "news_description WHERE news_id = '" . (int)$news_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "news_description` WHERE news_id = '" . (int)$news_id . "'");
 
 		foreach ($data['news_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "news_description SET news_id = '" . (int)$news_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO `" . DB_PREFIX . "news_description` SET news_id = '" . (int)$news_id . "', language_id = '" . (int)$language_id . "', title = '" . $this->db->escape($value['title']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
+
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "news_to_download` WHERE news_id = '" . (int)$news_id . "'");
 
 		if (isset($data['news_download'])) {
 			foreach ($data['news_download'] as $download_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "news_to_download SET news_id = '" . (int)$news_id . "', news_download_id = '" . (int)$download_id . "'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "news_to_download` SET news_id = '" . (int)$news_id . "', news_download_id = '" . (int)$download_id . "'");
 			}
 		}
 
@@ -159,11 +161,11 @@ class ModelCatalogNews extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "news_to_store WHERE news_id = '" . (int)$news_id . "'");
+		$this->db->query("DELETE FROM `" . DB_PREFIX . "news_to_store` WHERE news_id = '" . (int)$news_id . "'");
 
 		if (isset($data['news_store'])) {
 			foreach ($data['news_store'] as $store_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "news_to_store SET news_id = '" . (int)$news_id . "', store_id = '" . (int)$store_id . "'");
+				$this->db->query("INSERT INTO `" . DB_PREFIX . "news_to_store` SET news_id = '" . (int)$news_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
 
@@ -201,7 +203,7 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getNewsStory($news_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM `" . DB_PREFIX . "url_alias` WHERE `query` = 'news_id=" . (int)$news_id . "') AS keyword FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE n.news_id = '" . (int)$news_id . "' AND nd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM `" . DB_PREFIX . "url_alias` WHERE `query` = 'news_id=" . (int)$news_id . "') AS keyword FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE n.news_id = '" . (int)$news_id . "' AND nd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
@@ -213,8 +215,9 @@ class ModelCatalogNews extends Model {
 			$sort_data = array(
 				'nd.title',
 				'n.date_added',
-				'n.viewed',
-				'n.status'
+				'n.sort_order',
+				'n.status',
+				'n.viewed'
 			);
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -249,7 +252,7 @@ class ModelCatalogNews extends Model {
 			$news_data = $this->cache->get('news.' . (int)$this->config->get('config_language_id'));
 
 			if (!$news_data) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "news n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY nd.title");
+				$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "news` n LEFT JOIN " . DB_PREFIX . "news_description nd ON (n.news_id = nd.news_id) WHERE nd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY nd.title");
 
 				$news_data = $query->rows;
 
@@ -307,7 +310,7 @@ class ModelCatalogNews extends Model {
 	}
 
 	public function getTotalNews() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "news");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "news`");
 
 		return $query->row['total'];
 	}

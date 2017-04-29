@@ -174,7 +174,7 @@ $_['entry_cookie_privacy']         = 'Select Cookie Policy page:<span class="hel
 $_['entry_cookie_age']             = 'Enter Cookie Duration:<span class="help">Number of days the cookie will be valid for. Default is 365 days.</span>';
 $_['entry_news_addthis']           = 'Show AddThis on News Pages:<span class="help">AddThis Share buttons will be displayed in News Pages.</span>';
 $_['entry_news_style']             = 'Headlines News Collapsible:<span class="help">If not set, classic "List/Grid" style will be used.</span>';
-$_['entry_news_chars']             = 'Headlines News Character Limit:<span class="help">Adjust the News Story\'s length on Headlines page.</span>';
+$_['entry_news_chars']             = 'Headlines News Character Limit:<span class="help">Adjust the News article\'s length on the Headlines page.</span>';
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Store Icon:<span class="help">The icon should be a PNG that is 16 x 16px.</span>';
 $_['entry_image_category']         = 'Category Image Size:';

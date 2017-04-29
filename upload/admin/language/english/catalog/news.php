@@ -17,8 +17,9 @@ $_['text_edit']               = 'Edit';
 $_['column_image']            = 'Image';
 $_['column_title']            = 'Headline';
 $_['column_date_added']       = 'Date Added';
-$_['column_viewed']           = 'Viewed';
+$_['column_sort_order']       = 'Sort Order';
 $_['column_status']           = 'Status';
+$_['column_viewed']           = 'Viewed';
 $_['column_action']           = 'Action';
 
 // Tab
@@ -26,23 +27,23 @@ $_['tab_related']             = 'Related';
 
 // Entry
 $_['entry_title']             = 'News Headline:';
-$_['entry_meta_description']  = 'News Meta Description:<span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
-$_['entry_description']       = 'News Main Content:';
-$_['entry_image']             = 'News Image:<span class="help">Select an image (optional).</span>';
+$_['entry_meta_description']  = 'Article Meta Description:<span class="help">The optimal number of characters is around 155, including spaces.<br />SEO importance: High.</span>';
+$_['entry_description']       = 'Article Content:';
+$_['entry_image']             = 'Article Image:<span class="help">Select an image (optional).</span>';
 $_['entry_keyword']           = 'News SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_download']          = 'Downloads:';
-$_['entry_store']             = 'Stores:<span class="help">Select Store(s) where this News is to appear.</span>';
+$_['entry_store']             = 'Stores:<span class="help">Select Store(s) where this article is to appear.</span>';
+$_['entry_lightbox']          = 'Image Viewer:<span class="help">Select a preferred image viewer.</span>';
 $_['entry_sort_order']        = 'Sort Order:';
 $_['entry_status']            = 'Status:';
-
 $_['entry_product']           = 'Product:';
 $_['entry_product_search']    = '<span class="help">Product Name:<br />(Autocomplete)</span>';
 $_['entry_category']          = 'Category:';
 $_['entry_manufacturer']      = 'Manufacturer:';
-$_['entry_related_method']    = 'News Related Products:<span class="help">This article can be linked to a single product, a category, or a manufacturer.</span>';
-$_['entry_product_wise']      = 'Product Wise';
-$_['entry_category_wise']     = 'Category Wise';
-$_['entry_manufacturer_wise'] = 'Manufacturer Wise';
+$_['entry_related_method']    = 'News Related Products:<span class="help">This article can be linked to individual products, categories, or manufacturers.</span>';
+$_['entry_product_wise']      = 'Products';
+$_['entry_category_wise']     = 'Categories';
+$_['entry_manufacturer_wise'] = 'Manufacturers';
 
 // Button
 $_['button_module']           = 'News Module';
@@ -54,5 +55,5 @@ $_['button_new_download']     = 'New download?';
 $_['error_permission']        = 'Warning: You do not have permission to modify <b>News</b> !';
 $_['error_warning']           = 'Warning: Please check the form carefully for errors!';
 $_['error_title']             = 'News Headline must be greater than 3 and less than 250 characters !';
-$_['error_description']       = 'News Main Content must be greater than 3 characters !';
+$_['error_description']       = 'Article Content must be greater than 3 characters !';
 $_['error_image']             = 'Image must be a valid image format!';

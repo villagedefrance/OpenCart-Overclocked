@@ -2005,6 +2005,7 @@ CREATE TABLE `oc_news` (
   `image` varchar(255) DEFAULT NULL,
   `related_method` varchar(64) NOT NULL,
   `related_option` text NOT NULL,
+  `lightbox` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,

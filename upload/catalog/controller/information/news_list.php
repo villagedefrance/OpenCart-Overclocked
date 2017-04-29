@@ -11,13 +11,13 @@ class ControllerInformationNewsList extends Controller {
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
 		} else {
-			$sort = 'n.date_added';
+			$sort = 'n.sort_order';
 		}
 
 		if (isset($this->request->get['order'])) {
 			$order = $this->request->get['order'];
 		} else {
-			$order = 'DESC';
+			$order = 'ASC';
 		}
 
 		if (isset($this->request->get['limit'])) {
@@ -98,9 +98,9 @@ class ControllerInformationNewsList extends Controller {
 			$news_length = strlen(utf8_decode($result['description']));
 
 			if ($news_length > (int)$chars) {
-				$description = substr(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'), 0, (int)$chars) . '..</p>';
+				$description = '<p>' . substr(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'), 0, (int)$chars) . ' ...</p>';
 			} else {
-				$description = html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8');
+				$description = '<p>' . html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8') . '</p>';
 			}
 
 			if ($result['image']) {

@@ -17,7 +17,7 @@
           <h2><?php echo $news['title']; ?></h2>
           <div class="panel-content">
             <?php echo $news['description']; ?><br /><br />
-            <i class="fa fa-calendar-check-o"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?><br /><br />
+            <i class="fa fa-calendar"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?><br /><br />
             <a href="<?php echo $news['href']; ?>" class="button"><i class="fa fa-mail-forward"></i> &nbsp; <?php echo $button_read; ?></a>
           </div>
         </div>
@@ -54,14 +54,14 @@
       <?php foreach ($news_data as $news) { ?>
         <div>
           <div class="right">
-            <div class="read"><a href="<?php echo $news['href']; ?>" class="button"><?php echo $button_read; ?></a></div>
-          </div>
           <?php if ($news['image']) { ?>
-            <div class="image"><a href="<?php echo $news['href']; ?>"><img src="<?php echo $news['image']; ?>" alt="<?php echo $news['title']; ?>" /></a></div>
+            <div class="image"><a href="<?php echo $news['href']; ?>" title=""><img src="<?php echo $news['image']; ?>" alt="<?php echo $news['title']; ?>" /></a></div>
           <?php } ?>
-          <div class="title"><a href="<?php echo $news['href']; ?>"><?php echo $news['title']; ?></a></div>
+            <div class="read"><a href="<?php echo $news['href']; ?>" title="" class="button"><?php echo $button_read; ?></a></div>
+          </div>
+          <div class="title"><a href="<?php echo $news['href']; ?>" title=""><?php echo $news['title']; ?></a></div>
           <div class="description"><?php echo $news['description']; ?></div>
-          <div class="date"><?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?></div>
+          <div class="date"><i class="fa fa-calendar"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?></div>
         </div>
       <?php } ?>
       </div>
@@ -86,6 +86,12 @@ function display(view) {
 		$('.news-list > div').each(function(index, element) {
 			html  = '<div class="right">';
 
+			var image = $(element).find('.image').html();
+
+			if (image != null) {
+				html += '<div class="image">' + image + '</div>';
+			}
+
 			var read = $(element).find('.read').html();
 
 			if (read != null) {
@@ -94,12 +100,6 @@ function display(view) {
 
 			html += '</div>';
 			html += '<div class="left">';
-
-			var image = $(element).find('.image').html();
-
-			if (image != null) {
-				html += '<div class="image">' + image + '</div>';
-			}
 
 			html += '<div class="title">' + $(element).find('.title').html() + '</div>';
 

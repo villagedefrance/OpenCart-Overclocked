@@ -1189,35 +1189,74 @@ ul.box-filter > li ul {
 /* Box news */
 .box-news {
 	background: #FFF;
-	padding: 5px;
-	margin-bottom: 10px;
 	border: 1px solid #DDD;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 5px;
+	overflow: auto;
 }
 .box-news h4 {
 	margin-top: 0px;
 	margin-bottom: 5px;
 }
-.box-news a img, .box-news img {
+.box-news a {
+	text-decoration: none;
+}
+.box-news a img {
 	float: right;
 	margin-left: 2px;
 	margin-bottom: 2px;
 }
 .box-news p {
-	margin-top: 0px;
+	margin-top: 2px;
 	margin-bottom: 5px;
-}
-.box-news a.read {
-	float: right;
-	text-decoration: none;
-	margin-bottom: 3px;
 }
 .box-news span {
 	font-size: 10px;
 	margin-bottom: 3px;
+}
+/* News Content */
+.content-info {
+	background: #FFF;
+	border: 1px dotted #DDD;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.content-info .info {
+	width: 100%;
+}
+.content-info .info a {
+	text-decoration: none;
+}
+.content-info .info .image {
+	float: right;
+}
+.content-info .info .article {
+	margin-left: 5px;
+}
+/* News Download */
+.news-download {
+	width: auto;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	min-height: 10px;
+	padding: 2px 0px;
+	margin-bottom: 10px;
+}
+.news-download ul {
+	text-align: left;
+	list-style: none;
+	text-decoration: none;
+}
+.news-download li {
+	margin: 10px 0px;
 }
 /* News List */
 .news-list > div {
@@ -2602,26 +2641,6 @@ table.order-options tr td > div.division {
 	margin: 15px auto;
 	border-top: 1px solid #DDD;
 	display: block;
-}
-/* Content Info */
-.content-info {
-	background: #FFF;
-	padding: 10px;
-	margin-bottom: 10px;
-	border: 1px dotted #DDD;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-khtml-border-radius: 3px;
-	border-radius: 3px;
-}
-.content-info .info {
-	width: 100%;
-}
-.content-info .info a {
-	text-decoration: none;
-}
-.content-info .info .image {
-	float: right;
 }
 /* Contact */
 .contact-info {
