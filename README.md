@@ -37,6 +37,16 @@ Powered by the Latest Scripts:
 - CKEditor 4.6.2 Full.
 - ...
 
+Coming soon in 1.9.3.0!
+- News with added features:
+- + Related products!
+- + Attached Downloads!
+- + 4 Image Viewers!
+- + Sortable!
+- Better Image Class library.
+- Bug fixes.
+- ...
+
 New in 1.9.2.0 (current release)!
 - Admin themes improvements.
 - Stronger Session Class.

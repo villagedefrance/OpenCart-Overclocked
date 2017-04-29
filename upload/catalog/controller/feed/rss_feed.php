@@ -24,8 +24,6 @@ class ControllerFeedRSSFeed extends Controller {
 
 			$this->load->model('tool/image');
 
-			$no_image = $this->model_tool_image->resize('no_image.jpg', 100, 100);
-
 			$image_width = ($this->config->get('rss_feed_image_width')) ? $this->config->get('rss_feed_image_width') : 100;
 			$image_height = ($this->config->get('rss_feed_image_height')) ? $this->config->get('rss_feed_image_height') : 100;
 
