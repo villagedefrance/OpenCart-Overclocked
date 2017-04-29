@@ -1,6 +1,5 @@
 <?php
 class ControllerFeedRSSFeed extends Controller {
-	private $_name = 'rss_feed';
 
 	public function index() {
 		if ($this->config->get('rss_feed_status')) {
@@ -12,22 +11,23 @@ class ControllerFeedRSSFeed extends Controller {
 			$output .= '<language><![CDATA[' . $this->language->get('code') . ']]></language>';
 			$output .= '<link><![CDATA[' . HTTP_SERVER . ']]></link>';
 
-			$this->load->model('catalog/product');
-			$this->load->model('localisation/currency');
-			$this->load->model('tool/image');
+			$show_price = $this->config->get('rss_feed_show_price');
+			$include_tax = $this->config->get('rss_feed_include_tax');
 
-			$limit = $this->config->get($this->_name . '_limit') ? $this->config->get($this->_name . '_limit') : 100;
+			$limit = ($this->config->get('rss_feed_limit')) ? $this->config->get('rss_feed_limit') : 100;
 
-			$show_price = $this->config->get($this->_name . '_show_price');
-			$include_tax = $this->config->get($this->_name . '_include_tax');
-			$show_image = $this->config->get($this->_name . '_show_image');
-
-			if ($show_image) {
-				$image_width = $this->config->get($this->_name . '_image_width') ? $this->config->get($this->_name . '_image_width') : 100;
-				$image_height = $this->config->get($this->_name . '_image_height') ? $this->config->get($this->_name . '_image_height') : 100;
+			if ($this->config->get('rss_feed_show_image')) {
+				$show_image = true;
+			} else {
+				$show_image = false;
 			}
 
-			$products = $this->model_catalog_product->getLatestProducts($limit);
+			$this->load->model('tool/image');
+
+			$no_image = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+
+			$image_width = ($this->config->get('rss_feed_image_width')) ? $this->config->get('rss_feed_image_width') : 100;
+			$image_height = ($this->config->get('rss_feed_image_height')) ? $this->config->get('rss_feed_image_height') : 100;
 
 			if (isset($this->request->get['currency'])) {
 				$currency = $this->request->get['currency'];
@@ -35,9 +35,19 @@ class ControllerFeedRSSFeed extends Controller {
 				$currency = $this->currency->getCode();
 			}
 
+			$this->load->model('catalog/product');
+
+			$products = $this->model_catalog_product->getLatestProducts($limit);
+
 			foreach ($products as $product) {
+				if ($product['image'] && file_exists(DIR_IMAGE . $product['image'])) {
+					$image = $this->model_tool_image->resize($product['image'], $image_width, $image_height);
+				} else {
+					$image = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+				}
+
 				if ($product['description']) {
-					$title = $product['name'];
+					$title = html_entity_decode($product['name'], ENT_QUOTES, 'UTF-8');
 
 					// Redirects to All products (SEO Url is ON)
 					$link = $this->url->link('product/product_list', '', 'SSL');
@@ -59,12 +69,11 @@ class ControllerFeedRSSFeed extends Controller {
 							}
 						}
 
-						$description .= '<p><strong>' . $price . '</strong></p>';
+						$description .= '<p><strong>' . $price . ' </strong></p>';
 					}
 
 					if ($show_image) {
-						$image_url = $this->model_tool_image->resize($product['image'], $image_width, $image_height);
-						$description .= '<p><a href="' . $link . '"><img src="' . $image_url . '"></a></p>';
+						$description .= '<p><a href="' . $link . '" title=""><img src="' . $image . '" alt="' . $title . '"></a></p>';
 					}
 
 					$description .= html_entity_decode($product['description'], ENT_QUOTES, 'UTF-8');

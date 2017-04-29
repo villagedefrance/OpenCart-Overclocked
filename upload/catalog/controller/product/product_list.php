@@ -1,9 +1,8 @@
 <?php
 class ControllerProductProductList extends Controller {
-	private $_name = 'product_list';
 
 	public function index() {
-		$this->language->load('product/' . $this->_name);
+		$this->language->load('product/product_list');
 
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
@@ -91,16 +90,18 @@ class ControllerProductProductList extends Controller {
 
 			$results = $this->model_catalog_product->getProducts(0);
 
-			foreach ($results as $result) {
-				$this->data['products'][] = array(
-					'product_id' => $result['product_id'],
-					'name'       => $result['name'],
-					'href'       => $this->url->link('product/product', 'product_id=' . $result['product_id'], 'SSL'),
-					'count'      => $this->data['pcount']
-				);
+			if ($results) {
+				foreach ($results as $result) {
+					$this->data['products'][] = array(
+						'product_id' => $result['product_id'],
+						'name'       => $result['name'],
+						'href'       => $this->url->link('product/product', 'product_id=' . $result['product_id'], 'SSL'),
+						'count'      => $this->data['pcount']
+					);
 
-				$this->data['pcount'] = $this->data['pcount'] + 1;
-				$this->data['ptotal'] = $this->data['ptotal'] + 1;
+					$this->data['pcount'] = $this->data['pcount'] + 1;
+					$this->data['ptotal'] = $this->data['ptotal'] + 1;
+				}
 			}
 
 			$this->data['tritotal1'] = round(($this->data['ptotal'] / 3) + 1);
@@ -111,10 +112,10 @@ class ControllerProductProductList extends Controller {
 			// Theme
 			$this->data['template'] = $this->config->get('config_template');
 
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/' . $this->_name . '.tpl')) {
-				$this->template = $this->config->get('config_template') . '/template/product/' . $this->_name . '.tpl';
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product_list.tpl')) {
+				$this->template = $this->config->get('config_template') . '/template/product/product_list.tpl';
 			} else {
-				$this->template = 'default/template/product/' . $this->_name . '.tpl';
+				$this->template = 'default/template/product/product_list.tpl';
 			}
 
 			$this->children = array(
