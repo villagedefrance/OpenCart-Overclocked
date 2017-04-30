@@ -42,7 +42,7 @@ class ControllerCommonLogin extends Controller {
 		// Stylesheet
 		$admin_css = $this->config->get('config_admin_stylesheet');
 
-		if (!empty($admin_css)) {
+		if (isset($admin_css)) {
 			$this->data['admin_css'] = $admin_css;
 		} else {
 			$this->data['admin_css'] = 'classic';
