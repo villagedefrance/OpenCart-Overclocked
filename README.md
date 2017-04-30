@@ -41,6 +41,7 @@ Coming soon in 1.9.3.0!
 - News with added features.
 - Split UK nations as Countries.
 - Better Image Class library.
+- Google Sitemap Feed update.
 - Bug fixes.
 - ...
 
