@@ -34,11 +34,20 @@ class ModelToolSystem extends Model {
 			return;
 		} else {
 			if (function_exists('apache_get_modules')) {
-				$modules = apache_get_modules();
+				$apache_modules = apache_get_modules();
 
-				$mod_rewrite = in_array('mod_rewrite', $modules);
+				if (in_array('mod_rewrite', $apache_modules, true)) {
+					$mod_rewrite = true;
+				} else {
+					$mod_rewrite = false;
+				}
+
 			} else {
-				$mod_rewrite = (getenv('HTTP_MOD_REWRITE') == 'On') ? true : false;
+				if ((isset($_SERVER['HTTP_MOD_REWRITE']) && strtolower($_SERVER['HTTP_MOD_REWRITE']) == 'on') || strtolower(getenv('HTTP_MOD_REWRITE')) == 'on') {
+					$mod_rewrite = true;
+				} else {
+					$mod_rewrite = false;
+				}
 			}
 
 			if ($mod_rewrite && file_exists('../.htaccess.txt')) {

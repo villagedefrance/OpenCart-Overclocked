@@ -4270,7 +4270,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (1327, 0, 'config', 'config_alexa_analytics', '', 0),
 (1328, 0, 'config', 'config_piwik_analytics', '', 0),
 (1329, 0, 'config', 'config_maintenance', '0', 0),
-(1330, 0, 'config', 'config_seo_url', '1', 0),
+(1330, 0, 'config', 'config_seo_url', '0', 0),
 (1331, 0, 'config', 'config_seo_url_cache', '0', 0),
 (1332, 0, 'config', 'config_encryption', 'SUBSTRING(SHA1(RAND()) FROM 1 FOR 8)', 0),
 (1333, 0, 'config', 'config_compression', '7', 0),
