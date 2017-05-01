@@ -19,7 +19,7 @@ class ControllerModuleHtml extends Controller {
 				$this->data['title' . $i] = $this->data['heading_title'];
 			}
 
-			// Stylesheet mode
+			// Stylesheet override
 			$template = $this->config->get('config_template');
 
 			$stylesheet_mode = $this->config->get($template . '_stylesheet');

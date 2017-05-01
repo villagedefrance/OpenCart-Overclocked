@@ -2,7 +2,7 @@
 class ControllerModuleAlsoBought extends Controller {
 	private $_name = 'also_bought';
 
-	public function index($setting) {
+	protected function index($setting) {
 		static $module = 0;
 
 		$this->language->load('module/' . $this->_name);
@@ -26,7 +26,7 @@ class ControllerModuleAlsoBought extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		// Stylesheet mode
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		$stylesheet_mode = $this->config->get($template . '_stylesheet');

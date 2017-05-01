@@ -1,5 +1,5 @@
 <?php
-class ControllerModuleMediaPlayer  extends Controller {
+class ControllerModuleMediaPlayer extends Controller {
 	private $_name = 'mediaplayer';
 
 	protected function index($setting) {
@@ -22,7 +22,7 @@ class ControllerModuleMediaPlayer  extends Controller {
 			$this->data['title'] = $this->data['heading_title'];
 		}
 
-		// Stylesheet mode
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		$stylesheet_mode = $this->config->get($template . '_stylesheet');

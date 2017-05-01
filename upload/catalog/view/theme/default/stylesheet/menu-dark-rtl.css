@@ -7,8 +7,6 @@
 	background-color: transparent;
 }
 .menu-dark #menu {
-	overflow: auto;
-	height: auto;
 	min-height: 40px;
 	background-color: #4D4F50;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#4D4F50), to(#323435));
