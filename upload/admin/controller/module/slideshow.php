@@ -60,6 +60,7 @@ class ControllerModuleSlideshow extends Controller {
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 		$this->data['button_add_module'] = $this->language->get('button_add_module');
 		$this->data['button_remove'] = $this->language->get('button_remove');
+		$this->data['button_manager'] = $this->language->get('button_manager');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -97,7 +98,10 @@ class ControllerModuleSlideshow extends Controller {
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet mode
+		// Manager
+		$this->data['manager'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {

@@ -33,6 +33,8 @@ $_['entry_position']      = 'Position';
 $_['entry_status']        = 'Status';
 $_['entry_sort_order']    = 'Sort Order';
 
+// Button
+$_['button_manager']      = 'Banner Manager';
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to modify module <b>Carousel</b> !';
 $_['error_image']         = 'Image width &amp; height dimensions required!';

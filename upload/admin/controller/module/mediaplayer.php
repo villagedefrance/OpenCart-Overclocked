@@ -99,13 +99,14 @@ class ControllerModuleMediaPlayer extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['library'] = $this->url->link('design/media', 'token=' . $this->session->data['token'], 'SSL');
-
 		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet mode
+		// Library
+		$this->data['library'] = $this->url->link('design/media', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {

@@ -22,7 +22,7 @@
         <table class="form">
         <tbody>
           <tr>
-            <td><a href="<?php echo $manager; ?>" class="button"><?php echo $button_manager; ?></a></td>
+            <td><a href="<?php echo $manager; ?>" class="button"><i class="fa fa-map-marker"></i> &nbsp; <?php echo $button_manager; ?></a></td>
             <td><b><i><?php echo $text_manage_locations; ?></i></b></td>
           </tr>
           <tr>

@@ -90,13 +90,14 @@ class ControllerModuleNews extends Controller {
 			'separator' => ' :: '
 		);
 
-		$this->data['news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');
-
 		$this->data['action'] = $this->url->link('module/' . $this->_name, 'token=' . $this->session->data['token'], 'SSL');
 
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet mode
+		// Manager
+		$this->data['news'] = $this->url->link('catalog/news', 'token=' . $this->session->data['token'], 'SSL');
+
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {

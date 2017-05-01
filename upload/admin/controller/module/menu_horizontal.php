@@ -102,7 +102,7 @@ class ControllerModuleMenuHorizontal extends Controller {
 		// Manager
 		$this->data['manager'] = $this->url->link('design/menu', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet mode
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {

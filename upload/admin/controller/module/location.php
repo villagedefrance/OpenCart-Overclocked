@@ -96,7 +96,7 @@ class ControllerModuleLocation extends Controller {
 		// Manager
 		$this->data['manager'] = $this->url->link('localisation/location', 'token=' . $this->session->data['token'], 'SSL');
 
-		// Stylesheet mode
+		// Stylesheet override
 		$template = $this->config->get('config_template');
 
 		if ($this->config->get($template . '_stylesheet')) {
