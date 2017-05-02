@@ -644,6 +644,7 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->data['entry_model'] = $this->language->get('entry_model');
 		$this->data['entry_image'] = $this->language->get('entry_image');
+		$this->data['entry_video_code'] = $this->language->get('entry_video_code');
 		$this->data['entry_keyword'] = $this->language->get('entry_keyword');
 		$this->data['entry_local_tax_rate'] = $this->language->get('entry_local_tax_rate');
 		$this->data['entry_price'] = sprintf($this->language->get('entry_price'), $this->config->get('config_currency'));
@@ -930,6 +931,14 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
 		} else {
 			$this->data['thumb'] = $this->model_tool_image->resize('no_image.jpg', 100, 100);
+		}
+
+		if (isset($this->request->post['video_code'])) {
+			$this->data['video_code'] = $this->request->post['video_code'];
+		} elseif (isset($this->request->get['product_id'])) {
+			$this->data['video_code'] = $this->model_catalog_product->getProductVideos($this->request->get['product_id']);
+		} else {
+			$this->data['video_code'] = '';
 		}
 
 		if (isset($this->request->post['keyword'])) {

@@ -103,6 +103,10 @@
             </td>
           </tr>
           <tr>
+            <td><?php echo $entry_video_code; ?></td>
+            <td>youtube.com/watch?v=<input type="text" name="video_code" value="<?php echo $video_code; ?>" size="30" /> &nbsp; <a onclick="window.open('http://www.youtube.com/');" title="YouTube" class="button-form"><i class="fa fa-youtube"></i> &nbsp; YouTube</a></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_keyword; ?></td>
             <td><input type="text" name="keyword" value="<?php echo $keyword; ?>" size="30" /></td>
           </tr>

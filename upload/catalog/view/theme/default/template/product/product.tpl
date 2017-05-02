@@ -139,6 +139,11 @@
           </div>
         <?php } ?>
       <?php } ?>
+      <?php if ($video_code) { ?>
+        <div class="video">
+          <iframe src="http://www.youtube.com/embed/<?php echo $video_code; ?>?html5=1" width="<?php echo $video_width; ?>" height="<?php echo $video_height; ?>"></iframe>
+        </div>
+      <?php } ?>
       </div>
     <?php } ?>
     <div class="right">

@@ -417,6 +417,14 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 
+	public function getProductVideos($product_id) {
+		$query = $this->db->query("SELECT DISTINCT py.video_code AS video_code FROM " . DB_PREFIX . "product_youtube py LEFT JOIN " . DB_PREFIX . "product p ON (py.product_id = p.product_id) WHERE py.product_id = '" . (int)$product_id . "'");
+
+		if ($query->num_rows) {
+			return $query->row['video_code'];
+		}
+	}
+
 	public function getProductFields($product_id) {
 		$product_field_data = array();
 

@@ -1718,6 +1718,13 @@ ul.box-filter > li ul {
 	border: 1px solid #E7E7E7;
 	padding: 2px;
 }
+.product-info > .left .video {
+	float: left;
+	text-align: center;
+	border: 1px solid #E7E7E7;
+	margin: 10px 0px;
+	padding: 10px;
+}
 .product-info .description {
 	border-top: 1px solid #E7E7E7;
 	border-bottom: 1px solid #E7E7E7;

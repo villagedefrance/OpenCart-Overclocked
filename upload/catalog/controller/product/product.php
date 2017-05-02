@@ -389,6 +389,16 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 
+			// Videos
+			if (isset($this->request->get['product_id'])) {
+				$this->data['video_code'] = $this->model_catalog_product->getProductVideos($this->request->get['product_id']);
+			} else {
+				$this->data['video_code'] = false;
+			}
+
+			$this->data['video_width'] = $this->config->get('config_image_thumb_width');
+			$this->data['video_height'] = $this->config->get('config_image_thumb_height');
+
 			$this->load->model('tool/barcode');
 
 			$catalog_barcode = $this->config->get('config_catalog_barcode');

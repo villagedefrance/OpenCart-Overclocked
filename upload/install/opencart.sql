@@ -4001,6 +4001,19 @@ INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_product_youtube`
+--
+
+DROP TABLE IF EXISTS `oc_product_youtube`;
+CREATE TABLE `oc_product_youtube` (
+  `product_id` int(11) NOT NULL,
+  `video_code` varchar(255) NOT NULL,
+  PRIMARY KEY (`product_id`,`video_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_profile`
 --
 
