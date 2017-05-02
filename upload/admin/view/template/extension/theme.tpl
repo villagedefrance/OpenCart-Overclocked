@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/theme.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location = '<?php echo $settings; ?>';" class="button"><?php echo $button_settings; ?></a>
+        <a onclick="location = '<?php echo $settings; ?>';" class="button"><i class="fa fa-gears"></i> &nbsp; <?php echo $button_settings; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>

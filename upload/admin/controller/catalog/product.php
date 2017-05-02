@@ -648,9 +648,9 @@ class ControllerCatalogProduct extends Controller {
 		$this->data['entry_local_tax_rate'] = $this->language->get('entry_local_tax_rate');
 		$this->data['entry_price'] = sprintf($this->language->get('entry_price'), $this->config->get('config_currency'));
 		$this->data['entry_cost'] = $this->language->get('entry_cost');
+		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_quote'] = $this->language->get('entry_quote');
 		$this->data['entry_age_minimum'] = $this->language->get('entry_age_minimum');
-		$this->data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$this->data['entry_date_available'] = $this->language->get('entry_date_available');
 		$this->data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$this->data['entry_status'] = $this->language->get('entry_status');
@@ -984,6 +984,20 @@ class ControllerCatalogProduct extends Controller {
 			$this->data['cost'] = '';
 		}
 
+		$this->load->model('localisation/tax_class');
+
+		$this->data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
+
+		if (isset($this->request->post['tax_class_id'])) {
+			$this->data['tax_class_id'] = $this->request->post['tax_class_id'];
+		} elseif (!empty($product_info)) {
+			$this->data['tax_class_id'] = $product_info['tax_class_id'];
+		} else {
+			$this->data['tax_class_id'] = 0;
+		}
+
+		$this->data['configure_tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
+
 		if (isset($this->request->post['quote'])) {
 			$this->data['quote'] = $this->request->post['quote'];
 		} elseif (!empty($product_info)) {
@@ -999,20 +1013,6 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$this->data['age_minimum'] = 0;
 		}
-
-		$this->load->model('localisation/tax_class');
-
-		$this->data['tax_classes'] = $this->model_localisation_tax_class->getTaxClasses();
-
-		if (isset($this->request->post['tax_class_id'])) {
-			$this->data['tax_class_id'] = $this->request->post['tax_class_id'];
-		} elseif (!empty($product_info)) {
-			$this->data['tax_class_id'] = $product_info['tax_class_id'];
-		} else {
-			$this->data['tax_class_id'] = 0;
-		}
-
-		$this->data['configure_tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
 
 		if (isset($this->request->post['date_available'])) {
 			$this->data['date_available'] = $this->request->post['date_available'];

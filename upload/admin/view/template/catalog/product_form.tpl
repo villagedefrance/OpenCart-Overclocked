@@ -131,6 +131,19 @@
             <td><?php echo $entry_cost; ?></td>
             <td><input type="text" name="cost" value="<?php echo $cost; ?>" /></td>
           </tr>
+          <tr class="highlighted">
+            <td><?php echo $entry_tax_class; ?></td>
+            <td><select name="tax_class_id">
+              <option value="0"><?php echo $text_none; ?></option>
+              <?php foreach ($tax_classes as $tax_class) { ?>
+                <?php if ($tax_class['tax_class_id'] == $tax_class_id) { ?>
+                  <option value="<?php echo $tax_class['tax_class_id']; ?>" selected="selected"><?php echo $tax_class['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $tax_class['tax_class_id']; ?>"><?php echo $tax_class['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select> &nbsp; <a href="<?php echo $configure_tax_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
+          </tr>
           <tr>
             <td><?php echo $entry_quote; ?></td>
             <td><select name="quote">
@@ -146,19 +159,6 @@
           <tr>
             <td><?php echo $entry_age_minimum; ?></td>
             <td><input type="text" name="age_minimum" value="<?php echo $age_minimum; ?>" size="2" maxlength="2" /></td>
-          </tr>
-          <tr class="highlighted">
-            <td><?php echo $entry_tax_class; ?></td>
-            <td><select name="tax_class_id">
-              <option value="0"><?php echo $text_none; ?></option>
-              <?php foreach ($tax_classes as $tax_class) { ?>
-                <?php if ($tax_class['tax_class_id'] == $tax_class_id) { ?>
-                  <option value="<?php echo $tax_class['tax_class_id']; ?>" selected="selected"><?php echo $tax_class['title']; ?></option>
-                <?php } else { ?>
-                  <option value="<?php echo $tax_class['tax_class_id']; ?>"><?php echo $tax_class['title']; ?></option>
-                <?php } ?>
-              <?php } ?>
-            </select> &nbsp; <a href="<?php echo $configure_tax_class; ?>" class="button-form"><i class="fa fa-gear"></i></a></td>
           </tr>
           <tr>
             <td><?php echo $entry_date_available; ?></td>

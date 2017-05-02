@@ -60,14 +60,14 @@ $_['entry_description']       = 'Product Description:';
 $_['entry_tag']               = 'Product Tags:<span class="help">Comma separated.</span>';
 
 $_['entry_model']             = 'Model:';
-$_['entry_image']             = 'Main Image:';
+$_['entry_image']             = 'Main Image:<span class="help">The main image will represent this product in both Administration and Catalog.</span>';
 $_['entry_keyword']           = 'SEO Keyword:<span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
-$_['entry_local_tax_rate']    = 'Local Tax Rate:<span class="help">Select a local tax rate for this product.</span>';
+$_['entry_local_tax_rate']    = 'Price Local Tax Rate:<span class="help">Select a local tax rate for this product in order to view the price excluding / including tax below.</span>';
 $_['entry_price']             = 'Price (%s):';
 $_['entry_cost']              = 'Average Cost:';
+$_['entry_tax_class']         = 'Tax Class:<span class="help">Select the tax class to use in the store.</span>';
 $_['entry_quote']             = 'Request a Quote:<span class="help">Select if the product is made to order or only available on request. The customer will be redirected to the quotation form.</span>';
 $_['entry_age_minimum']       = 'Minimum Age:<span class="help">Minimum age a customer must be to purchase this product. Enter 0 for no minimum.</span>';
-$_['entry_tax_class']         = 'Tax Class:<span class="help">Select the tax class to use in the store.</span>';
 $_['entry_date_available']    = 'Date Available:';
 $_['entry_sort_order']        = 'Sort Order:';
 $_['entry_status']            = 'Status:';
