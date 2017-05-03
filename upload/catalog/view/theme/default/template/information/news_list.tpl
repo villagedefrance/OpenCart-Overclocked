@@ -53,15 +53,13 @@
       <div class="news-list">
       <?php foreach ($news_data as $news) { ?>
         <div>
-          <div class="right">
           <?php if ($news['image']) { ?>
             <div class="image"><a href="<?php echo $news['href']; ?>" title=""><img src="<?php echo $news['image']; ?>" alt="<?php echo $news['title']; ?>" /></a></div>
           <?php } ?>
-            <div class="read"><a href="<?php echo $news['href']; ?>" title="" class="button"><?php echo $button_read; ?></a></div>
-          </div>
           <div class="title"><a href="<?php echo $news['href']; ?>" title=""><?php echo $news['title']; ?></a></div>
           <div class="description"><?php echo $news['description']; ?></div>
           <div class="date"><i class="fa fa-calendar"></i> &nbsp; <?php echo $news['date_added']; ?> - <?php echo $news['viewed']; ?> <?php echo $text_views; ?></div>
+          <div class="read"><a href="<?php echo $news['href']; ?>" title="" class="button"><?php echo $button_read; ?></a></div>
         </div>
       <?php } ?>
       </div>
@@ -86,12 +84,6 @@ function display(view) {
 		$('.news-list > div').each(function(index, element) {
 			html  = '<div class="right">';
 
-			var image = $(element).find('.image').html();
-
-			if (image != null) {
-				html += '<div class="image">' + image + '</div>';
-			}
-
 			var read = $(element).find('.read').html();
 
 			if (read != null) {
@@ -102,6 +94,12 @@ function display(view) {
 			html += '<div class="left">';
 
 			html += '<div class="title">' + $(element).find('.title').html() + '</div>';
+
+			var image = $(element).find('.image').html();
+
+			if (image != null) {
+				html += '<div class="image">' + image + '</div>';
+			}
 
 			var description = $(element).find('.description').html();
 

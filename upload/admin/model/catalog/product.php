@@ -632,9 +632,13 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductTaxLocalRates($product_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product_tax_local_rate WHERE product_id = '" . (int)$product_id . "'");
+		$query = $this->db->query("SELECT DISTINCT plr.tax_local_rate_id AS tax_local_rate_id FROM " . DB_PREFIX . "product_tax_local_rate plr LEFT JOIN " . DB_PREFIX . "product p ON (plr.product_id = p.product_id) WHERE plr.product_id = '" . (int)$product_id . "'");
 
-		return ($query->row) ? $query->row['tax_local_rate_id'] : 0;
+		if ($query->num_rows) {
+			return $query->row['tax_local_rate_id'];
+		} else {
+			return 0;
+		}
 	}
 
 	public function getProductAttributes($product_id) {

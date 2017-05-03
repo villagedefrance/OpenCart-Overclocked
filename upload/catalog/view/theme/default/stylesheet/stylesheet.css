@@ -896,7 +896,7 @@ a.button-add:hover {
 	border-top: 1px solid #DDD;
 	border-left: 1px solid #DDD;
 	border-right: 1px solid #DDD;
-	border-bottom: 1px solid transparent;
+	border-bottom: 1px solid #CCC;
 	background-color: #FCFCFC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#FFF));
 	background-image: -webkit-linear-gradient(top, #EEE, #FFF);
@@ -911,6 +911,9 @@ a.button-add:hover {
 }
 .htabs a.selected {
 	background: #FFF;
+	border-top: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #CCC;
 	border-bottom: 1px solid #FFF;
 	outline: 0;
 }
@@ -1273,6 +1276,10 @@ ul.box-filter > li ul {
 	float: right;
 	margin-left: 15px;
 }
+.news-list > div + div {
+	border-top: 1px solid #E7E7E7;
+	padding-top: 16px;
+}
 .news-list .read {
 	margin: 5px 5px 20px 5px;
 }
@@ -1288,6 +1295,7 @@ ul.box-filter > li ul {
 }
 .news-list .title a, .news-grid .title a {
 	color: #36AAD8;
+	font-size: 14px;
 	font-weight: bold;
 	text-decoration: none;
 }
