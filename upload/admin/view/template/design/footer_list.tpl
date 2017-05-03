@@ -15,6 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a href="<?php echo $theme; ?>" class="button"><i class="fa fa-magic"></i> &nbsp; <?php echo $button_theme; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>

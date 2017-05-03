@@ -21,8 +21,13 @@ $_['text_p2c']            = '<b>Product :: Category</b>';
 $_['text_c2p']            = '<b>Category :: Product</b>';
 $_['text_c2c']            = '<b>Category :: Category</b>';
 
-$_['button_view']         = 'View List';
+$_['text_offer_expired']  = '<span style="color:#DE5954; font-weight:bold;">Offer has expired!</span>';
+$_['text_offer_expiring'] = '<span style="color:#F2B155; font-weight:bold;">Offer is about to expire!</span>';
+$_['text_offer_valid']    = '<span style="color:#5DC15E; font-weight:bold;">Offer is up-to-date.</span>';
 
+$_['text_no_results']     = 'There are no offers to display at this time.';
+
+// Column
 $_['column_group']        = 'Group';
 $_['column_name']         = 'Name';
 $_['column_type']         = 'Type';
@@ -33,13 +38,10 @@ $_['column_validity']     = 'State';
 $_['column_status']       = 'Status';
 $_['column_action']       = 'Action';
 
+// Button
+$_['button_exit']         = 'Close';
+$_['button_view']         = 'View List';
 $_['button_edit']         = 'Edit';
-
-$_['text_offer_expired']  = '<span style="color:#DE5954; font-weight:bold;">Offer has expired!</span>';
-$_['text_offer_expiring'] = '<span style="color:#F2B155; font-weight:bold;">Offer is about to expire!</span>';
-$_['text_offer_valid']    = '<span style="color:#5DC15E; font-weight:bold;">Offer is up-to-date.</span>';
-
-$_['text_no_results']     = 'There are no offers to display at this time.';
 
 // Success
 $_['success_offers']      = 'Extension "Totals/Offers" is Enabled and set to appear in position %s in the Shopping Cart.';

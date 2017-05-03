@@ -8,6 +8,9 @@
   <div class="box">
     <div class="heading">
       <h1><img src="view/image/offer.png" alt="" /> <?php echo $heading_title; ?></h1>
+      <div class="buttons">
+        <a onclick="location = '<?php echo $cancel; ?>';" class="button-cancel"><?php echo $button_exit; ?></a>
+      </div>
     </div>
     <div class="content-body">
       <div class="overview">
@@ -80,7 +83,7 @@
       </div>
       <div class="latest">
         <div class="dashboard-heading"><?php echo $text_status; ?></div>
-        <div class="dashboard-content" style="height:300px; overflow-y:scroll;">
+        <div class="dashboard-content">
           <table class="list">
             <thead>
               <tr>

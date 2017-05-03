@@ -15,6 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/media.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
+        <a href="<?php echo $module_mediaplayer; ?>" class="button-cancel"><i class="fa fa-puzzle-piece"></i> &nbsp; <?php echo $button_module; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>

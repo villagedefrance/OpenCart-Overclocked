@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/image.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $extension; ?>" class="button"><?php echo $button_extension; ?></a>
+        <a href="<?php echo $extension; ?>" class="button"><i class="fa fa-credit-card"></i> &nbsp; <?php echo $button_extension; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('#form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>

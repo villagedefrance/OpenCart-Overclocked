@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/offer.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a href="<?php echo $dashboard; ?>" class="button-cancel"><?php echo $button_dashboard; ?></a>
+        <a href="<?php echo $dashboard; ?>" class="button-cancel"><i class="fa fa-arrow-left"></i> &nbsp; <?php echo $button_dashboard; ?></a>
         <a href="<?php echo $insert; ?>" class="button"><?php echo $button_insert; ?></a>
         <a onclick="$('form').attr('action','<?php echo $delete; ?>'); $('form').submit();" class="button-delete"><?php echo $button_delete; ?></a>
       </div>

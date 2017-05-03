@@ -229,9 +229,9 @@ class ControllerDesignConnection extends Controller {
 		$this->data['column_frontend'] = $this->language->get('column_frontend');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_module'] = $this->language->get('button_module');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
-		$this->data['button_module'] = $this->language->get('button_module');
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];

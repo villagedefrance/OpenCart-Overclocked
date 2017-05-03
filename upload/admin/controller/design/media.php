@@ -199,6 +199,8 @@ class ControllerDesignMedia extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->data['module_mediaplayer'] = $this->url->link('module/mediaplayer', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['insert'] = $this->url->link('design/media/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/media/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -264,6 +266,7 @@ class ControllerDesignMedia extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_module'] = $this->language->get('button_module');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 		$this->data['button_filter'] = $this->language->get('button_filter');

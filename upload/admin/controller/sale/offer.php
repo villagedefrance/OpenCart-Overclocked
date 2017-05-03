@@ -25,6 +25,10 @@ class ControllerSaleOffer extends Controller {
 		$this->data['text_enabled'] = $this->language->get('text_enabled');
 		$this->data['text_disabled'] = $this->language->get('text_disabled');
 
+		$this->data['button_exit'] = $this->language->get('button_exit');
+
+		$this->data['cancel'] = $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL');
+
 		// Breadcrumbs
 		$this->data['breadcrumbs'] = array();
 

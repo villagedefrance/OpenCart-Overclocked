@@ -30,6 +30,9 @@ $_['entry_sort_order']    = 'Sort Order';
 // Info
 $_['info_title']          = 'List of internal links';
 
+// Button
+$_['button_theme']        = 'Themes';
+
 // Error
 $_['error_permission']    = 'Warning: You do not have permission to modify <b>Footers</b> !';
 $_['error_name']          = 'Footer Name must be between 3 and 64 characters!';

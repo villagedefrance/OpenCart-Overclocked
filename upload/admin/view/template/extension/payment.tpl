@@ -15,7 +15,7 @@
     <div class="heading">
       <h1><img src="view/image/payment.png" alt="" /> <?php echo $heading_title; ?> (<?php echo $total_extensions; ?>)</h1>
       <div class="buttons">
-        <a href="<?php echo $payment_images; ?>" class="button<?php echo $payment_button; ?>"><?php echo $button_images; ?></a>
+        <a href="<?php echo $payment_images; ?>" class="button<?php echo $payment_button; ?>"><i class="fa fa-money"></i> &nbsp; <?php echo $button_images; ?></a>
         <a id="installed" class="button"><?php echo $button_filter; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>

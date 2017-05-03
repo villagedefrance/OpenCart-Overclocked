@@ -23,6 +23,9 @@ $_['entry_media']          = 'Media File:<span class="help">Supported formats: m
 $_['entry_credit']         = 'Credits:<span class="help">Media content may be subject to copyrights.</span>';
 $_['entry_status']         = 'Status:';
 
+// Button
+$_['button_module']        = 'Module';
+
 // Error
 $_['error_permission']     = 'Warning: You do not have permission to modify <b>Medias</b> !';
 $_['error_name']           = 'Media Name must be between 3 and 128 characters!';

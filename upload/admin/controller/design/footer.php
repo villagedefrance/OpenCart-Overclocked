@@ -178,6 +178,8 @@ class ControllerDesignFooter extends Controller {
 			'separator' => ' :: '
 		);
 
+		$this->data['theme'] = $this->url->link('extension/theme', 'token=' . $this->session->data['token'], 'SSL');
+
 		$this->data['insert'] = $this->url->link('design/footer/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
 		$this->data['delete'] = $this->url->link('design/footer/delete', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
@@ -227,6 +229,7 @@ class ControllerDesignFooter extends Controller {
 		$this->data['column_status'] = $this->language->get('column_status');
 		$this->data['column_action'] = $this->language->get('column_action');
 
+		$this->data['button_theme'] = $this->language->get('button_theme');
 		$this->data['button_insert'] = $this->language->get('button_insert');
 		$this->data['button_delete'] = $this->language->get('button_delete');
 
