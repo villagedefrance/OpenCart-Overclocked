@@ -30,25 +30,12 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
-Powered by the Latest Scripts:
-- jQuery 1.12.4.
-- jQuery UI 1.12.1.
-- jQuery Migrate 1.4.1.
-- CKEditor 4.6.2 Full.
-- ...
-
-Coming soon in 1.9.3.0!
+New in 1.9.3.0 (current release)!
 - News with extra features.
 - YouTube videos for products.
 - Split UK nations as Countries.
 - Better Image Class library.
 - PayM payment method.
-- Bug fixes.
-- ...
-
-New in 1.9.2.0 (current release)!
-- Admin themes improvements.
-- Stronger Session Class.
 - Bug fixes.
 - ...
 
