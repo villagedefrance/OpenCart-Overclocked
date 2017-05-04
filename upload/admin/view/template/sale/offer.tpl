@@ -83,7 +83,7 @@
       </div>
       <div class="latest">
         <div class="dashboard-heading"><?php echo $text_status; ?></div>
-        <div class="dashboard-content">
+        <div class="dashboard-content" style="height:300px; overflow-y:scroll;">
           <table class="list">
             <thead>
               <tr>
