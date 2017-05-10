@@ -33,6 +33,6 @@ class DB {
 	}
 
 	public function connected() {
-		return $this->driver->connected();
+		return $this->driver->isConnected();
 	}
 }
