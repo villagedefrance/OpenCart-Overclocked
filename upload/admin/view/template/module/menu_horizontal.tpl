@@ -233,7 +233,7 @@ function addModule() {
 	html += '    </select></td>';
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_horizontal_module[' + module_row + '][direction]">';
-	html += '      <option value="1" selected="selected><?php echo $text_ltr; ?></option>';
+	html += '      <option value="1" selected="selected"><?php echo $text_ltr; ?></option>';
 	html += '      <option value="0"><?php echo $text_rtl; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_horizontal_module[' + module_row + '][status]">';

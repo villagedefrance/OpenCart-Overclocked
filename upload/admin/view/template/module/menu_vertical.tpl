@@ -232,7 +232,7 @@ function addModule() {
 	html += '    </select></td>';
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_vertical_module[' + module_row + '][direction]">';
-	html += '      <option value="ltr"><?php echo $text_ltr; ?></option>';
+	html += '      <option value="ltr" selected="selected"><?php echo $text_ltr; ?></option>';
 	html += '      <option value="rtl"><?php echo $text_rtl; ?></option>';
 	html += '    </select></td>';
 	html += '    <td class="left"><select name="menu_vertical_module[' + module_row + '][status]">';
