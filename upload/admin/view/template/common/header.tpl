@@ -304,10 +304,10 @@ $(document).ready(function() {
           </li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-support"></i>' : ''; ?><?php echo $text_help; ?></a>
             <ul>
-              <li><a onclick="window.open('http://villagedefrance.net');" title=""><?php echo ($icons) ? '<i class="fa fa-home"></i>' : ''; ?><?php echo $text_opencart_overclocked; ?></a></li>
+              <li><a onclick="window.open('https://villagedefrance.net');" title=""><?php echo ($icons) ? '<i class="fa fa-home"></i>' : ''; ?><?php echo $text_opencart_overclocked; ?></a></li>
               <li><a onclick="window.open('http://forum.villagedefrance.net');" title=""><?php echo ($icons) ? '<i class="fa fa-heart"></i>' : ''; ?><?php echo $text_forum; ?></a></li>
-              <li><a onclick="window.open('http://www.opencart.com');" title=""><?php echo ($icons) ? '<i class="fa fa-opencart"></i>' : ''; ?><?php echo $text_opencart; ?></a></li>
-              <li><a onclick="window.open('http://forum.opencart.com');" title=""><?php echo ($icons) ? '<i class="fa fa-support"></i>' : ''; ?><?php echo $text_support; ?></a></li>
+              <li><a onclick="window.open('https://www.opencart.com');" title=""><?php echo ($icons) ? '<i class="fa fa-opencart"></i>' : ''; ?><?php echo $text_opencart; ?></a></li>
+              <li><a onclick="window.open('https://forum.opencart.com');" title=""><?php echo ($icons) ? '<i class="fa fa-support"></i>' : ''; ?><?php echo $text_support; ?></a></li>
               <li><a onclick="window.open('http://docs.opencart.com/');" title=""><?php echo ($icons) ? '<i class="fa fa-book"></i>' : ''; ?><?php echo $text_documentation; ?></a></li>
             </ul>
           </li>
