@@ -93,7 +93,7 @@
         </tr>
         <tr>
           <td><?php echo $entry_data_feed; ?></td>
-          <td><textarea name="rss_feed_data_feed" cols="40" rows="5" readonly="readonly"><?php echo $data_feed; ?></textarea></td>
+          <td><textarea cols="40" rows="5"><?php echo $data_feed; ?></textarea></td>
         </tr>
       </table>
       </form>

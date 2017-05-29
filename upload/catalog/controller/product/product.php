@@ -974,8 +974,10 @@ class ControllerProductProduct extends Controller {
 
 		if (isset($this->request->post['product_id'])) {
 			$product_id = $this->request->post['product_id'];
-		} else {
+		} elseif (isset($this->request->get['product_id'])) {
 			$product_id = $this->request->get['product_id'];
+		} else {
+			$product_id = 0;
 		}
 
 		if (isset($this->request->post['profile_id'])) {

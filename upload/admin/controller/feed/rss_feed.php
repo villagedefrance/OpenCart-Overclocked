@@ -120,7 +120,7 @@ class ControllerFeedRSSFeed extends Controller {
 			$this->data[$this->_name . '_image_height'] = $this->config->get($this->_name . '_image_height') ? $this->config->get($this->_name . '_image_height') : 100;
 		}
 
-		$this->data['data_feed'] = HTTP_CATALOG . 'index.php?route=feed/rss_feed';
+		$this->data['data_feed'] = ($this->config->get('config_secure') ? HTTPS_CATALOG : HTTP_CATALOG) . 'index.php?route=feed/rss_feed';
 
 		$this->template = 'feed/' . $this->_name . '.tpl';
 		$this->children = array(
