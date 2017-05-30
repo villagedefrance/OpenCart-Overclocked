@@ -8,17 +8,20 @@
 }
 
 /* PADDING */
+
 .CodeMirror-lines {
   padding: 4px 0; /* Vertical padding around content */
 }
 .CodeMirror pre {
   padding: 0 4px; /* Horizontal padding of content */
 }
+
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
   background-color: white; /* The little square between H and V scrollbars */
 }
 
 /* GUTTER */
+
 .CodeMirror-gutters {
   border-right: 1px solid #ddd;
   background-color: #f7f7f7;
@@ -32,10 +35,12 @@
   color: #999;
   white-space: nowrap;
 }
+
 .CodeMirror-guttermarker { color: black; }
 .CodeMirror-guttermarker-subtle { color: #999; }
 
 /* CURSOR */
+
 .CodeMirror-cursor {
   border-left: 1px solid black;
   border-right: none;
@@ -133,6 +138,7 @@
 .CodeMirror-composing { border-bottom: 2px solid; }
 
 /* Default styles for common addons */
+
 div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
 div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
