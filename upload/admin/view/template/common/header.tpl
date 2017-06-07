@@ -243,6 +243,7 @@ $(document).ready(function() {
           <li><a href="<?php echo $setting; ?>"><?php echo ($icons) ? '<i class="fa fa-gears"></i>' : ''; ?><?php echo $text_setting; ?></a></li>
           <li><a class="arrow"><?php echo ($icons) ? '<i class="fa fa-paint-brush"></i>' : ''; ?><?php echo $text_design; ?></a>
             <ul>
+              <li><a href="<?php echo $administration; ?>"><?php echo ($icons) ? '<i class="fa fa-magic"></i>' : ''; ?><?php echo $text_administration; ?></a></li>
               <li><a href="<?php echo $banner; ?>"><?php echo ($icons) ? '<i class="fa fa-photo"></i>' : ''; ?><?php echo $text_banner; ?></a></li>
               <li><a href="<?php echo $media; ?>"><?php echo ($icons) ? '<i class="fa fa-video-camera"></i>' : ''; ?><?php echo $text_media; ?></a></li>
               <li><a href="<?php echo $footer; ?>"><?php echo ($icons) ? '<i class="fa fa-hashtag"></i>' : ''; ?><?php echo $text_footer; ?></a></li>

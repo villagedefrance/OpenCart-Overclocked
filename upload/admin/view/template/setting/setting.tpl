@@ -1217,10 +1217,10 @@
             <td><?php echo $entry_admin_stylesheet; ?></td>
             <td><select name="config_admin_stylesheet">
               <?php foreach ($admin_stylesheets as $admin_stylesheet) { ?>
-                <?php if ($config_admin_stylesheet == $admin_stylesheet['format']) { ?>
-                  <option value="<?php echo $admin_stylesheet['format']; ?>" selected="selected"><?php echo $admin_stylesheet['title']; ?></option>
+                <?php if ($config_admin_stylesheet == $admin_stylesheet['name']) { ?>
+                  <option value="<?php echo $admin_stylesheet['name']; ?>" selected="selected"><?php echo ucfirst($admin_stylesheet['name']); ?></option>
                 <?php } else { ?>
-                  <option value="<?php echo $admin_stylesheet['format']; ?>"><?php echo $admin_stylesheet['title']; ?></option>
+                  <option value="<?php echo $admin_stylesheet['name']; ?>"><?php echo ucfirst($admin_stylesheet['name']); ?></option>
                 <?php } ?>
               <?php } ?>
             </select></td>

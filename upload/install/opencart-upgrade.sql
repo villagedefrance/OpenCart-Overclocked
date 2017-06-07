@@ -34,6 +34,21 @@ CREATE TABLE `oc_address` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_administration`
+--
+
+DROP TABLE IF EXISTS `oc_administration`;
+CREATE TABLE `oc_administration` (
+  `date_modified` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `administration_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`administration_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_affiliate`
 --
 

@@ -1208,11 +1208,6 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Preference
-		$this->data['admin_stylesheets'] = array();
-
-		$this->data['admin_stylesheets'][] = array('format' => 'classic', 'title' => 'Classic');
-		$this->data['admin_stylesheets'][] = array('format' => 'overclock', 'title' => 'Overclock');
-
 		if (isset($this->request->post['config_admin_stylesheet'])) {
 			$this->data['config_admin_stylesheet'] = $this->request->post['config_admin_stylesheet'];
 		} elseif ($this->config->get('config_admin_stylesheet')) {
@@ -1220,6 +1215,10 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$this->data['config_admin_stylesheet'] = 'classic';
 		}
+
+		$this->load->model('design/administration');
+
+		$this->data['admin_stylesheets'] = $this->model_design_administration->getAdministrations(0);
 
 		if (isset($this->request->post['config_admin_width_limit'])) {
 			$this->data['config_admin_width_limit'] = $this->request->post['config_admin_width_limit'];

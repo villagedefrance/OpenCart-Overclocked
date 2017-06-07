@@ -132,6 +132,12 @@ class ModelSettingStore extends Model {
 		return $query->row['total'];
 	}
 
+	public function getTotalStoresByStylesheet($name) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_admin_stylesheet' AND `value` = '" . $this->db->escape($name) . "' AND store_id != '0'");
+
+		return $query->row['total'];
+	}
+
 	public function getTotalStoresByCustomerGroupId($customer_group_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "setting WHERE `key` = 'config_customer_group_id' AND `value` = '" . (int)$customer_group_id . "' AND store_id != '0'");
 

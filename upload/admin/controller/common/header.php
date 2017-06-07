@@ -73,6 +73,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['time_offset'] = ($time) ? $time : '0';
 
 		// Text
+		$this->data['text_administration'] = $this->language->get('text_administration');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_api_key_manager'] = $this->language->get('text_api_key_manager');
 		$this->data['text_attribute'] = $this->language->get('text_attribute');
@@ -227,6 +228,7 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$this->data['logged'] = sprintf($this->language->get('text_logged'), $this->user->getUserName());
 
+			$this->data['administration'] = $this->url->link('design/administration', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['affiliate'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['api_key_manager'] = $this->url->link('tool/api_key_manager', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['attribute'] = $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], 'SSL');

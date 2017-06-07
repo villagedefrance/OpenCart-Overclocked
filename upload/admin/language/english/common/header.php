@@ -7,6 +7,7 @@ $_['text_confirm']                     = 'Delete/Uninstall cannot be undone! Are
 
 // Text
 $_['text_affiliate']                   = 'Affiliates';
+$_['text_administration']              = 'Administration';
 $_['text_api_key_manager']             = 'Api Key Manager';
 $_['text_attribute']                   = 'Attributes';
 $_['text_attribute_group']             = 'Attribute Groups';

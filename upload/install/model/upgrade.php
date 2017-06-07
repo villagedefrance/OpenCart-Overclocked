@@ -330,7 +330,7 @@ class ModelUpgrade extends Model {
 		set_time_limit(30);
 
 		// Add serialized to Setting
-		$setting_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0' ORDER BY store_id ASC");
+		$setting_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0' ORDER BY store_id ASC");
 
 		foreach ($setting_query->rows as $setting) {
 			if (!$setting['serialized']) {
@@ -358,11 +358,11 @@ class ModelUpgrade extends Model {
 				$language_query = $this->db->query("SELECT language_id FROM `" . DB_PREFIX . "language`");
 
 				foreach ($language_query->rows as $language) {
-					$this->db->query("REPLACE INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country['country_id'] . "', language_id = '" . (int)$language['language_id'] . "', name = '" . $this->db->escape($country['name']) . "'");
+					$this->db->query("REPLACE INTO `" . DB_PREFIX . "country_description` SET country_id = '" . (int)$country['country_id'] . "', language_id = '" . (int)$language['language_id'] . "', name = '" . $this->db->escape($country['name']) . "'");
 				}
 			}
 
-			$this->db->query("ALTER TABLE " . DB_PREFIX . "country DROP name");
+			$this->db->query("ALTER TABLE `" . DB_PREFIX . "country` DROP name");
 		}
 
 		// Update the customer group table
@@ -634,7 +634,7 @@ define(\'DB_PREFIX\', \'' . DB_PREFIX . '\');';
 	public function updateGeoData($file) {
 		ini_set('max_execution_time', 3600);
 
-		$handle = fopen($file, 'r');
+		$handle = fopen($file, 'r+');
 
 		if (!$handle) {
 			die('Cannot open uploaded CSV file.');

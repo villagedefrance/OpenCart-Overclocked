@@ -34,6 +34,29 @@ CREATE TABLE `oc_address` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_administration`
+--
+
+DROP TABLE IF EXISTS `oc_administration`;
+CREATE TABLE `oc_administration` (
+  `administration_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `date_modified` datetime NOT NULL,
+  PRIMARY KEY (`administration_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_administration`
+--
+
+INSERT INTO `oc_administration` (`administration_id`, `name`, `date_added`, `date_modified`) VALUES
+(1, 'classic', '2017-06-05 10:06:48', '2017-06-05 14:02:42'),
+(2, 'overclock', '2017-06-05 10:06:48', '2017-06-05 14:02:42');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_affiliate`
 --
 
