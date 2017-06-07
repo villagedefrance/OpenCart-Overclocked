@@ -30,6 +30,12 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
+Coming soon in v1.9.4.0!
+- Custom Admin theme manager.
+- CKEditor update to v4.7.0.
+- bug fixes.
+- ...
+
 New in 1.9.3.0 (current release)!
 - News with extra features.
 - YouTube videos for products.
