@@ -49,8 +49,6 @@ final class Encryption {
 		if ($php_version >= '7.1') {
 			$method = 'AES-128-CBC';
 
-			$iv_length = openssl_cipher_iv_length($method); // 16
-
 			$decrypted = trim(openssl_decrypt($decoded, $method, hash('sha256', $this->key, true), OPENSSL_RAW_DATA, $iv));
 
 		} else {
