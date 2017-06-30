@@ -958,15 +958,16 @@ a.button-add:hover {
 }
 #column-left .box-product > div, #column-right .box-product > div {
 	width: 100%;
-	min-width: 160px;
+	min-width: 170px;
 }
 #content .box-product > div {
-	width: 19%;
-	min-width: 145px;
+	width: 22%;
+	min-width: 160px;
 }
 .box-product .image {
 	display: block;
 	margin-bottom: 7px;
+	overflow: hidden;
 }
 .box-product .image img {
 	padding: 2px;
@@ -1286,6 +1287,7 @@ ul.box-filter > li ul {
 .news-list .image {
 	float: left;
 	margin-right: 10px;
+	overflow: hidden;
 }
 .news-list .image img, .news-grid .image img {
 	padding: 3px;
@@ -1333,6 +1335,7 @@ ul.box-filter > li ul {
 .news-grid .image {
 	display: block;
 	margin-bottom: 0px;
+	overflow: hidden;
 }
 .news-grid .description {
 	display: none;
@@ -1533,6 +1536,7 @@ ul.box-filter > li ul {
 .product-list .image {
 	float: left;
 	margin-right: 10px;
+	overflow: hidden;
 }
 .product-list .image img {
 	padding: 3px;
@@ -1622,6 +1626,7 @@ ul.box-filter > li ul {
 .product-grid .image {
 	display: block;
 	margin-bottom: 0px;
+	overflow: hidden;
 }
 .product-grid .image img {
 	padding: 3px;
@@ -2029,6 +2034,7 @@ ul.box-filter > li ul {
 .review-list .image {
 	float: left;
 	margin-right: 10px;
+	overflow: hidden;
 }
 .review-list .image img {
 	padding: 3px;
@@ -2092,6 +2098,7 @@ ul.box-filter > li ul {
 .review-grid .image {
 	display: block;
 	margin-bottom: 0px;
+	overflow: hidden;
 }
 .review-grid .image img {
 	padding: 3px;

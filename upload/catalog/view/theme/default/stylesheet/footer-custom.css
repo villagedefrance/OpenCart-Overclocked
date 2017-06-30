@@ -236,20 +236,28 @@ a.icon-skype:hover {
 }
 /* Phones - Large */
 @media only screen and (min-width: 320px) and (max-width: 481px) {
-	.footer-light #footer > .big-column, .footer-dark #footer > .big-column,
-	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
 		clear: left;
 		float: left;
 		margin: 10px 0px 0px 15px;
 	}
+	.footer-light #footer > .column-three, .footer-dark #footer > .column-three {
+		clear: left;
+		float: left;
+		margin: 10px 0px 0px 0px;
+	}
 }
 /* Phones - Small */
 @media only screen and (max-width: 320px) {
-	.footer-light #footer > .big-column, .footer-dark #footer > .big-column,
+	.footer-light #footer > .big-column, .footer-dark #footer > .big-column {
+		clear: left;
+		float: left;
+		margin: 10px 0px 0px 15px;
+	}
 	.footer-light #footer > .column-one, .footer-light #footer > .column-two, .footer-light #footer > .column-three, .footer-light #footer > .column-four,
 	.footer-dark #footer > .column-one, .footer-dark #footer > .column-two, .footer-dark #footer > .column-three, .footer-dark #footer > .column-four {
 		clear: left;
 		float: left;
-		margin: 10px 0px 0px 15px;
+		margin: 10px 0px 0px 0px;
 	}
 }
