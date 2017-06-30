@@ -127,7 +127,7 @@ class ControllerProductProductWall extends Controller {
 
 			foreach ($product_results as $result) {
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
 				} else {
 					$image = false;
 				}
