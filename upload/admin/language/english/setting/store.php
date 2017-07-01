@@ -63,18 +63,18 @@ $_['entry_stock_checkout']         = 'Stock Checkout:<span class="help">Allow cu
 $_['entry_supplier_group']         = 'Supplier Group:<span class="help">Default supplier group.</span>';
 $_['entry_logo']                   = 'Store Logo:';
 $_['entry_icon']                   = 'Store Icon:<span class="help">The icon should be a PNG that is 16px x 16px.</span>';
-$_['entry_image_category']         = 'Category Image Size:';
-$_['entry_image_thumb']            = 'Product Image Thumb Size:';
-$_['entry_image_popup']            = 'Product Image Popup Size:';
-$_['entry_image_product']          = 'Product Image List Size:';
-$_['entry_image_additional']       = 'Additional Product Image Size:';
-$_['entry_image_brand']            = 'Manufacturer Image Size:';
-$_['entry_image_related']          = 'Related Product Image Size:';
-$_['entry_image_compare']          = 'Compare Image Size:';
-$_['entry_image_wishlist']         = 'Wish List Image Size:';
-$_['entry_image_newsthumb']        = 'News Image Thumb Size:';
-$_['entry_image_newspopup']        = 'News Image Popup Size:';
-$_['entry_image_cart']             = 'Cart Image Size:';
+$_['entry_image_category']         = 'Category Image Size:<span class="help">Category image on Category pages.</span>';
+$_['entry_image_thumb']            = 'Product Image Thumb Size:<span class="help">Product Main image on Product pages.</span>';
+$_['entry_image_popup']            = 'Product Image Popup Size:<span class="help">Product Popup image on Product pages.</span>';
+$_['entry_image_product']          = 'Product Image List Size:<span class="help">Product images on Category, Search, Special, Reviews and other Product pages.</span>';
+$_['entry_image_additional']       = 'Additional Product Image Size:<span class="help">Product additional image(s) on Product pages.</span>';
+$_['entry_image_brand']            = 'Manufacturer Image Size:<span class="help">Manufacturer image on Manufacturer pages.</span>';
+$_['entry_image_related']          = 'Related Product Image Size:<span class="help">Related Product images on Product pages.</span>';
+$_['entry_image_compare']          = 'Compare Image Size:<span class="help">Product image on product Compare pages.</span>';
+$_['entry_image_wishlist']         = 'Wish List Image Size:<span class="help">Product image on customer Wish List pages.</span>';
+$_['entry_image_newsthumb']        = 'News Image Thumb Size:<span class="help">News Main image on news pages.</span>';
+$_['entry_image_newspopup']        = 'News Image Popup Size:<span class="help">News Popup image on news pages.</span>';
+$_['entry_image_cart']             = 'Cart Image Size:<span class="help">Product image on Cart pages.</span>';
 $_['entry_secure']                 = 'Use SSL:<span class="help">To use SSL check with your host if a SSL certificate is installed.</span>';
 
 // Button
