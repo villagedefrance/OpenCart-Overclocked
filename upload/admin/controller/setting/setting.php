@@ -238,6 +238,7 @@ class ControllerSettingSetting extends Controller {
 		$this->data['entry_image_newsthumb'] = $this->language->get('entry_image_newsthumb');
 		$this->data['entry_image_newspopup'] = $this->language->get('entry_image_newspopup');
 		$this->data['entry_image_cart'] = $this->language->get('entry_image_cart');
+		$this->data['entry_label_size_ratio'] = $this->language->get('entry_label_size_ratio');
 		$this->data['entry_label_stock'] = $this->language->get('entry_label_stock');
 		$this->data['entry_label_offer'] = $this->language->get('entry_label_offer');
 		$this->data['entry_label_special'] = $this->language->get('entry_label_special');
@@ -1564,6 +1565,26 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		// Image > Labels
+		$this->data['label_ratios'] = array();
+
+		$this->data['label_ratios'][] = array('ratio' => '20', 'title' => '20%');
+		$this->data['label_ratios'][] = array('ratio' => '25', 'title' => '25%');
+		$this->data['label_ratios'][] = array('ratio' => '30', 'title' => '30%');
+		$this->data['label_ratios'][] = array('ratio' => '35', 'title' => '35%');
+		$this->data['label_ratios'][] = array('ratio' => '40', 'title' => '40%');
+		$this->data['label_ratios'][] = array('ratio' => '45', 'title' => '45%');
+		$this->data['label_ratios'][] = array('ratio' => '50', 'title' => '50%');
+		$this->data['label_ratios'][] = array('ratio' => '55', 'title' => '55%');
+		$this->data['label_ratios'][] = array('ratio' => '60', 'title' => '60%');
+
+		if (isset($this->request->post['config_label_size_ratio'])) {
+			$this->data['config_label_size_ratio'] = $this->request->post['config_label_size_ratio'];
+		} elseif ($this->config->get('config_label_size_ratio')) {
+			$this->data['config_label_size_ratio'] = $this->config->get('config_label_size_ratio');
+		} else {
+			$this->data['config_label_size_ratio'] = '40';
+		}
+
 		if (isset($this->request->post['config_label_stock'])) {
 			$this->data['config_label_stock'] = $this->request->post['config_label_stock'];
 		} else {

@@ -284,12 +284,14 @@ class ControllerCheckoutCart extends Controller {
 
 				if ($product['image']) {
 					$image = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+					$label_ratio = round((($this->config->get('config_image_related_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
 				} else {
 					$image = '';
+					$label_ratio = 30;
 				}
 
 				if ((float)$product['special']) {
-					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 30, 30);
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 					$special = true;
 				} else {
 					$special_label = false;
@@ -297,13 +299,13 @@ class ControllerCheckoutCart extends Controller {
 				}
 
 				if ($product['quantity'] <= 0) {
-					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 30, 30);
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio, $label_ratio);
 				} else {
 					$stock_label = false;
 				}
 
 				if (in_array($product['product_id'], $offers, true)) {
-					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 30, 30);
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
 					$offer = true;
 				} else {
 					$offer_label = false;

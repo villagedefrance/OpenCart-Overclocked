@@ -189,6 +189,7 @@ $_['entry_image_wishlist']         = 'Wish List Image Size:<span class="help">Pr
 $_['entry_image_newsthumb']        = 'News Image Thumb Size:<span class="help">News Main image on news pages.</span>';
 $_['entry_image_newspopup']        = 'News Image Popup Size:<span class="help">News Popup image on news pages.</span>';
 $_['entry_image_cart']             = 'Cart Image Size:<span class="help">Product image on Cart pages.</span>';
+$_['entry_label_size_ratio']       = 'Label Size Ratio:<span class="help">Relative to the Image size.</span>';
 $_['entry_label_stock']            = 'Out of Stock Label:<span class="help">Label will be displayed when a product has a Stock Quantity of zero. Leave empty for no label.</span>';
 $_['entry_label_offer']            = 'Offer Label:<span class="help">Label will be displayed when a product belongs to a valid Offer, and is in Stock. Leave empty for no label.</span>';
 $_['entry_label_special']          = 'Special Label:<span class="help">Label will be displayed when a product is on Special, does not belong to a valid Offer, and is in Stock. Leave empty for no label.</span>';

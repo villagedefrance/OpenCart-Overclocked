@@ -1722,6 +1722,18 @@
         <h2><?php echo $text_image_labels; ?></h2>
         <table class="form">
           <tr>
+            <td><?php echo $entry_label_size_ratio; ?></td>
+            <td><select name="config_label_size_ratio">
+              <?php foreach ($label_ratios as $label_ratio) { ?>
+                <?php if ($config_label_size_ratio == $label_ratio['ratio']) { ?>
+                  <option value="<?php echo $label_ratio['ratio']; ?>" selected="selected"><?php echo $label_ratio['title']; ?></option>
+                <?php } else { ?>
+                  <option value="<?php echo $label_ratio['ratio']; ?>"><?php echo $label_ratio['title']; ?></option>
+                <?php } ?>
+              <?php } ?>
+            </select></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_label_stock; ?></td>
             <td><div class="image"><img src="<?php echo $label_stock; ?>" alt="" id="thumb-label-stock" /><br />
               <input type="hidden" name="config_label_stock" value="<?php echo $config_label_stock; ?>" id="label-stock" />

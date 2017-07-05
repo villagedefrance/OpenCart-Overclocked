@@ -372,8 +372,10 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if ($product_info['image']) {
+				$label_ratio = round((($this->config->get('config_image_thumb_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
 				$this->data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
 			} else {
+				$label_ratio = 90;
 				$this->data['popup'] = '';
 			}
 
@@ -431,7 +433,7 @@ class ControllerProductProduct extends Controller {
 			if ($product_info['quantity'] <= 0) {
 				$this->data['stock'] = $product_info['stock_status'];
 				$this->data['stock_quantity'] = 0;
-				$this->data['stock_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_stock'), 90, 90);
+				$this->data['stock_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio, $label_ratio);
 			} elseif ($this->config->get('config_stock_display')) {
 				$this->data['stock'] = $product_info['quantity'];
 				$this->data['stock_quantity'] = $product_info['quantity'];
@@ -499,7 +501,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if ((float)$product_info['special']) {
-				$this->data['special_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_special'), 90, 90);
+				$this->data['special_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 				$this->data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
 			} else {
 				$this->data['special_label_large'] = false;
@@ -628,8 +630,11 @@ class ControllerProductProduct extends Controller {
 			$product_offers = $this->model_catalog_offer->getOfferProducts($this->request->get['product_id']);
 
 			if ($product_offers) {
-				$this->data['offer_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 90, 90);
-				$this->data['offer_label_medium'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
+				$this->data['offer_label_large'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
+
+				$label_ratio_medium = round((($this->config->get('config_image_related_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
+
+				$this->data['offer_label_medium'] = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio_medium, $label_ratio_medium);
 
 				foreach ($product_offers as $product_offer) {
 					if ($product_offer['one'] == $this->request->get['product_id']) {
@@ -724,7 +729,7 @@ class ControllerProductProduct extends Controller {
 				}
 
 				if ((float)$result['special']) {
-					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), 50, 50);
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio_medium, $label_ratio_medium);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$special_label = false;
@@ -738,13 +743,13 @@ class ControllerProductProduct extends Controller {
 				}
 
 				if ($result['quantity'] <= 0) {
-					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), 50, 50);
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio_medium, $label_ratio_medium);
 				} else {
 					$stock_label = false;
 				}
 
 				if (in_array($result['product_id'], $related_offers, true)) {
-					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), 50, 50);
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio_medium, $label_ratio_medium);
 					$offer = true;
 				} else {
 					$offer_label = false;
