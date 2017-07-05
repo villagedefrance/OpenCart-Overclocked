@@ -2,6 +2,7 @@
 class User {
 	private $user_id;
 	private $username;
+	private $user_group_id;
 	private $permission = array();
 
 	protected $registry;
@@ -93,7 +94,7 @@ class User {
 		return $this->username;
 	}
 
-	public function getGroupId() {
+	public function getUserGroupId() {
 		return $this->user_group_id;
 	}
 }
