@@ -70,8 +70,16 @@
               <td class="left"><?php echo $text_total_sale_month; ?></td>
               <td class="right"><?php echo $total_sale_month; ?></td>
             </tr>
+          </table>
+          <table class="list" style="margin-bottom:9px;">
             <tr>
-              <td class="left"><?php echo $text_total_order; ?></td>
+              <td class="left"><?php echo $text_total_order; ?>
+              <?php if ($total_pending_orders > 0) { ?>
+                <a href="<?php echo $view_orders; ?>" title=""><span class="color" style="background-color:#F2B155; color:#FFF;"><?php echo $total_pending_orders; ?></span></a>
+              <?php } else { ?>
+                <a href="<?php echo $view_orders; ?>" title=""><span class="color" style="background-color:#AAA; color:#FFF;">&gt;</span></a>
+              <?php } ?>
+              </td>
               <td class="right"><?php echo $total_order; ?></td>
             </tr>
             <tr>
@@ -120,7 +128,7 @@
         </div>
         <div class="dashboard-heading"><?php echo $text_statistics; ?></div>
         <div class="dashboard-content">
-          <div id="report" style="width:100%; height:230px;"></div> 
+          <div id="report" style="width:100%; height:258px;"></div> 
         </div>
       </div>
       <div class="tiles">

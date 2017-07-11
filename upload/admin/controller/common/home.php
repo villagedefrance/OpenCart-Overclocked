@@ -318,6 +318,10 @@ class ControllerCommonHome extends Controller {
 		$this->data['total_upload'] = $this->model_tool_upload->getTotalUploads(0);
 
 		// Overview Links
+		$config_order_status_id = $this->config->get('config_order_status_id');
+
+		$this->data['total_pending_orders'] = $this->model_sale_order->getTotalOrdersByOrderStatusId($config_order_status_id);
+
 		$this->data['view_reviews'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['view_affiliates'] = $this->url->link('sale/affiliate', 'token=' . $this->session->data['token'], 'SSL');
 

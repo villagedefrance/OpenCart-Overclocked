@@ -867,6 +867,10 @@ class ControllerSaleOrder extends Controller {
 			$this->data['affiliate'] = '';
 		}
 
+		$this->load->model('localisation/order_status');
+
+		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
+
 		if (isset($this->request->post['order_status_id'])) {
 			$this->data['order_status_id'] = $this->request->post['order_status_id'];
 		} elseif (!empty($order_info)) {
@@ -874,10 +878,6 @@ class ControllerSaleOrder extends Controller {
 		} else {
 			$this->data['order_status_id'] = '';
 		}
-
-		$this->load->model('localisation/order_status');
-
-		$this->data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
 		if (isset($this->request->post['comment'])) {
 			$this->data['comment'] = $this->request->post['comment'];

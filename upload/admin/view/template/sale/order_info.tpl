@@ -130,7 +130,7 @@
         <?php if ($order_status) { ?>
         <tr>
           <td><?php echo $text_order_status; ?></td>
-          <td id="order-status"><?php echo $order_status; ?></td>
+          <td id="order-status"><b><?php echo $order_status; ?></b></td>
         </tr>
         <?php } ?>
         <?php if ($comment) { ?>

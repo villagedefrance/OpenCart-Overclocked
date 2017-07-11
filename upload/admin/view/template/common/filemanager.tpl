@@ -45,7 +45,7 @@
     <button id="btnThumbView" class="btn"><?php echo $button_view_thumb; ?></button>
   </div>
   <span style="float:right; font-size:12px; padding:10px 10px 0px 0px; color:#269BC6;">
-    <a onclick="window.open('http://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
+    <a onclick="window.open('https://villagedefrance.net');" title="villagedefrance" style="text-decoration:none;">Overclocked Edition</a>
   </span>
   <div id="information-dialog" style="display:none;"></div>
 </div>
