@@ -401,15 +401,15 @@ body > #container-normal, body > #container-limited {
 	background: url('../image/theme-classic/menu.png') repeat-x;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	list-style: none;
-	padding: 0;
-	margin: 0;
+	padding: 0px;
+	margin: 0px;
 	z-index: 4;
 }
 .menu li {
 	float: left;
 	position: relative;
 	height: 34px;
-	padding: 0;
+	padding: 0px;
 }
 .menu li:hover, .menu li.onhover { }
 .menu li a.top {
@@ -423,7 +423,7 @@ ul.menu a {
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	text-decoration: none;
 	line-height: 34px;
-	padding: 0 25px;
+	padding: 0px 25px;
 	outline: 0;
 }
 .menu a:hover { }
@@ -498,7 +498,7 @@ ul.menu ul {
 #content {
 	background: #FFF url('../image/theme-classic/background.png') 0px 1px repeat-x;
 	padding: 10px 30px 128px 30px;
-	min-width: 740px;
+	min-width: 720px;
 }
 /* Breadcrumbs */
 .breadcrumb {
@@ -1266,7 +1266,7 @@ table.tool tr td {
 .toolbox {
 	background: #FCFCFC;
 	border: 1px solid #CFCFCF;
-	margin-bottom:15px;
+	margin-bottom: 15px;
 	padding: 10px;
 }
 /* Htabs */
@@ -1742,32 +1742,96 @@ table.tool tr td {
 }
 #footer-normal a, #footer-limited a {
 	color: #333;
+	text-shadow: 0 0 1px rgba(51, 51, 51, 0.05);
 	text-decoration: underline;
 }
 /* Desktops */
-@media only screen and (min-width: 960px) and (max-width: 1220px) {
+@media only screen and (min-width: 940px) and (max-width: 1240px) {
 	#content {
 		padding: 10px 20px 128px 20px;
+	}
+	.tops .tiers .dashboard-content-left, .tops .tiers .dashboard-heading-left {
+		margin-right: 7px;
+	}
+	.tops .tiers .dashboard-content-middle, .tops .tiers .dashboard-heading-middle {
+		margin-right: 7px;
+		margin-left: 7px;
+	}
+	.tops .tiers .dashboard-content-right, .tops .tiers .dashboard-heading-right {
+		margin-left: 7px;
 	}
 	#vmap {
 		height: 350px;
 	}
 }
 /* Tablets */
-@media only screen and (min-width: 740px) and (max-width: 960px) {
+@media only screen and (min-width: 790px) and (max-width: 940px) {
 	#content {
 		padding: 10px 10px 128px 10px;
+	}
+	.tops .tiers .dashboard-content-left, .tops .tiers .dashboard-heading-left {
+		margin-right: 5px;
+	}
+	.tops .tiers .dashboard-content-middle, .tops .tiers .dashboard-heading-middle {
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	.tops .tiers .dashboard-content-right, .tops .tiers .dashboard-heading-right {
+		margin-left: 5px;
+	}
+	.tiles .tile .tile-red span, .tiles .tile .tile-blue span, .tiles .tile .tile-yellow span, .tiles .tile .tile-green span {
+		font-size: 30px;
+	}
+	.tiles .tile .tile-red a, .tiles .tile .tile-blue a, .tiles .tile .tile-yellow a, .tiles .tile .tile-green a {
+		font-size: 16px;
 	}
 	#vmap {
 		height: 300px;
 	}
 }
 /* Phones */
-@media only screen and (max-width: 740px) {
+@media only screen and (max-width: 790px) {
+	body, td, th, input, select, textarea, fieldset, option, optgroup {
+		font-size: 11px;
+	}
+	input.checkbox:not(old):checked + label > span:before {
+		width: 11px;
+		font-size: 16px;
+		line-height: 11px;
+	}
+	ul.menu a {
+		font-size: 12px;
+	}
 	#content {
 		padding: 10px 5px 128px 5px;
 	}
+	.tops .tiers .dashboard-content-left, .tops .tiers .dashboard-heading-left {
+		margin-right: 3px;
+	}
+	.tops .tiers .dashboard-content-middle, .tops .tiers .dashboard-heading-middle {
+		margin-right: 3px;
+		margin-left: 3px;
+	}
+	.tops .tiers .dashboard-content-right, .tops .tiers .dashboard-heading-right {
+		margin-left: 3px;
+	}
+	.htabs a {
+		font-size: 12px;
+	}
+	.vtabs a, .vtabs span {
+		width: 150px;
+		font-size: 12px;
+	}
+	.dashboard-heading, .dashboard-heading-left, .dashboard-heading-middle, .dashboard-heading-right {
+		font-size: 13px;
+	}
+	.tiles .tile .tile-red span, .tiles .tile .tile-blue span, .tiles .tile .tile-yellow span, .tiles .tile .tile-green span {
+		font-size: 26px;
+	}
+	.tiles .tile .tile-red a, .tiles .tile .tile-blue a, .tiles .tile .tile-yellow a, .tiles .tile .tile-green a {
+		font-size: 14px;
+	}
 	#vmap {
-		height: 250px;
+		height: 260px;
 	}
 }
