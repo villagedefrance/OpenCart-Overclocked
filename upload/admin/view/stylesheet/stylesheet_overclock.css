@@ -214,9 +214,9 @@ body > #container-normal, body > #container-limited {
 }
 #header .static {
 	height: 56px;
-	background: url('../image/theme-overclock/header.png') repeat-x;
 	color: #FCFCFC;
 	text-shadow: 0 0 1px rgba(252, 252, 252, 0.05);
+	background: url('../image/theme-overclock/header.png') repeat-x;
 }
 #header .image {
 	position: relative;
@@ -275,9 +275,9 @@ body > #container-normal, body > #container-limited {
 	background: #FCFCFC;
 	border: 1px solid #DDD;
 	-moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	min-width: 150px;
 	z-index: 9;
 }
@@ -316,9 +316,9 @@ body > #container-normal, body > #container-limited {
 	background: #FCFCFC;
 	border: 1px solid #BBB;
 	-moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	min-width: 150px;
 	z-index: 9;
 }
@@ -357,9 +357,9 @@ body > #container-normal, body > #container-limited {
 	background: #FCFCFC;
 	border: 1px solid #BBB;
 	-moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 	min-width: 150px;
 	height: 60px;
 	overflow: auto;
@@ -509,27 +509,27 @@ ul.menu ul {
 .success, .warning, .attention, .tooltip {
 	padding: 10px 10px 10px 33px;
 	margin-bottom: 15px;
-	color: #444;
+	color: #333;
 	text-shadow: 0 0 1px rgba(68, 68, 68, 0.05);
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
 }
 .success {
-	background: #BAD19C url('../image/success.png') 10px center no-repeat;
+	background: rgba(186, 209, 156, 0.8) url('../image/success.png') 10px center no-repeat;
 	border: 1px solid #8EAD66;
 }
 .warning {
-	background: #E2AAAA url('../image/warning.png') 10px center no-repeat;
+	background: rgba(226, 170, 170, 0.8) url('../image/warning.png') 10px center no-repeat;
 	border: 1px solid #D38383;
 }
 .attention {
-	background: #FFF5CC url('../image/attention.png') 10px center no-repeat;
+	background: rgba(255, 245, 204, 0.8) url('../image/attention.png') 10px center no-repeat;
 	border: 1px solid #F2DD8C;
 }
 .tooltip {
-	background: #91AEBC url('../image/tooltip.png') 10px center no-repeat;
+	background: rgba(145, 174, 188, 0.8) url('../image/tooltip.png') 10px center no-repeat;
 	border: 1px solid #4D95BC;
 }
 .close, .success .close, .warning .close, .attention .close, .tooltip .close {
@@ -627,9 +627,9 @@ ul.menu ul {
 	min-height: 300px;
 	background: #30353A;
 	-moz-border-radius: 0px 0px 3px 3px;
-    -webkit-border-radius: 0px 0px 3px 3px;
-    -khtml-border-radius: 0px 0px 3px 3px;
-    border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0px 0px 3px 3px;
+	-khtml-border-radius: 0px 0px 3px 3px;
+	border-radius: 0px 0px 3px 3px;
 	padding-bottom: 20px;
 	padding-top: 10px;
 	overflow: auto;
@@ -1828,6 +1828,9 @@ table.tool tr td {
 	}
 	#content {
 		padding: 10px 5px 128px 5px;
+	}
+	.breadcrumb, .breadcrumb a {
+		font-size: 11px;
 	}
 	.tops .tiers .dashboard-content-left, .tops .tiers .dashboard-heading-left {
 		margin-right: 3px;

@@ -714,8 +714,10 @@ class ControllerProductProduct extends Controller {
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+					$label_ratio = round((($this->config->get('config_image_related_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
 				} else {
 					$image = false;
+					$label_ratio = 50;
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -729,7 +731,7 @@ class ControllerProductProduct extends Controller {
 				}
 
 				if ((float)$result['special']) {
-					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio_medium, $label_ratio_medium);
+					$special_label = $this->model_tool_image->resize($this->config->get('config_label_special'), $label_ratio, $label_ratio);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$special_label = false;
@@ -743,13 +745,13 @@ class ControllerProductProduct extends Controller {
 				}
 
 				if ($result['quantity'] <= 0) {
-					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio_medium, $label_ratio_medium);
+					$stock_label = $this->model_tool_image->resize($this->config->get('config_label_stock'), $label_ratio, $label_ratio);
 				} else {
 					$stock_label = false;
 				}
 
 				if (in_array($result['product_id'], $related_offers, true)) {
-					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio_medium, $label_ratio_medium);
+					$offer_label = $this->model_tool_image->resize($this->config->get('config_label_offer'), $label_ratio, $label_ratio);
 					$offer = true;
 				} else {
 					$offer_label = false;
