@@ -30,8 +30,15 @@ Requirements:
 - Curl: Curl extensions
 - PHP: PHP 5.4+
 
+COMING SOON in v1.9.5.0!
+- Admin Dashboard update.
+- Encryption update (PHP 7.1+ support).
+- Product labels automatic resizing.
+- CKEditor update to v4.7.1.
+- bug fixes.
+- ...
 
-NEW in v1.9.4.0!
+NEW in v1.9.4.0 (Current Release)!
 - Custom Admin theme manager.
 - CKEditor update to v4.7.0.
 - bug fixes.
