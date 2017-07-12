@@ -284,7 +284,7 @@ class ControllerCheckoutCart extends Controller {
 
 				if ($product['image']) {
 					$image = $this->model_tool_image->resize($product['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
-					$label_ratio = round((($this->config->get('config_image_related_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
+					$label_ratio = round((($this->config->get('config_image_cart_width') * $this->config->get('config_label_size_ratio')) / 100), 0);
 				} else {
 					$image = '';
 					$label_ratio = 30;
