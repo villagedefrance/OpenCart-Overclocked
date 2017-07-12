@@ -511,10 +511,10 @@ ul.menu ul {
 	margin-bottom: 15px;
 	color: #333;
 	text-shadow: 0 0 1px rgba(68, 68, 68, 0.05);
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	-khtml-border-radius: 2px;
-	border-radius: 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	border-radius: 3px;
 }
 .success {
 	background: rgba(186, 209, 156, 0.8) url('../image/success.png') 10px center no-repeat;
