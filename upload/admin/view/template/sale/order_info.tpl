@@ -9,6 +9,7 @@
     <div class="heading">
       <h1><img src="view/image/order.png" alt="" /> <?php echo $order_title; ?></h1>
       <div class="buttons">
+        <a onclick="location = '<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
         <a href="<?php echo $close; ?>" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>
@@ -38,7 +39,9 @@
       <a href="#tab-shipping"><?php echo $tab_shipping; ?></a>
     <?php } ?>
       <a href="#tab-product"><?php echo $tab_product; ?></a>
+    <?php if ($picklist_status) { ?>
       <a href="#tab-picklist"><?php echo $tab_pick_list; ?></a>
+    <?php } ?>
       <a href="#tab-history"><?php echo $tab_history; ?></a>
     <?php foreach ($tabs as $tab) { ?>
       <a href="#tab-<?php echo $tab['code']; ?>"><?php echo $tab['title']; ?></a>
@@ -130,7 +133,37 @@
         <?php if ($order_status) { ?>
         <tr>
           <td><?php echo $text_order_status; ?></td>
-          <td id="order-status"><b><?php echo $order_status; ?></b></td>
+          <td id="order-status"><?php echo $order_status; ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="toggler">
+              <table class="form-slim">
+                <tr class="highlighted">
+                  <td><?php echo $entry_order_status; ?></td>
+                  <td>
+                    <input type="hidden" name="old_order_status_id" value="<?php echo $order_status_id; ?>" id="old_order_status_id" />
+                    <select name="order_status_id"><?php foreach ($order_statuses as $order_statuses) { ?>
+                    <?php if ($order_statuses['order_status_id'] == $order_status_id) { ?>
+                      <option value="<?php echo $order_statuses['order_status_id']; ?>" selected="selected"><?php echo $order_statuses['name']; ?></option>
+                    <?php } else { ?>
+                      <option value="<?php echo $order_statuses['order_status_id']; ?>"><?php echo $order_statuses['name']; ?></option>
+                    <?php } ?>
+                    <?php } ?></select>
+                  </td>
+                </tr>
+                <tr class="highlighted">
+                  <td><?php echo $entry_notify; ?></td>
+                  <td><input type="checkbox" name="notify" value="1" id="notify" class="checkbox" />
+                    <label for="notify"><span></span></label>
+                  </td>
+                </tr>
+                <tr class="highlighted">
+                  <td><?php echo $entry_comment; ?></td>
+                  <td><textarea name="comment" cols="20" rows="5" style="width:99%;"></textarea>
+                    <div style="margin-top:10px;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </td>
         </tr>
         <?php } ?>
         <?php if ($comment) { ?>
@@ -401,14 +434,8 @@
       </table>
       <?php } ?>
     </div>
+    <?php if ($picklist_status) { ?>
     <div id="tab-picklist" class="vtabs-content">
-      <div id="show-tooltip" style="display:block;">
-        <?php if ($picklist_status) { ?>
-          <div id="tooltip" class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_picklist_enabled; ?></div>
-        <?php } else { ?>
-          <div id="tooltip" class="tooltip" style="margin:5px 0px 10px 0px;"><?php echo $info_picklist_disabled; ?></div>
-        <?php } ?>
-      </div>
       <table class="list">
         <thead>
           <tr>
@@ -453,38 +480,9 @@
         </tbody>
       </table>
     </div>
+    <?php } ?>
     <div id="tab-history" class="vtabs-content">
       <div id="history"></div>
-      <table class="form">
-        <tr>
-          <td><?php echo $entry_order_status; ?></td>
-          <td>
-            <input type="hidden" name="old_order_status_id" value="<?php echo $order_status_id; ?>" id="old_order_status_id" />
-            <select name="order_status_id">
-            <?php foreach ($order_statuses as $order_statuses) { ?>
-              <?php if ($order_statuses['order_status_id'] == $order_status_id) { ?>
-                <option value="<?php echo $order_statuses['order_status_id']; ?>" selected="selected"><?php echo $order_statuses['name']; ?></option>
-              <?php } else { ?>
-                <option value="<?php echo $order_statuses['order_status_id']; ?>"><?php echo $order_statuses['name']; ?></option>
-              <?php } ?>
-            <?php } ?>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_notify; ?></td>
-          <td>
-            <input type="checkbox" name="notify" value="1" id="notify" class="checkbox" />
-            <label for="notify"><span></span></label>
-          </td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_comment; ?></td>
-          <td><textarea name="comment" cols="40" rows="8" style="width:99%;"></textarea>
-            <div style="margin-top:10px; text-align:right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div>
-          </td>
-        </tr>
-      </table>
     </div>
     <?php foreach ($tabs as $tab) { ?>
       <div id="tab-<?php echo $tab['code']; ?>" class="vtabs-content"><?php echo $tab['content']; ?></div>
@@ -495,8 +493,10 @@
 
 <script type="text/javascript"><!--
 $(document).ready(function() {
-	$('#tooltip').on('click', function() {
-		$('#show-tooltip').fadeOut('slow');
+	$('.toggler').hide().before('<a id="<?php echo 'toggler'; ?>" class="button" style="margin:10px auto;"><i class="fa fa-chevron-down"></i> &nbsp; <?php echo $button_update; ?></a>');
+	$('#<?php echo 'toggler'; ?>').click(function() {
+		$('.toggler').slideToggle(600);
+		return false;
 	});
 });
 //--></script>
@@ -792,8 +792,8 @@ $('#button-history').live('click', function() {
 			$('#history').prepend('<div class="attention"><img src="view/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		complete: function() {
-			$('#button-history').attr('disabled', false);
 			$('.attention').remove();
+			$('#button-history').attr('disabled', false);
 		},
 		success: function(html) {
 			$('#history').html(html);

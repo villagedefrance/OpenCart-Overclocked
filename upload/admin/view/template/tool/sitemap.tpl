@@ -12,7 +12,7 @@
     <div class="heading">
       <h1><img src="view/image/category.png" alt="" /> <?php echo $heading_title; ?></h1>
       <div class="buttons">
-        <a onclick="location='<?php echo $refresh; ?>';" class="button"><?php echo $button_refresh; ?></a>
+        <a onclick="location='<?php echo $refresh; ?>';" class="button"><i class="fa fa-refresh"></i> &nbsp; <?php echo $button_refresh; ?></a>
         <a onclick="location = '<?php echo $close; ?>';" class="button-cancel"><?php echo $button_close; ?></a>
       </div>
     </div>

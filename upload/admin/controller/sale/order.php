@@ -1463,7 +1463,9 @@ class ControllerSaleOrder extends Controller {
 			$this->data['button_shipping_label'] = $this->language->get('button_shipping_label');
 			$this->data['button_delivery_note'] = $this->language->get('button_delivery_note');
 			$this->data['button_invoice'] = $this->language->get('button_invoice');
+			$this->data['button_refresh'] = $this->language->get('button_refresh');
 			$this->data['button_close'] = $this->language->get('button_close');
+			$this->data['button_update'] = $this->language->get('button_update');
 			$this->data['button_add_history'] = $this->language->get('button_add_history');
 
 			$this->data['tab_order'] = $this->language->get('tab_order');
@@ -1472,9 +1474,6 @@ class ControllerSaleOrder extends Controller {
 			$this->data['tab_product'] = $this->language->get('tab_product');
 			$this->data['tab_pick_list'] = $this->language->get('tab_pick_list');
 			$this->data['tab_history'] = $this->language->get('tab_history');
-
-			$this->data['info_picklist_enabled'] = $this->language->get('info_picklist_enabled');
-			$this->data['info_picklist_disabled'] = $this->language->get('info_picklist_disabled');
 
 			$this->data['token'] = $this->session->data['token'];
 
@@ -1545,6 +1544,7 @@ class ControllerSaleOrder extends Controller {
 				$this->data['order_title'] = $this->language->get('heading_title');
 			}
 
+			$this->data['refresh'] = $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'] . $url, 'SSL');
 			$this->data['close'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 			$this->data['pick_list'] = $this->url->link('sale/order/pickList', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'], 'SSL');
@@ -2059,6 +2059,8 @@ class ControllerSaleOrder extends Controller {
 				$this->model_sale_order->addOrderHistory($this->request->get['order_id'], $this->request->post);
 
 				$this->data['success'] = $this->language->get('text_success');
+
+				$this->redirect = $this->url->link('sale/order/info', 'token=' . $this->session->data['token'] . '&order_id=' . $this->request->get['order_id'], 'SSL');
 			}
 		}
 

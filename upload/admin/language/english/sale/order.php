@@ -153,14 +153,12 @@ $_['entry_coupon']               = 'Coupon:';
 $_['entry_voucher']              = 'Voucher:';
 $_['entry_reward']               = 'Reward:';
 
-// Info
-$_['info_picklist_enabled']      = 'The Pick List is <b>Enabled</b> in your Settings. Customers are able to track progress on their order.';
-$_['info_picklist_disabled']     = 'The Pick List is <b>Disabled</b> in your Settings. Customers will NOT be able to track progress on their order.';
-
 // Button
+$_['button_refresh']             = 'Refresh';
 $_['button_pick_list']           = 'Pick List';
 $_['button_shipping_label']      = 'Shipping Label';
 $_['button_delivery_note']       = 'Delivery Note';
+$_['button_update']              = 'Update Status';
 
 // Tab
 $_['tab_pick_list']              = 'Pick List';
