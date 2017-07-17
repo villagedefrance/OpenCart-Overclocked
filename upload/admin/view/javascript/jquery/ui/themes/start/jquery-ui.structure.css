@@ -55,7 +55,7 @@
 	left: 0;
 	position: absolute;
 	opacity: 0;
-	filter:Alpha(Opacity=0); /* support: IE8 */
+	filter: Alpha(Opacity=0); /* support: IE8 */
 }
 
 .ui-front {
@@ -267,7 +267,6 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-
 	/* Support: IE <= 11 */
 	overflow: visible;
 }
@@ -319,7 +318,7 @@ input.ui-button.ui-icon-notext .ui-icon {
 	padding: .4em 1em;
 }
 
-/* workarounds */
+/* Workarounds */
 /* Support: Firefox 5 - 40 */
 input.ui-button::-moz-focus-inner,
 button.ui-button::-moz-focus-inner {
@@ -499,7 +498,7 @@ button.ui-button::-moz-focus-inner {
 	float: left;
 }
 
-/* with multiple calendars */
+/* With multiple calendars */
 .ui-datepicker.ui-datepicker-multi {
 	width: auto;
 }
@@ -748,7 +747,7 @@ button.ui-button::-moz-focus-inner {
 	background-position: 0 0;
 }
 
-/* support: IE8 - See #6727 */
+/* Support: IE8 - See #6727 */
 .ui-slider.ui-state-disabled .ui-slider-handle,
 .ui-slider.ui-state-disabled .ui-slider-range {
 	filter: inherit;
@@ -791,6 +790,7 @@ button.ui-button::-moz-focus-inner {
 .ui-slider-vertical .ui-slider-range-max {
 	top: 0;
 }
+
 .ui-spinner {
 	position: relative;
 	display: inline-block;

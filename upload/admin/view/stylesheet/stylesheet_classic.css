@@ -1656,7 +1656,7 @@ table.tool tr td {
 /* Overview */
 .overview {
 	float: left;
-	width: 38%;
+	width: 36%;
 }
 .overview table {
 	width: 100%;
@@ -1667,7 +1667,7 @@ table.tool tr td {
 /* Statistic */
 .statistic {
 	float: right;
-	width: 60%;
+	width: 63%;
 }
 /* Range */
 .range {

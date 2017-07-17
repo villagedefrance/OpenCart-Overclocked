@@ -261,7 +261,6 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-
 	/* Support: IE <= 11 */
 	overflow: visible;
 }
@@ -312,7 +311,7 @@ input.ui-button.ui-icon-notext .ui-icon {
 	padding: .4em 1em;
 }
 
-/* workarounds */
+/* Workarounds */
 /* Support: Firefox 5 - 40 */
 input.ui-button::-moz-focus-inner,
 button.ui-button::-moz-focus-inner {
@@ -492,7 +491,7 @@ button.ui-button::-moz-focus-inner {
 	float: left;
 }
 
-/* with multiple calendars */
+/* With multiple calendars */
 .ui-datepicker.ui-datepicker-multi {
 	width: auto;
 }
@@ -1037,24 +1036,24 @@ a.ui-button:active,
 .ui-widget-content .ui-priority-secondary,
 .ui-widget-header .ui-priority-secondary {
 	opacity: .7;
-	filter:Alpha(Opacity=70); /* support: IE8 */
+	filter: Alpha(Opacity=70); /* support: IE8 */
 	font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
 	opacity: .35;
-	filter:Alpha(Opacity=35); /* support: IE8 */
+	filter: Alpha(Opacity=35); /* support: IE8 */
 	background-image: none;
 }
 .ui-state-disabled .ui-icon {
-	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+	filter: Alpha(Opacity=35); /* support: IE8 - See #6059 */
 }
 
 /* Icons
 ----------------------------------*/
 
-/* states and images */
+/* States and Images */
 .ui-icon {
 	width: 16px;
 	height: 16px;
@@ -1088,7 +1087,7 @@ a.ui-button:active,
 	background-image: url("images/ui-icons_e0fdff_256x240.png");
 }
 
-/* positioning */
+/* Positioning */
 .ui-icon-blank { background-position: 16px 16px; }
 .ui-icon-caret-1-n { background-position: 0 0; }
 .ui-icon-caret-1-ne { background-position: -16px 0; }
@@ -1266,7 +1265,6 @@ a.ui-button:active,
 .ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
 .ui-icon-grip-diagonal-se { background-position: -80px -224px; }
 
-
 /* Misc visuals
 ----------------------------------*/
 
@@ -1275,25 +1273,25 @@ a.ui-button:active,
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-	border-top-left-radius: 5px;
+	border-top-left-radius: 3px;
 }
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-	border-top-right-radius: 5px;
+	border-top-right-radius: 3px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-	border-bottom-left-radius: 5px;
+	border-bottom-left-radius: 3px;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-	border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 3px;
 }
 
 /* Overlays */
