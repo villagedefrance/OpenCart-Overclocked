@@ -52,7 +52,7 @@ SEO Keywords Manager, Integrated News (Blog), DomPDF library for PDF order downl
 Full SSL support in Catalog, Direct printing of invoices, Custom Colour & Style for all modules and footer,
 Improved Affiliates features, Api Keys management forms, Supplier management forms, Product RSS Feed,
 Product labels system, Cookie Consent code, New Modules & Shipping methods, Admin User Agent detector,
-New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search
+New and updated Payment methods, Tag cloud, Alexa & Piwik connectors, Customer Group image, Ajax Search,
 Store Google Map, Country & Zone update on upgrade, Invoicing with tax breakdown, Contact E-mail logging,
 Ip Range blocker (firewall), Stronger Session & Captcha Classes, Autocomplete for offers, Seo-Urls caching,
 "Save & Continue" for Admin forms, EU taxes for E-medias Law, Customer Order Picklist & Order History,
@@ -60,7 +60,7 @@ Customer Gender & Date of Birth (optional), Import/Export Tool, Product Minimum 
 Product Quote system, Profit Margins & Stock Levels reports, Colours for Product, VQmod and VQmanager,
 Improved Search, Better PayPal Express button, Better Install & Upgrade scripts, One Page Checkout (optional),
 Express Checkout (optional), Multi-language Manufacturers, Multi-language Countries, FraudLabs Pro integration,
-Font-awesome library, Admin menu icons, Fancybox Plus product image viewer, PHP 7.0+ support, Media Player,
+Font-awesome library, Admin menu icons, Choice of 5 product image viewers, PHP 7.0+ support, Media Player,
 "Free" for zero prices, Custom Payment labels, All fixes from Community Edition RC1/2 applied, Better Dashboard ...
 
 

@@ -61,7 +61,6 @@ $_['text_unwritable']        = 'Unwritable';
 $_['text_missing']           = 'Missing';
 $_['text_activate']          = 'Yes, activate';
 $_['text_remove']            = 'Yes, remove';
-$_['text_update']            = 'Yes, update (Recommended)';
 $_['text_forget']            = 'For security reasons, the <b>install</b> directory will be automatically deleted once logged-in.';
 $_['text_shop']              = 'Go to your Online Shop';
 $_['text_login']             = 'Go to your Dashboard';
@@ -85,7 +84,6 @@ $_['entry_email']            = 'E-Mail';
 $_['entry_rewrite']          = 'Activate Seo-url Rewrite ?';
 $_['entry_maintenance']      = 'Activate Maintenance mode ?';
 $_['entry_demo_data']        = 'Remove Demo Data ?';
-$_['entry_geo_data']         = 'Update Country &amp; Zone data ?';
 
 // Error
 $_['error_php_version']      = 'Warning: You need to use PHP 5.4 or above for OpenCart OCE to work!';

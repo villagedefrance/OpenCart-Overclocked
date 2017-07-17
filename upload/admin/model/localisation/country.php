@@ -10,7 +10,7 @@ class ModelLocalisationCountry extends Model {
 		$this->session->data['new_country_id'] = $country_id;
 
 		foreach ($data['country_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country_id . "', language_id = '" . (int)$language_id . "', `name` = '" . $this->db->escape($value['name']) . "'");
 		}
 
 		$this->cache->delete('country');
@@ -23,7 +23,7 @@ class ModelLocalisationCountry extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "country_description WHERE country_id = '" . (int)$country_id . "'");
 
 		foreach ($data['country_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "country_description SET country_id = '" . (int)$country_id . "', language_id = '" . (int)$language_id . "', `name` = '" . $this->db->escape($value['name']) . "'");
 		}
 
 		$this->cache->delete('country');
@@ -39,13 +39,13 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountry($country_id) {
-		$query = $this->db->query("SELECT DISTINCT *, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, cd.name AS `name` FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}
 
 	public function getCountries($data = array()) {
-		$sql = "SELECT *, cd.country_id, cd.name AS name FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT *, cd.country_id, cd.name AS `name` FROM " . DB_PREFIX . "country c LEFT JOIN " . DB_PREFIX . "country_description cd ON (c.country_id = cd.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND cd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -110,7 +110,7 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCountryName($country_id) {
-		$query = $this->db->query("SELECT DISTINCT cd.name AS name FROM " . DB_PREFIX . "country_description cd LEFT JOIN " . DB_PREFIX . "country c ON (cd.country_id = c.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY c.country_id");
+		$query = $this->db->query("SELECT DISTINCT cd.name AS `name` FROM " . DB_PREFIX . "country_description cd LEFT JOIN " . DB_PREFIX . "country c ON (cd.country_id = c.country_id) WHERE c.country_id = '" . (int)$country_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY c.country_id");
 
 		return $query->row['name'];
 	}
@@ -142,7 +142,7 @@ class ModelLocalisationCountry extends Model {
 	}
 
 	public function getCustomerCountries($data = array()) {
-		$sql = "SELECT c.customer_id, co.country_id, cd.name AS name FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "address a ON (a.address_id = c.address_id) LEFT JOIN " . DB_PREFIX . "country co ON (co.country_id = a.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (cd.country_id = co.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT c.customer_id, co.country_id, cd.name AS `name` FROM " . DB_PREFIX . "customer c LEFT JOIN " . DB_PREFIX . "address a ON (a.address_id = c.address_id) LEFT JOIN " . DB_PREFIX . "country co ON (co.country_id = a.country_id) LEFT JOIN " . DB_PREFIX . "country_description cd ON (cd.country_id = co.country_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND cd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
